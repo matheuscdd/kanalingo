@@ -4,8 +4,8 @@ export async function sleep(time) {
 
 export async function showNumberIncreasing(destination, initial, el, interval, increaser=1) { 
     for (let i = initial; i <= destination; i+=increaser) {
-        el.innerText = `${i} PTS`;
+        el.innerText = `${i} XP`;
         await sleep(interval); 
     }
-    el.innerText = `${destination} PTS`;
+    el.innerText = `${destination} XP`;
 }

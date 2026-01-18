@@ -2,9 +2,11 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanalingo Master - Aprenda Japonês</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Kanalingo</title>
+    <link rel="manifest" href="./manifest.json">
+    <link href="./assets/icon.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
     <meta http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
@@ -17,8 +19,8 @@
     <nav>
         <button class="btn-nav active" id="toggle-learn">Aprender</button>
         <button class="btn-nav" id="toggle-progress">Kanas</button>
-        <button class="btn-nav" id="toggle-categories">Categorias</button>
-        <div id="total-score">0 PTS</div>
+        <button class="btn-nav" id="toggle-categories">Níveis</button>
+        <div id="total-score">0 XP</div>
     </nav>
 
     <main id="app-container">
@@ -27,10 +29,11 @@
             <div class="progress-learn-container">
                 <div id="game-progress" class="progress-learn-bar"></div>
             </div>
-
             <div id="game-content" class="game-area">
                 <p class="question-text">Escreva isso em romaji</p>
-                <div id="current-char" class="char-display">あ</div>
+                <div id="current-char" class="char-display">
+                    <img src="./assets/loading.png" class="loading-img">
+                </div>
                 
                 <div class="input-group">
                     <input type="text" id="user-input" autocomplete="off" placeholder="Digite aqui..." autofocus>
@@ -52,8 +55,9 @@
         </section>
 
         <section id="categories-screen" class="hidden">
-            <h2>Categorias</h2>
+            <h2>Níveis</h2>
             <div id="categories-container">
+                <div class="levels-grid" id="levelsGrid"></div>
             </div>
         </section>
     </main>
@@ -64,6 +68,6 @@
         <button id="btn-next">Continuar</button>
     </div>
 
-    <script type="module" src="script.js"></script>
+    <script type="module" src="./script.js"></script>
 </body>
 </html>

@@ -1,6 +1,10 @@
 import { HIRAGANA, KATAKANA } from "./data.js";
-import { levels } from "./levels.js";
+import { leagues, levels } from "./levels.js";
 import { showNumberIncreasing, sleep } from "./utils.js";
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js')
+}
 
 const ALL_CHARS = { ...HIRAGANA, ...KATAKANA };
 const CHAR_KEYS = Object.keys(ALL_CHARS);
@@ -8,11 +12,11 @@ const CHAR_KEYS = Object.keys(ALL_CHARS);
 let gameState = {
   currentRound: [],
   currentIndex: 0,
-  pointsPerChar: {},
+  scorePerChar: {},
   lastWrong: false,
 };
 
-const maxCharsRound = 2;
+const maxCharsRound = 5;
 const statusRef = Object.freeze({
   correct: "correct",
   wrong: "wrong",
@@ -30,9 +34,10 @@ const feedback = document.getElementById("feedback");
 const totalScoreDisplay = document.getElementById("total-score");
 const btnStartRound = document.getElementById("start-round");
 const btnLearn = document.getElementById("toggle-learn");
-const btnProgress = document.getElementById("toggle-progress");
-const btnCategories = document.getElementById("toggle-progress");
+const btnDash = document.getElementById("toggle-progress");
+const btnCategories = document.getElementById("toggle-categories");
 const btnNext = document.getElementById("btn-next");
+const instructions = document.querySelector('.question-text');
 
 function init() {
   loadProgress();
@@ -40,11 +45,7 @@ function init() {
   startNewRound();
 
   userInput.addEventListener("keypress", (e) => {
-    if (
-      feedback.classList !== "feedback-overlay" ||
-      e.key !== "Enter" ||
-      document.activeElement !== userInput
-    ) {
+    if (e.key !== "Enter" || document.activeElement !== userInput) {
       return;
     }
 
@@ -53,24 +54,18 @@ function init() {
   });
 
   document.addEventListener("keypress", (e) => {
-    console.log(
-      feedback.classList !== "feedback-overlay",
-      e.key === "Enter",
-      document.activeElement !== userInput,
-      gameState.currentRound.length === 0,
-    );
-
     if (
       feedback.classList !== "feedback-overlay" &&
       e.key === "Enter" &&
-      document.activeElement !== userInput
+      document.activeElement !== userInput &&
+      gameState.currentRound !== null
     ) {
       nextQuestion();
       return;
     } else if (
       e.key === "Enter" &&
       document.activeElement !== userInput &&
-      gameState.currentRound.length === 0
+      gameState.currentRound === null
     ) {
       startNewRound();
       return;
@@ -81,21 +76,27 @@ function init() {
 }
 
 function showScreen(screen) {
-  btnLearn.classList.toggle("active");
-  btnProgress.classList.toggle("active");
+  btnLearn.classList.remove("active");
+  btnDash.classList.remove("active");
+  btnCategories.classList.remove("active");
+
   if (screen === "game") {
+    btnLearn.classList.add("active");
     gameScreen.classList.remove("hidden");
     dashboardScreen.classList.add("hidden");
-    categoriesScreen.classList.add('hidden');
-  } else if ("dashboard") {
-      dashboardScreen.classList.remove("hidden");
+    categoriesScreen.classList.add("hidden");
+  } else if (screen === "dashboard") {
+    btnDash.classList.add("active");
+    dashboardScreen.classList.remove("hidden");
     gameScreen.classList.add("hidden");
-    categoriesScreen.classList.add('hidden');
+    categoriesScreen.classList.add("hidden");
     renderDashboard();
-  } else if ("categories") {
-      categoriesScreen.classList.remove('hidden');
- dashboardScreen.classList.add("hidden");
+  } else if (screen === "categories") {
+    btnCategories.classList.add("active");
+    categoriesScreen.classList.remove("hidden");
+    dashboardScreen.classList.add("hidden");
     gameScreen.classList.add("hidden");
+    renderCategories();
   }
 }
 
@@ -103,15 +104,7 @@ function startNewRound() {
   gameState.currentRound = [];
   gameState.currentIndex = 0;
 
-  const completed = Object.keys(gameState);
-  let shuffled = [...CHAR_KEYS];
-  if (completed.length !== CHAR_KEYS.length) {
-    shuffled = shuffled.filter((e) => !completed.includes(e));
-  }
-
-  shuffled = shuffled.sort(() => 0.5 - Math.random());
   gameState.currentRound = selectNextChars();
-
   gameContent.classList.remove("hidden");
   finishContent.classList.add("hidden");
   updateUI();
@@ -120,7 +113,7 @@ function startNewRound() {
 function selectNextChars() {
   const grouped = {};
   CHAR_KEYS.forEach((char) => {
-    const score = gameState.pointsPerChar[char] || 0;
+    const score = gameState.scorePerChar[char] || 0;
     if (!grouped[score]) grouped[score] = [];
     grouped[score].push(char);
   });
@@ -147,17 +140,18 @@ function updateUI() {
   charDisplay.textContent = char;
   userInput.value = "";
   userInput.focus();
-
   const progress = (gameState.currentIndex / maxCharsRound) * 100;
   progressBar.style.width = `${progress}%`;
 }
 
-function checkAnswer() {
+async function checkAnswer() {
   const currentJP = gameState.currentRound[gameState.currentIndex];
   const correctRomaji = ALL_CHARS[currentJP];
   const userValue = userInput.value.trim().toLowerCase();
 
   if (userValue === correctRomaji) {
+    playActionSound(statusRef.correct);
+    await sleep(200);
     showFeedback(
       statusRef.correct,
       "Continuar",
@@ -165,9 +159,11 @@ function checkAnswer() {
       "Correto!",
       correctRomaji,
     );
-    updatePoints(currentJP, 100);
+    updateScore(currentJP, 100);
     gameState.lastWrong = null;
   } else {
+    playActionSound(statusRef.wrong);
+    await sleep(200);
     showFeedback(
       statusRef.wrong,
       "Tente novamente",
@@ -177,6 +173,19 @@ function checkAnswer() {
     );
     gameState.lastWrong = currentJP;
   }
+}
+
+function playActionSound(sound) {
+  const audio = new Audio(`./assets/${sound}.mp3`);
+  audio.play();
+}
+
+function playLetterSound(currentJP) {
+  const currentRO = Object.entries(ALL_CHARS).find(
+    (x) => x[0] === currentJP,
+  )[1];
+  const audio = new Audio(`./letters/${currentRO}.mp3`);
+  audio.play();
 }
 
 async function showFeedback(status, next, title, message, char) {
@@ -192,7 +201,6 @@ async function showFeedback(status, next, title, message, char) {
 }
 
 function nextQuestion() {
-  console.log("foi");
   feedback.classList = "feedback-overlay";
   charDisplay.classList = "";
   if (feedback.dataset.status === statusRef.wrong) {
@@ -213,30 +221,31 @@ function nextQuestion() {
 function showFinishScreen() {
   gameContent.classList.add("hidden");
   finishContent.classList.remove("hidden");
-  gameState.currentRound = [];
+  gameState.currentRound = null;
+  playActionSound("completed");
 }
 
 function loadProgress() {
   const saved = localStorage.getItem("kanalingo_data");
   if (saved) {
-    gameState.pointsPerChar = JSON.parse(saved);
+    gameState.scorePerChar = JSON.parse(saved);
   } else {
-    CHAR_KEYS.forEach((k) => (gameState.pointsPerChar[k] = 0));
+    CHAR_KEYS.forEach((k) => (gameState.scorePerChar[k] = 0));
   }
 }
 
-function updatePoints(char, amount) {
+function updateScore(char, amount) {
   if (gameState.lastWrong === char) return;
-  gameState.pointsPerChar[char] = (gameState.pointsPerChar[char] || 0) + amount;
+  gameState.scorePerChar[char] = (gameState.scorePerChar[char] || 0) + amount;
   localStorage.setItem(
     "kanalingo_data",
-    JSON.stringify(gameState.pointsPerChar),
+    JSON.stringify(gameState.scorePerChar),
   );
   updateTotalScoreDisplay();
 }
 
 async function updateTotalScoreDisplay(isFirstLoad) {
-  const total = Object.values(gameState.pointsPerChar).reduce(
+  const total = Object.values(gameState.scorePerChar).reduce(
     (a, b) => a + b,
     0,
   );
@@ -257,7 +266,7 @@ function renderDashboard() {
   const container = document.getElementById("dashboard-container");
   container.innerHTML = "";
 
-  const sorted = Object.entries(gameState.pointsPerChar).sort(
+  const sorted = Object.entries(gameState.scorePerChar).sort(
     (a, b) => b[1] - a[1],
   );
 
@@ -266,6 +275,7 @@ function renderDashboard() {
 
     const card = document.createElement("div");
     card.classList = "char-card";
+    card.onclick = () => playLetterSound(char);
 
     const title = document.createElement("div");
     title.textContent = char;
@@ -287,40 +297,86 @@ function renderDashboard() {
     bar.style.backgroundColor = level.color;
     containerBar.append(bar);
 
-    const points = document.createElement("div");
-    points.classList = "card-value";
-    points.textContent = pts;
-    card.append(points);
+    const score = document.createElement("div");
+    score.classList = "card-value";
+    score.textContent = pts;
+    card.append(score);
 
     if (level.end) {
-        card.classList.add("card-finished");
-        points.classList.add("golden-color3");
+      card.classList.add("card-finished");
+      score.classList.add("golden-color3");
     }
-
-
 
     container.append(card);
   });
 }
 
 function getLevel(pts) {
-  if (pts < levels[0].points) {
+  if (pts < levels[0].score) {
     return { color: "transparent", progress: 0 };
   }
 
-  if (pts >= levels.at(-1).points) {
+  if (pts >= levels.at(-1).score) {
     const level = levels.at(-1);
     return { color: level.color, progress: 100, end: true }; // tratativa especial
   }
 
-  const level = levels.find(x => pts <= x.points);
+  const level = levels.find((x) => pts <= x.score);
   const lastCategory = levels.findLast((x) => x.category === level.category);
-  console.log(level, lastCategory)
-  const progress = Math.min(((pts / lastCategory.points) * 100) + 5, 100);
+  const progress = Math.min((pts / lastCategory.score) * 100 + 5, 100);
   return { color: level.color, progress };
+}
+
+function createShield(color) {
+  return `
+            <svg class="shield-svg" width="40" height="46" viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 0L3 7V20C3 31.05 10.25 41.3 20 44C29.75 41.3 37 31.05 37 20V7L20 0Z" fill="${color}"/>
+                <path opacity="0.3" d="M20 5L7 10.35V20C7 28.18 12.54 35.77 20 38.82V5Z" fill="white"/>
+            </svg>
+        `;
+}
+
+function renderCategories() {
+  const grid = document.getElementById("levelsGrid");
+  grid.innerHTML = "";
+
+  leagues.forEach((league, index) => {
+    const card = document.createElement("div");
+    card.className = `level-card ${index === 9 ? "active" : ""}`; // Diamante como exemplo ativo
+
+    card.innerHTML = `
+            <div class="level-icon">
+                ${createShield(league.color)}
+            </div>
+            <div class="level-info">
+                <span class="level-name">${league.name}</span>
+                <span class="level-score">${league.score}</span>
+            </div>
+            <div class="rank-number">${index + 1}</div>
+        `;
+
+    grid.appendChild(card);
+  });
 }
 
 window.onload = init;
 btnStartRound.onclick = startNewRound;
 btnLearn.onclick = () => showScreen("game");
-btnProgress.onclick = () => showScreen("dashboard");
+btnDash.onclick = () => showScreen("dashboard");
+btnCategories.onclick = () => showScreen("categories");
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', () => {
+    if (window.innerWidth > 1000) return;
+    const viewportHeight = window.visualViewport.height;
+    const windowHeight = window.innerHeight;
+
+    const keyboardOpen = (viewportHeight + 100) < windowHeight;
+    if (keyboardOpen) {
+      instructions.classList.add('question-text-mobal');
+    } else {
+      window.scrollTo(0, 0);
+      instructions.classList.remove('question-text-mobal');
+    }
+  });
+}
