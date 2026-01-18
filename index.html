@@ -16,15 +16,16 @@
 
     <nav>
         <button class="btn-nav active" id="toggle-learn">Aprender</button>
-        <button class="btn-nav" id="toggle-progress">Meu Progresso</button>
+        <button class="btn-nav" id="toggle-progress">Kanas</button>
+        <button class="btn-nav" id="toggle-categories">Categorias</button>
         <div id="total-score">0 PTS</div>
     </nav>
 
     <main id="app-container">
         <!-- TELA DE JOGO -->
         <section id="game-screen">
-            <div class="progress-container">
-                <div id="game-progress" class="progress-bar"></div>
+            <div class="progress-learn-container">
+                <div id="game-progress" class="progress-learn-bar"></div>
             </div>
 
             <div id="game-content" class="game-area">
@@ -47,6 +48,12 @@
         <section id="dashboard-screen" class="hidden">
             <h2>Estatísticas por Letra</h2>
             <div id="dashboard-container" class="dashboard-grid">
+            </div>
+        </section>
+
+        <section id="categories-screen" class="hidden">
+            <h2>Categorias</h2>
+            <div id="categories-container">
             </div>
         </section>
     </main>

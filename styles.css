@@ -1,12 +1,14 @@
 :root {
   --primary-color: #58cc02;
   --primary-dark: #46a302;
-  --golden-color: #f4980a;
+  --golden-color3: #cd7900;
+  --golden-color2: #f4980a;
+  --golden-color1: #fbe56d;
   --secondary-color: #1cb0f6;
   --text-color: #3c3c3c;
   --light-gray: #e5e5e5;
   --error-color: #ff4b4b;
-  --error-dark: #982e2e;
+  --error-dark: #ea2b2b;
   --success-color: #58cc02;
 }
 
@@ -86,15 +88,8 @@ nav {
   border-bottom: 2px solid var(--secondary-color);
 }
 
-.primary-color {
-    color: var(--primary-color);
-}
 
-.golden-color {
-    color: var(--golden-color);
-}
 
-/* Container Principal */
 main {
   width: 100%;
   max-width: 600px;
@@ -104,8 +99,7 @@ main {
   flex-direction: column;
 }
 
-/* Estilo Game (Duolingo) */
-.progress-container {
+.progress-learn-container {
   width: 100%;
   height: 16px;
   background-color: var(--light-gray);
@@ -114,7 +108,7 @@ main {
   overflow: hidden;
 }
 
-.progress-bar {
+.progress-learn-bar {
   height: 100%;
   background-color: var(--primary-color);
   width: 0%;
@@ -217,7 +211,6 @@ input[type="text"]:focus {
   transform: translateY(4px);
 }
 
-/* Feedback Modal */
 .feedback-overlay {
   position: fixed;
   bottom: -200px;
@@ -240,7 +233,6 @@ input[type="text"]:focus {
   bottom: 0;
 }
 
-/* Dashboard */
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -249,11 +241,20 @@ input[type="text"]:focus {
 }
 
 .char-card {
+    cursor: pointer;
   border: 2px solid var(--light-gray);
   border-radius: 12px;
   padding: 10px;
   text-align: center;
   transition: transform 0.2s;
+  box-shadow: 0 4px 0 var(--light-gray);
+}
+
+.card-finished {
+    border: 2px solid var(--golden-color1);
+    box-shadow: 0 4px 0 var(--golden-color1);
+    background-color: #FFF5D3;
+    color: #CD7900;
 }
 
 .char-card:hover {
@@ -273,9 +274,9 @@ input[type="text"]:focus {
   text-transform: uppercase;
 }
 
-.char-card .value {
+.card-value {
   font-size: 14px;
-  color: var(--primary-color);
+  color: #b2b2b2;
   font-weight: bold;
 }
 
@@ -314,4 +315,37 @@ input[type="text"]:focus {
 
 .trophy {
     width: 300px;
+}
+
+.progress-card-container {
+  width: 100%;
+  height: 8px;
+  background-color: var(--light-gray);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-card-bar {
+  height: 100%;
+  background-color: var(--primary-color);
+  width: 0%;
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.progress-card-wrapper {
+    padding: 0 5px;
+    margin-bottom: 5px;
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+.golden-color3 {
+    color: var(--golden-color3);
+}
+
+.golden-color1 {
+    color: var(--golden-color2);
 }
