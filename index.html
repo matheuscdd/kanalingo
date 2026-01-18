@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanalingo Master - Aprenda Japonês</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'self';
+      ">
+</head>
+<body>
+
+    <nav>
+        <button class="btn-nav active" id="toggle-learn">Aprender</button>
+        <button class="btn-nav" id="toggle-progress">Meu Progresso</button>
+        <div id="total-score">0 PTS</div>
+    </nav>
+
+    <main id="app-container">
+        <!-- TELA DE JOGO -->
+        <section id="game-screen">
+            <div class="progress-container">
+                <div id="game-progress" class="progress-bar"></div>
+            </div>
+
+            <div id="game-content" class="game-area">
+                <p class="question-text">Escreva isso em romaji</p>
+                <div id="current-char" class="char-display">あ</div>
+                
+                <div class="input-group">
+                    <input type="text" id="user-input" autocomplete="off" placeholder="Digite aqui..." autofocus>
+                </div>
+            </div>
+
+            <div id="finish-content" class="finish-screen hidden">
+                <div><img src="./assets/trophy.png" class="trophy"></div>
+                <h2>Round Completo!</h2>
+                <p>Você mandou muito bem</p>
+                <button class="btn-check" id="start-round">Jogar Novamente</button>
+            </div>
+        </section>
+
+        <section id="dashboard-screen" class="hidden">
+            <h2>Estatísticas por Letra</h2>
+            <div id="dashboard-container" class="dashboard-grid">
+            </div>
+        </section>
+    </main>
+
+    <div id="feedback" class="feedback-overlay">
+        <h2 id="feedback-title">Muito bem!</h2>
+        <p id="feedback-msg"></p>
+        <button id="btn-next">Continuar</button>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
