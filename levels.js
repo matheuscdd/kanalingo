@@ -101,52 +101,52 @@ export const levels = Object.freeze([
     },
     {
         "category": 5,
-        "color": "#FBCFE8",
+        "color": "#4CB6AE",
         "score": 21000
     },
     {
         "category": 5,
-        "color": "#F9A8D4",
+        "color": "#25A69A",
         "score": 22000
     },
     {
         "category": 5,
-        "color": "#F472B6",
+        "color": "#019788",
         "score": 23000
     },
     {
         "category": 5,
-        "color": "#EC4899",
+        "color": "#01897A",
         "score": 24000
     },
     {
         "category": 5,
-        "color": "#9D174D",
+        "color": "#01695B",
         "score": 25000
     },
     {
         "category": 6,
-        "color": "#4CB6AE",
+        "color": "#FBCFE8",
         "score": 26000
     },
     {
         "category": 6,
-        "color": "#25A69A",
+        "color": "#F9A8D4",
         "score": 27000
     },
     {
         "category": 6,
-        "color": "#019788",
+        "color": "#F472B6",
         "score": 28000
     },
     {
         "category": 6,
-        "color": "#01897A",
+        "color": "#EC4899",
         "score": 29000
     },
     {
         "category": 6,
-        "color": "#01695B",
+        "color": "#9D174D",
         "score": 30000
     },
     {
@@ -273,12 +273,12 @@ export const leagues = Object.freeze([
     score: getLastCategory(4).score,
   },
   {
-    name: "Turmalina",
+    name: "Turquesa",
     color: getLastCategory(5).color,
     score: getLastCategory(5).score,
   },
-  {
-    name: "Turquesa",
+    {
+    name: "Turmalina",
     color: getLastCategory(6).color,
     score: getLastCategory(6).score,
   },
