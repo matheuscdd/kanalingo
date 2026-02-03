@@ -1,10 +1,6 @@
-import { HIRAGANA, KATAKANA } from "./data.js";
-import { leagues, levels } from "./levels.js";
-import { showNumberIncreasing, sleep } from "./utils.js";
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js')
-}
+import { HIRAGANA, KATAKANA } from "../../data.js";
+import { leagues, levels } from "../../levels.js";
+import { showNumberIncreasing, sleep } from "../../utils.js";
 
 const ALL_CHARS = { ...HIRAGANA, ...KATAKANA };
 const CHAR_KEYS = Object.keys(ALL_CHARS);

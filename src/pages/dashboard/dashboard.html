@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Kanalingo - Dashboard</title>
+    <link rel="manifest" href="/manifest.json">
+    <link href="../../assets/images/icon-filled.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <meta http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'self';
+      ">
+</head>
+<body>
+
+    <nav>
+        <button class="btn-nav active" id="toggle-learn">Aprender</button>
+        <button class="btn-nav" id="toggle-progress">Kanas</button>
+        <button class="btn-nav" id="toggle-categories">Níveis</button>
+        <div id="total-score">0 XP</div>
+    </nav>
+
+    <main id="app-container">
+        <!-- TELA DE JOGO -->
+        <section id="game-screen">
+            <div class="progress-learn-container">
+                <div id="game-progress" class="progress-learn-bar"></div>
+            </div>
+            <div id="game-content" class="game-area">
+                <p class="question-text">Escreva isso em romaji</p>
+                <div id="current-char" class="char-display">
+                    <img src="../../assets/loading.png" class="loading-img">
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="user-input" autocomplete="off" placeholder="Digite aqui..." autofocus>
+                </div>
+            </div>
+
+            <div id="finish-content" class="finish-screen hidden">
+                <div>
+                    <img src="../../assets/trophy.png" class="trophy">
+                </div>
+                <h2>Round Completo!</h2>
+                <p>Você mandou muito bem</p>
+                <button class="btn-check" id="start-round">Jogar Novamente</button>
+            </div>
+        </section>
+
+        <section id="dashboard-screen" class="hidden">
+            <h2>Estatísticas por Letra</h2>
+            <div id="dashboard-container" class="dashboard-grid">
+            </div>
+        </section>
+
+        <section id="categories-screen" class="hidden">
+            <h2>Níveis</h2>
+            <div id="categories-container">
+                <div class="levels-grid" id="levelsGrid"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="feedback" class="feedback-overlay">
+        <h2 id="feedback-title">Muito bem!</h2>
+        <p id="feedback-msg"></p>
+        <button id="btn-next">Continuar</button>
+    </div>
+
+    <script type="module" src="./scripts/dashboard.js"></script>
+</body>
+</html>
