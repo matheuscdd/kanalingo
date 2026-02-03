@@ -1,9 +1,6 @@
-import { HIRAGANA, KATAKANA } from "../../../database/data.js";
+import { alphabet, kanas } from "../../../database/letters.js";
 import { leagues, levels } from "../../../database/levels.js";
 import { showNumberIncreasing, sleep } from "../../../scripts/utils.js";
-
-const ALL_CHARS = { ...HIRAGANA, ...KATAKANA };
-const CHAR_KEYS = Object.keys(ALL_CHARS);
 
 let gameState = {
   currentRound: [],
@@ -108,7 +105,7 @@ function startNewRound() {
 
 function selectNextChars() {
   const grouped = {};
-  CHAR_KEYS.forEach((char) => {
+  kanas.forEach((char) => {
     const score = gameState.scorePerChar[char] || 0;
     if (!grouped[score]) grouped[score] = [];
     grouped[score].push(char);
@@ -142,7 +139,7 @@ function updateUI() {
 
 async function checkAnswer() {
   const currentJP = gameState.currentRound[gameState.currentIndex];
-  const correctRomaji = ALL_CHARS[currentJP];
+  const correctRomaji = alphabet.find(x => x.term === currentJP).definition;
   const userValue = userInput.value.trim().toLowerCase();
 
   if (userValue === correctRomaji) {
@@ -172,15 +169,13 @@ async function checkAnswer() {
 }
 
 function playActionSound(sound) {
-  const audio = new Audio(`/kanalingo/src/assets/audios/soundEffects/${sound}.mp3`);
+  const audio = new Audio(`../../assets/audios/soundEffects/${sound}.mp3`);
   audio.play();
 }
 
 function playLetterSound(currentJP) {
-  const currentRO = Object.entries(ALL_CHARS).find(
-    (x) => x[0] === currentJP,
-  )[1];
-  const audio = new Audio(`/kanalingo/src/assets/audios/letters/${currentRO}.mp3`);
+  const currentRO = alphabet.find((x) => x.term === currentJP).definition;
+  const audio = new Audio(`../../assets/audios/letters/${currentRO}.mp3`);
   audio.play();
 }
 
@@ -214,11 +209,12 @@ function nextQuestion() {
   }
 }
 
-function showFinishScreen() {
+async function showFinishScreen() {
+  playActionSound("completed");
+  await sleep(100);
   gameContent.classList.add("hidden");
   finishContent.classList.remove("hidden");
   gameState.currentRound = null;
-  playActionSound("completed");
 }
 
 function loadProgress() {
@@ -226,7 +222,7 @@ function loadProgress() {
   if (saved) {
     gameState.scorePerChar = JSON.parse(saved);
   } else {
-    CHAR_KEYS.forEach((k) => (gameState.scorePerChar[k] = 0));
+    kanas.forEach((k) => (gameState.scorePerChar[k] = 0));
   }
 }
 

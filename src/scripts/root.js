@@ -9,7 +9,7 @@ function initEvents() {
 
 function startServiceWorker() {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/../kanalingo/src/scripts/sw.js')
+        navigator.serviceWorker.register('/../../src/scripts/sw.js')
     }
     else {
         console.error('Cannot add worker');
