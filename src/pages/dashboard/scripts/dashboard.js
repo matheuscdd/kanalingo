@@ -1,6 +1,6 @@
-import { HIRAGANA, KATAKANA } from "../../data.js";
-import { leagues, levels } from "../../levels.js";
-import { showNumberIncreasing, sleep } from "../../utils.js";
+import { HIRAGANA, KATAKANA } from "../../../database/data.js";
+import { leagues, levels } from "../../../database/levels.js";
+import { showNumberIncreasing, sleep } from "../../../scripts/utils.js";
 
 const ALL_CHARS = { ...HIRAGANA, ...KATAKANA };
 const CHAR_KEYS = Object.keys(ALL_CHARS);
@@ -172,7 +172,7 @@ async function checkAnswer() {
 }
 
 function playActionSound(sound) {
-  const audio = new Audio(`./assets/${sound}.mp3`);
+  const audio = new Audio(`/kanalingo/src/assets/audios/soundEffects/${sound}.mp3`);
   audio.play();
 }
 
@@ -180,7 +180,7 @@ function playLetterSound(currentJP) {
   const currentRO = Object.entries(ALL_CHARS).find(
     (x) => x[0] === currentJP,
   )[1];
-  const audio = new Audio(`./letters/${currentRO}.mp3`);
+  const audio = new Audio(`/kanalingo/src/assets/audios/letters/${currentRO}.mp3`);
   audio.play();
 }
 

@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kanalingo - Entrar</title>
+  <title>Kanalingo - Inscrição</title>
   <link rel="manifest" href="/manifest.json">
   <link href="../../assets/images/icon-filled.png" rel="shortcut icon" type="image/x-icon">
   <link href="../../styles/root.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
-  <link href="./styles/login.css" rel="stylesheet">
+  <link href="./styles/register.css" rel="stylesheet">
   <script defer src="../../scripts/root.js" type="module"></script>
-  <script defer src="./scripts/login.js" type="module"></script>
+  <script defer src="./scripts/register.js" type="module"></script>
 </head>
 
 <body>
@@ -25,16 +25,14 @@
 
       <div style="align-items: center; gap: 1rem;">
         <div class="lang-selector">
-          <a href="/kanalingo/src/pages/landing/landing.html">
-            <i class="fa-solid fa-house" style="color: #a5adbb;"></i>
-          </a>
+          Idioma: Japonês <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 0.25rem;"></i>
         </div>
       </div>
     </div>
   </header>
   <main>
     <div class="login-container">
-      <h1>Entrar</h1>
+      <h1>Inscrever-se</h1>
 
       <div id="loginForm">
         <!-- Grupo: E-mail -->
@@ -61,12 +59,12 @@
           </div>
         </div>
 
-        <button type="button" id="login" class="btn-submit">Entrar</button>
+        <button type="button" id="register" class="btn-submit">Criar</button>
       </div>
 
       <div class="separator"></div>
       <div class="footer-text">
-        Não tem uma conta? <a href="/kanalingo/src/pages/register/register.html">Inscreva-se</a>
+        Se já tem uma conta? <a href="/kanalingo/src/pages/login/login.html">Entrar</a>
       </div>
     </div>
   </main>

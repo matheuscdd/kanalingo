@@ -12,6 +12,7 @@ import {
     updateDoc,
     arrayUnion 
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+import { firebaseConfig } from "../../scripts/config.js";
 
 
 
@@ -58,29 +59,29 @@ async function adicionarNome(nome) {
 
 document.getElementById("salvar").onclick = async () => {
   const nome = document.getElementById("nome").value;
-  if (!nome) return;
+
 
   await adicionarNome(nome);
-  await listarNomes();
+  // await listarNomes();
 };
 
-async function listarNomes() {
-  const user = auth.currentUser;
-  if (!user) return;
+// async function listarNomes() {
+//   const user = auth.currentUser;
+//   if (!user) return;
 
-  const ref = doc(db, "users", user.uid);
-  const snap = await getDoc(ref);
+//   const ref = doc(db, "users", user.uid);
+//   const snap = await getDoc(ref);
 
-  if (!snap.exists()) return;
+//   if (!snap.exists()) return;
 
-  const nomes = snap.data().nomes || [];
+//   const nomes = snap.data().nomes || [];
 
-  const ul = document.getElementById("lista");
-  ul.innerHTML = "";
+//   const ul = document.getElementById("lista");
+//   ul.innerHTML = "";
 
-  nomes.forEach(n => {
-    const li = document.createElement("li");
-    li.textContent = n;
-    ul.appendChild(li);
-  });
-}
+//   nomes.forEach(n => {
+//     const li = document.createElement("li");
+//     li.textContent = n;
+//     ul.appendChild(li);
+//   });
+// }

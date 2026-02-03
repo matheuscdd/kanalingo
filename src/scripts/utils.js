@@ -25,11 +25,22 @@ export function isValidEmail(email) {
 export function redirectIfLogged() {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const publicRoutes = [
+            'login.html',
+            'register.html',
+            'landing.html'
+    ];
+    const privateRoutes = [
+        'dashboard.html'
+    ];
+
     onAuthStateChanged(auth, user => {
-        if (user) {
-            console.log("Logado:", user.uid);
-        } else {
-            console.log("Deslogado");
+        const isInPublicRoutes = publicRoutes.find(x => globalThis.location.href.includes(x));
+        const isInPrivateRoutes = privateRoutes.find(x => globalThis.location.href.includes(x));
+
+        if ((user && isInPrivateRoutes) || (!user && isInPublicRoutes)) return;
+        else if (user && isInPublicRoutes) {
+            globalThis.location.href = '/kanalingo/src/pages/dashboard/dashboard.html';
         }
     });
 }

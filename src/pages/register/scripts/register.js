@@ -10,13 +10,13 @@ import { isValidEmail, redirectIfLogged } from "../../../scripts/utils.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const btnSend = document.getElementById('login');
+const btnSend = document.getElementById('register');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const groupEmail = document.getElementById('group-email');
 const groupPassword = document.getElementById('group-password');
 
-async function tryLogin() {
+async function tryRegister() {
   let hasErrors = false;
   if (!emailInput.value || !isValidEmail(emailInput.value)) {
     addErrorsEmail();
@@ -44,7 +44,7 @@ async function tryLogin() {
   
   try {
     btnSend.disabled = true;
-    await signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
+    await createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
     redirectIfLogged();
   } catch (error) {
     console.error(error);
@@ -70,7 +70,7 @@ function addErrorsPassword() {
   groupPassword.classList.add('has-error');
 }
 
-btnSend.onclick = tryLogin;
+btnSend.onclick = tryRegister;
 emailInput.oninput = () => clearError(emailInput, groupEmail);
 passwordInput.oninput = () => clearError(passwordInput, groupPassword);
 

@@ -150,7 +150,7 @@ input.error {
 /* Botão Principal */
 .btn-submit {
   width: 100%;
-  background-color: var(--duo-green);
+  background-color: var(--duo-blue);
   color: white;
   font-size: 1rem;
   font-weight: 800;
@@ -160,7 +160,7 @@ input.error {
   border: none;
   border-radius: 16px;
   /* O "look" 3D do Duolingo é feito com box-shadow sólido */
-  box-shadow: 0px 4px 0px var(--duo-green-shadow);
+  box-shadow: 0px 4px 0px var(--duo-blue-shadow);
   cursor: pointer;
   transition: all 0.1s ease;
   margin-top: 10px;
@@ -174,7 +174,7 @@ input.error {
 }
 
 .btn-submit:hover:not(:disabled) {
-  background-color: #61e002; /* Um verde um pouco mais claro */
+  background-color: #50d3ff;
 }
 
 .btn-submit:active {
