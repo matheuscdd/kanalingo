@@ -1,6 +1,6 @@
-import { alphabet, hiragana, katakana, syllableGroups } from "../../../database/letters.js";
+import { alphabet, hiragana, katakana } from "../../../database/letters.js";
 import { levels } from "../../../database/levels.js";
-import { defaultObj, getSumFromValues, orderArray } from "../../../scripts/utils.js";
+import { getSumFromValues, orderArray, sleep } from "../../../scripts/utils.js";
 import { gameState, getTotalScore, playLetterSound } from "./utils.js";
 
 const container = document.getElementById("catalog-container");
@@ -9,7 +9,30 @@ const progressTypingPercentage = document.querySelector('.progress-typing-catalo
 const progressListeningBar = document.querySelector('.progress-listening-catalog-bar');
 const progressListeningPercentage = document.querySelector('.progress-listening-catalog-percentage');
 const placeholder = document.querySelector(".catalog-placeholder");
-const visualizer = document.getElementById('drawing-target-catalog');
+const overlay = document.querySelector('.modal-catalog-overlay');
+const btnCloseModal = document.getElementById('close-modal-catalog');
+const displayRomaji = document.querySelector('.catalog-display-romaji');
+const btnRepeat = document.getElementById('modal-catalog-repeat');
+const btnPlay = document.getElementById('modal-catalog-play');
+
+const writers = Object.seal({
+  main: null,
+  aux: null
+});
+
+export function initEventsCatalog() {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+}
 
 export function renderCatalog() {
   container.innerHTML = "";
@@ -19,6 +42,7 @@ export function renderCatalog() {
   }
 
   updateProgressBars();
+  btnCloseModal.onclick = closeModal;
   placeholder.classList.add('hidden');
   const sorted = Object.keys(gameState.scorePerChar).sort(
     (a, b) => getSumFromValues(gameState.scorePerChar[b]) - getSumFromValues(gameState.scorePerChar[a]),
@@ -30,7 +54,7 @@ export function renderCatalog() {
 
     const card = document.createElement("div");
     card.classList = "char-card";
-    card.onclick = () => playLetterSound(term);
+    card.onclick = () => selectChar(term);
 
     const title = document.createElement("div");
     title.textContent = term;
@@ -134,3 +158,112 @@ function calcListeningProgress(characters) {
   }
   return progress;
 }
+
+async function selectChar(currentJP) {
+  await sleep(200);
+  playLetterSound(currentJP);
+  openModal();
+  displayRomaji.innerText = alphabet.find(x => x.term === currentJP).definition;
+  showDrawPath(currentJP);
+  btnPlay.onclick = () => playLetterSound(currentJP);
+  btnRepeat.onclick = () => showDrawPath(currentJP);
+}
+
+async function showDrawPath(currentJP) {
+  handleYoon(currentJP);
+  if (currentJP.length === 1) {
+    await drawMain(currentJP[0]);
+  } else {
+    await drawMain(currentJP[0]);
+    await drawAux(currentJP[1]);
+  }
+}
+
+function setWriterAux(currentJP) {
+  writers.aux = HanziWriter.create('drawing-target-catalog-aux', currentJP, {
+    ...getDefaultsHanziWriter(),
+    width: 150,
+    height: 150,
+
+  });
+}
+
+function setWriterMain(currentJP) {
+  writers.main = HanziWriter.create('drawing-target-catalog-main', currentJP, {
+    ...getDefaultsHanziWriter(),
+    width: 200,
+    height: 200,
+  });
+}
+
+function handleYoon(currentJP) {
+  const aux = document.getElementById('drawing-target-catalog-aux');
+  if (currentJP.length === 1) {
+    aux.style.minWidth = 0;
+    aux.style.marginLeft = 0;
+    aux.style.width = 0;
+    writers.aux?.hideCharacter();
+    return;
+  }
+
+  aux.style.minWidth = '150px';
+  const smallKanasIds = Object.freeze([22, 27, 32, 63, 68]);
+  const largeKanasIds = Object.freeze([40, 144])
+  const char = alphabet.find(x => x.term === currentJP[0]);
+  if (largeKanasIds.includes(char.id)) {
+    aux.style.marginLeft = '-100px';
+    return;
+  } else if (smallKanasIds.includes(char.id)) {
+    aux.style.marginLeft = '-50px';
+    return;
+  }
+  aux.style.marginLeft = '-70px';
+}
+
+async function drawMain(currentJP) {
+  writers.main?.hideCharacter();
+  writers.aux?.hideCharacter();
+  if (!writers.main) {
+    setWriterMain(currentJP);
+  }
+  writers.main.setCharacter(currentJP);
+  await writers.main.animateCharacter();
+}
+
+async function drawAux(currentJP) {
+  if (!writers.aux) {
+    setWriterAux(currentJP);
+  }
+  writers.aux.setCharacter(currentJP);
+  await writers.aux.animateCharacter();
+}
+
+function getDefaultsHanziWriter() {
+  return {
+    showOutline: false,
+    strokeColor: '#1cb0f6',
+    strokeAnimationSpeed: 1.5,
+    delayBetweenStrokes: 200,
+    showCharacter: false,
+    strokeFadeDuration: 0,
+    charDataLoader: (char, onLoad, onError) => {
+      fetch(`https://raw.githubusercontent.com/szklsrz/kana-json/refs/heads/main/data/${char}.json`)
+        .then(res => res.json())
+        .then(onLoad)
+        .catch(onError);
+    }
+  }
+}
+
+async function openModal() {
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  writers.main?.hideCharacter();
+  writers.aux?.hideCharacter();
+}
+

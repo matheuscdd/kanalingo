@@ -137,7 +137,7 @@
                     </div>
                     <div class="method-card method-disabled">
                         <span class="method-char">
-                            <i class="fa-solid fa-graduation-cap"></i>
+                            <i class="fa-solid fa-align-left"></i>
                         </span>
                         <span class="method-label">Gramática</span>
                     </div>
@@ -254,7 +254,6 @@
                     </div>
                 </div>
             </div>
-            <div id="drawing-target-catalog">TESTESSSSSSSSSSSSSS</div>
         </section>
 
         <section id="categories-screen" class="hidden screen">
@@ -269,6 +268,31 @@
         <h2 class="feedback-title">Muito bem!</h2>
         <p class="feedback-msg"></p>
         <button id="btn-next-typing">Continuar</button>
+    </div>
+
+    <div class="modal-catalog-overlay">
+        <div class="modal-catalog-container">
+            <div class="modal-catalog-header">
+                <div id="close-modal-catalog">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <div class="modal-catalog-body">
+                <div class="drawing-target-catalog-container">
+                    <div id="drawing-target-catalog-main"></div>
+                    <div id="drawing-target-catalog-aux"></div>
+                </div>
+            </div>
+            <p class="catalog-display-romaji"></p>
+            <div class="modal-catalog-footer">
+                <button class="modal-catalog-action-btn" id="modal-catalog-play">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <button class="modal-catalog-action-btn" id="modal-catalog-repeat">
+                    <i class="fa-solid fa-repeat"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <script type="module" src="./scripts/dashboard.js"></script>

@@ -11,7 +11,7 @@ const btnStartRound = document.getElementById("start-round-listening");
 let maxCharsRound = 6;
 let currentShuffle = [];
 
-export function initEventsListening() {
+export function renderListening() {
     startNewRound();
     btnStartRound.onclick = startNewRound;
     btnPlay.onclick = () => {

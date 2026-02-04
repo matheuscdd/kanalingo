@@ -1,7 +1,7 @@
 import { authFirebase } from "../../../scripts/config.js";
-import { renderCatalog } from "./catalog.js";
+import { initEventsCatalog, renderCatalog } from "./catalog.js";
 import { renderCategories } from "./categories.js";
-import { initEventsListening } from "./listening.js";
+import { renderListening } from "./listening.js";
 import { initEventsTyping } from "./typing.js";
 import { loadProgress, preloadAudios, updateTotalScoreDisplay } from "./utils.js";
 import { signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
@@ -25,6 +25,7 @@ function init() {
   loadProgress();
   updateTotalScoreDisplay(true);
   initEventsTyping();
+  initEventsCatalog();
 
   showScreen("catalog");
 
@@ -46,11 +47,11 @@ function showScreen(screen) {
   } else if (screen === "listening") {
     btnLearn.classList.add("active");
     listeningScreen.classList.remove('hidden');
-    initEventsListening();
+    renderListening();
   } else if (screen === "drawing") {
     btnLearn.classList.add("active");
     drawingScreen.classList.remove('hidden');
-    initEventsDrawing();
+    // initEventsDrawing();
   }  else if (screen === "typing") {
     btnLearn.classList.add("active");
     typingScreen.classList.remove('hidden');
