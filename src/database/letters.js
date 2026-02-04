@@ -1259,6 +1259,6 @@ export const methodsKeys = Object.freeze({
   typing: "typing"
 });
 
-export const placeholder = alphabet.reduce((a, b) => ({
+export const defaults = alphabet.reduce((a, b) => ({
     ...a, [b.term]: Object.values(methodsKeys).reduce((x, y) => ({...x, [y]: 0}), {})
 }), {});

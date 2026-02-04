@@ -1,11 +1,17 @@
 import { levels } from "../../../database/levels.js";
 import { getSumFromValues } from "../../../scripts/utils.js";
-import { gameState } from "./utils.js";
+import { gameState, getTotalScore } from "./utils.js";
 
+const container = document.getElementById("catalog-container");
+const placeholder = document.querySelector(".catalog-placeholder");
 export function renderCatalog() {
-  const container = document.getElementById("catalog-container");
   container.innerHTML = "";
+  if (getTotalScore() === 0) {
+    placeholder.classList.remove('hidden');
+    return;
+  }
 
+  placeholder.classList.add('hidden');
   const sorted = Object.keys(gameState.scorePerChar).sort(
     (a, b) => getSumFromValues(gameState.scorePerChar[b]) - getSumFromValues(gameState.scorePerChar[a]),
   );

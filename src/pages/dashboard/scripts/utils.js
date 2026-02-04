@@ -1,4 +1,4 @@
-import { placeholder } from "../../../database/letters.js";
+import { defaults } from "../../../database/letters.js";
 import { authFirebase, dbFirebase } from "../../../scripts/config.js";
 import { getSumFromValues, showNumberIncreasing } from "../../../scripts/utils.js";
 import { onAuthStateChanged }
@@ -13,7 +13,7 @@ import {
 export const gameState = Object.seal({
   currentRound: [],
   currentIndex: 0,
-  scorePerChar: structuredClone(placeholder),
+  scorePerChar: structuredClone(defaults),
   lastWrong: false,
 });
 
@@ -44,8 +44,12 @@ export async function updateScore(key, char, amount) {
   }
 }
 
+export function getTotalScore() {
+  return Object.values(gameState.scorePerChar).reduce((x, y) => getSumFromValues(y) + x, 0);
+}
+
 export async function updateTotalScoreDisplay(isFirstLoad) {
-  const total = Object.values(gameState.scorePerChar).reduce((x, y) => getSumFromValues(y) + x, 0);
+  const total = getTotalScore();
 
   if (isFirstLoad) {
     totalScoreDisplay.classList = "golden-color2";
@@ -76,8 +80,8 @@ export async function loadProgress() {
       if (response.exists()) {
         currentProgress = response.data().ja
       } else {
-        await setDoc(ref, { ja: placeholder }, { merge: true });
-        currentProgress = placeholder;
+        await setDoc(ref, { ja: defaults }, { merge: true });
+        currentProgress = defaults;
       }
       localStorage.setItem("ja", JSON.stringify(currentProgress));
     } catch (error) {

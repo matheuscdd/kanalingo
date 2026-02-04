@@ -22,9 +22,13 @@ function init() {
   updateTotalScoreDisplay(true);
   initEventsTyping();
 
+  
+showScreen("catalog")
+
+
   btnLogout.onclick = logout;
   btnLearn.onclick = () => showScreen("methods");
-  btnDash.onclick = () => showScreen("dashboard");
+  btnDash.onclick = () => showScreen("catalog");
   btnCategories.onclick = () => showScreen("categories");
   btnsMethods.forEach(btn => btn.onclick = () => showScreen(btn.dataset.screen));
 }
@@ -37,13 +41,13 @@ function showScreen(screen) {
     btnLearn.classList.add("active");
     methodsScreen.classList.remove('hidden');
     // gameScreen.classList.remove("hidden");
-    // dashboardScreen.classList.add("hidden");
+    // catalogScreen.classList.add("hidden");
     // categoriesScreen.classList.add("hidden");
   } else if (screen === "typing") {
     btnLearn.classList.add("active");
     typingScreen.classList.remove('hidden');
   }
-  else if (screen === "dashboard") {
+  else if (screen === "catalog") {
     btnDash.classList.add("active");
     catalogScreen.classList.remove("hidden");
     renderCatalog();
