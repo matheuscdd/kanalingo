@@ -1,6 +1,6 @@
-import { alphabet, defaults } from "../../../database/letters.js";
+import { alphabet, defaults, hiragana, kanas, katakana, methodsKeys } from "../../../database/letters.js";
 import { authFirebase, dbFirebase } from "../../../scripts/config.js";
-import { getSumFromValues, showNumberIncreasing } from "../../../scripts/utils.js";
+import { getSumFromValues, showNumberIncreasing, shuffleArray } from "../../../scripts/utils.js";
 import { onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import {
@@ -12,6 +12,7 @@ import {
 
 export const gameState = Object.seal({
   currentRound: [],
+  rightRound: [],
   currentIndex: 0,
   scorePerChar: structuredClone(defaults),
   lastWrong: false,
@@ -19,12 +20,33 @@ export const gameState = Object.seal({
 
 const totalScoreDisplay = document.getElementById("total-score");
 
-export const maxCharsRound = 5;
 export const statusRef = Object.freeze({
   correct: "correct",
   wrong: "wrong",
+  completed: "completed"
 });
 
+const audioCache = Object.seal({
+  letters: {},
+  effects: {}
+});
+
+export function preloadAudios() {
+  alphabet.forEach(({ definition }) => {
+    const audio = new Audio(`../../assets/audios/letters/${definition}.mp3`);
+    audio.preload = "auto";
+    audio.load();
+    audioCache.letters[definition] = audio;
+  });
+
+  Object.values(statusRef).forEach((key) => {
+    const audio = new Audio(`../../assets/audios/effects/${key}.mp3`);
+    audio.preload = "auto";
+    audio.load();
+    audioCache.effects[key] = audio;
+  });
+
+}
 
 export async function updateScoreLocal(key, char, amount) {
   if (gameState.lastWrong === char) return;
@@ -53,6 +75,7 @@ export function getTotalScore(ref) {
 export async function updateTotalScoreDisplay(isFirstLoad) {
   const total = getTotalScore(gameState.scorePerChar);
   if (isFirstLoad) {
+    console.log(total)
     totalScoreDisplay.classList = "golden-color2";
     await showNumberIncreasing(total, 0, totalScoreDisplay, 1, total * 0.01);
     totalScoreDisplay.classList = "";
@@ -100,8 +123,53 @@ export async function loadProgress() {
   });
 }
 
+export function playActionSound(sound) {
+  const audio = audioCache.effects[sound];
+  audio.currentTime = 0;
+  audio.play();
+}
+
 export function playLetterSound(currentJP) {
   const currentRO = alphabet.find((x) => x.term === currentJP).definition;
-  const audio = new Audio(`../../assets/audios/letters/${currentRO}.mp3`);
+  const audio = audioCache.letters[currentRO];
+  audio.currentTime = 0;
   audio.play();
+}
+
+export function selectNextChars(key, maxCharsRound) {
+  const grouped = {};
+  kanas.forEach((char) => {
+    const score = getValueToScorePerChar(char, key);
+    if (!grouped[score]) grouped[score] = [];
+    grouped[score].push(char);
+  });
+
+  const sortedScores = Object.keys(grouped)
+    .map(Number)
+    .sort((a, b) => a - b);
+
+  let selected = [];
+  for (let score of sortedScores) {
+    const group = grouped[score];
+    const shuffledGroup = shuffleArray(group);
+    for (let char of shuffledGroup) {
+      selected.push(char);
+      if (selected.length === maxCharsRound) return selected;
+    }
+  }
+  return selected.slice(0, maxCharsRound);
+}
+
+export function selectNextCharsBySyllableGroups(key) {
+  let structure = hiragana;
+  if (Math.random() > 0.5) {
+    structure = katakana;
+  }
+
+  const rawChars = selectNextChars(key, kanas.length);
+  const keys = structure.map(x => x.term);
+  const ref = rawChars.find(x => keys.includes(x));
+  const syllableGroup = structure.find(x => x.term === ref).syllableGroup;
+  const handleChars = structure.filter(x => x.syllableGroup === syllableGroup);
+  return shuffleArray(handleChars.map(x => x.term));
 }

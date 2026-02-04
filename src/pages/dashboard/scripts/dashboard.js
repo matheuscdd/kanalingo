@@ -1,13 +1,15 @@
 import { authFirebase } from "../../../scripts/config.js";
 import { renderCatalog } from "./catalog.js";
 import { renderCategories } from "./categories.js";
+import { initEventsListening } from "./listening.js";
 import { initEventsTyping } from "./typing.js";
-import { loadProgress, updateTotalScoreDisplay } from "./utils.js";
+import { loadProgress, preloadAudios, updateTotalScoreDisplay } from "./utils.js";
 import { signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 const btnLogout = document.getElementById("out-button");
 const btnsMethods = Array.from(document.querySelectorAll('.method-card'));
 const typingScreen = document.getElementById("typing-screen");
+const listeningScreen = document.getElementById("listening-screen");
 const catalogScreen = document.getElementById("catalog-screen");
 const categoriesScreen = document.getElementById("categories-screen");
 const methodsScreen = document.getElementById("methods-screen");
@@ -18,13 +20,12 @@ const allScreens = Array.from(document.querySelectorAll('.screen'));
 const allNavBtns = Array.from(document.querySelectorAll('.btn-nav'));
 
 function init() {
+  preloadAudios();
   loadProgress();
   updateTotalScoreDisplay(true);
   initEventsTyping();
 
-  
-showScreen("catalog")
-
+  showScreen("typing");
 
   btnLogout.onclick = logout;
   btnLearn.onclick = () => showScreen("methods");
@@ -34,18 +35,21 @@ showScreen("catalog")
 }
 
 function showScreen(screen) {
+  document.querySelector('#feedback-typing').classList.add('hidden');
   allNavBtns.forEach(el => el.classList.remove('active'));
   allScreens.forEach(el => el.classList.add('hidden'));
 
   if (screen === "methods") {
     btnLearn.classList.add("active");
     methodsScreen.classList.remove('hidden');
-    // gameScreen.classList.remove("hidden");
-    // catalogScreen.classList.add("hidden");
-    // categoriesScreen.classList.add("hidden");
+  } else if (screen === "listening") {
+    btnLearn.classList.add("active");
+    listeningScreen.classList.remove('hidden');
+    initEventsListening();
   } else if (screen === "typing") {
     btnLearn.classList.add("active");
     typingScreen.classList.remove('hidden');
+    // TODO: fazer o typing também ter um init que funcione aqui
   }
   else if (screen === "catalog") {
     btnDash.classList.add("active");

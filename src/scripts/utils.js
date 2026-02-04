@@ -13,8 +13,9 @@ export function getSumFromValues(x) {
 
 export async function showNumberIncreasing(destination, initial, el, interval, increaser=1) { 
     for (let i = initial; i <= destination; i+=increaser) {
-        el.innerText = `${i} XP`;
+        el.innerText = `${i.toFixed(0)} XP`;
         await sleep(interval); 
+        if (i >= destination) break;
     }
     el.innerText = `${destination} XP`;
 }
@@ -22,6 +23,10 @@ export async function showNumberIncreasing(destination, initial, el, interval, i
 export function isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
+}
+
+export function shuffleArray(arr) {
+    return arr.toSorted(() => Math.random() - 0.5);
 }
 
 export function redirectIfLogged() {
@@ -37,11 +42,13 @@ export function redirectIfLogged() {
     onAuthStateChanged(authFirebase, user => {
         const isInPublicRoutes = publicRoutes.find(x => globalThis.location.href.includes(x));
         const isInPrivateRoutes = privateRoutes.find(x => globalThis.location.href.includes(x));
-
-        if ((user && isInPrivateRoutes) || (!user && isInPublicRoutes)) return;
-        else if (user && isInPublicRoutes) {
-            const isProduction = globalThis.location.href.includes('github');
+        
+        const isProduction = globalThis.location.href.includes('github');
+        if (user && isInPublicRoutes) {
             globalThis.location.href = (isProduction ? '/kanalingo' : '') + '/src/pages/dashboard/dashboard.html';
+        }
+        else if (!user && isInPrivateRoutes) {
+            globalThis.location.href = (isProduction ? '/kanalingo' : '') + '/src/pages/landing/landing.html';
         }
     });
 }

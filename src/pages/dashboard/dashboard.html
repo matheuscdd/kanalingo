@@ -34,17 +34,17 @@
     </nav>
 
     <main id="app-container">
-        <section id="methods-screen" class="screen">
+        <section id="methods-screen" class="screen hidden">
             <div class="container-section-methods">
                 <h2>Praticar</h2>
-                <div class="method-grid justify-center md:justify-start">
+                <div class="method-grid">
                     <div class="method-card" data-screen="typing">
                         <span class="method-char">
                             <i class="fa-solid fa-keyboard"></i>
                         </span>
                         <span class="method-label">Digitar</span>
                     </div>
-                    <div class="method-card method-disabled">
+                    <div class="method-card" data-screen="listening">
                         <span class="method-char">
                             <i class="fa-solid fa-headphones"></i>
                         </span>
@@ -100,6 +100,12 @@
                     </div>
                     <div class="method-card method-disabled">
                         <span class="method-char">
+                            <i class="fa-solid fa-microphone"></i>
+                        </span>
+                        <span class="method-label">Pronúncia</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
                             <i class="fa-solid fa-comments"></i>
                         </span>
                         <span class="method-label">Conversa</span>
@@ -114,7 +120,7 @@
             </div>
             <div class="container-section-methods">
                 <h2>Aprender</h2>
-                <div class="method-grid justify-center md:justify-start">
+                <div class="method-grid">
                     <div class="method-card method-disabled">
                         <span class="method-char">み</span>
                         <span class="method-label">Hiragana</span>
@@ -127,12 +133,18 @@
                         <span class="method-char">月</span>
                         <span class="method-label">Kanji</span>
                     </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </span>
+                        <span class="method-label">Gramática</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="typing-screen" class="hidden screen">
-            <div class="progress-learn-container">
+            <div class="progress-typing-container">
                 <div id="typing-progress" class="progress-learn-bar"></div>
             </div>
             <div id="typing-content" class="typing-area">
@@ -146,19 +158,45 @@
                 </div>
             </div>
 
-            <div id="finish-content" class="finish-screen hidden">
+            <div id="finish-content-typing" class="finish-screen hidden">
                 <div>
                     <img src="../../assets/images/trophy.png" class="trophy" alt="trophy">
                 </div>
                 <h2>Round Completo!</h2>
                 <p>Você mandou muito bem</p>
-                <button class="btn-check" id="start-round">Jogar Novamente</button>
+                <button class="btn-check" id="start-round-typing">Jogar Novamente</button>
+            </div>
+        </section>
+
+        <section id="listening-screen" class="hidden screen">
+            <div class="progress-listening-container">
+                <div id="listening-progress" class="progress-learn-bar"></div>
+            </div>
+            <div id="listening-content" class="listening-area">
+                <p class="question-text">Selecione o kana correspondente ao som</p>
+                <div class="btn-duo btn-blue" id="play-sound-listening">
+                    <i class="fa-solid fa-volume-high fa-2xl"></i>
+                </div>
+                <div class="listening-grid"></div>
+            </div>
+
+
+            <div id="finish-content-listening" class="finish-screen hidden">
+                <div>
+                    <img src="../../assets/images/trophy.png" class="trophy" alt="trophy">
+                </div>
+                <h2>Round Completo!</h2>
+                <p>Você mandou muito bem</p>
+                <button class="btn-check start-round" id="start-round-listening">Jogar Novamente</button>
             </div>
         </section>
 
         <section id="catalog-screen" class="hidden screen">
             <h2>Estatísticas</h2>
             <div class="progress-catalog-wrapper">
+                <div>
+                    <i class="fa-solid fa-keyboard"></i>
+                </div>
                 <div class="progress-catalog-container">
                     <div class="progress-catalog-bar"></div>
                 </div>
@@ -189,10 +227,10 @@
         </section>
     </main>
 
-    <div id="feedback" class="feedback-overlay">
-        <h2 id="feedback-title">Muito bem!</h2>
-        <p id="feedback-msg"></p>
-        <button id="btn-next">Continuar</button>
+    <div id="feedback-typing" class="feedback-overlay">
+        <h2 class="feedback-title">Muito bem!</h2>
+        <p class="feedback-msg"></p>
+        <button id="btn-next-typing">Continuar</button>
     </div>
 
     <script type="module" src="./scripts/dashboard.js"></script>

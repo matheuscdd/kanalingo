@@ -1,16 +1,16 @@
 {
   "name": "Kanalingo",
   "short_name": "Kanalingo",
-  "start_url": "/kanalingo/src/pages/landing/landing.html",
+  "start_url": "./src/pages/landing/landing.html",
   "display": "standalone",
   "icons": [
     {
-      "src": "/kanalingo/src/assets/images/icon-filled.png",
+      "src": "./src/assets/images/icon-filled.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/kanalingo/src/assets/images/icon-filled.png",
+      "src": "./src/assets/images/icon-filled.png",
       "sizes": "512x512",
       "type": "image/png"
     }

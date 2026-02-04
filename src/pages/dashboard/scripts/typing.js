@@ -1,16 +1,17 @@
-import { alphabet, kanas, methodsKeys } from "../../../database/letters.js";
+import { alphabet, methodsKeys } from "../../../database/letters.js";
 import { sleep } from "../../../scripts/utils.js";
-import { gameState, getValueToScorePerChar, maxCharsRound, statusRef, updateScoreLocal } from "./utils.js";
+import { gameState, playActionSound, selectNextChars, statusRef, updateScoreDatabase, updateScoreLocal } from "./utils.js";
 
 const gameContent = document.getElementById("typing-content");
-const finishContent = document.getElementById("finish-content");
+const finishContent = document.getElementById("finish-content-typing");
 const charDisplay = document.getElementById("current-char");
 const userInput = document.getElementById("user-input");
 const progressBar = document.getElementById("typing-progress");
-const feedback = document.getElementById("feedback");
-const btnStartRound = document.getElementById("start-round");
-const btnNext = document.getElementById("btn-next");
+const feedback = document.getElementById("feedback-typing");
+const btnStartRound = document.getElementById("start-round-typing");
+const btnNext = document.getElementById("btn-next-typing");
 const instructions = document.querySelector('.question-text');
+const maxCharsRound = 5;
 
 export function initEventsTyping() {
   startNewRound();
@@ -71,37 +72,12 @@ function handlePhoneKeyboard() {
 
 function startNewRound() {
   gameState.currentRound = [];
+  gameState.rightRound = [];
   gameState.currentIndex = 0;
-
-  gameState.currentRound = selectNextChars();
+  gameState.currentRound = selectNextChars(methodsKeys.typing, maxCharsRound);
   gameContent.classList.remove("hidden");
   finishContent.classList.add("hidden");
   updateUI();
-}
-
-function selectNextChars() {
-  const grouped = {};
-  kanas.forEach((char) => {
-    const score = getValueToScorePerChar(char, methodsKeys.typing);
-    if (!grouped[score]) grouped[score] = [];
-    grouped[score].push(char);
-  });
-
-  const sortedScores = Object.keys(grouped)
-    .map(Number)
-    .sort((a, b) => a - b);
-
-  let selected = [];
-  for (let score of sortedScores) {
-    const group = grouped[score];
-    const shuffledGroup = group.sort(() => Math.random() - 0.5);
-
-    for (let char of shuffledGroup) {
-      selected.push(char);
-      if (selected.length === maxCharsRound) return selected;
-    }
-  }
-  return selected.slice(0, maxCharsRound);
 }
 
 function updateUI() {
@@ -130,6 +106,7 @@ async function checkAnswer() {
     );
     updateScoreLocal(methodsKeys.typing, currentJP, 100);
     gameState.lastWrong = null;
+    gameState.rightRound.push(currentJP);
   } else {
     playActionSound(statusRef.wrong);
     await sleep(200);
@@ -144,24 +121,19 @@ async function checkAnswer() {
   }
 }
 
-function playActionSound(sound) {
-  const audio = new Audio(`../../assets/audios/soundEffects/${sound}.mp3`);
-  audio.play();
-}
-
 async function showFeedback(status, next, title, message, char) {
   btnNext.textContent = next;
   feedback.classList = `feedback-overlay ${status}`;
   feedback.dataset.status = status;
   btnNext.classList = `btn-next-${status}`;
-  document.getElementById("feedback-title").textContent = title;
-  document.getElementById("feedback-msg").innerHTML =
+  feedback.querySelector(".feedback-title").textContent = title;
+  feedback.querySelector(".feedback-msg").innerHTML =
     `${message} é <span class="letter-msg">${char}</span>`;
   charDisplay.classList =
     status === statusRef.wrong ? "wrong-color" : "primary-color";
 }
 
-function nextQuestion() {
+async function nextQuestion() {
   feedback.classList = "feedback-overlay";
   charDisplay.classList = "";
   if (feedback.dataset.status === statusRef.wrong) {
@@ -173,16 +145,18 @@ function nextQuestion() {
   gameState.currentIndex++;
   if (gameState.currentIndex >= maxCharsRound) {
     progressBar.style.width = `100%`;
-    setTimeout(showFinishScreen, 300);
+    await sleep(300);
+    showFinishScreen();
   } else {
     updateUI();
   }
 }
 
 async function showFinishScreen() {
-  playActionSound("completed");
+  playActionSound(statusRef.completed);
   await sleep(100);
   gameContent.classList.add("hidden");
   finishContent.classList.remove("hidden");
   gameState.currentRound = null;
+  updateScoreDatabase();
 }

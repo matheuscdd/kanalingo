@@ -69,7 +69,7 @@ function getLevel(pts) {
 
   if (pts >= levels.at(-1).score) {
     const level = levels.at(-1);
-    return { color: level.color, progress: 100, end: true }; // tratativa especial
+    return { color: level.color, progress: 100, end: true };
   }
 
   const level = levels.find((x) => pts <= x.score);
@@ -80,7 +80,7 @@ function getLevel(pts) {
 
 function updateProgressBar() {
   const total = Object.keys(gameState.scorePerChar).length;
-  const totals = Object.values(gameState.scorePerChar).map(getSumFromValues);
+  const totals = Object.values(gameState.scorePerChar).map(x => x.typing);
   const max = Math.max(...totals);
   const completed = totals.filter(x => x === max).length;
   let progress = 0;
