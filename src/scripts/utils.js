@@ -1,12 +1,14 @@
-import { firebaseConfig } from "./config.js";
-import {
-  getAuth,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
+import { authFirebase } from "./config.js";
+import { onAuthStateChanged } 
+from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 export async function sleep(time) {
   return new Promise((resolve) => setTimeout(resolve, time))
+}
+
+export function getSumFromValues(x) {
+    if (Object.values(x).length === 0) return 0;
+    return Object.values(x).reduce((a, b) => a + b, 0);
 }
 
 export async function showNumberIncreasing(destination, initial, el, interval, increaser=1) { 
@@ -23,8 +25,6 @@ export function isValidEmail(email) {
 }
 
 export function redirectIfLogged() {
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
     const publicRoutes = [
             'login.html',
             'register.html',
@@ -34,7 +34,7 @@ export function redirectIfLogged() {
         'dashboard.html'
     ];
 
-    onAuthStateChanged(auth, user => {
+    onAuthStateChanged(authFirebase, user => {
         const isInPublicRoutes = publicRoutes.find(x => globalThis.location.href.includes(x));
         const isInPrivateRoutes = privateRoutes.find(x => globalThis.location.href.includes(x));
 

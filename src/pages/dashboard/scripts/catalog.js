@@ -1,23 +1,25 @@
 import { levels } from "../../../database/levels.js";
+import { getSumFromValues } from "../../../scripts/utils.js";
 import { gameState } from "./utils.js";
 
 export function renderCatalog() {
   const container = document.getElementById("catalog-container");
   container.innerHTML = "";
 
-  const sorted = Object.entries(gameState.scorePerChar).sort(
-    (a, b) => b[1] - a[1],
+  const sorted = Object.keys(gameState.scorePerChar).sort(
+    (a, b) => getSumFromValues(gameState.scorePerChar[b]) - getSumFromValues(gameState.scorePerChar[a]),
   );
 
-  sorted.forEach(([char, pts]) => {
+  sorted.forEach(term => {
+    const pts = getSumFromValues(gameState.scorePerChar[term]);
     if (pts === 0 && sorted.length > 20) return; // Oculta os zerados se tiver muitos dados
 
     const card = document.createElement("div");
     card.classList = "char-card";
-    card.onclick = () => playLetterSound(char);
+    card.onclick = () => playLetterSound(term);
 
     const title = document.createElement("div");
-    title.textContent = char;
+    title.textContent = term;
     title.classList = "jp";
     card.append(title);
 

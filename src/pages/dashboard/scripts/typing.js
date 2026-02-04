@@ -1,6 +1,6 @@
-import { alphabet, kanas } from "../../../database/letters.js";
+import { alphabet, kanas, methodsKeys } from "../../../database/letters.js";
 import { sleep } from "../../../scripts/utils.js";
-import { gameState, maxCharsRound, statusRef, updateScore } from "./utils.js";
+import { gameState, getValueToScorePerChar, maxCharsRound, statusRef, updateScore } from "./utils.js";
 
 const gameContent = document.getElementById("game-content");
 const finishContent = document.getElementById("finish-content");
@@ -82,7 +82,7 @@ function startNewRound() {
 function selectNextChars() {
   const grouped = {};
   kanas.forEach((char) => {
-    const score = gameState.scorePerChar[char] || 0;
+    const score = getValueToScorePerChar(char, methodsKeys.typing);
     if (!grouped[score]) grouped[score] = [];
     grouped[score].push(char);
   });
@@ -128,7 +128,7 @@ async function checkAnswer() {
       "Correto!",
       correctRomaji,
     );
-    updateScore(currentJP, 100);
+    updateScore(methodsKeys.typing, currentJP, 100);
     gameState.lastWrong = null;
   } else {
     playActionSound(statusRef.wrong);

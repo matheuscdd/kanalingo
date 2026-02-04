@@ -1255,3 +1255,10 @@ export const katakana = Object.freeze([
 export const alphabet = Object.freeze([...hiragana, ...katakana]);
 export const kanas = alphabet.map(x => x.term);
 export const syllableGroups = Array.from(new Set(alphabet.map(x => x.syllableGroup)));
+export const methodsKeys = Object.freeze({
+  typing: "typing"
+});
+
+export const placeholder = alphabet.reduce((a, b) => ({
+    ...a, [b.term]: Object.values(methodsKeys).reduce((x, y) => ({...x, [y]: 0}), {})
+}), {});
