@@ -1,16 +1,20 @@
 import { levels } from "../../../database/levels.js";
 import { getSumFromValues } from "../../../scripts/utils.js";
-import { gameState, getTotalScore } from "./utils.js";
+import { gameState, getTotalScore, playLetterSound } from "./utils.js";
 
 const container = document.getElementById("catalog-container");
+const progressBar = document.querySelector('.progress-catalog-bar');
+const progressPercentage = document.querySelector('.progress-catalog-percentage');
 const placeholder = document.querySelector(".catalog-placeholder");
+
 export function renderCatalog() {
   container.innerHTML = "";
-  if (getTotalScore() === 0) {
+  if (getTotalScore(gameState.scorePerChar) === 0) {
     placeholder.classList.remove('hidden');
     return;
   }
 
+  updateProgressBar();
   placeholder.classList.add('hidden');
   const sorted = Object.keys(gameState.scorePerChar).sort(
     (a, b) => getSumFromValues(gameState.scorePerChar[b]) - getSumFromValues(gameState.scorePerChar[a]),
@@ -72,4 +76,17 @@ function getLevel(pts) {
   const lastCategory = levels.findLast((x) => x.category === level.category);
   const progress = Math.min((pts / lastCategory.score) * 100 + 5, 100);
   return { color: level.color, progress };
+}
+
+function updateProgressBar() {
+  const total = Object.keys(gameState.scorePerChar).length;
+  const totals = Object.values(gameState.scorePerChar).map(getSumFromValues);
+  const max = Math.max(...totals);
+  const completed = totals.filter(x => x === max).length;
+  let progress = 0;
+  if (total !== completed) {
+    progress = ((completed * 100) / total).toFixed(1);
+  }
+  progressBar.style.width = `${progress}%`;
+  progressPercentage.innerText = `${progress}%`;
 }

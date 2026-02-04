@@ -133,9 +133,9 @@
 
         <section id="typing-screen" class="hidden screen">
             <div class="progress-learn-container">
-                <div id="game-progress" class="progress-learn-bar"></div>
+                <div id="typing-progress" class="progress-learn-bar"></div>
             </div>
-            <div id="game-content" class="game-area">
+            <div id="typing-content" class="typing-area">
                 <p class="question-text">Escreva isso em romaji</p>
                 <div id="current-char" class="char-display">
                     <img src="../../assets/images/loading.png" class="loading-img" alt="loading">
@@ -157,7 +157,13 @@
         </section>
 
         <section id="catalog-screen" class="hidden screen">
-            <h2>Estatísticas por Letra</h2>
+            <h2>Estatísticas</h2>
+            <div class="progress-catalog-wrapper">
+                <div class="progress-catalog-container">
+                    <div class="progress-catalog-bar"></div>
+                </div>
+                <div class="progress-catalog-percentage">0%</div>
+            </div>
             <div id="catalog-container" class="dashboard-grid">
             </div>
             <div class="catalog-placeholder">

@@ -1,4 +1,4 @@
-import { defaults } from "../../../database/letters.js";
+import { alphabet, defaults } from "../../../database/letters.js";
 import { authFirebase, dbFirebase } from "../../../scripts/config.js";
 import { getSumFromValues, showNumberIncreasing } from "../../../scripts/utils.js";
 import { onAuthStateChanged }
@@ -26,7 +26,7 @@ export const statusRef = Object.freeze({
 });
 
 
-export async function updateScore(key, char, amount) {
+export async function updateScoreLocal(key, char, amount) {
   if (gameState.lastWrong === char) return;
   if (!gameState.scorePerChar[char]) {
     gameState.scorePerChar[char] = { [key]: 0 }
@@ -34,7 +34,9 @@ export async function updateScore(key, char, amount) {
   gameState.scorePerChar[char][key] = (gameState.scorePerChar[char][key] || 0) + amount;
   localStorage.setItem("ja", JSON.stringify(gameState.scorePerChar));
   updateTotalScoreDisplay();
+}
 
+export async function updateScoreDatabase() {
   try {
     const user = authFirebase.currentUser;
     const ref = doc(dbFirebase, "users", user.uid);
@@ -44,13 +46,12 @@ export async function updateScore(key, char, amount) {
   }
 }
 
-export function getTotalScore() {
-  return Object.values(gameState.scorePerChar).reduce((x, y) => getSumFromValues(y) + x, 0);
+export function getTotalScore(ref) {
+  return Object.values(ref).reduce((x, y) => getSumFromValues(y) + x, 0);
 }
 
 export async function updateTotalScoreDisplay(isFirstLoad) {
-  const total = getTotalScore();
-
+  const total = getTotalScore(gameState.scorePerChar);
   if (isFirstLoad) {
     totalScoreDisplay.classList = "golden-color2";
     await showNumberIncreasing(total, 0, totalScoreDisplay, 1, total * 0.01);
@@ -71,6 +72,11 @@ export function getValueToScorePerChar(char, key) {
 }
 
 export async function loadProgress() {
+  const local = JSON.parse(localStorage.getItem("ja") ?? JSON.stringify({}));
+  if (Object.keys(local).length) {
+    gameState.scorePerChar = local;
+  }
+
   onAuthStateChanged(authFirebase, async user => {
     if (!user) return console.error("null user");
     const ref = doc(dbFirebase, "users", user.uid);
@@ -78,14 +84,24 @@ export async function loadProgress() {
       let currentProgress = null;
       const response = await getDoc(ref);
       if (response.exists()) {
-        currentProgress = response.data().ja
+        currentProgress = response.data().ja;
       } else {
         await setDoc(ref, { ja: defaults }, { merge: true });
         currentProgress = defaults;
+      }
+      
+      if (Object.keys(local).length && getTotalScore(local) > getTotalScore(currentProgress)) {
+        return;
       }
       localStorage.setItem("ja", JSON.stringify(currentProgress));
     } catch (error) {
       console.error(error);
     }
   });
+}
+
+export function playLetterSound(currentJP) {
+  const currentRO = alphabet.find((x) => x.term === currentJP).definition;
+  const audio = new Audio(`../../assets/audios/letters/${currentRO}.mp3`);
+  audio.play();
 }

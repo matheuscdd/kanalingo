@@ -1,12 +1,12 @@
 import { alphabet, kanas, methodsKeys } from "../../../database/letters.js";
 import { sleep } from "../../../scripts/utils.js";
-import { gameState, getValueToScorePerChar, maxCharsRound, statusRef, updateScore } from "./utils.js";
+import { gameState, getValueToScorePerChar, maxCharsRound, statusRef, updateScoreLocal } from "./utils.js";
 
-const gameContent = document.getElementById("game-content");
+const gameContent = document.getElementById("typing-content");
 const finishContent = document.getElementById("finish-content");
 const charDisplay = document.getElementById("current-char");
 const userInput = document.getElementById("user-input");
-const progressBar = document.getElementById("game-progress");
+const progressBar = document.getElementById("typing-progress");
 const feedback = document.getElementById("feedback");
 const btnStartRound = document.getElementById("start-round");
 const btnNext = document.getElementById("btn-next");
@@ -128,7 +128,7 @@ async function checkAnswer() {
       "Correto!",
       correctRomaji,
     );
-    updateScore(methodsKeys.typing, currentJP, 100);
+    updateScoreLocal(methodsKeys.typing, currentJP, 100);
     gameState.lastWrong = null;
   } else {
     playActionSound(statusRef.wrong);
@@ -146,12 +146,6 @@ async function checkAnswer() {
 
 function playActionSound(sound) {
   const audio = new Audio(`../../assets/audios/soundEffects/${sound}.mp3`);
-  audio.play();
-}
-
-function playLetterSound(currentJP) {
-  const currentRO = alphabet.find((x) => x.term === currentJP).definition;
-  const audio = new Audio(`../../assets/audios/letters/${currentRO}.mp3`);
   audio.play();
 }
 
