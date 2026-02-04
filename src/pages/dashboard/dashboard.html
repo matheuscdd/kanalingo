@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Kanalingo - Dashboard</title>
     <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="../../libs/css/fontawesome-free-7.1.0-web/css/all.min.css"/>
     <link href="../../assets/images/icon-filled.png" rel="shortcut icon" type="image/x-icon">
     <link href="../../styles/root.css" rel="stylesheet">
     <link rel="stylesheet" href="./styles/dashboard.css">
@@ -21,8 +23,80 @@
     </nav>
 
     <main id="app-container">
-        <!-- TELA DE JOGO -->
-        <section id="game-screen">
+        <section id="methods-screen" class="screen">
+            <div class="container-section-methods">
+                <h2>Praticar</h2>
+                <div class="method-grid justify-center md:justify-start">
+                    <div class="method-card" data-screen="typing">
+                        <span class="method-char">
+                            <i class="fa-solid fa-keyboard"></i>
+                        </span>
+                        <span class="method-label">Digitar</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                             <i class="fa-solid fa-paintbrush"></i>
+                        </span>
+                        <span class="method-label">Desenhar</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-headphones"></i>
+                        </span>
+                        <span class="method-label">Ouvir</span>
+                    </div>                    
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-clone"></i>
+                        </span>
+                        <span class="method-label">Combinar</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-ghost"></i>
+                        </span>
+                        <span class="method-label">Labirinto</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </span>
+                        <span class="method-label">Ler</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-rocket"></i>
+                        </span>
+                        <span class="method-label">Nave</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </span>
+                        <span class="method-label">Cartões</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container-section-methods">
+                <h2>Aprender</h2>
+                <div class="method-grid justify-center md:justify-start">
+                    <div class="method-card method-disabled">
+                        <span class="method-char">み</span>
+                        <span class="method-label">Hiragana</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">ホ</span>
+                        <span class="method-label">Katakana</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">月</span>
+                        <span class="method-label">Kanji</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="typing-screen" class="hidden screen">
             <div class="progress-learn-container">
                 <div id="game-progress" class="progress-learn-bar"></div>
             </div>
@@ -31,7 +105,7 @@
                 <div id="current-char" class="char-display">
                     <img src="../../assets/images/loading.png" class="loading-img" alt="loading">
                 </div>
-                
+
                 <div class="input-group">
                     <input type="text" id="user-input" autocomplete="off" placeholder="Digite aqui..." autofocus>
                 </div>
@@ -47,13 +121,15 @@
             </div>
         </section>
 
-        <section id="dashboard-screen" class="hidden">
+
+
+        <section id="dashboard-screen" class="hidden screen">
             <h2>Estatísticas por Letra</h2>
             <div id="dashboard-container" class="dashboard-grid">
             </div>
         </section>
 
-        <section id="categories-screen" class="hidden">
+        <section id="categories-screen" class="hidden screen">
             <h2>Níveis</h2>
             <div id="categories-container">
                 <div class="levels-grid" id="levelsGrid"></div>
@@ -69,4 +145,5 @@
 
     <script type="module" src="./scripts/dashboard.js"></script>
 </body>
+
 </html>

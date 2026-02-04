@@ -15,7 +15,8 @@ const statusRef = Object.freeze({
   wrong: "wrong",
 });
 
-const gameScreen = document.getElementById("game-screen");
+const btnsMethods = Array.from(document.querySelectorAll('.method-card'));
+const typingScreen = document.getElementById("typing-screen");
 const dashboardScreen = document.getElementById("dashboard-screen");
 const categoriesScreen = document.getElementById("categories-screen");
 const gameContent = document.getElementById("game-content");
@@ -31,12 +32,26 @@ const btnDash = document.getElementById("toggle-progress");
 const btnCategories = document.getElementById("toggle-categories");
 const btnNext = document.getElementById("btn-next");
 const instructions = document.querySelector('.question-text');
+const allScreens = Array.from(document.querySelectorAll('.screen'));
+const allNavBtns = Array.from(document.querySelectorAll('.btn-nav'));
 
 function init() {
   loadProgress();
   updateTotalScoreDisplay(true);
   startNewRound();
+  handlePhoneKeyboard();
+  handleEnterPress();
 
+  
+  btnStartRound.onclick = startNewRound;
+  btnLearn.onclick = () => showScreen("methods");
+  btnDash.onclick = () => showScreen("dashboard");
+  btnCategories.onclick = () => showScreen("categories");
+  btnsMethods.forEach(btn => btn.onclick = () => showScreen(btn.dataset.screen))
+  btnNext.addEventListener("click", nextQuestion);
+}
+
+function handleEnterPress() {
   userInput.addEventListener("keypress", (e) => {
     if (e.key !== "Enter" || document.activeElement !== userInput) {
       return;
@@ -64,31 +79,46 @@ function init() {
       return;
     }
   });
+}
 
-  btnNext.addEventListener("click", nextQuestion);
+function handlePhoneKeyboard() {
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+      if (window.innerWidth > 1000) return;
+      const viewportHeight = window.visualViewport.height;
+      const windowHeight = window.innerHeight;
+
+      const keyboardOpen = (viewportHeight + 100) < windowHeight;
+      if (keyboardOpen) {
+        instructions.classList.add('question-text-mobal');
+      } else {
+        window.scrollTo(0, 0);
+        instructions.classList.remove('question-text-mobal');
+      }
+    });
+  }
 }
 
 function showScreen(screen) {
-  btnLearn.classList.remove("active");
-  btnDash.classList.remove("active");
-  btnCategories.classList.remove("active");
+  allNavBtns.forEach(el => el.classList.remove('active'));
+  allScreens.forEach(el => el.classList.add('hidden'));
 
-  if (screen === "game") {
+  if (screen === "methods") {
     btnLearn.classList.add("active");
-    gameScreen.classList.remove("hidden");
-    dashboardScreen.classList.add("hidden");
-    categoriesScreen.classList.add("hidden");
-  } else if (screen === "dashboard") {
+    // gameScreen.classList.remove("hidden");
+    // dashboardScreen.classList.add("hidden");
+    // categoriesScreen.classList.add("hidden");
+  } else if (screen === "typing") {
+    btnLearn.classList.add("active");
+    typingScreen.classList.remove('hidden');
+  }
+  else if (screen === "dashboard") {
     btnDash.classList.add("active");
     dashboardScreen.classList.remove("hidden");
-    gameScreen.classList.add("hidden");
-    categoriesScreen.classList.add("hidden");
     renderDashboard();
   } else if (screen === "categories") {
     btnCategories.classList.add("active");
     categoriesScreen.classList.remove("hidden");
-    dashboardScreen.classList.add("hidden");
-    gameScreen.classList.add("hidden");
     renderCategories();
   }
 }
@@ -352,23 +382,4 @@ function renderCategories() {
 }
 
 window.onload = init;
-btnStartRound.onclick = startNewRound;
-btnLearn.onclick = () => showScreen("game");
-btnDash.onclick = () => showScreen("dashboard");
-btnCategories.onclick = () => showScreen("categories");
 
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', () => {
-    if (window.innerWidth > 1000) return;
-    const viewportHeight = window.visualViewport.height;
-    const windowHeight = window.innerHeight;
-
-    const keyboardOpen = (viewportHeight + 100) < windowHeight;
-    if (keyboardOpen) {
-      instructions.classList.add('question-text-mobal');
-    } else {
-      window.scrollTo(0, 0);
-      instructions.classList.remove('question-text-mobal');
-    }
-  });
-}

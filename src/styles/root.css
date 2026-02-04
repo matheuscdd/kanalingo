@@ -1,56 +1,97 @@
 :root {
-    --primary-color: #58cc02;
-    --primary-dark: #46a302;
-    --golden-color3: #cd7900;
-    --golden-color2: #f4980a;
-    --golden-color1: #fbe56d;
-    --secondary-color: #1cb0f6;
-    --text-color: #3c3c3c;
-    --light-gray: #e5e5e5;
-    --error-color: #ff4b4b;
-    --error-dark: #ea2b2b;
-    --success-color: #58cc02;
-    --bg-color: #ffffff;
-    --text-main: #4b4b4b;
-    --text-secondary: #afafaf;
-    --border-color: #e5e5e5;
+  --primary-color: #58cc02;
+  --primary-dark: #46a302;
+  --golden-color3: #cd7900;
+  --golden-color2: #f4980a;
+  --golden-color1: #fbe56d;
+  --secondary-color: #1cb0f6;
+  --text-color: #3c3c3c;
+  --light-gray: #e5e5e5;
+  --error-color: #ff4b4b;
+  --error-dark: #ea2b2b;
+  --success-color: #58cc02;
+  --duo-gray: #e5e5e5;
+  --duo-bg-gray: #f7f7f7;
+  --bg-color: #ffffff;
+  --text-main: #4b4b4b;
+  --text-secondary: #afafaf;
+  --border-color: #e5e5e5;
+  --polar: #f7f7f7;
+  --swan: #e5e5e5;
+  --hare: #afafaf;
+  --wolf: #777777;
+  --eel: #4b4b4b;
+  --squid: #ebe3e3;
+  --walking-fish: #ffdfe0;
+  --flamingo: #ffb2b2;
+  --pig: #f5a4a4;
+  --crab: #ff7878;
+  --cardinal: #ff4b4b;
+  --fire-ant: #ea2b2b;
+  --canary: #fff5d3;
+  --duck: #fbe56d;
+  --bee: #ffc800;
+  --lion: #ffb100;
+  --fox: #ff9600;
+  --cheetah: #ffce8e;
+  --monkey: #e5a259;
+  --camel: #e7a601;
+  --guinea-pig: #cd7900;
+  --grizzly: #a56644;
+  --sea-sponge: #d7ffb8;
+  --turtle: #a5ed6e;
+  --owl: #58cc02;
+  --tree-frog: #58a700;
+  --iguana: #ddf4ff;
+  --anchovy: #d2e4e8;
+  --beluga: #bbf2ff;
+  --moon-jelly: #7af0f2;
+  --blue-jay: #84d8ff;
+  --macaw: #1cb0f6;
+  --whale: #1899d6;
+  --humpback: #2b70c9;
+  --narwhal: #1453a3;
+  --starfish: #ffaade;
+  --beetle: #ce82ff;
+  --betta: #9069cd;
+  --butterfly: #6f4ea1;
 }
 
 @font-face {
-    font-family: 'MPlus';
-    src: url('../assets/fonts/MPLUSRounded1c-Medium.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+  font-family: "MPlus";
+  src: url("../assets/fonts/MPLUSRounded1c-Medium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'MPlus';
-    src: url('../assets/fonts/MPLUSRounded1c-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+  font-family: "MPlus";
+  src: url("../assets/fonts/MPLUSRounded1c-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'MPlus';
-    src: url('../assets/fonts/MPLUSRounded1c-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
+  font-family: "MPlus";
+  src: url("../assets/fonts/MPLUSRounded1c-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'MPlus';
-    src: url('../assets/fonts/MPLUSRounded1c-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
+  font-family: "MPlus";
+  src: url("../assets/fonts/MPLUSRounded1c-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "MPlus", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "MPlus", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
