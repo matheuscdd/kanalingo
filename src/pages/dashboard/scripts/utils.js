@@ -68,6 +68,7 @@ export function getValueToScorePerChar(char, key) {
 
 export async function loadProgress() {
   onAuthStateChanged(authFirebase, async user => {
+    if (!user) return console.error("null user");
     const ref = doc(dbFirebase, "users", user.uid);
     try {
       let currentProgress = null;

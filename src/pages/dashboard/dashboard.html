@@ -6,16 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Kanalingo - Dashboard</title>
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="../../libs/css/fontawesome-free-7.1.0-web/css/all.min.css"/>
+    <link rel="stylesheet" href="../../libs/css/fontawesome-free-7.1.0-web/css/all.min.css" />
     <link href="../../assets/images/icon-filled.png" rel="shortcut icon" type="image/x-icon">
     <link href="../../styles/root.css" rel="stylesheet">
     <link rel="stylesheet" href="./styles/dashboard.css">
     <script defer src="../../scripts/root.js" type="module"></script>
     <script defer src="./scripts/dashboard.js" type="module"></script>
 </head>
-<body>
 
+<body>
     <nav>
+        <details class="accordion-container">
+            <summary class="accordion-title">
+                <i class="fa-solid fa-bars"></i>
+            </summary>
+            <div class="accordion-body">
+                <div id="out-button">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p>Sair</p>
+                </div>
+            </div>
+        </details>
         <button class="btn-nav active" id="toggle-learn">Aprender</button>
         <button class="btn-nav" id="toggle-progress">Kanas</button>
         <button class="btn-nav" id="toggle-categories">Níveis</button>
@@ -35,16 +46,16 @@
                     </div>
                     <div class="method-card method-disabled">
                         <span class="method-char">
-                             <i class="fa-solid fa-paintbrush"></i>
-                        </span>
-                        <span class="method-label">Desenhar</span>
-                    </div>
-                    <div class="method-card method-disabled">
-                        <span class="method-char">
                             <i class="fa-solid fa-headphones"></i>
                         </span>
                         <span class="method-label">Ouvir</span>
-                    </div>                    
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-paintbrush"></i>
+                        </span>
+                        <span class="method-label">Desenhar</span>
+                    </div>
                     <div class="method-card method-disabled">
                         <span class="method-char">
                             <i class="fa-solid fa-clone"></i>
@@ -74,6 +85,30 @@
                             <i class="fa-solid fa-layer-group"></i>
                         </span>
                         <span class="method-label">Cartões</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-brain"></i>
+                        </span>
+                        <span class="method-label">Memória</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </span>
+                        <span class="method-label">Escolha</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-comments"></i>
+                        </span>
+                        <span class="method-label">Conversa</span>
+                    </div>
+                    <div class="method-card method-disabled">
+                        <span class="method-char">
+                            <i class="fa-solid fa-phone-flip"></i>
+                        </span>
+                        <span class="method-label">Chamada</span>
                     </div>
                 </div>
             </div>

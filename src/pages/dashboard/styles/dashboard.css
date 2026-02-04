@@ -250,8 +250,7 @@ input[type="text"]:focus {
 
 #total-score {
     font-weight: bold;
-    color: var(--secondary-color)"
-
+    user-select: none;
 }
 
 #start-round {
@@ -417,7 +416,7 @@ input[type="text"]:focus {
   gap: 1rem;
   margin-top: 1.5rem;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
 }
 
 .method-card {
@@ -475,6 +474,22 @@ input[type="text"]:focus {
     background-color: var(--grizzly);
 }
 
+.method-card:nth-child(9):hover {
+    background-color: var(--turtle);
+}
+
+.method-card:nth-child(10):hover {
+    background-color: var(--narwhal);
+}
+
+.method-card:nth-child(11):hover {
+    background-color: var(--camel);
+}
+
+.method-card:nth-child(12):hover {
+    background-color: var(--eel);
+}
+
 .method-char {
   display: block;
   font-size: 1.875rem;
@@ -486,7 +501,44 @@ input[type="text"]:focus {
     background-color: var(--duo-bg-gray);
 }
 
-.container-section-learning {
-    margin-bottom: 40px;
+.container-section-methods {
+    margin-bottom: 50px;
 }
 
+.accordion-title {
+    cursor: pointer;
+    list-style: none;
+}
+
+.accordion-body {
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    border-radius: 5px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    padding: 10px;
+}
+
+.accordion-container {
+    position: relative;
+}
+
+#out-button {
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+}
+
+#out-button:hover {
+    background-color: var(--swan);
+}
+
+#out-button:active {
+    color: white;
+    background-color: var(--wolf);
+}

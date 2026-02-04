@@ -41,7 +41,6 @@ export function redirectIfLogged() {
         if ((user && isInPrivateRoutes) || (!user && isInPublicRoutes)) return;
         else if (user && isInPublicRoutes) {
             const isProduction = globalThis.location.href.includes('github');
-            
             globalThis.location.href = (isProduction ? '/kanalingo' : '') + '/src/pages/dashboard/dashboard.html';
         }
     });

@@ -1,8 +1,11 @@
+import { authFirebase } from "../../../scripts/config.js";
 import { renderCatalog } from "./catalog.js";
 import { renderCategories } from "./categories.js";
 import { initEventsTyping } from "./typing.js";
 import { loadProgress, updateTotalScoreDisplay } from "./utils.js";
+import { signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
+const btnLogout = document.getElementById("out-button");
 const btnsMethods = Array.from(document.querySelectorAll('.method-card'));
 const typingScreen = document.getElementById("typing-screen");
 const catalogScreen = document.getElementById("catalog-screen");
@@ -18,7 +21,8 @@ function init() {
   loadProgress();
   updateTotalScoreDisplay(true);
   initEventsTyping();
-  
+
+  btnLogout.onclick = logout;
   btnLearn.onclick = () => showScreen("methods");
   btnDash.onclick = () => showScreen("dashboard");
   btnCategories.onclick = () => showScreen("categories");
@@ -47,6 +51,16 @@ function showScreen(screen) {
     btnCategories.classList.add("active");
     categoriesScreen.classList.remove("hidden");
     renderCategories();
+  }
+}
+
+async function logout() {
+  try {
+    await signOut(authFirebase);
+    const isProduction = globalThis.location.href.includes('github');
+    globalThis.location.href = (isProduction ? '/kanalingo' : '') + '/src/pages/landing/landing.html';
+  } catch (error) {
+    console.error(error);
   }
 }
 
