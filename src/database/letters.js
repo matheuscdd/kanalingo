@@ -1255,6 +1255,12 @@ export const katakana = Object.freeze([
 export const alphabet = Object.freeze([...hiragana, ...katakana]);
 export const kanas = Object.freeze(alphabet.map(x => x.term));
 export const syllableGroups = Object.freeze(Array.from(new Set(alphabet.map(x => x.syllableGroup))));
+export const totalsSyllableGroup = Object.freeze(
+    Object.entries(
+        Object.groupBy(hiragana, (x) => x.syllableGroup)
+    ).reduce((x, y) => ({...x, [y[0]]: y[1].length}), {})
+);
+
 export const methodsKeys = Object.freeze({
   typing: "typing",
   listening: "listening"

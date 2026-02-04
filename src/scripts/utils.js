@@ -29,6 +29,10 @@ export function shuffleArray(arr) {
     return arr.toSorted(() => Math.random() - 0.5);
 }
 
+export function orderArray(arr) {
+    return arr.toSorted((a, b) => a - b);
+}
+
 export function redirectIfLogged() {
     const publicRoutes = [
             'login.html',
@@ -51,4 +55,16 @@ export function redirectIfLogged() {
             globalThis.location.href = (isProduction ? '/kanalingo' : '') + '/src/pages/landing/landing.html';
         }
     });
+}
+
+export function defaultObj(defaultValue) {
+  const map = {};
+  return new Proxy(map, {
+      get(target, prop) {
+          if (!target.hasOwnProperty(prop)) {
+              target[prop] = typeof defaultValue === 'function' ? new defaultValue() : defaultValue;
+          }
+          return Reflect.get(...arguments);
+      }
+  });
 }

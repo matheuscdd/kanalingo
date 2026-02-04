@@ -10,6 +10,7 @@ const btnLogout = document.getElementById("out-button");
 const btnsMethods = Array.from(document.querySelectorAll('.method-card'));
 const typingScreen = document.getElementById("typing-screen");
 const listeningScreen = document.getElementById("listening-screen");
+const drawingScreen = document.getElementById("drawing-screen");
 const catalogScreen = document.getElementById("catalog-screen");
 const categoriesScreen = document.getElementById("categories-screen");
 const methodsScreen = document.getElementById("methods-screen");
@@ -25,7 +26,7 @@ function init() {
   updateTotalScoreDisplay(true);
   initEventsTyping();
 
-  showScreen("typing");
+  showScreen("catalog");
 
   btnLogout.onclick = logout;
   btnLearn.onclick = () => showScreen("methods");
@@ -46,7 +47,11 @@ function showScreen(screen) {
     btnLearn.classList.add("active");
     listeningScreen.classList.remove('hidden');
     initEventsListening();
-  } else if (screen === "typing") {
+  } else if (screen === "drawing") {
+    btnLearn.classList.add("active");
+    drawingScreen.classList.remove('hidden');
+    initEventsDrawing();
+  }  else if (screen === "typing") {
     btnLearn.classList.add("active");
     typingScreen.classList.remove('hidden');
     // TODO: fazer o typing também ter um init que funcione aqui

@@ -1,11 +1,15 @@
+import { alphabet, hiragana, katakana, syllableGroups } from "../../../database/letters.js";
 import { levels } from "../../../database/levels.js";
-import { getSumFromValues } from "../../../scripts/utils.js";
+import { defaultObj, getSumFromValues, orderArray } from "../../../scripts/utils.js";
 import { gameState, getTotalScore, playLetterSound } from "./utils.js";
 
 const container = document.getElementById("catalog-container");
-const progressBar = document.querySelector('.progress-catalog-bar');
-const progressPercentage = document.querySelector('.progress-catalog-percentage');
+const progressTypingBar = document.querySelector('.progress-typing-catalog-bar');
+const progressTypingPercentage = document.querySelector('.progress-typing-catalog-percentage');
+const progressListeningBar = document.querySelector('.progress-listening-catalog-bar');
+const progressListeningPercentage = document.querySelector('.progress-listening-catalog-percentage');
 const placeholder = document.querySelector(".catalog-placeholder");
+const visualizer = document.getElementById('drawing-target-catalog');
 
 export function renderCatalog() {
   container.innerHTML = "";
@@ -14,7 +18,7 @@ export function renderCatalog() {
     return;
   }
 
-  updateProgressBar();
+  updateProgressBars();
   placeholder.classList.add('hidden');
   const sorted = Object.keys(gameState.scorePerChar).sort(
     (a, b) => getSumFromValues(gameState.scorePerChar[b]) - getSumFromValues(gameState.scorePerChar[a]),
@@ -78,15 +82,55 @@ function getLevel(pts) {
   return { color: level.color, progress };
 }
 
-function updateProgressBar() {
+function updateProgressBars() {
+  updateProgressTypingBar();
+  updateProgressListeningBar();
+}
+
+function updateProgressTypingBar() {
   const total = Object.keys(gameState.scorePerChar).length;
-  const totals = Object.values(gameState.scorePerChar).map(x => x.typing);
+  const totals = Object.values(gameState.scorePerChar).map(x => x.typing ?? 0);
   const max = Math.max(...totals);
   const completed = totals.filter(x => x === max).length;
   let progress = 0;
   if (total !== completed) {
     progress = ((completed * 100) / total).toFixed(1);
   }
-  progressBar.style.width = `${progress}%`;
-  progressPercentage.innerText = `${progress}%`;
+  progressTypingBar.style.width = `${progress}%`;
+  progressTypingPercentage.innerText = `${progress}%`;
+}
+
+function updateProgressListeningBar() {
+  const totalAlphabets = 2;
+  const progress = ((calcListeningProgress(hiragana) + calcListeningProgress(katakana)) / totalAlphabets).toFixed(1);
+  progressListeningBar.style.width = `${progress}%`;
+  progressListeningPercentage.innerText = `${progress}%`;
+}
+
+function calcListeningProgress(characters) {
+  const scorePerChar = 50;
+  const charactersWithHits = characters.map(x => ({
+    ...x,
+    hit: (gameState.scorePerChar[x.term].listening ?? 0) / scorePerChar
+  }));
+
+  const syllableGroupsWithHits = Object.groupBy(charactersWithHits, x => x.syllableGroup);
+  const syllableGroupsCompletedValues = Object.keys(syllableGroupsWithHits).reduce((x, y) => ({
+    ...x,
+    [y]: Math.min(...syllableGroupsWithHits[y].map(y => y.hit))
+  }), {});
+
+  const total = Object.keys(syllableGroupsCompletedValues).length;
+  const totalOrdered = orderArray(Object.values(syllableGroupsCompletedValues));
+  const penultimateValue = totalOrdered.find(x => x > totalOrdered[0]);
+  if (!penultimateValue) {
+    return 0;
+  }
+
+  const completed = totalOrdered.filter(x => x >= penultimateValue).length;
+  let progress = 0;
+  if (total !== completed) {
+    progress = (completed * 100) / total;
+  }
+  return progress;
 }

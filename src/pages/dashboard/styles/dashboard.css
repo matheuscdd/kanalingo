@@ -417,15 +417,6 @@ input[type="text"]:focus {
     hue-rotate(143deg) brightness(96%) contrast(93%);
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .method-grid {
   display: flex;
   gap: 1rem;
@@ -459,11 +450,11 @@ input[type="text"]:focus {
   border-color: transparent;
 }
 
-.method-card:nth-child(1):hover {
+.method-card:nth-child(1):hover, .progress-typing-catalog-bar {
   background-color: var(--betta);
 }
 
-.method-card:nth-child(2):hover {
+.method-card:nth-child(2):hover, .progress-listening-catalog-bar {
   background-color: var(--lion);
 }
 
@@ -612,23 +603,6 @@ input[type="text"]:focus {
   animation: drip 2.2s cubic-bezier(0.35, 0.01, 0.25, 1) infinite;
 }
 
-@keyframes drip {
-  0% {
-    transform: translateY(0) scaleY(0.9);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(10px) scaleY(1.2);
-  }
-  60% {
-    transform: translateY(80px) scaleY(1);
-  }
-  100% {
-    transform: translateY(200px) scale(0.6);
-    opacity: 0;
-  }
-}
 
 .progress-catalog-wrapper {
   display: flex;
@@ -717,32 +691,8 @@ input[type="text"]:focus {
   background-color: var(--moon-jelly);
 }
 
-@keyframes listening-click-correct {
-  0% {
-    background-color: var(--sea-sponge);
-    color: var(--owl);
-    border-color: var(--owl);
-  }
-  100% {
-    pointer-events: none;
-    background-color: var(--swan);
-    color: var(--hare);
-  }
-}
 
-@keyframes listening-click-wrong {
-  0% {
-    background-color: var(--walking-fish);
-    color: var(--cardinal);
-    border-color: var(--cardinal);
-  }
-  100% {
-    pointer-events: none;
-    background-color: white;
-    color: var(--eel);
-  }
-}
 
 .hidden {
-  display: none;
+  display: none !important;
 }

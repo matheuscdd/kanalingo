@@ -1,6 +1,6 @@
 import { alphabet, defaults, hiragana, kanas, katakana, methodsKeys } from "../../../database/letters.js";
 import { authFirebase, dbFirebase } from "../../../scripts/config.js";
-import { getSumFromValues, showNumberIncreasing, shuffleArray } from "../../../scripts/utils.js";
+import { getSumFromValues, orderArray, showNumberIncreasing, shuffleArray } from "../../../scripts/utils.js";
 import { onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import {
@@ -10,6 +10,7 @@ import {
   updateDoc,
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 
+const totalScoreDisplay = document.getElementById("total-score");
 export const gameState = Object.seal({
   currentRound: [],
   rightRound: [],
@@ -17,8 +18,6 @@ export const gameState = Object.seal({
   scorePerChar: structuredClone(defaults),
   lastWrong: false,
 });
-
-const totalScoreDisplay = document.getElementById("total-score");
 
 export const statusRef = Object.freeze({
   correct: "correct",
@@ -75,7 +74,6 @@ export function getTotalScore(ref) {
 export async function updateTotalScoreDisplay(isFirstLoad) {
   const total = getTotalScore(gameState.scorePerChar);
   if (isFirstLoad) {
-    console.log(total)
     totalScoreDisplay.classList = "golden-color2";
     await showNumberIncreasing(total, 0, totalScoreDisplay, 1, total * 0.01);
     totalScoreDisplay.classList = "";
@@ -144,9 +142,7 @@ export function selectNextChars(key, maxCharsRound) {
     grouped[score].push(char);
   });
 
-  const sortedScores = Object.keys(grouped)
-    .map(Number)
-    .sort((a, b) => a - b);
+  const sortedScores = orderArray(Object.keys(grouped).map(Number));
 
   let selected = [];
   for (let score of sortedScores) {
@@ -167,9 +163,9 @@ export function selectNextCharsBySyllableGroups(key) {
   }
 
   const rawChars = selectNextChars(key, kanas.length);
-  const keys = structure.map(x => x.term);
-  const ref = rawChars.find(x => keys.includes(x));
-  const syllableGroup = structure.find(x => x.term === ref).syllableGroup;
+  const terms = new Set(structure.map(x => x.term));
+  const example = rawChars.find(x => terms.has(x));
+  const syllableGroup = structure.find(x => x.term === example).syllableGroup;
   const handleChars = structure.filter(x => x.syllableGroup === syllableGroup);
   return shuffleArray(handleChars.map(x => x.term));
 }

@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="../../libs/css/fontawesome-free-7.1.0-web/css/all.min.css" />
     <link href="../../assets/images/icon-filled.png" rel="shortcut icon" type="image/x-icon">
     <link href="../../styles/root.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/animations.css">
     <link rel="stylesheet" href="./styles/dashboard.css">
+    <script defer src="../../libs/js/hanzi-writer/hanzi-writer@3.5.min.js"></script>
     <script defer src="../../scripts/root.js" type="module"></script>
     <script defer src="./scripts/dashboard.js" type="module"></script>
 </head>
@@ -191,16 +193,51 @@
             </div>
         </section>
 
+        <section id="drawing-screen" class="hidden screen">
+            <div class="progress-drawing-container">
+                <div id="drawing-progress" class="progress-learn-bar"></div>
+            </div>
+            <div id="drawing-content" class="drawing-area">
+                <p class="question-text">Escreva isso em romaji</p>
+                <div id="current-char" class="char-display">
+                    <!-- <img src="../../assets/images/loading.png" class="loading-img" alt="loading"> -->
+                    <div id="drawing-target-main"></div>
+                    <div id="drawing-target-yoon"></div>
+                </div>
+
+            </div>
+
+            <div id="finish-content-drawing" class="finish-screen hidden">
+                <div>
+                    <img src="../../assets/images/trophy.png" class="trophy" alt="trophy">
+                </div>
+                <h2>Round Completo!</h2>
+                <p>Você mandou muito bem</p>
+                <button class="btn-check" id="start-round-drawing">Jogar Novamente</button>
+            </div>
+        </section>
+
         <section id="catalog-screen" class="hidden screen">
             <h2>Estatísticas</h2>
-            <div class="progress-catalog-wrapper">
-                <div>
-                    <i class="fa-solid fa-keyboard"></i>
+            <div>
+                <div class="progress-catalog-wrapper">
+                    <div>
+                        <i class="fa-solid fa-keyboard"></i>
+                    </div>
+                    <div class="progress-catalog-container">
+                        <div class="progress-typing-catalog-bar progress-catalog-bar"></div>
+                    </div>
+                    <div class="progress-typing-catalog-percentage">0.0%</div>
                 </div>
-                <div class="progress-catalog-container">
-                    <div class="progress-catalog-bar"></div>
+                <div class="progress-catalog-wrapper">
+                    <div>
+                        <i class="fa-solid fa-headphones"></i>
+                    </div>
+                    <div class="progress-catalog-container">
+                        <div class="progress-listening-catalog-bar progress-catalog-bar"></div>
+                    </div>
+                    <div class="progress-listening-catalog-percentage">0.0%</div>
                 </div>
-                <div class="progress-catalog-percentage">0%</div>
             </div>
             <div id="catalog-container" class="dashboard-grid">
             </div>
@@ -217,6 +254,7 @@
                     </div>
                 </div>
             </div>
+            <div id="drawing-target-catalog">TESTESSSSSSSSSSSSSS</div>
         </section>
 
         <section id="categories-screen" class="hidden screen">
