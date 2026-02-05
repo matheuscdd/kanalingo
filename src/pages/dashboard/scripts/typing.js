@@ -10,14 +10,25 @@ const progressBar = document.getElementById("typing-progress");
 const feedback = document.getElementById("feedback-typing");
 const btnStartRound = document.getElementById("start-round-typing");
 const btnNext = document.getElementById("btn-next-typing");
+const btnVerify = document.getElementById('btn-verify-typing');
 const instructions = document.querySelector('.question-text');
 const maxCharsRound = 5;
 
 export function initEventsTyping() {
+  userInput.onfocus = async () => {
+    if (window.innerWidth > 1000) return;
+    await sleep(300);
+    window.scrollTo({
+      top: 120,
+      behavior: 'smooth'
+    });
+  }
+
   startNewRound();
   handlePhoneKeyboard();
   handleEnterPress();
-  
+  btnVerify.onclick = checkAnswer;
+
   btnStartRound.onclick = startNewRound;
   btnNext.addEventListener("click", nextQuestion);
 }
@@ -53,21 +64,20 @@ function handleEnterPress() {
 }
 
 function handlePhoneKeyboard() {
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener('resize', () => {
-      if (window.innerWidth > 1000) return;
-      const viewportHeight = window.visualViewport.height;
-      const windowHeight = window.innerHeight;
+  if (!window.visualViewport) return;
+  window.visualViewport.addEventListener('resize', () => {
+    if (window.innerWidth > 1000) return;
+    const viewportHeight = window.visualViewport.height;
+    const windowHeight = window.innerHeight;
 
-      const keyboardOpen = (viewportHeight + 100) < windowHeight;
-      if (keyboardOpen) {
-        instructions.classList.add('question-text-mobal');
-      } else {
-        window.scrollTo(0, 0);
-        instructions.classList.remove('question-text-mobal');
-      }
-    });
-  }
+    const keyboardOpen = (viewportHeight + 100) < windowHeight;
+    if (keyboardOpen) {
+      instructions.classList.add('question-text-mobal');
+    } else {
+      window.scrollTo(0, 0);
+      instructions.classList.remove('question-text-mobal');
+    }
+  });
 }
 
 function startNewRound() {
