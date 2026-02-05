@@ -1,13 +1,15 @@
-import { alphabet, hiragana, katakana } from "../../../database/letters.js";
+import { alphabet, hiragana, katakana, scores } from "../../../database/letters.js";
 import { levels } from "../../../database/levels.js";
-import { getSumFromValues, orderArray, sleep } from "../../../scripts/utils.js";
-import { gameState, getTotalScore, playLetterSound } from "./utils.js";
+import { getInternalPath, getSumFromValues, orderArray, sleep } from "../../../scripts/utils.js";
+import { gameState, getTotalScore, playLetterSound, screens } from "./utils.js";
 
 const container = document.getElementById("catalog-container");
 const progressTypingBar = document.querySelector('.progress-typing-catalog-bar');
 const progressTypingPercentage = document.querySelector('.progress-typing-catalog-percentage');
 const progressListeningBar = document.querySelector('.progress-listening-catalog-bar');
 const progressListeningPercentage = document.querySelector('.progress-listening-catalog-percentage');
+const progressDrawingBar = document.querySelector('.progress-drawing-catalog-bar');
+const progressDrawingPercentage = document.querySelector('.progress-drawing-catalog-percentage');
 const placeholder = document.querySelector(".catalog-placeholder");
 const overlay = document.querySelector('.modal-catalog-overlay');
 const btnCloseModal = document.getElementById('close-modal-catalog');
@@ -22,15 +24,13 @@ const writers = Object.seal({
 
 export function initEventsCatalog() {
   overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) {
-      closeModal();
-    }
+    if (gameState.currentScreen !== screens.catalog || e.target !== overlay) return;
+    closeModal();
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeModal();
-    }
+    if (gameState.currentScreen !== screens.catalog || e.key !== 'Escape') return;
+    closeModal();
   });
 }
 
@@ -109,6 +109,20 @@ function getLevel(pts) {
 function updateProgressBars() {
   updateProgressTypingBar();
   updateProgressListeningBar();
+  updateProgressDrawingBar();
+}
+
+function updateProgressDrawingBar() {
+  const total = Object.keys(gameState.scorePerChar).length;
+  const totals = Object.values(gameState.scorePerChar).map(x => x.drawing ?? 0);
+  const max = Math.max(...totals.filter(x => x % scores.drawing.max === 0));
+  const completed = totals.filter(x => x >= max).length;
+  let progress = 0;
+  if (total !== completed) {
+    progress = ((completed * 100) / total).toFixed(1);
+  }
+  progressDrawingBar.style.width = `${progress}%`;
+  progressDrawingPercentage.innerText = `${progress}%`;
 }
 
 function updateProgressTypingBar() {
@@ -132,10 +146,9 @@ function updateProgressListeningBar() {
 }
 
 function calcListeningProgress(characters) {
-  const scorePerChar = 50;
   const charactersWithHits = characters.map(x => ({
     ...x,
-    hit: (gameState.scorePerChar[x.term].listening ?? 0) / scorePerChar
+    hit: (gameState.scorePerChar[x.term].listening ?? 0) / scores.listening.max
   }));
 
   const syllableGroupsWithHits = Object.groupBy(charactersWithHits, x => x.syllableGroup);
@@ -180,16 +193,15 @@ async function showDrawPath(currentJP) {
 }
 
 function setWriterAux(currentJP) {
-  writers.aux = HanziWriter.create('drawing-target-catalog-aux', currentJP, {
+  writers.aux = HanziWriter.create('visualizer-target-catalog-aux', currentJP, {
     ...getDefaultsHanziWriter(),
     width: 150,
     height: 150,
-
   });
 }
 
 function setWriterMain(currentJP) {
-  writers.main = HanziWriter.create('drawing-target-catalog-main', currentJP, {
+  writers.main = HanziWriter.create('visualizer-target-catalog-main', currentJP, {
     ...getDefaultsHanziWriter(),
     width: 200,
     height: 200,
@@ -197,7 +209,7 @@ function setWriterMain(currentJP) {
 }
 
 function handleYoon(currentJP) {
-  const aux = document.getElementById('drawing-target-catalog-aux');
+  const aux = document.getElementById('visualizer-target-catalog-aux');
   if (currentJP.length === 1) {
     aux.style.minWidth = 0;
     aux.style.marginLeft = 0;
@@ -247,7 +259,7 @@ function getDefaultsHanziWriter() {
     showCharacter: false,
     strokeFadeDuration: 0,
     charDataLoader: (char, onLoad, onError) => {
-      fetch(`https://raw.githubusercontent.com/szklsrz/kana-json/refs/heads/main/data/${char}.json`)
+      fetch(getInternalPath(`/src/libs/js/hanzi-writer/data/${char}.json`))
         .then(res => res.json())
         .then(onLoad)
         .catch(onError);

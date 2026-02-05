@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kanalingo - Inscrição</title>
+  <title>Kanalingo - Cadastro</title>
   <link rel="manifest" href="/manifest.json">
   <link href="../../assets/images/icon-filled.png" rel="shortcut icon" type="image/x-icon">
   <link href="../../styles/root.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../libs/css/fontawesome-free-7.1.0-web/css/all.min.css"/>
+  <link rel="stylesheet" href="../../libs/css/fontawesome-free-7.1.0-web/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
   <link href="./styles/register.css" rel="stylesheet">
   <script defer src="../../scripts/root.js" type="module"></script>
@@ -25,46 +25,56 @@
 
       <div style="align-items: center; gap: 1rem;">
         <div class="lang-selector">
-          Idioma: Japonês <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 0.25rem;"></i>
+          <a href="../landing/landing.html">
+            <i class="fa-solid fa-house fa-xl" style="color: #a5adbb;"></i>
+          </a>
         </div>
       </div>
     </div>
   </header>
   <main>
     <div class="login-container">
-      <h1>Inscrever-se</h1>
-
+      <h1>Cadastro</h1>
       <div id="loginForm">
-        <!-- Grupo: E-mail -->
         <div class="form-group" id="group-email">
           <div class="input-wrapper">
             <input type="text" id="email" placeholder="Email">
           </div>
-          <!-- Mensagem de erro idêntica ao print -->
           <div class="error-message">
             <span class="error-icon">!</span>
             Email inválido
           </div>
         </div>
 
-        <!-- Grupo: Senha -->
         <div class="form-group" id="group-password">
           <div class="input-wrapper">
             <input type="password" id="password" placeholder="Senha">
           </div>
-          <!-- Mensagem de erro idêntica ao print -->
+          <div class="error-message custom-error-message">
+            <span class="error-icon">!</span>
+            Senha pequena
+          </div>
           <div class="error-message">
             <span class="error-icon">!</span>
             Senha inválida
           </div>
         </div>
+        <div class="form-group" id="group-password-confirm">
+          <div class="input-wrapper">
+            <input type="password" id="password-confirm" placeholder="Senha">
+          </div>
+          <div class="error-message">
+            <span class="error-icon">!</span>
+            Senhas não coincidem
+          </div>
+        </div>
 
-        <button type="button" id="register" class="btn-submit">Criar</button>
+        <button type="button" id="register" class="btn-submit">Começar</button>
       </div>
 
       <div class="separator"></div>
       <div class="footer-text">
-        Se já tem uma conta? <a href="/../login/login.html">Entrar</a>
+        Se já tem uma conta? <a href="../login/login.html">Entrar</a>
       </div>
     </div>
   </main>

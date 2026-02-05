@@ -1,6 +1,6 @@
-import { alphabet, methodsKeys } from "../../../database/letters.js";
+import { alphabet, methodsKeys, scores } from "../../../database/letters.js";
 import { sleep } from "../../../scripts/utils.js";
-import { gameState, playActionSound, selectNextChars, statusRef, updateScoreDatabase, updateScoreLocal } from "./utils.js";
+import { gameState, getCurrentCharJP, playSoundEffect, screens, selectNextChars, statusRef, updateScoreDatabase, updateScoreLocal } from "./utils.js";
 
 const gameContent = document.getElementById("typing-content");
 const finishContent = document.getElementById("finish-content-typing");
@@ -24,28 +24,31 @@ export function initEventsTyping() {
     });
   }
 
-  startNewRound();
   handlePhoneKeyboard();
   handleEnterPress();
-  btnVerify.onclick = checkAnswer;
+}
 
+export function renderTyping() {
+  startNewRound();
+  btnVerify.onclick = checkAnswer;
   btnStartRound.onclick = startNewRound;
-  btnNext.addEventListener("click", nextQuestion);
+  btnNext.onclick = nextQuestion;
 }
 
 function handleEnterPress() {
-  userInput.addEventListener("keypress", (e) => {
-    if (e.key !== "Enter" || document.activeElement !== userInput) {
+  userInput.addEventListener("keypress", async (e) => {
+    if (gameState.currentScreen !== screens.typing || e.key !== "Enter" || document.activeElement !== userInput) {
       return;
     }
 
     checkAnswer();
-    setTimeout(() => userInput.blur(), 100);
+    await sleep(100);
+    userInput.blur();
   });
 
   document.addEventListener("keypress", (e) => {
-    if (
-      feedback.classList !== "feedback-overlay" &&
+    if (gameState.currentScreen !== screens.typing) return;
+    else if (
       e.key === "Enter" &&
       document.activeElement !== userInput &&
       gameState.currentRound !== null
@@ -66,7 +69,7 @@ function handleEnterPress() {
 function handlePhoneKeyboard() {
   if (!window.visualViewport) return;
   window.visualViewport.addEventListener('resize', () => {
-    if (window.innerWidth > 1000) return;
+    if (gameState.currentScreen !== screens.typing || window.innerWidth > 1000) return;
     const viewportHeight = window.visualViewport.height;
     const windowHeight = window.innerHeight;
 
@@ -81,17 +84,17 @@ function handlePhoneKeyboard() {
 }
 
 function startNewRound() {
-  gameState.currentRound = [];
   gameState.rightRound = [];
   gameState.currentIndex = 0;
   gameState.currentRound = selectNextChars(methodsKeys.typing, maxCharsRound);
+  gameState.currentSystem = null;
   gameContent.classList.remove("hidden");
   finishContent.classList.add("hidden");
   updateUI();
 }
 
 function updateUI() {
-  const char = gameState.currentRound[gameState.currentIndex];
+  const char = getCurrentCharJP();
   charDisplay.textContent = char;
   userInput.value = "";
   userInput.focus();
@@ -100,34 +103,34 @@ function updateUI() {
 }
 
 async function checkAnswer() {
-  const currentJP = gameState.currentRound[gameState.currentIndex];
-  const correctRomaji = alphabet.find(x => x.term === currentJP).definition;
+  const charJP = getCurrentCharJP();
+  const charRO = alphabet.find(x => x.term === charJP).definition;
   const userValue = userInput.value.trim().toLowerCase();
 
-  if (userValue === correctRomaji) {
-    playActionSound(statusRef.correct);
+  if (userValue === charRO) {
+    playSoundEffect(statusRef.correct);
     await sleep(200);
     showFeedback(
       statusRef.correct,
       "Continuar",
       "Excelente",
       "Correto!",
-      correctRomaji,
+      charRO,
     );
-    updateScoreLocal(methodsKeys.typing, currentJP, 100);
+    updateScoreLocal(methodsKeys.typing, charJP, scores.typing.max);
     gameState.lastWrong = null;
-    gameState.rightRound.push(currentJP);
+    gameState.rightRound.push(charJP);
   } else {
-    playActionSound(statusRef.wrong);
+    playSoundEffect(statusRef.wrong);
     await sleep(200);
     showFeedback(
       statusRef.wrong,
-      "Tente novamente",
+      "Tentar novamente",
       "Poxa...",
       "Quase lá!",
-      correctRomaji,
+      charRO,
     );
-    gameState.lastWrong = currentJP;
+    gameState.lastWrong = charJP;
   }
 }
 
@@ -163,7 +166,7 @@ async function nextQuestion() {
 }
 
 async function showFinishScreen() {
-  playActionSound(statusRef.completed);
+  playSoundEffect(statusRef.completed);
   await sleep(100);
   gameContent.classList.add("hidden");
   finishContent.classList.remove("hidden");

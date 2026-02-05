@@ -1,4 +1,4 @@
-import { redirectIfLogged } from "./utils.js";
+import { getInternalPath, redirectIfLogged } from "./utils.js";
 
 initEvents();
 
@@ -13,11 +13,12 @@ function startServiceWorker() {
     return;
   }
 
-  navigator.serviceWorker.getRegistration('/../../src/scripts/sw.js')
+  const path = getInternalPath('/src/scripts/sw.js');
+  navigator.serviceWorker.getRegistration(path)
     .then(registration => {
       if (registration) return;
       navigator.serviceWorker
-        .register('/src/scripts/sw.js')
+        .register(path)
         .then()
         .catch(err => {
           console.error('Erro ao registrar SW:', err);

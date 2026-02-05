@@ -39,6 +39,7 @@ async function tryLogin() {
   try {
     btnSend.disabled = true;
     await signInWithEmailAndPassword(authFirebase, emailInput.value, passwordInput.value);
+    localStorage.clear();
     redirectIfLogged();
   } catch (error) {
     console.error(error);

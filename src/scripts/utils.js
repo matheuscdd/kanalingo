@@ -47,12 +47,11 @@ export function redirectIfLogged() {
         const isInPublicRoutes = publicRoutes.find(x => globalThis.location.href.includes(x));
         const isInPrivateRoutes = privateRoutes.find(x => globalThis.location.href.includes(x));
         
-        const isProduction = globalThis.location.href.includes('github');
         if (user && isInPublicRoutes) {
-            globalThis.location.href = (isProduction ? '/kanalingo' : '') + '/src/pages/dashboard/dashboard.html';
+            globalThis.location.href = getInternalPath('/src/pages/dashboard/dashboard.html');
         }
         else if (!user && isInPrivateRoutes) {
-            globalThis.location.href = (isProduction ? '/kanalingo' : '') + '/src/pages/landing/landing.html';
+            globalThis.location.href = getInternalPath('/src/pages/landing/landing.html');
         }
     });
 }
@@ -67,4 +66,9 @@ export function defaultObj(defaultValue) {
           return Reflect.get(...arguments);
       }
   });
+}
+
+export function getInternalPath(path) {
+    const isProduction = globalThis.location.href.includes('github');
+    return (isProduction ? '/kanalingo' : '') + path;
 }

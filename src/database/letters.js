@@ -1253,7 +1253,9 @@ export const katakana = Object.freeze([
 ]);
 
 export const alphabet = Object.freeze([...hiragana, ...katakana]);
-export const kanas = Object.freeze(alphabet.map(x => x.term));
+export const hiraganaTerms = Object.freeze(hiragana.map(x => x.term));
+export const katakanaTerms = Object.freeze(katakana.map(x => x.term));
+export const kanas = Object.freeze([...hiraganaTerms, ...katakanaTerms]);
 export const syllableGroups = Object.freeze(Array.from(new Set(alphabet.map(x => x.syllableGroup))));
 export const totalsSyllableGroup = Object.freeze(
     Object.entries(
@@ -1263,7 +1265,14 @@ export const totalsSyllableGroup = Object.freeze(
 
 export const methodsKeys = Object.freeze({
   typing: "typing",
-  listening: "listening"
+  listening: "listening",
+  drawing: "drawing"
+});
+
+export const scores = Object.freeze({
+    [methodsKeys.typing]: Object.freeze({max: 100}),
+    [methodsKeys.listening]: Object.freeze({max: 50}),
+    [methodsKeys.drawing]: Object.freeze({max: 200, min: 50}),
 });
 
 export const defaults = alphabet.reduce((a, b) => ({

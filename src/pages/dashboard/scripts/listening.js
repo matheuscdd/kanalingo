@@ -1,6 +1,6 @@
-import { methodsKeys } from "../../../database/letters.js";
+import { methodsKeys, scores } from "../../../database/letters.js";
 import { shuffleArray, sleep } from "../../../scripts/utils.js";
-import { gameState, playActionSound, playLetterSound, selectNextCharsBySyllableGroups, statusRef, updateScoreDatabase, updateScoreLocal } from "./utils.js";
+import { gameState, getCurrentSystem, playSoundEffect, playLetterSound, selectNextCharsBySyllableGroups, statusRef, updateScoreDatabase, updateScoreLocal, getCurrentCharJP } from "./utils.js";
 
 const gameContent = document.getElementById("listening-content");
 const finishContent = document.getElementById("finish-content-listening");
@@ -14,16 +14,14 @@ let currentShuffle = [];
 export function renderListening() {
     startNewRound();
     btnStartRound.onclick = startNewRound;
-    btnPlay.onclick = () => {
-        const char = gameState.currentRound[gameState.currentIndex];
-        playLetterSound(char);
-    }
+    btnPlay.onclick = () => playLetterSound(getCurrentCharJP());
 }
 
 function startNewRound() {
     gameState.rightRound = [];
     gameState.currentIndex = 0;
     gameState.currentRound = selectNextCharsBySyllableGroups(methodsKeys.listening);
+    gameState.currentSystem = getCurrentSystem();
     maxCharsRound = gameState.currentRound.length;
     currentShuffle = shuffleArray(gameState.currentRound);
     gameContent.classList.remove("hidden");
@@ -52,21 +50,21 @@ function renderCards() {
 }
 
 async function selectCard(cardJP, card) {
-    const currentJP = gameState.currentRound[gameState.currentIndex];
+    const currentJP = getCurrentCharJP();
     if (cardJP === currentJP) {
         gameState.rightRound.push(cardJP);
-        playActionSound(statusRef.correct);
+        playSoundEffect(statusRef.correct);
         await sleep(200);
         card.classList.add('listening-correct');
         await sleep(600);
         card.classList.add('listening-disabled');
         nextQuestion();
         if (gameState.lastWrong !== currentJP) {
-            updateScoreLocal(methodsKeys.listening, currentJP, 50);
+            updateScoreLocal(methodsKeys.listening, currentJP, scores.listening.max);
         }
     } else {
         gameState.lastWrong = currentJP;
-        playActionSound(statusRef.wrong);
+        playSoundEffect(statusRef.wrong);
         await sleep(200);
         card.classList.add('listening-wrong');
         await sleep(600);
@@ -86,7 +84,7 @@ async function nextQuestion() {
 }
 
 async function showFinishScreen() {
-    playActionSound(statusRef.completed);
+    playSoundEffect(statusRef.completed);
     await sleep(100);
     gameContent.classList.add("hidden");
     finishContent.classList.remove("hidden");

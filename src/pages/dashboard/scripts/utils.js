@@ -1,4 +1,4 @@
-import { alphabet, defaults, hiragana, kanas, katakana, methodsKeys } from "../../../database/letters.js";
+import { alphabet, defaults, hiragana, hiraganaTerms, kanas, katakana, methodsKeys } from "../../../database/letters.js";
 import { authFirebase, dbFirebase } from "../../../scripts/config.js";
 import { getSumFromValues, orderArray, showNumberIncreasing, shuffleArray } from "../../../scripts/utils.js";
 import { onAuthStateChanged }
@@ -15,11 +15,23 @@ export const gameState = Object.seal({
   currentRound: [],
   rightRound: [],
   currentIndex: 0,
+  currentSystem: null,
   scorePerChar: structuredClone(defaults),
   lastWrong: false,
+  currentScreen: null
+});
+
+export const screens = Object.freeze({
+  methods: "methods",
+  listening: "listening",
+  typing: "typing",
+  drawing: "drawing",
+  catalog: "catalog",
+  categories: "categories"
 });
 
 export const statusRef = Object.freeze({
+  hit: "hit",
   correct: "correct",
   wrong: "wrong",
   completed: "completed"
@@ -110,7 +122,7 @@ export async function loadProgress() {
         await setDoc(ref, { ja: defaults }, { merge: true });
         currentProgress = defaults;
       }
-      
+
       if (Object.keys(local).length && getTotalScore(local) > getTotalScore(currentProgress)) {
         return;
       }
@@ -121,7 +133,7 @@ export async function loadProgress() {
   });
 }
 
-export function playActionSound(sound) {
+export function playSoundEffect(sound) {
   const audio = audioCache.effects[sound];
   audio.currentTime = 0;
   audio.play();
@@ -156,16 +168,29 @@ export function selectNextChars(key, maxCharsRound) {
   return selected.slice(0, maxCharsRound);
 }
 
-export function selectNextCharsBySyllableGroups(key) {
-  let structure = hiragana;
-  if (Math.random() > 0.5) {
-    structure = katakana;
-  }
-
-  const rawChars = selectNextChars(key, kanas.length);
+export function selectNextCharsBySystem(key, maxCharsRound) {
+  const structure = Math.random() > 0.5 ? hiragana : katakana;
   const terms = new Set(structure.map(x => x.term));
-  const example = rawChars.find(x => terms.has(x));
+  const rawChars = selectNextChars(key, kanas.length);
+  const handleChars = rawChars.filter(x => terms.has(x));
+  return handleChars.slice(0, maxCharsRound);
+}
+
+export function selectNextCharsBySyllableGroups(key) {
+  const structure = Math.random() > 0.5 ? hiragana : katakana;
+  const rawChars = selectNextChars(key, kanas.length);
+  const terms = structure.map(x => x.term);
+  const example = rawChars.find(x => terms.includes(x));
+
   const syllableGroup = structure.find(x => x.term === example).syllableGroup;
   const handleChars = structure.filter(x => x.syllableGroup === syllableGroup);
   return shuffleArray(handleChars.map(x => x.term));
+}
+
+export function getCurrentSystem() {
+  return hiraganaTerms.includes(gameState.currentRound[0]) ? 'Hiragana' : 'Katakana';
+}
+
+export function getCurrentCharJP() {
+  return gameState.currentRound[gameState.currentIndex];
 }

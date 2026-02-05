@@ -1,9 +1,11 @@
 import { authFirebase } from "../../../scripts/config.js";
+import { getInternalPath, sleep } from "../../../scripts/utils.js";
 import { initEventsCatalog, renderCatalog } from "./catalog.js";
 import { renderCategories } from "./categories.js";
+import { initEventsDrawing, renderDrawing } from "./drawing.js";
 import { renderListening } from "./listening.js";
-import { initEventsTyping } from "./typing.js";
-import { loadProgress, preloadAudios, updateTotalScoreDisplay } from "./utils.js";
+import { initEventsTyping, renderTyping } from "./typing.js";
+import { gameState, loadProgress, preloadAudios, screens, updateTotalScoreDisplay } from "./utils.js";
 import { signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 const btnLogout = document.getElementById("out-button");
@@ -26,8 +28,9 @@ function init() {
   updateTotalScoreDisplay(true);
   initEventsTyping();
   initEventsCatalog();
+  initEventsDrawing();
 
-  showScreen("catalog");
+  showScreen(screens.methods);
 
   btnLogout.onclick = logout;
   btnLearn.onclick = () => showScreen("methods");
@@ -36,32 +39,34 @@ function init() {
   btnsMethods.forEach(btn => btn.onclick = () => showScreen(btn.dataset.screen));
 }
 
-function showScreen(screen) {
+async function showScreen(currentScreen) {
+  await sleep(300);
+  gameState.currentScreen = currentScreen;
+  document.querySelector('#feedback-drawing').classList.add('hidden');
   document.querySelector('#feedback-typing').classList.add('hidden');
   allNavBtns.forEach(el => el.classList.remove('active'));
   allScreens.forEach(el => el.classList.add('hidden'));
 
-  if (screen === "methods") {
+  if (currentScreen === screens.methods) {
     btnLearn.classList.add("active");
     methodsScreen.classList.remove('hidden');
-  } else if (screen === "listening") {
+  } else if (currentScreen === screens.listening) {
     btnLearn.classList.add("active");
     listeningScreen.classList.remove('hidden');
     renderListening();
-  } else if (screen === "drawing") {
+  } else if (currentScreen ===screens.drawing) {
     btnLearn.classList.add("active");
     drawingScreen.classList.remove('hidden');
-    // initEventsDrawing();
-  }  else if (screen === "typing") {
+    renderDrawing();
+  }  else if (currentScreen === screens.typing) {
     btnLearn.classList.add("active");
     typingScreen.classList.remove('hidden');
-    // TODO: fazer o typing também ter um init que funcione aqui
-  }
-  else if (screen === "catalog") {
+    renderTyping();
+  } else if (currentScreen === screens.catalog) {
     btnDash.classList.add("active");
     catalogScreen.classList.remove("hidden");
     renderCatalog();
-  } else if (screen === "categories") {
+  } else if (currentScreen === screens.categories) {
     btnCategories.classList.add("active");
     categoriesScreen.classList.remove("hidden");
     renderCategories();
@@ -71,8 +76,8 @@ function showScreen(screen) {
 async function logout() {
   try {
     await signOut(authFirebase);
-    const isProduction = globalThis.location.href.includes('github');
-    globalThis.location.href = (isProduction ? '/kanalingo' : '') + '/src/pages/landing/landing.html';
+    localStorage.clear();
+    globalThis.location.href = getInternalPath('/src/pages/landing/landing.html');
   } catch (error) {
     console.error(error);
   }

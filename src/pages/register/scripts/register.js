@@ -7,8 +7,11 @@ import { isValidEmail, redirectIfLogged } from "../../../scripts/utils.js";
 const btnSend = document.getElementById('register');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
+const passwordConfirmInput = document.getElementById('password-confirm');
 const groupEmail = document.getElementById('group-email');
 const groupPassword = document.getElementById('group-password');
+const groupPasswordConfirm = document.getElementById('group-password-confirm');
+const errorSmallPassword = document.querySelector('.custom-error-message');
 
 async function tryRegister() {
   let hasErrors = false;
@@ -18,7 +21,12 @@ async function tryRegister() {
   }
 
   if (!passwordInput.value || passwordInput.value.trim().length < 6) {
-    addErrorsPassword();
+    errorSmallPassword.style.display = 'flex';
+    hasErrors = true;
+  }
+
+  if (!passwordConfirmInput.value || passwordConfirmInput.value !== passwordInput.value) {
+    addErrorsPasswordConfirm();
     hasErrors = true;
   }
 
@@ -39,6 +47,7 @@ async function tryRegister() {
   try {
     btnSend.disabled = true;
     await createUserWithEmailAndPassword(authFirebase, emailInput.value, passwordInput.value);
+    localStorage.clear();
     redirectIfLogged();
   } catch (error) {
     console.error(error);
@@ -64,6 +73,15 @@ function addErrorsPassword() {
   groupPassword.classList.add('has-error');
 }
 
+function addErrorsPasswordConfirm() {
+  passwordConfirmInput.classList.add('error');
+  groupPasswordConfirm.classList.add('has-error');
+}
+
 btnSend.onclick = tryRegister;
 emailInput.oninput = () => clearError(emailInput, groupEmail);
-passwordInput.oninput = () => clearError(passwordInput, groupPassword);
+passwordInput.oninput = () => {
+  errorSmallPassword.style.display = 'none';
+  clearError(passwordInput, groupPassword);
+};
+passwordConfirmInput.oninput = () => clearError(passwordConfirmInput, groupPasswordConfirm);
