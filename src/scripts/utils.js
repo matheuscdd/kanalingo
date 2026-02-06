@@ -1,9 +1,8 @@
 import { authFirebase } from "./config.js";
-import { onAuthStateChanged } 
-from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 export async function sleep(time) {
-  return new Promise((resolve) => setTimeout(resolve, time))
+    return new Promise((resolve) => setTimeout(resolve, time));
 }
 
 export function getSumFromValues(x) {
@@ -11,10 +10,16 @@ export function getSumFromValues(x) {
     return Object.values(x).reduce((a, b) => a + b, 0);
 }
 
-export async function showNumberIncreasing(destination, initial, el, interval, increaser=1) { 
-    for (let i = initial; i <= destination; i+=increaser) {
+export async function showNumberIncreasing(
+    destination,
+    initial,
+    el,
+    interval,
+    increaser = 1,
+) {
+    for (let i = initial; i <= destination; i += increaser) {
         el.innerText = `${i.toFixed(0)} XP`;
-        await sleep(interval); 
+        await sleep(interval);
         if (i >= destination) break;
     }
     el.innerText = `${destination} XP`;
@@ -34,41 +39,45 @@ export function orderArray(arr) {
 }
 
 export function redirectIfLogged() {
-    const publicRoutes = [
-            'login.html',
-            'register.html',
-            'landing.html'
-    ];
-    const privateRoutes = [
-        'dashboard.html'
-    ];
+    const publicRoutes = ["login.html", "register.html", "landing.html"];
+    const privateRoutes = ["dashboard.html"];
 
-    onAuthStateChanged(authFirebase, user => {
-        const isInPublicRoutes = publicRoutes.find(x => globalThis.location.href.includes(x));
-        const isInPrivateRoutes = privateRoutes.find(x => globalThis.location.href.includes(x));
-        
+    onAuthStateChanged(authFirebase, (user) => {
+        const isInPublicRoutes = publicRoutes.find((x) =>
+            globalThis.location.href.includes(x),
+        );
+        const isInPrivateRoutes = privateRoutes.find((x) =>
+            globalThis.location.href.includes(x),
+        );
+
         if (user && isInPublicRoutes) {
-            globalThis.location.href = getInternalPath('/src/pages/dashboard/dashboard.html');
-        }
-        else if (!user && isInPrivateRoutes) {
-            globalThis.location.href = getInternalPath('/src/pages/landing/landing.html');
+            globalThis.location.href = getInternalPath(
+                "/src/pages/dashboard/dashboard.html",
+            );
+        } else if (!user && isInPrivateRoutes) {
+            globalThis.location.href = getInternalPath(
+                "/src/pages/landing/landing.html",
+            );
         }
     });
 }
 
 export function defaultObj(defaultValue) {
-  const map = {};
-  return new Proxy(map, {
-      get(target, prop) {
-          if (!target.hasOwnProperty(prop)) {
-              target[prop] = typeof defaultValue === 'function' ? new defaultValue() : defaultValue;
-          }
-          return Reflect.get(...arguments);
-      }
-  });
+    const map = {};
+    return new Proxy(map, {
+        get(target, prop) {
+            if (!target.hasOwnProperty(prop)) {
+                target[prop] =
+                    typeof defaultValue === "function"
+                        ? new defaultValue()
+                        : defaultValue;
+            }
+            return Reflect.get(...arguments);
+        },
+    });
 }
 
 export function getInternalPath(path) {
-    const isProduction = globalThis.location.href.includes('github');
-    return (isProduction ? '/kanalingo' : '') + path;
+    const isProduction = globalThis.location.href.includes("github");
+    return (isProduction ? "/kanalingo" : "") + path;
 }

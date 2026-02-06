@@ -1,295 +1,295 @@
 :root {
-  /* Paleta de Cores Duolingo (Tema Claro) */
-  --duo-green: #58cc02;
-  --duo-green-shadow: #58a700;
-  --duo-blue: #26b3f6;
-  --duo-blue-shadow: #1899d6;
-  --duo-red: #ff4b4b; /* Cor do erro */
-  --duo-red-bg: #ffdfdf; /* Fundo suave para erro se necessário */
-  --duo-gray-border: #e5e5e5;
-  --duo-gray-text: #777777;
-  --duo-gray: #e5e5e5;
-  --duo-dark-text: #3c3c3c;
-  --white: #ffffff;
-  --bg-color: #ffffff;
+    /* Paleta de Cores Duolingo (Tema Claro) */
+    --duo-green: #58cc02;
+    --duo-green-shadow: #58a700;
+    --duo-blue: #26b3f6;
+    --duo-blue-shadow: #1899d6;
+    --duo-red: #ff4b4b; /* Cor do erro */
+    --duo-red-bg: #ffdfdf; /* Fundo suave para erro se necessário */
+    --duo-gray-border: #e5e5e5;
+    --duo-gray-text: #777777;
+    --duo-gray: #e5e5e5;
+    --duo-dark-text: #3c3c3c;
+    --white: #ffffff;
+    --bg-color: #ffffff;
 }
 
 .container {
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Nunito", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Nunito", sans-serif;
 }
 
 body {
-  font-family: "Nunito", sans-serif;
-  color: var(--duo-dark-text);
-  background-color: var(--bg-color);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    font-family: "Nunito", sans-serif;
+    color: var(--duo-dark-text);
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-      flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
 }
 
 .login-container {
-  width: 100%;
-  max-width: 400px;
-  padding: 2rem;
-  text-align: center;
-  margin-bottom: 200px;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 200px;
 }
 
 h1 {
-  color: var(--duo-dark-text);
-  font-weight: 800;
-  font-size: 2rem;
-  margin-bottom: 2rem;
+    color: var(--duo-dark-text);
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
 .form-group {
-  margin-bottom: 1rem;
-  position: relative;
-  text-align: left;
+    margin-bottom: 1rem;
+    position: relative;
+    text-align: left;
 }
 
 /* Input Styling */
 .input-wrapper {
-  position: relative;
-  width: 100%;
+    position: relative;
+    width: 100%;
 }
 
 input {
-  width: 100%;
-  background-color: #f7f7f7;
-  border: 2px solid var(--duo-gray-border);
-  border-radius: 16px; /* Bordas bem arredondadas estilo Duo */
-  padding: 14px 16px;
-  font-size: 1.1rem;
-  color: var(--duo-dark-text);
-  outline: none;
-  transition: all 0.1s ease;
-  height: 50px;
-  font-weight: 600;
+    width: 100%;
+    background-color: #f7f7f7;
+    border: 2px solid var(--duo-gray-border);
+    border-radius: 16px; /* Bordas bem arredondadas estilo Duo */
+    padding: 14px 16px;
+    font-size: 1.1rem;
+    color: var(--duo-dark-text);
+    outline: none;
+    transition: all 0.1s ease;
+    height: 50px;
+    font-weight: 600;
 }
 
 input::placeholder {
-  font-weight: 600;
-  color: #afafaf;
+    font-weight: 600;
+    color: #afafaf;
 }
 
 /* Estado de Foco (Padrão Azul Duolingo) */
 input:focus {
-  border-color: var(--duo-blue);
+    border-color: var(--duo-blue);
 }
 
 /* ESTADO DE ERRO (Como solicitado) */
 input.error {
-  background-color: #fff; /* Mantém fundo claro */
-  border-color: var(--duo-red);
+    background-color: #fff; /* Mantém fundo claro */
+    border-color: var(--duo-red);
 }
 
 /* Mensagem de Erro */
 .error-message {
-  display: none; /* Oculto por padrão */
-  align-items: center;
-  color: var(--duo-red);
-  font-weight: 700;
-  font-size: 0.85rem;
-  margin-top: 6px;
-  margin-left: 4px;
+    display: none; /* Oculto por padrão */
+    align-items: center;
+    color: var(--duo-red);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    margin-left: 4px;
 }
 
 /* Mostra a mensagem quando o input tem a classe .error no pai ou lógica JS */
 .form-group.has-error .error-message:not(.custom-error-message) {
-  display: flex;
+    display: flex;
 }
 
 .error-icon {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--duo-red);
-  color: white;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: 900;
-  margin-right: 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--duo-red);
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 900;
+    margin-right: 8px;
 }
 
 /* Link "Esqueceu?" dentro do input */
 .forgot-link {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  text-decoration: none;
-  color: #afafaf; /* Cor inativa */
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: color 0.2s;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+    color: #afafaf; /* Cor inativa */
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: color 0.2s;
 }
 
 /* Botão Principal */
 .btn-submit {
-  width: 100%;
-  background-color: var(--duo-green);
-  color: white;
-  font-size: 1rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding: 12px;
-  border: none;
-  border-radius: 16px;
-  /* O "look" 3D do Duolingo é feito com box-shadow sólido */
-  box-shadow: 0px 4px 0px var(--duo-green-shadow);
-  cursor: pointer;
-  transition: all 0.1s ease;
-  margin-top: 10px;
-  height: 50px;
+    width: 100%;
+    background-color: var(--duo-green);
+    color: white;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 12px;
+    border: none;
+    border-radius: 16px;
+    /* O "look" 3D do Duolingo é feito com box-shadow sólido */
+    box-shadow: 0px 4px 0px var(--duo-green-shadow);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    margin-top: 10px;
+    height: 50px;
 }
 
 .btn-submit:disabled {
-  background-color: var(--duo-gray-text);
-  box-shadow: 0px 4px 0px var(--duo-dark-text);
-  pointer-events: none;
+    background-color: var(--duo-gray-text);
+    box-shadow: 0px 4px 0px var(--duo-dark-text);
+    pointer-events: none;
 }
 
 .btn-submit:hover:not(:disabled) {
-  background-color: #61e002; /* Um verde um pouco mais claro */
+    background-color: #61e002; /* Um verde um pouco mais claro */
 }
 
 .btn-submit:active {
-  transform: translateY(4px); /* Efeito de pressionar */
-  box-shadow: 0px 0px 0px var(--duo-green-shadow);
+    transform: translateY(4px); /* Efeito de pressionar */
+    box-shadow: 0px 0px 0px var(--duo-green-shadow);
 }
 
 /* Separador ou Social */
 .separator {
-  margin: 20px 0;
-  border-top: 2px solid var(--duo-gray-border);
-  position: relative;
+    margin: 20px 0;
+    border-top: 2px solid var(--duo-gray-border);
+    position: relative;
 }
 
 .social-buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .social-btn {
-  flex: 1;
-  background: #fff;
-  border: 2px solid var(--duo-gray-border);
-  border-radius: 16px;
-  padding: 10px;
-  font-weight: 700;
-  color: var(--duo-dark-text);
-  cursor: pointer;
-  box-shadow: 0px 2px 0px var(--duo-gray-border);
-  transition: all 0.1s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.9rem;
+    flex: 1;
+    background: #fff;
+    border: 2px solid var(--duo-gray-border);
+    border-radius: 16px;
+    padding: 10px;
+    font-weight: 700;
+    color: var(--duo-dark-text);
+    cursor: pointer;
+    box-shadow: 0px 2px 0px var(--duo-gray-border);
+    transition: all 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
 }
 
 .social-btn:active {
-  transform: translateY(2px);
-  box-shadow: none;
+    transform: translateY(2px);
+    box-shadow: none;
 }
 
 .social-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
 }
 
 .footer-text {
-  margin-top: 20px;
-  font-size: 0.9rem;
-  color: var(--duo-gray-text);
-  font-weight: 700;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--duo-gray-text);
+    font-weight: 700;
 }
 
 .footer-text a {
-  color: var(--duo-blue);
-  text-decoration: none;
-  text-transform: uppercase;
+    color: var(--duo-blue);
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .logo-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
 .logo-group > img {
-  width: 30px;
+    width: 30px;
 }
 
 .logo-group:hover img {
-  transform: rotate(12deg);
+    transform: rotate(12deg);
 }
 
 .logo-text {
-  color: var(--duo-blue);
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.05em;
+    color: var(--duo-blue);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
 }
 
 /* Responsividade */
 @media (max-width: 480px) {
-  .login-container {
-    padding: 1.5rem;
-  }
+    .login-container {
+        padding: 1.5rem;
+    }
 }
 
 .lang-selector {
-  color: #9ca3af;
-  font-weight: 700;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  transition: color 0.2s;
+    color: #9ca3af;
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: color 0.2s;
 }
 .lang-selector:hover {
-  color: #6b7280;
+    color: #6b7280;
 }
 
 header {
-  border-bottom: 2px solid var(--duo-gray);
-  position: sticky;
-  top: 0;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(4px);
-  z-index: 50;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Centralizado para mobile */
-  transition: box-shadow 0.3s;
+    border-bottom: 2px solid var(--duo-gray);
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    z-index: 50;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centralizado para mobile */
+    transition: box-shadow 0.3s;
 }

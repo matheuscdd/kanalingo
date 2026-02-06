@@ -1,52 +1,52 @@
 @keyframes drip {
-  0% {
-    transform: translateY(0) scaleY(0.9);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-    transform: translateY(10px) scaleY(1.2);
-  }
-  60% {
-    transform: translateY(80px) scaleY(1);
-  }
-  100% {
-    transform: translateY(200px) scale(0.6);
-    opacity: 0;
-  }
+    0% {
+        transform: translateY(0) scaleY(0.9);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(10px) scaleY(1.2);
+    }
+    60% {
+        transform: translateY(80px) scaleY(1);
+    }
+    100% {
+        transform: translateY(200px) scale(0.6);
+        opacity: 0;
+    }
 }
 
 @keyframes listening-click-correct {
-  0% {
-    background-color: var(--sea-sponge);
-    color: var(--owl);
-    border-color: var(--owl);
-  }
-  100% {
-    pointer-events: none;
-    background-color: var(--swan);
-    color: var(--hare);
-  }
+    0% {
+        background-color: var(--sea-sponge);
+        color: var(--owl);
+        border-color: var(--owl);
+    }
+    100% {
+        pointer-events: none;
+        background-color: var(--swan);
+        color: var(--hare);
+    }
 }
 
 @keyframes listening-click-wrong {
-  0% {
-    background-color: var(--walking-fish);
-    color: var(--cardinal);
-    border-color: var(--cardinal);
-  }
-  100% {
-    pointer-events: none;
-    background-color: white;
-    color: var(--eel);
-  }
+    0% {
+        background-color: var(--walking-fish);
+        color: var(--cardinal);
+        border-color: var(--cardinal);
+    }
+    100% {
+        pointer-events: none;
+        background-color: white;
+        color: var(--eel);
+    }
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
