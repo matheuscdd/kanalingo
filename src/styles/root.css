@@ -96,3 +96,49 @@
     padding: 0;
     font-family: "MPlus", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+body > .general-loading-screen {
+    overflow: hidden;
+}
+
+.general-loading-screen {
+    z-index: 1000000;
+    width: 100vw;
+    height: 100dvh;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+}
+
+.general-loading-screen .general-loading-title {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--duo-dark-text);
+    font-weight: 800;
+    font-size: 2rem;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: center;
+}
+
+.loading-general-container-img {
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.loading-general-img {
+    height: 200px;
+    animation: spin 1s linear infinite;
+    filter: brightness(0) saturate(100%) invert(22%) sepia(0%) saturate(428%)
+        hue-rotate(143deg) brightness(96%) contrast(93%);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
