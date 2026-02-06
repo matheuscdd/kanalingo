@@ -18,7 +18,7 @@ const progressBar = document.getElementById("listening-progress");
 const btnPlay = document.getElementById("play-sound-listening");
 const container = document.querySelector(".listening-grid");
 const btnStartRound = document.getElementById("start-round-listening");
-let maxCharsRound = 6;
+let maxCharsRound = 3;
 let currentShuffle = [];
 
 export function renderListening() {
@@ -68,9 +68,8 @@ async function selectCard(cardJP, card) {
     if (cardJP === currentJP) {
         gameState.rightRound.push(cardJP);
         playSoundEffect(statusRef.correct);
-        await sleep(200);
         card.classList.add("listening-correct");
-        await sleep(600);
+        await sleep(500);
         card.classList.add("listening-disabled");
         nextQuestion();
         if (gameState.lastWrong !== currentJP) {
@@ -83,9 +82,8 @@ async function selectCard(cardJP, card) {
     } else {
         gameState.lastWrong = currentJP;
         playSoundEffect(statusRef.wrong);
-        await sleep(200);
         card.classList.add("listening-wrong");
-        await sleep(600);
+        await sleep(500);
         renderCards();
     }
 }

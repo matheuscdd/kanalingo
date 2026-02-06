@@ -147,8 +147,9 @@ function updateProgressDrawingBar() {
     const completed = totals.filter((x) => x >= max).length;
     let progress = 0;
     if (total !== completed) {
-        progress = ((completed * 100) / total).toFixed(1);
+        progress = (completed * 100) / total;
     }
+    progress = progress.toFixed(1);
     progressDrawingBar.style.width = `${progress}%`;
     progressDrawingPercentage.innerText = `${progress}%`;
 }
@@ -162,18 +163,22 @@ function updateProgressTypingBar() {
     const completed = totals.filter((x) => x === max).length;
     let progress = 0;
     if (total !== completed) {
-        progress = ((completed * 100) / total).toFixed(1);
+        progress = (completed * 100) / total;
     }
+    progress = progress.toFixed(1);
     progressTypingBar.style.width = `${progress}%`;
     progressTypingPercentage.innerText = `${progress}%`;
 }
 
 function updateProgressListeningBar() {
     const totalAlphabets = 2;
-    const progress = (
+    let progress =
         (calcListeningProgress(hiragana) + calcListeningProgress(katakana)) /
-        totalAlphabets
-    ).toFixed(1);
+        totalAlphabets;
+    if (progress === 100) {
+        progress = 0;
+    }
+    progress = progress.toFixed(1);
     progressListeningBar.style.width = `${progress}%`;
     progressListeningPercentage.innerText = `${progress}%`;
 }

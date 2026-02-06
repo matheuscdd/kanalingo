@@ -27,6 +27,7 @@ const btnDash = document.getElementById("toggle-progress");
 const btnCategories = document.getElementById("toggle-categories");
 const allScreens = Array.from(document.querySelectorAll(".screen"));
 const allNavBtns = Array.from(document.querySelectorAll(".btn-nav"));
+const btnsBack = Array.from(document.querySelectorAll(".btn-back"));
 
 function init() {
     preloadAudios();
@@ -44,6 +45,9 @@ function init() {
     btnCategories.onclick = () => showScreen("categories");
     btnsMethods.forEach(
         (btn) => (btn.onclick = () => showScreen(btn.dataset.screen)),
+    );
+    btnsBack.forEach(
+        (btn) => (btn.onclick = () => showScreen(screens.methods)),
     );
 }
 

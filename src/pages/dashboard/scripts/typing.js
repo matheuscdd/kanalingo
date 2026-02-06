@@ -130,7 +130,7 @@ async function checkAnswer() {
         showFeedback(
             statusRef.correct,
             "Continuar",
-            gameState.lastWrong === null ? "Perfeito" : "Excelente",
+            !gameState.lastWrong ? "Perfeito" : "Excelente",
             "Correto!",
             charRO,
         );
