@@ -113,7 +113,7 @@ export async function updateTotalScoreDisplay(isFirstLoad) {
     }
 
     totalScoreDisplay.classList = "golden-color2";
-    await showNumberIncreasing(total, total - 100, totalScoreDisplay, 1);
+    await showNumberIncreasing(total, total, totalScoreDisplay, 1);
     totalScoreDisplay.classList = "";
 }
 

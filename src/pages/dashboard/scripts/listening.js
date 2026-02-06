@@ -18,7 +18,7 @@ const progressBar = document.getElementById("listening-progress");
 const btnPlay = document.getElementById("play-sound-listening");
 const container = document.querySelector(".listening-grid");
 const btnStartRound = document.getElementById("start-round-listening");
-let maxCharsRound = 3;
+let maxCharsRound = 0;
 let currentShuffle = [];
 
 export function renderListening() {
@@ -55,7 +55,7 @@ function renderCards() {
             "listening-card " +
             (gameState.rightRound.includes(x) ? "listening-disabled" : "");
         const char = document.createElement("span");
-        char.classList = "listening-char";
+        char.classList = "listening-char kana-font";
         char.innerText = x;
         card.append(char);
         card.onclick = () => selectCard(x, card);

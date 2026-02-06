@@ -10,7 +10,7 @@ body {
 /* Navegação */
 nav {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -22,7 +22,7 @@ nav {
     background: none;
     border: none;
     color: #afafaf;
-    font-weight: bold;
+    font-weight: 900;
     text-transform: uppercase;
     cursor: pointer;
     padding: 10px;
@@ -37,7 +37,7 @@ nav {
 
 main {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     padding: 20px;
     flex-grow: 1;
     display: flex;
@@ -81,7 +81,6 @@ main {
 
 .question-text {
     font-size: 22px;
-    font-weight: bold;
 }
 
 #typing-content .question-text {
@@ -94,7 +93,6 @@ main {
 
 #current-char {
     font-size: 120px;
-    font-weight: bold;
     margin: 40px 0;
     color: var(--text-color);
     transition: 0.5s;
@@ -134,7 +132,7 @@ input[type="text"]:focus {
     padding: 20px;
     border-top: 2px solid var(--light-gray);
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     background: white;
     position: sticky;
     bottom: 0;
@@ -146,9 +144,9 @@ input[type="text"]:focus {
     border-style: solid;
     width: 100%;
     padding: 15px;
+    font-weight: 900;
     border-radius: 15px;
     font-size: 18px;
-    font-weight: bold;
     cursor: pointer;
     text-transform: uppercase;
     background-color: white;
@@ -176,15 +174,10 @@ input[type="text"]:focus {
     color: white;
     border: none;
     border-radius: 15px;
+    font-weight: 900;
     font-size: 18px;
-    font-weight: bold;
     cursor: pointer;
     text-transform: uppercase;
-}
-
-#btn-next-typing,
-#btn-next-drawing {
-    font-weight: 600;
 }
 
 .container-finish-results-actions {
@@ -282,7 +275,6 @@ input[type="text"]:focus {
 .card-value {
     font-size: 14px;
     color: #b2b2b2;
-    font-weight: bold;
 }
 
 .char-card:active .card-value {
@@ -295,6 +287,11 @@ input[type="text"]:focus {
     padding: 40px 0;
 }
 
+.finish-screen p {
+    color: var(--hare);
+    font-weight: 700;
+}
+
 .finish-screen h2 {
     font-size: 32px;
     color: var(--primary-color);
@@ -302,7 +299,6 @@ input[type="text"]:focus {
 }
 
 #total-score {
-    font-weight: bold;
     user-select: none;
     min-width: 100px;
     text-align: right;
@@ -409,7 +405,6 @@ input[type="text"]:focus {
 }
 
 .level-name {
-    font-weight: bold;
     color: var(--text-main);
     font-size: 18px;
     display: block;
@@ -418,7 +413,6 @@ input[type="text"]:focus {
 .level-score {
     color: var(--text-secondary);
     font-size: 14px;
-    font-weight: bold;
     text-transform: uppercase;
 }
 
@@ -472,7 +466,7 @@ svg.fa-custom-icon {
 }
 
 .method-label {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .method-card {
@@ -504,6 +498,10 @@ svg.fa-custom-icon {
     color: white;
     transform: scale(1.1);
     border-color: transparent;
+}
+
+.listening-char {
+    font-size: 30px;
 }
 
 .method-card:nth-child(1):hover,
@@ -579,6 +577,10 @@ svg.fa-custom-icon {
 
 .method-card:nth-child(18):hover {
     background-color: var(--fire-ant);
+}
+
+.method-card:nth-child(19):hover {
+    background-color: var(--duck);
 }
 
 .method-char {
@@ -676,7 +678,6 @@ svg.fa-custom-icon {
     color: var(--eel);
     font-size: 17px;
     display: block;
-    font-weight: 600;
     margin-bottom: 0.2rem;
 }
 
@@ -707,7 +708,7 @@ svg.fa-custom-icon {
 .listening-grid {
     display: flex;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -753,7 +754,7 @@ svg.fa-custom-icon {
     display: inline-block;
     text-align: center;
     padding: 0.8rem;
-    font-weight: 800;
+    font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border-radius: 16px;
@@ -854,7 +855,6 @@ svg.fa-custom-icon {
     border-radius: 16px;
     padding: 5px;
     font-size: 30px;
-    font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
     transition:
@@ -992,14 +992,10 @@ svg.fa-custom-icon {
     color: var(--secondary-color);
 }
 
-#listening-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
 @media (max-width: 370px) {
+    .question-text {
+        font-size: 17px;
+    }
     nav {
         padding: 10px;
     }
@@ -1028,7 +1024,6 @@ svg.fa-custom-icon {
     cursor: pointer;
     user-select: none;
     font-size: 1.2rem;
-    font-weight: bold;
     gap: 15px;
     padding: 10px;
 }

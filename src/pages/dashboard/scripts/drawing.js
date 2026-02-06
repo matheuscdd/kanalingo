@@ -218,7 +218,7 @@ function getDefaultsHanziWriter() {
         drawingColor: "#4b4b4b",
         strokeColor: "#1cb0f6",
         drawingWidth: 30,
-        strokeTolerance: 20,
+        strokeTolerance: 25,
         showCharacter: checkboxStroke.checked,
         showOutline: checkboxStroke.checked,
         strokeAnimationSpeed: 1,
@@ -268,7 +268,10 @@ async function showFinishScreen() {
 
 function getDimensions() {
     const isComboChar = getCurrentCharJA().length === 2;
-    const max = Math.min(window.innerWidth, headerWidth);
+    let max = Math.min(window.innerWidth, headerWidth);
+    if (max >= 600 && !isComboChar) {
+        max -= 200;
+    }
     const result = { main: max, aux: null };
     if (isComboChar) {
         result.main = max * 0.66;

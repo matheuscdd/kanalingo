@@ -84,7 +84,7 @@ export function renderCatalog() {
 
         const title = document.createElement("div");
         title.textContent = term;
-        title.classList = "ja";
+        title.classList = "ja kana-font";
         card.append(title);
 
         const wrapperBar = document.createElement("div");

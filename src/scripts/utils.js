@@ -124,7 +124,7 @@ export function insertLoadingScreen() {
             <div class="loading-general-container-img">
                 <img class="loading-general-img" src="${getInternalPath("/src/assets/images/loading.png")}"/>
             </div>
-            <div class="general-loading-title"><span>${shuffleArray(loadingLanguages)[0]}</span>...</div>
+            <div class="general-loading-title kana-font"><span>${shuffleArray(loadingLanguages)[0]}</span>...</div>
         </div>
     `;
     document.body.append(loadingScreen);

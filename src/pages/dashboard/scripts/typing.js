@@ -132,8 +132,8 @@ async function checkAnswer() {
             statusRef.correct,
             "Continuar",
             !gameState.lastWrong ? "Perfeito" : "Excelente",
-            "Correto!",
-            charRO,
+            "Correto",
+            charJA,
         );
         updateScoreLocal(methodsKeys.typing, charJA, scores.typing.max);
         gameState.lastWrong = null;
@@ -160,7 +160,7 @@ async function showFeedback(status, next, title, message, char) {
     btnNext.classList = `btn-next-${status}`;
     feedback.querySelector(".feedback-title").textContent = title;
     feedback.querySelector(".feedback-msg").innerHTML =
-        `${message} é <span class="letter-msg">${char}</span>`;
+        `${message} é <span class="letter-msg kana-font">${char}</span>`;
     charDisplay.classList =
         status === statusRef.wrong ? "wrong-color" : "primary-color";
 }
