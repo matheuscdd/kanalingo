@@ -1,6 +1,22 @@
 import { authFirebase } from "./config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
+export const isPWA = globalThis.matchMedia(
+    "(display-mode: standalone)",
+).matches;
+const publicRoutes = Object.freeze([
+    "login.html",
+    "register.html",
+    "landing.html",
+]);
+const privateRoutes = Object.freeze(["dashboard.html"]);
+const isInPublicRoutes = publicRoutes.find((x) =>
+    globalThis.location.href.includes(x),
+);
+const isInPrivateRoutes = privateRoutes.find((x) =>
+    globalThis.location.href.includes(x),
+);
+
 const loadingStatus = Object.seal({
     id: null,
     current: null,
@@ -73,18 +89,10 @@ export function orderArray(arr) {
 }
 
 export function redirectIfLogged() {
-    const publicRoutes = ["login.html", "register.html", "landing.html"];
-    const privateRoutes = ["dashboard.html"];
     insertLoadingScreen();
 
     onAuthStateChanged(authFirebase, (user) => {
-        document.querySelector(".general-loading-screen").remove();
-        const isInPublicRoutes = publicRoutes.find((x) =>
-            globalThis.location.href.includes(x),
-        );
-        const isInPrivateRoutes = privateRoutes.find((x) =>
-            globalThis.location.href.includes(x),
-        );
+        removeLoadingScreen();
 
         if (user && isInPublicRoutes) {
             globalThis.location.href = getInternalPath(
@@ -98,7 +106,17 @@ export function redirectIfLogged() {
     });
 }
 
-function insertLoadingScreen() {
+export async function removeLoadingScreen() {
+    const hasUser = !!localStorage.getItem("user");
+    if ((hasUser && isInPublicRoutes) || (!hasUser && isInPrivateRoutes)) {
+        await sleep(3000);
+        document.body.classList.remove("onloading");
+    }
+    document.querySelector(".general-loading-screen")?.remove();
+}
+
+export function insertLoadingScreen() {
+    if (document.querySelector(".general-loading-screen")) return;
     const loadingScreen = document.createElement("div");
     loadingScreen.classList.add("general-loading-screen");
     loadingScreen.innerHTML = `
@@ -111,15 +129,20 @@ function insertLoadingScreen() {
     `;
     document.body.append(loadingScreen);
     loadingStatus.id = setInterval(updateLoadingName, 500);
+    document.body.classList.remove("onloading");
 }
 
 function updateLoadingName() {
     const display = document.querySelector(".general-loading-title span");
-    if (!display) clearInterval(loadingStatus.id);
+    if (!display) {
+        clearInterval(loadingStatus.id);
+        return;
+    }
     let newest = shuffleArray(loadingLanguages)[0];
     while (newest === loadingStatus.current) {
         newest = shuffleArray(loadingLanguages)[0];
     }
+
     loadingStatus.current = newest;
     display && (display.innerText = loadingStatus.current);
 }

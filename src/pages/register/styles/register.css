@@ -12,6 +12,10 @@
     --duo-dark-text: #3c3c3c;
     --white: #ffffff;
     --bg-color: #ffffff;
+    --dot-color: white; /* Cor azul moderna */
+    --bg-color: #f8fafc;
+    --dot-size: 10px;
+    --animation-speed: 0.6s;
 }
 
 .container {
@@ -292,4 +296,46 @@ header {
     align-items: center;
     justify-content: center; /* Centralizado para mobile */
     transition: box-shadow 0.3s;
+}
+
+.loader-container {
+    text-align: center;
+}
+
+.dots-wrapper {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.dot {
+    width: var(--dot-size);
+    height: var(--dot-size);
+    background-color: var(--dot-color);
+    border-radius: 50%;
+    display: inline-block;
+    /* Inicia a animação */
+    animation: lift var(--animation-speed) ease-in-out infinite alternate;
+}
+
+/* Atrasos para criar o efeito de onda (reticências) */
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Definição do movimento */
+@keyframes lift {
+    from {
+        transform: translateY(0px);
+        opacity: 0.6;
+    }
+    to {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
 }

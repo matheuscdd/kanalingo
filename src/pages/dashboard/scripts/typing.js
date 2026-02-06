@@ -1,8 +1,8 @@
 import { alphabet, methodsKeys, scores } from "../../../database/letters.js";
-import { sleep } from "../../../scripts/utils.js";
+import { isPWA, sleep } from "../../../scripts/utils.js";
 import {
     gameState,
-    getCurrentCharJP,
+    getCurrentCharJA,
     playSoundEffect,
     screens,
     selectNextChars,
@@ -28,7 +28,7 @@ export function initEventsTyping() {
         if (window.innerWidth > 1000) return;
         await sleep(300);
         window.scrollTo({
-            top: 120,
+            top: isPWA ? 40 : 100,
             behavior: "smooth",
         });
     };
@@ -111,7 +111,8 @@ function startNewRound() {
 }
 
 function updateUI() {
-    const char = getCurrentCharJP();
+    btnVerify.disabled = false;
+    const char = getCurrentCharJA();
     charDisplay.textContent = char;
     userInput.value = "";
     userInput.focus();
@@ -120,8 +121,8 @@ function updateUI() {
 }
 
 async function checkAnswer() {
-    const charJP = getCurrentCharJP();
-    const charRO = alphabet.find((x) => x.term === charJP).definition;
+    const charJA = getCurrentCharJA();
+    const charRO = alphabet.find((x) => x.term === charJA).definition;
     const userValue = userInput.value.trim().toLowerCase();
 
     if (userValue === charRO) {
@@ -134,9 +135,10 @@ async function checkAnswer() {
             "Correto!",
             charRO,
         );
-        updateScoreLocal(methodsKeys.typing, charJP, scores.typing.max);
+        updateScoreLocal(methodsKeys.typing, charJA, scores.typing.max);
         gameState.lastWrong = null;
-        gameState.rightRound.push(charJP);
+        gameState.rightRound.push(charJA);
+        btnVerify.disabled = true;
     } else {
         playSoundEffect(statusRef.wrong);
         await sleep(200);
@@ -147,7 +149,7 @@ async function checkAnswer() {
             "Quase lá!",
             charRO,
         );
-        gameState.lastWrong = charJP;
+        gameState.lastWrong = charJA;
     }
 }
 

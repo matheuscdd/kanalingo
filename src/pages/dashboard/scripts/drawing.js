@@ -10,7 +10,7 @@ import {
     updateScoreDatabase,
     updateScoreLocal,
     screens,
-    getCurrentCharJP,
+    getCurrentCharJA,
 } from "./utils.js";
 
 const displayRomaji = document.querySelector(".drawing-romaji");
@@ -48,8 +48,8 @@ export function initEventsDrawing() {
 export function renderDrawing() {
     startNewRound();
     btnPlay.onclick = () => {
-        const charJP = getCurrentCharJP();
-        playLetterSound(charJP);
+        const charJA = getCurrentCharJA();
+        playLetterSound(charJA);
     };
 
     btnStartRound.onclick = startNewRound;
@@ -75,16 +75,16 @@ function updateUI() {
     checkboxStroke.checked = false;
     results.isUsingModel = false;
     displaySystem.innerText = gameState.currentSystem;
-    const charJP = getCurrentCharJP();
-    const charRO = alphabet.find((x) => x.term === charJP).definition;
+    const charJA = getCurrentCharJA();
+    const charRO = alphabet.find((x) => x.term === charJA).definition;
     displayRomaji.innerText = charRO;
-    startEventsDraw(charJP);
+    startEventsDraw(charJA);
     const progress = (gameState.currentIndex / maxCharsRound) * 100;
     progressBar.style.width = `${progress}%`;
 }
 
 async function checkAnswer() {
-    const charJP = getCurrentCharJP();
+    const charJA = getCurrentCharJA();
     playSoundEffect(statusRef.correct);
     await sleep(200);
     showFeedback(
@@ -92,56 +92,56 @@ async function checkAnswer() {
         "Continuar",
         results.validations.every(Boolean) ? "Perfeito" : "Excelente",
         "O correto",
-        charJP,
+        charJA,
     );
     if (results.validations.every(Boolean)) {
         updateScoreLocal(
             methodsKeys.drawing,
-            charJP,
+            charJA,
             results.isUsingModel ? scores.drawing.min : scores.drawing.max,
         );
         gameState.lastWrong = null;
-        gameState.rightRound.push(charJP);
+        gameState.rightRound.push(charJA);
     } else {
-        gameState.lastWrong = charJP;
+        gameState.lastWrong = charJA;
     }
 }
 
-async function startEventsDraw(currentJP) {
-    results.validations = new Array(currentJP.length).fill(false);
+async function startEventsDraw(currentJA) {
+    results.validations = new Array(currentJA.length).fill(false);
     main.innerHTML = "";
     aux.innerHTML = "";
-    handleYoon(currentJP);
-    await drawMain(currentJP[0]);
-    if (currentJP.length === 1) return;
-    await drawAux(currentJP[1]);
+    handleYoon(currentJA);
+    await drawMain(currentJA[0]);
+    if (currentJA.length === 1) return;
+    await drawAux(currentJA[1]);
 }
 
 function showModel() {
     results.isUsingModel = true;
-    const charJP = getCurrentCharJP();
-    results.validations = new Array(charJP.length).fill(false);
-    startEventsDraw(charJP);
+    const charJA = getCurrentCharJA();
+    results.validations = new Array(charJA.length).fill(false);
+    startEventsDraw(charJA);
 }
 
-function setWriterAux(currentJP) {
-    writers.aux = HanziWriter.create(aux, currentJP, {
+function setWriterAux(currentJA) {
+    writers.aux = HanziWriter.create(aux, currentJA, {
         ...getDefaultsHanziWriter(),
         width: 150,
         height: 150,
     });
 }
 
-function setWriterMain(currentJP) {
-    writers.main = HanziWriter.create(main, currentJP, {
+function setWriterMain(currentJA) {
+    writers.main = HanziWriter.create(main, currentJA, {
         ...getDefaultsHanziWriter(),
         width: getDimensions().main,
         height: getDimensions().main,
     });
 }
 
-function handleYoon(currentJP) {
-    if (currentJP.length === 1) {
+function handleYoon(currentJA) {
+    if (currentJA.length === 1) {
         aux.style.minWidth = 0;
         aux.style.width = 0;
         writers.aux?.hideCharacter();
@@ -155,9 +155,9 @@ function playSoundEffectOnMistake() {
 }
 
 function playSoundEffectOnCorrect(strokeData) {
-    const charJP = getCurrentCharJP();
+    const charJA = getCurrentCharJA();
     const isEndOfMainInCombo =
-        charJP.length === 2 && charJP[0] === strokeData.character;
+        charJA.length === 2 && charJA[0] === strokeData.character;
     if (!isEndOfMainInCombo && !strokeData.strokesRemaining) return;
     playSoundEffect(statusRef.hit);
 }
@@ -169,7 +169,7 @@ function writerMainValidation() {
         onComplete: (summaryData) => {
             results.validations[0] =
                 summaryData.totalMistakes <= maxAllowedErrors;
-            if (getCurrentCharJP().length === 1) {
+            if (getCurrentCharJA().length === 1) {
                 return checkAnswer();
             }
             writerAuxValidation();
@@ -189,18 +189,18 @@ function writerAuxValidation() {
     });
 }
 
-async function drawMain(currentJP) {
+async function drawMain(currentJA) {
     writers.main?.hideCharacter();
     writers.aux?.hideCharacter();
-    setWriterMain(currentJP);
+    setWriterMain(currentJA);
     if (checkboxStroke.checked) {
         await writers.main.animateCharacter();
     }
     writerMainValidation();
 }
 
-async function drawAux(currentJP) {
-    setWriterAux(currentJP);
+async function drawAux(currentJA) {
+    setWriterAux(currentJA);
     if (checkboxStroke.checked) {
         await writers.aux.animateCharacter({
             onComplete: () => {
@@ -267,7 +267,7 @@ async function showFinishScreen() {
 }
 
 function getDimensions() {
-    const isComboChar = getCurrentCharJP().length === 2;
+    const isComboChar = getCurrentCharJA().length === 2;
     const max = Math.min(window.innerWidth, headerWidth);
     const result = { main: max, aux: null };
     if (isComboChar) {
@@ -296,6 +296,6 @@ function updateViewport() {
             feedback.dataset.status === statusRef.correct
         )
             return;
-        startEventsDraw(getCurrentCharJP());
+        startEventsDraw(getCurrentCharJA());
     });
 }

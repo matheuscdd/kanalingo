@@ -3,9 +3,9 @@ import {
     defaults,
     hiragana,
     hiraganaTerms,
+    japanese,
     kanas,
     katakana,
-    methodsKeys,
 } from "../../../database/letters.js";
 import { authFirebase, dbFirebase } from "../../../scripts/config.js";
 import {
@@ -79,7 +79,7 @@ export async function updateScoreLocal(key, char, amount) {
     }
     gameState.scorePerChar[char][key] =
         (gameState.scorePerChar[char][key] || 0) + amount;
-    localStorage.setItem("ja", JSON.stringify(gameState.scorePerChar));
+    localStorage.setItem(japanese, JSON.stringify(gameState.scorePerChar));
     updateTotalScoreDisplay();
 }
 
@@ -87,7 +87,7 @@ export async function updateScoreDatabase() {
     try {
         const user = authFirebase.currentUser;
         const ref = doc(dbFirebase, "users", user.uid);
-        await updateDoc(ref, { ja: gameState.scorePerChar });
+        await updateDoc(ref, { [japanese]: gameState.scorePerChar });
     } catch (error) {
         console.error(error);
     }
@@ -125,7 +125,9 @@ export function getValueToScorePerChar(char, key) {
 }
 
 export async function loadProgress() {
-    const local = JSON.parse(localStorage.getItem("ja") ?? JSON.stringify({}));
+    const local = JSON.parse(
+        localStorage.getItem(japanese) ?? JSON.stringify({}),
+    );
     if (Object.keys(local).length) {
         gameState.scorePerChar = local;
     }
@@ -150,6 +152,7 @@ export async function loadProgress() {
                 return;
             }
             localStorage.setItem("ja", JSON.stringify(currentProgress));
+            gameState.scorePerChar = currentProgress;
         } catch (error) {
             console.error(error);
         }
@@ -162,8 +165,8 @@ export function playSoundEffect(sound) {
     audio.play();
 }
 
-export function playLetterSound(currentJP) {
-    const currentRO = alphabet.find((x) => x.term === currentJP).definition;
+export function playLetterSound(currentJA) {
+    const currentRO = alphabet.find((x) => x.term === currentJA).definition;
     const audio = audioCache.letters[currentRO];
     audio.currentTime = 0;
     audio.play();
@@ -220,6 +223,6 @@ export function getCurrentSystem() {
         : "Katakana";
 }
 
-export function getCurrentCharJP() {
+export function getCurrentCharJA() {
     return gameState.currentRound[gameState.currentIndex];
 }

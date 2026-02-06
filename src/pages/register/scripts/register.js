@@ -3,6 +3,8 @@ import { authFirebase } from "../../../scripts/config.js";
 import { isValidEmail, redirectIfLogged } from "../../../scripts/utils.js";
 
 const btnSend = document.getElementById("register");
+const txtBtnSend = btnSend.querySelector("span");
+const loading = btnSend.querySelector(".loader-container");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const passwordConfirmInput = document.getElementById("password-confirm");
@@ -49,13 +51,16 @@ async function tryRegister() {
     }
 
     try {
+        txtBtnSend.classList.add("hidden");
+        loading.classList.remove("hidden");
         btnSend.disabled = true;
-        await createUserWithEmailAndPassword(
+        localStorage.clear();
+        const response = await createUserWithEmailAndPassword(
             authFirebase,
             emailInput.value,
             passwordInput.value,
         );
-        localStorage.clear();
+        localStorage.setItem("user", JSON.stringify(response.user.uid));
         redirectIfLogged();
     } catch (error) {
         console.error(error);
@@ -63,8 +68,15 @@ async function tryRegister() {
         addErrorsPassword();
     } finally {
         btnSend.disabled = false;
+        txtBtnSend.classList.remove("hidden");
+        loading.classList.add("hidden");
     }
 }
+
+document.addEventListener("keypress", (e) => {
+    if (e.key !== "Enter") return;
+    tryRegister();
+});
 
 function clearError(inputElement, groupElement) {
     inputElement.classList.remove("error");

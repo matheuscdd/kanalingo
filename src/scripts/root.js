@@ -1,10 +1,17 @@
-import { getInternalPath, redirectIfLogged } from "./utils.js";
+import {
+    getInternalPath,
+    insertLoadingScreen,
+    redirectIfLogged,
+    removeLoadingScreen,
+} from "./utils.js";
 
 initEvents();
 
 function initEvents() {
     startServiceWorker();
     redirectIfLogged();
+    document.addEventListener("DOMContentLoaded", insertLoadingScreen);
+    window.addEventListener("load", removeLoadingScreen);
 }
 
 function startServiceWorker() {

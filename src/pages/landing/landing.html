@@ -22,320 +22,340 @@
         <link rel="stylesheet" href="./styles/landing.css" />
         <script defer src="../../scripts/root.js" type="module"></script>
     </head>
-    <body>
-        <!-- Caracteres Flutuantes (Decoração) -->
-        <div class="floating-chars">
-            <span class="floating-char char-1">シ</span>
-            <span class="floating-char char-2">い</span>
-            <span class="floating-char char-3">う</span>
-            <span class="floating-char char-4">え</span>
-            <span class="floating-char char-5">お</span>
-        </div>
 
-        <!-- Header -->
-        <header>
-            <div
-                class="container"
-                style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    height: 100%;
-                "
-            >
-                <div class="logo-group">
-                    <img src="../../assets/images/icon-filled.png" alt="a" />
-                    <span class="logo-text">Kanalingo</span>
-                </div>
+    <body class="onloading">
+        <div class="wrapper">
+            <!-- Caracteres Flutuantes (Decoração) -->
+            <div class="floating-chars">
+                <span class="floating-char char-1">シ</span>
+                <span class="floating-char char-2">い</span>
+                <span class="floating-char char-3">う</span>
+                <span class="floating-char char-4">え</span>
+                <span class="floating-char char-5">お</span>
+            </div>
 
+            <!-- Header -->
+            <header>
                 <div
-                    class="hidden-mobile"
-                    style="align-items: center; gap: 1rem"
+                    class="container"
+                    style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        height: 100%;
+                    "
                 >
-                    <div class="lang-selector">
-                        Idioma: Japonês
-                        <i
-                            class="fa-solid fa-chevron-down"
-                            style="font-size: 0.75rem; margin-left: 0.25rem"
-                        ></i>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="container hero-grid md-grid-2">
-                <!-- Ilustração Hero -->
-                <div
-                    class="logo-big"
-                    style="display: flex; justify-content: center"
-                >
-                    <img
-                        src="../../assets/images/icon-transparent.png"
-                        alt="a"
-                    />
-                </div>
-
-                <!-- Call to Action -->
-                <div class="md-order-2 text-center md-text-left">
-                    <h1 class="hero-title">
-                        A maneira grátis, divertida e eficaz de aprender
-                        japonês!
-                    </h1>
-
-                    <div class="btn-wrapper">
-                        <a
-                            class="btn-duo btn-green"
-                            href="../register/register.html"
-                        >
-                            Começar agora
-                        </a>
-
-                        <a
-                            class="btn-duo btn-outline"
-                            href="../login/login.html"
-                        >
-                            Já tenho uma conta
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features-section">
-            <div class="container">
-                <h2 class="section-title">Por que aprender com o Kanalingo?</h2>
-
-                <div class="hero-grid md-grid-3" style="gap: 2rem">
-                    <!-- Feature 1 -->
-                    <div class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <svg
-                                viewBox="0 0 100 100"
-                                style="
-                                    width: 100%;
-                                    height: 100%;
-                                    filter: drop-shadow(
-                                        0 4px 3px rgb(0 0 0 / 0.07)
-                                    );
-                                "
-                            >
-                                <path
-                                    d="M50,10 Q20,50 20,70 A30,30 0 0,0 80,70 Q80,50 50,10"
-                                    fill="#FFC800"
-                                    stroke="#E5B800"
-                                    stroke-width="3"
-                                />
-                                <path
-                                    d="M50,30 Q35,60 35,70 A15,15 0 0,0 65,70 Q65,60 50,30"
-                                    fill="#FF9600"
-                                />
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Eficaz e eficiente</h3>
-                        <p class="feature-desc">
-                            Nossos cursos ensinam leitura, fala e escuta de
-                            forma eficaz.
-                        </p>
+                    <div class="logo-group">
+                        <img
+                            src="../../assets/images/icon-filled.png"
+                            alt="a"
+                        />
+                        <span class="logo-text">Kanalingo</span>
                     </div>
 
-                    <!-- Feature 2 -->
-                    <div class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <svg
-                                viewBox="0 0 100 100"
-                                style="
-                                    width: 100%;
-                                    height: 100%;
-                                    filter: drop-shadow(
-                                        0 4px 3px rgb(0 0 0 / 0.07)
-                                    );
-                                "
-                            >
-                                <circle
-                                    cx="50"
-                                    cy="50"
-                                    r="40"
-                                    fill="#58CC02"
-                                    stroke="#46A302"
-                                    stroke-width="3"
-                                />
-                                <path
-                                    d="M30,50 L45,65 L70,35"
-                                    fill="none"
-                                    stroke="white"
-                                    stroke-width="8"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Aprendizado personalizado</h3>
-                        <p class="feature-desc">
-                            Combinamos o melhor da IA e da ciência da linguagem.
-                        </p>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div class="feature-card">
-                        <div class="feature-icon-wrapper">
-                            <svg
-                                viewBox="0 0 100 100"
-                                style="
-                                    width: 100%;
-                                    height: 100%;
-                                    filter: drop-shadow(
-                                        0 4px 3px rgb(0 0 0 / 0.07)
-                                    );
-                                "
-                            >
-                                <path
-                                    d="M20,80 L20,30 L40,50 L50,20 L60,50 L80,30 L80,80 Z"
-                                    fill="#1CB0F6"
-                                    stroke="#1899D6"
-                                    stroke-width="3"
-                                />
-                                <circle cx="50" cy="80" r="5" fill="#1480B3" />
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Mantenha-se motivado</h3>
-                        <p class="feature-desc">
-                            Torne o aprendizado um hábito com recursos
-                            gamificados e desafios.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Japanese Specific Section -->
-        <section class="japanese-section">
-            <div class="container hero-grid md-grid-2">
-                <div class="text-center md-text-left">
-                    <h2
-                        class="hero-title"
-                        style="font-size: 2.25rem; margin-bottom: 1.5rem"
+                    <div
+                        class="hidden-mobile"
+                        style="align-items: center; gap: 1rem"
                     >
-                        Domine Hiragana, Katakana e Kanji
+                        <div class="lang-selector">
+                            Idioma: Japonês
+                            <i
+                                class="fa-solid fa-chevron-down"
+                                style="font-size: 0.75rem; margin-left: 0.25rem"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="container hero-grid md-grid-2">
+                    <!-- Ilustração Hero -->
+                    <div
+                        class="logo-big"
+                        style="display: flex; justify-content: center"
+                    >
+                        <img
+                            src="../../assets/images/icon-transparent.png"
+                            alt="a"
+                        />
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="md-order-2 text-center md-text-left">
+                        <h1 class="hero-title">
+                            A maneira grátis, divertida e eficaz de aprender
+                            japonês!
+                        </h1>
+
+                        <div class="btn-wrapper">
+                            <a
+                                class="btn-duo btn-green"
+                                href="../register/register.html"
+                            >
+                                Começar agora
+                            </a>
+
+                            <a
+                                class="btn-duo btn-outline"
+                                href="../login/login.html"
+                            >
+                                Já tenho uma conta
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section">
+                <div class="container">
+                    <h2 class="section-title">
+                        Por que aprender com o Kanalingo?
                     </h2>
-                    <p
-                        class="feature-desc"
-                        style="font-size: 1.125rem; margin-bottom: 1.5rem"
-                    >
-                        Não apenas fale, aprenda a escrever. Nosso sistema de
-                        escrita passo-a-passo guia você desde os traços básicos
-                        até kanjis complexos.
-                    </p>
-                    <div class="kanji-grid justify-center md:justify-start">
-                        <div class="kanji-card">
-                            <span class="kanji-char text-blue">日</span>
-                            <span class="kanji-label">Sol</span>
-                        </div>
-                        <div class="kanji-card">
-                            <span class="kanji-char text-green">本</span>
-                            <span class="kanji-label">Livro</span>
-                        </div>
-                        <div class="kanji-card">
-                            <span class="kanji-char text-red">語</span>
-                            <span class="kanji-label">Língua</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div
-                    style="display: flex; justify-content: center; width: 100%"
-                >
-                    <!-- Laptop Mockup -->
-                    <div class="laptop-frame">
-                        <div class="laptop-screen">
-                            <div class="progress-bar">
-                                <div class="progress-fill"></div>
+                    <div class="hero-grid md-grid-3" style="gap: 2rem">
+                        <!-- Feature 1 -->
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper">
+                                <svg
+                                    viewBox="0 0 100 100"
+                                    style="
+                                        width: 100%;
+                                        height: 100%;
+                                        filter: drop-shadow(
+                                            0 4px 3px rgb(0 0 0 / 0.07)
+                                        );
+                                    "
+                                >
+                                    <path
+                                        d="M50,10 Q20,50 20,70 A30,30 0 0,0 80,70 Q80,50 50,10"
+                                        fill="#FFC800"
+                                        stroke="#E5B800"
+                                        stroke-width="3"
+                                    />
+                                    <path
+                                        d="M50,30 Q35,60 35,70 A15,15 0 0,0 65,70 Q65,60 50,30"
+                                        fill="#FF9600"
+                                    />
+                                </svg>
                             </div>
-                            <h3
-                                style="
-                                    font-size: 1.5rem;
-                                    font-weight: 700;
-                                    color: #374151;
-                                "
-                            >
-                                Traduza esta frase:
+                            <h3 class="feature-title">Eficaz e eficiente</h3>
+                            <p class="feature-desc">
+                                Nossos cursos ensinam leitura, fala e escuta de
+                                forma eficaz.
+                            </p>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper">
+                                <svg
+                                    viewBox="0 0 100 100"
+                                    style="
+                                        width: 100%;
+                                        height: 100%;
+                                        filter: drop-shadow(
+                                            0 4px 3px rgb(0 0 0 / 0.07)
+                                        );
+                                    "
+                                >
+                                    <circle
+                                        cx="50"
+                                        cy="50"
+                                        r="40"
+                                        fill="#58CC02"
+                                        stroke="#46A302"
+                                        stroke-width="3"
+                                    />
+                                    <path
+                                        d="M30,50 L45,65 L70,35"
+                                        fill="none"
+                                        stroke="white"
+                                        stroke-width="8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">
+                                Aprendizado personalizado
                             </h3>
-                            <div class="phrase-box">
-                                <span>Eu como sushi.</span>
+                            <p class="feature-desc">
+                                Combinamos o melhor da IA e da ciência da
+                                linguagem.
+                            </p>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="feature-card">
+                            <div class="feature-icon-wrapper">
+                                <svg
+                                    viewBox="0 0 100 100"
+                                    style="
+                                        width: 100%;
+                                        height: 100%;
+                                        filter: drop-shadow(
+                                            0 4px 3px rgb(0 0 0 / 0.07)
+                                        );
+                                    "
+                                >
+                                    <path
+                                        d="M20,80 L20,30 L40,50 L50,20 L60,50 L80,30 L80,80 Z"
+                                        fill="#1CB0F6"
+                                        stroke="#1899D6"
+                                        stroke-width="3"
+                                    />
+                                    <circle
+                                        cx="50"
+                                        cy="80"
+                                        r="5"
+                                        fill="#1480B3"
+                                    />
+                                </svg>
                             </div>
-                            <div class="word-bank">
-                                <span class="word-chip">Watashi</span>
-                                <span class="word-chip">wa</span>
-                                <span class="word-chip">sushi</span>
+                            <h3 class="feature-title">Mantenha-se motivado</h3>
+                            <p class="feature-desc">
+                                Torne o aprendizado um hábito com recursos
+                                gamificados e desafios.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Japanese Specific Section -->
+            <section class="japanese-section">
+                <div class="container hero-grid md-grid-2">
+                    <div class="text-center md-text-left">
+                        <h2
+                            class="hero-title"
+                            style="font-size: 2.25rem; margin-bottom: 1.5rem"
+                        >
+                            Domine Hiragana, Katakana e Kanji
+                        </h2>
+                        <p
+                            class="feature-desc"
+                            style="font-size: 1.125rem; margin-bottom: 1.5rem"
+                        >
+                            Não apenas fale, aprenda a escrever. Nosso sistema
+                            de escrita passo-a-passo guia você desde os traços
+                            básicos até kanjis complexos.
+                        </p>
+                        <div class="kanji-grid justify-center md:justify-start">
+                            <div class="kanji-card">
+                                <span class="kanji-char text-blue">日</span>
+                                <span class="kanji-label">Sol</span>
+                            </div>
+                            <div class="kanji-card">
+                                <span class="kanji-char text-green">本</span>
+                                <span class="kanji-label">Livro</span>
+                            </div>
+                            <div class="kanji-card">
+                                <span class="kanji-char text-red">語</span>
+                                <span class="kanji-label">Língua</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="
+                            display: flex;
+                            justify-content: center;
+                            width: 100%;
+                        "
+                    >
+                        <!-- Laptop Mockup -->
+                        <div class="laptop-frame">
+                            <div class="laptop-screen">
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                                <h3
+                                    style="
+                                        font-size: 1.5rem;
+                                        font-weight: 700;
+                                        color: #374151;
+                                    "
+                                >
+                                    Traduza esta frase:
+                                </h3>
+                                <div class="phrase-box">
+                                    <span>Eu como sushi.</span>
+                                </div>
+                                <div class="word-bank">
+                                    <span class="word-chip">Watashi</span>
+                                    <span class="word-chip">wa</span>
+                                    <span class="word-chip">sushi</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Footer CTA -->
-        <section class="footer-cta">
-            <div class="container" style="max-width: 768px">
-                <h2>Aprenda japonês quando e onde quiser.</h2>
-                <div class="cta-buttons">
-                    <button class="btn-store btn-store-apple">
-                        <i
-                            class="fa-brands fa-apple"
-                            style="margin-right: 0.5rem; font-size: 1.5rem"
-                        ></i>
-                        Baixar na App Store
-                    </button>
-                    <button class="btn-store btn-store-google">
-                        <i
-                            class="fa-brands fa-google-play"
-                            style="margin-right: 0.5rem; font-size: 1.25rem"
-                        ></i>
-                        Disponível no Google Play
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <div class="container grid-footer">
-                <div class="footer-column">
-                    <h4>Sobre nós</h4>
-                    <ul class="footer-links">
-                        <li>Cursos</li>
-                        <li>Missão</li>
-                        <li>Abordagem</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Produtos</h4>
-                    <ul class="footer-links">
-                        <li>Kanalingo</li>
-                        <li>Kanalingo para Escolas</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Ajuda</h4>
-                    <ul class="footer-links">
-                        <li>Termos</li>
-                        <li>Privacidade</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Social</h4>
-                    <div class="social-icons">
-                        <i class="fa-brands fa-twitter"></i>
-                        <i class="fa-brands fa-instagram"></i>
-                        <i class="fa-brands fa-facebook"></i>
+            <!-- Footer CTA -->
+            <section class="footer-cta">
+                <div class="container" style="max-width: 768px">
+                    <h2>Aprenda japonês quando e onde quiser.</h2>
+                    <div class="cta-buttons">
+                        <button class="btn-store btn-store-apple">
+                            <i
+                                class="fa-brands fa-apple"
+                                style="margin-right: 0.5rem; font-size: 1.5rem"
+                            ></i>
+                            Baixar na App Store
+                        </button>
+                        <button class="btn-store btn-store-google">
+                            <i
+                                class="fa-brands fa-google-play"
+                                style="margin-right: 0.5rem; font-size: 1.25rem"
+                            ></i>
+                            Disponível no Google Play
+                        </button>
                     </div>
                 </div>
-            </div>
-            <div class="container footer-bottom">
-                © 2024 Kanalingo - Inspirado no Duolingo
-            </div>
-        </footer>
+            </section>
+
+            <!-- Main Footer -->
+            <footer class="main-footer">
+                <div class="container grid-footer">
+                    <div class="footer-column">
+                        <h4>Sobre nós</h4>
+                        <ul class="footer-links">
+                            <li>Cursos</li>
+                            <li>Missão</li>
+                            <li>Abordagem</li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Produtos</h4>
+                        <ul class="footer-links">
+                            <li>Kanalingo</li>
+                            <li>Kanalingo para Escolas</li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Ajuda</h4>
+                        <ul class="footer-links">
+                            <li>Termos</li>
+                            <li>Privacidade</li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Social</h4>
+                        <div class="social-icons">
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-instagram"></i>
+                            <i class="fa-brands fa-facebook"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="container footer-bottom">
+                    © 2024 Kanalingo - Inspirado no Duolingo
+                </div>
+            </footer>
+        </div>
     </body>
 </html>

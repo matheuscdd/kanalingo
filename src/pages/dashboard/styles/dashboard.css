@@ -273,7 +273,7 @@ input[type="text"]:focus {
     box-shadow: none;
 }
 
-.char-card .jp {
+.char-card .ja {
     font-size: 24px;
     display: block;
     margin-bottom: 5px;
@@ -304,6 +304,8 @@ input[type="text"]:focus {
 #total-score {
     font-weight: bold;
     user-select: none;
+    min-width: 100px;
+    text-align: right;
 }
 
 .feedback-msg {
@@ -763,12 +765,18 @@ svg.fa-custom-icon {
     width: max-content;
 }
 
+.btn-duo:disabled {
+    transition: 1s;
+    pointer-events: none;
+    filter: grayscale(100%);
+}
+
 .btn-duo#play-sound-listening {
     font-size: 30px;
     padding: 1.3rem;
 }
 
-.btn-duo:active {
+.btn-duo:active:not(:disabled) {
     transform: translateY(4px);
     border-bottom-width: 0px;
     margin-top: 4px;
@@ -785,10 +793,6 @@ svg.fa-custom-icon {
 
 .btn-blue:hover {
     background-color: var(--moon-jelly);
-}
-
-.hidden {
-    display: none !important;
 }
 
 .visualizer-target-catalog-container,
@@ -932,7 +936,7 @@ svg.fa-custom-icon {
     border-top-width: 0;
 }
 
-.btn-green:hover {
+.btn-green:hover:not(:disabled) {
     background-color: #61e002;
 }
 

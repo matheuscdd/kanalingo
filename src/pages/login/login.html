@@ -23,79 +23,94 @@
         <script defer src="../../scripts/root.js" type="module"></script>
         <script defer src="./scripts/login.js" type="module"></script>
     </head>
-
-    <body>
-        <header>
-            <div
-                class="container"
-                style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    height: 100%;
-                "
-            >
-                <div class="logo-group">
-                    <img src="../../assets/images/icon-filled.png" alt="a" />
-                    <span class="logo-text">Kanalingo</span>
-                </div>
-
-                <div style="align-items: center; gap: 1rem">
-                    <div class="lang-selector">
-                        <a href="../landing/landing.html">
-                            <i
-                                class="fa-solid fa-house fa-xl"
-                                style="color: #a5adbb"
-                            ></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <main>
-            <div class="login-container">
-                <h1>Login</h1>
-
-                <div id="loginForm">
-                    <!-- Grupo: E-mail -->
-                    <div class="form-group" id="group-email">
-                        <div class="input-wrapper">
-                            <input type="text" id="email" placeholder="Email" />
-                        </div>
-                        <!-- Mensagem de erro idêntica ao print -->
-                        <div class="error-message">
-                            <span class="error-icon">!</span>
-                            Email inválido
-                        </div>
+    <body class="onloading">
+        <div class="wrapper">
+            <header>
+                <div
+                    class="container"
+                    style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        height: 100%;
+                    "
+                >
+                    <div class="logo-group">
+                        <img
+                            src="../../assets/images/icon-filled.png"
+                            alt="a"
+                        />
+                        <span class="logo-text">Kanalingo</span>
                     </div>
 
-                    <!-- Grupo: Senha -->
-                    <div class="form-group" id="group-password">
-                        <div class="input-wrapper">
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="Senha"
-                            />
-                        </div>
-                        <!-- Mensagem de erro idêntica ao print -->
-                        <div class="error-message">
-                            <span class="error-icon">!</span>
-                            Senha inválida
+                    <div style="align-items: center; gap: 1rem">
+                        <div class="lang-selector">
+                            <a href="../landing/landing.html">
+                                <i
+                                    class="fa-solid fa-house fa-xl"
+                                    style="color: #a5adbb"
+                                ></i>
+                            </a>
                         </div>
                     </div>
-
-                    <button type="button" id="login" class="btn-submit">
-                        Entrar
-                    </button>
                 </div>
+            </header>
+            <main>
+                <div class="login-container">
+                    <h1>Login</h1>
 
-                <div class="separator"></div>
-                <div class="footer-text">
-                    Não tem uma conta?
-                    <a href="../register/register.html">Cadastrar</a>
+                    <div id="loginForm">
+                        <!-- Grupo: E-mail -->
+                        <div class="form-group" id="group-email">
+                            <div class="input-wrapper">
+                                <input
+                                    type="text"
+                                    id="email"
+                                    placeholder="Email"
+                                />
+                            </div>
+                            <!-- Mensagem de erro idêntica ao print -->
+                            <div class="error-message">
+                                <span class="error-icon">!</span>
+                                Email inválido
+                            </div>
+                        </div>
+
+                        <!-- Grupo: Senha -->
+                        <div class="form-group" id="group-password">
+                            <div class="input-wrapper">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Senha"
+                                />
+                            </div>
+                            <!-- Mensagem de erro idêntica ao print -->
+                            <div class="error-message">
+                                <span class="error-icon">!</span>
+                                Senha inválida
+                            </div>
+                        </div>
+
+                        <button type="button" id="login" class="btn-submit">
+                            <span>Entrar</span>
+                            <div class="loader-container hidden">
+                                <div class="dots-wrapper">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="separator"></div>
+                    <div class="footer-text">
+                        Não tem uma conta?
+                        <a href="../register/register.html">Cadastrar</a>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </body>
 </html>

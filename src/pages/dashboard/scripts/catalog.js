@@ -84,7 +84,7 @@ export function renderCatalog() {
 
         const title = document.createElement("div");
         title.textContent = term;
-        title.classList = "jp";
+        title.classList = "ja";
         card.append(title);
 
         const wrapperBar = document.createElement("div");
@@ -222,32 +222,32 @@ function calcListeningProgress(characters) {
     return progress;
 }
 
-async function selectChar(currentJP) {
+async function selectChar(currentJA) {
     await sleep(200);
-    playLetterSound(currentJP);
+    playLetterSound(currentJA);
     openModal();
     displayRomaji.innerText = alphabet.find(
-        (x) => x.term === currentJP,
+        (x) => x.term === currentJA,
     ).definition;
-    showDrawPath(currentJP);
-    btnPlay.onclick = () => playLetterSound(currentJP);
-    btnRepeat.onclick = () => showDrawPath(currentJP);
+    showDrawPath(currentJA);
+    btnPlay.onclick = () => playLetterSound(currentJA);
+    btnRepeat.onclick = () => showDrawPath(currentJA);
 }
 
-async function showDrawPath(currentJP) {
-    handleYoon(currentJP);
-    if (currentJP.length === 1) {
-        await drawMain(currentJP[0]);
+async function showDrawPath(currentJA) {
+    handleYoon(currentJA);
+    if (currentJA.length === 1) {
+        await drawMain(currentJA[0]);
     } else {
-        await drawMain(currentJP[0]);
-        await drawAux(currentJP[1]);
+        await drawMain(currentJA[0]);
+        await drawAux(currentJA[1]);
     }
 }
 
-function setWriterAux(currentJP) {
+function setWriterAux(currentJA) {
     writers.aux = HanziWriter.create(
         "visualizer-target-catalog-aux",
-        currentJP,
+        currentJA,
         {
             ...getDefaultsHanziWriter(),
             width: 150,
@@ -256,10 +256,10 @@ function setWriterAux(currentJP) {
     );
 }
 
-function setWriterMain(currentJP) {
+function setWriterMain(currentJA) {
     writers.main = HanziWriter.create(
         "visualizer-target-catalog-main",
-        currentJP,
+        currentJA,
         {
             ...getDefaultsHanziWriter(),
             width: 200,
@@ -268,9 +268,9 @@ function setWriterMain(currentJP) {
     );
 }
 
-function handleYoon(currentJP) {
+function handleYoon(currentJA) {
     const aux = document.getElementById("visualizer-target-catalog-aux");
-    if (currentJP.length === 1) {
+    if (currentJA.length === 1) {
         aux.style.minWidth = 0;
         aux.style.marginLeft = 0;
         aux.style.width = 0;
@@ -281,7 +281,7 @@ function handleYoon(currentJP) {
     aux.style.minWidth = "150px";
     const smallKanasIds = Object.freeze([22, 27, 32, 63, 68]);
     const largeKanasIds = Object.freeze([40, 144]);
-    const char = alphabet.find((x) => x.term === currentJP[0]);
+    const char = alphabet.find((x) => x.term === currentJA[0]);
     if (largeKanasIds.includes(char.id)) {
         aux.style.marginLeft = "-100px";
         return;
@@ -292,21 +292,21 @@ function handleYoon(currentJP) {
     aux.style.marginLeft = "-70px";
 }
 
-async function drawMain(currentJP) {
+async function drawMain(currentJA) {
     writers.main?.hideCharacter();
     writers.aux?.hideCharacter();
     if (!writers.main) {
-        setWriterMain(currentJP);
+        setWriterMain(currentJA);
     }
-    writers.main.setCharacter(currentJP);
+    writers.main.setCharacter(currentJA);
     await writers.main.animateCharacter();
 }
 
-async function drawAux(currentJP) {
+async function drawAux(currentJA) {
     if (!writers.aux) {
-        setWriterAux(currentJP);
+        setWriterAux(currentJA);
     }
-    writers.aux.setCharacter(currentJP);
+    writers.aux.setCharacter(currentJA);
     await writers.aux.animateCharacter();
 }
 

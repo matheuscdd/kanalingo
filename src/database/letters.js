@@ -1288,3 +1288,5 @@ export const defaults = alphabet.reduce(
     }),
     {},
 );
+
+export const japanese = "ja";

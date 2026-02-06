@@ -24,90 +24,106 @@
         <script defer src="./scripts/register.js" type="module"></script>
     </head>
 
-    <body>
-        <header>
-            <div
-                class="container"
-                style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    height: 100%;
-                "
-            >
-                <div class="logo-group">
-                    <img src="../../assets/images/icon-filled.png" alt="a" />
-                    <span class="logo-text">Kanalingo</span>
-                </div>
-
-                <div style="align-items: center; gap: 1rem">
-                    <div class="lang-selector">
-                        <a href="../landing/landing.html">
-                            <i
-                                class="fa-solid fa-house fa-xl"
-                                style="color: #a5adbb"
-                            ></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <main>
-            <div class="login-container">
-                <h1>Cadastro</h1>
-                <div id="loginForm">
-                    <div class="form-group" id="group-email">
-                        <div class="input-wrapper">
-                            <input type="text" id="email" placeholder="Email" />
-                        </div>
-                        <div class="error-message">
-                            <span class="error-icon">!</span>
-                            Email inválido
-                        </div>
+    <body class="onloading">
+        <div class="wrapper">
+            <header>
+                <div
+                    class="container"
+                    style="
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        height: 100%;
+                    "
+                >
+                    <div class="logo-group">
+                        <img
+                            src="../../assets/images/icon-filled.png"
+                            alt="a"
+                        />
+                        <span class="logo-text">Kanalingo</span>
                     </div>
 
-                    <div class="form-group" id="group-password">
-                        <div class="input-wrapper">
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="Senha"
-                            />
-                        </div>
-                        <div class="error-message custom-error-message">
-                            <span class="error-icon">!</span>
-                            Senha pequena
-                        </div>
-                        <div class="error-message">
-                            <span class="error-icon">!</span>
-                            Senha inválida
+                    <div style="align-items: center; gap: 1rem">
+                        <div class="lang-selector">
+                            <a href="../landing/landing.html">
+                                <i
+                                    class="fa-solid fa-house fa-xl"
+                                    style="color: #a5adbb"
+                                ></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="form-group" id="group-password-confirm">
-                        <div class="input-wrapper">
-                            <input
-                                type="password"
-                                id="password-confirm"
-                                placeholder="Senha"
-                            />
+                </div>
+            </header>
+            <main>
+                <div class="login-container">
+                    <h1>Cadastro</h1>
+                    <div id="loginForm">
+                        <div class="form-group" id="group-email">
+                            <div class="input-wrapper">
+                                <input
+                                    type="text"
+                                    id="email"
+                                    placeholder="Email"
+                                />
+                            </div>
+                            <div class="error-message">
+                                <span class="error-icon">!</span>
+                                Email inválido
+                            </div>
                         </div>
-                        <div class="error-message">
-                            <span class="error-icon">!</span>
-                            Senhas não coincidem
+
+                        <div class="form-group" id="group-password">
+                            <div class="input-wrapper">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Senha"
+                                />
+                            </div>
+                            <div class="error-message custom-error-message">
+                                <span class="error-icon">!</span>
+                                Senha pequena
+                            </div>
+                            <div class="error-message">
+                                <span class="error-icon">!</span>
+                                Senha inválida
+                            </div>
                         </div>
+                        <div class="form-group" id="group-password-confirm">
+                            <div class="input-wrapper">
+                                <input
+                                    type="password"
+                                    id="password-confirm"
+                                    placeholder="Senha"
+                                />
+                            </div>
+                            <div class="error-message">
+                                <span class="error-icon">!</span>
+                                Senhas não coincidem
+                            </div>
+                        </div>
+
+                        <button type="button" id="register" class="btn-submit">
+                            <span>Começar</span>
+                            <div class="loader-container hidden">
+                                <div class="dots-wrapper">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+                            </div>
+                        </button>
                     </div>
 
-                    <button type="button" id="register" class="btn-submit">
-                        Começar
-                    </button>
+                    <div class="separator"></div>
+                    <div class="footer-text">
+                        Se já tem uma conta?
+                        <a href="../login/login.html">Entrar</a>
+                    </div>
                 </div>
-
-                <div class="separator"></div>
-                <div class="footer-text">
-                    Se já tem uma conta?
-                    <a href="../login/login.html">Entrar</a>
-                </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </body>
 </html>

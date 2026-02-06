@@ -1,8 +1,10 @@
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import { authFirebase } from "../../../scripts/config.js";
-import { isValidEmail, redirectIfLogged } from "../../../scripts/utils.js";
+import { isValidEmail } from "../../../scripts/utils.js";
 
 const btnSend = document.getElementById("login");
+const txtBtnSend = btnSend.querySelector("span");
+const loading = btnSend.querySelector(".loader-container");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const groupEmail = document.getElementById("group-email");
@@ -38,20 +40,24 @@ async function tryLogin() {
     }
 
     try {
+        txtBtnSend.classList.add("hidden");
+        loading.classList.remove("hidden");
         btnSend.disabled = true;
-        await signInWithEmailAndPassword(
+        localStorage.clear();
+        const response = await signInWithEmailAndPassword(
             authFirebase,
             emailInput.value,
             passwordInput.value,
         );
-        localStorage.clear();
-        redirectIfLogged();
+        localStorage.setItem("user", JSON.stringify(response.user.uid));
     } catch (error) {
         console.error(error);
         addErrorsEmail();
         addErrorsPassword();
     } finally {
         btnSend.disabled = false;
+        txtBtnSend.classList.remove("hidden");
+        loading.classList.add("hidden");
     }
 }
 
@@ -69,6 +75,11 @@ function addErrorsPassword() {
     passwordInput.classList.add("error");
     groupPassword.classList.add("has-error");
 }
+
+document.addEventListener("keypress", (e) => {
+    if (e.key !== "Enter") return;
+    tryLogin();
+});
 
 btnSend.onclick = tryLogin;
 emailInput.oninput = () => clearError(emailInput, groupEmail);

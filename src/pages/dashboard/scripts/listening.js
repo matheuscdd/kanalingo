@@ -9,7 +9,7 @@ import {
     statusRef,
     updateScoreDatabase,
     updateScoreLocal,
-    getCurrentCharJP,
+    getCurrentCharJA,
 } from "./utils.js";
 
 const gameContent = document.getElementById("listening-content");
@@ -24,7 +24,7 @@ let currentShuffle = [];
 export function renderListening() {
     startNewRound();
     btnStartRound.onclick = startNewRound;
-    btnPlay.onclick = () => playLetterSound(getCurrentCharJP());
+    btnPlay.onclick = () => playLetterSound(getCurrentCharJA());
 }
 
 function startNewRound() {
@@ -63,24 +63,24 @@ function renderCards() {
     });
 }
 
-async function selectCard(cardJP, card) {
-    const currentJP = getCurrentCharJP();
-    if (cardJP === currentJP) {
-        gameState.rightRound.push(cardJP);
+async function selectCard(cardJA, card) {
+    const currentJA = getCurrentCharJA();
+    if (cardJA === currentJA) {
+        gameState.rightRound.push(cardJA);
         playSoundEffect(statusRef.correct);
         card.classList.add("listening-correct");
         await sleep(500);
         card.classList.add("listening-disabled");
         nextQuestion();
-        if (gameState.lastWrong !== currentJP) {
+        if (gameState.lastWrong !== currentJA) {
             updateScoreLocal(
                 methodsKeys.listening,
-                currentJP,
+                currentJA,
                 scores.listening.max,
             );
         }
     } else {
-        gameState.lastWrong = currentJP;
+        gameState.lastWrong = currentJA;
         playSoundEffect(statusRef.wrong);
         card.classList.add("listening-wrong");
         await sleep(500);
