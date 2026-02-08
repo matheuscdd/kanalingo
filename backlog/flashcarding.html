@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards Estilo Duolingo</title>
+    <!-- Importando Fonte Arredondada similar ao Duolingo -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-shadow: #46a302;
+            --duo-red: #ff4b4b;
+            --duo-red-shadow: #d32f2f;
+            --duo-blue: #1cb0f6;
+            --duo-blue-shadow: #1480b3;
+            --duo-gray: #e5e5e5;
+            --duo-text: #4b4b4b;
+            --duo-bg: #FFF;
+            --card-shadow: #080808;
+            --duo-yellow: #ffc800;
+            --duo-yellow-shadow: #e5b400;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--duo-bg);
+            color: var(--duo-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container Principal */
+        .app-container {
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Barra de Progresso */
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .progress-bar-bg {
+            flex-grow: 1;
+            height: 16px;
+            background-color: var(--duo-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 10px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--duo-green);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            font-size: 1.5rem;
+            color: #afafaf;
+            cursor: pointer;
+        }
+
+        /* Área do Card (Cena 3D) */
+        .card-scene {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            position: relative;
+            width: 100%;
+        }
+
+        .card {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        /* Estados do Card */
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Animações de Saída (Avançar) */
+        .card.slide-out-left {
+            animation: slideOutLeft 0.5s forwards;
+        }
+
+        .card.slide-out-right {
+            animation: slideOutRight 0.5s forwards;
+        }
+
+        /* Animações de Entrada (Avançar) */
+        .card.slide-in {
+            animation: slideInBottom 0.5s forwards;
+        }
+
+        /* Animações de Voltar */
+        .card.slide-out-right-back {
+            animation: slideOutRightBack 0.5s forwards;
+        }
+
+        .card.slide-in-left-back {
+            animation: slideInLeftBack 0.5s forwards;
+        }
+
+
+        /* Faces do Card */
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background-color: white;
+            border: 2px solid var(--duo-gray);
+            border-radius: 20px;
+            box-shadow: 0 4px 0 var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            user-select: none;
+        }
+
+        .card-face.back {
+            transform: rotateY(180deg);
+            background-color: #fff;
+            border-color: var(--duo-blue);
+        }
+
+        /* Conteúdo do Card */
+        .card-content h2 {
+            font-size: 2.5rem;
+            color: var(--duo-text);
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            font-size: 1.2rem;
+            color: #afafaf;
+            font-weight: 700;
+        }
+
+        .card-face.back .card-content h2 {
+            font-size: 1.8rem;
+            color: var(--duo-blue);
+        }
+
+        .tap-hint {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8rem;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        /* Controles / Botões */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 20px 0;
+            gap: 10px;
+        }
+
+        .btn {
+            border: none;
+            outline: none;
+            cursor: pointer;
+            border-radius: 16px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            padding: 0 15px; /* Ajuste padding lateral */
+            transition: transform 0.1s, box-shadow 0.1s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            height: 60px;
+            color: white;
+            position: relative;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: none !important;
+            border-bottom-width: 0px !important; 
+            margin-top: 4px; /* Compensa a borda para não mover o layout */
+        }
+        
+        /* Botões desabilitados */
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+            border-bottom: 2px solid var(--duo-gray) !important;
+            margin-top: 2px;
+        }
+
+        .btn-gray-style {
+            background-color: white;
+            border: 2px solid var(--duo-gray);
+            border-bottom: 4px solid var(--duo-gray);
+            color: var(--duo-text);
+        }
+        
+        .btn-gray-style:active {
+             border-bottom: 0px solid var(--duo-gray);
+        }
+
+        .btn-undo {
+            color: var(--duo-yellow);
+            max-width: 60px;
+        }
+
+        .btn-wrong {
+            color: var(--duo-red);
+            max-width: 70px;
+        }
+
+        .btn-next {
+            color: var(--duo-blue);
+            max-width: 70px;
+        }
+
+        .btn-correct {
+            background-color: var(--duo-green);
+            border-bottom: 4px solid var(--duo-green-shadow);
+            flex-grow: 2;
+        }
+        
+        .btn-correct:active {
+            border-bottom: 0px solid var(--duo-green-shadow);
+        }
+
+        /* Animações Keyframes */
+        @keyframes slideOutLeft {
+            to { transform: translateX(-120%) rotateY(0deg) rotateZ(-10deg); opacity: 0; }
+        }
+        
+        @keyframes slideOutRight {
+            to { transform: translateX(120%) rotateY(0deg) rotateZ(10deg); opacity: 0; }
+        }
+
+        @keyframes slideInBottom {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Animações para Voltar (Reverse) */
+        @keyframes slideOutRightBack {
+            to { transform: translateX(120%) rotateY(0deg); opacity: 0; }
+        }
+
+        @keyframes slideInLeftBack {
+            from { transform: translateX(-120%) rotateY(0deg) rotateZ(-10deg); opacity: 0; }
+            to { transform: translateX(0) rotateY(0deg) rotateZ(0); opacity: 1; }
+        }
+
+        /* Tela de Fim */
+        .end-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .end-icon {
+            font-size: 4rem;
+            color: #ffd900;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Cabeçalho com Progresso -->
+        <div class="header">
+            <i class="fa-solid fa-xmark close-btn"></i>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress"></div>
+            </div>
+            <i class="fa-solid fa-heart" style="color: var(--duo-red);"></i> 
+            <span style="margin-left:5px; font-weight:800; color:var(--duo-red)">5</span>
+        </div>
+
+        <!-- Área Principal do Card -->
+        <div class="card-scene" id="cardScene">
+            <div class="card" id="flashcard">
+                <!-- Frente -->
+                <div class="card-face front">
+                    <div class="card-content">
+                        <h2 id="cardFrontText">打球</h2>
+                        <p id="cardFrontHint">(dǎ qiú)</p>
+                    </div>
+                    <div class="tap-hint">Toque para virar</div>
+                </div>
+                
+                <!-- Verso -->
+                <div class="card-face back">
+                    <div class="card-content">
+                        <h2 id="cardBackText">Jogar bola</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela final (inicialmente oculta) -->
+            <div class="end-screen" id="endScreen">
+                <i class="fa-solid fa-trophy end-icon"></i>
+                <h2 style="margin-bottom: 10px;">Sessão Concluída!</h2>
+                <p style="margin-bottom: 30px; color: #777;">Você revisou todos os cards.</p>
+                <button class="btn btn-correct" onclick="location.reload()">Recomeçar</button>
+            </div>
+        </div>
+
+        <!-- Botões de Controle -->
+        <div class="controls" id="controls">
+            <!-- Botão Voltar (Undo) -->
+            <button class="btn btn-gray-style btn-undo" id="btnUndo" aria-label="Voltar" disabled>
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+
+            <!-- Botão Não Sei (X) -->
+            <button class="btn btn-gray-style btn-wrong" id="btnWrong" aria-label="Não sei">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <!-- Botão Próximo (Seta) -->
+            <button class="btn btn-gray-style btn-next" id="btnNext" aria-label="Pular">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <!-- Botão Sei (Check) -->
+            <button class="btn btn-correct" id="btnCorrect" aria-label="Eu sei">
+                EU SEI <i class="fa-solid fa-check" style="margin-left: 10px;"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos Flashcards
+        const flashcardsData = [
+            {
+                front: "打球",
+                hint: "(dǎ qiú)",
+                back: "Jogar bola"
+            },
+            {
+                front: "你好",
+                hint: "(nǐ hǎo)",
+                back: "Olá / Oi"
+            },
+            {
+                front: "谢谢",
+                hint: "(xiè xie)",
+                back: "Obrigado(a)"
+            },
+            {
+                front: "再见",
+                hint: "(zài jiàn)",
+                back: "Adeus / Tchau"
+            },
+            {
+                front: "猫",
+                hint: "(māo)",
+                back: "Gato"
+            }
+        ];
+
+        // Variáveis de Estado
+        let currentIndex = 0;
+        let isFlipped = false;
+        let isAnimating = false;
+
+        // Elementos do DOM
+        const card = document.getElementById('flashcard');
+        const cardFrontText = document.getElementById('cardFrontText');
+        const cardFrontHint = document.getElementById('cardFrontHint');
+        const cardBackText = document.getElementById('cardBackText');
+        const progressFill = document.getElementById('progress');
+        const endScreen = document.getElementById('endScreen');
+        const controls = document.getElementById('controls');
+        const btnUndo = document.getElementById('btnUndo');
+
+        // Inicialização
+        function init() {
+            updateCardContent();
+            updateProgress();
+            checkUndoState();
+        }
+
+        // Atualizar conteúdo do DOM
+        function updateCardContent() {
+            const data = flashcardsData[currentIndex];
+            cardFrontText.textContent = data.front;
+            cardFrontHint.textContent = data.hint;
+            cardBackText.textContent = data.back;
+        }
+
+        // Atualizar Barra de Progresso
+        function updateProgress() {
+            const percentage = (currentIndex / flashcardsData.length) * 100;
+            progressFill.style.width = `${percentage}%`;
+        }
+        
+        // Verificar estado do botão de desfazer
+        function checkUndoState() {
+            btnUndo.disabled = currentIndex === 0;
+        }
+
+        // Função de Virar (Flip)
+        card.addEventListener('click', () => {
+            if (isAnimating) return;
+            isFlipped = !isFlipped;
+            card.classList.toggle('is-flipped');
+        });
+
+        // Limpar Classes de Animação
+        function clearAnimations() {
+            card.classList.remove(
+                'slide-out-left', 
+                'slide-out-right', 
+                'slide-in', 
+                'slide-out-right-back',
+                'slide-in-left-back',
+                'is-flipped'
+            );
+        }
+
+        // Função para ir para o próximo card
+        function nextCard(known) {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            // Define a direção da animação baseada se acertou ou errou/pulou
+            if (known) {
+                card.classList.add('slide-out-right'); // Sai pela direita (verde)
+            } else {
+                card.classList.add('slide-out-left'); // Sai pela esquerda (vermelho)
+            }
+
+            setTimeout(() => {
+                currentIndex++;
+                
+                if (currentIndex < flashcardsData.length) {
+                    isFlipped = false;
+                    clearAnimations();
+                    
+                    updateCardContent();
+                    updateProgress();
+                    checkUndoState();
+                    
+                    // Adiciona animação de entrada
+                    card.classList.add('slide-in');
+                    
+                    setTimeout(() => {
+                        card.classList.remove('slide-in');
+                        isAnimating = false;
+                    }, 500);
+
+                } else {
+                    finishSession();
+                }
+            }, 500);
+        }
+        
+        // Função para voltar ao card anterior
+        function prevCard() {
+            if (currentIndex <= 0 || isAnimating) return;
+            isAnimating = true;
+
+            // Animação de saída do card atual (para trás/baixo)
+            // Vamos fazer ele sair para a direita (reverse do que seria uma entrada comum)
+            card.classList.add('slide-out-right-back');
+
+            setTimeout(() => {
+                currentIndex--;
+                
+                isFlipped = false;
+                clearAnimations();
+                
+                updateCardContent();
+                updateProgress();
+                checkUndoState();
+                
+                // Animação de entrada do card anterior (vindo da esquerda)
+                card.classList.add('slide-in-left-back');
+                
+                setTimeout(() => {
+                    card.classList.remove('slide-in-left-back');
+                    isAnimating = false;
+                }, 500);
+
+            }, 500);
+        }
+
+        function finishSession() {
+            card.style.display = 'none';
+            controls.style.display = 'none';
+            endScreen.style.display = 'flex';
+            progressFill.style.width = '100%';
+        }
+
+        // Event Listeners dos Botões
+        document.getElementById('btnCorrect').addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextCard(true);
+        });
+
+        document.getElementById('btnWrong').addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextCard(false);
+        });
+
+        document.getElementById('btnNext').addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextCard(true); 
+        });
+        
+        document.getElementById('btnUndo').addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevCard();
+        });
+
+        // Atalhos de teclado
+        document.addEventListener('keydown', (e) => {
+            if (isAnimating) return;
+            
+            if (endScreen.style.display === 'flex') {
+                 if (e.code === 'Enter') location.reload();
+                 return;
+            }
+
+            if (e.code === 'Space') {
+                card.click(); // Espaço vira
+            } else if (e.code === 'ArrowRight') {
+                nextCard(true); // Seta direita = Sei
+            } else if (e.code === 'ArrowLeft') {
+                nextCard(false); // Seta esquerda = Não sei
+            } else if (e.code === 'Backspace') {
+                prevCard(); // Backspace = Voltar
+            }
+        });
+
+        // Iniciar
+        init();
+
+    </script>
+</body>
+</html>

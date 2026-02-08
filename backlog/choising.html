@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoNihongo - Quiz Rápido</title>
+    <!-- Importando Fonte Arredondada similar ao Duolingo -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #46a302;
+            --duo-red: #ff4b4b;
+            --duo-red-dark: #ea2b2b;
+            --duo-blue: #1cb0f6;
+            --duo-blue-dark: #1899d6;
+            --duo-gray: #e5e5e5;
+            --duo-gray-text: #afafaf;
+            --duo-text: #3c3c3c;
+            --bg-color: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--duo-text);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Header & Stats --- */
+        .header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            margin: 0 15px;
+            height: 16px;
+            background-color: var(--duo-gray);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--duo-green);
+            width: 100%; /* Começa cheio */
+            border-radius: 8px;
+            transition: width 1s linear, background-color 0.3s;
+        }
+
+        .lives {
+            display: flex;
+            align-items: center;
+            color: var(--duo-red);
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .lives i {
+            margin-right: 5px;
+        }
+
+        /* --- Game Container --- */
+        .game-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Screen States */
+        .screen {
+            display: none;
+            width: 100%;
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        /* --- Start Screen --- */
+        .mascot {
+            font-size: 5rem;
+            color: var(--duo-green);
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        /* --- Question Styles --- */
+        .question-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .speech-bubble {
+            border: 2px solid var(--duo-gray);
+            border-radius: 15px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: var(--duo-gray) transparent transparent transparent;
+        }
+
+        .jp-word {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+        
+        .romaji {
+            font-size: 1rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .instruction {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            align-self: flex-start;
+        }
+
+        /* --- Options Grid --- */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-bottom: 5px solid var(--duo-gray);
+            border-radius: 16px;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--duo-text);
+            cursor: pointer;
+            transition: all 0.1s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+        }
+
+        .option-btn:active {
+            transform: translateY(3px);
+            border-bottom-width: 2px;
+            margin-top: 3px;
+        }
+
+        /* Option States */
+        .option-btn.selected {
+            background-color: #ddf4ff;
+            border-color: var(--duo-blue);
+            border-bottom-color: var(--duo-blue-dark);
+            color: var(--duo-blue-dark);
+        }
+
+        .option-btn.correct {
+            background-color: #d7ffb8;
+            border-color: var(--duo-green);
+            border-bottom-color: var(--duo-green-dark);
+            color: var(--duo-green-dark);
+            pointer-events: none;
+        }
+
+        .option-btn.wrong {
+            background-color: #ffdfe0;
+            border-color: var(--duo-red);
+            border-bottom-color: var(--duo-red-dark);
+            color: var(--duo-red-dark);
+            pointer-events: none;
+            animation: shake 0.4s;
+        }
+
+        .option-number {
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 0.8rem;
+            color: var(--duo-gray-text);
+            border: 1px solid var(--duo-gray);
+            border-radius: 5px;
+            padding: 0 4px;
+        }
+
+        /* --- Footer / Feedback Sheet --- */
+        .footer-check {
+            position: fixed;
+            bottom: -150px; /* Hidden */
+            left: 0;
+            width: 100%;
+            padding: 20px 20px 40px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid transparent;
+            transition: bottom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+        }
+
+        .footer-check.correct {
+            background-color: #d7ffb8;
+            border-color: #b8f28b;
+            color: var(--duo-green-dark);
+            bottom: 0;
+        }
+
+        .footer-check.wrong {
+            background-color: #ffdfe0;
+            border-color: #ffc1c1;
+            color: var(--duo-red-dark);
+            bottom: 0;
+        }
+
+        .feedback-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feedback-title {
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .feedback-subtitle {
+            font-size: 1rem;
+        }
+
+        /* --- Buttons --- */
+        .btn-main {
+            background-color: var(--duo-green);
+            color: white;
+            border: none;
+            border-bottom: 5px solid var(--duo-green-dark);
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            transition: filter 0.2s;
+        }
+
+        .btn-main:active {
+            transform: translateY(3px);
+            border-bottom-width: 2px;
+        }
+
+        .btn-check {
+            max-width: 150px;
+        }
+        
+        .btn-wrong {
+            background-color: var(--duo-red);
+            border-bottom-color: var(--duo-red-dark);
+        }
+        
+        .btn-next-correct {
+            background-color: var(--duo-green);
+            border-bottom-color: var(--duo-green-dark);
+        }
+
+        /* --- Animations --- */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* --- Game Over Screen --- */
+        .result-score {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--duo-blue);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header (Lives & Time) -->
+    <div class="header">
+        <div class="lives">
+            <i class="fas fa-heart"></i>
+            <span id="lives-count">3</span>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="time-bar"></div>
+        </div>
+    </div>
+
+    <!-- Main Game Area -->
+    <div class="game-area">
+        
+        <!-- Screen 1: Start -->
+        <div id="start-screen" class="screen active">
+            <div class="mascot">
+                <i class="fas fa-cubes-stacked"></i>
+            </div>
+            <h1 class="title">Desafio de Japonês</h1>
+            <p class="subtitle">Combine as palavras antes que o tempo acabe!</p>
+            <button class="btn-main" onclick="startGame()">Começar</button>
+        </div>
+
+        <!-- Screen 2: Game -->
+        <div id="game-screen" class="screen">
+            <div class="instruction">Selecione a tradução correta</div>
+            
+            <div class="question-card">
+                <div class="mascot" style="font-size: 3rem; margin-bottom: 10px;">
+                    <i class="fas fa-robot"></i> <!-- Robot as speaker -->
+                </div>
+                <div class="speech-bubble">
+                    <i class="fas fa-volume-high" style="color: var(--duo-blue); font-size: 1.2rem;"></i>
+                    <div style="text-align: left;">
+                        <div class="jp-word" id="question-jp">--</div>
+                        <div class="romaji" id="question-romaji">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="options-grid" id="options-container">
+                <!-- Buttons generated via JS -->
+            </div>
+        </div>
+
+        <!-- Screen 3: Result -->
+        <div id="result-screen" class="screen">
+            <div class="mascot" style="color: #ffc800;">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h1 class="title">Fim de Jogo!</h1>
+            <p class="subtitle">Sua pontuação final:</p>
+            <div class="result-score" id="final-score">0</div>
+            <button class="btn-main" onclick="resetGame()">Jogar Novamente</button>
+        </div>
+
+    </div>
+
+    <!-- Feedback Footer (Slides up) -->
+    <div class="footer-check" id="feedback-footer">
+        <div class="feedback-text">
+            <div class="feedback-title" id="feedback-title">Incrível!</div>
+            <div class="feedback-subtitle" id="feedback-msg">Resposta correta</div>
+        </div>
+        <button class="btn-main btn-check" id="next-btn" onclick="nextQuestion()">Continuar</button>
+    </div>
+
+    <script>
+        // --- Data: Vocabulary ---
+        const vocabData = [
+            { jp: "猫", romaji: "Neko", pt: "Gato" },
+            { jp: "犬", romaji: "Inu", pt: "Cachorro" },
+            { jp: "水", romaji: "Mizu", pt: "Água" },
+            { jp: "ありがとう", romaji: "Arigatou", pt: "Obrigado" },
+            { jp: "こんにちは", romaji: "Konnichiwa", pt: "Olá" },
+            { jp: "さようなら", romaji: "Sayounara", pt: "Tchau" },
+            { jp: "本", romaji: "Hon", pt: "Livro" },
+            { jp: "車", romaji: "Kuruma", pt: "Carro" },
+            { jp: "家", romaji: "Ie", pt: "Casa" },
+            { jp: "友達", romaji: "Tomodachi", pt: "Amigo" },
+            { jp: "食べる", romaji: "Taberu", pt: "Comer" },
+            { jp: "飲む", romaji: "Nomu", pt: "Beber" },
+            { jp: "鳥", romaji: "Tori", pt: "Pássaro" },
+            { jp: "山", romaji: "Yama", pt: "Montanha" },
+            { jp: "川", romaji: "Kawa", pt: "Rio" },
+            { jp: "月", romaji: "Tsuki", pt: "Lua" },
+            { jp: "日", romaji: "Hi", pt: "Sol/Dia" },
+            { jp: "私", romaji: "Watashi", pt: "Eu" },
+            { jp: "先生", romaji: "Sensei", pt: "Professor" },
+            { jp: "学生", romaji: "Gakusei", pt: "Estudante" }
+        ];
+
+        // --- Game State ---
+        let currentScore = 0;
+        let lives = 3;
+        let maxTime = 100; // Percentage
+        let currentTime = 100;
+        let timerInterval;
+        let currentQuestion = null;
+        let isGameActive = false;
+        let hasAnswered = false;
+
+        // --- DOM Elements ---
+        const screens = {
+            start: document.getElementById('start-screen'),
+            game: document.getElementById('game-screen'),
+            result: document.getElementById('result-screen')
+        };
+        const elQuestionJp = document.getElementById('question-jp');
+        const elQuestionRomaji = document.getElementById('question-romaji');
+        const elOptions = document.getElementById('options-container');
+        const elTimeBar = document.getElementById('time-bar');
+        const elLives = document.getElementById('lives-count');
+        const elFeedback = document.getElementById('feedback-footer');
+        const elFeedbackTitle = document.getElementById('feedback-title');
+        const elFeedbackMsg = document.getElementById('feedback-msg');
+        const elNextBtn = document.getElementById('next-btn');
+
+        // --- Core Functions ---
+
+        function showScreen(screenName) {
+            Object.values(screens).forEach(s => s.classList.remove('active'));
+            screens[screenName].classList.add('active');
+        }
+
+        function startGame() {
+            currentScore = 0;
+            lives = 3;
+            currentTime = 100;
+            updateLivesUI();
+            showScreen('game');
+            startTimer();
+            generateQuestion();
+            isGameActive = true;
+        }
+
+        function resetGame() {
+            showScreen('start');
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (!isGameActive) return;
+                
+                // Diminui o tempo
+                currentTime -= 0.5; // Velocidade do timer
+                elTimeBar.style.width = `${currentTime}%`;
+
+                // Cores da barra baseada na urgência
+                if (currentTime < 30) elTimeBar.style.backgroundColor = '#ff4b4b';
+                else if (currentTime < 60) elTimeBar.style.backgroundColor = '#ffc800';
+                else elTimeBar.style.backgroundColor = '#58cc02';
+
+                if (currentTime <= 0) {
+                    endGame();
+                }
+            }, 100);
+        }
+
+        function generateQuestion() {
+            // Reset UI
+            hasAnswered = false;
+            elFeedback.classList.remove('correct', 'wrong');
+            elFeedback.style.bottom = '-150px';
+            
+            // Pick Random Correct Answer
+            const targetIndex = Math.floor(Math.random() * vocabData.length);
+            currentQuestion = vocabData[targetIndex];
+
+            // Pick 3 Wrong Answers (Distractors)
+            let distractors = [];
+            while (distractors.length < 3) {
+                let randomIdx = Math.floor(Math.random() * vocabData.length);
+                if (randomIdx !== targetIndex && !distractors.includes(vocabData[randomIdx])) {
+                    distractors.push(vocabData[randomIdx]);
+                }
+            }
+
+            // Shuffle Options
+            let options = [currentQuestion, ...distractors];
+            options.sort(() => Math.random() - 0.5);
+
+            // Render
+            elQuestionJp.textContent = currentQuestion.jp;
+            elQuestionRomaji.textContent = currentQuestion.romaji;
+            elOptions.innerHTML = '';
+
+            options.forEach((opt, index) => {
+                const btn = document.createElement('div');
+                btn.className = 'option-btn';
+                btn.innerHTML = `
+                    <span class="option-number">${index + 1}</span>
+                    ${opt.pt}
+                `;
+                btn.onclick = () => checkAnswer(opt, btn);
+                elOptions.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedOption, btnElement) {
+            if (hasAnswered) return;
+            hasAnswered = true;
+            
+            const isCorrect = selectedOption.pt === currentQuestion.pt;
+
+            if (isCorrect) {
+                // Logic for Correct
+                currentScore += 10;
+                currentTime = Math.min(100, currentTime + 10); // Bonus time
+                btnElement.classList.add('correct');
+                showFeedback(true);
+            } else {
+                // Logic for Wrong
+                lives--;
+                updateLivesUI();
+                btnElement.classList.add('wrong');
+                showFeedback(false, `A resposta correta é: ${currentQuestion.pt}`);
+                
+                // Highlight correct one
+                const buttons = elOptions.children;
+                for(let btn of buttons) {
+                    if(btn.innerText.includes(currentQuestion.pt)) {
+                        btn.classList.add('correct');
+                    }
+                }
+            }
+
+            if (lives <= 0) {
+                setTimeout(endGame, 1500);
+            }
+        }
+
+        function showFeedback(isCorrect, msg = "") {
+            elFeedback.className = 'footer-check'; // Reset classes
+            
+            if (isCorrect) {
+                elFeedback.classList.add('correct');
+                elFeedbackTitle.textContent = "Incrível!";
+                elFeedbackMsg.textContent = "";
+                elNextBtn.className = "btn-main btn-check btn-next-correct";
+                elNextBtn.style.color = "white";
+            } else {
+                elFeedback.classList.add('wrong');
+                elFeedbackTitle.textContent = "Ops!";
+                elFeedbackMsg.textContent = msg;
+                elNextBtn.className = "btn-main btn-check btn-wrong";
+            }
+            
+            elFeedback.style.bottom = '0';
+        }
+
+        function nextQuestion() {
+            if (lives > 0 && currentTime > 0) {
+                generateQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        function updateLivesUI() {
+            elLives.innerHTML = `<i class="fas fa-heart"></i> ${lives}`;
+        }
+
+        function endGame() {
+            isGameActive = false;
+            clearInterval(timerInterval);
+            document.getElementById('final-score').textContent = currentScore;
+            showScreen('result');
+        }
+
+        // Initialize
+        updateLivesUI();
+
+    </script>
+</body>
+</html>
