@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoMatch - Aprenda Japonês</title>
+    <!-- Importando Fonte Nunito (Estilo Duolingo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- Importando FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Importando Interact.js para Drag & Drop com Física -->
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #46a302;
+            --duo-blue: #1cb0f6;
+            --duo-blue-dark: #1899d6;
+            --duo-red: #ff4b4b;
+            --duo-gray: #e5e5e5;
+            --duo-gray-dark: #cecece;
+            --text-color: #4b4b4b;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none; /* Previne seleção de texto ao arrastar */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f7f7f7;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Header & Stats --- */
+        header {
+            padding: 20px;
+            background: white;
+            border-bottom: 2px solid var(--duo-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .stat-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            max-width: 400px;
+            height: 16px;
+            background-color: var(--duo-gray);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--duo-green);
+            transition: width 0.3s ease;
+        }
+
+        .timer { color: var(--duo-blue); }
+        .score { color: #ffc800; }
+
+        /* --- Game Area --- */
+        #game-area {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items:  flex-start; /* Alinhado ao topo */
+            padding: 40px 20px;
+            gap: 40px;
+            overflow-y: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            touch-action: none; /* Importante para Interact.js no mobile */
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 350px;
+        }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--card-bg);
+            border: 2px solid var(--duo-gray);
+            border-bottom: 5px solid var(--duo-gray); /* Efeito 3D */
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: grab;
+            position: relative;
+            touch-action: none; /* Importante para mobile */
+            /* A transição será gerenciada pelo JS para drag, e CSS para estados */
+        }
+
+        .card:active {
+            cursor: grabbing;
+        }
+
+        /* Classes específicas do Interact.js e Estados */
+        .is-dragging {
+            z-index: 1000 !important;
+            opacity: 0.9;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border-color: var(--duo-blue);
+            cursor: grabbing;
+        }
+
+        .drop-target {
+            background-color: #f0faff;
+            border-color: var(--duo-blue);
+            border-style: dashed;
+        }
+        
+        .can-drop {
+            /* Estilo opcional para quando o card está sobre uma zona válida */
+            border-color: var(--duo-blue);
+        }
+
+        .card-main-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            pointer-events: none; /* O clique passa para o card */
+        }
+
+        .card-sub-text {
+            font-size: 0.9rem;
+            color: #afafaf;
+            margin-top: 5px;
+            pointer-events: none;
+        }
+
+        .card.selected {
+            background-color: #ddf4ff;
+            border-color: var(--duo-blue);
+            border-bottom-color: var(--duo-blue-dark);
+            color: var(--duo-blue);
+        }
+
+        .card.matched {
+            background-color: var(--duo-green);
+            border-color: var(--duo-green);
+            border-bottom-color: var(--duo-green-dark); /* Darker green */
+            color: white;
+            pointer-events: none;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        
+        .card.matched.hidden {
+             opacity: 0;
+             transform: scale(0);
+        }
+
+        .card.matched .card-sub-text {
+            color: rgba(255,255,255, 0.8);
+        }
+
+        .card.wrong {
+            animation: shake 0.5s;
+            background-color: #ffdfe0;
+            border-color: var(--duo-red);
+            border-bottom-color: #d33131;
+            color: var(--duo-red);
+        }
+
+        /* --- Animations --- */
+        @keyframes shake {
+            0% { transform: translateX(0) rotate(0); }
+            25% { transform: translateX(-5px) rotate(-2deg); }
+            50% { transform: translateX(5px) rotate(2deg); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0) rotate(0); }
+        }
+
+        /* --- Overlay / Modal --- */
+        #overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal h2 { margin-top: 0; color: var(--duo-green); font-size: 2rem; }
+        .modal p { font-size: 1.2rem; margin-bottom: 30px; }
+
+        .btn {
+            background-color: var(--duo-blue);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 12px;
+            border-bottom: 5px solid var(--duo-blue-dark);
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.1s;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            border-bottom-width: 0px;
+            margin-top: 4px; /* compensate layout shift */
+        }
+        
+        .btn-restart {
+             background-color: var(--duo-green);
+             border-bottom-color: var(--duo-green-dark);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            #game-area {
+                flex-direction: row; 
+                padding: 10px;
+                gap: 10px;
+            }
+            .card {
+                padding: 10px;
+                min-height: 80px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .card-main-text { font-size: 1.1rem; }
+            .card-sub-text { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="stat-container" style="cursor: pointer;" onclick="toggleMute()">
+            <i class="fa-solid fa-volume-high" id="sound-icon" style="color: var(--duo-blue);"></i>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="stat-container timer">
+            <i class="fa-regular fa-clock"></i>
+            <span id="time-display">00:00</span>
+        </div>
+        <div class="stat-container score">
+            <i class="fa-solid fa-gem"></i>
+            <span id="score-display">0</span>
+        </div>
+    </header>
+
+    <div id="game-area">
+        <!-- Coluna Original (Japonês) -->
+        <div class="column" id="col-origin"></div>
+        
+        <!-- Coluna Destino (Português) -->
+        <div class="column" id="col-target"></div>
+    </div>
+
+    <!-- Modal de Game Over / Sucesso -->
+    <div id="overlay">
+        <div class="modal">
+            <h2 id="modal-title">Nível Concluído!</h2>
+            <div id="modal-content">
+                <p>Você combinou todas as palavras.</p>
+                <div style="display: flex; justify-content: space-around; margin-bottom: 20px;">
+                    <div>
+                        <i class="fa-regular fa-clock" style="color:var(--duo-gray-dark)"></i>
+                        <br><strong id="final-time">00:00</strong>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-gem" style="color: #ffc800"></i>
+                        <br><strong id="final-score">0</strong>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-restart" onclick="initGame()">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Dados do Jogo (Japonês <-> Português) ---
+        const wordData = [
+            { id: 1, origin: "猫", romaji: "Neko", target: "Gato" },
+            { id: 2, origin: "犬", romaji: "Inu", target: "Cachorro" },
+            { id: 3, origin: "水", romaji: "Mizu", target: "Água" },
+            { id: 4, origin: "本", romaji: "Hon", target: "Livro" },
+            { id: 5, origin: "食べる", romaji: "Taberu", target: "Comer" },
+            { id: 6, origin: "愛", romaji: "Ai", target: "Amor" },
+            { id: 7, origin: "友達", romaji: "Tomodachi", target: "Amigo" },
+            { id: 8, origin: "学校", romaji: "Gakkou", target: "Escola" },
+            { id: 9, origin: "月", romaji: "Tsuki", target: "Lua" },
+            { id: 10, origin: "火", romaji: "Hi", target: "Fogo" }
+        ];
+
+        // --- Estado do Jogo ---
+        let currentLevelData = [];
+        let score = 0;
+        let timeElapsed = 0;
+        let timerInterval;
+        let matchesFound = 0;
+        let totalPairs = 5; 
+        let soundEnabled = true;
+        let selectedOriginId = null; 
+
+        // Elementos DOM
+        const colOrigin = document.getElementById('col-origin');
+        const colTarget = document.getElementById('col-target');
+        const scoreDisplay = document.getElementById('score-display');
+        const timeDisplay = document.getElementById('time-display');
+        const progressBar = document.getElementById('progress-bar');
+        const overlay = document.getElementById('overlay');
+        
+        // --- Inicialização ---
+        function initGame() {
+            // Reset
+            score = 0;
+            timeElapsed = 0;
+            matchesFound = 0;
+            scoreDisplay.innerText = "0";
+            timeDisplay.innerText = "00:00";
+            progressBar.style.width = "0%";
+            overlay.style.display = 'none';
+            selectedOriginId = null;
+
+            // Selecionar 5 palavras aleatórias
+            const shuffledAll = [...wordData].sort(() => 0.5 - Math.random());
+            currentLevelData = shuffledAll.slice(0, totalPairs);
+
+            // Preparar arrays
+            const origins = currentLevelData.map(item => ({...item})).sort(() => 0.5 - Math.random());
+            const targets = currentLevelData.map(item => ({...item})).sort(() => 0.5 - Math.random());
+
+            // Renderizar
+            renderColumns(origins, targets);
+
+            // Configurar Interact.js
+            setupInteract();
+
+            // Iniciar Timer
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeElapsed++;
+                const min = Math.floor(timeElapsed / 60).toString().padStart(2, '0');
+                const sec = (timeElapsed % 60).toString().padStart(2, '0');
+                timeDisplay.innerText = `${min}:${sec}`;
+            }, 1000);
+        }
+
+        function renderColumns(origins, targets) {
+            colOrigin.innerHTML = '';
+            colTarget.innerHTML = '';
+
+            // Renderizar Origem (Japonês)
+            origins.forEach(item => {
+                const card = createCard(item, 'origin');
+                colOrigin.appendChild(card);
+            });
+
+            // Renderizar Destino (Português)
+            targets.forEach(item => {
+                const card = createCard(item, 'target');
+                colTarget.appendChild(card);
+            });
+        }
+
+        function createCard(item, type) {
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.dataset.id = item.id;
+            div.dataset.type = type;
+            // Reset transforms
+            div.style.transform = 'translate(0px, 0px)';
+            div.setAttribute('data-x', 0);
+            div.setAttribute('data-y', 0);
+
+            if (type === 'origin') {
+                div.classList.add('draggable'); // Classe para o Interact.js
+                div.innerHTML = `
+                    <div class="card-main-text">${item.origin}</div>
+                    <div class="card-sub-text">${item.romaji}</div>
+                `;
+                // Clique para modo híbrido
+                div.addEventListener('click', handleOriginClick);
+            } else {
+                div.classList.add('dropzone'); // Classe para o Interact.js
+                div.innerHTML = `
+                    <div class="card-main-text">${item.target}</div>
+                `;
+                // Clique para modo híbrido
+                div.addEventListener('click', handleTargetClick);
+            }
+            return div;
+        }
+
+        // --- Configuração Interact.js (A mágica do arrastar) ---
+        function setupInteract() {
+            // Limpar configurações antigas se houver re-init
+            interact('.draggable').unset();
+            interact('.dropzone').unset();
+
+            // Configurar Draggables (Origem)
+            interact('.draggable').draggable({
+                inertia: true, // Adiciona física de inércia
+                modifiers: [
+                    interact.modifiers.restrictRect({
+                        restriction: '#game-area', // Não sair da área do jogo
+                        endOnly: true
+                    })
+                ],
+                autoScroll: true, // Rola a tela se arrastar para a borda
+                listeners: {
+                    start(event) {
+                        const target = event.target;
+                        target.classList.add('is-dragging');
+                        // Remove transição para movimento instantâneo
+                        target.style.transition = 'none';
+                        // Seleciona visualmente
+                        highlightSelected(target);
+                        selectedOriginId = target.dataset.id;
+                    },
+                    move: dragMoveListener,
+                    end(event) {
+                        const target = event.target;
+                        target.classList.remove('is-dragging');
+                        
+                        // Lógica de "Snap Back": Se não foi solto em um lugar válido (não marcado como dropped)
+                        if (!target.dataset.dropped) {
+                            revertPosition(target);
+                        }
+                        // Limpa a flag
+                        target.dataset.dropped = '';
+                    }
+                }
+            });
+
+            // Configurar Dropzones (Destino)
+            interact('.dropzone').dropzone({
+                accept: '.draggable', // Aceita apenas cards de origem
+                overlap: 0.50, // Requer sobrepor 50% para ativar
+                
+                ondragenter: function (event) {
+                    var draggableElement = event.relatedTarget;
+                    var dropzoneElement = event.target;
+                    
+                    if(!dropzoneElement.classList.contains('matched')){
+                        dropzoneElement.classList.add('drop-target');
+                        draggableElement.classList.add('can-drop');
+                    }
+                },
+                ondragleave: function (event) {
+                    event.target.classList.remove('drop-target');
+                    event.relatedTarget.classList.remove('can-drop');
+                },
+                ondrop: function (event) {
+                    const originCard = event.relatedTarget;
+                    const targetCard = event.target;
+                    
+                    if(targetCard.classList.contains('matched')) {
+                        // Se já está combinado, rejeita e volta
+                        revertPosition(originCard);
+                        return;
+                    }
+
+                    // Sinaliza que foi solto numa zona (para evitar snap back imediato)
+                    originCard.dataset.dropped = 'true';
+                    
+                    // Limpa estilos visuais
+                    targetCard.classList.remove('drop-target');
+                    originCard.classList.remove('can-drop');
+
+                    checkMatchInteract(originCard, targetCard);
+                }
+            });
+        }
+
+        function dragMoveListener (event) {
+            var target = event.target;
+            // Mantém a posição x/y acumulada nos atributos data
+            var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+            var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            // Translada o elemento visualmente
+            target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+            // Atualiza os atributos
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        }
+
+        // Função para voltar o card para a posição original (Snap Back)
+        function revertPosition(element) {
+            // Adiciona transição suave tipo elástico
+            element.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            element.style.transform = 'translate(0px, 0px)';
+            element.setAttribute('data-x', 0);
+            element.setAttribute('data-y', 0);
+            
+            // Limpa a transição depois que animação acaba para o próximo drag ser rápido
+            setTimeout(() => {
+                element.style.transition = '';
+            }, 400);
+        }
+
+        // --- Lógica de Jogo Unificada ---
+
+        function handleOriginClick(e) {
+            const card = e.currentTarget;
+            if (card.classList.contains('matched')) return;
+
+            // Se clicar no mesmo, deseleciona
+            if (selectedOriginId === card.dataset.id && card.classList.contains('selected')) {
+                card.classList.remove('selected');
+                selectedOriginId = null;
+                return;
+            }
+
+            highlightSelected(card);
+            selectedOriginId = card.dataset.id;
+        }
+
+        function handleTargetClick(e) {
+            const cardTarget = e.currentTarget;
+            if (cardTarget.classList.contains('matched')) return;
+
+            if (selectedOriginId) {
+                // Busca o elemento card original pelo ID
+                const originCard = document.querySelector(`.draggable[data-id="${selectedOriginId}"]`);
+                if(originCard) {
+                    checkMatchInteract(originCard, cardTarget);
+                }
+            } else {
+                shakeCard(cardTarget);
+            }
+        }
+
+        function highlightSelected(card) {
+            document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+        }
+
+        function checkMatchInteract(originCard, targetCard) {
+            const originId = originCard.dataset.id;
+            const targetId = targetCard.dataset.id;
+
+            if (originId === targetId) {
+                // ACERTO
+                handleSuccess(originCard, targetCard);
+            } else {
+                // ERRO
+                handleError(originCard, targetCard);
+            }
+            
+            // Limpa seleção
+            selectedOriginId = null;
+            originCard.classList.remove('selected');
+        }
+
+        function handleSuccess(originCard, targetCard) {
+            // 1. Calcular a posição para "puxar" o card de origem para o centro do alvo
+            const originRect = originCard.getBoundingClientRect();
+            const targetRect = targetCard.getBoundingClientRect();
+
+            // Posição atual baseada no drag (data-x/y)
+            const currentX = parseFloat(originCard.getAttribute('data-x')) || 0;
+            const currentY = parseFloat(originCard.getAttribute('data-y')) || 0;
+
+            // Diferença entre as posições originais dos elementos na tela (sem transform)
+            // Precisamos calcular onde o originCard DEVERIA estar para sobrepor o targetCard
+            // A posição visual é: startPos + transform. Queremos que visual = targetPos.
+            // O InteractJS move relativo ao inicio. 
+            // Delta necessário = (TargetPos - OriginStartPos).
+            // Como já movemos (currentX, currentY), o novo transform deve ser o Delta Total.
+            
+            // Nota: getBoundingClientRect() pega a posição VISUAL ATUAL.
+            // Para calcular o Delta perfeito, pegamos a diferença entre os centros visuais atuais e somamos ao transform atual.
+            
+            const deltaX = (targetRect.left + targetRect.width/2) - (originRect.left + originRect.width/2);
+            const deltaY = (targetRect.top + targetRect.height/2) - (originRect.top + originRect.height/2);
+            
+            const finalX = currentX + deltaX;
+            const finalY = currentY + deltaY;
+
+            // Animação de ida ao alvo
+            originCard.style.transition = 'transform 0.3s ease-out';
+            originCard.style.transform = `translate(${finalX}px, ${finalY}px)`;
+            
+            // Desabilita interação imediatamente
+            interact(originCard).draggable(false);
+            originCard.classList.add('matched'); // Isso deve remover eventos de mouse via CSS
+            targetCard.classList.add('matched');
+
+            // Após chegar no alvo, esconde e mostra concluído
+            setTimeout(() => {
+                originCard.classList.add('hidden'); // Fade out
+                
+                // Pontuação
+                score += 10;
+                matchesFound++;
+                updateStats();
+
+                if (matchesFound === totalPairs) {
+                    setTimeout(endGame, 500);
+                }
+            }, 300);
+        }
+
+        function handleError(originCard, targetCard) {
+            // Som
+            if (score > 0) score -= 2;
+            updateStats();
+
+            // Visual de erro
+            targetCard.classList.add('wrong');
+            originCard.classList.add('wrong');
+            shakeCard(targetCard);
+            shakeCard(originCard); // Treme onde estiver
+
+            // Volta para casa (Snap Back)
+            revertPosition(originCard);
+
+            setTimeout(() => {
+                targetCard.classList.remove('wrong');
+                originCard.classList.remove('wrong');
+            }, 500);
+        }
+
+        function shakeCard(card) {
+            if(!card) return;
+            // Reinicia animação removendo e adicionando a propriedade
+            card.style.animation = 'none';
+            card.offsetHeight; /* trigger reflow */
+            card.style.animation = 'shake 0.4s';
+        }
+
+        function updateStats() {
+            scoreDisplay.innerText = score;
+            const percentage = (matchesFound / totalPairs) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+
+        function endGame() {
+            clearInterval(timerInterval);
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('final-time').innerText = timeDisplay.innerText;
+            
+            const title = document.getElementById('modal-title');
+            if (score === totalPairs * 10) {
+                title.innerText = "Perfeito! 🌟";
+                title.style.color = "#ffc800";
+            } else {
+                title.innerText = "Bom Trabalho!";
+                title.style.color = "var(--duo-green)";
+            }
+
+            overlay.style.display = 'flex';
+        }
+
+        function toggleMute() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            if(soundEnabled) {
+                icon.className = "fa-solid fa-volume-high";
+                icon.style.color = "var(--duo-blue)";
+            } else {
+                icon.className = "fa-solid fa-volume-xmark";
+                icon.style.color = "var(--duo-gray-dark)";
+            }
+        }
+
+        // Iniciar
+        window.onload = initGame; // Garante que tudo carregou
+
+    </script>
+</body>
+</html>

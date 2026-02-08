@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoFlash - Memory Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #46a302;
+            --duo-blue: #1cb0f6;
+            --duo-blue-dark: #1480b3;
+            --duo-red: #ff4b4b;
+            --duo-gray: #e5e5e5;
+            --duo-text: #4b4b4b;
+            --card-bg: #ffffff;
+
+            /* Alterações solicitadas */
+            --bg-color: #34a249;
+            /* Fundo verde do corpo */
+            --card-back-color-1: #ff4b4b;
+            /* Costas da carta vermelha */
+            --card-back-border-1: #c0392b;
+            /* Borda vermelha escura */
+            --card-back-color-2: #4b5dff;
+            /* Costas da carta vermelha */
+            --card-back-border-2: #2d2bc0;
+            /* Borda vermelha escura */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: white;
+            /* Texto branco para contrastar com o fundo verde */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* --- Header & Stats --- */
+        header {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .timer-container {
+            background: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+            color: var(--duo-blue);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            margin: 0 20px;
+            height: 16px;
+            background-color: rgba(0, 0, 0, 0.2);
+            /* Fundo da barra mais escuro para contraste */
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #fff;
+            /* Barra branca ou amarela fica bom no verde, vou usar branco brilhante */
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .pairs-counter {
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Game Grid --- */
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        @media (min-width: 500px) {
+            .game-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 700px) {
+            .game-board {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* --- Card 3D Structure --- */
+        .card {
+            background-color: transparent;
+            height: 120px;
+            perspective: 1000px;
+            /* Essential for 3D effect */
+
+        }
+
+        .card:not(.main-text) {
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 16px;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Class to flip the card */
+        .card.flip .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Shared style for front and back */
+        .card-front,
+        .card-back {
+            position: absolute;
+            color: var(--duo-text);
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            /* Safari */
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--duo-gray);
+            border-bottom-width: 4px;
+        }
+
+        /* Front Face (Content) */
+        .card-front {
+            background-color: var(--card-bg);
+            color: var(--duo-text);
+            transform: rotateY(180deg);
+            /* Starts hidden effectively because we rotate the inner container */
+        }
+
+        .card-front .main-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .card-front .sub-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Back Face (Red Pattern) */
+
+        .card-back.card-nihongo {
+            background-color: var(--card-back-color-1);
+            border-color: var(--card-back-border-1);
+        }
+
+        .card-back.card-romaji {
+            background-color: var(--card-back-color-2);
+            border-color: var(--card-back-border-2);
+        }
+
+        .card-back {
+
+            color: white;
+            transform: rotateY(0deg);
+            /* Pattern de cartas */
+            background-image:
+                repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0px, rgba(255, 255, 255, 0.1) 10px, transparent 10px, transparent 20px),
+                repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 0px, rgba(255, 255, 255, 0.1) 10px, transparent 10px, transparent 20px);
+
+        }
+
+        /* --- Error State --- */
+        .card.error .card-inner {
+            animation: shake 0.5s ease;
+        }
+
+        /* --- Animations --- */
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0) rotateY(180deg);
+            }
+
+            20% {
+                transform: translateX(-10px) rotateY(180deg);
+            }
+
+            40% {
+                transform: translateX(10px) rotateY(180deg);
+            }
+
+            60% {
+                transform: translateX(-10px) rotateY(180deg);
+            }
+
+            80% {
+                transform: translateX(10px) rotateY(180deg);
+            }
+        }
+
+        /* --- Modal --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: var(--duo-text);
+            /* Reset text color inside modal */
+        }
+
+        .modal h2 {
+            color: var(--duo-green);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .modal p {
+            font-size: 1.2rem;
+            color: var(--duo-text);
+            margin-bottom: 25px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-box {
+            background: #f7f7f7;
+            padding: 10px;
+            border-radius: 12px;
+            border: 2px solid var(--duo-gray);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #777;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--duo-blue);
+        }
+
+        .btn {
+            background-color: var(--duo-blue);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-bottom: 4px solid var(--duo-blue-dark);
+            width: 100%;
+            transition: all 0.1s;
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+
+        .btn:hover {
+            filter: brightness(1.1);
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .card.matched {
+            cursor: default;
+            animation: pop 0.4s ease forwards;
+            pointer-events: none;
+            opacity: 0;
+            transform: rotateY(180deg) scale(0.9);
+            transition: opacity 0.5s ease 0.3s;
+            border-radius: 16px;
+        }
+
+        .card.matched .card-front {
+            color: #D29D00;
+            border-color: #D29D00;
+            border-bottom-color: rgb(210, 157, 0);
+            border-bottom-color: #D29D00;
+            background-color: #ffed8a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="timer-container">
+            <i class="fa-regular fa-clock"></i>
+            <span id="timer">00:00</span>
+        </div>
+        <div class="progress-bar-container">
+            <div id="progress" class="progress-bar"></div>
+        </div>
+        <div class="pairs-counter">
+            <i class="fa-solid fa-layer-group"></i> <span id="pairs-left">0</span>
+        </div>
+    </header>
+
+    <div class="game-board" id="game-board">
+        <!-- Cards will be inserted here by JS -->
+    </div>
+
+    <footer>
+        Encontre os pares correspondentes!
+    </footer>
+
+    <!-- Victory Modal -->
+    <div class="modal-overlay" id="victory-modal">
+        <div class="modal">
+            <h2><i class="fa-solid fa-trophy"></i> Excelente!</h2>
+            <p>Você completou o treino.</p>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Tempo</div>
+                    <div class="stat-value" id="final-time">00:00</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Erros</div>
+                    <div class="stat-value" id="final-errors" style="color: var(--duo-red)">0</div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="game.init()">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        // Dados do vocabulário (Japonês, Pronúncia, Português)
+        const vocabularyData = [
+            { id: 1, jp: "猫", romaji: "Neko", pt: "Gato" },
+            { id: 2, jp: "犬", romaji: "Inu", pt: "Cachorro" },
+            { id: 3, jp: "水", romaji: "Mizu", pt: "Água" },
+            { id: 4, jp: "本", romaji: "Hon", pt: "Livro" },
+            { id: 5, jp: "食べる", romaji: "Taberu", pt: "Comer" },
+            { id: 6, jp: "学生", romaji: "Gakusei", pt: "Estudante" },
+            { id: 7, jp: "車", romaji: "Kuruma", pt: "Carro" },
+            { id: 8, jp: "愛", romaji: "Ai", pt: "Amor" }
+        ];
+
+        const game = {
+            firstCard: null,
+            lockBoard: false, // Impede cliques durante animações
+            matchesFound: 0,
+            totalPairs: 0,
+            startTime: null,
+            timerInterval: null,
+            errors: 0,
+
+            // Inicializa o jogo
+            init: function () {
+                this.resetState();
+                const board = document.getElementById('game-board');
+                board.innerHTML = '';
+
+                // Pega 6 pares aleatórios
+                const shuffledVocab = [...vocabularyData].slice(0, 6);
+                this.totalPairs = shuffledVocab.length;
+
+                // Cria o array de cartas
+                let cardsList = [];
+                shuffledVocab.forEach(item => {
+                    // Carta Japonês
+                    cardsList.push({
+                        id: item.id,
+                        type: 'jp',
+                        mainText: item.jp,
+                        subText: item.romaji,
+                        matchId: item.id
+                    });
+                    // Carta Português
+                    cardsList.push({
+                        id: item.id,
+                        type: 'pt',
+                        mainText: item.pt,
+                        subText: null,
+                        matchId: item.id
+                    });
+                });
+
+                // Embaralha as cartas
+                cardsList.sort(() => 0.5 - Math.random());
+
+                // Renderiza no DOM com estrutura 3D
+                cardsList.forEach(cardData => {
+                    const cardEl = document.createElement('div');
+                    cardEl.classList.add('card');
+                    cardEl.dataset.matchId = cardData.matchId;
+
+                    // Estrutura interna para flip 3D
+                    let frontContent = `<div class="main-text">${cardData.mainText}</div>`;
+                    if (cardData.subText) {
+                        frontContent += `<div class="sub-text">${cardData.subText}</div>`;
+                    }
+
+                    cardEl.innerHTML = `
+                        <div class="card-inner">
+                            <div class="card-front">
+                                ${frontContent}
+                            </div>
+                            <div class="card-back ${cardData.type === 'pt' ? 'card-romaji' : 'card-nihongo'} "></div>
+                        </div>
+                    `;
+
+                    cardEl.addEventListener('click', () => this.handleCardClick(cardEl));
+                    board.appendChild(cardEl);
+                });
+
+                // UI Updates
+                document.getElementById('pairs-left').textContent = this.totalPairs;
+                document.getElementById('victory-modal').style.display = 'none';
+                this.startTimer();
+                this.updateProgress();
+            },
+
+            handleCardClick: function (card) {
+                if (this.lockBoard) return;
+                if (card === this.firstCard) return; // Clicar na mesma carta
+                if (card.classList.contains('flip') || card.classList.contains('matched')) return;
+
+                // Vira a carta
+                card.classList.add('flip');
+
+                if (!this.firstCard) {
+                    // Primeira carta virada
+                    this.firstCard = card;
+                    return;
+                }
+
+                // Segunda carta virada -> Checar match
+                this.checkForMatch(this.firstCard, card);
+            },
+
+            checkForMatch: function (card1, card2) {
+                const isMatch = card1.dataset.matchId === card2.dataset.matchId;
+
+                if (isMatch) {
+                    this.disableCards(card1, card2);
+                } else {
+                    this.unflipCards(card1, card2);
+                }
+            },
+
+            disableCards: function (card1, card2) {
+                // Mantém viradas e marca como matched
+                card1.removeEventListener('click', this.handleCardClick);
+                card2.removeEventListener('click', this.handleCardClick);
+
+                // Pequeno delay para a animação do flip terminar antes de brilhar verde
+                setTimeout(() => {
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    this.matchesFound++;
+                    this.updateProgress();
+                    this.firstCard = null;
+
+                    if (this.matchesFound === this.totalPairs) {
+                        this.endGame();
+                    }
+                }, 400);
+            },
+
+            unflipCards: function (card1, card2) {
+                this.lockBoard = true;
+                this.errors++;
+
+                // Espera um pouco para o usuário ver o erro
+                setTimeout(() => {
+                    // Adiciona classe de erro para tremer
+                    card1.classList.add('error');
+                    card2.classList.add('error');
+                }, 400);
+
+                setTimeout(() => {
+                    // Desvira as cartas
+                    card1.classList.remove('flip', 'error');
+                    card2.classList.remove('flip', 'error');
+                    this.firstCard = null;
+                    this.lockBoard = false;
+                }, 1500); // Tempo para memorizar antes de virar
+            },
+
+            startTimer: function () {
+                clearInterval(this.timerInterval);
+                this.startTime = Date.now();
+                this.timerInterval = setInterval(() => {
+                    const delta = Date.now() - this.startTime;
+                    const seconds = Math.floor(delta / 1000);
+                    const mm = String(Math.floor(seconds / 60)).padStart(2, '0');
+                    const ss = String(seconds % 60).padStart(2, '0');
+                    document.getElementById('timer').innerText = `${mm}:${ss}`;
+                }, 1000);
+            },
+
+            stopTimer: function () {
+                clearInterval(this.timerInterval);
+            },
+
+            updateProgress: function () {
+                const percentage = (this.matchesFound / this.totalPairs) * 100;
+                document.getElementById('progress').style.width = `${percentage}%`;
+                document.getElementById('pairs-left').textContent = this.totalPairs - this.matchesFound;
+            },
+
+            endGame: function () {
+                this.stopTimer();
+                setTimeout(() => {
+                    document.getElementById('final-time').innerText = document.getElementById('timer').innerText;
+                    document.getElementById('final-errors').innerText = this.errors;
+                    document.getElementById('victory-modal').style.display = 'flex';
+                    this.triggerConfetti();
+                }, 600);
+            },
+
+            resetState: function () {
+                this.matchesFound = 0;
+                this.errors = 0;
+                this.firstCard = null;
+                this.lockBoard = false;
+                this.stopTimer();
+                document.getElementById('timer').innerText = "00:00";
+                document.getElementById('progress').style.width = "0%";
+            },
+
+            triggerConfetti: function () {
+                const colors = ['#58cc02', '#1cb0f6', '#ff4b4b', '#ffc800', '#ffffff'];
+                const modal = document.querySelector('.modal-overlay');
+
+                for (let i = 0; i < 40; i++) {
+                    const conf = document.createElement('div');
+                    conf.style.position = 'absolute';
+                    conf.style.left = Math.random() * 100 + '%';
+                    conf.style.top = '-10px';
+                    conf.style.width = '10px';
+                    conf.style.height = '10px';
+                    conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    conf.style.borderRadius = '50%';
+                    conf.style.transition = `top ${1.5 + Math.random()}s ease-in, opacity 1.5s ease`;
+                    modal.appendChild(conf);
+
+                    setTimeout(() => {
+                        conf.style.top = '110%';
+                        conf.style.opacity = '0';
+                    }, 100);
+
+                    setTimeout(() => conf.remove(), 3000);
+                }
+            }
+        };
+
+        // Iniciar jogo ao carregar
+        window.onload = () => game.init();
+
+    </script>
+</body>
+
+</html>

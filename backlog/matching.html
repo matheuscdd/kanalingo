@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoFlash - Match Cards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #46a302;
+            --duo-blue: #1cb0f6;
+            --duo-blue-dark: #1480b3;
+            --duo-red: #ff4b4b;
+            --duo-gray: #e5e5e5;
+            --duo-text: #4b4b4b;
+            --card-bg: #ffffff;
+            --bg-color: #f7f7f7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none; /* Previne seleção de texto ao clicar rápido */
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--duo-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* --- Header & Stats --- */
+        header {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .timer-container {
+            background: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 2px solid var(--duo-gray);
+            font-weight: 800;
+            color: var(--duo-blue);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            margin: 0 20px;
+            height: 16px;
+            background-color: var(--duo-gray);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--duo-green);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* --- Game Grid --- */
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Mobile first: 2 colunas */
+            gap: 12px;
+            width: 100%;
+            max-width: 600px;
+            perspective: 1000px;
+        }
+
+        @media (min-width: 500px) {
+            .game-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (min-width: 700px) {
+            .game-board {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* --- Card Styles --- */
+        .card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--duo-gray);
+            border-bottom: 4px solid var(--duo-gray);
+            border-radius: 16px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.1s, border-color 0.2s, background-color 0.2s;
+            position: relative;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .card:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+
+        .card .main-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--duo-text);
+            margin-bottom: 4px;
+        }
+
+        .card .sub-text {
+            font-size: 0.8rem;
+            color: #afafaf;
+            font-weight: 600;
+        }
+
+        /* States */
+        .card.selected {
+            border-color: var(--duo-blue);
+            border-bottom-color: var(--duo-blue-dark);
+            background-color: #e2f2fe;
+        }
+
+        .card.matched {
+            border-color: var(--duo-green);
+            border-bottom-color: var(--duo-green-dark);
+            background-color: #d7ffb8;
+            color: var(--duo-green-dark);
+            cursor: default;
+            animation: pop 0.4s ease forwards;
+            pointer-events: none; /* Desabilita cliques */
+            opacity: 0; /* Fade out effect styled like Match Madness clearing */
+            transform: scale(0.9);
+            transition: opacity 0.5s ease 0.3s;
+        }
+        
+        /* Alternative: keep them visible but green. Duo removes them usually. */
+        .card.matched.visible {
+            opacity: 1;
+            background-color: var(--duo-gray);
+            border-color: var(--duo-gray);
+            color: #ccc;
+        }
+
+        .card.error {
+            border-color: var(--duo-red);
+            border-bottom-color: #d12e2e;
+            background-color: #ffdfe0;
+            animation: shake 0.4s ease;
+        }
+
+        /* --- Animations --- */
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* --- Modal --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal h2 {
+            color: var(--duo-green);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .modal p {
+            font-size: 1.2rem;
+            color: var(--duo-text);
+            margin-bottom: 25px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-box {
+            background: #f7f7f7;
+            padding: 10px;
+            border-radius: 12px;
+            border: 2px solid var(--duo-gray);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #777;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--duo-blue);
+        }
+
+        .btn {
+            background-color: var(--duo-blue);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-bottom: 4px solid var(--duo-blue-dark);
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.1s;
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+
+        .btn:hover {
+            filter: brightness(1.1);
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: 30px;
+            color: #afafaf;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="timer-container">
+            <i class="fa-regular fa-clock"></i>
+            <span id="timer">00:00</span>
+        </div>
+        <div class="progress-bar-container">
+            <div id="progress" class="progress-bar"></div>
+        </div>
+        <div style="font-weight: 800; color: #afafaf;">
+            <i class="fa-solid fa-layer-group"></i> <span id="pairs-left">0</span>
+        </div>
+    </header>
+
+    <div class="game-board" id="game-board">
+        <!-- Cards will be inserted here by JS -->
+    </div>
+
+    <footer>
+        Combine as palavras para praticar!
+    </footer>
+
+    <!-- Victory Modal -->
+    <div class="modal-overlay" id="victory-modal">
+        <div class="modal">
+            <h2><i class="fa-solid fa-trophy"></i> Excelente!</h2>
+            <p>Você completou o treino.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Tempo</div>
+                    <div class="stat-value" id="final-time">00:00</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Erros</div>
+                    <div class="stat-value" id="final-errors" style="color: var(--duo-red)">0</div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="game.init()">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        // Dados do vocabulário (Japonês, Pronúncia, Português)
+        const vocabularyData = [
+            { id: 1, jp: "猫", romaji: "Neko", pt: "Gato" },
+            { id: 2, jp: "犬", romaji: "Inu", pt: "Cachorro" },
+            { id: 3, jp: "水", romaji: "Mizu", pt: "Água" },
+            { id: 4, jp: "本", romaji: "Hon", pt: "Livro" },
+            { id: 5, jp: "食べる", romaji: "Taberu", pt: "Comer" },
+            { id: 6, jp: "学生", romaji: "Gakusei", pt: "Estudante" },
+            { id: 7, jp: "車", romaji: "Kuruma", pt: "Carro" },
+            { id: 8, jp: "愛", romaji: "Ai", pt: "Amor" }
+        ];
+
+        const game = {
+            activeCards: [], // Cartas atualmente no tabuleiro
+            firstCard: null,
+            lockBoard: false, // Impede cliques durante animações
+            matchesFound: 0,
+            totalPairs: 0,
+            startTime: null,
+            timerInterval: null,
+            errors: 0,
+
+            // Inicializa o jogo
+            init: function() {
+                this.resetState();
+                const board = document.getElementById('game-board');
+                board.innerHTML = '';
+                
+                // Pega 6 pares aleatórios para o round (para não encher demais a tela no mobile)
+                const shuffledVocab = [...vocabularyData].sort(() => 0.5 - Math.random()).slice(0, 6);
+                this.totalPairs = shuffledVocab.length;
+                
+                // Cria o array de cartas (uma para JP, uma para PT)
+                let cardsList = [];
+                shuffledVocab.forEach(item => {
+                    // Carta Japonês
+                    cardsList.push({
+                        id: item.id,
+                        type: 'jp',
+                        mainText: item.jp,
+                        subText: item.romaji,
+                        matchId: item.id
+                    });
+                    // Carta Português
+                    cardsList.push({
+                        id: item.id,
+                        type: 'pt',
+                        mainText: item.pt,
+                        subText: null, // Sem subtexto para PT ou poderia ser a classe gramatical
+                        matchId: item.id
+                    });
+                });
+
+                // Embaralha as cartas
+                cardsList.sort(() => 0.5 - Math.random());
+
+                // Renderiza no DOM
+                cardsList.forEach(cardData => {
+                    const cardEl = document.createElement('div');
+                    cardEl.classList.add('card');
+                    cardEl.dataset.matchId = cardData.matchId;
+                    
+                    // Conteúdo HTML da carta
+                    let html = `<div class="main-text">${cardData.mainText}</div>`;
+                    if (cardData.subText) {
+                        html += `<div class="sub-text">${cardData.subText}</div>`;
+                    }
+                    
+                    cardEl.innerHTML = html;
+                    cardEl.addEventListener('click', () => this.handleCardClick(cardEl));
+                    board.appendChild(cardEl);
+                });
+
+                // UI Updates
+                document.getElementById('pairs-left').textContent = this.totalPairs;
+                document.getElementById('victory-modal').style.display = 'none';
+                this.startTimer();
+                this.updateProgress();
+            },
+
+            handleCardClick: function(card) {
+                // Lógica de guarda
+                if (this.lockBoard) return;
+                if (card.classList.contains('matched')) return;
+
+                // Se clicou na mesma carta já selecionada -> Deselecionar
+                if (card === this.firstCard) {
+                    card.classList.remove('selected');
+                    this.firstCard = null;
+                    return;
+                }
+
+                // Seleciona a carta visualmente
+                card.classList.add('selected');
+
+                // É a primeira ou a segunda carta?
+                if (!this.firstCard) {
+                    this.firstCard = card;
+                    return;
+                }
+
+                // É a segunda carta, verificar match
+                this.checkForMatch(this.firstCard, card);
+            },
+
+            checkForMatch: function(card1, card2) {
+                const isMatch = card1.dataset.matchId === card2.dataset.matchId;
+
+                if (isMatch) {
+                    this.disableCards(card1, card2);
+                } else {
+                    this.unflipCards(card1, card2);
+                }
+            },
+
+            disableCards: function(card1, card2) {
+                this.lockBoard = true; // Breve pausa visual
+                
+                setTimeout(() => {
+                    card1.classList.remove('selected');
+                    card2.classList.remove('selected');
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    
+                    // Som de sucesso (Visual: a carta fica verde)
+                    this.matchesFound++;
+                    this.updateProgress();
+                    this.firstCard = null;
+                    this.lockBoard = false;
+
+                    // Checa vitória
+                    if (this.matchesFound === this.totalPairs) {
+                        this.endGame();
+                    }
+                }, 200);
+            },
+
+            unflipCards: function(card1, card2) {
+                this.lockBoard = true;
+                this.errors++;
+                
+                // Adiciona classe de erro para tremer e ficar vermelho
+                card1.classList.add('error');
+                card2.classList.add('error');
+
+                setTimeout(() => {
+                    card1.classList.remove('selected', 'error');
+                    card2.classList.remove('selected', 'error');
+                    this.firstCard = null;
+                    this.lockBoard = false;
+                }, 800);
+            },
+
+            startTimer: function() {
+                clearInterval(this.timerInterval);
+                this.startTime = Date.now();
+                this.timerInterval = setInterval(() => {
+                    const delta = Date.now() - this.startTime;
+                    const seconds = Math.floor(delta / 1000);
+                    const mm = String(Math.floor(seconds / 60)).padStart(2, '0');
+                    const ss = String(seconds % 60).padStart(2, '0');
+                    document.getElementById('timer').innerText = `${mm}:${ss}`;
+                }, 1000);
+            },
+
+            stopTimer: function() {
+                clearInterval(this.timerInterval);
+            },
+
+            updateProgress: function() {
+                const percentage = (this.matchesFound / this.totalPairs) * 100;
+                document.getElementById('progress').style.width = `${percentage}%`;
+                document.getElementById('pairs-left').textContent = this.totalPairs - this.matchesFound;
+            },
+
+            endGame: function() {
+                this.stopTimer();
+                setTimeout(() => {
+                    document.getElementById('final-time').innerText = document.getElementById('timer').innerText;
+                    document.getElementById('final-errors').innerText = this.errors;
+                    document.getElementById('victory-modal').style.display = 'flex';
+                    this.triggerConfetti();
+                }, 600);
+            },
+
+            resetState: function() {
+                this.matchesFound = 0;
+                this.errors = 0;
+                this.firstCard = null;
+                this.lockBoard = false;
+                this.stopTimer();
+                document.getElementById('timer').innerText = "00:00";
+                document.getElementById('progress').style.width = "0%";
+            },
+
+            triggerConfetti: function() {
+                // Simulação simples de confete usando emojis caindo
+                const colors = ['#58cc02', '#1cb0f6', '#ff4b4b', '#ffc800'];
+                const modal = document.querySelector('.modal-overlay');
+                
+                for(let i=0; i<30; i++) {
+                    const conf = document.createElement('div');
+                    conf.style.position = 'absolute';
+                    conf.style.left = Math.random() * 100 + '%';
+                    conf.style.top = '-10px';
+                    conf.style.width = '10px';
+                    conf.style.height = '10px';
+                    conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    conf.style.borderRadius = '50%';
+                    conf.style.transition = `top ${1 + Math.random()}s ease-in, opacity 1s ease`;
+                    modal.appendChild(conf);
+
+                    setTimeout(() => {
+                        conf.style.top = '100%';
+                        conf.style.opacity = '0';
+                    }, 100);
+
+                    setTimeout(() => conf.remove(), 2000);
+                }
+            }
+        };
+
+        // Iniciar jogo ao carregar
+        window.onload = () => game.init();
+
+    </script>
+</body>
+</html>

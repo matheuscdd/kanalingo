@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efeito Shiny CSS Puro</title>
+    <style>
+        /* Reset básico e centralização */
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        /* O CONTAINER DO CARTÃO */
+        .card {
+            /* Tamanho do cartão */
+            width: 240px;
+            height: 320px;
+            
+            /* Cor base (Amarelo Ouro) */
+            background-color: #ffd700;
+            
+            /* O segredo do brilho diagonal:
+               Sobrepomos um gradiente transparente por cima da cor amarela.
+               Os ângulos (120deg) criam a diagonal.
+               Os valores percentuais definem a largura das faixas.
+            */
+            background-image: linear-gradient(
+                120deg,
+                rgba(255, 255, 255, 0) 30%,       /* Início transparente */
+                rgba(255, 255, 255, 0.25) 30%,    /* Começa a faixa de luz */
+                rgba(255, 255, 255, 0.25) 50%,    /* Termina a faixa de luz */
+                rgba(255, 255, 255, 0) 50%,       /* Volta a ser transparente */
+                rgba(255, 255, 255, 0) 100%
+            );
+
+            /* Arredondamento das bordas */
+            border-radius: 30px;
+            
+            /* Sombra para dar profundidade (estilo material design) */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            
+            /* Necessário para posicionar os brilhos (diamantes) */
+            position: relative;
+            
+            /* Garante que nada saia de dentro das bordas arredondadas */
+            overflow: hidden;
+
+            /* Transição suave se você quiser animar no hover */
+            transition: transform 0.3s ease;
+        }
+
+        /* Efeito opcional: Levantar ao passar o mouse */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(255, 215, 0, 0.4);
+        }
+
+        /* OS DIAMANTES (BRILHOS) */
+        /* Usamos ::before e ::after para não sujar o HTML com divs extras */
+        
+        .card::before,
+        .card::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: rgba(255, 255, 255, 0.6); /* Branco semitransparente */
+            transform: rotate(45deg); /* Rotaciona o quadrado para virar losango */
+            border-radius: 4px; /* Pontas levemente arredondadas */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* "Glow" ao redor */
+        }
+
+        /* Posicionamento do brilho superior esquerdo */
+        .card::before {
+            top: 40px;
+            left: 40px;
+        }
+
+        /* Posicionamento do brilho inferior direito */
+        .card::after {
+            bottom: 80px;
+            right: 40px;
+            width: 20px;  /* Um pouco menor */
+            height: 20px;
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Apenas uma div é necessária -->
+    <div class="card"></div>
+
+</body>
+</html>
