@@ -20,7 +20,7 @@ function startServiceWorker() {
         return;
     }
 
-    const path = getInternalPath("/src/scripts/sw.js");
+    const path = getInternalPath("/sw.js");
     navigator.serviceWorker.getRegistration(path).then((registration) => {
         if (registration) return;
         navigator.serviceWorker

@@ -54,22 +54,32 @@ const audioCache = Object.seal({
     effects: {},
 });
 
-export function preloadAudios() {
-    alphabet.forEach(({ definition }) => {
-        const audio = new Audio(
-            `../../assets/audios/letters/${definition}.mp3`,
-        );
-        audio.preload = "auto";
-        audio.load();
-        audioCache.letters[definition] = audio;
-    });
+async function loadAudioAsBlob(url) {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new Audio(URL.createObjectURL(blob));
+}
 
-    Object.values(statusRef).forEach((key) => {
-        const audio = new Audio(`../../assets/audios/effects/${key}.mp3`);
-        audio.preload = "auto";
-        audio.load();
-        audioCache.effects[key] = audio;
-    });
+export async function preloadAudios() {
+    for (const { definition } of alphabet) {
+        const url = `../../assets/audios/letters/${definition}.mp3`;
+        
+        try {
+            audioCache.letters[definition] = await loadAudioAsBlob(url);
+        } catch (error) {
+            console.error(`Erro ao carregar o áudio: ${url}`, error);
+        }
+    }
+
+    for (const key in statusRef) {
+        const url = `../../assets/audios/effects/${key}.mp3`;
+        
+        try {
+            audioCache.effects[key] = await loadAudioAsBlob(url);
+        } catch (error) {
+            console.error(`Erro ao carregar o áudio: ${url}`, error);
+        }
+    }
 }
 
 export async function updateScoreLocal(key, char, amount) {

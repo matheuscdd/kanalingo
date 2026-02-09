@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "format": "npx prettier --write src"
+    "format": "npx prettier --write src",
+    "cache": "node createCache.js"
   },
   "devDependencies": {
     "prettier": "^3.8.1"
