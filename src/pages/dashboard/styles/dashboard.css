@@ -1,5 +1,5 @@
 body {
-    background-color: #FFF;
+    background-color: #fff;
     color: var(--text-color);
     display: flex;
     flex-direction: column;
@@ -247,7 +247,7 @@ input[type="text"]:focus {
     box-shadow: 0 4px 0 var(--light-gray);
     user-select: none;
     transition: 0.2s;
-    background-color: #FFF;
+    background-color: #fff;
 }
 
 .card-finished {
@@ -375,7 +375,7 @@ input[type="text"]:focus {
 }
 
 .level-card {
-    background-color: #FFF;
+    background-color: #fff;
     display: flex;
     align-items: center;
     padding: 12px 16px;
@@ -803,7 +803,7 @@ svg.fa-custom-icon {
     display: flex;
     align-items: flex-end;
     justify-content: left;
-    background-color: #FFF;
+    background-color: #fff;
 }
 
 .visualizer-target-drawing-container {
@@ -1110,5 +1110,5 @@ svg.fa-custom-icon {
 }
 
 #user-input {
-    background-color: #FFF;
+    background-color: #fff;
 }

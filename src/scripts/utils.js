@@ -115,7 +115,7 @@ export async function removeLoadingScreen() {
     document.querySelector(".general-loading-screen")?.remove();
 }
 
-export function insertLoadingScreen() {
+export async function insertLoadingScreen() {
     if (document.querySelector(".general-loading-screen")) return;
     const loadingScreen = document.createElement("div");
     loadingScreen.classList.add("general-loading-screen");
@@ -129,6 +129,7 @@ export function insertLoadingScreen() {
     `;
     document.body.append(loadingScreen);
     loadingStatus.id = setInterval(updateLoadingName, 500);
+    await sleep(100);
     document.body.classList.remove("onloading");
 }
 
