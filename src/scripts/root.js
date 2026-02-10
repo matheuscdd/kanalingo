@@ -15,6 +15,8 @@ function initEvents() {
 }
 
 function startServiceWorker() {
+    if (globalThis.location.hostname === "localhost") return;
+
     if (!("serviceWorker" in navigator)) {
         console.error("Cannot add worker");
         return;

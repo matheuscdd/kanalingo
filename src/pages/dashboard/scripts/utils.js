@@ -63,7 +63,7 @@ async function loadAudioAsBlob(url) {
 export async function preloadAudios() {
     for (const { definition } of alphabet) {
         const url = `../../assets/audios/letters/${definition}.mp3`;
-        
+
         try {
             audioCache.letters[definition] = await loadAudioAsBlob(url);
         } catch (error) {
@@ -73,7 +73,7 @@ export async function preloadAudios() {
 
     for (const key in statusRef) {
         const url = `../../assets/audios/effects/${key}.mp3`;
-        
+
         try {
             audioCache.effects[key] = await loadAudioAsBlob(url);
         } catch (error) {
