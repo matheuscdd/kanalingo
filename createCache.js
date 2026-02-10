@@ -3,10 +3,12 @@ const path = require('node:path');
 
 // --- CONFIGURAÇÕES ---
 const FOLDER_TO_CACHE = './src'; // Pasta onde estão seus arquivos (ajuste se for '.' ou 'public')
-const SW_FILE_PATH = './sw.js';  // Onde está o seu Service Worker
+const SW_FILE_PATH = './sw.js'; 
+const VERSION_FILE_PATH = './version.json';  // Onde está o seu Service Worker
 const IGNORE_LIST = [            // Arquivos para IGNORAR (não colocar no cache)
     '.DS_Store', 
     'sw.js', 
+    'version.json',
     'update-sw.js', 
     '.git',
     'package.json',
@@ -77,6 +79,8 @@ try {
 
     // 6. Salva o arquivo
     fs.writeFileSync(SW_FILE_PATH, newSwContent, 'utf-8');
+
+    fs.writeFileSync(VERSION_FILE_PATH, `{"version": "${Date.now}"}`, 'utf-8');
 
     console.log(`🎉 Sucesso! O arquivo ${SW_FILE_PATH} foi atualizado.`);
 

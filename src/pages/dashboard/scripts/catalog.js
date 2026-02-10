@@ -191,24 +191,20 @@ function calcListeningProgress(characters) {
             scores.listening.max,
     }));
 
-    const syllableGroupsWithHits = Object.groupBy(
+    const rimeGroupsWithHits = Object.groupBy(
         charactersWithHits,
-        (x) => x.syllableGroup,
+        (x) => x.rimeGroup,
     );
-    const syllableGroupsCompletedValues = Object.keys(
-        syllableGroupsWithHits,
-    ).reduce(
+    const rimeGroupsCompletedValues = Object.keys(rimeGroupsWithHits).reduce(
         (x, y) => ({
             ...x,
-            [y]: Math.min(...syllableGroupsWithHits[y].map((y) => y.hit)),
+            [y]: Math.min(...rimeGroupsWithHits[y].map((y) => y.hit)),
         }),
         {},
     );
 
-    const total = Object.keys(syllableGroupsCompletedValues).length;
-    const totalOrdered = orderArray(
-        Object.values(syllableGroupsCompletedValues),
-    );
+    const total = Object.keys(rimeGroupsCompletedValues).length;
+    const totalOrdered = orderArray(Object.values(rimeGroupsCompletedValues));
     const penultimateValue = totalOrdered.find((x) => x > totalOrdered[0]);
     if (!penultimateValue) {
         return 0;

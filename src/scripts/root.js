@@ -15,12 +15,18 @@ function initEvents() {
 }
 
 function startServiceWorker() {
+    return;
     if (globalThis.location.hostname === "localhost") return;
 
     if (!("serviceWorker" in navigator)) {
         console.error("Cannot add worker");
         return;
     }
+
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+        alert("Nova versão disponível, recarregue 😺");
+    });
+
 
     const path = getInternalPath("/sw.js");
     navigator.serviceWorker.getRegistration(path).then((registration) => {

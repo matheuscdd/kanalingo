@@ -5,7 +5,7 @@ import {
     getCurrentSystem,
     playSoundEffect,
     playLetterSound,
-    selectNextCharsBySyllableGroups,
+    selectNextCharsByRimeGroups,
     statusRef,
     updateScoreDatabase,
     updateScoreLocal,
@@ -30,9 +30,7 @@ export function renderListening() {
 function startNewRound() {
     gameState.rightRound = [];
     gameState.currentIndex = 0;
-    gameState.currentRound = selectNextCharsBySyllableGroups(
-        methodsKeys.listening,
-    );
+    gameState.currentRound = selectNextCharsByRimeGroups(methodsKeys.listening);
     gameState.currentSystem = getCurrentSystem();
     maxCharsRound = gameState.currentRound.length;
     currentShuffle = shuffleArray(gameState.currentRound);

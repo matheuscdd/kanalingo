@@ -212,18 +212,14 @@ export function selectNextCharsBySystem(key, maxCharsRound) {
     return handleChars.slice(0, maxCharsRound);
 }
 
-export function selectNextCharsBySyllableGroups(key) {
+export function selectNextCharsByRimeGroups(key) {
     const structure = Math.random() > 0.5 ? hiragana : katakana;
     const rawChars = selectNextChars(key, kanas.length);
     const terms = structure.map((x) => x.term);
     const example = rawChars.find((x) => terms.includes(x));
 
-    const syllableGroup = structure.find(
-        (x) => x.term === example,
-    ).syllableGroup;
-    const handleChars = structure.filter(
-        (x) => x.syllableGroup === syllableGroup,
-    );
+    const rimeGroup = structure.find((x) => x.term === example).rimeGroup;
+    const handleChars = structure.filter((x) => x.rimeGroup === rimeGroup);
     return shuffleArray(handleChars.map((x) => x.term));
 }
 

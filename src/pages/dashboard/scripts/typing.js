@@ -132,8 +132,8 @@ async function checkAnswer() {
             statusRef.correct,
             "Continuar",
             !gameState.lastWrong ? "Perfeito" : "Excelente",
-            "Correto",
-            charJA,
+            "Correto!",
+            charRO,
         );
         updateScoreLocal(methodsKeys.typing, charJA, scores.typing.max);
         gameState.lastWrong = null;
