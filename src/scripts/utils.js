@@ -95,13 +95,9 @@ export function redirectIfLogged() {
         removeLoadingScreen();
 
         if (user && isInPublicRoutes) {
-            globalThis.location.href = getInternalPath(
-                "/src/pages/dashboard/dashboard.html",
-            );
+            globalThis.location.href = "/src/pages/dashboard/dashboard.html";
         } else if (!user && isInPrivateRoutes) {
-            globalThis.location.href = getInternalPath(
-                "/src/pages/landing/landing.html",
-            );
+            globalThis.location.href = "/src/pages/landing/landing.html";
         }
     });
 }
@@ -122,7 +118,7 @@ export async function insertLoadingScreen() {
     loadingScreen.innerHTML = `
         <div>
             <div class="loading-general-container-img">
-                <img class="loading-general-img" src="${getInternalPath("/src/assets/images/loading.png")}"/>
+                <img class="loading-general-img" src="${"/src/assets/images/loading.png"}"/>
             </div>
             <div class="general-loading-title kana-font"><span>${shuffleArray(loadingLanguages)[0]}</span>...</div>
         </div>
@@ -161,9 +157,4 @@ export function defaultObj(defaultValue) {
             return Reflect.get(...arguments);
         },
     });
-}
-
-export function getInternalPath(path) {
-    const isProduction = globalThis.location.href.includes("github");
-    return (isProduction ? "/kanalingo" : "") + path;
 }

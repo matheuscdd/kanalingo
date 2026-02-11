@@ -5,12 +5,7 @@ import {
     scores,
 } from "../../../database/letters.js";
 import { levels } from "../../../database/levels.js";
-import {
-    getInternalPath,
-    getSumFromValues,
-    orderArray,
-    sleep,
-} from "../../../scripts/utils.js";
+import { getSumFromValues, orderArray, sleep } from "../../../scripts/utils.js";
 import { gameState, getTotalScore, playLetterSound, screens } from "./utils.js";
 
 const container = document.getElementById("catalog-container");
@@ -315,9 +310,7 @@ function getDefaultsHanziWriter() {
         showCharacter: false,
         strokeFadeDuration: 0,
         charDataLoader: (char, onLoad, onError) => {
-            fetch(
-                getInternalPath(`/src/libs/js/hanzi-writer/data/${char}.json`),
-            )
+            fetch(`/src/libs/js/hanzi-writer/data/${char}.json`)
                 .then((res) => res.json())
                 .then(onLoad)
                 .catch(onError);

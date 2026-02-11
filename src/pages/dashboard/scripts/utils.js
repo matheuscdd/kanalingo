@@ -170,14 +170,18 @@ export async function loadProgress() {
 }
 
 export function playSoundEffect(sound) {
-    const audio = audioCache.effects[sound];
+    const audio =
+        audioCache.effects[sound] ??
+        new Audio(`../../assets/audios/effects/${definition}.mp3`);
     audio.currentTime = 0;
     audio.play();
 }
 
 export function playLetterSound(currentJA) {
     const currentRO = alphabet.find((x) => x.term === currentJA).definition;
-    const audio = audioCache.letters[currentRO];
+    const audio =
+        audioCache.letters[currentRO] ??
+        new Audio(`../../assets/audios/effects/${currentRO}.mp3`);
     audio.currentTime = 0;
     audio.play();
 }

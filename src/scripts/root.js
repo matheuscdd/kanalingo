@@ -1,5 +1,4 @@
 import {
-    getInternalPath,
     insertLoadingScreen,
     redirectIfLogged,
     removeLoadingScreen,
@@ -27,8 +26,7 @@ function startServiceWorker() {
         alert("Nova versão disponível, recarregue 😺");
     });
 
-
-    const path = getInternalPath("/sw.js");
+    const path = "/sw.js";
     navigator.serviceWorker.getRegistration(path).then((registration) => {
         if (registration) return;
         navigator.serviceWorker

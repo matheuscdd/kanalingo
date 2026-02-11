@@ -1,5 +1,5 @@
 import { alphabet, methodsKeys, scores } from "../../../database/letters.js";
-import { sleep, getInternalPath } from "../../../scripts/utils.js";
+import { sleep } from "../../../scripts/utils.js";
 import {
     gameState,
     getCurrentSystem,
@@ -109,8 +109,6 @@ async function checkAnswer() {
 
 async function startEventsDraw(currentJA) {
     results.validations = new Array(currentJA.length).fill(false);
-    main.innerHTML = "";
-    aux.innerHTML = "";
     handleYoon(currentJA);
     await drawMain(currentJA[0]);
     if (currentJA.length === 1) return;
@@ -127,8 +125,8 @@ function showModel() {
 function setWriterAux(currentJA) {
     writers.aux = HanziWriter.create(aux, currentJA, {
         ...getDefaultsHanziWriter(),
-        width: 150,
-        height: 150,
+        width: getDimensions().aux,
+        height: getDimensions().aux,
     });
 }
 
@@ -190,6 +188,7 @@ function writerAuxValidation() {
 }
 
 async function drawMain(currentJA) {
+    main.innerHTML = "";
     writers.main?.hideCharacter();
     writers.aux?.hideCharacter();
     setWriterMain(currentJA);
@@ -200,6 +199,7 @@ async function drawMain(currentJA) {
 }
 
 async function drawAux(currentJA) {
+    aux.innerHTML = "";
     setWriterAux(currentJA);
     if (checkboxStroke.checked) {
         await writers.aux.animateCharacter({
@@ -225,9 +225,7 @@ function getDefaultsHanziWriter() {
         delayBetweenStrokes: 200,
         strokeFadeDuration: 0,
         charDataLoader: (char, onLoad, onError) => {
-            fetch(
-                getInternalPath(`/src/libs/js/hanzi-writer/data/${char}.json`),
-            )
+            fetch(`/src/libs/js/hanzi-writer/data/${char}.json`)
                 .then((res) => res.json())
                 .then(onLoad)
                 .catch(onError);
@@ -272,13 +270,13 @@ function getDimensions() {
     if (max >= 600 && !isComboChar) {
         max -= 200;
     }
-    const result = { main: max, aux: null };
+    const dimensions = { main: max, aux: null };
     if (isComboChar) {
-        result.main = max * 0.66;
-        result.aux = max - result.main;
+        dimensions.main = max * 0.66;
+        dimensions.aux = max - dimensions.main;
     }
 
-    return result;
+    return dimensions;
 }
 
 let ticking = false;

@@ -1,5 +1,5 @@
 import { authFirebase } from "../../../scripts/config.js";
-import { getInternalPath, sleep } from "../../../scripts/utils.js";
+import { sleep } from "../../../scripts/utils.js";
 import { initEventsCatalog, renderCatalog } from "./catalog.js";
 import { renderCategories } from "./categories.js";
 import { initEventsDrawing, renderDrawing } from "./drawing.js";
@@ -23,7 +23,7 @@ const catalogScreen = document.getElementById("catalog-screen");
 const categoriesScreen = document.getElementById("categories-screen");
 const methodsScreen = document.getElementById("methods-screen");
 const btnLearn = document.getElementById("toggle-learn");
-const btnDash = document.getElementById("toggle-progress");
+const btnAlphabet = document.getElementById("toggle-alphabet");
 const btnCategories = document.getElementById("toggle-categories");
 const allScreens = Array.from(document.querySelectorAll(".screen"));
 const allNavBtns = Array.from(document.querySelectorAll(".btn-nav"));
@@ -41,7 +41,7 @@ function init() {
 
     btnLogout.onclick = logout;
     btnLearn.onclick = () => showScreen("methods");
-    btnDash.onclick = () => showScreen("catalog");
+    btnAlphabet.onclick = () => showScreen("catalog");
     btnCategories.onclick = () => showScreen("categories");
     btnsMethods.forEach(
         (btn) => (btn.onclick = () => showScreen(btn.dataset.screen)),
@@ -75,7 +75,7 @@ async function showScreen(currentScreen) {
         typingScreen.classList.remove("hidden");
         renderTyping();
     } else if (currentScreen === screens.catalog) {
-        btnDash.classList.add("active");
+        btnAlphabet.classList.add("active");
         catalogScreen.classList.remove("hidden");
         renderCatalog();
     } else if (currentScreen === screens.categories) {
@@ -89,9 +89,7 @@ async function logout() {
     try {
         await signOut(authFirebase);
         localStorage.clear();
-        globalThis.location.href = getInternalPath(
-            "/src/pages/landing/landing.html",
-        );
+        globalThis.location.href = "/src/pages/landing/landing.html";
     } catch (error) {
         console.error(error);
     }
