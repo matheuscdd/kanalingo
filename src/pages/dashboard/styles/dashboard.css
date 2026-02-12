@@ -457,7 +457,8 @@ input[type="text"]:focus {
 
 .method-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(7.8rem, 1fr));
+    grid-template-rows: 145px;
     gap: 30px;
     margin-top: 15px;
 }
@@ -481,7 +482,8 @@ svg.fa-custom-icon {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     border: 2px solid var(--light-gray);
     border-bottom: 6px solid var(--duo-gray);
-    min-width: 7rem;
+    min-width: 7.8rem;
+    min-height: 145px;
     text-align: center;
     cursor: pointer;
     transition: 0.2s;
@@ -666,7 +668,7 @@ svg.fa-custom-icon {
     background-color: var(--polar);
     padding: 1rem;
     border-radius: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
     border-bottom: 8px solid var(--duo-gray);
     width: 250px;
     text-align: center;
@@ -767,7 +769,8 @@ svg.fa-custom-icon {
     transition: all 0.3s;
     font-size: 20px;
     border-style: solid;
-    border-width: 0px 0px 4px 0px;
+    border-width: 2px;
+    box-shadow: 0 4px 0; 
     width: max-content;
 }
 
@@ -784,20 +787,18 @@ svg.fa-custom-icon {
 
 .btn-duo:active:not(:disabled) {
     transform: translateY(4px);
-    border-bottom-width: 0px;
-    margin-top: 4px;
+    box-shadow: none;
 }
 
 .btn-blue {
     background-color: var(--macaw);
-    border-color: var(--humpback);
+    border-color: var(--macaw);
     color: white;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
+    box-shadow: 0 4px 0 var(--narwhal);
 }
 
 .btn-blue:hover {
+    border-color: var(--moon-jelly);
     background-color: var(--moon-jelly);
 }
 
@@ -870,12 +871,12 @@ svg.fa-custom-icon {
 
 .modal-catalog-action-btn:nth-child(1) {
     background-color: var(--macaw);
-    border-bottom: 5px solid var(--narwhal);
+    box-shadow: 0 4px 0 var(--humpback);
 }
 
 .modal-catalog-action-btn:nth-child(2) {
     background-color: var(--hare);
-    border-bottom: 5px solid var(--wolf);
+    box-shadow: 0 4px 0 var(--wolf);
 }
 
 .modal-catalog-action-btn:hover {
@@ -883,8 +884,8 @@ svg.fa-custom-icon {
 }
 
 .modal-catalog-action-btn:active {
-    transform: translateY(3px);
-    border-bottom-width: 2px;
+    transform: translateY(4px);
+    box-shadow: none;
 }
 
 .modal-catalog-header {
@@ -935,15 +936,14 @@ svg.fa-custom-icon {
 
 .btn-green {
     background-color: #58cc02;
-    border-color: #46a302;
+    border-color: #58cc02;
     color: white;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
+    box-shadow: 0 4px 0 #46a302;
 }
 
 .btn-green:hover:not(:disabled) {
     background-color: #61e002;
+    border-color: #61e002;
 }
 
 .verify-typing-container {
@@ -1041,7 +1041,7 @@ svg.fa-custom-icon {
     width: 40px;
     background-color: white;
     border: 2px solid var(--duo-gray);
-    border-bottom-width: 4px;
+    box-shadow: 0 4px 0 var(--duo-gray);
     border-radius: 12px;
     transition: all var(--transition-speed) ease;
     display: flex;
@@ -1067,13 +1067,14 @@ svg.fa-custom-icon {
 .duo-checkbox-label:hover .duo-checkbox-custom {
     background-color: #f0f0f0;
     border-color: var(--hare);
+    box-shadow: 0 4px 0 var(--hare);
 }
 
 /* Estado Marcado (Checked) */
 .duo-checkbox-input:checked ~ .duo-checkbox-custom {
     background-color: var(--secondary-color);
     border-color: var(--humpback);
-    border-bottom-width: 4px;
+    box-shadow: 0 4px 0 var(--humpback);
 }
 
 .duo-checkbox-input:checked ~ .duo-checkbox-custom svg {
@@ -1088,7 +1089,7 @@ svg.fa-custom-icon {
 /* Efeito de Clique (Press) */
 .duo-checkbox-label:active .duo-checkbox-custom {
     transform: translateY(2px);
-    border-bottom-width: 2px;
+    box-shadow: none;
 }
 
 /* Foco para acessibilidade */

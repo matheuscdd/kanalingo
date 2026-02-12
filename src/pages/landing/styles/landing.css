@@ -217,23 +217,21 @@ header.shadow-md {
     transition: all 0.1s;
     width: 100%;
     border-style: solid;
-    border-width: 0px 0px 4px 0px; /* Top Right Bottom Left */
+    border-width: 2px;
 }
 
 .btn-duo:active {
     transform: translateY(4px);
-    border-bottom-width: 0px;
-    margin-top: 4px;
+    box-shadow: none;
 }
 
 .btn-green {
     background-color: var(--duo-green);
-    border-color: var(--duo-green-dark);
+    border-color: var(--duo-green);
     color: white;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
+    box-shadow: 0 4px 0 var(--duo-green-dark);
 }
+
 .btn-green:hover {
     background-color: var(--duo-green-hover);
 }
@@ -241,7 +239,7 @@ header.shadow-md {
 .btn-outline {
     background-color: white;
     border: 2px solid var(--duo-gray);
-    border-bottom: 4px solid var(--duo-gray);
+    box-shadow: 0 4px 0 var(--duo-gray);
     color: var(--duo-blue);
 }
 .btn-outline:hover {
@@ -444,15 +442,17 @@ header.shadow-md {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-bottom-width: 4px;
     border-style: solid;
+    border-width: 2px;
 }
 
 .btn-store-apple {
     background-color: white;
     color: var(--duo-text);
     border-color: #d1d5db;
+    box-shadow: 0 4px 0 #d1d5db;
 }
+
 .btn-store-apple:hover {
     background-color: #f3f4f6;
 }
@@ -461,15 +461,15 @@ header.shadow-md {
     background-color: var(--duo-text);
     color: white;
     border-color: #111827;
+    box-shadow: 0 4px 0 #111827;
 }
 .btn-store-google:hover {
     background-color: #374151;
 }
 
 .btn-store:active {
-    border-bottom-width: 0;
     transform: translateY(4px);
-    margin-top: 4px;
+    box-shadow: none;
 }
 
 /* --- Main Footer --- */

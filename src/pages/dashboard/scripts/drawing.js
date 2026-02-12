@@ -108,6 +108,8 @@ async function checkAnswer() {
 }
 
 async function startEventsDraw(currentJA) {
+    main.innerHTML = "";
+    aux.innerHTML = "";
     results.validations = new Array(currentJA.length).fill(false);
     handleYoon(currentJA);
     await drawMain(currentJA[0]);

@@ -183,7 +183,7 @@ input.error {
 
 .btn-submit:active {
     transform: translateY(4px); /* Efeito de pressionar */
-    box-shadow: 0px 0px 0px var(--duo-green-shadow);
+    box-shadow: none;
 }
 
 /* Separador ou Social */
