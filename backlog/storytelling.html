@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duolingo Stories Clone</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- CSS Reset & Base --- */
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #46a302;
+            --duo-gray: #e5e5e5;
+            --duo-text: #4b4b4b;
+            --duo-text-light: #777;
+            --duo-blue: #1cb0f6;
+            --duo-red: #ff4b4b;
+            --duo-bg: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Nunito', 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Layout Principal --- */
+        .app-container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        /* --- Header & Progress Bar --- */
+        header {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-btn {
+            color: #afafaf;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 10;
+        }
+        .close-btn:hover { color: var(--duo-text); }
+
+        .progress-container {
+            flex-grow: 1;
+            height: 16px;
+            background-color: var(--duo-gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--duo-green);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* --- Área da História (Scroll) --- */
+        #story-board {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            scroll-behavior: smooth;
+            padding-bottom: 120px; /* Espaço para o footer */
+        }
+
+        /* --- Componentes do Chat --- */
+        .story-row {
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.4s forwards;
+            align-items: flex-start;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            border: 2px solid var(--duo-gray);
+            background-color: #eee; /* Cor base caso a imagem demore */
+        }
+
+        /* Personagens (Cores de fundo mantidas, imagens removidas pois serão dinâmicas) */
+        .avatar.bea { background-color: #ffc928; }
+        .avatar.lin { background-color: #ce82ff; }
+        .avatar.narrator { display: none; } 
+
+        .bubble {
+            background: white;
+            border: 2px solid var(--duo-gray);
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 1.1rem;
+            color: var(--duo-text);
+            position: relative;
+            max-width: 80%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .speaker-icon {
+            color: var(--duo-blue);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+        .speaker-icon:hover { transform: scale(1.1); }
+        .speaker-icon.playing { animation: pulse 1s infinite; }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* --- Hover de Tradução (Estilo Bolha Branca) --- */
+        .hover-word {
+            border-bottom: 2px dotted #afafaf;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hover-word:hover {
+            color: var(--duo-blue);
+            border-bottom-color: var(--duo-blue);
+        }
+
+        /* O corpo do Tooltip (Bolha) */
+        .hover-word::after {
+            content: attr(data-trans);
+            position: absolute;
+            bottom: 100%; /* Posição base */
+            left: 50%;
+            transform: translate(-50%, -15px); /* Centraliza e sobe */
+            background: white;
+            color: #4b4b4b; /* Cor do texto escura */
+            padding: 10px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        /* A seta do Tooltip (Quadrado rotacionado para ter borda) */
+        .hover-word::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-bottom: 2px solid #e5e5e5;
+            border-right: 2px solid #e5e5e5;
+            transform: translate(-50%, -10px) rotate(45deg); /* Posiciona na parte de baixo do balão */
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 101; /* Fica acima da sombra da bolha */
+        }
+
+        /* Animação ao passar o mouse */
+        .hover-word:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -20px); /* Sobe um pouco */
+        }
+
+        .hover-word:hover::before {
+            opacity: 1;
+            transform: translate(-50%, -15px) rotate(45deg); /* Acompanha o balão */
+        }
+
+
+        /* --- Exercícios --- */
+        .exercise-container {
+            background: #fdfdfd;
+            border: 2px solid var(--duo-gray);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .exercise-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        /* Múltipla Escolha */
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 8px;
+            border: 2px solid var(--duo-gray);
+            border-radius: 12px;
+            background: white;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .option-btn:hover { background-color: #f7f7f7; }
+        .option-btn.selected { border-color: var(--duo-blue); background-color: #ddf4ff; color: var(--duo-blue); }
+        .option-btn.correct { border-color: var(--duo-green); background-color: #d7ffb8; color: var(--duo-green-dark); }
+        .option-btn.wrong { border-color: var(--duo-red); background-color: #ffdfe0; color: var(--duo-red); }
+
+        /* Tap Words (Organizar) */
+        .sentence-area {
+            min-height: 50px;
+            border-bottom: 2px solid var(--duo-gray);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .word-chip {
+            padding: 8px 16px;
+            border: 2px solid var(--duo-gray);
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 2px 0 var(--duo-gray);
+            user-select: none;
+        }
+        .word-chip:active { transform: translateY(2px); box-shadow: none; }
+        .word-chip.placeholder { background: #e5e5e5; color: transparent; border-color: transparent; box-shadow: none; pointer-events: none;}
+
+        /* --- Footer Controller --- */
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            background: white;
+            border-top: 2px solid var(--duo-gray);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .action-btn {
+            background-color: var(--duo-green);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 4px 0 var(--duo-green-dark);
+            transition: 0.1s;
+        }
+        .action-btn:active { transform: translateY(4px); box-shadow: none; }
+        .action-btn:disabled { background-color: var(--duo-gray); color: #afafaf; box-shadow: none; cursor: default; transform: none; }
+        
+        .action-btn.check { background-color: var(--duo-green); }
+        .action-btn.wrong { background-color: var(--duo-red); box-shadow: 0 4px 0 #b80000; }
+
+        /* Feedback Area */
+        .feedback-msg {
+            margin-right: auto;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: none;
+        }
+        .feedback-msg.correct { color: var(--duo-green); display: block;}
+        .feedback-msg.wrong { color: var(--duo-red); display: block; }
+
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <div class="close-btn"><i class="fas fa-times"></i></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </header>
+
+    <div id="story-board">
+        <!-- O conteúdo dinâmico entra aqui -->
+    </div>
+
+    <footer>
+        <div id="feedback-area" class="feedback-msg"></div>
+        <button id="continue-btn" class="action-btn">CONTINUAR</button>
+    </footer>
+</div>
+
+<script>
+    /* --- CONFIGURAÇÃO AVATAAARS --- */
+    // Opções para geração aleatória
+    const avatarOptions = {
+        topType: ['LongHairBigHair', 'ShortHairDreads01', 'LongHairBob', 'ShortHairShortFlat', 'LongHairStraight', 'ShortHairFrizzle', 'LongHairCurly'],
+        accessoriesType: ['Blank', 'Prescription02', 'Round', 'Sunglasses', 'Wayfarers'],
+        hairColor: ['Auburn', 'Black', 'Blonde', 'Brown', 'BrownDark', 'PastelPink', 'Red'],
+        clotheType: ['BlazerShirt', 'BlazerSweater', 'CollarSweater', 'GraphicShirt', 'Hoodie', 'Overall', 'ShirtCrewNeck'],
+        skinColor: ['Tanned', 'Yellow', 'Pale', 'Light', 'Brown', 'DarkBrown', 'Black']
+    };
+
+    function getRandomItem(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function generateRandomAvatarUrl() {
+        const params = [
+            `avatarStyle=Transparent`,
+            `topType=${getRandomItem(avatarOptions.topType)}`,
+            `accessoriesType=${getRandomItem(avatarOptions.accessoriesType)}`,
+            `hairColor=${getRandomItem(avatarOptions.hairColor)}`,
+            `facialHairType=Blank`,
+            `clotheType=${getRandomItem(avatarOptions.clotheType)}`,
+            `eyeType=Happy`,
+            `eyebrowType=Default`,
+            `mouthType=Smile`,
+            `skinColor=${getRandomItem(avatarOptions.skinColor)}`
+        ];
+        return `https://avataaars.io/?${params.join('&')}`;
+    }
+
+    // Armazena as URLs geradas para esta sessão
+    const characterAvatars = {
+        bea: '', // Será preenchido no init
+        lin: '',  // Será preenchido no init
+        narrator: '' // Não usado
+    };
+
+    /* --- ESTRUTURA DE DADOS MOCADA ---
+       A história será: "O Casaco Vermelho" (Simulada em Espanhol para falantes de Português)
+    */
+    const storyData = [
+        {
+            type: 'dialogue',
+            character: 'narrator',
+            text: 'En una tienda...',
+            translation: 'Em uma loja...',
+            audio: false
+        },
+        {
+            type: 'dialogue',
+            character: 'bea',
+            text: '¡Hola, Lin!',
+            translation: 'Olá, Lin!',
+            audio: true
+        },
+        {
+            type: 'dialogue',
+            character: 'lin',
+            text: '¡Hola, Bea!',
+            translation: 'Olá, Bea!',
+            audio: true
+        },
+        {
+            type: 'dialogue',
+            character: 'bea',
+            text: 'Yo necesito un abrigo nuevo.',
+            translation: 'Eu preciso de um casaco novo.',
+            audio: true
+        },
+        {
+            type: 'question',
+            question: 'O que Bea precisa?',
+            options: [
+                { text: 'Uma maçã', correct: false },
+                { text: 'Um casaco novo', correct: true },
+                { text: 'Um carro', correct: false }
+            ]
+        },
+        {
+            type: 'dialogue',
+            character: 'lin',
+            text: '¿Te gusta el abrigo rojo?',
+            translation: 'Você gosta do casaco vermelho?',
+            audio: true
+        },
+        {
+            type: 'gap-fill',
+            character: 'bea',
+            startText: 'No, yo quiero un abrigo',
+            endText: '.',
+            missingWord: 'azul',
+            options: ['azul', 'perro', 'mañana'],
+            translation: 'Não, eu quero um casaco azul.'
+        },
+        {
+            type: 'dialogue',
+            character: 'lin',
+            text: 'Ok, el abrigo azul es muy bonito.',
+            translation: 'Ok, o casaco azul é muito bonito.',
+            audio: true
+        },
+        {
+            type: 'arrange',
+            question: 'Toque no que você escutar',
+            audioText: 'El abrigo azul es barato', // Texto para o áudio
+            correctOrder: ['El', 'abrigo', 'azul', 'es', 'barato'],
+            distractors: ['caro', 'rojo'], // Palavras extras
+            translation: 'O casaco azul é barato'
+        }
+    ];
+
+    /* --- ESTADO DA APLICAÇÃO --- */
+    let currentIndex = -1;
+    let isWaitingForInteraction = false; // Se true, botão continuar fica bloqueado ou muda função
+    
+    // Elementos DOM
+    const storyBoard = document.getElementById('story-board');
+    const continueBtn = document.getElementById('continue-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const feedbackArea = document.getElementById('feedback-area');
+
+    /* --- INICIALIZAÇÃO --- */
+    document.addEventListener('DOMContentLoaded', () => {
+        // Gerar avatares aleatórios para esta sessão
+        characterAvatars.bea = generateRandomAvatarUrl();
+        characterAvatars.lin = generateRandomAvatarUrl();
+
+        updateProgress();
+        continueBtn.addEventListener('click', handleContinue);
+        // Primeiro clique inicia (necessário para áudio no Chrome)
+        renderNextItem(); 
+    });
+
+    /* --- LÓGICA DO CONTROLADOR --- */
+    function handleContinue() {
+        if (continueBtn.textContent === 'VERIFICAR') {
+            checkAnswer();
+        } else {
+            // Se estiver em estado de erro, reseta para continuar
+            resetFooter();
+            renderNextItem();
+        }
+    }
+
+    function renderNextItem() {
+        currentIndex++;
+        
+        if (currentIndex >= storyData.length) {
+            finishStory();
+            return;
+        }
+
+        const item = storyData[currentIndex];
+        updateProgress();
+
+        // Cria o elemento baseado no tipo
+        if (item.type === 'dialogue') {
+            createDialogueBubble(item);
+            playAudio(item.text, item.character);
+        } else if (item.type === 'question') {
+            createQuestion(item);
+            lockNavigation();
+        } else if (item.type === 'gap-fill') {
+            createGapFill(item);
+            lockNavigation();
+        } else if (item.type === 'arrange') {
+            createArrangeExercise(item);
+            lockNavigation();
+            playAudio(item.audioText, 'narrator');
+        }
+
+        scrollToBottom();
+    }
+
+    function lockNavigation() {
+        isWaitingForInteraction = true;
+        continueBtn.disabled = true;
+        continueBtn.textContent = 'VERIFICAR';
+    }
+
+    function unlockNavigationForCheck() {
+        continueBtn.disabled = false;
+        continueBtn.classList.add('check');
+    }
+
+    function resetFooter() {
+        continueBtn.textContent = 'CONTINUAR';
+        continueBtn.className = 'action-btn'; // remove classes check/wrong
+        continueBtn.disabled = false;
+        feedbackArea.className = 'feedback-msg';
+        feedbackArea.textContent = '';
+        isWaitingForInteraction = false;
+    }
+
+    /* --- RENDERIZADORES --- */
+
+    // Helper para criar avatar com imagem dinâmica
+    function createAvatarElement(character) {
+        const avatar = document.createElement('div');
+        avatar.className = `avatar ${character}`;
+        
+        // Aplica a imagem gerada se existir para o personagem
+        if (characterAvatars[character]) {
+            avatar.style.backgroundImage = `url('${characterAvatars[character]}')`;
+        }
+        
+        return avatar;
+    }
+
+    // 1. Renderiza Diálogo Simples
+    function createDialogueBubble(item) {
+        const row = document.createElement('div');
+        row.className = 'story-row';
+
+        // Avatar
+        if (item.character !== 'narrator') {
+            const avatar = createAvatarElement(item.character);
+            row.appendChild(avatar);
+        }
+
+        // Balão
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        
+        // Ícone de Som
+        if (item.audio) {
+            const speaker = document.createElement('i');
+            speaker.className = 'fas fa-volume-up speaker-icon';
+            speaker.onclick = () => playAudio(item.text, item.character);
+            bubble.appendChild(speaker);
+        }
+
+        // Texto com Hover
+        const textSpan = document.createElement('span');
+        // PASSANDO PERSONAGEM PARA O HOVER
+        textSpan.innerHTML = createHoverableText(item.text, item.translation, item.character);
+        bubble.appendChild(textSpan);
+
+        row.appendChild(bubble);
+        storyBoard.appendChild(row);
+    }
+
+    // 2. Renderiza Pergunta Múltipla Escolha
+    function createQuestion(item) {
+        const container = document.createElement('div');
+        container.className = 'exercise-container story-row';
+        container.id = `exercise-${currentIndex}`;
+        
+        const title = document.createElement('div');
+        title.className = 'exercise-title';
+        title.textContent = item.question;
+        container.appendChild(title);
+
+        item.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt.text;
+            btn.onclick = () => selectOption(btn, opt.correct, `exercise-${currentIndex}`);
+            container.appendChild(btn);
+        });
+
+        storyBoard.appendChild(container);
+    }
+
+    // 3. Renderiza Gap Fill (Completar frase)
+    function createGapFill(item) {
+        const row = document.createElement('div');
+        row.className = 'story-row';
+
+        // Avatar
+        const avatar = createAvatarElement(item.character);
+        row.appendChild(avatar);
+
+        // Balão container
+        const container = document.createElement('div');
+        container.className = 'exercise-container';
+        container.style.marginTop = '0'; // Alinha com avatar
+        container.id = `exercise-${currentIndex}`;
+
+        // Frase incompleta
+        const sentence = document.createElement('div');
+        sentence.style.marginBottom = '15px';
+        sentence.style.fontSize = '1.1rem';
+        
+        // Ícone de som
+        const speaker = document.createElement('i');
+        speaker.className = 'fas fa-volume-up speaker-icon';
+        speaker.style.marginRight = '10px';
+        speaker.onclick = () => playAudio(item.startText + ' ... ' + item.endText, item.character);
+        sentence.appendChild(speaker);
+
+        sentence.innerHTML += `${item.startText} <span style="border-bottom: 2px solid #ccc; padding: 0 20px; font-weight:bold">_____</span> ${item.endText}`;
+        container.appendChild(sentence);
+
+        // Opções
+        item.options.forEach(optWord => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = optWord;
+            // Verifica se é a palavra correta
+            const isCorrect = optWord === item.missingWord;
+            btn.onclick = () => selectOption(btn, isCorrect, `exercise-${currentIndex}`);
+            container.appendChild(btn);
+        });
+
+        row.appendChild(container);
+        storyBoard.appendChild(row);
+    }
+
+    // 4. Renderiza Arrange (Toque o que escutar)
+    function createArrangeExercise(item) {
+        const container = document.createElement('div');
+        container.className = 'exercise-container story-row';
+        container.id = `exercise-${currentIndex}`;
+        
+        const title = document.createElement('div');
+        title.className = 'exercise-title';
+        
+        const speaker = document.createElement('i');
+        speaker.className = 'fas fa-volume-up speaker-icon';
+        speaker.style.marginRight = '10px';
+        speaker.style.fontSize = '1.5rem';
+        speaker.onclick = () => playAudio(item.audioText, 'narrator');
+        
+        title.appendChild(speaker);
+        title.appendChild(document.createTextNode(item.question));
+        container.appendChild(title);
+
+        // Área da frase montada
+        const sentenceArea = document.createElement('div');
+        sentenceArea.className = 'sentence-area';
+        container.appendChild(sentenceArea);
+
+        // Banco de palavras
+        const wordBank = document.createElement('div');
+        wordBank.className = 'word-bank';
+        
+        // Misturar palavras (Corretas + Distratores)
+        let allWords = [...item.correctOrder, ...(item.distractors || [])];
+        allWords.sort(() => Math.random() - 0.5);
+
+        allWords.forEach(word => {
+            const chip = createWordChip(word, sentenceArea, wordBank);
+            wordBank.appendChild(chip);
+        });
+
+        container.appendChild(wordBank);
+        storyBoard.appendChild(container);
+
+        // Salvar referência para validação
+        container.dataset.correctOrder = JSON.stringify(item.correctOrder);
+    }
+
+    function createWordChip(word, sentenceArea, wordBank) {
+        const chip = document.createElement('div');
+        chip.className = 'word-chip';
+        chip.textContent = word;
+
+        // Clone invisível para manter espaço no banco
+        const placeholder = chip.cloneNode(true);
+        placeholder.classList.add('placeholder');
+        placeholder.style.display = 'none'; // Começa escondido
+
+        chip.onclick = () => {
+            if (chip.parentElement === wordBank) {
+                // Mover para frase
+                sentenceArea.appendChild(chip);
+                wordBank.insertBefore(placeholder, chip.nextSibling); // Mantém ordem visual aprox
+                placeholder.style.display = 'block';
+                checkArrangeStatus();
+            } else {
+                // Devolver para banco
+                placeholder.replaceWith(chip);
+                placeholder.style.display = 'none';
+                checkArrangeStatus();
+            }
+        };
+        
+        // Referência mútua
+        chip.placeholder = placeholder;
+        return chip;
+    }
+
+    /* --- LÓGICA DE INTERAÇÃO & VALIDAÇÃO --- */
+
+    // Seleção para Multipla escolha e Gap Fill
+    let currentSelectedBtn = null;
+    let currentIsCorrect = false;
+
+    function selectOption(btn, isCorrect, containerId) {
+        if (!isWaitingForInteraction) return; // Já respondeu
+
+        // Limpa seleção anterior
+        const container = document.getElementById(containerId);
+        const buttons = container.querySelectorAll('.option-btn');
+        buttons.forEach(b => b.classList.remove('selected'));
+
+        btn.classList.add('selected');
+        currentSelectedBtn = btn;
+        currentIsCorrect = isCorrect;
+        
+        unlockNavigationForCheck();
+    }
+
+    // Validação para Arrange
+    function checkArrangeStatus() {
+        const container = document.getElementById(`exercise-${currentIndex}`);
+        const sentenceArea = container.querySelector('.sentence-area');
+        if (sentenceArea.children.length > 0) {
+            unlockNavigationForCheck();
+        } else {
+            continueBtn.disabled = true;
+            continueBtn.classList.remove('check');
+        }
+    }
+
+    // Função Central de Verificação
+    function checkAnswer() {
+        const item = storyData[currentIndex];
+        let isRight = false;
+
+        if (item.type === 'question' || item.type === 'gap-fill') {
+            isRight = currentIsCorrect;
+            
+            // UI Feedback
+            if (isRight) {
+                currentSelectedBtn.classList.add('correct');
+                showFeedback(true, "Correto!");
+            } else {
+                currentSelectedBtn.classList.add('wrong');
+                showFeedback(false, "A resposta correta era outra.");
+                // Marca a correta visualmente (simplificação)
+            }
+        } 
+        else if (item.type === 'arrange') {
+            const container = document.getElementById(`exercise-${currentIndex}`);
+            const sentenceArea = container.querySelector('.sentence-area');
+            const userWords = Array.from(sentenceArea.children).map(c => c.textContent);
+            const correctOrder = JSON.parse(container.dataset.correctOrder);
+
+            // Compara arrays
+            if (JSON.stringify(userWords) === JSON.stringify(correctOrder)) {
+                isRight = true;
+                showFeedback(true, "Perfeito!");
+                sentenceArea.style.borderColor = "var(--duo-green)";
+            } else {
+                isRight = false;
+                showFeedback(false, "Incorreto. Tente novamente.");
+                // Opcional: Resetar palavras
+            }
+        }
+
+        // Se errou, não avança imediatamente, mas permite clicar em continuar para ver a próxima
+        isWaitingForInteraction = false; 
+    }
+
+    function showFeedback(isCorrect, msg) {
+        feedbackArea.textContent = msg;
+        if (isCorrect) {
+            feedbackArea.className = 'feedback-msg correct';
+            playSystemSound('correct');
+            continueBtn.textContent = 'CONTINUAR';
+            continueBtn.className = 'action-btn check';
+        } else {
+            feedbackArea.className = 'feedback-msg wrong';
+            playSystemSound('wrong');
+            continueBtn.textContent = 'CONTINUAR'; // Duolingo real faria repetir, aqui avançamos para fluidez da demo
+            continueBtn.className = 'action-btn wrong';
+        }
+    }
+
+    /* --- UTILITÁRIOS --- */
+
+    // Cria HTML com hover.
+    // Simulação: Envolve a frase toda ou divide por espaços. 
+    // Para simplificar e ficar funcional sem dicionário, vamos envolver a frase toda com a tradução
+    function createHoverableText(text, translation, character) {
+        // Opção Avançada: dividir string e mostrar a mesma tradução (mock) para cada palavra
+        // para dar o efeito visual do Duolingo.
+        const words = text.split(' ');
+        
+        // Mapeia palavras, escapa apóstrofos e adiciona evento onmouseenter
+        return words.map(word => {
+            const safeWord = word.replace(/'/g, "\\'"); // Escapa apóstrofos para não quebrar o HTML
+            return `<span class="hover-word" data-trans="${translation}" onmouseenter="playWordAudio('${safeWord}', '${character}')">${word}</span>`;
+        }).join(' ');
+    }
+
+    // Sistema de Áudio para Frase Completa
+    function playAudio(text, character) {
+        if (!window.speechSynthesis) return;
+
+        // Cancela áudio anterior
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        
+        // Tenta configurar espanhol (já que a história é em espanhol)
+        utterance.lang = 'es-ES';
+        
+        configureVoice(utterance, character);
+
+        // Animação visual do ícone
+        const icons = document.querySelectorAll('.speaker-icon');
+        icons.forEach(i => i.classList.add('playing'));
+        
+        utterance.onend = () => {
+            icons.forEach(i => i.classList.remove('playing'));
+        };
+
+        window.speechSynthesis.speak(utterance);
+    }
+    
+    // Novo: Sistema de Áudio para Palavra Individual (Hover)
+    window.playWordAudio = function(word, character) {
+        if (!window.speechSynthesis) return;
+        
+        // Interrompe qualquer áudio (da frase ou palavra anterior)
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'es-ES';
+        
+        configureVoice(utterance, character);
+        
+        window.speechSynthesis.speak(utterance);
+    }
+    
+    // Helper para configurar voz (Pitch/Rate)
+    function configureVoice(utterance, character) {
+        // Modula voz baseado no personagem
+        if (character === 'bea') {
+            utterance.pitch = 1.2; // Voz mais aguda
+            utterance.rate = 0.9;
+        } else if (character === 'lin') {
+            utterance.pitch = 0.8; // Voz mais grave
+            utterance.rate = 1.1;
+        } else {
+            utterance.pitch = 1.0;
+            utterance.rate = 1.0;
+        }
+    }
+
+    function playSystemSound(type) {
+        // Simulação de som via SpeechSynthesis (beep hack) ou apenas visual
+        // Em um app real, usaríamos new Audio('correct.mp3')
+    }
+
+    function updateProgress() {
+        const pct = ((currentIndex) / storyData.length) * 100;
+        progressBar.style.width = `${pct}%`;
+    }
+
+    function scrollToBottom() {
+        setTimeout(() => {
+            storyBoard.scrollTop = storyBoard.scrollHeight;
+        }, 100);
+    }
+
+    function finishStory() {
+        // Usa o avatar da Bea gerado para a tela final
+        const beaAvatarUrl = characterAvatars.bea || '';
+        
+        storyBoard.innerHTML = `
+            <div style="text-align:center; padding: 50px;">
+                <h2 style="color: var(--duo-green); font-size: 2rem;">História Concluída!</h2>
+                <div class="avatar bea" style="width:100px; height:100px; margin: 20px auto; background-image: url('${beaAvatarUrl}')"></div>
+                <p>Você completou "O Casaco Vermelho".</p>
+            </div>
+        `;
+        continueBtn.style.display = 'none';
+        progressBar.style.width = '100%';
+    }
+
+</script>
+
+</body>
+</html>
