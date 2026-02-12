@@ -172,7 +172,7 @@ export async function loadProgress() {
 export function playSoundEffect(sound) {
     const audio =
         audioCache.effects[sound] ??
-        new Audio(`../../assets/audios/effects/${definition}.mp3`);
+        new Audio(`../../assets/audios/effects/${sound}.mp3`);
     audio.currentTime = 0;
     audio.play();
 }
