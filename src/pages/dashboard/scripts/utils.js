@@ -1,10 +1,10 @@
 import {
-    alphabet,
+    databasesData,
+    databasesTypes,
     defaults,
     hiragana,
     hiraganaTerms,
     japanese,
-    kanas,
     katakana,
 } from "../../../database/letters.js";
 import { authFirebase, dbFirebase } from "../../../scripts/config.js";
@@ -31,6 +31,8 @@ export const gameState = Object.seal({
     scorePerChar: structuredClone(defaults),
     lastWrong: false,
     currentScreen: null,
+    currentDatabase:
+        localStorage.getItem("currentDatabase") ?? databasesTypes.hiragana,
 });
 
 export const screens = Object.freeze({
@@ -54,6 +56,13 @@ const audioCache = Object.seal({
     effects: {},
 });
 
+const tabs = Array.from(document.querySelectorAll(".tab-btn"));
+const tabContents = document.querySelectorAll(".tab-content");
+const root = document.documentElement;
+const methods = Array.from(
+    document.querySelectorAll(".practice-methods .method-card"),
+);
+
 async function loadAudioAsBlob(url) {
     const response = await fetch(url);
     const blob = await response.blob();
@@ -61,7 +70,7 @@ async function loadAudioAsBlob(url) {
 }
 
 export async function preloadAudios() {
-    for (const { definition } of alphabet) {
+    for (const { definition } of databasesData.kanas) {
         const url = `../../assets/audios/letters/${definition}.mp3`;
 
         try {
@@ -178,7 +187,9 @@ export function playSoundEffect(sound) {
 }
 
 export function playLetterSound(currentJA) {
-    const currentRO = alphabet.find((x) => x.term === currentJA).definition;
+    const currentRO = getCurrentDatabase().find(
+        (x) => x.term === currentJA,
+    ).definition;
     const audio =
         audioCache.letters[currentRO] ??
         new Audio(`../../assets/audios/effects/${currentRO}.mp3`);
@@ -188,11 +199,13 @@ export function playLetterSound(currentJA) {
 
 export function selectNextChars(key, maxCharsRound) {
     const grouped = {};
-    kanas.forEach((char) => {
-        const score = getValueToScorePerChar(char, key);
-        if (!grouped[score]) grouped[score] = [];
-        grouped[score].push(char);
-    });
+    getCurrentDatabase()
+        .map((x) => x.term)
+        .forEach((char) => {
+            const score = getValueToScorePerChar(char, key);
+            if (!grouped[score]) grouped[score] = [];
+            grouped[score].push(char);
+        });
 
     const sortedScores = orderArray(Object.keys(grouped).map(Number));
 
@@ -209,16 +222,23 @@ export function selectNextChars(key, maxCharsRound) {
 }
 
 export function selectNextCharsBySystem(key, maxCharsRound) {
-    const structure = Math.random() > 0.5 ? hiragana : katakana;
+    const structure = getCurrentStructure();
     const terms = new Set(structure.map((x) => x.term));
-    const rawChars = selectNextChars(key, kanas.length);
+    const rawChars = selectNextChars(key, getCurrentDatabase().length);
     const handleChars = rawChars.filter((x) => terms.has(x));
     return handleChars.slice(0, maxCharsRound);
 }
 
+function getCurrentStructure() {
+    if (gameState.currentDatabase === databasesTypes.kanas) {
+        return Math.random() > 0.5 ? hiragana : katakana;
+    }
+    return databasesData[gameState.currentDatabase];
+}
+
 export function selectNextCharsByRimeGroups(key) {
-    const structure = Math.random() > 0.5 ? hiragana : katakana;
-    const rawChars = selectNextChars(key, kanas.length);
+    const structure = getCurrentStructure();
+    const rawChars = selectNextChars(key, getCurrentDatabase().length);
     const terms = structure.map((x) => x.term);
     const example = rawChars.find((x) => terms.includes(x));
 
@@ -235,4 +255,33 @@ export function getCurrentSystem() {
 
 export function getCurrentCharJA() {
     return gameState.currentRound[gameState.currentIndex];
+}
+
+export function getCurrentDatabase() {
+    return databasesData[gameState.currentDatabase];
+}
+
+export function initTabEvents() {
+    tabs.forEach((tab) => (tab.onclick = () => updateTab(tab)));
+    tabs.find((x) => x.dataset.target === gameState.currentDatabase).click();
+}
+
+function updateTab(tab) {
+    tabContents.forEach((c) => c.classList.remove("active"));
+
+    tab.classList.add("active");
+    methods.forEach((x) => x.classList.add("hidden"));
+    methods
+        .filter((x) => x.dataset[tab.dataset.target])
+        .forEach((x) => x.classList.remove("hidden"));
+    gameState.currentDatabase = tab.dataset.target;
+    localStorage.setItem("currentDatabase", gameState.currentDatabase);
+
+    const colors = Object.freeze({
+        green: "var(--duo-green)",
+        purple: "var(--beetle)",
+        yellow: "var(--duo-yellow)",
+        red: "var(--duo-red)",
+    });
+    root.style.setProperty("--active-theme", colors[tab.dataset.color]);
 }

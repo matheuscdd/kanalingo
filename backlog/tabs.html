@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duolingo Tabs Block Design</title>
+    <!-- Fonte Nunito -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Paleta Duolingo --- */
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #46a302;
+            
+            --duo-blue: #1cb0f6;
+            --duo-blue-dark: #1480b3;
+            
+            --duo-yellow: #ffc800;
+            --duo-yellow-dark: #e5b300;
+            
+            --duo-red: #ff4b4b;
+            --duo-red-dark: #d63e3e;
+            
+            --duo-gray: #e5e5e5;
+            --duo-text: #4b4b4b;
+            
+            /* Variável dinâmica que muda via JS */
+            --active-theme: var(--duo-green); 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--duo-text);
+        }
+
+        .tabs-container {
+            width: 100%;
+            max-width: 600px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid var(--duo-gray);
+        }
+
+        /* --- Header das Abas --- */
+        .tabs-header {
+            display: flex;
+            width: 100%;
+            background-color: #fff;
+        }
+
+        .tab-btn {
+            flex: 1; /* Faz todas terem o mesmo tamanho */
+            border: none;
+            cursor: pointer;
+            padding: 15px 0;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7); /* Texto semi-transparente quando inativo */
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        /* --- Cores Específicas das Abas --- */
+        .tab-btn[data-color="green"] { background-color: var(--duo-green); }
+        .tab-btn[data-color="blue"] { background-color: var(--duo-blue); }
+        .tab-btn[data-color="yellow"] { background-color: var(--duo-yellow); }
+        .tab-btn[data-color="red"] { background-color: var(--duo-red); }
+
+        /* Hover: Leve clareada */
+        .tab-btn:hover {
+            filter: brightness(1.1);
+            color: #fff;
+        }
+
+        /* --- Estado Ativo --- */
+        .tab-btn.active {
+            color: #fff;
+        }
+        
+        /* O "triângulo" ou conexão visual com o conteúdo (Opcional, mas ajuda no efeito) */
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; /* Joga para dentro da área de conteúdo */
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: inherit; /* Pega a cor do botão */
+        }
+
+        /* --- Área de Conteúdo --- */
+        .content-area {
+            flex: 1;
+            background-color: #fff;
+            /* A mágica acontece aqui: A borda superior muda de cor */
+            border-top: 8px solid var(--active-theme);
+            padding: 30px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 5;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Conteúdo das seções */
+        .tab-content {
+            display: none;
+            animation: slideUp 0.3s ease-out;
+        }
+        .tab-content.active { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilização interna (Cards, Títulos) */
+        h1 {
+            font-weight: 800;
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--active-theme); /* Título segue a cor da aba */
+        }
+
+        p.subtitle {
+            color: #afafaf;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .card {
+            border: 2px solid var(--duo-gray);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.1s;
+            background: white;
+            box-shadow: 0 4px 0 #eee;
+        }
+        .card:hover { transform: translateY(-2px); }
+        .card:active { transform: translateY(2px); box-shadow: none; border-bottom-width: 2px; margin-top: 2px;}
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 15px;
+            color: white;
+            background-color: var(--active-theme);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="tabs-container">
+        <!-- Navegação estilo "Bloco" -->
+        <nav class="tabs-header">
+            <button class="tab-btn active" data-target="learn" data-color="green">
+                Aprender
+            </button>
+            <button class="tab-btn" data-target="ranking" data-color="blue">
+                Ranking
+            </button>
+            <button class="tab-btn" data-target="shop" data-color="yellow">
+                Loja
+            </button>
+            <button class="tab-btn" data-target="profile" data-color="red">
+                Perfil
+            </button>
+        </nav>
+
+        <!-- Área de Conteúdo -->
+        <div class="content-area" id="mainContent">
+            
+            <!-- ABA 1: APRENDER -->
+            <div id="learn" class="tab-content active">
+                <h1>Trilha de Inglês</h1>
+                <p class="subtitle">Unidade 5 • Conversação Básica</p>
+                
+                <div class="card">
+                    <div class="icon-box"><i class="fa-solid fa-star"></i></div>
+                    <div>
+                        <h3 style="font-weight: 800;">Lição 1</h3>
+                        <p style="color: #777;">Saudações e Introduções</p>
+                    </div>
+                </div>
+                <div class="card" style="opacity: 0.6;">
+                    <div class="icon-box" style="background-color: #ccc;"><i class="fa-solid fa-lock"></i></div>
+                    <div>
+                        <h3 style="font-weight: 800; color: #777;">Lição 2</h3>
+                        <p style="color: #999;">Bloqueado</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 2: RANKING -->
+            <div id="ranking" class="tab-content">
+                <h1>Liga Safira</h1>
+                <p class="subtitle">Faltam 2 dias para terminar</p>
+                
+                <div class="card">
+                    <span style="font-weight: 800; width: 30px; font-size: 18px;">1</span>
+                    <div class="icon-box" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 15px;">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="font-weight: 800;">DuoMaster</h3>
+                    </div>
+                    <span style="font-weight: 800; color: var(--duo-yellow-dark);">1500 XP</span>
+                </div>
+                <div class="card" style="border-color: var(--duo-blue); background: #f0faff;">
+                    <span style="font-weight: 800; width: 30px; font-size: 18px; color: var(--duo-blue);">2</span>
+                    <div class="icon-box" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 15px;">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="font-weight: 800; color: var(--duo-blue);">Você</h3>
+                    </div>
+                    <span style="font-weight: 800; color: var(--duo-blue);">1200 XP</span>
+                </div>
+            </div>
+
+            <!-- ABA 3: LOJA -->
+            <div id="shop" class="tab-content">
+                <h1>Loja de Itens</h1>
+                <p class="subtitle">Use seus cristais aqui</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="card" style="flex-direction: column; text-align: center; display: block;">
+                        <i class="fa-solid fa-heart" style="font-size: 40px; color: var(--duo-red); margin: 10px 0;"></i>
+                        <h3 style="font-weight: 800; margin-bottom: 5px;">Vidas</h3>
+                        <button style="width: 100%; padding: 8px; background: var(--duo-gray); border: none; border-radius: 8px; font-weight: 800; margin-top: 10px; cursor: pointer;">COMPRAR</button>
+                    </div>
+                    <div class="card" style="flex-direction: column; text-align: center; display: block;">
+                        <i class="fa-solid fa-fire" style="font-size: 40px; color: orange; margin: 10px 0;"></i>
+                        <h3 style="font-weight: 800; margin-bottom: 5px;">Filtro</h3>
+                        <button style="width: 100%; padding: 8px; background: var(--duo-gray); border: none; border-radius: 8px; font-weight: 800; margin-top: 10px; cursor: pointer;">COMPRAR</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 4: PERFIL -->
+            <div id="profile" class="tab-content">
+                <div style="text-align: center;">
+                    <div style="width: 100px; height: 100px; background: #eee; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #ccc;">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h1>Seu Perfil</h1>
+                    <p class="subtitle">Entrou em Maio de 2023</p>
+                </div>
+                <div class="card">
+                    <div class="icon-box"><i class="fa-solid fa-medal"></i></div>
+                    <div>
+                        <h3 style="font-weight: 800;">Conquistas</h3>
+                        <p style="color: #777;">Veja seus prêmios</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+            const root = document.documentElement;
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // 1. Resetar classes active
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    // 2. Ativar o clicado
+                    tab.classList.add('active');
+                    
+                    // 3. Mostrar conteúdo
+                    const targetId = tab.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+
+                    // 4. Mágica das Cores: Atualiza a variável CSS global
+                    // Isso muda a borda do content-area e ícones internos automaticamente
+                    const colorName = tab.getAttribute('data-color');
+                    let newColor;
+
+                    switch(colorName) {
+                        case 'green': newColor = 'var(--duo-green)'; break;
+                        case 'blue': newColor = 'var(--duo-blue)'; break;
+                        case 'yellow': newColor = 'var(--duo-yellow)'; break;
+                        case 'red': newColor = 'var(--duo-red)'; break;
+                    }
+                    
+                    root.style.setProperty('--active-theme', newColor);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

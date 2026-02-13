@@ -1,5 +1,5 @@
 import {
-    alphabet,
+    databasesData,
     hiragana,
     katakana,
     scores,
@@ -138,12 +138,20 @@ function updateProgressDrawingBar() {
     const totals = Object.values(gameState.scorePerChar).map(
         (x) => x.drawing ?? 0,
     );
-    const max = Math.max(...totals.filter((x) => x % scores.drawing.max === 0));
-    const completed = totals.filter((x) => x >= max).length;
+
+    const totalOrdered = orderArray(totals);
+    const penultimateValue = totalOrdered.find((x) => x > totalOrdered[0]);
     let progress = 0;
-    if (total !== completed) {
-        progress = (completed * 100) / total;
+    if (penultimateValue) {
+        const completed = totalOrdered.filter(
+            (x) => x >= penultimateValue,
+        ).length;
+
+        if (total !== completed) {
+            progress = (completed * 100) / total;
+        }
     }
+
     progress = progress.toFixed(1);
     progressDrawingBar.style.width = `${progress}%`;
     progressDrawingPercentage.innerText = `${progress}%`;
@@ -154,12 +162,20 @@ function updateProgressTypingBar() {
     const totals = Object.values(gameState.scorePerChar).map(
         (x) => x.typing ?? 0,
     );
-    const max = Math.max(...totals);
-    const completed = totals.filter((x) => x === max).length;
+
+    const totalOrdered = orderArray(totals);
+    const penultimateValue = totalOrdered.find((x) => x > totalOrdered[0]);
     let progress = 0;
-    if (total !== completed) {
-        progress = (completed * 100) / total;
+    if (penultimateValue) {
+        const completed = totalOrdered.filter(
+            (x) => x >= penultimateValue,
+        ).length;
+
+        if (total !== completed) {
+            progress = (completed * 100) / total;
+        }
     }
+
     progress = progress.toFixed(1);
     progressTypingBar.style.width = `${progress}%`;
     progressTypingPercentage.innerText = `${progress}%`;
@@ -217,7 +233,7 @@ async function selectChar(currentJA) {
     await sleep(200);
     playLetterSound(currentJA);
     openModal();
-    displayRomaji.innerText = alphabet.find(
+    displayRomaji.innerText = databasesData.kanas.find(
         (x) => x.term === currentJA,
     ).definition;
     showDrawPath(currentJA);
@@ -272,7 +288,7 @@ function handleYoon(currentJA) {
     aux.style.minWidth = "150px";
     const smallKanasIds = Object.freeze([22, 27, 32, 63, 68]);
     const largeKanasIds = Object.freeze([40, 144]);
-    const char = alphabet.find((x) => x.term === currentJA[0]);
+    const char = databasesData.kanas.find((x) => x.term === currentJA[0]);
     if (largeKanasIds.includes(char.id)) {
         aux.style.marginLeft = "-100px";
         return;

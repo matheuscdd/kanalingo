@@ -7,6 +7,7 @@ import { renderListening } from "./listening.js";
 import { initEventsTyping, renderTyping } from "./typing.js";
 import {
     gameState,
+    initTabEvents,
     loadProgress,
     preloadAudios,
     screens,
@@ -36,6 +37,7 @@ function init() {
     initEventsTyping();
     initEventsCatalog();
     initEventsDrawing();
+    initTabEvents();
 
     showScreen(screens.methods);
 

@@ -1,8 +1,9 @@
-import { alphabet, methodsKeys, scores } from "../../../database/letters.js";
+import { methodsKeys, scores } from "../../../database/letters.js";
 import { isPWA, sleep } from "../../../scripts/utils.js";
 import {
     gameState,
     getCurrentCharJA,
+    getCurrentDatabase,
     playSoundEffect,
     screens,
     selectNextChars,
@@ -122,7 +123,9 @@ function updateUI() {
 
 async function checkAnswer() {
     const charJA = getCurrentCharJA();
-    const charRO = alphabet.find((x) => x.term === charJA).definition;
+    const charRO = getCurrentDatabase().find(
+        (x) => x.term === charJA,
+    ).definition;
     const userValue = userInput.value.trim().toLowerCase();
 
     if (userValue === charRO) {

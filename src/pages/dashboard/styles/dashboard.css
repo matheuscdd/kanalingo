@@ -8,7 +8,7 @@ body {
 }
 
 /* Navegação */
-nav {
+.header-nav {
     width: 100%;
     max-width: 800px;
     padding: 20px;
@@ -770,7 +770,7 @@ svg.fa-custom-icon {
     font-size: 20px;
     border-style: solid;
     border-width: 2px;
-    box-shadow: 0 4px 0; 
+    box-shadow: 0 4px 0;
     width: max-content;
 }
 
@@ -1125,4 +1125,100 @@ svg.fa-custom-icon {
     .text-nav {
         display: inherit;
     }
+}
+
+.tabs-container {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--duo-gray);
+}
+
+/* --- Header das Abas --- */
+.tabs-header {
+    display: flex;
+    width: 100%;
+    background-color: #fff;
+}
+
+.tab-btn {
+    flex: 1; /* Faz todas terem o mesmo tamanho */
+    border: none;
+    cursor: pointer;
+    padding: 15px 0;
+    font-family: "Nunito", sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(
+        255,
+        255,
+        255,
+        0.7
+    ); /* Texto semi-transparente quando inativo */
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+/* --- Cores Específicas das Abas --- */
+.tab-btn[data-color="purple"] {
+    background-color: var(--beetle);
+}
+.tab-btn[data-color="green"] {
+    background-color: var(--duo-green);
+}
+.tab-btn[data-color="yellow"] {
+    background-color: var(--duo-yellow);
+}
+.tab-btn[data-color="red"] {
+    background-color: var(--duo-red);
+}
+
+/* Hover: Leve clareada */
+.tab-btn:hover {
+    filter: brightness(1.1);
+    color: #fff;
+}
+
+/* --- Estado Ativo --- */
+.tab-btn.active {
+    color: #fff;
+}
+
+/* O "triângulo" ou conexão visual com o conteúdo (Opcional, mas ajuda no efeito) */
+.tab-btn.active::after {
+    content: "";
+    position: absolute;
+    bottom: -8px; /* Joga para dentro da área de conteúdo */
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: inherit; /* Pega a cor do botão */
+}
+
+/* --- Área de Conteúdo --- */
+.content-tab-area {
+    flex: 1;
+    background-color: #fff;
+    /* A mágica acontece aqui: A borda superior muda de cor */
+    border-top: 8px solid var(--active-theme);
+    padding: 30px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 5;
+    transition: border-color 0.3s ease;
+}
+
+/* Conteúdo das seções */
+.tab-content {
+    display: none;
+    animation: slideUp 0.3s ease-out;
+}
+.tab-content.active {
+    display: block;
 }

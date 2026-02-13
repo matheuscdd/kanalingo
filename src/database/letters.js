@@ -1497,10 +1497,8 @@ export const katakana = Object.freeze([
     },
 ]);
 
-export const alphabet = Object.freeze([...hiragana, ...katakana]);
 export const hiraganaTerms = Object.freeze(hiragana.map((x) => x.term));
 export const katakanaTerms = Object.freeze(katakana.map((x) => x.term));
-export const kanas = Object.freeze([...hiraganaTerms, ...katakanaTerms]);
 export const totalsrimeGroup = Object.freeze(
     Object.entries(Object.groupBy(hiragana, (x) => x.rimeGroup)).reduce(
         (x, y) => ({ ...x, [y[0]]: y[1].length }),
@@ -1520,7 +1518,21 @@ export const scores = Object.freeze({
     [methodsKeys.drawing]: Object.freeze({ max: 200, min: 50 }),
 });
 
-export const defaults = alphabet.reduce(
+export const databasesTypes = Object.freeze({
+    hiragana: "hiragana",
+    katakana: "katakana",
+    kanas: "kanas",
+    words: "words",
+});
+
+export const databasesData = Object.freeze({
+    [databasesTypes.hiragana]: hiragana,
+    [databasesTypes.katakana]: katakana,
+    [databasesTypes.kanas]: Object.freeze([...hiragana, ...katakana]),
+    [databasesTypes.words]: [],
+});
+
+export const defaults = databasesData.kanas.reduce(
     (a, b) => ({
         ...a,
         [b.term]: Object.values(methodsKeys).reduce(

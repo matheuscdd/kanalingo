@@ -1,4 +1,4 @@
-import { alphabet, methodsKeys, scores } from "../../../database/letters.js";
+import { methodsKeys, scores } from "../../../database/letters.js";
 import { sleep } from "../../../scripts/utils.js";
 import {
     gameState,
@@ -11,6 +11,7 @@ import {
     updateScoreLocal,
     screens,
     getCurrentCharJA,
+    getCurrentDatabase,
 } from "./utils.js";
 
 const displayRomaji = document.querySelector(".drawing-romaji");
@@ -76,7 +77,9 @@ function updateUI() {
     results.isUsingModel = false;
     displaySystem.innerText = gameState.currentSystem;
     const charJA = getCurrentCharJA();
-    const charRO = alphabet.find((x) => x.term === charJA).definition;
+    const charRO = getCurrentDatabase().find(
+        (x) => x.term === charJA,
+    ).definition;
     displayRomaji.innerText = charRO;
     startEventsDraw(charJA);
     const progress = (gameState.currentIndex / maxCharsRound) * 100;

@@ -30,7 +30,7 @@
 
     <body class="onloading">
         <div class="wrapper dashboard">
-            <nav>
+            <nav class="header-nav">
                 <details class="accordion-container">
                     <summary class="accordion-title">
                         <i class="fa-solid fa-bars bars-menu"></i>
@@ -234,199 +234,405 @@
                     </div>
                     <div class="container-section-methods">
                         <h2>Praticar</h2>
-                        <div class="method-grid">
-                            <div class="method-card" data-screen="typing">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-keyboard"></i>
-                                </span>
-                                <span class="method-label">Digitar</span>
-                            </div>
-                            <div class="method-card" data-screen="listening">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-headphones"></i>
-                                </span>
-                                <span class="method-label">Ouvir</span>
-                            </div>
-                            <div class="method-card" data-screen="drawing">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-paintbrush"></i>
-                                </span>
-                                <span class="method-label">Desenhar</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-language"></i>
-                                </span>
-                                <span class="method-label">Traduzir</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-align-left"></i>
-                                </span>
-                                <span class="method-label">Ler</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-layer-group"></i>
-                                </span>
-                                <span class="method-label">Cartões</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-clone"></i>
-                                </span>
-                                <span class="method-label">Combinar</span>
-                            </div>
+                        <div class="tabs-container">
+                            <!-- Navegação estilo "Bloco" -->
+                            <nav class="tabs-header">
+                                <button
+                                    class="tab-btn active"
+                                    data-target="hiragana"
+                                    data-color="green"
+                                >
+                                    Hiragana
+                                </button>
+                                <button
+                                    class="tab-btn"
+                                    data-target="katakana"
+                                    data-color="yellow"
+                                >
+                                    Katakana
+                                </button>
+                                <button
+                                    class="tab-btn"
+                                    data-target="kanas"
+                                    data-color="red"
+                                >
+                                    Kanas
+                                </button>
+                                <button
+                                    class="tab-btn"
+                                    data-target="words"
+                                    data-color="purple"
+                                >
+                                    Palavras
+                                </button>
+                            </nav>
 
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        version="1.2"
-                                        viewBox="0 0 787 526"
-                                        class="fa-custom-icon fa-xl"
+                            <!-- Área de Conteúdo -->
+                            <div class="content-tab-area">
+                                <div class="method-grid practice-methods">
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden"
+                                        data-screen="typing"
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
                                     >
-                                        <g id="icons">
-                                            <g
-                                                id="ui-gambling-website-lined-icnos-casinoshunter"
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-keyboard"></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Digitar</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden"
+                                        data-screen="listening"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i
+                                                class="fa-solid fa-headphones"
+                                            ></i>
+                                        </span>
+                                        <span class="method-label">Ouvir</span>
+                                    </div>
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden"
+                                        data-screen="drawing"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i
+                                                class="fa-solid fa-paintbrush"
+                                            ></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Desenhar</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-language"></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Traduzir</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i
+                                                class="fa-solid fa-align-left"
+                                            ></i>
+                                        </span>
+                                        <span class="method-label">Ler</span>
+                                    </div>
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i
+                                                class="fa-solid fa-layer-group"
+                                            ></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Cartões</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-clone"></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Combinar</span
+                                        >
+                                    </div>
+
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                version="1.2"
+                                                viewBox="0 0 787 526"
+                                                class="fa-custom-icon fa-xl"
                                             >
-                                                <g id="1">
-                                                    <path
-                                                        id="casino-cards"
-                                                        fill-rule="evenodd"
-                                                        class="s0"
-                                                        d="m585.48 64.59l163.33 43.76c25.47 6.82 40.88 32.56 35.53 58.37l-0.68 2.87-84.35 314.78c-6.91 25.79-32.47 41.54-57.96 36.29l-2.84-0.68-202.16-54.17 67.44 0.02c43.93 0 79.76-35.12 81.61-79.14l0.08-3.59v-42.4l52.75-32.95 2.73-1.77c7.97-5.6 13.77-13.88 16.32-23.41 2.86-10.65 1.42-21.98-4-31.5-5.41-9.52-14.37-16.45-24.88-19.27-8.57-2.3-12.49-3.35-20.65-0.06l7.75 3.24-17.44-2.46-2.15-2.59c-3-3.34-6.52-6.16-10.42-8.34zm-386.18 0.16v157.18c-3.66 2.13-6.98 4.83-9.83 8l-2.14 2.6-1.57 2.21c-8.91-4.46-19.14-5.52-28.77-2.94-10.52 2.82-19.47 9.75-24.88 19.27-5.42 9.52-6.86 20.85-4.01 31.5 2.56 9.53 8.36 17.81 16.33 23.41l2.73 1.77 52.14 32.59 0.02 42.76c0 44.49 34.67 80.77 78.14 82.65l3.55 0.08 68.01-0.02-202.15 54.18c-26.41 7.07-53.63-8.87-60.79-35.62l-84.35-314.78c-7.16-26.74 8.44-54.16 34.85-61.24zm311.88-57.75c27.75 0 50.24 22.49 50.24 50.24v326.53c0 27.74-22.49 50.23-50.24 50.23h-226.06c-27.74 0-50.23-22.49-50.23-50.23v-326.53c0-27.75 22.49-50.24 50.23-50.24zm-12.55 351.65h-25.12c-6.94 0-12.56 5.62-12.56 12.56 0 6.36 4.72 11.61 10.85 12.44l1.71 0.12h25.12c6.93 0 12.55-5.63 12.55-12.56 0-6.94-5.62-12.56-12.55-12.56zm139.86-163.17c4.17 1.12 32.1 45.21 34.25 49 2.15 3.78 31.13 74.02 30 78.25-0.78 2.9-14.36 7.16-16.5 9.25l-24.5-0.25-17.5 9.5h-58.75l-0.02-81.52 0.02-43.1c3.07 2.89 21.17-11.81 25.25-12.88l105.25 31.5-114.77 27.33 8.31-4.86 1.92-0.97c3.3-1.39 23.56-62.18 27.04-61.25zm-464.57 61.25l1.92 0.97-54.73 37.29 14-83.63c4.78 2.05 61.01 13.48 64.5 9.75l-0.37 119.75-47-4.5-29.75-31.25c-3.04-2.26-2.75-29.12 29.52-28.95 4.38 0.03-9.55 8.86-7.4 5.08 2.16-3.78 14.69-24.11 18.86-25.23 3.48-0.93 7.15-0.67 10.45 0.72zm-33.87 22.64l24.56 34.99-24.08-33.39zm505.27 0l-0.48 1.6-0.18 0.52zm-501.66-23.34l-0.41 0.66 0.18-0.31zm498.04 0l0.24 0.35 0.17 0.3zm-556.28-108.86l-23.91 6.41c-6.61 1.77-10.51 8.62-8.72 15.31 1.65 6.13 7.5 9.99 13.55 9.23l1.65-0.33 23.91-6.41c6.61-1.76 10.51-8.62 8.71-15.31-1.79-6.68-8.59-10.67-15.19-8.9zm599.35 8.9c-1.65 6.13 1.5 12.4 7.12 14.77l1.59 0.54 23.91 6.41 1.65 0.33c6.05 0.76 11.91-3.1 13.55-9.23 1.64-6.13-1.5-12.4-7.12-14.77l-1.59-0.54-23.91-6.41c-6.61-1.77-13.41 2.22-15.2 8.9zm-361.96-98.83h-25.12c-6.94 0-12.56 5.62-12.56 12.56 0 6.36 4.73 11.61 10.86 12.44l1.7 0.12h25.12c6.93 0 12.56-5.63 12.56-12.56 0-6.94-5.63-12.56-12.56-12.56z"
-                                                    />
-                                                    <path
-                                                        id="Layer 1"
-                                                        class="s1"
-                                                        d="m586 173l1 250 112 7 38-243zm-389 272l1-300-161 50 80 252-7 6z"
-                                                        color="currentColor"
-                                                    />
+                                                <g id="icons">
+                                                    <g
+                                                        id="ui-gambling-website-lined-icnos-casinoshunter"
+                                                    >
+                                                        <g id="1">
+                                                            <path
+                                                                id="casino-cards"
+                                                                fill-rule="evenodd"
+                                                                class="s0"
+                                                                d="m585.48 64.59l163.33 43.76c25.47 6.82 40.88 32.56 35.53 58.37l-0.68 2.87-84.35 314.78c-6.91 25.79-32.47 41.54-57.96 36.29l-2.84-0.68-202.16-54.17 67.44 0.02c43.93 0 79.76-35.12 81.61-79.14l0.08-3.59v-42.4l52.75-32.95 2.73-1.77c7.97-5.6 13.77-13.88 16.32-23.41 2.86-10.65 1.42-21.98-4-31.5-5.41-9.52-14.37-16.45-24.88-19.27-8.57-2.3-12.49-3.35-20.65-0.06l7.75 3.24-17.44-2.46-2.15-2.59c-3-3.34-6.52-6.16-10.42-8.34zm-386.18 0.16v157.18c-3.66 2.13-6.98 4.83-9.83 8l-2.14 2.6-1.57 2.21c-8.91-4.46-19.14-5.52-28.77-2.94-10.52 2.82-19.47 9.75-24.88 19.27-5.42 9.52-6.86 20.85-4.01 31.5 2.56 9.53 8.36 17.81 16.33 23.41l2.73 1.77 52.14 32.59 0.02 42.76c0 44.49 34.67 80.77 78.14 82.65l3.55 0.08 68.01-0.02-202.15 54.18c-26.41 7.07-53.63-8.87-60.79-35.62l-84.35-314.78c-7.16-26.74 8.44-54.16 34.85-61.24zm311.88-57.75c27.75 0 50.24 22.49 50.24 50.24v326.53c0 27.74-22.49 50.23-50.24 50.23h-226.06c-27.74 0-50.23-22.49-50.23-50.23v-326.53c0-27.75 22.49-50.24 50.23-50.24zm-12.55 351.65h-25.12c-6.94 0-12.56 5.62-12.56 12.56 0 6.36 4.72 11.61 10.85 12.44l1.71 0.12h25.12c6.93 0 12.55-5.63 12.55-12.56 0-6.94-5.62-12.56-12.55-12.56zm139.86-163.17c4.17 1.12 32.1 45.21 34.25 49 2.15 3.78 31.13 74.02 30 78.25-0.78 2.9-14.36 7.16-16.5 9.25l-24.5-0.25-17.5 9.5h-58.75l-0.02-81.52 0.02-43.1c3.07 2.89 21.17-11.81 25.25-12.88l105.25 31.5-114.77 27.33 8.31-4.86 1.92-0.97c3.3-1.39 23.56-62.18 27.04-61.25zm-464.57 61.25l1.92 0.97-54.73 37.29 14-83.63c4.78 2.05 61.01 13.48 64.5 9.75l-0.37 119.75-47-4.5-29.75-31.25c-3.04-2.26-2.75-29.12 29.52-28.95 4.38 0.03-9.55 8.86-7.4 5.08 2.16-3.78 14.69-24.11 18.86-25.23 3.48-0.93 7.15-0.67 10.45 0.72zm-33.87 22.64l24.56 34.99-24.08-33.39zm505.27 0l-0.48 1.6-0.18 0.52zm-501.66-23.34l-0.41 0.66 0.18-0.31zm498.04 0l0.24 0.35 0.17 0.3zm-556.28-108.86l-23.91 6.41c-6.61 1.77-10.51 8.62-8.72 15.31 1.65 6.13 7.5 9.99 13.55 9.23l1.65-0.33 23.91-6.41c6.61-1.76 10.51-8.62 8.71-15.31-1.79-6.68-8.59-10.67-15.19-8.9zm599.35 8.9c-1.65 6.13 1.5 12.4 7.12 14.77l1.59 0.54 23.91 6.41 1.65 0.33c6.05 0.76 11.91-3.1 13.55-9.23 1.64-6.13-1.5-12.4-7.12-14.77l-1.59-0.54-23.91-6.41c-6.61-1.77-13.41 2.22-15.2 8.9zm-361.96-98.83h-25.12c-6.94 0-12.56 5.62-12.56 12.56 0 6.36 4.73 11.61 10.86 12.44l1.7 0.12h25.12c6.93 0 12.56-5.63 12.56-12.56 0-6.94-5.63-12.56-12.56-12.56z"
+                                                            />
+                                                            <path
+                                                                id="Layer 1"
+                                                                class="s1"
+                                                                d="m586 173l1 250 112 7 38-243zm-389 272l1-300-161 50 80 252-7 6z"
+                                                                color="currentColor"
+                                                            />
+                                                        </g>
+                                                    </g>
                                                 </g>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                    <!-- <i class="fa-solid fa-brain"></i> -->
-                                </span>
-                                <span class="method-label">Memória</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-list-check"></i>
-                                </span>
-                                <span class="method-label">Escolha</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i
-                                        class="fa-solid fa-gavel fa-flip-horizontal"
-                                    ></i>
-                                </span>
-                                <span class="method-label">Bater</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-tags"></i>
-                                </span>
-                                <span class="method-label">Categorizar</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-arrow-down-1-9"></i>
-                                </span>
-                                <span class="method-label">Ordenar</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-rocket"></i>
-                                </span>
-                                <span class="method-label">Nave</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <svg
-                                        class="fa-custom-icon"
-                                        style="transform: scale(1.2)"
-                                        viewBox="0 0 24 24"
-                                        aria-hidden="true"
-                                        focusable="false"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                            </svg>
+                                        </span>
+                                        <span class="method-label"
+                                            >Memória</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
                                     >
-                                        <path
-                                            fill="currentColor"
-                                            fill-rule="evenodd"
-                                            clip-rule="evenodd"
-                                            d="M2.29289 2.29289C2.68342 1.90237 3.31658 1.90237 3.70711 2.29289L6.5 5.08579L9.29289 2.29289C9.68342 1.90237 10.3166 1.90237 10.7071 2.29289C11.0976 2.68342 11.0976 3.31658 10.7071 3.70711L7.91421 6.5L10.7071 9.29289C11.0976 9.68342 11.0976 10.3166 10.7071 10.7071C10.3166 11.0976 9.68342 11.0976 9.29289 10.7071L6.5 7.91421L3.70711 10.7071C3.31658 11.0976 2.68342 11.0976 2.29289 10.7071C1.90237 10.3166 1.90237 9.68342 2.29289 9.29289L5.08579 6.5L2.29289 3.70711C1.90237 3.31658 1.90237 2.68342 2.29289 2.29289ZM17.5 4C16.1193 4 15 5.11929 15 6.5C15 7.88071 16.1193 9 17.5 9C18.8807 9 20 7.88071 20 6.5C20 5.11929 18.8807 4 17.5 4ZM13 6.5C13 4.01472 15.0147 2 17.5 2C19.9853 2 22 4.01472 22 6.5C22 8.98528 19.9853 11 17.5 11C15.0147 11 13 8.98528 13 6.5ZM6.5 15C5.11929 15 4 16.1193 4 17.5C4 18.8807 5.11929 20 6.5 20C7.88071 20 9 18.8807 9 17.5C9 16.1193 7.88071 15 6.5 15ZM2 17.5C2 15.0147 4.01472 13 6.5 13C8.98528 13 11 15.0147 11 17.5C11 19.9853 8.98528 22 6.5 22C4.01472 22 2 19.9853 2 17.5ZM13.2929 13.2929C13.6834 12.9024 14.3166 12.9024 14.7071 13.2929L17.5 16.0858L20.2929 13.2929C20.6834 12.9024 21.3166 12.9024 21.7071 13.2929C22.0976 13.6834 22.0976 14.3166 21.7071 14.7071L18.9142 17.5L21.7071 20.2929C22.0976 20.6834 22.0976 21.3166 21.7071 21.7071C21.3166 22.0976 20.6834 22.0976 20.2929 21.7071L17.5 18.9142L14.7071 21.7071C14.3166 22.0976 13.6834 22.0976 13.2929 21.7071C12.9024 21.3166 12.9024 20.6834 13.2929 20.2929L16.0858 17.5L13.2929 14.7071C12.9024 14.3166 12.9024 13.6834 13.2929 13.2929Z"
-                                        />
-                                    </svg>
-                                </span>
-                                <span class="method-label">Velha</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        version="1.2"
-                                        viewBox="0 0 563 560"
-                                        class="fa-custom-icon"
+                                        <span class="method-char kana-font">
+                                            <i
+                                                class="fa-solid fa-list-check"
+                                            ></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Escolha</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
                                     >
-                                        <path
-                                            d="M532 5 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
-                                        />
+                                        <span class="method-char kana-font">
+                                            <i
+                                                class="fa-solid fa-gavel fa-flip-horizontal"
+                                            ></i>
+                                        </span>
+                                        <span class="method-label">Bater</span>
+                                    </div>
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-ghost"></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Labirinto</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-dungeon"></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Escapar</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-rocket"></i>
+                                        </span>
+                                        <span class="method-label">Nave</span>
+                                    </div>
+                                    <div
+                                        data-hiragana="1"
+                                        data-katakana="1"
+                                        data-kanas="1"
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <svg
+                                                class="fa-custom-icon"
+                                                style="transform: scale(1.2)"
+                                                viewBox="0 0 24 24"
+                                                aria-hidden="true"
+                                                focusable="false"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    fill="currentColor"
+                                                    fill-rule="evenodd"
+                                                    clip-rule="evenodd"
+                                                    d="M2.29289 2.29289C2.68342 1.90237 3.31658 1.90237 3.70711 2.29289L6.5 5.08579L9.29289 2.29289C9.68342 1.90237 10.3166 1.90237 10.7071 2.29289C11.0976 2.68342 11.0976 3.31658 10.7071 3.70711L7.91421 6.5L10.7071 9.29289C11.0976 9.68342 11.0976 10.3166 10.7071 10.7071C10.3166 11.0976 9.68342 11.0976 9.29289 10.7071L6.5 7.91421L3.70711 10.7071C3.31658 11.0976 2.68342 11.0976 2.29289 10.7071C1.90237 10.3166 1.90237 9.68342 2.29289 9.29289L5.08579 6.5L2.29289 3.70711C1.90237 3.31658 1.90237 2.68342 2.29289 2.29289ZM17.5 4C16.1193 4 15 5.11929 15 6.5C15 7.88071 16.1193 9 17.5 9C18.8807 9 20 7.88071 20 6.5C20 5.11929 18.8807 4 17.5 4ZM13 6.5C13 4.01472 15.0147 2 17.5 2C19.9853 2 22 4.01472 22 6.5C22 8.98528 19.9853 11 17.5 11C15.0147 11 13 8.98528 13 6.5ZM6.5 15C5.11929 15 4 16.1193 4 17.5C4 18.8807 5.11929 20 6.5 20C7.88071 20 9 18.8807 9 17.5C9 16.1193 7.88071 15 6.5 15ZM2 17.5C2 15.0147 4.01472 13 6.5 13C8.98528 13 11 15.0147 11 17.5C11 19.9853 8.98528 22 6.5 22C4.01472 22 2 19.9853 2 17.5ZM13.2929 13.2929C13.6834 12.9024 14.3166 12.9024 14.7071 13.2929L17.5 16.0858L20.2929 13.2929C20.6834 12.9024 21.3166 12.9024 21.7071 13.2929C22.0976 13.6834 22.0976 14.3166 21.7071 14.7071L18.9142 17.5L21.7071 20.2929C22.0976 20.6834 22.0976 21.3166 21.7071 21.7071C21.3166 22.0976 20.6834 22.0976 20.2929 21.7071L17.5 18.9142L14.7071 21.7071C14.3166 22.0976 13.6834 22.0976 13.2929 21.7071C12.9024 21.3166 12.9024 20.6834 13.2929 20.2929L16.0858 17.5L13.2929 14.7071C12.9024 14.3166 12.9024 13.6834 13.2929 13.2929Z"
+                                                />
+                                            </svg>
+                                        </span>
+                                        <span class="method-label">Velha</span>
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                version="1.2"
+                                                viewBox="0 0 563 560"
+                                                class="fa-custom-icon"
+                                            >
+                                                <path
+                                                    d="M532 5 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
+                                                />
 
-                                        <path
-                                            d="M232 305 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
-                                        />
+                                                <path
+                                                    d="M232 305 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
+                                                />
 
-                                        <path
-                                            d="M532 305 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
-                                        />
-                                    </svg>
-                                </span>
-                                <span class="method-label">Cruzadinhas</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-ghost"></i>
-                                </span>
-                                <span class="method-label">Labirinto</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-radio"></i>
-                                </span>
-                                <span class="method-label">Podcasts</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-music"></i>
-                                </span>
-                                <span class="method-label">Músicas</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-book-bookmark"></i>
-                                </span>
-                                <span class="method-label">Histórias</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-comments"></i>
-                                </span>
-                                <span class="method-label">Conversar</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-microphone"></i>
-                                </span>
-                                <span class="method-label">Falar</span>
-                            </div>
-                            <div class="method-card method-disabled">
-                                <span class="method-char kana-font">
-                                    <i class="fa-solid fa-phone-flip"></i>
-                                </span>
-                                <span class="method-label">Chamadas</span>
+                                                <path
+                                                    d="M532 305 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
+                                                />
+                                            </svg>
+                                        </span>
+                                        <span class="method-label"
+                                            >Cruzadinhas</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-tags"></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Categorizar</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i
+                                                class="fa-solid fa-arrow-down-1-9"
+                                            ></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Ordenar</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-radio"></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Podcasts</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-music"></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Músicas</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i
+                                                class="fa-solid fa-book-bookmark"
+                                            ></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Histórias</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-comments"></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Conversar</span
+                                        >
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i
+                                                class="fa-solid fa-microphone"
+                                            ></i>
+                                        </span>
+                                        <span class="method-label">Falar</span>
+                                    </div>
+                                    <div
+                                        data-words="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i
+                                                class="fa-solid fa-phone-flip"
+                                            ></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Chamadas</span
+                                        >
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
