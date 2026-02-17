@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoChat - Aprenda Conversando</title>
+    
+    <!-- Google Fonts: Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Variáveis de Cores Estilo Duolingo */
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-shadow: #58a700;
+            --duo-green-light: #d7ffb8;
+            --duo-blue: #1cb0f6;
+            --duo-blue-shadow: #1899d6;
+            --duo-red: #ff4b4b;
+            --duo-red-shadow: #ea2b2b;
+            --duo-white: #ffffff;
+            --duo-gray-bg: #f7f7f7;
+            --duo-gray-border: #e5e5e5;
+            --duo-text-dark: #4b4b4b;
+            --duo-text-light: #afafaf;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: var(--duo-gray-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: var(--duo-text-dark);
+        }
+
+        /* Container Principal do App */
+        .app-container {
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            max-height: 850px;
+            background-color: var(--duo-white);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 480px) {
+            .app-container {
+                height: 90vh;
+                border-radius: 24px;
+                border: 2px solid var(--duo-gray-border);
+            }
+        }
+
+        /* Cabeçalho */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 2px solid var(--duo-gray-border);
+            background-color: var(--duo-white);
+            z-index: 10;
+        }
+
+        .header-btn {
+            background: none;
+            border: none;
+            color: var(--duo-text-light);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .header-btn:hover {
+            color: var(--duo-text-dark);
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--duo-gray-text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-title i {
+            color: var(--duo-green);
+            font-size: 22px;
+        }
+
+        /* Área de Mensagens */
+        .chat-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background-color: var(--duo-white);
+            scroll-behavior: smooth;
+        }
+
+        /* Esconder scrollbar para um visual mais limpo */
+        .chat-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-container::-webkit-scrollbar-thumb {
+            background-color: var(--duo-gray-border);
+            border-radius: 10px;
+        }
+
+        /* Bolhas de Mensagem */
+        .message-wrapper {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            max-width: 85%;
+        }
+
+        .message-wrapper.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-wrapper.bot {
+            align-self: flex-start;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .bot-avatar {
+            background-color: var(--duo-green-light);
+            color: var(--duo-green);
+            border: 2px solid var(--duo-gray-border);
+        }
+
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.4;
+            position: relative;
+        }
+
+        /* Estilo Mensagem Bot */
+        .message-wrapper.bot .message-bubble {
+            background-color: var(--duo-white);
+            color: var(--duo-text-dark);
+            border: 2px solid var(--duo-gray-border);
+            border-bottom-width: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        /* Estilo Mensagem Usuário */
+        .message-wrapper.user .message-bubble {
+            background-color: var(--duo-blue);
+            color: var(--duo-white);
+            border: 2px solid var(--duo-blue-shadow);
+            border-bottom-width: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* Animação de Digitação */
+        .typing-indicator {
+            display: none;
+            padding: 16px 20px;
+            background-color: var(--duo-white);
+            border: 2px solid var(--duo-gray-border);
+            border-bottom-width: 4px;
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+            align-self: flex-start;
+            margin-left: 52px; /* avatar width + gap */
+        }
+
+        .typing-indicator.active {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--duo-text-light);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* Área de Input */
+        .input-area {
+            padding: 16px 20px;
+            background-color: var(--duo-white);
+            border-top: 2px solid var(--duo-gray-border);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--duo-gray-border);
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--duo-text-dark);
+            background-color: var(--duo-gray-bg);
+            outline: none;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .chat-input:focus {
+            border-color: var(--duo-blue);
+            background-color: var(--duo-white);
+        }
+
+        .chat-input::placeholder {
+            color: var(--duo-text-light);
+            font-weight: 600;
+        }
+
+        /* Botão Enviar Estilo Duolingo */
+        .btn-send {
+            background-color: var(--duo-green);
+            color: var(--duo-white);
+            border: none;
+            border-radius: 16px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 var(--duo-green-shadow);
+            transition: transform 0.1s, box-shadow 0.1s;
+            flex-shrink: 0;
+        }
+
+        .btn-send:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 var(--duo-green-shadow);
+        }
+
+        .btn-send:disabled {
+            background-color: var(--duo-gray-border);
+            box-shadow: 0 4px 0 #d0d0d0;
+            cursor: not-allowed;
+            color: #a0a0a0;
+        }
+        
+        .btn-send:disabled:active {
+            transform: none;
+            box-shadow: 0 4px 0 #d0d0d0;
+        }
+
+        /* Mensagem de Erro */
+        .error-message {
+            text-align: center;
+            color: var(--duo-red);
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <button class="header-btn"><i class="fa-solid fa-xmark"></i></button>
+            <div class="header-title">
+                <i class="fa-solid fa-feather-pointed"></i> DuoChat
+            </div>
+            <button class="header-btn"><i class="fa-solid fa-gear"></i></button>
+        </header>
+
+        <!-- Messages Area -->
+        <div class="chat-container" id="chat-container">
+            <!-- Initial Bot Message -->
+            <div class="message-wrapper bot">
+                <div class="avatar bot-avatar">
+                    <i class="fa-solid fa-owl"></i>
+                </div>
+                <div class="message-bubble">
+                    Olá! Eu sou o Duo. Pronto para praticar hoje ou vai perder sua ofensiva? 🦉💚
+                </div>
+            </div>
+            
+            <!-- Typing Indicator (Hidden by default) -->
+            <div class="typing-indicator" id="typing-indicator">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+            <div class="input-wrapper">
+                <input type="text" id="chat-input" class="chat-input" placeholder="Digite sua mensagem..." autocomplete="off">
+            </div>
+            <button id="btn-send" class="btn-send">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Configurações da API
+        const apiKey = ""; // A chave é injetada no ambiente de execução
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+        // Prompt de Sistema para definir a persona do bot
+        const systemInstruction = {
+            parts: [{ 
+                text: "Você é o Duo, a coruja mascote do Duolingo. Você é amigável, altamente encorajador e apaixonado por aprendizado. Às vezes você lembra o usuário de fazer suas lições e manter a ofensiva ('streak') de forma levemente dramática ou passivo-agressiva, mas sempre com bom humor e carinho no final. Suas respostas devem ser concisas (parecendo mensagens de chat), usar emojis divertidos e sempre em Português do Brasil." 
+            }]
+        };
+
+        // Histórico de Conversa (State)
+        let chatHistory = [];
+
+        // Elementos do DOM
+        const chatContainer = document.getElementById('chat-container');
+        const chatInput = document.getElementById('chat-input');
+        const btnSend = document.getElementById('btn-send');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        // Função para rolar o chat para baixo
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Função para adicionar mensagem na tela
+        function addMessageToUI(text, sender) {
+            const wrapper = document.createElement('div');
+            wrapper.className = `message-wrapper ${sender}`;
+
+            let innerHTML = '';
+
+            if (sender === 'bot') {
+                innerHTML = `
+                    <div class="avatar bot-avatar">
+                        <i class="fa-solid fa-owl"></i>
+                    </div>
+                    <div class="message-bubble">${escapeHTML(text)}</div>
+                `;
+            } else {
+                innerHTML = `
+                    <div class="message-bubble">${escapeHTML(text)}</div>
+                `;
+            }
+
+            wrapper.innerHTML = innerHTML;
+            
+            // Inserir antes do indicador de digitação
+            chatContainer.insertBefore(wrapper, typingIndicator);
+            scrollToBottom();
+        }
+
+        // Prevenir injeção de HTML básico
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag])
+            );
+        }
+
+        // Mostrar/Ocultar Indicador de Digitação
+        function toggleTyping(show) {
+            if (show) {
+                typingIndicator.classList.add('active');
+                scrollToBottom();
+            } else {
+                typingIndicator.classList.remove('active');
+            }
+        }
+
+        // Backoff Exponencial para a chamada de API
+        async function fetchWithRetry(url, options, maxRetries = 5) {
+            const delays = [1000, 2000, 4000, 8000, 16000];
+            
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    if (i === maxRetries - 1) throw error;
+                    await new Promise(resolve => setTimeout(resolve, delays[i]));
+                }
+            }
+        }
+
+        // Enviar Mensagem para a API Gemini
+        async function sendMessageToAPI() {
+            const userText = chatInput.value.trim();
+            if (!userText) return;
+
+            // 1. Atualizar UI e Estado com mensagem do usuário
+            chatInput.value = '';
+            chatInput.disabled = true;
+            btnSend.disabled = true;
+            addMessageToUI(userText, 'user');
+            
+            // Adicionar ao histórico
+            chatHistory.push({
+                role: "user",
+                parts: [{ text: userText }]
+            });
+
+            // 2. Mostrar indicador de digitação
+            toggleTyping(true);
+
+            // 3. Preparar Payload
+            const payload = {
+                contents: chatHistory,
+                systemInstruction: systemInstruction
+            };
+
+            try {
+                // 4. Fazer a chamada de API
+                const data = await fetchWithRetry(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                // 5. Extrair resposta e atualizar UI
+                const botResponseText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                if (botResponseText) {
+                    toggleTyping(false);
+                    addMessageToUI(botResponseText, 'bot');
+                    
+                    // Adicionar resposta do bot ao histórico
+                    chatHistory.push({
+                        role: "model",
+                        parts: [{ text: botResponseText }]
+                    });
+                } else {
+                    throw new Error("Resposta inválida da API");
+                }
+
+            } catch (error) {
+                toggleTyping(false);
+                addMessageToUI("Poxa! Minhas penas se embaraçaram e não consegui conectar. Tente novamente mais tarde! 🦉💔", 'bot');
+            } finally {
+                chatInput.disabled = false;
+                btnSend.disabled = false;
+                chatInput.focus();
+                scrollToBottom();
+            }
+        }
+
+        // Event Listeners
+        btnSend.addEventListener('click', sendMessageToAPI);
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessageToAPI();
+            }
+        });
+
+        // Focar no input ao carregar
+        window.onload = () => {
+            chatInput.focus();
+        };
+    </script>
+</body>
+</html>
