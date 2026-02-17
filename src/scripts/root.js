@@ -14,8 +14,7 @@ function initEvents() {
 }
 
 function startServiceWorker() {
-    return;
-    if (globalThis.location.hostname === "localhost") return;
+    // if (globalThis.location.hostname === "localhost") return;
 
     if (!("serviceWorker" in navigator)) {
         console.error("Cannot add worker");
@@ -23,10 +22,10 @@ function startServiceWorker() {
     }
 
     navigator.serviceWorker.addEventListener("controllerchange", () => {
-        alert("Nova versão disponível, recarregue 😺");
+        // alert("Nova versão disponível, recarregue 😺");
     });
 
-    const path = "/sw.js";
+    const path = "/tmp.js";
     navigator.serviceWorker.getRegistration(path).then((registration) => {
         if (registration) return;
         navigator.serviceWorker
