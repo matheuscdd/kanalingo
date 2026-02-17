@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoReader - Leitor Interativo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/opendyslexic@2.1.0-beta.0/open-dyslexic.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Cores Estilo Duolingo */
+            --duo-green: #58cc02;
+            --duo-green-shadow: #46a302;
+            --duo-blue: #1cb0f6;
+            --duo-blue-shadow: #1480b3;
+            --duo-blue-light: #ddf4ff;
+            --duo-yellow: #ffc800;
+            --duo-red: #ff4b4b;
+            --duo-white: #ffffff;
+            --duo-gray: #e5e5e5;
+            --duo-text: #3c3c3c;
+            --duo-text-light: #777;
+            
+            --user-bg-color: #f7f7f7;
+            --user-font-color: #3c3c3c;
+            --user-font-family: 'Nunito', sans-serif;
+            
+            --book-width: 900px;
+            --book-height: 600px;
+            --page-bg: #fff;
+            --anim-speed: 1.2s;
+        }
+
+        * { box-sizing: border-box; }
+
+        ::selection { background: transparent; color: inherit; }
+
+        .word.selected-word {
+            background-color: var(--duo-blue-light);
+            color: var(--duo-blue);
+            border-radius: 8px;
+            box-shadow: 0 2px 0 var(--duo-blue-shadow);
+            position: relative; z-index: 10;
+        }
+
+        body {
+            background-color: var(--user-bg-color);
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; overflow-x: hidden;
+            transition: background-color 0.3s;
+        }
+
+        .top-bar {
+            width: 100%; padding: 15px 30px; display: flex;
+            justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+            position: fixed; top: 0; z-index: 1000; box-shadow: 0 4px 0 rgba(0,0,0,0.05);
+        }
+
+        .streak-counter {
+            display: flex; align-items: center; gap: 10px; font-weight: 800;
+            color: var(--duo-yellow); font-size: 1.2rem; background: #fff;
+            padding: 8px 16px; border: 2px solid var(--duo-gray); border-radius: 16px;
+        }
+        .fire-icon { color: var(--duo-red); animation: bounce 2s infinite; }
+
+        .settings-btn {
+            background: var(--duo-blue); color: white; border: none; padding: 10px 20px;
+            border-radius: 16px; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 0 var(--duo-blue-shadow); transition: transform 0.1s;
+        }
+        .settings-btn:active { transform: translateY(4px); box-shadow: none; }
+
+        .settings-panel {
+            position: fixed; top: 80px; right: 20px; background: white;
+            padding: 20px; border-radius: 20px; border: 2px solid var(--duo-gray);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 999;
+            width: 300px; display: none; flex-direction: column; gap: 15px;
+        }
+        .settings-panel.open { display: flex; animation: slideIn 0.3s ease; }
+        .setting-group { display: flex; flex-direction: column; gap: 8px; }
+        .setting-group label { font-weight: 700; color: var(--duo-text-light); font-size: 0.9rem; text-transform: uppercase; }
+        .font-options { display: flex; gap: 10px; }
+        .font-btn {
+            flex: 1; padding: 8px; border: 2px solid var(--duo-gray); border-radius: 12px;
+            cursor: pointer; font-weight: 600; text-align: center;
+        }
+        .font-btn.active { border-color: var(--duo-blue); background: #e5f6ff; color: var(--duo-blue); }
+
+        /* --- BOOK SCENE --- */
+        .book-scene {
+            margin-top: 100px; margin-bottom: 50px;
+            width: var(--book-width); height: var(--book-height);
+            position: relative; perspective: 2500px;
+        }
+
+        .book {
+            width: 100%; height: 100%; position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .paper {
+            position: absolute; width: 50%; height: 100%;
+            top: 0; left: 50%;
+            transform-style: preserve-3d;
+            transform-origin: left center;
+            transition: transform var(--anim-speed) cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 1;
+        }
+
+        .front, .back {
+            position: absolute; width: 100%; height: 100%;
+            top: 0; left: 0;
+            background: var(--page-bg);
+            padding: 40px 50px;
+            overflow: hidden;
+            backface-visibility: hidden;
+            border: 1px solid #eee;
+        }
+
+        .front {
+            z-index: 2; border-radius: 0 16px 16px 0;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 10%);
+        }
+
+        .back {
+            z-index: 1; transform: rotateY(180deg);
+            border-radius: 16px 0 0 16px;
+            background-image: linear-gradient(to left, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 10%);
+        }
+
+        .paper.flipped { transform: rotateY(-180deg); }
+        
+        /* Z-Indexes Iniciais */
+        #p1 { z-index: 3; } 
+        #p2 { z-index: 2; } 
+        #p3 { z-index: 1; }
+
+        .page-content {
+            height: 95%; color: var(--user-font-color);
+            font-family: var(--user-font-family); font-size: 1.15rem;
+            line-height: 1.9; text-align: justify;
+        }
+        .page-number {
+            position: absolute; bottom: 15px; width: 100%; 
+            text-align: center; color: #aaa; left:0; font-size: 0.9rem;
+        }
+
+        .nav-btn {
+            position: absolute; top: 50%; width: 60px; height: 60px;
+            border-radius: 50%; background: white; border: 2px solid var(--duo-gray);
+            color: var(--duo-gray); font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.2s; transform: translateY(-50%);
+        }
+        .nav-btn:hover { border-color: var(--duo-green); color: var(--duo-green); transform: translateY(-50%) scale(1.1); }
+        .prev-btn { left: -80px; }
+        .next-btn { right: -80px; }
+
+        .word {
+            cursor: pointer; border-radius: 6px; padding: 2px 2px;
+            transition: background 0.1s, color 0.1s;
+        }
+        .word:hover { background-color: rgba(0,0,0,0.05); }
+        .word.collected { color: var(--duo-green); font-weight: 700; }
+
+        .tooltip {
+            position: absolute; background: #333; color: white;
+            padding: 8px 12px; border-radius: 8px; font-size: 0.9rem;
+            pointer-events: none; opacity: 0; transform: translateY(10px);
+            transition: 0.2s; z-index: 2000;
+        }
+        .tooltip.visible { opacity: 1; transform: translateY(0); }
+
+        .translate-popup {
+            position: fixed; background: var(--duo-white);
+            border: 2px solid var(--duo-gray); border-bottom: 4px solid var(--duo-gray);
+            border-radius: 16px; padding: 15px; width: 260px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 3000;
+            display: none; flex-direction: column; gap: 10px;
+            animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .collect-btn {
+            background: var(--duo-blue); color: white; border: none; padding: 10px;
+            border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%;
+            border-bottom: 4px solid var(--duo-blue-shadow);
+        }
+        .collect-btn:active { transform: translateY(4px); border-bottom: 0; margin-bottom: 4px;}
+
+        /* --- PRANCHETA QUIZ (Flat Design 3D) --- */
+        .quiz-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 5000;
+            /* FIX: Usar visibility em vez de display:none para permitir transição */
+            display: flex; 
+            visibility: hidden;
+            justify-content: center; align-items: flex-end;
+            opacity: 0; transition: opacity 0.5s, visibility 0.5s; pointer-events: none;
+        }
+        .quiz-overlay.visible { 
+            visibility: visible; 
+            opacity: 1; 
+            pointer-events: all; 
+        }
+
+        .clipboard {
+            width: 500px; max-width: 90%; height: 85vh;
+            background: #d4a373;
+            border-radius: 30px;
+            bottom: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 -10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transform: translateY(100%);
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            display: flex; flex-direction: column; align-items: center;
+            padding: 70px 30px 30px 30px;
+        }
+        /* O seletor abaixo dispara a animação quando o pai ganha .visible */
+        .quiz-overlay.visible .clipboard { transform: translateY(0); }
+
+        .clip-metal {
+            position: absolute; top: -15px; width: 140px; height: 50px;
+            background: #95a5a6; border-radius: 10px;
+            box-shadow: 0 5px 0 #7f8c8d; z-index: 10;
+        }
+        .clip-paper-holder {
+            position: absolute; top: 20px; width: 120px; height: 30px;
+            background: #bdc3c7; border-radius: 0 0 10px 10px;
+            z-index: 11; left: 50%; transform: translateX(-50%);
+        }
+
+        .quiz-paper {
+            background: #fdfdfd; width: 100%; height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 20px; padding: 20px;
+            display: flex; flex-direction: column; gap: 20px;
+            overflow-y: auto; position: relative;
+        }
+        
+        .quiz-title {
+            text-align: center; color: var(--duo-text); font-weight: 800; font-size: 1.5rem;
+            border-bottom: 2px dashed var(--duo-gray); padding-bottom: 15px;
+        }
+        .quiz-question { font-size: 1.2rem; color: var(--duo-text); font-weight: 700; }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+        
+        .quiz-btn {
+            background: white; border: 2px solid var(--duo-gray);
+            border-radius: 12px; padding: 15px; text-align: left;
+            font-size: 1rem; color: var(--duo-text); font-weight: 600;
+            cursor: pointer; box-shadow: 0 4px 0 var(--duo-gray); transition: 0.2s;
+        }
+        .quiz-btn:hover { background: #f7f7f7; transform: translateY(-2px); }
+        .quiz-btn:active { transform: translateY(2px); box-shadow: none; }
+        
+        .quiz-btn.correct { background: var(--duo-green); color: white; border-color: var(--duo-green-shadow); box-shadow: 0 4px 0 var(--duo-green-shadow); }
+        .quiz-btn.wrong { background: var(--duo-red); color: white; border-color: #d63031; box-shadow: 0 4px 0 #d63031; }
+
+        .quiz-result-area {
+            margin-top: auto; text-align: center; display: none; animation: popIn 0.3s;
+        }
+        .next-q-btn {
+            background: var(--duo-blue); color: white; padding: 12px 30px;
+            border-radius: 12px; font-weight: 800; border: none;
+            box-shadow: 0 4px 0 var(--duo-blue-shadow); cursor: pointer;
+            width: 100%; font-size: 1.1rem;
+        }
+
+        @media (max-width: 950px) {
+            :root { --book-width: 90vw; --book-height: 70vh; }
+            .book-scene { perspective: none; }
+            .paper { 
+                width: 100%; height: auto; left: 0; position: relative; 
+                display: none; transition: none; transform: none !important;
+            }
+            .paper.active { display: block; }
+            .front, .back { 
+                position: relative; width: 100%; height: auto; min-height: 50vh;
+                transform: none !important; display: block; 
+                border-radius: 16px; margin-bottom: 20px; border: 1px solid #ddd;
+            }
+            .back { display: none; } 
+            .book.mobile-mode .paper .back { display: block; margin-top: 15px; }
+            .nav-btn { position: fixed; bottom: 20px; top: auto; width: 50px; height: 50px; }
+            .prev-btn { left: 20px; }
+            .next-btn { right: 20px; }
+            .clipboard { height: 90vh; width: 100%; border-radius: 20px 20px 0 0; }
+        }
+
+        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes floatWord { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-40px); } }
+        .floating-point { position: fixed; color: var(--duo-yellow); font-weight: 900; font-size: 1.5rem; pointer-events: none; animation: floatWord 0.8s forwards; z-index: 5000; text-shadow: 0 2px 0 white; }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="logo" style="font-weight: 800; font-size: 1.5rem; color: var(--duo-green);">
+            <i class="fa-solid fa-book-open"></i> DuoReader
+        </div>
+        <div class="streak-counter">
+            <i class="fa-solid fa-fire fire-icon"></i> <span id="counterValue">0</span>
+        </div>
+        <button class="settings-btn" onclick="toggleSettings()"><i class="fa-solid fa-gear"></i></button>
+    </div>
+
+    <div class="settings-panel" id="settingsPanel">
+        <div class="setting-group">
+            <label>Fonte</label>
+            <div class="font-options">
+                <div class="font-btn active" onclick="setFont('Nunito', this)">Sans</div>
+                <div class="font-btn" onclick="setFont('Lora', this)">Serif</div>
+                <div class="font-btn" onclick="setFont('OpenDyslexic', this)">Dyslexic</div>
+            </div>
+        </div>
+        <div class="setting-group">
+            <label>Cor de Fundo</label>
+            <input type="color" value="#f7f7f7" onchange="document.documentElement.style.setProperty('--user-bg-color', this.value)" style="width:100%; height:40px; border:0;">
+        </div>
+    </div>
+
+    <div class="book-scene">
+        <div class="nav-btn prev-btn" onclick="goPrev()"><i class="fa-solid fa-chevron-left"></i></div>
+        <div class="nav-btn next-btn" onclick="goNext()"><i class="fa-solid fa-chevron-right"></i></div>
+
+        <div class="book" id="book">
+            <div class="paper active" id="p1">
+                <div class="front"><div class="page-content" id="page1-front"></div><div class="page-number">1</div></div>
+                <div class="back"><div class="page-content" id="page1-back"></div><div class="page-number">2</div></div>
+            </div>
+            <div class="paper" id="p2">
+                <div class="front"><div class="page-content" id="page2-front"></div><div class="page-number">3</div></div>
+                <div class="back"><div class="page-content" id="page2-back"></div><div class="page-number">4</div></div>
+            </div>
+            <div class="paper" id="p3">
+                <div class="front"><div class="page-content" id="page3-front"></div><div class="page-number">5</div></div>
+                <div class="back"><div class="page-content" id="page3-back"></div><div class="page-number">6</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay do Quiz -->
+    <div class="quiz-overlay" id="quizOverlay">
+        <div class="clipboard">
+            <div class="clip-metal"></div>
+            <div class="clip-paper-holder"></div>
+            
+            <div class="quiz-paper">
+                <div class="quiz-title">Revisão do Capítulo</div>
+                <div id="quizContent"></div>
+                <div class="quiz-result-area" id="quizResultArea">
+                    <p id="quizFeedbackMsg" style="font-weight:700; margin-bottom:15px;"></p>
+                    <button class="next-q-btn" onclick="nextQuestion()">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <div class="translate-popup" id="translatePopup">
+        <div style="display:flex; justify-content:space-between; color:var(--duo-blue); font-weight:800; font-size:0.8rem; text-transform:uppercase;">
+            <span>Tradução</span> <i class="fa-solid fa-shapes"></i>
+        </div>
+        <div id="popupOriginal" style="color:#777; font-style:italic; border-bottom:1px solid #eee; padding-bottom:5px;"></div>
+        <div id="popupTranslation" style="font-weight:700; font-size:1.1rem; color:var(--duo-text);"></div>
+        <button class="collect-btn" onclick="collectSelection()">COLETAR (+5 XP)</button>
+    </div>
+
+    <script>
+        // --- DADOS DO LIVRO ---
+        const bookText = {
+            1: "<h2>Down the Rabbit-Hole</h2><p>Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it.</p>",
+            2: "<p>'And what is the use of a book,' thought Alice 'without pictures or conversation?' So she was considering in her own mind (as well as she could, for the hot day made her feel very sleepy and stupid), whether the pleasure of making a daisy-chain would be worth the trouble.</p>",
+            3: "<p>Suddenly a White Rabbit with pink eyes ran close by her. There was nothing so very remarkable in that; nor did Alice think it so very much out of the way to hear the Rabbit say to itself, 'Oh dear! Oh dear! I shall be too late!'</p>",
+            4: "<p>But when the Rabbit actually took a watch out of its waistcoat-pocket, and looked at it, and then hurried on, Alice started to her feet, for it flashed across her mind that she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it.</p>",
+            5: "<p>Burning with curiosity, she ran across the field after it, and fortunately was just in time to see it pop down a large rabbit-hole under the hedge. In another moment down went Alice after it, never once considering how in the world she was to get out again.</p>",
+            6: "<p>The rabbit-hole went straight on like a tunnel for some way, and then dipped suddenly down, so suddenly that Alice had not a moment to think about stopping herself before she found herself falling down a very deep well.</p>"
+        };
+
+        const dictionary = {
+            "alice": "Alice", "tired": "Cansada", "sister": "Irmã", "bank": "Margem",
+            "book": "Livro", "pictures": "Imagens", "rabbit": "Coelho", "late": "Atrasado",
+            "watch": "Relógio", "pocket": "Bolso", "curiosity": "Curiosidade"
+        };
+
+        const quizQuestions = [
+            {
+                question: "Quem estava sentada com Alice na margem do rio?",
+                options: ["Sua mãe", "Sua irmã", "O Coelho Branco", "Ninguém"],
+                correct: 1
+            },
+            {
+                question: "O que o Coelho Branco tirou do bolso?",
+                options: ["Uma cenoura", "Um leque", "Um relógio", "Um mapa"],
+                correct: 2
+            },
+            {
+                question: "Por que Alice seguiu o Coelho?",
+                options: ["Ela estava com fome", "Ela estava curiosa", "Ele roubou algo dela", "Ele a chamou"],
+                correct: 1
+            }
+        ];
+
+        let currentPaper = 1;
+        const totalPapers = 3;
+        let collectedWordsCount = 0;
+        let isMobile = false;
+        let currentQuestionIndex = 0;
+        let quizActive = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadContent();
+            checkMobile();
+            window.addEventListener('resize', checkMobile);
+            document.addEventListener('selectionchange', handleSelectionChange);
+            document.addEventListener('mouseup', handleSelectionEnd);
+            document.addEventListener('mousedown', (e) => {
+                if (!e.target.closest('#translatePopup')) {
+                    const popup = document.getElementById('translatePopup');
+                    popup.style.display = 'none';
+                }
+            });
+        });
+
+        function clearCustomSelection() {
+            document.querySelectorAll('.selected-word').forEach(el => el.classList.remove('selected-word'));
+            window.getSelection().removeAllRanges();
+        }
+
+        function checkMobile() {
+            isMobile = window.innerWidth <= 950;
+            const book = document.getElementById('book');
+            if(isMobile) {
+                book.classList.add('mobile-mode');
+                updateMobileView();
+            } else {
+                book.classList.remove('mobile-mode');
+                document.querySelectorAll('.paper').forEach(p => {
+                    p.style.display = 'block';
+                    p.classList.remove('active');
+                });
+            }
+        }
+        
+        function updateMobileView() {
+            document.querySelectorAll('.paper').forEach((p, index) => {
+                if(index + 1 === currentPaper) p.classList.add('active');
+                else p.classList.remove('active');
+            });
+        }
+
+        function loadContent() {
+            for (let i = 1; i <= 6; i++) {
+                const targetId = i % 2 !== 0 ? `page${Math.ceil(i/2)}-front` : `page${Math.ceil(i/2)}-back`;
+                const el = document.getElementById(targetId);
+                if (el && bookText[i]) el.innerHTML = wrapWords(bookText[i]);
+            }
+            attachWordHover();
+        }
+
+        function wrapWords(html) {
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            const walk = document.createTreeWalker(div, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            const nodesToReplace = [];
+            while(node = walk.nextNode()) nodesToReplace.push(node);
+            
+            nodesToReplace.forEach(node => {
+                const words = node.nodeValue.split(/(\s+)/);
+                const frag = document.createDocumentFragment();
+                words.forEach(w => {
+                    if(w.trim().length > 0) {
+                        const span = document.createElement('span');
+                        span.className = 'word';
+                        span.innerText = w;
+                        span.dataset.clean = w.replace(/[^\w']/g, "").toLowerCase();
+                        frag.appendChild(span);
+                    } else {
+                        frag.appendChild(document.createTextNode(w));
+                    }
+                });
+                node.parentNode.replaceChild(frag, node);
+            });
+            return div.innerHTML;
+        }
+
+        function attachWordHover() {
+            const tooltip = document.getElementById('tooltip');
+            document.querySelectorAll('.word').forEach(w => {
+                w.addEventListener('mouseenter', () => {
+                    if(document.querySelector('.selected-word')) return;
+                    const trans = dictionary[w.dataset.clean];
+                    if(trans) {
+                        tooltip.innerText = trans;
+                        tooltip.classList.add('visible');
+                        const r = w.getBoundingClientRect();
+                        tooltip.style.top = (r.top - 35) + 'px';
+                        tooltip.style.left = (r.left + r.width/2 - tooltip.offsetWidth/2) + 'px';
+                    }
+                });
+                w.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+            });
+        }
+
+        function handleSelectionChange() {
+            const selection = window.getSelection();
+            const popup = document.getElementById('translatePopup');
+            if (popup && popup.style.display === 'flex') return;
+
+            if (selection.isCollapsed) {
+                document.querySelectorAll('.selected-word').forEach(el => el.classList.remove('selected-word'));
+                return;
+            }
+            const range = selection.getRangeAt(0);
+            applyCustomStyleToRange(range);
+        }
+
+        function handleSelectionEnd(e) {
+            if(e.target.closest('#translatePopup')) return;
+            const selection = window.getSelection();
+            if (selection.toString().trim().length === 0) return;
+
+            let range = selection.getRangeAt(0);
+            let startNode = selection.anchorNode;
+            let endNode = selection.focusNode;
+            if(startNode.nodeType === 3) startNode = startNode.parentNode;
+            if(endNode.nodeType === 3) endNode = endNode.parentNode;
+
+            if(startNode.classList && startNode.classList.contains('word') && 
+               endNode.classList && endNode.classList.contains('word')) {
+                const newRange = document.createRange();
+                const position = startNode.compareDocumentPosition(endNode);
+                if (position & Node.DOCUMENT_POSITION_PRECEDING) {
+                   newRange.setStartBefore(endNode); newRange.setEndAfter(startNode);
+                } else {
+                   newRange.setStartBefore(startNode); newRange.setEndAfter(endNode);
+                }
+                
+                selection.removeAllRanges(); selection.addRange(newRange);
+                applyCustomStyleToRange(newRange);
+                const finalText = selection.toString() || getSelectedWordsText();
+                showTranslatePopup(finalText, newRange);
+                selection.removeAllRanges();
+            }
+        }
+        
+        function getSelectedWordsText() {
+            const words = document.querySelectorAll('.selected-word');
+            return Array.from(words).map(w => w.innerText).join(' ');
+        }
+
+        function applyCustomStyleToRange(range) {
+            document.querySelectorAll('.selected-word').forEach(el => el.classList.remove('selected-word'));
+            const allWords = document.querySelectorAll('.word');
+            allWords.forEach(word => {
+                if (range.intersectsNode(word)) word.classList.add('selected-word');
+            });
+        }
+
+        function showTranslatePopup(text, range) {
+            if(!text || text.trim() === "") text = getSelectedWordsText();
+            if(!text || text.trim() === "") return;
+
+            const popup = document.getElementById('translatePopup');
+            const rect = range.getBoundingClientRect();
+            document.getElementById('popupOriginal').innerText = text;
+            document.getElementById('popupTranslation').innerText = "Traduzindo..."; 
+            popup.style.display = 'flex';
+            let top = rect.bottom + 10;
+            let left = rect.left + (rect.width/2) - 130;
+            if(left < 10) left = 10;
+            if(left + 260 > window.innerWidth) left = window.innerWidth - 270;
+            popup.style.top = top + 'px';
+            popup.style.left = left + 'px';
+            setTimeout(() => { document.getElementById('popupTranslation').innerText = mockTranslate(text); }, 500);
+        }
+
+        function mockTranslate(text) {
+            if(text.length < 20) return "Tradução curta simulada.";
+            return "Esta é uma tradução simulada para o trecho longo selecionado pelo usuário.";
+        }
+
+        function collectSelection() {
+            const popup = document.getElementById('translatePopup');
+            const rect = popup.getBoundingClientRect();
+            incrementCounter(5, rect.left + rect.width/2, rect.top);
+            popup.style.display = 'none';
+            clearCustomSelection();
+        }
+
+        function incrementCounter(amount, x, y) {
+            collectedWordsCount += amount;
+            const el = document.getElementById('counterValue');
+            el.innerText = collectedWordsCount;
+            el.style.transform = "scale(1.5)";
+            setTimeout(()=> el.style.transform = "scale(1)", 200);
+            const float = document.createElement('div');
+            float.className = 'floating-point';
+            float.innerText = `+${amount} XP`;
+            float.style.left = x + 'px'; float.style.top = y + 'px';
+            document.body.appendChild(float);
+            setTimeout(()=> float.remove(), 800);
+        }
+
+        // --- NAVEGAÇÃO E QUIZ TRIGGER ---
+        function goNext() {
+            if(currentPaper > totalPapers) {
+                showQuiz();
+                return;
+            }
+
+            if(isMobile) {
+                if(currentPaper < totalPapers + 1) { 
+                    currentPaper++;
+                    if(currentPaper > totalPapers) showQuiz();
+                    else updateMobileView(); 
+                }
+                return;
+            }
+
+            // --- CORREÇÃO DA ANIMAÇÃO 3D ---
+            if (currentPaper <= totalPapers) {
+                const p = document.getElementById(`p${currentPaper}`);
+                if(p) {
+                    p.classList.add('flipped');
+                    // Mantém a página no topo enquanto vira
+                    p.style.zIndex = 100;
+                    
+                    // Joga para baixo do stack esquerdo só quando a animação estiver na metade/fim
+                    setTimeout(() => {
+                        p.style.zIndex = 1; 
+                    }, 600); // 600ms = metade de 1.2s
+                    
+                    currentPaper++;
+                }
+            } else {
+                showQuiz(); 
+            }
+        }
+
+        function goPrev() {
+            if(quizActive) return; 
+
+            if(isMobile) {
+                if(currentPaper > 1) { currentPaper--; updateMobileView(); }
+                return;
+            }
+
+            if (currentPaper > 1) {
+                currentPaper--;
+                const p = document.getElementById(`p${currentPaper}`);
+                if(p) {
+                    p.classList.remove('flipped');
+                    // Traz para o topo imediatamente para virar por cima
+                    p.style.zIndex = 100;
+                    
+                    // Restaura a ordem original após a animação
+                    setTimeout(() => {
+                        // Cálculo para restaurar z-index original da pilha direita (p1=3, p2=2, p3=1)
+                        p.style.zIndex = (totalPapers - currentPaper + 1); 
+                    }, 600); 
+                }
+            }
+        }
+
+        // --- QUIZ LOGIC ---
+        function showQuiz() {
+            quizActive = true;
+            document.getElementById('quizOverlay').classList.add('visible');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const container = document.getElementById('quizContent');
+            const resultArea = document.getElementById('quizResultArea');
+            resultArea.style.display = 'none';
+            
+            if (currentQuestionIndex >= quizQuestions.length) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding: 40px;">
+                        <i class="fa-solid fa-trophy" style="font-size: 3rem; color: var(--duo-yellow); margin-bottom:20px;"></i>
+                        <h2>Parabéns!</h2>
+                        <p>Você completou o capítulo.</p>
+                        <button class="next-q-btn" onclick="location.reload()">Ler Novamente</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const q = quizQuestions[currentQuestionIndex];
+            let html = `<div class="quiz-question">${q.question}</div><div class="quiz-options">`;
+            
+            q.options.forEach((opt, idx) => {
+                html += `<button class="quiz-btn" onclick="checkAnswer(${idx}, this)">${opt}</button>`;
+            });
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function checkAnswer(selectedIndex, btnElement) {
+            document.querySelectorAll('.quiz-btn').forEach(b => b.disabled = true);
+            
+            const q = quizQuestions[currentQuestionIndex];
+            const isCorrect = selectedIndex === q.correct;
+            const resultArea = document.getElementById('quizResultArea');
+            const feedbackMsg = document.getElementById('quizFeedbackMsg');
+
+            if(isCorrect) {
+                btnElement.classList.add('correct');
+                feedbackMsg.innerText = "Correto!";
+                feedbackMsg.style.color = "var(--duo-green)";
+                incrementCounter(10, window.innerWidth/2, window.innerHeight/2);
+            } else {
+                btnElement.classList.add('wrong');
+                feedbackMsg.innerText = "Resposta incorreta";
+                feedbackMsg.style.color = "var(--duo-red)";
+                document.querySelectorAll('.quiz-btn')[q.correct].classList.add('correct');
+            }
+
+            resultArea.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            renderQuestion();
+        }
+
+        function toggleSettings() { document.getElementById('settingsPanel').classList.toggle('open'); }
+        function setFont(name, btn) {
+            let fam = "'Nunito', sans-serif";
+            if(name === 'Lora') fam = "'Lora', serif";
+            if(name === 'OpenDyslexic') fam = "'OpenDyslexic', sans-serif";
+            document.documentElement.style.setProperty('--user-font-family', fam);
+            document.querySelectorAll('.font-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+    </script>
+</body>
+</html>

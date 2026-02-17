@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Autocomplete Japonês</title>
+
+    <!-- WanaKana CDN -->
+    <script src="https://unpkg.com/wanakana"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        input {
+            padding: 8px;
+            width: 300px;
+        }
+
+        ul {
+            margin-top: 10px;
+        }
+
+        li {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Autocomplete Japonês (Vanilla)</h2>
+
+    <input id="input" type="text" placeholder="Digite em romaji...">
+    <p>
+        <strong>Hiragana convertido:</strong>
+        <span id="kana1"></span>
+    </p>
+    <p>
+        <strong>Katakana convertido:</strong>
+        <span id="kana2"></span>
+    </p>
+
+
+    <p><strong>Kanji convertido:</strong></p>
+    <ul id="results"></ul>
+
+    <script>
+        load();
+        async function load() {
+            const response = await fetch('/src/database/dicts/ja/ja.json')
+            const dictionary = await response.json();
+            console.log(dictionary.length)
+            const input = document.getElementById("input");
+            const kanaSpan1 = document.getElementById("kana1");
+            const kanaSpan2 = document.getElementById("kana2");
+            const resultsList = document.getElementById("results");
+
+            input.addEventListener("input", function () {
+                const value = input.value?.trim();
+
+                // Converter romaji → hiragana
+                const hiragana = wanakana.toHiragana(value);
+                const katakana = wanakana.toKatakana(value);
+                kanaSpan1.textContent = hiragana;
+                kanaSpan2.textContent = katakana;
+                resultsList.innerHTML = "";
+
+                if (!value) return;
+
+                const results = dictionary.filter(x => x.kanji && [hiragana, katakana].includes(x.reading));
+
+                results.forEach(word => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+          <strong>${word.kanji || "-"}</strong> |
+          ${word.reading} |
+          (${word.meaning})
+        `;
+                    resultsList.appendChild(li);
+                });
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

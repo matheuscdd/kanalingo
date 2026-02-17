@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DuoRacer - Corrida de Cavalos</title>
+    <!-- Tailwind CSS para utilitários de layout e estilo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #46a302;
+            --duo-blue: #1cb0f6;
+            --duo-red: #ff4b4b;
+            --road-color: #8B5A2B; /* Cor de terra para hipódromo */
+            --grass-color: #76c639;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            overflow: hidden;
+            background-color: #111;
+            touch-action: none;
+            user-select: none;
+        }
+
+        /* Classes utilitárias personalizadas para o estilo "Flat/Duolingo" */
+        .btn-flat {
+            border-bottom-width: 4px;
+            transition: all 0.1s;
+            border-radius: 1rem;
+        }
+        .btn-flat:active {
+            border-bottom-width: 0px;
+            transform: translateY(4px);
+        }
+
+        /* Animação do fundo (Parallax simplificado) */
+        .scrolling-bg {
+            background-repeat: repeat-x;
+            will-change: background-position;
+        }
+
+        /* Cavalo do Jogador */
+        #player-car {
+            transition: top 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+            filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
+            z-index: 20;
+        }
+
+        /* Elementos da pista */
+        .lane-text {
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .obstacle {
+            background-color: #3e2723; /* Buraco mais escuro na terra */
+            border-radius: 50%;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.8);
+            border-bottom: 2px solid #5d4037;
+        }
+        
+        /* Cores selecionáveis (Aplicadas ao SVG via currentColor ou fill) */
+        .car-red { color: #ef4444; }
+        .car-blue { color: #3b82f6; }
+        .car-yellow { color: #eab308; }
+        .car-green { color: #22c55e; }
+        .car-purple { color: #a855f7; }
+
+        /* Estilo da palavra alvo */
+        .target-word-box {
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-bottom: 4px solid #e5e5e5;
+            border-radius: 12px;
+            color: #4b4b4b;
+        }
+        
+        /* Animação de galope simples (pulando) */
+        @keyframes gallop {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        .galloping {
+            animation: gallop 0.4s infinite;
+        }
+
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col justify-center items-center relative text-white">
+
+    <!-- TELA DE SELEÇÃO (INÍCIO) -->
+    <div id="start-screen" class="absolute inset-0 z-50 bg-sky-400 flex flex-col items-center justify-center p-4">
+        <div class="bg-white p-6 rounded-3xl shadow-2xl max-w-md w-full text-center border-b-8 border-gray-200">
+            <h1 class="text-3xl font-black text-gray-700 mb-6 uppercase tracking-wider">DuoRacer Horse</h1>
+            
+            <p class="text-gray-500 font-bold mb-2">Escolha seu Cavalo:</p>
+            <div class="flex justify-center gap-4 mb-6">
+                <!-- Mantive 3 botões, mas todos usam o mesmo modelo base, usuário pode sentir que está escolhendo "o dele" -->
+                <button onclick="selectModel(0)" class="model-btn p-2 rounded-xl border-2 border-transparent hover:bg-gray-100 transition" id="model-0">
+                    <div class="w-16 h-16 svg-container text-gray-800" data-model="0"></div>
+                </button>
+                <button onclick="selectModel(1)" class="model-btn p-2 rounded-xl border-2 border-transparent hover:bg-gray-100 transition" id="model-1">
+                    <div class="w-16 h-16 svg-container text-gray-800" data-model="1"></div>
+                </button>
+                <button onclick="selectModel(2)" class="model-btn p-2 rounded-xl border-2 border-transparent hover:bg-gray-100 transition" id="model-2">
+                    <div class="w-16 h-16 svg-container text-gray-800" data-model="2"></div>
+                </button>
+            </div>
+
+            <p class="text-gray-500 font-bold mb-2">Escolha a cor da sela/equipamento:</p>
+            <div class="flex justify-center gap-3 mb-8">
+                <button onclick="selectColor('car-red')" class="w-10 h-10 rounded-full bg-red-500 border-b-4 border-red-700 transform active:translate-y-1 active:border-b-0"></button>
+                <button onclick="selectColor('car-blue')" class="w-10 h-10 rounded-full bg-blue-500 border-b-4 border-blue-700 transform active:translate-y-1 active:border-b-0"></button>
+                <button onclick="selectColor('car-yellow')" class="w-10 h-10 rounded-full bg-yellow-500 border-b-4 border-yellow-700 transform active:translate-y-1 active:border-b-0"></button>
+                <button onclick="selectColor('car-green')" class="w-10 h-10 rounded-full bg-green-500 border-b-4 border-green-700 transform active:translate-y-1 active:border-b-0"></button>
+                <button onclick="selectColor('car-purple')" class="w-10 h-10 rounded-full bg-purple-500 border-b-4 border-purple-700 transform active:translate-y-1 active:border-b-0"></button>
+            </div>
+
+            <button onclick="startGame()" class="w-full bg-[#58cc02] hover:bg-[#46a302] text-white font-black text-xl py-4 rounded-2xl border-b-4 border-[#46a302] active:border-b-0 active:translate-y-1 transition btn-flat shadow-lg">
+                INICIAR CORRIDA
+            </button>
+        </div>
+    </div>
+
+    <!-- TELA DE GAME OVER -->
+    <div id="game-over-screen" class="hidden absolute inset-0 z-50 bg-black/80 flex flex-col items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-3xl text-center max-w-sm w-full border-b-8 border-gray-300">
+            <h2 class="text-4xl font-black text-[#ff4b4b] mb-2">FIM DE JOGO</h2>
+            <p class="text-gray-500 text-lg font-bold mb-6">Pontuação Final: <span id="final-score" class="text-gray-800">0</span></p>
+            <button onclick="location.reload()" class="w-full bg-[#1cb0f6] text-white font-black py-3 rounded-xl border-b-4 border-[#1899d6] active:border-b-0 active:translate-y-1 transition">
+                TENTAR NOVAMENTE
+            </button>
+        </div>
+    </div>
+
+    <!-- CENÁRIO DO JOGO -->
+    <div id="game-container" class="relative w-full h-full max-w-4xl max-h-[500px] overflow-hidden bg-sky-300 border-y-8 border-slate-800 shadow-2xl flex flex-col">
+        
+        <!-- Fundo Montanha (Parallax Lento) -->
+        <div id="bg-mountains" class="absolute top-10 left-0 w-[200%] h-48 scrolling-bg opacity-80" 
+             style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Mount_Fuji_from_Nihondaira_%2820120227%29.jpg'); background-size: contain; background-position: bottom;">
+             <div class="absolute inset-0 bg-gradient-to-t from-white/30 to-transparent"></div>
+        </div>
+        
+        <!-- Área da Pista (Terra) -->
+        <div class="mt-auto h-64 relative w-full bg-[#8B5A2B] flex flex-col border-t-4 border-green-700">
+            <!-- Grama no horizonte -->
+            <div class="h-4 w-full bg-[#76c639] border-b-4 border-[#5da526]"></div>
+
+            <!-- Pista 0 (Topo) -->
+            <div class="flex-1 border-b-2 border-dashed border-[#a1887f]/50 relative lane" id="lane-0">
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 px-3 py-1 rounded-lg font-bold text-gray-800 text-sm hidden answer-box transform transition-all">GATO</div>
+            </div>
+            
+            <!-- Pista 1 (Meio) -->
+            <div class="flex-1 border-b-2 border-dashed border-[#a1887f]/50 relative lane" id="lane-1">
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 px-3 py-1 rounded-lg font-bold text-gray-800 text-sm hidden answer-box transform transition-all">CACHORRO</div>
+            </div>
+            
+            <!-- Pista 2 (Baixo) -->
+            <div class="flex-1 relative lane" id="lane-2">
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 px-3 py-1 rounded-lg font-bold text-gray-800 text-sm hidden answer-box transform transition-all">PÁSSARO</div>
+            </div>
+
+            <!-- Cavalo do Jogador -->
+            <div id="player-car" class="absolute left-10 w-24 h-24 flex items-center justify-center transition-all duration-200 z-20 galloping">
+                <!-- SVG injected via JS -->
+            </div>
+
+            <!-- Obstáculos e Inimigos -->
+            <div id="objects-layer" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+        </div>
+
+        <!-- HUD: Placar e Palavra -->
+        <div class="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 w-full px-4">
+             <div class="flex gap-4 items-center bg-black/40 backdrop-blur-sm px-4 py-1 rounded-full text-white font-mono font-bold">
+                <span>SCORE: <span id="score-display">0</span></span>
+                <span class="text-yellow-400">TIME: <span id="time-display">00.0</span></span>
+            </div>
+            
+            <!-- Caixa da Palavra em Inglês -->
+            <div id="word-box" class="target-word-box px-8 py-3 text-2xl font-black shadow-lg transform scale-0 transition-transform duration-300">
+                Waiting...
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONTROLES E PAINEL (Abaixo do jogo) -->
+    <div class="w-full max-w-4xl bg-gray-900 p-4 flex justify-between items-center gap-4 border-t-4 border-gray-700">
+        
+        <!-- Botões de Pista (Esquerda) -->
+        <div class="flex flex-col gap-2">
+            <button id="btn-up" class="w-20 h-20 bg-gray-700 hover:bg-gray-600 rounded-xl border-b-8 border-gray-800 active:border-b-0 active:translate-y-2 transition flex items-center justify-center">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"></path></svg>
+            </button>
+            <button id="btn-down" class="w-20 h-20 bg-gray-700 hover:bg-gray-600 rounded-xl border-b-8 border-gray-800 active:border-b-0 active:translate-y-2 transition flex items-center justify-center">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+        </div>
+
+        <!-- Painel Central (Velocímetro ESCONDIDO) -->
+        <div class="flex items-center gap-6">
+            <!-- Velocímetros escondidos conforme solicitado -->
+            <div class="gauge-container relative hidden">
+                <div class="gauge-center"></div>
+                <div id="rpm-needle" class="gauge-needle"></div>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <div class="gauge-container relative hidden">
+                    <div class="gauge-center"></div>
+                    <div id="speed-needle" class="gauge-needle" style="background: white;"></div>
+                    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white font-mono font-black text-xl"><span id="speed-val">0</span></div>
+                </div>
+                <div class="mt-2 bg-black px-6 py-2 rounded text-green-500 font-mono font-bold border border-gray-700">
+                    RITMO <span id="gear-val" class="text-xl text-white ml-2">N</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões de Marcha/Ritmo (Direita) -->
+        <div class="flex gap-2 items-center">
+            <button id="btn-gear-down" class="w-16 h-20 bg-red-500 hover:bg-red-400 rounded-xl border-b-8 border-red-700 active:border-b-0 active:translate-y-2 transition flex items-center justify-center">
+                <span class="text-3xl font-black text-white/90">-</span>
+            </button>
+            <button id="btn-gear-up" class="w-16 h-20 bg-green-500 hover:bg-green-400 rounded-xl border-b-8 border-green-700 active:border-b-0 active:translate-y-2 transition flex items-center justify-center">
+                <span class="text-3xl font-black text-white/90">+</span>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- DADOS DO JOGO ---
+        // Único SVG do cavalo repetido para as 3 opções (seleção de cor ainda funciona via CSS)
+        const HORSE_SVG = `<svg class="w-full h-full" fill="currentColor" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512,361.947c0-120.882-23.587-156.974-88.99-156.974H304.998c-5.518-26.281-12.648-50.691-21.62-72.694 c-7.196-17.686-15.59-33.813-25.281-48.092c-14.536-21.42-32.046-38.698-52.85-50.595c-20.772-11.905-44.79-18.35-71.911-18.334 c-24.099-0.008-43.911,4.837-60.014,12.457C61.234,33.431,51.271,40.684,43.116,48.51c-12.248,11.746-20.42,24.762-25.76,35.94 c-2.687,5.597-4.67,10.746-6.109,15.063c-0.608,1.847-1.12,3.535-1.551,5.054l-3.086,0.224c-2.655,0.192-4.989,1.854-6.045,4.326 c-1.04,2.454-0.624,5.3,1.088,7.355l27.184,32.702c0.368,0.44,0.784,0.823,1.247,1.151c0.304,3.95,0.88,8.011,1.728,12.217 c1.758,8.579,17.638,78.059,17.638,78.059h54.129c0,0,2.511-54.129,2.975-58.294c0.832-7.555,6.124-12.8,10.905,0l68.841,314.436 h65.466l3.359-110.457H381.05l1.664,110.457h67.161l10.075-150.746h0.767v-32.741h10.905v48.692H512z M41.501,99.394l-16.247,1.183 c0.832-2.535,1.919-5.501,3.358-8.723c2.334-5.293,5.548-11.289,9.882-17.27c0.032-0.064,0.08-0.112,0.096-0.144l12.105,14.568 C47.258,92.11,44.156,95.572,41.501,99.394z M72.891,152.083c-6.013,0-10.906-4.885-10.906-10.914 c0-6.02,4.893-10.906,10.906-10.906c6.028,0,10.921,4.886,10.921,10.906C83.812,147.198,78.92,152.083,72.891,152.083z M60.834,80.308L47.865,64.662c6.061-7.22,13.88-14.16,23.954-19.645c0.72-0.392,1.471-0.783,2.223-1.176l10.922,24.562 C76.202,71.034,67.95,75,60.834,80.308z M102.858,63.182c-1.519,0.256-3.038,0.56-4.541,0.896L86.963,38.533 c9.803-4.118,21.46-6.892,35.42-7.484l0.911,31.198C116.754,61.687,109.942,61.983,102.858,63.182z M165.606,73.84 c-8.123-4.877-16.774-8.211-25.985-9.786l-0.944-32.126c14.727,0.072,28,2.615,40.009,7.356L165.606,73.84z M179.102,81.068 l13.448-35.539c0.72,0.336,1.455,0.671,2.159,1.023c10.602,5.269,20.165,12.36,28.815,21.132c0.528,0.528,1.04,1.072,1.552,1.607 l-25.218,31.174C193.398,92.774,186.49,86.257,179.102,81.068z M209.853,112.019l25.458-31.47 c8.651,10.026,16.294,21.876,22.93,35.292l-33.149,19.813C220.342,126.986,215.274,119.079,209.853,112.019z M231.92,149.149 l32.94-19.676c0.464,1.024,0.928,2.055,1.392,3.094c4.301,9.707,8.122,20.133,11.513,31.19l-35.499,8.092 C239.02,163.844,235.582,156.265,231.92,149.149z M253.044,202.039c-1.935-5.861-3.966-11.546-6.076-17.054l34.956-7.964 c2.303,8.036,4.366,16.391,6.221,25.018H253.044z"></path></svg>`;
+
+        const CAR_SVGS = [HORSE_SVG, HORSE_SVG, HORSE_SVG];
+
+        const DICTIONARY = [
+            { en: "Cat", pt: "Gato", wrong: ["Pássaro", "Cão", "Peixe", "Casa"] },
+            { en: "Red", pt: "Vermelho", wrong: ["Azul", "Verde", "Amarelo", "Preto"] },
+            { en: "Water", pt: "Água", wrong: ["Fogo", "Terra", "Ar", "Pedra"] },
+            { en: "Book", pt: "Livro", wrong: ["Caneta", "Mesa", "Lápis", "Papel"] },
+            { en: "House", pt: "Casa", wrong: ["Carro", "Rua", "Cidade", "Prédio"] },
+            { en: "Man", pt: "Homem", wrong: ["Mulher", "Menino", "Menina", "Pessoa"] },
+            { en: "Apple", pt: "Maçã", wrong: ["Banana", "Uva", "Pera", "Fruta"] },
+            { en: "Sun", pt: "Sol", wrong: ["Lua", "Estrela", "Céu", "Nuvem"] },
+            { en: "Milk", pt: "Leite", wrong: ["Café", "Chá", "Suco", "Água"] },
+            { en: "Bread", pt: "Pão", wrong: ["Queijo", "Carne", "Ovo", "Bolo"] }
+        ];
+
+        // --- VARIÁVEIS DE ESTADO ---
+        let state = {
+            screen: 'START', // START, GAME, GAMEOVER
+            selectedCar: 0,
+            selectedColor: 'car-red',
+            score: 0,
+            gear: 1, // 1-5
+            speed: 0, // 0-160
+            targetSpeed: 0,
+            lane: 1, // 0 (Top), 1 (Mid), 2 (Bot)
+            questionActive: false,
+            questionTimer: 0,
+            currentWord: null,
+            correctLane: -1,
+            distance: 0,
+            lastFrame: 0,
+            nextQuestionDist: 1000,
+        };
+
+        const MAX_SPEED_PER_GEAR = [0, 40, 80, 110, 140, 160];
+        const ACCEL_RATE = 0.5;
+        const DECEL_RATE = 0.2;
+        
+        // Elementos DOM cacheados
+        const els = {
+            player: document.getElementById('player-car'),
+            lanes: [
+                document.getElementById('lane-0'),
+                document.getElementById('lane-1'),
+                document.getElementById('lane-2')
+            ],
+            bg: document.getElementById('bg-mountains'),
+            score: document.getElementById('score-display'),
+            time: document.getElementById('time-display'),
+            speed: document.getElementById('speed-val'),
+            gear: document.getElementById('gear-val'),
+            wordBox: document.getElementById('word-box'),
+            needleSpeed: document.getElementById('speed-needle'),
+            needleRpm: document.getElementById('rpm-needle'),
+            objectsLayer: document.getElementById('objects-layer'),
+            answerBoxes: document.querySelectorAll('.answer-box')
+        };
+
+        // --- SETUP INICIAL ---
+        
+        function init() {
+            // Renderizar SVGs na seleção
+            document.querySelectorAll('.svg-container').forEach(el => {
+                const model = el.getAttribute('data-model');
+                el.innerHTML = CAR_SVGS[model];
+            });
+
+            // Listeners de Teclado
+            window.addEventListener('keydown', handleInput);
+            
+            // Listeners de Botão
+            document.getElementById('btn-up').addEventListener('touchstart', (e) => { e.preventDefault(); changeLane(-1); });
+            document.getElementById('btn-up').addEventListener('mousedown', () => changeLane(-1));
+            
+            document.getElementById('btn-down').addEventListener('touchstart', (e) => { e.preventDefault(); changeLane(1); });
+            document.getElementById('btn-down').addEventListener('mousedown', () => changeLane(1));
+
+            document.getElementById('btn-gear-up').addEventListener('touchstart', (e) => { e.preventDefault(); shiftGear(1); });
+            document.getElementById('btn-gear-up').addEventListener('mousedown', () => shiftGear(1));
+
+            document.getElementById('btn-gear-down').addEventListener('touchstart', (e) => { e.preventDefault(); shiftGear(-1); });
+            document.getElementById('btn-gear-down').addEventListener('mousedown', () => shiftGear(-1));
+
+            // Game Loop
+            requestAnimationFrame(gameLoop);
+        }
+
+        // --- LÓGICA DE SELEÇÃO ---
+
+        window.selectModel = (index) => {
+            state.selectedCar = index;
+            document.querySelectorAll('.model-btn').forEach((btn, i) => {
+                if(i === index) btn.classList.add('bg-blue-100', 'border-blue-400');
+                else btn.classList.remove('bg-blue-100', 'border-blue-400');
+            });
+        }
+
+        window.selectColor = (colorClass) => {
+            state.selectedColor = colorClass;
+        }
+
+        window.startGame = () => {
+            document.getElementById('start-screen').classList.add('hidden');
+            state.screen = 'GAME';
+            
+            // Configurar cavalo do jogador
+            els.player.innerHTML = CAR_SVGS[state.selectedCar];
+            // Classes atualizadas para o cavalo (galloping)
+            els.player.className = `absolute left-10 w-24 h-24 flex items-center justify-center transition-all duration-200 z-20 galloping ${state.selectedColor}`;
+            
+            resetGame();
+        }
+
+        function resetGame() {
+            state.score = 0;
+            state.gear = 1; 
+            state.speed = 0;
+            state.lane = 1;
+            state.distance = 0;
+            state.nextQuestionDist = 200;
+            state.questionActive = false;
+            els.objectsLayer.innerHTML = ''; 
+            updatePlayerPos();
+        }
+
+        // --- LÓGICA DO JOGO ---
+
+        function handleInput(e) {
+            if (state.screen !== 'GAME') return;
+            
+            if (e.key === 'ArrowUp') changeLane(-1);
+            if (e.key === 'ArrowDown') changeLane(1);
+            if (e.key === 'ArrowRight') shiftGear(1);
+            if (e.key === 'ArrowLeft') shiftGear(-1);
+        }
+
+        function changeLane(dir) {
+            const newLane = state.lane + dir;
+            if (newLane >= 0 && newLane <= 2) {
+                state.lane = newLane;
+                updatePlayerPos();
+            }
+        }
+
+        function shiftGear(dir) {
+            const newGear = state.gear + dir;
+            if (newGear >= 1 && newGear <= 5) {
+                state.gear = newGear;
+                els.gear.innerText = state.gear;
+            }
+        }
+
+        function updatePlayerPos() {
+            // Ajustado para o cavalo (offset diferente por ser mais alto que um carro)
+            const laneOffsets = [10, 74, 138]; 
+            els.player.style.top = `${laneOffsets[state.lane]}px`;
+        }
+
+        function spawnQuestion() {
+            state.questionActive = true;
+            state.questionTimer = 10.0 - (state.gear);
+            
+            const wordObj = DICTIONARY[Math.floor(Math.random() * DICTIONARY.length)];
+            state.currentWord = wordObj;
+            
+            state.correctLane = Math.floor(Math.random() * 3);
+            
+            const wrongOptions = [...wordObj.wrong].sort(() => 0.5 - Math.random()).slice(0, 2);
+            let wrongIdx = 0;
+            
+            els.wordBox.innerText = wordObj.en;
+            els.wordBox.classList.remove('scale-0');
+            
+            els.answerBoxes.forEach((box, idx) => {
+                box.classList.remove('hidden');
+                if (idx === state.correctLane) {
+                    box.innerText = wordObj.pt;
+                    box.dataset.correct = "true";
+                } else {
+                    box.innerText = wrongOptions[wrongIdx];
+                    box.dataset.correct = "false";
+                    wrongIdx++;
+                }
+            });
+        }
+
+        function resolveQuestion(success) {
+            state.questionActive = false;
+            els.wordBox.classList.add('scale-0');
+            els.answerBoxes.forEach(box => box.classList.add('hidden'));
+
+            if (success) {
+                state.score += 100 * state.gear;
+                showFeedback("CORRECT!", "text-green-500");
+                spawnPassingHorse(); // Cavalo sendo ultrapassado
+            } else {
+                state.speed = 20; 
+                state.gear = 1;
+                els.gear.innerText = "1";
+                showFeedback("OUCH!", "text-red-500");
+                spawnObstacles(); 
+            }
+            
+            state.nextQuestionDist = state.distance + 1500;
+        }
+
+        function spawnPassingHorse() {
+            // Cria um cavalo "oponente" que fica para trás
+            const horse = document.createElement('div');
+            let lane = Math.floor(Math.random() * 3);
+            while(lane === state.lane) lane = Math.floor(Math.random() * 3);
+            
+            const laneOffsets = [10, 74, 138];
+            
+            horse.className = "absolute w-24 h-24 flex items-center justify-center transition-none z-10 text-gray-400 galloping";
+            horse.style.top = `${laneOffsets[lane]}px`;
+            horse.style.left = '100%';
+            horse.innerHTML = HORSE_SVG;
+            
+            els.objectsLayer.appendChild(horse);
+
+            // Animar
+            let pos = 100;
+            const anim = setInterval(() => {
+                pos -= 2 + (state.speed / 20); 
+                horse.style.left = pos + '%';
+                if (pos < -20) {
+                    clearInterval(anim);
+                    horse.remove();
+                }
+            }, 16);
+        }
+
+        function spawnObstacles() {
+             const hole = document.createElement('div');
+             const laneOffsets = [30, 94, 158];
+             
+             hole.className = "absolute w-12 h-6 obstacle z-10";
+             hole.style.top = `${laneOffsets[state.lane]}px`;
+             hole.style.left = '10%'; 
+             
+             els.objectsLayer.appendChild(hole);
+             
+             let pos = 10;
+             const anim = setInterval(() => {
+                pos -= 2;
+                hole.style.left = pos + '%';
+                if (pos < -10) {
+                    clearInterval(anim);
+                    hole.remove();
+                }
+             }, 16);
+        }
+
+        function showFeedback(text, colorClass) {
+            const fb = document.createElement('div');
+            fb.className = `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-black ${colorClass} z-50 animate-bounce`;
+            fb.innerText = text;
+            els.objectsLayer.appendChild(fb);
+            setTimeout(() => fb.remove(), 1000);
+        }
+
+        // --- GAME LOOP PRINCIPAL ---
+
+        function gameLoop(timestamp) {
+            if (!state.lastFrame) state.lastFrame = timestamp;
+            const dt = (timestamp - state.lastFrame) / 1000;
+            state.lastFrame = timestamp;
+
+            if (state.screen === 'GAME') {
+                state.targetSpeed = MAX_SPEED_PER_GEAR[state.gear];
+                
+                if (state.speed < state.targetSpeed) {
+                    state.speed += ACCEL_RATE;
+                } else if (state.speed > state.targetSpeed) {
+                    state.speed -= DECEL_RATE;
+                }
+
+                state.distance += state.speed * dt;
+
+                // HUD
+                els.score.innerText = Math.floor(state.score);
+                // Velocímetro e RPM estão escondidos via CSS, mas a lógica permanece para controlar o jogo
+                if (els.speed) els.speed.innerText = Math.floor(state.speed);
+                
+                // Animação de galope baseada na velocidade
+                if (state.speed > 5) {
+                    els.player.style.animationDuration = `${1 - (state.speed/200)}s`;
+                } else {
+                    els.player.style.animationDuration = '0s';
+                }
+
+                // Movimento do Fundo
+                const bgPos = (state.distance * 0.5) % 1000;
+                els.bg.style.backgroundPosition = `-${bgPos}px bottom`;
+                
+                // Pista
+                els.lanes.forEach(l => {
+                    l.style.backgroundPosition = `-${state.distance * 2}px 0`;
+                });
+
+                // Lógica de Perguntas
+                if (!state.questionActive) {
+                    if (state.distance > state.nextQuestionDist) {
+                        spawnQuestion();
+                    }
+                } else {
+                    state.questionTimer -= dt;
+                    els.time.innerText = state.questionTimer.toFixed(1);
+
+                    if (state.questionTimer <= 0) {
+                        if (state.lane === state.correctLane) {
+                            resolveQuestion(true);
+                        } else {
+                            resolveQuestion(false);
+                        }
+                    }
+                }
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        init();
+
+    </script>
+</body>
+</html>

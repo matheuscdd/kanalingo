@@ -68,11 +68,11 @@ export async function showNumberIncreasing(
     increaser = 1,
 ) {
     for (let i = initial; i <= destination; i += increaser) {
-        el.innerText = `${i.toFixed(0)} XP`;
+        el.innerText = i.toFixed(0);
         await sleep(interval);
         if (i >= destination) break;
     }
-    el.innerText = `${destination} XP`;
+    el.innerText = destination;
 }
 
 export function isValidEmail(email) {

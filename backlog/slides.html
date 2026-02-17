@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoEditor - Pro</title>
+    
+    <!-- Google Fonts: Nunito -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Konva Framework -->
+    <script src="https://unpkg.com/konva@9.2.0/konva.min.js"></script>
+
+    <style>
+        :root {
+            --duo-green: #58CC02;
+            --duo-green-shadow: #58a700;
+            --duo-blue: #1CB0F6;
+            --duo-blue-shadow: #1899d6;
+            --duo-yellow: #FFC800;
+            --duo-red: #FF4B4B;
+            --duo-purple: #9B51E0; /* Cor roxa dos seus templates */
+            --duo-gray: #E5E5E5;
+            --duo-text: #4B4B4B;
+            --duo-white: #FFFFFF;
+            --duo-border: #e5e5e5;
+            --bg-canvas: #F0F2F5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--duo-white);
+            color: var(--duo-text);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- Sidebar Esquerda (Navegação) --- */
+        .left-nav {
+            width: 90px;
+            background-color: var(--duo-white);
+            border-right: 2px solid var(--duo-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            gap: 10px;
+            z-index: 20;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 75px;
+            height: 70px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.2s;
+            color: #777;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: #f7f7f7;
+            color: var(--duo-blue);
+        }
+
+        .nav-item i {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .nav-item span {
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* --- Painéis Flutuantes (Templates & Shapes) --- */
+        .side-panel {
+            position: absolute;
+            left: 85px; 
+            background-color: white;
+            border: 2px solid var(--duo-border);
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
+            z-index: 50;
+        }
+
+        .side-panel.visible {
+            display: grid; /* ou flex dependendo do painel */
+            animation: slideRight 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Shapes Panel Específico */
+        #shapes-panel {
+            top: 240px;
+            width: 140px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        /* Templates Panel Específico */
+        #templates-panel {
+            top: 20px;
+            bottom: 20px;
+            width: 320px;
+            display: none; /* Flex/block via JS */
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+        }
+        #templates-panel.visible {
+            display: flex;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--duo-text);
+            margin-bottom: 5px;
+        }
+
+        /* Cards de Template */
+        .template-card {
+            width: 100%;
+            height: 140px;
+            background-color: #f7f7f7;
+            border-radius: 12px;
+            border: 2px solid var(--duo-border);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        .template-card:hover {
+            border-color: var(--duo-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Miniaturas CSS para os templates (Mockups visuais) */
+        .mini-layout {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            pointer-events: none;
+        }
+        .mini-block { background: #ddd; border-radius: 4px; }
+        .mini-line { height: 4px; background: #ddd; border-radius: 2px; width: 80%; }
+        .mini-rect { flex: 1; background: #ddd; border-radius: 4px; }
+        .mini-purple { background: var(--duo-purple); }
+        
+        .template-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #777;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+
+        .shape-option {
+            width: 50px;
+            height: 50px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.1s;
+        }
+
+        .shape-option:hover {
+            background-color: #e5f6fd;
+            border-color: var(--duo-blue);
+        }
+
+        .shape-option i {
+            font-size: 1.5rem;
+            color: var(--duo-text);
+        }
+
+
+        /* --- Área Principal --- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* --- Barra de Topo (Propriedades) --- */
+        .top-bar {
+            height: 60px;
+            background-color: var(--duo-white);
+            border-bottom: 2px solid var(--duo-border);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        /* Grupos de controle na barra superior */
+        .prop-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-right: 15px;
+            border-right: 2px solid var(--duo-border);
+        }
+        .prop-group:last-child { border-right: none; }
+
+        /* Estilo dos Inputs/Selects Duolingo */
+        .duo-input {
+            border: 2px solid var(--duo-border);
+            border-radius: 12px;
+            padding: 5px 10px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            color: var(--duo-text);
+            background: white;
+            outline: none;
+            height: 40px;
+        }
+        .duo-input:focus { border-color: var(--duo-blue); }
+
+        .color-picker-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--duo-border);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        input[type="color"] {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            position: absolute;
+            top: 0; left: 0;
+        }
+        
+        #color-preview {
+            width: 100%; height: 100%;
+            background-color: black;
+        }
+
+        /* Botões de ícone simples (Negrito, Itálico) */
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #777;
+            font-size: 1.1rem;
+            transition: 0.1s;
+        }
+        .icon-btn:hover { background-color: #f0f0f0; color: var(--duo-blue); }
+        .icon-btn.active { background-color: #e5f6fd; color: var(--duo-blue); }
+
+        /* Range Slider Estilizado */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100px;
+            height: 6px;
+            background: var(--duo-gray);
+            border-radius: 5px;
+            outline: none;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--duo-blue);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* --- Canvas Area --- */
+        .canvas-area {
+            flex: 1;
+            background-color: var(--bg-canvas);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #konva-holder {
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            /* Tamanho fixo simulando uma página */
+        }
+
+        /* --- Menu Flutuante (Context Menu) --- */
+        .floating-menu {
+            position: absolute;
+            background-color: white;
+            padding: 5px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            display: none; /* Hidden by default */
+            flex-direction: row;
+            gap: 5px;
+            border: 1px solid var(--duo-border);
+            z-index: 100;
+            animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .float-btn {
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--duo-text);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.1s;
+        }
+        .float-btn:hover { background-color: #f5f5f5; }
+        .float-btn.danger:hover { background-color: #ffe5e5; color: var(--duo-red); }
+
+        /* Botão "Pages" no canto inferior */
+        .pages-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 800;
+            color: var(--duo-text);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            border: 2px solid var(--duo-border);
+            border-bottom-width: 4px;
+        }
+        .pages-btn:active { border-bottom-width: 2px; transform: translateY(2px); }
+
+        /* Visibilidade Contextual da Barra Superior */
+        .context-text, .context-shape, .context-common { display: none; }
+        
+        /* Regras de Exibição Contextual */
+        body[data-selection="text"] .context-text { display: flex; }
+        body[data-selection="text"] .context-common { display: flex; }
+        
+        body[data-selection="shape"] .context-shape { display: flex; }
+        body[data-selection="shape"] .context-common { display: flex; }
+        
+        body[data-selection="image"] .context-common { display: flex; }
+        
+        body[data-selection="none"] .top-bar { opacity: 0.5; pointer-events: none; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Esquerda -->
+    <aside class="left-nav">
+        <!-- Botão Templates com Toggle -->
+        <div class="nav-item" id="btn-templates" onclick="togglePanel('templates-panel')">
+            <i class="fas fa-layer-group"></i>
+            <span>Templates</span>
+        </div>
+        
+        <div class="nav-item" onclick="addText()">
+            <i class="fas fa-font"></i>
+            <span>Texto</span>
+        </div>
+        
+        <!-- Botão de Upload na Sidebar -->
+        <div class="nav-item" onclick="document.getElementById('image-upload').click()">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <span>Upload</span>
+        </div>
+        
+        <!-- Botão Elementos (com toggle) -->
+        <div class="nav-item" id="btn-elements" onclick="togglePanel('shapes-panel')">
+            <i class="fas fa-shapes"></i>
+            <span>Elementos</span>
+        </div>
+        
+        <div class="nav-item">
+            <i class="fas fa-pen"></i>
+            <span>Desenhar</span>
+        </div>
+    </aside>
+
+    <!-- Menu de Formas -->
+    <div id="shapes-panel" class="side-panel">
+        <div class="shape-option" onclick="addShape('rect')" title="Quadrado">
+            <i class="far fa-square"></i>
+        </div>
+        <div class="shape-option" onclick="addShape('circle')" title="Círculo">
+            <i class="far fa-circle"></i>
+        </div>
+        <div class="shape-option" onclick="addShape('triangle')" title="Triângulo">
+            <i class="fas fa-play" style="transform: rotate(-90deg); font-size: 1.2rem;"></i>
+        </div>
+        <div class="shape-option" onclick="addShape('star')" title="Estrela">
+            <i class="far fa-star"></i>
+        </div>
+        <div class="shape-option" onclick="addShape('hexagon')" title="Hexágono">
+            <i class="fas fa-vector-square"></i>
+        </div>
+    </div>
+
+    <!-- Painel de Templates (Novo) -->
+    <div id="templates-panel" class="side-panel">
+        <div class="panel-title">Escolha um Layout</div>
+        
+        <!-- Template 1: Header + Linha -->
+        <div class="template-card" onclick="applyTemplate('header-simple')">
+            <div class="mini-layout" style="padding: 10px; justify-content: center;">
+                <div class="mini-line" style="height: 10px; width: 60%; background: #4B4B4B;"></div>
+                <div class="mini-line" style="height: 6px; width: 40%;"></div>
+                <div class="mini-line mini-purple" style="height: 3px; width: 100%; margin-top: 10px;"></div>
+            </div>
+            <div class="template-name">Título Simples</div>
+        </div>
+
+        <!-- Template 2: Citação -->
+        <div class="template-card" onclick="applyTemplate('quote')">
+            <div class="mini-layout" style="padding: 15px; align-items: center; justify-content: center;">
+                <div class="mini-line" style="width: 80%; height: 6px;"></div>
+                <div class="mini-line" style="width: 60%; height: 6px;"></div>
+                <div class="mini-block mini-purple" style="width: 60px; height: 20px; margin-top: 10px;"></div>
+            </div>
+            <div class="template-name">Citação</div>
+        </div>
+
+        <!-- Template 3: Artigo (Imagem Topo) -->
+        <div class="template-card" onclick="applyTemplate('article-top')">
+            <div class="mini-layout">
+                <div class="mini-rect" style="flex:1.5;"></div>
+                <div class="mini-line" style="width: 50%; background: #4B4B4B;"></div>
+                <div class="mini-line"></div>
+                <div class="mini-line"></div>
+            </div>
+            <div class="template-name">Artigo (Foto Topo)</div>
+        </div>
+
+        <!-- Template 4: Imagem Esquerda -->
+        <div class="template-card" onclick="applyTemplate('image-left')">
+            <div class="mini-layout" style="flex-direction: row; gap: 10px;">
+                <div class="mini-rect"></div>
+                <div style="flex:1; display: flex; flex-direction: column; gap: 5px; justify-content: center;">
+                    <div class="mini-line" style="width: 90%; background: #4B4B4B;"></div>
+                    <div class="mini-line"></div>
+                    <div class="mini-line"></div>
+                    <div class="mini-line mini-purple"></div>
+                </div>
+            </div>
+            <div class="template-name">Foto + Texto</div>
+        </div>
+
+         <!-- Template 5: Galeria Grid -->
+        <div class="template-card" onclick="applyTemplate('gallery')">
+            <div class="mini-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <div class="mini-rect"></div>
+                <div class="mini-rect"></div>
+                <div class="mini-rect"></div>
+                <div class="mini-rect"></div>
+            </div>
+            <div class="template-name">Galeria</div>
+        </div>
+    </div>
+
+    <!-- Input Oculto para Upload -->
+    <input type="file" id="image-upload" accept="image/*" style="display: none;">
+
+    <div class="main-content">
+        <!-- Barra de Propriedades (Topo) -->
+        <header class="top-bar">
+            <!-- Setas Undo/Redo (Sempre visíveis) -->
+            <div class="prop-group">
+                <div class="icon-btn" title="Desfazer"><i class="fas fa-undo"></i></div>
+                <div class="icon-btn" title="Refazer"><i class="fas fa-redo"></i></div>
+            </div>
+
+            <!-- Controles de Texto -->
+            <div class="prop-group context-text">
+                <select id="font-family" class="duo-input" onchange="updateProp('fontFamily', this.value)">
+                    <option value="Nunito">Nunito</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times</option>
+                    <option value="Courier New">Courier</option>
+                </select>
+                
+                <input type="number" id="font-size" class="duo-input" style="width: 70px;" value="24" onchange="updateProp('fontSize', parseInt(this.value))">
+                
+                <div class="color-picker-wrapper" title="Cor do Texto">
+                    <div id="text-color-preview" style="background: #000;"></div>
+                    <input type="color" id="text-color" oninput="updateProp('fill', this.value); document.getElementById('text-color-preview').style.background = this.value">
+                </div>
+            </div>
+
+            <div class="prop-group context-text">
+                <div class="icon-btn" id="btn-bold" onclick="toggleStyle('bold')"><i class="fas fa-bold"></i></div>
+                <div class="icon-btn" id="btn-italic" onclick="toggleStyle('italic')"><i class="fas fa-italic"></i></div>
+                <div class="icon-btn" onclick="updateProp('textDecoration', 'underline')"><i class="fas fa-underline"></i></div>
+            </div>
+
+            <!-- Controles de Forma -->
+            <div class="prop-group context-shape">
+                <div class="color-picker-wrapper" title="Cor de Preenchimento">
+                    <div id="fill-color-preview" style="background: #1CB0F6;"></div>
+                    <input type="color" id="fill-color" oninput="updateProp('fill', this.value); document.getElementById('fill-color-preview').style.background = this.value">
+                </div>
+                <label style="font-weight:700; font-size: 0.8rem; color:#777;">Borda:</label>
+                 <div class="color-picker-wrapper" title="Cor da Borda">
+                    <div id="stroke-color-preview" style="background: #000;"></div>
+                    <input type="color" id="stroke-color" oninput="updateProp('stroke', this.value); document.getElementById('stroke-color-preview').style.background = this.value">
+                </div>
+                <input type="number" class="duo-input" style="width: 60px" value="4" onchange="updateProp('strokeWidth', parseInt(this.value))" title="Espessura">
+            </div>
+            
+            <!-- Controles Comuns (Opacidade) -->
+            <div class="prop-group context-common">
+                <label style="font-weight:700; font-size: 0.8rem; color:#777;"><i class="fas fa-adjust"></i></label>
+                <input type="range" id="opacity-slider" min="0" max="1" step="0.1" value="1" oninput="updateProp('opacity', parseFloat(this.value))" title="Opacidade">
+            </div>
+
+            <!-- Comuns -->
+            <div class="prop-group" style="margin-left: auto; border:none;">
+                <div class="icon-btn" title="Posição"><i class="fas fa-layer-group"></i> Posição</div>
+                <div class="icon-btn" style="opacity: 0.5"><i class="fas fa-lock"></i></div>
+            </div>
+             <button class="duo-input" style="background: var(--duo-green); color: white; border-color: var(--duo-green-shadow); border-bottom-width: 4px; cursor: pointer;" onclick="downloadStage()">
+                Baixar
+            </button>
+        </header>
+
+        <div class="canvas-area">
+            <div id="konva-holder"></div>
+            
+            <!-- Menu Flutuante (Sobre o Canvas) -->
+            <div id="floating-menu" class="floating-menu">
+                <div class="float-btn"><i class="fas fa-magic" style="color: var(--duo-blue)"></i> Duo Write</div>
+                <div class="float-btn" onclick="duplicateItem()"><i class="far fa-copy"></i></div>
+                <div class="float-btn" onclick="moveLayer('up')"><i class="fas fa-arrow-up"></i></div>
+                <div class="float-btn" onclick="moveLayer('down')"><i class="fas fa-arrow-down"></i></div>
+                <div class="float-btn danger" onclick="deleteItem()"><i class="far fa-trash-alt"></i></div>
+            </div>
+
+            <div class="pages-btn">Pages</div>
+        </div>
+    </div>
+
+    <script>
+        // --- Configuração Konva ---
+        const width = 800;
+        const height = 600;
+
+        const stage = new Konva.Stage({
+            container: 'konva-holder',
+            width: width,
+            height: height,
+        });
+
+        const layer = new Konva.Layer();
+        stage.add(layer);
+
+        // Transformer estilizado Duolingo
+        const tr = new Konva.Transformer({
+            anchorStroke: '#1CB0F6',
+            anchorFill: '#fff',
+            anchorSize: 10,
+            borderStroke: '#1CB0F6',
+            borderDash: [],
+            anchorCornerRadius: 5,
+            padding: 5,
+            rotateEnabled: true,
+            enabledAnchors: ['top-left', 'top-center', 'top-right', 'middle-right', 'middle-left', 'bottom-left', 'bottom-center', 'bottom-right']
+        });
+        layer.add(tr);
+
+        // Estado
+        let selectedNode = null;
+        let placeholderNode = null; // Para saber qual placeholder substituir ao fazer upload
+        const floatMenu = document.getElementById('floating-menu');
+        const konvaHolder = document.getElementById('konva-holder');
+
+        // --- Gerenciamento de Painéis ---
+        function togglePanel(panelId) {
+            // Fecha todos os outros painéis
+            document.querySelectorAll('.side-panel').forEach(p => {
+                if(p.id !== panelId) p.classList.remove('visible');
+            });
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+
+            const panel = document.getElementById(panelId);
+            const btn = document.querySelector(`.nav-item[onclick*="${panelId}"]`);
+
+            if (panel.classList.contains('visible')) {
+                panel.classList.remove('visible');
+                // Pequeno delay para animação CSS se necessário, mas display:none limpa o layout
+                setTimeout(() => { if(!panel.classList.contains('visible')) panel.style.display = 'none'; }, 200);
+            } else {
+                panel.style.display = (panelId === 'shapes-panel') ? 'grid' : 'flex';
+                // Trigger reflow
+                void panel.offsetWidth;
+                panel.classList.add('visible');
+                if(btn) btn.classList.add('active');
+            }
+        }
+
+        // --- SISTEMA DE TEMPLATES ---
+        
+        function applyTemplate(type) {
+            // Limpar o layer atual para aplicar o template (Opcional: poderia perguntar antes)
+            layer.destroyChildren();
+            layer.add(tr); // Readiciona o transformer
+
+            const purple = '#9B51E0';
+            const grayText = '#4B4B4B';
+
+            if (type === 'header-simple') {
+                createHeadings(50, 200, "Substitua por um Título", "Seu subtítulo vai aqui...");
+                createLine(50, 350, 700, purple);
+            
+            } else if (type === 'quote') {
+                const quote = new Konva.Text({
+                    x: 100, y: 200, width: 600,
+                    text: '"A sabedoria começa na curiosidade."',
+                    fontSize: 32, fontFamily: 'Nunito', fontStyle: 'italic',
+                    align: 'center', fill: grayText, draggable: true, name: 'text'
+                });
+                const authorBox = new Konva.Rect({
+                    x: 300, y: 300, width: 200, height: 40,
+                    fill: purple, cornerRadius: 8, draggable: true, name: 'shape'
+                });
+                const authorText = new Konva.Text({
+                    x: 300, y: 310, width: 200,
+                    text: '- Autor Desconhecido', fontSize: 16, fontFamily: 'Nunito',
+                    align: 'center', fill: 'white', draggable: true, name: 'text'
+                });
+                layer.add(quote, authorBox, authorText);
+
+            } else if (type === 'article-top') {
+                createImagePlaceholder(50, 50, 700, 250);
+                createHeadings(50, 320, "Título do Artigo", "Escreva seu texto incrível aqui. Clique no quadrado cinza acima para adicionar sua foto.");
+                createLine(50, 420, 200, purple);
+
+            } else if (type === 'image-left') {
+                createImagePlaceholder(50, 100, 300, 400);
+                createHeadings(380, 150, "Destaque Visual", "O layout lado a lado é perfeito para comparações ou perfis.");
+                createLine(380, 280, 300, purple);
+
+            } else if (type === 'gallery') {
+                createImagePlaceholder(50, 50, 340, 240);
+                createImagePlaceholder(410, 50, 340, 240);
+                createImagePlaceholder(50, 310, 340, 240);
+                createImagePlaceholder(410, 310, 340, 240);
+            }
+
+            layer.batchDraw();
+            // Fecha o painel após escolher
+            togglePanel('templates-panel');
+        }
+
+        // --- Helpers de Criação ---
+        
+        function createHeadings(x, y, title, subtitle) {
+            const h1 = new Konva.Text({
+                x: x, y: y,
+                text: title,
+                fontSize: 40, fontFamily: 'Nunito', fontStyle: 'bold',
+                fill: '#4B4B4B', draggable: true, name: 'text'
+            });
+            const h2 = new Konva.Text({
+                x: x, y: y + 50, width: 600,
+                text: subtitle,
+                fontSize: 20, fontFamily: 'Nunito',
+                fill: '#777', draggable: true, name: 'text'
+            });
+            layer.add(h1, h2);
+        }
+
+        function createLine(x, y, w, color) {
+            const line = new Konva.Rect({
+                x: x, y: y, width: w, height: 5,
+                fill: color, cornerRadius: 2, draggable: true, name: 'shape'
+            });
+            layer.add(line);
+        }
+
+        function createImagePlaceholder(x, y, w, h) {
+            const group = new Konva.Group({
+                x: x, y: y, draggable: true, name: 'placeholder-group'
+            });
+
+            const rect = new Konva.Rect({
+                width: w, height: h,
+                fill: '#E0E0E0', stroke: '#CCC', strokeWidth: 2, dash: [10, 5],
+                cornerRadius: 10,
+                name: 'placeholder-bg'
+            });
+
+            const icon = new Konva.Text({
+                x: 0, y: h/2 - 20, width: w,
+                text: 'Clique para Upload 📷',
+                align: 'center', fontSize: 18, fill: '#888',
+                name: 'placeholder-text'
+            });
+
+            group.add(rect, icon);
+            
+            // Adiciona evento de clique para upload
+            group.on('click tap', () => {
+                placeholderNode = group; // Marca quem será substituído
+                document.getElementById('image-upload').click();
+            });
+
+            // Hover effect
+            group.on('mouseover', () => {
+                document.body.style.cursor = 'pointer';
+                rect.stroke('#1CB0F6');
+                rect.fill('#EEE');
+            });
+            group.on('mouseout', () => {
+                document.body.style.cursor = 'default';
+                rect.stroke('#CCC');
+                rect.fill('#E0E0E0');
+            });
+
+            layer.add(group);
+        }
+
+        // --- Formas Básicas (Mantido) ---
+        function addShape(type) {
+            let node;
+            const centerX = width/2;
+            const centerY = height/2;
+            const commonProps = {
+                x: centerX, y: centerY,
+                fill: '#58CC02', stroke: '#46a302', strokeWidth: 0,
+                draggable: true, name: 'shape'
+            };
+
+            switch(type) {
+                case 'rect': node = new Konva.Rect({ ...commonProps, width: 100, height: 100, offsetX: 50, offsetY: 50, cornerRadius: 20 }); break;
+                case 'circle': node = new Konva.Circle({ ...commonProps, radius: 60, fill: '#FFC800', stroke: '#e5b400' }); break;
+                case 'triangle': node = new Konva.RegularPolygon({ ...commonProps, sides: 3, radius: 70, fill: '#FF4B4B', stroke: '#df4242', lineJoin: 'round', cornerRadius: 30 }); break;
+                case 'star': node = new Konva.Star({ ...commonProps, numPoints: 5, innerRadius: 30, outerRadius: 70, fill: '#1CB0F6', stroke: '#1899d6', lineJoin: 'round', cornerRadius: 15 }); break;
+                case 'hexagon': node = new Konva.RegularPolygon({ ...commonProps, sides: 6, radius: 60, fill: '#9B51E0', stroke: '#8a41cf', cornerRadius: 15 }); break;
+            }
+
+            if (node) {
+                layer.add(node);
+                selectNode(node);
+                togglePanel('shapes-panel'); // Fecha painel
+            }
+        }
+
+        function addText() {
+            const text = new Konva.Text({
+                x: width/2 - 100, y: height/2 - 20,
+                text: 'Duolingo Style', fontSize: 40, fontFamily: 'Nunito',
+                fill: '#4B4B4B', draggable: true, name: 'text'
+            });
+            layer.add(text);
+            selectNode(text);
+        }
+
+        // --- Lógica de Upload de Imagem (Atualizada para Placeholders) ---
+        document.getElementById('image-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imgObj = new Image();
+                    imgObj.onload = function() {
+                        let imgNode;
+                        
+                        // Lógica de Placeholder
+                        if (placeholderNode) {
+                            // Pega dimensões do placeholder
+                            const bg = placeholderNode.findOne('.placeholder-bg');
+                            const w = bg.width();
+                            const h = bg.height();
+                            
+                            // Cria imagem ajustada ao placeholder (crop simples/stretch por enquanto)
+                            // Para fazer "cover", precisaríamos de mais lógica de crop no Konva
+                            // Aqui vamos ajustar para caber dentro mantendo ratio ou esticar
+                            
+                            imgNode = new Konva.Image({
+                                x: placeholderNode.x(),
+                                y: placeholderNode.y(),
+                                image: imgObj,
+                                width: w,
+                                height: h,
+                                draggable: true,
+                                name: 'image',
+                                cornerRadius: bg.cornerRadius() // Herda bordas arredondadas
+                            });
+                            
+                            // Remove o placeholder e adiciona a imagem
+                            placeholderNode.destroy();
+                            placeholderNode = null;
+                        
+                        } else {
+                            // Upload Normal (Sem placeholder)
+                            let imgWidth = imgObj.width;
+                            let imgHeight = imgObj.height;
+                            const maxSize = 300;
+                            if (imgWidth > maxSize || imgHeight > maxSize) {
+                                const ratio = imgWidth / imgHeight;
+                                if (imgWidth > imgHeight) { imgWidth = maxSize; imgHeight = maxSize / ratio; } 
+                                else { imgHeight = maxSize; imgWidth = maxSize * ratio; }
+                            }
+                            imgNode = new Konva.Image({
+                                x: (width - imgWidth) / 2, y: (height - imgHeight) / 2,
+                                image: imgObj, width: imgWidth, height: imgHeight,
+                                draggable: true, name: 'image'
+                            });
+                        }
+
+                        layer.add(imgNode);
+                        selectNode(imgNode);
+                    };
+                    imgObj.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+            e.target.value = ''; 
+        });
+
+
+        // --- Lógica de Seleção e UI Contextual ---
+        function selectNode(node) {
+            selectedNode = node;
+            
+            // Se for um grupo (como o placeholder), seleciona o grupo todo
+            if (node.getParent().name() === 'placeholder-group') {
+                selectedNode = node.getParent();
+            }
+
+            tr.nodes([selectedNode]);
+            selectedNode.moveToTop();
+            tr.moveToTop();
+            layer.batchDraw();
+
+            // Reseta UI
+            document.body.removeAttribute('data-selection');
+            document.getElementById('opacity-slider').value = selectedNode.opacity();
+
+            // Atualizar UI de acordo com o tipo
+            if (selectedNode instanceof Konva.Text) {
+                document.body.setAttribute('data-selection', 'text');
+                document.getElementById('font-family').value = selectedNode.fontFamily();
+                document.getElementById('font-size').value = selectedNode.fontSize();
+                document.getElementById('text-color').value = selectedNode.fill();
+                document.getElementById('text-color-preview').style.background = selectedNode.fill();
+                
+                const style = selectedNode.fontStyle() || 'normal';
+                document.getElementById('btn-bold').classList.toggle('active', style.includes('bold'));
+                document.getElementById('btn-italic').classList.toggle('active', style.includes('italic'));
+            
+            } else if (selectedNode instanceof Konva.Image || selectedNode.name() === 'placeholder-group') {
+                 document.body.setAttribute('data-selection', 'image');
+
+            } else {
+                document.body.setAttribute('data-selection', 'shape');
+                document.getElementById('fill-color').value = selectedNode.fill();
+                document.getElementById('fill-color-preview').style.background = selectedNode.fill();
+                document.getElementById('stroke-color').value = selectedNode.stroke() || '#000000';
+                document.getElementById('stroke-color-preview').style.background = selectedNode.stroke() || '#000000';
+            }
+
+            updateFloatingMenuPosition();
+        }
+
+        function clearSelection() {
+            selectedNode = null;
+            tr.nodes([]);
+            layer.batchDraw();
+            document.body.setAttribute('data-selection', 'none');
+            floatMenu.style.display = 'none';
+            
+            // Fecha painéis se clicar fora
+            document.querySelectorAll('.side-panel.visible').forEach(p => togglePanel(p.id));
+        }
+
+        // Eventos do Stage
+        stage.on('click tap', (e) => {
+            if (e.target === stage) {
+                clearSelection();
+                return;
+            }
+            selectNode(e.target);
+        });
+
+        stage.on('dragmove transform', updateFloatingMenuPosition);
+
+        function updateFloatingMenuPosition() {
+            if (!selectedNode) return;
+            const box = tr.getClientRect(); 
+            const menuW = 220; 
+            let top = box.y - 60; 
+            let left = box.x + (box.width / 2) - (menuW / 2);
+            if(top < 10) top = box.y + box.height + 10;
+            floatMenu.style.top = top + 'px';
+            floatMenu.style.left = left + 'px';
+            floatMenu.style.display = 'flex';
+        }
+
+        // --- Ações de Propriedades ---
+        function updateProp(prop, value) {
+            if (!selectedNode) return;
+            selectedNode.setAttr(prop, value);
+            layer.batchDraw();
+        }
+
+        function toggleStyle(style) {
+            if (!selectedNode || !(selectedNode instanceof Konva.Text)) return;
+            let current = selectedNode.fontStyle() || 'normal';
+            let newStyle = 'normal';
+            if (style === 'bold') newStyle = current.includes('bold') ? current.replace('bold', '').trim() : current + ' bold';
+            if (style === 'italic') newStyle = current.includes('italic') ? current.replace('italic', '').trim() : current + ' italic';
+            selectedNode.fontStyle(newStyle.trim());
+            document.getElementById('btn-bold').classList.toggle('active', newStyle.includes('bold'));
+            document.getElementById('btn-italic').classList.toggle('active', newStyle.includes('italic'));
+            layer.batchDraw();
+        }
+
+        // --- Ações do Menu Flutuante ---
+        function deleteItem() {
+            if(selectedNode) {
+                selectedNode.destroy();
+                clearSelection();
+            }
+        }
+
+        function duplicateItem() {
+            if(selectedNode) {
+                // Clonagem complexa se for grupo
+                const clone = selectedNode.clone({ x: selectedNode.x() + 20, y: selectedNode.y() + 20 });
+                layer.add(clone);
+                selectNode(clone);
+            }
+        }
+
+        function moveLayer(direction) {
+            if(!selectedNode) return;
+            (direction === 'up') ? selectedNode.moveUp() : selectedNode.moveDown();
+            layer.batchDraw();
+        }
+
+        function downloadStage() {
+            const oldSelection = selectedNode;
+            tr.nodes([]); 
+            layer.draw();
+            const uri = stage.toDataURL({ pixelRatio: 2 });
+            const link = document.createElement('a');
+            link.download = 'duo-design.png';
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            if (oldSelection) selectNode(oldSelection);
+        }
+
+        // Inicializar com um texto
+        addText();
+
+    </script>
+</body>
+</html>
