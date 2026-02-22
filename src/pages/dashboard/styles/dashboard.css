@@ -814,6 +814,9 @@ svg.fa-custom-icon {
     border: 2px solid var(--light-gray);
     user-select: none;
     border-radius: 12px;
+    box-shadow: 0px 0px 0px 25px #FFF inset;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAwIiBoZWlnaHQ9IjE2MDAiIHZpZXdCb3g9IjAgMCAxNjAwIDE2MDAiPg0KICA8ZyBzdHJva2U9IiNlNWU1ZTUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iOCwgOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4NCiAgICA8bGluZSB4MT0iODAwIiB5MT0iMjAwIiB4Mj0iODAwIiB5Mj0iMTQwMCIgLz4NCiAgICANCiAgICA8bGluZSB4MT0iMjAwIiB5MT0iODAwIiB4Mj0iMTQwMCIgeTI9IjgwMCIgLz4NCg0KICAgIDxsaW5lIHgxPSIyMDAiIHkxPSIyMDAiIHgyPSIxNDAwIiB5Mj0iMTQwMCIgLz4NCg0KICAgIDxsaW5lIHgxPSIxNDAwIiB5MT0iMjAwIiB4Mj0iMjAwIiB5Mj0iMTQwMCIgLz4NCiAgPC9nPg0KPC9zdmc+');
+    background-position: center;
 }
 
 .modal-catalog-overlay {

@@ -153,7 +153,7 @@ function handleYoon(currentJA) {
     aux.style.minWidth = `${getDimensions().aux}px`;
 }
 
-function playSoundEffectOnMistake() {
+function playSoundEffectOnMistake(strokeData) {
     playSoundEffect(statusRef.wrong);
 }
 
@@ -223,11 +223,12 @@ function getDefaultsHanziWriter() {
         drawingColor: "#4b4b4b",
         strokeColor: "#1cb0f6",
         drawingWidth: 30,
+        enforceStrokeOrder: false,
         strokeTolerance: 25,
         showCharacter: checkboxStroke.checked,
         showOutline: checkboxStroke.checked,
-        strokeAnimationSpeed: 1,
-        delayBetweenStrokes: 200,
+        strokeAnimationSpeed: 0.5,
+        delayBetweenStrokes: 500,
         strokeFadeDuration: 0,
         charDataLoader: (char, onLoad, onError) => {
             fetch(`/src/libs/js/hanzi-writer/data/${char}.json`)

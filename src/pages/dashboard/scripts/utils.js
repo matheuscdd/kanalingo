@@ -72,7 +72,7 @@ async function loadAudioAsBlob(url) {
 
 export async function preloadAudios() {
     for (const { definition } of databasesData.kanas) {
-        const url = `../../assets/audios/letters/${definition}.mp3`;
+        const url = `../../assets/audios/letters/${definition}.webm`;
 
         try {
             audioCache.letters[definition] = await loadAudioAsBlob(url);
@@ -82,7 +82,7 @@ export async function preloadAudios() {
     }
 
     for (const key in statusRef) {
-        const url = `../../assets/audios/effects/${key}.mp3`;
+        const url = `../../assets/audios/effects/${key}.webm`;
 
         try {
             audioCache.effects[key] = await loadAudioAsBlob(url);
@@ -186,7 +186,7 @@ export async function loadProgress() {
 export function playSoundEffect(sound) {
     const audio =
         audioCache.effects[sound] ??
-        new Audio(`../../assets/audios/effects/${sound}.mp3`);
+        new Audio(`../../assets/audios/effects/${sound}.webm`);
     audio.currentTime = 0;
     audio.play();
 }
@@ -197,7 +197,7 @@ export function playLetterSound(currentJA) {
     ).definition;
     const audio =
         audioCache.letters[currentRO] ??
-        new Audio(`../../assets/audios/effects/${currentRO}.mp3`);
+        new Audio(`../../assets/audios/effects/${currentRO}.webm`);
     audio.currentTime = 0;
     audio.play();
 }
