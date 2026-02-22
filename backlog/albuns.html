@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Estante de CDs</title>
+    <!-- Importar fonte Nunito para o estilo Duolingo -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Reset e Estilos Globais */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #F7F9FA; /* Fundo claro típico do Duolingo */
+            color: #4B4B4B;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 40px 0 10px 0;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #58CC02; /* Verde Duolingo */
+            font-weight: 900;
+        }
+
+        .instrucao {
+            text-align: center;
+            color: #AFAFAF;
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Overlay para escurecer o fundo */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Mais suave e flat */
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 50;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+            cursor: pointer;
+        }
+
+        /* A Estante - Estilo Flat/Chunky */
+        .shelf {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #FFFFFF;
+            border: 2px solid #E5E5E5;
+            border-bottom: 8px solid #E5E5E5; /* Cria o volume flat */
+            border-radius: 24px;
+            position: relative;
+        }
+
+        /* Container que guarda o espaço do CD na estante */
+        .album-wrapper {
+            position: relative;
+            width: 142px;
+            height: 125px;
+            perspective: 1000px;
+            z-index: 10;
+        }
+
+        /* O elemento que será animado */
+        .album {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            transform-origin: center center;
+            transition: transform 0.5s ease 0.4s, z-index 0s linear 1s;
+            z-index: 10;
+        }
+
+        /* Efeito hover "Bouncy" na estante */
+        .album:not(.active):hover {
+            transform: translateY(-8px);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito mola */
+            z-index: 20;
+        }
+
+        /* Estado ATIVO: Álbum no centro da tela */
+        .album.active {
+            transform: translate(var(--tx), var(--ty)) scale(var(--scale));
+            z-index: 100;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0s, z-index 0s linear 0s;
+        }
+
+        /* O Disco do CD - Estilo Vetor Flat */
+        .cd-disc {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 118px;
+            height: 118px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            background: #E5E5E5; /* Cinza sólido */
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+            z-index: 1;
+            /* Recorte limpo do centro */
+            -webkit-mask-image: radial-gradient(circle at center, transparent 15px, black 16px);
+            mask-image: radial-gradient(circle at center, transparent 15px, black 16px);
+        }
+
+        /* Borda exterior plana do CD */
+        .cd-disc::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 4px solid #D7D7D7;
+            border-radius: 50%;
+        }
+
+        /* Anel interior plano do CD */
+        .cd-disc::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            border: 4px solid #D7D7D7;
+            border-radius: 50%;
+        }
+
+        /* Animação do CD saindo POR CIMA */
+        .album.active .cd-disc {
+            transform: translate(-50%, -120%) rotate(360deg);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
+        }
+
+        /* Capa plástica (Estilo Chunky) */
+        .cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FFFFFF;
+            border: 2px solid #E5E5E5;
+            border-bottom: 6px solid #E5E5E5; /* A base mais grossa que dá o visual Duolingo */
+            border-radius: 16px;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        /* Imagem/Arte do Álbum */
+        .cover-art {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 16px;
+            text-align: center;
+            padding-left: 16px; 
+            line-height: 1.2;
+        }
+
+        /* Reflexo simplificado (forma diagonal plana) */
+        .cover-glass {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #FFFFFF;
+            opacity: 0.15;
+            clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* Lombada limpa e sólida */
+        .spine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 18px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.05);
+            border-right: 2px solid rgba(0, 0, 0, 0.05);
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-size: 9px;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        /* Paleta de Cores Oficiais do Duolingo para as Capas */
+        .art-1 { background: #58CC02; color: #FFFFFF; } /* Verde Duo */
+        .art-2 { background: #CE82FF; color: #FFFFFF; } /* Roxo */
+        .art-3 { background: #1CB0F6; color: #FFFFFF; } /* Azul */
+        .art-4 { background: #FFC800; color: #FFFFFF; } /* Amarelo */
+        .art-5 { background: #FF4B4B; color: #FFFFFF; } /* Vermelho */
+
+    </style>
+</head>
+<body>
+
+    <h1>Coleção de Álbuns</h1>
+    <p class="instrucao">Clique em um álbum para ouvi-lo (ele virá para frente e o CD sairá por cima)</p>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="shelf">
+        <!-- CD 1 -->
+        <div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">SYNTHWAVE</div>
+                    <div class="cover-art art-1">NEON<br>NIGHTS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CD 2 -->
+        <div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">HEAVY ROCK</div>
+                    <div class="cover-art art-2">DARK<br>MATTER</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CD 3 -->
+        <div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CHILL LO-FI</div>
+                    <div class="cover-art art-3">OCEAN<br>BREEZE</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CD 4 -->
+        <div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">INDIE POP</div>
+                    <div class="cover-art art-4">SUMMER<br>VIBES</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CD 5 -->
+        <div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div>
+        <div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div>
+        <div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div>
+        <div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div><div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div><div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div><div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div><div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div><div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div><div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div><div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div><div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div><div class="album-wrapper">
+            <div class="album">
+                <div class="cd-disc"></div>
+                <div class="cover">
+                    <div class="spine">CLASSICS</div>
+                    <div class="cover-art art-5">RETRO<br>HITS</div>
+                    <div class="cover-glass"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const albums = document.querySelectorAll('.album');
+        const overlay = document.getElementById('overlay');
+
+        // Função para fechar todos os CDs abertos
+        function closeAllAlbums() {
+            document.querySelectorAll('.album.active').forEach(album => {
+                album.classList.remove('active');
+                // As variáveis CSS (--tx, --ty) ficam salvas no elemento 
+                // permitindo que o CSS anime o retorno até a posição original(0,0)
+            });
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restaura o scroll
+        }
+
+        // Adiciona evento de clique na máscara escura de fundo
+        overlay.addEventListener('click', closeAllAlbums);
+
+        albums.forEach(album => {
+            album.addEventListener('click', function(e) {
+                // Se já estiver ativo e o usuário clicar na capa ou CD, fecha.
+                if (this.classList.contains('active')) {
+                    closeAllAlbums();
+                    return;
+                }
+
+                // Primeiro fecha outros que possam estar abertos
+                closeAllAlbums();
+
+                // Usamos GetBoundingClientRect para saber onde a capa está na tela atual
+                const rect = this.getBoundingClientRect();
+                
+                // Posição central do CD na prateleira (relativa a janela visual - viewport)
+                const albumCenterX = rect.left + rect.width / 2;
+                const albumCenterY = rect.top + rect.height / 2;
+
+                // Centro da tela
+                const screenCenterX = window.innerWidth / 2;
+                const screenCenterY = window.innerHeight / 2;
+
+                // Calcula quanto precisamos mover no eixo X e Y
+                const moveX = screenCenterX - albumCenterX;
+                // Movemos um pouco mais pra baixo na tela para ter espaço pro CD sair em cima
+                const moveY = (screenCenterY - albumCenterY) + 50; 
+
+                // Responsividade do tamanho (fica um pouco menor no celular)
+                const scaleAmount = window.innerWidth < 600 ? 1.8 : 2.5;
+
+                // Injeta as propriedades no CSS de forma limpa como variáveis
+                this.style.setProperty('--tx', `${moveX}px`);
+                this.style.setProperty('--ty', `${moveY}px`);
+                this.style.setProperty('--scale', scaleAmount);
+
+                // Ativa a animação
+                this.classList.add('active');
+                overlay.classList.add('active');
+                
+                // Remove o scroll para não quebrar a posição enquanto visualiza
+                document.body.style.overflow = 'hidden'; 
+                
+                // Previne que o clique se propague caso houvesse outros listeners
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>
