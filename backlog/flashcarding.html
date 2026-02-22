@@ -162,7 +162,7 @@
 
         /* Conteúdo do Card */
         .card-content h2 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             color: var(--duo-text);
             margin-bottom: 10px;
         }
@@ -381,33 +381,347 @@
 
     <script>
         // Dados dos Flashcards
-        const flashcardsData = [
+        // const flashcardsData = [
+        //     {
+        //         front: "打球",
+        //         hint: "(dǎ qiú)",
+        //         back: "Jogar bola"
+        //     },
+        //     {
+        //         front: "你好",
+        //         hint: "(nǐ hǎo)",
+        //         back: "Olá / Oi"
+        //     },
+        //     {
+        //         front: "谢谢",
+        //         hint: "(xiè xie)",
+        //         back: "Obrigado(a)"
+        //     },
+        //     {
+        //         front: "再见",
+        //         hint: "(zài jiàn)",
+        //         back: "Adeus / Tchau"
+        //     },
+        //     {
+        //         front: "猫",
+        //         hint: "(māo)",
+        //         back: "Gato"
+        //     }
+        // ];
+
+        const flashcardsData = shuffleArray([
             {
-                front: "打球",
-                hint: "(dǎ qiú)",
-                back: "Jogar bola"
+                front: "Se sua mãe fosse um animal, qual seria?",
+                hint: "",
+                back: ""
             },
             {
-                front: "你好",
-                hint: "(nǐ hǎo)",
-                back: "Olá / Oi"
+                front: "Você gostaria de descobrir uma poção mágica para...",
+                hint: "",
+                back: ""
             },
             {
-                front: "谢谢",
-                hint: "(xiè xie)",
-                back: "Obrigado(a)"
+                front: "Quais você características você gostaria de encontrar em um amigo?",
+                hint: "",
+                back: ""
             },
             {
-                front: "再见",
-                hint: "(zài jiàn)",
-                back: "Adeus / Tchau"
+                front: "O que você faria se não existissem leis/regras?",
+                hint: "",
+                back: ""
             },
             {
-                front: "猫",
-                hint: "(māo)",
-                back: "Gato"
-            }
-        ];
+                front: "Se você ganhasse um dia inteiro só para fazer o que quisesse, o que você faria?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "O que te deixa animado?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Você se sente feliz quando...",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual você considera o trabalho dos sonhos?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual seu personagem bíblico favorito? Por quê?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual é a melhor coisa que já invetaram?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual o(a) seu(sua) melhor amigo(a)? O que você admira nessa pessoa?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual foi um vizinho marcante para você?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Se você pudesse mudar algo em você, o que seria?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Quem era/é seu melhor amigo na infância?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual brinquedo/jogo você gosta ou gostava muito de brincar/jogar?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Quais são suas principais metas na vida?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "O que você faz se sentir melhor quando está de mau humor?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "De quem você gostaria de receber um elogio?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Se você pudesse eliminar uma regra de sua casa, qual seria?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Você se lembra do seu primeiro(a) amigo(a)? Como ele(a) era?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Quando você for velhinho, você...",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Você se sente eufórico quando...",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Que papel tem a internet na sua vida?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "O que faz de alguém uma pessoa má?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Você se sente triste quando...",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Minha pior característica é...",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "O que você mais deseja fazer no céu?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual seu esporte preferido?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "O que deixa você envergonhado?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Cite três habilidades suas",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Já teve um sonho tão bom e real que foi triste ter acordado? Qual foi?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "De qual professor você lembra com carinho?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual a sensação de ficar perto dos seus amigos?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Que pessoa você como referência espiritual?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "'Amar ao próximo como a ti mesmo'. Você faz isso? Acha possível?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Que três coisas você levaria para uma ilha deserta?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual estação do ano é a sua preferida? Por quê?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Do que você mais gosta/gostou na escola?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual foi o pior lugar em que você já esteve?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Que bichinho você ideal para animal de estimação?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual é uma lembrança feliz de quando era pequeno?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual é a pessoa mais importante de sua vida?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual a sua história favorita da infância?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual a pessoa que lhe causaria uma alegre surpresa ao encontrar no céu?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "O que deixa você com muita raiva?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Eu sinto nojo de...",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "O que é legal fazer com os amigos?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "O que é o melhor de se fazer em família?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Ninguém sabe que você tem medo de...",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Se te fosse dado o direito de escolher dois desejos, seriam...",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual filme você mais gostou de assistir?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Se lhe oferecessem uma viagem com todas as despesas pegas, para onde você iria?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Que filme fez você chorar?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Se pudesse ultrapassar as barreiras do tempo, você iria para o passado ou para o futuro? Por quê?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Quais são três coisas que todo menino devia saber?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "O que você faria se ganhasse 500 mil euros?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Se você pudesse escolher ter uma habilidade que não possui, qual seria?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "O que você está sentindo agora?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual é a sua memória mais antiga?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Pense em uma pessoa que você gostaria de dar um presente? Quem seria e por quê?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Com o que você se preocupa?",
+                hint: "",
+                back: ""
+            },
+            {
+                front: "Qual foi o presente que você ganhou que ficou na sua memória?",
+                hint: "",
+                back: ""
+            },
+            
+        ]);
 
         // Variáveis de Estado
         let currentIndex = 0;
@@ -438,6 +752,10 @@
             cardFrontHint.textContent = data.hint;
             cardBackText.textContent = data.back;
         }
+
+        function shuffleArray(arr) {
+    return arr.toSorted(() => Math.random() - 0.5);
+}
 
         // Atualizar Barra de Progresso
         function updateProgress() {
