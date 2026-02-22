@@ -10,7 +10,7 @@ body {
 /* Navegação */
 .header-nav {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -41,7 +41,7 @@ body {
 
 main {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     padding: 20px;
     flex-grow: 1;
     display: flex;
@@ -303,7 +303,7 @@ input[type="text"]:focus {
     margin-bottom: 20px;
 }
 
-#total-score {
+.total-score {
     user-select: none;
     min-width: 100px;
     text-align: right;
@@ -457,7 +457,7 @@ input[type="text"]:focus {
 
 .method-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(7.8rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
     grid-template-rows: 145px;
     gap: 30px;
     margin-top: 15px;
@@ -482,7 +482,7 @@ svg.fa-custom-icon {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     border: 2px solid var(--light-gray);
     border-bottom: 6px solid var(--duo-gray);
-    min-width: 7.8rem;
+    min-width: 10rem;
     min-height: 145px;
     text-align: center;
     cursor: pointer;
@@ -814,6 +814,9 @@ svg.fa-custom-icon {
     border: 2px solid var(--light-gray);
     user-select: none;
     border-radius: 12px;
+    box-shadow: 0px 0px 0px 25px #FFF inset;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAwIiBoZWlnaHQ9IjE2MDAiIHZpZXdCb3g9IjAgMCAxNjAwIDE2MDAiPg0KICA8ZyBzdHJva2U9IiNlNWU1ZTUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iOCwgOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4NCiAgICA8bGluZSB4MT0iODAwIiB5MT0iMjAwIiB4Mj0iODAwIiB5Mj0iMTQwMCIgLz4NCiAgICANCiAgICA8bGluZSB4MT0iMjAwIiB5MT0iODAwIiB4Mj0iMTQwMCIgeTI9IjgwMCIgLz4NCg0KICAgIDxsaW5lIHgxPSIyMDAiIHkxPSIyMDAiIHgyPSIxNDAwIiB5Mj0iMTQwMCIgLz4NCg0KICAgIDxsaW5lIHgxPSIxNDAwIiB5MT0iMjAwIiB4Mj0iMjAwIiB5Mj0iMTQwMCIgLz4NCiAgPC9nPg0KPC9zdmc+');
+    background-position: center;
 }
 
 .modal-catalog-overlay {
@@ -999,10 +1002,13 @@ svg.fa-custom-icon {
 }
 
 @media (max-width: 370px) {
+    .tab-btn {
+        font-size: 10px;
+    }
     .question-text {
         font-size: 17px;
     }
-    nav {
+    nav.header-nav {
         padding: 10px;
     }
     #total-score,
@@ -1121,7 +1127,7 @@ svg.fa-custom-icon {
     display: none;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 850px) {
     .text-nav {
         display: inherit;
     }

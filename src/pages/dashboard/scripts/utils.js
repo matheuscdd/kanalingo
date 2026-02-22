@@ -22,7 +22,7 @@ import {
     updateDoc,
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 
-const totalScoreDisplay = document.getElementById("total-score");
+const totalScoreDisplay = document.getElementById("total-score-course");
 export const gameState = Object.seal({
     currentRound: [],
     rightRound: [],
@@ -31,6 +31,7 @@ export const gameState = Object.seal({
     scorePerChar: structuredClone(defaults),
     lastWrong: false,
     currentScreen: null,
+    lastTotalScore: 0,
     currentDatabase:
         localStorage.getItem("currentDatabase") ?? databasesTypes.hiragana,
 });
@@ -71,7 +72,7 @@ async function loadAudioAsBlob(url) {
 
 export async function preloadAudios() {
     for (const { definition } of databasesData.kanas) {
-        const url = `../../assets/audios/letters/${definition}.mp3`;
+        const url = `../../assets/audios/letters/${definition}.webm`;
 
         try {
             audioCache.letters[definition] = await loadAudioAsBlob(url);
@@ -81,7 +82,7 @@ export async function preloadAudios() {
     }
 
     for (const key in statusRef) {
-        const url = `../../assets/audios/effects/${key}.mp3`;
+        const url = `../../assets/audios/effects/${key}.webm`;
 
         try {
             audioCache.effects[key] = await loadAudioAsBlob(url);
@@ -96,6 +97,7 @@ export async function updateScoreLocal(key, char, amount) {
     if (!gameState.scorePerChar[char]) {
         gameState.scorePerChar[char] = { [key]: 0 };
     }
+    gameState.lastTotalScore = getTotalScore(gameState.scorePerChar);
     gameState.scorePerChar[char][key] =
         (gameState.scorePerChar[char][key] || 0) + amount;
     localStorage.setItem(japanese, JSON.stringify(gameState.scorePerChar));
@@ -118,22 +120,25 @@ export function getTotalScore(ref) {
 
 export async function updateTotalScoreDisplay(isFirstLoad) {
     const total = getTotalScore(gameState.scorePerChar);
+    totalScoreDisplay.parentElement.classList = "golden-color2";
     if (isFirstLoad) {
-        totalScoreDisplay.classList = "golden-color2";
         await showNumberIncreasing(
             total,
-            0,
+            gameState.lastTotalScore,
             totalScoreDisplay,
             1,
             total * 0.01,
         );
-        totalScoreDisplay.classList = "";
-        return;
+    } else {
+        await showNumberIncreasing(
+            total,
+            gameState.lastTotalScore,
+            totalScoreDisplay,
+            1,
+        );
     }
 
-    totalScoreDisplay.classList = "golden-color2";
-    await showNumberIncreasing(total, total, totalScoreDisplay, 1);
-    totalScoreDisplay.classList = "";
+    totalScoreDisplay.parentElement.classList = "";
 }
 
 export function getValueToScorePerChar(char, key) {
@@ -181,7 +186,7 @@ export async function loadProgress() {
 export function playSoundEffect(sound) {
     const audio =
         audioCache.effects[sound] ??
-        new Audio(`../../assets/audios/effects/${sound}.mp3`);
+        new Audio(`../../assets/audios/effects/${sound}.webm`);
     audio.currentTime = 0;
     audio.play();
 }
@@ -192,7 +197,7 @@ export function playLetterSound(currentJA) {
     ).definition;
     const audio =
         audioCache.letters[currentRO] ??
-        new Audio(`../../assets/audios/effects/${currentRO}.mp3`);
+        new Audio(`../../assets/audios/effects/${currentRO}.webm`);
     audio.currentTime = 0;
     audio.play();
 }
