@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotebookLM Style Audio Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3f51b5; /* Cor do botão play */
+            --wave-green: #68d391;
+            --wave-purple: #9f7aea;
+            --wave-blue: #7f9cf5;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --gray-light: #e2e8f0;
+            --gray-dark: #718096;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .player-card {
+            background-color: var(--bg-color);
+            width: 100%;
+            max-width: 450px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Área de Upload */
+        .upload-section {
+            margin-bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .upload-btn {
+            background-color: var(--gray-light);
+            color: var(--text-color);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .upload-btn:hover {
+            background-color: #cbd5e0;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-name {
+            font-size: 12px;
+            color: var(--gray-dark);
+            margin-top: 8px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 90%;
+        }
+
+        /* Canvas das Ondas */
+        .canvas-container {
+            width: 100%;
+            height: 150px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Controles Secundários (1X, Like, Dislike) */
+        .secondary-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .sec-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sec-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .sec-btn i {
+            font-size: 22px;
+        }
+
+        .sec-btn.active {
+            color: var(--primary-color);
+        }
+
+        /* Container das Legendas */
+        .subtitle-wrapper {
+            width: 100%;
+            min-height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 0 10px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .subtitle-wrapper.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .subtitle-text {
+            font-size: 15px;
+            color: var(--primary-color);
+            font-weight: 500;
+            background-color: rgba(63, 81, 181, 0.1);
+            padding: 8px 16px;
+            border-radius: 12px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(15px); /* Inicia 15px abaixo (descida) */
+        }
+        
+        .subtitle-text.show-text {
+            opacity: 1;
+            transform: translateY(0); /* Sobe para a posição original */
+        }
+
+        /* Barra de Progresso */
+        .progress-wrapper {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .time {
+            font-size: 12px;
+            color: var(--text-color);
+            font-weight: 500;
+            min-width: 35px;
+            text-align: center;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: var(--gray-light);
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 0px; /* Esconde a bolinha para ficar igual ao vídeo */
+            height: 0px;
+        }
+
+        .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 6px;
+            background-color: var(--gray-dark);
+            border-radius: 5px;
+            pointer-events: none;
+            width: 0%;
+        }
+
+        /* Controles Principais */
+        .main-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 10px;
+        }
+
+        .skip-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 32px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .skip-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .skip-text {
+            position: absolute;
+            font-size: 10px;
+            font-weight: bold;
+            color: var(--primary-color);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .play-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 15px rgba(63, 81, 181, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            background-color: #303f9f;
+        }
+
+        .play-btn i {
+            margin-left: 4px; /* Centraliza visualmente o ícone de play */
+        }
+        
+        .play-btn.playing i {
+            margin-left: 0;
+        }
+
+        /* Mensagem de estado inicial */
+        #init-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            border-radius: 24px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-card">
+        
+        <!-- Upload de Música -->
+        <div class="upload-section">
+            <label for="audio-upload" class="upload-btn">
+                <i class="fa-solid fa-music"></i> Escolher Música
+            </label>
+            <input type="file" id="audio-upload" accept="audio/*">
+        </div>
+        <div id="file-name-display" class="file-name">Nenhuma música selecionada</div>
+
+        <!-- Animação do Áudio -->
+        <div class="canvas-container">
+            <canvas id="waveform"></canvas>
+        </div>
+
+        <!-- Controles Secundários -->
+        <div class="secondary-controls">
+            <button class="sec-btn" id="speed-btn" title="Velocidade">1X</button>
+            <button class="sec-btn" id="subtitle-btn" title="Legendas"><i class="fa-regular fa-closed-captioning"></i></button>
+            <button class="sec-btn" title="Gostei"><i class="fa-regular fa-thumbs-up"></i></button>
+            <button class="sec-btn" title="Não Gostei"><i class="fa-regular fa-thumbs-down"></i></button>
+        </div>
+
+        <!-- Área de Legendas -->
+        <div class="subtitle-wrapper" id="subtitle-wrapper">
+            <div class="subtitle-text" id="subtitle-text"></div>
+        </div>
+
+        <!-- Progresso -->
+        <div class="progress-wrapper">
+            <span class="time" id="current-time">0:00</span>
+            <div class="progress-container">
+                <input type="range" id="progress-bar" value="0" min="0" max="100" step="0.1">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="time" id="duration">0:00</span>
+        </div>
+
+        <!-- Controles Principais -->
+        <div class="main-controls">
+            <button class="skip-btn" id="skip-back">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span class="skip-text">10</span>
+            </button>
+            
+            <button class="play-btn" id="play-pause-btn" disabled>
+                <i class="fa-solid fa-play"></i>
+            </button>
+            
+            <button class="skip-btn" id="skip-forward">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span class="skip-text">10</span>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Elementos do DOM ---
+        const audioInput = document.getElementById('audio-upload');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressFill = document.getElementById('progress-fill');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+        const skipBackBtn = document.getElementById('skip-back');
+        const skipForwardBtn = document.getElementById('skip-forward');
+        const speedBtn = document.getElementById('speed-btn');
+        const subtitleBtn = document.getElementById('subtitle-btn');
+        const subtitleWrapper = document.getElementById('subtitle-wrapper');
+        const subtitleTextEl = document.getElementById('subtitle-text');
+        const canvas = document.getElementById('waveform');
+        const ctx = canvas.getContext('2d');
+
+        // --- Variáveis Globais ---
+        let audio = new Audio();
+        let audioContext = null;
+        let analyser = null;
+        let source = null;
+        let dataArray = null;
+        let animationId = null;
+        let isPlaying = false;
+        let fadeInterval = null; // Variável para controlar o fade de volume
+        
+        // Configurações das Ondas
+        let phase1 = 0, phase2 = 0, phase3 = 0;
+        let targetAmplitude = 0; // Amplitude base (quando pausado)
+        let currentAmplitude = 0; // Suavização (Lerp)
+        let currentSpeed = 0; // Controle de velocidade suave
+
+        // --- Legendas (Mock SRT) ---
+        const mockSRT = `1
+00:00:00,500 --> 00:00:03,000
+Bem-vindo ao reprodutor de áudio!
+
+2
+00:00:03,500 --> 00:00:06,000
+As ondas reagem à sua música.
+
+3
+00:00:06,500 --> 00:00:10,000
+Você pode ativar e desativar as legendas...
+
+4
+00:00:10,500 --> 00:00:15,000
+Experimente avançar ou retroceder o tempo!`;
+
+        let parsedSubtitles = [];
+        let subtitlesVisible = false;
+
+        // Parser de SRT
+        function parseSRT(data) {
+            // Divide o texto por blocos que contém linhas em branco
+            const blocks = data.trim().split(/\n\s*\n/);
+            return blocks.map(block => {
+                const lines = block.split('\n');
+                if (lines.length >= 3) {
+                    const times = lines[1].split(' --> ');
+                    return { 
+                        start: timeToSeconds(times[0]), 
+                        end: timeToSeconds(times[1]), 
+                        text: lines.slice(2).join('<br>') 
+                    };
+                }
+                return null;
+            }).filter(Boolean); // Filtra eventuais nulos
+        }
+
+        // Converte a formatação "HH:MM:SS,ms" para segundos
+        function timeToSeconds(timeString) {
+            const parts = timeString.split(':');
+            const secParts = parts[2].split(',');
+            return parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseInt(secParts[0]) + parseInt(secParts[1]) / 1000;
+        }
+
+        // Executa o parser do nosso mock
+        parsedSubtitles = parseSRT(mockSRT);
+
+        let subtitleTimeout = null;
+        let currentSubtitleText = "";
+
+        // Toggle do botão de legendas
+        subtitleBtn.addEventListener('click', () => {
+            subtitlesVisible = !subtitlesVisible;
+            if (subtitlesVisible) {
+                subtitleBtn.classList.add('active');
+                subtitleWrapper.classList.add('show');
+            } else {
+                subtitleBtn.classList.remove('active');
+                subtitleWrapper.classList.remove('show');
+                subtitleTextEl.classList.remove('show-text');
+                currentSubtitleText = ""; // Reseta o estado
+            }
+        });
+
+        // Função que verifica o tempo atual e atualiza a interface
+        function updateSubtitles(currentTime) {
+            if (!subtitlesVisible) return;
+            
+            // Busca se existe alguma legenda cujo tempo bate com o áudio atual
+            const activeSub = parsedSubtitles.find(sub => currentTime >= sub.start && currentTime <= sub.end);
+            
+            if (activeSub) {
+                // Atualiza o texto apenas se for diferente do atual para não repintar a tela atoa
+                if (currentSubtitleText !== activeSub.text) {
+                    currentSubtitleText = activeSub.text;
+                    
+                    // Faz a legenda atual descer e sumir
+                    subtitleTextEl.classList.remove('show-text');
+                    
+                    clearTimeout(subtitleTimeout);
+                    
+                    // Aguarda a animação de saída (300ms) antes de trocar o texto e subir o novo
+                    subtitleTimeout = setTimeout(() => {
+                        subtitleTextEl.innerHTML = activeSub.text;
+                        subtitleTextEl.classList.add('show-text');
+                    }, 300);
+                }
+            } else {
+                // Esconde a legenda (fade out + descer) caso não haja texto no tempo atual
+                if (currentSubtitleText !== "") {
+                    currentSubtitleText = "";
+                    subtitleTextEl.classList.remove('show-text');
+                }
+            }
+        }
+
+        // Redimensionar Canvas
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // --- Lógica de Upload ---
+        audioInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const objectURL = URL.createObjectURL(file);
+                audio.src = objectURL;
+                fileNameDisplay.textContent = file.name;
+                playPauseBtn.disabled = false;
+                
+                // Reseta UI
+                progressBar.value = 0;
+                progressFill.style.width = '0%';
+                currentTimeEl.textContent = '0:00';
+                audio.volume = 1; // Garante que o volume volte a 100% ao trocar de música
+                
+                // Para carregar os metadados (duração)
+                audio.load();
+                
+                // Se o contexto já existe, precisamos garantir que está rodando
+                if(audioContext && audioContext.state === 'suspended') {
+                    audioContext.resume();
+                }
+            }
+        });
+
+        // --- Lógica do Áudio ---
+        audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+            progressBar.max = audio.duration;
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            progressBar.value = audio.currentTime;
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+            const percentage = (audio.currentTime / audio.duration) * 100;
+            progressFill.style.width = percentage + '%';
+            
+            // Checa a minutagem da legenda atual
+            updateSubtitles(audio.currentTime);
+        });
+
+        audio.addEventListener('ended', () => {
+            isPlaying = false;
+            updatePlayButton();
+        });
+
+        // Barra de progresso manual
+        progressBar.addEventListener('input', () => {
+            audio.currentTime = progressBar.value;
+            const percentage = (progressBar.value / audio.duration) * 100;
+            progressFill.style.width = percentage + '%';
+        });
+
+        // --- Controles Principais ---
+        playPauseBtn.addEventListener('click', () => {
+            if (!audio.src) return;
+
+            // Inicializa o Web Audio API apenas na primeira interação do usuário (Regra dos Navegadores)
+            if (!audioContext) {
+                initWebAudio();
+            }
+
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            if (isPlaying) {
+                // Inicia o processo de pausa suave (Fade Out)
+                isPlaying = false;
+                updatePlayButton(); // Muda o ícone para play imediatamente
+                
+                clearInterval(fadeInterval);
+                let vol = audio.volume;
+                
+                // Reduz o volume a cada 30ms para dar um efeito de descida rápida (dura aprox. 300ms)
+                fadeInterval = setInterval(() => {
+                    vol -= 0.1; 
+                    if (vol <= 0) {
+                        audio.volume = 0;
+                        audio.pause();
+                        clearInterval(fadeInterval);
+                    } else {
+                        audio.volume = vol;
+                    }
+                }, 30);
+                
+            } else {
+                // Toca a música e restaura o volume
+                isPlaying = true;
+                updatePlayButton();
+                
+                clearInterval(fadeInterval);
+                audio.volume = 1; // Restaura para o volume máximo
+                audio.play();
+            }
+        });
+
+        function updatePlayButton() {
+            if (isPlaying) {
+                playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                playPauseBtn.classList.add('playing');
+            } else {
+                playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                playPauseBtn.classList.remove('playing');
+            }
+        }
+
+        skipBackBtn.addEventListener('click', () => {
+            audio.currentTime = Math.max(0, audio.currentTime - 10);
+        });
+
+        skipForwardBtn.addEventListener('click', () => {
+            audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+        });
+
+        // Controle de Velocidade
+        const speeds = [1, 1.2, 1.5, 2];
+        let currentSpeedIndex = 0;
+        speedBtn.addEventListener('click', () => {
+            currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length;
+            const newSpeed = speeds[currentSpeedIndex];
+            audio.playbackRate = newSpeed;
+            speedBtn.textContent = newSpeed + 'X';
+        });
+
+        // --- Utilitários ---
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+        }
+
+        // --- Web Audio API e Canvas (A Mágica das Ondas) ---
+        function initWebAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+            analyser.fftSize = 128; // Define a resolução da frequência
+            
+            source = audioContext.createMediaElementSource(audio);
+            source.connect(analyser);
+            analyser.connect(audioContext.destination);
+            
+            const bufferLength = analyser.frequencyBinCount;
+            dataArray = new Uint8Array(bufferLength);
+            
+            drawWaveform();
+        }
+
+        function drawWaveform() {
+            animationId = requestAnimationFrame(drawWaveform);
+            
+            const width = canvas.width;
+            const height = canvas.height;
+            const centerY = height / 2;
+
+            ctx.clearRect(0, 0, width, height);
+
+            let targetSpeed = 0;
+
+            if (analyser && isPlaying) {
+                analyser.getByteFrequencyData(dataArray);
+                // Calcula a média das frequências para obter a "energia" da música
+                let sum = 0;
+                for (let i = 0; i < dataArray.length; i++) {
+                    sum += dataArray[i];
+                }
+                const average = sum / dataArray.length;
+                
+                // Aumenta a amplitude baseada na batida da música
+                targetAmplitude = 2 + (average * 0.4); 
+                targetSpeed = 1;
+            } else {
+                // Se pausado, volta para uma linha reta e para de mover
+                targetAmplitude = 0;
+                targetSpeed = 0;
+            }
+
+            // Suavização (Lerp) para a animação não ficar travada/pulando
+            currentAmplitude += (targetAmplitude - currentAmplitude) * 0.1;
+            currentSpeed += (targetSpeed - currentSpeed) * 0.1;
+
+            // Velocidade das ondas multiplicada pela velocidade atual
+            phase1 += 0.05 * currentSpeed;
+            phase2 -= 0.03 * currentSpeed;
+            phase3 += 0.04 * currentSpeed;
+
+            // Desenha as 3 linhas (Verde, Azul claro, Roxo)
+            drawSineWave(ctx, width, centerY, currentAmplitude * 1.2, phase1, '#68d391', 0.015);
+            drawSineWave(ctx, width, centerY, currentAmplitude * 0.9, phase2, '#7f9cf5', 0.02);
+            drawSineWave(ctx, width, centerY, currentAmplitude * 0.6, phase3, '#9f7aea', 0.01);
+        }
+
+        function drawSineWave(ctx, width, centerY, amplitude, phase, color, frequency) {
+            ctx.beginPath();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2.5;
+            
+            for (let x = 0; x < width; x++) {
+                // A função seno cria as ondas. A multiplicação diminui as bordas para centralizar o efeito.
+                // Isso faz as pontas da linha ficarem grudadas no centro vertical (como no vídeo).
+                const edgeDamping = Math.sin((x / width) * Math.PI); 
+                
+                const y = centerY + Math.sin(x * frequency + phase) * amplitude * edgeDamping;
+                
+                if (x === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+        }
+
+        // Desenha ondas paradas no início
+        drawWaveform();
+
+    </script>
+</body>
+</html>
