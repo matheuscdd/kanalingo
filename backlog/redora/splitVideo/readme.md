@@ -1,0 +1,1 @@
+ffmpeg -i video.mp4 -vf "select='gt(scene,0.4)'" -vsync vfr frames/frame-%04d.jpg
