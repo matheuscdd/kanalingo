@@ -51,21 +51,32 @@
             margin-bottom: 20px;
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .upload-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
         }
 
         .upload-btn {
             background-color: var(--gray-light);
             color: var(--text-color);
-            padding: 10px 20px;
+            padding: 10px 15px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             transition: background 0.3s;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
+            width: 100%;
+            text-align: center;
         }
 
         .upload-btn:hover {
@@ -84,7 +95,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 90%;
+            max-width: 100%;
         }
 
         /* Canvas das Ondas */
@@ -158,7 +169,7 @@
 
         .subtitle-text {
             font-size: 15px;
-            color: var(--primary-color);
+            color: var(--gray-dark); /* Mudado para cinza para destacar a palavra ativa */
             font-weight: 500;
             background-color: rgba(63, 81, 181, 0.1);
             padding: 8px 16px;
@@ -171,6 +182,15 @@
         .subtitle-text.show-text {
             opacity: 1;
             transform: translateY(0); /* Sobe para a posição original */
+        }
+
+        .sub-word {
+            transition: color 0.15s ease, text-shadow 0.15s ease;
+        }
+
+        .sub-word.highlight {
+            color: var(--primary-color);
+            font-weight: 700;
         }
 
         /* Barra de Progresso */
@@ -314,14 +334,24 @@
 
     <div class="player-card">
         
-        <!-- Upload de Música -->
+        <!-- Upload de Música e JSON -->
         <div class="upload-section">
-            <label for="audio-upload" class="upload-btn">
-                <i class="fa-solid fa-music"></i> Escolher Música
-            </label>
-            <input type="file" id="audio-upload" accept="audio/*">
+            <div class="upload-group">
+                <label for="audio-upload" class="upload-btn">
+                    <i class="fa-solid fa-music"></i> Áudio
+                </label>
+                <input type="file" id="audio-upload" accept="audio/*">
+                <div id="file-name-display" class="file-name">Nenhum áudio</div>
+            </div>
+            
+            <div class="upload-group">
+                <label for="json-upload" class="upload-btn">
+                    <i class="fa-solid fa-file-code"></i> JSON
+                </label>
+                <input type="file" id="json-upload" accept=".json">
+                <div id="json-name-display" class="file-name">Nenhum JSON</div>
+            </div>
         </div>
-        <div id="file-name-display" class="file-name">Nenhuma música selecionada</div>
 
         <!-- Animação do Áudio -->
         <div class="canvas-container">
@@ -373,7 +403,9 @@
     <script>
         // --- Elementos do DOM ---
         const audioInput = document.getElementById('audio-upload');
+        const jsonInput = document.getElementById('json-upload');
         const fileNameDisplay = document.getElementById('file-name-display');
+        const jsonNameDisplay = document.getElementById('json-name-display');
         const playPauseBtn = document.getElementById('play-pause-btn');
         const progressBar = document.getElementById('progress-bar');
         const progressFill = document.getElementById('progress-fill');
@@ -404,56 +436,91 @@
         let currentAmplitude = 0; // Suavização (Lerp)
         let currentSpeed = 0; // Controle de velocidade suave
 
-        // --- Legendas (Mock SRT) ---
-        const mockSRT = `1
-00:00:00,500 --> 00:00:03,000
-Bem-vindo ao reprodutor de áudio!
+        // --- Legendas (Mock JSON com Palavras) ---
+        const mockJSON = [
+          {
+            "start": 0.0,
+            "end": 3.54,
+            "text": " Imagine a really famous, uh, aging king.",
+            "words": [
+              { "word": "Imagine", "start": 0.0, "end": 0.28 },
+              { "word": "a", "start": 0.28, "end": 0.48 },
+              { "word": "really", "start": 0.48, "end": 0.74 },
+              { "word": "famous", "start": 0.74, "end": 1.26 },
+              { "word": "uh", "start": 1.44, "end": 2.04 },
+              { "word": "aging", "start": 2.28, "end": 3.12 },
+              { "word": "king", "start": 3.12, "end": 3.54 }
+            ]
+          },
+          {
+            "start": 3.72,
+            "end": 5.9,
+            "text": " Right. A man at the very end of his life.",
+            "words": [
+              { "word": "Right", "start": 3.72, "end": 3.92 },
+              { "word": "A", "start": 4.32, "end": 4.76 },
+              { "word": " man", "start": 4.76, "end": 4.96 },
+              { "word": "at", "start": 4.96, "end": 5.12 },
+              { "word": "the", "start": 5.12, "end": 5.16 },
+              { "word": " very", "start": 5.16, "end": 5.32 },
+              { "word": "end", "start": 5.32, "end": 5.5 },
+              { "word": " of", "start": 5.5, "end": 5.6 },
+              { "word": " his", "start": 5.6, "end": 5.68 },
+              { "word": "life", "start": 5.68, "end": 5.9 }
+            ]
+          }
+        ];
 
-2
-00:00:03,500 --> 00:00:06,000
-As ondas reagem à sua música.
-
-3
-00:00:06,500 --> 00:00:10,000
-Você pode ativar e desativar as legendas...
-
-4
-00:00:10,500 --> 00:00:15,000
-Experimente avançar ou retroceder o tempo!`;
-
-        let parsedSubtitles = [];
+        let parsedSubtitles = mockJSON;
         let subtitlesVisible = false;
 
-        // Parser de SRT
-        function parseSRT(data) {
-            // Divide o texto por blocos que contém linhas em branco
-            const blocks = data.trim().split(/\n\s*\n/);
-            return blocks.map(block => {
-                const lines = block.split('\n');
-                if (lines.length >= 3) {
-                    const times = lines[1].split(' --> ');
-                    return { 
-                        start: timeToSeconds(times[0]), 
-                        end: timeToSeconds(times[1]), 
-                        text: lines.slice(2).join('<br>') 
-                    };
-                }
-                return null;
-            }).filter(Boolean); // Filtra eventuais nulos
-        }
-
-        // Converte a formatação "HH:MM:SS,ms" para segundos
-        function timeToSeconds(timeString) {
-            const parts = timeString.split(':');
-            const secParts = parts[2].split(',');
-            return parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseInt(secParts[0]) + parseInt(secParts[1]) / 1000;
-        }
-
-        // Executa o parser do nosso mock
-        parsedSubtitles = parseSRT(mockSRT);
-
-        let subtitleTimeout = null;
         let currentSubtitleText = "";
+        let currentWordIndex = -1;
+
+        // Gera o HTML mantendo o texto original (com pontuação) e isolando as palavras em spans
+        function generateSentenceHTML(block) {
+            let result = "";
+            let currentPos = 0;
+            const text = block.text;
+
+            block.words.forEach((w, index) => {
+                // Limpa espaços extras da palavra do array (como " man") para fazer o match correto no texto original
+                const cleanWord = w.word.trim();
+                const wordIndex = text.indexOf(cleanWord, currentPos);
+                
+                if (wordIndex !== -1) {
+                    result += text.substring(currentPos, wordIndex);
+                    result += `<span class="sub-word" data-index="${index}">${cleanWord}</span>`;
+                    currentPos = wordIndex + cleanWord.length;
+                }
+            });
+            result += text.substring(currentPos);
+            return result;
+        }
+
+        // Destaca a palavra atual
+        function highlightWord(block, currentTime) {
+            let activeWordIndex = -1;
+            
+            // Procura a palavra cujo tempo exato bate com o momento atual
+            for (let i = 0; i < block.words.length; i++) {
+                if (currentTime >= block.words[i].start && currentTime <= block.words[i].end) {
+                    activeWordIndex = i;
+                }
+            }
+            
+            if (activeWordIndex !== currentWordIndex) {
+                currentWordIndex = activeWordIndex;
+                const spans = subtitleTextEl.querySelectorAll('.sub-word');
+                spans.forEach((span, index) => {
+                    if (index === activeWordIndex) {
+                        span.classList.add('highlight');
+                    } else {
+                        span.classList.remove('highlight');
+                    }
+                });
+            }
+        }
 
         // Toggle do botão de legendas
         subtitleBtn.addEventListener('click', () => {
@@ -477,25 +544,24 @@ Experimente avançar ou retroceder o tempo!`;
             const activeSub = parsedSubtitles.find(sub => currentTime >= sub.start && currentTime <= sub.end);
             
             if (activeSub) {
-                // Atualiza o texto apenas se for diferente do atual para não repintar a tela atoa
+                // Atualiza o bloco de texto inteiro (frase)
                 if (currentSubtitleText !== activeSub.text) {
                     currentSubtitleText = activeSub.text;
+                    currentWordIndex = -1; // Reseta o índice da palavra
                     
-                    // Faz a legenda atual descer e sumir
-                    subtitleTextEl.classList.remove('show-text');
-                    
-                    clearTimeout(subtitleTimeout);
-                    
-                    // Aguarda a animação de saída (300ms) antes de trocar o texto e subir o novo
-                    subtitleTimeout = setTimeout(() => {
-                        subtitleTextEl.innerHTML = activeSub.text;
-                        subtitleTextEl.classList.add('show-text');
-                    }, 300);
+                    // Atualiza a frase na tela imediatamente sem atrasos/transições
+                    subtitleTextEl.innerHTML = generateSentenceHTML(activeSub);
+                    subtitleTextEl.classList.add('show-text');
+                    highlightWord(activeSub, currentTime);
+                } else if (subtitleTextEl.classList.contains('show-text')) {
+                    // Se o bloco de texto já está visível, apenas atualiza a cor da palavra
+                    highlightWord(activeSub, currentTime);
                 }
             } else {
-                // Esconde a legenda (fade out + descer) caso não haja texto no tempo atual
+                // Esconde a legenda caso não haja texto no tempo atual
                 if (currentSubtitleText !== "") {
                     currentSubtitleText = "";
+                    currentWordIndex = -1;
                     subtitleTextEl.classList.remove('show-text');
                 }
             }
@@ -509,7 +575,40 @@ Experimente avançar ou retroceder o tempo!`;
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // --- Lógica de Upload ---
+        // --- Lógica de Upload do JSON ---
+        jsonInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                jsonNameDisplay.textContent = file.name;
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    try {
+                        // Lê e faz o parse do conteúdo do ficheiro
+                        const uploadedJSON = JSON.parse(event.target.result);
+                        parsedSubtitles = uploadedJSON;
+                        
+                        // Limpa as legendas no ecrã para evitar conflitos ao trocar o ficheiro
+                        currentSubtitleText = "";
+                        currentWordIndex = -1;
+                        subtitleTextEl.classList.remove('show-text');
+                        
+                        // Se estiver a reproduzir com legendas visíveis, tenta atualizar com os novos dados
+                        if (subtitlesVisible) {
+                            updateSubtitles(audio.currentTime);
+                        }
+                    } catch (error) {
+                        alert("Erro ao ler o ficheiro JSON. Verifique se o formato está correto.");
+                        console.error(error);
+                        jsonNameDisplay.textContent = "Erro no ficheiro";
+                    }
+                };
+                // Lê o ficheiro como texto para podermos convertê-lo depois
+                reader.readAsText(file);
+            }
+        });
+
+        // --- Lógica de Upload de Áudio ---
         audioInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -654,13 +753,21 @@ Experimente avançar ou retroceder o tempo!`;
             
             const bufferLength = analyser.frequencyBinCount;
             dataArray = new Uint8Array(bufferLength);
-            
-            drawWaveform();
         }
+
+        let lastSubCheckTime = -1;
 
         function drawWaveform() {
             animationId = requestAnimationFrame(drawWaveform);
             
+            // Atualiza as legendas a 60 FPS no loop de animação.
+            // O evento padrão do áudio dispara devagar e "pula" palavras rápidas.
+            // Executar isso aqui garante que cada micro-palavra acenda no momento exato.
+            if (audio.currentTime !== lastSubCheckTime) {
+                updateSubtitles(audio.currentTime);
+                lastSubCheckTime = audio.currentTime;
+            }
+
             const width = canvas.width;
             const height = canvas.height;
             const centerY = height / 2;

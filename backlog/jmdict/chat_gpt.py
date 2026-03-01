@@ -36,7 +36,7 @@ words_to_translate = []
 with open('jmdict-eng-3.6.2.handle.json', "r", encoding="utf-8") as ff:
     res = json.load(ff)
     for word in res["words"]:
-        if int(word["id"]) <= 1382170:
+        if int(word["id"]) < 1382170 or (int(word["id"]) > 2392830 and int(word["id"]) < 2710330):
             continue
         for sense in word["sense"]:
             words_to_translate.append({
@@ -45,10 +45,10 @@ with open('jmdict-eng-3.6.2.handle.json', "r", encoding="utf-8") as ff:
                     "senseUid": sense["uid"],
                     "wordId": word["id"]
                 })
-print(len(words_to_translate))              
 # # Armazenar resultados
 translated_entries = []
 MAX_TRANSLATIONS = len(words_to_translate) 
+print(MAX_TRANSLATIONS)             
 
 # parar depois de 1000
 BATCH_SIZE = 100         # salvar a cada 100
