@@ -1,0 +1,965 @@
+[
+  {
+    "kana": "だいふんか",
+    "en": [
+      "major volcanic eruption",
+      "large-scale eruption",
+      "violent eruption",
+      "great eruption"
+    ],
+    "senseUid": "a65f1e83-f225-4e8a-8f37-cd571a019689",
+    "wordId": "2601180",
+    "pt": "{\n  \"a\": [\n    \"grande erupção vulcânica\",\n    \"erupção em grande escala\",\n    \"erupção violenta\",\n    \"grande erupção\"\n  ]\n"
+  },
+  {
+    "kana": "ぎんめん",
+    "en": [
+      "silver-plated chamfron"
+    ],
+    "senseUid": "87f960dd-0c78-4fb7-a4ab-a95ffb85af81",
+    "wordId": "2601060",
+    "pt": "{\n  \"a\": [\"chamfron prateado\", \"máscara de cavalo prateada\", \"proteção facial de cavalo prateada\"]\n"
+  },
+  {
+    "kana": "ぶぶんいっち",
+    "en": [
+      "partial match",
+      "matching a search term with sub-string within a field"
+    ],
+    "senseUid": "4a5f722e-ffe8-495a-829d-dbcebcae8bbf",
+    "wordId": "2601200",
+    "pt": "['correspondência parcial', 'correspondência de um termo de busca com uma subcadeia dentro de um campo']"
+  },
+  {
+    "kana": "もぎとう",
+    "en": [
+      "practice sword",
+      "fake sword"
+    ],
+    "senseUid": "d172a142-c6f5-4de7-accc-b8fa7a709a55",
+    "wordId": "2601120",
+    "pt": "{\n  \"a\": [\n    \"espada de prática\",\n    \"espada falsa\"\n  ]\n"
+  },
+  {
+    "kana": "ひっこしや",
+    "en": [
+      "removalist",
+      "mover"
+    ],
+    "senseUid": "c8816ccb-a03a-4eb7-8dd4-c7d0cfa025b6",
+    "wordId": "2601070",
+    "pt": "{\n  \"a\": [\"empresa de mudanças\", \"transportadora de mudanças\", \"pessoa que faz mudanças\", \"carregador de mudanças\"]\n"
+  },
+  {
+    "kana": "ぜんぽういっち",
+    "en": [
+      "left-hand match",
+      "begins-with match",
+      "matching a sub-string with the beginning of a field"
+    ],
+    "senseUid": "a738dd23-8afb-4ca4-ba5e-08c9451ad0a2",
+    "wordId": "2601210",
+    "pt": "{\n  \"a\": [\n    \"correspondência à esquerda\",\n    \"correspondência inicial\",\n    \"correspondência com o início do campo\"\n  ]\n"
+  },
+  {
+    "kana": "みちぞい",
+    "en": [
+      "along the road",
+      "at the side of the road"
+    ],
+    "senseUid": "65e54144-7888-4903-bbfa-daf51e2ca2b4",
+    "wordId": "2601080",
+    "pt": "['ao longo da estrada', 'à beira da estrada']"
+  },
+  {
+    "kana": "うみがわ",
+    "en": [
+      "seaward side"
+    ],
+    "senseUid": "541202de-2ad1-4945-b63f-f0ddcbf53234",
+    "wordId": "2601230",
+    "pt": "['lado do mar']"
+  },
+  {
+    "kana": "きのせい",
+    "en": [
+      "dryad",
+      "tree spirit"
+    ],
+    "senseUid": "2cf0ae30-00db-495b-b62d-eb430cf453fb",
+    "wordId": "2601150",
+    "pt": "{\n  \"a\": [\n    \"espírito da árvore\",\n    \"espírito arbóreo\",\n    \"dríade\"\n  ]\n"
+  },
+  {
+    "kana": "しょうれん",
+    "en": [
+      "commerce and industry association"
+    ],
+    "senseUid": "49b50bf2-6f9a-412c-a70d-880aef6401ee",
+    "wordId": "2601260",
+    "pt": "['associação comercial e industrial']"
+  },
+  {
+    "kana": "しゅうじ",
+    "en": [
+      "weekly"
+    ],
+    "senseUid": "25aef085-1975-47c8-898a-b3f0ad3ab979",
+    "wordId": "2601250",
+    "pt": "{\n  \"a\": [\n    \"semanal\"\n  ]\n"
+  },
+  {
+    "kana": "れいご",
+    "en": [
+      "illustrative word",
+      "example word"
+    ],
+    "senseUid": "478ebb0e-ec78-4725-a611-567da107dfbc",
+    "wordId": "2601270",
+    "pt": "{\n  \"a\": [\"palavra de exemplo\", \"palavra ilustrativa\"]\n"
+  },
+  {
+    "kana": "ひだりすみ",
+    "en": [
+      "left-hand corner",
+      "lower left"
+    ],
+    "senseUid": "32cb1f9c-ce97-41be-8064-d31e82bb501b",
+    "wordId": "2601240",
+    "pt": "{\n  \"a\": [\n    \"canto esquerdo\",\n    \"canto inferior esquerdo\"\n  ]\n"
+  },
+  {
+    "kana": "いんしょくりょうひん",
+    "en": [
+      "food and beverage"
+    ],
+    "senseUid": "1a29708b-c973-4312-8d22-8452cbaaba1c",
+    "wordId": "2601300",
+    "pt": "['alimentos e bebidas']"
+  },
+  {
+    "kana": "うみあそび",
+    "en": [
+      "playing in the sea"
+    ],
+    "senseUid": "daeb15c4-c17c-4af2-ad4d-f224fe686eb6",
+    "wordId": "2601330",
+    "pt": "['brincar no mar']"
+  },
+  {
+    "kana": "さげどまり",
+    "en": [
+      "bottoming out",
+      "reaching a floor",
+      "ceasing to fall",
+      "edging lower"
+    ],
+    "senseUid": "e3d6e77a-182a-4344-a23b-c2884aea3d45",
+    "wordId": "2601320",
+    "pt": "['atingir o fundo', 'chegar ao piso', 'parar de cair', 'cair levemente']"
+  },
+  {
+    "kana": "いんそつ",
+    "en": [
+      "graduate-school graduate"
+    ],
+    "senseUid": "fa4b30a0-f1d9-4824-bb1e-7be2b6e44eff",
+    "wordId": "2601310",
+    "pt": "{\n  \"a\": [\"pós-graduando\", \"aluno de pós-graduação\", \"estudante de pós-graduação\"]\n"
+  },
+  {
+    "kana": "つれあるく",
+    "en": [
+      "to carry around (esp. a child)",
+      "to carry about"
+    ],
+    "senseUid": "f641009c-3b3e-4552-837c-49421cf860c2",
+    "wordId": "2601340",
+    "pt": "['levar junto (especialmente uma criança)', 'carregar consigo']"
+  },
+  {
+    "kana": "らが",
+    "en": [
+      "naked bud (of a plant)",
+      "bud unprotected by bud scales"
+    ],
+    "senseUid": "2da81fc8-26ca-40da-a2f6-d88b27d1e60f",
+    "wordId": "2601290",
+    "pt": "{\n  \"a\": [\n    \"brote nu (de uma planta)\",\n    \"brote desprotegido por escamas\"\n  ]\n"
+  },
+  {
+    "kana": "つれあるく",
+    "en": [
+      "to walk with",
+      "to make someone tag along"
+    ],
+    "senseUid": "694692e8-f5f2-4146-866e-f456d49f3044",
+    "wordId": "2601340",
+    "pt": "{\n  \"a\": [\n    \"andar junto\",\n    \"levar alguém junto\",\n    \"caminhar acompanhado\",\n    \"fazer alguém acompanhar\"\n  ]\n"
+  },
+  {
+    "kana": "ちじょうけい",
+    "en": [
+      "epigeal stem",
+      "(normal) plant stem which is above the ground"
+    ],
+    "senseUid": "cdf9c651-5cd0-4525-af55-780e2810dd61",
+    "wordId": "2601280",
+    "pt": "{\n  \"a\": [\n    \"caule epigeu\",\n    \"caule (normal) de planta que fica acima do solo\"\n  ]\n"
+  },
+  {
+    "kana": "じどうかりょうさん",
+    "en": [
+      "automated mass-production"
+    ],
+    "senseUid": "bee37c40-ecbf-4a36-95bc-c47748bbe0fe",
+    "wordId": "2601530",
+    "pt": "['produção em massa automatizada']"
+  },
+  {
+    "kana": "しでん",
+    "en": [
+      "first train"
+    ],
+    "senseUid": "3dceab8f-f033-49c7-8de8-6fb6e46e1038",
+    "wordId": "2601450",
+    "pt": "['primeiro trem']"
+  },
+  {
+    "kana": "パウロのてがみ",
+    "en": [
+      "the letters of Paul"
+    ],
+    "senseUid": "328f9793-fb22-4ede-a6e3-ac9658d940a0",
+    "wordId": "2601490",
+    "pt": "{\n  \"a\": [\"as cartas de Paulo\"]\n"
+  },
+  {
+    "kana": "はいばん",
+    "en": [
+      "discontinued edition (model, product, etc.)"
+    ],
+    "senseUid": "d54db7ce-59ce-4805-a594-d6b0681a6324",
+    "wordId": "2601520",
+    "pt": "['edição descontinuada (modelo, produto, etc.)']"
+  },
+  {
+    "kana": "どうたぬき",
+    "en": [
+      "heavy sword"
+    ],
+    "senseUid": "0573c297-9588-4eaa-b8be-e9cd726c02bf",
+    "wordId": "2601470",
+    "pt": "['espada pesada']"
+  },
+  {
+    "kana": "アブソーバー",
+    "en": [
+      "absorber"
+    ],
+    "senseUid": "2d4f1222-860d-4387-b448-4d77fbe30b23",
+    "wordId": "2601350",
+    "pt": "['amortecedor']"
+  },
+  {
+    "kana": "しはつでんしゃ",
+    "en": [
+      "first train (of the day)"
+    ],
+    "senseUid": "2e808b4f-5ac8-4d49-a1b9-15a2a349d1b2",
+    "wordId": "2601460",
+    "pt": "['primeiro trem do dia']"
+  },
+  {
+    "kana": "パウロのしょかん",
+    "en": [
+      "Pauline Epistles"
+    ],
+    "senseUid": "77d90ee6-2566-4ce3-8140-d06ec5497271",
+    "wordId": "2601480",
+    "pt": "['Epístolas Paulinas']"
+  },
+  {
+    "kana": "ねこむすめ",
+    "en": [
+      "catgirl",
+      "character who looks, acts, etc. like a cat"
+    ],
+    "senseUid": "014a0472-d61e-46fd-97f1-36c988994582",
+    "wordId": "2601510",
+    "pt": "['garota-gato', 'personagem que se parece, age, etc. como um gato']"
+  },
+  {
+    "kana": "どうたぬき",
+    "en": [
+      "sword of the Dōtanuki school (usually thicker and heavier than regular Japanese swords)"
+    ],
+    "senseUid": "d21846f2-41c5-4015-a6e6-fa2cddd41ac9",
+    "wordId": "2601470",
+    "pt": "['espada da escola Dōtanuki (normalmente mais grossa e pesada do que as espadas japonesas comuns)']"
+  },
+  {
+    "kana": "たかどまり",
+    "en": [
+      "continuing at a high level",
+      "remaining high"
+    ],
+    "senseUid": "6cba560d-b797-4144-8625-9e1ebc20831e",
+    "wordId": "2601370",
+    "pt": "['permanecer em um nível elevado', 'continuar alto']"
+  },
+  {
+    "kana": "はくをつける",
+    "en": [
+      "to give something weight",
+      "to give something dignity"
+    ],
+    "senseUid": "e831e944-17e5-445e-b3b5-72703d512872",
+    "wordId": "2601540",
+    "pt": "['dar prestígio', 'dar importância', 'dar dignidade', 'valorizar algo']"
+  },
+  {
+    "kana": "えばもよう",
+    "en": [
+      "single pattern on the entirety of a garment"
+    ],
+    "senseUid": "5e68b55b-3307-4669-8774-f79635013dee",
+    "wordId": "2601400",
+    "pt": "{\n  \"a\": [\n    \"padrão único em toda a peça de roupa\"\n  ]\n"
+  },
+  {
+    "kana": "どうたぬき",
+    "en": [
+      "Dōtanuki school (Muromachi-period swordsmithing school)"
+    ],
+    "senseUid": "cbd7686b-f316-4321-9a68-c6b483dd1b58",
+    "wordId": "2601470",
+    "pt": "['Escola Dōtanuki (escola de forjadores de espadas do período Muromachi)']"
+  },
+  {
+    "kana": "こうねんぴしゃ",
+    "en": [
+      "gas-guzzler",
+      "gas-guzzling car",
+      "vehicle with high fuel consumption"
+    ],
+    "senseUid": "365cc05e-e812-43ed-9de2-406f10633a1a",
+    "wordId": "2601440",
+    "pt": "{\n  \"a\": [\n    \"carro beberrão\",\n    \"carro que consome muito combustível\",\n    \"veículo com alto consumo de combustível\"\n  ]\n"
+  },
+  {
+    "kana": "のみつける",
+    "en": [
+      "to drink regularly",
+      "to drink stubbornly"
+    ],
+    "senseUid": "8973bbb8-684c-4dd3-b820-7c9df3b95947",
+    "wordId": "2601380",
+    "pt": "['beber regularmente', 'beber teimosamente']"
+  },
+  {
+    "kana": "えばおり",
+    "en": [
+      "figured haori (coat)"
+    ],
+    "senseUid": "adf9e0c7-bb4c-4cdc-a44a-3830c3e54b10",
+    "wordId": "2601420",
+    "pt": "['haori estampado', 'haori com padrão', 'haori decorado']"
+  },
+  {
+    "kana": "だつ",
+    "en": [
+      "de- (indicating reversal, removal, etc.)",
+      "post-"
+    ],
+    "senseUid": "41fac86e-bc13-45ac-b14e-6f12bbe4f028",
+    "wordId": "2601360",
+    "pt": "{\n  \"a\": [\n    \"de- (indicando reversão, remoção, etc.)\",\n    \"pós-\"\n  ]\n"
+  },
+  {
+    "kana": "すでにして",
+    "en": [
+      "in the meantime",
+      "meanwhile"
+    ],
+    "senseUid": "caf27d47-1f4c-4e1b-a11d-0eb65815148d",
+    "wordId": "2601430",
+    "pt": "{\n  \"a\": [\"por ora\", \"nesse meio-tempo\", \"enquanto isso\", \"por enquanto\"]\n"
+  },
+  {
+    "kana": "のみニケーション",
+    "en": [
+      "drinking with colleagues to deepen ties",
+      "bonding over alcohol"
+    ],
+    "senseUid": "a7bee76b-85d4-4004-a97a-8c8c836e0b07",
+    "wordId": "2601410",
+    "pt": "['beber com colegas para aprofundar laços', 'criar vínculos através do álcool']"
+  },
+  {
+    "kana": "そうくう",
+    "en": [
+      "blue sky"
+    ],
+    "senseUid": "57375cbd-0e40-4d70-993e-82be93fb37c2",
+    "wordId": "2601560",
+    "pt": "{\n  \"a\": [\"céu azul\"]\n"
+  },
+  {
+    "kana": "びしょう",
+    "en": [
+      "dressing beautifully",
+      "beautiful makeup"
+    ],
+    "senseUid": "b1af6fc0-897a-495d-a900-6624fa4c9676",
+    "wordId": "2601550",
+    "pt": "['embelezamento', 'maquiagem bonita', 'vestir-se com elegância']"
+  },
+  {
+    "kana": "じんがいきょう",
+    "en": [
+      "uninhabited area"
+    ],
+    "senseUid": "a951f21e-05a3-48cc-bb47-a1320a6a98b5",
+    "wordId": "2601660",
+    "pt": "['área desabitada']"
+  },
+  {
+    "kana": "そのさき",
+    "en": [
+      "beyond that point",
+      "after that"
+    ],
+    "senseUid": "0d3f819c-681a-46df-92b0-db06ce8148b6",
+    "wordId": "2601570",
+    "pt": "['além desse ponto', 'depois disso']"
+  },
+  {
+    "kana": "じえん",
+    "en": [
+      "otitis",
+      "inflammation of the ear"
+    ],
+    "senseUid": "4289c08b-bb04-4d27-bf62-b235a0236413",
+    "wordId": "2601620",
+    "pt": "{\n  \"a\": [\"otite\", \"inflamação do ouvido\"]\n"
+  },
+  {
+    "kana": "こまくえん",
+    "en": [
+      "myringitis",
+      "tympanitis"
+    ],
+    "senseUid": "e05bafde-587b-478a-879c-fa118f4f7436",
+    "wordId": "2601610",
+    "pt": "{\n  \"a\": [\"inflamação do tímpano\", \"inflamação da membrana timpânica\"]\n"
+  },
+  {
+    "kana": "オトギリソウもく",
+    "en": [
+      "Guttiferales (plant order)"
+    ],
+    "senseUid": "ccd01da5-22ec-44ae-b77c-68a44786edce",
+    "wordId": "2601640",
+    "pt": "['ordem das Guttiferales (ordem de plantas)']"
+  },
+  {
+    "kana": "ほんこう",
+    "en": [
+      "this entry (in an encyclopedia, dictionary, etc.)",
+      "this article"
+    ],
+    "senseUid": "225bd704-929b-4751-bbd7-631dd8123152",
+    "wordId": "2601680",
+    "pt": "{\n  \"a\": [\n    \"esta entrada (em uma enciclopédia, dicionário, etc.)\",\n    \"este artigo\"\n  ]\n"
+  },
+  {
+    "kana": "しはいがしら",
+    "en": [
+      "leader",
+      "chief"
+    ],
+    "senseUid": "bada8680-a076-4618-8d54-4ef3e8bcb0a9",
+    "wordId": "2601740",
+    "pt": "['chefe', 'líder']"
+  },
+  {
+    "kana": "おとぎりそう",
+    "en": [
+      "Hypericum erectum (species of St. John's wort)"
+    ],
+    "senseUid": "9fe98004-0e80-4fe3-b561-2eb140d8d310",
+    "wordId": "2601600",
+    "pt": "{\n  \"a\": [\"Hypericum erectum (espécie de erva-de-são-joão)\"]\n"
+  },
+  {
+    "kana": "きげんせつ",
+    "en": [
+      "theory of origins",
+      "origin hypothesis"
+    ],
+    "senseUid": "5d67160e-1588-4b96-87a7-80b568de5d84",
+    "wordId": "2601690",
+    "pt": "['teoria das origens', 'hipótese da origem']"
+  },
+  {
+    "kana": "たしょうなりとも",
+    "en": [
+      "(even) if only a little",
+      "to some extent",
+      "in the slightest way"
+    ],
+    "senseUid": "4afecb0d-be32-480e-974b-909b27d3fac3",
+    "wordId": "2601580",
+    "pt": "['mesmo que seja só um pouco', 'até certo ponto', 'nem que seja minimamente']"
+  },
+  {
+    "kana": "ほんこう",
+    "en": [
+      "this clause",
+      "this paragraph",
+      "this section"
+    ],
+    "senseUid": "5b09f259-8331-44d2-b69b-0e1ded5a0931",
+    "wordId": "2601680",
+    "pt": "{\n  \"a\": [\n    \"este artigo\",\n    \"este parágrafo\",\n    \"esta cláusula\"\n  ]\n"
+  },
+  {
+    "kana": "オトギリソウぞく",
+    "en": [
+      "Hypericum (plant genus including St. John's worts)"
+    ],
+    "senseUid": "ef607264-cc9d-4172-a138-0413e7d735fd",
+    "wordId": "2601630",
+    "pt": "{\n  \"a\": [\n    \"Hypericum (gênero de plantas incluindo as ervas-de-São-João)\"\n  ]\n"
+  },
+  {
+    "kana": "ゆうびんきょくいん",
+    "en": [
+      "mail clerk",
+      "post-office clerk",
+      "post-office worker",
+      "postal employee",
+      "postal worker"
+    ],
+    "senseUid": "2c879c1c-6ac6-45a4-8ae0-7382995deb28",
+    "wordId": "2601710",
+    "pt": "['funcionário dos correios', 'empregado dos correios', 'trabalhador dos correios', 'atendente dos correios', 'funcionário postal']"
+  },
+  {
+    "kana": "しょしかた",
+    "en": [
+      "way of dealing with",
+      "way of handling"
+    ],
+    "senseUid": "85287ad8-ef7b-489a-91ec-4d895b3eac30",
+    "wordId": "2601730",
+    "pt": "['maneira de lidar com', 'modo de tratar', 'forma de manejar', 'jeito de conduzir']"
+  },
+  {
+    "kana": "みのしょしかた",
+    "en": [
+      "what action to take",
+      "what to do with oneself"
+    ],
+    "senseUid": "a005df57-da9d-429e-8148-dc93ea153113",
+    "wordId": "2601720",
+    "pt": "{\n  \"a\": [\n    \"o que fazer consigo mesmo\",\n    \"como agir\",\n    \"que atitude tomar\",\n    \"como se portar\",\n    \"como proceder\"\n  ]\n"
+  },
+  {
+    "kana": "フェイジョア",
+    "en": [
+      "feijoa (Acca sellowiana)",
+      "pineapple guava",
+      "guavasteen"
+    ],
+    "senseUid": "a5cab1e9-101b-4431-b2d1-e88b5cf3eba7",
+    "wordId": "2601590",
+    "pt": "{\n  \"a\": [\n    \"feijoa (Acca sellowiana)\",\n    \"goiaba-serrana\",\n    \"goiaba-ananás\"\n  ]\n"
+  },
+  {
+    "kana": "ぜんぶつ",
+    "en": [
+      "Buddha prior to Gautama"
+    ],
+    "senseUid": "82d8a0e2-0eb5-4355-8739-934bbf683f38",
+    "wordId": "2601760",
+    "pt": "['Buda anterior a Gautama']"
+  },
+  {
+    "kana": "ごげんせつ",
+    "en": [
+      "etymological theory",
+      "etymology"
+    ],
+    "senseUid": "a3f11312-a2ed-4485-84c5-97d320c1d3cd",
+    "wordId": "2601700",
+    "pt": "{\n  \"a\": [\n    \"teoria etimológica\",\n    \"etimologia\"\n  ]\n"
+  },
+  {
+    "kana": "ぜんぶつ",
+    "en": [
+      "Gautama Buddha",
+      "Shakyamuni"
+    ],
+    "senseUid": "0114b822-9277-4c13-8b98-81925c8a5a49",
+    "wordId": "2601760",
+    "pt": "{\n  \"a\": [\"Buda Gautama\", \"Shakyamuni\"]\n"
+  },
+  {
+    "kana": "ごぶつ",
+    "en": [
+      "Maitreya (buddha appearing 5.67 billion years after the death of Gautama)"
+    ],
+    "senseUid": "7f9af29f-6be9-4129-ad16-cf6e9c9f5db6",
+    "wordId": "2601770",
+    "pt": "['Maitreya (buda que aparecerá 5,67 bilhões de anos após a morte de Gautama)']"
+  },
+  {
+    "kana": "とうづくえ",
+    "en": [
+      "desk made in China",
+      "Chinese style desk"
+    ],
+    "senseUid": "0c672f75-f892-479d-b83d-1e9ea4ee59f3",
+    "wordId": "2601750",
+    "pt": "{\n  \"a\": [\n    \"escrivaninha chinesa\",\n    \"escrivaninha de estilo chinês\",\n    \"escrivaninha feita na China\"\n  ]\n"
+  },
+  {
+    "kana": "かたぎぬ",
+    "en": [
+      "short, sleeveless robe worn by commoners"
+    ],
+    "senseUid": "86697546-b103-451e-bfc9-251fbc522b57",
+    "wordId": "2601780",
+    "pt": "['túnica curta e sem mangas usada por plebeus']"
+  },
+  {
+    "kana": "かせいと",
+    "en": [
+      "reeled thread"
+    ],
+    "senseUid": "e92fc90f-253c-40ac-874a-77d5df05b025",
+    "wordId": "2601850",
+    "pt": "{\n  \"a\": [\"fio enrolado\"]\n"
+  },
+  {
+    "kana": "かたぎぬ",
+    "en": [
+      "sleeveless ceremonial robe for samurai (replacing the Muromachi-period suō)"
+    ],
+    "senseUid": "a03d0706-4af2-4502-8f10-f67b91159aa1",
+    "wordId": "2601780",
+    "pt": "['túnica cerimonial sem mangas usada por samurais (substituindo o suō do período Muromachi)']"
+  },
+  {
+    "kana": "てんぽん",
+    "en": [
+      "book with reading aids (such as kana or punctuation marks)"
+    ],
+    "senseUid": "8138ead3-a484-4a3f-9fbf-65ecc1033a53",
+    "wordId": "2601800",
+    "pt": "{\n  \"a\": [\n    \"livro com auxiliares de leitura (como kana ou sinais de pontuação)\"\n  ]\n"
+  },
+  {
+    "kana": "すほん",
+    "en": [
+      "Chinese classic without reading aids",
+      "book without reading aids"
+    ],
+    "senseUid": "a17b0af2-faf6-494a-a45f-3c31a3575340",
+    "wordId": "2601820",
+    "pt": "{\n  \"a\": [\n    \"Clássico chinês sem marcas de leitura\",\n    \"Livro sem marcas de leitura\"\n  ]\n"
+  },
+  {
+    "kana": "さげじゅう",
+    "en": [
+      "female prostitute who carried multi-tiered food boxes about and peddled foodstuffs (Meiwa and Anei eras)"
+    ],
+    "senseUid": "0e4d9990-1393-4176-91d6-fe60311c0964",
+    "wordId": "2601840",
+    "pt": "['prostituta que carregava caixas de comida empilhadas e vendia alimentos (eras Meiwa e Anei)']"
+  },
+  {
+    "kana": "むてんぼん",
+    "en": [
+      "Chinese classic without reading aids",
+      "book without reading aids"
+    ],
+    "senseUid": "8bc095e9-3b0c-4493-bf42-a674e98c44af",
+    "wordId": "2601810",
+    "pt": "{\n  \"a\": [\n    \"clássico chinês sem marcas de leitura\",\n    \"livro sem marcas de leitura\"\n  ]\n"
+  },
+  {
+    "kana": "ひっかえす",
+    "en": [
+      "to turn back",
+      "to go back",
+      "to come back",
+      "to return",
+      "to retrace one's steps"
+    ],
+    "senseUid": "641f3fb8-9a71-498f-9939-c0784f2e29cc",
+    "wordId": "2601790",
+    "pt": "['voltar', 'retornar', 'dar meia-volta', 'recuar', 'refazer o caminho']"
+  },
+  {
+    "kana": "さげじゅうばこ",
+    "en": [
+      "multi-tiered food boxes that can be carried by hand"
+    ],
+    "senseUid": "1accbfd7-c028-4ea4-98d5-7a335153d2b7",
+    "wordId": "2601830",
+    "pt": "['caixa de comida empilhável para transporte', 'caixa de comida de vários andares para levar à mão', 'caixa de refeição portátil em camadas']"
+  },
+  {
+    "kana": "さげじゅう",
+    "en": [
+      "multi-tiered food boxes that can be carried by hand"
+    ],
+    "senseUid": "7c380c01-b13d-4a68-8371-8cbc06ce1537",
+    "wordId": "2601840",
+    "pt": "{\n  \"a\": [\n    \"caixas de comida empilhadas que podem ser carregadas à mão\",\n    \"caixas de refeição de vários andares para transporte manual\",\n    \"recipientes de comida em camadas portáteis\"\n  ]\n"
+  },
+  {
+    "kana": "かちざむらい",
+    "en": [
+      "humble samurai who served as a body guard on foot"
+    ],
+    "senseUid": "4e5c2e03-1754-47f0-9b95-e0481b7ad242",
+    "wordId": "2601860",
+    "pt": "{\n  \"a\": [\"samurai humilde que servia como guarda-costas a pé\"]\n"
+  },
+  {
+    "kana": "りつだん",
+    "en": [
+      "talking while standing"
+    ],
+    "senseUid": "4b087720-53a1-45f3-8e75-cfb319636a0c",
+    "wordId": "2601960",
+    "pt": "['conversar em pé', 'falar enquanto está de pé']"
+  },
+  {
+    "kana": "うりび",
+    "en": [
+      "day on which prostitutes had to receive clients"
+    ],
+    "senseUid": "59acaac1-ba74-4374-a7f2-fe9d3fa2419b",
+    "wordId": "2601980",
+    "pt": "{\n  \"a\": [\n    \"dia em que as prostitutas eram obrigadas a receber clientes\"\n  ]\n"
+  },
+  {
+    "kana": "ものまえ",
+    "en": [
+      "just before a war"
+    ],
+    "senseUid": "fe39912b-e361-47c4-ac6e-5c9f40a86a10",
+    "wordId": "2602000",
+    "pt": "['à beira de uma guerra', 'imediatamente antes de uma guerra', 'prestes a entrar em guerra']"
+  },
+  {
+    "kana": "ごようにん",
+    "en": [
+      "manager",
+      "steward",
+      "person next in rank to the chief retainer and in charge of general management and accounting in a samurai family (Edo period)"
+    ],
+    "senseUid": "f843ab0a-8f59-4898-bbad-2b0815d1fe0a",
+    "wordId": "2602010",
+    "pt": "['gerente', 'administrador', 'pessoa imediatamente abaixo do principal intendente e responsável pela administração geral e contabilidade em uma família samurai (período Edo)']"
+  },
+  {
+    "kana": "みくじ",
+    "en": [
+      "fortune slip (usu. bought at a shrine)"
+    ],
+    "senseUid": "676ce601-e169-47ed-839e-a71a271c99bc",
+    "wordId": "2602060",
+    "pt": "['papel da sorte (geralmente comprado em santuário)']"
+  },
+  {
+    "kana": "ちゃらっぽこ",
+    "en": [
+      "no way",
+      "that can't be true",
+      "nonsense!"
+    ],
+    "senseUid": "4e09a2c0-a4e5-4c7b-a1d9-1fe2ab63964b",
+    "wordId": "2601920",
+    "pt": "['de jeito nenhum', 'não pode ser verdade', 'bobagem!']"
+  },
+  {
+    "kana": "そどく",
+    "en": [
+      "rat-bite fever",
+      "sodoku"
+    ],
+    "senseUid": "5e9eed87-5160-49d0-89b8-dc06e25a4233",
+    "wordId": "2601930",
+    "pt": "{\n  \"a\": [\n    \"febre por mordedura de rato\",\n    \"sodoku\"\n  ]\n"
+  },
+  {
+    "kana": "さんらんたい",
+    "en": [
+      "scatterer"
+    ],
+    "senseUid": "897dd02d-ea76-47cf-ac67-d479f7a109aa",
+    "wordId": "2601940",
+    "pt": "['dispersor']"
+  },
+  {
+    "kana": "とき",
+    "en": [
+      "battle cry",
+      "war cry"
+    ],
+    "senseUid": "1dfd0f46-4ade-4590-b73e-a1d61ccc0fa0",
+    "wordId": "2602070",
+    "pt": "{\n  \"a\": [\"grito de guerra\", \"clamor de batalha\"]\n"
+  },
+  {
+    "kana": "みあがり",
+    "en": [
+      "taking a day off by paying one's own fee to one's master (of a prostitute; often in order to see her lover)"
+    ],
+    "senseUid": "11b6b399-cb0d-466f-ad2c-cd8cda81b448",
+    "wordId": "2601970",
+    "pt": "{\n  \"a\": [\n    \"tirar um dia de folga pagando uma taxa ao próprio mestre (de uma prostituta; frequentemente para ver seu amante)\"\n  ]\n"
+  },
+  {
+    "kana": "きがさ",
+    "en": [
+      "having a competitive spirit"
+    ],
+    "senseUid": "0e4cca19-7058-4432-899b-580e8cbcc514",
+    "wordId": "2602050",
+    "pt": "{\n  \"a\": [\"espírito competitivo\", \"ser competitivo\", \"ter vontade de vencer\", \"gostar de competir\"]\n"
+  },
+  {
+    "kana": "しょうしんもの",
+    "en": [
+      "person with a humble salary",
+      "person of a low condition"
+    ],
+    "senseUid": "6dcf820d-4c38-46eb-b5f0-965fa8ed2fb9",
+    "wordId": "2602020",
+    "pt": "{\n  \"a\": [\n    \"pessoa de condição humilde\",\n    \"pessoa de salário modesto\"\n  ]\n"
+  },
+  {
+    "kana": "ものび",
+    "en": [
+      "holiday"
+    ],
+    "senseUid": "5b46c84c-0ad5-476d-84f8-ed58500f5396",
+    "wordId": "2601990",
+    "pt": "{\n  \"a\": [\"feriado\", \"dia de folga\", \"descanso\"]\n"
+  },
+  {
+    "kana": "ものまえ",
+    "en": [
+      "day before the one on which prostitutes were forced to accept customers"
+    ],
+    "senseUid": "a5921581-1e68-43da-94be-9ea3c7fd84a2",
+    "wordId": "2602000",
+    "pt": "{\n  \"a\": [\n    \"dia anterior àquele em que as prostitutas eram obrigadas a aceitar clientes\"\n  ]\n"
+  },
+  {
+    "kana": "たんぽやり",
+    "en": [
+      "padded spear (for practice)"
+    ],
+    "senseUid": "2aee5ac2-adcf-4c84-9a4e-dcbf6b4ad728",
+    "wordId": "2602040",
+    "pt": "['lança acolchoada (para prática)']"
+  },
+  {
+    "kana": "けんすう",
+    "en": [
+      "tally"
+    ],
+    "senseUid": "9b086c91-7735-449a-b63d-fd116ddaefab",
+    "wordId": "2601910",
+    "pt": "{\n  \"a\": [\n    \"contagem\",\n    \"número de itens\",\n    \"quantidade (de coisas)\",\n    \"total de registros\"\n  ]\n"
+  },
+  {
+    "kana": "かちしゅう",
+    "en": [
+      "humble samurai who served as a body guard on foot"
+    ],
+    "senseUid": "d63a4e03-05a9-4826-9f66-f03d5bd4df0f",
+    "wordId": "2601880",
+    "pt": "{\n  \"a\": [\n    \"samurai humilde que servia como guarda-costas a pé\"\n  ]\n"
+  },
+  {
+    "kana": "ものび",
+    "en": [
+      "day on which prostitutes had to receive clients (or pay their own fee to avoid doing so)"
+    ],
+    "senseUid": "36086e32-564b-425d-9a45-be70ccb77fe0",
+    "wordId": "2601990",
+    "pt": "['dia em que as prostitutas eram obrigadas a receber clientes (ou pagar sua própria taxa para evitar isso)']"
+  },
+  {
+    "kana": "こまよせ",
+    "en": [
+      "small fence to keep out people and horses"
+    ],
+    "senseUid": "ec83e888-affc-4a31-8715-b5fe850a19b2",
+    "wordId": "2601950",
+    "pt": "['cerca baixa para impedir a passagem de pessoas e cavalos']"
+  },
+  {
+    "kana": "かちぐみ",
+    "en": [
+      "bodyguards in service of the shogun who would walk ahead of him on an outing (Edo period)"
+    ],
+    "senseUid": "43676628-9a04-4b9d-8f93-83fb8f48314b",
+    "wordId": "2601870",
+    "pt": "['guarda-costas a serviço do xogum que caminhavam à sua frente durante uma saída (período Edo)']"
+  },
+  {
+    "kana": "びろく",
+    "en": [
+      "high salary"
+    ],
+    "senseUid": "6dc42b2a-61d8-4d1e-9af2-3cf2eabbfd6e",
+    "wordId": "2602100",
+    "pt": "{\n  \"a\": [\"alto salário\"]\n"
+  },
+  {
+    "kana": "せいさんほうじん",
+    "en": [
+      "corporation in liquidation"
+    ],
+    "senseUid": "462c07ad-75f9-42d6-b0a6-b0bbec6e914b",
+    "wordId": "2602130",
+    "pt": "['corporação em liquidação']"
+  },
+  {
+    "kana": "びろく",
+    "en": [
+      "alcohol"
+    ],
+    "senseUid": "634bce08-763c-4c50-9e0d-d59a520a4d0a",
+    "wordId": "2602100",
+    "pt": "['birita', 'álcool', 'bebida alcoólica']"
+  },
+  {
+    "kana": "ものまえ",
+    "en": [
+      "day before a holiday"
+    ],
+    "senseUid": "65159b8f-6134-4d97-8c91-30e252512948",
+    "wordId": "2602000",
+    "pt": "['véspera de feriado']"
+  },
+  {
+    "kana": "てんのびろく",
+    "en": [
+      "alcohol"
+    ],
+    "senseUid": "4862fbcf-5efb-4737-a58c-a556b60beaac",
+    "wordId": "2602110",
+    "pt": "['álcool celestial']"
+  }
+]

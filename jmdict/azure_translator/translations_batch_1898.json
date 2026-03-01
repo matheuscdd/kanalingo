@@ -1,0 +1,967 @@
+[
+  {
+    "kana": "たんきまち",
+    "en": [
+      "waiting for one tile to finish one's pair and one's hand",
+      "waiting for half of one's pair with four melds completed"
+    ],
+    "senseUid": "5bc891c3-27a4-4d29-97bd-b668e9bd7cb8",
+    "wordId": "2752850",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: たんきまち, Gloss: [esperando uma peça terminar o par e a mão de um, esperando metade do par com quatro fusões concluídas]"
+  },
+  {
+    "kana": "はだかたんき",
+    "en": [
+      "waiting for one tile to finish one's pair and one's hand while the rest of one's hand is exposed",
+      "waiting for half of one's pair with four melds exposed"
+    ],
+    "senseUid": "e73f5dc0-7b82-4171-a8a0-021c04851026",
+    "wordId": "2752860",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: はだかたんき, Gloss: [esperando que uma peça termine o par e a mão enquanto o resto da mão fica exposta, esperando metade do par com quatro melds exposta]"
+  },
+  {
+    "kana": "いっきつうかん",
+    "en": [
+      "streamlined production system"
+    ],
+    "senseUid": "9ae083ba-ebc8-4c1d-a485-3361a91028d0",
+    "wordId": "2752870",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いっきつうかん, Gloss: ['sistema de produção simplificado']"
+  },
+  {
+    "kana": "いっきつうかん",
+    "en": [
+      "pure straight",
+      "winning hand containing nine consecutive tiles of the same suit (i.e. 1-9) as three chows"
+    ],
+    "senseUid": "08863b4c-3920-4607-9d9e-953cf58f0ee1",
+    "wordId": "2752870",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いっきつうかん, Gloss: ['sequência pura', 'mão vencedora contendo nove peças consecutivas do mesmo naipe (ou seja, 1-9) como três chows']"
+  },
+  {
+    "kana": "イーペーコー",
+    "en": [
+      "pure double chow",
+      "winning hand containing two identical chows (i.e. same numbers and same suit)"
+    ],
+    "senseUid": "496092cc-5f95-4846-98a2-e701f04f3293",
+    "wordId": "2752890",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: イーペーコー, Gloss: ['pura dupla comida', 'mão vencedora contendo dois chows idênticos (ou seja, mesmos números e mesmo naipe)']"
+  },
+  {
+    "kana": "イーペー",
+    "en": [
+      "pure double chow",
+      "winning hand containing two identical chows (i.e. same numbers and same suit)"
+    ],
+    "senseUid": "35635a44-54e2-4665-8a18-ff9f75784641",
+    "wordId": "2752900",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: イーペー, Gloss: ['pura dupla comida', 'mão vencedora contendo dois chows idênticos (ou seja, mesmos números e mesmo naipe)']"
+  },
+  {
+    "kana": "ターチャ",
+    "en": [
+      "the three players other than oneself"
+    ],
+    "senseUid": "fe96d85c-6e60-44bc-823c-dee5bfe388b6",
+    "wordId": "2752930",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ターチャ, Gloss: ['os três jogadores além de si mesmo']"
+  },
+  {
+    "kana": "いっしょくリャンじゅん",
+    "en": [
+      "pure double chow",
+      "winning hand containing two identical chows (i.e. same numbers and same suit)"
+    ],
+    "senseUid": "dae16200-3141-442b-968b-badc31fdf842",
+    "wordId": "2752910",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いっしょくリャンじゅん, Gloss: ['pura dupla comida', 'mão vencedora contendo dois chows idênticos (ou seja, mesmos números e mesmo naipe)']"
+  },
+  {
+    "kana": "いっしょくどうじゅん",
+    "en": [
+      "pure double chow",
+      "winning hand containing two identical chows (i.e. same numbers and same suit)"
+    ],
+    "senseUid": "57eae72d-4190-46ba-906d-9cc52072a291",
+    "wordId": "2752920",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いっしょくどうじゅん, Gloss: ['pura dupla comida', 'mão vencedora contendo dois chows idênticos (ou seja, mesmos números e mesmo naipe)']"
+  },
+  {
+    "kana": "しもチャ",
+    "en": [
+      "right-hand opponent",
+      "player to one's right"
+    ],
+    "senseUid": "c647fda1-0ae3-4943-aff1-6a83d2bbafeb",
+    "wordId": "2752940",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しもチャ, Gloss: ['oponente à direita', jogador à direita]"
+  },
+  {
+    "kana": "かみチャ",
+    "en": [
+      "left-hand opponent",
+      "player to one's left"
+    ],
+    "senseUid": "75e5e54e-dd1b-435a-acfd-210894c1759e",
+    "wordId": "2752950",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: かみチャ, Gloss: ['oponente da esquerda', jogador à esquerda]"
+  },
+  {
+    "kana": "トイメン",
+    "en": [
+      "opposite player"
+    ],
+    "senseUid": "567d20db-c819-40a1-95bf-07fd497eeaee",
+    "wordId": "2752960",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: トイメン, Gloss: ['jogador oposto']"
+  },
+  {
+    "kana": "チーチャ",
+    "en": [
+      "first dealer"
+    ],
+    "senseUid": "7eecb991-60e5-4aa9-861a-4658a35443d8",
+    "wordId": "2752970",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: チーチャ, Gloss: ['primeiro dealer']"
+  },
+  {
+    "kana": "トイメン",
+    "en": [
+      "opposite side",
+      "(person) directly opposite"
+    ],
+    "senseUid": "174c070f-77eb-4b16-886d-1e60f9884935",
+    "wordId": "2752960",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: トイメン, Gloss: ['lado oposto', '(pessoa) diretamente oposta']"
+  },
+  {
+    "kana": "トンチャ",
+    "en": [
+      "east player",
+      "dealer"
+    ],
+    "senseUid": "d926fdf0-0f84-4946-ae8c-dbca35cc529d",
+    "wordId": "2752980",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: トンチャ, Gloss: ['jogador do leste', 'dealer']"
+  },
+  {
+    "kana": "ナンチャ",
+    "en": [
+      "south player"
+    ],
+    "senseUid": "72343be8-9e43-4353-bcb8-c556be4bf874",
+    "wordId": "2752990",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ナンチャ, Gloss: ['jogador sul']"
+  },
+  {
+    "kana": "シャーチャ",
+    "en": [
+      "west player"
+    ],
+    "senseUid": "0054e207-b484-4c06-ab61-e4409eee6b99",
+    "wordId": "2753000",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: シャーチャ, Gloss: ['jogador oeste']"
+  },
+  {
+    "kana": "すてはい",
+    "en": [
+      "discarded tiles"
+    ],
+    "senseUid": "073b096c-d3ed-4bc7-9797-508fc89bb5a6",
+    "wordId": "2753020",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: すてはい, Gloss: ['peças descartadas']"
+  },
+  {
+    "kana": "ペーチャ",
+    "en": [
+      "north player"
+    ],
+    "senseUid": "6b396341-515b-49a7-b2e6-add2ee19b0cd",
+    "wordId": "2753010",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ペーチャ, Gloss: ['jogador do norte']"
+  },
+  {
+    "kana": "うらめる",
+    "en": [
+      "to make a mistake (e.g. in choosing one's melds)"
+    ],
+    "senseUid": "b5829c84-8eb3-4f55-9cbd-4998c5a1d327",
+    "wordId": "2753030",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: うらめる, Gloss: [cometer um erro (por exemplo, ao escolher as próprias fusões)]"
+  },
+  {
+    "kana": "うちすじ",
+    "en": [
+      "(an individual's) way of playing mahjong",
+      "mahjong tactics"
+    ],
+    "senseUid": "e6e0e685-37a8-4210-b77d-534a01d21fff",
+    "wordId": "2753040",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: うちすじ, Gloss: [(o jeito individual) de jogar mahjong, 'táticas de mahjong']"
+  },
+  {
+    "kana": "だいさんげん",
+    "en": [
+      "big three dragons",
+      "winning hand consisting of pungs or kongs of each of the three types of dragon tiles"
+    ],
+    "senseUid": "26ab4aaf-6120-4b60-affe-b528903e4608",
+    "wordId": "2753050",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: だいさんげん, Gloss: ['três grandes dragões', 'mão vencedora composta por pungs ou kongs de cada um dos três tipos de peças de dragão']"
+  },
+  {
+    "kana": "くいタン",
+    "en": [
+      "tanyao with open melds (not allowed in some rules)",
+      "open tanyao"
+    ],
+    "senseUid": "af6bb610-47a4-4657-b3d2-bc9446b371d6",
+    "wordId": "2753060",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: くいタン, Gloss: ['tanyao com fusões abertas (não permitido em algumas regras)', 'tanyao aberto']"
+  },
+  {
+    "kana": "にせめんふくろう",
+    "en": [
+      "Oriental bay owl (Phodilus badius)"
+    ],
+    "senseUid": "4ef37c6c-a8d0-4ef7-a53d-d3056ce27fce",
+    "wordId": "2753090",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: にせめんふくろう, Gloss: ['Coruja-baio-oriental (Phodilus badius)']"
+  },
+  {
+    "kana": "コンゴにせめんふくろう",
+    "en": [
+      "Tanzanian bay owl (Phodilus prigoginei)",
+      "Congo bay owl"
+    ],
+    "senseUid": "3559bbc1-2012-48e3-a2b2-f0a6bfbd8f74",
+    "wordId": "2753100",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: コンゴにせめんふくろう, Gloss: ['Coruja-do-baio tanzaniano (Phodilus prigoginei)', 'Coruja-do-baio-do-Congo']"
+  },
+  {
+    "kana": "みなみめんふくろう",
+    "en": [
+      "grass owl (Tyto capensis)",
+      "African grass owl"
+    ],
+    "senseUid": "530178e4-15db-4c8d-af83-9fbcac1755f7",
+    "wordId": "2753120",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: みなみめんふくろう, Gloss: ['coruja-das-gramas (Tyto capensis)', 'coruja-das-gramas-africanas']"
+  },
+  {
+    "kana": "スラめんふくろう",
+    "en": [
+      "Taliabu owl (Tyto nigrobrunnea)",
+      "Taliabu masked owl",
+      "Sula Islands barn owl"
+    ],
+    "senseUid": "83b1e9ae-b523-46ac-949f-e90a7b066682",
+    "wordId": "2753130",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: スラめんふくろう, Gloss: ['Coruja Taliabu (Tyto nigrobrunnea)', 'Coruja mascarada de Taliabu', 'Coruja-das-torres das Ilhas Sula']"
+  },
+  {
+    "kana": "おおめんふくろう",
+    "en": [
+      "masked owl (Tyto novaehollandiae)",
+      "Australian masked owl"
+    ],
+    "senseUid": "38f96f3b-ff04-4ae6-8efd-ad8c43752380",
+    "wordId": "2753140",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おおめんふくろう, Gloss: ['coruja mascarada (Tyto novaehollandiae)', 'Coruja mascarada australiana']"
+  },
+  {
+    "kana": "マダガスカルめんふくろう",
+    "en": [
+      "Madagascar red owl (Tyto soumagnei)",
+      "Madagascar grass owl",
+      "Sourmange's owl",
+      "red owl"
+    ],
+    "senseUid": "604bf77a-45bb-4482-91fb-071e83783070",
+    "wordId": "2753150",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: マダガスカルめんふくろう, Gloss: ['Coruja-vermelha-de Madagascar (Tyto soumagnei)', 'Coruja-das-gramas-de-Madagascar', Coruja-de-Sourmange, 'coruja-vermelha']"
+  },
+  {
+    "kana": "ニューブリテンめんふくろう",
+    "en": [
+      "New Britain masked owl (Tyto aurantia)",
+      "New Britain barn owl",
+      "golden masked owl",
+      "Bismarck owl",
+      "Bismarck masked owl"
+    ],
+    "senseUid": "9f5b38a7-6512-4838-ab54-386ee2bd4c1a",
+    "wordId": "2753110",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ニューブリテンめんふくろう, Gloss: ['Coruja mascarada da Nova Bretanha (Tyto aurantia)', 'Coruja-das-torres da Nova Bretanha', 'Coruja mascarada dourada', 'Coruja mascarada de Bismarck', 'Coruja mascarada de Bismarck']"
+  },
+  {
+    "kana": "すすいろめんふくろう",
+    "en": [
+      "sooty owl (Tyto tenebricosa)",
+      "greater sooty owl"
+    ],
+    "senseUid": "c77c8553-5db5-492d-872d-008eda2fb1a3",
+    "wordId": "2753160",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: すすいろめんふくろう, Gloss: ['coruja fuliginosa (Tyto tenebricosa)', 'coruja fuliginosa']"
+  },
+  {
+    "kana": "いこつしゅうしゅう",
+    "en": [
+      "recovering the remains of soldiers (e.g. Japanese soldiers who died abroad during WWII)"
+    ],
+    "senseUid": "0bb9a851-a349-4c0e-95b7-56bf77319efe",
+    "wordId": "2753190",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いこつしゅうしゅう, Gloss: ['recuperando os restos mortais de soldados (por exemplo, soldados japoneses que morreram no exterior durante a Segunda Guerra Mundial)']"
+  },
+  {
+    "kana": "ひがしめんふくろう",
+    "en": [
+      "eastern grass owl (Tyto longimembris)",
+      "Australian grass owl"
+    ],
+    "senseUid": "52e6a70b-cd6f-4914-9c39-4709e30408e9",
+    "wordId": "2753180",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひがしめんふくろう, Gloss: ['coruja-das-gramas-do-leste (Tyto longimembris)', 'Coruja-das-gramas-australianas']"
+  },
+  {
+    "kana": "しょうがいちしざい",
+    "en": [
+      "(crime of) inflicting bodily injury resulting in death"
+    ],
+    "senseUid": "8a9efa01-3c88-416f-ac33-d35fc7c2be8b",
+    "wordId": "2753200",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しょうがいちしざい, Gloss: ['(crime de) causar lesão corporal resultando em morte']"
+  },
+  {
+    "kana": "パンパスてんじくねずみ",
+    "en": [
+      "Brazilian guinea pig (Cavia aperea)"
+    ],
+    "senseUid": "3b06d63c-364d-495a-b087-628fb12a968a",
+    "wordId": "2753210",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: パンパスてんじくねずみ, Gloss: ['Cobaia brasileira (Cavia aperea)']"
+  },
+  {
+    "kana": "アマゾンてんじくねずみ",
+    "en": [
+      "shiny guinea pig (Cavia fulgida)"
+    ],
+    "senseUid": "5533cbd5-1c5d-4c14-9b4c-b74bc1daabc8",
+    "wordId": "2753220",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: アマゾンてんじくねずみ, Gloss: ['porquinho-da-índia brilhante (Cavia fulgida)']"
+  },
+  {
+    "kana": "ペルーてんじくねずみ",
+    "en": [
+      "montane guinea pig (Cavia tschudii)"
+    ],
+    "senseUid": "5d08ef58-1f70-48fc-81ba-e9362cb4cda3",
+    "wordId": "2753230",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ペルーてんじくねずみ, Gloss: ['porquinho-da-índia montane (Cavia tschudii)']"
+  },
+  {
+    "kana": "クイ",
+    "en": [
+      "common yellow-toothed cavy (Galea musteloides)"
+    ],
+    "senseUid": "1429356c-c5b3-4afd-9430-a284e82808cf",
+    "wordId": "2753250",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: クイ, Gloss: ['cáries-de-dentes amarelos (Galea musteloides)']"
+  },
+  {
+    "kana": "ひめマーラ",
+    "en": [
+      "Chacoan mara (Dolichotis salinicola)"
+    ],
+    "senseUid": "354faa6d-dd49-4011-a794-1d7311e595ee",
+    "wordId": "2753240",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひめマーラ, Gloss: ['Mara Chacoan (Dolichotis salinicola)']"
+  },
+  {
+    "kana": "ブラジルクイ",
+    "en": [
+      "yellow-toothed cavy (Galea flavidens)"
+    ],
+    "senseUid": "097cec43-557c-498b-9480-48c811e60dce",
+    "wordId": "2753260",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ブラジルクイ, Gloss: [''cárie de dentes amarelos (Galea flavidens)']"
+  },
+  {
+    "kana": "モコ",
+    "en": [
+      "rock cavy (Kerodon rupestris)",
+      "mocó",
+      "moco"
+    ],
+    "senseUid": "6804b2fc-1869-4a5f-90a8-b6d6e61a51cc",
+    "wordId": "2753270",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: モコ, Gloss: ['cavidade de rocha (Kerodon rupestris)', 'mocó', 'moco']"
+  },
+  {
+    "kana": "みなみやまクイ",
+    "en": [
+      "southern mountain cavy (Microcavia australis)"
+    ],
+    "senseUid": "00f11938-0f65-4995-9c1f-ceff648df942",
+    "wordId": "2753280",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: みなみやまクイ, Gloss: ['cavidade montanhosa do sul (Microcavia australis)']"
+  },
+  {
+    "kana": "アンデスやまクイ",
+    "en": [
+      "Andean mountain cavy (Microcavia niata)"
+    ],
+    "senseUid": "2bf3173c-56ae-4eab-88b9-58571ab5b345",
+    "wordId": "2753290",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: アンデスやまクイ, Gloss: ['Cavidade montanhosa andina (Microcavia niata)']"
+  },
+  {
+    "kana": "シプトンやまクイ",
+    "en": [
+      "Shipton's mountain cavy (Microcavia shiptoni)"
+    ],
+    "senseUid": "de198f70-95c6-44fb-8534-fe44ccf409b0",
+    "wordId": "2753300",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: シプトンやまクイ, Gloss: [Cava da montanha de Shipton (Microcavia shiptoni)]"
+  },
+  {
+    "kana": "パカ",
+    "en": [
+      "paca (any of either species of paca, esp. lowland paca, Agouti paca)"
+    ],
+    "senseUid": "9b31bd50-2366-4153-8236-4808bc9ef6b8",
+    "wordId": "2753310",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: パカ, Gloss: ['paca (qualquer uma de qualquer espécie de paca, especialmente paca das terras baixas, Agouti paca)']"
+  },
+  {
+    "kana": "ねずみもく",
+    "en": [
+      "Rodentia (order comprising the rodents)"
+    ],
+    "senseUid": "f4e739be-23a9-4a07-9b0d-a1c61b20b3eb",
+    "wordId": "2753320",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ねずみもく, Gloss: ['Rodentia (ordem composta pelos roedores)']"
+  },
+  {
+    "kana": "げんかんだ",
+    "en": [
+      "wind, string and percussion instruments"
+    ],
+    "senseUid": "bd5cd993-0ea5-4426-9de0-982b5dcbe459",
+    "wordId": "2753340",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: げんかんだ, Gloss: ['instrumentos de sopro, cordas e percussão']"
+  },
+  {
+    "kana": "がいぶひょうか",
+    "en": [
+      "external evaluation",
+      "third-party evaluation",
+      "external review"
+    ],
+    "senseUid": "8e587932-2f2c-4108-b084-4b8f85c48959",
+    "wordId": "2753330",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: がいぶひょうか, Gloss: ['avaliação externa', 'avaliação de terceiros', 'revisão externa']"
+  },
+  {
+    "kana": "ケツがあおい",
+    "en": [
+      "wet behind the ears",
+      "inexperienced",
+      "immature"
+    ],
+    "senseUid": "4c49436a-25c6-40cb-bd5b-1cbd0637549d",
+    "wordId": "2753360",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ケツがあおい, Gloss: ['molhado atrás das orelhas', 'inexperiente', 'imaturo']"
+  },
+  {
+    "kana": "いぬふく",
+    "en": [
+      "dog clothes",
+      "dogwear"
+    ],
+    "senseUid": "e6e42e83-32b4-42d0-b056-31ea35177931",
+    "wordId": "2753370",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いぬふく, Gloss: ['roupas de cachorro', 'roupa de cachorro']"
+  },
+  {
+    "kana": "ドッグウェア",
+    "en": [
+      "dogwear",
+      "dog clothes"
+    ],
+    "senseUid": "a4b5f9b5-ff22-4fe4-baff-332743eb22b9",
+    "wordId": "2753380",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ドッグウェア, Gloss: ['roupa de cachorro', 'roupas de cachorro']"
+  },
+  {
+    "kana": "グロッケンシュピール",
+    "en": [
+      "glockenspiel"
+    ],
+    "senseUid": "edcce631-c025-418d-ae64-00ffba190443",
+    "wordId": "2753390",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: グロッケンシュピール, Gloss: ['glockenspiel']"
+  },
+  {
+    "kana": "ちしせいかぞくせいふみんしょう",
+    "en": [
+      "fatal familial insomnia",
+      "FFI"
+    ],
+    "senseUid": "2c35822e-db97-49fc-8d5a-0ca5142ba683",
+    "wordId": "2753400",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ちしせいかぞくせいふみんしょう, Gloss: ['insônia familiar fatal', 'FFI']"
+  },
+  {
+    "kana": "プリオンびょう",
+    "en": [
+      "prion disease"
+    ],
+    "senseUid": "20a19cf9-cda8-479f-ade2-5cf0af522a99",
+    "wordId": "2753420",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: プリオンびょう, Gloss: ['doença priônica']"
+  },
+  {
+    "kana": "でんたつせいかいめんじょうのうしょう",
+    "en": [
+      "transmissible spongiform encephalopathy",
+      "TSE"
+    ],
+    "senseUid": "3b32c95e-a948-4d1f-94d7-c15d4fafcf69",
+    "wordId": "2753410",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: でんたつせいかいめんじょうのうしょう, Gloss: ['encefalopatia espongiforme transmissível', 'TSE']"
+  },
+  {
+    "kana": "すいみんポリグラフけんさ",
+    "en": [
+      "polysomnography"
+    ],
+    "senseUid": "020db574-0653-4093-80ff-17161875bb37",
+    "wordId": "2753430",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: すいみんポリグラフけんさ, Gloss: ['polisonografia']"
+  },
+  {
+    "kana": "マーケ",
+    "en": [
+      "marketing"
+    ],
+    "senseUid": "188cf621-f224-4d38-8a1d-836d1e8872d4",
+    "wordId": "2753450",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: マーケ, Gloss: ['marketing']"
+  },
+  {
+    "kana": "マーケター",
+    "en": [
+      "marketer"
+    ],
+    "senseUid": "0a0648be-2add-4152-933a-76eb23e4332b",
+    "wordId": "2753460",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: マーケター, Gloss: ['marketer']"
+  },
+  {
+    "kana": "すいみんポリグラフ",
+    "en": [
+      "polysomnogram"
+    ],
+    "senseUid": "903b30cc-857e-4a72-9a70-2c9da4f5a9be",
+    "wordId": "2753440",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: すいみんポリグラフ, Gloss: ['polisonograma']"
+  },
+  {
+    "kana": "ちゃんちゃんばらばら",
+    "en": [
+      "clashing of swords"
+    ],
+    "senseUid": "8cb7e604-2006-46d1-9d23-b9964b510918",
+    "wordId": "2753470",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ちゃんちゃんばらばら, Gloss: ['choque de espadas']"
+  },
+  {
+    "kana": "ちゃんちゃんばらばら",
+    "en": [
+      "fight",
+      "brawl",
+      "scuffle"
+    ],
+    "senseUid": "d2090ea3-f09e-426e-84cb-11d23e56ea19",
+    "wordId": "2753470",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ちゃんちゃんばらばら, Gloss: ['luta', 'briga', 'briga']"
+  },
+  {
+    "kana": "せんこうかい",
+    "en": [
+      "screening meeting",
+      "trial meeting",
+      "qualifying competition"
+    ],
+    "senseUid": "38132355-c58b-4da4-9433-c49cd345c6b1",
+    "wordId": "2753500",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: せんこうかい, Gloss: ['reunião de triagem', 'reunião de teste', 'competição classificatória']"
+  },
+  {
+    "kana": "けいちょうふか",
+    "en": [
+      "frivolity",
+      "superficiality",
+      "fickleness",
+      "lack of substance"
+    ],
+    "senseUid": "8b601731-5f2a-4568-b393-78b2113c38a6",
+    "wordId": "2753480",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けいちょうふか, Gloss: ['frivolidade', 'superficialidade', 'volúvelidade', 'falta de substância']"
+  },
+  {
+    "kana": "ひとてま",
+    "en": [
+      "extra effort",
+      "one small touch",
+      "small twist"
+    ],
+    "senseUid": "d7056d83-fa86-4450-926e-eef7a7e01fbf",
+    "wordId": "2753510",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひとてま, Gloss: ['esforço extra', 'um toque pequeno', 'pequena torção']"
+  },
+  {
+    "kana": "セラミックヒーター",
+    "en": [
+      "ceramic heater"
+    ],
+    "senseUid": "5c4a5cd7-04f3-40be-aa5f-009f7ea60885",
+    "wordId": "2753520",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: セラミックヒーター, Gloss: ['aquecedor cerâmico']"
+  },
+  {
+    "kana": "カーボンヒーター",
+    "en": [
+      "carbon heater",
+      "carbon fiber heater"
+    ],
+    "senseUid": "50f91410-9901-4d53-ad7c-200d44316a26",
+    "wordId": "2753530",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: カーボンヒーター, Brilho: ['aquecedor de carbono', 'aquecedor de fibra de carbono']"
+  },
+  {
+    "kana": "ついこのあいだ",
+    "en": [
+      "just the other day",
+      "quite recently"
+    ],
+    "senseUid": "7f714ba4-e212-4d01-8a9f-26869e38d41b",
+    "wordId": "2753550",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ついこのあいだ, Gloss: ['outro dia mesmo', 'bem recentemente']"
+  },
+  {
+    "kana": "だいりかいたい",
+    "en": [
+      "surrogate pregnancy"
+    ],
+    "senseUid": "de73d092-ced5-48fb-bcb7-d0f0ee6c0f1b",
+    "wordId": "2753560",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: だいりかいたい, Gloss: ['gravidez de aluguel']"
+  },
+  {
+    "kana": "こくさいバカロレア",
+    "en": [
+      "International Baccalaureate",
+      "IB"
+    ],
+    "senseUid": "89795c2e-184d-4f1f-b121-56583be9b691",
+    "wordId": "2753540",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こくさいバカロレア, Gloss: ['Bacharelado Internacional', 'IB']"
+  },
+  {
+    "kana": "ドラマか",
+    "en": [
+      "turning (a comic, novel, etc.) into a serialized TV-show",
+      "dramatization"
+    ],
+    "senseUid": "84885afe-cf87-4a82-8ec5-8866c3a47096",
+    "wordId": "2753580",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ドラマか, Gloss: ['transformando (um quadrinho, romance, etc.) em um programa de TV seriado', 'dramatização']"
+  },
+  {
+    "kana": "だいりははしゅっさん",
+    "en": [
+      "surrogate birth"
+    ],
+    "senseUid": "f049b8b5-ffad-4177-bd82-fdfa705f7ab6",
+    "wordId": "2753570",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: だいりははしゅっさん, Gloss: ['nascimento de aluguel']"
+  },
+  {
+    "kana": "アニメか",
+    "en": [
+      "making (a manga, video game, etc.) into an animated film or TV series",
+      "anime adaptation"
+    ],
+    "senseUid": "a3cf7c30-5760-4324-a32e-881bc0cfc4a8",
+    "wordId": "2753590",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: アニメか, Gloss: ['transformando (um mangá, videogame, etc.) em um filme animado ou série de TV', 'adaptação em anime']"
+  },
+  {
+    "kana": "ゲームか",
+    "en": [
+      "gamification"
+    ],
+    "senseUid": "8edc01da-73a0-4b9e-95ce-8199d9581606",
+    "wordId": "2753600",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ゲームか, Gloss: ['gamificação']"
+  },
+  {
+    "kana": "ゲームか",
+    "en": [
+      "turning a movie, comic, etc. into a (computer) game"
+    ],
+    "senseUid": "ebc064a9-e56c-474a-bbc8-ea02281d1994",
+    "wordId": "2753600",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ゲームか, Gloss: ['transformando um filme, quadrinho, etc. em um jogo (de computador)']"
+  },
+  {
+    "kana": "テレビか",
+    "en": [
+      "adapting for TV",
+      "television adaptation"
+    ],
+    "senseUid": "7e410458-1d70-4769-b33b-7c22b951139e",
+    "wordId": "2753610",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: テレビか, Gloss: ['adaptando para TV', 'adaptação para TV']"
+  },
+  {
+    "kana": "しきゅうはれつ",
+    "en": [
+      "uterine rupture",
+      "hysterorrhexis",
+      "metrorrhexis"
+    ],
+    "senseUid": "f5e0e3bb-6c34-44ea-9967-9ceac4762896",
+    "wordId": "2753620",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しきゅうはれつ, Gloss: ['ruptura uterina', 'histerorrexis', 'metrorrhexis']"
+  },
+  {
+    "kana": "かくていさいばん",
+    "en": [
+      "final decision"
+    ],
+    "senseUid": "4536204b-d6e1-4f13-9d5b-fd31763246b2",
+    "wordId": "2753640",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: かくていさいばん, Gloss: ['decisão final']"
+  },
+  {
+    "kana": "ていおうせっかいしゅっさん",
+    "en": [
+      "Caesarean birth"
+    ],
+    "senseUid": "1d9d7e22-a825-429d-b16a-bc62e716dd2d",
+    "wordId": "2753630",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ていおうせっかいしゅっさん, Gloss: ['Nascimento cesariano']"
+  },
+  {
+    "kana": "はんれいいはん",
+    "en": [
+      "contravention of precedent"
+    ],
+    "senseUid": "eb83062a-f88a-45cc-90e8-5fabc9afed37",
+    "wordId": "2753650",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: はんれいいはん, Gloss: ['contravenção do precedente']"
+  },
+  {
+    "kana": "じょうこくりゆう",
+    "en": [
+      "ground for appeal"
+    ],
+    "senseUid": "f754f0fe-57ed-4b50-b386-939265c3113f",
+    "wordId": "2753660",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じょうこくりゆう, Gloss: ['motivo para apelação']"
+  },
+  {
+    "kana": "きょかこうこく",
+    "en": [
+      "appeal by permission",
+      "permitted appeal",
+      "permitted complaint"
+    ],
+    "senseUid": "9eb054a1-ef87-4116-848a-5864ba9da64c",
+    "wordId": "2753670",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: きょかこうこく, Gloss: ['recurso por permissão', 'recurso permitido', 'reclamação permitida']"
+  },
+  {
+    "kana": "ホストマザー",
+    "en": [
+      "surrogate mother"
+    ],
+    "senseUid": "0d19ee2c-75d3-4260-a3af-d2eb83bacb7b",
+    "wordId": "2753690",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ホストマザー, Gloss: ['mãe de aluguel']"
+  },
+  {
+    "kana": "いでんてきかじゅう",
+    "en": [
+      "genetic load",
+      "genetic burden"
+    ],
+    "senseUid": "bb63f0e7-fc98-406c-b414-f38f2cb9fb51",
+    "wordId": "2753680",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いでんてきかじゅう, Gloss: ['carga genética', 'carga genética']"
+  },
+  {
+    "kana": "ホストマザー",
+    "en": [
+      "host mother"
+    ],
+    "senseUid": "a612612a-d79c-42dd-8989-843e9febbce3",
+    "wordId": "2753690",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ホストマザー, Gloss: ['mãe hospedeira']"
+  },
+  {
+    "kana": "ホストファーザー",
+    "en": [
+      "host father"
+    ],
+    "senseUid": "e744210d-a71d-4a40-83e0-063071703a9f",
+    "wordId": "2753700",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ホストファーザー, Gloss: ['pai anfitrião']"
+  },
+  {
+    "kana": "ぎょがん",
+    "en": [
+      "fish eye"
+    ],
+    "senseUid": "12c93639-f3bd-474e-a3bc-9a666b81355c",
+    "wordId": "2753710",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぎょがん, Gloss: ['olho de peixe']"
+  },
+  {
+    "kana": "ざっきょぼう",
+    "en": [
+      "multi-person cell",
+      "shared cell"
+    ],
+    "senseUid": "9d4ef922-755a-4294-90fd-8167355c40d4",
+    "wordId": "2753730",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ざっきょぼう, Gloss: ['célula multi-pessoa', 'cela compartilhada']"
+  },
+  {
+    "kana": "おめこぼし",
+    "en": [
+      "connivance",
+      "overlooking"
+    ],
+    "senseUid": "2017a6a1-d60b-4543-81c0-9bf7d2de0e41",
+    "wordId": "2753720",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おめこぼし, Gloss: ['conivência', 'ignorância']"
+  },
+  {
+    "kana": "じっけいはんけつ",
+    "en": [
+      "unsuspended prison sentence",
+      "prison sentence with no stay of execution"
+    ],
+    "senseUid": "c26b849a-7743-4aaa-8a7f-7afa4f45711b",
+    "wordId": "2753740",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じっけいはんけつ, Gloss: ['sentença de prisão não suspensa', 'sentença de prisão sem suspensão da execução']"
+  },
+  {
+    "kana": "こじんしよう",
+    "en": [
+      "personal use",
+      "private use"
+    ],
+    "senseUid": "98c240dd-780b-4c63-a360-0aa755b228d2",
+    "wordId": "2753750",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こじんしよう, Gloss: ['uso pessoal', 'uso privado']"
+  },
+  {
+    "kana": "うんしだい",
+    "en": [
+      "dependent on luck",
+      "matter of luck"
+    ],
+    "senseUid": "91d05d6e-56da-4f55-a0fe-b654f25bbe0c",
+    "wordId": "2753760",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: うんしだい, Gloss: ['depende da sorte', 'questão de sorte']"
+  },
+  {
+    "kana": "タギング",
+    "en": [
+      "tagging (graffiti)"
+    ],
+    "senseUid": "fbe89fe7-65a7-44e3-b842-0e49abd978aa",
+    "wordId": "2753780",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: タギング, Gloss: ['marcando (grafite)']"
+  },
+  {
+    "kana": "タッグチーム",
+    "en": [
+      "working together as a team"
+    ],
+    "senseUid": "509459e4-eb1e-498a-b907-091549736234",
+    "wordId": "2753770",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: タッグチーム, Gloss: ['trabalhando juntos como uma equipe']"
+  },
+  {
+    "kana": "タッグチーム",
+    "en": [
+      "tag team"
+    ],
+    "senseUid": "8bdae2cb-3f65-459c-a5e8-2a55e675020c",
+    "wordId": "2753770",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: タッグチーム, Gloss: ['tag team']"
+  },
+  {
+    "kana": "タギング",
+    "en": [
+      "tagging (of files, etc.)"
+    ],
+    "senseUid": "b6770c61-9968-4d76-b7bd-f012e2ca537b",
+    "wordId": "2753780",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: タギング, Gloss: ['marcação (de arquivos, etc.)']"
+  },
+  {
+    "kana": "フィリピンパブ",
+    "en": [
+      "Filipina hostess pub"
+    ],
+    "senseUid": "fd76124d-35b6-4a42-b568-bd59a0fd480f",
+    "wordId": "2753790",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: フィリピンパブ, Gloss: ['Pub hostess filipina']"
+  },
+  {
+    "kana": "しいし",
+    "en": [
+      "four sides (boundaries) of a property"
+    ],
+    "senseUid": "6a550fa0-8e31-4ade-a778-410b176cde72",
+    "wordId": "2753800",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しいし, Gloss: ['quatro lados (limites) de uma propriedade']"
+  },
+  {
+    "kana": "へいばい",
+    "en": [
+      "concurrent selling (e.g. of old and new models)",
+      "selling (related products) alongside each other"
+    ],
+    "senseUid": "b03596d1-8f27-4dfd-b61a-a2c29bd1b481",
+    "wordId": "2753810",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: へいばい, Gloss: ['venda simultânea (por exemplo, de modelos antigos e novos)', 'venda (produtos relacionados) juntos']"
+  },
+  {
+    "kana": "はんにゅうぐち",
+    "en": [
+      "service entrance",
+      "delivery entrance"
+    ],
+    "senseUid": "d7c0937d-eb63-41d6-827e-ba37e7130f2c",
+    "wordId": "2753830",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: はんにゅうぐち, Gloss: ['entrada de serviço', 'entrada de entrega']"
+  },
+  {
+    "kana": "へいばい",
+    "en": [
+      "selling (the same product) in more than one place (e.g. online and in store)"
+    ],
+    "senseUid": "348371f8-f4c6-49b3-8757-46b3cf35d90c",
+    "wordId": "2753810",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: へいばい, Gloss: ['vendendo (o mesmo produto) em mais de um lugar (por exemplo, online e na loja)']"
+  }
+]

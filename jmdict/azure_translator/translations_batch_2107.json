@@ -1,0 +1,973 @@
+[
+  {
+    "kana": "インターネットしょめい",
+    "en": [
+      "online petition"
+    ],
+    "senseUid": "14d52259-c2b4-47b5-b316-6abaea5f0a6e",
+    "wordId": "2838975",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: インターネットしょめい, Gloss: ['petição online']"
+  },
+  {
+    "kana": "みんなして",
+    "en": [
+      "everyone at once",
+      "everyone together"
+    ],
+    "senseUid": "e0dfe311-5f9a-4556-948d-4878034ac60e",
+    "wordId": "2838976",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: みんなして, Gloss: ['todos juntos', 'todos juntos']"
+  },
+  {
+    "kana": "なんわり",
+    "en": [
+      "what proportion",
+      "what percentage"
+    ],
+    "senseUid": "fca7a78b-25be-4e45-958a-2d04eed78f2c",
+    "wordId": "2838977",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: なんわり, Gloss: ['qual proporção', 'qual porcentagem']"
+  },
+  {
+    "kana": "わっさわっさ",
+    "en": [
+      "with a bustle",
+      "with a hubbub"
+    ],
+    "senseUid": "2b25fff6-0d4c-439f-999a-916bf0166c97",
+    "wordId": "2838978",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: わっさわっさ, Gloss: ['com agitação', 'com barulho']"
+  },
+  {
+    "kana": "ふたりして",
+    "en": [
+      "together (of two people)",
+      "both (of you, them, etc.)"
+    ],
+    "senseUid": "e3afaad6-88eb-403f-9680-9da3b71541f8",
+    "wordId": "2838979",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ふたりして, Gloss: ['juntos (de duas pessoas)', 'ambos (de vocês, deles, etc.)']"
+  },
+  {
+    "kana": "まことにありがとうございます",
+    "en": [
+      "thank you very much"
+    ],
+    "senseUid": "56687be1-e143-42af-b14d-04f70486df01",
+    "wordId": "2838980",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: まことにありがとうございます, Gloss: ['muito obrigado']"
+  },
+  {
+    "kana": "エムワンそう",
+    "en": [
+      "20-to-34 male demographic (target audience)"
+    ],
+    "senseUid": "abda44bd-e555-4a02-a16c-029f927d0ea0",
+    "wordId": "2838982",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: エムワンそう, Gloss: ['Público masculino de 20 a 34 anos']"
+  },
+  {
+    "kana": "エフワンそう",
+    "en": [
+      "20-to-34 female demographic (target audience)"
+    ],
+    "senseUid": "3c7d5182-c611-4261-ab2a-952e6c3d9e8e",
+    "wordId": "2838981",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: エフワンそう, Gloss: ['Público feminino de 20 a 34 anos']"
+  },
+  {
+    "kana": "ティーそう",
+    "en": [
+      "teenage demographic (target audience)"
+    ],
+    "senseUid": "b837b54f-a280-4b99-94d3-c3aade6ab962",
+    "wordId": "2838983",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ティーそう, Gloss: ['público adolescente (público-alvo)']"
+  },
+  {
+    "kana": "シーそう",
+    "en": [
+      "children's demographic (target audience)"
+    ],
+    "senseUid": "acf8a66a-57ca-4068-889f-4a6f6fc1b76d",
+    "wordId": "2838984",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: シーそう, Gloss: [público infantil (público-alvo)]"
+  },
+  {
+    "kana": "エフツーそう",
+    "en": [
+      "35-to-49 female demographic (target audience)"
+    ],
+    "senseUid": "e112a7ee-cf3a-4e56-84d7-42eee2989839",
+    "wordId": "2838985",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: エフツーそう, Gloss: ['Público feminino de 35 a 49 anos']"
+  },
+  {
+    "kana": "エフスリーそう",
+    "en": [
+      "50 and older female demographic (target audience)"
+    ],
+    "senseUid": "bd88a135-bb70-4ee6-bb1e-8aa8e33f4d5a",
+    "wordId": "2838986",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: エフスリーそう, Gloss: ['Público alvo feminino de 50 anos ou mais']"
+  },
+  {
+    "kana": "エムスリーそう",
+    "en": [
+      "50 and older male demographic (target audience)"
+    ],
+    "senseUid": "79ccc3a3-0180-474d-96bd-d0afb886d1d6",
+    "wordId": "2838987",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: エムスリーそう, Gloss: ['Público do sexo masculino com 50 anos ou mais (público-alvo)']"
+  },
+  {
+    "kana": "エムツーそう",
+    "en": [
+      "35-to-49 male demographic (target audience)"
+    ],
+    "senseUid": "067aa0a8-e650-4ca3-babe-638ba4a5ad65",
+    "wordId": "2838988",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: エムツーそう, Gloss: ['35 a 49 anos masculinos (público-alvo)']"
+  },
+  {
+    "kana": "トドラー",
+    "en": [
+      "toddler"
+    ],
+    "senseUid": "e622543b-c7e2-45c4-a80e-a695cb4828f4",
+    "wordId": "2838989",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: トドラー, Gloss: ['criança pequena']"
+  },
+  {
+    "kana": "クレジットカードばらい",
+    "en": [
+      "credit card payment"
+    ],
+    "senseUid": "42baf245-d2d3-46f3-9239-1fafcc693bc2",
+    "wordId": "2838991",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: クレジットカードばらい, Gloss: ['pagamento por cartão de crédito']"
+  },
+  {
+    "kana": "しはらいほうほう",
+    "en": [
+      "payment method"
+    ],
+    "senseUid": "2b572c48-ca96-4bdf-b5ba-50626750c5aa",
+    "wordId": "2838992",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しはらいほうほう, Gloss: ['método de pagamento']"
+  },
+  {
+    "kana": "クレジットばらい",
+    "en": [
+      "credit card payment"
+    ],
+    "senseUid": "1277e129-2ac6-4b2c-a6fa-1c0c5b98ae70",
+    "wordId": "2838990",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: クレジットばらい, Gloss: ['pagamento com cartão de crédito']"
+  },
+  {
+    "kana": "おしはらいほうほう",
+    "en": [
+      "payment method"
+    ],
+    "senseUid": "53e47fde-85a5-4722-aa27-d8a01dd2137a",
+    "wordId": "2838993",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おしはらいほうほう, Gloss: ['método de pagamento']"
+  },
+  {
+    "kana": "ぜんねんどうげつひ",
+    "en": [
+      "compared to the same month the previous year (e.g. in statistics, sales, electricity usage)"
+    ],
+    "senseUid": "5be2dde9-e32a-4567-b110-1bddd2039833",
+    "wordId": "2838994",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぜんねんどうげつひ, Gloss: ['comparado ao mesmo mês do ano anterior (por exemplo, em estatísticas, vendas, consumo de eletricidade)']"
+  },
+  {
+    "kana": "ほうにちがいきゃく",
+    "en": [
+      "foreign visitor to Japan"
+    ],
+    "senseUid": "841f18ca-01cf-4577-a824-6ef8ff8cf18c",
+    "wordId": "2838995",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ほうにちがいきゃく, Gloss: ['visitante estrangeiro no Japão']"
+  },
+  {
+    "kana": "けんしんび",
+    "en": [
+      "day of inspection"
+    ],
+    "senseUid": "56c3f550-43f8-4444-968f-1ebffc404aaf",
+    "wordId": "2838997",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けんしんび, Gloss: ['dia da inspeção']"
+  },
+  {
+    "kana": "ほうにちがいこくじんりょこうしゃ",
+    "en": [
+      "foreign visitor to Japan"
+    ],
+    "senseUid": "aee40987-d08e-483b-9d69-06c787177274",
+    "wordId": "2838996",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ほうにちがいこくじんりょこうしゃ, Glossário: ['visitante estrangeiro no Japão']"
+  },
+  {
+    "kana": "けんしんび",
+    "en": [
+      "day of medical examination"
+    ],
+    "senseUid": "7da8260b-34d7-4f17-8ef3-1b4e4284efbf",
+    "wordId": "2838999",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けんしんび, Gloss: ['dia do exame médico']"
+  },
+  {
+    "kana": "けんさくエンジンさいてきか",
+    "en": [
+      "search engine optimization",
+      "SEO"
+    ],
+    "senseUid": "96991a4b-02a6-48c9-9c71-3eb2d91e39d7",
+    "wordId": "2839000",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けんさくエンジンさいてきか, Gloss: ['otimização para mecanismos de busca', 'SEO']"
+  },
+  {
+    "kana": "エス・イー・オー",
+    "en": [
+      "search engine optimization",
+      "SEO"
+    ],
+    "senseUid": "86b43ef9-2d2c-47f4-b43f-5c3c73cd1821",
+    "wordId": "2839001",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: エス・イー・オー, Gloss: ['otimização para mecanismos de busca', 'SEO']"
+  },
+  {
+    "kana": "いみんにせい",
+    "en": [
+      "second-generation immigrant"
+    ],
+    "senseUid": "8fbc73c8-541e-4815-a372-c1770aff7451",
+    "wordId": "2839003",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いみんにせい, Gloss: ['imigrante de segunda geração']"
+  },
+  {
+    "kana": "けいやくまんりょう",
+    "en": [
+      "contract expiry",
+      "contract expiration"
+    ],
+    "senseUid": "dfccd962-b9cb-4b26-950f-37c45671c38a",
+    "wordId": "2839002",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けいやくまんりょう, Gloss: ['expiração do contrato', 'expiração do contrato']"
+  },
+  {
+    "kana": "ろんりぎょう",
+    "en": [
+      "logical line (of code)"
+    ],
+    "senseUid": "804a15e4-320c-498a-9628-57f7970521d0",
+    "wordId": "2839004",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ろんりぎょう, Gloss: ['linha lógica (de código)']"
+  },
+  {
+    "kana": "ぶつりぎょう",
+    "en": [
+      "physical line (of code)"
+    ],
+    "senseUid": "d272ecdf-d2c8-4458-b21b-9cd51ea630f0",
+    "wordId": "2839005",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぶつりぎょう, Gloss: ['linha física (de código)']"
+  },
+  {
+    "kana": "こうせいさいどテレビジョン",
+    "en": [
+      "high-definition television",
+      "HDTV"
+    ],
+    "senseUid": "145a7f03-b3f5-41e5-ad4c-ba10e0f9f278",
+    "wordId": "2839007",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうせいさいどテレビジョン, Glossário: ['televisão de alta definição', 'HDTV']"
+  },
+  {
+    "kana": "ようなきがする",
+    "en": [
+      "I feel that ...",
+      "I feel as though ...",
+      "I have a feeling that ...",
+      "I have the impression that ...",
+      "I think that ..."
+    ],
+    "senseUid": "45c46971-b99f-4ae8-93aa-912b89d30434",
+    "wordId": "2839008",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ようなきがする, Gloss: ['Eu sinto que ...', 'Eu sinto como se...', 'Eu tenho a sensação de ...', 'Tenho a impressão de que ...', 'Eu acho que ...']"
+  },
+  {
+    "kana": "せいりようひん",
+    "en": [
+      "sanitary-protection products (e.g. sanitary napkins, tampons)",
+      "sanpro"
+    ],
+    "senseUid": "c7063b43-890b-413d-8464-f4021cda4aed",
+    "wordId": "2839010",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: せいりようひん, Gloss: ['produtos de proteção sanitária (ex.: absorventes higiênicos, absorventes)', 'sanpro']"
+  },
+  {
+    "kana": "かんきょういぞん",
+    "en": [
+      "environmentally dependent",
+      "environment-dependent"
+    ],
+    "senseUid": "e39b4e8a-8913-43b2-bf1c-45627121856b",
+    "wordId": "2839009",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: かんきょういぞん, Gloss: ['dependente do meio ambiente', 'dependente do meio ambiente']"
+  },
+  {
+    "kana": "ゆうていどうぶつ",
+    "en": [
+      "ungulate",
+      "hoofed animal"
+    ],
+    "senseUid": "853ac544-e7ec-4387-a251-573df416352e",
+    "wordId": "2839011",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ゆうていどうぶつ, Gloss: ['ungulado', 'animal com cascos']"
+  },
+  {
+    "kana": "れいわ",
+    "en": [
+      "Reiwa era (May 1, 2019-)"
+    ],
+    "senseUid": "e361e3e5-b444-400b-b377-379393373fda",
+    "wordId": "2839013",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: れいわ, Gloss: ['Era Reiwa (1º de maio de 2019-)']"
+  },
+  {
+    "kana": "こんてい",
+    "en": [
+      "brothers"
+    ],
+    "senseUid": "112fbf8a-be2b-45d2-9ce0-e34d5202291b",
+    "wordId": "2839012",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こんてい, Gloss: ['irmãos']"
+  },
+  {
+    "kana": "にじてきちょさくぶつ",
+    "en": [
+      "derivative work"
+    ],
+    "senseUid": "1db71868-c789-4529-85a9-6a688eec4c3b",
+    "wordId": "2839014",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: にじてきちょさくぶつ, Gloss: ['obra derivada']"
+  },
+  {
+    "kana": "かのえね",
+    "en": [
+      "Metal Rat (37th term of the sexagenary cycle, e.g. 1960, 2020, 2080)"
+    ],
+    "senseUid": "81ab2f5b-b4b9-4fc9-85ef-fe4b105727b7",
+    "wordId": "2839015",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: かのえね, Gloss: ['Rato de Metal (37º termo do ciclo sexagenário, ex.: 1960, 2020, 2080)']"
+  },
+  {
+    "kana": "しょう",
+    "en": [
+      "nth year in the Shōwa era (1926.12.25-1989.1.7)"
+    ],
+    "senseUid": "6dc5d9e0-b99e-406c-a581-ee67d4083029",
+    "wordId": "2839016",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しょう, Gloss: ['Enésimo ano na era Shōwa (1926.12.25-1989.1.7)']"
+  },
+  {
+    "kana": "へい",
+    "en": [
+      "nth year in the Heisei era (1989.1.8-2019.4.30)"
+    ],
+    "senseUid": "e4952730-5f26-4b1a-9555-7683e3c43a2a",
+    "wordId": "2839017",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: へい, Gloss: ['Enésimo ano na era Heisei (1989.1.8-2019.4.30)']"
+  },
+  {
+    "kana": "ふきふき",
+    "en": [
+      "wiping",
+      "drying"
+    ],
+    "senseUid": "d612c7c4-6a85-4c0b-b015-07e6ed344407",
+    "wordId": "2839020",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ふきふき, Gloss: ['limpando', 'secando']"
+  },
+  {
+    "kana": "げんちょさくぶつ",
+    "en": [
+      "underlying work",
+      "original work"
+    ],
+    "senseUid": "924cd038-7143-4307-bde9-d7da0b6623a8",
+    "wordId": "2839019",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: げんちょさくぶつ, Gloss: ['obra subjacente', 'obra original']"
+  },
+  {
+    "kana": "たい",
+    "en": [
+      "nth year in the Taishō era (1912.7.30-1926.12.25)"
+    ],
+    "senseUid": "7d8006f9-cc42-4ebd-bfdb-2c3375255095",
+    "wordId": "2839018",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: たい, Gloss: ['N ano na era Taishō (1912.7.30-1926.12.25)']"
+  },
+  {
+    "kana": "ゆだんならない",
+    "en": [
+      "treacherous",
+      "dangerous",
+      "untrustworthy",
+      "sneaky",
+      "cunning"
+    ],
+    "senseUid": "b0679ff5-8a7f-441b-8526-35188dae50d5",
+    "wordId": "2839021",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ゆだんならない, Gloss: ['traiçoeiro', 'perigoso', 'não confiável', 'sorrateiro', 'astuto']"
+  },
+  {
+    "kana": "しみんプラザ",
+    "en": [
+      "public plaza",
+      "citizen's plaza"
+    ],
+    "senseUid": "2a49aa2f-2e60-4026-a2ec-03c48a7b30ad",
+    "wordId": "2839022",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しみんプラザ, Gloss: ['praça pública', praça do cidadão]"
+  },
+  {
+    "kana": "じしゃせい",
+    "en": [
+      "made by one's (own) company"
+    ],
+    "senseUid": "45eb2744-e578-4ea2-8fc3-a39cfa5b78c2",
+    "wordId": "2839023",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じしゃせい, Gloss: [feito pela própria empresa]"
+  },
+  {
+    "kana": "ライブはいしん",
+    "en": [
+      "live stream",
+      "live streaming",
+      "live broadcasting (over the Internet)"
+    ],
+    "senseUid": "5f63f265-235f-43e8-8715-75539247b124",
+    "wordId": "2839024",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ライブはいしん, Gloss: ['transmissão ao vivo', 'transmissão ao vivo', 'transmissão ao vivo (pela Internet)']"
+  },
+  {
+    "kana": "じっきょうはいしん",
+    "en": [
+      "live streaming",
+      "live broadcasting (over the Internet)"
+    ],
+    "senseUid": "a335f91a-1476-417c-9d3c-90fdc8070b48",
+    "wordId": "2839025",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じっきょうはいしん, Glossário: ['transmissão ao vivo', 'transmissão ao vivo (pela Internet)']"
+  },
+  {
+    "kana": "スズキメソード",
+    "en": [
+      "Suzuki method"
+    ],
+    "senseUid": "48bdf036-a2d7-42a2-8cf2-c997a46d3173",
+    "wordId": "2839026",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: スズキメソード, Gloss: ['Método Suzuki']"
+  },
+  {
+    "kana": "たいきょきょうせい",
+    "en": [
+      "deportation"
+    ],
+    "senseUid": "3a7c63c6-9755-4828-9483-2fb4670dd98a",
+    "wordId": "2839027",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: たいきょきょうせい, Gloss: ['deportação']"
+  },
+  {
+    "kana": "アルブミンにょう",
+    "en": [
+      "albuminuria"
+    ],
+    "senseUid": "41c67951-270e-44fa-a8c4-2ab950f339d1",
+    "wordId": "2839028",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: アルブミンにょう, Gloss: ['albuminúria']"
+  },
+  {
+    "kana": "しのはら",
+    "en": [
+      "field of bamboo grass"
+    ],
+    "senseUid": "99242915-9e13-458a-bf9b-4a943aaeac43",
+    "wordId": "2839030",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しのはら, Gloss: ['campo de grama de bambu']"
+  },
+  {
+    "kana": "しんりてきかしぶっけん",
+    "en": [
+      "stigmatized property",
+      "real estate where a crime, death, etc. has occurred"
+    ],
+    "senseUid": "92ab3c51-770a-4b3b-92e7-e9646bb42011",
+    "wordId": "2839029",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しんりてきかしぶっけん, Gloss: ['propriedade estigmatizada', 'imóvel onde ocorreu um crime, morte, etc.']"
+  },
+  {
+    "kana": "けんさやく",
+    "en": [
+      "diagnostic agent (esp. pregnancy test)"
+    ],
+    "senseUid": "4edce3ec-5649-48dd-8bdc-2310e475caa2",
+    "wordId": "2839031",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けんさやく, Gloss: ['agente diagnóstico (especialmente teste de gravidez)']"
+  },
+  {
+    "kana": "ふきはつせいぶん",
+    "en": [
+      "nonvolatile component",
+      "nonvolatile constituent"
+    ],
+    "senseUid": "2825ca56-c40c-4f51-a12e-0b3b4519f452",
+    "wordId": "2839032",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ふきはつせいぶん, Gloss: ['componente não volátil', 'constituente não volátil']"
+  },
+  {
+    "kana": "ほうせいか",
+    "en": [
+      "legislating",
+      "legislation",
+      "passage (of a bill) into law"
+    ],
+    "senseUid": "3fbd0313-a1ad-4c34-a9a4-c1a4d0cb9a43",
+    "wordId": "2839033",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ほうせいか, Gloss: ['legislando', 'legislação', 'aprovação (de um projeto de lei) em lei']"
+  },
+  {
+    "kana": "きはつせいぶん",
+    "en": [
+      "volatile component",
+      "volatile constituent"
+    ],
+    "senseUid": "b62e5c52-1886-4432-a265-ad543b849885",
+    "wordId": "2839034",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: きはつせいぶん, Gloss: ['componente volátil', 'constituente volátil']"
+  },
+  {
+    "kana": "なもなき",
+    "en": [
+      "nameless",
+      "anonymous",
+      "without name"
+    ],
+    "senseUid": "c04faa05-9989-497b-b43c-584a2e16a935",
+    "wordId": "2839035",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: なもなき, Gloss: ['sem nome', 'anônimo', 'sem nome']"
+  },
+  {
+    "kana": "リアルかん",
+    "en": [
+      "realism"
+    ],
+    "senseUid": "2865995f-5431-4c85-b783-3ebed8e04fed",
+    "wordId": "2839036",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: リアルかん, Gloss: ['realismo']"
+  },
+  {
+    "kana": "ぞうじ",
+    "en": [
+      "kanji formation",
+      "character coinage"
+    ],
+    "senseUid": "e3405748-fac5-4339-84d7-1ba9ac866ea8",
+    "wordId": "2839038",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぞうじ, Gloss: ['formação de kanji', 'cunhagem de caracteres']"
+  },
+  {
+    "kana": "インジゴカルミン",
+    "en": [
+      "indigo carmine"
+    ],
+    "senseUid": "feab7c11-c17e-4ef2-8d66-ddb8952915cd",
+    "wordId": "2839037",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: インジゴカルミン, Gloss: ['índigo carmim']"
+  },
+  {
+    "kana": "ねむらないまち",
+    "en": [
+      "city that never sleeps"
+    ],
+    "senseUid": "5527a95e-60e5-4167-a76e-7add98222aab",
+    "wordId": "2839039",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ねむらないまち, Gloss: ['cidade que nunca dorme']"
+  },
+  {
+    "kana": "やない",
+    "en": [
+      "is not",
+      "am not",
+      "are not"
+    ],
+    "senseUid": "006a2684-2c97-4e6a-87d6-6866a3bceabc",
+    "wordId": "2839040",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: やない, Gloss: ['não é', 'não é', 'não é']"
+  },
+  {
+    "kana": "やない",
+    "en": [
+      "isn't it?"
+    ],
+    "senseUid": "b3836511-60a3-447f-8c6f-c68275978803",
+    "wordId": "2839040",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: やない, Gloss: [não é?]"
+  },
+  {
+    "kana": "れいわフィーバー",
+    "en": [
+      "Reiwa fever",
+      "elated national mood around the start of the Reiwa era (2019)"
+    ],
+    "senseUid": "85f54658-9e7e-4ac0-9782-f1eea1f8aceb",
+    "wordId": "2839041",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: れいわフィーバー, Gloss: ['Febre Reiwa', 'clima nacional eufórico no início da era Reiwa (2019)']"
+  },
+  {
+    "kana": "ゆだんのならない",
+    "en": [
+      "treacherous",
+      "dangerous",
+      "untrustworthy",
+      "sneaky",
+      "cunning"
+    ],
+    "senseUid": "1edc191b-9670-495d-a5ce-aedf5971532f",
+    "wordId": "2839042",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ゆだんのならない, Gloss: ['traiçoeiro', 'perigoso', 'não confiável', 'sorrateiro', 'astuto']"
+  },
+  {
+    "kana": "ワインじょうぞう",
+    "en": [
+      "winemaking"
+    ],
+    "senseUid": "f1e262ce-687e-4588-827b-938ae4733677",
+    "wordId": "2839043",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ワインじょうぞう, Gloss: ['vinificação']"
+  },
+  {
+    "kana": "ふどうさんかいはつぎょうしゃ",
+    "en": [
+      "real estate developer"
+    ],
+    "senseUid": "7c340272-0506-40c3-b705-ddc66fbd8f3e",
+    "wordId": "2839044",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ふどうさんかいはつぎょうしゃ, Gloss: ['desenvolvedor imobiliário']"
+  },
+  {
+    "kana": "しんろしどうきょういん",
+    "en": [
+      "guidance counselor"
+    ],
+    "senseUid": "eca5b362-114f-4801-923a-0cda9fdc203b",
+    "wordId": "2839045",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しんろしどうきょういん, Gloss: ['orientadora']"
+  },
+  {
+    "kana": "たゆみ",
+    "en": [
+      "relaxing",
+      "remitting",
+      "slackening"
+    ],
+    "senseUid": "d50d9bdf-203e-4903-8712-0064b309d5e0",
+    "wordId": "2839048",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: たゆみ, Gloss: ['relaxando', 'remitente', 'relaxando']"
+  },
+  {
+    "kana": "ぎむか",
+    "en": [
+      "making obligatory",
+      "making compulsory"
+    ],
+    "senseUid": "336a09cc-ae06-486c-8d4d-00eb9a4798d5",
+    "wordId": "2839047",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぎむか, Gloss: ['tornando obrigatório', 'tornando obrigatório']"
+  },
+  {
+    "kana": "ケネディあんさつ",
+    "en": [
+      "assassination of US President John F. Kennedy (November 22, 1963)",
+      "JFK assassination"
+    ],
+    "senseUid": "48aa869a-92e0-4648-8b2e-6ca381f937cd",
+    "wordId": "2839049",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ケネディあんさつ, Gloss: ['assassinato do presidente dos EUA John F. Kennedy (22 de novembro de 1963)', 'assassinato de JFK']"
+  },
+  {
+    "kana": "プライベートエクイティ",
+    "en": [
+      "private equity"
+    ],
+    "senseUid": "8e8daf09-5d3a-4042-9f25-3f1235d3a2f8",
+    "wordId": "2839046",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: プライベートエクイティ, Gloss: ['private equity']"
+  },
+  {
+    "kana": "セキュリティチェック",
+    "en": [
+      "security check"
+    ],
+    "senseUid": "ec45bbc1-f653-4e0d-9bd4-a7f8f771e644",
+    "wordId": "2839050",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: セキュリティチェック, Gloss: ['verificação de segurança']"
+  },
+  {
+    "kana": "なかせ",
+    "en": [
+      "annoyance (to)",
+      "bane (of)",
+      "constant worry (to)"
+    ],
+    "senseUid": "0bf0c72b-456c-4d3b-98fa-5013d3bd9e37",
+    "wordId": "2839052",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: なかせ, Gloss: ['irritação (para)', 'maldição (de)', 'preocupação constante (para)']"
+  },
+  {
+    "kana": "ほうそうきょうかい",
+    "en": [
+      "bar association (in the USA, etc.)"
+    ],
+    "senseUid": "9c4468fb-d5ec-4575-87b4-d296aa3e97d7",
+    "wordId": "2839051",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ほううきょうかい, Gloss: ['ordem dos advogados (nos EUA, etc.)']"
+  },
+  {
+    "kana": "いしゃなかせ",
+    "en": [
+      "(being an) annoyance to one's doctor",
+      "troublesome patient"
+    ],
+    "senseUid": "23dca3c3-2db3-42df-9f20-aaf5d1b82587",
+    "wordId": "2839053",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いしゃなかせ, Gloss: [(sendo um) incômodo para o médico, 'paciente problemático']"
+  },
+  {
+    "kana": "おとなのたいおう",
+    "en": [
+      "handling things like an adult",
+      "behaving like a mature grown-up"
+    ],
+    "senseUid": "814a73e6-5c7b-4e0b-86dd-562c8d0f9065",
+    "wordId": "2839054",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おとなのたいおう, Gloss: ['lidando com as coisas como adulto', 'agindo como um adulto maduro']"
+  },
+  {
+    "kana": "グループかいじょ",
+    "en": [
+      "ungroup",
+      "ungrouping",
+      "group cancellation"
+    ],
+    "senseUid": "1de43bd5-b248-4d4d-b2ae-45afb82cebbb",
+    "wordId": "2839055",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: グループかいじょ, Gloss: ['desagrupar', 'desagrupar', 'cancelamento de grupo']"
+  },
+  {
+    "kana": "じょうおんほぞん",
+    "en": [
+      "storage at room temperature"
+    ],
+    "senseUid": "9e0d7bb0-8b17-48d3-9052-093496e4d6dd",
+    "wordId": "2839057",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じょうおんほぞん, Gloss: ['armazenamento em temperatura ambiente']"
+  },
+  {
+    "kana": "エム・ディー・エム・エー",
+    "en": [
+      "methylenedioxymethamphetamine",
+      "MDMA",
+      "ecstasy"
+    ],
+    "senseUid": "9bbfcc2b-5a64-4108-8f82-700f34cccf15",
+    "wordId": "2839058",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: エム・ディー・エム・エー, Gloss: ['metilenooximetanfetamina', 'MDMA', 'ecstasy']"
+  },
+  {
+    "kana": "ジュエリーボックス",
+    "en": [
+      "jewelry box"
+    ],
+    "senseUid": "3e49a457-e7eb-4733-9b03-e03702eff443",
+    "wordId": "2839059",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ジュエリーボックス, Gloss: ['caixa de joias']"
+  },
+  {
+    "kana": "ふざいれんらくひょう",
+    "en": [
+      "missed delivery notice",
+      "undeliverable item notice"
+    ],
+    "senseUid": "ba1f1da8-373f-4846-9aab-8852bf516e26",
+    "wordId": "2839062",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ふざいれんらくひょう, Gloss: ['aviso de entrega perdido', 'aviso de item não entregue']"
+  },
+  {
+    "kana": "そくじつけっしん",
+    "en": [
+      "immediate decision",
+      "immediate ruling",
+      "same-day verdict"
+    ],
+    "senseUid": "1f9f1dec-5a49-4b26-9ccc-eac1f2eadb56",
+    "wordId": "2839060",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: そくじつけっしん, Gloss: ['decisão imediata', 'decisão imediata', 'veredito no mesmo dia']"
+  },
+  {
+    "kana": "おんせいあんない",
+    "en": [
+      "spoken instructions (over the phone, etc.)",
+      "voice assist",
+      "spoken directions"
+    ],
+    "senseUid": "c5fd92fc-e7c3-4f7c-8cd4-23301f69de97",
+    "wordId": "2839063",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おんせいあんない, Gloss: ['instruções faladas (pelo telefone, etc.)', 'assistência por voz', 'instruções faladas']"
+  },
+  {
+    "kana": "ヤッパプ",
+    "en": [
+      "yakbap (sweet Korean dish with rice and nuts)"
+    ],
+    "senseUid": "4a1a080c-003e-425f-beef-0a9503e01f69",
+    "wordId": "2839065",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ヤッパプ, Gloss: ['yakbap (prato coreano doce com arroz e castanhas)']"
+  },
+  {
+    "kana": "ヤクシク",
+    "en": [
+      "yaksik (sweet Korean dish with rice and nuts)"
+    ],
+    "senseUid": "817d6f87-aa07-48db-9068-ae2aae22cd13",
+    "wordId": "2839064",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ヤクシク, Gloss: ['yaksik (prato coreano doce com arroz e nozes)']"
+  },
+  {
+    "kana": "うんそうじょう",
+    "en": [
+      "consignment note",
+      "bill of carriage",
+      "bill of lading"
+    ],
+    "senseUid": "43644a59-cb91-4b70-a943-62d0b961e96f",
+    "wordId": "2839066",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: うんそうじょう, Gloss: ['nota de consignação', 'conhecimento de transporte', 'conhecimento de embarque']"
+  },
+  {
+    "kana": "ますらおぶり",
+    "en": [
+      "manly poetic style (e.g. in the Man'yōshū)"
+    ],
+    "senseUid": "10d712fd-9d70-4bb3-a1f3-fed6bbeda025",
+    "wordId": "2839068",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ますらおぶり, Gloss: [estilo poético masculino (por exemplo, no Man'yōshū)]"
+  },
+  {
+    "kana": "たおやめぶり",
+    "en": [
+      "feminine poetic style (e.g. in the Man'yōshū)"
+    ],
+    "senseUid": "7e2ff666-fe4b-4932-98f9-98e4d9d8e71e",
+    "wordId": "2839069",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: たおやめぶり, Glossaria: [estilo poético feminino (por exemplo, no Man'yōshū)]"
+  },
+  {
+    "kana": "パーフルオロブタン",
+    "en": [
+      "perfluorobutane"
+    ],
+    "senseUid": "ce44e2eb-4ff9-4add-83e5-0bc272288835",
+    "wordId": "2839073",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: パーフルオロブタン, Gloss: ['perfluorobutano']"
+  },
+  {
+    "kana": "おんせいガイド",
+    "en": [
+      "voice guidance",
+      "voice guide",
+      "audio guide",
+      "spoken instructions"
+    ],
+    "senseUid": "0fa41daf-331c-41b4-9175-85029d5b82d5",
+    "wordId": "2839071",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おんせいガイド, Gloss: ['orientação por voz', 'guia vocal', 'guia de áudio', 'instruções faladas']"
+  },
+  {
+    "kana": "パンチャン",
+    "en": [
+      "banchan",
+      "side dishes accompanying a typical Korean meal"
+    ],
+    "senseUid": "28514bea-2a26-4271-9dc9-22eac0f7e600",
+    "wordId": "2839072",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: パンチャン, Gloss: ['banchan', 'acompanhamentos que acompanham uma refeição típica coreana']"
+  },
+  {
+    "kana": "おんせいガイダンス",
+    "en": [
+      "voice guidance",
+      "voice guide",
+      "audio guide",
+      "spoken instructions"
+    ],
+    "senseUid": "aa81e36e-984b-47d6-92d0-28b28f41647f",
+    "wordId": "2839070",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おんせいガイダンス, Gloss: ['orientação por voz', 'guia de voz', 'guia de áudio', 'instruções faladas']"
+  },
+  {
+    "kana": "こみこみ",
+    "en": [
+      "crowded"
+    ],
+    "senseUid": "e558371b-759d-45c0-85dc-ce8a305839dc",
+    "wordId": "2839074",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こみこみ, Gloss: ['lotado']"
+  },
+  {
+    "kana": "じんよう",
+    "en": [
+      "human usage",
+      "(for) use by people"
+    ],
+    "senseUid": "244d6b0f-9e84-4580-8f88-aa7e2d4942fe",
+    "wordId": "2839075",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じんよう, Gloss: ['uso humano', '(para) uso por pessoas']"
+  },
+  {
+    "kana": "フリーカルチャー",
+    "en": [
+      "free culture (movement)"
+    ],
+    "senseUid": "48416ad6-5e92-400b-904f-55afdc94ad9b",
+    "wordId": "2839076",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: フリーカルチャー, Gloss: ['cultura (movimento)' livre']"
+  },
+  {
+    "kana": "ほかんじょ",
+    "en": [
+      "storage center",
+      "deposit",
+      "depository",
+      "repository",
+      "warehouse"
+    ],
+    "senseUid": "b386b148-4794-4a19-911b-e7228133ace2",
+    "wordId": "2839077",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ほかんじょ, Gloss: ['centro de armazenamento', 'depósito', 'depósito', 'repositório', 'depósito']"
+  },
+  {
+    "kana": "じてんしゃほかんじょ",
+    "en": [
+      "storage center for impounded bicycles and motorcycles"
+    ],
+    "senseUid": "e1777cb8-7373-45b1-8568-b7da1e8a0bd4",
+    "wordId": "2839078",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じてんしゃほかんじょ, Gloss: ['centro de armazenamento para bicicletas e motocicletas apreendidas']"
+  }
+]

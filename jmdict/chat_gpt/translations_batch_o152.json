@@ -1,0 +1,996 @@
+[
+  {
+    "kana": "くわばたけ",
+    "en": [
+      "mulberry field",
+      "mulberry plantation"
+    ],
+    "senseUid": "37fa9bf6-b0c5-4bb1-97e1-c414189b1d1c",
+    "wordId": "1247140",
+    "pt": "{'a': ['campo de amoreiras', 'plantação de amoreiras']}"
+  },
+  {
+    "kana": "くわ",
+    "en": [
+      "hoe"
+    ],
+    "senseUid": "8ff1aeec-dbff-4445-a6db-e2b1626d0f1a",
+    "wordId": "1247180",
+    "pt": "{'a': ['enxada']}"
+  },
+  {
+    "kana": "くわつみ",
+    "en": [
+      "picking mulberry leaves",
+      "mulberry-leaf pickers"
+    ],
+    "senseUid": "6f1de00c-216b-4e9b-a620-c0415fd041d9",
+    "wordId": "1247110",
+    "pt": "{'a': ['colheita de folhas de amoreira', 'colhedores de folhas de amoreira']}"
+  },
+  {
+    "kana": "くわいちご",
+    "en": [
+      "fruit of the mulberry"
+    ],
+    "senseUid": "d601fee1-4f60-47b8-82e2-8b687ceff594",
+    "wordId": "1247170",
+    "pt": "{'a': ['fruto da amoreira']}"
+  },
+  {
+    "kana": "そうびょう",
+    "en": [
+      "mulberry seedling"
+    ],
+    "senseUid": "d06e0641-04d3-4608-8771-3ebfca99c52d",
+    "wordId": "1247150",
+    "pt": "{'a': ['muda de amoreira']}"
+  },
+  {
+    "kana": "くんい",
+    "en": [
+      "order of merit"
+    ],
+    "senseUid": "a4ab70a5-ef5c-4b36-9a84-1c1a9bf8797e",
+    "wordId": "1247190",
+    "pt": "{'a': ['ordem de mérito']}"
+  },
+  {
+    "kana": "くんいっとう",
+    "en": [
+      "order of the 1st class"
+    ],
+    "senseUid": "c5888441-2feb-4aec-bec2-fe9efea2bf77",
+    "wordId": "1247200",
+    "pt": "{'a': ['ordem de primeira classe']}"
+  },
+  {
+    "kana": "そうもん",
+    "en": [
+      "monk",
+      "priest"
+    ],
+    "senseUid": "fe0c866a-9beb-431e-8a85-3f4c34500860",
+    "wordId": "1247160",
+    "pt": "{'a': ['monge', 'sacerdote']}"
+  },
+  {
+    "kana": "くわばらくわばら",
+    "en": [
+      "knock on wood",
+      "touch wood",
+      "heaven forbid",
+      "God help me",
+      "absit omen!"
+    ],
+    "senseUid": "c8377f63-7a7b-4627-838f-60f87ddf9b30",
+    "wordId": "1247090",
+    "pt": "{'a': ['bata na madeira', 'toque na madeira', 'Deus me livre', 'que o céu me proteja', 'afaste esse mau agouro!']}"
+  },
+  {
+    "kana": "くんき",
+    "en": [
+      "commendation accompanying the award of a decoration"
+    ],
+    "senseUid": "eec23727-934c-4036-9d45-4615a5cedf52",
+    "wordId": "1247210",
+    "pt": "{'a': ['elogio concedido junto com a entrega de uma condecoração']}"
+  },
+  {
+    "kana": "くんしょう",
+    "en": [
+      "decoration",
+      "order",
+      "medal"
+    ],
+    "senseUid": "3ec0e79f-8868-4112-aa69-38230e2baa59",
+    "wordId": "1247240",
+    "pt": "{'a': ['condecoração', 'ordem honorífica', 'medalha']}"
+  },
+  {
+    "kana": "くんしゃく",
+    "en": [
+      "peerage and order of merit"
+    ],
+    "senseUid": "12feac23-4653-4b50-8031-51f5093912d5",
+    "wordId": "1247230",
+    "pt": "{'a': ['nobreza e ordem de mérito']}"
+  },
+  {
+    "kana": "きみ",
+    "en": [
+      "you",
+      "buddy",
+      "pal"
+    ],
+    "senseUid": "0941e3e6-a4f9-4dd3-8424-7be293c3af1e",
+    "wordId": "1247250",
+    "pt": "{'a': ['você', 'amigo', 'companheiro']}"
+  },
+  {
+    "kana": "きみ",
+    "en": [
+      "he",
+      "she"
+    ],
+    "senseUid": "7e14cbd6-a03a-4280-821b-5ba962e05fd9",
+    "wordId": "1247250",
+    "pt": "{\n  \"a\": [\"você\"]\n}"
+  },
+  {
+    "kana": "くん",
+    "en": [
+      "sir",
+      "madam"
+    ],
+    "senseUid": "2da74657-a420-47df-b3d8-1c46d3886ff5",
+    "wordId": "1247260",
+    "pt": "{'a': ['senhor', 'senhora']}"
+  },
+  {
+    "kana": "くん",
+    "en": [
+      "Mr",
+      "master",
+      "boy"
+    ],
+    "senseUid": "f2a2f07f-789e-413e-bd72-c9a94d70552a",
+    "wordId": "1247260",
+    "pt": "{'a': ['Sr.', 'mestre', 'garoto']}"
+  },
+  {
+    "kana": "きみ",
+    "en": [
+      "monarch",
+      "ruler",
+      "sovereign",
+      "(one's) master"
+    ],
+    "senseUid": "69428960-a8f2-41f4-b2d6-30f4b86e2727",
+    "wordId": "1247250",
+    "pt": "{'a': ['soberano', 'monarca', 'governante', 'mestre']}"
+  },
+  {
+    "kana": "くん",
+    "en": [
+      "Ms",
+      "miss"
+    ],
+    "senseUid": "42fca0ff-6051-4bfb-92c1-f3525faa1013",
+    "wordId": "1247260",
+    "pt": "{'a': ['senhorita', 'menina']}"
+  },
+  {
+    "kana": "くんこう",
+    "en": [
+      "merits",
+      "distinguished services"
+    ],
+    "senseUid": "c4e2dc35-73fa-4b2c-8a03-6adf7555c0ca",
+    "wordId": "1247220",
+    "pt": "{'a': ['méritos', 'serviços distintos', 'serviços meritórios', 'contribuições notáveis']}"
+  },
+  {
+    "kana": "くんし",
+    "en": [
+      "man of virtue",
+      "wise man",
+      "(true) gentleman"
+    ],
+    "senseUid": "d809d4e2-c09e-43a8-a72f-49413e0f9d13",
+    "wordId": "1247270",
+    "pt": "{'a': ['homem virtuoso', 'homem sábio', 'verdadeiro cavalheiro']}"
+  },
+  {
+    "kana": "くんし",
+    "en": [
+      "person of high rank"
+    ],
+    "senseUid": "ad7e1965-8090-4ca1-8245-6898c07168fb",
+    "wordId": "1247270",
+    "pt": "{'a': ['pessoa de alta posição']}"
+  },
+  {
+    "kana": "くんし",
+    "en": [
+      "the four gentlemen (plum, chrysanthemum, orchid, and bamboo)"
+    ],
+    "senseUid": "fc1ba773-d4d0-4546-a8dc-5014c04ccd9f",
+    "wordId": "1247270",
+    "pt": "{'a': ['os quatro cavalheiros (ameixa, crisântemo, orquídea e bambu)']}"
+  },
+  {
+    "kana": "くんしひょうへん",
+    "en": [
+      "the wise readily adapt themselves to changed circumstances",
+      "the wise are quick to acknowledge their mistakes and correct them"
+    ],
+    "senseUid": "f223c750-13fd-4b80-a8e3-0b812384010e",
+    "wordId": "1247280",
+    "pt": "{\n  \"a\": [\n    \"Os sábios adaptam-se prontamente às circunstâncias que mudam.\",\n    \"Os sábios reconhecem rapidamente seus erros e os corrigem.\"\n  ]\n}"
+  },
+  {
+    "kana": "くんしゅ",
+    "en": [
+      "monarch",
+      "sovereign",
+      "ruler",
+      "liege (lord)"
+    ],
+    "senseUid": "e4b520a6-2820-498d-b62f-0f73b3e18cfe",
+    "wordId": "1247290",
+    "pt": "{'a': ['monarca', 'soberano', 'governante', 'senhor feudal']}"
+  },
+  {
+    "kana": "くんしひょうへん",
+    "en": [
+      "the wise make no scruple in suddenly changing their demeanor"
+    ],
+    "senseUid": "05f1764c-ee14-42c3-a618-b27c7b3760fb",
+    "wordId": "1247280",
+    "pt": "{'a': ['Os sábios não hesitam em mudar repentinamente seu comportamento']}"
+  },
+  {
+    "kana": "くんこう",
+    "en": [
+      "incense",
+      "fragrance"
+    ],
+    "senseUid": "141aa70d-3c68-4461-8a39-555957ed2109",
+    "wordId": "1247330",
+    "pt": "{'a': ['incenso', 'fragrância']}"
+  },
+  {
+    "kana": "くんせい",
+    "en": [
+      "smoked food",
+      "smoking (fish, meat, etc.)"
+    ],
+    "senseUid": "3b6675f2-18cd-4fa1-94f2-49051bcb05af",
+    "wordId": "1247350",
+    "pt": "{'a': ['comida defumada', 'defumação (peixe, carne, etc.)']}"
+  },
+  {
+    "kana": "くんしん",
+    "en": [
+      "ruler and ruled",
+      "master and servant"
+    ],
+    "senseUid": "5270753a-9426-40d3-a519-ccba5efc15ea",
+    "wordId": "1247300",
+    "pt": "{'a': ['governante e governado', 'mestre e servo']}"
+  },
+  {
+    "kana": "きみたち",
+    "en": [
+      "you (plural)",
+      "all of you",
+      "you all"
+    ],
+    "senseUid": "6cc4963f-f27b-44a5-89f3-30594aaaad91",
+    "wordId": "1247310",
+    "pt": "{'a': ['vocês', 'todos vocês', 'vocês todos']}"
+  },
+  {
+    "kana": "くんせい",
+    "en": [
+      "smoked"
+    ],
+    "senseUid": "9e37563d-654c-4d4f-8391-3c077fee776a",
+    "wordId": "1247350",
+    "pt": "{'a': ['defumado']}"
+  },
+  {
+    "kana": "くんりん",
+    "en": [
+      "dominating",
+      "controlling",
+      "dictating"
+    ],
+    "senseUid": "196330ab-d01f-4290-8d91-ae1c2a4dd37f",
+    "wordId": "1247320",
+    "pt": "{'a': ['dominar', 'controlar', 'ditar']}"
+  },
+  {
+    "kana": "くんとう",
+    "en": [
+      "education",
+      "training",
+      "discipline"
+    ],
+    "senseUid": "fbebb7fd-7a74-41c8-abac-cb7eacab9fad",
+    "wordId": "1247360",
+    "pt": "{'a': ['educação', 'treinamento', 'disciplina']}"
+  },
+  {
+    "kana": "くんりん",
+    "en": [
+      "reigning (over a country)"
+    ],
+    "senseUid": "c694508f-e695-402f-b02f-a06142929de8",
+    "wordId": "1247320",
+    "pt": "{'a': ['reinar (sobre um país)', 'governar (um país)', 'exercer domínio (sobre uma nação)']}"
+  },
+  {
+    "kana": "くんいく",
+    "en": [
+      "discipline"
+    ],
+    "senseUid": "287df311-a608-44a7-8dd3-59a0023d4379",
+    "wordId": "1247390",
+    "pt": "{'a': ['educação', 'formação', 'disciplina', 'instrução']}"
+  },
+  {
+    "kana": "くんかい",
+    "en": [
+      "warning",
+      "admonition",
+      "lesson or a phrase that teaches you not to do something"
+    ],
+    "senseUid": "daa3dbdd-1733-45ee-92cc-0c57f70ba984",
+    "wordId": "1247400",
+    "pt": "{'a': ['advertência', 'admoestação', 'lição ou frase que ensina a não fazer algo']}"
+  },
+  {
+    "kana": "くんぷう",
+    "en": [
+      "balmy breeze",
+      "summer breeze"
+    ],
+    "senseUid": "1d4d592d-c904-4712-98e9-8e59376bfe0f",
+    "wordId": "1247370",
+    "pt": "{'a': ['brisa suave', 'brisa de verão']}"
+  },
+  {
+    "kana": "くんどく",
+    "en": [
+      "reading a Chinese text (kanbun) in Japanese"
+    ],
+    "senseUid": "83088195-0d89-433a-b468-2971ee42d4b1",
+    "wordId": "1247440",
+    "pt": "{'a': ['leitura de um texto chinês (kanbun) em japonês']}"
+  },
+  {
+    "kana": "くんじょうしょうどく",
+    "en": [
+      "fumigation"
+    ],
+    "senseUid": "8f8f9560-eaa6-4af3-addd-2e1c1ddbcaa5",
+    "wordId": "1247340",
+    "pt": "{'a': ['fumigação']}"
+  },
+  {
+    "kana": "くんじ",
+    "en": [
+      "admonitory speech (e.g. to students)",
+      "words of admonition"
+    ],
+    "senseUid": "2016326c-a1f6-4bdb-8a03-95952371f9a3",
+    "wordId": "1247420",
+    "pt": "{'a': ['discurso de advertência (por exemplo, para estudantes)', 'palavras de advertência']}"
+  },
+  {
+    "kana": "くんじ",
+    "en": [
+      "instruction",
+      "direction",
+      "briefing"
+    ],
+    "senseUid": "99e8dacd-23fc-4f18-9371-30cde8e8395e",
+    "wordId": "1247410",
+    "pt": "{'a': ['instrução', 'orientação', 'direção', 'briefing']}"
+  },
+  {
+    "kana": "くんてん",
+    "en": [
+      "guiding marks for rendering classical Chinese into Japanese"
+    ],
+    "senseUid": "a589603d-f6bc-4e9b-a3e8-d91caa8c2805",
+    "wordId": "1247430",
+    "pt": "{'a': ['marcas de orientação para ler textos clássicos chineses em japonês']}"
+  },
+  {
+    "kana": "くんどく",
+    "en": [
+      "kun'yomi (native Japanese reading of a kanji)"
+    ],
+    "senseUid": "9ab331d3-950c-4ee1-b2ff-367ca373e892",
+    "wordId": "1247440",
+    "pt": "{'a': ['kun’yomi (leitura japonesa nativa de um kanji)']}"
+  },
+  {
+    "kana": "りす",
+    "en": [
+      "Japanese squirrel (Sciurus lis)"
+    ],
+    "senseUid": "5427ee57-3572-4112-b644-aa33e6fa17df",
+    "wordId": "1246890",
+    "pt": "{'a': ['esquilo japonês']}"
+  },
+  {
+    "kana": "くんれん",
+    "en": [
+      "training",
+      "drill",
+      "practice",
+      "discipline"
+    ],
+    "senseUid": "d3b8e74f-ebd2-4af9-b688-a1839cd862db",
+    "wordId": "1247470",
+    "pt": "{'a': ['treinamento', 'exercício', 'prática', 'disciplina']}"
+  },
+  {
+    "kana": "くんよみ",
+    "en": [
+      "kun reading",
+      "kun'yomi",
+      "native Japanese reading of a Chinese character"
+    ],
+    "senseUid": "2b508cad-019f-48c6-ad63-ea34bec7f066",
+    "wordId": "1247450",
+    "pt": "{'a': ['leitura kun', 'kun’yomi', 'leitura japonesa nativa de um caractere chinês']}"
+  },
+  {
+    "kana": "くんれい",
+    "en": [
+      "directive",
+      "instructions"
+    ],
+    "senseUid": "0cd17a19-818e-493d-9489-ac5fc3ab76ba",
+    "wordId": "1247460",
+    "pt": "{'a': ['diretiva', 'instruções']}"
+  },
+  {
+    "kana": "ぐん",
+    "en": [
+      "group"
+    ],
+    "senseUid": "9e993050-ae0b-4e64-ba4f-f3838e01dc07",
+    "wordId": "1247490",
+    "pt": "{'a': ['grupo']}"
+  },
+  {
+    "kana": "ぐん",
+    "en": [
+      "group",
+      "bunch",
+      "crowd",
+      "throng",
+      "swarm",
+      "band",
+      "herd",
+      "school (of fish)"
+    ],
+    "senseUid": "a4b952b4-8531-49ef-8750-a7ce7ae71ea7",
+    "wordId": "1247490",
+    "pt": "{'a': ['grupo', 'bando', 'multidão', 'enxame', 'trupe', 'rebanho', 'cardume']}"
+  },
+  {
+    "kana": "むれる",
+    "en": [
+      "to crowd",
+      "to flock",
+      "to swarm"
+    ],
+    "senseUid": "80624ffc-78bb-4ac4-a0ab-a1c705aafe2c",
+    "wordId": "1247520",
+    "pt": "{'a': ['aglomerar-se', 'juntar-se', 'reunir-se em grupo']}"
+  },
+  {
+    "kana": "むれいる",
+    "en": [
+      "to crowd in",
+      "to come together"
+    ],
+    "senseUid": "db877471-42e6-40d5-9475-7a0e76a699d2",
+    "wordId": "1247550",
+    "pt": "{'a': ['aglomerar-se', 'juntar-se']}"
+  },
+  {
+    "kana": "ぐんせい",
+    "en": [
+      "growing en masse in one location (of plants)"
+    ],
+    "senseUid": "71a72581-0d1e-4aed-a790-aa34fcfbaf9d",
+    "wordId": "1247560",
+    "pt": "{'a': ['crescimento em massa em um só local (de plantas)']}"
+  },
+  {
+    "kana": "むらがる",
+    "en": [
+      "to swarm",
+      "to gather"
+    ],
+    "senseUid": "0d254db3-161a-4937-9c8e-f975b1f28d9b",
+    "wordId": "1247500",
+    "pt": "{'a': ['ajuntar-se', 'agrupar-se', 'reunir-se', 'formar um grupo', 'aglomerar-se']}"
+  },
+  {
+    "kana": "むれあつまる",
+    "en": [
+      "to gather in large groups"
+    ],
+    "senseUid": "cd51faa3-52f8-4cbf-9b37-762eeb5f6a0a",
+    "wordId": "1247530",
+    "pt": "{'a': ['reunir-se em grandes grupos', 'juntar-se em multidão', 'agrupar-se em massa']}"
+  },
+  {
+    "kana": "くんわ",
+    "en": [
+      "moral discourse",
+      "admonitory lecture",
+      "instructive talk",
+      "exemplum",
+      "apologue"
+    ],
+    "senseUid": "9b984caa-bbb4-4292-ad15-9c20d42d809a",
+    "wordId": "1247480",
+    "pt": "{'a': ['discurso moral', 'palestra admonitória', 'fala instrutiva', 'exemplo moral', 'apólogo']}"
+  },
+  {
+    "kana": "ぐんせい",
+    "en": [
+      "all living creatures"
+    ],
+    "senseUid": "0e90448d-3b39-44f3-94b3-c8fa9733e184",
+    "wordId": "1247560",
+    "pt": "{'a': ['todas as criaturas vivas']}"
+  },
+  {
+    "kana": "むれ",
+    "en": [
+      "group",
+      "crowd",
+      "flock",
+      "herd",
+      "bevy",
+      "school",
+      "swarm",
+      "cluster (e.g. of stars)",
+      "clump",
+      "pack (e.g. of dogs)"
+    ],
+    "senseUid": "6d8ba4af-7256-46f6-bbfe-639ddb714692",
+    "wordId": "1247510",
+    "pt": "{'a': ['grupo', 'multidão', 'bando', 'rebanho', 'conjunto', 'cardume', 'enxame', 'aglomerado (por exemplo, de estrelas)', 'tufo', 'matilha (por exemplo, de cães)']}"
+  },
+  {
+    "kana": "ぐんぞう",
+    "en": [
+      "group"
+    ],
+    "senseUid": "919aaab4-d1d7-4c48-9937-9358554fa372",
+    "wordId": "1247570",
+    "pt": "{'a': ['grupo']}"
+  },
+  {
+    "kana": "ぐんたい",
+    "en": [
+      "colony"
+    ],
+    "senseUid": "e4e59bd6-5161-4281-b80e-7646e4f8515a",
+    "wordId": "1247580",
+    "pt": "{'a': ['colônia']}"
+  },
+  {
+    "kana": "ぐんせい",
+    "en": [
+      "living gregariously (of animals)",
+      "living in flocks, herds, colonies, etc."
+    ],
+    "senseUid": "824eb72e-6e0f-40b7-afe8-bc8279fb838b",
+    "wordId": "1247560",
+    "pt": "{'a': ['vivendo de forma gregária (de animais)', 'vivendo em bandos, rebanhos, colônias, etc.']}"
+  },
+  {
+    "kana": "ぐんとう",
+    "en": [
+      "island group",
+      "archipelago"
+    ],
+    "senseUid": "df4528a8-31ec-4696-bf93-5b3d94e2e482",
+    "wordId": "1247590",
+    "pt": "{'a': ['grupo de ilhas', 'arquipélago']}"
+  },
+  {
+    "kana": "ぐんきょ",
+    "en": [
+      "gregariousness"
+    ],
+    "senseUid": "ab67c6b9-2b07-459c-83a7-b83525e3db3d",
+    "wordId": "1247540",
+    "pt": "{'a': ['gregariedade', 'espírito de grupo', 'sociabilidade', 'tendência a se juntar em grupos']}"
+  },
+  {
+    "kana": "ぐんぞう",
+    "en": [
+      "lively group (esp. of young people)",
+      "dynamic bunch"
+    ],
+    "senseUid": "2a87551e-d236-4a69-a589-692bfff660a4",
+    "wordId": "1247570",
+    "pt": "{'a': ['grupo animado (especialmente de jovens)', 'turma dinâmica']}"
+  },
+  {
+    "kana": "ぐんとう",
+    "en": [
+      "group of robbers",
+      "gang of robbers"
+    ],
+    "senseUid": "e5902a32-22ce-4370-9b3a-3a0341988d61",
+    "wordId": "1247600",
+    "pt": "{'a': ['grupo de ladrões', 'gangue de ladrões']}"
+  },
+  {
+    "kana": "ぐんゆう",
+    "en": [
+      "rival chiefs"
+    ],
+    "senseUid": "dc9aa039-fb35-41f6-8a0b-9a98e2ee78b7",
+    "wordId": "1247630",
+    "pt": "{'a': ['chefes rivais']}"
+  },
+  {
+    "kana": "ぐんまけん",
+    "en": [
+      "Gunma Prefecture (Kanto area)"
+    ],
+    "senseUid": "c2dd5916-77d5-4b08-8bca-5399fe36a032",
+    "wordId": "1247610",
+    "pt": "{'a': ['Província de Gunma (região de Kanto)']}"
+  },
+  {
+    "kana": "ぐんぱつじしん",
+    "en": [
+      "swarm earthquakes"
+    ],
+    "senseUid": "a238d33c-c222-4c2d-8e0f-2ecaa9b6c0e2",
+    "wordId": "1247620",
+    "pt": "{'a': ['terremotos em enxame']}"
+  },
+  {
+    "kana": "ぐん",
+    "en": [
+      "military authorities"
+    ],
+    "senseUid": "63d70145-6043-4b23-9e31-cd7d1ee2280a",
+    "wordId": "1247660",
+    "pt": "{'a': ['autoridades militares']}"
+  },
+  {
+    "kana": "ぐんいがっこう",
+    "en": [
+      "military medical college"
+    ],
+    "senseUid": "9a56bd8a-5eff-438c-ac34-1fdbfd3e5ca8",
+    "wordId": "1247690",
+    "pt": "{'a': ['colégio médico militar']}"
+  },
+  {
+    "kana": "ぐんらく",
+    "en": [
+      "many communities (villages)",
+      "cluster of plants"
+    ],
+    "senseUid": "0bb4caa3-93d2-444c-aa8d-3ae74d03293d",
+    "wordId": "1247650",
+    "pt": "{'a': ['muitos vilarejos', 'aglomerado de plantas']}"
+  },
+  {
+    "kana": "ぐん",
+    "en": [
+      "army",
+      "armed forces",
+      "troops"
+    ],
+    "senseUid": "f9532985-cf4c-40ce-99a6-fec318101d02",
+    "wordId": "1247660",
+    "pt": "{'a': ['exército', 'forças armadas', 'tropas']}"
+  },
+  {
+    "kana": "ぐんゆうかっきょ",
+    "en": [
+      "rivalry of local warlords",
+      "a number of powerful (talented, influential) persons standing by themselves in a given field"
+    ],
+    "senseUid": "6c8adb55-c831-4379-bc1e-2ba65898e2fb",
+    "wordId": "1247640",
+    "pt": "{'a': ['rivalidade entre senhores feudais locais', 'vários indivíduos poderosos (talentosos, influentes) se destacando em determinado campo']}"
+  },
+  {
+    "kana": "ぐんい",
+    "en": [
+      "military clothes"
+    ],
+    "senseUid": "f4349806-2dba-4a42-9819-ebee3c81235c",
+    "wordId": "1247670",
+    "pt": "{'a': ['roupa militar']}"
+  },
+  {
+    "kana": "ぐんいかん",
+    "en": [
+      "surgeon major general"
+    ],
+    "senseUid": "54b04916-9ab0-4b9b-b6e2-bc50ba58bfde",
+    "wordId": "1247700",
+    "pt": "{'a': ['cirurgião major-general']}"
+  },
+  {
+    "kana": "ぐん",
+    "en": [
+      "team",
+      "group",
+      "troupe"
+    ],
+    "senseUid": "9f5e2cbc-3fc7-43d4-85df-46002dee7e0c",
+    "wordId": "1247660",
+    "pt": "{'a': ['equipe', 'grupo', 'trupe']}"
+  },
+  {
+    "kana": "ぐんい",
+    "en": [
+      "military physician or surgeon"
+    ],
+    "senseUid": "bdecab27-23ab-419d-bff2-8579c4a70668",
+    "wordId": "1247680",
+    "pt": "{'a': ['médico militar', 'cirurgião militar']}"
+  },
+  {
+    "kana": "ぐんがく",
+    "en": [
+      "military music"
+    ],
+    "senseUid": "c64314d6-9036-4bb5-848d-96aa939ab604",
+    "wordId": "1247770",
+    "pt": "{'a': ['música militar']}"
+  },
+  {
+    "kana": "ぐんか",
+    "en": [
+      "war song"
+    ],
+    "senseUid": "b82e4a46-7800-4ebe-8bed-ffda989da6aa",
+    "wordId": "1247730",
+    "pt": "{'a': ['canção de guerra']}"
+  },
+  {
+    "kana": "ぐんかんく",
+    "en": [
+      "military district"
+    ],
+    "senseUid": "8fb33c25-2b1b-44f2-bb30-3e14035e7bdc",
+    "wordId": "1247820",
+    "pt": "{'a': ['distrito militar']}"
+  },
+  {
+    "kana": "ぐんえい",
+    "en": [
+      "military camp"
+    ],
+    "senseUid": "26cfd0f6-5e4d-41db-b373-52d8746130ef",
+    "wordId": "1247720",
+    "pt": "{'a': ['acampamento militar']}"
+  },
+  {
+    "kana": "ぐんがく",
+    "en": [
+      "military science",
+      "strategy",
+      "tactics"
+    ],
+    "senseUid": "a64b210e-2239-4f3d-ae75-229654a26538",
+    "wordId": "1247760",
+    "pt": "{'a': ['ciência militar', 'estratégia', 'tática']}"
+  },
+  {
+    "kana": "ぐんいそうかん",
+    "en": [
+      "surgeon general"
+    ],
+    "senseUid": "e75100b3-fa95-458b-8db3-1d6b8736cd16",
+    "wordId": "1247710",
+    "pt": "{'a': ['cirurgião geral das forças armadas']}"
+  },
+  {
+    "kana": "ぐんき",
+    "en": [
+      "implements of war"
+    ],
+    "senseUid": "5e15d7e1-6e1c-440d-ae52-bb96fedccc23",
+    "wordId": "1247840",
+    "pt": "{'a': ['instrumentos de guerra']}"
+  },
+  {
+    "kana": "ぐんがくたい",
+    "en": [
+      "military or naval band"
+    ],
+    "senseUid": "b52ac50e-bc1a-40ba-8583-1cb1f6894f7a",
+    "wordId": "1247790",
+    "pt": "{'a': ['banda militar', 'banda naval']}"
+  },
+  {
+    "kana": "ぐんかん",
+    "en": [
+      "warship",
+      "battleship"
+    ],
+    "senseUid": "e9ee9276-a3cc-4b6b-b32d-097597d612ab",
+    "wordId": "1247830",
+    "pt": "{'a': ['navio de guerra', 'navio de batalha']}"
+  },
+  {
+    "kana": "ぐんかんけん",
+    "en": [
+      "military authorities"
+    ],
+    "senseUid": "082f900a-9385-46db-b417-7506063aac9f",
+    "wordId": "1247810",
+    "pt": "{'a': ['autoridades militares']}"
+  },
+  {
+    "kana": "ぐんかくきょうそう",
+    "en": [
+      "arms race",
+      "armaments race"
+    ],
+    "senseUid": "6262561b-68e2-4fdb-a875-ce5cb99b4e3b",
+    "wordId": "1247750",
+    "pt": "{'a': ['corrida armamentista', 'corrida de armamentos']}"
+  },
+  {
+    "kana": "ぐんがくしゅ",
+    "en": [
+      "military bandsman"
+    ],
+    "senseUid": "e5219eff-e1a4-4842-8626-e967210ddae6",
+    "wordId": "1247780",
+    "pt": "{'a': ['músico de banda militar']}"
+  },
+  {
+    "kana": "ぐんき",
+    "en": [
+      "battle flag",
+      "standard",
+      "(regimental) colours",
+      "colors",
+      "ensign"
+    ],
+    "senseUid": "77fbe1c8-fe66-43f2-95e3-27600c21667c",
+    "wordId": "1247850",
+    "pt": "{'a': ['bandeira de batalha', 'estandarte', 'cores regimentais', 'cores', 'insígnia']}"
+  },
+  {
+    "kana": "ぐんかく",
+    "en": [
+      "military expansion",
+      "arms buildup"
+    ],
+    "senseUid": "64374b8a-c568-48f8-9972-39e326e4864d",
+    "wordId": "1247740",
+    "pt": "{'a': ['expansão militar', 'acúmulo de armas']}"
+  },
+  {
+    "kana": "ぐんがくちょう",
+    "en": [
+      "military band master"
+    ],
+    "senseUid": "be4b6de7-47c6-4584-9678-6286a5802c67",
+    "wordId": "1247800",
+    "pt": "{'a': ['mestre da banda militar']}"
+  },
+  {
+    "kana": "ぐんぎ",
+    "en": [
+      "war council"
+    ],
+    "senseUid": "d73c6f2c-dc87-4a76-8d2f-6427bc2e2c0f",
+    "wordId": "1247910",
+    "pt": "{'a': ['conselho de guerra']}"
+  },
+  {
+    "kana": "ぐんき",
+    "en": [
+      "military aircraft"
+    ],
+    "senseUid": "0994863c-2f6c-4039-91e5-8ce8510f0a47",
+    "wordId": "1247860",
+    "pt": "{'a': ['avião militar']}"
+  },
+  {
+    "kana": "ぐんき",
+    "en": [
+      "war chronicle"
+    ],
+    "senseUid": "6e9ffccc-6760-499c-aa2f-65fcf60bd576",
+    "wordId": "1247890",
+    "pt": "{'a': ['crônica de guerra']}"
+  },
+  {
+    "kana": "ぐんき",
+    "en": [
+      "military discipline"
+    ],
+    "senseUid": "6e77e679-0736-47ae-b4db-d3c182909349",
+    "wordId": "1247880",
+    "pt": "{'a': ['disciplina militar']}"
+  },
+  {
+    "kana": "ぐんこ",
+    "en": [
+      "war drum"
+    ],
+    "senseUid": "ddfe7211-263a-45ea-8e5e-c29c24de9bc9",
+    "wordId": "1247950",
+    "pt": "{'a': ['tambor de guerra']}"
+  },
+  {
+    "kana": "ぐんけん",
+    "en": [
+      "war dog"
+    ],
+    "senseUid": "1c262ec9-abd6-49cf-9009-186f50416ad8",
+    "wordId": "1247940",
+    "pt": "{'a': ['cão de guerra']}"
+  },
+  {
+    "kana": "ぐんこう",
+    "en": [
+      "naval port",
+      "naval station"
+    ],
+    "senseUid": "fc61884d-eea0-445d-aa45-2290a04083f2",
+    "wordId": "1247970",
+    "pt": "{'a': ['porto naval', 'estação naval']}"
+  },
+  {
+    "kana": "ぐんき",
+    "en": [
+      "military secret",
+      "classified military material"
+    ],
+    "senseUid": "4e359bee-c64f-4e46-adca-62594a31e343",
+    "wordId": "1247860",
+    "pt": "{'a': ['segredo militar', 'material militar confidencial']}"
+  },
+  {
+    "kana": "ぐんか",
+    "en": [
+      "military shoes",
+      "combat boots"
+    ],
+    "senseUid": "f40da815-065d-4df1-a2ef-f7b53b130d93",
+    "wordId": "1247920",
+    "pt": "{'a': ['botas militares', 'botas de combate']}"
+  },
+  {
+    "kana": "ぐんき",
+    "en": [
+      "military regulations",
+      "military rules"
+    ],
+    "senseUid": "7be75bf7-05d6-4af7-be1d-70633d0057e1",
+    "wordId": "1247880",
+    "pt": "{'a': ['regulamentos militares', 'regras militares']}"
+  }
+]

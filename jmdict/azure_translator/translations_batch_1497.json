@@ -1,0 +1,921 @@
+[
+  {
+    "kana": "こうちきほう",
+    "en": [
+      "postfix notation",
+      "reverse Polish notation"
+    ],
+    "senseUid": "b20b0427-f9be-408f-9323-d22644d7ef60",
+    "wordId": "2354520",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうちきほう, Gloss: ['notação pós-fixo', 'notação polonesa reversa']"
+  },
+  {
+    "kana": "あといれさきだしリスト",
+    "en": [
+      "pushdown list",
+      "pushdown stack"
+    ],
+    "senseUid": "6f462f3f-aa45-4d2e-b8e5-923de1761073",
+    "wordId": "2354530",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あといれさきだしリスト, Gloss: ['lista de empurrão', 'amontoar de empurrão']"
+  },
+  {
+    "kana": "あといれさきだしきおくそうち",
+    "en": [
+      "pushdown storage",
+      "stack (storage)"
+    ],
+    "senseUid": "80705c7c-8e6b-4e00-8fdf-70407d8ef53a",
+    "wordId": "2354540",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あといれさきだしきおくそうち, Gloss: ['armazenamento para pressionar', 'empilhar (armazenamento)']"
+  },
+  {
+    "kana": "こうほうすいろん",
+    "en": [
+      "backward reasoning (AI)"
+    ],
+    "senseUid": "fb710acf-996a-4342-a6cb-a5476eb3e43d",
+    "wordId": "2354570",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうほうすいろん, Gloss: ['raciocínio invertido (IA)']"
+  },
+  {
+    "kana": "こうほうきょうかいめん",
+    "en": [
+      "back plane"
+    ],
+    "senseUid": "26dbcf97-abc2-48d9-889b-c05172c1d2d5",
+    "wordId": "2354560",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうほうきょうかいめん, Gloss: ['plano de trás']"
+  },
+  {
+    "kana": "こうほういっち",
+    "en": [
+      "right-hand match",
+      "ends-with match",
+      "backward match",
+      "matching a sub-string with the end of a field"
+    ],
+    "senseUid": "9e2f8ecc-b599-45b0-b65d-b357727c32b7",
+    "wordId": "2354550",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうほういっち, Gloss: ['combinação da mão direita', 'termina-com a correspondência', 'correspondência invertida', 'combinação de sub-string com a ponta de um campo']"
+  },
+  {
+    "kana": "こうほうたん",
+    "en": [
+      "trailing edge"
+    ],
+    "senseUid": "19a5a173-b3ef-4856-8395-c21e7e24222c",
+    "wordId": "2354580",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうほうたん, Gloss: ['borda de fuga']"
+  },
+  {
+    "kana": "ごこうせいきおくそうち",
+    "en": [
+      "word organized storage"
+    ],
+    "senseUid": "8eab580c-3452-4cca-969e-418693154053",
+    "wordId": "2354590",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ごこうせいきおくそうち, Gloss: ['armazenamento organizado de palavras']"
+  },
+  {
+    "kana": "バーストあやまり",
+    "en": [
+      "burst error",
+      "error burst"
+    ],
+    "senseUid": "ae7e0987-5e61-4a2e-aee9-cccee8da4eee",
+    "wordId": "2354600",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: バーストあやまり, Gloss: ['burst error', 'error burst']"
+  },
+  {
+    "kana": "あやまりけんしゅつ",
+    "en": [
+      "error detection"
+    ],
+    "senseUid": "9b4b43e0-4154-44a9-9efe-c58bccd83d8a",
+    "wordId": "2354620",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりけんしゅつ, Gloss: ['detecção de erro']"
+  },
+  {
+    "kana": "あやまりかいふく",
+    "en": [
+      "error recovery"
+    ],
+    "senseUid": "55c9823c-e84b-4a12-ab36-cb8772411980",
+    "wordId": "2354610",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりかいふく, Gloss: ['recuperação de erro']"
+  },
+  {
+    "kana": "あやまりじょうたい",
+    "en": [
+      "error condition (in calculators)"
+    ],
+    "senseUid": "9fa0c8c5-d093-4964-9e0f-d9eac38d5f0e",
+    "wordId": "2354650",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりじょうたい, Gloss: ['condição de erro (nas calculadoras)']"
+  },
+  {
+    "kana": "あやまりせいぎょ",
+    "en": [
+      "error control"
+    ],
+    "senseUid": "aadc6b09-8c19-4db3-be6c-bc943af9336f",
+    "wordId": "2354660",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりせいぎょ, Gloss: ['erro controle']"
+  },
+  {
+    "kana": "あやまりつうち",
+    "en": [
+      "error indication"
+    ],
+    "senseUid": "eb93bb1e-d10d-4156-942c-395c79e1312d",
+    "wordId": "2354680",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりつうち, Gloss: ['indicação de erro']"
+  },
+  {
+    "kana": "あやまりけんしゅつふごう",
+    "en": [
+      "error-detecting code",
+      "self-checking code"
+    ],
+    "senseUid": "2a6e8314-11b7-417e-91ed-8caf710c8863",
+    "wordId": "2354630",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりけんしゅつふごう, Gloss: ['código detector de erro', 'código auto-checado']"
+  },
+  {
+    "kana": "あやまりていせい",
+    "en": [
+      "error correction"
+    ],
+    "senseUid": "aa5c085b-9ed4-48ff-ba1a-bf690484a012",
+    "wordId": "2354690",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりていせい, Gloss: ['correção de erro']"
+  },
+  {
+    "kana": "あやまりせいぎょソフトウェア",
+    "en": [
+      "error control software"
+    ],
+    "senseUid": "dea1ab67-f0e1-4649-855a-1430c3f125cc",
+    "wordId": "2354670",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりせいぎょソフトウェア, Gloss: ['software de controle de erro']"
+  },
+  {
+    "kana": "あやまりていせいふごう",
+    "en": [
+      "error-correcting code"
+    ],
+    "senseUid": "539e7c76-0ff1-4e09-8164-ef06d516cb5f",
+    "wordId": "2354700",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりていせいふごう, Gloss: ['código corretor de erro']"
+  },
+  {
+    "kana": "あやまりひょうじ",
+    "en": [
+      "error indication"
+    ],
+    "senseUid": "5c5eae1a-1dcf-470a-8a4c-1f8e9b6d7a8e",
+    "wordId": "2354710",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりひょうじ, Gloss: ['indicação de erro']"
+  },
+  {
+    "kana": "ごさはんい",
+    "en": [
+      "error range"
+    ],
+    "senseUid": "6beec503-587d-413d-a7be-a46f078e5f43",
+    "wordId": "2354740",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ごさはんい, Gloss: ['alcance de erro']"
+  },
+  {
+    "kana": "あやまりりつ",
+    "en": [
+      "error rate"
+    ],
+    "senseUid": "5dce7700-1600-4093-a2dd-2d9f5683119a",
+    "wordId": "2354720",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あやまりりつ, Gloss: ['taxa de erro']"
+  },
+  {
+    "kana": "ごさはば",
+    "en": [
+      "error span"
+    ],
+    "senseUid": "9f6dfaf5-d16e-4140-bbf3-b5cafdea4693",
+    "wordId": "2354750",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ごさはば, Gloss: ['intervalo de erro']"
+  },
+  {
+    "kana": "こうかんシステム",
+    "en": [
+      "switching system"
+    ],
+    "senseUid": "427bf952-2418-4bb0-89f0-ebe0d203c77f",
+    "wordId": "2354760",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんシステム, Gloss: ['sistema de comutação']"
+  },
+  {
+    "kana": "こうかんレイヤ",
+    "en": [
+      "switching layer"
+    ],
+    "senseUid": "95640977-460c-4df4-998e-bec4a5db6620",
+    "wordId": "2354780",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんレイヤ, Gloss: ['troca de camada']"
+  },
+  {
+    "kana": "こうかんかいせん",
+    "en": [
+      "switched line"
+    ],
+    "senseUid": "898c1cdb-9a49-4b11-a5db-dc6fb2008aad",
+    "wordId": "2354790",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんかいせん, Gloss: ['linha trocada']"
+  },
+  {
+    "kana": "こうかんデータようそ",
+    "en": [
+      "interchange data element"
+    ],
+    "senseUid": "215dcef7-c99f-47ff-bd0f-16750926d910",
+    "wordId": "2354770",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんデータようそ, Gloss: ['elemento de dados de intercâmbio']"
+  },
+  {
+    "kana": "こうかんき",
+    "en": [
+      "switch"
+    ],
+    "senseUid": "c517074a-2905-48fc-9b3a-3cbed6d182ed",
+    "wordId": "2354800",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんき, Gloss: ['troca']"
+  },
+  {
+    "kana": "こうかんきせいひん",
+    "en": [
+      "switching product"
+    ],
+    "senseUid": "3f241c8d-b76e-4511-8435-4b06e3d06859",
+    "wordId": "2354810",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんきせいひん, Gloss: ['produto de troca']"
+  },
+  {
+    "kana": "こうかんがた",
+    "en": [
+      "switched"
+    ],
+    "senseUid": "e461dc0a-c61d-467a-aa91-c98de35740d4",
+    "wordId": "2354830",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんがた, Gloss: ['trocado']"
+  },
+  {
+    "kana": "こうかんきつうしんじぎょうしゃ",
+    "en": [
+      "exchange carrier"
+    ],
+    "senseUid": "fc5dd872-7085-4a9f-a8cd-1d0db33e593c",
+    "wordId": "2354820",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんきつうしんじぎょうしゃ, Gloss: ['operador de troca']"
+  },
+  {
+    "kana": "こうかんしょりのうりょく",
+    "en": [
+      "switching capacity",
+      "switching ability"
+    ],
+    "senseUid": "01f8a000-0209-4b8f-825c-50da59114edc",
+    "wordId": "2354840",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんしょりのうりょく, Gloss: ['capacidade de comutação', 'habilidade de comutação']"
+  },
+  {
+    "kana": "こうかんせつぞく",
+    "en": [
+      "switched connection"
+    ],
+    "senseUid": "6fa80299-f762-446c-9a08-b3377478a72b",
+    "wordId": "2354850",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんせつぞく, Gloss: ['conexão comutada']"
+  },
+  {
+    "kana": "こうかんもう",
+    "en": [
+      "switching network"
+    ],
+    "senseUid": "8b26c43e-4fb5-479c-9e25-09f97e55f469",
+    "wordId": "2354860",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんもう, Gloss: ['rede de comutação']"
+  },
+  {
+    "kana": "こうごはいち",
+    "en": [
+      "interleaving"
+    ],
+    "senseUid": "2d9efb43-eb3d-4c2f-9ef1-cdd7eeae8901",
+    "wordId": "2354890",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうごはいち, Gloss: ['intercalando']"
+  },
+  {
+    "kana": "こうかんようしきクラス",
+    "en": [
+      "interchange format class"
+    ],
+    "senseUid": "7bbaf3b0-5b7c-46e9-aa25-fa103afedbf8",
+    "wordId": "2354880",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんようしきクラス, Gloss: ['interchange format class']"
+  },
+  {
+    "kana": "こうさごうけいけんさ",
+    "en": [
+      "crossfooting"
+    ],
+    "senseUid": "8a1dbace-1c20-4024-aa1e-5f02363f5553",
+    "wordId": "2354900",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうさごうけいけんさ, Gloss: ['cruzando']"
+  },
+  {
+    "kana": "こうかんようしき",
+    "en": [
+      "interchange format"
+    ],
+    "senseUid": "bed165b3-7722-4ec2-8907-c026e168ca08",
+    "wordId": "2354870",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかんようしき, Gloss: ['interchange format']"
+  },
+  {
+    "kana": "こうしょうページ",
+    "en": [
+      "nominal page"
+    ],
+    "senseUid": "49d339cf-7e2b-4d73-8dc7-339af2918980",
+    "wordId": "2354910",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうしょうページ, Gloss: ['página nominal']"
+  },
+  {
+    "kana": "こうたいそうち",
+    "en": [
+      "alternate device"
+    ],
+    "senseUid": "3b63a640-2fb4-4d63-8bf8-93c9fa72d821",
+    "wordId": "2354920",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうたいそうち, Gloss: ['dispositivo alternativo']"
+  },
+  {
+    "kana": "こうたいトラック",
+    "en": [
+      "alternate track",
+      "alternative track"
+    ],
+    "senseUid": "26f13335-2b7a-4ecf-8c5e-94fead7d344f",
+    "wordId": "2354930",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうたいトラック, Gloss: ['faixa alternativa', 'faixa alternativa']"
+  },
+  {
+    "kana": "こうたいパス",
+    "en": [
+      "alternate path"
+    ],
+    "senseUid": "383801bc-3a31-4794-9216-1c1a24542dad",
+    "wordId": "2354940",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうたいパス, Gloss: ['caminho alternativo']"
+  },
+  {
+    "kana": "こうほデスクリプタ",
+    "en": [
+      "candidate descriptor"
+    ],
+    "senseUid": "6a4a661e-4a0c-4156-8eb8-f6b8d20914e5",
+    "wordId": "2354960",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうほデスクリプタ, Gloss: ['candidato descritor']"
+  },
+  {
+    "kana": "ひかりチャネル",
+    "en": [
+      "optical channel"
+    ],
+    "senseUid": "10759c6b-9008-4202-8070-6b4e4d8f9836",
+    "wordId": "2355000",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりチャネル, Gloss: ['canal óptico']"
+  },
+  {
+    "kana": "ひかりインタフェース",
+    "en": [
+      "optical interface"
+    ],
+    "senseUid": "891edb34-5d27-4d89-8840-b7f513c915d8",
+    "wordId": "2354970",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりインタフェース, Gloss: ['interface óptica']"
+  },
+  {
+    "kana": "ひかりセンサーマウス",
+    "en": [
+      "Optical Sensor Mouse"
+    ],
+    "senseUid": "2f3f7ddb-9b4e-4604-b66b-63c2c0756452",
+    "wordId": "2354990",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりセンサーマウス, Gloss: ['Rato Sensor Óptico']"
+  },
+  {
+    "kana": "ひかりコンピュータ",
+    "en": [
+      "optical computer"
+    ],
+    "senseUid": "80b4007c-891a-48ec-ba5e-36ab09536616",
+    "wordId": "2354980",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりコンピュータ, Gloss: ['computador óptico']"
+  },
+  {
+    "kana": "ひかりメモリ",
+    "en": [
+      "optical storage"
+    ],
+    "senseUid": "db4e0dad-baee-42be-a83c-66532a2b64b4",
+    "wordId": "2355050",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりメモリ, Gloss: ['armazenamento óptico']"
+  },
+  {
+    "kana": "ひかりファイバぶんさんがたデータインターフェース",
+    "en": [
+      "fiber distributed data interface",
+      "FDDI"
+    ],
+    "senseUid": "a0798f18-4e7f-43cf-84c3-7bf72d6f062c",
+    "wordId": "2355040",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりファイバぶんさんがたデータインターフェース, Gloss: ['fiber distributed data interface', 'FDDI']"
+  },
+  {
+    "kana": "ひかりか",
+    "en": [
+      "conversion to fiber optics"
+    ],
+    "senseUid": "bd7e7de7-81ae-4833-a29f-215cb8ef36d6",
+    "wordId": "2355060",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりか, Gloss: ['conversão para fibra óptica']"
+  },
+  {
+    "kana": "こうがくマークよみとり",
+    "en": [
+      "mark scanning",
+      "optical mark reading"
+    ],
+    "senseUid": "b83009b9-ad08-4fdb-b98a-161797a05249",
+    "wordId": "2355070",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうがくマークよみとり, Gloss: ['varredura de marca', 'leitura de marca óptica']"
+  },
+  {
+    "kana": "こうがくしきスキャナ",
+    "en": [
+      "optical scanner"
+    ],
+    "senseUid": "29d28071-2ca1-419d-b49a-1635f85c85e9",
+    "wordId": "2355080",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうがくしきスキャナ, Gloss: ['scanner óptico']"
+  },
+  {
+    "kana": "こうがくしきマークよみとりそうち",
+    "en": [
+      "Optical Mark Reader",
+      "OMR"
+    ],
+    "senseUid": "63c15d87-418f-4473-9280-cf0e295ceb2f",
+    "wordId": "2355090",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうがくしきマークよみとりそうち, Gloss: ['Leitor de Marcas Óptica', 'OMR']"
+  },
+  {
+    "kana": "こうがくしきそうさき",
+    "en": [
+      "optical scanner"
+    ],
+    "senseUid": "6ab93138-48d9-47c5-8dcd-a2e78ada38ca",
+    "wordId": "2355110",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうがくしきそうさき, Gloss: ['scanner óptico']"
+  },
+  {
+    "kana": "こうがくしきマウス",
+    "en": [
+      "optical mouse"
+    ],
+    "senseUid": "34124a7c-d5f4-4168-b780-dee883ebf5e6",
+    "wordId": "2355100",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうがくしきマウス, Gloss: ['rato óptico']"
+  },
+  {
+    "kana": "こうがくしきもじよみとりそうち",
+    "en": [
+      "optical character reader",
+      "OCR"
+    ],
+    "senseUid": "e57af9f1-328c-4be5-a59d-bba51fe68a40",
+    "wordId": "2355120",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうがくしきもじよみとりそうち, Gloss: ['leitor óptico de caracteres', 'OCR']"
+  },
+  {
+    "kana": "こうがくしきもじにんしき",
+    "en": [
+      "optical character recognition",
+      "OCR"
+    ],
+    "senseUid": "65830bf6-0d54-4c98-a03e-43b2d319becf",
+    "wordId": "2355140",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうがくしきもじにんしき, Gloss: ['reconhecimento óptico de caracteres', 'OCR']"
+  },
+  {
+    "kana": "こうがくてきもじにんしき",
+    "en": [
+      "optical character recognition",
+      "OCR"
+    ],
+    "senseUid": "9c8e1806-548c-425a-bde9-0ac3a5b88af1",
+    "wordId": "2355150",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうがくてきもじにんしき, Gloss: ['reconhecimento óptico de caracteres', 'OCR']"
+  },
+  {
+    "kana": "ひかりきじゅんめん",
+    "en": [
+      "optical reference plane"
+    ],
+    "senseUid": "234ce537-2428-42de-8e77-14127a17c6de",
+    "wordId": "2355160",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりきじゅんめん, Gloss: ['plano de referência óptica']"
+  },
+  {
+    "kana": "ひかりきおくそうち",
+    "en": [
+      "optical storage"
+    ],
+    "senseUid": "8b90a77f-8f9a-4a89-ae46-18706b47f00a",
+    "wordId": "2355170",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりきおくそうち, Gloss: ['armazenamento óptico']"
+  },
+  {
+    "kana": "こうげんモデル",
+    "en": [
+      "lighting model"
+    ],
+    "senseUid": "36de742c-11cb-4f56-a228-5295470012ed",
+    "wordId": "2355180",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうげんモデル, Gloss: ['modelo de iluminação']"
+  },
+  {
+    "kana": "こうげんじょうたい",
+    "en": [
+      "light source state"
+    ],
+    "senseUid": "21d5838d-efef-4964-b2c7-bac73591fcc4",
+    "wordId": "2355190",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうげんじょうたい, Gloss: ['estado da fonte de luz']"
+  },
+  {
+    "kana": "ひかりじきディスク",
+    "en": [
+      "magneto-optical disk"
+    ],
+    "senseUid": "5dbea70e-9b35-46eb-958e-740fcf929900",
+    "wordId": "2355200",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりじきディスク, Gloss: ['disco magneto-óptico']"
+  },
+  {
+    "kana": "ひかりぞうけいシステム",
+    "en": [
+      "rapid prototyping",
+      "RP"
+    ],
+    "senseUid": "fe137f06-6fa1-41bf-bac6-7c38c22d6a25",
+    "wordId": "2355220",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりぞうけいシステム, Gloss: ['prototipagem rápida', 'RP']"
+  },
+  {
+    "kana": "ひかりしゅうちゅうしすう",
+    "en": [
+      "concentration exponent"
+    ],
+    "senseUid": "28a90974-6cf0-42c5-81cf-8cf21e93a91c",
+    "wordId": "2355210",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりしゅうちゅうしすう, Gloss: ['expoente de concentração']"
+  },
+  {
+    "kana": "ひかりたちさがりじかん",
+    "en": [
+      "optical fall time"
+    ],
+    "senseUid": "343bfba4-7ab3-4f1c-a77e-246724161d8d",
+    "wordId": "2355230",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりたちさがりじかん, Gloss: ['optical fall time']"
+  },
+  {
+    "kana": "ひかりたちあがりじかん",
+    "en": [
+      "optical rise time"
+    ],
+    "senseUid": "b6524cc7-9aab-40a2-86ae-38e2a75196c3",
+    "wordId": "2355240",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひかりたちあがりじかん, Gloss: ['optical rise time']"
+  },
+  {
+    "kana": "こうかいかぎ",
+    "en": [
+      "public key"
+    ],
+    "senseUid": "efdee9ad-703a-4f72-adba-3a66311b7e5a",
+    "wordId": "2355250",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいかぎ, Gloss: ['chave pública']"
+  },
+  {
+    "kana": "こうかいアーカイブ",
+    "en": [
+      "public archive"
+    ],
+    "senseUid": "1a271267-3217-47a1-8d4d-b5bfb5e6d63c",
+    "wordId": "2355260",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいアーカイブ, Gloss: ['arquivo público']"
+  },
+  {
+    "kana": "こうかいキー",
+    "en": [
+      "public key"
+    ],
+    "senseUid": "c4a6b0b3-7bbe-4ceb-b1bb-52b3e41c8bdf",
+    "wordId": "2355270",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいキー, Gloss: ['chave pública']"
+  },
+  {
+    "kana": "こうかいかぎ",
+    "en": [
+      "public key"
+    ],
+    "senseUid": "eee3ee70-4f38-4723-b557-f3121de6d63d",
+    "wordId": "2355280",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいかぎ, Gloss: ['chave pública']"
+  },
+  {
+    "kana": "こうかいかぎあんごう",
+    "en": [
+      "public key encryption"
+    ],
+    "senseUid": "b2f1c0e4-09a1-451e-83fe-064a0f6878f0",
+    "wordId": "2355290",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいかぎあんごう, Gloss: ['criptografia de chave pública']"
+  },
+  {
+    "kana": "こうかいぶん",
+    "en": [
+      "public text"
+    ],
+    "senseUid": "846f619d-f9b4-4dbd-8a80-01924c3cdcff",
+    "wordId": "2355330",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいぶん, Gloss: ['texto público']"
+  },
+  {
+    "kana": "こうかいかぎきばん",
+    "en": [
+      "Public Key Infrastructure"
+    ],
+    "senseUid": "2be0c09a-7c45-495e-a52a-230112f982c9",
+    "wordId": "2355310",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいかぎきばん, Gloss: ['Infraestrutura de Chave Pública']"
+  },
+  {
+    "kana": "こうかいしきべつし",
+    "en": [
+      "public identifier"
+    ],
+    "senseUid": "4f92fdf9-1272-4b76-8113-133775d5820d",
+    "wordId": "2355320",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいしきべつし, Gloss: ['identificador público']"
+  },
+  {
+    "kana": "こうかいかぎあんごうほうしき",
+    "en": [
+      "public key cryptosystem"
+    ],
+    "senseUid": "42265ea8-d1d3-4632-a59b-91d515f4c079",
+    "wordId": "2355300",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいかぎあんごうほうしき, Gloss: ['sistema criptográfico de chave pública']"
+  },
+  {
+    "kana": "こうかいぶんきじゅつ",
+    "en": [
+      "public text description"
+    ],
+    "senseUid": "7427fbd3-f741-4f9b-a475-672b420f6cbe",
+    "wordId": "2355340",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいぶんきじゅつ, Gloss: ['descrição do texto público']"
+  },
+  {
+    "kana": "こうかいぶんげんご",
+    "en": [
+      "public text language"
+    ],
+    "senseUid": "5390a37e-9047-47ee-87a1-b4932ac53b51",
+    "wordId": "2355350",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいぶんげんご, Gloss: ['linguagem de texto público']"
+  },
+  {
+    "kana": "こうかいぶんしじシーケンス",
+    "en": [
+      "public text designating sequence"
+    ],
+    "senseUid": "63c97b93-e9ce-4ab3-b6bc-c6ca8d0e53d2",
+    "wordId": "2355360",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいぶんしじシーケンス, Gloss: ['texto público designando a sequência']"
+  },
+  {
+    "kana": "こうかいぶんしゅべつ",
+    "en": [
+      "public text class"
+    ],
+    "senseUid": "ef09a960-9d87-4199-a05e-f5f5ade66162",
+    "wordId": "2355370",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいぶんしゅべつ, Gloss: ['classe de texto público']"
+  },
+  {
+    "kana": "こうかいぶんひょうじばん",
+    "en": [
+      "public text display version"
+    ],
+    "senseUid": "6c480a1d-0acb-4bcb-92b6-48d6bbabb3c7",
+    "wordId": "2355380",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうかいぶんひょうじばん, Glossário: ['versão pública de exibição de texto']"
+  },
+  {
+    "kana": "こうしゅうサービス",
+    "en": [
+      "public services"
+    ],
+    "senseUid": "1d4d6bf8-4250-484a-9291-ba327136a738",
+    "wordId": "2355390",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうしゅうサービス, Gloss: ['serviços públicos']"
+  },
+  {
+    "kana": "こうしゅうかいせん",
+    "en": [
+      "public line (as opposed to a private or leased line)"
+    ],
+    "senseUid": "ea639f3c-cbaa-47af-91c5-76a04bd8fb0f",
+    "wordId": "2355420",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうしゅうかいせん, Gloss: ['linha pública (em oposição a uma linha privada ou alugada)']"
+  },
+  {
+    "kana": "こうしゅうデータネットワーク",
+    "en": [
+      "public data network"
+    ],
+    "senseUid": "07173f43-27ca-4eac-908a-67a612b4ba4e",
+    "wordId": "2355400",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうしゅうデータネットワーク, Gloss: ['rede pública de dados']"
+  },
+  {
+    "kana": "こうしゅうかいせんもう",
+    "en": [
+      "public network"
+    ],
+    "senseUid": "00096add-204b-4594-a105-e88a78af7f40",
+    "wordId": "2355430",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうしゅうかいせんもう, Gloss: ['rede pública']"
+  },
+  {
+    "kana": "こうしゅうでんせんもう",
+    "en": [
+      "public wireline network"
+    ],
+    "senseUid": "3f0d9d1e-e18b-420b-9eed-8aced7265e89",
+    "wordId": "2355440",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうしゅうでんせんもう, Gloss: ['rede pública fixa']"
+  },
+  {
+    "kana": "こうしゅうでんわもう",
+    "en": [
+      "public telephone network"
+    ],
+    "senseUid": "7793ec05-aaaf-4ebe-9291-b2730126735a",
+    "wordId": "2355450",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうしゅうでんわもう, Gloss: ['rede telefônica pública']"
+  },
+  {
+    "kana": "こうしゅうメッセージつうしんしょりサービス",
+    "en": [
+      "public message handling service"
+    ],
+    "senseUid": "05dff4ff-67a7-422d-87a1-f379ef24d1c3",
+    "wordId": "2355410",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうしゅうメッセージつうしんしょりサービス, Gloss: ['serviço público de tratamento de mensagens']"
+  },
+  {
+    "kana": "こうてきこうかいしきべつし",
+    "en": [
+      "formal public identifier"
+    ],
+    "senseUid": "3164cc68-e0fe-4345-8b94-5cdd42bdf64b",
+    "wordId": "2355460",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうてきこうかいしきべつし, Gloss: ['identificador público formal']"
+  },
+  {
+    "kana": "こうパターン",
+    "en": [
+      "hole pattern"
+    ],
+    "senseUid": "3a6c39d3-3485-4251-93bc-9918b96d2acb",
+    "wordId": "2355490",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうパターン, Gloss: ['padrão de buracos']"
+  },
+  {
+    "kana": "こうてきこうかいしきべつしあやまり",
+    "en": [
+      "formal public identifier error"
+    ],
+    "senseUid": "99874f59-f7e2-479e-bc75-20d1a7afd690",
+    "wordId": "2355470",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうてきこうかいしきべつしあやまり, Gloss: ['erro formal de identificador público']"
+  },
+  {
+    "kana": "こういきラン",
+    "en": [
+      "wide area LAN"
+    ],
+    "senseUid": "b964c27f-666c-4114-8f1f-e07031ebed3e",
+    "wordId": "2355500",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こういきラン, Gloss: ['LAN de área ampla']"
+  },
+  {
+    "kana": "こういきイーサネット",
+    "en": [
+      "wide area ethernet"
+    ],
+    "senseUid": "585ecedb-2c65-4ae8-9d91-6274e749279b",
+    "wordId": "2355510",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こういきイーサネット, Gloss: ['ethernet de área ampla']"
+  },
+  {
+    "kana": "こういきネットワーク",
+    "en": [
+      "wide area network"
+    ],
+    "senseUid": "52d39b1b-d0cc-4c1b-998c-0d6953ed8944",
+    "wordId": "2355520",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こういきネットワーク, Gloss: ['rede de área ampla']"
+  },
+  {
+    "kana": "こういきもう",
+    "en": [
+      "wide area network"
+    ],
+    "senseUid": "cb189082-83e8-4d7f-892e-2b70f044f7e6",
+    "wordId": "2355530",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こういきもう, Gloss: ['rede de área ampla']"
+  },
+  {
+    "kana": "こうたいいき",
+    "en": [
+      "broadband",
+      "wideband"
+    ],
+    "senseUid": "b4792eb7-bfd3-44ac-99f8-ff1500ae8e54",
+    "wordId": "2355550",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうたいいき, Gloss: ['banda larga', 'banda larga']"
+  },
+  {
+    "kana": "こうたいいきネットワーク",
+    "en": [
+      "broadband network"
+    ],
+    "senseUid": "585dec38-45ac-43a7-9016-32acd6497ffd",
+    "wordId": "2355560",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうたいいきネットワーク, Gloss: ['rede banda larga']"
+  },
+  {
+    "kana": "こうたいいきそうごうディジタルつうしんもう",
+    "en": [
+      "B-ISDN",
+      "Broadband Integrated Services Digital Network"
+    ],
+    "senseUid": "25de41b1-8fbd-4534-a877-4f557e1f09c8",
+    "wordId": "2355570",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうたいいきそうごうディジタルつうしんもう, Gloss: ['B-ISDN', 'Rede Digital de Serviços Integrados de Banda Larga']"
+  },
+  {
+    "kana": "こうせいデータ",
+    "en": [
+      "configuration data"
+    ],
+    "senseUid": "35747ebc-44f6-4430-864b-16aaae01de71",
+    "wordId": "2355600",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうせいデータ, Gloss: ['dados de configuração']"
+  },
+  {
+    "kana": "こうせいかんり",
+    "en": [
+      "configuration management"
+    ],
+    "senseUid": "574f78ba-fac3-4205-b227-1b53897cbe6e",
+    "wordId": "2355610",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうせいかんり, Gloss: ['gerenciamento de configuração']"
+  },
+  {
+    "kana": "こうたいいきでんそう",
+    "en": [
+      "broadband transmission"
+    ],
+    "senseUid": "4e67bdc8-c013-4ee4-a43b-417517bab7eb",
+    "wordId": "2355580",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうたいいきでんそう, Gloss: ['transmissão banda larga']"
+  }
+]

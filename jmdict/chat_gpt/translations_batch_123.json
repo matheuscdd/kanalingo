@@ -1,0 +1,917 @@
+[
+  {
+    "kana": "フェースバリュー",
+    "en": [
+      "face value"
+    ],
+    "senseUid": "be4f49c2-6f95-4ccf-8a8f-80e31023c641",
+    "wordId": "1109510",
+    "pt": "{'a': ['valor nominal']}"
+  },
+  {
+    "kana": "フェースカード",
+    "en": [
+      "face-card"
+    ],
+    "senseUid": "95f0cbb9-3e40-4ad5-b1ae-0f35a02a8b05",
+    "wordId": "1109500",
+    "pt": "{'a': ['carta de figura']}"
+  },
+  {
+    "kana": "フェーズ",
+    "en": [
+      "phase"
+    ],
+    "senseUid": "180c398a-bf9a-47ce-8e0b-c6b2ae52bbcc",
+    "wordId": "1109520",
+    "pt": "{'a': ['fase']}"
+  },
+  {
+    "kana": "フェータル",
+    "en": [
+      "fatal"
+    ],
+    "senseUid": "d3b01fb9-be9f-4669-a0d7-17677fa506ff",
+    "wordId": "1109530",
+    "pt": "{'a': ['fatal', 'letal', 'mortal']}"
+  },
+  {
+    "kana": "フェード",
+    "en": [
+      "fade"
+    ],
+    "senseUid": "a02b881f-2cfe-4516-b040-5600e0d58c45",
+    "wordId": "1109540",
+    "pt": "{'a': ['desvanecer']}"
+  },
+  {
+    "kana": "フェードボール",
+    "en": [
+      "fade ball"
+    ],
+    "senseUid": "4c80a482-600e-419b-af46-2d2942fd6175",
+    "wordId": "1109570",
+    "pt": "{'a': ['bola fade']}"
+  },
+  {
+    "kana": "フェードイン",
+    "en": [
+      "fade-in"
+    ],
+    "senseUid": "a98c04cd-d269-4e2b-995e-30c44bf42e4b",
+    "wordId": "1109560",
+    "pt": "{'a': ['aparecimento gradual']}"
+  },
+  {
+    "kana": "フェードアウト",
+    "en": [
+      "fade-out",
+      "dissolve"
+    ],
+    "senseUid": "bdd5ff63-0a3a-410a-8839-45402e3f42bb",
+    "wordId": "1109550",
+    "pt": "{'a': ['desaparecimento gradual', 'dissolver']}"
+  },
+  {
+    "kana": "フェア",
+    "en": [
+      "fair"
+    ],
+    "senseUid": "72a39649-fbde-40fa-b4e6-facdc334f74b",
+    "wordId": "1109580",
+    "pt": "{'a': ['justo', 'imparcial', 'honesto', 'correto', 'adequado']}"
+  },
+  {
+    "kana": "フェア",
+    "en": [
+      "fair ball"
+    ],
+    "senseUid": "2755c9ad-7b13-4191-a1ca-70bb66b22774",
+    "wordId": "1109580",
+    "pt": "{'a': ['bola válida']}"
+  },
+  {
+    "kana": "フェアリーランド",
+    "en": [
+      "fairyland"
+    ],
+    "senseUid": "10931cb4-0df6-4b9a-9e39-46f503ba8cab",
+    "wordId": "1109680",
+    "pt": "{'a': ['terra das fadas']}"
+  },
+  {
+    "kana": "フェアセックス",
+    "en": [
+      "fair sex"
+    ],
+    "senseUid": "6eb4625f-1098-4266-a7c3-03d3cc3724d8",
+    "wordId": "1109640",
+    "pt": "{'a': ['sexo justo']}"
+  },
+  {
+    "kana": "フェアリーテール",
+    "en": [
+      "fairy-tale"
+    ],
+    "senseUid": "25c2e74f-a1f9-4d97-a436-c7332e27a731",
+    "wordId": "1109670",
+    "pt": "{'a': ['conto de fadas']}"
+  },
+  {
+    "kana": "フェアプレー",
+    "en": [
+      "fair play"
+    ],
+    "senseUid": "9d151b55-b209-4a16-959b-67295f2b4561",
+    "wordId": "1109650",
+    "pt": "{'a': ['jogo limpo']}"
+  },
+  {
+    "kana": "フェア",
+    "en": [
+      "fair (event)"
+    ],
+    "senseUid": "4276f169-d359-44b4-a2b0-c026d2ca9e91",
+    "wordId": "1109580",
+    "pt": "{'a': ['feira']}"
+  },
+  {
+    "kana": "フェアコピー",
+    "en": [
+      "fair copy"
+    ],
+    "senseUid": "b9e76efa-2af6-4b46-87a2-e5f913c94cdc",
+    "wordId": "1109630",
+    "pt": "{'a': ['cópia limpa']}"
+  },
+  {
+    "kana": "フェアリー",
+    "en": [
+      "fairy"
+    ],
+    "senseUid": "dd6c846a-2217-445f-b843-bb2dd369ff02",
+    "wordId": "1109660",
+    "pt": "{'a': ['fada']}"
+  },
+  {
+    "kana": "フェイリュア",
+    "en": [
+      "failure"
+    ],
+    "senseUid": "117c8228-ee42-4495-ac01-49db2e99f77c",
+    "wordId": "1109750",
+    "pt": "{'a': ['falha']}"
+  },
+  {
+    "kana": "フェイシャル",
+    "en": [
+      "facial"
+    ],
+    "senseUid": "d1fa0e7e-1902-4067-8918-2732582f9d1b",
+    "wordId": "1109700",
+    "pt": "{'a': ['facial']}"
+  },
+  {
+    "kana": "フェイダー",
+    "en": [
+      "fader"
+    ],
+    "senseUid": "69f22f90-55e1-446e-a9d7-019e1223e335",
+    "wordId": "1109740",
+    "pt": "{'a': ['fader']}"
+  },
+  {
+    "kana": "フェイク",
+    "en": [
+      "feint (in American football)"
+    ],
+    "senseUid": "798cc0eb-e43f-4f8b-b5cd-c646eb0a43cf",
+    "wordId": "1109690",
+    "pt": "{'a': ['finta (no futebol americano)']}"
+  },
+  {
+    "kana": "フェアキャッチ",
+    "en": [
+      "fair catch"
+    ],
+    "senseUid": "bedc89a3-5ab8-45eb-b05d-9895f46383d0",
+    "wordId": "1109620",
+    "pt": "{'a': ['recepção justa']}"
+  },
+  {
+    "kana": "フェイク",
+    "en": [
+      "fake"
+    ],
+    "senseUid": "dfa1775e-dcfd-4b97-8240-88070ee9a09b",
+    "wordId": "1109690",
+    "pt": "{'a': ['falso']}"
+  },
+  {
+    "kana": "フェイル",
+    "en": [
+      "failure"
+    ],
+    "senseUid": "600eb25d-a0f3-4c11-bac8-6747d347708b",
+    "wordId": "1109760",
+    "pt": "{'a': ['falha']}"
+  },
+  {
+    "kana": "フェイク",
+    "en": [
+      "improvisation (in jazz music, singing, etc.)",
+      "ad-lib",
+      "vocal run",
+      "vocal riff"
+    ],
+    "senseUid": "5f35518f-b131-42e7-8dd4-ecf47ca2b2cc",
+    "wordId": "1109690",
+    "pt": "{'a': ['improvisação (em música jazz, canto, etc.)', 'ad-lib', 'melisma vocal', 'riff vocal']}"
+  },
+  {
+    "kana": "フェイント",
+    "en": [
+      "feint"
+    ],
+    "senseUid": "0b7f1f6e-ece9-4ce9-a2db-561b8d391b74",
+    "wordId": "1109780",
+    "pt": "{'a': ['finta']}"
+  },
+  {
+    "kana": "フェイルセーフ",
+    "en": [
+      "fail-safe",
+      "failsafe"
+    ],
+    "senseUid": "b3cf81c1-b3d7-43bf-a1c2-a19f21ce93d1",
+    "wordId": "1109770",
+    "pt": "{'a': ['à prova de falhas', 'seguro contra falhas']}"
+  },
+  {
+    "kana": "フェザー",
+    "en": [
+      "feather"
+    ],
+    "senseUid": "ffe21889-e6f1-4d3f-9800-296c19346d0d",
+    "wordId": "1109790",
+    "pt": "{'a': ['pena']}"
+  },
+  {
+    "kana": "フェアウェイ",
+    "en": [
+      "fairway"
+    ],
+    "senseUid": "e30b9aba-df0c-40e0-8c3f-a53d4b72a3a7",
+    "wordId": "1109600",
+    "pt": "{'a': ['fairway', 'caminho principal', 'área central do campo de golfe']}"
+  },
+  {
+    "kana": "フェティシズム",
+    "en": [
+      "fetishism"
+    ],
+    "senseUid": "36316552-debb-46fd-bfae-52775e5cde59",
+    "wordId": "1109850",
+    "pt": "{'a': ['fetichismo']}"
+  },
+  {
+    "kana": "フェザープレーン",
+    "en": [
+      "ultralight model plane for indoor use"
+    ],
+    "senseUid": "44094fcf-1058-4795-a246-50cdcd7e786a",
+    "wordId": "1109810",
+    "pt": "{'a': ['avião ultraleve para uso interno']}"
+  },
+  {
+    "kana": "フェザーカット",
+    "en": [
+      "feathercut"
+    ],
+    "senseUid": "3f502609-40f2-4964-9f3c-0c2a720f2eb2",
+    "wordId": "1109800",
+    "pt": "{'a': ['corte em camadas', 'corte pluma', 'corte feather']}"
+  },
+  {
+    "kana": "フェスティバル",
+    "en": [
+      "festival (esp. music, film, etc.)"
+    ],
+    "senseUid": "d0b45242-76b7-4103-bc66-b6f83d799540",
+    "wordId": "1109820",
+    "pt": "{'a': ['festival (especialmente música, cinema, etc.)']}"
+  },
+  {
+    "kana": "フェッチ",
+    "en": [
+      "fetch (of an instruction from memory)"
+    ],
+    "senseUid": "657014ab-bd92-4020-add1-55eca425032a",
+    "wordId": "1109840",
+    "pt": "{'a': ['busca (de uma instrução da memória)']}"
+  },
+  {
+    "kana": "フェイス",
+    "en": [
+      "face"
+    ],
+    "senseUid": "3a06554c-d041-4093-a921-6dfecb204876",
+    "wordId": "1109710",
+    "pt": "{'a': ['rosto']}"
+  },
+  {
+    "kana": "フェデレーション",
+    "en": [
+      "federation"
+    ],
+    "senseUid": "d3b8b4e4-ef04-4261-96da-06701ab3896f",
+    "wordId": "1109860",
+    "pt": "{'a': ['federação']}"
+  },
+  {
+    "kana": "フェニールケトン",
+    "en": [
+      "phenylketon(uria)"
+    ],
+    "senseUid": "40464036-69f9-47a9-9ba0-b64c19389470",
+    "wordId": "1109870",
+    "pt": "{'a': ['fenilceton(úria)']}"
+  },
+  {
+    "kana": "フェニックス",
+    "en": [
+      "phoenix (any palm tree of genus Phoenix, incl. the date palm)"
+    ],
+    "senseUid": "96bfad63-a106-4f99-af8d-93a1a09d37f9",
+    "wordId": "1109880",
+    "pt": "{'a': ['fênix (qualquer palmeira do gênero Phoenix, incluindo a tamareira)']}"
+  },
+  {
+    "kana": "フェミニスト",
+    "en": [
+      "feminist"
+    ],
+    "senseUid": "bd6a5a2c-a7d7-4022-ba80-a346fa127cae",
+    "wordId": "1109910",
+    "pt": "{'a': ['feminista']}"
+  },
+  {
+    "kana": "フェノメノン",
+    "en": [
+      "phenomenon"
+    ],
+    "senseUid": "5b772459-4971-496d-8e2e-ffe1e40fcddb",
+    "wordId": "1109890",
+    "pt": "{'a': ['fenômeno']}"
+  },
+  {
+    "kana": "フェミニン",
+    "en": [
+      "feminine"
+    ],
+    "senseUid": "4e4a206c-cd85-46f0-a0ad-28b32e50637b",
+    "wordId": "1109930",
+    "pt": "{'a': ['feminino']}"
+  },
+  {
+    "kana": "フェミニズム",
+    "en": [
+      "feminism"
+    ],
+    "senseUid": "28e1c98d-f457-4a52-a9df-5c95c668f2f3",
+    "wordId": "1109920",
+    "pt": "{'a': ['feminismo']}"
+  },
+  {
+    "kana": "フェビアニズム",
+    "en": [
+      "Fabianism"
+    ],
+    "senseUid": "f8b20b22-9fed-4d62-8b53-87fe3b1e8975",
+    "wordId": "1109900",
+    "pt": "{'a': ['Fabianismo']}"
+  },
+  {
+    "kana": "フェミニスト",
+    "en": [
+      "man who indulges women",
+      "gentleman"
+    ],
+    "senseUid": "c3f76659-9ed1-4c31-9a44-9d0e5847583d",
+    "wordId": "1109910",
+    "pt": "{'a': ['homem que agrada mulheres', 'cavalheiro']}"
+  },
+  {
+    "kana": "フェムト",
+    "en": [
+      "femto-",
+      "10^-15"
+    ],
+    "senseUid": "747ab150-cf9b-4b58-be64-964baee9ff3b",
+    "wordId": "1109950",
+    "pt": "{'a': ['femto-', '10^-15']}"
+  },
+  {
+    "kana": "フェミニンルック",
+    "en": [
+      "feminine look"
+    ],
+    "senseUid": "a4f2b8b5-fd57-46b8-b467-a1f42184df29",
+    "wordId": "1109940",
+    "pt": "{'a': ['visual feminino']}"
+  },
+  {
+    "kana": "フェラチオ",
+    "en": [
+      "fellatio",
+      "blow job"
+    ],
+    "senseUid": "686de2c7-0905-495b-860c-1db12c8a9dce",
+    "wordId": "1109970",
+    "pt": "{'a': ['felação', 'boquete']}"
+  },
+  {
+    "kana": "フェリー",
+    "en": [
+      "ferry"
+    ],
+    "senseUid": "a7645a0e-0cff-4bee-8e92-29764a3d01f5",
+    "wordId": "1109980",
+    "pt": "{'a': ['balsa']}"
+  },
+  {
+    "kana": "フェリーボート",
+    "en": [
+      "ferryboat"
+    ],
+    "senseUid": "cc82bdbe-c803-42b7-8833-5d1747e0e36a",
+    "wordId": "1109990",
+    "pt": "{'a': ['balsa']}"
+  },
+  {
+    "kana": "フェルト",
+    "en": [
+      "felt"
+    ],
+    "senseUid": "94b86ab0-71c5-4a32-846a-b479390d3ca6",
+    "wordId": "1110010",
+    "pt": "{'a': ['felt', 'feltro']}"
+  },
+  {
+    "kana": "フェルール",
+    "en": [
+      "ferrule"
+    ],
+    "senseUid": "5f26b1a1-e6ee-4f4c-ac9a-95d256d93500",
+    "wordId": "1110000",
+    "pt": "{'a': ['ferrule', 'virola']}"
+  },
+  {
+    "kana": "フェレット",
+    "en": [
+      "ferret (Mustela furo)"
+    ],
+    "senseUid": "395b27fa-9a91-4aba-94a1-710d53c50c48",
+    "wordId": "1110040",
+    "pt": "{'a': ['furão (Mustela furo)']}"
+  },
+  {
+    "kana": "フェルミウム",
+    "en": [
+      "fermium (Fm)"
+    ],
+    "senseUid": "67804e0a-f83b-47a3-a53e-7e4b0302e42c",
+    "wordId": "1110030",
+    "pt": "{'a': ['férmio (Fm)']}"
+  },
+  {
+    "kana": "フェルトペン",
+    "en": [
+      "felt-tip pen",
+      "marker pen",
+      "felt pen"
+    ],
+    "senseUid": "8b1e465c-f99a-46e9-b13f-53ae01f05b5f",
+    "wordId": "1110020",
+    "pt": "{'a': ['caneta hidrográfica', 'caneta marcador', 'caneta de feltro']}"
+  },
+  {
+    "kana": "フェローシップ",
+    "en": [
+      "fellowship"
+    ],
+    "senseUid": "bde1425b-7085-4b5b-a22b-23b72a840279",
+    "wordId": "1110050",
+    "pt": "{'a': ['bolsa de estudos']}"
+  },
+  {
+    "kana": "フェニックス",
+    "en": [
+      "phoenix (bird of Egyptian mythology)"
+    ],
+    "senseUid": "24df6bcc-812f-4352-acb8-4ac083c1f1b0",
+    "wordId": "1109880",
+    "pt": "{'a': ['fênix (ave da mitologia egípcia)']}"
+  },
+  {
+    "kana": "フェンシング",
+    "en": [
+      "fencing"
+    ],
+    "senseUid": "534817ae-dbd1-41b2-a5bf-7494cf3da14a",
+    "wordId": "1110070",
+    "pt": "{'a': ['esgrima']}"
+  },
+  {
+    "kana": "フェロモン",
+    "en": [
+      "pheromone"
+    ],
+    "senseUid": "c1f008b0-3514-4552-86c3-36cec73a76f6",
+    "wordId": "1110060",
+    "pt": "{'a': ['feromônio']}"
+  },
+  {
+    "kana": "フェンス",
+    "en": [
+      "fence"
+    ],
+    "senseUid": "f7ed266e-c2a1-47a3-9a2c-10e7cd3e3966",
+    "wordId": "1110080",
+    "pt": "{'a': ['cerca']}"
+  },
+  {
+    "kana": "フォーカス",
+    "en": [
+      "focus (of a camera, microscope, etc.)"
+    ],
+    "senseUid": "61f30b9d-f4c9-4e1c-8782-778796951c96",
+    "wordId": "1110100",
+    "pt": "{'a': ['foco (de uma câmera, microscópio, etc.)']}"
+  },
+  {
+    "kana": "フォーカス",
+    "en": [
+      "photographing (someone) secretly"
+    ],
+    "senseUid": "3a4b68ee-5e70-4b7f-a6b4-fc5f913414d2",
+    "wordId": "1110100",
+    "pt": "{'a': ['fotografar alguém secretamente']}"
+  },
+  {
+    "kana": "フォーカス",
+    "en": [
+      "focus (in a graphical user interface)"
+    ],
+    "senseUid": "09ff3c56-1750-40a9-8253-418bd1e887f7",
+    "wordId": "1110100",
+    "pt": "{'a': ['foco (em uma interface gráfica de usuário)']}"
+  },
+  {
+    "kana": "フォークアート",
+    "en": [
+      "folk art"
+    ],
+    "senseUid": "ffa593f9-8145-4a3d-ad7f-5063e718d397",
+    "wordId": "1110120",
+    "pt": "{'a': ['arte popular']}"
+  },
+  {
+    "kana": "フォーク",
+    "en": [
+      "fork"
+    ],
+    "senseUid": "e8c5851a-03d9-46f9-86e2-0dad54fd442b",
+    "wordId": "1110110",
+    "pt": "{'a': ['garfo']}"
+  },
+  {
+    "kana": "フォーカス",
+    "en": [
+      "focus (of attention, efforts, etc.)"
+    ],
+    "senseUid": "709e3b3a-7b24-4a09-9fd9-463bba428b8e",
+    "wordId": "1110100",
+    "pt": "{'a': ['foco (de atenção, esforços, etc.)']}"
+  },
+  {
+    "kana": "フォーク",
+    "en": [
+      "forkball"
+    ],
+    "senseUid": "1bdc7456-94b5-4d4d-a33a-702fb5db2ad9",
+    "wordId": "1110110",
+    "pt": "{'a': ['bola fork', 'forkball']}"
+  },
+  {
+    "kana": "フォークソング",
+    "en": [
+      "folk song",
+      "folk music"
+    ],
+    "senseUid": "e13591c7-6544-44c0-8791-8976034621c5",
+    "wordId": "1110130",
+    "pt": "{'a': ['canção folclórica', 'música folclórica']}"
+  },
+  {
+    "kana": "フォークボール",
+    "en": [
+      "forkball"
+    ],
+    "senseUid": "f5079670-1e77-415f-93a3-d7845f3f5528",
+    "wordId": "1110150",
+    "pt": "{'a': ['bola fork', 'bola de garfo']}"
+  },
+  {
+    "kana": "フォークダンス",
+    "en": [
+      "folk dance"
+    ],
+    "senseUid": "2daf2641-739f-4ec9-858d-643a399d33f3",
+    "wordId": "1110140",
+    "pt": "{'a': ['dança folclórica']}"
+  },
+  {
+    "kana": "フォークリフト",
+    "en": [
+      "forklift"
+    ],
+    "senseUid": "39656e74-8db2-4a82-b2a0-f08ffdce388a",
+    "wordId": "1110160",
+    "pt": "{'a': ['empilhadeira']}"
+  },
+  {
+    "kana": "フォークロア",
+    "en": [
+      "folklore"
+    ],
+    "senseUid": "7fa725c8-d3da-4eeb-a25a-658a8928102e",
+    "wordId": "1110170",
+    "pt": "{'a': ['folclore']}"
+  },
+  {
+    "kana": "フォージ",
+    "en": [
+      "forge"
+    ],
+    "senseUid": "e9c2eb30-b702-4092-88ae-0a05615f2569",
+    "wordId": "1110180",
+    "pt": "{'a': ['forjar']}"
+  },
+  {
+    "kana": "フォース",
+    "en": [
+      "the Force (in Star Wars)"
+    ],
+    "senseUid": "974564bf-9f4f-4836-a093-28489ef0b3c6",
+    "wordId": "1110190",
+    "pt": "{'a': ['A Força (em Star Wars)']}"
+  },
+  {
+    "kana": "フォース",
+    "en": [
+      "force"
+    ],
+    "senseUid": "afb59448-c6e9-454a-bf19-f874fa9e55fe",
+    "wordId": "1110190",
+    "pt": "{'a': ['força']}"
+  },
+  {
+    "kana": "フェンダー",
+    "en": [
+      "fender (on a boat)"
+    ],
+    "senseUid": "14034a40-a28e-40c0-b6cb-5a5ae1d4bc76",
+    "wordId": "1110090",
+    "pt": "{'a': ['defensa (em um barco)']}"
+  },
+  {
+    "kana": "フォースアウト",
+    "en": [
+      "force-out"
+    ],
+    "senseUid": "8648e4c4-b35a-4c93-bc80-a1a2e2662efd",
+    "wordId": "1110200",
+    "pt": "{'a': ['eliminação forçada']}"
+  },
+  {
+    "kana": "フェンダー",
+    "en": [
+      "fender (of a car)",
+      "wing"
+    ],
+    "senseUid": "40d4f63b-c9ce-404c-a851-d11431680fed",
+    "wordId": "1110090",
+    "pt": "{'a': ['parafuso (de um carro)', 'asa']}"
+  },
+  {
+    "kana": "フォーチュン",
+    "en": [
+      "fortune"
+    ],
+    "senseUid": "3d043a44-f961-46fd-a4c0-9cf7ea0d0542",
+    "wordId": "1110210",
+    "pt": "{'a': ['fortuna']}"
+  },
+  {
+    "kana": "フォード",
+    "en": [
+      "Ford (car)"
+    ],
+    "senseUid": "1f177c50-8204-4daf-972e-b484be6e93eb",
+    "wordId": "1110230",
+    "pt": "{'a': ['Ford (carro)']}"
+  },
+  {
+    "kana": "フォーヴィスム",
+    "en": [
+      "Fauvism"
+    ],
+    "senseUid": "9b475986-5182-4402-ba95-64dc67ede629",
+    "wordId": "1110250",
+    "pt": "{'a': ['Fovismo']}"
+  },
+  {
+    "kana": "フォーマッタ",
+    "en": [
+      "formatter"
+    ],
+    "senseUid": "bbad71a2-21fc-4b99-929c-2b2bfb08d2f4",
+    "wordId": "1110260",
+    "pt": "{'a': ['formatador']}"
+  },
+  {
+    "kana": "フォーマッティング",
+    "en": [
+      "formatting"
+    ],
+    "senseUid": "79d4b03f-1b6a-4886-a4e7-5a0c4d92a600",
+    "wordId": "1110270",
+    "pt": "{'a': ['formatação']}"
+  },
+  {
+    "kana": "フォーナイン",
+    "en": [
+      "four nines (i.e. 99.99%)"
+    ],
+    "senseUid": "129b2fdd-8a4d-4e76-ac0b-5bbd2b2f962b",
+    "wordId": "1110240",
+    "pt": "{'a': ['quatro noves (ou seja, 99,99%)']}"
+  },
+  {
+    "kana": "フォーマット",
+    "en": [
+      "format",
+      "form"
+    ],
+    "senseUid": "1a4ab1cc-5bfe-420a-bf95-208693bebebc",
+    "wordId": "1110280",
+    "pt": "{'a': ['formato', 'formulário']}"
+  },
+  {
+    "kana": "フォートラン",
+    "en": [
+      "Fortran (programming language)"
+    ],
+    "senseUid": "0f1a3f77-5acf-4bf3-84af-b0668835e4d8",
+    "wordId": "1110220",
+    "pt": "{'a': ['Fortran (linguagem de programação)']}"
+  },
+  {
+    "kana": "フォーマット",
+    "en": [
+      "(data) format"
+    ],
+    "senseUid": "86f1fca5-3b1b-4b56-bf37-4ed979e58608",
+    "wordId": "1110280",
+    "pt": "{'a': ['formato (de dados)']}"
+  },
+  {
+    "kana": "フォード",
+    "en": [
+      "ford"
+    ],
+    "senseUid": "13ec381f-cb6c-4ed3-9f50-6d719185c6af",
+    "wordId": "1110230",
+    "pt": "{'a': ['フォード']}"
+  },
+  {
+    "kana": "フォーマル",
+    "en": [
+      "formal"
+    ],
+    "senseUid": "2e883514-7c9c-4339-bda8-feb84ffaaf26",
+    "wordId": "1110290",
+    "pt": "{'a': ['formal', 'formalidade', 'cerimonioso', 'solene']}"
+  },
+  {
+    "kana": "フォーミュラカー",
+    "en": [
+      "formula car"
+    ],
+    "senseUid": "b2b3aba4-a145-4735-b20a-81ff3072e0ac",
+    "wordId": "1110320",
+    "pt": "{'a': ['carro de fórmula']}"
+  },
+  {
+    "kana": "フォーメーション",
+    "en": [
+      "formation"
+    ],
+    "senseUid": "cc931290-5b22-4626-8f7b-8ab91082269e",
+    "wordId": "1110370",
+    "pt": "{'a': ['formação']}"
+  },
+  {
+    "kana": "フォームフィード",
+    "en": [
+      "form-feed (character)",
+      "FF"
+    ],
+    "senseUid": "adf834a7-09de-488f-ba2e-a314fca0a18e",
+    "wordId": "1110350",
+    "pt": "{'a': ['form-feed (caractere)', 'FF']}"
+  },
+  {
+    "kana": "フォーラム",
+    "en": [
+      "forum"
+    ],
+    "senseUid": "5b99a3c9-5c1a-4a71-af4b-29763cc799c2",
+    "wordId": "1110380",
+    "pt": "{'a': ['fórum']}"
+  },
+  {
+    "kana": "フォーム",
+    "en": [
+      "form"
+    ],
+    "senseUid": "2f7adc73-cb98-4e30-aa03-7960f21e4032",
+    "wordId": "1110340",
+    "pt": "{'a': ['formulário', 'forma', 'formação']}"
+  },
+  {
+    "kana": "フォームラバー",
+    "en": [
+      "foam rubber"
+    ],
+    "senseUid": "e21c744d-d3f0-4168-bc45-929dcd94b6fc",
+    "wordId": "1110360",
+    "pt": "{'a': ['espuma de borracha']}"
+  },
+  {
+    "kana": "フォーマット",
+    "en": [
+      "formatting (a disk)",
+      "format"
+    ],
+    "senseUid": "501c4cde-031b-469f-a795-4c4188c73a5e",
+    "wordId": "1110280",
+    "pt": "{'a': ['formatação (de um disco)', 'formato']}"
+  },
+  {
+    "kana": "フォール",
+    "en": [
+      "fall (esp. in wrestling)"
+    ],
+    "senseUid": "5109a113-d827-4bd8-8e09-e0103a920c02",
+    "wordId": "1110390",
+    "pt": "{'a': ['queda (especialmente na luta livre)']}"
+  },
+  {
+    "kana": "フォールト",
+    "en": [
+      "fault"
+    ],
+    "senseUid": "75b8b53d-0fb3-4338-a6d3-b9f225f14602",
+    "wordId": "1110400",
+    "pt": "{'a': ['falha']}"
+  },
+  {
+    "kana": "フォーマルドレス",
+    "en": [
+      "formal dress"
+    ],
+    "senseUid": "cc3fe0f3-3894-4e9b-9a86-470453b5089e",
+    "wordId": "1110310",
+    "pt": "{'a': ['vestido formal']}"
+  },
+  {
+    "kana": "フォーミュラプラン",
+    "en": [
+      "formula plan"
+    ],
+    "senseUid": "a3d4e3a4-8d94-4f85-aef8-3900efffb4f1",
+    "wordId": "1110330",
+    "pt": "{'a': ['Plano de fórmula']}"
+  },
+  {
+    "kana": "フォア",
+    "en": [
+      "four"
+    ],
+    "senseUid": "ca9b115c-aef8-462f-93df-c2aedcb1d859",
+    "wordId": "1110420",
+    "pt": "{'a': ['フォア']}"
+  }
+]

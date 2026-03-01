@@ -1,0 +1,942 @@
+[
+  {
+    "kana": "こと",
+    "en": [
+      "difference (from one another)",
+      "different thing",
+      "other"
+    ],
+    "senseUid": "0195146f-a23b-48d7-85d5-1078aa25df17",
+    "wordId": "2229780",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こと, Gloss: ['diferença (um do outro)', 'coisa diferente', 'outra']"
+  },
+  {
+    "kana": "いな",
+    "en": [
+      "strange",
+      "odd",
+      "unusual"
+    ],
+    "senseUid": "3ca5eb43-6dc2-46b7-909c-41e5d1446ea2",
+    "wordId": "2229790",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いな, Gloss: ['estranho', 'estranho', 'incomum']"
+  },
+  {
+    "kana": "けな",
+    "en": [
+      "exceptional",
+      "praiseworthy",
+      "laudable"
+    ],
+    "senseUid": "65c1ce28-f539-4b92-8cd1-732b9d251faa",
+    "wordId": "2229800",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けな, Gloss: ['excepcional', 'louvável', 'louvável']"
+  },
+  {
+    "kana": "けに",
+    "en": [
+      "outstandingly",
+      "extraordinarily",
+      "exceptionally"
+    ],
+    "senseUid": "03c5a397-2222-43db-9484-42a2f7b711e4",
+    "wordId": "2229810",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けに, Gloss: ['excepcionalmente', 'extraordinariamente', 'excepcionalmente']"
+  },
+  {
+    "kana": "ひにけに",
+    "en": [
+      "with each new day",
+      "day by day",
+      "by the day"
+    ],
+    "senseUid": "d7d8c59d-5970-4d18-b667-c245a0002cbf",
+    "wordId": "2229820",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひにけに, Gloss: ['a cada novo dia', 'dia após dia', 'a cada dia']"
+  },
+  {
+    "kana": "アースダム",
+    "en": [
+      "earth dam",
+      "earthfill dam"
+    ],
+    "senseUid": "3144f547-87a6-4677-86b4-b6f42051b5d8",
+    "wordId": "2229830",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: アースダム, Gloss: ['barragem de terra', 'barragem de aterro']"
+  },
+  {
+    "kana": "じゅうりょくダム",
+    "en": [
+      "gravity dam"
+    ],
+    "senseUid": "f57e80b0-1afa-4cd5-85c2-22101bd93aa1",
+    "wordId": "2229850",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じゅうりょくダム, Gloss: ['barragem gravitacional']"
+  },
+  {
+    "kana": "ロックフィルダム",
+    "en": [
+      "rockfill dam",
+      "rock-fill dam"
+    ],
+    "senseUid": "a3c3fe95-8a9d-463b-9fdc-92682b6c1642",
+    "wordId": "2229840",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ロックフィルダム, Gloss: ['barragem de preenchimento de rocha', 'barragem de preenchimento de rocha']"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "large river (esp. the Yangtze)"
+    ],
+    "senseUid": "bde9ae5b-cd0c-4528-9b48-febb7efa0bff",
+    "wordId": "2229860",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こう, Gloss: ['grande rio (especialmente o Yangtzé)']"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "Lake Biwa"
+    ],
+    "senseUid": "55ac2354-df30-4d3c-8f4d-2371a9d3d2dd",
+    "wordId": "2229860",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こう, Gloss: ['Lago Biwa']"
+  },
+  {
+    "kana": "げき",
+    "en": [
+      "ji (ancient Chinese halberd)"
+    ],
+    "senseUid": "663388fd-e9a4-4235-9b13-a852080d37a9",
+    "wordId": "2229870",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: げき, Gloss: ['ji (alabarda chinesa antiga)']"
+  },
+  {
+    "kana": "どうか",
+    "en": [
+      "bronze dagger-axe"
+    ],
+    "senseUid": "a0c8a0cb-a6fe-4271-b60e-14c892cca55c",
+    "wordId": "2229880",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: どうか, Gloss: ['machado de adaga de bronze']"
+  },
+  {
+    "kana": "どうけん",
+    "en": [
+      "bronze sword"
+    ],
+    "senseUid": "585235ff-84d5-493f-82fa-7e9cd913a19a",
+    "wordId": "2229900",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: どうけん, Gloss: ['espada de bronze']"
+  },
+  {
+    "kana": "どうほこ",
+    "en": [
+      "bronze hoko",
+      "bronze halberd",
+      "bronze spearhead"
+    ],
+    "senseUid": "cbfcf472-483e-4642-acc3-9434184ed49e",
+    "wordId": "2229890",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: どうほこ, Gloss: ['hoko de bronze', 'alabarda de bronze', 'ponta de lança de bronze']"
+  },
+  {
+    "kana": "こうこげんのていり",
+    "en": [
+      "Pythagorean theorem"
+    ],
+    "senseUid": "10951527-eac3-498c-aa80-e1d82715f597",
+    "wordId": "2229910",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうこげんのていり, Gloss: ['Teorema de Pitágoras']"
+  },
+  {
+    "kana": "さんへいほうのていり",
+    "en": [
+      "Pythagorean theorem"
+    ],
+    "senseUid": "fbdd7c53-d403-4475-ac78-207e01648947",
+    "wordId": "2229920",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: さんへいほうのていり, Gloss: ['Teorema de Pitágoras']"
+  },
+  {
+    "kana": "こうこげん",
+    "en": [
+      "three sides of right triangle (minor cathetus, major cathetus and hypotenuse)"
+    ],
+    "senseUid": "45fe89b8-6c0c-42dc-8cf0-a27468e64a6e",
+    "wordId": "2229930",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうこげん, Gloss: ['três lados do triângulo retângulo (cateto menor, cateto maior e hipotenusa)']"
+  },
+  {
+    "kana": "ぶちぬき",
+    "en": [
+      "straight through without interruption"
+    ],
+    "senseUid": "b567c257-99fe-499b-96b3-ea340d2e2126",
+    "wordId": "2229950",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぶちぬき, Gloss: ['direto sem interrupção']"
+  },
+  {
+    "kana": "ぶちぬき",
+    "en": [
+      "removing a partition (wall)"
+    ],
+    "senseUid": "5d984d6d-5fdc-4c51-b696-9eabbb35a8c8",
+    "wordId": "2229950",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぶちぬき, Gloss: ['removendo uma divisória (parede)']"
+  },
+  {
+    "kana": "きん",
+    "en": [
+      "qin (7-stringed Chinese zither)",
+      "guqin"
+    ],
+    "senseUid": "3ba2d164-30cb-4af0-9653-a216ed5fab56",
+    "wordId": "2229960",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: きん, Gloss: ['qin (cítara chinesa de 7 cordas)', 'guqin']"
+  },
+  {
+    "kana": "くご",
+    "en": [
+      "konghou (ancient Chinese harp)"
+    ],
+    "senseUid": "54a0e4e3-eb8f-4326-9a7b-511c24c2c742",
+    "wordId": "2229980",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: くご, Gloss: ['konghou (harpa chinesa antiga)']"
+  },
+  {
+    "kana": "しちげんきん",
+    "en": [
+      "qin (7-stringed Chinese zither)",
+      "guqin",
+      "seven-stringed koto"
+    ],
+    "senseUid": "3caedad2-3761-4b6e-af9d-f8cdbe84336e",
+    "wordId": "2229970",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しちげんきん, Gloss: ['qin (cítara chinesa de 7 cordas)', 'guqin', 'koto de sete cordas']"
+  },
+  {
+    "kana": "こきん",
+    "en": [
+      "huqin (any Chinese string instrument played with a bow)"
+    ],
+    "senseUid": "78be8c7d-3508-418e-b52e-a877dddceddf",
+    "wordId": "2230000",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こきん, Gloss: ['huqin (qualquer instrumento de corda chinês tocado com arco)']"
+  },
+  {
+    "kana": "くだらごと",
+    "en": [
+      "konghou (ancient Chinese harp)"
+    ],
+    "senseUid": "70888688-225a-4453-8682-03b71a479993",
+    "wordId": "2229990",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: くだらごと, Gloss: ['konghou (harpa chinesa antiga)']"
+  },
+  {
+    "kana": "こきん",
+    "en": [
+      "biwa (4 or 5-stringed Oriental lute)"
+    ],
+    "senseUid": "13efee32-d6c9-4be7-821f-7dccd2d47e92",
+    "wordId": "2230000",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こきん, Gloss: ['biwa (alaúde oriental de 4 ou 5 cordas)']"
+  },
+  {
+    "kana": "にこ",
+    "en": [
+      "erhu (2-stringed Chinese instrument played with a bow)",
+      "erh hu"
+    ],
+    "senseUid": "7434baf0-06fd-4283-841f-dfc8e48dfc2a",
+    "wordId": "2230010",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: にこ, Gloss: ['erhu (instrumento chinês de 2 cordas tocado com arco)', 'erh hu']"
+  },
+  {
+    "kana": "きょうこ",
+    "en": [
+      "jinghu (2-stringed Chinese instrument played with a bow)"
+    ],
+    "senseUid": "85540d01-bfd5-4aed-914f-7a51fca308a6",
+    "wordId": "2230020",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: きょうこ, Gloss: ['jinghu (instrumento chinês de 2 cordas tocado com arco)']"
+  },
+  {
+    "kana": "やこ",
+    "en": [
+      "yehu (bowed Chinese instrument with a coconut-shell body)"
+    ],
+    "senseUid": "594f0a3a-a308-40fc-946c-27d5b08b6687",
+    "wordId": "2230030",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: やこ, Gloss: ['yehu (instrumento chinês com arco e corpo de casca de coco)']"
+  },
+  {
+    "kana": "げっきん",
+    "en": [
+      "yueqin (4-stringed Chinese lute)"
+    ],
+    "senseUid": "d6d397e4-5d57-4ccf-bb91-cfd2e8e9fd7c",
+    "wordId": "2230040",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: げっきん, Gloss: ['yueqin (alaúde chinês de 4 cordas)']"
+  },
+  {
+    "kana": "げんかん",
+    "en": [
+      "ruanxian (4 or 5-stringed Chinese lute)",
+      "ruan"
+    ],
+    "senseUid": "61748655-c5b8-4b5e-89e7-fe674a966d46",
+    "wordId": "2230050",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: げんかん, Gloss: ['ruanxian (alaúde chinês de 4 ou 5 cordas)', 'ruan']"
+  },
+  {
+    "kana": "けいきん",
+    "en": [
+      "xiqin (2-stringed Chinese musical instrument)"
+    ],
+    "senseUid": "0cbf641e-0746-4a7f-bf35-c5eda43df03d",
+    "wordId": "2230060",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けいきん, Gloss: ['xiqin (instrumento musical chinês de 2 cordas)']"
+  },
+  {
+    "kana": "ズルナ",
+    "en": [
+      "zurna (Anatolian woodwind instrument)",
+      "surnay"
+    ],
+    "senseUid": "dce5930a-0605-4863-b2c4-7c69766039c3",
+    "wordId": "2230100",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ズルナ, Gloss: ['zurna (instrumento de sopro da Anatólia)', 'surnay']"
+  },
+  {
+    "kana": "ミズマール",
+    "en": [
+      "zurna (Anatolian woodwind instrument)",
+      "surnay"
+    ],
+    "senseUid": "5067d14c-b4d3-46de-adfe-751c0324fbce",
+    "wordId": "2230090",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ミズマール, Gloss: ['zurna (instrumento de sopro da Anatólia)', 'surnay']"
+  },
+  {
+    "kana": "けいきん",
+    "en": [
+      "sihu (4-stringed Chinese musical instrument played with a bow)"
+    ],
+    "senseUid": "19eb0b5d-7cf5-43de-b7df-d9fe8eaf23de",
+    "wordId": "2230080",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けいきん, Gloss: ['sihu (instrumento musical chinês de 4 cordas tocado com arco)']"
+  },
+  {
+    "kana": "しこ",
+    "en": [
+      "sihu (4-stringed Chinese musical instrument played with a bow)"
+    ],
+    "senseUid": "9862cf07-a503-4ced-81f0-6bd457e14e5f",
+    "wordId": "2230070",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しこ, Gloss: ['sihu (instrumento musical chinês de 4 cordas tocado com arco)']"
+  },
+  {
+    "kana": "スルナーイ",
+    "en": [
+      "surnay (Anatolian woodwind instrument)",
+      "zurna"
+    ],
+    "senseUid": "9f3ae59e-cb2f-42db-947a-768ce63834d5",
+    "wordId": "2230110",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: スルナーイ, Gloss: ['surnay (instrumento de sopro da Anatólia)', 'zurna']"
+  },
+  {
+    "kana": "ショーム",
+    "en": [
+      "shawm"
+    ],
+    "senseUid": "1ca8b1f9-01e1-436b-926c-5500e8c42508",
+    "wordId": "2230120",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ショーム, Gloss: ['shawm']"
+  },
+  {
+    "kana": "チャルメルそう",
+    "en": [
+      "Mitella stylosa (species of miterwort)"
+    ],
+    "senseUid": "4974e946-f9fc-461a-b4e5-07cad8f40527",
+    "wordId": "2230130",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: チャルメルそう, Gloss: ['Mitella stylosa (espécie de miterwort)']"
+  },
+  {
+    "kana": "さない",
+    "en": [
+      "suona (Chinese shawm)"
+    ],
+    "senseUid": "95ff6bb2-8539-453f-817e-d108b897ba6d",
+    "wordId": "2230140",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: さない, Gloss: ['suona (chimia chinesa)']"
+  },
+  {
+    "kana": "うんら",
+    "en": [
+      "yunluo (10 small gongs mounted in a wooden frame)"
+    ],
+    "senseUid": "c5e3f5a4-a44d-46b3-abe9-9aad47ab88fc",
+    "wordId": "2230150",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: うんら, Gloss: ['yunluo (10 pequenos gongos montados em uma moldura de madeira)']"
+  },
+  {
+    "kana": "した",
+    "en": [
+      "reed (of a musical instrument)"
+    ],
+    "senseUid": "5825afc0-de4c-43ab-b6a7-c4351af48a80",
+    "wordId": "2230160",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: した, Gloss: ['palheta (de um instrumento musical)']"
+  },
+  {
+    "kana": "しょう",
+    "en": [
+      "xiao (vertical Chinese bamboo flute)"
+    ],
+    "senseUid": "5d1b8b79-cf47-4918-87fd-c9d8aac397ae",
+    "wordId": "2230190",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しょう, Gloss: ['xiao (flauta vertical chinesa de bambu)']"
+  },
+  {
+    "kana": "どうしょう",
+    "en": [
+      "dongxiao (Chinese bamboo flute similar to a shakuhachi)"
+    ],
+    "senseUid": "a518c481-9d4a-41ab-987a-20eef8beb911",
+    "wordId": "2230170",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: どうしょう, Gloss: ['dongxiao (flauta de bambu chinesa semelhante a um shakuhachi)']"
+  },
+  {
+    "kana": "はいしょう",
+    "en": [
+      "paixiao (ancient Chinese bamboo panpipes)"
+    ],
+    "senseUid": "2553d7e0-57bd-4a27-85dd-ef44b9de2c30",
+    "wordId": "2230180",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: はいしょう, Gloss: ['paixiao (flautas de bambu chinesas antigas)']"
+  },
+  {
+    "kana": "ふけしゅう",
+    "en": [
+      "Fuke school (defunct sect of Zen Buddhism)"
+    ],
+    "senseUid": "995fd817-c8cf-4436-b86f-2a7aa28e2ccb",
+    "wordId": "2230210",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ふけしゅう, Glossa: ['Escola Fuke (extinta seita do Budismo Zen)']"
+  },
+  {
+    "kana": "しょうのふえ",
+    "en": [
+      "xiao (vertical Chinese bamboo flute)"
+    ],
+    "senseUid": "5c376dac-4433-43d9-b32d-a0acd58d851c",
+    "wordId": "2230200",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しょうのふえ, Gloss: ['xiao (flauta vertical chinesa de bambu)']"
+  },
+  {
+    "kana": "リードオルガン",
+    "en": [
+      "reed organ"
+    ],
+    "senseUid": "6c97f4a4-da98-4167-8201-f0da329390bd",
+    "wordId": "2230220",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: リードオルガン, Gloss: ['órgão de palheta']"
+  },
+  {
+    "kana": "ハルモニウム",
+    "en": [
+      "harmonium"
+    ],
+    "senseUid": "d8b513fb-c23e-428a-ad0c-99f3f3d4588c",
+    "wordId": "2230230",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ハルモニウム, Gloss: ['harmônio']"
+  },
+  {
+    "kana": "ほうしょう",
+    "en": [
+      "shō (Japanese free reed musical instrument)"
+    ],
+    "senseUid": "ea07b267-983f-4661-9e53-8c3f937b9f33",
+    "wordId": "2230240",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ほうしょう, Gloss: ['shō (instrumento musical de palheta livre japonês)']"
+  },
+  {
+    "kana": "ほうかん",
+    "en": [
+      "sho (Japanese free reed musical instrument)"
+    ],
+    "senseUid": "bb840644-3d4c-4e2f-8720-dd01bb5731b0",
+    "wordId": "2230250",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ほうかん, Gloss: ['sho (instrumento musical japonês de palheta livre)']"
+  },
+  {
+    "kana": "しょうのふえ",
+    "en": [
+      "shō (Japanese free reed musical instrument)"
+    ],
+    "senseUid": "3001728f-dd7c-4acf-8714-b81933e57f67",
+    "wordId": "2230260",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しょうのふえ, Gloss: ['shō (instrumento musical japonês de palheta livre)']"
+  },
+  {
+    "kana": "しんがく",
+    "en": [
+      "Qing-era Chinese music (popularized in Japan during the early 19th century)"
+    ],
+    "senseUid": "a1d6900f-fb83-4018-a36a-1029590c4d42",
+    "wordId": "2230270",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しんがく, Gloss: ['Música chinesa da era Qing (popularizada no Japão no início do século XIX)']"
+  },
+  {
+    "kana": "みんがく",
+    "en": [
+      "Ming-era Chinese music (popularized in Japan during the early 17th century)"
+    ],
+    "senseUid": "0b247efe-db7d-47eb-918a-b903267f8a48",
+    "wordId": "2230290",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: みんがく, Gloss: ['Música chinesa da era Ming (popularizada no Japão no início do século XVII)']"
+  },
+  {
+    "kana": "しん",
+    "en": [
+      "Qing dynasty (of China; 1644-1912)",
+      "Ch'ing dynasty",
+      "Manchu dynasty"
+    ],
+    "senseUid": "da000953-b948-42e5-8adb-f086d9643f1f",
+    "wordId": "2230280",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しん, Gloss: ['Dinastia Qing (da China; 1644-1912)', dinastia Ch'ing, 'Dinastia Manchu']"
+  },
+  {
+    "kana": "けつ",
+    "en": [
+      "Jie (ancient Chinese ethnic group)"
+    ],
+    "senseUid": "166d9d78-d676-498e-b77b-2a36153eafc8",
+    "wordId": "2230310",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けつ, Glossa: ['Jie (antigo grupo étnico chinês)']"
+  },
+  {
+    "kana": "みんしんがく",
+    "en": [
+      "Ming and Qing-era Chinese music (as popularized in Japan before the First Sino-Japanese war)"
+    ],
+    "senseUid": "74631ed0-8ee8-4beb-a6ff-10371c7255b4",
+    "wordId": "2230300",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: みんしんがく, Gloss: ['Música chinesa das eras Ming e Qing (popularizada no Japão antes da Primeira Guerra Sino-Japonesa)']"
+  },
+  {
+    "kana": "せんぴ",
+    "en": [
+      "Xianbei (ancient nomadic tribe of northern Asia)"
+    ],
+    "senseUid": "70050c09-aaec-4f7f-b7b0-26d9a3505c03",
+    "wordId": "2230320",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: せんぴ, Gloss: ['Xianbei (antiga tribo nômade do norte da Ásia)']"
+  },
+  {
+    "kana": "てい",
+    "en": [
+      "Di (ancient Chinese ethnic group)"
+    ],
+    "senseUid": "42910cc0-d38b-4cda-8ad1-813aa8fa79c8",
+    "wordId": "2230330",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: てい, Gloss: ['Di (antigo grupo étnico chinês)']"
+  },
+  {
+    "kana": "てい",
+    "en": [
+      "Chinese \"root\" constellation (one of the 28 mansions)"
+    ],
+    "senseUid": "207c1df7-1ee9-4eb4-9f6a-b5590b9c6315",
+    "wordId": "2230330",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: てい, Gloss: ['Constelação de raiz chinesa (uma das 28 mansões)']"
+  },
+  {
+    "kana": "きょう",
+    "en": [
+      "Qiang (Chinese ethnic group)"
+    ],
+    "senseUid": "228f1ddc-1f97-4a11-abae-7d7d37640049",
+    "wordId": "2230340",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: きょう, Gloss: ['Qiang (grupo étnico chinês)']"
+  },
+  {
+    "kana": "ごこ",
+    "en": [
+      "Wu Hu (five tribes that migrated into China in 300-500 CE: Xiongnu, Jie, Xianbei, Di, Qiang)"
+    ],
+    "senseUid": "5ecd6ca6-0c95-402e-98d9-61ad468f1775",
+    "wordId": "2230350",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ごこ, Gloss: ['Wu Hu (cinco tribos que migraram para a China entre 300-500 d.C.: Xiongnu, Jie, Xianbei, Di, Qiang)']"
+  },
+  {
+    "kana": "フン",
+    "en": [
+      "Huns"
+    ],
+    "senseUid": "c5935119-f157-48d1-8acc-29d32dc33dd2",
+    "wordId": "2230370",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: フン, Gloss: ['Hunos']"
+  },
+  {
+    "kana": "フンぞく",
+    "en": [
+      "Huns (nomadic people)"
+    ],
+    "senseUid": "a27e5f18-1ef3-4778-8322-faf71f76f6a5",
+    "wordId": "2230360",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: フンぞく, Gloss: ['Hunos (povo nômade)']"
+  },
+  {
+    "kana": "こ",
+    "en": [
+      "barbarian tribes surrounding ancient China"
+    ],
+    "senseUid": "b4f14bf0-4861-432e-ba83-2501c28487ad",
+    "wordId": "2230390",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こ, Gloss: ['tribos bárbaras cercando a antiga China']"
+  },
+  {
+    "kana": "ごこじゅうろっこく",
+    "en": [
+      "Sixteen Kingdoms (collection of sovereign states in and around China; 304-439 CE)",
+      "Sixteen Kingdoms period"
+    ],
+    "senseUid": "405df65c-9823-42a1-9941-f57c36123bf0",
+    "wordId": "2230380",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ごこじゅうろっこく, Glossa: ['Dezesseis Reinos (coleção de estados soberanos na China e arredores; 304-439 d.C.)', 'Período dos Dezesseis Reinos']"
+  },
+  {
+    "kana": "いけどもいけども",
+    "en": [
+      "as (one) walks on, and on"
+    ],
+    "senseUid": "c4bbd02b-a193-49d5-87c4-064733bcf58e",
+    "wordId": "2230400",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いけどもいけども, Gloss: ['enquanto (um) anda, e continua']"
+  },
+  {
+    "kana": "わきづけ",
+    "en": [
+      "any of a number of respectful terms written after the addressee's name in a formal letter"
+    ],
+    "senseUid": "902daf61-f799-46fd-9f4a-c534a1fa14e3",
+    "wordId": "2230410",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: わきづけ, Gloss: [qualquer um dos vários termos respeitosos escritos após o nome do destinatário em uma carta formal]"
+  },
+  {
+    "kana": "あたまがやわらかい",
+    "en": [
+      "flexible (person)",
+      "open-minded"
+    ],
+    "senseUid": "b48a66bd-a269-4f09-addb-3980cb8fdc66",
+    "wordId": "2230430",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あたまがやわらかい, Gloss: ['pessoa flexível', 'mente aberta']"
+  },
+  {
+    "kana": "もうすっかり",
+    "en": [
+      "already completed (arrived, happened, etc.)"
+    ],
+    "senseUid": "b4faf402-3fb8-4e18-9ebe-553eeb0c578d",
+    "wordId": "2230440",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: もうすっかり, Gloss: ['já concluído (chegou, aconteceu, etc.)']"
+  },
+  {
+    "kana": "しょどうそうさ",
+    "en": [
+      "initial investigation (by police)"
+    ],
+    "senseUid": "1213ed15-ca06-41a4-b7cf-f5782d520b63",
+    "wordId": "2230450",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しょどうそうさ, Gloss: ['investigação inicial (pela polícia)']"
+  },
+  {
+    "kana": "おんまえ",
+    "en": [
+      "Dear"
+    ],
+    "senseUid": "395fa60c-cce5-44dc-96f7-07ce8689d372",
+    "wordId": "2230470",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おんまえ, Gloss: ['Querida']"
+  },
+  {
+    "kana": "おまえがた",
+    "en": [
+      "you (plural)"
+    ],
+    "senseUid": "fef104b9-6e48-4afd-9ac3-92a56e425728",
+    "wordId": "2230480",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おまえがた, Gloss: ['você (plural)']"
+  },
+  {
+    "kana": "みさき",
+    "en": [
+      "leader of a nobleman's cavalcade"
+    ],
+    "senseUid": "c47ffac3-68b3-4fbe-b8af-ffdd75d1a7eb",
+    "wordId": "2230490",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: みさき, Gloss: [líder de uma cavalgada de nobres]"
+  },
+  {
+    "kana": "みさき",
+    "en": [
+      "animal messenger of the gods (i.e. a fox)"
+    ],
+    "senseUid": "2a8a3ab2-a34a-4485-8524-483378c43678",
+    "wordId": "2230490",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: みさき, Gloss: ['mensageiro animal dos deuses (ou seja, uma raposa)']"
+  },
+  {
+    "kana": "ぜんくたい",
+    "en": [
+      "(biochemical) precursor"
+    ],
+    "senseUid": "4e7932c0-ba77-402f-a6b9-7808fa74b6c7",
+    "wordId": "2230500",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぜんくたい, Gloss: ['(precursor bioquímico)']"
+  },
+  {
+    "kana": "せきい",
+    "en": [
+      "declination"
+    ],
+    "senseUid": "cd1b1d3f-4f0b-41da-a556-5e269df2371c",
+    "wordId": "2230510",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: せきい, Gloss: ['declinação']"
+  },
+  {
+    "kana": "さいさ",
+    "en": [
+      "(phenomenon of) precession of the equinoxes"
+    ],
+    "senseUid": "5893be31-6745-4532-9100-4910ba23de66",
+    "wordId": "2230520",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: さいさ, Gloss: ['(fenômeno de) precessão dos equinócios']"
+  },
+  {
+    "kana": "さいさうんどう",
+    "en": [
+      "precession"
+    ],
+    "senseUid": "6caf09bd-3de6-4a90-96d5-104f1f4bbbbe",
+    "wordId": "2230530",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: さいさうんどう, Gloss: ['precessão']"
+  },
+  {
+    "kana": "さいさうんどう",
+    "en": [
+      "(motion of) precession of the equinoxes"
+    ],
+    "senseUid": "754287c3-2f65-4695-b298-4c2267176312",
+    "wordId": "2230530",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: さいさうんどう, Gloss: ['(movimento do) precessão dos equinócios']"
+  },
+  {
+    "kana": "トレミーせいざ",
+    "en": [
+      "Ptolemaic constellations"
+    ],
+    "senseUid": "8d55e996-bdd4-44ad-86ea-5b8f3268f716",
+    "wordId": "2230540",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: トレミーせいざ, Gloss: ['Constelações ptolemaicas']"
+  },
+  {
+    "kana": "てんもんがくてきすうじ",
+    "en": [
+      "astronomical figure",
+      "astronomical number"
+    ],
+    "senseUid": "ae477ba9-dea2-42ec-ac77-4765b9e3f335",
+    "wordId": "2230550",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: てんもんがくてきすうじ, Gloss: ['figura astronômica', 'número astronômico']"
+  },
+  {
+    "kana": "そうじきゅう",
+    "en": [
+      "Gemini (3rd zodiacal sign)",
+      "the Twins"
+    ],
+    "senseUid": "861362d5-56e6-45d5-b2dd-9ce2a6f65346",
+    "wordId": "2230570",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: そうじきゅう, Gloss: ['Gêmeos (3º signo zodiacal)', 'os Gêmeos']"
+  },
+  {
+    "kana": "はくようきゅう",
+    "en": [
+      "Aries (1st zodiacal sign)",
+      "the Ram"
+    ],
+    "senseUid": "0abf6d66-91d3-41dc-af30-7bd4d84f2178",
+    "wordId": "2230560",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: はくようきゅう, Gloss: ['Áries (1º signo zodiacal)', 'o Carneiro']"
+  },
+  {
+    "kana": "きょかいきゅう",
+    "en": [
+      "Cancer (4th zodiacal sign)",
+      "the Crab"
+    ],
+    "senseUid": "dbba5d11-ab74-4851-b124-215b32e1b05c",
+    "wordId": "2230580",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: きょかいきゅう, Gloss: ['Câncer (4º signo zodiacal)', 'o Caranguejo']"
+  },
+  {
+    "kana": "しょじょきゅう",
+    "en": [
+      "Virgo (6th zodiacal sign)",
+      "the Virgin"
+    ],
+    "senseUid": "647f9b9e-bebc-4321-adf5-142d8f394921",
+    "wordId": "2230590",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しょじょきゅう, Gloss: ['Virgem (6º signo zodiacal)', 'a Virgem']"
+  },
+  {
+    "kana": "てんびんきゅう",
+    "en": [
+      "Libra (7th zodiacal sign)",
+      "the Scales"
+    ],
+    "senseUid": "f375ec37-4881-4cb3-95e3-163f2667ff8b",
+    "wordId": "2230600",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: てんびんきゅう, Gloss: ['Libra (7º signo zodiacal)', 'a Balança']"
+  },
+  {
+    "kana": "てんかつきゅう",
+    "en": [
+      "Scorpio (8th zodiacal sign)",
+      "the Scorpion"
+    ],
+    "senseUid": "b20fc2f2-cd94-4f95-b453-6035de1c916e",
+    "wordId": "2230610",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: てんかつきゅう, Gloss: ['Escorpião (8º signo zodiacal)', 'o Escorpião']"
+  },
+  {
+    "kana": "きしゃきゅう",
+    "en": [
+      "Sagittarius (9th zodiacal sign)",
+      "the Archer"
+    ],
+    "senseUid": "a4b6b226-e90a-4eff-8c78-7b7198545bf6",
+    "wordId": "2230630",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: きしゃきゅう, Gloss: ['Sagitário (9º signo zodiacal)', 'o Arqueiro']"
+  },
+  {
+    "kana": "じんばきゅう",
+    "en": [
+      "Sagittarius (9th zodiacal sign)",
+      "the Archer"
+    ],
+    "senseUid": "1895382c-7b2c-488f-94b7-71fa3dae3c63",
+    "wordId": "2230620",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じんばきゅう, Gloss: ['Sagitário (9º signo zodiacal)', 'o Arqueiro']"
+  },
+  {
+    "kana": "まかつきゅう",
+    "en": [
+      "Capricorn (10th zodiacal sign)",
+      "the Goat"
+    ],
+    "senseUid": "0e537ec9-da20-4adb-8a79-1f48c4ae0d01",
+    "wordId": "2230640",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: まかつきゅう, Gloss: ['Capricórnio (10º signo zodiacal)', 'a Cabra']"
+  },
+  {
+    "kana": "いましめる",
+    "en": [
+      "to bind (with rope, etc.)"
+    ],
+    "senseUid": "18940152-8a61-406d-aa47-2780ec2b55ed",
+    "wordId": "2230670",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: いましめる, Gloss: ['amarrar (com corda, etc.)']"
+  },
+  {
+    "kana": "ほうへいきゅう",
+    "en": [
+      "Aquarius (11th zodiacal sign)",
+      "the Water Bearer",
+      "the Water Carrier"
+    ],
+    "senseUid": "8ba6dd38-d1be-4c10-a887-f091812c2114",
+    "wordId": "2230650",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ほうへいきゅう, Gloss: ['Aquário (11º signo zodiacal)', 'o Portador da Água', 'o Portador da Água']"
+  },
+  {
+    "kana": "そうぎょきゅう",
+    "en": [
+      "Pisces (12th zodiacal sign)",
+      "the Fish",
+      "the Fishes"
+    ],
+    "senseUid": "d68c195b-088c-4a76-8a58-601a9fdb5918",
+    "wordId": "2230660",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: そうぎょきゅう, Gloss: ['Peixes (12º signo zodiacal)', 'o Peixe', 'os Peixes']"
+  },
+  {
+    "kana": "くろすずめばち",
+    "en": [
+      "Vespula flaviceps (species of yellowjacket)"
+    ],
+    "senseUid": "b12062aa-0c78-49ee-99d5-157a1ec1466d",
+    "wordId": "2230690",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: くろすずめばち, Gloss: ['Vespula flaviceps (espécie de vespa amarela)']"
+  },
+  {
+    "kana": "あなばち",
+    "en": [
+      "digger wasp"
+    ],
+    "senseUid": "ca5ff349-9cf9-4ed3-a2aa-081c19308b79",
+    "wordId": "2230700",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あなばち, Gloss: ['vespa escavadora']"
+  },
+  {
+    "kana": "ゆするばち",
+    "en": [
+      "digger wasp"
+    ],
+    "senseUid": "a1103839-e1da-4ec8-ab8f-53dbbee70e16",
+    "wordId": "2230710",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ゆするばち, Gloss: ['vespa escavadora']"
+  },
+  {
+    "kana": "つちばち",
+    "en": [
+      "scoliid wasp (any wasp of family Scoliidae)"
+    ],
+    "senseUid": "40a88d69-df59-4443-ab9b-204fa6873aa4",
+    "wordId": "2230720",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: つちばち, Gloss: ['vespa scoliídea (qualquer vespa da família Scoliidae)']"
+  },
+  {
+    "kana": "こしぼそばち",
+    "en": [
+      "red-banded sand wasp (Ammophila sabulosa)"
+    ],
+    "senseUid": "1929ca7b-f3e3-405b-89f3-75676b204407",
+    "wordId": "2230730",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こしぼそばち, Gloss: ['vespa-da-areia de faixa vermelha (Ammophila sabulosa)']"
+  },
+  {
+    "kana": "じょうさん",
+    "en": [
+      "(another's) daughter"
+    ],
+    "senseUid": "dd8ddfc5-1f4e-45a5-8542-c025660055b3",
+    "wordId": "2230740",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じょうさん, Gloss: [filha de outro]"
+  },
+  {
+    "kana": "じょうさん",
+    "en": [
+      "young lady (esp. of respectable upbringing)"
+    ],
+    "senseUid": "27cb6786-b93d-48bc-9ae6-968b4e7fd749",
+    "wordId": "2230740",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じょうさん, Gloss: ['jovem dama (especialmente de criação respeitável)']"
+  }
+]

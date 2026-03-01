@@ -1,0 +1,955 @@
+[
+  {
+    "kana": "リプシッツれんぞく",
+    "en": [
+      "Lipschitz continuity"
+    ],
+    "senseUid": "44698c4e-4b8b-4f09-a14c-e3de47f009e3",
+    "wordId": "2690880",
+    "pt": "['continuidade de Lipschitz']"
+  },
+  {
+    "kana": "れんぞくしゃぞう",
+    "en": [
+      "continuous transformation",
+      "continuous mapping"
+    ],
+    "senseUid": "b51fae5b-71dd-43b3-8d3d-bcbbdf27ad0a",
+    "wordId": "2690860",
+    "pt": "['transformação contínua', 'mapeamento contínuo']"
+  },
+  {
+    "kana": "ほうしゃねんだいそくてい",
+    "en": [
+      "radiometric dating"
+    ],
+    "senseUid": "4a837b23-cd91-4d2a-8a71-2bfc1ce564e5",
+    "wordId": "2690910",
+    "pt": "['datação radiométrica']"
+  },
+  {
+    "kana": "しぜんほうしゃせん",
+    "en": [
+      "background radiation"
+    ],
+    "senseUid": "b17b2108-9346-4a79-a09c-3e52b5bf7f4a",
+    "wordId": "2690920",
+    "pt": "['radiação de fundo']"
+  },
+  {
+    "kana": "アフリカたんいつきげんせつ",
+    "en": [
+      "Out-of-Africa theory (positing a recent African origin for modern humans)"
+    ],
+    "senseUid": "6225f1dc-7a6b-402c-83a0-681dc57d4e23",
+    "wordId": "2690900",
+    "pt": "['Teoria da origem africana (afirmando a origem recente dos humanos modernos na África)']"
+  },
+  {
+    "kana": "かくぶんれつはんのう",
+    "en": [
+      "nuclear fission",
+      "fission reaction"
+    ],
+    "senseUid": "6ed85940-8d3d-4ff8-9d9d-a99679a57d47",
+    "wordId": "2690940",
+    "pt": "{\n  \"a\": [\n    \"reação de fissão nuclear\",\n    \"fissão nuclear\"\n  ]\n"
+  },
+  {
+    "kana": "ロピタルのていり",
+    "en": [
+      "l'Hospital's rule",
+      "l'Hôpital's rule"
+    ],
+    "senseUid": "0a958b36-78bf-4bbb-b441-30008ed33de9",
+    "wordId": "2690890",
+    "pt": "['regra de l’Hospital', 'regra de l’Hôpital']"
+  },
+  {
+    "kana": "にじゅうでんしほかく",
+    "en": [
+      "double electron capture"
+    ],
+    "senseUid": "3b7e7805-55ee-4207-a592-d1ec7ece25c0",
+    "wordId": "2690960",
+    "pt": "['captura dupla de elétrons']"
+  },
+  {
+    "kana": "ちゅうりつしんかせつ",
+    "en": [
+      "neutral theory of molecular evolution"
+    ],
+    "senseUid": "344f09c0-8840-412a-8b66-13f2024a1949",
+    "wordId": "2691000",
+    "pt": "['teoria neutra da evolução molecular']"
+  },
+  {
+    "kana": "サブジャンル",
+    "en": [
+      "sub-genre",
+      "subgenre"
+    ],
+    "senseUid": "94b79373-d65f-4a1f-b117-bfbaacc5bdf2",
+    "wordId": "2690990",
+    "pt": "['subgênero', 'sub-gênero']"
+  },
+  {
+    "kana": "ぶんしけいとうがく",
+    "en": [
+      "molecular phylogenetics",
+      "molecular phylogeny"
+    ],
+    "senseUid": "d91fa866-4001-4088-ab86-c860bd41d198",
+    "wordId": "2690980",
+    "pt": "{\n  \"a\": [\n    \"filogenia molecular\",\n    \"filogenética molecular\"\n  ]\n"
+  },
+  {
+    "kana": "ミトコンドリアディーエヌエーハプログループ",
+    "en": [
+      "mitochondrial DNA haplogroup"
+    ],
+    "senseUid": "7fcfa995-ac64-4825-b458-943b8eb6495d",
+    "wordId": "2691020",
+    "pt": "['haplogrupo de DNA mitocondrial']"
+  },
+  {
+    "kana": "かくいせいたいてんい",
+    "en": [
+      "isomeric transition",
+      "nuclear isomer decay"
+    ],
+    "senseUid": "3daad5c1-551a-41d1-8529-f067318bcace",
+    "wordId": "2690970",
+    "pt": "{\n  \"a\": [\n    \"transição isomérica\",\n    \"decaimento de isômero nuclear\"\n  ]\n"
+  },
+  {
+    "kana": "ジャラワぞく",
+    "en": [
+      "Jarawa people (Andaman islands)"
+    ],
+    "senseUid": "eb80fcba-2d6d-4a81-9f98-e4798bc0f42d",
+    "wordId": "2691030",
+    "pt": "['povo Jarawa (ilhas Andamão)']"
+  },
+  {
+    "kana": "ぞくじょうもんじだい",
+    "en": [
+      "post-Jōmon period (mainly Hokkaido; 3rd to 7th century BCE)",
+      "epi-Jōmon period"
+    ],
+    "senseUid": "81553777-44b3-4b8d-a062-3c4a5beb3fe5",
+    "wordId": "2691040",
+    "pt": "['período pós-Jōmon (principalmente Hokkaido; século III a VII a.C.)', 'período epi-Jōmon']"
+  },
+  {
+    "kana": "こうりょく",
+    "en": [
+      "drag",
+      "fluid resistance"
+    ],
+    "senseUid": "8c2a1d3b-1ec4-4eb6-b5a8-df7054066aa4",
+    "wordId": "2691050",
+    "pt": "{\n  \"a\": [\n    \"arrasto\",\n    \"resistência do fluido\"\n  ]\n"
+  },
+  {
+    "kana": "さいゆうほう",
+    "en": [
+      "maximum-likelihood estimation",
+      "maximum likelihood method"
+    ],
+    "senseUid": "74981826-06b1-4944-b8ba-4b3fdbd2340b",
+    "wordId": "2691010",
+    "pt": "{\n  \"a\": [\n    \"estimação de máxima verossimilhança\",\n    \"método da máxima verossimilhança\"\n  ]\n"
+  },
+  {
+    "kana": "ゆうどうこうりょく",
+    "en": [
+      "induced drag"
+    ],
+    "senseUid": "82351588-458f-4b69-b359-caa9a8822f63",
+    "wordId": "2691060",
+    "pt": "['arrasto induzido']"
+  },
+  {
+    "kana": "はいけいほうしゃ",
+    "en": [
+      "background radiation"
+    ],
+    "senseUid": "e4086b43-6080-419e-8f57-1e82ed210845",
+    "wordId": "2691120",
+    "pt": "['radiação de fundo']"
+  },
+  {
+    "kana": "こうりょく",
+    "en": [
+      "(surface) reaction force (i.e. normal force and frictional force)"
+    ],
+    "senseUid": "02cb7156-1ac7-43a0-ba7a-5c255e7d02da",
+    "wordId": "2691050",
+    "pt": "{\n  \"a\": [\n    \"força de reação (superficial) (ou seja, força normal e força de atrito)\"\n  ]\n"
+  },
+  {
+    "kana": "カタルーニャ",
+    "en": [
+      "Catalonia (Spain)"
+    ],
+    "senseUid": "7e250467-e5bc-49a5-9da5-98af941a9bb9",
+    "wordId": "2691100",
+    "pt": "['Catalunha']"
+  },
+  {
+    "kana": "ゲームプランナー",
+    "en": [
+      "game designer"
+    ],
+    "senseUid": "fc1e3073-f8ac-4fd1-9d88-a849b261ec7f",
+    "wordId": "2691080",
+    "pt": "['planejador de jogos']"
+  },
+  {
+    "kana": "ブーリアンがた",
+    "en": [
+      "Boolean datatype"
+    ],
+    "senseUid": "7f496abf-94b4-4060-b803-7560db7d84c8",
+    "wordId": "2691090",
+    "pt": "{\n  \"a\": [\"tipo de dado booleano\"]\n"
+  },
+  {
+    "kana": "ナフトールせんりょう",
+    "en": [
+      "naphthol dye",
+      "azoic dye",
+      "ice color"
+    ],
+    "senseUid": "79dc3ed4-88f7-423a-8cbe-528be68c6b7c",
+    "wordId": "2691070",
+    "pt": "{\n  \"a\": [\n    \"corante de naftol\",\n    \"corante azoico\",\n    \"cor de gelo\"\n  ]\n"
+  },
+  {
+    "kana": "あいなめし",
+    "en": [
+      "indigo-dyed leather"
+    ],
+    "senseUid": "a66d620e-23a1-430c-a5dc-724411595dda",
+    "wordId": "2691140",
+    "pt": "['couro tingido com índigo']"
+  },
+  {
+    "kana": "マイクロははいけいほうしゃ",
+    "en": [
+      "microwave background (radiation)"
+    ],
+    "senseUid": "0a315da6-2e89-4357-b987-1914cba028dd",
+    "wordId": "2691130",
+    "pt": "{\n  \"a\": [\"radiação de fundo de micro-ondas\"]\n"
+  },
+  {
+    "kana": "うちゅうマイクロははいけいほうしゃ",
+    "en": [
+      "cosmic microwave background radiation"
+    ],
+    "senseUid": "46ccf085-9e98-46e5-99ea-472a4fc3d44f",
+    "wordId": "2691150",
+    "pt": "{\n  \"a\": [\"radiação cósmica de fundo em micro-ondas\"]\n"
+  },
+  {
+    "kana": "ちょとうそう",
+    "en": [
+      "hot water tank"
+    ],
+    "senseUid": "4ebbb924-5883-4526-b973-6de3c30de183",
+    "wordId": "2691230",
+    "pt": "['tanque de água quente']"
+  },
+  {
+    "kana": "しおうてん",
+    "en": [
+      "heaven of the Four Great Kings",
+      "one of the six heavens of the desire realm"
+    ],
+    "senseUid": "ddfe7125-fc0f-4326-ad30-bacadb8f08be",
+    "wordId": "2691210",
+    "pt": "['Céu dos Quatro Grandes Reis', 'um dos seis céus do reino do desejo']"
+  },
+  {
+    "kana": "かんぜんほうしゃたい",
+    "en": [
+      "black body",
+      "blackbody",
+      "Planckian radiator",
+      "full radiator",
+      "perfect radiator"
+    ],
+    "senseUid": "7971520d-d0bf-4734-8f26-c7022861c6e7",
+    "wordId": "2691160",
+    "pt": "{\n  \"a\": [\n    \"corpo negro\",\n    \"radiador de Planck\",\n    \"radiador perfeito\",\n    \"radiador completo\"\n  ]\n"
+  },
+  {
+    "kana": "ひきわりなっとう",
+    "en": [
+      "natto made from ground soybeans"
+    ],
+    "senseUid": "d239f482-838f-48f4-ae7b-c072846ec53a",
+    "wordId": "2691220",
+    "pt": "{\n  \"a\": [\"natto feito de soja moída\"]\n"
+  },
+  {
+    "kana": "キャラゲー",
+    "en": [
+      "video game featuring characters from a manga, anime, movie, etc."
+    ],
+    "senseUid": "722d592d-178f-4bdb-afd9-974c47c50366",
+    "wordId": "2691250",
+    "pt": "['jogo de personagens']"
+  },
+  {
+    "kana": "たけじざいてん",
+    "en": [
+      "heaven of controlling others' emanations"
+    ],
+    "senseUid": "2ee420d9-6983-42ba-bea6-0022bd583948",
+    "wordId": "2691180",
+    "pt": "{\n  \"a\": [\"Céu das Emanações do Controle dos Outros\"]\n"
+  },
+  {
+    "kana": "くそゲー",
+    "en": [
+      "terrible (video) game",
+      "crappy game",
+      "rubbish game"
+    ],
+    "senseUid": "e469cd1f-ed79-40af-a17c-0aeb40e719a5",
+    "wordId": "2691240",
+    "pt": "['jogo terrível', 'jogo ruim', 'jogo lixo']"
+  },
+  {
+    "kana": "やまてん",
+    "en": [
+      "heaven without fighting",
+      "one of the six heavens of the desire realm"
+    ],
+    "senseUid": "c2ad7257-e8ac-4b76-8f33-3e6440274309",
+    "wordId": "2691190",
+    "pt": "{\n  \"a\": [\n    \"céu sem combates\",\n    \"um dos seis céus do reino do desejo\"\n  ]\n"
+  },
+  {
+    "kana": "とうりてん",
+    "en": [
+      "heaven of the thirty-three",
+      "one of the six heavens of the desire realm"
+    ],
+    "senseUid": "53c21da5-c4e6-4251-811a-c9e7ce472576",
+    "wordId": "2691200",
+    "pt": "{\n  \"a\": [\n    \"Trinta e três céus\",\n    \"Céu dos trinta e três\",\n    \"Um dos seis céus do reino do desejo\"\n  ]\n"
+  },
+  {
+    "kana": "キャラゲー",
+    "en": [
+      "video game in which the characters are the main focus"
+    ],
+    "senseUid": "4eaf7a3e-0a43-4031-9014-b6109d6f608c",
+    "wordId": "2691250",
+    "pt": "['jogo de personagens']"
+  },
+  {
+    "kana": "ひきわり",
+    "en": [
+      "ground barley",
+      "cracked barley"
+    ],
+    "senseUid": "ebc00bf5-654f-420a-aad7-8b48f1e0ebab",
+    "wordId": "2691280",
+    "pt": "{\n  \"a\": [\"cevada moída\", \"cevada quebrada\"]\n"
+  },
+  {
+    "kana": "しゅうかいさんか",
+    "en": [
+      "attending a meeting",
+      "participating in a meeting"
+    ],
+    "senseUid": "7b92929b-594f-4400-96ba-6c53b881963b",
+    "wordId": "2691260",
+    "pt": "['participação em reunião', 'comparecimento a uma reunião']"
+  },
+  {
+    "kana": "あいぜつ",
+    "en": [
+      "extremely sad (event, occurrence)",
+      "great pity"
+    ],
+    "senseUid": "e7cdc26b-76e6-4c4d-ae86-04ea7bca9d73",
+    "wordId": "2691310",
+    "pt": "['acontecimento extremamente triste', 'grande pena']"
+  },
+  {
+    "kana": "アイソトニックいんりょう",
+    "en": [
+      "isotonic drink"
+    ],
+    "senseUid": "efba93ee-6c4f-4120-9ada-c955d44831f1",
+    "wordId": "2691320",
+    "pt": "['bebida isotônica']"
+  },
+  {
+    "kana": "りにょうやく",
+    "en": [
+      "diuretic"
+    ],
+    "senseUid": "45e780a7-a7d0-45fa-bf8a-dd8c037a319d",
+    "wordId": "2691290",
+    "pt": "['diurético']"
+  },
+  {
+    "kana": "うたかた",
+    "en": [
+      "singer in a nagauta performance"
+    ],
+    "senseUid": "73089277-5166-4968-bfcc-855e46f9ae0b",
+    "wordId": "2691300",
+    "pt": "{\n  \"a\": [\n    \"cantor(a) em uma apresentação de nagauta\"\n  ]\n"
+  },
+  {
+    "kana": "うったえかける",
+    "en": [
+      "to make an appeal",
+      "to urge"
+    ],
+    "senseUid": "118800f9-c18c-4e78-85b8-ccf7398147fb",
+    "wordId": "2691270",
+    "pt": "{\n  \"a\": [\n    \"fazer um apelo\",\n    \"instar\",\n    \"apelar\",\n    \"clamar\",\n    \"solicitar insistentemente\"\n  ]\n"
+  },
+  {
+    "kana": "ひきわり",
+    "en": [
+      "grinding",
+      "cracking (e.g. wheat, barley)"
+    ],
+    "senseUid": "eb00b9b5-bd04-4126-ae87-5c24adb73342",
+    "wordId": "2691280",
+    "pt": "{\n  \"a\": [\n    \"moagem\",\n    \"trituração\",\n    \"quebra (por exemplo, de trigo, cevada)\"\n  ]\n"
+  },
+  {
+    "kana": "あいそめつけ",
+    "en": [
+      "indigo-colored ceramics",
+      "indigo-patterned cloth"
+    ],
+    "senseUid": "913c723d-e74c-4f2d-9338-90177739379c",
+    "wordId": "2691330",
+    "pt": "{\n  \"a\": [\n    \"cerâmica de cor índigo\",\n    \"pano com padrão índigo\"\n  ]\n"
+  },
+  {
+    "kana": "けらくてん",
+    "en": [
+      "heaven of enjoying emanations",
+      "one of the six heavens of the desire realm"
+    ],
+    "senseUid": "ed335369-e739-40db-b32f-2aea7a28ebd0",
+    "wordId": "2691170",
+    "pt": "['céu do desfrute das emanações', 'um dos seis céus do reino do desejo']"
+  },
+  {
+    "kana": "あいぞめや",
+    "en": [
+      "indigo dyer"
+    ],
+    "senseUid": "7e38c62b-ef67-4e14-ad07-646a5aed4b20",
+    "wordId": "2691340",
+    "pt": "{\n  \"a\": [\"tintureiro de índigo\"]\n"
+  },
+  {
+    "kana": "あいだま",
+    "en": [
+      "ball of dried, ground, fermented dyer's knotweed leaves"
+    ],
+    "senseUid": "f9aadeee-8da4-4a4d-918c-7ec0c91fbfb7",
+    "wordId": "2691420",
+    "pt": "['bola de folhas de knotweed do tintureiro secas, moídas e fermentadas']"
+  },
+  {
+    "kana": "やなぎたで",
+    "en": [
+      "water pepper (Persicaria hydropiper)"
+    ],
+    "senseUid": "a0a66c31-75a1-4b03-9d62-20dbf2bba9e4",
+    "wordId": "2691360",
+    "pt": "['pimenta-d’água (Persicaria hydropiper)']"
+  },
+  {
+    "kana": "あいじゃくや",
+    "en": [
+      "renting a house in the same block of houses as someone else"
+    ],
+    "senseUid": "912bd0bb-9431-4616-ad6f-9c7455c63ecf",
+    "wordId": "2691400",
+    "pt": "{\n  \"a\": [\n    \"alugar uma casa no mesmo quarteirão de casas que outra pessoa\"\n  ]\n"
+  },
+  {
+    "kana": "あいだな",
+    "en": [
+      "renting a house in the same block of houses as someone else"
+    ],
+    "senseUid": "8e687d16-1054-41d0-b2e0-37bb26294e5c",
+    "wordId": "2691390",
+    "pt": "{\n  \"a\": [\n    \"alugar uma casa no mesmo quarteirão de casas que outra pessoa\"\n  ]\n"
+  },
+  {
+    "kana": "あいだな",
+    "en": [
+      "person who rents a house in the same block of houses as oneself"
+    ],
+    "senseUid": "ca11ad63-24bd-4138-b67f-02fbf3545baf",
+    "wordId": "2691390",
+    "pt": "{\n  \"a\": [\n    \"vizinho de aluguel\",\n    \"pessoa que aluga uma casa no mesmo quarteirão que você\"\n  ]\n"
+  },
+  {
+    "kana": "あいたけ",
+    "en": [
+      "green-cracking russula (Russula virescens)",
+      "quilted green russula",
+      "green brittlegill"
+    ],
+    "senseUid": "54d6d1cb-3242-4918-9278-f5eb4de4b600",
+    "wordId": "2691380",
+    "pt": "{\n  \"a\": [\n    \"russula-verde (Russula virescens)\",\n    \"russula-verde-quadriculada\",\n    \"russula-frágil-verde\"\n  ]\n"
+  },
+  {
+    "kana": "あいたで",
+    "en": [
+      "dyer's knotweed (Persicaria tinctoria, used to produce indigo dye)"
+    ],
+    "senseUid": "356aa790-c1c5-46d4-b51a-6c18dde1bf67",
+    "wordId": "2691370",
+    "pt": "{\n  \"a\": [\n    \"knotweed do tintureiro (Persicaria tinctoria, usada para produzir corante índigo)\"\n  ]\n"
+  },
+  {
+    "kana": "あいだにたつ",
+    "en": [
+      "to mediate",
+      "to intervene"
+    ],
+    "senseUid": "c6ec99d2-f679-457c-ab7f-9d19ae7948df",
+    "wordId": "2691410",
+    "pt": "{\n  \"a\": [\n    \"intermediar\",\n    \"mediar\",\n    \"intervir\",\n    \"ficar entre\",\n    \"servir de intermediário\",\n    \"atuar como mediador\"\n  ]\n"
+  },
+  {
+    "kana": "あいじゃくや",
+    "en": [
+      "person who rents a house in the same block of houses as oneself"
+    ],
+    "senseUid": "b849d7db-8950-4405-862d-d9c4dc023ea6",
+    "wordId": "2691400",
+    "pt": "{\n  \"a\": [\n    \"vizinho de aluguel\",\n    \"inquilino da mesma fileira de casas\",\n    \"pessoa que aluga uma casa no mesmo quarteirão de casas que você\"\n  ]\n"
+  },
+  {
+    "kana": "たまあい",
+    "en": [
+      "ball of dried, ground, fermented dyer's knotweed leaves"
+    ],
+    "senseUid": "8a6ff9d9-4a7c-47f3-bb15-b1a1f9aeafd2",
+    "wordId": "2691430",
+    "pt": "['bola de folhas de persicária-tintória secas, moídas e fermentadas']"
+  },
+  {
+    "kana": "あいった",
+    "en": [
+      "Maitreya (bodhisattva)"
+    ],
+    "senseUid": "6abdb474-0fd8-4810-8473-d49212609b10",
+    "wordId": "2691500",
+    "pt": "{\n  \"a\": [\"Maitreya (bodisatva)\"]\n"
+  },
+  {
+    "kana": "あいった",
+    "en": [
+      "Ajita (one of the sixteen arhats)"
+    ],
+    "senseUid": "e851a1f5-08ca-4d10-a011-f031f1dbf366",
+    "wordId": "2691500",
+    "pt": "{\n  \"a\": [\"Ajita (um dos dezesseis arhat)\"]\n"
+  },
+  {
+    "kana": "あいちょう",
+    "en": [
+      "loving and taking care of something"
+    ],
+    "senseUid": "38cda052-2350-4e76-807c-b2f084a36a3a",
+    "wordId": "2691460",
+    "pt": "['cuidar com carinho', 'amor e cuidado', 'afeto protetor', 'cuidar amorosamente']"
+  },
+  {
+    "kana": "あいちょうばん",
+    "en": [
+      "one's favorite music disc, LP album, etc."
+    ],
+    "senseUid": "6b5aa903-6558-44d1-9f1a-96f6df01cb43",
+    "wordId": "2691490",
+    "pt": "['disco favorito', 'álbum preferido', 'LP favorito', 'álbum de estimação']"
+  },
+  {
+    "kana": "あいつとめる",
+    "en": [
+      "to work (for)",
+      "to be employed (at)",
+      "to serve (in)"
+    ],
+    "senseUid": "1e5f26d1-448f-4c37-9ce1-4093dab17041",
+    "wordId": "2691510",
+    "pt": "{\n  \"a\": [\n    \"trabalhar para\",\n    \"ser empregado em\",\n    \"servir em\"\n  ]\n"
+  },
+  {
+    "kana": "あいとなる",
+    "en": [
+      "to adjoin each other",
+      "to be beside one another"
+    ],
+    "senseUid": "3fe5292c-0160-4c9d-a977-83aece652c5d",
+    "wordId": "2691530",
+    "pt": "['ficar lado a lado', 'estar ao lado um do outro']"
+  },
+  {
+    "kana": "あいづくり",
+    "en": [
+      "dish of white and red-fleshed fish arranged next to each other"
+    ],
+    "senseUid": "f1443464-a613-4597-99ab-2fabd1c6cd4b",
+    "wordId": "2691520",
+    "pt": "['prato de peixes de carne branca e vermelha arranjados lado a lado']"
+  },
+  {
+    "kana": "あいちょう",
+    "en": [
+      "favor",
+      "favour"
+    ],
+    "senseUid": "55974505-120b-4f06-bbaa-5f4ec2fda054",
+    "wordId": "2691470",
+    "pt": "{\n  \"a\": [\n    \"favor\",\n    \"favour\",\n    \"boa vontade\",\n    \"simpatia\",\n    \"afeição\",\n    \"sentimento de afinidade\",\n    \"sentimento de simpatia\"\n  ]\n"
+  },
+  {
+    "kana": "あいととのう",
+    "en": [
+      "to be prepared",
+      "to be in order",
+      "to be put in order",
+      "to be arranged"
+    ],
+    "senseUid": "42154fa2-9d54-440a-a19b-92137057f5fb",
+    "wordId": "2691540",
+    "pt": "['estar preparado', 'estar em ordem', 'estar arrumado', 'estar organizado']"
+  },
+  {
+    "kana": "あいなるべくは",
+    "en": [
+      "if it is possible"
+    ],
+    "senseUid": "97cf22c4-2724-4073-928e-1bce1505d778",
+    "wordId": "2691570",
+    "pt": "['se possível']"
+  },
+  {
+    "kana": "あいどし",
+    "en": [
+      "the same age"
+    ],
+    "senseUid": "32cc9f1a-1ef1-4887-be62-fa7dbd75348a",
+    "wordId": "2691560",
+    "pt": "['da mesma idade']"
+  },
+  {
+    "kana": "あいねずみ",
+    "en": [
+      "indigo-tinged grey (gray)"
+    ],
+    "senseUid": "b2b792fa-7495-4b94-94a0-b4a4c239cf35",
+    "wordId": "2691600",
+    "pt": "['cinza com tonalidade índigo']"
+  },
+  {
+    "kana": "あいにる",
+    "en": [
+      "to resemble each other",
+      "to resemble one another"
+    ],
+    "senseUid": "ab3e81db-451c-4a2b-8df0-dac65efea8ae",
+    "wordId": "2691580",
+    "pt": "['assemelhar-se mutuamente', 'ser parecidos entre si']"
+  },
+  {
+    "kana": "あいだる",
+    "en": [
+      "to behave like a spoilt child"
+    ],
+    "senseUid": "e4f57650-4b6b-4980-aae6-158e48cf81c6",
+    "wordId": "2691440",
+    "pt": "['fazer birra', 'agir como uma criança mimada', 'manhosa', 'comportar-se de forma manhosa']"
+  },
+  {
+    "kana": "あいねん",
+    "en": [
+      "affection",
+      "strong feeling of love"
+    ],
+    "senseUid": "842138f5-fdec-4d1c-8fef-e5d90038fa27",
+    "wordId": "2691610",
+    "pt": "['afeição', 'sentimento forte de amor']"
+  },
+  {
+    "kana": "あいともに",
+    "en": [
+      "together"
+    ],
+    "senseUid": "9b22ebb0-3c9f-4258-b2ed-519a827e0500",
+    "wordId": "2691550",
+    "pt": "{\n  \"a\": [\"juntos\"]\n"
+  },
+  {
+    "kana": "アイヌみんぞく",
+    "en": [
+      "Ainu people",
+      "the Ainu"
+    ],
+    "senseUid": "8cfaf06d-41b3-4c1e-ba15-d1ed1d8028fd",
+    "wordId": "2691590",
+    "pt": "['povo Ainu', 'os Ainu']"
+  },
+  {
+    "kana": "あいのかぜ",
+    "en": [
+      "wind that blows from north to north-east during spring and summer along the coast of the Sea of Japan"
+    ],
+    "senseUid": "e526771e-8031-4d11-ab53-9ef95becdaf1",
+    "wordId": "2691620",
+    "pt": "['vento que sopra do norte a nordeste durante a primavera e o verão ao longo da costa do Mar do Japão']"
+  },
+  {
+    "kana": "あいのくさび",
+    "en": [
+      "wedge (for securing objects together)"
+    ],
+    "senseUid": "1c59cb10-204f-4f2d-ba97-aab19b1df0ed",
+    "wordId": "2691640",
+    "pt": "['cunha do amor']"
+  },
+  {
+    "kana": "あい",
+    "en": [
+      "yes"
+    ],
+    "senseUid": "e14f7236-36db-4196-920c-0208f7703474",
+    "wordId": "2691630",
+    "pt": "{\n  \"a\": [\"amor\"]\n"
+  },
+  {
+    "kana": "あい",
+    "en": [
+      "wind that blows from north to north-east during spring and summer along the coast of the sea of Japan"
+    ],
+    "senseUid": "1992e449-057b-48d6-b652-883ab8ddb0fc",
+    "wordId": "2691630",
+    "pt": "{\n  \"a\": [\n    \"vento que sopra do norte a nordeste durante a primavera e o verão ao longo da costa do mar do Japão\"\n  ]\n"
+  },
+  {
+    "kana": "こめのめし",
+    "en": [
+      "cooked rice"
+    ],
+    "senseUid": "13b90baf-af24-4241-a607-57fd0d851fae",
+    "wordId": "2691660",
+    "pt": "['arroz cozido']"
+  },
+  {
+    "kana": "こめのめし",
+    "en": [
+      "something one never grows tired of"
+    ],
+    "senseUid": "b46b85c4-c16e-444f-be12-276282f2a305",
+    "wordId": "2691660",
+    "pt": "['arroz (algo de que nunca se enjoa)']"
+  },
+  {
+    "kana": "あいのくさび",
+    "en": [
+      "tie",
+      "bond"
+    ],
+    "senseUid": "1ac0e18e-5540-4b44-bff6-522d3fe04b75",
+    "wordId": "2691640",
+    "pt": "{\n  \"a\": [\"laço de amor\", \"vínculo de amor\", \"elo de amor\"]\n"
+  },
+  {
+    "kana": "あいのこぶね",
+    "en": [
+      "semi-Western, semi-Japanese wooden sailing boat, popular during the latter half of the Meiji period and the Taisho period"
+    ],
+    "senseUid": "7500264e-43a6-4039-befc-21fe762b6f11",
+    "wordId": "2691650",
+    "pt": "['barco de madeira semiocidental e semijaponês, popular durante a segunda metade do período Meiji e o período Taisho']"
+  },
+  {
+    "kana": "さんどいり",
+    "en": [
+      "medium-sized earthenware sake cup"
+    ],
+    "senseUid": "c2f91ad0-698d-44ae-b0bb-dca09efd0022",
+    "wordId": "2691720",
+    "pt": "['copo de saquê de cerâmica de tamanho médio']"
+  },
+  {
+    "kana": "あいのま",
+    "en": [
+      "room connecting the two main rooms of a building",
+      "intermediate room"
+    ],
+    "senseUid": "ef17966f-9d0f-4586-8760-0b53fdd496be",
+    "wordId": "2691710",
+    "pt": "['sala que conecta os dois cômodos principais de um edifício', 'sala intermediária']"
+  },
+  {
+    "kana": "あいのこべんとう",
+    "en": [
+      "children's lunch box of cooked rice and a Western-style side dish (popular late Meiji and Taisho periods)"
+    ],
+    "senseUid": "bc02bfe9-a90a-43f2-b305-e94bd1a67e41",
+    "wordId": "2691670",
+    "pt": "['marmita infantil de arroz cozido com acompanhamento ao estilo ocidental (popular no final do período Meiji e no período Taisho)']"
+  },
+  {
+    "kana": "あいばさみ",
+    "en": [
+      "multiple people holding the same item with their chopsticks"
+    ],
+    "senseUid": "3c6d7a5a-80d9-4258-a45e-5a9c48966f05",
+    "wordId": "2691740",
+    "pt": "['várias pessoas segurando o mesmo alimento com seus hashis']"
+  },
+  {
+    "kana": "あいはむ",
+    "en": [
+      "to compete with each other"
+    ],
+    "senseUid": "12632f02-6855-4973-908a-8a811017536b",
+    "wordId": "2691730",
+    "pt": "{\n  \"a\": [\"competir entre si\", \"disputar uns com os outros\", \"rivalizar mutuamente\"]\n"
+  },
+  {
+    "kana": "りんじゅうしょうねん",
+    "en": [
+      "holding the proper state of mindfulness at the moment of death"
+    ],
+    "senseUid": "d35b26ed-4ee3-419c-b6f7-ad79b176d6d1",
+    "wordId": "2691750",
+    "pt": "['manter o estado adequado de atenção plena no momento da morte']"
+  },
+  {
+    "kana": "リサージュきょくせん",
+    "en": [
+      "Lissajous curve"
+    ],
+    "senseUid": "128dbe04-993f-42dc-ac69-a54848dfc211",
+    "wordId": "2691780",
+    "pt": "['curva de Lissajous']"
+  },
+  {
+    "kana": "わるくなる",
+    "en": [
+      "to spoil (of food)",
+      "to go bad",
+      "to perish"
+    ],
+    "senseUid": "b0f61fe0-487a-444f-ae1c-909fad372b6a",
+    "wordId": "2691760",
+    "pt": "['estragar (de comida)', 'ficar ruim', 'perecer']"
+  },
+  {
+    "kana": "リサージュづけい",
+    "en": [
+      "Lissajous figure",
+      "Lissajous diagram"
+    ],
+    "senseUid": "e259e6f8-bdcf-4a09-96a2-1dda49c953d4",
+    "wordId": "2691770",
+    "pt": "['figura de Lissajous', 'diagrama de Lissajous']"
+  },
+  {
+    "kana": "キャラクターゲーム",
+    "en": [
+      "video game featuring characters from a manga, anime, movie, etc."
+    ],
+    "senseUid": "e4f37854-398d-4795-8369-e009724bfbc6",
+    "wordId": "2691790",
+    "pt": "['jogo de personagens']"
+  },
+  {
+    "kana": "わるくなる",
+    "en": [
+      "to get worse",
+      "to deteriorate",
+      "to go from bad to worse",
+      "to become worse"
+    ],
+    "senseUid": "8038c9ed-8ff6-48a0-8354-417aba2e6256",
+    "wordId": "2691760",
+    "pt": "['piorar', 'deteriorar', 'ir de mal a pior', 'ficar pior']"
+  },
+  {
+    "kana": "キャラクターゲーム",
+    "en": [
+      "video game in which the characters are the main focus"
+    ],
+    "senseUid": "62d4deb3-b63c-4640-afac-fd3db524f9a6",
+    "wordId": "2691790",
+    "pt": "['jogo de personagem']"
+  },
+  {
+    "kana": "なりかける",
+    "en": [
+      "to be on the verge",
+      "to be on the brink",
+      "to get close"
+    ],
+    "senseUid": "9c0c8a2c-c2a1-4925-a86b-f9bbf7aec90e",
+    "wordId": "2691800",
+    "pt": "['estar prestes a', 'estar à beira de', 'chegar perto de']"
+  },
+  {
+    "kana": "なりかかる",
+    "en": [
+      "to be on the verge",
+      "to be on the brink",
+      "to get close"
+    ],
+    "senseUid": "c34b0d21-507d-4427-bfe8-4a649355e13b",
+    "wordId": "2691810",
+    "pt": "['estar prestes a', 'estar à beira de', 'chegar perto de']"
+  },
+  {
+    "kana": "あいばさみ",
+    "en": [
+      "passing something from chopstick to chopstick"
+    ],
+    "senseUid": "85672b0a-d565-452d-9de1-260cdb1be9a4",
+    "wordId": "2691740",
+    "pt": "['passar algo de um hashi para outro']"
+  },
+  {
+    "kana": "にゅうもんき",
+    "en": [
+      "entry-level machine"
+    ],
+    "senseUid": "990d34c8-4314-4fd1-b817-0af6419610a4",
+    "wordId": "2691830",
+    "pt": "['máquina de introdução']"
+  },
+  {
+    "kana": "だえんきかがく",
+    "en": [
+      "elliptic geometry",
+      "Riemannian geometry"
+    ],
+    "senseUid": "b8940cd3-c4c1-42e1-a171-3978da6171e9",
+    "wordId": "2691850",
+    "pt": "['geometria elíptica', 'geometria riemanniana']"
+  }
+]

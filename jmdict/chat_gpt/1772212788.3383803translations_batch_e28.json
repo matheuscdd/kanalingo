@@ -1,0 +1,944 @@
+[
+  {
+    "kana": "おおしょうぶ",
+    "en": [
+      "do-or-die game",
+      "crucial contest"
+    ],
+    "senseUid": "2935caab-999a-4f92-886e-7f8d06b967cd",
+    "wordId": "2634310",
+    "pt": "['jogo decisivo', 'partida crucial']"
+  },
+  {
+    "kana": "からくりどけい",
+    "en": [
+      "automaton clock",
+      "marionette clock"
+    ],
+    "senseUid": "ddce90fb-be29-481f-bf6f-d170b00767f5",
+    "wordId": "2634250",
+    "pt": "{\n  \"a\": [\"relógio karakuri\", \"relógio autômato\", \"relógio de bonecos mecânicos\", \"relógio marionete\"]\n"
+  },
+  {
+    "kana": "だいしほん",
+    "en": [
+      "large amount of capital",
+      "large-cap",
+      "big-cap"
+    ],
+    "senseUid": "296e3bb8-a163-402e-a4b3-dbf873651713",
+    "wordId": "2634270",
+    "pt": "{\n  \"a\": [\n    \"grande capital\",\n    \"ações de grande capitalização\",\n    \"empresa de grande porte\"\n  ]\n"
+  },
+  {
+    "kana": "さんかどう",
+    "en": [
+      "copper oxide (i.e. cuprous oxide, cupric oxide)"
+    ],
+    "senseUid": "ee19aa4a-ac49-4cbd-ac37-96cf26df3a21",
+    "wordId": "2634320",
+    "pt": "{\n  \"a\": [\n    \"óxido de cobre\"\n  ]\n"
+  },
+  {
+    "kana": "モノアミンさんかこうそそがいやく",
+    "en": [
+      "monoamine oxidase inhibitor",
+      "MAO inhibitor",
+      "MAOI"
+    ],
+    "senseUid": "e6299ed8-bc06-4e11-a63e-881fe28e27e6",
+    "wordId": "2634330",
+    "pt": "['inibidor da monoamina oxidase', 'inibidor da MAO', 'IMAO']"
+  },
+  {
+    "kana": "モノアミンさんかこうそ",
+    "en": [
+      "monoamine oxidase",
+      "MAO"
+    ],
+    "senseUid": "64d773ab-b62e-46d1-b267-99609e79fefa",
+    "wordId": "2634340",
+    "pt": "['enzima monoamina oxidase', 'MAO']"
+  },
+  {
+    "kana": "さんかかんげん",
+    "en": [
+      "oxidation-reduction"
+    ],
+    "senseUid": "cbc8fd24-d58f-46f6-a631-d37897bce383",
+    "wordId": "2634350",
+    "pt": "{\n  \"a\": [\"oxirredução\"]\n"
+  },
+  {
+    "kana": "さんかてきリンさんか",
+    "en": [
+      "oxidative phosphorylation"
+    ],
+    "senseUid": "600eba3b-f1d3-4833-9b0a-46af30f6af1d",
+    "wordId": "2634360",
+    "pt": "{\n  \"a\": [\"fosforilação oxidativa\"]\n"
+  },
+  {
+    "kana": "さしつかわす",
+    "en": [
+      "to send off",
+      "to dispatch"
+    ],
+    "senseUid": "f1fec82e-8aca-475c-b91a-b405d3250c62",
+    "wordId": "2634230",
+    "pt": "['enviar', 'despachar']"
+  },
+  {
+    "kana": "さんかざい",
+    "en": [
+      "oxidizing agent",
+      "oxidant",
+      "oxidizer"
+    ],
+    "senseUid": "35509281-1ad8-41ff-8029-c0c344db054f",
+    "wordId": "2634380",
+    "pt": "['agente oxidante', 'oxidante', 'oxidizador']"
+  },
+  {
+    "kana": "さんかてき",
+    "en": [
+      "oxidative"
+    ],
+    "senseUid": "66f96851-2bca-424f-bf7e-1df64d9facd3",
+    "wordId": "2634370",
+    "pt": "{\n  \"a\": [\"oxidativo\"]\n"
+  },
+  {
+    "kana": "さんかチタン",
+    "en": [
+      "titanium oxide"
+    ],
+    "senseUid": "d45ec239-a29e-4b5e-ba74-c20645dd80ea",
+    "wordId": "2634400",
+    "pt": "{\n  \"a\": [\"óxido de titânio\"]\n"
+  },
+  {
+    "kana": "さんかジルコニウム",
+    "en": [
+      "zirconium oxide",
+      "zirconia"
+    ],
+    "senseUid": "83a155e3-b65d-4682-9e50-413c0e68046c",
+    "wordId": "2634390",
+    "pt": "{\n  \"a\": [\"zircônia\", \"óxido de zircônio\"]\n"
+  },
+  {
+    "kana": "さんか",
+    "en": [
+      "acid value"
+    ],
+    "senseUid": "d1e6ee86-49ec-456c-a876-8b8d431d1605",
+    "wordId": "2634410",
+    "pt": "{\n  \"a\": [\n    \"valor ácido\"\n  ]\n"
+  },
+  {
+    "kana": "リンさんナトリウム",
+    "en": [
+      "sodium phosphate"
+    ],
+    "senseUid": "faeeb73d-a95c-4b3e-8541-58801391800c",
+    "wordId": "2634420",
+    "pt": "{\n  \"a\": [\"fosfato de sódio\"]\n"
+  },
+  {
+    "kana": "リンさんエステル",
+    "en": [
+      "phosphate ester"
+    ],
+    "senseUid": "d0da18e1-aec0-426b-b483-4f5174894797",
+    "wordId": "2634430",
+    "pt": "{\n  \"a\": [\"éster de fosfato\"]\n"
+  },
+  {
+    "kana": "シアンさん",
+    "en": [
+      "cyanic acid"
+    ],
+    "senseUid": "35f5715a-1845-4d61-a41b-9cf936d29841",
+    "wordId": "2634440",
+    "pt": "{\n  \"a\": [\"Ácido ciânico\"]\n"
+  },
+  {
+    "kana": "コールさん",
+    "en": [
+      "cholic acid"
+    ],
+    "senseUid": "b14309d0-67ca-4e66-b58f-5a034b56a876",
+    "wordId": "2634460",
+    "pt": "{\n  \"a\": [\"ácido cólico\"]\n"
+  },
+  {
+    "kana": "チタンさん",
+    "en": [
+      "titanic acid"
+    ],
+    "senseUid": "8bb13296-6e39-4754-86ad-f81701caca6d",
+    "wordId": "2634470",
+    "pt": "{\n  \"a\": [\"ácido titânico\"]\n"
+  },
+  {
+    "kana": "セレンさん",
+    "en": [
+      "selenic acid"
+    ],
+    "senseUid": "6ef6cd81-1cfa-4ad9-9f81-c753dfdf1dde",
+    "wordId": "2634450",
+    "pt": "{\n  \"a\": [\"Ácido selênico\"]\n"
+  },
+  {
+    "kana": "ラセミさん",
+    "en": [
+      "racemic acid"
+    ],
+    "senseUid": "8c455421-262c-4d38-8ea5-d243624bf3ea",
+    "wordId": "2634480",
+    "pt": "{\n  \"a\": [\"ácido racêmico\"]\n"
+  },
+  {
+    "kana": "フミンさん",
+    "en": [
+      "humic acid"
+    ],
+    "senseUid": "daa3b467-a34f-4e62-bc09-dc63c68babcd",
+    "wordId": "2634490",
+    "pt": "{\n  \"a\": [\"ácido húmico\"]\n"
+  },
+  {
+    "kana": "バルプロさんナトリウム",
+    "en": [
+      "sodium valproate"
+    ],
+    "senseUid": "fc833cb7-3150-423a-bab6-1d9c70817fdb",
+    "wordId": "2634500",
+    "pt": "['valproato de sódio']"
+  },
+  {
+    "kana": "タンニンさん",
+    "en": [
+      "tannic acid",
+      "tannin"
+    ],
+    "senseUid": "fd4b23b8-70c0-4dc4-bd44-dc2353ca7837",
+    "wordId": "2634510",
+    "pt": "{\n  \"a\": [\"Sr. Tanino\", \"Sr. Tannin\"]\n"
+  },
+  {
+    "kana": "ペクチンさん",
+    "en": [
+      "pectic acid"
+    ],
+    "senseUid": "532d8ae7-c6f9-48d7-ad41-9984ffbec052",
+    "wordId": "2634530",
+    "pt": "['ácido péctico']"
+  },
+  {
+    "kana": "イソシアンさん",
+    "en": [
+      "isocyanic acid"
+    ],
+    "senseUid": "b517eb28-39fb-4bc8-b53b-cd7c03f75830",
+    "wordId": "2634550",
+    "pt": "['ácido isociânico']"
+  },
+  {
+    "kana": "アデニルさん",
+    "en": [
+      "adenylic acid"
+    ],
+    "senseUid": "f4049573-6866-4265-956e-f273d8465917",
+    "wordId": "2634540",
+    "pt": "['ácido adenilico']"
+  },
+  {
+    "kana": "グリセリンさん",
+    "en": [
+      "glyceric acid"
+    ],
+    "senseUid": "f91aec9a-46c4-41ac-8d42-202643357fb6",
+    "wordId": "2634560",
+    "pt": "{\n  \"a\": [\"ácido glicérico\"]\n"
+  },
+  {
+    "kana": "グリコールさん",
+    "en": [
+      "glycolic acid"
+    ],
+    "senseUid": "a58adcc5-e5bb-4aa6-b833-aa7d843550d5",
+    "wordId": "2634570",
+    "pt": "['ácido glicólico']"
+  },
+  {
+    "kana": "ジベレリンさん",
+    "en": [
+      "gibberellic acid"
+    ],
+    "senseUid": "b0829d81-718a-4281-b3f3-cd93a95e92fa",
+    "wordId": "2634580",
+    "pt": "['ácido giberélico']"
+  },
+  {
+    "kana": "ヘプタデカン",
+    "en": [
+      "heptadecane"
+    ],
+    "senseUid": "d3e76a69-bb43-4b57-ba13-5a07e88ca4b2",
+    "wordId": "2634590",
+    "pt": "['heptadecano']"
+  },
+  {
+    "kana": "セバシンさん",
+    "en": [
+      "sebacic acid"
+    ],
+    "senseUid": "ffdd05ad-f29c-4ddd-bad9-22917374bee9",
+    "wordId": "2634520",
+    "pt": "['ácido sebácico']"
+  },
+  {
+    "kana": "さくさんエチル",
+    "en": [
+      "ethyl acetate"
+    ],
+    "senseUid": "e7c04bcb-1d7e-426b-9208-e19dde289b4c",
+    "wordId": "2634620",
+    "pt": "['acetato de etila']"
+  },
+  {
+    "kana": "タングステンさん",
+    "en": [
+      "tungstic acid"
+    ],
+    "senseUid": "3b1dc378-c4d2-46fd-b184-9048e2ac53ea",
+    "wordId": "2634600",
+    "pt": "{\n  \"a\": [\"ácido túngstico\"]\n"
+  },
+  {
+    "kana": "さくさんなまり",
+    "en": [
+      "lead acetate (i.e. plumbic acetate, plumbous acetate)"
+    ],
+    "senseUid": "515a588a-adef-4bfa-b06f-dcf0df6197cd",
+    "wordId": "2634610",
+    "pt": "{\n  \"a\": [\n    \"acetato de chumbo\"\n  ]\n"
+  },
+  {
+    "kana": "アセトさくさん",
+    "en": [
+      "acetoacetic acid"
+    ],
+    "senseUid": "b4fb73bd-4f26-40c1-9208-447fd37b8acd",
+    "wordId": "2634630",
+    "pt": "['ácido acetoacético']"
+  },
+  {
+    "kana": "トリクロロさくさん",
+    "en": [
+      "trichloroacetic acid"
+    ],
+    "senseUid": "d4178786-5ccb-4695-a68e-e01892cd00d5",
+    "wordId": "2634640",
+    "pt": "['ácido tricloroacético']"
+  },
+  {
+    "kana": "よわせる",
+    "en": [
+      "to get (someone) drunk",
+      "to inebriate",
+      "to intoxicate"
+    ],
+    "senseUid": "8155faae-73e7-44d8-93c5-0e1d7e206e92",
+    "wordId": "2634650",
+    "pt": "['embebedar', 'deixar bêbado', 'intoxicar']"
+  },
+  {
+    "kana": "はいとうたい",
+    "en": [
+      "glycoside"
+    ],
+    "senseUid": "e1934123-9499-4c73-9966-5c1aa436b970",
+    "wordId": "2634760",
+    "pt": "{\n  \"a\": [\n    \"glicosídeo\"\n  ]\n"
+  },
+  {
+    "kana": "こうさつしたい",
+    "en": [
+      "body of a strangled person"
+    ],
+    "senseUid": "2d2e1db5-77ff-4ef4-bb64-d9a50d9a1516",
+    "wordId": "2634680",
+    "pt": "{\n  \"a\": [\n    \"corpo de uma pessoa estrangulada\"\n  ]\n"
+  },
+  {
+    "kana": "にせじょうほう",
+    "en": [
+      "disinformation",
+      "false information"
+    ],
+    "senseUid": "61538338-f69c-4739-8499-ebd64571e203",
+    "wordId": "2634750",
+    "pt": "['desinformação', 'informação falsa']"
+  },
+  {
+    "kana": "さんえんかぶつ",
+    "en": [
+      "acid chloride"
+    ],
+    "senseUid": "1399df1d-1571-4b43-86bc-8ae4c0995df4",
+    "wordId": "2634690",
+    "pt": "['cloreto de ácido']"
+  },
+  {
+    "kana": "しゅせきさんえん",
+    "en": [
+      "tartrate"
+    ],
+    "senseUid": "5308dea5-dbd3-4876-a364-d56567075b2e",
+    "wordId": "2634670",
+    "pt": "{\n  \"a\": [\"tartarato\"]\n"
+  },
+  {
+    "kana": "げんそんざい",
+    "en": [
+      "Dasein",
+      "philosophical concept introduced by Heidegger"
+    ],
+    "senseUid": "25fc92bf-cf1d-4276-b0ec-028574f98e11",
+    "wordId": "2634730",
+    "pt": "['existência', 'ser-aí', 'presença', 'ser-no-mundo']"
+  },
+  {
+    "kana": "ぐんしゅくかいだん",
+    "en": [
+      "disarmament conference",
+      "disarmament talks",
+      "arms reduction talks"
+    ],
+    "senseUid": "02b1a269-2795-405c-be43-55cc8009af5e",
+    "wordId": "2634740",
+    "pt": "['conferência de desarmamento', 'negociações de desarmamento', 'negociações para redução de armas']"
+  },
+  {
+    "kana": "よわす",
+    "en": [
+      "to charm",
+      "to enchant"
+    ],
+    "senseUid": "a01e4de6-763e-4955-8228-910f0d29b04d",
+    "wordId": "2634660",
+    "pt": "{\n  \"a\": [\n    \"encantar\",\n    \"enfeitiçar\",\n    \"fascinar\",\n    \"seduzir\"\n  ]\n"
+  },
+  {
+    "kana": "よわす",
+    "en": [
+      "to get (someone) drunk",
+      "to inebriate",
+      "to intoxicate"
+    ],
+    "senseUid": "f9c64a35-4ef9-40be-b343-b5a8b62ae0b0",
+    "wordId": "2634660",
+    "pt": "{\n  \"a\": [\n    \"embebedar\",\n    \"deixar bêbado\",\n    \"intoxicar (com álcool)\"\n  ]\n"
+  },
+  {
+    "kana": "よわせる",
+    "en": [
+      "to charm",
+      "to enchant"
+    ],
+    "senseUid": "5cd959fd-3961-4345-ab40-f60ad7a8666d",
+    "wordId": "2634650",
+    "pt": "['encantar', 'enfeitiçar', 'cativar']"
+  },
+  {
+    "kana": "はいこう",
+    "en": [
+      "orientation"
+    ],
+    "senseUid": "93d8ca70-83a1-4024-9f26-d36169871d59",
+    "wordId": "2634790",
+    "pt": "{\n  \"a\": [\"orientação\"]\n"
+  },
+  {
+    "kana": "はいごうど",
+    "en": [
+      "compost"
+    ],
+    "senseUid": "f36a67dd-2429-4358-a69c-76a9ac1d9b4d",
+    "wordId": "2634800",
+    "pt": "{\n  \"a\": [\"composto\"]\n"
+  },
+  {
+    "kana": "はいこうせい",
+    "en": [
+      "orientation"
+    ],
+    "senseUid": "34eef79b-d544-49c5-bfc9-1fa76bd8a789",
+    "wordId": "2634780",
+    "pt": "{\n  \"a\": [\"orientação\", \"alinhamento\", \"direção\", \"posição\"]\n"
+  },
+  {
+    "kana": "はいかんこうじ",
+    "en": [
+      "pipe laying",
+      "plumbing"
+    ],
+    "senseUid": "8999054e-b66d-47b1-b03d-d2b8924fe0e0",
+    "wordId": "2634770",
+    "pt": "{\n  \"a\": [\"instalação de tubulação\", \"obras de encanamento\"]\n"
+  },
+  {
+    "kana": "はいぐうしけいせい",
+    "en": [
+      "gametogenesis",
+      "gamete formation"
+    ],
+    "senseUid": "fc32afa1-f6be-41ad-849a-b319f0b3d54d",
+    "wordId": "2634810",
+    "pt": "['formação de gametas', 'gametogênese']"
+  },
+  {
+    "kana": "はいいかごうぶつ",
+    "en": [
+      "coordination compound"
+    ],
+    "senseUid": "05c9c1b2-c26a-4d19-9c2c-702a41a6c11c",
+    "wordId": "2634830",
+    "pt": "{\n  \"a\": [\"composto de coordenação\"]\n"
+  },
+  {
+    "kana": "かんりゅうれいきゃくき",
+    "en": [
+      "reflux condenser"
+    ],
+    "senseUid": "9dae4554-8e45-46b4-a38c-83e9642cedf2",
+    "wordId": "2634860",
+    "pt": "{\n  \"a\": [\"condensador de refluxo\"]\n"
+  },
+  {
+    "kana": "はいぐうしのう",
+    "en": [
+      "gametangium"
+    ],
+    "senseUid": "7a757e3f-abd2-4ea8-9cec-b91df07cdcf3",
+    "wordId": "2634820",
+    "pt": "{\n  \"a\": [\"gametângio\"]\n"
+  },
+  {
+    "kana": "ぶぶんぐん",
+    "en": [
+      "subgroup"
+    ],
+    "senseUid": "944bef23-573f-4795-a19e-0409462c2b3e",
+    "wordId": "2634840",
+    "pt": "{\n  \"a\": [\"subgrupo\"]\n"
+  },
+  {
+    "kana": "じゃすいぶかい",
+    "en": [
+      "unjustly suspicious (about many things)"
+    ],
+    "senseUid": "9e7f9591-881a-40a9-8a43-30996ce4b50d",
+    "wordId": "2634850",
+    "pt": "['desconfiado de tudo', 'suspeita injustificada sobre muitas coisas', 'pessoa que suspeita de tudo sem motivo']"
+  },
+  {
+    "kana": "かんげんざい",
+    "en": [
+      "reducing agent",
+      "reductant"
+    ],
+    "senseUid": "b3e752f3-0f70-4472-aa24-7e6846a9296f",
+    "wordId": "2634870",
+    "pt": "{\n  \"a\": [\n    \"agente redutor\",\n    \"redutor\"\n  ]\n"
+  },
+  {
+    "kana": "ゆいごんしんたく",
+    "en": [
+      "testamentary trust"
+    ],
+    "senseUid": "0f7c26a6-d555-4f7c-9c04-bdbf2ba6822f",
+    "wordId": "2634890",
+    "pt": "['truste testamentário']"
+  },
+  {
+    "kana": "かえり",
+    "en": [
+      "turning over",
+      "flipping over"
+    ],
+    "senseUid": "7538852c-78c2-4707-abf3-a2a6d62bdca7",
+    "wordId": "2634880",
+    "pt": "{\n  \"a\": [\"virar\", \"dar a volta\", \"inverter\", \"revirar\"]\n"
+  },
+  {
+    "kana": "かえり",
+    "en": [
+      "marks written alongside characters in a classical Chinese text to indicate their ordering when read in Japanese"
+    ],
+    "senseUid": "ee3c2d4d-e192-4ea7-82ad-469626fd5d82",
+    "wordId": "2634880",
+    "pt": "{\n  \"a\": [\n    \"marcas escritas ao lado dos caracteres em um texto clássico chinês para indicar sua ordem de leitura em japonês\"\n  ]\n"
+  },
+  {
+    "kana": "いでんてき",
+    "en": [
+      "genetic",
+      "hereditary"
+    ],
+    "senseUid": "a4d6d0e7-0cb9-4e29-9589-dc22fc5f8bba",
+    "wordId": "2634920",
+    "pt": "{\n  \"a\": [\"genético\", \"hereditário\"]\n"
+  },
+  {
+    "kana": "いでんそうだん",
+    "en": [
+      "genetic counseling",
+      "genetic counselling"
+    ],
+    "senseUid": "32f0f91a-f9e5-45f6-aa8e-7dec0ded273a",
+    "wordId": "2634910",
+    "pt": "['aconselhamento genético']"
+  },
+  {
+    "kana": "かえり",
+    "en": [
+      "lapel"
+    ],
+    "senseUid": "6e82bc51-74c6-4f56-b490-c4d934e7bf52",
+    "wordId": "2634880",
+    "pt": "{\n  \"a\": [\"reverso\", \"lapela\", \"borda dobrada (de roupa)\"]\n"
+  },
+  {
+    "kana": "いしゅう",
+    "en": [
+      "scent (of an animal while hunting)"
+    ],
+    "senseUid": "1855204d-e7ec-4025-8bce-dcc93913116e",
+    "wordId": "2634900",
+    "pt": "{\n  \"a\": [\"rastro (de um animal durante a caça)\", \"cheiro (de um animal durante a caça)\", \"odor (de um animal enquanto está sendo caçado)\"]\n"
+  },
+  {
+    "kana": "かえり",
+    "en": [
+      "reply",
+      "response"
+    ],
+    "senseUid": "59ff5d40-b183-4ffc-87a0-580d5f7f5b32",
+    "wordId": "2634880",
+    "pt": "{\n  \"a\": [\n    \"resposta\",\n    \"réplica\",\n    \"retorno\",\n    \"resposta (a uma saudação ou chamada)\",\n    \"resposta (a uma carta, mensagem, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "いでんがくしゃ",
+    "en": [
+      "geneticist"
+    ],
+    "senseUid": "39958554-630c-4846-9f40-957ede2d1734",
+    "wordId": "2634930",
+    "pt": "['geneticista']"
+  },
+  {
+    "kana": "コージェライト",
+    "en": [
+      "cordierite"
+    ],
+    "senseUid": "d6539f14-56e4-4e3f-9d30-e9ea558fea3f",
+    "wordId": "2634950",
+    "pt": "['cordierita']"
+  },
+  {
+    "kana": "えりのおりかえし",
+    "en": [
+      "lapel"
+    ],
+    "senseUid": "5a7dfa3e-1d89-4713-9090-b81ab6c7715a",
+    "wordId": "2634940",
+    "pt": "['lapela']"
+  },
+  {
+    "kana": "じわっと",
+    "en": [
+      "slowly but steadily"
+    ],
+    "senseUid": "7df9437f-68e8-4b06-bb5c-cceac7d2137b",
+    "wordId": "2634960",
+    "pt": "['aos poucos', 'devagar e sempre', 'lentamente mas continuamente']"
+  },
+  {
+    "kana": "ちょうたいしょうせい",
+    "en": [
+      "supersymmetry",
+      "SUSY"
+    ],
+    "senseUid": "8ef68ddb-2495-40d1-9913-a09d1462c4ec",
+    "wordId": "2634970",
+    "pt": "['supersimetria']"
+  },
+  {
+    "kana": "プレコ",
+    "en": [
+      "plecostomus (algae-sucker fish)",
+      "pleco",
+      "plec"
+    ],
+    "senseUid": "dea14a90-a70e-4376-87ba-f8f360a44a9f",
+    "wordId": "2634980",
+    "pt": "['plecostomus (peixe comedor de algas)', 'pleco', 'plec']"
+  },
+  {
+    "kana": "アイスポットシクリッド",
+    "en": [
+      "eye-spot cichlid (Cichla spp.)",
+      "peacock bass"
+    ],
+    "senseUid": "4f5ba118-d929-4d81-b79e-829250f70303",
+    "wordId": "2634990",
+    "pt": "['ciclídeo olho-de-olho (Cichla spp.)', 'tucunaré']"
+  },
+  {
+    "kana": "あおうお",
+    "en": [
+      "black carp (Mylopharyngodon piceus)"
+    ],
+    "senseUid": "1c45e53f-9fbd-4e63-b8ed-11d0edbe86a9",
+    "wordId": "2635030",
+    "pt": "{\n  \"a\": [\"carpa-preta (Mylopharyngodon piceus)\"]\n"
+  },
+  {
+    "kana": "あおちびき",
+    "en": [
+      "blue-gray snapper (Aprion virescens)",
+      "green jobfish"
+    ],
+    "senseUid": "ae76be3c-fa88-4295-bf92-8f792b0aedd8",
+    "wordId": "2635000",
+    "pt": "{\n  \"a\": [\n    \"pargo azul-cinzento (Aprion virescens)\",\n    \"pargo-verde\"\n  ]\n"
+  },
+  {
+    "kana": "あかしたびらめ",
+    "en": [
+      "red tonguesole (Cynoglossus joyneri)"
+    ],
+    "senseUid": "e7502ce7-b375-41be-8f76-3872c464b4fc",
+    "wordId": "2635020",
+    "pt": "['linguado-língua-vermelha (Cynoglossus joyneri)']"
+  },
+  {
+    "kana": "あかなまだ",
+    "en": [
+      "crestfish (Lophotus capellei)",
+      "unicornfish"
+    ],
+    "senseUid": "404a38fc-7a29-41ce-95c8-9ad17d5d119a",
+    "wordId": "2635050",
+    "pt": "{\n  \"a\": [\"peixe-espada-de-crista (Lophotus capellei)\", \"peixe-unicórnio\"]\n"
+  },
+  {
+    "kana": "あおぶたい",
+    "en": [
+      "Scarus ovifrons (species of parrotfish)"
+    ],
+    "senseUid": "2c19cdfa-4496-4167-9b08-dacdb02a8a88",
+    "wordId": "2635010",
+    "pt": "{\n  \"a\": [\n    \"Scarus ovifrons (espécie de peixe-papagaio)\"\n  ]\n"
+  },
+  {
+    "kana": "アピストグラマ",
+    "en": [
+      "Apistogramma (genus of cichlids)"
+    ],
+    "senseUid": "17cd241b-98f0-4e22-8571-aa2344544627",
+    "wordId": "2635080",
+    "pt": "['Apistogramma (gênero de ciclídeos)']"
+  },
+  {
+    "kana": "あかひれ",
+    "en": [
+      "white cloud mountain minnow (Tanichthys albonubes)",
+      "Canton danio"
+    ],
+    "senseUid": "0411a809-9784-48c3-8984-d5a493da109d",
+    "wordId": "2635040",
+    "pt": "{\n  \"a\": [\n    \"peixinho-do-monte-nuvem-branca (Tanichthys albonubes)\",\n    \"danio de Cantão\"\n  ]\n"
+  },
+  {
+    "kana": "アストロノータス",
+    "en": [
+      "marble cichlid (Astronotus ocellatus)"
+    ],
+    "senseUid": "ff2a96b8-5537-421a-833b-4919ac7c9c02",
+    "wordId": "2635100",
+    "pt": "['ciclídeo mármore (Astronotus ocellatus)']"
+  },
+  {
+    "kana": "あぶらそこむつ",
+    "en": [
+      "escolar (Lepidocybium flavobrunneum)",
+      "snake mackerel"
+    ],
+    "senseUid": "1f304cca-6fb9-45a3-81f7-7db511ba4cc5",
+    "wordId": "2635070",
+    "pt": "{\n  \"a\": [\n    \"escolar (Lepidocybium flavobrunneum)\",\n    \"peixe-serpente\"\n  ]\n"
+  },
+  {
+    "kana": "あしろ",
+    "en": [
+      "Ophidion asiro (species of cusk eel)"
+    ],
+    "senseUid": "fa6e986b-82f0-4de7-87cc-20e06f00efea",
+    "wordId": "2635110",
+    "pt": "['Ophidion asiro (espécie de peixe-cobra)']"
+  },
+  {
+    "kana": "あじめどじょう",
+    "en": [
+      "Niwaella delicata (species of loach)"
+    ],
+    "senseUid": "7a9ec9fb-94fb-46da-b2bf-6757b41b1d16",
+    "wordId": "2635120",
+    "pt": "{\n  \"a\": [\"Niwaella delicata (espécie de dojo; peixe dojo delicado)\"]\n"
+  },
+  {
+    "kana": "あぶらひがい",
+    "en": [
+      "Sarcocheilichthys biwaensis (species of cyprinid)"
+    ],
+    "senseUid": "5b992b97-c650-446b-858b-55250ae82519",
+    "wordId": "2635060",
+    "pt": "{\n  \"a\": [\n    \"Sarcocheilichthys biwaensis (espécie de peixe ciprinídeo)\"\n  ]\n"
+  },
+  {
+    "kana": "アッシュメドウズキリフィッシュ",
+    "en": [
+      "Ash Meadows killifish (Empetrichthys merriami)"
+    ],
+    "senseUid": "1fa1124f-2520-480a-8f61-dd6ff68de0ea",
+    "wordId": "2635090",
+    "pt": "['killifish de Ash Meadows (Empetrichthys merriami)']"
+  },
+  {
+    "kana": "イェンツーユイ",
+    "en": [
+      "Chinese high fin banded shark (Myxocyprinus asiaticus)",
+      "Chinese sucker"
+    ],
+    "senseUid": "906644aa-f26e-4647-849f-9a31a02d5f1c",
+    "wordId": "2635130",
+    "pt": "{\n  \"a\": [\n    \"tubarão-banda-alta-chinês (Myxocyprinus asiaticus)\",\n    \"peixe-chinês sugador\"\n  ]\n"
+  },
+  {
+    "kana": "いとまきふぐ",
+    "en": [
+      "basketfish (Kentrocapros aculeatus)"
+    ],
+    "senseUid": "97bc1f8a-3221-4874-9eaa-5657e9014461",
+    "wordId": "2635230",
+    "pt": "['peixe-cesto (Kentrocapros aculeatus)']"
+  },
+  {
+    "kana": "いとよりだい",
+    "en": [
+      "golden threadfin bream (Nemipterus virgatus)",
+      "besugo"
+    ],
+    "senseUid": "0570fc98-675e-4d62-a2ba-75d7d70bf023",
+    "wordId": "2635220",
+    "pt": "['pargo-dourado', 'besugo']"
+  },
+  {
+    "kana": "あゆもどき",
+    "en": [
+      "kissing loach (Leptobotia curta)"
+    ],
+    "senseUid": "e904819b-e0c9-46fb-b5f2-642a59182ea6",
+    "wordId": "2635160",
+    "pt": "['peixe-doce-kissing (Leptobotia curta)']"
+  },
+  {
+    "kana": "アブラボテ",
+    "en": [
+      "oily bitterling (Tanakia limbata)"
+    ],
+    "senseUid": "7161524f-bc91-49ce-b496-0ed063244668",
+    "wordId": "2635190",
+    "pt": "['aburabote (peixe Tanakia limbata, conhecido como \"oily bitterling\")']"
+  },
+  {
+    "kana": "あみめうなぎ",
+    "en": [
+      "reedfish (Erpetoichthys calabaricus)",
+      "ropefish"
+    ],
+    "senseUid": "bf1fcd02-259a-481b-9272-8235da9b24ce",
+    "wordId": "2635170",
+    "pt": "{\n  \"a\": [\n    \"peixe-corda\",\n    \"peixe-juncal (Erpetoichthys calabaricus)\"\n  ]\n"
+  },
+  {
+    "kana": "あゆかけ",
+    "en": [
+      "fourspine sculpin (Cottus kazika)"
+    ],
+    "senseUid": "ab7bb844-3b0b-4bfb-a34e-594263a3a0e6",
+    "wordId": "2635150",
+    "pt": "['cabeça-de-pedra-de-quatro-espinhos (Cottus kazika)']"
+  },
+  {
+    "kana": "あべはぜ",
+    "en": [
+      "Samoan mullet goby (Mugilogobius abei)"
+    ],
+    "senseUid": "70d8bf8f-f977-4fb1-9d8b-6785f888c7de",
+    "wordId": "2635180",
+    "pt": "{\n  \"a\": [\"góbio-mulheta samoano (Mugilogobius abei)\"]\n"
+  },
+  {
+    "kana": "アロサ",
+    "en": [
+      "shad (Alosa spp.)",
+      "river herring"
+    ],
+    "senseUid": "d0296177-fe14-4f2f-9025-9cd01801fffd",
+    "wordId": "2635140",
+    "pt": "{\n  \"a\": [\n    \"alosa (peixe do gênero Alosa)\",\n    \"arenque-do-rio\"\n  ]\n"
+  },
+  {
+    "kana": "あぶらぼうず",
+    "en": [
+      "skilfish (Erilepis zonifer)",
+      "skil"
+    ],
+    "senseUid": "896cc1d8-02c1-45a8-8fff-e01e958b9cf2",
+    "wordId": "2635200",
+    "pt": "['peixe-óleo (Erilepis zonifer)', 'skil']"
+  },
+  {
+    "kana": "いとひきふえだい",
+    "en": [
+      "chinamanfish (Symphorus nematophorus)"
+    ],
+    "senseUid": "ad016263-dc1d-4730-99c7-7fb4565ffb31",
+    "wordId": "2635240",
+    "pt": "{\n  \"a\": [\"peixe-chinês (Symphorus nematophorus)\"]\n"
+  },
+  {
+    "kana": "いとひきいわし",
+    "en": [
+      "attenuated spider fish (Bathypterois atricolor)"
+    ],
+    "senseUid": "1c53f8e6-10cd-4392-85eb-b261dea5118a",
+    "wordId": "2635260",
+    "pt": "['peixe-fio atenuado']"
+  },
+  {
+    "kana": "いせごい",
+    "en": [
+      "striped mullet (Mugil cephalus)"
+    ],
+    "senseUid": "4670384d-8f16-45de-b89b-d24a652a475f",
+    "wordId": "2635280",
+    "pt": "['tainha-listrada (Mugil cephalus)']"
+  }
+]

@@ -1,0 +1,936 @@
+[
+  {
+    "kana": "シャープナー",
+    "en": [
+      "sharpener"
+    ],
+    "senseUid": "2955be0a-c5f9-477e-bc5b-4c5fdbb5d9f0",
+    "wordId": "1061290",
+    "pt": "{'a': ['apontador']}"
+  },
+  {
+    "kana": "シャーマン",
+    "en": [
+      "shaman"
+    ],
+    "senseUid": "41c3a84b-ee73-4911-80b4-e6c58789c3dc",
+    "wordId": "1061330",
+    "pt": "{'a': ['xamã']}"
+  },
+  {
+    "kana": "シャーリング",
+    "en": [
+      "shirring"
+    ],
+    "senseUid": "93d8077b-6707-4540-ad1b-d2557ee4e60f",
+    "wordId": "1061340",
+    "pt": "{'a': ['franzido']}"
+  },
+  {
+    "kana": "シャーマニズム",
+    "en": [
+      "shamanism"
+    ],
+    "senseUid": "f15d1e19-827f-44a8-97d8-cc6b7ae6bda5",
+    "wordId": "1061320",
+    "pt": "{'a': ['xamanismo']}"
+  },
+  {
+    "kana": "シャープペンシル",
+    "en": [
+      "mechanical pencil",
+      "automatic pencil",
+      "propelling pencil"
+    ],
+    "senseUid": "c82d0178-e20b-44c7-84f3-13d71cd818b8",
+    "wordId": "1061300",
+    "pt": "{'a': ['lapiseira', 'porta-minas', 'lapiseira automática']}"
+  },
+  {
+    "kana": "シャーベット",
+    "en": [
+      "sherbet (frozen dessert)",
+      "sorbet"
+    ],
+    "senseUid": "558063d4-7ee7-4baf-81fc-833a6246407c",
+    "wordId": "1061310",
+    "pt": "{'a': ['sorvete de frutas', 'sorvete tipo sorbet', 'sorbet']}"
+  },
+  {
+    "kana": "シャーロキアン",
+    "en": [
+      "Sherlockian (Sherlock Holmes fan or scholar)",
+      "Holmesian"
+    ],
+    "senseUid": "0d903a86-fdc1-4744-a044-c6d624746ae4",
+    "wordId": "1061360",
+    "pt": "{'a': ['Sherlockiano (fã ou estudioso de Sherlock Holmes)', 'Holmesiano']}"
+  },
+  {
+    "kana": "シャイ",
+    "en": [
+      "shy"
+    ],
+    "senseUid": "3bead2a7-9936-4861-8588-06d7667b77e2",
+    "wordId": "1061370",
+    "pt": "{'a': ['tímido']}"
+  },
+  {
+    "kana": "シャーレ",
+    "en": [
+      "laboratory dish",
+      "Petri dish"
+    ],
+    "senseUid": "f29d0023-b6e0-4d7a-981c-545bcf730ab5",
+    "wordId": "1061350",
+    "pt": "{'a': ['placa de laboratório', 'placa de Petri']}"
+  },
+  {
+    "kana": "シャイニング",
+    "en": [
+      "shining"
+    ],
+    "senseUid": "7f2dd9f5-9eb2-473b-9817-06a89c5ac8cc",
+    "wordId": "1061380",
+    "pt": "{'a': ['brilhante']}"
+  },
+  {
+    "kana": "シャギーカーペット",
+    "en": [
+      "shaggy carpet"
+    ],
+    "senseUid": "4868bd43-2c03-4da4-86cf-85a9b0207765",
+    "wordId": "1061390",
+    "pt": "{'a': ['carpete felpudo']}"
+  },
+  {
+    "kana": "シャソン",
+    "en": [
+      "chanson"
+    ],
+    "senseUid": "4bc52176-eef8-49b2-b9d0-58f87183e303",
+    "wordId": "1061410",
+    "pt": "{'a': ['canção']}"
+  },
+  {
+    "kana": "シャコンヌ",
+    "en": [
+      "chaconne"
+    ],
+    "senseUid": "6843d187-9b65-4e6c-9f11-944476752ed9",
+    "wordId": "1061400",
+    "pt": "{'a': ['chacona']}"
+  },
+  {
+    "kana": "シャッター",
+    "en": [
+      "(camera) shutter"
+    ],
+    "senseUid": "6cafa0e3-03f2-41c1-800f-a14b635a4737",
+    "wordId": "1061440",
+    "pt": "{'a': ['obturador (de câmera)']}"
+  },
+  {
+    "kana": "シャット",
+    "en": [
+      "shut"
+    ],
+    "senseUid": "7fbcbad1-9bda-4ce6-8052-27f560699ad8",
+    "wordId": "1061460",
+    "pt": "{'a': ['fechar']}"
+  },
+  {
+    "kana": "シャッター",
+    "en": [
+      "shutter (for a door, window, etc.)"
+    ],
+    "senseUid": "579584f0-bc17-45f3-b924-fad6a19e7704",
+    "wordId": "1061440",
+    "pt": "{'a': ['persiana', 'portão de enrolar', 'cortina metálica']}"
+  },
+  {
+    "kana": "シャットアウト",
+    "en": [
+      "shutout",
+      "shutting out",
+      "locking out",
+      "excluding"
+    ],
+    "senseUid": "7be77b41-9ce2-463e-847d-4777758e6b9e",
+    "wordId": "1061470",
+    "pt": "{'a': ['exclusão', 'bloqueio', 'impedir entrada', 'deixar de fora']}"
+  },
+  {
+    "kana": "シャッターチャンス",
+    "en": [
+      "best moment to take a picture",
+      "right timing (for a photograph)",
+      "photo opportunity"
+    ],
+    "senseUid": "933a0d45-844a-4515-ba91-d18fdcdf68c7",
+    "wordId": "1061450",
+    "pt": "{'a': ['momento ideal para tirar uma foto', 'o melhor momento para fotografar', 'oportunidade para uma foto']}"
+  },
+  {
+    "kana": "シャットアウト",
+    "en": [
+      "shutout",
+      "allowing no runs (goals, etc.)"
+    ],
+    "senseUid": "fbc31843-d3dc-4cee-b74c-9ff28d6c0df3",
+    "wordId": "1061470",
+    "pt": "{'a': ['shutout', 'não permitir pontos (gols, etc.)', 'vitória sem sofrer pontos', 'impedir pontuação']}"
+  },
+  {
+    "kana": "シャッフリング",
+    "en": [
+      "shuffling"
+    ],
+    "senseUid": "346c6a33-3247-48fa-a48c-30d91dfd788a",
+    "wordId": "1061490",
+    "pt": "{'a': ['embaralhamento']}"
+  },
+  {
+    "kana": "シャッフル",
+    "en": [
+      "shaking (a container to mix ingredients, etc.)"
+    ],
+    "senseUid": "6e1491e5-6be1-4135-a9c4-2e2d1eb79d45",
+    "wordId": "1061500",
+    "pt": "{'a': ['agitar (um recipiente para misturar ingredientes, etc.)']}"
+  },
+  {
+    "kana": "シャッポ",
+    "en": [
+      "hat"
+    ],
+    "senseUid": "23ee1620-8976-4df6-8637-3aaf1f30491a",
+    "wordId": "1061510",
+    "pt": "{'a': ['chapéu']}"
+  },
+  {
+    "kana": "シャットダウン",
+    "en": [
+      "shutdown"
+    ],
+    "senseUid": "b5452635-e7d6-4127-844d-90b9fb7c00e5",
+    "wordId": "1061480",
+    "pt": "{'a': ['desligamento']}"
+  },
+  {
+    "kana": "シャッフル",
+    "en": [
+      "shuffle (of playing cards, etc.)",
+      "rearranging (in a random order)"
+    ],
+    "senseUid": "39cbd79d-c7ad-452c-a8cf-1770a16c4878",
+    "wordId": "1061500",
+    "pt": "{'a': ['embaralhar (de cartas de jogar, etc.)', 'reorganizar (em uma ordem aleatória)']}"
+  },
+  {
+    "kana": "シャツ",
+    "en": [
+      "shirt (undergarment)",
+      "undershirt",
+      "singlet"
+    ],
+    "senseUid": "bef92774-4a85-42a8-8dc2-24fd1e1f4db9",
+    "wordId": "1061520",
+    "pt": "{'a': ['camisa (roupa de baixo)', 'camiseta', 'regata']}"
+  },
+  {
+    "kana": "シャツ",
+    "en": [
+      "shirt (outerwear; usu. with collar and buttons)"
+    ],
+    "senseUid": "1f1250c9-9051-4cf0-b5df-006df35d4b43",
+    "wordId": "1061520",
+    "pt": "{'a': ['camisa (roupa externa; geralmente com colarinho e botões)']}"
+  },
+  {
+    "kana": "シャツブラウス",
+    "en": [
+      "shirt blouse",
+      "shirtwaist"
+    ],
+    "senseUid": "d7b0d995-7d6b-4f6a-8a42-c7ac38e18eed",
+    "wordId": "1061530",
+    "pt": "{'a': ['blusa tipo camisa', 'camisa feminina']}"
+  },
+  {
+    "kana": "シャトー",
+    "en": [
+      "château",
+      "castle"
+    ],
+    "senseUid": "3f966f23-b47a-4a7c-9dba-698e2474dea8",
+    "wordId": "1061540",
+    "pt": "{'a': ['castelo', 'château']}"
+  },
+  {
+    "kana": "シャトーブリアン",
+    "en": [
+      "chateaubriand (steak)"
+    ],
+    "senseUid": "80a09fad-8b00-40db-9846-8a86a78cddb8",
+    "wordId": "1061550",
+    "pt": "{'a': ['chateaubriand (filé de carne)']}"
+  },
+  {
+    "kana": "シャトル",
+    "en": [
+      "shuttlecock"
+    ],
+    "senseUid": "99b10a8f-8dc0-4394-91ad-1bf03d0b95a9",
+    "wordId": "1061570",
+    "pt": "{'a': ['peteca']}"
+  },
+  {
+    "kana": "シャトーワイン",
+    "en": [
+      "chateau wine"
+    ],
+    "senseUid": "657e9925-22c6-4456-84e0-06a1a9c7dfd1",
+    "wordId": "1061560",
+    "pt": "{'a': ['vinho de château']}"
+  },
+  {
+    "kana": "シャトル",
+    "en": [
+      "shuttle service (e.g. bus)"
+    ],
+    "senseUid": "33650897-48e0-4523-aebe-3956af5807fd",
+    "wordId": "1061570",
+    "pt": "{'a': ['serviço de transporte (por exemplo, ônibus)']}"
+  },
+  {
+    "kana": "シャトル",
+    "en": [
+      "space shuttle"
+    ],
+    "senseUid": "7e94cdd7-59f7-4151-bf23-5d8a7908e11f",
+    "wordId": "1061570",
+    "pt": "{'a': ['ônibus espacial']}"
+  },
+  {
+    "kana": "シャトルコック",
+    "en": [
+      "shuttlecock"
+    ],
+    "senseUid": "074fb014-28e2-484d-9856-e1541c21fc97",
+    "wordId": "1061580",
+    "pt": "{'a': ['peteca']}"
+  },
+  {
+    "kana": "シャトル",
+    "en": [
+      "shuttle (weaving)"
+    ],
+    "senseUid": "1d3a547c-7624-47de-be0d-1a23109d28da",
+    "wordId": "1061570",
+    "pt": "{'a': ['lançadeira (tecelagem)']}"
+  },
+  {
+    "kana": "シャトルループ",
+    "en": [
+      "shuttle loop"
+    ],
+    "senseUid": "f4edf427-65bb-43e7-85fc-36e0529f7ed1",
+    "wordId": "1061600",
+    "pt": "{'a': ['loop de transporte']}"
+  },
+  {
+    "kana": "シャトルバス",
+    "en": [
+      "shuttle bus"
+    ],
+    "senseUid": "c2ba5a24-51b6-47fb-82a9-ceb26a9ad815",
+    "wordId": "1061590",
+    "pt": "{'a': ['ônibus circular']}"
+  },
+  {
+    "kana": "シャドー",
+    "en": [
+      "shadow"
+    ],
+    "senseUid": "cfeba866-0b6f-4ff1-a52b-6ee7dccd4b91",
+    "wordId": "1061610",
+    "pt": "{'a': ['sombra']}"
+  },
+  {
+    "kana": "シャドーキャビネット",
+    "en": [
+      "shadow cabinet"
+    ],
+    "senseUid": "5cc7b218-d257-4770-9d61-878ea6aa3895",
+    "wordId": "1061620",
+    "pt": "{'a': ['Gabinete sombra']}"
+  },
+  {
+    "kana": "シャドーストライプ",
+    "en": [
+      "shadow stripe"
+    ],
+    "senseUid": "cf5f4ffa-a6eb-481a-bd88-bf65772f101e",
+    "wordId": "1061630",
+    "pt": "{'a': ['listra sombra']}"
+  },
+  {
+    "kana": "シャドーピッチング",
+    "en": [
+      "shadow pitching"
+    ],
+    "senseUid": "d733ff5a-3925-471d-b53d-48b3d1e04545",
+    "wordId": "1061640",
+    "pt": "{'a': ['arremesso sombra']}"
+  },
+  {
+    "kana": "シャボン",
+    "en": [
+      "soap"
+    ],
+    "senseUid": "4f1c2edc-3eb7-4f7d-bc63-1d3f3b6311e7",
+    "wordId": "1061730",
+    "pt": "{'a': ['sabão']}"
+  },
+  {
+    "kana": "シャボンだま",
+    "en": [
+      "soap bubble"
+    ],
+    "senseUid": "0e038dd0-23ad-4aa0-a6f2-c13a17519018",
+    "wordId": "1061740",
+    "pt": "{'a': ['bolha de sabão']}"
+  },
+  {
+    "kana": "シャドーボクシング",
+    "en": [
+      "shadowboxing"
+    ],
+    "senseUid": "300c12ab-9acb-4055-9458-ef4202fc4c74",
+    "wordId": "1061650",
+    "pt": "{'a': ['boxe de sombra']}"
+  },
+  {
+    "kana": "シャドーイング",
+    "en": [
+      "projective shadowing",
+      "shadow mapping"
+    ],
+    "senseUid": "0c2f62f7-fda1-4de9-923e-9c50de73a629",
+    "wordId": "1061670",
+    "pt": "{'a': ['sombreamento projetivo', 'mapeamento de sombras']}"
+  },
+  {
+    "kana": "シャドーイング",
+    "en": [
+      "shadowing (esp. as a language learning technique)",
+      "repeating speech immediately after hearing it"
+    ],
+    "senseUid": "bda10b2a-f27c-4f8b-8ab0-8c33fecdbc55",
+    "wordId": "1061670",
+    "pt": "{'a': ['shadowing (especialmente como técnica de aprendizado de idiomas)', 'repetição imediata do discurso após ouvi-lo']}"
+  },
+  {
+    "kana": "シャベル",
+    "en": [
+      "shovel"
+    ],
+    "senseUid": "6080fce1-3b69-453a-9591-520850faf836",
+    "wordId": "1061710",
+    "pt": "{'a': ['pá']}"
+  },
+  {
+    "kana": "シャフト",
+    "en": [
+      "shaft (of a golf club)"
+    ],
+    "senseUid": "df813135-7352-455e-ac5a-84403537cde2",
+    "wordId": "1061700",
+    "pt": "{'a': ['shaft (de um taco de golfe)']}"
+  },
+  {
+    "kana": "シャペロン",
+    "en": [
+      "(molecular) chaperone"
+    ],
+    "senseUid": "9c283828-9438-4d46-8410-bec0824bbe49",
+    "wordId": "1061720",
+    "pt": "{'a': ['chaperona molecular']}"
+  },
+  {
+    "kana": "シャフト",
+    "en": [
+      "shaft (e.g. machinery)",
+      "axle"
+    ],
+    "senseUid": "1aa3daa3-46ac-4a37-bc63-47f3b33c234e",
+    "wordId": "1061700",
+    "pt": "{'a': ['eixo', 'árvore (de máquina)']}"
+  },
+  {
+    "kana": "シャペロン",
+    "en": [
+      "doping control officer",
+      "chaperone",
+      "official who collects samples from athletes for drug testing"
+    ],
+    "senseUid": "fa7a3a3f-3db2-45fc-8a7c-37463570528b",
+    "wordId": "1061720",
+    "pt": "{'a': ['oficial de controle de doping', 'chaperone', 'responsável por coletar amostras de atletas para testes antidoping']}"
+  },
+  {
+    "kana": "シャルマン",
+    "en": [
+      "charming"
+    ],
+    "senseUid": "5a6bc4ed-45c4-46db-8a3d-737babc80c07",
+    "wordId": "1061770",
+    "pt": "{'a': ['encantador']}"
+  },
+  {
+    "kana": "シャルム",
+    "en": [
+      "charm"
+    ],
+    "senseUid": "ee1770dc-bbd1-4ba2-8297-750bce75196b",
+    "wordId": "1061780",
+    "pt": "{'a': ['encanto']}"
+  },
+  {
+    "kana": "シャフト",
+    "en": [
+      "mine shaft",
+      "pit"
+    ],
+    "senseUid": "2d730259-145d-4032-b636-274119df6e3f",
+    "wordId": "1061700",
+    "pt": "{'a': ['poço de mina', 'poço']}"
+  },
+  {
+    "kana": "シャレード",
+    "en": [
+      "charades (game)"
+    ],
+    "senseUid": "ddfebd49-e823-4b2e-a600-8298940f87a3",
+    "wordId": "1061800",
+    "pt": "{'a': ['charadas (jogo)']}"
+  },
+  {
+    "kana": "シャワー",
+    "en": [
+      "shower"
+    ],
+    "senseUid": "a0a0e296-212f-4bc5-b010-63ab4e06ebe3",
+    "wordId": "1061820",
+    "pt": "{'a': ['chuveiro']}"
+  },
+  {
+    "kana": "シャロット",
+    "en": [
+      "shallot"
+    ],
+    "senseUid": "98e48f8b-1886-403f-8fc3-74ed114d3a4f",
+    "wordId": "1061810",
+    "pt": "{'a': ['cebolinha']}"
+  },
+  {
+    "kana": "シャン",
+    "en": [
+      "beautiful"
+    ],
+    "senseUid": "5f0cb789-5353-48fb-8d75-1481344fb62e",
+    "wordId": "1061830",
+    "pt": "{'a': ['belo', 'bonito', 'encantador']}"
+  },
+  {
+    "kana": "シャンク",
+    "en": [
+      "shank"
+    ],
+    "senseUid": "6f788779-94b9-4fba-b7ff-f8759b41bc10",
+    "wordId": "1061840",
+    "pt": "{'a': ['perna (parte de uma ferramenta ou objeto, como uma faca ou um gancho); haste; eixo']}"
+  },
+  {
+    "kana": "シャンソニエ",
+    "en": [
+      "chansonnier"
+    ],
+    "senseUid": "d9362179-17b1-4498-8058-2a0545fd35f1",
+    "wordId": "1061870",
+    "pt": "{'a': ['cansoniê']}"
+  },
+  {
+    "kana": "シャンティー",
+    "en": [
+      "Chantilly (e.g. lace)"
+    ],
+    "senseUid": "75b5a008-27a4-48f3-b980-6c43a45718b6",
+    "wordId": "1061890",
+    "pt": "{'a': ['Chantilly (por exemplo, renda)']}"
+  },
+  {
+    "kana": "シャンデリア",
+    "en": [
+      "chandelier"
+    ],
+    "senseUid": "ef37107b-cfab-4c48-8ff1-e35e7b4c942a",
+    "wordId": "1061900",
+    "pt": "{'a': ['lustre']}"
+  },
+  {
+    "kana": "シャンツェ",
+    "en": [
+      "ski jump"
+    ],
+    "senseUid": "1a4eeaf9-0017-4580-b6bc-a2c25dd2ffad",
+    "wordId": "1061880",
+    "pt": "{'a': ['rampa de salto de esqui']}"
+  },
+  {
+    "kana": "シャンパン",
+    "en": [
+      "champagne"
+    ],
+    "senseUid": "c688a328-4eff-4e1d-93f0-568161b3a7d3",
+    "wordId": "1061910",
+    "pt": "{'a': ['champanhe']}"
+  },
+  {
+    "kana": "シャンプー",
+    "en": [
+      "shampoo"
+    ],
+    "senseUid": "e8ebbb45-df15-455f-a275-2cc3a85a481a",
+    "wordId": "1061930",
+    "pt": "{'a': ['xampu']}"
+  },
+  {
+    "kana": "シュークリーム",
+    "en": [
+      "cream puff"
+    ],
+    "senseUid": "56b8df06-e80d-41ad-a1b0-af3959dd0a45",
+    "wordId": "1061950",
+    "pt": "{'a': ['bomba de creme']}"
+  },
+  {
+    "kana": "シューシャイン",
+    "en": [
+      "shoeshine"
+    ],
+    "senseUid": "f2440cdc-7958-4bf7-b6dc-536974fcdfc3",
+    "wordId": "1061960",
+    "pt": "{'a': ['engraxate']}"
+  },
+  {
+    "kana": "シューズ",
+    "en": [
+      "shoes"
+    ],
+    "senseUid": "76b3ff79-2385-4c17-91be-5cb6981f129d",
+    "wordId": "1061970",
+    "pt": "{'a': ['sapatos']}"
+  },
+  {
+    "kana": "シャム",
+    "en": [
+      "Siam (former name of Thailand)"
+    ],
+    "senseUid": "86e0c507-54ae-41fa-ac9b-bb5c62a2ab9c",
+    "wordId": "1061760",
+    "pt": "{'a': ['Sião (antigo nome da Tailândia)']}"
+  },
+  {
+    "kana": "シュート",
+    "en": [
+      "shooting (a ball)",
+      "shot (on basket, at goal, etc.)"
+    ],
+    "senseUid": "aa7c96a6-304c-479d-841a-1cf06502a771",
+    "wordId": "1061990",
+    "pt": "{'a': ['arremesso', 'chute']}"
+  },
+  {
+    "kana": "シュール",
+    "en": [
+      "surreal"
+    ],
+    "senseUid": "881c80a0-8cd2-4546-bc03-4f089ee93353",
+    "wordId": "1062010",
+    "pt": "{'a': ['surreal']}"
+  },
+  {
+    "kana": "シューベルト",
+    "en": [
+      "Schubert"
+    ],
+    "senseUid": "6ba763f6-89e2-4ed3-a11c-5f49b236dffe",
+    "wordId": "1062000",
+    "pt": "{'a': ['シューベルト']}"
+  },
+  {
+    "kana": "シュート",
+    "en": [
+      "shuuto (type of pitch commonly used in Japan)",
+      "shootball"
+    ],
+    "senseUid": "3782021d-5203-45a9-a19b-ef145673e0a4",
+    "wordId": "1061990",
+    "pt": "{'a': ['arremesso (tipo de lançamento comum no Japão)', 'bola de chute']}"
+  },
+  {
+    "kana": "シュート",
+    "en": [
+      "shoot (of a tree or plant)"
+    ],
+    "senseUid": "bb7bb7d5-9ccb-4662-9a38-10f3487131ae",
+    "wordId": "1061990",
+    "pt": "{'a': ['broto (de uma árvore ou planta)']}"
+  },
+  {
+    "kana": "シュール",
+    "en": [
+      "surrealism"
+    ],
+    "senseUid": "62f432a6-ceca-4d01-95af-6bc12acc13ac",
+    "wordId": "1062010",
+    "pt": "{'a': ['surrealismo']}"
+  },
+  {
+    "kana": "シューティングスクリプト",
+    "en": [
+      "shooting script"
+    ],
+    "senseUid": "7c72a80c-61ad-400d-ad53-c9d1fcf635f0",
+    "wordId": "1061980",
+    "pt": "{'a': ['roteiro de filmagem']}"
+  },
+  {
+    "kana": "シュルレアリスム",
+    "en": [
+      "surrealism"
+    ],
+    "senseUid": "35d63125-a780-42f0-9720-230fcf0088ad",
+    "wordId": "1062020",
+    "pt": "{'a': ['surrealismo']}"
+  },
+  {
+    "kana": "シュガーカット",
+    "en": [
+      "sugar cut"
+    ],
+    "senseUid": "fb9c740d-9e65-431a-875e-5a617f0ab0a1",
+    "wordId": "1062050",
+    "pt": "{'a': ['redução de açúcar']}"
+  },
+  {
+    "kana": "シュガー",
+    "en": [
+      "schizophrenia"
+    ],
+    "senseUid": "e9738b10-52e5-4389-a441-619c72515e7e",
+    "wordId": "1062040",
+    "pt": "{'a': ['esquizofrenia']}"
+  },
+  {
+    "kana": "シュタイナーがっこう",
+    "en": [
+      "Steiner school"
+    ],
+    "senseUid": "16249dee-8a11-4040-8f3d-7dfb4c0cced0",
+    "wordId": "1062070",
+    "pt": "{'a': ['Escola Steiner']}"
+  },
+  {
+    "kana": "シュガー",
+    "en": [
+      "sugar"
+    ],
+    "senseUid": "32a2d6e9-26de-4f47-b6a7-fdafb20055ee",
+    "wordId": "1062040",
+    "pt": "{'a': ['açúcar']}"
+  },
+  {
+    "kana": "シャンピニオン",
+    "en": [
+      "champignon"
+    ],
+    "senseUid": "80b65dd8-52bb-440a-b790-27904d71e1b9",
+    "wordId": "1061920",
+    "pt": "{'a': ['champignon']}"
+  },
+  {
+    "kana": "シュガーコート",
+    "en": [
+      "sugar coat"
+    ],
+    "senseUid": "ff8871bb-1e29-4b31-a285-a013242be36d",
+    "wordId": "1062060",
+    "pt": "{'a': ['adoçar', 'dourar a pílula', 'suavizar']}"
+  },
+  {
+    "kana": "シュテムボーゲン",
+    "en": [
+      "stem turn"
+    ],
+    "senseUid": "c86b6d7e-7b74-424f-9d69-88e64298cd6a",
+    "wordId": "1062090",
+    "pt": "{'a': ['virada de haste']}"
+  },
+  {
+    "kana": "シュトルムウントドランク",
+    "en": [
+      "Sturm und Drang",
+      "storm and stress"
+    ],
+    "senseUid": "1fee83c9-3181-4edd-9105-88c8960989f6",
+    "wordId": "1062100",
+    "pt": "{'a': ['Sturm und Drang', 'tempestade e ímpeto']}"
+  },
+  {
+    "kana": "シュナップス",
+    "en": [
+      "liquor"
+    ],
+    "senseUid": "362ba1c7-69c3-432d-b045-7ca20485c0e5",
+    "wordId": "1062110",
+    "pt": "{'a': ['licor']}"
+  },
+  {
+    "kana": "シュプール",
+    "en": [
+      "trace (e.g. from skis)"
+    ],
+    "senseUid": "dc95a281-1fb4-44ed-92f2-5c8e51f1b8b3",
+    "wordId": "1062130",
+    "pt": "{'a': ['rastro (por exemplo, de esquis)']}"
+  },
+  {
+    "kana": "シュノーケル",
+    "en": [
+      "snorkel"
+    ],
+    "senseUid": "81b7316e-b1ea-4a7c-a482-33f79bb82481",
+    "wordId": "1062120",
+    "pt": "{'a': ['snorkel', 'respirador', 'tubo de respiração']}"
+  },
+  {
+    "kana": "シュプレヒコール",
+    "en": [
+      "choral chanting"
+    ],
+    "senseUid": "839e9bf7-2587-421d-9930-cc854c321bf0",
+    "wordId": "1062140",
+    "pt": "{'a': ['canto coral', 'grito coletivo']}"
+  },
+  {
+    "kana": "シュプレヒコール",
+    "en": [
+      "chanting in chorus (e.g. at a demonstration)"
+    ],
+    "senseUid": "8108798d-27d5-4247-9752-2bd7525c6e25",
+    "wordId": "1062140",
+    "pt": "{'a': ['grito de protesto em coro', 'canto coletivo (por exemplo, em uma manifestação)']}"
+  },
+  {
+    "kana": "シュア",
+    "en": [
+      "sure",
+      "certain",
+      "trustworthy"
+    ],
+    "senseUid": "8017d68d-660c-4668-899b-fc31b56ecfb0",
+    "wordId": "1062030",
+    "pt": "{'a': ['seguro', 'certo', 'confiável']}"
+  },
+  {
+    "kana": "シュラフ",
+    "en": [
+      "sleeping bag"
+    ],
+    "senseUid": "277b1700-2d46-4e72-a04c-3a31393f5927",
+    "wordId": "1062180",
+    "pt": "{'a': ['saco de dormir']}"
+  },
+  {
+    "kana": "シュポシュポ",
+    "en": [
+      "pump-pump"
+    ],
+    "senseUid": "f672b3b5-b72f-4253-a965-bb215dffa095",
+    "wordId": "1062150",
+    "pt": "{'a': ['chuponchupon']}"
+  },
+  {
+    "kana": "ショー",
+    "en": [
+      "show",
+      "exhibition",
+      "expo",
+      "fair",
+      "convention"
+    ],
+    "senseUid": "3522d56f-4b6c-41ed-990d-03bc3f4eb12b",
+    "wordId": "1062240",
+    "pt": "{'a': ['show', 'exposição', 'expo', 'feira', 'convenção']}"
+  },
+  {
+    "kana": "ショーウィンドウ",
+    "en": [
+      "display window",
+      "shop window",
+      "store window"
+    ],
+    "senseUid": "9e90873a-c1c6-43f6-8ee9-b0baf6ab33ef",
+    "wordId": "1062250",
+    "pt": "{'a': ['vitrine', 'janela de exposição', 'janela de loja']}"
+  },
+  {
+    "kana": "ショー",
+    "en": [
+      "TV show"
+    ],
+    "senseUid": "0e5f5cd9-e470-4e9b-b250-32108852f562",
+    "wordId": "1062240",
+    "pt": "{'a': ['programa de TV']}"
+  },
+  {
+    "kana": "シュレッダー",
+    "en": [
+      "shredder"
+    ],
+    "senseUid": "7cef468d-65db-4b56-8ca2-a2fb1a907bfa",
+    "wordId": "1062230",
+    "pt": "{'a': ['fragmentadora']}"
+  },
+  {
+    "kana": "シュミットカメラ",
+    "en": [
+      "Schmidt camera"
+    ],
+    "senseUid": "0af909ab-268d-4298-bc0c-727ec1ccb473",
+    "wordId": "1062170",
+    "pt": "{'a': ['Câmera Schmidt']}"
+  },
+  {
+    "kana": "シュリンプ",
+    "en": [
+      "shrimp"
+    ],
+    "senseUid": "b61de8db-0585-43c1-8e8d-5ae05f099f39",
+    "wordId": "1062200",
+    "pt": "{'a': ['camarão']}"
+  },
+  {
+    "kana": "ショー",
+    "en": [
+      "show",
+      "performance"
+    ],
+    "senseUid": "0710b194-138e-4ffb-8fc1-6e99bc4966f0",
+    "wordId": "1062240",
+    "pt": "{'a': ['apresentação', 'espetáculo']}"
+  }
+]

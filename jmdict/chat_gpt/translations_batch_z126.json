@@ -1,0 +1,962 @@
+[
+  {
+    "kana": "ひきあける",
+    "en": [
+      "to pull open"
+    ],
+    "senseUid": "08cc320d-ec53-41b8-84bf-d07ab5b6a3d5",
+    "wordId": "2520620",
+    "pt": "{'a': ['abrir puxando', 'puxar para abrir']}"
+  },
+  {
+    "kana": "しぼうしゅ",
+    "en": [
+      "lipoma",
+      "adipose tumor"
+    ],
+    "senseUid": "002e562e-0f7c-4f59-ab1c-d7263366ff46",
+    "wordId": "2520700",
+    "pt": "{\n  \"a\": [\n    \"tumor adiposo\",\n    \"lipoma\"\n  ]\n}"
+  },
+  {
+    "kana": "しゃちゅうはく",
+    "en": [
+      "spending the night in a car, train, bus, etc.",
+      "car camping"
+    ],
+    "senseUid": "1f2fad6b-226a-4657-b2a0-acb818588da0",
+    "wordId": "2520720",
+    "pt": "{'a': ['passar a noite em um carro, trem, ônibus, etc.', 'acampar no carro']}"
+  },
+  {
+    "kana": "たきたて",
+    "en": [
+      "freshly boiled (rice)",
+      "freshly cooked",
+      "steaming",
+      "piping hot"
+    ],
+    "senseUid": "addd5dd8-02b3-474b-92f0-2fb901876d00",
+    "wordId": "2520690",
+    "pt": "{'a': ['arroz recém-cozido', 'acabado de cozinhar', 'fresco e quente', 'fumegante', 'saindo do fogo']}"
+  },
+  {
+    "kana": "いんぷく",
+    "en": [
+      "concealment"
+    ],
+    "senseUid": "1d5ba7cd-92a0-47f0-aa73-549bc843735f",
+    "wordId": "2520670",
+    "pt": "{\n  \"a\": [\"ocultação\", \"esconder\", \"esconderijo\", \"dissimulação\"]\n}"
+  },
+  {
+    "kana": "まくらカバー",
+    "en": [
+      "pillowcase"
+    ],
+    "senseUid": "4a05ea5b-b716-4adf-9407-ff8580de5823",
+    "wordId": "2520750",
+    "pt": "{'a': ['fronha']}"
+  },
+  {
+    "kana": "グリグリめだま",
+    "en": [
+      "big and round eyes",
+      "googly eyes"
+    ],
+    "senseUid": "1ecb790d-9fe8-469e-be09-e8d4664e8250",
+    "wordId": "2520710",
+    "pt": "{'a': ['olhos grandes e redondos', 'olhos esbugalhados']}"
+  },
+  {
+    "kana": "はいもどる",
+    "en": [
+      "to crawl back to"
+    ],
+    "senseUid": "954ed07a-cf8d-4b78-8f34-34d8b73a69e7",
+    "wordId": "2520770",
+    "pt": "{'a': ['voltar rastejando']}"
+  },
+  {
+    "kana": "まげのばし",
+    "en": [
+      "bending and stretching"
+    ],
+    "senseUid": "2a11a9ea-abf0-45a9-8f53-b01d52b74dfd",
+    "wordId": "2520740",
+    "pt": "{'a': ['flexionar e esticar']}"
+  },
+  {
+    "kana": "とぼけがお",
+    "en": [
+      "face of (feigned) innocence",
+      "blank look"
+    ],
+    "senseUid": "46ddbf90-bad9-4386-b2a0-1cb542774cd1",
+    "wordId": "2520780",
+    "pt": "{'a': ['cara de inocente (fingida)', 'expressão de quem não sabe de nada', 'olhar vazio']}"
+  },
+  {
+    "kana": "ひっかかり",
+    "en": [
+      "hold",
+      "catch"
+    ],
+    "senseUid": "a5a8ba84-7ae4-4845-8283-06e57b47818d",
+    "wordId": "2520530",
+    "pt": "{'a': ['obstáculo', 'impedimento', 'entrave', 'empecilho', 'atrapalho', 'algo que prende', 'algo que agarra']}"
+  },
+  {
+    "kana": "ピクピク",
+    "en": [
+      "twitching"
+    ],
+    "senseUid": "b9722e8e-6703-4b42-b063-b2eaa26809fd",
+    "wordId": "2520790",
+    "pt": "{'a': ['tremendo', 'espasmo', 'contração', 'piscando', 'repuxando']}"
+  },
+  {
+    "kana": "どさり",
+    "en": [
+      "with a thud"
+    ],
+    "senseUid": "b94da35c-994b-4b22-8c18-9574682d9507",
+    "wordId": "2520810",
+    "pt": "{'a': ['com um baque']}"
+  },
+  {
+    "kana": "すい",
+    "en": [
+      "lightly",
+      "nimbly"
+    ],
+    "senseUid": "01e5a6d8-9a92-412b-906c-cfcd71ac0694",
+    "wordId": "2520820",
+    "pt": "{'a': ['levemente', 'ágilmente']}"
+  },
+  {
+    "kana": "うさぎとび",
+    "en": [
+      "jumping along in a squatting position",
+      "bunny-hopping"
+    ],
+    "senseUid": "0e676416-10f6-4a91-9d58-93faf3e1aa8d",
+    "wordId": "2520730",
+    "pt": "{'a': ['pular agachado', 'pular como um coelho']}"
+  },
+  {
+    "kana": "ぴくんぴくん",
+    "en": [
+      "with a twitch",
+      "twitchingly"
+    ],
+    "senseUid": "14d359e9-c379-4aed-b15f-e7a2e9c1916f",
+    "wordId": "2520800",
+    "pt": "{\n  \"a\": [\"com um espasmo\", \"espasmodicamente\"]\n}"
+  },
+  {
+    "kana": "ひとふさ",
+    "en": [
+      "one tuft (of hair, threads, etc.)"
+    ],
+    "senseUid": "5f9d79db-dcd8-4f2a-af97-d6583655479f",
+    "wordId": "2520840",
+    "pt": "{\n  \"a\": [\"um tufo (de cabelo, fios, etc.)\"]\n}"
+  },
+  {
+    "kana": "ずい",
+    "en": [
+      "straightforwardly",
+      "readily",
+      "without hesitation"
+    ],
+    "senseUid": "f093d213-7ffd-4cc9-8467-2c96881ae0e2",
+    "wordId": "2520830",
+    "pt": "{'a': ['diretamente', 'prontamente', 'sem hesitação']}"
+  },
+  {
+    "kana": "ひとふさ",
+    "en": [
+      "one segment (of a tangerine, etc.)",
+      "one section"
+    ],
+    "senseUid": "0a0bd2c2-6105-41a8-bee7-142c81007f22",
+    "wordId": "2520840",
+    "pt": "{\n  \"a\": [\n    \"um gomo (de tangerina, etc.)\",\n    \"um segmento\"\n  ]\n}"
+  },
+  {
+    "kana": "ぼうすいせい",
+    "en": [
+      "waterproof property"
+    ],
+    "senseUid": "99837c64-5e73-439a-90c1-010ceee3b9ad",
+    "wordId": "2520870",
+    "pt": "{'a': ['propriedade de impermeabilidade']}"
+  },
+  {
+    "kana": "うらぶた",
+    "en": [
+      "back cover (e.g. camera, watch, etc.)"
+    ],
+    "senseUid": "7cb5aa34-6b77-4485-967d-51c171637373",
+    "wordId": "2520850",
+    "pt": "{'a': ['tampa traseira', 'tampa de trás', 'cobertura traseira']}"
+  },
+  {
+    "kana": "やくだな",
+    "en": [
+      "medicine cabinet"
+    ],
+    "senseUid": "a43d0c70-8840-43d5-9b5a-a8bd22600919",
+    "wordId": "2520890",
+    "pt": "{'a': ['armário de remédios']}"
+  },
+  {
+    "kana": "かんかん",
+    "en": [
+      "quietly",
+      "self-composed"
+    ],
+    "senseUid": "74d1977d-aa8a-499d-b0be-c8902eda93b0",
+    "wordId": "2520880",
+    "pt": "{\n  \"a\": [\"calmamente\", \"com serenidade\", \"tranquilamente\", \"de forma composta\"]\n}"
+  },
+  {
+    "kana": "ぼうすいぎ",
+    "en": [
+      "waterproof clothing"
+    ],
+    "senseUid": "ee464b2d-9145-4c77-bdc3-fa1fc8c5a3d7",
+    "wordId": "2520860",
+    "pt": "{'a': ['roupa impermeável']}"
+  },
+  {
+    "kana": "おおのり",
+    "en": [
+      "type of rhythm for noh songs"
+    ],
+    "senseUid": "1c7e633b-201f-4693-bbd6-3aeaedd97924",
+    "wordId": "2520930",
+    "pt": "{\n  \"a\": [\n    \"tipo de ritmo para canções noh\"\n  ]\n}"
+  },
+  {
+    "kana": "おおのりき",
+    "en": [
+      "good mood",
+      "excited mood"
+    ],
+    "senseUid": "c93d9070-6a23-4881-b74f-d567f069e58f",
+    "wordId": "2520940",
+    "pt": "{'a': ['bom astral', 'clima animado']}"
+  },
+  {
+    "kana": "ポトリ",
+    "en": [
+      "with a plop",
+      "with a plonk",
+      "with a plunk",
+      "with a flop"
+    ],
+    "senseUid": "82294713-2354-4e48-ae8f-d303727b8022",
+    "wordId": "2520900",
+    "pt": "{'a': ['com um ploft', 'com um ploc', 'com um plunk', 'com um flop']}"
+  },
+  {
+    "kana": "ドシンドシン",
+    "en": [
+      "walking (with heavy steps)",
+      "tramping",
+      "lumbering",
+      "clumping"
+    ],
+    "senseUid": "6141f3c2-d42a-4fb3-87ad-0c38fc59ff26",
+    "wordId": "2520920",
+    "pt": "{\n  \"a\": [\n    \"andando com passos pesados\",\n    \"caminhando de forma barulhenta\",\n    \"pisando forte\",\n    \"andando de maneira desajeitada\"\n  ]\n}"
+  },
+  {
+    "kana": "ひとふさ",
+    "en": [
+      "one bunch (of grapes, bananas, etc.)",
+      "one cluster (e.g. of flowers)"
+    ],
+    "senseUid": "43be722e-9396-41dc-a68a-fa8a66f07d36",
+    "wordId": "2520840",
+    "pt": "{'a': ['um cacho (de uvas, bananas, etc.)', 'um agrupamento (por exemplo, de flores)']}"
+  },
+  {
+    "kana": "スポーツマンせいしん",
+    "en": [
+      "sportsmanship"
+    ],
+    "senseUid": "477ebea8-c959-4780-a578-bfd679dec3c2",
+    "wordId": "2520980",
+    "pt": "{'a': ['espírito esportivo']}"
+  },
+  {
+    "kana": "くのじにまげる",
+    "en": [
+      "to bend over in the shape of the hiragana character ku",
+      "to bend forward from the waist to form a chevron shape"
+    ],
+    "senseUid": "0b82cb3a-ad56-4f62-8250-cd21f757236b",
+    "wordId": "2520950",
+    "pt": "{'a': ['curvar-se formando o caractere hiragana く', 'inclinar-se para frente a partir da cintura formando um ângulo (como um chevron)']}"
+  },
+  {
+    "kana": "ゼーゼーいう",
+    "en": [
+      "to wheeze",
+      "to breathe with difficulty",
+      "to gasp"
+    ],
+    "senseUid": "c4059d26-16ea-4ec1-8cf9-901b9f29ff94",
+    "wordId": "2520960",
+    "pt": "{\n  \"a\": [\n    \"ofegar\",\n    \"respirar com dificuldade\",\n    \"arfar\"\n  ]\n}"
+  },
+  {
+    "kana": "おおのり",
+    "en": [
+      "excitedly"
+    ],
+    "senseUid": "d37af994-c5e7-4986-8462-cc0dc5589231",
+    "wordId": "2520930",
+    "pt": "{\n  \"a\": [\"empolgado\", \"com entusiasmo\", \"animadamente\"]\n}"
+  },
+  {
+    "kana": "マッチばこ",
+    "en": [
+      "matchbox"
+    ],
+    "senseUid": "44ffb4ab-33ef-4603-a950-73e1d416c52a",
+    "wordId": "2521000",
+    "pt": "{'a': ['caixa de fósforos']}"
+  },
+  {
+    "kana": "ひゆうこう",
+    "en": [
+      "unfriendly"
+    ],
+    "senseUid": "97baa6ed-2658-4928-a71d-5383b6b79e8b",
+    "wordId": "2520990",
+    "pt": "{'a': ['não amigável', 'hostil', 'antipático', 'inamistoso']}"
+  },
+  {
+    "kana": "かまくびをもたげる",
+    "en": [
+      "to raise one's head (esp. of a snake)"
+    ],
+    "senseUid": "c51a3a9f-b999-402a-953a-189358b68f28",
+    "wordId": "2521020",
+    "pt": "{'a': ['levantar a cabeça (especialmente de uma cobra)']}"
+  },
+  {
+    "kana": "ちゅうどくせい",
+    "en": [
+      "poisonous",
+      "toxic"
+    ],
+    "senseUid": "b548187d-1cf2-4106-873f-ec3740f58dba",
+    "wordId": "2521040",
+    "pt": "{'a': ['tóxico', 'venenoso']}"
+  },
+  {
+    "kana": "シューシュー",
+    "en": [
+      "hiss",
+      "fizz",
+      "woosh",
+      "swish",
+      "whiz"
+    ],
+    "senseUid": "d2c1134c-a5d1-4ecc-ada5-4fbb27280d04",
+    "wordId": "2521010",
+    "pt": "{\n  \"a\": [\n    \"chiado\",\n    \"fervilhar\",\n    \"assovio\",\n    \"sussurrar\",\n    \"zunido\"\n  ]\n}"
+  },
+  {
+    "kana": "イトウ",
+    "en": [
+      "Japanese huchen (Hucho perryi)"
+    ],
+    "senseUid": "bf985ad8-ff78-4924-a65e-7d852285eab4",
+    "wordId": "2521030",
+    "pt": "{'a': ['huchen japonês (Hucho perryi)']}"
+  },
+  {
+    "kana": "ちゅうどくせい",
+    "en": [
+      "addictiveness"
+    ],
+    "senseUid": "f3a44510-b6ff-4780-b52b-a565962051b0",
+    "wordId": "2521040",
+    "pt": "{'a': ['aditividade', 'potencial de vício', 'caráter viciante', 'tendência a causar dependência']}"
+  },
+  {
+    "kana": "しょくみんちじだい",
+    "en": [
+      "colonial period"
+    ],
+    "senseUid": "1a74e8a7-e4b2-476a-9523-7cd46ae579e8",
+    "wordId": "2521070",
+    "pt": "{\n  \"a\": [\"período colonial\"]\n}"
+  },
+  {
+    "kana": "アトリエめぐり",
+    "en": [
+      "art studio visits"
+    ],
+    "senseUid": "d3750f62-dc8f-4d17-876d-ac992a813ed8",
+    "wordId": "2521080",
+    "pt": "{'a': ['visitas a ateliês de arte']}"
+  },
+  {
+    "kana": "うみのもくずとなる",
+    "en": [
+      "to be drowned at sea"
+    ],
+    "senseUid": "37679506-c449-43d5-a454-0afe47b85654",
+    "wordId": "2521050",
+    "pt": "{'a': ['morrer afogado no mar', 'ser engolido pelo mar', 'perecer no mar']}"
+  },
+  {
+    "kana": "にじゅうスパイ",
+    "en": [
+      "double agent"
+    ],
+    "senseUid": "c62b6582-f5c4-4a40-be8b-73393edf49e0",
+    "wordId": "2521100",
+    "pt": "{'a': ['agente duplo']}"
+  },
+  {
+    "kana": "ながなく",
+    "en": [
+      "to not be worthy of the reputation (e.g. restaurant, Diet member, etc.)",
+      "to not be worth the name",
+      "to not deserve to be called"
+    ],
+    "senseUid": "9ee3ea4a-6704-4bff-978f-4846437205ee",
+    "wordId": "2521090",
+    "pt": "{\n  \"a\": [\n    \"não ser digno da reputação (por exemplo, restaurante, membro da Dieta, etc.)\",\n    \"não estar à altura do nome\",\n    \"não merecer ser chamado\"\n  ]\n}"
+  },
+  {
+    "kana": "なんばんぼうえき",
+    "en": [
+      "Nanban trade",
+      "Japanese trade with Spain and Portugal (1543-1641)"
+    ],
+    "senseUid": "8bb5c099-f6a9-4fbc-a1c0-d4971ae14c2e",
+    "wordId": "2521110",
+    "pt": "{'a': ['Comércio Nanban', 'Comércio japonês com Espanha e Portugal (1543-1641)']}"
+  },
+  {
+    "kana": "チェスばん",
+    "en": [
+      "chessboard"
+    ],
+    "senseUid": "a2210dca-f72f-4f74-978a-4a9b8deced87",
+    "wordId": "2521120",
+    "pt": "{'a': ['tabuleiro de xadrez']}"
+  },
+  {
+    "kana": "バラクラバ",
+    "en": [
+      "balaclava"
+    ],
+    "senseUid": "8f481cad-38e4-4b40-a2d8-64810a50797b",
+    "wordId": "2521150",
+    "pt": "{'a': ['balaclava']}"
+  },
+  {
+    "kana": "もどかしげに",
+    "en": [
+      "fretfully",
+      "impatiently"
+    ],
+    "senseUid": "3e21285c-97cc-413a-a0e2-97425a240852",
+    "wordId": "2521140",
+    "pt": "{'a': ['com impaciência', 'de modo impaciente', 'inquietamente', 'com frustração', 'de forma ansiosa']}"
+  },
+  {
+    "kana": "よせあう",
+    "en": [
+      "to press against each other",
+      "to huddle together"
+    ],
+    "senseUid": "62e289d5-b33a-40cb-b322-1a935080d403",
+    "wordId": "2521130",
+    "pt": "{'a': ['se encostar um no outro', 'se juntar apertado', 'se aglomerar', 'se amontoar juntos']}"
+  },
+  {
+    "kana": "はやうち",
+    "en": [
+      "fast typing"
+    ],
+    "senseUid": "3d519543-f191-49e8-930a-2138093baaa1",
+    "wordId": "2521190",
+    "pt": "{'a': ['digitação rápida']}"
+  },
+  {
+    "kana": "しょくばをはなれる",
+    "en": [
+      "to leave one's post",
+      "to walk out on one's job"
+    ],
+    "senseUid": "e4611389-79b2-40de-a435-3f0baae5997c",
+    "wordId": "2521180",
+    "pt": "{'a': ['deixar o posto', 'abandonar o trabalho']}"
+  },
+  {
+    "kana": "にわとりごや",
+    "en": [
+      "henhouse",
+      "chicken coop"
+    ],
+    "senseUid": "b8550b89-a38b-432a-97db-7af27f4ca3c8",
+    "wordId": "2521160",
+    "pt": "{'a': ['galinheiro', 'chiqueiro de galinhas']}"
+  },
+  {
+    "kana": "ばをはなれる",
+    "en": [
+      "to leave (a scene)",
+      "to step away"
+    ],
+    "senseUid": "213f1521-da2e-4701-b6af-c3d4343a05c9",
+    "wordId": "2521170",
+    "pt": "{'a': ['sair de cena', 'afastar-se', 'deixar o local']}"
+  },
+  {
+    "kana": "はやうち",
+    "en": [
+      "fast beating",
+      "fast drumming"
+    ],
+    "senseUid": "31e03048-bb03-4848-8510-7ac5e56016c4",
+    "wordId": "2521190",
+    "pt": "{\n  \"a\": [\n    \"batida rápida\",\n    \"tambores rápidos\"\n  ]\n}"
+  },
+  {
+    "kana": "ひげんじつ",
+    "en": [
+      "unreality"
+    ],
+    "senseUid": "1f10d897-3c65-463c-8617-5938c94ae040",
+    "wordId": "2521220",
+    "pt": "{'a': ['irrealidade']}"
+  },
+  {
+    "kana": "ひげんじつせい",
+    "en": [
+      "unreality"
+    ],
+    "senseUid": "6f873407-abd9-4d15-8cfb-6829dcdf3668",
+    "wordId": "2521230",
+    "pt": "{\n  \"a\": [\"irrealidade\"]\n}"
+  },
+  {
+    "kana": "れいぞくこく",
+    "en": [
+      "subject nation",
+      "subordinate state",
+      "dependency"
+    ],
+    "senseUid": "6bcd3bd0-6858-4502-a8ef-3539f19eb82d",
+    "wordId": "2521210",
+    "pt": "{'a': ['nação sujeita', 'estado subordinado', 'dependência']}"
+  },
+  {
+    "kana": "はやうち",
+    "en": [
+      "quick shooting",
+      "quick shot",
+      "fast draw"
+    ],
+    "senseUid": "98a1cf8a-1cde-4320-a1c8-345a2c2e6cfe",
+    "wordId": "2521200",
+    "pt": "{\n  \"a\": [\n    \"disparo rápido\",\n    \"tiro rápido\",\n    \"sacar rápido\"\n  ]\n}"
+  },
+  {
+    "kana": "うみのもくずときえる",
+    "en": [
+      "to be drowned at sea"
+    ],
+    "senseUid": "2ca39a56-47fb-43ca-8880-f8d81e8d83b7",
+    "wordId": "2521060",
+    "pt": "{'a': ['desaparecer como espuma do mar', 'sumir sem deixar vestígios', 'ser levado pelas ondas', 'ser tragado pelo mar']}"
+  },
+  {
+    "kana": "へいきょく",
+    "en": [
+      "chanting of the Heike Monogatari to biwa accompaniment"
+    ],
+    "senseUid": "8fc5442a-89b3-4408-994f-a22cd37027f9",
+    "wordId": "2521260",
+    "pt": "{'a': ['recitação do Heike Monogatari com acompanhamento de biwa']}"
+  },
+  {
+    "kana": "かたりく",
+    "en": [
+      "story",
+      "tale"
+    ],
+    "senseUid": "bdf7941b-3f78-4047-ab2a-5ccf80606a2e",
+    "wordId": "2521250",
+    "pt": "{\n  \"a\": [\n    \"relato\",\n    \"narrativa\",\n    \"conto\",\n    \"história\",\n    \"fábula\",\n    \"lenda\"\n  ]\n}"
+  },
+  {
+    "kana": "りょうりゃく",
+    "en": [
+      "understanding",
+      "comprehending"
+    ],
+    "senseUid": "43d401ad-a31d-4ba3-b9de-e9e1f68bd9e6",
+    "wordId": "2521280",
+    "pt": "{'a': ['compreensão', 'entendimento']}"
+  },
+  {
+    "kana": "へいけびわ",
+    "en": [
+      "chanting of the Heike Monogatari to biwa accompaniment"
+    ],
+    "senseUid": "1498a893-fc20-43ae-966c-6f0c20955bcd",
+    "wordId": "2521270",
+    "pt": "{\n  \"a\": [\n    \"recitação do Heike Monogatari com acompanhamento de biwa\"\n  ]\n}"
+  },
+  {
+    "kana": "きょういくにかんするちょくご",
+    "en": [
+      "Imperial Rescript on Education (1890)"
+    ],
+    "senseUid": "34890828-7134-43df-b601-97a0bb72014b",
+    "wordId": "2521290",
+    "pt": "{\n  \"a\": [\n    \"Rescrito Imperial sobre a Educação (1890)\"\n  ]\n}"
+  },
+  {
+    "kana": "せいむ",
+    "en": [
+      "worldly affairs",
+      "public affairs"
+    ],
+    "senseUid": "450130f7-b359-4577-86eb-4ab6ee6b2f01",
+    "wordId": "2521310",
+    "pt": "{'a': ['assuntos mundanos', 'assuntos públicos']}"
+  },
+  {
+    "kana": "ぐんじんちょくゆ",
+    "en": [
+      "Imperial Rescript to Soldiers and Sailors (1882)"
+    ],
+    "senseUid": "39cf32b8-93a9-4e49-b080-e7bba4d198c7",
+    "wordId": "2521320",
+    "pt": "{'a': ['Rescrito Imperial aos Soldados e Marinheiros (1882)']}"
+  },
+  {
+    "kana": "とっき",
+    "en": [
+      "one's talent and virtue",
+      "noble character"
+    ],
+    "senseUid": "79705dc3-47be-4d16-9475-f72fed511941",
+    "wordId": "2521300",
+    "pt": "{\n  \"a\": [\n    \"talento e virtude de alguém\",\n    \"caráter nobre\"\n  ]\n}"
+  },
+  {
+    "kana": "ごうかん",
+    "en": [
+      "type of picture book popular in the late Edo period"
+    ],
+    "senseUid": "ec54ba8d-6ada-40b0-b328-08727d8666a3",
+    "wordId": "2521330",
+    "pt": "{\n  \"a\": [\n    \"tipo de livro ilustrado popular no final do período Edo\"\n  ]\n}"
+  },
+  {
+    "kana": "ぼしんしょうしょ",
+    "en": [
+      "Imperial Rescript of 1908"
+    ],
+    "senseUid": "3b152afc-57be-44ad-80b1-00ffadc1f03c",
+    "wordId": "2521360",
+    "pt": "{\n  \"a\": [\n    \"Rescrito Imperial de 1908\"\n  ]\n}"
+  },
+  {
+    "kana": "きかこうがく",
+    "en": [
+      "geometrical optics"
+    ],
+    "senseUid": "6df1d8dc-d61c-4e76-b203-5e632849d02e",
+    "wordId": "2521400",
+    "pt": "{'a': ['óptica geométrica']}"
+  },
+  {
+    "kana": "さとりをひらく",
+    "en": [
+      "to achieve enlightenment",
+      "to attain enlightenment"
+    ],
+    "senseUid": "7c60f8be-e43c-4d43-a3d1-7795f44b41f3",
+    "wordId": "2521390",
+    "pt": "{'a': ['alcançar a iluminação', 'atingir a iluminação']}"
+  },
+  {
+    "kana": "すさのお",
+    "en": [
+      "Susanoo (deity, younger brother to Amaterasu)",
+      "Susanoo-no-Mikoto"
+    ],
+    "senseUid": "e0839532-0c6e-40da-8f10-b14753fe4a98",
+    "wordId": "2521370",
+    "pt": "{\n  \"a\": [\n    \"Susanoo (divindade, irmão mais novo de Amaterasu)\",\n    \"Susanoo-no-Mikoto\"\n  ]\n}"
+  },
+  {
+    "kana": "そく",
+    "en": [
+      "fascicle"
+    ],
+    "senseUid": "8c9b73df-148f-49f8-84e4-9f04918a5984",
+    "wordId": "2521420",
+    "pt": "{\n  \"a\": [\n    \"fascículo\"\n  ]\n}"
+  },
+  {
+    "kana": "かたりく",
+    "en": [
+      "unaccompanied part of the Heike Monogatari chanting"
+    ],
+    "senseUid": "61a09e53-570c-4d0c-9dee-627d64479793",
+    "wordId": "2521250",
+    "pt": "{\n  \"a\": [\n    \"parte solo da recitação do Heike Monogatari\"\n  ]\n}"
+  },
+  {
+    "kana": "そく",
+    "en": [
+      "handbreadth (unit for measuring the length of arrows)"
+    ],
+    "senseUid": "59febe9a-78ea-4c6b-853d-84170814d8a9",
+    "wordId": "2521420",
+    "pt": "{'a': ['palmo (unidade para medir o comprimento de flechas)']}"
+  },
+  {
+    "kana": "すをくう",
+    "en": [
+      "to build a nest",
+      "to nest"
+    ],
+    "senseUid": "f8db73be-3a0c-4601-a2f1-729d54a471f0",
+    "wordId": "2521440",
+    "pt": "{\n  \"a\": [\"fazer ninho\", \"construir um ninho\", \"nidificar\"]\n}"
+  },
+  {
+    "kana": "そく",
+    "en": [
+      "lattice"
+    ],
+    "senseUid": "cb2d0465-ca76-4a30-aeef-1a0c31db5294",
+    "wordId": "2521420",
+    "pt": "{\n  \"a\": [\"grade\", \"grelha\", \"trama\", \"estrutura de ripas\", \"estrutura de barras\", \"lattice (estrutura reticulada)\"]\n}"
+  },
+  {
+    "kana": "ちょゆう",
+    "en": [
+      "reckless courage",
+      "foolhardiness",
+      "temerity"
+    ],
+    "senseUid": "e22efeaa-48ef-415d-8cab-2fa9ab8260f5",
+    "wordId": "2521430",
+    "pt": "{\n  \"a\": [\n    \"coragem imprudente\",\n    \"ousadia temerária\",\n    \"audácia insensata\"\n  ]\n}"
+  },
+  {
+    "kana": "ひきめ",
+    "en": [
+      "large, perforated, turnip-shaped arrowhead cover made of Japanese bigleaf magnolia or paulownia",
+      "harmless arrow affixed with such a cover (that whistles when shot and is used to drive off evil spirits)"
+    ],
+    "senseUid": "425811a4-0d30-48fd-ab16-d4648fc4a194",
+    "wordId": "2521410",
+    "pt": "{'a': ['cobertura de ponta de flecha grande, perfurada e em forma de nabo, feita de magnólia japonesa ou paulownia', 'flecha inofensiva equipada com essa cobertura (que assobia ao ser disparada e é usada para afastar maus espíritos)']}"
+  },
+  {
+    "kana": "だんぎぼん",
+    "en": [
+      "dangibon",
+      "type of humorous book popular in the Edo period (from the 1750s)"
+    ],
+    "senseUid": "8668af64-d39d-4eac-ad8d-0e82083d39cd",
+    "wordId": "2521340",
+    "pt": "{'a': ['dangibon', 'tipo de livro humorístico popular no período Edo (a partir da década de 1750)']}"
+  },
+  {
+    "kana": "へいけびわ",
+    "en": [
+      "Heike biwa",
+      "Heike lute",
+      "biwa with 4 strings and 5 frets, esp. for accompanying the Heike Monogatari"
+    ],
+    "senseUid": "6eeba21a-1df2-499c-893a-f723625cfc05",
+    "wordId": "2521270",
+    "pt": "{\n  \"a\": [\n    \"Heike biwa\",\n    \"biwa Heike\",\n    \"biwa de Heike\",\n    \"alaúde Heike\",\n    \"alaúde biwa de Heike\",\n    \"biwa com 4 cordas e 5 trastes, especialmente usada para acompanhar o Heike Monogatari\"\n  ]\n}"
+  },
+  {
+    "kana": "そく",
+    "en": [
+      "counter for large bundles (e.g. 10 sheafs of rice, 200 sheets of calligraphy paper, 20 whistling arrows, 100 fish)"
+    ],
+    "senseUid": "bb6cb604-84c3-4bc1-9292-e74b6d7a1983",
+    "wordId": "2521420",
+    "pt": "{'a': ['contador para grandes feixes (ex.: 10 feixes de arroz, 200 folhas de papel de caligrafia, 20 flechas sibilantes, 100 peixes)']}"
+  },
+  {
+    "kana": "せいがくきょく",
+    "en": [
+      "vocal music piece"
+    ],
+    "senseUid": "e62ede10-fffc-4770-8120-4e6b80d10e97",
+    "wordId": "2521470",
+    "pt": "{'a': ['peça de música vocal']}"
+  },
+  {
+    "kana": "しらごえ",
+    "en": [
+      "shrill voice"
+    ],
+    "senseUid": "da8f493a-cde6-4f7f-8c61-6a22b437d857",
+    "wordId": "2521520",
+    "pt": "{'a': ['voz aguda']}"
+  },
+  {
+    "kana": "こうせんそく",
+    "en": [
+      "pencil (of light rays)"
+    ],
+    "senseUid": "25afd126-05db-44e6-a32d-a07a5643c23d",
+    "wordId": "2521450",
+    "pt": "{'a': ['feixe de luz']}"
+  },
+  {
+    "kana": "ぶんこばん",
+    "en": [
+      "paperback edition"
+    ],
+    "senseUid": "2a20b798-3bcb-479e-9547-ca895cf7d686",
+    "wordId": "2521530",
+    "pt": "{'a': ['edição de bolso']}"
+  },
+  {
+    "kana": "さつま",
+    "en": [
+      "sweet potato (Ipomoea batatas)"
+    ],
+    "senseUid": "c2bfe373-b76f-4681-b972-83228c424fc2",
+    "wordId": "2521490",
+    "pt": "{'a': ['batata-doce']}"
+  },
+  {
+    "kana": "さつま",
+    "en": [
+      "Satsuma (former province located in the west of present-day Kagoshima Prefecture)"
+    ],
+    "senseUid": "3811c8d4-f724-4661-8c30-abdf863678f8",
+    "wordId": "2521490",
+    "pt": "{'a': ['Satsuma (antiga província localizada no oeste da atual Prefeitura de Kagoshima)']}"
+  },
+  {
+    "kana": "こうわか",
+    "en": [
+      "style of recitative dance popular during the Muromachi period"
+    ],
+    "senseUid": "84e53b72-1250-4b1d-ade8-ee6b2cd8bfb4",
+    "wordId": "2521480",
+    "pt": "{'a': ['estilo de dança recitativa popular durante o período Muromachi']}"
+  },
+  {
+    "kana": "しらごえ",
+    "en": [
+      "part of an unaccompanied poem (in noh)"
+    ],
+    "senseUid": "335f7b64-bda5-4a06-b4d0-f5ee0487d2d0",
+    "wordId": "2521520",
+    "pt": "{'a': ['parte de um poema recitado sem acompanhamento (no noh)']}"
+  },
+  {
+    "kana": "くどき",
+    "en": [
+      "spoken portion of a song",
+      "oral recitation"
+    ],
+    "senseUid": "75de9f50-7e75-4a22-8078-eb0c05744025",
+    "wordId": "2521460",
+    "pt": "{\n  \"a\": [\n    \"parte falada de uma canção\",\n    \"recitação oral\"\n  ]\n}"
+  },
+  {
+    "kana": "ちくぜん",
+    "en": [
+      "Chikuzen (former province located in the west of present-day Fukuoka Prefecture)"
+    ],
+    "senseUid": "da6cb384-dbfd-4ad0-8dad-1bfdd2a526bc",
+    "wordId": "2521500",
+    "pt": "{'a': ['Chikuzen (antiga província localizada no oeste da atual Prefeitura de Fukuoka)']}"
+  },
+  {
+    "kana": "くどき",
+    "en": [
+      "entreaty",
+      "imploring",
+      "begging"
+    ],
+    "senseUid": "7a806383-c137-4d01-9245-6c94ec250dc9",
+    "wordId": "2521460",
+    "pt": "{\n  \"a\": [\n    \"súplica\",\n    \"imploração\",\n    \"pedido insistente\"\n  ]\n}"
+  },
+  {
+    "kana": "しらごえ",
+    "en": [
+      "unaccompanied part of the Heike Monogatari chanting"
+    ],
+    "senseUid": "3f4086d9-60e2-4b31-9f93-ed898a77767b",
+    "wordId": "2521520",
+    "pt": "{\n  \"a\": [\n    \"parte solo do canto do Heike Monogatari\"\n  ]\n}"
+  },
+  {
+    "kana": "きゅうこくめい",
+    "en": [
+      "place names used during the ritsuryō period"
+    ],
+    "senseUid": "b4d3b7c3-ec07-4c98-a103-99681d0e6a22",
+    "wordId": "2521510",
+    "pt": "{\n  \"a\": [\n    \"nomes de lugares usados durante o período ritsuryō\"\n  ]\n}"
+  },
+  {
+    "kana": "パッツンまえがみ",
+    "en": [
+      "hairstyle with the bangs cut completely straight"
+    ],
+    "senseUid": "0ccf67a6-0ac0-4d1c-a762-77525867f8a3",
+    "wordId": "2521540",
+    "pt": "{'a': ['franja reta']}"
+  },
+  {
+    "kana": "けいりょうか",
+    "en": [
+      "quantification"
+    ],
+    "senseUid": "da7e0783-c55b-41cd-9a72-732ce5ab3be1",
+    "wordId": "2521570",
+    "pt": "{'a': ['quantificação']}"
+  },
+  {
+    "kana": "いりょうほう",
+    "en": [
+      "Medical Care Act"
+    ],
+    "senseUid": "096a4118-9406-4fe1-9014-eb8614e9f18f",
+    "wordId": "2521560",
+    "pt": "{'a': ['Lei de Assistência Médica']}"
+  },
+  {
+    "kana": "けいりょうし",
+    "en": [
+      "certified measurer"
+    ],
+    "senseUid": "734153fc-eee4-4747-b203-74816ef9c4cd",
+    "wordId": "2521580",
+    "pt": "{'a': ['medidor certificado']}"
+  }
+]

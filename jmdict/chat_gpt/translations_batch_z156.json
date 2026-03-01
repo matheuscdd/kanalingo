@@ -1,0 +1,934 @@
+[
+  {
+    "kana": "クモハダオオセ",
+    "en": [
+      "spotted wobbegong (Orectolobus maculatus, species of Australian carpet shark)"
+    ],
+    "senseUid": "1ca42591-1821-4979-86e0-5f6a6a5b1f16",
+    "wordId": "2550630",
+    "pt": "{'a': ['wobbegong-malhado (Orectolobus maculatus, espécie de tubarão-tapete australiano)']}"
+  },
+  {
+    "kana": "オオテンジクザメ",
+    "en": [
+      "tawny nurse shark (Nebrius ferrugineus, species found in the Indo-Pacific)"
+    ],
+    "senseUid": "f2888d49-329f-436b-8aad-d479a1708f4e",
+    "wordId": "2550710",
+    "pt": "{'a': ['tubarão-enfermeiro-tawny (Nebrius ferrugineus, espécie encontrada no Indo-Pacífico)']}"
+  },
+  {
+    "kana": "サンドタイガーシャーク",
+    "en": [
+      "sand tiger shark (Carcharias taurus)",
+      "gray nurse shark"
+    ],
+    "senseUid": "247c3f72-d79e-44f5-992c-6f59d48ecd05",
+    "wordId": "2550720",
+    "pt": "{\n  \"a\": [\n    \"tubarão-tigre-da-areia (Carcharias taurus)\",\n    \"tubarão-enfermeiro-cinzento\"\n  ]\n}"
+  },
+  {
+    "kana": "オオワニザメ",
+    "en": [
+      "smalltooth sand tiger (Odontaspis ferox)",
+      "ragged-tooth shark"
+    ],
+    "senseUid": "78f2d56a-c536-4e34-bdd4-3ffcae581737",
+    "wordId": "2550730",
+    "pt": "{\n  \"a\": [\n    \"tubarão-areia-de-dente-pequeno (Odontaspis ferox)\",\n    \"tubarão-dente-irregular\"\n  ]\n}"
+  },
+  {
+    "kana": "シロボシテンジク",
+    "en": [
+      "whitespotted bambooshark (Chiloscyllium plagiosum)",
+      "white-spotted catshark"
+    ],
+    "senseUid": "666974dc-1053-46f2-957f-1a7c9f209075",
+    "wordId": "2550680",
+    "pt": "{'a': ['tubarão-bambu-de-manchas-brancas', 'tubarão-gato-de-manchas-brancas']}"
+  },
+  {
+    "kana": "メガマウスザメ",
+    "en": [
+      "megamouth shark (Megachasma pelagios)"
+    ],
+    "senseUid": "2dfb5a47-bde9-4ebf-b9b0-bf247fbb62d4",
+    "wordId": "2550750",
+    "pt": "{'a': ['tubarão-megamouth (Megachasma pelagios)']}"
+  },
+  {
+    "kana": "バケアオザメ",
+    "en": [
+      "longfin mako (species of mackerel shark, Isurus paucus)"
+    ],
+    "senseUid": "ce04ee5f-26bd-4311-a586-e6958528e567",
+    "wordId": "2550760",
+    "pt": "{'a': ['tubarão-mako-de-barbatana-longa']}"
+  },
+  {
+    "kana": "サンゴトラザメ",
+    "en": [
+      "coral catshark (Atelomycterus marmoratus)"
+    ],
+    "senseUid": "0da48f27-b31c-4ecb-b395-4e60fb85d11d",
+    "wordId": "2550800",
+    "pt": "{'a': ['tubarão-gato-de-coral']}"
+  },
+  {
+    "kana": "マオナガ",
+    "en": [
+      "thresher (species of shark, Alopias vulpinus)"
+    ],
+    "senseUid": "d4cf381c-d01d-4b20-b9cd-ac7dad3c6be7",
+    "wordId": "2550790",
+    "pt": "{\n  \"a\": [\"tubarão-raposa\"]\n}"
+  },
+  {
+    "kana": "ニタリ",
+    "en": [
+      "pelagic thresher (Alopias pelagicus)"
+    ],
+    "senseUid": "ba07e54e-68a5-4af3-9bb8-d586411ca1f1",
+    "wordId": "2550780",
+    "pt": "{'a': ['tubarão-raposa-pelágico (Alopias pelagicus)']}"
+  },
+  {
+    "kana": "ハチワレ",
+    "en": [
+      "bigeye thresher (species of thresher shark, Alopias superciliosus)"
+    ],
+    "senseUid": "1c1b9d7d-49d8-489d-9ce7-867ea77ebb38",
+    "wordId": "2550770",
+    "pt": "{'a': ['tubarão-raposa-de-olhos-grandes (espécie de tubarão-raposa, Alopias superciliosus)']}"
+  },
+  {
+    "kana": "ホクロキンチャクフグ",
+    "en": [
+      "Canthigaster inframacula (species of pufferfish found in the Eastern Central Pacific)"
+    ],
+    "senseUid": "23e221c3-1be8-40db-9401-ae78bd06bd11",
+    "wordId": "2550810",
+    "pt": "{\n  \"a\": [\"Canthigaster inframacula (espécie de baiacu encontrada no Pacífico Central Oriental)\"]\n}"
+  },
+  {
+    "kana": "カラクサオオセ",
+    "en": [
+      "ornate wobbegong (Orectolobus ornatus, species of Western Pacific carpet shark)"
+    ],
+    "senseUid": "50f5a911-32d8-4e15-a4b3-be317e0e9453",
+    "wordId": "2550650",
+    "pt": "{\n  \"a\": [\"wobbegong ornamentado\", \"tubarão-carpetede-ornamentação (Orectolobus ornatus, espécie de tubarão-carpetede do Pacífico Ocidental)\"]\n}"
+  },
+  {
+    "kana": "ミズワニ",
+    "en": [
+      "crocodile shark (Pseudocarcharias kamoharai)"
+    ],
+    "senseUid": "72f283a0-ba2a-4c92-af23-8967ebffed02",
+    "wordId": "2550740",
+    "pt": "{'a': ['tubarão-crocodilo (Pseudocarcharias kamoharai)']}"
+  },
+  {
+    "kana": "ゴマニザ",
+    "en": [
+      "whitespotted surgeonfish (Acanthurus guttatus)"
+    ],
+    "senseUid": "11c72472-de8d-40f0-b040-29bb031036b9",
+    "wordId": "2550840",
+    "pt": "{'a': ['cirurgião-pintado (Acanthurus guttatus)']}"
+  },
+  {
+    "kana": "ゴマハギ",
+    "en": [
+      "twotone tang (Zebrasoma scopas)"
+    ],
+    "senseUid": "6538e709-1240-46c8-9bb2-b3d2aa3ca93c",
+    "wordId": "2550820",
+    "pt": "{\n  \"a\": [\"cirurgião-marrom (Zebrasoma scopas)\"]\n}"
+  },
+  {
+    "kana": "ヒレナガハギ",
+    "en": [
+      "sailfin tang (Zebrasoma velifer, species of Pacific tang also found off Mozambique)"
+    ],
+    "senseUid": "250624f6-9606-4ab6-b574-3f7cc982bf8b",
+    "wordId": "2550830",
+    "pt": "{'a': ['cirurgião-navalha (Zebrasoma velifer, espécie de peixe cirurgião do Pacífico também encontrada ao largo de Moçambique)']}"
+  },
+  {
+    "kana": "くべつせずに",
+    "en": [
+      "without distinction",
+      "with no distinction"
+    ],
+    "senseUid": "891ab7ff-13aa-4e6a-a324-30003e50eb34",
+    "wordId": "2550860",
+    "pt": "{'a': ['sem distinção', 'sem fazer distinção', 'de modo indistinto']}"
+  },
+  {
+    "kana": "オハグロハギ",
+    "en": [
+      "Thompson's surgeonfish (Acanthurus thompsoni)"
+    ],
+    "senseUid": "58003b86-2854-423d-80d0-3c78b4758641",
+    "wordId": "2550850",
+    "pt": "{'a': ['Cirurgião-negro (Acanthurus thompsoni)']}"
+  },
+  {
+    "kana": "こしぬの",
+    "en": [
+      "cloth strainer",
+      "filter cloth"
+    ],
+    "senseUid": "53eb4fa0-de3d-492a-ad1c-876c1b67db22",
+    "wordId": "2550890",
+    "pt": "{\n  \"a\": [\"pano de coar\", \"pano filtrante\"]\n}"
+  },
+  {
+    "kana": "ナミダクロハギ",
+    "en": [
+      "Japan surgeonfish (Acanthurus japonicus)"
+    ],
+    "senseUid": "337d3aab-85db-4c9c-8d47-4326db53fb91",
+    "wordId": "2550930",
+    "pt": "{'a': ['Cirurgião-japonês (Acanthurus japonicus)']}"
+  },
+  {
+    "kana": "スジクロハギ",
+    "en": [
+      "whitebar surgeonfish (Acanthurus leucopareius, Western Central Pacific species of tang)"
+    ],
+    "senseUid": "02b22c90-c80d-421b-ac4c-199c393c8bdf",
+    "wordId": "2550910",
+    "pt": "{'a': ['cirurgião-de-barra-branca (Acanthurus leucopareius, espécie de peixe-cirurgião do Pacífico Centro-Oeste)']}"
+  },
+  {
+    "kana": "ヒラニザ",
+    "en": [
+      "elongate surgeonfish (Acanthurus mata, species of Indo-Pacific tang)"
+    ],
+    "senseUid": "fd246c61-8947-4da0-869a-4e49b28f1888",
+    "wordId": "2550870",
+    "pt": "{\n  \"a\": [\n    \"cirurgião-elongado (Acanthurus mata, espécie de peixe-cirurgião do Indo-Pacífico)\"\n  ]\n}"
+  },
+  {
+    "kana": "クログチニザ",
+    "en": [
+      "chocolate surgeonfish (Acanthurus pyroferus)",
+      "mimic surgeonfish",
+      "orange-gilled surgeonfish"
+    ],
+    "senseUid": "47a06597-d723-4ef1-9730-d0267561664d",
+    "wordId": "2550900",
+    "pt": "{\n  \"a\": [\n    \"cirurgião-chocolate (Acanthurus pyroferus)\",\n    \"cirurgião-mímico\",\n    \"cirurgião-de-brânquias-laranja\"\n  ]\n}"
+  },
+  {
+    "kana": "メガネクロハギ",
+    "en": [
+      "whitecheek surgeonfish (Acanthurus nigricans)"
+    ],
+    "senseUid": "d3a3fc95-49f9-433f-92fd-02c6a94cd415",
+    "wordId": "2550920",
+    "pt": "{'a': ['cirurgião-bochecha-branca (Acanthurus nigricans)']}"
+  },
+  {
+    "kana": "ニジハギ",
+    "en": [
+      "lined surgeonfish (Acanthurus lineatus)",
+      "clown surgeonfish",
+      "blue banded surgeonfish",
+      "blue linned surgeonfish",
+      "striped surgeonfish"
+    ],
+    "senseUid": "31fcec7e-0eb5-4e4f-9a80-2c527ce456b6",
+    "wordId": "2550880",
+    "pt": "{\n  \"a\": [\n    \"cirurgião-listrado (Acanthurus lineatus)\",\n    \"cirurgião-palhaço\",\n    \"cirurgião-de-faixas-azuis\",\n    \"cirurgião-de-linhas-azuis\",\n    \"cirurgião-estriado\"\n  ]\n}"
+  },
+  {
+    "kana": "カンランハギ",
+    "en": [
+      "black-spot surgeonfish (Acanthurus bariene)",
+      "roundspot surgeonfish",
+      "bariene surgeonfish",
+      "eye-spot surgeon"
+    ],
+    "senseUid": "92183589-54f1-4530-b799-94e445ff240b",
+    "wordId": "2550940",
+    "pt": "{\n  \"a\": [\n    \"cirurgião-pintado-preto (Acanthurus bariene)\",\n    \"cirurgião-pintado-redondo\",\n    \"cirurgião-bariene\",\n    \"cirurgião-olho-pintado\"\n  ]\n}"
+  },
+  {
+    "kana": "クロモンツキ",
+    "en": [
+      "epaulette surgeonfish (Acanthurus nigricauda, Indo-Pacific species of tang)",
+      "blackstreak surgeonfish"
+    ],
+    "senseUid": "01cd9377-1bb1-4604-97ef-0cac997eb764",
+    "wordId": "2550950",
+    "pt": "{'a': ['cirurgião-epaulete (Acanthurus nigricauda, espécie de peixe-cirurgião do Indo-Pacífico)', 'cirurgião-de-faixa-preta']}"
+  },
+  {
+    "kana": "ナメラハギ",
+    "en": [
+      "chronixis surgeonfish (Acanthurus chronixis, Western-Pacific species of tang from Kapingamarangi in the Caroline Islands)"
+    ],
+    "senseUid": "662812ea-2594-48df-84df-daddb6cdcb36",
+    "wordId": "2550970",
+    "pt": "{\n  \"a\": [\n    \"cirurgião-chronixis (Acanthurus chronixis, espécie de peixe-cirurgião do Pacífico Ocidental originária de Kapingamarangi, nas Ilhas Carolinas)\"\n  ]\n}"
+  },
+  {
+    "kana": "イレズミニザ",
+    "en": [
+      "white-freckled surgeonfish (Acanthurus maculiceps)",
+      "spot-face surgeon",
+      "pale-lined surgeonfish",
+      "yellow-freckled surgeon fish"
+    ],
+    "senseUid": "40df011f-1e0e-486e-92f5-7b7a13e707f4",
+    "wordId": "2550960",
+    "pt": "{\n  \"a\": [\n    \"cirurgião-de-manchas-brancas (Acanthurus maculiceps)\",\n    \"cirurgião-de-rosto-manchado\",\n    \"cirurgião-de-linhas-pálidas\",\n    \"cirurgião-de-manchas-amarelas\"\n  ]\n}"
+  },
+  {
+    "kana": "サザナミハギ",
+    "en": [
+      "striated surgeonfish (Ctenochaetus striatus)"
+    ],
+    "senseUid": "74e47713-0706-4cf8-97d4-263716453168",
+    "wordId": "2551010",
+    "pt": "{'a': ['cirurgião-ondulado (Ctenochaetus striatus)']}"
+  },
+  {
+    "kana": "メクラウナギか",
+    "en": [
+      "Myxinidae (family of hagfish)"
+    ],
+    "senseUid": "7fed0056-392e-4dee-98f1-ed71c96b45e4",
+    "wordId": "2551040",
+    "pt": "{'a': ['Família dos mixinídeos (peixes-bruxa)']}"
+  },
+  {
+    "kana": "スマドラ",
+    "en": [
+      "smart drug",
+      "nootropic"
+    ],
+    "senseUid": "f8bf5b21-d6f4-497a-ba43-619b10957e65",
+    "wordId": "2551070",
+    "pt": "{'a': ['droga inteligente', 'nootrópico']}"
+  },
+  {
+    "kana": "コクテンサザナミハギ",
+    "en": [
+      "twospot surgeonfish (Ctenochaetus binotatus)"
+    ],
+    "senseUid": "b390b01d-3ecf-4d71-9a99-db2f92570aaf",
+    "wordId": "2551020",
+    "pt": "{\n  \"a\": [\"cirurgião-de-dois-pontos\"]\n}"
+  },
+  {
+    "kana": "ナンヨウハギ",
+    "en": [
+      "palette surgeonfish (Paracanthurus hepatus)",
+      "palette surgeon",
+      "blue surgeonfish",
+      "blue tang"
+    ],
+    "senseUid": "f4423d2d-8504-44df-8459-323f1564be6c",
+    "wordId": "2551030",
+    "pt": "{\n  \"a\": [\n    \"cirurgião-paleta (Paracanthurus hepatus)\",\n    \"cirurgião-paleta\",\n    \"cirurgião-azul\",\n    \"tang azul\"\n  ]\n}"
+  },
+  {
+    "kana": "ヤツメウナギぞく",
+    "en": [
+      "Lampetra (genus of lampreys)"
+    ],
+    "senseUid": "1dbc2ffa-f402-448a-8675-e7925f447977",
+    "wordId": "2551090",
+    "pt": "{'a': ['gênero Lampetra (um tipo de peixe-bruxa/lampreia)']}"
+  },
+  {
+    "kana": "ホソヌタウナギぞく",
+    "en": [
+      "Myxine (genus of hagfish)"
+    ],
+    "senseUid": "dbf1c264-89a2-403c-a8ac-e23d90504341",
+    "wordId": "2551060",
+    "pt": "{\n  \"a\": [\n    \"Gênero Myxine (um tipo de peixe-bruxa)\"\n  ]\n}"
+  },
+  {
+    "kana": "ヤツメウナギか",
+    "en": [
+      "Petromyzontidae (family of parasitic lampreys)"
+    ],
+    "senseUid": "0711ecf3-775a-4e16-b4cc-05bdb094e469",
+    "wordId": "2551080",
+    "pt": "{'a': ['lampreia', 'lampreia-parasita', 'lampreia-de-boca-redonda', 'lampreia-d’água-doce']}"
+  },
+  {
+    "kana": "クロハギ",
+    "en": [
+      "yellowfin surgeonfish (Acanthurus xanthopterus)"
+    ],
+    "senseUid": "9980566c-92f0-450c-aa43-c4703450d03e",
+    "wordId": "2550990",
+    "pt": "{'a': ['cirurgião-amarelo (Acanthurus xanthopterus)']}"
+  },
+  {
+    "kana": "ヨーロッパカワヤツメ",
+    "en": [
+      "river lamprey (Lampetra fluviatilis)"
+    ],
+    "senseUid": "5b558930-8dfc-44a6-8a1b-acd8337976a9",
+    "wordId": "2551110",
+    "pt": "{'a': ['lampreia-de-rio-europeia']}"
+  },
+  {
+    "kana": "アメリカンブルックランプリ",
+    "en": [
+      "American brook lamprey (Lampetra appendix)"
+    ],
+    "senseUid": "c1ade059-8f9e-4944-ac7a-34ef1f979ada",
+    "wordId": "2551100",
+    "pt": "{'a': ['lampreia-de-água-doce americana (Lampetra appendix)']}"
+  },
+  {
+    "kana": "トルコヤツメ",
+    "en": [
+      "Turkish brook lamprey (Eudontomyzon lanceolata)"
+    ],
+    "senseUid": "07f29b84-bdd0-482c-915a-bc391affbe4a",
+    "wordId": "2551130",
+    "pt": "{'a': ['lampreia-de-riacho turca (Eudontomyzon lanceolata)']}"
+  },
+  {
+    "kana": "チョウセンヤツメ",
+    "en": [
+      "Korean lamprey (Lampetra morii)"
+    ],
+    "senseUid": "0bd67cc0-1f4e-4fb9-9eb2-298865b88743",
+    "wordId": "2551140",
+    "pt": "{'a': ['lampreia-coreana (Lampetra morii)']}"
+  },
+  {
+    "kana": "ヨーロッパスナヤツメ",
+    "en": [
+      "European brook lamprey (Lampetra planeri)"
+    ],
+    "senseUid": "12241aff-aa38-42cd-b75e-286608996d8f",
+    "wordId": "2551120",
+    "pt": "{'a': ['lampreia-de-água-doce europeia (Lampetra planeri)']}"
+  },
+  {
+    "kana": "ニセカンランハギ",
+    "en": [
+      "eyestripe surgeonfish (Acanthurus dussumieri, species of Indo-Pacific tang)",
+      "palani",
+      "Dussumier's surgeonfish"
+    ],
+    "senseUid": "44efc528-0233-4f2b-b5aa-7cb021031e11",
+    "wordId": "2550980",
+    "pt": "{\n  \"a\": [\n    \"cirurgião-olho-de-faixa (Acanthurus dussumieri, espécie de peixe-cirurgião do Indo-Pacífico)\",\n    \"palani\",\n    \"cirurgião-de-Dussumier\"\n  ]\n}"
+  },
+  {
+    "kana": "クラマスヤツメ",
+    "en": [
+      "Klamath river lamprey (Lampetra similis)"
+    ],
+    "senseUid": "414b73a2-304b-4fc4-b803-4064567cc07a",
+    "wordId": "2551150",
+    "pt": "{'a': ['lampreia do rio Klamath (Lampetra similis)']}"
+  },
+  {
+    "kana": "メキシコヤツメ",
+    "en": [
+      "Mexican lamprey (Lampetra spadicea)"
+    ],
+    "senseUid": "906a17cf-5aa1-4ace-ad2b-f079fc6cdebf",
+    "wordId": "2551160",
+    "pt": "{'a': ['lampreia-mexicana (Lampetra spadicea)']}"
+  },
+  {
+    "kana": "カワヤツメぞく",
+    "en": [
+      "Lethenteron (genus of lampreys)"
+    ],
+    "senseUid": "2e4728e8-44e6-48e7-ba55-a9817cdc3e19",
+    "wordId": "2551170",
+    "pt": "{\n  \"a\": [\n    \"Lethenteron (gênero de lampreias)\"\n  ]\n}"
+  },
+  {
+    "kana": "ウミヤツメ",
+    "en": [
+      "sea lamprey (Petromyzon marinus)"
+    ],
+    "senseUid": "80feed44-1c61-4246-a592-78bda88decc5",
+    "wordId": "2551190",
+    "pt": "{'a': ['lampreia-do-mar']}"
+  },
+  {
+    "kana": "オスジクロハギ",
+    "en": [
+      "ringtail surgeonfish (Acanthurus blochii, species of tang from the Indo-Pacific)",
+      "blue-banded pualu",
+      "dark surgeon",
+      "tailring surgeonfish"
+    ],
+    "senseUid": "e5b1d6fa-af07-4541-8621-23d904b9ac02",
+    "wordId": "2551000",
+    "pt": "{\n  \"a\": [\n    \"cirurgião-de-cauda-anelada (Acanthurus blochii, espécie de peixe-cirurgião do Indo-Pacífico)\",\n    \"pualu-de-faixa-azul\",\n    \"cirurgião-escuro\",\n    \"cirurgião-de-anéis-na-cauda\"\n  ]\n}"
+  },
+  {
+    "kana": "ウクライナヤツメぞく",
+    "en": [
+      "Eudontomyzon (genus of lampreys)"
+    ],
+    "senseUid": "088c1eb7-9ad5-4085-828f-048f6b82e59d",
+    "wordId": "2551210",
+    "pt": "{\n  \"a\": [\"Eudontomyzon (gênero de lampreias)\"]\n}"
+  },
+  {
+    "kana": "ウミヤツメぞく",
+    "en": [
+      "Petromyzon (genus of lamprey)"
+    ],
+    "senseUid": "5adacd44-7a15-43ed-8e23-f705053153c5",
+    "wordId": "2551180",
+    "pt": "{'a': ['Petromyzon (gênero de lampreia)']}"
+  },
+  {
+    "kana": "カスピヤツメぞく",
+    "en": [
+      "Caspiomyzon (genus of lampreys)"
+    ],
+    "senseUid": "99139cc0-a4e5-4db0-ab62-2fb800798668",
+    "wordId": "2551220",
+    "pt": "{'a': ['Caspiomyzon (gênero de lampreias)']}"
+  },
+  {
+    "kana": "アメリカヤツメぞく",
+    "en": [
+      "Ichthyomyzon (genus of lampreys)"
+    ],
+    "senseUid": "64efb62d-efed-4a74-881d-fc1fe36385b0",
+    "wordId": "2551200",
+    "pt": "{'a': ['Ichthyomyzon (gênero de lampreias)']}"
+  },
+  {
+    "kana": "ギンザメぞく",
+    "en": [
+      "Chimaera (genus of cartilaginous fish)"
+    ],
+    "senseUid": "6394a707-325d-4969-94bb-e83d97bfdc60",
+    "wordId": "2551250",
+    "pt": "{'a': ['Quimera (gênero de peixe cartilaginoso)']}"
+  },
+  {
+    "kana": "じょうほうシステムがく",
+    "en": [
+      "(study of) information systems"
+    ],
+    "senseUid": "9fe820b3-1f45-4586-a4a9-dbb12c52c5a1",
+    "wordId": "2551240",
+    "pt": "{'a': ['estudo de sistemas de informação']}"
+  },
+  {
+    "kana": "ギンザメか",
+    "en": [
+      "Chimaeridae (family of shortnose chimaeras, cartilaginous fish with short round snouts)"
+    ],
+    "senseUid": "5e4bd600-e5f9-4820-b28b-2c11521b5771",
+    "wordId": "2551230",
+    "pt": "{'a': ['Chimaeridae (família de quimeras-de-nariz-curto, peixes cartilaginosos com focinhos curtos e arredondados)']}"
+  },
+  {
+    "kana": "ラビットフィッシュ",
+    "en": [
+      "rabbit fish (Chimaera monstrosa)"
+    ],
+    "senseUid": "13ad1f23-57d5-4039-9a0f-79403431d7bd",
+    "wordId": "2551260",
+    "pt": "{'a': ['peixe-coelho (Chimaera monstrosa)']}"
+  },
+  {
+    "kana": "アカギンザメぞく",
+    "en": [
+      "Hydrolagus (genus of cartilaginous fish)"
+    ],
+    "senseUid": "9a06d58e-cc93-4aa9-8365-aaf25760c15d",
+    "wordId": "2551270",
+    "pt": "{'a': ['Gênero Hydrolagus (peixes cartilaginosos)']}"
+  },
+  {
+    "kana": "そうけんにかかる",
+    "en": [
+      "to fall on one's shoulders (e.g. responsibility, duty)"
+    ],
+    "senseUid": "37348c0d-dbae-4936-81aa-ebd22a33cc9d",
+    "wordId": "2551350",
+    "pt": "{'a': ['recair sobre (por exemplo, responsabilidade, dever)']}"
+  },
+  {
+    "kana": "スモールアイラビットフィッシュ",
+    "en": [
+      "smalleyed rabbitfish (Hydrolagus affinis)",
+      "Atlantic chimaera",
+      "deepwater chimaera"
+    ],
+    "senseUid": "a0cc1b6b-dafd-4bcb-a0cd-95b381b8ec6e",
+    "wordId": "2551300",
+    "pt": "{\n  \"a\": [\n    \"peixe-coelho-de-olhos-pequenos (Hydrolagus affinis)\",\n    \"quimera-do-Atlântico\",\n    \"quimera-de-água-profunda\"\n  ]\n}"
+  },
+  {
+    "kana": "ダークゴーストフィッシュ",
+    "en": [
+      "dark ghost shark (Hydrolagus novaezealandiae, a shortnose chimaera endemic to New Zealand)"
+    ],
+    "senseUid": "c777640e-1e0a-4061-b8f7-49ac0f77a037",
+    "wordId": "2551310",
+    "pt": "{'a': ['tubarão-fantasma-negro (Hydrolagus novaezealandiae, uma quimera de focinho curto endêmica da Nova Zelândia)']}"
+  },
+  {
+    "kana": "どかゆき",
+    "en": [
+      "(sudden) heavy snowfall"
+    ],
+    "senseUid": "a95acbb6-fd31-45b0-99a6-0e6c09ff287a",
+    "wordId": "2551320",
+    "pt": "{\n  \"a\": [\"neve forte repentina\", \"nevasca súbita\", \"queda intensa de neve de repente\"]\n}"
+  },
+  {
+    "kana": "アズマギンザメぞく",
+    "en": [
+      "Harriotta (genus of long-nosed chimaeras)"
+    ],
+    "senseUid": "b295917b-f95f-4672-8d70-ca16aab32f88",
+    "wordId": "2551360",
+    "pt": "{'a': ['Harriotta (gênero de quimeras-de-nariz-comprido)']}"
+  },
+  {
+    "kana": "テングギンザメか",
+    "en": [
+      "Rhinochimaeridae (family of cartilaginous long-nosed chimaera fish)"
+    ],
+    "senseUid": "8c9e83d4-9e41-46e7-b60a-cf449ea43e90",
+    "wordId": "2551340",
+    "pt": "{\n  \"a\": [\n    \"Peixe-quimera-de-nariz-longo (família Rhinochimaeridae, peixe cartilaginoso de focinho comprido)\"\n  ]\n}"
+  },
+  {
+    "kana": "テングギンザメぞく",
+    "en": [
+      "Rhinochimaera (genus with three species of long-nosed chimaeras)"
+    ],
+    "senseUid": "7f2183a5-cb10-4ac7-8a09-60176da75b35",
+    "wordId": "2551380",
+    "pt": "{'a': ['Rhinochimaera (gênero com três espécies de quimeras-de-nariz-comprido)']}"
+  },
+  {
+    "kana": "ネコザメか",
+    "en": [
+      "Heterodontidae (family of bullhead sharks)"
+    ],
+    "senseUid": "b9e6912c-5046-45ef-b710-208876b08c48",
+    "wordId": "2551400",
+    "pt": "{'a': ['tubarão-cabeça-de-boi (família Heterodontidae)']}"
+  },
+  {
+    "kana": "ニシテングギンザメ",
+    "en": [
+      "straightnose rabbitfish (Rhinochimaera atlantica)",
+      "Atlantic knife-nose chimaera",
+      "spearnose chimaera"
+    ],
+    "senseUid": "72190d4c-4b25-4d55-af2f-a20815ea06f6",
+    "wordId": "2551390",
+    "pt": "{\n  \"a\": [\n    \"quimera-de-nariz-reto (Rhinochimaera atlantica)\",\n    \"quimera-de-nariz-de-faca-do-Atlântico\",\n    \"quimera-de-nariz-de-lança\"\n  ]\n}"
+  },
+  {
+    "kana": "マルビレテングギンザメぞく",
+    "en": [
+      "Neoharriotta (genus of long-nosed chimaeras)"
+    ],
+    "senseUid": "7bdac1d5-ea45-4fc7-b1a6-47f68a349791",
+    "wordId": "2551370",
+    "pt": "{'a': ['gênero Neoharriotta (um gênero de quimeras-de-nariz-comprido)']}"
+  },
+  {
+    "kana": "イトヒキギンザメ",
+    "en": [
+      "Hydrolagus alberti (species of Atlantic cartilaginous shortnose chimaera fish)"
+    ],
+    "senseUid": "1010f5aa-e775-454e-904e-3ed306a82a5a",
+    "wordId": "2551290",
+    "pt": "{'a': ['Hydrolagus alberti (espécie de peixe cartilaginoso do Atlântico, quimera-de-nariz-curto)']}"
+  },
+  {
+    "kana": "ヌタウナギぞく",
+    "en": [
+      "Eptatretus (genus of hagfish)"
+    ],
+    "senseUid": "3ec5994e-f9c6-4b71-9bd9-3ccb204e8d13",
+    "wordId": "2551050",
+    "pt": "{\n  \"a\": [\"Eptatretus (gênero de peixe-bruxa)\"]\n}"
+  },
+  {
+    "kana": "ポートジャクソンネコザメ",
+    "en": [
+      "Port Jackson shark (Heterodontus portusjacksoni)"
+    ],
+    "senseUid": "4b9a955e-9c6a-4115-bd96-e77aad7df17e",
+    "wordId": "2551460",
+    "pt": "{'a': ['tubarão-port-jackson']}"
+  },
+  {
+    "kana": "ネコザメぞく",
+    "en": [
+      "Heterodontus (genus of bullhead sharks)"
+    ],
+    "senseUid": "33ee7047-2210-4fab-8988-8f30cff53876",
+    "wordId": "2551410",
+    "pt": "{'a': ['Heterodontus (gênero de tubarões-cabeça-de-boi)']}"
+  },
+  {
+    "kana": "メキシコネコザメ",
+    "en": [
+      "Mexican hornshark (Heterodontus mexicanus, found in the Eastern Pacific)"
+    ],
+    "senseUid": "d0631448-0044-45a4-97bb-50ba04ca4e57",
+    "wordId": "2551420",
+    "pt": "{'a': ['tubarão-chifre mexicano (Heterodontus mexicanus, encontrado no Pacífico Oriental)']}"
+  },
+  {
+    "kana": "シロホシネコザメ",
+    "en": [
+      "whitespotted bullhead shark (Heterodontus ramalheira)"
+    ],
+    "senseUid": "4f169f7e-e1ff-4eea-8195-ababa9b00798",
+    "wordId": "2551430",
+    "pt": "{'a': ['tubarão-cabeça-de-touro-de-manchas-brancas (Heterodontus ramalheira)']}"
+  },
+  {
+    "kana": "ムナグロギンザメ",
+    "en": [
+      "large-eyed rabbitfish (Hydrolagus mirabilis, an Atlantic shortnose chimaera)"
+    ],
+    "senseUid": "f20c323d-305a-4dae-9814-745109075c5f",
+    "wordId": "2551330",
+    "pt": "{\n  \"a\": [\"quimera-de-olhos-grandes (Hydrolagus mirabilis, uma quimera-de-nariz-curto do Atlântico)\"]\n}"
+  },
+  {
+    "kana": "クレステッドホーンシャーク",
+    "en": [
+      "crested bullhead shark (Heterodontus galeatus, found in eastern Australia)"
+    ],
+    "senseUid": "9103a029-1b8d-4ea4-a496-48af13805047",
+    "wordId": "2551450",
+    "pt": "{\n  \"a\": [\"tubarão-de-cabeça-de-touro-cristado\"]\n}"
+  },
+  {
+    "kana": "ガラパゴスネコザメ",
+    "en": [
+      "Galapagos bullhead shark (Heterodontus quoyi)"
+    ],
+    "senseUid": "045e9429-0185-4798-823c-95e684ff0aba",
+    "wordId": "2551440",
+    "pt": "{'a': ['tubarão-cabeça-de-touro-das-Galápagos (Heterodontus quoyi)']}"
+  },
+  {
+    "kana": "ホーンシャーク",
+    "en": [
+      "horn shark (Heterodontus francisci, a bullhead shark from the Eastern Pacific)"
+    ],
+    "senseUid": "07422bff-668c-48ac-a6a3-90e065f90e4b",
+    "wordId": "2551470",
+    "pt": "{'a': ['tubarão-corno (Heterodontus francisci, um tubarão-cabeça-chata do Pacífico Oriental)']}"
+  },
+  {
+    "kana": "クラカケザメか",
+    "en": [
+      "Parascylliidae (family of collared carpet sharks containing eight species and two genera)"
+    ],
+    "senseUid": "f5e085c1-e3a1-4fb2-8d60-87eca4878707",
+    "wordId": "2551480",
+    "pt": "{\n  \"a\": [\n    \"Família Parascylliidae (família de tubarões-carpete colarados que contém oito espécies e dois gêneros)\"\n  ]\n}"
+  },
+  {
+    "kana": "テンジクザメか",
+    "en": [
+      "Hemiscylliidae (family of tropical Indo-Pacific longtail carpet sharks or bamboo sharks)"
+    ],
+    "senseUid": "e0e7efaf-ecfc-454c-9a30-3281e2ea2f42",
+    "wordId": "2551580",
+    "pt": "{'a': ['tubarão-bambu']}"
+  },
+  {
+    "kana": "うちゅうたんさせん",
+    "en": [
+      "space probe"
+    ],
+    "senseUid": "7958fcf1-5ac9-4ddd-8eb1-903a6b07a47b",
+    "wordId": "2551570",
+    "pt": "{'a': ['sonda espacial']}"
+  },
+  {
+    "kana": "バリオレートテンジクザメ",
+    "en": [
+      "necklace carpetshark (Parascyllium variolatum, species endemic to Australia)"
+    ],
+    "senseUid": "b83a0095-4bd1-480d-a2b5-33eb4dbbc9b8",
+    "wordId": "2551510",
+    "pt": "{'a': ['tubarão-carpete-colar (Parascyllium variolatum, espécie endêmica da Austrália)']}"
+  },
+  {
+    "kana": "アラフラおおせ",
+    "en": [
+      "tasselled wobbegong (Eucrossorhinus dasypogon)"
+    ],
+    "senseUid": "4ea36ba1-5bf3-4ea8-b3ae-64c1b5df02f9",
+    "wordId": "2551540",
+    "pt": "{\n  \"a\": [\"wobbegong-de-franjas\"]\n}"
+  },
+  {
+    "kana": "かんとう",
+    "en": [
+      "interjection"
+    ],
+    "senseUid": "21c811ff-8502-4f65-a3a2-babab2519f92",
+    "wordId": "2551620",
+    "pt": "{'a': ['expressão de admiração', 'interjeição de surpresa', 'exclamação de espanto']}"
+  },
+  {
+    "kana": "モンツキテンジクザメぞく",
+    "en": [
+      "Hemiscyllium (genus of longtail carpet sharks)"
+    ],
+    "senseUid": "3e4856c0-aa95-4dab-8037-3dc879ea5c3b",
+    "wordId": "2551610",
+    "pt": "{\n  \"a\": [\"Hemiscyllium (gênero de tubarões-lixa-de-cauda-longa)\"]\n}"
+  },
+  {
+    "kana": "バリオレートテンジクザメぞく",
+    "en": [
+      "Parascyllium (genus of collared carpet sharks)"
+    ],
+    "senseUid": "962b5ed8-6795-4182-b2e8-dcf444146dca",
+    "wordId": "2551500",
+    "pt": "{\n  \"a\": [\"Parascyllium (gênero de tubarões-carpete colarados)\"]\n}"
+  },
+  {
+    "kana": "マルヒゲオオセ",
+    "en": [
+      "northern wobbegong (Orectolobus wardi, an Australian species of carpet shark)"
+    ],
+    "senseUid": "b34eaf23-3d74-483d-b66a-775bd9a8682d",
+    "wordId": "2551550",
+    "pt": "{'a': ['maruhigeoose (Orectolobus wardi, uma espécie australiana de tubarão-tapete conhecida como northern wobbegong)']}"
+  },
+  {
+    "kana": "テンジクザメぞく",
+    "en": [
+      "Chiloscyllium (genus of carpet sharks or bamboo sharks)"
+    ],
+    "senseUid": "46fee8c9-aec4-4336-a0a0-ad56a58cb6d9",
+    "wordId": "2551590",
+    "pt": "{\n  \"a\": [\n    \"Chiloscyllium (gênero de tubarões-carpete ou tubarões-bambu)\"\n  ]\n}"
+  },
+  {
+    "kana": "オオセか",
+    "en": [
+      "Orectolobidae (family containing eleven species in three genera of carpet sharks known as wobbegongs)"
+    ],
+    "senseUid": "222cfe01-8c0b-47b5-82fc-4385fde46722",
+    "wordId": "2551520",
+    "pt": "{\n  \"a\": [\n    \"Orectolobidae (família que contém onze espécies em três gêneros de tubarões tapete conhecidos como wobbegongs)\"\n  ]\n}"
+  },
+  {
+    "kana": "オオセぞく",
+    "en": [
+      "Orectolobus (genus of wobbegong carpet sharks)"
+    ],
+    "senseUid": "8d1f495d-3314-40a4-9e1f-f5c1425b9627",
+    "wordId": "2551530",
+    "pt": "{\n  \"a\": [\n    \"Orectolobus (gênero de tubarões-tapete wobbegong)\"\n  ]\n}"
+  },
+  {
+    "kana": "クラカケザメぞく",
+    "en": [
+      "Cirrhoscyllium (genus of collared carpet sharks)"
+    ],
+    "senseUid": "7c423e41-21a9-45d3-a242-9b5e43ddbdcf",
+    "wordId": "2551490",
+    "pt": "{\n  \"a\": [\n    \"Cirrhoscyllium (gênero de tubarões-carpete de colarinho)\"\n  ]\n}"
+  },
+  {
+    "kana": "フィラー",
+    "en": [
+      "filler"
+    ],
+    "senseUid": "237f45cf-4d62-47b3-9366-3308a57bb0a1",
+    "wordId": "2551600",
+    "pt": "{\n  \"a\": [\n    \"filler\",\n    \"enchimento\",\n    \"episódio filler\",\n    \"conteúdo extra\",\n    \"material suplementar\"\n  ]\n}"
+  },
+  {
+    "kana": "エポウレットシャーク",
+    "en": [
+      "epaulette shark (Hemiscyllium ocellatum)"
+    ],
+    "senseUid": "a15f9343-77ad-4cdc-a8f1-fd95fa03a140",
+    "wordId": "2551630",
+    "pt": "{'a': ['tubarão-epaulette']}"
+  },
+  {
+    "kana": "みずをやる",
+    "en": [
+      "to water (a plant, a flower etc.)"
+    ],
+    "senseUid": "386f8687-786e-4a15-a7ef-d6a45578caeb",
+    "wordId": "2551680",
+    "pt": "{'a': ['regar (uma planta, uma flor etc.)']}"
+  },
+  {
+    "kana": "モンツキテンジクザメ",
+    "en": [
+      "speckled carpetshark (Hemiscyllium trispeculare, species from northern Australia)"
+    ],
+    "senseUid": "f54666ad-d6f7-4204-8bee-cc7e2392585f",
+    "wordId": "2551640",
+    "pt": "{'a': ['tubarão-carpetado-pintado (Hemiscyllium trispeculare, espécie do norte da Austrália)']}"
+  },
+  {
+    "kana": "ひじりつ",
+    "en": [
+      "not independent"
+    ],
+    "senseUid": "9cae8ab0-96ed-4e3b-8a18-9b6d2aa40db6",
+    "wordId": "2551650",
+    "pt": "{\n  \"a\": [\"não independente\"]\n}"
+  },
+  {
+    "kana": "かいごよぼう",
+    "en": [
+      "preventive care, esp. for senior citizens"
+    ],
+    "senseUid": "82b89632-323f-4639-a893-2a84590f09e9",
+    "wordId": "2551690",
+    "pt": "{'a': ['cuidados preventivos, especialmente para idosos']}"
+  },
+  {
+    "kana": "ひゃっくり",
+    "en": [
+      "hiccup",
+      "hiccough"
+    ],
+    "senseUid": "b97ad2d4-09aa-4383-88c8-488cc48beafc",
+    "wordId": "2551700",
+    "pt": "{'a': ['soluço']}"
+  },
+  {
+    "kana": "しちぶたけ",
+    "en": [
+      "three-quarter length (usu. clothing)"
+    ],
+    "senseUid": "1b113bf3-d2d0-4611-bb1b-76109570143a",
+    "wordId": "2551660",
+    "pt": "{'a': ['três-quartos (geralmente usado para roupas)']}"
+  }
+]

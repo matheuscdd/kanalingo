@@ -1,0 +1,940 @@
+[
+  {
+    "kana": "タイピング",
+    "en": [
+      "typing"
+    ],
+    "senseUid": "57624e70-5d21-4a24-9eca-62208962d734",
+    "wordId": "1075930",
+    "pt": "{'a': ['digitação']}"
+  },
+  {
+    "kana": "タービン",
+    "en": [
+      "turbine"
+    ],
+    "senseUid": "b32bd921-934f-4737-a139-63139249c058",
+    "wordId": "1075740",
+    "pt": "{'a': ['turbina']}"
+  },
+  {
+    "kana": "タイプ",
+    "en": [
+      "type",
+      "kind",
+      "sort",
+      "style"
+    ],
+    "senseUid": "5e40f123-0d4e-43df-9292-c4d3b5024ee8",
+    "wordId": "1075940",
+    "pt": "{'a': ['tipo', 'espécie', 'classe', 'estilo']}"
+  },
+  {
+    "kana": "タイプ",
+    "en": [
+      "typewriter"
+    ],
+    "senseUid": "2c3dff7e-a237-4bf9-99a8-326af2b51225",
+    "wordId": "1075940",
+    "pt": "{'a': ['máquina de escrever']}"
+  },
+  {
+    "kana": "タイプライター",
+    "en": [
+      "typewriter"
+    ],
+    "senseUid": "5fd947f7-e52a-4be4-a619-43a33661c069",
+    "wordId": "1075960",
+    "pt": "{'a': ['máquina de escrever']}"
+  },
+  {
+    "kana": "タイポグラフィ",
+    "en": [
+      "typography"
+    ],
+    "senseUid": "2d0cd7ea-e1b9-4855-97f4-cd1066593b84",
+    "wordId": "1075970",
+    "pt": "{'a': ['tipografia']}"
+  },
+  {
+    "kana": "タイマー",
+    "en": [
+      "timer",
+      "time switch"
+    ],
+    "senseUid": "d5c7e941-4bc9-4712-9f3d-c4a5e4de6201",
+    "wordId": "1075990",
+    "pt": "{'a': ['temporizador', 'interruptor de tempo']}"
+  },
+  {
+    "kana": "タイプ",
+    "en": [
+      "typing (on a typewriter)"
+    ],
+    "senseUid": "c5874aaf-c143-456f-867b-c5183149577e",
+    "wordId": "1075940",
+    "pt": "{'a': ['digitação (em uma máquina de escrever)']}"
+  },
+  {
+    "kana": "タイプ",
+    "en": [
+      "type (of person)",
+      "(ideal) type",
+      "one's type"
+    ],
+    "senseUid": "4f5e8d45-ba85-43f3-9a42-449e3f57578b",
+    "wordId": "1075940",
+    "pt": "{'a': ['tipo (de pessoa)', 'tipo (ideal)', 'meu tipo']}"
+  },
+  {
+    "kana": "タイマー",
+    "en": [
+      "stopwatch"
+    ],
+    "senseUid": "e79ce6ff-0bd5-42fb-893d-a9b1965c003b",
+    "wordId": "1075990",
+    "pt": "{'a': ['cronômetro']}"
+  },
+  {
+    "kana": "タイマー",
+    "en": [
+      "time keeper"
+    ],
+    "senseUid": "2ab97b5a-0e0a-4ab8-b516-58c1b023daff",
+    "wordId": "1075990",
+    "pt": "{'a': ['temporizador']}"
+  },
+  {
+    "kana": "タイム",
+    "en": [
+      "time (for, to do)"
+    ],
+    "senseUid": "a70caa8a-4584-48b3-82cf-c4ecd6aea461",
+    "wordId": "1076010",
+    "pt": "{'a': ['hora', 'tempo (para, de fazer)']}"
+  },
+  {
+    "kana": "タイム",
+    "en": [
+      "time-out"
+    ],
+    "senseUid": "f4dd9a19-45ab-4dfd-acac-9c872282c121",
+    "wordId": "1076010",
+    "pt": "{'a': ['tempo']}"
+  },
+  {
+    "kana": "タイム",
+    "en": [
+      "time (to finish a race, lap, etc.)"
+    ],
+    "senseUid": "a78d2723-d2fd-4b5d-ac71-570706bde464",
+    "wordId": "1076010",
+    "pt": "{'a': ['tempo (para terminar uma corrida, volta, etc.)']}"
+  },
+  {
+    "kana": "タイマー",
+    "en": [
+      "self-timer",
+      "(delay) timer"
+    ],
+    "senseUid": "5757f109-a436-48d7-9a04-7495f2f917a3",
+    "wordId": "1075990",
+    "pt": "{'a': ['temporizador automático', 'timer (de atraso)']}"
+  },
+  {
+    "kana": "タイムアウト",
+    "en": [
+      "time-out",
+      "timeout"
+    ],
+    "senseUid": "be078f52-6dd5-4115-9616-461f3fc52c68",
+    "wordId": "1076020",
+    "pt": "{'a': ['tempo limite', 'tempo esgotado']}"
+  },
+  {
+    "kana": "タイムアウト",
+    "en": [
+      "timeout"
+    ],
+    "senseUid": "4005b870-8755-477c-af05-aa82df60ec2c",
+    "wordId": "1076020",
+    "pt": "{'a': ['tempo esgotado']}"
+  },
+  {
+    "kana": "タイミング",
+    "en": [
+      "timing"
+    ],
+    "senseUid": "d754a8ae-5e46-4684-b96b-d527189117de",
+    "wordId": "1076000",
+    "pt": "{'a': ['momento certo', 'oportunidade', 'timing']}"
+  },
+  {
+    "kana": "タイムカード",
+    "en": [
+      "time card",
+      "time sheet"
+    ],
+    "senseUid": "4a426760-91fd-48a6-adbb-30cfdf1010d3",
+    "wordId": "1076030",
+    "pt": "{'a': ['cartão de ponto', 'folha de ponto']}"
+  },
+  {
+    "kana": "タイムシフト",
+    "en": [
+      "time shifting"
+    ],
+    "senseUid": "c5c73553-ad41-4c81-944e-eff4b52e21cd",
+    "wordId": "1076040",
+    "pt": "{'a': ['deslocamento temporal']}"
+  },
+  {
+    "kana": "タイムマシン",
+    "en": [
+      "time machine"
+    ],
+    "senseUid": "8a437ac1-1de5-49b2-8265-36fab8667192",
+    "wordId": "1076070",
+    "pt": "{'a': ['máquina do tempo']}"
+  },
+  {
+    "kana": "タイムスタンプ",
+    "en": [
+      "time-stamp"
+    ],
+    "senseUid": "69154c99-e648-4337-8154-96bbafe55242",
+    "wordId": "1076050",
+    "pt": "{'a': ['carimbo de tempo']}"
+  },
+  {
+    "kana": "タイムズ",
+    "en": [
+      "times"
+    ],
+    "senseUid": "b888568f-80f3-42f2-8995-af51fc66e3f7",
+    "wordId": "1076060",
+    "pt": "{'a': ['vezes']}"
+  },
+  {
+    "kana": "タイムレコーダー",
+    "en": [
+      "time clock",
+      "time recorder"
+    ],
+    "senseUid": "e89e3aca-1dca-4bed-8512-a3c1df2685b9",
+    "wordId": "1076110",
+    "pt": "{'a': ['relógio de ponto', 'registrador de tempo']}"
+  },
+  {
+    "kana": "タイムリー",
+    "en": [
+      "clutch hit",
+      "run-scoring hit",
+      "RBI hit"
+    ],
+    "senseUid": "c4478d08-a185-4725-895d-9786abf88351",
+    "wordId": "1076090",
+    "pt": "{'a': ['rebatida decisiva', 'rebatida que impulsiona corrida', 'rebatida de RBI']}"
+  },
+  {
+    "kana": "タイムリーヒット",
+    "en": [
+      "clutch hit",
+      "run-scoring hit",
+      "RBI hit"
+    ],
+    "senseUid": "fbadf767-f4ad-4851-aeaf-82f05163dfb4",
+    "wordId": "1076100",
+    "pt": "{'a': ['rebatida decisiva', 'rebatida impulsionadora', 'rebatida que resulta em corrida']}"
+  },
+  {
+    "kana": "タイヤ",
+    "en": [
+      "tire",
+      "tyre"
+    ],
+    "senseUid": "b9a70f61-df61-489f-87de-a6ff54b3eefa",
+    "wordId": "1076120",
+    "pt": "{'a': ['pneu']}"
+  },
+  {
+    "kana": "タイムリー",
+    "en": [
+      "timely",
+      "well-timed"
+    ],
+    "senseUid": "4ceb4da1-a25e-4c56-a343-930c97edfd55",
+    "wordId": "1076090",
+    "pt": "{'a': ['oportuno', 'no momento certo', 'bem-timed', 'na hora certa']}"
+  },
+  {
+    "kana": "タイル",
+    "en": [
+      "tile"
+    ],
+    "senseUid": "259aada5-707b-413a-9f28-da3db654d0f2",
+    "wordId": "1076130",
+    "pt": "{'a': ['azulejo']}"
+  },
+  {
+    "kana": "タイムスタンプ",
+    "en": [
+      "time-stamping machine"
+    ],
+    "senseUid": "d6aae3a8-71c8-4e6b-9750-f73eb57e2d1e",
+    "wordId": "1076050",
+    "pt": "{'a': ['máquina de carimbo de data e hora']}"
+  },
+  {
+    "kana": "タイこく",
+    "en": [
+      "Thailand"
+    ],
+    "senseUid": "abc878ff-6ef9-454c-9bba-1a18e02771a5",
+    "wordId": "1076150",
+    "pt": "{'a': ['Tailândia']}"
+  },
+  {
+    "kana": "タイきろく",
+    "en": [
+      "equal to the current record (in sports, etc.)"
+    ],
+    "senseUid": "732eaede-4237-483c-9019-87e63e42c587",
+    "wordId": "1076140",
+    "pt": "{'a': ['igual ao recorde atual (em esportes, etc.)']}"
+  },
+  {
+    "kana": "タクシーのりば",
+    "en": [
+      "taxi rank",
+      "taxi stand"
+    ],
+    "senseUid": "31831d5e-6bbe-4aaa-b2dd-5bae58bb3cb9",
+    "wordId": "1076210",
+    "pt": "{'a': ['ponto de táxi', 'local de embarque de táxi']}"
+  },
+  {
+    "kana": "タクティック",
+    "en": [
+      "tactic"
+    ],
+    "senseUid": "5ae17bb6-99be-4e53-84a6-69036f56d20e",
+    "wordId": "1076220",
+    "pt": "{'a': ['tática']}"
+  },
+  {
+    "kana": "タオル",
+    "en": [
+      "towel"
+    ],
+    "senseUid": "da780484-1c82-43a4-a9b1-47cc854203cd",
+    "wordId": "1076170",
+    "pt": "{'a': ['toalha']}"
+  },
+  {
+    "kana": "タクシー",
+    "en": [
+      "taxi"
+    ],
+    "senseUid": "9db3eb5f-e020-4015-b727-db4a4b99898a",
+    "wordId": "1076190",
+    "pt": "{'a': ['táxi']}"
+  },
+  {
+    "kana": "タキシード",
+    "en": [
+      "tuxedo",
+      "dinner suit"
+    ],
+    "senseUid": "dea79924-84ab-4a33-bd52-d6e8bf508ac2",
+    "wordId": "1076180",
+    "pt": "{'a': ['smoking', 'terno de jantar']}"
+  },
+  {
+    "kana": "タクティクス",
+    "en": [
+      "tactics"
+    ],
+    "senseUid": "b4fbd62c-0cc6-44e5-8330-2b6bf0f45ad4",
+    "wordId": "1076230",
+    "pt": "{'a': ['táticas']}"
+  },
+  {
+    "kana": "タウン",
+    "en": [
+      "town"
+    ],
+    "senseUid": "32c874a5-edc6-4fc9-8bb5-fe72c55bf444",
+    "wordId": "1076160",
+    "pt": "{'a': ['cidade']}"
+  },
+  {
+    "kana": "タグ",
+    "en": [
+      "tag-team match"
+    ],
+    "senseUid": "71658f1a-9412-4348-9add-a4b1ccb41b31",
+    "wordId": "1076240",
+    "pt": "{'a': ['luta em duplas']}"
+  },
+  {
+    "kana": "タグ",
+    "en": [
+      "tag",
+      "label"
+    ],
+    "senseUid": "c533f11c-c59f-43e0-aa7c-f578c13480bf",
+    "wordId": "1076240",
+    "pt": "{'a': ['etiqueta', 'rótulo']}"
+  },
+  {
+    "kana": "タグ",
+    "en": [
+      "game of tag"
+    ],
+    "senseUid": "0320871a-d2c9-4ea8-8af2-2a80c144cf4d",
+    "wordId": "1076240",
+    "pt": "{'a': ['pega-pega']}"
+  },
+  {
+    "kana": "タグ",
+    "en": [
+      "working together as a team"
+    ],
+    "senseUid": "853d29bf-e8a2-4d74-87dd-2277b5abe1bf",
+    "wordId": "1076240",
+    "pt": "{'a': ['trabalhar juntos como uma equipe']}"
+  },
+  {
+    "kana": "タグボート",
+    "en": [
+      "tugboat"
+    ],
+    "senseUid": "de8e702d-8952-4b92-aca8-3a87b7f9e6d0",
+    "wordId": "1076250",
+    "pt": "{'a': ['rebocador']}"
+  },
+  {
+    "kana": "タスク",
+    "en": [
+      "task"
+    ],
+    "senseUid": "ead7f64a-4f6f-42a3-b522-1f57e0f7b41b",
+    "wordId": "1076270",
+    "pt": "{'a': ['tarefa']}"
+  },
+  {
+    "kana": "タック",
+    "en": [
+      "tuck (clothing, sewing)"
+    ],
+    "senseUid": "bf0db609-04d2-4abc-8dba-77d8e395cab9",
+    "wordId": "1076300",
+    "pt": "{'a': ['dobra (roupa, costura)']}"
+  },
+  {
+    "kana": "タック",
+    "en": [
+      "tuck (diving, gymnastics)"
+    ],
+    "senseUid": "3ac04ee1-8f6e-4800-8630-871545a5f552",
+    "wordId": "1076300",
+    "pt": "{'a': ['posição agrupada (mergulho, ginástica)']}"
+  },
+  {
+    "kana": "タックス",
+    "en": [
+      "tax"
+    ],
+    "senseUid": "f3a413e6-e13b-4b05-b530-a4c173618051",
+    "wordId": "1076310",
+    "pt": "{'a': ['imposto']}"
+  },
+  {
+    "kana": "タッチ",
+    "en": [
+      "being involved in"
+    ],
+    "senseUid": "8c25ed7c-2c80-4ed2-b0b0-362d333147e1",
+    "wordId": "1076320",
+    "pt": "{'a': ['estar envolvido']}"
+  },
+  {
+    "kana": "タッチ",
+    "en": [
+      "touch (of a painter, pianist, etc.)",
+      "style (of writing, drawing, etc.)",
+      "feel"
+    ],
+    "senseUid": "e9903190-ea1e-415a-b11b-bd5db37da179",
+    "wordId": "1076320",
+    "pt": "{'a': ['toque (de um pintor, pianista, etc.)', 'estilo (de escrita, desenho, etc.)', 'sensação']}"
+  },
+  {
+    "kana": "タッチ",
+    "en": [
+      "touch",
+      "touching"
+    ],
+    "senseUid": "3af01ad8-e790-4b6a-be75-6b22fd12520d",
+    "wordId": "1076320",
+    "pt": "{'a': ['toque', 'tocar']}"
+  },
+  {
+    "kana": "タッチ",
+    "en": [
+      "tag"
+    ],
+    "senseUid": "eaedb702-874a-478c-8fc9-02369a382e53",
+    "wordId": "1076320",
+    "pt": "{'a': ['tocar']}"
+  },
+  {
+    "kana": "タップ",
+    "en": [
+      "tap",
+      "faucet"
+    ],
+    "senseUid": "c851c3c6-7a3b-4a32-a97a-6fc6af0a2b52",
+    "wordId": "1076340",
+    "pt": "{'a': ['torneira']}"
+  },
+  {
+    "kana": "タップ",
+    "en": [
+      "tap dance"
+    ],
+    "senseUid": "1813030f-cf12-4bfb-acf1-11c6d2eb9ec2",
+    "wordId": "1076340",
+    "pt": "{'a': ['sapateado']}"
+  },
+  {
+    "kana": "タッチ",
+    "en": [
+      "high five",
+      "touching palms"
+    ],
+    "senseUid": "efce9a79-36ff-4fc9-8d61-4627cb59978f",
+    "wordId": "1076320",
+    "pt": "{'a': ['tocar as palmas', 'cumprimento com as mãos', 'bater palmas juntos', 'high five']}"
+  },
+  {
+    "kana": "タッチスクリーン",
+    "en": [
+      "touchscreen"
+    ],
+    "senseUid": "90b2bf43-c659-4eee-9d6d-48a75c35bbc2",
+    "wordId": "1076330",
+    "pt": "{'a': ['tela sensível ao toque']}"
+  },
+  {
+    "kana": "タップ",
+    "en": [
+      "tap (on a touchscreen)"
+    ],
+    "senseUid": "6d120531-0312-4f62-80d0-7631ec9f4b60",
+    "wordId": "1076340",
+    "pt": "{'a': ['tocar (em uma tela sensível ao toque)']}"
+  },
+  {
+    "kana": "タップダンス",
+    "en": [
+      "tap dance"
+    ],
+    "senseUid": "4cba8e95-38a3-4e67-b110-e9c326032d1e",
+    "wordId": "1076350",
+    "pt": "{'a': ['sapateado']}"
+  },
+  {
+    "kana": "タップ",
+    "en": [
+      "tap (electrical)"
+    ],
+    "senseUid": "721ab17b-18e1-4c22-932f-7fc5a877624d",
+    "wordId": "1076340",
+    "pt": "{'a': ['derivação elétrica']}"
+  },
+  {
+    "kana": "タフネス",
+    "en": [
+      "toughness"
+    ],
+    "senseUid": "53e5a4b6-6f35-4a60-9a8c-a7b9125d66b0",
+    "wordId": "1076380",
+    "pt": "{'a': ['resistência', 'robustez', 'durabilidade']}"
+  },
+  {
+    "kana": "タフ",
+    "en": [
+      "tough"
+    ],
+    "senseUid": "9c1f51ef-2569-429b-9955-ac8755ee44aa",
+    "wordId": "1076370",
+    "pt": "{'a': ['durão', 'resistente', 'forte']}"
+  },
+  {
+    "kana": "タブ",
+    "en": [
+      "tab (character, key)"
+    ],
+    "senseUid": "ecf6c02e-3326-417c-86c0-f39c9a0def99",
+    "wordId": "1076390",
+    "pt": "{'a': ['tab (caractere, tecla)']}"
+  },
+  {
+    "kana": "タブ",
+    "en": [
+      "tab (in a window)"
+    ],
+    "senseUid": "2364db51-a1cb-4ca0-9488-b1378f2e1d55",
+    "wordId": "1076390",
+    "pt": "{'a': ['aba (em uma janela)']}"
+  },
+  {
+    "kana": "タブ",
+    "en": [
+      "tab (flap or strip of material)"
+    ],
+    "senseUid": "21c5ee26-cd84-43a7-ac4a-4f5ef6e49e9e",
+    "wordId": "1076390",
+    "pt": "{'a': ['aba (faixa ou tira de material)']}"
+  },
+  {
+    "kana": "タブー",
+    "en": [
+      "taboo"
+    ],
+    "senseUid": "9f08cd91-8f52-4360-a5d0-38c456a5e3c4",
+    "wordId": "1076400",
+    "pt": "{'a': ['tabu']}"
+  },
+  {
+    "kana": "タブレット",
+    "en": [
+      "tablet",
+      "pill"
+    ],
+    "senseUid": "6831454a-fa5a-420d-946f-4f6667ade13e",
+    "wordId": "1076410",
+    "pt": "{'a': ['comprimido', 'tablete']}"
+  },
+  {
+    "kana": "タブレット",
+    "en": [
+      "tablet",
+      "tablet computer"
+    ],
+    "senseUid": "d8360fdb-0f43-40a8-a9e8-1bafb8ebea6c",
+    "wordId": "1076410",
+    "pt": "{'a': ['tablet', 'computador tablet']}"
+  },
+  {
+    "kana": "タブロイド",
+    "en": [
+      "tabloid"
+    ],
+    "senseUid": "c94f27fd-eb04-4405-8757-2c175e6d79df",
+    "wordId": "1076420",
+    "pt": "{'a': ['tabloide']}"
+  },
+  {
+    "kana": "タブレット",
+    "en": [
+      "tablet",
+      "(inscribed) slab"
+    ],
+    "senseUid": "b9eadc75-838b-4eae-ae5a-8dce2d470251",
+    "wordId": "1076410",
+    "pt": "{'a': ['tablete', 'lousa (inscrita)']}"
+  },
+  {
+    "kana": "タブレット",
+    "en": [
+      "drawing tablet",
+      "graphics tablet"
+    ],
+    "senseUid": "6c3a28c2-8fc3-4c9e-9381-b4957aadccbd",
+    "wordId": "1076410",
+    "pt": "{'a': ['tablet de desenho', 'tablet gráfico']}"
+  },
+  {
+    "kana": "タポタポ",
+    "en": [
+      "bloated (with liquid; of a stomach)"
+    ],
+    "senseUid": "518c88ec-06bc-494d-b42a-e0640decabdc",
+    "wordId": "1076430",
+    "pt": "{'a': ['estômago cheio de líquido', 'barriga inchada (de líquido)', 'estômago empanturrado']}"
+  },
+  {
+    "kana": "タワー",
+    "en": [
+      "tower"
+    ],
+    "senseUid": "ced82148-dc04-4a3a-93bd-08f1eae01615",
+    "wordId": "1076470",
+    "pt": "{'a': ['torre']}"
+  },
+  {
+    "kana": "タレント",
+    "en": [
+      "talent",
+      "skill"
+    ],
+    "senseUid": "3c3ee094-2f32-4c4b-99be-ce98e5f67658",
+    "wordId": "1076460",
+    "pt": "{'a': ['talento', 'celebridade', 'artista']}"
+  },
+  {
+    "kana": "タンク",
+    "en": [
+      "tank (of fluid)",
+      "cistern",
+      "vat"
+    ],
+    "senseUid": "dac57a52-5ea7-41fb-a2a8-ec2ad4aa47ed",
+    "wordId": "1076500",
+    "pt": "{'a': ['tanque (de líquido)', 'cisterna', 'reservatório']}"
+  },
+  {
+    "kana": "タレント",
+    "en": [
+      "(TV or radio) entertainer",
+      "television personality",
+      "radio personality"
+    ],
+    "senseUid": "4fb91774-2def-44e5-af52-de1b49af84e0",
+    "wordId": "1076460",
+    "pt": "{'a': ['celebridade da TV', 'personalidade da televisão', 'personalidade do rádio']}"
+  },
+  {
+    "kana": "タリウム",
+    "en": [
+      "thallium (Tl)"
+    ],
+    "senseUid": "737f72a1-ceb7-42dd-ac78-82a19001d245",
+    "wordId": "1076440",
+    "pt": "{'a': ['tálio (Tl)']}"
+  },
+  {
+    "kana": "タン",
+    "en": [
+      "tongue (of a shoe)"
+    ],
+    "senseUid": "7d037b1e-b553-4f22-ad89-56c4523cb816",
+    "wordId": "1076480",
+    "pt": "{'a': ['língua (de um sapato)']}"
+  },
+  {
+    "kana": "タンカー",
+    "en": [
+      "tanker"
+    ],
+    "senseUid": "4cc658f1-06b1-4704-bfdc-3669f45fe768",
+    "wordId": "1076490",
+    "pt": "{'a': ['navio petroleiro']}"
+  },
+  {
+    "kana": "タン",
+    "en": [
+      "tongue (beef, pork, etc.)"
+    ],
+    "senseUid": "72bddb82-a98b-4e04-b28d-6eef28f528f2",
+    "wordId": "1076480",
+    "pt": "{'a': ['língua (de boi, porco, etc.)']}"
+  },
+  {
+    "kana": "タレント",
+    "en": [
+      "talent (ancient unit of weight and currency)"
+    ],
+    "senseUid": "47806ec4-d104-47f7-a9b1-b25d6f8fcaca",
+    "wordId": "1076460",
+    "pt": "{'a': ['celebridade', 'personalidade da mídia', 'artista (de TV, rádio, etc.)']}"
+  },
+  {
+    "kana": "タルク",
+    "en": [
+      "talc"
+    ],
+    "senseUid": "fbecb497-ed50-42f5-87db-2365167cc328",
+    "wordId": "1076450",
+    "pt": "{'a': ['talco']}"
+  },
+  {
+    "kana": "タンザニア",
+    "en": [
+      "Tanzania"
+    ],
+    "senseUid": "983d123c-60cd-4793-ba1e-39ca7c2b2b72",
+    "wordId": "1076550",
+    "pt": "{'a': ['Tanzânia']}"
+  },
+  {
+    "kana": "タンク",
+    "en": [
+      "tank (military vehicle)"
+    ],
+    "senseUid": "317f3526-13d8-41f1-9d49-a881349fa9b7",
+    "wordId": "1076500",
+    "pt": "{'a': ['tanque (veículo militar)']}"
+  },
+  {
+    "kana": "タングステン",
+    "en": [
+      "tungsten (W)"
+    ],
+    "senseUid": "627b9216-44c5-49ca-b83d-7da3d5a5cbf8",
+    "wordId": "1076540",
+    "pt": "{'a': ['tungstênio']}"
+  },
+  {
+    "kana": "タンクトップ",
+    "en": [
+      "tank top"
+    ],
+    "senseUid": "95932bb8-2b65-4893-8665-b55f7366a8f2",
+    "wordId": "1076510",
+    "pt": "{'a': ['regata']}"
+  },
+  {
+    "kana": "タンクブリージング",
+    "en": [
+      "(scuba) tank breathing"
+    ],
+    "senseUid": "4d6b8acf-0809-4c6c-bb6a-c3d2b9fc95e5",
+    "wordId": "1076520",
+    "pt": "{'a': ['respiração do cilindro (de mergulho)']}"
+  },
+  {
+    "kana": "タンデム",
+    "en": [
+      "tandem",
+      "(riding with a) passenger on a motorcycle"
+    ],
+    "senseUid": "08fabc2a-73f3-4286-94e9-a77fbd8fecd5",
+    "wordId": "1076580",
+    "pt": "{'a': ['tandem', 'andar com passageiro na motocicleta']}"
+  },
+  {
+    "kana": "タンクローリー",
+    "en": [
+      "tank truck",
+      "tanker truck",
+      "tanker"
+    ],
+    "senseUid": "4bbbd8ff-d294-4a99-92aa-58fd1f2c6923",
+    "wordId": "1076530",
+    "pt": "{'a': ['caminhão-tanque', 'veículo-tanque', 'tanque (veículo de transporte de líquidos)']}"
+  },
+  {
+    "kana": "タンタル",
+    "en": [
+      "tantalum (Ta)"
+    ],
+    "senseUid": "d8465c4b-1517-407f-8e86-04a6cb71077a",
+    "wordId": "1076560",
+    "pt": "{'a': ['tântalo']}"
+  },
+  {
+    "kana": "タンダー",
+    "en": [
+      "tender"
+    ],
+    "senseUid": "6e8f8438-3915-494f-852c-1d0e6bc1ac56",
+    "wordId": "1076570",
+    "pt": "{'a': ['tender', 'macio', 'suave', 'gentil']}"
+  },
+  {
+    "kana": "タンポン",
+    "en": [
+      "tampon"
+    ],
+    "senseUid": "a881eb47-d2bb-4887-b4e9-d9da37b7a3d7",
+    "wordId": "1076610",
+    "pt": "{'a': ['absorvente interno']}"
+  },
+  {
+    "kana": "ダーク",
+    "en": [
+      "dark"
+    ],
+    "senseUid": "4ca92ff2-fbed-4945-8ff2-e1e10383c58a",
+    "wordId": "1076640",
+    "pt": "{'a': ['escuro']}"
+  },
+  {
+    "kana": "ダース",
+    "en": [
+      "dozen"
+    ],
+    "senseUid": "1427328e-322d-41a3-aee2-a904eeb794c2",
+    "wordId": "1076650",
+    "pt": "{'a': ['dúzia']}"
+  },
+  {
+    "kana": "タンドリーチキン",
+    "en": [
+      "tandoori chicken"
+    ],
+    "senseUid": "faeeb75a-3f6e-4715-916c-53921b8fec74",
+    "wordId": "1076590",
+    "pt": "{'a': ['frango tandoori']}"
+  },
+  {
+    "kana": "たぎょう",
+    "en": [
+      "the \"ta\" column of the Japanese syllabary table (ta, chi, tsu, te, to)"
+    ],
+    "senseUid": "e2ad4c4e-c553-4824-ae51-9844fed2a20c",
+    "wordId": "1076620",
+    "pt": "{'a': ['a coluna \"ta\" da tabela silábica japonesa (ta, chi, tsu, te, to)']}"
+  },
+  {
+    "kana": "タンポン",
+    "en": [
+      "surgical pad"
+    ],
+    "senseUid": "01d2d7f6-fabd-4910-829c-970baee7291d",
+    "wordId": "1076610",
+    "pt": "{'a': ['absorvente cirúrgico']}"
+  },
+  {
+    "kana": "ダル",
+    "en": [
+      "dull",
+      "lifeless",
+      "boring"
+    ],
+    "senseUid": "b331733c-208d-482d-921a-263d0dceaa02",
+    "wordId": "1076670",
+    "pt": "{'a': ['apático', 'sem vida', 'monótono']}"
+  },
+  {
+    "kana": "ダイアグラム",
+    "en": [
+      "diagram"
+    ],
+    "senseUid": "7021c398-d1c0-4c50-911b-86c34ddfaab4",
+    "wordId": "1076680",
+    "pt": "{'a': ['diagrama']}"
+  },
+  {
+    "kana": "ダーリン",
+    "en": [
+      "darling"
+    ],
+    "senseUid": "c6bc8f90-7cd8-4dca-ba2e-a1c239ba0262",
+    "wordId": "1076660",
+    "pt": "{'a': ['querido', 'amor', 'meu bem']}"
+  },
+  {
+    "kana": "ダイアトニック",
+    "en": [
+      "diatonic"
+    ],
+    "senseUid": "b1db6423-80d3-43ec-a3b3-b3823f44ff6a",
+    "wordId": "1076690",
+    "pt": "{'a': ['diatônico']}"
+  }
+]

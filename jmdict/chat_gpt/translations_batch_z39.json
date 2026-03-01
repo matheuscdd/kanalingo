@@ -1,0 +1,931 @@
+[
+  {
+    "kana": "こなれ",
+    "en": [
+      "digestion",
+      "digestibility"
+    ],
+    "senseUid": "f86125b7-61ba-4fc4-b60e-3ed527516a20",
+    "wordId": "2429210",
+    "pt": "{\n  \"a\": [\n    \"digestão\",\n    \"digestibilidade\"\n  ]\n}"
+  },
+  {
+    "kana": "あかちゃ",
+    "en": [
+      "reddish brown"
+    ],
+    "senseUid": "69ce629b-d6c2-4861-b6dd-23168b33e536",
+    "wordId": "2429330",
+    "pt": "{'a': ['marrom avermelhado']}"
+  },
+  {
+    "kana": "あかちゃいろ",
+    "en": [
+      "reddish brown"
+    ],
+    "senseUid": "63819574-46c4-4f9c-b2e4-1dd438aa11e2",
+    "wordId": "2429340",
+    "pt": "{'a': ['marrom avermelhado']}"
+  },
+  {
+    "kana": "ぜつぎ",
+    "en": [
+      "special move (e.g. in martial arts)"
+    ],
+    "senseUid": "4d503e24-bd6c-4f22-9d2c-d06dc426a37d",
+    "wordId": "2429320",
+    "pt": "{'a': ['golpe especial (por exemplo, em artes marciais)']}"
+  },
+  {
+    "kana": "わりんご",
+    "en": [
+      "Chinese apple (Malus asiatica)"
+    ],
+    "senseUid": "b1f6a272-2169-4eeb-9ca4-8145a698c13d",
+    "wordId": "2429300",
+    "pt": "{'a': ['maçã chinesa (Malus asiatica)']}"
+  },
+  {
+    "kana": "おかねもち",
+    "en": [
+      "rich person",
+      "wealthy person"
+    ],
+    "senseUid": "b5191547-f55a-407f-9cc4-6aeeeb4dc54b",
+    "wordId": "2429350",
+    "pt": "{'a': ['pessoa rica', 'pessoa abastada']}"
+  },
+  {
+    "kana": "へいのう",
+    "en": [
+      "soldiers and farmers"
+    ],
+    "senseUid": "12413aa9-efd4-4e5b-b218-2f65b1f924bb",
+    "wordId": "2429360",
+    "pt": "{'a': ['soldados e camponeses']}"
+  },
+  {
+    "kana": "マンデート",
+    "en": [
+      "mandate"
+    ],
+    "senseUid": "221289ef-646d-41bc-a391-741e70aedeb2",
+    "wordId": "2429380",
+    "pt": "{'a': ['mandato']}"
+  },
+  {
+    "kana": "いいきもち",
+    "en": [
+      "good feeling"
+    ],
+    "senseUid": "f9c3d9cb-41a2-4a5a-bc16-6761c557ed79",
+    "wordId": "2429390",
+    "pt": "{'a': ['sensação boa']}"
+  },
+  {
+    "kana": "へいのうぶんり",
+    "en": [
+      "separation of farmers and samurai (system in effect from the Azuchi-Momoyama period until the Edo period)"
+    ],
+    "senseUid": "b02e9837-9942-4c3b-b7a9-6209ab861c70",
+    "wordId": "2429370",
+    "pt": "{'a': ['separação entre camponeses e samurais (sistema vigente do período Azuchi-Momoyama até o período Edo)']}"
+  },
+  {
+    "kana": "うつじょうたい",
+    "en": [
+      "depressive state (e.g. of manic depression)",
+      "depressive condition"
+    ],
+    "senseUid": "b1253248-e3ad-4c58-81fc-1cb4b06aa7de",
+    "wordId": "2429400",
+    "pt": "{\n  \"a\": [\n    \"estado depressivo (por exemplo, de transtorno bipolar)\",\n    \"condição depressiva\"\n  ]\n}"
+  },
+  {
+    "kana": "うすくちしょうゆ",
+    "en": [
+      "light soy sauce"
+    ],
+    "senseUid": "4abae49f-0981-407b-8100-1042c01bb662",
+    "wordId": "2429420",
+    "pt": "{'a': ['shoyu claro']}"
+  },
+  {
+    "kana": "こいくちしょうゆ",
+    "en": [
+      "dark soy sauce",
+      "regular soy sauce"
+    ],
+    "senseUid": "3dec1ae7-80f8-42c7-ad8e-73013a9ab569",
+    "wordId": "2429410",
+    "pt": "{'a': ['shoyu escuro', 'shoyu comum']}"
+  },
+  {
+    "kana": "どようのうしのひ",
+    "en": [
+      "midsummer day of the ox (traditionally marked by eating eel)"
+    ],
+    "senseUid": "f2ab1ef0-2475-4700-a98a-fbce494841e4",
+    "wordId": "2429430",
+    "pt": "{'a': ['Dia do Boi do Meio do Verão (data tradicionalmente marcada por comer enguia)']}"
+  },
+  {
+    "kana": "ちつけいれん",
+    "en": [
+      "vaginismus",
+      "vaginal spasm"
+    ],
+    "senseUid": "28b0eaa1-606e-4c30-bc22-3810776aa0b5",
+    "wordId": "2429470",
+    "pt": "{'a': ['vaginismo', 'espasmo vaginal']}"
+  },
+  {
+    "kana": "ちつえん",
+    "en": [
+      "vaginitis"
+    ],
+    "senseUid": "fb8b2985-1ca5-46ad-a7de-a39bf466621c",
+    "wordId": "2429480",
+    "pt": "{'a': ['vaginite']}"
+  },
+  {
+    "kana": "からくだもの",
+    "en": [
+      "deep-fried Chinese pastry (sweetened with jiaogulan)"
+    ],
+    "senseUid": "ec631e1c-94da-4179-ab26-acabb37f55e2",
+    "wordId": "2429450",
+    "pt": "{\n  \"a\": [\n    \"doce frito chinês (adoçado com jiaogulan)\"\n  ]\n}"
+  },
+  {
+    "kana": "か",
+    "en": [
+      "fruit"
+    ],
+    "senseUid": "faf64e5a-41d9-467e-946c-d661dec6fe1e",
+    "wordId": "2429460",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"か\",\n      \"gloss\": [\"fruto\"]\n    }\n  ]\n}"
+  },
+  {
+    "kana": "ちつトリコモナスしょう",
+    "en": [
+      "vaginal trichomoniasis"
+    ],
+    "senseUid": "515adcbe-0771-41b5-8369-836dc997b046",
+    "wordId": "2429490",
+    "pt": "{'a': ['tricomoníase vaginal']}"
+  },
+  {
+    "kana": "か",
+    "en": [
+      "counter for fruit"
+    ],
+    "senseUid": "1e3863da-75ec-46d8-9ac3-0abec645eccf",
+    "wordId": "2429460",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"か\",\n      \"gloss\": [\"contador para frutas\"]\n    }\n  ]\n}"
+  },
+  {
+    "kana": "せきゆプラットフォーム",
+    "en": [
+      "oil platform",
+      "oil rig"
+    ],
+    "senseUid": "b0434f39-37d2-4f4d-9836-13d83cf674da",
+    "wordId": "2429500",
+    "pt": "{'a': ['plataforma de petróleo', 'plataforma petrolífera']}"
+  },
+  {
+    "kana": "あまずら",
+    "en": [
+      "jiaogulan (species of herbaceous vine; Gynostemma pentaphyllum)"
+    ],
+    "senseUid": "c51a75af-8272-45a5-9383-7e2fa16313bf",
+    "wordId": "2429440",
+    "pt": "{\n  \"a\": [\n    \"jiaogulan (espécie de trepadeira herbácea; Gynostemma pentaphyllum)\"\n  ]\n}"
+  },
+  {
+    "kana": "ちつぜんてい",
+    "en": [
+      "vaginal vestibule",
+      "vulvar vestibule"
+    ],
+    "senseUid": "35e505f0-17ab-44d5-92ab-b1e98c068c54",
+    "wordId": "2429510",
+    "pt": "{\n  \"a\": [\n    \"vestíbulo vaginal\",\n    \"vestíbulo vulvar\"\n  ]\n}"
+  },
+  {
+    "kana": "ぜんていそう",
+    "en": [
+      "oval window",
+      "fenestra ovalis",
+      "fenestra vestibuli"
+    ],
+    "senseUid": "5e2f9da4-5cf3-4682-9b47-5601c29fd37d",
+    "wordId": "2429520",
+    "pt": "{\n  \"a\": [\n    \"janela oval\",\n    \"fenestra ovalis\",\n    \"fenestra do vestíbulo\"\n  ]\n}"
+  },
+  {
+    "kana": "ぜんていきかん",
+    "en": [
+      "vestibular system",
+      "vestibular organs"
+    ],
+    "senseUid": "eb8e8e5d-9c3a-4627-9a42-a3b0e88bb21f",
+    "wordId": "2429530",
+    "pt": "{'a': ['sistema vestibular', 'órgãos vestibulares']}"
+  },
+  {
+    "kana": "あまずら",
+    "en": [
+      "ivy (esp. Boston ivy; Parthenocissus tricuspidata)"
+    ],
+    "senseUid": "f2145cd5-6cc9-42b5-b302-1b9678105677",
+    "wordId": "2429440",
+    "pt": "{\n  \"a\": [\n    \"hera (especialmente hera-de-boston; Parthenocissus tricuspidata)\"\n  ]\n}"
+  },
+  {
+    "kana": "しんぶかんかく",
+    "en": [
+      "bathyesthesia",
+      "deep sensibility"
+    ],
+    "senseUid": "14f0fd8f-ba0b-4ab0-a977-bdcfd2507b81",
+    "wordId": "2429540",
+    "pt": "{\n  \"a\": [\"batioestesia\", \"sensibilidade profunda\"]\n}"
+  },
+  {
+    "kana": "ヒドロキシアパタイト",
+    "en": [
+      "hydroxyapatite"
+    ],
+    "senseUid": "e210d7ad-25cb-49fd-95fd-c8c1baf1006f",
+    "wordId": "2429580",
+    "pt": "{'a': ['hidroxiapatita']}"
+  },
+  {
+    "kana": "めいじえん",
+    "en": [
+      "labyrinthitis"
+    ],
+    "senseUid": "7efea1fb-fc36-4422-81b8-c496216906ee",
+    "wordId": "2429570",
+    "pt": "{'a': ['labirintite']}"
+  },
+  {
+    "kana": "こつめいろ",
+    "en": [
+      "bony labyrinth (of the inner ear)"
+    ],
+    "senseUid": "2dda3e37-47a5-4452-8acd-f20e59c27923",
+    "wordId": "2429560",
+    "pt": "{'a': ['labirinto ósseo (do ouvido interno)']}"
+  },
+  {
+    "kana": "まくめいろ",
+    "en": [
+      "membranous labyrinth (of the inner ear)",
+      "membraneous labyrinth"
+    ],
+    "senseUid": "98225779-5d91-4078-b09d-86e2e7c484ef",
+    "wordId": "2429550",
+    "pt": "{\n  \"a\": [\n    \"labirinto membranoso (do ouvido interno)\",\n    \"labirinto membranoso\"\n  ]\n}"
+  },
+  {
+    "kana": "テタニー",
+    "en": [
+      "tetany"
+    ],
+    "senseUid": "50d9350a-0ea3-474e-a1a4-357bf88b9d4d",
+    "wordId": "2429600",
+    "pt": "{'a': ['tetania']}"
+  },
+  {
+    "kana": "こうけいしょく",
+    "en": [
+      "vignetting"
+    ],
+    "senseUid": "1be25f9f-2149-46f3-b8c2-eea600d3cca4",
+    "wordId": "2429630",
+    "pt": "{'a': ['vinhetamento']}"
+  },
+  {
+    "kana": "エンペラ",
+    "en": [
+      "squid fin"
+    ],
+    "senseUid": "b0d6a699-6e53-4aa1-95c8-ce2d3b2cbe3b",
+    "wordId": "2429620",
+    "pt": "{'a': ['barbatana de lula']}"
+  },
+  {
+    "kana": "ぜんちゅう",
+    "en": [
+      "worm",
+      "helminth"
+    ],
+    "senseUid": "67369ecb-5de9-4a13-b969-b9a317344ed1",
+    "wordId": "2429610",
+    "pt": "{'a': ['verme', 'helminto']}"
+  },
+  {
+    "kana": "こうけい",
+    "en": [
+      "lockjaw",
+      "trismus"
+    ],
+    "senseUid": "effa4d31-ba1c-4dcf-a1f6-b7132372b67b",
+    "wordId": "2429590",
+    "pt": "{\n  \"a\": [\"trismo\", \"trismo mandibular\"]\n}"
+  },
+  {
+    "kana": "エフナンバー",
+    "en": [
+      "f-number"
+    ],
+    "senseUid": "66391177-2d0b-4223-b5a7-fd3ab1690ffe",
+    "wordId": "2429640",
+    "pt": "{'a': ['número f']}"
+  },
+  {
+    "kana": "こうけいひ",
+    "en": [
+      "aperture ratio (inverse of the f-number)",
+      "relative aperture"
+    ],
+    "senseUid": "0ed9e3f0-61ab-4b1d-ac63-b884e7649578",
+    "wordId": "2429650",
+    "pt": "{'a': ['razão de abertura (inverso do número f)', 'abertura relativa']}"
+  },
+  {
+    "kana": "アルギニン",
+    "en": [
+      "arginine"
+    ],
+    "senseUid": "7df79166-7818-4e45-bffd-4a17f514f930",
+    "wordId": "2429770",
+    "pt": "{'a': ['arginina']}"
+  },
+  {
+    "kana": "おんとし",
+    "en": [
+      "age (esp. advanced)"
+    ],
+    "senseUid": "3185b0c6-a285-4792-8c06-72092e6cd180",
+    "wordId": "2429660",
+    "pt": "{'a': ['idade (especialmente avançada)']}"
+  },
+  {
+    "kana": "なかいま",
+    "en": [
+      "the present (esp. as a privileged moment in eternity)"
+    ],
+    "senseUid": "eb2bb6af-2d89-45a4-bc5c-0d38611500ae",
+    "wordId": "2429670",
+    "pt": "{'a': ['o presente (especialmente como um momento privilegiado na eternidade)']}"
+  },
+  {
+    "kana": "アスパラギン",
+    "en": [
+      "asparagine"
+    ],
+    "senseUid": "23411834-7024-41e0-b143-cbbe94237bc4",
+    "wordId": "2429780",
+    "pt": "{\n  \"a\": [\"asparagina\"]\n}"
+  },
+  {
+    "kana": "フェニルアラニン",
+    "en": [
+      "phenylalanine"
+    ],
+    "senseUid": "b9e818ee-1968-4440-bba0-bba2c840d353",
+    "wordId": "2429680",
+    "pt": "{'a': ['fenilalanina']}"
+  },
+  {
+    "kana": "アラニン",
+    "en": [
+      "alanine"
+    ],
+    "senseUid": "0b3497cd-bc0e-429d-8e8c-2533487c25f3",
+    "wordId": "2429760",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"アラニン\",\n      \"pt\": \"alanina\",\n      \"notas\": \"A palavra アラニン (aranin) é a transliteração japonesa para 'alanina', um aminoácido. Em português, o termo correspondente é 'alanina', usado principalmente em contextos científicos e bioquímicos.\"\n    }\n  ]\n}"
+  },
+  {
+    "kana": "ロイシン",
+    "en": [
+      "leucine"
+    ],
+    "senseUid": "e33c0434-4518-41f3-8f00-109406dd0888",
+    "wordId": "2429730",
+    "pt": "{'a': ['leucina']}"
+  },
+  {
+    "kana": "イソロイシン",
+    "en": [
+      "isoleucine"
+    ],
+    "senseUid": "92913371-7de2-4281-bddd-20ede09e12a8",
+    "wordId": "2429740",
+    "pt": "{'a': ['isoleucina']}"
+  },
+  {
+    "kana": "バリン",
+    "en": [
+      "valine"
+    ],
+    "senseUid": "a48824e0-4da2-423f-82bd-4fea83904d1d",
+    "wordId": "2429720",
+    "pt": "{\n  \"a\": [\"valina\"]\n}"
+  },
+  {
+    "kana": "トレオニン",
+    "en": [
+      "threonine"
+    ],
+    "senseUid": "b08f0716-a6e4-4dad-8ac0-82e3eba42c83",
+    "wordId": "2429710",
+    "pt": "{'a': ['treonina']}"
+  },
+  {
+    "kana": "バリン",
+    "en": [
+      "(with a) whoomp",
+      "smash",
+      "crunch"
+    ],
+    "senseUid": "366e8165-28c0-442b-96d3-64256bad73cb",
+    "wordId": "2429720",
+    "pt": "{'a': ['com um estrondo', 'esmaga', 'trinca']}"
+  },
+  {
+    "kana": "ヒスチジン",
+    "en": [
+      "histidine"
+    ],
+    "senseUid": "22a21a61-d548-49c1-bf68-8b56d79b1351",
+    "wordId": "2429750",
+    "pt": "{'a': ['histidina']}"
+  },
+  {
+    "kana": "トリプトファン",
+    "en": [
+      "tryptophan"
+    ],
+    "senseUid": "ca898327-79c6-4245-ae8b-29035d87efe4",
+    "wordId": "2429690",
+    "pt": "{'a': ['triptofano']}"
+  },
+  {
+    "kana": "プロリン",
+    "en": [
+      "proline"
+    ],
+    "senseUid": "ae76b6b6-f491-4495-bc92-6e14e6b68c1c",
+    "wordId": "2429810",
+    "pt": "{'a': ['prolina']}"
+  },
+  {
+    "kana": "セリン",
+    "en": [
+      "serine"
+    ],
+    "senseUid": "f5007a8b-1366-4008-8f93-7d081864c9a7",
+    "wordId": "2429790",
+    "pt": "{'a': ['serina']}"
+  },
+  {
+    "kana": "システイン",
+    "en": [
+      "cysteine"
+    ],
+    "senseUid": "3c1a92de-6718-4506-ac05-59f8ed0b5b09",
+    "wordId": "2429800",
+    "pt": "{'a': ['cisteína']}"
+  },
+  {
+    "kana": "ペラグラ",
+    "en": [
+      "pellagra"
+    ],
+    "senseUid": "5aab6b96-c4e6-453a-b00f-4a4796519688",
+    "wordId": "2429860",
+    "pt": "{'a': ['pelagra']}"
+  },
+  {
+    "kana": "ギャバ",
+    "en": [
+      "gamma-aminobutyric acid (GABA)"
+    ],
+    "senseUid": "8c492381-a50d-4560-8fee-d445f693d19b",
+    "wordId": "2429830",
+    "pt": "{'a': ['ácido gama-aminobutírico (GABA)']}"
+  },
+  {
+    "kana": "メチオニン",
+    "en": [
+      "methionine"
+    ],
+    "senseUid": "bd391f3b-82a6-4d0a-b4e1-4561d4b7520b",
+    "wordId": "2429700",
+    "pt": "{'a': ['metionina']}"
+  },
+  {
+    "kana": "ブレンステッドさんえんき",
+    "en": [
+      "Bronsted acids and bases"
+    ],
+    "senseUid": "454468c4-1ca6-42e6-94b6-5e93ff19ddf1",
+    "wordId": "2429870",
+    "pt": "{'a': ['ácidos e bases de Brønsted']}"
+  },
+  {
+    "kana": "ルイスさんえんき",
+    "en": [
+      "Lewis acids and bases"
+    ],
+    "senseUid": "135bbe9f-ee85-4bd2-bc19-68bbea9d899c",
+    "wordId": "2429880",
+    "pt": "{\n  \"a\": [\"ácidos e bases de Lewis\"]\n}"
+  },
+  {
+    "kana": "にさんえんき",
+    "en": [
+      "diacidic base"
+    ],
+    "senseUid": "5d215332-7113-4e09-a2a8-3be97365ee13",
+    "wordId": "2429890",
+    "pt": "{\n  \"a\": [\"base diácida\"]\n}"
+  },
+  {
+    "kana": "ガンマアミノらくさん",
+    "en": [
+      "gamma-aminobutyric acid (GABA)"
+    ],
+    "senseUid": "ef255c34-6bfa-4686-9577-84ce3462fa07",
+    "wordId": "2429840",
+    "pt": "{'a': ['ácido gama-aminobutírico (GABA)']}"
+  },
+  {
+    "kana": "チロシン",
+    "en": [
+      "tyrosine"
+    ],
+    "senseUid": "fd529544-d4ee-43b4-981d-1029abb91399",
+    "wordId": "2429820",
+    "pt": "{'a': ['tirosina']}"
+  },
+  {
+    "kana": "インドール",
+    "en": [
+      "indole"
+    ],
+    "senseUid": "7c094e35-d84b-4b7c-b8fa-84c1c54b4f6b",
+    "wordId": "2429910",
+    "pt": "{\n  \"a\": [\"indol\"]\n}"
+  },
+  {
+    "kana": "レッシュナイハンしょうこうぐん",
+    "en": [
+      "Lesch-Nyhan syndrome"
+    ],
+    "senseUid": "b1a90d6c-f415-493a-aa66-75dc49f532eb",
+    "wordId": "2429850",
+    "pt": "{\n  \"a\": [\"síndrome de Lesch-Nyhan\"]\n}"
+  },
+  {
+    "kana": "たさんえんき",
+    "en": [
+      "polyacidic base"
+    ],
+    "senseUid": "981516b2-098e-491c-8adb-60fc1f846943",
+    "wordId": "2429900",
+    "pt": "{'a': ['base poliácida']}"
+  },
+  {
+    "kana": "ビリルビン",
+    "en": [
+      "bilirubin"
+    ],
+    "senseUid": "550c7d2e-204f-4a8b-809c-a32c0b273e36",
+    "wordId": "2429950",
+    "pt": "{'a': ['bilirrubina']}"
+  },
+  {
+    "kana": "インドールらくさん",
+    "en": [
+      "indolebutyric acid"
+    ],
+    "senseUid": "edb89e35-8a12-4aad-a39e-4757d7c514d0",
+    "wordId": "2429920",
+    "pt": "{'a': ['ácido indolbutírico']}"
+  },
+  {
+    "kana": "ヘムタンパクしつ",
+    "en": [
+      "hemoprotein",
+      "haemoprotein"
+    ],
+    "senseUid": "1f17326d-b795-45f0-8a3e-8e9b6f4b9cc9",
+    "wordId": "2429960",
+    "pt": "{\n  \"a\": [\"hemoproteína\"]\n}"
+  },
+  {
+    "kana": "ピロール",
+    "en": [
+      "pyrrole"
+    ],
+    "senseUid": "ee3ee4e0-b3e0-4e73-b9da-7375deabdaa3",
+    "wordId": "2429940",
+    "pt": "{\n  \"a\": [\"pirrol\"]\n}"
+  },
+  {
+    "kana": "せいしきのれきし",
+    "en": [
+      "official history (e.g. a state-sanctioned account of history subject to revision when the government changes)"
+    ],
+    "senseUid": "3d9b2b6c-30bd-4357-9f57-cfef8a7de0a8",
+    "wordId": "2429930",
+    "pt": "{'a': ['história oficial (por exemplo, um relato sancionado pelo Estado, sujeito a revisões quando o governo muda)']}"
+  },
+  {
+    "kana": "アニリンブラック",
+    "en": [
+      "aniline black"
+    ],
+    "senseUid": "15ecf4ce-8764-428f-8d46-db8012eafbb2",
+    "wordId": "2429970",
+    "pt": "{'a': ['preto anilina']}"
+  },
+  {
+    "kana": "はいかん",
+    "en": [
+      "petty official responsible for collecting public gossip and presenting it to the king (in ancient China)"
+    ],
+    "senseUid": "94377cd5-55c0-4910-b7d1-977ca0ae553a",
+    "wordId": "2429980",
+    "pt": "{'a': ['pequeno oficial encarregado de coletar rumores públicos e apresentá-los ao rei (na antiga China)']}"
+  },
+  {
+    "kana": "きじほんまつたい",
+    "en": [
+      "topical-annalistic style (of historical writing)"
+    ],
+    "senseUid": "58473dcb-a3cf-4883-a5a6-71a708bd9cab",
+    "wordId": "2430010",
+    "pt": "{'a': ['estilo anais-temáticos (de escrita histórica)']}"
+  },
+  {
+    "kana": "チップチューン",
+    "en": [
+      "chiptune (style of electronic music made using sound chips in vintage computers and video game consoles)"
+    ],
+    "senseUid": "dc6f0489-0743-4c7f-8d08-316635fb0a1b",
+    "wordId": "2430040",
+    "pt": "{'a': ['chiptune (estilo de música eletrônica feita usando chips de som em computadores antigos e consoles de videogame)']}"
+  },
+  {
+    "kana": "はいし",
+    "en": [
+      "people's history (written for the king of China; usu. written as a novel)"
+    ],
+    "senseUid": "70db6f45-9a8b-4ad8-a096-fcbc2a94c266",
+    "wordId": "2429990",
+    "pt": "{'a': ['história do povo (escrita para o rei da China; geralmente escrita como um romance)']}"
+  },
+  {
+    "kana": "レーシックしゅじゅつ",
+    "en": [
+      "LASIK surgery"
+    ],
+    "senseUid": "007ec812-8dc4-460f-8d8a-bb3829cb6b9d",
+    "wordId": "2430060",
+    "pt": "{'a': ['cirurgia LASIK']}"
+  },
+  {
+    "kana": "おんぎょう",
+    "en": [
+      "invisibility (through magic)"
+    ],
+    "senseUid": "50c37cc2-6b20-45cd-8936-93286dee56fa",
+    "wordId": "2430030",
+    "pt": "{'a': ['invisibilidade (por magia)']}"
+  },
+  {
+    "kana": "しのうくんれんし",
+    "en": [
+      "orthoptist"
+    ],
+    "senseUid": "3ca8d380-61e2-4539-9155-f9b951c1a208",
+    "wordId": "2430050",
+    "pt": "{\n  \"a\": [\"ortoptista\"]\n}"
+  },
+  {
+    "kana": "ひでんしょ",
+    "en": [
+      "book of secrets"
+    ],
+    "senseUid": "720fc279-c62d-4c69-8a1f-436c7276f8b2",
+    "wordId": "2430020",
+    "pt": "{'a': ['livro de segredos']}"
+  },
+  {
+    "kana": "きでんたい",
+    "en": [
+      "annals-biographies form (of historical writing)"
+    ],
+    "senseUid": "92592dce-5aba-404c-887a-326d7fe53554",
+    "wordId": "2430000",
+    "pt": "{\n  \"a\": [\n    \"forma de biografias em anais\",\n    \"forma de escrita histórica baseada em biografias\",\n    \"gênero de anais biográficos (na historiografia japonesa)\"\n  ]\n}"
+  },
+  {
+    "kana": "きんえんパイプ",
+    "en": [
+      "artificial cigarette used to avoid smoking"
+    ],
+    "senseUid": "d107b2ff-dbdd-47c0-a364-fac60f8028e7",
+    "wordId": "2430090",
+    "pt": "{'a': ['cachimbo para evitar fumar']}"
+  },
+  {
+    "kana": "じこう",
+    "en": [
+      "kaolin",
+      "China clay"
+    ],
+    "senseUid": "08dcc0f2-a550-47bd-a5a4-33a93bcaa266",
+    "wordId": "2430070",
+    "pt": "{\n  \"a\": [\n    \"caulim\",\n    \"argila da China\"\n  ]\n}"
+  },
+  {
+    "kana": "じこう",
+    "en": [
+      "magnetite"
+    ],
+    "senseUid": "d0cc6019-fc03-4847-be9e-ae456b3f9134",
+    "wordId": "2430070",
+    "pt": "{\n  \"a\": [\"magnetita\"]\n}"
+  },
+  {
+    "kana": "しらつち",
+    "en": [
+      "white clay",
+      "white earth",
+      "kaolin",
+      "mortar"
+    ],
+    "senseUid": "c3a7a101-8236-443f-b6fe-389a9821b95c",
+    "wordId": "2430100",
+    "pt": "{'a': ['argila branca', 'terra branca', 'caulim', 'mortar']}"
+  },
+  {
+    "kana": "こうほしゃめいぼ",
+    "en": [
+      "list of candidates",
+      "slate",
+      "list of nominees"
+    ],
+    "senseUid": "5cd219c0-da51-4ad9-92ff-c15c57fa22c3",
+    "wordId": "2430080",
+    "pt": "{'a': ['lista de candidatos', 'chapa', 'lista de indicados']}"
+  },
+  {
+    "kana": "はくねんど",
+    "en": [
+      "kaolin",
+      "potter's clay"
+    ],
+    "senseUid": "e4b4f558-cf40-4607-a142-fecf316b4e36",
+    "wordId": "2430110",
+    "pt": "{\n  \"a\": [\"argila caulim\", \"argila de oleiro\"]\n}"
+  },
+  {
+    "kana": "いんぴ",
+    "en": [
+      "helping a criminal to avoid arrest"
+    ],
+    "senseUid": "94f9424a-868f-4382-b6a8-33f76f7edae3",
+    "wordId": "2430120",
+    "pt": "{'a': ['cúmplice (de crime)', 'ajuda a criminoso a evitar prisão', 'ocultação de criminoso']}"
+  },
+  {
+    "kana": "ごくん",
+    "en": [
+      "five pungent roots (in Buddhism or Taoism)"
+    ],
+    "senseUid": "00c3aed3-7100-4601-b6f1-2054d700f407",
+    "wordId": "2430130",
+    "pt": "{'a': ['cinco raízes pungentes (no Budismo ou Taoismo)']}"
+  },
+  {
+    "kana": "ヤンデレ",
+    "en": [
+      "person with an unhealthy romantic obsession"
+    ],
+    "senseUid": "8676549b-ce4c-4407-a0d7-48417bfc9d6b",
+    "wordId": "2430260",
+    "pt": "{'a': ['pessoa com uma obsessão romântica doentia']}"
+  },
+  {
+    "kana": "はなのした",
+    "en": [
+      "mouth"
+    ],
+    "senseUid": "eafff37c-e5c7-4ced-ba1f-adbc4470ed3a",
+    "wordId": "2430270",
+    "pt": "{'a': ['embaixo do nariz']}"
+  },
+  {
+    "kana": "ごしん",
+    "en": [
+      "five pungent roots (in Buddhism or Taoism)"
+    ],
+    "senseUid": "fa581c91-6cdc-4124-8003-c1676afa56e4",
+    "wordId": "2430140",
+    "pt": "{'a': ['cinco raízes pungentes (no Budismo ou Taoismo)']}"
+  },
+  {
+    "kana": "じびかがく",
+    "en": [
+      "otolaryngology",
+      "otorhinology"
+    ],
+    "senseUid": "49578c0f-11e7-4a13-873b-8e30854dc1b7",
+    "wordId": "2430250",
+    "pt": "{'a': ['otorrinolaringologia', 'otorrinologia']}"
+  },
+  {
+    "kana": "ゲリラライブ",
+    "en": [
+      "surprise concert"
+    ],
+    "senseUid": "af3d6855-694c-4cd3-ab1d-c29cb5c95656",
+    "wordId": "2430170",
+    "pt": "{'a': ['show surpresa']}"
+  },
+  {
+    "kana": "ケーワイ",
+    "en": [
+      "danger prevention (e.g. in the workplace)"
+    ],
+    "senseUid": "eb7f31e6-e9e4-429a-8f14-b096118565f1",
+    "wordId": "2430230",
+    "pt": "{'a': ['prevenção de perigos (por exemplo, no local de trabalho)']}"
+  },
+  {
+    "kana": "たいこうそち",
+    "en": [
+      "countermeasure"
+    ],
+    "senseUid": "53a7ed52-3937-4c77-a00f-d8c50f0e1a53",
+    "wordId": "2430200",
+    "pt": "{'a': ['contramedida']}"
+  },
+  {
+    "kana": "だいきぼこうりてんぽりっちほう",
+    "en": [
+      "Act on the Measures by Large-Scale Retail Stores for Preservation of Living Environment"
+    ],
+    "senseUid": "ba043ef7-05bb-4506-8dda-9e2ebbc08569",
+    "wordId": "2430160",
+    "pt": "{\n  \"a\": [\n    \"Lei sobre Medidas de Lojas de Varejo de Grande Escala para Preservação do Ambiente de Vida\"\n  ]\n}"
+  },
+  {
+    "kana": "ライブレコード",
+    "en": [
+      "live record"
+    ],
+    "senseUid": "0700b9f3-d642-4e2e-8097-c6a57f77eaa8",
+    "wordId": "2430180",
+    "pt": "{'a': ['disco ao vivo']}"
+  },
+  {
+    "kana": "はんにんぞうとくざい",
+    "en": [
+      "(crime of) harboring a fugitive (harbouring)"
+    ],
+    "senseUid": "60181a1a-7c8b-4f65-a10f-f332e1cd03e5",
+    "wordId": "2430150",
+    "pt": "{'a': ['crime de ocultação de criminoso', 'crime de dar abrigo a fugitivo', 'crime de acobertar um criminoso']}"
+  },
+  {
+    "kana": "ケーワイ",
+    "en": [
+      "unable to read the situation",
+      "unable to pick up on the mood (e.g. of a conversation)",
+      "person who is unable to read the room"
+    ],
+    "senseUid": "e588cca3-2fca-4bfd-a353-5560b1b7f3af",
+    "wordId": "2430230",
+    "pt": "{'a': ['incapaz de perceber o clima', 'não consegue captar o ambiente (por exemplo, de uma conversa)', 'pessoa que não entende o contexto social']}"
+  },
+  {
+    "kana": "びかがく",
+    "en": [
+      "rhinology",
+      "nasology"
+    ],
+    "senseUid": "90786973-afcf-4ef5-a86b-572f73a7ae29",
+    "wordId": "2430240",
+    "pt": "{'a': ['rinologia', 'nasologia']}"
+  }
+]

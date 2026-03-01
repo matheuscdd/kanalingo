@@ -1,0 +1,943 @@
+[
+  {
+    "kana": "ふたおき",
+    "en": [
+      "rest for the lid of a teakettle (tea ceremony)"
+    ],
+    "senseUid": "ee6e2d63-043b-4c42-810b-17484adb43fd",
+    "wordId": "2438470",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ふたおき, Gloss: ['descanso para a tampa de uma chaleira (cerimônia do chá)']"
+  },
+  {
+    "kana": "ていけいさき",
+    "en": [
+      "business partner"
+    ],
+    "senseUid": "d3ddd1c2-86d4-4689-99e4-e75faaaa62d2",
+    "wordId": "2438520",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ていけいさき, Gloss: ['sócio de negócios']"
+  },
+  {
+    "kana": "としがこせる",
+    "en": [
+      "to able to enter the New Year (i.e. have work finished, debts paid, etc.)"
+    ],
+    "senseUid": "23951e74-a31e-48aa-bd4b-b1663e57006a",
+    "wordId": "2438510",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: としがこせる, Gloss: ['poder entrar no Ano Novo (ou seja, ter trabalho concluído, dívidas pagas, etc.)']"
+  },
+  {
+    "kana": "せんばいけん",
+    "en": [
+      "right of first refusal",
+      "(right of) preemption",
+      "purchase option"
+    ],
+    "senseUid": "5150782a-0bf7-4416-9643-fe06c5fa3cb3",
+    "wordId": "2438530",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: せんばいけん, Gloss: ['direito de preferência', '(direito de) preempção', 'opção de compra']"
+  },
+  {
+    "kana": "むぼうびとし",
+    "en": [
+      "open city",
+      "defenseless city"
+    ],
+    "senseUid": "6e3b1273-2a5b-4bc7-b400-858814697b06",
+    "wordId": "2438550",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: むぼうびとし, Gloss: ['cidade aberta', 'cidade indefesa']"
+  },
+  {
+    "kana": "むぼうびとしせんげん",
+    "en": [
+      "open city declaration"
+    ],
+    "senseUid": "150a5d6e-85be-4986-9d79-36039470279d",
+    "wordId": "2438540",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: むぼうびとしせんげん, Glossa: ['declaração de cidade aberta']"
+  },
+  {
+    "kana": "そうごうんよう",
+    "en": [
+      "interoperation"
+    ],
+    "senseUid": "31ee3bc3-45d3-4948-a5a7-ad30909947f1",
+    "wordId": "2438560",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: そうごうんよう, Gloss: ['interoperação']"
+  },
+  {
+    "kana": "じすう",
+    "en": [
+      "number of hours"
+    ],
+    "senseUid": "28a310c5-1c5a-41d9-83ea-7b54542f32ef",
+    "wordId": "2438580",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じすう, Gloss: ['número de horas']"
+  },
+  {
+    "kana": "はらごなし",
+    "en": [
+      "exercise to help digestion"
+    ],
+    "senseUid": "6d78e840-171f-406c-919f-3bac27ac7d8f",
+    "wordId": "2438570",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: はらごなし, Gloss: ['exercício para ajudar na digestão']"
+  },
+  {
+    "kana": "こうすうかんり",
+    "en": [
+      "man-hour management",
+      "manpower management"
+    ],
+    "senseUid": "baae2a8e-3bf4-42c8-9bb0-5c001ca42818",
+    "wordId": "2438590",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうすうかんり, Gloss: ['gestão de horas de trabalho', 'gestão de pessoal']"
+  },
+  {
+    "kana": "ちゅうかんじすう",
+    "en": [
+      "daytime hours"
+    ],
+    "senseUid": "4097c201-ddfc-43fa-8c30-ec64c14b9685",
+    "wordId": "2438600",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ちゅうかんじすう, Gloss: ['horas diurnas']"
+  },
+  {
+    "kana": "ぐいのみ",
+    "en": [
+      "large sake cup"
+    ],
+    "senseUid": "662afbb1-19fc-4626-b197-313d79487e08",
+    "wordId": "2438620",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぐいのみ, Gloss: [''copo grande de saquê']"
+  },
+  {
+    "kana": "ぐいのみ",
+    "en": [
+      "gulping down (a drink)",
+      "taking a swig of"
+    ],
+    "senseUid": "51a82999-c515-430f-a40c-371a2eeedef0",
+    "wordId": "2438620",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぐいのみ, Gloss: ['engolindo (uma bebida)', 'dando um gole de']"
+  },
+  {
+    "kana": "ゆうばりメロン",
+    "en": [
+      "Yūbari melon (sweet orange melon grown in Yūbari City, Hokkaido)"
+    ],
+    "senseUid": "fe2db950-b570-423b-ae2d-a68cf58054bc",
+    "wordId": "2438610",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ゆうばりメロン, Gloss: ['Melão Yūbari (melão laranja doce cultivado na Cidade Yūbari, Hokkaido)']"
+  },
+  {
+    "kana": "かいだんしょうこうき",
+    "en": [
+      "stairlift",
+      "(home) chair lift"
+    ],
+    "senseUid": "b6b6c2fa-6927-421c-b276-6d670aa4f2fe",
+    "wordId": "2438630",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: かいだんしょうこうき, Gloss: ['elevador de escada', 'telecadeira (casa)']"
+  },
+  {
+    "kana": "しちさんわけ",
+    "en": [
+      "side parting",
+      "hair parted to one side"
+    ],
+    "senseUid": "fa7921e7-baad-4f0e-a180-396f94d0d20c",
+    "wordId": "2438640",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しちさんわけ, Gloss: ['risca lateral', 'cabelo riscado para um lado']"
+  },
+  {
+    "kana": "れんせつバス",
+    "en": [
+      "articulated bus",
+      "bendy bus"
+    ],
+    "senseUid": "c6029cf5-3a25-4009-8bb4-8c8170239d2b",
+    "wordId": "2438650",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: れんせつバス, Gloss: ['ônibus articulado', 'ônibus flexível']"
+  },
+  {
+    "kana": "くじらじる",
+    "en": [
+      "whale soup"
+    ],
+    "senseUid": "0241ea9d-02c8-4d10-980b-768c6a4009f1",
+    "wordId": "2438660",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: くじらじる, Gloss: ['sopa de baleia']"
+  },
+  {
+    "kana": "かりゅうせい",
+    "en": [
+      "granular"
+    ],
+    "senseUid": "ed914f54-1c63-4461-8248-d11ee21d8a26",
+    "wordId": "2438690",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: かりゅうせい, Gloss: ['granular']"
+  },
+  {
+    "kana": "シフォンケーキ",
+    "en": [
+      "chiffon cake",
+      "sponge cake"
+    ],
+    "senseUid": "f4020eae-a491-4772-9122-27a523d37e05",
+    "wordId": "2438680",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: シフォンケーキ, Gloss: ['bolo de chiffon', 'bolo de lã']"
+  },
+  {
+    "kana": "ホイップアーウイルよたか",
+    "en": [
+      "whip-poor-will (Caprimulgus vociferus)",
+      "whippoorwill"
+    ],
+    "senseUid": "c3cccd7d-df4c-480c-af98-130b9bd17ebe",
+    "wordId": "2438670",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ホイップアーウイルよたか, Gloss: ['chicote-pobre-vontade (Caprimulgus vociferus)', 'whippoorwill']"
+  },
+  {
+    "kana": "きんときまめ",
+    "en": [
+      "red kidney bean"
+    ],
+    "senseUid": "43233362-d420-455f-a704-1526dee88f9c",
+    "wordId": "2438720",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: きんときまめ, Gloss: ['feijão vermelho']"
+  },
+  {
+    "kana": "きゅうせんいっしん",
+    "en": [
+      "nine shallow, one deep (ancient Chinese sexual technique)"
+    ],
+    "senseUid": "c210f514-ea90-46e4-afb4-3053b53becb8",
+    "wordId": "2438710",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: きゅうせんいっしん, Gloss: ['nove rasos, um profundo (técnica sexual chinesa antiga)']"
+  },
+  {
+    "kana": "しゃだい",
+    "en": [
+      "Socialist Masses Party"
+    ],
+    "senseUid": "cdb6f671-0f3f-4e58-8446-97a1f145fc0e",
+    "wordId": "2438730",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しゃだい, Gloss: ['Partido das Massas Socialistas']"
+  },
+  {
+    "kana": "しゃかいたいしゅうとう",
+    "en": [
+      "Socialist Masses Party (1932-1940)"
+    ],
+    "senseUid": "269a73fb-5643-40b6-ac3e-725097e8f7dc",
+    "wordId": "2438750",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しゃかいたいしゅうとう, Gloss: ['Partido das Massas Socialistas (1932-1940)']"
+  },
+  {
+    "kana": "あさドラ",
+    "en": [
+      "morning soap opera",
+      "morning television serial"
+    ],
+    "senseUid": "ac775177-4519-4639-971e-fdd94d75aeef",
+    "wordId": "2438760",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あさドラ, Gloss: ['novela matinal', 'serial matinal de televisão']"
+  },
+  {
+    "kana": "おきなわしゃかいたいしゅうとう",
+    "en": [
+      "Okinawa Socialist Masses Party"
+    ],
+    "senseUid": "1ebda256-1109-49a6-bc11-1166060c4ce7",
+    "wordId": "2438740",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おきなわしゃかいたいしゅうとう, Gloss: ['Partido das Massas Socialistas de Okinawa']"
+  },
+  {
+    "kana": "よだつ",
+    "en": [
+      "to stand on end (of hair)"
+    ],
+    "senseUid": "7d5b0e93-1428-41a5-b9c6-4734fbf8515d",
+    "wordId": "2438770",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: よだつ, Gloss: ['ficar na ponta (do cabelo)']"
+  },
+  {
+    "kana": "しようきげん",
+    "en": [
+      "expiry date",
+      "use-by date",
+      "date of expiry"
+    ],
+    "senseUid": "a8bee730-f1d6-4ac1-879a-55092a06f944",
+    "wordId": "2438790",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しようきげん, Gloss: ['data de validade', 'data de validade', 'data de validade']"
+  },
+  {
+    "kana": "みのけのよだつ",
+    "en": [
+      "hair-raising",
+      "bloodcurdling",
+      "horrible",
+      "shocking",
+      "gruesome"
+    ],
+    "senseUid": "47c825fe-f90b-4803-9764-4448649140e6",
+    "wordId": "2438780",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: みのけのよだつ, Gloss: ['arrepiante', 'arrepiante', 'horrível', 'chocante', 'macabra']"
+  },
+  {
+    "kana": "れきしじだい",
+    "en": [
+      "historical times",
+      "historical period"
+    ],
+    "senseUid": "83c54583-1fe0-43f5-aa5b-2e97e555f244",
+    "wordId": "2438800",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: れきしじだい, Gloss: ['tempos históricos', 'período histórico']"
+  },
+  {
+    "kana": "りかいをしめす",
+    "en": [
+      "to show understanding",
+      "to appreciate",
+      "to be positive about"
+    ],
+    "senseUid": "f4b76c6a-4e10-49c6-98f5-e058501142d1",
+    "wordId": "2438810",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: りかいをしめす, Gloss: ['mostrar compreensão', 'apreciar', 'ser positivo sobre']"
+  },
+  {
+    "kana": "ほこうしゃようしんごう",
+    "en": [
+      "(pedestrian) crosswalk signal"
+    ],
+    "senseUid": "56c2c860-a6bc-4abe-8df8-39ee21cf939a",
+    "wordId": "2438820",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ほこうしゃようしんごう, Gloss: ['sinal de faixa de pedestres (pedestre']"
+  },
+  {
+    "kana": "はながつまる",
+    "en": [
+      "to have a stuffed nose",
+      "to have a stuffy nose"
+    ],
+    "senseUid": "ec3f5d13-b4d8-4158-902b-fe6f10cb09a2",
+    "wordId": "2438830",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: はながつまる, Gloss: ['ter o nariz entupido', 'ter o nariz entupido']"
+  },
+  {
+    "kana": "じてつ",
+    "en": [
+      "ferrite"
+    ],
+    "senseUid": "80b3bd27-6723-4919-bb4c-cc41f0d760c8",
+    "wordId": "2438850",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じてつ, Gloss: ['ferrita']"
+  },
+  {
+    "kana": "フェライト",
+    "en": [
+      "ferrite"
+    ],
+    "senseUid": "2b7a037d-0bca-4b63-a665-eaf74f7e59a1",
+    "wordId": "2438840",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: フェライト, Gloss: ['ferrita']"
+  },
+  {
+    "kana": "きぬうんも",
+    "en": [
+      "sericite"
+    ],
+    "senseUid": "e0d2bfb1-df75-4ba9-912b-ab6960b769a3",
+    "wordId": "2438860",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: きぬうんも, Gloss: ['sericite']"
+  },
+  {
+    "kana": "しろうんも",
+    "en": [
+      "muscovite",
+      "white mica",
+      "talc"
+    ],
+    "senseUid": "9e3aa37d-7f54-4954-8344-f2bd43a5d7c7",
+    "wordId": "2438870",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しろうんも, Gloss: ['moscovita', 'mica branca', 'talco']"
+  },
+  {
+    "kana": "ぼつネーム",
+    "en": [
+      "manga that has been rejected by an editor"
+    ],
+    "senseUid": "f2acaa50-fea6-4e64-bf5f-8cdf4760b54d",
+    "wordId": "2438880",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぼつネーム, Gloss: ['mangá rejeitado por um editor']"
+  },
+  {
+    "kana": "おおつのじか",
+    "en": [
+      "giant fallow deer (extinct)"
+    ],
+    "senseUid": "1af246f7-75d8-44c7-9b6b-27f69b546eba",
+    "wordId": "2438890",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おおつのじか, Gloss: ['cervo gigante (extinto)']"
+  },
+  {
+    "kana": "くりぜんざい",
+    "en": [
+      "sweet made with soft beans (e.g. adzuki) and chestnuts"
+    ],
+    "senseUid": "ec710e5f-2a3b-4e32-a5b5-1f9a9fdd94e8",
+    "wordId": "2438900",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: くりぜんざい, Gloss: ['doce feito com feijão mole (ex.: adzuki) e castanhas']"
+  },
+  {
+    "kana": "うごきかける",
+    "en": [
+      "to make someone move"
+    ],
+    "senseUid": "f42ad6bd-f8a8-41cb-b464-63f28637766b",
+    "wordId": "2438940",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: うごきかける, Gloss: ['fazer alguém se mover']"
+  },
+  {
+    "kana": "ぎょうせきれんどうはらい",
+    "en": [
+      "performance-based pay",
+      "achievement-based pay",
+      "payment linked to performance"
+    ],
+    "senseUid": "b3c406a6-4c71-4843-8d30-ae3de68bebbd",
+    "wordId": "2438930",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ぎょうせきれんどうはらい, Gloss: ['pagamento baseado em desempenho', 'pagamento baseado em conquistas', 'pagamento vinculado ao desempenho']"
+  },
+  {
+    "kana": "ゆうちょぎんこう",
+    "en": [
+      "JP Bank (former Postal Savings Bank, created when the Postal Services were privatized)"
+    ],
+    "senseUid": "95277865-0e09-44ca-b826-95789e22d130",
+    "wordId": "2438910",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ゆうちょぎんこう, Gloss: ['JP Bank (antigo Banco de Poupança Postal, criado quando os Serviços Postais foram privatizados)']"
+  },
+  {
+    "kana": "こうたいきんむ",
+    "en": [
+      "shift work"
+    ],
+    "senseUid": "11c5682b-c653-445e-ba3d-002e24280b4d",
+    "wordId": "2438950",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうたいきんむ, Gloss: ['trabalho em turnos']"
+  },
+  {
+    "kana": "せつやく",
+    "en": [
+      "poor translation",
+      "clumsy translation"
+    ],
+    "senseUid": "e380c7ff-aa53-4147-949d-41f9b632dea6",
+    "wordId": "2438970",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: せつやく, Gloss: ['tradução ruim', 'tradução desajeitada']"
+  },
+  {
+    "kana": "かんりかんとくしゃ",
+    "en": [
+      "supervisor",
+      "manager"
+    ],
+    "senseUid": "6a54d971-a8a1-4a5b-b14c-7727ef4b8168",
+    "wordId": "2438960",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: かんりかんとくしゃ, Gloss: ['supervisor', 'gerente']"
+  },
+  {
+    "kana": "せつやく",
+    "en": [
+      "my translation"
+    ],
+    "senseUid": "42e0b9fa-1a3f-427c-87d8-f8c89f36b677",
+    "wordId": "2438970",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: せつやく, Gloss: ['minha tradução']"
+  },
+  {
+    "kana": "じゅうたくバブルほうかい",
+    "en": [
+      "collapse of the housing bubble"
+    ],
+    "senseUid": "587a7880-edfa-412a-8c1e-d732daaae6e0",
+    "wordId": "2438980",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: じゅうたくバブルほうかい, Gloss: ['colapso da bolha imobiliária']"
+  },
+  {
+    "kana": "ざんりょう",
+    "en": [
+      "remaining quantity",
+      "residual quantity"
+    ],
+    "senseUid": "8a5ef869-2a75-4964-b855-8bc8050c5302",
+    "wordId": "2438990",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ざんりょう, Gloss: ['quantidade restante', 'quantidade residual']"
+  },
+  {
+    "kana": "けんこう",
+    "en": [
+      "withers (height from ground to shoulder blades in animals)"
+    ],
+    "senseUid": "67e291af-d20c-40af-b35e-72d822e6dff1",
+    "wordId": "2439000",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: けんこう, Gloss: ['withers (altura do chão até as omoplatas em animais)']"
+  },
+  {
+    "kana": "フェネック",
+    "en": [
+      "fennec fox (Vulpes zerda)"
+    ],
+    "senseUid": "7b583f1d-0b7c-4152-bf8c-6c262e6482e2",
+    "wordId": "2439010",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: フェネック, Gloss: ['raposa-feneco (Vulpes zerda)']"
+  },
+  {
+    "kana": "そぐう",
+    "en": [
+      "to be suitable",
+      "to be appropriate",
+      "to match"
+    ],
+    "senseUid": "6fdb193f-d18c-4d08-bcfc-8927f430c818",
+    "wordId": "2439020",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: そぐう, Gloss: ['para ser adequado', 'para ser apropriado', 'para combinar']"
+  },
+  {
+    "kana": "しほうはんだん",
+    "en": [
+      "judicial ruling",
+      "judicial decision",
+      "judgment",
+      "judgement"
+    ],
+    "senseUid": "937f94d8-2e5c-48a9-804c-f28b92571515",
+    "wordId": "2439030",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しほうはんだん, Gloss: ['decisão judicial', 'decisão judicial', 'sentença', 'sentença']"
+  },
+  {
+    "kana": "にし",
+    "en": [
+      "small spiral-shelled snail",
+      "spiral shellfish"
+    ],
+    "senseUid": "6c36f600-1aa0-40e7-bf60-995ec4314581",
+    "wordId": "2439040",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: にし, Gloss: ['pequeno caramujo de concha espiral', 'frutos do mar em espiral']"
+  },
+  {
+    "kana": "あかにし",
+    "en": [
+      "veined rapa whelk (Rapana venosa)"
+    ],
+    "senseUid": "b5a549e5-ebea-49fd-a781-346e486c374e",
+    "wordId": "2439050",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: あかにし, Gloss: ['rapa veado (Rapana venosa)']"
+  },
+  {
+    "kana": "ものあらがい",
+    "en": [
+      "Japanese big-ear radix (pond snail, Radix auricularia japonica)"
+    ],
+    "senseUid": "04e11017-a969-4ce6-89ca-779176e78cdd",
+    "wordId": "2439060",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ものあらがい, Gloss: ['Radix japonês de orelhas grandes (caramujo-do-lago, Radix auricularia japonica)']"
+  },
+  {
+    "kana": "アルキメデスのらせん",
+    "en": [
+      "Archimedean spiral"
+    ],
+    "senseUid": "4c410a9b-228e-4027-93a7-51b01dd9af68",
+    "wordId": "2439070",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: アルキメデスのらせん, Gloss: ['Espiral arquimediana']"
+  },
+  {
+    "kana": "たいすうらせん",
+    "en": [
+      "logarithmic spiral",
+      "equiangular spiral"
+    ],
+    "senseUid": "bc4352f9-aa36-41d9-a556-d4ee27826a8d",
+    "wordId": "2439080",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: たいすうらせん, Gloss: ['espiral logarítmica', 'espiral equiangular']"
+  },
+  {
+    "kana": "アルキメデスのこうり",
+    "en": [
+      "axiom of Archimedes"
+    ],
+    "senseUid": "3bca394a-0139-4673-b235-f823fc0e469c",
+    "wordId": "2439090",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: アルキメデスのこうり, Gloss: ['axioma de Arquimedes']"
+  },
+  {
+    "kana": "ねじプロペラ",
+    "en": [
+      "screw propeller"
+    ],
+    "senseUid": "b0a32a09-54d8-4810-b13a-7bbc8449b9e8",
+    "wordId": "2439100",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ねじプロペラ, Gloss: ['hélice de parafuso']"
+  },
+  {
+    "kana": "ねじポンプ",
+    "en": [
+      "screw pump"
+    ],
+    "senseUid": "18bfbc78-6036-4355-b603-470aba7c3255",
+    "wordId": "2439120",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ねじポンプ, Gloss: ['bomba de parafuso']"
+  },
+  {
+    "kana": "らせんすいしんき",
+    "en": [
+      "screw propeller"
+    ],
+    "senseUid": "3b68b891-ae1f-486e-b22c-6cbfb9f52de4",
+    "wordId": "2439110",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: らせんすいしんき, Gloss: ['hélice de parafuso']"
+  },
+  {
+    "kana": "らせんみずあげき",
+    "en": [
+      "screw pump"
+    ],
+    "senseUid": "64a01347-b5f1-407f-8cda-8d6ef1a874a9",
+    "wordId": "2439130",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: らせんみずあげき, Gloss: ['bomba de parafuso']"
+  },
+  {
+    "kana": "らせん",
+    "en": [
+      "helix"
+    ],
+    "senseUid": "7106db2c-1558-4322-83c7-17610b6ae8de",
+    "wordId": "2439150",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: らせん, Gloss: ['hélice']"
+  },
+  {
+    "kana": "らせんめん",
+    "en": [
+      "helicoid"
+    ],
+    "senseUid": "da071eba-b200-4a61-9331-fd51fb94e440",
+    "wordId": "2439140",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: らせんめん, Gloss: ['helicoide']"
+  },
+  {
+    "kana": "らせん",
+    "en": [
+      "spiral"
+    ],
+    "senseUid": "5cdc6f68-7f48-4cd8-ae58-56aed187ead6",
+    "wordId": "2439150",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: らせん, Gloss: ['espiral']"
+  },
+  {
+    "kana": "しまうしのした",
+    "en": [
+      "zebra sole (Zebrias zebrinus)"
+    ],
+    "senseUid": "992dab7b-9fe8-45db-b16c-2242b43db526",
+    "wordId": "2439160",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しまうしのした, Gloss: ['sola de zebra (Zebrias zebrinus)']"
+  },
+  {
+    "kana": "つるまき",
+    "en": [
+      "reel for a spare bowstring"
+    ],
+    "senseUid": "74ccc9a4-5b78-476f-8e8b-456787bbda3f",
+    "wordId": "2439180",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: つるまき, Gloss: ['rolo para uma corda de arco reserva']"
+  },
+  {
+    "kana": "つるまき",
+    "en": [
+      "zebra sole (Zebrias zebrinus)"
+    ],
+    "senseUid": "b7874f81-cf9c-4a26-bcdb-636f21378244",
+    "wordId": "2439170",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: つるまき, Gloss: ['sola de zebra (Zebrias zebrinus)']"
+  },
+  {
+    "kana": "つるぶくろ",
+    "en": [
+      "reel for a spare bowstring"
+    ],
+    "senseUid": "a413a3a0-0cda-4d94-b2b2-dc749df91b63",
+    "wordId": "2439190",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: つるぶくろ, Gloss: ['rolo para uma corda de arco reserva']"
+  },
+  {
+    "kana": "ヘリコイド",
+    "en": [
+      "helicoid"
+    ],
+    "senseUid": "275bbcce-aa3f-480d-bc72-cf8e5967b02e",
+    "wordId": "2439200",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ヘリコイド, Gloss: ['helicoide']"
+  },
+  {
+    "kana": "はすばはぐるま",
+    "en": [
+      "helical gear"
+    ],
+    "senseUid": "061e4543-bc12-4657-be4f-058b08ba0169",
+    "wordId": "2439220",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: はすばはぐるま, Gloss: ['engrenagem helicoidal']"
+  },
+  {
+    "kana": "ヘリカルスプリング",
+    "en": [
+      "helical spring"
+    ],
+    "senseUid": "92afb03a-eabf-4d5d-b7ab-4f2f3f496075",
+    "wordId": "2439210",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ヘリカルスプリング, Gloss: ['mola helicoidal']"
+  },
+  {
+    "kana": "たいようぎ",
+    "en": [
+      "heliometer"
+    ],
+    "senseUid": "c22cfc5d-0633-404a-82b0-394dea7e1ca8",
+    "wordId": "2439230",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: たいようぎ, Gloss: ['heliômetro']"
+  },
+  {
+    "kana": "たいようきょう",
+    "en": [
+      "helioscope"
+    ],
+    "senseUid": "0babbaf9-1d64-4d16-844d-814df8574011",
+    "wordId": "2439240",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: たいようきょう, Gloss: ['helioscópio']"
+  },
+  {
+    "kana": "ヘリオトロピン",
+    "en": [
+      "heliotropin"
+    ],
+    "senseUid": "592aefb7-d3f6-4063-928e-95f3b67a2050",
+    "wordId": "2439250",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ヘリオトロピン, Gloss: ['heliotropin']"
+  },
+  {
+    "kana": "ピペロナール",
+    "en": [
+      "piperonal"
+    ],
+    "senseUid": "e56f9b78-d93c-4912-8ec1-5bd03a53f634",
+    "wordId": "2439260",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ピペロナール, Gloss: ['piperonal']"
+  },
+  {
+    "kana": "ヘリオメーター",
+    "en": [
+      "heliometer"
+    ],
+    "senseUid": "3944b15a-e8a1-4e72-92c8-1365cc67348a",
+    "wordId": "2439270",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ヘリオメーター, Gloss: ['heliometer']"
+  },
+  {
+    "kana": "こうりろん",
+    "en": [
+      "axiomatic theory"
+    ],
+    "senseUid": "f612f61f-c293-44a4-b1ab-fd4ef82c701f",
+    "wordId": "2439290",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうりろん, Gloss: ['teoria axiomática']"
+  },
+  {
+    "kana": "こうりてきほうほう",
+    "en": [
+      "axiomatic method"
+    ],
+    "senseUid": "77799cd3-f412-4178-97ff-c4bfd9ca1dd9",
+    "wordId": "2439280",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうりてきほうほう, Gloss: ['método axiomático']"
+  },
+  {
+    "kana": "こうりけい",
+    "en": [
+      "axiomatic system"
+    ],
+    "senseUid": "0a66d222-303d-4b96-ac29-34128a58dd16",
+    "wordId": "2439300",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: こうりけい, Gloss: ['sistema axiomático']"
+  },
+  {
+    "kana": "むむじゅんせい",
+    "en": [
+      "consistency (of an axiomatic system)"
+    ],
+    "senseUid": "1b5714ee-81bc-46c4-bc8f-0dd7d217cbbe",
+    "wordId": "2439310",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: むむじゅんせい, Gloss: ['consistência (de um sistema axiomático)']"
+  },
+  {
+    "kana": "たいすうほうがんし",
+    "en": [
+      "logarithmic graph paper"
+    ],
+    "senseUid": "2cc84295-5380-4179-b17f-5a47f820e075",
+    "wordId": "2439320",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: たいすうほうがんし, Gloss: ['papel quadriculado logarítmico']"
+  },
+  {
+    "kana": "たいすうじゃく",
+    "en": [
+      "logarithmic scale"
+    ],
+    "senseUid": "d7dcf34f-c5c8-44b5-8379-9fbe35cbaa2b",
+    "wordId": "2439330",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: たいすうじゃく, Gloss: ['escala logarítmica']"
+  },
+  {
+    "kana": "フタレイン",
+    "en": [
+      "phthalein"
+    ],
+    "senseUid": "60283669-fcf2-448a-80fb-cba3388ae238",
+    "wordId": "2439350",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: フタレイン, Gloss: ['ftaleína']"
+  },
+  {
+    "kana": "おうまふ",
+    "en": [
+      "burlap",
+      "hessian"
+    ],
+    "senseUid": "8c13ed68-7862-4569-b7cf-288fa2bc8929",
+    "wordId": "2439360",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: おうまふ, Gloss: ['estopa', 'arça']"
+  },
+  {
+    "kana": "ざいばつかいたい",
+    "en": [
+      "dissolution of the zaibatsu (during the US occupation of Japan)"
+    ],
+    "senseUid": "46d975ae-cfc9-4984-8295-3e8fb826ca06",
+    "wordId": "2439370",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ざいばつかいたい, Gloss: ['dissolução dos zaibatsu (durante a ocupação americana do Japão)']"
+  },
+  {
+    "kana": "ふはく",
+    "en": [
+      "fabric",
+      "cloth"
+    ],
+    "senseUid": "ddc22a61-79e7-43b1-a8a4-4cf387c4ec41",
+    "wordId": "2439390",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ふはく, Gloss: ['tecido', 'tecido']"
+  },
+  {
+    "kana": "ばっせられる",
+    "en": [
+      "to be subject to punishment",
+      "to be punished"
+    ],
+    "senseUid": "ab42938b-ab4b-4cd7-9a4a-72aaa4d6a646",
+    "wordId": "2439400",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ばっせられる, Gloss: ['sujeito a punição', 'punido']"
+  },
+  {
+    "kana": "へそまわり",
+    "en": [
+      "circumference of the navel",
+      "treasure trail",
+      "sagittal hair"
+    ],
+    "senseUid": "dd97f639-a8dd-4890-a548-6fc153e4e54e",
+    "wordId": "2439380",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: へそまわり, Gloss: ['circunferência do umbigo', 'trilha do tesouro', 'cabelo sagital']"
+  },
+  {
+    "kana": "やよいどき",
+    "en": [
+      "Yayoi pottery"
+    ],
+    "senseUid": "f4bce0dd-898c-4107-be93-aa5aebbefe06",
+    "wordId": "2439410",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: やよいどき, Gloss: ['Cerâmica Yayoi']"
+  },
+  {
+    "kana": "バッファオーバーラン",
+    "en": [
+      "buffer overrun"
+    ],
+    "senseUid": "76ec6bf7-4ccd-4b2c-b51c-ca3faaaacb59",
+    "wordId": "2439420",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: バッファオーバーラン, Gloss: ['overrun de buffer']"
+  },
+  {
+    "kana": "しょうひしゅぎ",
+    "en": [
+      "consumerism"
+    ],
+    "senseUid": "72dcefb3-2085-4e33-865d-c593cf1a3436",
+    "wordId": "2439440",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しょうひしゅぎ, Gloss: ['consumismo']"
+  },
+  {
+    "kana": "しょうひしゃしゅけん",
+    "en": [
+      "consumer sovereignty"
+    ],
+    "senseUid": "e683bd17-e10e-48fb-aebe-56d82e5b78bf",
+    "wordId": "2439450",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しょうひしゃしゅけん, Gloss: ['soberania do consumidor']"
+  },
+  {
+    "kana": "しょうひぶんか",
+    "en": [
+      "consumer culture"
+    ],
+    "senseUid": "699765d3-4b1e-4b3d-8e6f-224287c99144",
+    "wordId": "2439460",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: しょうひぶんか, Gloss: ['cultura de consumo']"
+  },
+  {
+    "kana": "かんいかんようじたい",
+    "en": [
+      "customary simplified form (of kanji)",
+      "any of 22 simplified non-jōyō kanji variants commonly used in print"
+    ],
+    "senseUid": "e131e097-cecd-41b1-a42d-02e82d1ad0bb",
+    "wordId": "2439430",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: かんいかんようじたい, Gloss: ['forma simplificada tradicional (de kanji)', 'qualquer uma das 22 variantes simplificadas de kanji não-jōyō comumente usadas em impressos']"
+  },
+  {
+    "kana": "アンダーザテーブル",
+    "en": [
+      "under-the-table"
+    ],
+    "senseUid": "cd90b47e-1fbe-4065-8848-917e8a9ff873",
+    "wordId": "2439470",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: アンダーザテーブル, Gloss: [''debaixo da mesa']"
+  },
+  {
+    "kana": "わこく",
+    "en": [
+      "Japan"
+    ],
+    "senseUid": "05fb20c7-92c2-4cc6-a74c-f5c1bbc23a10",
+    "wordId": "2439480",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: わこく, Gloss: ['Japão']"
+  },
+  {
+    "kana": "ひらづみ",
+    "en": [
+      "stacking flat and face up (magazines, books, etc.)"
+    ],
+    "senseUid": "69014e6e-c300-4c32-bbf6-2399247449ca",
+    "wordId": "2439490",
+    "pt": "Traduza do inglês para o português considerando o sentido japonês. Kana: ひらづみ, Gloss: ['empilhando plano e virado para cima (revistas, livros, etc.)']"
+  }
+]

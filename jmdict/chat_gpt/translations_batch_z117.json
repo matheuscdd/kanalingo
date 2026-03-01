@@ -1,0 +1,943 @@
+[
+  {
+    "kana": "たびあきない",
+    "en": [
+      "peddling",
+      "peddler",
+      "pedlar"
+    ],
+    "senseUid": "d9cb7d82-fd37-4d81-9b62-cbc654fb0904",
+    "wordId": "2512170",
+    "pt": "{'a': ['comércio itinerante', 'venda ambulante', 'ambulante']}"
+  },
+  {
+    "kana": "はやりかぜ",
+    "en": [
+      "influenza"
+    ],
+    "senseUid": "a064b154-ae92-4ce9-bc66-7e6742f7d88d",
+    "wordId": "2512240",
+    "pt": "{'a': ['gripe']}"
+  },
+  {
+    "kana": "りゅうかアンモニウム",
+    "en": [
+      "ammonium sulfide"
+    ],
+    "senseUid": "1706bbb2-ad8a-4861-897d-5a9e4ca31b65",
+    "wordId": "2512190",
+    "pt": "{\n  \"a\": [\"sulfeto de amônio\"]\n}"
+  },
+  {
+    "kana": "りっぽうセンチメートル",
+    "en": [
+      "cubic centimeter",
+      "cubic centimetre"
+    ],
+    "senseUid": "f756e8c6-9ea9-4475-9327-73ba248476cc",
+    "wordId": "2512250",
+    "pt": "{'a': ['centímetro cúbico', 'centímetro cúbico (cm³)']}"
+  },
+  {
+    "kana": "せんしつ",
+    "en": [
+      "hot spring water quality",
+      "spring quality",
+      "hot spring type"
+    ],
+    "senseUid": "cbf29901-7393-407a-b617-656da9472e19",
+    "wordId": "2512060",
+    "pt": "{\n  \"a\": [\n    \"qualidade da água termal\",\n    \"tipo de fonte termal\",\n    \"característica da nascente termal\"\n  ]\n}"
+  },
+  {
+    "kana": "りじんしょう",
+    "en": [
+      "depersonalization"
+    ],
+    "senseUid": "f875b729-b681-41d6-915a-625515243981",
+    "wordId": "2512290",
+    "pt": "{\n  \"a\": [\"despersonalização\"]\n}"
+  },
+  {
+    "kana": "りそうきたい",
+    "en": [
+      "ideal gas",
+      "perfect gas"
+    ],
+    "senseUid": "93616b60-8a9e-4af1-934b-03ab1f609674",
+    "wordId": "2512330",
+    "pt": "{'a': ['gás ideal', 'gás perfeito']}"
+  },
+  {
+    "kana": "りゅうもんがん",
+    "en": [
+      "rhyolite"
+    ],
+    "senseUid": "5de3ac37-67d2-4470-8c4e-cc3e71639366",
+    "wordId": "2512210",
+    "pt": "{'a': ['riolito']}"
+  },
+  {
+    "kana": "りがんりゅう",
+    "en": [
+      "rip current"
+    ],
+    "senseUid": "63447a85-9f28-4e17-8c2a-7b87eb49e053",
+    "wordId": "2512300",
+    "pt": "{'a': ['corrente de retorno']}"
+  },
+  {
+    "kana": "うらばり",
+    "en": [
+      "lining",
+      "back-pasting"
+    ],
+    "senseUid": "7bf2bc11-b23c-45e3-b74a-b166f21b64fd",
+    "wordId": "2512310",
+    "pt": "{'a': ['forro', 'revestimento interno']}"
+  },
+  {
+    "kana": "りざいがく",
+    "en": [
+      "political economy"
+    ],
+    "senseUid": "6db672b5-5577-4230-a1a4-57c42fc4d7cc",
+    "wordId": "2512340",
+    "pt": "{'a': ['economia política']}"
+  },
+  {
+    "kana": "りったいかく",
+    "en": [
+      "solid angle"
+    ],
+    "senseUid": "a66877a6-fadb-4fc1-b1a7-9f80c7066469",
+    "wordId": "2512270",
+    "pt": "{'a': ['ângulo sólido']}"
+  },
+  {
+    "kana": "たてなおし",
+    "en": [
+      "revamping",
+      "reshaping",
+      "rearranging",
+      "reorganizing"
+    ],
+    "senseUid": "7288f60d-11ec-4804-b9b1-20d5687a11d3",
+    "wordId": "2512260",
+    "pt": "{'a': ['reestruturação', 'reorganização', 'reformulação', 'rearranjo']}"
+  },
+  {
+    "kana": "らんどうこう",
+    "en": [
+      "azurite"
+    ],
+    "senseUid": "e5405f67-7cc6-4a3e-9d9a-089711874ad2",
+    "wordId": "2512350",
+    "pt": "{'a': ['azurita']}"
+  },
+  {
+    "kana": "りつどうてき",
+    "en": [
+      "rhythmical"
+    ],
+    "senseUid": "b4ffed4f-7ff3-448f-be4f-bb5164603aa4",
+    "wordId": "2512280",
+    "pt": "{'a': ['rítmico', 'ritmado']}"
+  },
+  {
+    "kana": "らんかんにんしん",
+    "en": [
+      "tubal pregnancy"
+    ],
+    "senseUid": "51c761c9-3403-4b1f-a1b6-553c32f7e34a",
+    "wordId": "2512360",
+    "pt": "{'a': ['gravidez tubária']}"
+  },
+  {
+    "kana": "りそうぞう",
+    "en": [
+      "idealized image"
+    ],
+    "senseUid": "0ea14620-2a85-4a98-91ef-c066686a7f2f",
+    "wordId": "2512320",
+    "pt": "{'a': ['imagem idealizada']}"
+  },
+  {
+    "kana": "りゅうてい",
+    "en": [
+      "crying",
+      "delacrimation"
+    ],
+    "senseUid": "44bd09ee-bf3f-437d-a27e-8d9e1b78be88",
+    "wordId": "2512200",
+    "pt": "{\n  \"a\": [\"chorar\", \"derramar lágrimas\"]\n}"
+  },
+  {
+    "kana": "ふねんせい",
+    "en": [
+      "infertility (esp. of plants)"
+    ],
+    "senseUid": "6f3ab01d-5d07-4d58-9dc5-2f3ff87d3e28",
+    "wordId": "2512420",
+    "pt": "{'a': ['infertilidade (especialmente de plantas)']}"
+  },
+  {
+    "kana": "にんせい",
+    "en": [
+      "fertility (esp. of animals)"
+    ],
+    "senseUid": "fc421221-c8bc-4d68-9ea7-aa3ce45187c1",
+    "wordId": "2512410",
+    "pt": "{'a': ['fertilidade (especialmente de animais)']}"
+  },
+  {
+    "kana": "ざめつしょうこうぐん",
+    "en": [
+      "crush syndrome"
+    ],
+    "senseUid": "adfa7ba6-a940-415d-91fd-9596dd2782f2",
+    "wordId": "2512380",
+    "pt": "{'a': ['síndrome de esmagamento']}"
+  },
+  {
+    "kana": "ふにんせい",
+    "en": [
+      "infertility (esp. of animals)"
+    ],
+    "senseUid": "b09a8e34-f2ec-4079-929b-ce0b13188068",
+    "wordId": "2512430",
+    "pt": "{'a': ['infertilidade (especialmente de animais)']}"
+  },
+  {
+    "kana": "だんずる",
+    "en": [
+      "to talk",
+      "to discuss",
+      "to debate"
+    ],
+    "senseUid": "96f6c034-dcbc-4734-aa7b-3420336160b5",
+    "wordId": "2512450",
+    "pt": "{\n  \"a\": [\n    \"conversar\",\n    \"discutir\",\n    \"debater\"\n  ]\n}"
+  },
+  {
+    "kana": "ざめつ",
+    "en": [
+      "crushing (injury)"
+    ],
+    "senseUid": "62fc186a-f0b0-485d-8d24-0ea4a2e12288",
+    "wordId": "2512390",
+    "pt": "{'a': ['esmagamento (lesão)']}"
+  },
+  {
+    "kana": "だんずる",
+    "en": [
+      "to play (a stringed instrument)"
+    ],
+    "senseUid": "bd60f22e-c8d3-4fc7-b1c5-3d8b63a14649",
+    "wordId": "2512460",
+    "pt": "{'a': ['tocar (um instrumento de cordas)']}"
+  },
+  {
+    "kana": "おむかえ",
+    "en": [
+      "receiving",
+      "welcoming",
+      "going to meet",
+      "person sent to meet or pick up someone"
+    ],
+    "senseUid": "f901f5aa-5d9c-4b02-a59b-ec70c6587b76",
+    "wordId": "2512440",
+    "pt": "{'a': ['receber', 'acolher', 'ir ao encontro', 'pessoa enviada para buscar ou receber alguém']}"
+  },
+  {
+    "kana": "だんじる",
+    "en": [
+      "to play (a stringed instrument)"
+    ],
+    "senseUid": "c38a5ce5-8302-4c05-883a-31a7254afeae",
+    "wordId": "2512470",
+    "pt": "{'a': ['dedilhar (um instrumento de cordas)', 'tocar (um instrumento de cordas)']}"
+  },
+  {
+    "kana": "だんずる",
+    "en": [
+      "to negotiate"
+    ],
+    "senseUid": "1c500c80-16a7-4cfb-ad26-d900201850d0",
+    "wordId": "2512450",
+    "pt": "{'a': ['negociar', 'ajustar', 'tratar', 'discutir (para chegar a um acordo)']}"
+  },
+  {
+    "kana": "クラッシュしょうこうぐん",
+    "en": [
+      "crush syndrome"
+    ],
+    "senseUid": "d32e60c0-e397-46a9-ad7e-85f55bab236b",
+    "wordId": "2512370",
+    "pt": "{'a': ['síndrome de esmagamento']}"
+  },
+  {
+    "kana": "ねんせい",
+    "en": [
+      "fertility (esp. of plants)"
+    ],
+    "senseUid": "05402c23-9b37-40d5-8654-683e054bd953",
+    "wordId": "2512400",
+    "pt": "{\n  \"a\": [\"ano escolar\", \"série (escolar)\", \"estudante do ano X\"]\n}"
+  },
+  {
+    "kana": "ぎゃくカルチャーショック",
+    "en": [
+      "reverse culture shock"
+    ],
+    "senseUid": "a95e15b6-b412-4dc9-8474-175b0197251d",
+    "wordId": "2512540",
+    "pt": "{'a': ['choque cultural reverso']}"
+  },
+  {
+    "kana": "もちうる",
+    "en": [
+      "to use",
+      "to make use of",
+      "to utilize"
+    ],
+    "senseUid": "660d1691-814e-480f-9992-1a4c89bb9444",
+    "wordId": "2512490",
+    "pt": "{\n  \"a\": [\n    \"usar\",\n    \"fazer uso de\",\n    \"utilizar\"\n  ]\n}"
+  },
+  {
+    "kana": "おむかえ",
+    "en": [
+      "final call",
+      "call of fate",
+      "approach of death"
+    ],
+    "senseUid": "7249fe96-1b69-4149-b03e-f96d79185c1a",
+    "wordId": "2512440",
+    "pt": "{'a': ['chamado final', 'chamado do destino', 'aproximação da morte']}"
+  },
+  {
+    "kana": "ピーターパンカラー",
+    "en": [
+      "Peter Pan collar"
+    ],
+    "senseUid": "56a85969-321a-4596-8746-3353edbdfe86",
+    "wordId": "2512530",
+    "pt": "{'a': ['gola Peter Pan']}"
+  },
+  {
+    "kana": "ゆうどうかせき",
+    "en": [
+      "derived fossil"
+    ],
+    "senseUid": "0e5e21a3-3e21-4e02-8391-f7ae83fae528",
+    "wordId": "2512550",
+    "pt": "{'a': ['fóssil derivado']}"
+  },
+  {
+    "kana": "がいせんうよく",
+    "en": [
+      "right wing organization, esp. one using \"black van\" propaganda trucks"
+    ],
+    "senseUid": "ea762b4c-4e0a-4b35-bb62-91362a323e42",
+    "wordId": "2512480",
+    "pt": "{'a': ['organização de direita, especialmente aquelas que usam caminhões de propaganda \"van preta\"']}"
+  },
+  {
+    "kana": "たいか",
+    "en": [
+      "fasciation"
+    ],
+    "senseUid": "afd39c0a-3fb6-4dfb-8e7d-5cc7e37bef03",
+    "wordId": "2512570",
+    "pt": "{\n  \"a\": [\n    \"fasciação\"\n  ]\n}"
+  },
+  {
+    "kana": "スルーアウト",
+    "en": [
+      "throughout"
+    ],
+    "senseUid": "02189691-e1f0-4535-8ec7-293e83d7dcea",
+    "wordId": "2512520",
+    "pt": "{'a': ['por todo', 'ao longo de', 'em toda a extensão de']}"
+  },
+  {
+    "kana": "しそうかせき",
+    "en": [
+      "facies fossil"
+    ],
+    "senseUid": "b06bcf4c-9507-4aa6-8904-b466624b975c",
+    "wordId": "2512590",
+    "pt": "{\n  \"a\": [\"fácies fóssil\"]\n}"
+  },
+  {
+    "kana": "えんき",
+    "en": [
+      "abandonment",
+      "rejection"
+    ],
+    "senseUid": "da88875e-9d4a-42e6-94bb-b9c2bbdfe16b",
+    "wordId": "2512500",
+    "pt": "{'a': ['abandono', 'rejeição']}"
+  },
+  {
+    "kana": "もくかせき",
+    "en": [
+      "fossil wood"
+    ],
+    "senseUid": "3e050b48-fe6d-49c1-968d-d1cc822eaf85",
+    "wordId": "2512560",
+    "pt": "{'a': ['madeira fóssil']}"
+  },
+  {
+    "kana": "かがくかせき",
+    "en": [
+      "chemical fossil"
+    ],
+    "senseUid": "d199da25-6255-489c-9e92-2b57ff574bf1",
+    "wordId": "2512580",
+    "pt": "{'a': ['fóssil químico']}"
+  },
+  {
+    "kana": "うずべんもうそうるい",
+    "en": [
+      "dinoflagellates"
+    ],
+    "senseUid": "f3835d8f-b421-4d81-9709-f3a96533ad69",
+    "wordId": "2512610",
+    "pt": "{\n  \"a\": [\"dinoflagelados\"]\n}"
+  },
+  {
+    "kana": "べんもうそうるい",
+    "en": [
+      "phytoflagellates"
+    ],
+    "senseUid": "052a05a8-6b15-45fa-b321-5d960207669a",
+    "wordId": "2512600",
+    "pt": "{'a': ['fitoflagelados']}"
+  },
+  {
+    "kana": "ネコもく",
+    "en": [
+      "Carnivora"
+    ],
+    "senseUid": "9f8f05ee-3ca1-4873-8be3-c7ec120efcc7",
+    "wordId": "2512630",
+    "pt": "{\n  \"a\": [\"Carnívoros\"]\n}"
+  },
+  {
+    "kana": "つのも",
+    "en": [
+      "dinoflagellate of genus Ceratium"
+    ],
+    "senseUid": "6ec5a85f-2648-454d-96df-a1ae58cbcdb9",
+    "wordId": "2512620",
+    "pt": "{'a': ['dinoflagelado do gênero Ceratium']}"
+  },
+  {
+    "kana": "へんかりょう",
+    "en": [
+      "variation",
+      "amount of change"
+    ],
+    "senseUid": "8ccea1c1-7598-4bc0-bf9f-bf0e9bc54ea8",
+    "wordId": "2512650",
+    "pt": "{'a': ['variação', 'quantidade de mudança']}"
+  },
+  {
+    "kana": "あきたる",
+    "en": [
+      "to be fulfilled",
+      "to be satisfied"
+    ],
+    "senseUid": "89a74f70-5958-476a-93c3-deab9060ce26",
+    "wordId": "2512670",
+    "pt": "{\n  \"a\": [\"ficar satisfeito\", \"sentir-se pleno\", \"estar saciado\", \"ter o suficiente\"]\n}"
+  },
+  {
+    "kana": "あきたりる",
+    "en": [
+      "to be satisfied"
+    ],
+    "senseUid": "f5a374d6-b5db-4679-97b4-e0a706439fd0",
+    "wordId": "2512660",
+    "pt": "{'a': ['ficar satisfeito', 'sentir-se satisfeito', 'estar satisfeito']}"
+  },
+  {
+    "kana": "あきれいる",
+    "en": [
+      "to be dumbfounded",
+      "to be amazed"
+    ],
+    "senseUid": "e40cf1db-cfa1-4c59-b6fc-908ea0b25f5f",
+    "wordId": "2512680",
+    "pt": "{'a': ['ficar pasmo', 'ficar boquiaberto', 'ficar estupefato', 'ficar atônito']}"
+  },
+  {
+    "kana": "グランドホステス",
+    "en": [
+      "ground hostess (female passenger attendant at an airport)"
+    ],
+    "senseUid": "808a61ba-d82d-4b86-af1c-3d7cb35dc732",
+    "wordId": "2512510",
+    "pt": "{'a': ['hostess de solo', 'atendente feminina de solo', 'atendente de solo (mulher)', 'funcionária de solo (aeroporto)', 'atendente feminina de aeroporto']}"
+  },
+  {
+    "kana": "ワトルバード",
+    "en": [
+      "wattlebird (Anthochaera genus)"
+    ],
+    "senseUid": "ced80db6-bc1d-473e-a6fd-8f2c2be6fc56",
+    "wordId": "2512690",
+    "pt": "{'a': ['wattlebird (gênero Anthochaera)', 'wattlebird', 'pássaro-wattle', 'pássaro do gênero Anthochaera']}"
+  },
+  {
+    "kana": "はいがしらみつすい",
+    "en": [
+      "brush wattlebird (Anthochaera chrysoptera)"
+    ],
+    "senseUid": "c0c24ba0-eb67-48b8-a230-b5dacd83687f",
+    "wordId": "2512710",
+    "pt": "{\n  \"a\": [\"pássaro-melro-do-mato (Anthochaera chrysoptera)\"]\n}"
+  },
+  {
+    "kana": "ぎんほおみつすい",
+    "en": [
+      "little wattlebird (Anthochaera lunulata)"
+    ],
+    "senseUid": "827d757f-3e4b-405e-9fca-e70b756bef9b",
+    "wordId": "2512700",
+    "pt": "{'a': ['pequeno melífago-de-bochecha-prateada (Anthochaera lunulata)']}"
+  },
+  {
+    "kana": "あかみみだれみつすい",
+    "en": [
+      "red wattlebird (Anthochaera carunculata)"
+    ],
+    "senseUid": "1ec02952-840b-42d1-a722-c8422a275641",
+    "wordId": "2512720",
+    "pt": "{\n  \"a\": [\"melro-de-babado-vermelho\"]\n}"
+  },
+  {
+    "kana": "きみみだれみつすい",
+    "en": [
+      "yellow wattlebird (Anthochaera paradoxa)"
+    ],
+    "senseUid": "3d4d7b70-da58-484a-ab38-f9f370d80f46",
+    "wordId": "2512730",
+    "pt": "{\n  \"a\": [\"pássaro-de-pompom-amarelo\"]\n}"
+  },
+  {
+    "kana": "キジか",
+    "en": [
+      "Phasianidae (pheasant family of birds)"
+    ],
+    "senseUid": "79049620-e367-4240-bb8f-969d0195b8ad",
+    "wordId": "2512750",
+    "pt": "{'a': ['faisão (família Phasianidae de aves)']}"
+  },
+  {
+    "kana": "ネコあもく",
+    "en": [
+      "Feliformia (Carnivora suborder including cats)"
+    ],
+    "senseUid": "69186942-2500-4bb4-ad6c-bfe7ac5152b3",
+    "wordId": "2512640",
+    "pt": "{\n  \"a\": [\"Feliformia\", \"subordem dos carnívoros que inclui os gatos\"]\n}"
+  },
+  {
+    "kana": "カモもく",
+    "en": [
+      "Anseriformes (order of swimming birds)"
+    ],
+    "senseUid": "2085b6fc-b311-415b-a75a-03c1ac7c28e7",
+    "wordId": "2512780",
+    "pt": "{\n  \"a\": [\n    \"Anseriformes (ordem de aves aquáticas)\"\n  ]\n}"
+  },
+  {
+    "kana": "キジもく",
+    "en": [
+      "Galliformes",
+      "galliform order of birds"
+    ],
+    "senseUid": "5a421f3a-564d-4f43-971e-55e15f33a7a4",
+    "wordId": "2512760",
+    "pt": "{\n  \"a\": [\"ordem Galliformes\", \"ordem das aves galiformes\", \"ordem dos galiformes\"]\n}"
+  },
+  {
+    "kana": "ミツスイか",
+    "en": [
+      "Meliphagidae (honeyeater family of birds)"
+    ],
+    "senseUid": "a85ca8dc-524e-4cfc-9dd5-932dd3b19870",
+    "wordId": "2512740",
+    "pt": "{'a': ['família dos melifagídeos (família de aves conhecidas como beija-flores-australianos ou sugadores de néctar)']}"
+  },
+  {
+    "kana": "ナンベイウズラか",
+    "en": [
+      "Odontophoridae (New World quail family of birds)"
+    ],
+    "senseUid": "104c133f-0db3-4293-b6e4-b9ba5df2bde5",
+    "wordId": "2512770",
+    "pt": "{\n  \"a\": [\"família Odontophoridae (família de aves conhecidas como codornas-do-novo-mundo)\"]\n}"
+  },
+  {
+    "kana": "カモか",
+    "en": [
+      "Anatidae (duck family of birds)"
+    ],
+    "senseUid": "d013734e-7269-4a9a-bfc6-82ff60bc6114",
+    "wordId": "2512790",
+    "pt": "{'a': ['pato']}"
+  },
+  {
+    "kana": "シブリーアールキストちょうるいぶんるい",
+    "en": [
+      "Sibley-Ahlquist taxonomy of birds"
+    ],
+    "senseUid": "bbb269d1-9748-42d8-8b0e-d85e518fb5fd",
+    "wordId": "2512800",
+    "pt": "{'a': ['Taxonomia de aves de Sibley-Ahlquist']}"
+  },
+  {
+    "kana": "ハワイみつすい",
+    "en": [
+      "Hawaiian honeycreeper"
+    ],
+    "senseUid": "8eea70b8-fc83-430b-bc37-91367d93dc53",
+    "wordId": "2512810",
+    "pt": "{'a': ['papa-capim havaiano']}"
+  },
+  {
+    "kana": "らんぎゃく",
+    "en": [
+      "rebellion"
+    ],
+    "senseUid": "d2c3c082-7eaf-451f-8ee3-9666bdf696ed",
+    "wordId": "2512850",
+    "pt": "{'a': ['rebelião']}"
+  },
+  {
+    "kana": "らんり",
+    "en": [
+      "dispersed (of citizens in a war-torn country, etc.)"
+    ],
+    "senseUid": "5de1c580-79eb-4eca-9383-9918a25ff8dc",
+    "wordId": "2512830",
+    "pt": "{'a': ['dispersos (referindo-se a cidadãos em um país devastado pela guerra, etc.)']}"
+  },
+  {
+    "kana": "らくようざい",
+    "en": [
+      "defoliant"
+    ],
+    "senseUid": "350895e6-1f59-4504-9451-2d4afd64ba5b",
+    "wordId": "2512860",
+    "pt": "{'a': ['agente desfolhante']}"
+  },
+  {
+    "kana": "ほふ",
+    "en": [
+      "male carer (at a nursery school, children's home, etc.)",
+      "childcare worker"
+    ],
+    "senseUid": "e6acc2a6-97d5-48ca-aa36-a5219172557e",
+    "wordId": "2512820",
+    "pt": "{\n  \"a\": [\n    \"cuidador masculino (em creche, orfanato, etc.)\",\n    \"trabalhador de cuidados infantis\"\n  ]\n}"
+  },
+  {
+    "kana": "らり",
+    "en": [
+      "being scattered in all directions",
+      "being broken up and dispersed"
+    ],
+    "senseUid": "4ec83d97-031f-48fc-b47c-8ea3755be6bd",
+    "wordId": "2512840",
+    "pt": "{\n  \"a\": [\n    \"ser espalhado em todas as direções\",\n    \"ser quebrado e disperso\"\n  ]\n}"
+  },
+  {
+    "kana": "おとし",
+    "en": [
+      "trap"
+    ],
+    "senseUid": "6b39372e-8267-47dd-b5e4-26d300aaeb01",
+    "wordId": "2512880",
+    "pt": "{'a': ['armadilha']}"
+  },
+  {
+    "kana": "おとし",
+    "en": [
+      "missing item",
+      "something one forgot to write down"
+    ],
+    "senseUid": "db815e47-92e9-4457-a675-6c56e2ae3d56",
+    "wordId": "2512880",
+    "pt": "{'a': ['item perdido', 'algo que se esqueceu de anotar']}"
+  },
+  {
+    "kana": "おとし",
+    "en": [
+      "cleaning",
+      "removing",
+      "ridding"
+    ],
+    "senseUid": "a4cb1118-97b5-4c65-936d-b9e8e6a0f16b",
+    "wordId": "2512880",
+    "pt": "{\n  \"a\": [\"limpeza\", \"remoção\", \"eliminar\"]\n}"
+  },
+  {
+    "kana": "おとし",
+    "en": [
+      "conclusion (of a speech, etc.)"
+    ],
+    "senseUid": "f5805083-bedb-493f-9fe5-6d6f6d502cdf",
+    "wordId": "2512880",
+    "pt": "{\n  \"a\": [\"conclusão (de um discurso, etc.)\"]\n}"
+  },
+  {
+    "kana": "おとし",
+    "en": [
+      "wooden protrusion from a Japanese door frame that fits a hole in the threshold, acting as a lock when closed"
+    ],
+    "senseUid": "410a7714-09b8-4192-ae09-a8b684f3f7b0",
+    "wordId": "2512880",
+    "pt": "{'a': ['trava de madeira de uma porta japonesa que se encaixa em um orifício no batente, funcionando como fechadura quando fechada']}"
+  },
+  {
+    "kana": "おとし",
+    "en": [
+      "metallic bowl used to hold the charcoal in a wooden hibachi"
+    ],
+    "senseUid": "1fda15ec-27d9-4557-9505-1c4c0dba2436",
+    "wordId": "2512880",
+    "pt": "{\n  \"a\": [\n    \"tigela metálica usada para segurar o carvão em um hibachi de madeira\"\n  ]\n}"
+  },
+  {
+    "kana": "からます",
+    "en": [
+      "to connect",
+      "to relate"
+    ],
+    "senseUid": "ce98e08c-b7e5-40de-b306-11de0cc3aedb",
+    "wordId": "2512890",
+    "pt": "{\n  \"a\": [\n    \"conectar\",\n    \"relacionar\",\n    \"entrelaçar\",\n    \"ligar\",\n    \"envolver\"\n  ]\n}"
+  },
+  {
+    "kana": "よっか",
+    "en": [
+      "under the wing (esp. of an aircraft)"
+    ],
+    "senseUid": "635fcc92-fa42-468b-992f-aaada4a5a821",
+    "wordId": "2512910",
+    "pt": "{\n  \"a\": [\"sob a asa (especialmente de uma aeronave)\"]\n}"
+  },
+  {
+    "kana": "おとしがけ",
+    "en": [
+      "lintel of the alcove in a tea room or a window in a shoin-style reception room"
+    ],
+    "senseUid": "920b2909-4d51-46c8-8c7e-1a6e5ec418aa",
+    "wordId": "2512870",
+    "pt": "{'a': ['viga superior do alcove em uma sala de chá ou de uma janela em uma sala de recepção no estilo shoin']}"
+  },
+  {
+    "kana": "からませる",
+    "en": [
+      "to connect",
+      "to relate"
+    ],
+    "senseUid": "62124ddb-7b55-4bb7-9ca6-c806a4d79f9c",
+    "wordId": "2512900",
+    "pt": "{\n  \"a\": [\n    \"envolver\",\n    \"ligar\",\n    \"relacionar\",\n    \"entrelaçar\",\n    \"associar\"\n  ]\n}"
+  },
+  {
+    "kana": "おとしがけ",
+    "en": [
+      "cloud-shaped carving on the bottom of a transom"
+    ],
+    "senseUid": "b2f0c37e-81a0-4765-8afd-e0381b41345d",
+    "wordId": "2512870",
+    "pt": "{\n  \"a\": [\n    \"entalhe em forma de nuvem na parte inferior de um travessão\"\n  ]\n}"
+  },
+  {
+    "kana": "ようしろん",
+    "en": [
+      "adoptionism"
+    ],
+    "senseUid": "21c7a75e-cc44-49b2-afd8-a4164eb75bf8",
+    "wordId": "2512920",
+    "pt": "{\n  \"a\": [\"adocionismo\"]\n}"
+  },
+  {
+    "kana": "よっか",
+    "en": [
+      "under one's wing",
+      "under one's control"
+    ],
+    "senseUid": "6bf9cd39-abcd-414d-b34f-9d3adf46271a",
+    "wordId": "2512910",
+    "pt": "{\n  \"a\": [\n    \"sob a proteção de alguém\",\n    \"sob o controle de alguém\"\n  ]\n}"
+  },
+  {
+    "kana": "おとし",
+    "en": [
+      "dropping",
+      "losing"
+    ],
+    "senseUid": "4c6be669-e04c-4f24-a6a5-9ebcfa9c48b2",
+    "wordId": "2512880",
+    "pt": "{'a': ['perda', 'deixar cair', 'perder']}"
+  },
+  {
+    "kana": "ようり",
+    "en": [
+      "lamina"
+    ],
+    "senseUid": "565c83da-f057-4e2d-a69a-af17c94708d8",
+    "wordId": "2512930",
+    "pt": "{\n  \"a\": [\"lâmina\"]\n}"
+  },
+  {
+    "kana": "ようじょうたい",
+    "en": [
+      "thallus"
+    ],
+    "senseUid": "a0b3b3d6-a854-4e70-b081-6706d249b4b9",
+    "wordId": "2512940",
+    "pt": "{'a': ['talo']}"
+  },
+  {
+    "kana": "からませる",
+    "en": [
+      "to entwine",
+      "to entangle"
+    ],
+    "senseUid": "fa82761f-8608-4451-80d7-e1f8d636cf6f",
+    "wordId": "2512900",
+    "pt": "{\n  \"a\": [\n    \"entrelaçar\",\n    \"enredar\",\n    \"envolver (algo em torno de outra coisa)\",\n    \"embrulhar (em torno de)\",\n    \"enroscar\"\n  ]\n}"
+  },
+  {
+    "kana": "ようじょうしょくぶつ",
+    "en": [
+      "thallophyte"
+    ],
+    "senseUid": "6852fe40-0763-4cbc-b838-539db0a6db38",
+    "wordId": "2512970",
+    "pt": "{'a': ['talófita']}"
+  },
+  {
+    "kana": "けいようしょくぶつ",
+    "en": [
+      "cormophyte"
+    ],
+    "senseUid": "32a279f3-9134-47a8-a47a-052aa0f00980",
+    "wordId": "2512960",
+    "pt": "{\n  \"a\": [\"planta cormófita\"]\n}"
+  },
+  {
+    "kana": "ようけつせいひんけつ",
+    "en": [
+      "hemolytic anemia"
+    ],
+    "senseUid": "f30809ff-bb2f-4285-bc88-5f0f53d9b4c5",
+    "wordId": "2513010",
+    "pt": "{'a': ['anemia hemolítica']}"
+  },
+  {
+    "kana": "おとしがけ",
+    "en": [
+      "metallic bowl used to hold the charcoal in a wooden hibachi"
+    ],
+    "senseUid": "7826bf32-9978-43e3-92ca-3ebbeecb8a07",
+    "wordId": "2512870",
+    "pt": "{'a': ['tigela metálica usada para segurar o carvão em um hibachi de madeira']}"
+  },
+  {
+    "kana": "ようきん",
+    "en": [
+      "bacteriolysis"
+    ],
+    "senseUid": "46b6220f-c6ed-4dbd-a6e4-6e29055ca7ab",
+    "wordId": "2513020",
+    "pt": "{\n  \"a\": [\"bacteriólise\"]\n}"
+  },
+  {
+    "kana": "ようしょく",
+    "en": [
+      "corrosion",
+      "dissolution"
+    ],
+    "senseUid": "0b474065-f447-4f0b-8169-64db9615dc99",
+    "wordId": "2513000",
+    "pt": "{'a': ['corrosão', 'dissolução']}"
+  },
+  {
+    "kana": "ようじょう",
+    "en": [
+      "leaflike"
+    ],
+    "senseUid": "e8bd7002-6514-4ea1-8dac-ee3b62554ea7",
+    "wordId": "2512990",
+    "pt": "{'a': ['semelhante a folha', 'folhoso', 'em forma de folha']}"
+  },
+  {
+    "kana": "ようとう",
+    "en": [
+      "shaking",
+      "swaying"
+    ],
+    "senseUid": "a060ba98-fce0-49b5-8896-184647190fbf",
+    "wordId": "2513040",
+    "pt": "{'a': ['balanço', 'oscilar']}"
+  },
+  {
+    "kana": "けいようたい",
+    "en": [
+      "cormus"
+    ],
+    "senseUid": "1eea76a6-0ba9-4c2f-ba51-634361a15e9b",
+    "wordId": "2512950",
+    "pt": "{\n  \"a\": [\"コルムス\"]\n}"
+  },
+  {
+    "kana": "ようじょうけい",
+    "en": [
+      "cladophyll",
+      "cladode",
+      "phylloclade"
+    ],
+    "senseUid": "cec21630-69a8-45ca-b6e3-054cdd6438ab",
+    "wordId": "2512980",
+    "pt": "{\n  \"a\": [\n    \"cladódio\",\n    \"filóclado\",\n    \"filocládio\"\n  ]\n}"
+  },
+  {
+    "kana": "ゆるぎ",
+    "en": [
+      "shaking",
+      "swaying"
+    ],
+    "senseUid": "6ed4795c-c3cf-4e00-b1a4-4fd1d451e28b",
+    "wordId": "2513050",
+    "pt": "{'a': ['oscilar', 'balançar']}"
+  },
+  {
+    "kana": "ようはく",
+    "en": [
+      "German silver",
+      "nickel silver"
+    ],
+    "senseUid": "b10728da-5425-408c-b993-106d87cc3570",
+    "wordId": "2513030",
+    "pt": "{\n  \"a\": [\"prata alemã\", \"prata-níquel\"]\n}"
+  },
+  {
+    "kana": "じゅうりょうぶんせき",
+    "en": [
+      "gravimetric analysis"
+    ],
+    "senseUid": "5d923371-3e59-49e4-865e-2931fa13a31e",
+    "wordId": "2513100",
+    "pt": "{'a': ['análise gravimétrica']}"
+  }
+]

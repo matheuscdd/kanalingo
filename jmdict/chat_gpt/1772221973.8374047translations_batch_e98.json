@@ -1,0 +1,976 @@
+[
+  {
+    "kana": "にゅうさんきゅうきん",
+    "en": [
+      "streptococcus",
+      "lactococcus"
+    ],
+    "senseUid": "d72e2707-a48d-4a21-864b-25ff99309462",
+    "wordId": "2703800",
+    "pt": "{\n  \"a\": [\"estreptococo lácteo\", \"lactococo\"]\n"
+  },
+  {
+    "kana": "アソート",
+    "en": [
+      "assorted"
+    ],
+    "senseUid": "b41a0818-5245-471e-a7b3-c01dccac25fa",
+    "wordId": "2703810",
+    "pt": "['sortido', 'variado', 'misto']"
+  },
+  {
+    "kana": "アソート",
+    "en": [
+      "assorting"
+    ],
+    "senseUid": "f56f5262-b886-49dd-b442-553abbd078e1",
+    "wordId": "2703810",
+    "pt": "['sortimento', 'seleção', 'conjunto variado']"
+  },
+  {
+    "kana": "かんかい",
+    "en": [
+      "remission",
+      "improvement",
+      "relief (of pain, symptoms, etc.)"
+    ],
+    "senseUid": "83a20e37-c0ac-462e-8a99-8de63add6abf",
+    "wordId": "2703830",
+    "pt": "['remissão', 'melhora', 'alívio (da dor, sintomas, etc.)']"
+  },
+  {
+    "kana": "ゆうはつせい",
+    "en": [
+      "inducibility"
+    ],
+    "senseUid": "8173bb8f-0c12-4bc9-85ae-1f6d0473366e",
+    "wordId": "2703840",
+    "pt": "['indutibilidade']"
+  },
+  {
+    "kana": "にんようのう",
+    "en": [
+      "fertility"
+    ],
+    "senseUid": "4a848fa7-9686-4ef0-9b2a-dcff4553261b",
+    "wordId": "2703850",
+    "pt": "{\n  \"a\": [\n    \"fertilidade\"\n  ]\n"
+  },
+  {
+    "kana": "らんそうがん",
+    "en": [
+      "ovarian cancer",
+      "ovarian carcinoma"
+    ],
+    "senseUid": "3e034bbc-ea38-4129-b37c-98854ac0d4a3",
+    "wordId": "2703870",
+    "pt": "['câncer de ovário', 'carcinoma de ovário']"
+  },
+  {
+    "kana": "みせいじゅくらん",
+    "en": [
+      "immature ovum"
+    ],
+    "senseUid": "90504303-42e5-4059-a8eb-a03c953ef220",
+    "wordId": "2703910",
+    "pt": "['óvulo imaturo']"
+  },
+  {
+    "kana": "みじゅくらん",
+    "en": [
+      "immature ovum"
+    ],
+    "senseUid": "1c959a1d-6f3f-4439-bcf3-54e28cdf3e16",
+    "wordId": "2703900",
+    "pt": "{\n  \"a\": [\"óvulo imaturo\"]\n"
+  },
+  {
+    "kana": "そうきへいけい",
+    "en": [
+      "premature menopause",
+      "early menopause",
+      "premature ovarian failure",
+      "POF"
+    ],
+    "senseUid": "147cfdb0-5d13-42b6-962a-d90ac773f0bf",
+    "wordId": "2703860",
+    "pt": "{\n  \"a\": [\n    \"menopausa precoce\",\n    \"falência ovariana prematura\",\n    \"menopausa prematura\"\n  ]\n"
+  },
+  {
+    "kana": "さきっちょ",
+    "en": [
+      "end",
+      "tip",
+      "point"
+    ],
+    "senseUid": "5fa2b4cc-1cc8-47ae-9d67-1f49616e312a",
+    "wordId": "2703920",
+    "pt": "['ponta', 'extremidade', 'bico']"
+  },
+  {
+    "kana": "らんそうとうけつ",
+    "en": [
+      "ovarian tissue freezing",
+      "ovarian cryopreservation"
+    ],
+    "senseUid": "50172cd1-10c6-4d7a-822e-27c193b24b82",
+    "wordId": "2703890",
+    "pt": "{\n  \"a\": [\n    \"congelamento de tecido ovariano\",\n    \"criopreservação ovariana\"\n  ]\n"
+  },
+  {
+    "kana": "くうかんにんしき",
+    "en": [
+      "space perception",
+      "spatial perception",
+      "spatial awareness"
+    ],
+    "senseUid": "345c6ec8-8196-48ff-9d00-a2b1bfe5afc8",
+    "wordId": "2703930",
+    "pt": "['percepção espacial', 'consciência espacial', 'percepção do espaço']"
+  },
+  {
+    "kana": "にんよう",
+    "en": [
+      "pregnancy",
+      "conception",
+      "fecundation"
+    ],
+    "senseUid": "9cb96306-37ea-4c53-b69c-921a2e78164a",
+    "wordId": "2703880",
+    "pt": "['gravidez', 'concepção', 'fecundação']"
+  },
+  {
+    "kana": "サクシニルコリン",
+    "en": [
+      "succinylcholine"
+    ],
+    "senseUid": "f38fb22e-25ab-453a-9944-ff7b825b18ad",
+    "wordId": "2703990",
+    "pt": "['succinilcolina']"
+  },
+  {
+    "kana": "しゅうでんたい",
+    "en": [
+      "current collector (electrical)"
+    ],
+    "senseUid": "24080dd6-ec19-46bd-850e-25d026c0b384",
+    "wordId": "2703960",
+    "pt": "['coletor de corrente (elétrico)']"
+  },
+  {
+    "kana": "ぶしまつり",
+    "en": [
+      "traditional festival in Kiryū City, Saitama"
+    ],
+    "senseUid": "037afb05-59e3-4f1a-b100-d479919e5d13",
+    "wordId": "2704020",
+    "pt": "['festival tradicional na cidade de Kiryū, Saitama']"
+  },
+  {
+    "kana": "じょうのう",
+    "en": [
+      "citrus fruit segment"
+    ],
+    "senseUid": "16bb910e-8a71-4673-b681-de4bda8d9b4d",
+    "wordId": "2703950",
+    "pt": "['gomo de fruta cítrica']"
+  },
+  {
+    "kana": "せつまつり",
+    "en": [
+      "traditional festival on Iriomote Island (southern Okinawa)"
+    ],
+    "senseUid": "d1ac9d1b-c256-4bac-a1ae-281a84ccbc45",
+    "wordId": "2704000",
+    "pt": "['festival tradicional na Ilha Iriomote (sul de Okinawa)']"
+  },
+  {
+    "kana": "とぅんち",
+    "en": [
+      "residence of a government official in the Ryukyu Kingdom"
+    ],
+    "senseUid": "293ef1e4-78f6-4e2c-beca-8affb219f748",
+    "wordId": "2704030",
+    "pt": "['residência de um oficial do governo no Reino Ryukyu']"
+  },
+  {
+    "kana": "くうかんにんしきのうりょく",
+    "en": [
+      "spatial awareness",
+      "spatial perception"
+    ],
+    "senseUid": "1a6c5aa8-d08e-4176-999e-46a654c74c70",
+    "wordId": "2703940",
+    "pt": "['consciência espacial', 'percepção espacial']"
+  },
+  {
+    "kana": "せんこつ",
+    "en": [
+      "washing of cremated bones before placing them in a funerary urn (esp. in Okinawa)"
+    ],
+    "senseUid": "4f6cab45-87ec-4264-aff4-49afc896bc0c",
+    "wordId": "2703970",
+    "pt": "['lavagem dos ossos cremados antes de colocá-los em uma urna funerária (especialmente em Okinawa)']"
+  },
+  {
+    "kana": "じゅんばんに",
+    "en": [
+      "in turns",
+      "in series",
+      "in order",
+      "by rotation"
+    ],
+    "senseUid": "0eab8510-7b1b-40e8-bf12-7fbbe8eb197d",
+    "wordId": "2704010",
+    "pt": "['em turnos', 'em série', 'em ordem', 'por revezamento']"
+  },
+  {
+    "kana": "がんや",
+    "en": [
+      "place to store a body in a coffin before burial (Okinawa)"
+    ],
+    "senseUid": "d4968109-5f46-4412-8434-e30ef049225a",
+    "wordId": "2703980",
+    "pt": "['local para guardar um corpo em um caixão antes do enterro (Okinawa)']"
+  },
+  {
+    "kana": "カモノハシもく",
+    "en": [
+      "Monotremata (order of egg-laying mammals)"
+    ],
+    "senseUid": "293c4f94-ca0c-4db7-b0c2-c46d68f78463",
+    "wordId": "2704060",
+    "pt": "['Ordem dos monotremados (mamíferos que põem ovos)']"
+  },
+  {
+    "kana": "モグラか",
+    "en": [
+      "Talpidae (family of moles and their close relatives)"
+    ],
+    "senseUid": "0b9ba5eb-897c-4d71-851a-c4785e99fa38",
+    "wordId": "2704120",
+    "pt": "['toupeira']"
+  },
+  {
+    "kana": "トガリネズミもく",
+    "en": [
+      "Soricomorpha",
+      "order of shrews, moles, etc."
+    ],
+    "senseUid": "6374f0f4-5553-4649-89d9-c30c74b81e21",
+    "wordId": "2704100",
+    "pt": "['Soricomorpha', 'ordem de musaranhos, toupeiras, etc.']"
+  },
+  {
+    "kana": "トガリネズミか",
+    "en": [
+      "Soricidae (shrew family)"
+    ],
+    "senseUid": "f24aece3-d7f7-49f8-be19-6af520a595ea",
+    "wordId": "2704110",
+    "pt": "['Soricídio', 'Família dos musaranhos', 'Musaranho']"
+  },
+  {
+    "kana": "カモノハシあもく",
+    "en": [
+      "Platypoda",
+      "suborder containing the platypus"
+    ],
+    "senseUid": "bc84c8ce-4182-4996-85bc-d210395d378c",
+    "wordId": "2704070",
+    "pt": "{\n  \"a\": [\n    \"Ordem dos Ornitorrincos\",\n    \"subordem que inclui o ornitorrinco\"\n  ]\n"
+  },
+  {
+    "kana": "コリコドンか",
+    "en": [
+      "Kollikodontidae (extinct family of monotremes)"
+    ],
+    "senseUid": "9f7cdb5c-813e-414c-976d-30e50f7b2b2e",
+    "wordId": "2704090",
+    "pt": "{\n  \"a\": [\"Kollikodontidae (família extinta de monotremados)\"]\n"
+  },
+  {
+    "kana": "とうきょうとがりねずみ",
+    "en": [
+      "Hawker's least shrew (Sorex minutissimus hawkeri)"
+    ],
+    "senseUid": "4c214ce9-2dd0-4073-a541-e22492d2a706",
+    "wordId": "2704150",
+    "pt": "{\n  \"a\": [\n    \"Musaranho-menor-de-Hawker (Sorex minutissimus hawkeri)\"\n  ]\n"
+  },
+  {
+    "kana": "カモノハシか",
+    "en": [
+      "Ornithorhynchidae (platypus family)"
+    ],
+    "senseUid": "5347ddcc-7528-4123-8566-0199b1fbc928",
+    "wordId": "2704080",
+    "pt": "{\n  \"a\": [\"É um ornitorrinco?\"]\n"
+  },
+  {
+    "kana": "ハイチソレノドン",
+    "en": [
+      "Hispaniolan solenodon (Solenodon paradoxus)",
+      "Haitian solenodon",
+      "agouta"
+    ],
+    "senseUid": "ec74d345-0c8d-4915-9fb3-e1c118eddb29",
+    "wordId": "2704130",
+    "pt": "{\n  \"a\": [\n    \"Solenodonte-hispaniolano (Solenodon paradoxus)\",\n    \"Solenodonte-haitiano\",\n    \"agouta\"\n  ]\n"
+  },
+  {
+    "kana": "ちびとがりねずみ",
+    "en": [
+      "Eurasian least shrew (Sorex minutissimus)",
+      "lesser pygmy shrew"
+    ],
+    "senseUid": "3b4bacb2-ee05-46a8-9b1b-e0e1ea93b149",
+    "wordId": "2704140",
+    "pt": "['musaranho-anão-eurasiático (Sorex minutissimus)', 'musaranho-pigmeu-menor']"
+  },
+  {
+    "kana": "あずみとがりねずみ",
+    "en": [
+      "Azumi shrew (Sorex hosonoi)"
+    ],
+    "senseUid": "b56671ab-9822-41c3-b565-0418a95992e5",
+    "wordId": "2704160",
+    "pt": "['musaranho-de-Azumi (Sorex hosonoi)']"
+  },
+  {
+    "kana": "ソレノドン",
+    "en": [
+      "solenodon"
+    ],
+    "senseUid": "d8efdf2d-fb0f-45a8-96c9-d779a2de719d",
+    "wordId": "2704200",
+    "pt": "['solenodonte']"
+  },
+  {
+    "kana": "ひめとがりねずみ",
+    "en": [
+      "slender shrew (Sorex gracillimus)"
+    ],
+    "senseUid": "7f37542b-c6c6-426c-8220-b481a1cbb41b",
+    "wordId": "2704180",
+    "pt": "['musaranho-esguio (Sorex gracillimus)']"
+  },
+  {
+    "kana": "こじねずみ",
+    "en": [
+      "Asian lesser white-toothed shrew (Crocidura shantungensis)"
+    ],
+    "senseUid": "3c969246-dc9e-4200-b805-3a44f4104915",
+    "wordId": "2704230",
+    "pt": "['musaranho-menor-asiático (Crocidura shantungensis)']"
+  },
+  {
+    "kana": "おおあしとがりねずみ",
+    "en": [
+      "long-clawed shrew (Sorex unguiculatus)"
+    ],
+    "senseUid": "563c08b5-594a-45a6-a01c-59eae873a154",
+    "wordId": "2704220",
+    "pt": "['musaranho-de-unhas-longas (Sorex unguiculatus)']"
+  },
+  {
+    "kana": "わたせじねずみ",
+    "en": [
+      "lesser Ryukyu shrew (Crocidura watasei)",
+      "Watase's shrew"
+    ],
+    "senseUid": "75f71406-a6dc-482c-990c-7fad8390e97e",
+    "wordId": "2704240",
+    "pt": "{\n  \"a\": [\n    \"musaranho-de-Watase\",\n    \"musaranho-menor-de-Ryukyu\"\n  ]\n"
+  },
+  {
+    "kana": "にほんじねずみ",
+    "en": [
+      "Dsinezumi shrew (Crocidura dsinezumi)",
+      "Japanese white-toothed shrew"
+    ],
+    "senseUid": "f0fe84f1-8671-4b38-b3d0-a0084d452b17",
+    "wordId": "2704250",
+    "pt": "{\n  \"a\": [\n    \"Musaranho-dsinezumi (Crocidura dsinezumi)\",\n    \"Musaranho-de-dente-branco japonês\"\n  ]\n"
+  },
+  {
+    "kana": "バイカルとがりねずみ",
+    "en": [
+      "Laxmann's shrew (Sorex caecutiens)",
+      "Baikal shrew"
+    ],
+    "senseUid": "ca773507-63fb-46a5-aed4-bbbdcd017659",
+    "wordId": "2704210",
+    "pt": "['Musaranho-de-Baikal', 'Musaranho-de-Laxmann (Sorex caecutiens)']"
+  },
+  {
+    "kana": "プレースホルダー",
+    "en": [
+      "placeholder"
+    ],
+    "senseUid": "a71d2e11-3e01-4c20-93c8-2c2666d83b2f",
+    "wordId": "2704280",
+    "pt": "['espaço reservado']"
+  },
+  {
+    "kana": "としこうがく",
+    "en": [
+      "urban engineering",
+      "municipal engineering"
+    ],
+    "senseUid": "b5605f77-828d-48e2-82d8-e32d0455cbba",
+    "wordId": "2704300",
+    "pt": "['engenharia urbana', 'engenharia municipal']"
+  },
+  {
+    "kana": "ホルモンや",
+    "en": [
+      "restaurant specializing in grilled offal"
+    ],
+    "senseUid": "4cf45bae-e922-4dda-8b5a-1e20e87e21d0",
+    "wordId": "2704270",
+    "pt": "{\n  \"a\": [\"restaurante especializado em grelhados de miúdos\"]\n"
+  },
+  {
+    "kana": "おりいじねずみ",
+    "en": [
+      "Ryukyu shrew (Crocidura orii)",
+      "Orii's shrew"
+    ],
+    "senseUid": "6f6f9526-f4fa-4edc-a6d4-c28572ad54fa",
+    "wordId": "2704260",
+    "pt": "['Musaranho-de-Ryukyu (Crocidura orii)', 'Musaranho-de-Orii']"
+  },
+  {
+    "kana": "とりしょうとつ",
+    "en": [
+      "bird strike"
+    ],
+    "senseUid": "df193b13-f6ef-42f7-abfc-3322f12c4e7e",
+    "wordId": "2704320",
+    "pt": "['colisão com pássaro']"
+  },
+  {
+    "kana": "レアチーズケーキ",
+    "en": [
+      "no-bake cheesecake",
+      "gelatin cheesecake",
+      "unbaked cheesecake"
+    ],
+    "senseUid": "8a662289-4402-4365-bd78-41da334ee68a",
+    "wordId": "2704330",
+    "pt": "['cheesecake gelado', 'cheesecake sem forno', 'cheesecake de gelatina']"
+  },
+  {
+    "kana": "バードストライク",
+    "en": [
+      "bird strike"
+    ],
+    "senseUid": "44dde838-3c7c-4ced-88e1-2cbb58a4dc18",
+    "wordId": "2704310",
+    "pt": "{\n  \"a\": [\n    \"colisão com pássaro\",\n    \"impacto de ave\",\n    \"choque com pássaro\"\n  ]\n"
+  },
+  {
+    "kana": "そくりょうがく",
+    "en": [
+      "surveying",
+      "land surveying"
+    ],
+    "senseUid": "cc4050c2-05de-4773-a858-e7de400e9065",
+    "wordId": "2704290",
+    "pt": "['topografia', 'agrimensura']"
+  },
+  {
+    "kana": "レアチーズ",
+    "en": [
+      "no-bake cheesecake",
+      "gelatin cheesecake",
+      "unbaked cheesecake"
+    ],
+    "senseUid": "3efe42ec-9d8e-4c71-a790-c754965df17a",
+    "wordId": "2704340",
+    "pt": "['cheesecake gelado', 'cheesecake sem forno', 'cheesecake de gelatina']"
+  },
+  {
+    "kana": "しろうまとがりねずみ",
+    "en": [
+      "Shirouma shrew (Sorex hosonoi shiroumanus)"
+    ],
+    "senseUid": "d3b32b4d-83f0-4362-b4ed-55de94003484",
+    "wordId": "2704170",
+    "pt": "{\n  \"a\": [\"Musaranho-de-Shirouma (Sorex hosonoi shiroumanus)\"]\n"
+  },
+  {
+    "kana": "えぞあかね",
+    "en": [
+      "yellow-winged darter (Sympetrum flaveolum)"
+    ],
+    "senseUid": "20673265-0920-4403-8777-ab30cb65a8c1",
+    "wordId": "2704370",
+    "pt": "['libélula-amarela-do-norte (Sympetrum flaveolum)']"
+  },
+  {
+    "kana": "グロかわいい",
+    "en": [
+      "grotesque but cute"
+    ],
+    "senseUid": "b91bcec7-f41a-4b43-858b-c906ff3ca58e",
+    "wordId": "2704430",
+    "pt": "['grotescamente fofo']"
+  },
+  {
+    "kana": "しんとうとがりねずみ",
+    "en": [
+      "Shinto shrew (Sorex shinto)"
+    ],
+    "senseUid": "07407a88-c008-4d88-9df1-a214f155719d",
+    "wordId": "2704190",
+    "pt": "['Musaranho-de-shinto (Sorex shinto)']"
+  },
+  {
+    "kana": "るりオーストラリアむしくい",
+    "en": [
+      "superb blue-wren (Malurus cyaneus)",
+      "superb fairywren",
+      "blue wren"
+    ],
+    "senseUid": "24d6d225-3f71-4350-ac8b-3049f646e227",
+    "wordId": "2704360",
+    "pt": "{\n  \"a\": [\n    \"ruri-austrália-mushikui\",\n    \"ruri-pássaro-fada-australiano\",\n    \"ruri-cotovia-azul\"\n  ]\n"
+  },
+  {
+    "kana": "ゲーミフィケーション",
+    "en": [
+      "gamification"
+    ],
+    "senseUid": "b84e14ab-79d3-458e-8fb4-573197dd243f",
+    "wordId": "2704350",
+    "pt": "['gamificação']"
+  },
+  {
+    "kana": "スリーディープリンタ",
+    "en": [
+      "3D printer"
+    ],
+    "senseUid": "583b4611-f9e8-45bf-9ae2-7c27db0ad897",
+    "wordId": "2704440",
+    "pt": "['impressora 3D']"
+  },
+  {
+    "kana": "ふくこうがんえん",
+    "en": [
+      "epididymitis",
+      "inflammation of the epididymis"
+    ],
+    "senseUid": "f7c98c02-6a9b-4688-8844-0f3703b860e5",
+    "wordId": "2704410",
+    "pt": "['epididimite', 'inflamação do epidídimo']"
+  },
+  {
+    "kana": "せいそうじょうたいえん",
+    "en": [
+      "epididymitis",
+      "inflammation of the epididymis"
+    ],
+    "senseUid": "2b95028c-a595-4444-8bb3-a46d7dce5b8a",
+    "wordId": "2704420",
+    "pt": "{\n  \"a\": [\n    \"epididimite\",\n    \"inflamação do epidídimo\"\n  ]\n"
+  },
+  {
+    "kana": "そうきょくめん",
+    "en": [
+      "hyperboloid"
+    ],
+    "senseUid": "a9c8eb25-8599-4aea-9d78-084e899415c7",
+    "wordId": "2704460",
+    "pt": "{\n  \"a\": [\"hiperbolóide\"]\n"
+  },
+  {
+    "kana": "こうぎょうデザイン",
+    "en": [
+      "industrial design"
+    ],
+    "senseUid": "b4d19ada-009f-4298-9786-04067d9fc0e8",
+    "wordId": "2704470",
+    "pt": "['design industrial']"
+  },
+  {
+    "kana": "せいそうえん",
+    "en": [
+      "orchitis",
+      "inflammation of the testes"
+    ],
+    "senseUid": "ea6c9cf9-6340-4a9a-9387-dfee81dffc5f",
+    "wordId": "2704400",
+    "pt": "{\n  \"a\": [\n    \"orquite\",\n    \"inflamação dos testículos\"\n  ]\n"
+  },
+  {
+    "kana": "ラピッドプロトタイピング",
+    "en": [
+      "rapid prototyping"
+    ],
+    "senseUid": "2445d851-9c0d-4605-b6fb-b813b5c9df66",
+    "wordId": "2704450",
+    "pt": "['prototipagem rápida']"
+  },
+  {
+    "kana": "そうがらんま",
+    "en": [
+      "Buddhist convent or monastery"
+    ],
+    "senseUid": "34b31c08-388e-463d-b8ad-9dfa23c94053",
+    "wordId": "2704540",
+    "pt": "['mosteiro budista', 'convento budista']"
+  },
+  {
+    "kana": "ぼん",
+    "en": [
+      "Sanskrit"
+    ],
+    "senseUid": "1fc07f83-1273-4aaa-9df3-5dd3ae41ad84",
+    "wordId": "2704550",
+    "pt": "{\n  \"a\": [\"sânscrito\"]\n"
+  },
+  {
+    "kana": "じょせいかいほう",
+    "en": [
+      "women's liberation",
+      "emancipation of women"
+    ],
+    "senseUid": "53000f9a-8c66-46f5-8d90-610b0b8e62df",
+    "wordId": "2704530",
+    "pt": "['libertação das mulheres', 'emancipação das mulheres']"
+  },
+  {
+    "kana": "ぼん",
+    "en": [
+      "Brahma (Hindu creator god)"
+    ],
+    "senseUid": "67dde0a4-e214-408d-98aa-8190d6911f1a",
+    "wordId": "2704550",
+    "pt": "{\n  \"a\": [\"Brahma (deus criador hindu)\"]\n"
+  },
+  {
+    "kana": "コワーキング",
+    "en": [
+      "coworking",
+      "co-working"
+    ],
+    "senseUid": "cf711f57-bd83-4777-a6a5-d9fb46fa09e0",
+    "wordId": "2704480",
+    "pt": "['coworking', 'co-working', 'escritório compartilhado', 'espaço de trabalho compartilhado']"
+  },
+  {
+    "kana": "ほりし",
+    "en": [
+      "engraver",
+      "carver",
+      "sculptor"
+    ],
+    "senseUid": "cf3fe07a-e2d9-47d4-9c74-dce3fca0a080",
+    "wordId": "2704500",
+    "pt": "{\n  \"a\": [\"gravador\", \"entalhador\", \"escultor\"]\n"
+  },
+  {
+    "kana": "ほりし",
+    "en": [
+      "tattoo artist",
+      "tattooist"
+    ],
+    "senseUid": "679fa10d-0a66-4957-9867-d2118e04b8c2",
+    "wordId": "2704500",
+    "pt": "['tatuador', 'artista de tatuagem']"
+  },
+  {
+    "kana": "ぼん",
+    "en": [
+      "Brahman (ultimate reality of the universe in Hinduism)",
+      "Brahma"
+    ],
+    "senseUid": "94d29e30-32ee-4592-a792-954d1196a7ff",
+    "wordId": "2704550",
+    "pt": "{\n  \"a\": [\n    \"Brahman (realidade suprema do universo no hinduísmo)\",\n    \"Brahma\"\n  ]\n"
+  },
+  {
+    "kana": "ほうぞうびく",
+    "en": [
+      "Dharmakara Bodhisattva",
+      "Amitabha Buddha in a pre-enlightenment incarnation"
+    ],
+    "senseUid": "a17a3a2d-8c36-4cff-b5bd-06770637b827",
+    "wordId": "2704490",
+    "pt": "{\n  \"a\": [\n    \"Bodisatva Dharmakara\",\n    \"Amitabha Buda em uma encarnação antes da iluminação\"\n  ]\n"
+  },
+  {
+    "kana": "ながびかせる",
+    "en": [
+      "to prolong",
+      "to protract",
+      "to draw out"
+    ],
+    "senseUid": "c3a7cd40-da54-4cb3-8809-e58fce180ecd",
+    "wordId": "2704520",
+    "pt": "['prolongar', 'estender', 'alongar', 'dilatar', 'protrair', 'demorar', 'arrastar']"
+  },
+  {
+    "kana": "こしょう",
+    "en": [
+      "tiger's howling"
+    ],
+    "senseUid": "81bfbff8-5783-44fd-838e-6cd423dd1b64",
+    "wordId": "2704570",
+    "pt": "{\n  \"a\": [\"rugido do tigre\"]\n"
+  },
+  {
+    "kana": "こしょう",
+    "en": [
+      "being out and active in the world (of a hero, etc.)"
+    ],
+    "senseUid": "8d0d4f80-2a94-4369-bf98-f9c840d3b981",
+    "wordId": "2704570",
+    "pt": "['estar em ação no mundo (como um herói, etc.)']"
+  },
+  {
+    "kana": "ソシアルダンス",
+    "en": [
+      "social dance",
+      "social dancing"
+    ],
+    "senseUid": "4536c763-609d-4530-aefb-3d3385001ba5",
+    "wordId": "2704630",
+    "pt": "['dança de salão', 'dança social']"
+  },
+  {
+    "kana": "ちょくおんか",
+    "en": [
+      "depalatalization (e.g. dropping small kana in borrowing foreign words into Japanese)",
+      "depalatalisation"
+    ],
+    "senseUid": "89afb1eb-28fc-45f8-b4b6-831bb2668a4a",
+    "wordId": "2704560",
+    "pt": "{\n  \"a\": [\n    \"despalatalização (por exemplo, omissão de kana pequeno ao adaptar palavras estrangeiras para o japonês)\",\n    \"despalatalização\"\n  ]\n"
+  },
+  {
+    "kana": "いろぎめ",
+    "en": [
+      "final color (e.g. in auto paint shop)"
+    ],
+    "senseUid": "28c1a6b9-eaeb-4066-9d50-95a52128bba3",
+    "wordId": "2704580",
+    "pt": "['cor final (por exemplo, em oficina de pintura automotiva)']"
+  },
+  {
+    "kana": "あわがたつ",
+    "en": [
+      "to bubble",
+      "to foam",
+      "to froth"
+    ],
+    "senseUid": "a49c77e0-32f6-46e5-8cdd-cb6d515c6722",
+    "wordId": "2704620",
+    "pt": "{\n  \"a\": [\n    \"borbulhar\",\n    \"espumar\",\n    \"formar espuma\"\n  ]\n"
+  },
+  {
+    "kana": "おぶついれ",
+    "en": [
+      "sanitary waste receptacle",
+      "sanitary napkin disposal bin (in a bathroom)",
+      "fecal specimen receptacle (at a hospital)"
+    ],
+    "senseUid": "1c8feb0f-82c1-4d3e-8ec1-d51dae950b14",
+    "wordId": "2704610",
+    "pt": "['recipiente para descarte de resíduos sanitários', 'lixeira para absorventes higiênicos (em banheiro)', 'recipiente para coleta de amostras fecais (em hospital)']"
+  },
+  {
+    "kana": "ローウエスト",
+    "en": [
+      "low-waist (clothing)",
+      "drop-waist",
+      "dropped-waist"
+    ],
+    "senseUid": "dd192a07-aaea-4e30-a5e6-211f53786147",
+    "wordId": "2704640",
+    "pt": "['cintura baixa (roupa)', 'cintura deslocada', 'cintura rebaixada']"
+  },
+  {
+    "kana": "せいする",
+    "en": [
+      "to conquer",
+      "to subjugate",
+      "to overcome"
+    ],
+    "senseUid": "e3fa0370-6799-4f92-ae35-f63d983c724f",
+    "wordId": "2704650",
+    "pt": "['conquistar', 'subjugar', 'superar']"
+  },
+  {
+    "kana": "やまおろし",
+    "en": [
+      "mashing of steamed rice, mold and water with wooden poles in traditional sake making"
+    ],
+    "senseUid": "e3b0b1de-9365-4332-ab48-f2d336cc3ac2",
+    "wordId": "2704670",
+    "pt": "['amassamento do arroz cozido no vapor, do fungo e da água com bastões de madeira na fabricação tradicional de saquê']"
+  },
+  {
+    "kana": "きもと",
+    "en": [
+      "traditional sake yeast mash starter",
+      "oldest surviving traditional style of sake making"
+    ],
+    "senseUid": "a255098e-139a-4fda-a911-4d8817ea974d",
+    "wordId": "2704660",
+    "pt": "{\n  \"a\": [\n    \"método tradicional de preparo do fermento de saquê\",\n    \"estilo mais antigo de produção tradicional de saquê ainda existente\"\n  ]\n"
+  },
+  {
+    "kana": "やまおろしはいしもと",
+    "en": [
+      "sake brewing using natural yeast and no mashing"
+    ],
+    "senseUid": "a7c33bbd-d2ea-41a8-b71b-d6abe551b6a2",
+    "wordId": "2704680",
+    "pt": "{\n  \"a\": [\n    \"Produção de saquê usando levedura natural e sem amassamento\"\n  ]\n"
+  },
+  {
+    "kana": "なまはるまき",
+    "en": [
+      "fresh spring roll (i.e. not fried)",
+      "summer roll",
+      "Vietnamese salad roll"
+    ],
+    "senseUid": "b4841d9b-dbe3-4e45-8899-f02dbf26877f",
+    "wordId": "2704710",
+    "pt": "{\n  \"a\": [\n    \"rolinho primavera fresco (ou seja, não frito)\",\n    \"rolinho de verão\",\n    \"rolinho de salada vietnamita\"\n  ]\n"
+  },
+  {
+    "kana": "イドラ",
+    "en": [
+      "idol (esp. in the philosophy of Francis Bacon: idols of the tribe, cave, market, and theater)"
+    ],
+    "senseUid": "bc3b49cc-2b79-4321-8905-fae39ca610b3",
+    "wordId": "2704720",
+    "pt": "['ídolo (especialmente na filosofia de Francis Bacon: ídolos da tribo, da caverna, do mercado e do teatro)']"
+  },
+  {
+    "kana": "やまはいもと",
+    "en": [
+      "sake brewing using natural yeast and no mashing"
+    ],
+    "senseUid": "d8b23efb-78bc-4a79-92e1-bb2a51872858",
+    "wordId": "2704690",
+    "pt": "{\n  \"a\": [\n    \"produção de saquê usando levedura natural e sem amassamento\"\n  ]\n"
+  },
+  {
+    "kana": "ひょろっと",
+    "en": [
+      "tall and thin",
+      "long and thin",
+      "lanky",
+      "spindly",
+      "gangly"
+    ],
+    "senseUid": "3fb0ee3f-75e6-4022-a40e-6583c895df38",
+    "wordId": "2704730",
+    "pt": "['alto e magro', 'comprido e magro', 'esguio', 'magricela', 'desengonçado']"
+  },
+  {
+    "kana": "ほうぞう",
+    "en": [
+      "Buddhist teachings",
+      "Buddhist scriptures"
+    ],
+    "senseUid": "1a4ff6b9-8da1-4de8-8e3a-96fe5575569b",
+    "wordId": "2704740",
+    "pt": "{\n  \"a\": [\n    \"ensinamentos budistas\",\n    \"escrituras budistas\"\n  ]\n"
+  },
+  {
+    "kana": "ほうぞう",
+    "en": [
+      "Dharmakara",
+      "Amitabha Buddha in a pre-enlightenment incarnation"
+    ],
+    "senseUid": "d1a8cb2a-fd93-49f3-8cf8-178abe534674",
+    "wordId": "2704740",
+    "pt": "{\n  \"a\": [\n    \"Dharmakara\",\n    \"Buda Amitabha em uma encarnação antes da iluminação\"\n  ]\n"
+  },
+  {
+    "kana": "はけぬり",
+    "en": [
+      "brush application",
+      "brush coating",
+      "painting with a brush"
+    ],
+    "senseUid": "de7f20ba-cfd0-4a07-a030-54cb40c16860",
+    "wordId": "2704760",
+    "pt": "['aplicação com pincel', 'revestimento com pincel', 'pintura com pincel']"
+  },
+  {
+    "kana": "はけほうき",
+    "en": [
+      "whisk broom"
+    ],
+    "senseUid": "78813b87-810a-4d56-bcf9-fbc6c37f46d2",
+    "wordId": "2704770",
+    "pt": "['vassoura de mão']"
+  },
+  {
+    "kana": "ブラフマー",
+    "en": [
+      "Brahma (Hindu creator god)"
+    ],
+    "senseUid": "24e03b09-6a99-4e30-8939-c6ac9616e4e0",
+    "wordId": "2704780",
+    "pt": "['Brahma (deus criador hindu)']"
+  },
+  {
+    "kana": "にょうちんさ",
+    "en": [
+      "urinary sediment (e.g. in urinalysis)"
+    ],
+    "senseUid": "fd030f9c-e071-4f55-a8cb-43c0de569864",
+    "wordId": "2704800",
+    "pt": "['sedimento urinário']"
+  },
+  {
+    "kana": "へびのなまごろし",
+    "en": [
+      "state of uncertainty",
+      "limbo",
+      "leaving unfinished with the intention of inflicting suffering",
+      "dragging out tortuously",
+      "half-killing a snake"
+    ],
+    "senseUid": "d303bb3a-e1f7-4c64-9bd3-0d5e34074a9b",
+    "wordId": "2704750",
+    "pt": "['estado de incerteza', 'limbo', 'deixar algo inacabado com a intenção de causar sofrimento', 'prolongar de forma tortuosa', 'meio matar uma cobra']"
+  },
+  {
+    "kana": "アートマン",
+    "en": [
+      "atman",
+      "one's true self, which transcends death and is part of the universal Brahman (in Hinduism)"
+    ],
+    "senseUid": "80e08b53-3774-4a5b-a1eb-4e67ffe9787e",
+    "wordId": "2704790",
+    "pt": "['atman', 'verdadeiro eu; o eu essencial que transcende a morte e faz parte do Brahman universal (no hinduísmo)']"
+  },
+  {
+    "kana": "さくらふぶき",
+    "en": [
+      "blizzard of falling cherry blossoms",
+      "flurry of falling cherry blossoms"
+    ],
+    "senseUid": "cbe2b10b-d3af-4b05-bb94-8cf550a83fc1",
+    "wordId": "2704810",
+    "pt": "['nevasca de pétalas de cerejeira', 'turbilhão de pétalas de cerejeira caindo']"
+  },
+  {
+    "kana": "すいきんくつ",
+    "en": [
+      "buried earthen jar that makes sound when water drips into it (garden feature)"
+    ],
+    "senseUid": "18316195-c2db-4735-acda-888609b71f10",
+    "wordId": "2704820",
+    "pt": "['jarro de barro enterrado que emite som quando a água pinga dentro dele (elemento de jardim)']"
+  }
+]

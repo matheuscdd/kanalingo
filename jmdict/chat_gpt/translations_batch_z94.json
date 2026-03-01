@@ -1,0 +1,915 @@
+[
+  {
+    "kana": "フィールドグラス",
+    "en": [
+      "field-glasses"
+    ],
+    "senseUid": "7006763c-22f6-4a39-a805-a08125529f5d",
+    "wordId": "2484870",
+    "pt": "{'a': ['binóculo']}"
+  },
+  {
+    "kana": "フィルムスピード",
+    "en": [
+      "film speed"
+    ],
+    "senseUid": "9968ed24-f15a-4318-a066-bdf82dc38e00",
+    "wordId": "2484930",
+    "pt": "{'a': ['velocidade do filme']}"
+  },
+  {
+    "kana": "フィルタープレス",
+    "en": [
+      "filter press"
+    ],
+    "senseUid": "023c1471-b573-416f-8376-e187428f3409",
+    "wordId": "2484940",
+    "pt": "{\n  \"a\": [\"prensa de filtro\"]\n}"
+  },
+  {
+    "kana": "フィルムクリップ",
+    "en": [
+      "film clip"
+    ],
+    "senseUid": "2edad057-76a2-41a2-937a-f480e4b2021e",
+    "wordId": "2484920",
+    "pt": "{'a': ['clipe de filme']}"
+  },
+  {
+    "kana": "フィフティーズ",
+    "en": [
+      "fifties"
+    ],
+    "senseUid": "98fc19cc-d711-4b80-85c2-4092ada3b603",
+    "wordId": "2484900",
+    "pt": "{'a': ['anos cinquenta']}"
+  },
+  {
+    "kana": "ファイアプレース",
+    "en": [
+      "fireplace"
+    ],
+    "senseUid": "11d5066f-8f67-47a1-ae81-fa0d91cd9c76",
+    "wordId": "2484950",
+    "pt": "{'a': ['lareira']}"
+  },
+  {
+    "kana": "ファーストベース",
+    "en": [
+      "first base"
+    ],
+    "senseUid": "7c080d99-b611-49e6-9c20-a9141ab6aa59",
+    "wordId": "2484960",
+    "pt": "{'a': ['primeira base']}"
+  },
+  {
+    "kana": "ファーストダウン",
+    "en": [
+      "first down"
+    ],
+    "senseUid": "ee34faf0-d04d-4adb-b045-c6e3ccfddc70",
+    "wordId": "2484970",
+    "pt": "{'a': ['primeira descida']}"
+  },
+  {
+    "kana": "ファーストラブ",
+    "en": [
+      "first love"
+    ],
+    "senseUid": "f2d1eb5e-c194-4c01-a0c3-53c47c1e335b",
+    "wordId": "2484980",
+    "pt": "{'a': ['primeiro amor']}"
+  },
+  {
+    "kana": "フィルダム",
+    "en": [
+      "fill dam",
+      "embankment dam",
+      "rockfill dam",
+      "earthfill dam"
+    ],
+    "senseUid": "5cc061f9-c764-4a1a-9007-4992bb7a9484",
+    "wordId": "2484910",
+    "pt": "{\n  \"a\": [\n    \"barragem de aterro\",\n    \"barragem de enrocamento\",\n    \"barragem de terra\",\n    \"barragem de material compactado\"\n  ]\n}"
+  },
+  {
+    "kana": "フィスカルドラッグ",
+    "en": [
+      "fiscal drag"
+    ],
+    "senseUid": "b5cba280-d206-4b9e-86ce-482ef51b930f",
+    "wordId": "2484990",
+    "pt": "{'a': ['arrasto fiscal']}"
+  },
+  {
+    "kana": "フィスカルイヤー",
+    "en": [
+      "fiscal year"
+    ],
+    "senseUid": "37a78383-f434-4144-9ac0-3f948551004c",
+    "wordId": "2485000",
+    "pt": "{'a': ['ano fiscal']}"
+  },
+  {
+    "kana": "フィスカル",
+    "en": [
+      "fiscal"
+    ],
+    "senseUid": "18d585ca-3403-4a36-a04b-c9c8fe0c3bc2",
+    "wordId": "2485010",
+    "pt": "{\n  \"a\": [\"fiscal\"]\n}"
+  },
+  {
+    "kana": "フィッシャーマン",
+    "en": [
+      "fisherman"
+    ],
+    "senseUid": "847140c0-b985-4b89-a8ca-6f2e6c3dc11d",
+    "wordId": "2485020",
+    "pt": "{'a': ['pescador']}"
+  },
+  {
+    "kana": "フラジオレット",
+    "en": [
+      "flageolet (woodwind instrument)"
+    ],
+    "senseUid": "33cbde1c-274b-4165-b673-04360de748c5",
+    "wordId": "2485050",
+    "pt": "{'a': ['flageolet (instrumento de sopro)']}"
+  },
+  {
+    "kana": "フラッグキャリア",
+    "en": [
+      "flag carrier (airline)"
+    ],
+    "senseUid": "b1f5d394-b0e7-479d-9106-c742c09507aa",
+    "wordId": "2485040",
+    "pt": "{'a': ['companhia aérea nacional']}"
+  },
+  {
+    "kana": "フラジオレット",
+    "en": [
+      "flageolet tones",
+      "string harmonics"
+    ],
+    "senseUid": "39ac1d7e-39e1-4bf0-b6d9-28edd82bdfe1",
+    "wordId": "2485050",
+    "pt": "{'a': ['harmônicos flautados', 'harmônicos de corda']}"
+  },
+  {
+    "kana": "フレキシブルバック",
+    "en": [
+      "flexible back"
+    ],
+    "senseUid": "ee986c25-3053-4180-ab31-fa8d606472fe",
+    "wordId": "2485080",
+    "pt": "{'a': ['costas flexíveis']}"
+  },
+  {
+    "kana": "フレーメン",
+    "en": [
+      "flehmen"
+    ],
+    "senseUid": "1f00abd1-ed5a-4935-a8e6-3632c7ccc472",
+    "wordId": "2485070",
+    "pt": "{\n  \"a\": [\"flehmen\", \"expressão flehmen\", \"ação de flehmen\"]\n}"
+  },
+  {
+    "kana": "フリップ",
+    "en": [
+      "flip chart"
+    ],
+    "senseUid": "bbe3f322-29d1-4998-86eb-4ee39da6fdff",
+    "wordId": "2485100",
+    "pt": "{\n  \"a\": [\"quadro de folhas móveis\"]\n}"
+  },
+  {
+    "kana": "フリップ",
+    "en": [
+      "flip (jump)"
+    ],
+    "senseUid": "89a88f1c-dde9-46db-9a5b-5b4f639e0178",
+    "wordId": "2485100",
+    "pt": "{\n  \"a\": [\"salto mortal\"]\n}"
+  },
+  {
+    "kana": "フラッシャー",
+    "en": [
+      "flasher (i.e. a turn signal)"
+    ],
+    "senseUid": "689ea3a2-7443-4bd7-bece-93c88ff34cb5",
+    "wordId": "2485060",
+    "pt": "{'a': ['luz indicadora de direção', 'pisca-pisca (de veículo)', 'seta (de automóvel)']}"
+  },
+  {
+    "kana": "フロアダクト",
+    "en": [
+      "floor duct"
+    ],
+    "senseUid": "8692087d-7032-4847-a60c-3b9e78901186",
+    "wordId": "2485110",
+    "pt": "{'a': ['duto de piso']}"
+  },
+  {
+    "kana": "フライズ",
+    "en": [
+      "flies (area over the stage of a theater)"
+    ],
+    "senseUid": "2994b77e-c46c-4b62-b22c-9c823b374bae",
+    "wordId": "2485090",
+    "pt": "{'a': ['varanda de palco', 'galeria superior do palco', 'área acima do palco']}"
+  },
+  {
+    "kana": "フルーティスト",
+    "en": [
+      "flutist",
+      "flautist"
+    ],
+    "senseUid": "f76cbfd9-4ae6-4426-bd8a-2a14426c1b96",
+    "wordId": "2485140",
+    "pt": "{'a': ['flautista']}"
+  },
+  {
+    "kana": "フィズ",
+    "en": [
+      "fizz"
+    ],
+    "senseUid": "71742709-abc0-4d64-b93c-7663ac63d023",
+    "wordId": "2485030",
+    "pt": "{\n  \"a\": [\"fizz (onomatopeia para o som de efervescência, como de refrigerante ou bebida gaseificada)\"]\n}"
+  },
+  {
+    "kana": "フライギャラリー",
+    "en": [
+      "fly gallery"
+    ],
+    "senseUid": "c51ea679-6e23-4f34-afca-82a56ca255af",
+    "wordId": "2485150",
+    "pt": "{'a': ['galeria de varas']}"
+  },
+  {
+    "kana": "フォブポケット",
+    "en": [
+      "fob pocket",
+      "watch pocket"
+    ],
+    "senseUid": "2de618be-5c40-48d5-ab37-b1bd4dd9731f",
+    "wordId": "2485160",
+    "pt": "{'a': ['bolso de relógio', 'bolso fob']}"
+  },
+  {
+    "kana": "フロアシフト",
+    "en": [
+      "floor shift"
+    ],
+    "senseUid": "83794b5b-7f15-4ce4-93a1-ac2eb9c00b9c",
+    "wordId": "2485120",
+    "pt": "{'a': ['alavanca de câmbio no assoalho']}"
+  },
+  {
+    "kana": "フォークロック",
+    "en": [
+      "folk rock"
+    ],
+    "senseUid": "98bf3d3d-1fce-42b8-b3d0-26def71bdbe7",
+    "wordId": "2485180",
+    "pt": "{'a': ['folk rock']}"
+  },
+  {
+    "kana": "フォリオ",
+    "en": [
+      "folio"
+    ],
+    "senseUid": "8b49ddd3-a9fe-44a8-a885-ea21f46eff9c",
+    "wordId": "2485170",
+    "pt": "{\n  \"a\": [\"fório\"]\n}"
+  },
+  {
+    "kana": "ガスト",
+    "en": [
+      "gust"
+    ],
+    "senseUid": "31c81b09-be6f-431d-a3ef-3398c19230ba",
+    "wordId": "2486580",
+    "pt": "{\n  \"a\": [\"Gasto\"]\n}"
+  },
+  {
+    "kana": "ジムナスティックス",
+    "en": [
+      "gymnastics"
+    ],
+    "senseUid": "1e5bf473-404e-4d49-a1b1-86c596b51c0a",
+    "wordId": "2486640",
+    "pt": "{'a': ['ginástica']}"
+  },
+  {
+    "kana": "グッタペルカ",
+    "en": [
+      "gutta-percha"
+    ],
+    "senseUid": "55a9b5e0-5ace-4e3a-9cde-43c79d60d63e",
+    "wordId": "2486600",
+    "pt": "{'a': ['gutapercha']}"
+  },
+  {
+    "kana": "ギヨー",
+    "en": [
+      "guyot"
+    ],
+    "senseUid": "52529606-4abf-4911-8389-e8dac15f8bab",
+    "wordId": "2486620",
+    "pt": "{'a': ['guyot']}"
+  },
+  {
+    "kana": "ジャイロスタビライザー",
+    "en": [
+      "gyrostabilizer"
+    ],
+    "senseUid": "8480ef9a-fab1-4f19-89a1-7f86506e43f1",
+    "wordId": "2486660",
+    "pt": "{'a': ['giroscópio estabilizador']}"
+  },
+  {
+    "kana": "ジャイロホライズン",
+    "en": [
+      "gyro horizon"
+    ],
+    "senseUid": "a03cd74a-7036-438b-9462-008bda94bcbf",
+    "wordId": "2486650",
+    "pt": "{\n  \"a\": [\"horizonte giroscópico\"]\n}"
+  },
+  {
+    "kana": "ガットギター",
+    "en": [
+      "gut guitar"
+    ],
+    "senseUid": "b19b920c-86b6-457b-afa3-bb68bff87af7",
+    "wordId": "2486590",
+    "pt": "{'a': ['violão clássico']}"
+  },
+  {
+    "kana": "ガムボ",
+    "en": [
+      "gumbo"
+    ],
+    "senseUid": "3f214467-3ce7-496a-bf04-91cbffc3616e",
+    "wordId": "2486570",
+    "pt": "{\n  \"a\": [\"gumbo\"]\n}"
+  },
+  {
+    "kana": "ハビリテーション",
+    "en": [
+      "habilitation"
+    ],
+    "senseUid": "d87855bc-b0d0-4220-b223-1bab07cfd71c",
+    "wordId": "2486670",
+    "pt": "{'a': ['habilitação']}"
+  },
+  {
+    "kana": "ヘアローション",
+    "en": [
+      "hair lotion"
+    ],
+    "senseUid": "7e85399c-db59-4ca0-8974-b79da3307242",
+    "wordId": "2486700",
+    "pt": "{'a': ['loção capilar']}"
+  },
+  {
+    "kana": "ヘアトニック",
+    "en": [
+      "hair tonic"
+    ],
+    "senseUid": "bf37679d-f941-44a3-9883-14a47e78e8ff",
+    "wordId": "2486710",
+    "pt": "{'a': ['tônico capilar']}"
+  },
+  {
+    "kana": "ハビット",
+    "en": [
+      "habit"
+    ],
+    "senseUid": "2dcb95cf-52bf-4355-aa15-e4707d745575",
+    "wordId": "2486680",
+    "pt": "{'a': ['hábito']}"
+  },
+  {
+    "kana": "ヘアネット",
+    "en": [
+      "hairnet"
+    ],
+    "senseUid": "f305d27e-e492-488f-a5cf-52160b54ab67",
+    "wordId": "2486730",
+    "pt": "{'a': ['rede para cabelo']}"
+  },
+  {
+    "kana": "ハッジ",
+    "en": [
+      "hajj (pilgrimage to Mecca)",
+      "haj",
+      "hadj",
+      "haji"
+    ],
+    "senseUid": "821ce7b6-497b-4f12-8abf-a189fb155cb5",
+    "wordId": "2486750",
+    "pt": "{\n  \"a\": [\"hajj (peregrinação a Meca)\", \"haj\", \"hadj\", \"haji\"]\n}"
+  },
+  {
+    "kana": "ハーフネルソン",
+    "en": [
+      "half-nelson"
+    ],
+    "senseUid": "2615a742-fda2-4b48-a65a-20770da60448",
+    "wordId": "2486770",
+    "pt": "{'a': ['meio-nelson']}"
+  },
+  {
+    "kana": "ハーフブーツ",
+    "en": [
+      "half boot"
+    ],
+    "senseUid": "f6370634-f47f-44ae-87d4-de1515d8c398",
+    "wordId": "2486760",
+    "pt": "{'a': ['bota de cano médio']}"
+  },
+  {
+    "kana": "ハロカーボン",
+    "en": [
+      "halocarbon"
+    ],
+    "senseUid": "77a9ac6c-d644-43d1-906b-1340c524a054",
+    "wordId": "2486790",
+    "pt": "{'a': ['halocarboneto']}"
+  },
+  {
+    "kana": "ハーフウェーライン",
+    "en": [
+      "halfway between bases"
+    ],
+    "senseUid": "73d7c144-4b27-4443-be67-f2e0b553fa4f",
+    "wordId": "2486780",
+    "pt": "{'a': ['meio do caminho entre as bases']}"
+  },
+  {
+    "kana": "ハロペリドール",
+    "en": [
+      "haloperidol"
+    ],
+    "senseUid": "34a76116-1435-48e8-a265-d2b942598fae",
+    "wordId": "2486800",
+    "pt": "{\n  \"a\": [\"haloperidol\"]\n}"
+  },
+  {
+    "kana": "ハーフウェーライン",
+    "en": [
+      "halfway line"
+    ],
+    "senseUid": "1acb1979-1c1e-4cd6-b0da-6123145d5e2c",
+    "wordId": "2486780",
+    "pt": "{'a': ['linha do meio-campo']}"
+  },
+  {
+    "kana": "ハクニー",
+    "en": [
+      "hackney"
+    ],
+    "senseUid": "cb9b34bb-5cf3-4c04-ab4e-2d7d4e9897ce",
+    "wordId": "2486690",
+    "pt": "{\n  \"a\": [\n    \"Hackney\" (nome próprio de localidade, bairro ou distrito, especialmente em Londres; pode também se referir a um tipo de cavalo ou carruagem, mas no contexto japonês, geralmente é usado como nome próprio transliterado ハクニー)\n  ]\n}"
+  },
+  {
+    "kana": "ハプテン",
+    "en": [
+      "hapten"
+    ],
+    "senseUid": "082c475e-e8fd-42a8-ae05-cee57757b75d",
+    "wordId": "2486820",
+    "pt": "{'a': ['hapten']}"
+  },
+  {
+    "kana": "ホルターネック",
+    "en": [
+      "halterneck"
+    ],
+    "senseUid": "56a3544f-49de-4add-9c2c-e8f70605b2d8",
+    "wordId": "2486810",
+    "pt": "{'a': ['decote halter']}"
+  },
+  {
+    "kana": "ハードバップ",
+    "en": [
+      "hard bop"
+    ],
+    "senseUid": "72942f80-d9a0-4906-a095-fd4323554059",
+    "wordId": "2486830",
+    "pt": "{'a': ['hard bop']}"
+  },
+  {
+    "kana": "ハーベスター",
+    "en": [
+      "harvester"
+    ],
+    "senseUid": "e751c559-26c9-4f75-bb03-40d4efae28fe",
+    "wordId": "2486870",
+    "pt": "{'a': ['colheitadeira']}"
+  },
+  {
+    "kana": "ハードソース",
+    "en": [
+      "hard sauce"
+    ],
+    "senseUid": "5fde586a-ea47-4828-8cc9-2f3c66914233",
+    "wordId": "2486840",
+    "pt": "{'a': ['molho doce (para sobremesas, geralmente feito de manteiga, açúcar e álcool)']}"
+  },
+  {
+    "kana": "ヘッドルーム",
+    "en": [
+      "head-room"
+    ],
+    "senseUid": "e384d5e5-e3e2-44f8-bc94-88eeb7382ebe",
+    "wordId": "2486890",
+    "pt": "{'a': ['espaço acima da cabeça']}"
+  },
+  {
+    "kana": "ヘッドシザース",
+    "en": [
+      "head scissors (hold)"
+    ],
+    "senseUid": "5d3231e4-bf74-48ce-b0b7-22581ce2403f",
+    "wordId": "2486880",
+    "pt": "{'a': ['tesoura de cabeça']}"
+  },
+  {
+    "kana": "ヘッドクォーター",
+    "en": [
+      "headquarters"
+    ],
+    "senseUid": "109017d4-80d8-4059-bb9c-915ec3f221b9",
+    "wordId": "2486920",
+    "pt": "{'a': ['sede']}"
+  },
+  {
+    "kana": "ヘドバン",
+    "en": [
+      "headband (on the spine of a book)"
+    ],
+    "senseUid": "935fd16f-30ab-4686-a73f-cc46a0da8654",
+    "wordId": "2486900",
+    "pt": "{'a': ['cabeceado (na lombada de um livro)']}"
+  },
+  {
+    "kana": "ヘッドボード",
+    "en": [
+      "headboard"
+    ],
+    "senseUid": "b2b409c9-934b-4600-8090-78dc30a8955d",
+    "wordId": "2486910",
+    "pt": "{'a': ['cabeceira']}"
+  },
+  {
+    "kana": "ヘッドストック",
+    "en": [
+      "headstock"
+    ],
+    "senseUid": "d7971c66-6ba4-4b42-bf0b-c0f114c07fce",
+    "wordId": "2486930",
+    "pt": "{'a': ['mão do instrumento']}"
+  },
+  {
+    "kana": "ヒーラー",
+    "en": [
+      "healer"
+    ],
+    "senseUid": "9528a3b2-3c7c-40ef-81f2-0f106e4c40b0",
+    "wordId": "2486940",
+    "pt": "{'a': ['curandeiro']}"
+  },
+  {
+    "kana": "ヘクトグラム",
+    "en": [
+      "hectogramme"
+    ],
+    "senseUid": "9835a981-a181-4a23-bd99-fb3c82e575d7",
+    "wordId": "2486960",
+    "pt": "{'a': ['hectograma']}"
+  },
+  {
+    "kana": "ハートカム",
+    "en": [
+      "heart cam"
+    ],
+    "senseUid": "5310e88c-a833-4858-949a-aac3766e0849",
+    "wordId": "2486950",
+    "pt": "{\n  \"a\": [\"câmera do coração\"]\n}"
+  },
+  {
+    "kana": "ヘドニスト",
+    "en": [
+      "hedonist"
+    ],
+    "senseUid": "d1c1fa64-1664-4db4-871d-25b3d0a0617d",
+    "wordId": "2486990",
+    "pt": "{'a': ['hedonista']}"
+  },
+  {
+    "kana": "ヘクトメートル",
+    "en": [
+      "hectometre",
+      "hectometer"
+    ],
+    "senseUid": "d827e35a-3297-4db3-bec4-1c2b5f6d54db",
+    "wordId": "2486980",
+    "pt": "{\n  \"a\": [\"hectômetro\"]\n}"
+  },
+  {
+    "kana": "ヘマタイト",
+    "en": [
+      "hematite"
+    ],
+    "senseUid": "2a25de5f-3aac-493e-a19c-1dbe34dcb407",
+    "wordId": "2487000",
+    "pt": "{'a': ['hematita']}"
+  },
+  {
+    "kana": "ヘマトクリット",
+    "en": [
+      "hematocrit"
+    ],
+    "senseUid": "1c468561-2c08-45cc-b30a-6981f58358d0",
+    "wordId": "2487010",
+    "pt": "{'a': ['hematócrito']}"
+  },
+  {
+    "kana": "ヘミセルロース",
+    "en": [
+      "hemicellulose"
+    ],
+    "senseUid": "5f12f4c8-82e8-4a78-ab9f-ab4bc43dcded",
+    "wordId": "2487020",
+    "pt": "{'a': ['hemicelulose']}"
+  },
+  {
+    "kana": "ヘパリン",
+    "en": [
+      "heparin"
+    ],
+    "senseUid": "16bf4eac-e6de-4e1a-af19-381637cdb2fd",
+    "wordId": "2487030",
+    "pt": "{'a': ['heparina']}"
+  },
+  {
+    "kana": "ヘクトリットル",
+    "en": [
+      "hectolitre"
+    ],
+    "senseUid": "1a38e749-1a5c-4ec7-95cc-62ddc3dd2f79",
+    "wordId": "2486970",
+    "pt": "{'a': ['hectolitro']}"
+  },
+  {
+    "kana": "ハーブスパイス",
+    "en": [
+      "herb spice"
+    ],
+    "senseUid": "dfb123b4-b0de-4917-bc7f-31ba7f05f4cb",
+    "wordId": "2487040",
+    "pt": "{'a': ['tempero de ervas']}"
+  },
+  {
+    "kana": "ヘテロカリオン",
+    "en": [
+      "heterocaryon"
+    ],
+    "senseUid": "531102c8-1e74-45c4-8c6a-56e2ad53f6dc",
+    "wordId": "2487050",
+    "pt": "{'a': ['heterocarion']}"
+  },
+  {
+    "kana": "ヘテロダイン",
+    "en": [
+      "heterodyne"
+    ],
+    "senseUid": "36cdcc72-7127-4747-830e-3b212cb4b55e",
+    "wordId": "2487070",
+    "pt": "{'a': ['heteródino']}"
+  },
+  {
+    "kana": "ヘテロドキシー",
+    "en": [
+      "heterodoxy"
+    ],
+    "senseUid": "4ce4ff82-bb87-4852-90f7-c546480bfd6b",
+    "wordId": "2487060",
+    "pt": "{'a': ['heterodoxia']}"
+  },
+  {
+    "kana": "ヘテロシス",
+    "en": [
+      "heterosis",
+      "hybrid vigor",
+      "hybrid vigour"
+    ],
+    "senseUid": "18f7d912-8838-4dd7-84b4-8201961b8506",
+    "wordId": "2487080",
+    "pt": "{'a': ['heterose', 'vigor híbrido']}"
+  },
+  {
+    "kana": "ヘキサクロロエタン",
+    "en": [
+      "hexachloroethane"
+    ],
+    "senseUid": "7a6c196e-3975-4b35-83f3-ccb4cffcb995",
+    "wordId": "2487090",
+    "pt": "{'a': ['hexacloroetano']}"
+  },
+  {
+    "kana": "ヘキソーゲン",
+    "en": [
+      "hexogen"
+    ],
+    "senseUid": "bdc1a368-3225-4b9a-b176-1b74d1643848",
+    "wordId": "2487110",
+    "pt": "{'a': ['hexogênio']}"
+  },
+  {
+    "kana": "ヘキサデカン",
+    "en": [
+      "hexadecane"
+    ],
+    "senseUid": "94c23cac-c59b-4269-9c03-cefa41052b7c",
+    "wordId": "2487100",
+    "pt": "{'a': ['hexadecano']}"
+  },
+  {
+    "kana": "ハイライフ",
+    "en": [
+      "highlife"
+    ],
+    "senseUid": "41e9ceb5-8bfa-4962-84a3-edaec8339e6f",
+    "wordId": "2487200",
+    "pt": "{'a': ['vida de luxo']}"
+  },
+  {
+    "kana": "ヒルビリー",
+    "en": [
+      "hillbilly"
+    ],
+    "senseUid": "fe7eece6-4e58-40f7-9a05-ab55c9ba1c30",
+    "wordId": "2487210",
+    "pt": "{'a': ['caipira']}"
+  },
+  {
+    "kana": "フォーリーズ",
+    "en": [
+      "follies"
+    ],
+    "senseUid": "aa7e379b-03d3-43df-9dc9-5385d502e9d2",
+    "wordId": "2485190",
+    "pt": "{\n  \"a\": [\"tolices\"]\n}"
+  },
+  {
+    "kana": "フールプルーフ",
+    "en": [
+      "fool proof"
+    ],
+    "senseUid": "39b200b8-b876-420e-8c86-ba6cde0e5fea",
+    "wordId": "2485200",
+    "pt": "{'a': ['à prova de erro']}"
+  },
+  {
+    "kana": "ヒップライン",
+    "en": [
+      "hipline"
+    ],
+    "senseUid": "16fbd6ec-f220-464c-8b8a-fb394071ba81",
+    "wordId": "2487220",
+    "pt": "{'a': ['linha do quadril']}"
+  },
+  {
+    "kana": "ヒストプラスマ",
+    "en": [
+      "histoplasma"
+    ],
+    "senseUid": "87d295ac-8391-4dcf-a670-be7bf7b896ff",
+    "wordId": "2487230",
+    "pt": "{'a': ['histoplasma']}"
+  },
+  {
+    "kana": "ハイクリヤー",
+    "en": [
+      "high-gloss clear paint finish"
+    ],
+    "senseUid": "c8f9e0e6-72ed-41fd-85d6-6e7f2e12ba2d",
+    "wordId": "2487150",
+    "pt": "{'a': ['acabamento transparente de alto brilho']}"
+  },
+  {
+    "kana": "ヒストリー",
+    "en": [
+      "history"
+    ],
+    "senseUid": "8886b3c4-eb5f-4651-8379-915b0fb51400",
+    "wordId": "2487240",
+    "pt": "{'a': ['história']}"
+  },
+  {
+    "kana": "ハイカラー",
+    "en": [
+      "high color"
+    ],
+    "senseUid": "98e165aa-fa72-49aa-b9e8-6414333f5396",
+    "wordId": "2487160",
+    "pt": "{\n  \"a\": [\"gola alta\"]\n}"
+  },
+  {
+    "kana": "ヘキシルレゾルシン",
+    "en": [
+      "hexylresorcin"
+    ],
+    "senseUid": "961047dd-e441-41c9-84d6-84a437136d7d",
+    "wordId": "2487120",
+    "pt": "{\n  \"a\": [\"hexilresorcinol\"]\n}"
+  },
+  {
+    "kana": "ハイクリヤー",
+    "en": [
+      "high clear (badminton)"
+    ],
+    "senseUid": "9456ec7e-dd1c-45a5-8187-9ab3d311a02c",
+    "wordId": "2487150",
+    "pt": "{'a': ['clear alto (badminton)']}"
+  },
+  {
+    "kana": "ヒエログリフ",
+    "en": [
+      "hieroglyph",
+      "hieroglyphics"
+    ],
+    "senseUid": "986cb10d-eccc-4253-a282-efe7ea706108",
+    "wordId": "2487140",
+    "pt": "{\n  \"a\": [\"hieróglifo\", \"escrita hieroglífica\"]\n}"
+  },
+  {
+    "kana": "ハイハードル",
+    "en": [
+      "high hurdles"
+    ],
+    "senseUid": "33ae5f7d-0eeb-4f7f-95c5-9174b4814edc",
+    "wordId": "2487170",
+    "pt": "{'a': ['barreiras altas']}"
+  },
+  {
+    "kana": "ホブ",
+    "en": [
+      "hob"
+    ],
+    "senseUid": "15865a41-0569-450b-bd34-ccaddda79771",
+    "wordId": "2487250",
+    "pt": "{\n  \"a\": [\"boca do fogão\"]\n}"
+  },
+  {
+    "kana": "ハイティー",
+    "en": [
+      "high tea"
+    ],
+    "senseUid": "08ab4cfc-e5ab-464a-9a51-422c43956b13",
+    "wordId": "2487180",
+    "pt": "{'a': ['chá da tarde']}"
+  },
+  {
+    "kana": "ホリホック",
+    "en": [
+      "hollyhock"
+    ],
+    "senseUid": "e7ff0cdb-4d7b-4d9f-907d-d484fb428c12",
+    "wordId": "2487270",
+    "pt": "{'a': ['malva-rosa']}"
+  },
+  {
+    "kana": "ホローバック",
+    "en": [
+      "hollow back"
+    ],
+    "senseUid": "b6bac409-226c-4673-951c-52ba8dc7b3c6",
+    "wordId": "2487260",
+    "pt": "{'a': ['costas arqueadas']}"
+  },
+  {
+    "kana": "ホームストレート",
+    "en": [
+      "home straight"
+    ],
+    "senseUid": "ed9b261b-36c6-4c87-9070-a576de59d728",
+    "wordId": "2487290",
+    "pt": "{'a': ['reta principal']}"
+  },
+  {
+    "kana": "ホマトロピン",
+    "en": [
+      "homatropine"
+    ],
+    "senseUid": "96780c9e-2319-47f6-9ee2-c565f8cc3d94",
+    "wordId": "2487280",
+    "pt": "{'a': ['homatropina']}"
+  }
+]

@@ -1,0 +1,989 @@
+[
+  {
+    "kana": "きゅうすう",
+    "en": [
+      "series"
+    ],
+    "senseUid": "3c965460-0a2e-41ba-b072-c4a6a493e07e",
+    "wordId": "1230140",
+    "pt": "{'a': ['série']}"
+  },
+  {
+    "kana": "きゅうぼう",
+    "en": [
+      "poverty",
+      "destitution",
+      "privation",
+      "indigence",
+      "penury"
+    ],
+    "senseUid": "500260b8-be11-4340-b831-73a1d1e2c34e",
+    "wordId": "1230120",
+    "pt": "{'a': ['pobreza', 'destituição', 'privação', 'indigência', 'penúria']}"
+  },
+  {
+    "kana": "きゅうくつ",
+    "en": [
+      "narrow",
+      "tight",
+      "cramped"
+    ],
+    "senseUid": "0f6f6cfb-dfff-4b8d-a0ec-37e7e068098a",
+    "wordId": "1230080",
+    "pt": "{'a': ['apertado', 'justo', 'restrito', 'confinado', 'desconfortável']}"
+  },
+  {
+    "kana": "きゅうちょう",
+    "en": [
+      "class representative",
+      "head of class"
+    ],
+    "senseUid": "97500aee-8298-40f6-be19-4ae486a02679",
+    "wordId": "1230150",
+    "pt": "{'a': ['representante da turma', 'líder da classe']}"
+  },
+  {
+    "kana": "きゅうはく",
+    "en": [
+      "financial difficulty",
+      "distress"
+    ],
+    "senseUid": "dc839c39-c21e-4e37-b68c-bba295687ad6",
+    "wordId": "1230110",
+    "pt": "{'a': ['dificuldade financeira', 'aflição']}"
+  },
+  {
+    "kana": "きゅうじょう",
+    "en": [
+      "distress",
+      "wretched condition"
+    ],
+    "senseUid": "4d333995-0698-4f7a-8a88-19cc587f7850",
+    "wordId": "1230090",
+    "pt": "{'a': ['aflição', 'condição miserável']}"
+  },
+  {
+    "kana": "きゅうゆう",
+    "en": [
+      "classmate",
+      "friend in the same class"
+    ],
+    "senseUid": "6d256069-a27f-49b9-92b7-80898de79ae8",
+    "wordId": "1230160",
+    "pt": "{'a': ['colega de classe', 'amigo da mesma turma']}"
+  },
+  {
+    "kana": "きゅうごう",
+    "en": [
+      "rally",
+      "muster"
+    ],
+    "senseUid": "7ec6f201-b79b-436e-80fb-3762073f2f1c",
+    "wordId": "1230170",
+    "pt": "{'a': ['reunião', 'ajuntamento', 'concentração']}"
+  },
+  {
+    "kana": "きゅうだん",
+    "en": [
+      "censure",
+      "denunciation",
+      "(verbal) attack",
+      "blaming"
+    ],
+    "senseUid": "09d4708b-73cb-4917-bc5c-c1ce8cd3ea6a",
+    "wordId": "1230180",
+    "pt": "{'a': ['censura', 'denúncia', 'ataque verbal', 'culpabilização']}"
+  },
+  {
+    "kana": "きゅうもん",
+    "en": [
+      "inquiry",
+      "enquiry"
+    ],
+    "senseUid": "0a2f76c7-20a1-40cd-a4f1-45b865d511f1",
+    "wordId": "1230200",
+    "pt": "{'a': ['consulta', 'pergunta', 'indagação', 'inquérito']}"
+  },
+  {
+    "kana": "きゅう",
+    "en": [
+      "wage",
+      "recompense"
+    ],
+    "senseUid": "88baeab3-7b52-4b18-9e42-86df1e31c83e",
+    "wordId": "1230210",
+    "pt": "{'a': ['salário', 'remuneração', 'recompensa']}"
+  },
+  {
+    "kana": "きゅうじ",
+    "en": [
+      "office boy",
+      "office girl"
+    ],
+    "senseUid": "f27f2a08-8eb6-4f1e-a2a4-b0b8a298665a",
+    "wordId": "1230240",
+    "pt": "{'a': ['menino de escritório', 'menina de escritório']}"
+  },
+  {
+    "kana": "きゅうくつ",
+    "en": [
+      "tight (e.g. finances)"
+    ],
+    "senseUid": "80513c62-ac81-43c4-a4eb-6568ccc32a47",
+    "wordId": "1230080",
+    "pt": "{'a': ['apertado', 'restrito', 'justo (por exemplo, finanças)']}"
+  },
+  {
+    "kana": "きゅうじ",
+    "en": [
+      "waiting on a table",
+      "serving (at dinner)"
+    ],
+    "senseUid": "9bdc7da5-cf5e-41c1-b168-775dd34fdd14",
+    "wordId": "1230240",
+    "pt": "{'a': ['servir à mesa', 'atender durante o jantar']}"
+  },
+  {
+    "kana": "きゅうけつ",
+    "en": [
+      "donation of blood"
+    ],
+    "senseUid": "2cbd8ab7-9f6b-4780-a9ef-de6067c4c4ae",
+    "wordId": "1230230",
+    "pt": "{'a': ['doação de sangue']}"
+  },
+  {
+    "kana": "きゅうめい",
+    "en": [
+      "searching examination",
+      "establishing the facts through thorough examination"
+    ],
+    "senseUid": "c206b6bf-7b68-4458-bd08-a3c9325592e4",
+    "wordId": "1230190",
+    "pt": "{'a': ['exame minucioso', 'investigação detalhada', 'busca de esclarecimento', 'apuração dos fatos']}"
+  },
+  {
+    "kana": "きゅうすい",
+    "en": [
+      "water supply",
+      "supplied water",
+      "water refill"
+    ],
+    "senseUid": "977a1a9d-e3c0-4e90-8f38-f2a9f3c14266",
+    "wordId": "1230260",
+    "pt": "{'a': ['abastecimento de água', 'água fornecida', 'reabastecimento de água']}"
+  },
+  {
+    "kana": "たまう",
+    "en": [
+      "to do ..."
+    ],
+    "senseUid": "79f69fbf-9426-4efa-bd72-f1bf056f1c9a",
+    "wordId": "1230220",
+    "pt": "{'a': ['fazer ... (honorífico, usado para indicar respeito ao interlocutor ou ao sujeito da ação)']}"
+  },
+  {
+    "kana": "きゅうすいせいげん",
+    "en": [
+      "water supply restrictions"
+    ],
+    "senseUid": "e8b8dc12-5dc6-4ea4-8cfb-c718c676d442",
+    "wordId": "1230270",
+    "pt": "{'a': ['restrição de fornecimento de água']}"
+  },
+  {
+    "kana": "きゅうじ",
+    "en": [
+      "waiter",
+      "waitress",
+      "waitperson",
+      "server",
+      "cabin boy",
+      "bellboy",
+      "page",
+      "pageboy"
+    ],
+    "senseUid": "6ed13f11-32ef-4a51-87b7-2094c0f4382b",
+    "wordId": "1230240",
+    "pt": "{'a': ['garçom', 'garçonete', 'atendente', 'servidor', 'moço de cabine', 'mensageiro', 'pajem', 'pajem de hotel']}"
+  },
+  {
+    "kana": "きゅうでんせん",
+    "en": [
+      "feeder"
+    ],
+    "senseUid": "d2fc727e-2ee4-4a8b-a45c-2c7f9d4dabae",
+    "wordId": "1230290",
+    "pt": "{'a': ['linha de alimentação']}"
+  },
+  {
+    "kana": "きゅうとうき",
+    "en": [
+      "water heater",
+      "(domestic) boiler"
+    ],
+    "senseUid": "fa759f1b-5726-4381-8693-3918657bf268",
+    "wordId": "1230310",
+    "pt": "{'a': ['aquecedor de água', 'caldeira doméstica']}"
+  },
+  {
+    "kana": "きゅうとう",
+    "en": [
+      "hot-water supply"
+    ],
+    "senseUid": "84a79e3d-53b5-49d6-b261-214557a84361",
+    "wordId": "1230300",
+    "pt": "{'a': ['fornecimento de água quente']}"
+  },
+  {
+    "kana": "きゅうしょく",
+    "en": [
+      "provision of lunch (e.g. at office, school, etc.)",
+      "providing a meal",
+      "lunch service"
+    ],
+    "senseUid": "76455af3-be11-45e1-b99e-1351bafcef06",
+    "wordId": "1230250",
+    "pt": "{'a': ['fornecimento de almoço (por exemplo, no escritório, escola, etc.)', 'oferecimento de refeição', 'serviço de almoço']}"
+  },
+  {
+    "kana": "きゅうゆ",
+    "en": [
+      "refueling (a car, plane, etc.)"
+    ],
+    "senseUid": "ad1def23-61c3-4764-93c3-bd7789b31c31",
+    "wordId": "1230340",
+    "pt": "{'a': ['reabastecimento (de um carro, avião, etc.)']}"
+  },
+  {
+    "kana": "きゅうゆ",
+    "en": [
+      "lubricating (a machine)",
+      "oiling"
+    ],
+    "senseUid": "e925b0e4-f316-4501-97e7-2916cf6d2209",
+    "wordId": "1230340",
+    "pt": "{'a': ['lubrificação (de uma máquina)', 'oleação']}"
+  },
+  {
+    "kana": "きゅうよ",
+    "en": [
+      "pay",
+      "salary",
+      "wages"
+    ],
+    "senseUid": "e512ff8e-a1e3-4f32-8873-76db41578094",
+    "wordId": "1230350",
+    "pt": "{'a': ['salário', 'remuneração', 'pagamento']}"
+  },
+  {
+    "kana": "きゅうすいせん",
+    "en": [
+      "hydrant",
+      "tap",
+      "faucet"
+    ],
+    "senseUid": "35f72e45-4894-43c2-8680-f2599aabefda",
+    "wordId": "1230280",
+    "pt": "{'a': ['hidrante', 'torneira', 'válvula de água']}"
+  },
+  {
+    "kana": "きゅうふ",
+    "en": [
+      "provision (of money or goods)",
+      "furnishing",
+      "conferral",
+      "payment",
+      "delivery",
+      "benefit"
+    ],
+    "senseUid": "fe4ea1fb-dff1-461f-bd23-8eaa44bc80cf",
+    "wordId": "1230320",
+    "pt": "{'a': ['provisão (de dinheiro ou bens)', 'fornecimento', 'concessão', 'pagamento', 'entrega', 'benefício']}"
+  },
+  {
+    "kana": "きゅう",
+    "en": [
+      "old",
+      "former",
+      "ex-"
+    ],
+    "senseUid": "7894ca73-9741-4bbd-b691-d6f127d207b8",
+    "wordId": "1230380",
+    "pt": "{'a': ['antigo', 'anterior', 'ex-']}"
+  },
+  {
+    "kana": "たまう",
+    "en": [
+      "to give"
+    ],
+    "senseUid": "23472bd4-def3-4fef-b822-fb7fa54bb793",
+    "wordId": "1230220",
+    "pt": "{'a': ['conceder', 'dar (com respeito)', 'outorgar']}"
+  },
+  {
+    "kana": "きゅうりょうび",
+    "en": [
+      "payday",
+      "pay day"
+    ],
+    "senseUid": "aeff03f9-1303-465a-925c-d482d2a2fd3e",
+    "wordId": "1230370",
+    "pt": "{'a': ['dia de pagamento', 'dia do pagamento']}"
+  },
+  {
+    "kana": "きゅうよ",
+    "en": [
+      "allowance",
+      "grant",
+      "supply",
+      "providing with"
+    ],
+    "senseUid": "32424cff-e5aa-4bc8-9655-38c1a23af3f8",
+    "wordId": "1230350",
+    "pt": "{'a': ['subsídio', 'concessão', 'fornecimento', 'provisão']}"
+  },
+  {
+    "kana": "きゅう",
+    "en": [
+      "old times",
+      "bygone days"
+    ],
+    "senseUid": "e1ca4ab9-6967-4101-b872-a081ebfa65f1",
+    "wordId": "1230380",
+    "pt": "{'a': ['tempos antigos', 'dias passados']}"
+  },
+  {
+    "kana": "きゅう",
+    "en": [
+      "the old",
+      "old things",
+      "old customs"
+    ],
+    "senseUid": "c28d6fd3-49cd-478d-bbb4-ea1385e000b7",
+    "wordId": "1230380",
+    "pt": "{'a': ['o antigo', 'coisas antigas', 'costumes antigos']}"
+  },
+  {
+    "kana": "きゅうふきん",
+    "en": [
+      "(state) benefit",
+      "allowance",
+      "(social security) payment",
+      "entitlement"
+    ],
+    "senseUid": "99bd7f1d-b77c-4dec-aba0-e8a104ab7585",
+    "wordId": "1230330",
+    "pt": "{'a': ['benefício estatal', 'subsídio', 'pagamento de seguridade social', 'direito adquirido']}"
+  },
+  {
+    "kana": "きゅうソれん",
+    "en": [
+      "former Soviet Union"
+    ],
+    "senseUid": "ee076b2f-e9f8-439d-a5e3-3dd70ca6335c",
+    "wordId": "1230390",
+    "pt": "{'a': ['ex-União Soviética']}"
+  },
+  {
+    "kana": "きゅう",
+    "en": [
+      "Japan's old (lunisolar) calendar"
+    ],
+    "senseUid": "146ac6ed-595d-47a9-a945-9bb124ea1b8f",
+    "wordId": "1230380",
+    "pt": "{'a': ['calendário antigo do Japão (lunissolar)']}"
+  },
+  {
+    "kana": "きゅうえい",
+    "en": [
+      "ancient poems",
+      "ancient songs"
+    ],
+    "senseUid": "efaf7a0b-4609-4560-b959-0792741c555d",
+    "wordId": "1230420",
+    "pt": "{'a': ['poemas antigos', 'canções antigas']}"
+  },
+  {
+    "kana": "きゅうあく",
+    "en": [
+      "past misdeeds",
+      "old crimes"
+    ],
+    "senseUid": "58232f3b-82da-4a12-a2b1-69534135d429",
+    "wordId": "1230400",
+    "pt": "{'a': ['más ações do passado', 'crimes antigos']}"
+  },
+  {
+    "kana": "きゅうい",
+    "en": [
+      "worn-out clothes"
+    ],
+    "senseUid": "4c5f35f8-a546-4a95-9c3c-f0e262bdff16",
+    "wordId": "1230410",
+    "pt": "{'a': ['roupas gastas']}"
+  },
+  {
+    "kana": "きゅうえん",
+    "en": [
+      "old grudge"
+    ],
+    "senseUid": "68ff8a81-4e68-42d4-93a6-51806594100a",
+    "wordId": "1230430",
+    "pt": "{'a': ['rancor antigo', 'ressentimento antigo', 'velha mágoa']}"
+  },
+  {
+    "kana": "きゅうか",
+    "en": [
+      "one's old home",
+      "one's childhood home"
+    ],
+    "senseUid": "f579e7af-492e-4316-93ee-c62486e3299a",
+    "wordId": "1230470",
+    "pt": "{'a': ['lar natal', 'casa de infância']}"
+  },
+  {
+    "kana": "きゅうえん",
+    "en": [
+      "old relationship",
+      "old acquaintance"
+    ],
+    "senseUid": "06170eb8-9b21-476b-a648-2a2f279b351a",
+    "wordId": "1230440",
+    "pt": "{'a': ['velha relação', 'velho conhecido']}"
+  },
+  {
+    "kana": "きゅうりょう",
+    "en": [
+      "salary",
+      "wages",
+      "pay"
+    ],
+    "senseUid": "f2540680-582f-4760-8550-555d32a0793f",
+    "wordId": "1230360",
+    "pt": "{'a': ['salário', 'remuneração', 'pagamento']}"
+  },
+  {
+    "kana": "きゅうおん",
+    "en": [
+      "old favors",
+      "old favours"
+    ],
+    "senseUid": "6e511fc4-0c9d-4cb8-a061-69c9d1e2d7da",
+    "wordId": "1230450",
+    "pt": "{'a': ['antigos favores', 'favores antigos']}"
+  },
+  {
+    "kana": "きゅうかい",
+    "en": [
+      "love of antiquity"
+    ],
+    "senseUid": "052f6779-e0ab-4066-b08e-7693808a9484",
+    "wordId": "1230480",
+    "pt": "{'a': ['amor pela antiguidade']}"
+  },
+  {
+    "kana": "きゅうか",
+    "en": [
+      "old family",
+      "old-established family"
+    ],
+    "senseUid": "b36b923b-15ac-4c33-a9b9-c8b617141a50",
+    "wordId": "1230470",
+    "pt": "{\n  \"a\": [\"família antiga\", \"família tradicional\", \"família estabelecida há muito tempo\"]\n}"
+  },
+  {
+    "kana": "きゅうかん",
+    "en": [
+      "back number",
+      "old edition"
+    ],
+    "senseUid": "8a2e22fd-bbeb-4d33-9d19-07d395bc6452",
+    "wordId": "1230500",
+    "pt": "{'a': ['edição antiga', 'número anterior']}"
+  },
+  {
+    "kana": "きゅうかぶ",
+    "en": [
+      "old shares",
+      "old stock",
+      "previously issued shares"
+    ],
+    "senseUid": "f974f2c6-675e-4707-916b-ed96f87bd192",
+    "wordId": "1230490",
+    "pt": "{'a': ['ações antigas', 'ações velhas', 'ações previamente emitidas']}"
+  },
+  {
+    "kana": "きゅうかんじょう",
+    "en": [
+      "old account"
+    ],
+    "senseUid": "4b41f4bc-1804-4b4e-916c-433f91e4fe79",
+    "wordId": "1230510",
+    "pt": "{'a': ['conta antiga']}"
+  },
+  {
+    "kana": "きゅうかん",
+    "en": [
+      "former government official"
+    ],
+    "senseUid": "2ecb7702-6778-443b-adf5-35a894d8d991",
+    "wordId": "1230520",
+    "pt": "{'a': ['ex-funcionário do governo']}"
+  },
+  {
+    "kana": "きゅうかん",
+    "en": [
+      "old joy"
+    ],
+    "senseUid": "c1302848-cba2-4cef-a8a4-63d6f7494dec",
+    "wordId": "1230540",
+    "pt": "{'a': ['alegria antiga']}"
+  },
+  {
+    "kana": "きゅうかん",
+    "en": [
+      "former state",
+      "former appearance"
+    ],
+    "senseUid": "5e073361-b019-4b87-a62c-4dbcac5a4654",
+    "wordId": "1230550",
+    "pt": "{'a': ['estado anterior', 'aparência anterior']}"
+  },
+  {
+    "kana": "きゅうき",
+    "en": [
+      "old chronicle",
+      "old record"
+    ],
+    "senseUid": "f2290b1f-a604-48d4-a256-2d3635f89f98",
+    "wordId": "1230570",
+    "pt": "{'a': ['crônica antiga', 'registro antigo']}"
+  },
+  {
+    "kana": "きゅうき",
+    "en": [
+      "old regulations"
+    ],
+    "senseUid": "9f92c620-c70c-4366-8661-80887349a02e",
+    "wordId": "1230560",
+    "pt": "{'a': ['regulamentos antigos']}"
+  },
+  {
+    "kana": "きゅうかなづかい",
+    "en": [
+      "old kana orthography (used before 1946 reform)",
+      "historical kana orthography"
+    ],
+    "senseUid": "e4a85b0a-ee9f-41f8-9324-1e7639ea46b6",
+    "wordId": "1230460",
+    "pt": "{'a': ['ortografia antiga de kana (usada antes da reforma de 1946)', 'ortografia histórica de kana']}"
+  },
+  {
+    "kana": "きゅうかん",
+    "en": [
+      "old customs"
+    ],
+    "senseUid": "3dbfdec8-d490-475d-bda3-8e4e28bb5def",
+    "wordId": "1230530",
+    "pt": "{'a': ['costumes antigos']}"
+  },
+  {
+    "kana": "きゅうきょ",
+    "en": [
+      "former residence"
+    ],
+    "senseUid": "021c11d9-567c-46d0-83d9-0834b65a54f9",
+    "wordId": "1230600",
+    "pt": "{'a': ['antiga residência']}"
+  },
+  {
+    "kana": "きゅうぎ",
+    "en": [
+      "traditional ceremony"
+    ],
+    "senseUid": "801eb12c-0330-49f9-bcf2-6cdef2bb1a53",
+    "wordId": "1230580",
+    "pt": "{'a': ['cerimônia tradicional']}"
+  },
+  {
+    "kana": "きゅうきょうと",
+    "en": [
+      "(Roman) Catholic"
+    ],
+    "senseUid": "5aa5b01b-b1a6-4f56-b97e-a78af29d3928",
+    "wordId": "1230620",
+    "pt": "{'a': ['católico romano']}"
+  },
+  {
+    "kana": "きゅうぎ",
+    "en": [
+      "old friendship"
+    ],
+    "senseUid": "7c7094c3-21d3-4206-8932-88b785611644",
+    "wordId": "1230590",
+    "pt": "{'a': ['velha amizade']}"
+  },
+  {
+    "kana": "きゅうきょう",
+    "en": [
+      "(Roman) Catholicism"
+    ],
+    "senseUid": "85f8bd24-bc39-40eb-be1b-3e14748b0abd",
+    "wordId": "1230610",
+    "pt": "{'a': ['catolicismo romano']}"
+  },
+  {
+    "kana": "きゅうけいしき",
+    "en": [
+      "old-structure form"
+    ],
+    "senseUid": "72c52d64-4e42-4801-a4ed-d68b1aff15db",
+    "wordId": "1230630",
+    "pt": "{'a': ['forma de estrutura antiga']}"
+  },
+  {
+    "kana": "きゅうげき",
+    "en": [
+      "traditional Japanese theater (kabuki, noh, etc.)",
+      "classical drama",
+      "play of the old school"
+    ],
+    "senseUid": "d8c05bc5-f526-4022-9969-ee191facacc2",
+    "wordId": "1230640",
+    "pt": "{'a': ['teatro tradicional japonês (kabuki, noh, etc.)', 'drama clássico', 'peça do estilo antigo']}"
+  },
+  {
+    "kana": "きゅうこ",
+    "en": [
+      "antiquity",
+      "old acquaintance"
+    ],
+    "senseUid": "49bfcf4e-b4f2-4847-b7eb-480ae12b35b9",
+    "wordId": "1230650",
+    "pt": "{'a': ['antiguidade', 'velho conhecido']}"
+  },
+  {
+    "kana": "きゅうさい",
+    "en": [
+      "old debt"
+    ],
+    "senseUid": "5ed62423-cef5-4e45-96cc-a3bb4a3c2feb",
+    "wordId": "1230700",
+    "pt": "{'a': ['dívida antiga']}"
+  },
+  {
+    "kana": "きゅうげき",
+    "en": [
+      "period drama (film)"
+    ],
+    "senseUid": "f1332e5b-99a2-4eb9-89d6-083585896a89",
+    "wordId": "1230640",
+    "pt": "{'a': ['drama de época', 'filme histórico']}"
+  },
+  {
+    "kana": "きゅうごう",
+    "en": [
+      "old name",
+      "back number"
+    ],
+    "senseUid": "a1fba12f-f9b8-474b-a517-23e553ce43f9",
+    "wordId": "1230670",
+    "pt": "{'a': ['nome antigo', 'número anterior']}"
+  },
+  {
+    "kana": "きゅうこう",
+    "en": [
+      "old manuscript"
+    ],
+    "senseUid": "0b08dd98-dc85-42e8-9b3d-fc7b6bc8fc79",
+    "wordId": "1230660",
+    "pt": "{\n  \"a\": [\"manuscrito antigo\"]\n}"
+  },
+  {
+    "kana": "きゅうこく",
+    "en": [
+      "ancient nation"
+    ],
+    "senseUid": "6e788fcf-205e-4fe5-a839-dcd8fa41b612",
+    "wordId": "1230680",
+    "pt": "{'a': ['nação antiga']}"
+  },
+  {
+    "kana": "きゅうこく",
+    "en": [
+      "homeland",
+      "one's native land",
+      "birthplace"
+    ],
+    "senseUid": "35e9b2ba-c004-4c4e-a8aa-fc0832f0ed89",
+    "wordId": "1230680",
+    "pt": "{'a': ['terra natal', 'pátria', 'lugar de nascimento']}"
+  },
+  {
+    "kana": "きゅうさい",
+    "en": [
+      "former wife"
+    ],
+    "senseUid": "1700765b-cd9d-41ac-a630-7902e0dd99fb",
+    "wordId": "1230710",
+    "pt": "{\n  \"a\": [\"ex-esposa\"]\n}"
+  },
+  {
+    "kana": "きゅうこん",
+    "en": [
+      "old grudge"
+    ],
+    "senseUid": "c047cea9-9a2c-4660-90f6-ad89e8795276",
+    "wordId": "1230690",
+    "pt": "{'a': ['ressentimento antigo']}"
+  },
+  {
+    "kana": "きゅうしそう",
+    "en": [
+      "old-fashioned idea"
+    ],
+    "senseUid": "9c353ff1-c6ed-419f-8b32-a96ffccf69d0",
+    "wordId": "1230750",
+    "pt": "{\n  \"a\": [\"ideia antiquada\"]\n}"
+  },
+  {
+    "kana": "きゅうし",
+    "en": [
+      "one's former teacher",
+      "one's old teacher"
+    ],
+    "senseUid": "68e836d5-8589-4131-b11c-f53d0a4a0bb6",
+    "wordId": "1230740",
+    "pt": "{'a': ['antigo professor', 'ex-professor']}"
+  },
+  {
+    "kana": "きゅうじ",
+    "en": [
+      "ancient times"
+    ],
+    "senseUid": "4868bee9-1377-40b6-baba-6106256c7f8b",
+    "wordId": "1230780",
+    "pt": "{\n  \"a\": [\"tempos antigos\"]\n}"
+  },
+  {
+    "kana": "きゅうしき",
+    "en": [
+      "old type",
+      "old style"
+    ],
+    "senseUid": "9252019f-a708-4b01-ba89-db4432dceb81",
+    "wordId": "1230790",
+    "pt": "{'a': ['tipo antigo', 'estilo antigo']}"
+  },
+  {
+    "kana": "きゅうしき",
+    "en": [
+      "old friend"
+    ],
+    "senseUid": "b61baedb-b2d6-46bb-a667-b026040330b2",
+    "wordId": "1230800",
+    "pt": "{'a': ['velho amigo']}"
+  },
+  {
+    "kana": "きゅうしゅ",
+    "en": [
+      "former lord"
+    ],
+    "senseUid": "9c18e6b3-5dce-4c99-a81c-371c6e60278a",
+    "wordId": "1230810",
+    "pt": "{\n  \"a\": [\"antigo senhor\"]\n}"
+  },
+  {
+    "kana": "きゅうしがい",
+    "en": [
+      "old town",
+      "old part of a city"
+    ],
+    "senseUid": "262b4daa-04e8-4dc9-923b-5dead27ae746",
+    "wordId": "1230730",
+    "pt": "{'a': ['cidade velha', 'parte antiga da cidade']}"
+  },
+  {
+    "kana": "きゅうさく",
+    "en": [
+      "old work",
+      "existing work"
+    ],
+    "senseUid": "ad583098-62c6-4493-bc50-fab586175ea9",
+    "wordId": "1230720",
+    "pt": "{\n  \"a\": [\n    \"obra antiga\",\n    \"trabalho antigo\",\n    \"obra já existente\",\n    \"trabalho já existente\"\n  ]\n}"
+  },
+  {
+    "kana": "きゅうじたい",
+    "en": [
+      "old character form",
+      "kyūjitai",
+      "traditional form of kanji used in Japan before 1946"
+    ],
+    "senseUid": "51f28c29-9820-445d-a015-bbdda7a80ac2",
+    "wordId": "1230770",
+    "pt": "{\n  \"a\": [\n    \"forma antiga de caractere\",\n    \"kyūjitai\",\n    \"forma tradicional de kanji usada no Japão antes de 1946\"\n  ]\n}"
+  },
+  {
+    "kana": "きゅうじ",
+    "en": [
+      "old character form",
+      "traditional form of kanji used in Japan before 1946"
+    ],
+    "senseUid": "e81427c9-fe06-439d-b4c3-eb812da31147",
+    "wordId": "1230760",
+    "pt": "{\n  \"a\": [\n    \"forma antiga do caractere\",\n    \"forma tradicional do kanji usada no Japão antes de 1946\"\n  ]\n}"
+  },
+  {
+    "kana": "きゅうしょう",
+    "en": [
+      "ancient laws"
+    ],
+    "senseUid": "d9423c2b-6b2b-45aa-a301-24e441795724",
+    "wordId": "1230850",
+    "pt": "{'a': ['leis antigas']}"
+  },
+  {
+    "kana": "きゅうしんやくぜんしょ",
+    "en": [
+      "Old and New Testaments"
+    ],
+    "senseUid": "69c883fe-2253-4f33-a25d-db4ce275a7d1",
+    "wordId": "1230870",
+    "pt": "{'a': ['Antigo e Novo Testamentos']}"
+  },
+  {
+    "kana": "きゅうしょう",
+    "en": [
+      "old name",
+      "former title"
+    ],
+    "senseUid": "81ed301e-5874-49a2-8712-94d09651cafa",
+    "wordId": "1230840",
+    "pt": "{'a': ['nome antigo', 'título anterior']}"
+  },
+  {
+    "kana": "きゅうしんやくせいしょ",
+    "en": [
+      "Old and New Testaments"
+    ],
+    "senseUid": "c9262a09-4bc1-4643-b56f-3be777129548",
+    "wordId": "1230860",
+    "pt": "{'a': ['Antigo e Novo Testamentos']}"
+  },
+  {
+    "kana": "きゅうしゅう",
+    "en": [
+      "old custom"
+    ],
+    "senseUid": "df29a5c5-e56b-4651-b1b6-a74f63a11411",
+    "wordId": "1230830",
+    "pt": "{'a': ['costume antigo']}"
+  },
+  {
+    "kana": "きゅうしん",
+    "en": [
+      "old retainer"
+    ],
+    "senseUid": "2dd1a3c2-8b3a-4497-ab5e-f87b0017863a",
+    "wordId": "1230880",
+    "pt": "{'a': ['antigo vassalo']}"
+  },
+  {
+    "kana": "ふるびと",
+    "en": [
+      "the deceased",
+      "old friend"
+    ],
+    "senseUid": "48e40860-f218-4d2e-b126-6a85477f6bf6",
+    "wordId": "1230890",
+    "pt": "{'a': ['os falecidos', 'velho amigo']}"
+  },
+  {
+    "kana": "きゅうしゅじん",
+    "en": [
+      "former lord"
+    ],
+    "senseUid": "a12430e0-1228-4035-bb8c-bcb2b96f1de7",
+    "wordId": "1230820",
+    "pt": "{'a': ['ex-senhor', 'antigo senhor', 'ex-lorde']}"
+  },
+  {
+    "kana": "きゅうせかい",
+    "en": [
+      "Old World (i.e. Asia, Africa, Europe)"
+    ],
+    "senseUid": "3d174efa-53f7-481b-b5bc-5a935ba61566",
+    "wordId": "1230900",
+    "pt": "{'a': ['Velho Mundo (ou seja, Ásia, África, Europa)']}"
+  },
+  {
+    "kana": "きゅうせい",
+    "en": [
+      "old system",
+      "old order"
+    ],
+    "senseUid": "69e52dab-aece-4b21-ba04-ca12f2442722",
+    "wordId": "1230910",
+    "pt": "{'a': ['antigo sistema', 'antiga ordem']}"
+  },
+  {
+    "kana": "きゅうぞう",
+    "en": [
+      "one's old possessions"
+    ],
+    "senseUid": "c5956d10-0a74-4ad6-a75b-3792685771a8",
+    "wordId": "1230980",
+    "pt": "{'a': ['antigos pertences pessoais']}"
+  },
+  {
+    "kana": "きゅうせい",
+    "en": [
+      "pre-World War II education system",
+      "prewar education system"
+    ],
+    "senseUid": "7e4e9a71-ff8d-4da2-83b2-a155ed4dff6e",
+    "wordId": "1230910",
+    "pt": "{'a': ['sistema educacional anterior à Segunda Guerra Mundial', 'sistema educacional do período pré-guerra']}"
+  },
+  {
+    "kana": "きゅうせっきじだい",
+    "en": [
+      "Paleolithic",
+      "Palaeolithic",
+      "Old Stone Age"
+    ],
+    "senseUid": "854f5d7f-f28a-40fa-a791-a5d07aac1d8e",
+    "wordId": "1230960",
+    "pt": "{'a': ['Idade da Pedra Lascada', 'Período Paleolítico', 'Era Paleolítica']}"
+  },
+  {
+    "kana": "きゅうせい",
+    "en": [
+      "one's original family name",
+      "maiden name"
+    ],
+    "senseUid": "0df1ec4c-5062-4a17-a765-a563391b0dff",
+    "wordId": "1230930",
+    "pt": "{'a': ['nome de família original', 'nome de solteira']}"
+  },
+  {
+    "kana": "きゅうそん",
+    "en": [
+      "old village"
+    ],
+    "senseUid": "22fce42e-1a70-4b85-bb9b-7fb5a53f3fc1",
+    "wordId": "1231000",
+    "pt": "{'a': ['aldeia antiga']}"
+  },
+  {
+    "kana": "きゅうしょうがつ",
+    "en": [
+      "lunar New Year (esp. the Chinese New Year)"
+    ],
+    "senseUid": "8ada6dac-baee-4146-ab6a-5e307b3e8dfa",
+    "wordId": "1230940",
+    "pt": "{'a': ['Ano Novo Lunar (especialmente o Ano Novo Chinês)']}"
+  }
+]

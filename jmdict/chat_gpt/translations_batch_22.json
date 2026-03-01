@@ -1,0 +1,937 @@
+[
+  {
+    "kana": "アイソメトリック",
+    "en": [
+      "isometric"
+    ],
+    "senseUid": "d3d4b9e2-19da-4190-b00b-102fcefa4227",
+    "wordId": "1014130",
+    "pt": "{'a': ['isométrico']}"
+  },
+  {
+    "kana": "アイスホッケー",
+    "en": [
+      "ice hockey"
+    ],
+    "senseUid": "cb557d64-772e-42ca-b894-e1d88a77a1c8",
+    "wordId": "1014060",
+    "pt": "{'a': ['hóquei no gelo']}"
+  },
+  {
+    "kana": "アイソトニック",
+    "en": [
+      "isotonic"
+    ],
+    "senseUid": "06631b0b-0f8b-49d1-bc58-248374bbbe81",
+    "wordId": "1014110",
+    "pt": "{'a': ['isotônico']}"
+  },
+  {
+    "kana": "アイソパラメトリック",
+    "en": [
+      "isoparametric"
+    ],
+    "senseUid": "1199b574-7279-4945-8cd7-da73ac11f166",
+    "wordId": "1014120",
+    "pt": "{'a': ['isoparamétrico']}"
+  },
+  {
+    "kana": "アイソトープ",
+    "en": [
+      "isotope"
+    ],
+    "senseUid": "76155cf5-e924-4a3c-9ebe-52dc0858adc7",
+    "wordId": "1014100",
+    "pt": "{'a': ['isótopo']}"
+  },
+  {
+    "kana": "アイゼン",
+    "en": [
+      "metal pins of climbing shoes",
+      "crampons",
+      "climbing irons"
+    ],
+    "senseUid": "85d7fc55-1960-44b2-a6f2-7289987c7a37",
+    "wordId": "1014080",
+    "pt": "{'a': ['grampos de escalada', 'crampons', 'ferros de escalada']}"
+  },
+  {
+    "kana": "アイソレーション",
+    "en": [
+      "isolation"
+    ],
+    "senseUid": "fc5c915d-63db-41a5-ac27-909e8bef5560",
+    "wordId": "1014150",
+    "pt": "{'a': ['isolamento']}"
+  },
+  {
+    "kana": "アイソメトリックス",
+    "en": [
+      "isometrics"
+    ],
+    "senseUid": "e4d0f5e3-4609-40ac-adfa-0cfe83d144bf",
+    "wordId": "1014140",
+    "pt": "{'a': ['isométricos']}"
+  },
+  {
+    "kana": "アイソレーションシンドローム",
+    "en": [
+      "isolation syndrome"
+    ],
+    "senseUid": "2a8caf40-da9f-4764-b0b2-79ee4ebda0f6",
+    "wordId": "1014160",
+    "pt": "{'a': ['síndrome de isolamento']}"
+  },
+  {
+    "kana": "アイソレータ",
+    "en": [
+      "isolator"
+    ],
+    "senseUid": "176ce524-bf6f-4037-adc9-30ec3cf6344f",
+    "wordId": "1014170",
+    "pt": "{'a': ['isolador']}"
+  },
+  {
+    "kana": "アイデア",
+    "en": [
+      "idea"
+    ],
+    "senseUid": "8e13eb24-6870-49d2-8ae3-28dee047a414",
+    "wordId": "1014210",
+    "pt": "{'a': ['ideia']}"
+  },
+  {
+    "kana": "アイテム",
+    "en": [
+      "item"
+    ],
+    "senseUid": "9688728b-ae16-4554-9a29-d3b5e5f9f36b",
+    "wordId": "1014200",
+    "pt": "{'a': ['item', 'objeto', 'coisa']}"
+  },
+  {
+    "kana": "アイテム",
+    "en": [
+      "(inventory) item",
+      "pick-up"
+    ],
+    "senseUid": "a5b63ccb-7639-45da-8a0f-1f557a4222be",
+    "wordId": "1014200",
+    "pt": "{'a': ['item (de inventário)', 'coleta']}"
+  },
+  {
+    "kana": "アイテム",
+    "en": [
+      "must-have",
+      "must-have item"
+    ],
+    "senseUid": "20a6b022-f332-41c6-b649-0b669f21d942",
+    "wordId": "1014200",
+    "pt": "{'a': ['item indispensável', 'item obrigatório']}"
+  },
+  {
+    "kana": "イデアリズム",
+    "en": [
+      "idealism"
+    ],
+    "senseUid": "d690d20b-8eed-4d0e-bb23-f6e6ca370caa",
+    "wordId": "1014240",
+    "pt": "{'a': ['idealismo']}"
+  },
+  {
+    "kana": "アイデアマン",
+    "en": [
+      "idea man",
+      "ideas man",
+      "person of ideas"
+    ],
+    "senseUid": "3af3b29d-a3d2-4cdf-af17-14581d8364df",
+    "wordId": "1014230",
+    "pt": "{'a': ['pessoa criativa', 'pessoa cheia de ideias', 'alguém que tem muitas ideias']}"
+  },
+  {
+    "kana": "アイデアル",
+    "en": [
+      "ideal"
+    ],
+    "senseUid": "39a557c0-3d1e-4156-9871-f9968e688271",
+    "wordId": "1014250",
+    "pt": "{'a': ['ideal', 'perfeito', 'modelo']}"
+  },
+  {
+    "kana": "アイデンティフィケーション",
+    "en": [
+      "identification"
+    ],
+    "senseUid": "c5f48ecc-1f99-4438-904b-600521f5d14a",
+    "wordId": "1014310",
+    "pt": "{'a': ['identificação']}"
+  },
+  {
+    "kana": "アイデンティファイ",
+    "en": [
+      "identify"
+    ],
+    "senseUid": "bec70249-3027-4597-bf67-f22e93aad34f",
+    "wordId": "1014300",
+    "pt": "{'a': ['identificar']}"
+  },
+  {
+    "kana": "アイデンティティ",
+    "en": [
+      "identity"
+    ],
+    "senseUid": "71fdc181-f2d5-4c82-9229-02ec7537c510",
+    "wordId": "1014270",
+    "pt": "{'a': ['identidade']}"
+  },
+  {
+    "kana": "アイデンティフィケーションカード",
+    "en": [
+      "identification card"
+    ],
+    "senseUid": "20c39c80-8fa8-4835-a2bd-23db5f743c4b",
+    "wordId": "1014320",
+    "pt": "{'a': ['cartão de identificação']}"
+  },
+  {
+    "kana": "イデアリスト",
+    "en": [
+      "idealist"
+    ],
+    "senseUid": "4ac99976-5b05-4595-b24e-b08fce331ec1",
+    "wordId": "1014260",
+    "pt": "{'a': ['idealista']}"
+  },
+  {
+    "kana": "アイデンティティーカード",
+    "en": [
+      "identity card"
+    ],
+    "senseUid": "d8c6745b-833e-445c-a7eb-3998e9d19606",
+    "wordId": "1014290",
+    "pt": "{'a': ['cartão de identidade']}"
+  },
+  {
+    "kana": "アイドル",
+    "en": [
+      "performer (usu. in a boy band or girl group) with an image cultivated to foster a dedicated fan following",
+      "Japanese idol"
+    ],
+    "senseUid": "df49430f-7f73-4131-918c-7dd36ab00056",
+    "wordId": "1014340",
+    "pt": "{'a': ['ídolo japonês', 'artista (geralmente de um grupo masculino ou feminino) com uma imagem cultivada para criar uma base de fãs dedicada']}"
+  },
+  {
+    "kana": "アイドリング",
+    "en": [
+      "idling"
+    ],
+    "senseUid": "71f2f9b9-1b6d-4da9-888b-388dd0d21a55",
+    "wordId": "1014330",
+    "pt": "{'a': ['ficar em ponto morto', 'funcionamento em vazio', 'motor ligado sem movimento']}"
+  },
+  {
+    "kana": "アイドルキャピタル",
+    "en": [
+      "idle capital"
+    ],
+    "senseUid": "33200a44-a45c-4221-8386-47ddad848c60",
+    "wordId": "1014350",
+    "pt": "{'a': ['capital ocioso']}"
+  },
+  {
+    "kana": "アイドル",
+    "en": [
+      "idol (object of worship)",
+      "image"
+    ],
+    "senseUid": "4bb42930-b06e-4dde-b31d-d46dc0961e21",
+    "wordId": "1014340",
+    "pt": "{'a': ['ídolo (objeto de adoração)', 'imagem']}"
+  },
+  {
+    "kana": "アイドル",
+    "en": [
+      "(cultural) icon",
+      "idol",
+      "star",
+      "celebrity",
+      "person who is greatly admired"
+    ],
+    "senseUid": "28e6c1a7-9e4b-46dd-ad48-9d30fdd16c6e",
+    "wordId": "1014340",
+    "pt": "{'a': ['ícone (cultural)', 'ídolo', 'estrela', 'celebridade', 'pessoa muito admirada']}"
+  },
+  {
+    "kana": "アイドルコスト",
+    "en": [
+      "idle cost"
+    ],
+    "senseUid": "f946865c-d664-4247-b5f8-d97dfbe92e87",
+    "wordId": "1014360",
+    "pt": "{'a': ['custo de inatividade']}"
+  },
+  {
+    "kana": "アイドルシステム",
+    "en": [
+      "idle system"
+    ],
+    "senseUid": "67019b1d-8544-4d8b-ab97-971a797b8d0a",
+    "wordId": "1014370",
+    "pt": "{'a': ['sistema idol']}"
+  },
+  {
+    "kana": "アイドルタイム",
+    "en": [
+      "idle time"
+    ],
+    "senseUid": "a1290718-27be-446a-9f28-f924e4b13e25",
+    "wordId": "1014380",
+    "pt": "{'a': ['tempo livre', 'tempo ocioso']}"
+  },
+  {
+    "kana": "アイヌ",
+    "en": [
+      "Ainu"
+    ],
+    "senseUid": "881eba80-9cf6-4abc-8ea7-d7fdf7d5d68a",
+    "wordId": "1014390",
+    "pt": "{'a': ['Ainu']}"
+  },
+  {
+    "kana": "アイヌぞく",
+    "en": [
+      "Ainu race",
+      "Ainu people"
+    ],
+    "senseUid": "7b08c7e3-273f-4e7e-92bc-46330c1c3701",
+    "wordId": "1014400",
+    "pt": "{'a': ['povo Ainu', 'raça Ainu']}"
+  },
+  {
+    "kana": "アイバンク",
+    "en": [
+      "eye bank"
+    ],
+    "senseUid": "31f3121c-acfd-4491-828a-907337e8799a",
+    "wordId": "1014420",
+    "pt": "{'a': ['banco de olhos']}"
+  },
+  {
+    "kana": "アイビースタイル",
+    "en": [
+      "Ivy League (clothing) style"
+    ],
+    "senseUid": "d027a39e-12d2-4342-9273-836c0f83ab90",
+    "wordId": "1014440",
+    "pt": "{'a': ['Estilo Ivy League']}"
+  },
+  {
+    "kana": "アイビールック",
+    "en": [
+      "Ivy League look",
+      "Ivy League style"
+    ],
+    "senseUid": "3048c55b-f8d8-43f8-9bbc-59852f371c61",
+    "wordId": "1014460",
+    "pt": "{'a': ['visual Ivy League', 'estilo Ivy League']}"
+  },
+  {
+    "kana": "アイブロウ",
+    "en": [
+      "eyebrow (in makeup contexts)"
+    ],
+    "senseUid": "cd0910a4-9086-43d2-85b3-721eeb4d3c08",
+    "wordId": "1014470",
+    "pt": "{'a': ['sobrancelha (em contextos de maquiagem)']}"
+  },
+  {
+    "kana": "アイビーリーグ",
+    "en": [
+      "Ivy League"
+    ],
+    "senseUid": "cc8df8be-e05d-4849-af8f-f7179450222a",
+    "wordId": "1014450",
+    "pt": "{'a': ['Liga Ivy']}"
+  },
+  {
+    "kana": "アイブロウ",
+    "en": [
+      "eyebrow pencil"
+    ],
+    "senseUid": "7bf0651f-995b-43bf-8902-eccf7173c546",
+    "wordId": "1014470",
+    "pt": "{'a': ['lápis de sobrancelha']}"
+  },
+  {
+    "kana": "アイボリー",
+    "en": [
+      "ivory"
+    ],
+    "senseUid": "3a0b52ea-db6d-4702-83de-e3ad46b33dc2",
+    "wordId": "1014500",
+    "pt": "{'a': ['marfim']}"
+  },
+  {
+    "kana": "アイブローシェープ",
+    "en": [
+      "eyebrow shape"
+    ],
+    "senseUid": "b77a1fc1-15fc-4820-a6ee-214f831db486",
+    "wordId": "1014480",
+    "pt": "{'a': ['formato de sobrancelha']}"
+  },
+  {
+    "kana": "アイブロウペンシル",
+    "en": [
+      "eyebrow pencil"
+    ],
+    "senseUid": "5cc87cb9-472e-4c42-85a3-8ff19602e17a",
+    "wordId": "1014490",
+    "pt": "{'a': ['lápis para sobrancelha']}"
+  },
+  {
+    "kana": "アイボリーホワイト",
+    "en": [
+      "ivory-white"
+    ],
+    "senseUid": "304f3cd0-de69-428a-aa66-b1a2ab0e213a",
+    "wordId": "1014510",
+    "pt": "{'a': ['branco marfim']}"
+  },
+  {
+    "kana": "アイメイト",
+    "en": [
+      "seeing-eye dog",
+      "guide dog"
+    ],
+    "senseUid": "214dd3b4-24a2-4ab6-b749-44348e91f00e",
+    "wordId": "1014520",
+    "pt": "{'a': ['cão-guia', 'cão para cegos']}"
+  },
+  {
+    "kana": "アイライン",
+    "en": [
+      "eyeliner"
+    ],
+    "senseUid": "c7b2d143-fbb3-41b9-8287-29ee14166353",
+    "wordId": "1014530",
+    "pt": "{'a': ['delineador']}"
+  },
+  {
+    "kana": "アイラッシュカーラー",
+    "en": [
+      "eyelash curler"
+    ],
+    "senseUid": "6e6b5fc5-99f7-4615-b0c8-b07a2f7f9f24",
+    "wordId": "1014540",
+    "pt": "{'a': ['curvador de cílios']}"
+  },
+  {
+    "kana": "アイリス",
+    "en": [
+      "iris"
+    ],
+    "senseUid": "e0247749-5dd0-4c4c-8965-a1dbf36ba8b0",
+    "wordId": "1014550",
+    "pt": "{'a': ['íris']}"
+  },
+  {
+    "kana": "アイロニカル",
+    "en": [
+      "ironical",
+      "ironic"
+    ],
+    "senseUid": "de463cdc-304f-495e-8dcc-e4768ac96587",
+    "wordId": "1014580",
+    "pt": "{'a': ['irônico', 'irónica']}"
+  },
+  {
+    "kana": "アイロン",
+    "en": [
+      "iron (for pressing clothes)"
+    ],
+    "senseUid": "4214bebd-e425-4195-8221-80fd406f0bc9",
+    "wordId": "1014590",
+    "pt": "{'a': ['ferro de passar roupa']}"
+  },
+  {
+    "kana": "アイロニー",
+    "en": [
+      "irony"
+    ],
+    "senseUid": "0559e3bd-f5fe-4c65-a727-2267d8e63f57",
+    "wordId": "1014570",
+    "pt": "{'a': ['ironia']}"
+  },
+  {
+    "kana": "アイロン",
+    "en": [
+      "hair iron",
+      "hair tong",
+      "curling tong"
+    ],
+    "senseUid": "2c5c55cb-387c-42f2-9c4a-228140057c4c",
+    "wordId": "1014590",
+    "pt": "{'a': ['chapinha de cabelo', 'modelador de cabelo', 'babyliss']}"
+  },
+  {
+    "kana": "アウストラロピテクス",
+    "en": [
+      "Australopithecus"
+    ],
+    "senseUid": "ef4a220e-aeaa-421c-bb59-4c4cfc25a277",
+    "wordId": "1014620",
+    "pt": "{'a': ['Australopiteco']}"
+  },
+  {
+    "kana": "アウター",
+    "en": [
+      "outer"
+    ],
+    "senseUid": "bab020e7-a2db-4dbc-b4d0-44cb223a33d4",
+    "wordId": "1014630",
+    "pt": "{'a': ['jaqueta', 'casaco', 'roupa de fora']}"
+  },
+  {
+    "kana": "アウター",
+    "en": [
+      "outerwear",
+      "overgarment"
+    ],
+    "senseUid": "0e974a35-be84-4e8b-9fbf-ad0fbca2ac0c",
+    "wordId": "1014630",
+    "pt": "{'a': ['roupa externa', 'sobretudo', 'casaco']}"
+  },
+  {
+    "kana": "アウタースペース",
+    "en": [
+      "outer space"
+    ],
+    "senseUid": "d862673a-1d38-4686-8917-ae64c9850b3c",
+    "wordId": "1014650",
+    "pt": "{'a': ['espaço sideral']}"
+  },
+  {
+    "kana": "アウタルキー",
+    "en": [
+      "autarchy"
+    ],
+    "senseUid": "1b49fa87-9505-42f1-b6c2-583b1ad656f2",
+    "wordId": "1014660",
+    "pt": "{'a': ['autarquia']}"
+  },
+  {
+    "kana": "アインスタイニウム",
+    "en": [
+      "einsteinium (Es)"
+    ],
+    "senseUid": "5325cd10-7b74-4adb-99bd-9d5cad2c8afc",
+    "wordId": "1014600",
+    "pt": "{'a': ['einstênio']}"
+  },
+  {
+    "kana": "アウターウェア",
+    "en": [
+      "outerwear",
+      "overgarment",
+      "coat",
+      "jacket"
+    ],
+    "senseUid": "863e9656-df2d-44ef-9e6d-caa4787eebe1",
+    "wordId": "1014640",
+    "pt": "{'a': ['roupa externa', 'sobretudo', 'casaco', 'jaqueta']}"
+  },
+  {
+    "kana": "アウテリア",
+    "en": [
+      "exterior (of a building)"
+    ],
+    "senseUid": "4682a9f0-1962-4e28-a57b-60f2c707ddfa",
+    "wordId": "1014670",
+    "pt": "{'a': ['exterior (de um edifício)']}"
+  },
+  {
+    "kana": "アウト",
+    "en": [
+      "out (of a ball; in tennis, etc.)",
+      "outside the line"
+    ],
+    "senseUid": "99a4c7be-01d2-4165-b7bb-8dc099958221",
+    "wordId": "1014680",
+    "pt": "{'a': ['fora (de uma bola; em tênis, etc.)', 'fora da linha']}"
+  },
+  {
+    "kana": "アウト",
+    "en": [
+      "out",
+      "putout"
+    ],
+    "senseUid": "868414f2-f73b-4c1e-8291-ffba68a85762",
+    "wordId": "1014680",
+    "pt": "{'a': ['fora', 'eliminado']}"
+  },
+  {
+    "kana": "アウト",
+    "en": [
+      "outer",
+      "external",
+      "outside"
+    ],
+    "senseUid": "f10a6ce0-8447-4a0b-87dc-1c3ac8edb6a7",
+    "wordId": "1014680",
+    "pt": "{'a': ['externo', 'exterior', 'fora']}"
+  },
+  {
+    "kana": "アウト",
+    "en": [
+      "exit",
+      "exit here"
+    ],
+    "senseUid": "fe364056-7664-4e62-b65b-d314efff703a",
+    "wordId": "1014680",
+    "pt": "{'a': ['saída', 'saída aqui']}"
+  },
+  {
+    "kana": "アウト",
+    "en": [
+      "front nine"
+    ],
+    "senseUid": "fc54be00-4ead-4fd6-a248-ea64b93bbf16",
+    "wordId": "1014680",
+    "pt": "{'a': ['nove buracos da frente']}"
+  },
+  {
+    "kana": "アウト",
+    "en": [
+      "check-out time"
+    ],
+    "senseUid": "f1970996-c273-4322-aa17-7ee52bab41c9",
+    "wordId": "1014680",
+    "pt": "{'a': ['hora de saída']}"
+  },
+  {
+    "kana": "アウトオブバウンズ",
+    "en": [
+      "out of bounds"
+    ],
+    "senseUid": "fa6411da-ee42-4469-bf42-4a9dc7709ee4",
+    "wordId": "1014710",
+    "pt": "{'a': ['fora dos limites']}"
+  },
+  {
+    "kana": "アウトオブデート",
+    "en": [
+      "out-of-date",
+      "outdated"
+    ],
+    "senseUid": "f2e13b9f-264c-4c1a-9679-3f38dcd7d31e",
+    "wordId": "1014700",
+    "pt": "{'a': ['desatualizado', 'fora de moda', 'ultrapassado']}"
+  },
+  {
+    "kana": "アウト",
+    "en": [
+      "no good",
+      "unacceptable",
+      "out of line",
+      "over",
+      "finished",
+      "disqualified"
+    ],
+    "senseUid": "d2d8bdf8-dc7a-49be-961f-4b432915bd97",
+    "wordId": "1014680",
+    "pt": "{'a': ['não serve', 'inaceitável', 'fora dos limites', 'acabou', 'terminado', 'desclassificado']}"
+  },
+  {
+    "kana": "アウトオブファッション",
+    "en": [
+      "out of fashion"
+    ],
+    "senseUid": "671cd7ec-337a-4d05-8833-aca37bce5840",
+    "wordId": "1014720",
+    "pt": "{'a': ['fora de moda']}"
+  },
+  {
+    "kana": "アウトウェア",
+    "en": [
+      "outerwear"
+    ],
+    "senseUid": "028c2fff-df75-4976-a62d-290a9f5b8e77",
+    "wordId": "1014690",
+    "pt": "{'a': ['roupa externa', 'vestuário externo', 'casaco', 'jaqueta']}"
+  },
+  {
+    "kana": "アウトカウント",
+    "en": [
+      "number of batters already out"
+    ],
+    "senseUid": "f6313cf3-7ccc-4856-bd12-fa0d48528092",
+    "wordId": "1014730",
+    "pt": "{'a': ['número de rebatedores já eliminados']}"
+  },
+  {
+    "kana": "アウトコース",
+    "en": [
+      "outside track"
+    ],
+    "senseUid": "0fc73165-1fab-46ce-a8ca-f3189110a0ec",
+    "wordId": "1014740",
+    "pt": "{'a': ['pista externa']}"
+  },
+  {
+    "kana": "アウトコース",
+    "en": [
+      "outside pitch"
+    ],
+    "senseUid": "900099df-24d1-4d49-9abc-aa12e0452f97",
+    "wordId": "1014740",
+    "pt": "{'a': ['arremesso externo']}"
+  },
+  {
+    "kana": "アウトドア",
+    "en": [
+      "outdoors"
+    ],
+    "senseUid": "b94c3c70-2e11-40e4-9d51-6c29eac5bfb7",
+    "wordId": "1014770",
+    "pt": "{'a': ['ao ar livre']}"
+  },
+  {
+    "kana": "アウトドアゲーム",
+    "en": [
+      "outdoor game"
+    ],
+    "senseUid": "53f08540-c563-4f5c-9c7c-12b660eeb821",
+    "wordId": "1014790",
+    "pt": "{'a': ['jogo ao ar livre']}"
+  },
+  {
+    "kana": "アウトサイダー",
+    "en": [
+      "outsider"
+    ],
+    "senseUid": "8088d6cc-92ef-4531-9376-2158e604b084",
+    "wordId": "1014750",
+    "pt": "{'a': ['forasteiro', 'estrangeiro', 'alguém de fora']}"
+  },
+  {
+    "kana": "アウトスタンディング",
+    "en": [
+      "outstanding"
+    ],
+    "senseUid": "95f6574a-fd27-46b2-b71e-7dcaca05a65a",
+    "wordId": "1014760",
+    "pt": "{'a': ['notável', 'excepcional', 'extraordinário']}"
+  },
+  {
+    "kana": "アウトドアスポーツ",
+    "en": [
+      "outdoor sports"
+    ],
+    "senseUid": "d80295f4-d571-49e5-a507-c12af3715add",
+    "wordId": "1014810",
+    "pt": "{'a': ['esportes ao ar livre']}"
+  },
+  {
+    "kana": "アウトドライブ",
+    "en": [
+      "outdrive"
+    ],
+    "senseUid": "8ede33f0-67ed-49c3-b302-b564acca8279",
+    "wordId": "1014820",
+    "pt": "{'a': ['unidade de propulsão externa']}"
+  },
+  {
+    "kana": "アウトバーン",
+    "en": [
+      "autobahn (highway in Germany, Austria and Switzerland)"
+    ],
+    "senseUid": "0bdbe2a8-f0a6-4f13-ade3-c733c0c0acbb",
+    "wordId": "1014830",
+    "pt": "{'a': ['autobahn (rodovia na Alemanha, Áustria e Suíça)']}"
+  },
+  {
+    "kana": "アウトボクシング",
+    "en": [
+      "out-fighting",
+      "fighting from a distance"
+    ],
+    "senseUid": "d6fe4b81-d2e4-4da8-88ae-5574daad9e36",
+    "wordId": "1014860",
+    "pt": "{'a': ['luta à distância', 'boxe externo']}"
+  },
+  {
+    "kana": "アウトバック",
+    "en": [
+      "outback"
+    ],
+    "senseUid": "cb532f2e-c1ab-4afb-be25-92f2ada2b148",
+    "wordId": "1014840",
+    "pt": "{'a': ['interior selvagem', 'região remota', 'outback']}"
+  },
+  {
+    "kana": "アウトプット",
+    "en": [
+      "output"
+    ],
+    "senseUid": "65c575ed-cc2b-4b3e-a80e-0f9dbe1ed82e",
+    "wordId": "1014850",
+    "pt": "{'a': ['produção', 'resultado', 'saída']}"
+  },
+  {
+    "kana": "アウトポケット",
+    "en": [
+      "outside pocket",
+      "patch pocket"
+    ],
+    "senseUid": "524a2b20-09e2-40f1-8254-da22a625db86",
+    "wordId": "1014870",
+    "pt": "{'a': ['bolso externo', 'bolso aplicado']}"
+  },
+  {
+    "kana": "アウトライトとりひき",
+    "en": [
+      "outright transaction"
+    ],
+    "senseUid": "42bd964a-2c2b-44c6-afe0-0f2a99079e28",
+    "wordId": "1014880",
+    "pt": "{'a': ['transação à vista']}"
+  },
+  {
+    "kana": "アウトレット",
+    "en": [
+      "outlet (store)"
+    ],
+    "senseUid": "006a9dff-d0d2-4a97-a777-22ca90b55d2c",
+    "wordId": "1014900",
+    "pt": "{'a': ['loja de outlet']}"
+  },
+  {
+    "kana": "アウトライン",
+    "en": [
+      "outline"
+    ],
+    "senseUid": "a5aa5972-fa51-4887-9e7f-d7c42a88b2fa",
+    "wordId": "1014890",
+    "pt": "{'a': ['esboço', 'contorno', 'perfil', 'estrutura']}"
+  },
+  {
+    "kana": "アウトレット",
+    "en": [
+      "(electrical) outlet"
+    ],
+    "senseUid": "03ef9b60-2cb7-419b-8cc1-f63391fddd8f",
+    "wordId": "1014900",
+    "pt": "{'a': ['tomada']}"
+  },
+  {
+    "kana": "アウトドアライフ",
+    "en": [
+      "outdoor life"
+    ],
+    "senseUid": "c856a0b3-ede3-48ab-beaf-8252a65ec270",
+    "wordId": "1014780",
+    "pt": "{'a': ['vida ao ar livre']}"
+  },
+  {
+    "kana": "アカデミー",
+    "en": [
+      "academy"
+    ],
+    "senseUid": "19aef0b1-1e02-4652-9f16-dfb6cecd18ba",
+    "wordId": "1014990",
+    "pt": "{'a': ['academia']}"
+  },
+  {
+    "kana": "アカシア",
+    "en": [
+      "acacia"
+    ],
+    "senseUid": "7be48881-9910-4447-af85-3f02eab8fd3a",
+    "wordId": "1014980",
+    "pt": "{'a': ['acácia']}"
+  },
+  {
+    "kana": "アカウント",
+    "en": [
+      "account"
+    ],
+    "senseUid": "9480e43e-12f9-4dc1-bd18-9aa733b27581",
+    "wordId": "1014970",
+    "pt": "{'a': ['conta']}"
+  },
+  {
+    "kana": "アカデミー",
+    "en": [
+      "academia"
+    ],
+    "senseUid": "5a5a67ca-ac97-4bbb-bc43-b0fe7bab13e8",
+    "wordId": "1014990",
+    "pt": "{'a': ['academia']}"
+  },
+  {
+    "kana": "アカデミシャン",
+    "en": [
+      "academician"
+    ],
+    "senseUid": "15d8fb2f-67cd-439b-ba82-c582c51617da",
+    "wordId": "1015010",
+    "pt": "{'a': ['acadêmico']}"
+  },
+  {
+    "kana": "アカデミシズム",
+    "en": [
+      "academicism"
+    ],
+    "senseUid": "a67a9784-0a54-4ffc-a803-39f6ac34a6d5",
+    "wordId": "1015000",
+    "pt": "{'a': ['academicismo']}"
+  },
+  {
+    "kana": "アカデミズム",
+    "en": [
+      "academism"
+    ],
+    "senseUid": "22250c9e-9e6d-4a48-aaa2-43113b43a08e",
+    "wordId": "1015020",
+    "pt": "{'a': ['academismo']}"
+  },
+  {
+    "kana": "アウフヘーベン",
+    "en": [
+      "sublation"
+    ],
+    "senseUid": "cd1cbe64-d251-4ec7-b042-670ba3688d97",
+    "wordId": "1014920",
+    "pt": "{'a': ['superação dialética']}"
+  },
+  {
+    "kana": "アウトドアショップ",
+    "en": [
+      "outdoor shop"
+    ],
+    "senseUid": "dd7201a7-519c-4c1c-b439-4967595dc384",
+    "wordId": "1014800",
+    "pt": "{'a': ['loja de artigos para atividades ao ar livre']}"
+  },
+  {
+    "kana": "アウラ",
+    "en": [
+      "aura"
+    ],
+    "senseUid": "4d6270bb-98f6-4f42-8464-3a2022373fae",
+    "wordId": "1014930",
+    "pt": "{'a': ['アウラ']}"
+  },
+  {
+    "kana": "アカウンタビリティ",
+    "en": [
+      "accountability"
+    ],
+    "senseUid": "fa632fb7-4610-491c-8216-3fd2b4d4f6f8",
+    "wordId": "1014950",
+    "pt": "{'a': ['responsabilidade']}"
+  }
+]

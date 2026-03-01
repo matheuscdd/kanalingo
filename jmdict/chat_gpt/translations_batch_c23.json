@@ -1,0 +1,977 @@
+[
+  {
+    "kana": "こうがい",
+    "en": [
+      "pollution",
+      "public nuisance",
+      "contamination"
+    ],
+    "senseUid": "a540996f-1103-4cce-a2c7-b1b2c76ccfc0",
+    "wordId": "1273420",
+    "pt": "['poluição', 'incômodo público', 'contaminação']"
+  },
+  {
+    "kana": "こうき",
+    "en": [
+      "public institution"
+    ],
+    "senseUid": "99628789-0101-4cfc-b60e-0aa8514172a0",
+    "wordId": "1273440",
+    "pt": "['instituição pública']"
+  },
+  {
+    "kana": "こうかん",
+    "en": [
+      "official residence"
+    ],
+    "senseUid": "592fd20c-6c41-4803-8d00-26d2f4203c74",
+    "wordId": "1273430",
+    "pt": "['residência oficial']"
+  },
+  {
+    "kana": "こうぎ",
+    "en": [
+      "just view",
+      "fair argument"
+    ],
+    "senseUid": "a6610769-c743-4799-9e9e-6193609bd508",
+    "wordId": "1273470",
+    "pt": "['visão justa', 'argumento justo']"
+  },
+  {
+    "kana": "こうぎ",
+    "en": [
+      "justice",
+      "equity"
+    ],
+    "senseUid": "8e20318c-a6b9-4148-8371-b2b363e0ecb9",
+    "wordId": "1273460",
+    "pt": "['justiça', 'equidade']"
+  },
+  {
+    "kana": "こうぎ",
+    "en": [
+      "conference at the imperial or shogunal court"
+    ],
+    "senseUid": "770e5f00-b08f-4f81-94c2-cbd3dd00a78b",
+    "wordId": "1273470",
+    "pt": "['conferência na corte imperial ou shogunal']"
+  },
+  {
+    "kana": "こうえきじぎょう",
+    "en": [
+      "public utilities",
+      "public enterprise",
+      "public service"
+    ],
+    "senseUid": "417a125d-89cc-499e-ac4b-da726791d8b6",
+    "wordId": "1273230",
+    "pt": "['serviço público', 'empresa pública', 'utilidade pública']"
+  },
+  {
+    "kana": "こうきゅう",
+    "en": [
+      "legal holiday"
+    ],
+    "senseUid": "9c839680-9b9d-47cb-be83-ff39179975fe",
+    "wordId": "1273480",
+    "pt": "['feriado nacional']"
+  },
+  {
+    "kana": "こうぎ",
+    "en": [
+      "public opinion",
+      "public debate"
+    ],
+    "senseUid": "3f070a8c-6389-45f1-9848-1cab13a262e7",
+    "wordId": "1273470",
+    "pt": "['opinião pública', 'debate público']"
+  },
+  {
+    "kana": "くげ",
+    "en": [
+      "court noble",
+      "nobility",
+      "kuge"
+    ],
+    "senseUid": "02a5ec11-7ea1-4337-b275-453f2317a0cf",
+    "wordId": "1273290",
+    "pt": "['nobre da corte', 'nobreza', 'kuge']"
+  },
+  {
+    "kana": "こうかい",
+    "en": [
+      "high seas",
+      "international waters"
+    ],
+    "senseUid": "5d0e0a34-2315-4a79-8593-a7a84129fb9f",
+    "wordId": "1273350",
+    "pt": "['alto-mar', 'águas internacionais']"
+  },
+  {
+    "kana": "こうきょうさい",
+    "en": [
+      "government bond"
+    ],
+    "senseUid": "81e40304-8842-46b0-b709-620ddab636df",
+    "wordId": "1273520",
+    "pt": "['título público']"
+  },
+  {
+    "kana": "こうきゅうび",
+    "en": [
+      "legal holiday"
+    ],
+    "senseUid": "a79b0bbc-292e-4a83-84a6-5ab2b208b26b",
+    "wordId": "1273490",
+    "pt": "['feriado legal']"
+  },
+  {
+    "kana": "こうきょうとしょかん",
+    "en": [
+      "public library"
+    ],
+    "senseUid": "b671c70c-1692-4ce4-9bc6-e687e384d15c",
+    "wordId": "1273550",
+    "pt": "['biblioteca pública']"
+  },
+  {
+    "kana": "こうきょうりょうきん",
+    "en": [
+      "public utilities charge"
+    ],
+    "senseUid": "56f65ac3-a833-4baf-8bb5-4f49f9244aa2",
+    "wordId": "1273590",
+    "pt": "['taxa de serviços públicos']"
+  },
+  {
+    "kana": "こうきょ",
+    "en": [
+      "official permission",
+      "government licence (license)"
+    ],
+    "senseUid": "7f4396c0-3e16-4248-bd01-30d235cdbdc6",
+    "wordId": "1273500",
+    "pt": "['permissão oficial', 'licença governamental']"
+  },
+  {
+    "kana": "こうきょうしん",
+    "en": [
+      "public spirit"
+    ],
+    "senseUid": "6fe4e50f-e0ca-418a-9bf4-e2fc3a4d7bec",
+    "wordId": "1273540",
+    "pt": "['espírito público']"
+  },
+  {
+    "kana": "こうきょうぶつ",
+    "en": [
+      "public property"
+    ],
+    "senseUid": "c0448215-3845-4bde-a116-ec9032dc72bb",
+    "wordId": "1273580",
+    "pt": "['bem público', 'propriedade pública']"
+  },
+  {
+    "kana": "こうきょうせい",
+    "en": [
+      "publicness (degree to which a particular action will affect society as large)",
+      "public nature",
+      "commonality"
+    ],
+    "senseUid": "10f4d8fb-bdd0-4b08-bf2d-ee645ede6c9b",
+    "wordId": "1273560",
+    "pt": "['caráter público', 'natureza pública', 'comunalidade']"
+  },
+  {
+    "kana": "こうきょう",
+    "en": [
+      "public (facilities, service, etc.)",
+      "communal"
+    ],
+    "senseUid": "67f1fd73-6e46-4cb8-a2ee-11229671ccc5",
+    "wordId": "1273510",
+    "pt": "['instalações públicas', 'serviço público', 'comunal', 'coletivo']"
+  },
+  {
+    "kana": "こうきょうだんたい",
+    "en": [
+      "public organization",
+      "public organisation"
+    ],
+    "senseUid": "2b3e8136-2035-4111-b7b1-ede460b6a6e7",
+    "wordId": "1273570",
+    "pt": "['organização pública', 'instituição pública']"
+  },
+  {
+    "kana": "こうきょうじぎょう",
+    "en": [
+      "public works",
+      "public-works projects",
+      "public utilities"
+    ],
+    "senseUid": "da74b461-3b8d-406e-be93-18d5ba3bd891",
+    "wordId": "1273530",
+    "pt": "['obras públicas', 'projetos de obras públicas', 'serviços públicos']"
+  },
+  {
+    "kana": "こうぎ",
+    "en": [
+      "imperial court",
+      "shogunate government",
+      "authorities",
+      "public affairs",
+      "official",
+      "government"
+    ],
+    "senseUid": "8a0ff55b-1847-4850-87af-7afb9aaec1bc",
+    "wordId": "1273450",
+    "pt": "['corte imperial', 'governo do xogunato', 'autoridades', 'assuntos públicos', 'oficial', 'governo']"
+  },
+  {
+    "kana": "こうさ",
+    "en": [
+      "common difference"
+    ],
+    "senseUid": "3116f97d-94c4-4f31-adbe-75c8d2ffe322",
+    "wordId": "1273690",
+    "pt": "['diferença comum']"
+  },
+  {
+    "kana": "こうさい",
+    "en": [
+      "judicial decision"
+    ],
+    "senseUid": "4c067808-55a1-4eb7-93b3-898181d0146b",
+    "wordId": "1273710",
+    "pt": "['decisão judicial']"
+  },
+  {
+    "kana": "こうじ",
+    "en": [
+      "government business"
+    ],
+    "senseUid": "c9c451cc-9990-4c77-94b6-df4a95924a13",
+    "wordId": "1273790",
+    "pt": "['assuntos governamentais']"
+  },
+  {
+    "kana": "こうこく",
+    "en": [
+      "dukedom",
+      "duchy",
+      "principality"
+    ],
+    "senseUid": "079e49c6-a5ca-4e8a-af65-886fb9331624",
+    "wordId": "1273680",
+    "pt": "{\n  \"a\": [\"ducado\", \"ducado\", \"principado\"]\n"
+  },
+  {
+    "kana": "こうげん",
+    "en": [
+      "declaration",
+      "profession"
+    ],
+    "senseUid": "b4f67b42-1882-4810-9feb-2681440c0ba4",
+    "wordId": "1273640",
+    "pt": "['declaração', 'profissão']"
+  },
+  {
+    "kana": "こうこ",
+    "en": [
+      "finance corporation"
+    ],
+    "senseUid": "e8d8ef06-37e7-4793-a397-bece0fe7f12b",
+    "wordId": "1273650",
+    "pt": "['corporação financeira']"
+  },
+  {
+    "kana": "こうきょう",
+    "en": [
+      "(Roman) Catholicism"
+    ],
+    "senseUid": "44e7501b-956f-4aec-945a-f4f3f2eaec92",
+    "wordId": "1273600",
+    "pt": "['catolicismo romano']"
+  },
+  {
+    "kana": "こうこく",
+    "en": [
+      "public announcement",
+      "official notice"
+    ],
+    "senseUid": "bd93258d-275a-471c-afc2-1a03a3269ab1",
+    "wordId": "1273670",
+    "pt": "['anúncio público', 'aviso oficial']"
+  },
+  {
+    "kana": "こうきょうようり",
+    "en": [
+      "Catholic catechism"
+    ],
+    "senseUid": "260dc82c-6f26-473c-9622-52001c0eda4e",
+    "wordId": "1273620",
+    "pt": "['catecismo católico']"
+  },
+  {
+    "kana": "こうしかん",
+    "en": [
+      "legation"
+    ],
+    "senseUid": "3d2a6dc9-2957-4873-b72f-91da0d66f4ca",
+    "wordId": "1273740",
+    "pt": "['legação']"
+  },
+  {
+    "kana": "こうしき",
+    "en": [
+      "official",
+      "formal"
+    ],
+    "senseUid": "748aaa54-d53f-466d-ab44-af6bcf2aa2d3",
+    "wordId": "1273820",
+    "pt": "['oficial', 'formal']"
+  },
+  {
+    "kana": "こうし",
+    "en": [
+      "national examinations"
+    ],
+    "senseUid": "20d873f1-11c5-4d83-86c0-7ee3d0f72db5",
+    "wordId": "1273780",
+    "pt": "['exames nacionais']"
+  },
+  {
+    "kana": "こうさん",
+    "en": [
+      "probability",
+      "likelihood"
+    ],
+    "senseUid": "ec25e089-0602-41b5-8c6c-d82e79b80be6",
+    "wordId": "1273720",
+    "pt": "['probabilidade', 'probabilidade de ocorrência']"
+  },
+  {
+    "kana": "こうさい",
+    "en": [
+      "public debt",
+      "public bond",
+      "government securities"
+    ],
+    "senseUid": "df95fd6a-9799-4c56-b810-61b80b081179",
+    "wordId": "1273700",
+    "pt": "['dívida pública', 'título público', 'títulos do governo']"
+  },
+  {
+    "kana": "コンス",
+    "en": [
+      "company (in China)",
+      "firm"
+    ],
+    "senseUid": "95621e82-9c73-4e88-8d44-348dfce2500f",
+    "wordId": "1273750",
+    "pt": "['empresa', 'firma']"
+  },
+  {
+    "kana": "こうきょうかい",
+    "en": [
+      "(Roman) Catholic Church"
+    ],
+    "senseUid": "87a066ac-f0ec-40e6-8109-b5215f141045",
+    "wordId": "1273610",
+    "pt": "['Igreja Católica']"
+  },
+  {
+    "kana": "こうし",
+    "en": [
+      "young nobleman"
+    ],
+    "senseUid": "4d6ec702-fa9a-4f95-bcee-a7092a571411",
+    "wordId": "1273760",
+    "pt": "['jovem nobre']"
+  },
+  {
+    "kana": "こうしき",
+    "en": [
+      "formula (e.g. mathematical)"
+    ],
+    "senseUid": "a04035e4-76ef-4192-94c4-80f012222801",
+    "wordId": "1273820",
+    "pt": "['fórmula (por exemplo, matemática)']"
+  },
+  {
+    "kana": "こうじ",
+    "en": [
+      "public announcement",
+      "official notice",
+      "edict"
+    ],
+    "senseUid": "1fa81bce-1a96-41ab-9bc2-52d4a3189da0",
+    "wordId": "1273810",
+    "pt": "['anúncio público', 'aviso oficial', 'edito']"
+  },
+  {
+    "kana": "こうさ",
+    "en": [
+      "tolerance (in engineering, manufacturing, etc.)",
+      "allowance",
+      "allowable error"
+    ],
+    "senseUid": "77158216-e7f2-46dd-8e06-8d352a426dac",
+    "wordId": "1273690",
+    "pt": "['tolerância (em engenharia, manufatura, etc.)', 'margem', 'erro permitido']"
+  },
+  {
+    "kana": "こうこう",
+    "en": [
+      "princes and marquises",
+      "great feudal lords"
+    ],
+    "senseUid": "53945a32-e791-4dfe-9b37-909c78723c8a",
+    "wordId": "1273660",
+    "pt": "['príncipes e marqueses', 'grandes senhores feudais']"
+  },
+  {
+    "kana": "こうし",
+    "en": [
+      "public and private matters",
+      "official and personal affairs",
+      "professional and personal lives"
+    ],
+    "senseUid": "e7341d5d-71ff-44b1-ae22-966e9aa2f9c4",
+    "wordId": "1273770",
+    "pt": "['assuntos públicos e privados', 'questões oficiais e pessoais', 'vida profissional e pessoal']"
+  },
+  {
+    "kana": "こうきん",
+    "en": [
+      "public funds"
+    ],
+    "senseUid": "c506c650-d46d-4c2a-bea7-8019c79bed11",
+    "wordId": "1273630",
+    "pt": "['fundos públicos']"
+  },
+  {
+    "kana": "こうしきほうもん",
+    "en": [
+      "official visit"
+    ],
+    "senseUid": "bf7f10a0-6eff-4475-b523-3acced305796",
+    "wordId": "1273850",
+    "pt": "['visita oficial']"
+  },
+  {
+    "kana": "こうしきしゅぎ",
+    "en": [
+      "formalism"
+    ],
+    "senseUid": "01a82754-752d-4d9d-a53f-ef316f7518d4",
+    "wordId": "1273830",
+    "pt": "['formalismo']"
+  },
+  {
+    "kana": "こうしゃ",
+    "en": [
+      "public corporation"
+    ],
+    "senseUid": "3bbb3c44-7c78-4f92-8d9c-4b91842f8fd0",
+    "wordId": "1273860",
+    "pt": "['empresa pública']"
+  },
+  {
+    "kana": "こうしゃさい",
+    "en": [
+      "public bonds"
+    ],
+    "senseUid": "011f1a73-f3ab-4ca5-9a87-967e3afdfa6c",
+    "wordId": "1273870",
+    "pt": "['títulos públicos']"
+  },
+  {
+    "kana": "こうしき",
+    "en": [
+      "official (social media) account (of a company, organization, etc.)"
+    ],
+    "senseUid": "05d6ff89-0d41-45a1-a8a8-3e94e1f43560",
+    "wordId": "1273820",
+    "pt": "['conta oficial (de mídia social) (de uma empresa, organização, etc.)']"
+  },
+  {
+    "kana": "こうしゃくふじん",
+    "en": [
+      "princess",
+      "duchess"
+    ],
+    "senseUid": "cb5a04f1-502a-47d6-a214-0c7ddcb8d3ac",
+    "wordId": "1273890",
+    "pt": "['duquesa', 'princesa']"
+  },
+  {
+    "kana": "こうしゅうブース",
+    "en": [
+      "public booth",
+      "public kiosk"
+    ],
+    "senseUid": "6414fc0f-a6c7-4ef6-8ad6-7965c835bab4",
+    "wordId": "1273910",
+    "pt": "['cabine pública', 'quiosque público']"
+  },
+  {
+    "kana": "こうしきはっぴょう",
+    "en": [
+      "official announcement"
+    ],
+    "senseUid": "69109ef4-96d9-463b-8f1d-c84301fd5892",
+    "wordId": "1273840",
+    "pt": "['anúncio oficial']"
+  },
+  {
+    "kana": "こうしゅうどうとく",
+    "en": [
+      "public morals"
+    ],
+    "senseUid": "9ea0355e-c275-4476-aeaa-93ef67d4cd30",
+    "wordId": "1273950",
+    "pt": "['moralidade pública']"
+  },
+  {
+    "kana": "こうしゃく",
+    "en": [
+      "prince",
+      "duke"
+    ],
+    "senseUid": "0e00c6d8-2f14-4135-95b2-04d245ac26c3",
+    "wordId": "1273880",
+    "pt": "['príncipe', 'duque']"
+  },
+  {
+    "kana": "こうし",
+    "en": [
+      "envoy",
+      "diplomat below the rank of ambassador (e.g. deputy chief of mission, charge d'affaires)",
+      "minister (of legation)"
+    ],
+    "senseUid": "2859710d-01a5-43d9-bc73-66ff9135d339",
+    "wordId": "1273730",
+    "pt": "['enviado', 'diplomata abaixo do posto de embaixador (por exemplo, chefe adjunto de missão, encarregado de negócios)', 'ministro (de legação)']"
+  },
+  {
+    "kana": "こうしゅうべんじょ",
+    "en": [
+      "slut",
+      "whore",
+      "floozy",
+      "tramp",
+      "trollop"
+    ],
+    "senseUid": "7b2c7cf3-9030-4431-a5d3-78e42559d6b4",
+    "wordId": "1273960",
+    "pt": "['prostituta', 'vagabunda', 'mulher promíscua', 'mulher de rua', 'mulher vulgar']"
+  },
+  {
+    "kana": "こうしゅうもう",
+    "en": [
+      "public network"
+    ],
+    "senseUid": "05316a56-6fd2-422d-ae57-c24f0e204181",
+    "wordId": "1273970",
+    "pt": "['rede pública']"
+  },
+  {
+    "kana": "こうしゅうえいせい",
+    "en": [
+      "public health",
+      "public hygiene",
+      "sanitation"
+    ],
+    "senseUid": "facb046c-79fe-4e75-8bc1-6dc9ddc8e07a",
+    "wordId": "1273920",
+    "pt": "['saúde pública', 'higiene pública', 'saneamento']"
+  },
+  {
+    "kana": "こうしょ",
+    "en": [
+      "government office"
+    ],
+    "senseUid": "aec90b04-9457-4544-835b-dd2fbccfde06",
+    "wordId": "1274000",
+    "pt": "['escritório do governo']"
+  },
+  {
+    "kana": "こうしゅうよくじょう",
+    "en": [
+      "public bathhouse"
+    ],
+    "senseUid": "49996d0e-a93c-49b5-b436-721494a2b124",
+    "wordId": "1273980",
+    "pt": "['banho público', 'casa de banho pública', 'balneário público']"
+  },
+  {
+    "kana": "こうしょう",
+    "en": [
+      "official name"
+    ],
+    "senseUid": "03c6bcca-5043-4318-82c6-cf3c04010ed8",
+    "wordId": "1274030",
+    "pt": "['nome oficial']"
+  },
+  {
+    "kana": "こうしょう",
+    "en": [
+      "public announcement",
+      "official statement",
+      "official claim"
+    ],
+    "senseUid": "1b700e79-9f87-478d-9068-4e1e9d0db35a",
+    "wordId": "1274030",
+    "pt": "['anúncio público', 'declaração oficial', 'afirmação oficial']"
+  },
+  {
+    "kana": "こうしょう",
+    "en": [
+      "licensed prostitute"
+    ],
+    "senseUid": "1d70166a-5668-46e7-911c-e6037978b255",
+    "wordId": "1274010",
+    "pt": "['prostituta licenciada']"
+  },
+  {
+    "kana": "こうしょう",
+    "en": [
+      "nominal",
+      "official",
+      "declared",
+      "claimed"
+    ],
+    "senseUid": "89bb7724-3021-4bd8-b749-a6633dc565c1",
+    "wordId": "1274030",
+    "pt": "['nominal', 'oficial', 'declarado', 'alegado']"
+  },
+  {
+    "kana": "こうしょう",
+    "en": [
+      "authentication",
+      "notarization",
+      "notarisation"
+    ],
+    "senseUid": "e4cccb73-9b62-4b99-94e9-e1c8e22b0ea9",
+    "wordId": "1274050",
+    "pt": "['autenticação', 'notarização']"
+  },
+  {
+    "kana": "こうしょうにん",
+    "en": [
+      "notary public",
+      "notary",
+      "public notary"
+    ],
+    "senseUid": "852f7175-4fa4-4d5e-94da-c5e2aec7a8d7",
+    "wordId": "1274060",
+    "pt": "['tabelião', 'notário', 'notário público']"
+  },
+  {
+    "kana": "こうしょく",
+    "en": [
+      "public office"
+    ],
+    "senseUid": "8cca802e-97dd-40a0-b8fc-ee8ae92a8bd6",
+    "wordId": "1274080",
+    "pt": "['cargo público']"
+  },
+  {
+    "kana": "こうしょうしほん",
+    "en": [
+      "authorized capital",
+      "authorised capital"
+    ],
+    "senseUid": "86323f58-e1ba-42fa-9eef-b34c4f9e9d3e",
+    "wordId": "1274040",
+    "pt": "['capital autorizado', 'capital social autorizado']"
+  },
+  {
+    "kana": "こうじん",
+    "en": [
+      "public character"
+    ],
+    "senseUid": "4f628afb-3d03-43d3-b554-06c016a03f54",
+    "wordId": "1274100",
+    "pt": "['caráter público']"
+  },
+  {
+    "kana": "こうしゅう",
+    "en": [
+      "the public",
+      "general public"
+    ],
+    "senseUid": "bf389621-3e33-4b5b-a785-2a199e7f290c",
+    "wordId": "1273900",
+    "pt": "['o público', 'público em geral']"
+  },
+  {
+    "kana": "こうしょうやくば",
+    "en": [
+      "notary public's office"
+    ],
+    "senseUid": "f9673cfc-152d-423e-b63b-6aaece3fb220",
+    "wordId": "1274070",
+    "pt": "['escritório de notário público']"
+  },
+  {
+    "kana": "こうしゅうでんわ",
+    "en": [
+      "public telephone",
+      "pay phone"
+    ],
+    "senseUid": "274fe818-b94a-45bb-8770-fd6d905b8be5",
+    "wordId": "1273940",
+    "pt": "['telefone público', 'telefone público pago']"
+  },
+  {
+    "kana": "こうじゅん",
+    "en": [
+      "postulate (in math, logic, etc.)"
+    ],
+    "senseUid": "e26678ab-32da-43b9-a440-e347adf72d6e",
+    "wordId": "1273990",
+    "pt": "['postulado (em matemática, lógica, etc.)']"
+  },
+  {
+    "kana": "こうしょくついほう",
+    "en": [
+      "expulsion of a public official and subsequent ban on participating in politics (by the SCAP during the allied occupation)",
+      "purge"
+    ],
+    "senseUid": "10649642-6cbd-4af3-a4a8-36cf134c9c5d",
+    "wordId": "1274090",
+    "pt": "['expulsão de funcionário público e subsequente proibição de participação na política (pela SCAP durante a ocupação aliada)', 'expurgo']"
+  },
+  {
+    "kana": "こうしゅうべんじょ",
+    "en": [
+      "public lavatory",
+      "public toilet",
+      "public restroom"
+    ],
+    "senseUid": "0abf1aa5-b703-478b-964c-7d22a4a33a8a",
+    "wordId": "1273960",
+    "pt": "['banheiro público', 'toalete público', 'sanitário público']"
+  },
+  {
+    "kana": "こうず",
+    "en": [
+      "cadastral map"
+    ],
+    "senseUid": "127f6e4f-1f72-4678-8175-e28adbe11287",
+    "wordId": "1274110",
+    "pt": "['mapa cadastral']"
+  },
+  {
+    "kana": "こうたつ",
+    "en": [
+      "official announcement"
+    ],
+    "senseUid": "828254bb-5617-48eb-a67e-08d3f0b9338c",
+    "wordId": "1274270",
+    "pt": "['anúncio oficial']"
+  },
+  {
+    "kana": "こうそう",
+    "en": [
+      "public funeral"
+    ],
+    "senseUid": "f77fd1e6-6148-4646-95f5-3674631f5b59",
+    "wordId": "1274250",
+    "pt": "['funeral público']"
+  },
+  {
+    "kana": "こうそ",
+    "en": [
+      "public tax"
+    ],
+    "senseUid": "977c861e-3d98-44e7-b898-8c126e5cec76",
+    "wordId": "1274230",
+    "pt": "['imposto público']"
+  },
+  {
+    "kana": "こうしょうがい",
+    "en": [
+      "public life",
+      "public career"
+    ],
+    "senseUid": "627da894-15d6-48be-8575-576720ac86a2",
+    "wordId": "1274140",
+    "pt": "['vida pública', 'carreira pública']"
+  },
+  {
+    "kana": "こうせつ",
+    "en": [
+      "public (institution)"
+    ],
+    "senseUid": "ca9ea966-1f9d-4521-bb36-73c1bc38fa10",
+    "wordId": "1274160",
+    "pt": "['instituição pública']"
+  },
+  {
+    "kana": "こうだん",
+    "en": [
+      "public housing"
+    ],
+    "senseUid": "f2fee06b-9240-4019-b764-9f176faac52d",
+    "wordId": "1274280",
+    "pt": "['moradia pública']"
+  },
+  {
+    "kana": "こうぜん",
+    "en": [
+      "open",
+      "public",
+      "official",
+      "overt"
+    ],
+    "senseUid": "fdc55d2a-af97-4fd3-b345-877533d337d7",
+    "wordId": "1274190",
+    "pt": "['aberto', 'público', 'oficial', 'manifesto']"
+  },
+  {
+    "kana": "こうせいかつ",
+    "en": [
+      "public life"
+    ],
+    "senseUid": "a2b9abf0-b27f-420b-8fef-e73273523ce6",
+    "wordId": "1274150",
+    "pt": "['vida pública']"
+  },
+  {
+    "kana": "こうせん",
+    "en": [
+      "public election",
+      "election by popular vote"
+    ],
+    "senseUid": "2955a0b6-cb00-4df8-889c-7b25b6ff3c0b",
+    "wordId": "1274180",
+    "pt": "['eleição pública', 'eleição por voto popular']"
+  },
+  {
+    "kana": "こうちょうかい",
+    "en": [
+      "public hearing"
+    ],
+    "senseUid": "5279f094-b769-415f-837d-2e850be680a0",
+    "wordId": "1274290",
+    "pt": "['audiência pública']"
+  },
+  {
+    "kana": "こうせいしょうしょ",
+    "en": [
+      "notarized document",
+      "notarised document"
+    ],
+    "senseUid": "075273c1-9a19-4633-8bc1-83757328cba0",
+    "wordId": "1274130",
+    "pt": "['documento autenticado', 'documento notarial']"
+  },
+  {
+    "kana": "こうせい",
+    "en": [
+      "justice",
+      "fairness",
+      "impartiality"
+    ],
+    "senseUid": "5a1f888b-98be-4c56-9b69-3aae9a5da70a",
+    "wordId": "1274120",
+    "pt": "['justiça', 'equidade', 'imparcialidade']"
+  },
+  {
+    "kana": "こうだん",
+    "en": [
+      "public corporation"
+    ],
+    "senseUid": "f4b2fe1a-aa94-423a-a13f-04cdc44ddc78",
+    "wordId": "1274280",
+    "pt": "['empresa pública']"
+  },
+  {
+    "kana": "こうていか",
+    "en": [
+      "ceiling or fixed price"
+    ],
+    "senseUid": "77f91b3d-551e-4d93-b0d2-74663153a31b",
+    "wordId": "1274310",
+    "pt": "['preço máximo', 'preço fixado', 'teto de preço']"
+  },
+  {
+    "kana": "こうせついちば",
+    "en": [
+      "public market"
+    ],
+    "senseUid": "7a4a1e4c-ba07-4a57-b490-50f7eb570a66",
+    "wordId": "1274170",
+    "pt": "['mercado público']"
+  },
+  {
+    "kana": "こうそ",
+    "en": [
+      "(public) prosecution",
+      "indictment",
+      "accusation"
+    ],
+    "senseUid": "a493bdde-0727-4fc3-ab36-cdfd415ee6c1",
+    "wordId": "1274240",
+    "pt": "['acusação', 'indiciamento', 'processo (judicial)', 'promotoria']"
+  },
+  {
+    "kana": "こうぜんのひみつ",
+    "en": [
+      "open secret"
+    ],
+    "senseUid": "ec644d27-9227-41d4-a308-5c01f1328ce1",
+    "wordId": "1274220",
+    "pt": "['segredo aberto']"
+  },
+  {
+    "kana": "こうてい",
+    "en": [
+      "place of ceremony",
+      "public place"
+    ],
+    "senseUid": "67d45aa5-3bf2-4670-9cc1-f2b5d145405c",
+    "wordId": "1274340",
+    "pt": "['local de cerimônia', 'local público']"
+  },
+  {
+    "kana": "こうてき",
+    "en": [
+      "public enemy"
+    ],
+    "senseUid": "fd5e154d-2b7d-4f7a-9e5a-f2a03bbe5c5b",
+    "wordId": "1274360",
+    "pt": "['inimigo público']"
+  },
+  {
+    "kana": "こうとう",
+    "en": [
+      "political party"
+    ],
+    "senseUid": "1752f869-7e12-4231-ae5a-6792a08154ed",
+    "wordId": "1274410",
+    "pt": "['partido político']"
+  },
+  {
+    "kana": "こうてん",
+    "en": [
+      "revolution (of a celestial body around another)"
+    ],
+    "senseUid": "5bc85ee5-bb21-44b3-9c18-8aba11c3396c",
+    "wordId": "1274390",
+    "pt": "['revolução (de um corpo celeste ao redor de outro)']"
+  },
+  {
+    "kana": "こうてきいちごう",
+    "en": [
+      "public enemy No. 1"
+    ],
+    "senseUid": "8defbde5-8c1f-471c-9ead-e1bcb7e3db43",
+    "wordId": "1274370",
+    "pt": "['inimigo público número 1']"
+  }
+]

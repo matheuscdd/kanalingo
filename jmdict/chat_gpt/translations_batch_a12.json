@@ -1,0 +1,977 @@
+[
+  {
+    "kana": "なをはせる",
+    "en": [
+      "to win fame",
+      "to become widely known",
+      "to make a name for oneself"
+    ],
+    "senseUid": "e50ce7a8-2239-42b9-a69a-ffe3a9d0b854",
+    "wordId": "2568460",
+    "pt": "['ganhar fama', 'tornar-se amplamente conhecido', 'fazer um nome para si mesmo']"
+  },
+  {
+    "kana": "ぶんがくしょ",
+    "en": [
+      "book",
+      "literary work"
+    ],
+    "senseUid": "f32f2163-6d78-41ea-938f-92e21e4179d8",
+    "wordId": "2568620",
+    "pt": "{\n  \"a\": [\"obra literária\", \"livro literário\"]\n"
+  },
+  {
+    "kana": "こえをとがらす",
+    "en": [
+      "to speak sharply",
+      "to sharpen one's tone",
+      "to raise one's voice"
+    ],
+    "senseUid": "ad357bac-4cbf-4360-bad8-943241718690",
+    "wordId": "2568610",
+    "pt": "['falar de forma ríspida', 'afiar o tom de voz', 'elevar a voz']"
+  },
+  {
+    "kana": "すいぼく",
+    "en": [
+      "water and ink"
+    ],
+    "senseUid": "2b7b7953-4b56-4a3a-9084-6879a6389be1",
+    "wordId": "2568680",
+    "pt": "{\n  \"a\": [\"sumiê\", \"pintura a tinta e água\", \"pintura sumi\", \"pintura em nanquim\", \"pintura monocromática japonesa\"]\n"
+  },
+  {
+    "kana": "かい",
+    "en": [
+      "gorge",
+      "ravine"
+    ],
+    "senseUid": "49520875-f58d-4472-8d64-816b9316f741",
+    "wordId": "2568690",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かい\",\n      \"português\": [\"garganta\", \"ravina\"],\n      \"notas\": \"No contexto japonês, 'かい' pode se referir a um vale estreito e profundo, frequentemente com um rio, similar a uma garganta ou ravina.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "ごとり",
+    "en": [
+      "with a thump",
+      "with a clang",
+      "with a clank"
+    ],
+    "senseUid": "2a230bba-0703-4e61-8f75-639f5eff6c3e",
+    "wordId": "2568750",
+    "pt": "['com um baque', 'com um clangor', 'com um estrondo']"
+  },
+  {
+    "kana": "えんげいじょう",
+    "en": [
+      "entertainment hall"
+    ],
+    "senseUid": "0c60d1bb-5f18-482c-bbed-8fde70ea2bec",
+    "wordId": "2568770",
+    "pt": "['salão de entretenimento']"
+  },
+  {
+    "kana": "げき",
+    "en": [
+      "quietly"
+    ],
+    "senseUid": "81a61736-8f0a-4182-b42e-6050de03282c",
+    "wordId": "2568760",
+    "pt": "{\n  \"a\": [\"silenciosamente\", \"calmamente\", \"de modo quieto\"]\n"
+  },
+  {
+    "kana": "てさげかご",
+    "en": [
+      "handbasket"
+    ],
+    "senseUid": "be25da9e-5ce4-4e02-b9e9-26ac5039688a",
+    "wordId": "2568790",
+    "pt": "['cesta de mão']"
+  },
+  {
+    "kana": "ぶっそうげ",
+    "en": [
+      "Chinese hibiscus (Hibiscus rosa-sinensis)",
+      "China rose",
+      "shoeblack plant"
+    ],
+    "senseUid": "1d4beeb7-63b3-4884-bab4-7e8d3008e089",
+    "wordId": "2568870",
+    "pt": "{\n  \"a\": [\n    \"hibisco-da-china (Hibiscus rosa-sinensis)\",\n    \"rosa-da-china\",\n    \"flor-de-sapateiro\"\n  ]\n"
+  },
+  {
+    "kana": "さいりん",
+    "en": [
+      "small (fish) scale"
+    ],
+    "senseUid": "cd7ac088-9913-456b-9641-cd8f9dc70dc6",
+    "wordId": "2568830",
+    "pt": "{\n  \"a\": [\"pequena escama (de peixe)\"]\n"
+  },
+  {
+    "kana": "かいぎょ",
+    "en": [
+      "mysterious fish",
+      "strange fish"
+    ],
+    "senseUid": "9c8f9475-4492-4b42-9df6-68c8433cb7a3",
+    "wordId": "2568820",
+    "pt": "{\n  \"a\": [\"peixe misterioso\", \"peixe estranho\"]\n"
+  },
+  {
+    "kana": "えんげいかん",
+    "en": [
+      "music hall",
+      "entertainment hall"
+    ],
+    "senseUid": "bc5b7bdf-a09b-41e8-a5f2-6be902d3e286",
+    "wordId": "2568780",
+    "pt": "['casa de espetáculos', 'salão de entretenimento']"
+  },
+  {
+    "kana": "いわかげ",
+    "en": [
+      "shade of a rock"
+    ],
+    "senseUid": "03fd876f-e6eb-456d-9596-db554b3fa60d",
+    "wordId": "2568810",
+    "pt": "['sombra de uma rocha']"
+  },
+  {
+    "kana": "たてごうし",
+    "en": [
+      "vertical bars",
+      "vertical lattice"
+    ],
+    "senseUid": "5c41137b-acee-455a-896a-54bfd8eeabdf",
+    "wordId": "2568800",
+    "pt": "['grades verticais', 'gradeado vertical']"
+  },
+  {
+    "kana": "じこく",
+    "en": [
+      "second of nine traditional astrological signs (corresponding to Saturn and southwest)"
+    ],
+    "senseUid": "bb1abe84-d852-4cd2-8939-2b16e7c32d01",
+    "wordId": "2568900",
+    "pt": "{\n  \"a\": [\n    \"Segundo dos nove signos astrológicos tradicionais (correspondente a Saturno e ao sudoeste)\"\n  ]\n"
+  },
+  {
+    "kana": "いっぱく",
+    "en": [
+      "white patch on one foot of a horse",
+      "horse with such a patch"
+    ],
+    "senseUid": "414acb91-af08-42a3-a25c-5e39722418dc",
+    "wordId": "2568890",
+    "pt": "{\n  \"a\": [\n    \"mancha branca em um dos pés de um cavalo\",\n    \"cavalo com essa mancha\"\n  ]\n"
+  },
+  {
+    "kana": "さいりん",
+    "en": [
+      "small fish"
+    ],
+    "senseUid": "b26abadd-bab9-4876-b5fd-d1682f00cc49",
+    "wordId": "2568830",
+    "pt": "{\n  \"a\": [\"peixinho\"]\n"
+  },
+  {
+    "kana": "かんじょうれっせき",
+    "en": [
+      "stone circle"
+    ],
+    "senseUid": "91d92095-4242-46c0-b42f-2db10c5400b6",
+    "wordId": "2568730",
+    "pt": "['círculo de pedra']"
+  },
+  {
+    "kana": "ちんぎょ",
+    "en": [
+      "rare fish"
+    ],
+    "senseUid": "adaaadcf-3041-43fb-bfc7-e3a43e98a0a9",
+    "wordId": "2568840",
+    "pt": "['peixe raro']"
+  },
+  {
+    "kana": "ほしをおとす",
+    "en": [
+      "to lose"
+    ],
+    "senseUid": "71c1fc5e-9570-4d59-b123-dc3240536efe",
+    "wordId": "2568980",
+    "pt": "['perder uma estrela']"
+  },
+  {
+    "kana": "こばと",
+    "en": [
+      "squab",
+      "young pigeon"
+    ],
+    "senseUid": "6301b545-c48c-42c7-aa6d-60fb527c4d1f",
+    "wordId": "2569020",
+    "pt": "{\n  \"a\": [\"pombinho\", \"pombo jovem\"]\n"
+  },
+  {
+    "kana": "いりちがい",
+    "en": [
+      "passing each other (without meeting)",
+      "entering somewhere just after someone had left",
+      "coming in just as someone had gone out"
+    ],
+    "senseUid": "521c2a96-f69b-444f-b1b1-120425ea6e8f",
+    "wordId": "2568860",
+    "pt": "{\n  \"a\": [\n    \"passar um pelo outro (sem se encontrar)\",\n    \"entrar em algum lugar logo depois que alguém saiu\",\n    \"entrar justamente quando alguém acabou de sair\"\n  ]\n"
+  },
+  {
+    "kana": "げんりょうし",
+    "en": [
+      "quantifier"
+    ],
+    "senseUid": "9e3cf4a8-047a-49ed-b03d-c2efb41f0a82",
+    "wordId": "2568990",
+    "pt": "['quantificador']"
+  },
+  {
+    "kana": "しろく",
+    "en": [
+      "fourth of nine traditional astrological signs (corresponding to Jupiter and south-east)"
+    ],
+    "senseUid": "566c08e4-28fd-4be4-aee3-baa382325d1d",
+    "wordId": "2568920",
+    "pt": "{\n  \"a\": [\n    \"Quarto dos nove signos astrológicos tradicionais (correspondente a Júpiter e ao sudeste)\"\n  ]\n"
+  },
+  {
+    "kana": "かくふく",
+    "en": [
+      "widening (of a road)"
+    ],
+    "senseUid": "e197617b-7719-4440-b2c7-78ffc97da90c",
+    "wordId": "2569060",
+    "pt": "['alargamento (de uma estrada)']"
+  },
+  {
+    "kana": "いっぱく",
+    "en": [
+      "first of nine traditional astrological signs (corresponding to Mercury and north)"
+    ],
+    "senseUid": "800cea38-fd42-48da-a0c2-4318f8531cab",
+    "wordId": "2568890",
+    "pt": "['primeiro dos nove signos astrológicos tradicionais (correspondente a Mercúrio e ao norte)']"
+  },
+  {
+    "kana": "うずべんもうちゅう",
+    "en": [
+      "dinoflagellate"
+    ],
+    "senseUid": "65e86aa9-780e-46db-bc42-58adf2d66ba3",
+    "wordId": "2569040",
+    "pt": "{\n  \"a\": [\"dinoflagelado\"]\n"
+  },
+  {
+    "kana": "いっぱく",
+    "en": [
+      "surface (landscape) that is white all over",
+      "pure white"
+    ],
+    "senseUid": "cd3569bd-9bed-4afe-9515-a736ee3cb539",
+    "wordId": "2568890",
+    "pt": "{\n  \"a\": [\n    \"superfície (paisagem) completamente branca\",\n    \"brancura pura\"\n  ]\n"
+  },
+  {
+    "kana": "さんぺき",
+    "en": [
+      "third of nine traditional astrological signs (corresponding to Jupiter and east)"
+    ],
+    "senseUid": "1c6cdc8a-de60-4112-b5ce-83d1bda00fb8",
+    "wordId": "2568910",
+    "pt": "['terceiro dos nove signos astrológicos tradicionais (correspondente a Júpiter e ao leste)']"
+  },
+  {
+    "kana": "はっぱく",
+    "en": [
+      "eighth of nine traditional astrological signs (corresponding to Saturn and north-east)"
+    ],
+    "senseUid": "d0efb855-142a-44c3-a2ef-0f194ce0d2c9",
+    "wordId": "2568960",
+    "pt": "{\n  \"a\": [\n    \"Oitavo dos nove signos astrológicos tradicionais (correspondente a Saturno e ao nordeste)\"\n  ]\n"
+  },
+  {
+    "kana": "しちせき",
+    "en": [
+      "seventh of nine traditional astrological signs (corresponding to Venus and west)"
+    ],
+    "senseUid": "fcb41c1e-80d4-4074-bfab-9277fbdfdf00",
+    "wordId": "2568950",
+    "pt": "{\n  \"a\": [\n    \"sétimo dos nove signos astrológicos tradicionais (correspondente a Vênus e ao oeste)\"\n  ]\n"
+  },
+  {
+    "kana": "せいかつし",
+    "en": [
+      "lifestyle magazine"
+    ],
+    "senseUid": "89a80e3c-1d31-496c-8830-fb0a02bcc9a6",
+    "wordId": "2569010",
+    "pt": "['revista de estilo de vida']"
+  },
+  {
+    "kana": "きっきゅうじょ",
+    "en": [
+      "deferential",
+      "humble",
+      "reverent",
+      "respectful"
+    ],
+    "senseUid": "024a7de5-8b04-4942-81a9-af79ddbe47fe",
+    "wordId": "2568850",
+    "pt": "{\n  \"a\": [\"deferente\", \"humilde\", \"reverente\", \"respeitoso\"]\n"
+  },
+  {
+    "kana": "こばと",
+    "en": [
+      "pigeon meat"
+    ],
+    "senseUid": "c93976b8-9936-4c53-98f7-e24898058cc5",
+    "wordId": "2569020",
+    "pt": "{\n  \"a\": [\"carne de pombo\"]\n"
+  },
+  {
+    "kana": "かくふく",
+    "en": [
+      "to widen (esp. a road)"
+    ],
+    "senseUid": "5e62363f-d83b-476d-a029-3709ef1e418b",
+    "wordId": "2569060",
+    "pt": "['alargar (especialmente uma estrada)', 'ampliar (especialmente uma estrada)']"
+  },
+  {
+    "kana": "こしみの",
+    "en": [
+      "straw skirt",
+      "grass skirt",
+      "traditionally worn by hunters and fishermen"
+    ],
+    "senseUid": "7ec78c9f-0e4f-4138-86e3-2c1ae788172f",
+    "wordId": "2568880",
+    "pt": "{\n  \"a\": [\n    \"saia de palha\",\n    \"saia de grama\",\n    \"saia tradicionalmente usada por caçadores e pescadores\"\n  ]\n"
+  },
+  {
+    "kana": "ごおう",
+    "en": [
+      "fifth of nine traditional astrological signs (corresponding to Saturn and central)"
+    ],
+    "senseUid": "60c72517-b403-423d-8ce8-e9bf3e957304",
+    "wordId": "2568930",
+    "pt": "{\n  \"a\": [\n    \"quinto dos nove signos astrológicos tradicionais (correspondente a Saturno e ao centro)\"\n  ]\n"
+  },
+  {
+    "kana": "あたりめ",
+    "en": [
+      "dried squid",
+      "dried cuttlefish"
+    ],
+    "senseUid": "0d3d8ed7-208b-4725-8b0e-b3a5c53f0efd",
+    "wordId": "2569000",
+    "pt": "['lula seca', 'choco seco']"
+  },
+  {
+    "kana": "あまなつみかん",
+    "en": [
+      "amanatsu (Citrus natsudaidai)",
+      "Japanese summer orange",
+      "less sour variety of the natsumikan"
+    ],
+    "senseUid": "9904a5ea-955c-44a6-842e-b0eb6449e7e4",
+    "wordId": "2569090",
+    "pt": "['amanatsu (Citrus natsudaidai)', 'laranja de verão japonesa', 'variedade menos ácida do natsumikan']"
+  },
+  {
+    "kana": "ちからおし",
+    "en": [
+      "brute force approach (esp. in a video game)"
+    ],
+    "senseUid": "dbf875ed-2c8e-4788-9774-a359de27d18f",
+    "wordId": "2569070",
+    "pt": "['abordagem na força bruta (especialmente em videogames)']"
+  },
+  {
+    "kana": "ろっぱく",
+    "en": [
+      "sixth of nine traditional astrological signs (corresponding to Venus and north-west)"
+    ],
+    "senseUid": "b0d4cae6-1be8-4bc8-8fdf-8eacd8c5f65c",
+    "wordId": "2568940",
+    "pt": "{\n  \"a\": [\n    \"sexto dos nove signos astrológicos tradicionais (correspondente a Vênus e ao noroeste)\"\n  ]\n"
+  },
+  {
+    "kana": "きゅうし",
+    "en": [
+      "ninth of nine traditional astrological signs (corresponding to Mars and south)"
+    ],
+    "senseUid": "fb82a9f8-8699-4f75-8904-d8e0c8227d48",
+    "wordId": "2568970",
+    "pt": "{\n  \"a\": [\n    \"nono dos nove signos astrológicos tradicionais (correspondente a Marte e ao sul)\"\n  ]\n"
+  },
+  {
+    "kana": "ほねをやすめる",
+    "en": [
+      "to draw breath",
+      "to take a rest after work",
+      "to have a breather",
+      "to take a break"
+    ],
+    "senseUid": "4ceb5dfd-6536-497a-8239-5a7455ac2dd0",
+    "wordId": "2569080",
+    "pt": "{\n  \"a\": [\n    \"descansar os ossos\",\n    \"dar um tempo para recuperar o fôlego\",\n    \"fazer uma pausa para descansar depois do trabalho\",\n    \"dar uma respirada\",\n    \"fazer uma pausa\"\n  ]\n"
+  },
+  {
+    "kana": "しゅうきょうねつ",
+    "en": [
+      "religious fervour",
+      "religious enthusiasm"
+    ],
+    "senseUid": "ac168099-7a3e-4a9f-948f-112da537bda0",
+    "wordId": "2569050",
+    "pt": "['fervor religioso', 'entusiasmo religioso']"
+  },
+  {
+    "kana": "わくせいけい",
+    "en": [
+      "planetary system",
+      "star system"
+    ],
+    "senseUid": "976836fe-efd3-43eb-91bd-241901136873",
+    "wordId": "2569240",
+    "pt": "['sistema planetário', 'sistema estelar']"
+  },
+  {
+    "kana": "しんごうきょうど",
+    "en": [
+      "signal strength",
+      "signal intensity",
+      "SS"
+    ],
+    "senseUid": "61ef3c0b-87df-4e37-9d22-095e712d9567",
+    "wordId": "2569160",
+    "pt": "{\n  \"a\": [\n    \"intensidade do sinal\",\n    \"força do sinal\",\n    \"SS\"\n  ]\n"
+  },
+  {
+    "kana": "こくさいかんしだん",
+    "en": [
+      "international monitoring team",
+      "IMT",
+      "international observers"
+    ],
+    "senseUid": "bc7bae87-fc1f-45ef-a19e-c8835875957d",
+    "wordId": "2569150",
+    "pt": "{\n  \"a\": [\n    \"equipe internacional de monitoramento\",\n    \"IMT\",\n    \"observadores internacionais\"\n  ]\n"
+  },
+  {
+    "kana": "げきじょう",
+    "en": [
+      "to stamp on the ground rhythmically while singing"
+    ],
+    "senseUid": "56177d48-18a1-4560-8889-9b1d325003cc",
+    "wordId": "2569180",
+    "pt": "{\n  \"a\": [\n    \"bater ritmicamente no chão enquanto canta\"\n  ]\n"
+  },
+  {
+    "kana": "ちきゅうしつりょう",
+    "en": [
+      "earth mass (astronomical unit of mass)"
+    ],
+    "senseUid": "95416b5d-866c-4c3e-a1bd-65966e74f8c7",
+    "wordId": "2569250",
+    "pt": "['massa terrestre (unidade astronômica de massa)']"
+  },
+  {
+    "kana": "しゅけいれつせい",
+    "en": [
+      "main sequence star"
+    ],
+    "senseUid": "ffe66424-7667-4f5d-b848-08770d1624b4",
+    "wordId": "2569270",
+    "pt": "['estrela da sequência principal']"
+  },
+  {
+    "kana": "ハイバックチェア",
+    "en": [
+      "high back chair",
+      "high-back chair"
+    ],
+    "senseUid": "56e9476c-2a97-4043-bbc1-b51023809c34",
+    "wordId": "2569230",
+    "pt": "{\n  \"a\": [\"cadeira de encosto alto\", \"cadeira alta de encosto\"]\n"
+  },
+  {
+    "kana": "きう",
+    "en": [
+      "friendly shower",
+      "welcome rain",
+      "rain that comes after a drought"
+    ],
+    "senseUid": "fcbb610a-59f9-4fd0-a297-e58819348840",
+    "wordId": "2569300",
+    "pt": "['chuva amiga', 'chuva bem-vinda', 'chuva que vem após uma seca']"
+  },
+  {
+    "kana": "かざおと",
+    "en": [
+      "sound of the wind"
+    ],
+    "senseUid": "7f121d36-097e-464a-83bf-691950581a98",
+    "wordId": "2569200",
+    "pt": "['som do vento']"
+  },
+  {
+    "kana": "どきょうがすわる",
+    "en": [
+      "to have steady nerves",
+      "to gain courage",
+      "to become brave",
+      "to become confident"
+    ],
+    "senseUid": "20018346-1b25-4b58-a944-183d2540bdbd",
+    "wordId": "2569210",
+    "pt": "{\n  \"a\": [\n    \"ter nervos de aço\",\n    \"ganhar coragem\",\n    \"tornar-se corajoso\",\n    \"ficar confiante\"\n  ]\n"
+  },
+  {
+    "kana": "ほうわこうげき",
+    "en": [
+      "saturation attack"
+    ],
+    "senseUid": "e3ed2ea0-28f2-4aad-b6cf-9bb6e3602c0a",
+    "wordId": "2569190",
+    "pt": "['ataque de saturação']"
+  },
+  {
+    "kana": "あまよのほし",
+    "en": [
+      "star seen on a rainy night",
+      "rare occurrence",
+      "rare sight"
+    ],
+    "senseUid": "e31e6278-00fb-416e-a90a-e8921a6c331e",
+    "wordId": "2569290",
+    "pt": "['estrela vista numa noite chuvosa', 'ocorrência rara', 'visão rara']"
+  },
+  {
+    "kana": "うずべんもうそう",
+    "en": [
+      "dinoflagellate"
+    ],
+    "senseUid": "20b9bed6-0b99-43d5-b52e-abef642521e9",
+    "wordId": "2569120",
+    "pt": "{\n  \"a\": [\"dinoflagelado\"]\n"
+  },
+  {
+    "kana": "たいようぼうえんきょう",
+    "en": [
+      "solar telescope",
+      "helioscope"
+    ],
+    "senseUid": "514e7f85-8735-4ad7-9b99-b0c5654558be",
+    "wordId": "2569170",
+    "pt": "['telescópio solar', 'helioscópio']"
+  },
+  {
+    "kana": "すいしんざい",
+    "en": [
+      "propellant"
+    ],
+    "senseUid": "3ebe58bc-f778-4731-b07a-65c5cf91d5b2",
+    "wordId": "2569220",
+    "pt": "['propulsor', 'propelente']"
+  },
+  {
+    "kana": "ぐしゃもせんりょにいっとく",
+    "en": [
+      "even fools can give good counsel"
+    ],
+    "senseUid": "5b1e15ab-1e87-42d1-9b9d-152198585d9d",
+    "wordId": "2569130",
+    "pt": "['Até tolos podem dar bons conselhos.']"
+  },
+  {
+    "kana": "ひともなげ",
+    "en": [
+      "arrogant",
+      "insolent",
+      "overbearing"
+    ],
+    "senseUid": "21b96162-7a9c-44b6-a50d-8a894012b4a2",
+    "wordId": "2569110",
+    "pt": "{\n  \"a\": [\n    \"arrogante\",\n    \"insolente\",\n    \"presunçoso\"\n  ]\n"
+  },
+  {
+    "kana": "かたゆき",
+    "en": [
+      "snow with a frozen crust on top",
+      "crusted snow"
+    ],
+    "senseUid": "40ca507d-e385-4025-af9b-754d42c3bf99",
+    "wordId": "2569330",
+    "pt": "['neve com crosta congelada por cima', 'neve crostada']"
+  },
+  {
+    "kana": "なごりゆき",
+    "en": [
+      "lingering snow"
+    ],
+    "senseUid": "374fc05e-abf7-4434-abe1-0ab1b0aaa16d",
+    "wordId": "2569350",
+    "pt": "['neve remanescente']"
+  },
+  {
+    "kana": "めんごうし",
+    "en": [
+      "window grate",
+      "window grating"
+    ],
+    "senseUid": "02b945d8-56bc-4edf-842b-d6795c2bbb1d",
+    "wordId": "2569140",
+    "pt": "['grade de janela', 'grada de janela']"
+  },
+  {
+    "kana": "ゆきま",
+    "en": [
+      "break in the snow",
+      "patch of ground not covered in snow"
+    ],
+    "senseUid": "5b0ec4dd-81a9-4968-82ff-f89f5c6caa40",
+    "wordId": "2569380",
+    "pt": "{\n  \"a\": [\n    \"clareira na neve\",\n    \"trecho de chão sem neve\"\n  ]\n"
+  },
+  {
+    "kana": "げきじょう",
+    "en": [
+      "ancient Chinese game of wooden clog throwing"
+    ],
+    "senseUid": "8541e6a7-be00-4d18-87c7-fdbff8a8fb49",
+    "wordId": "2569180",
+    "pt": "{\n  \"a\": [\n    \"jogo chinês antigo de arremesso de tamancos de madeira\"\n  ]\n"
+  },
+  {
+    "kana": "あまよ",
+    "en": [
+      "rainy night"
+    ],
+    "senseUid": "5baa8e28-4441-4799-bbb4-87d45ca7c11e",
+    "wordId": "2569280",
+    "pt": "{\n  \"a\": [\"noite chuvosa\"]\n"
+  },
+  {
+    "kana": "あきふかし",
+    "en": [
+      "deep autumn (when the autumn has reached its climax)"
+    ],
+    "senseUid": "91c2f91e-d8c0-48a4-b37b-162b98c6b87a",
+    "wordId": "2569450",
+    "pt": "['outono profundo (quando o outono atinge seu auge)']"
+  },
+  {
+    "kana": "しんしゅう",
+    "en": [
+      "deep autumn (when the autumn has reached its climax)"
+    ],
+    "senseUid": "ec5be380-78e2-4612-ae90-3015cdbd2b16",
+    "wordId": "2569460",
+    "pt": "['outono profundo (quando o outono atinge seu auge)']"
+  },
+  {
+    "kana": "かざばな",
+    "en": [
+      "skin eruptions cause by a cold or fever"
+    ],
+    "senseUid": "d86887c4-b01c-4348-9271-1c8b42ad6d36",
+    "wordId": "2569510",
+    "pt": "{\n  \"a\": [\n    \"erupções cutâneas causadas por resfriado ou febre\"\n  ]\n"
+  },
+  {
+    "kana": "しのつくあめ",
+    "en": [
+      "pelting rain",
+      "pouring rain",
+      "driving rain",
+      "downpour"
+    ],
+    "senseUid": "b92858e1-1d71-4569-811e-0a6a2c547418",
+    "wordId": "2569310",
+    "pt": "{\n  \"a\": [\n    \"chuva forte\",\n    \"chuva torrencial\",\n    \"chuva intensa\",\n    \"aguaceiro\"\n  ]\n"
+  },
+  {
+    "kana": "はくしょ",
+    "en": [
+      "light heat at the beginning of the summer"
+    ],
+    "senseUid": "7d8891b0-6b6c-421f-9fec-f15a263a2339",
+    "wordId": "2569430",
+    "pt": "{\n  \"a\": [\n    \"luz e calor do início do verão\"\n  ]\n"
+  },
+  {
+    "kana": "すど",
+    "en": [
+      "bamboo door",
+      "door or screen made of fine bamboo strips, allowing air to pass through"
+    ],
+    "senseUid": "971ee9b7-8f32-4599-9f87-11cd8129a2d1",
+    "wordId": "2569420",
+    "pt": "{\n  \"a\": [\n    \"porta de bambu\",\n    \"porta ou divisória feita de tiras finas de bambu, permitindo a passagem do ar\"\n  ]\n"
+  },
+  {
+    "kana": "まつよい",
+    "en": [
+      "night of the 14th day of the eight month of the lunar calendar"
+    ],
+    "senseUid": "496d4e2f-b991-47e4-b5d2-e8ba1b0c35a7",
+    "wordId": "2569490",
+    "pt": "['noite do 14º dia do oitavo mês do calendário lunar']"
+  },
+  {
+    "kana": "なごりゆき",
+    "en": [
+      "snowfall at the end of the winter or the beginning of spring"
+    ],
+    "senseUid": "9f746575-c090-4c09-a409-a426b129f878",
+    "wordId": "2569350",
+    "pt": "['neve do fim do inverno ou começo da primavera']"
+  },
+  {
+    "kana": "まつよい",
+    "en": [
+      "night where one waits for someone who is supposed to come"
+    ],
+    "senseUid": "664850fc-d826-4c15-8a21-1d930a80295d",
+    "wordId": "2569490",
+    "pt": "['noite de espera por alguém que deveria vir']"
+  },
+  {
+    "kana": "かぜひかる",
+    "en": [
+      "springlike",
+      "like wind blowing through the spring sunshine"
+    ],
+    "senseUid": "280f8174-39ef-44da-a106-55ea64119e85",
+    "wordId": "2569320",
+    "pt": "{\n  \"a\": [\n    \"primaveril\",\n    \"como o vento soprando sob o sol da primavera\"\n  ]\n"
+  },
+  {
+    "kana": "かざばな",
+    "en": [
+      "winter wind which brings scattered snowflakes or raindrops"
+    ],
+    "senseUid": "960c86f4-8de5-4c6a-b807-f9ab02c06650",
+    "wordId": "2569510",
+    "pt": "{\n  \"a\": [\n    \"vento de inverno que traz flocos de neve ou gotas de chuva dispersos\"\n  ]\n"
+  },
+  {
+    "kana": "やまよそおう",
+    "en": [
+      "mountain covered in autumn colours at the end of autumn",
+      "adorned mountain"
+    ],
+    "senseUid": "1a7c17d5-a758-43a4-b19a-6c610796aaa0",
+    "wordId": "2569500",
+    "pt": "{\n  \"a\": [\n    \"montanha adornada pelas cores do outono no fim da estação\",\n    \"montanha enfeitada\"\n  ]\n"
+  },
+  {
+    "kana": "せいが",
+    "en": [
+      "Milky Way"
+    ],
+    "senseUid": "f456b002-4657-489c-8e06-082c3710d8ee",
+    "wordId": "2569260",
+    "pt": "{\n  \"a\": [\"Via Láctea\"]\n"
+  },
+  {
+    "kana": "いやさか",
+    "en": [
+      "prosperity",
+      "prospering",
+      "flourishing"
+    ],
+    "senseUid": "eaad826a-1395-4fd1-b64f-6b338c65126c",
+    "wordId": "2569560",
+    "pt": "['prosperidade', 'prosperando', 'florescimento']"
+  },
+  {
+    "kana": "しゅんぎょう",
+    "en": [
+      "spring dawn",
+      "dawn of a spring day"
+    ],
+    "senseUid": "f46b9de0-7a98-4c2c-a04c-9d80af7f0726",
+    "wordId": "2569340",
+    "pt": "['alvorada da primavera', 'amanhecer de um dia de primavera']"
+  },
+  {
+    "kana": "はるたうち",
+    "en": [
+      "New Year event to pray for a rich rice harvest"
+    ],
+    "senseUid": "12702dde-65cd-4379-b594-6c18669e7292",
+    "wordId": "2569360",
+    "pt": "['Evento de Ano Novo para rezar por uma colheita de arroz farta']"
+  },
+  {
+    "kana": "あいあい",
+    "en": [
+      "accumulation of clouds or mist"
+    ],
+    "senseUid": "4b93a219-f14f-44e5-802f-a427cef89c15",
+    "wordId": "2569540",
+    "pt": "{\n  \"a\": [\n    \"acúmulo de nuvens ou névoa\"\n  ]\n"
+  },
+  {
+    "kana": "いやさか",
+    "en": [
+      "best of luck",
+      "all the best",
+      "hurray",
+      "hoorah"
+    ],
+    "senseUid": "5520cbad-2f89-4ef4-9d02-41a46df98a33",
+    "wordId": "2569560",
+    "pt": "['tudo de bom', 'boa sorte', 'viva', 'hurra']"
+  },
+  {
+    "kana": "あさぼらけ",
+    "en": [
+      "light of dawn",
+      "daybreak"
+    ],
+    "senseUid": "fd3f5c0f-1d56-4a2b-bb33-08f2de7c08b5",
+    "wordId": "2569550",
+    "pt": "['luz da alvorada', 'romper do dia']"
+  },
+  {
+    "kana": "やまねむる",
+    "en": [
+      "mountain in the winter",
+      "sleeping mountain"
+    ],
+    "senseUid": "ae3ebaf1-a5aa-49a2-be86-ceb7cb65d5bb",
+    "wordId": "2569530",
+    "pt": "['montanha adormecida', 'montanha que dorme']"
+  },
+  {
+    "kana": "かざばな",
+    "en": [
+      "flurry of snow in a clear sky"
+    ],
+    "senseUid": "777180b0-5e4c-4b88-a34b-7270dd6458b7",
+    "wordId": "2569510",
+    "pt": "{\n  \"a\": [\n    \"flocos de neve caindo em um céu claro\"\n  ]\n"
+  },
+  {
+    "kana": "こもちづき",
+    "en": [
+      "moon on the night before a full moon",
+      "moon on the 14th day of the month (by the lunar calendar)"
+    ],
+    "senseUid": "168aeae1-d9f2-4dac-a7cd-272085a83498",
+    "wordId": "2569480",
+    "pt": "['lua na noite anterior à lua cheia', 'lua no 14º dia do mês (pelo calendário lunar)']"
+  },
+  {
+    "kana": "なつざしき",
+    "en": [
+      "room arranged for the summer (by removing screens and doors to improve air flow)"
+    ],
+    "senseUid": "53726d76-51af-49ac-9b53-1b760dc00e49",
+    "wordId": "2569390",
+    "pt": "['quarto de verão (arranjado removendo divisórias e portas para melhorar a circulação de ar)']"
+  },
+  {
+    "kana": "やまわらう",
+    "en": [
+      "mountain in springtime when all of the tree buds open at the same time",
+      "laughing mountain"
+    ],
+    "senseUid": "b2f0ce78-f08b-4e06-a1bf-4bae95364b59",
+    "wordId": "2569370",
+    "pt": "{\n  \"a\": [\n    \"montanha sorridente na primavera, quando todos os brotos das árvores se abrem ao mesmo tempo\",\n    \"montanha risonha\"\n  ]\n"
+  },
+  {
+    "kana": "かんらい",
+    "en": [
+      "winter thunder",
+      "thunderstorm accompanying a cold front"
+    ],
+    "senseUid": "f7b7a875-166d-4f82-b00f-f10d1d275d33",
+    "wordId": "2569520",
+    "pt": "{\n  \"a\": [\n    \"trovão de inverno\",\n    \"tempestade acompanhando uma frente fria\"\n  ]\n"
+  },
+  {
+    "kana": "はつがつお",
+    "en": [
+      "the first bonito of the season"
+    ],
+    "senseUid": "bf0cba82-9b33-4c40-843a-4605f470744d",
+    "wordId": "2569440",
+    "pt": "['o primeiro bonito da temporada']"
+  },
+  {
+    "kana": "なにしおう",
+    "en": [
+      "famous",
+      "celebrated",
+      "worthy of the name"
+    ],
+    "senseUid": "570f4597-c6cb-42a5-8586-2aa12b41ba03",
+    "wordId": "2569650",
+    "pt": "{\n  \"a\": [\"famoso\", \"celebrado\", \"digno do nome\"]\n"
+  },
+  {
+    "kana": "かしん",
+    "en": [
+      "center of a flower (centre)",
+      "pistils and stamens"
+    ],
+    "senseUid": "31acbb5f-f314-4226-a7c6-f152e7ea9370",
+    "wordId": "2569680",
+    "pt": "['centro de uma flor', 'pistilos e estames']"
+  },
+  {
+    "kana": "ひならずして",
+    "en": [
+      "before long",
+      "in a few days"
+    ],
+    "senseUid": "da1638b6-a8f1-40df-8a14-8557aa94f121",
+    "wordId": "2569740",
+    "pt": "['em breve', 'dentro de alguns dias']"
+  },
+  {
+    "kana": "なにおう",
+    "en": [
+      "famous",
+      "celebrated",
+      "worthy of the name"
+    ],
+    "senseUid": "0c362bbd-c204-40a0-819c-578aacba8be7",
+    "wordId": "2569640",
+    "pt": "{\n  \"a\": [\n    \"famoso\",\n    \"celebrado\",\n    \"digno do nome\"\n  ]\n"
+  },
+  {
+    "kana": "あだごころ",
+    "en": [
+      "cheating heart",
+      "fleeting heart",
+      "fickle heart"
+    ],
+    "senseUid": "2f929e05-747a-433a-b316-f99c9c667cb6",
+    "wordId": "2569710",
+    "pt": "['coração infiel', 'coração volúvel', 'coração inconstante']"
+  },
+  {
+    "kana": "かずい",
+    "en": [
+      "center of a flower (centre)",
+      "pistils and stamens"
+    ],
+    "senseUid": "5120d828-b688-40c2-9935-70a37d1242f5",
+    "wordId": "2569690",
+    "pt": "{\n  \"a\": [\n    \"centro de uma flor\",\n    \"pistilos e estames\"\n  ]\n"
+  }
+]

@@ -1,0 +1,935 @@
+[
+  {
+    "kana": "カンファー",
+    "en": [
+      "camphor"
+    ],
+    "senseUid": "78699a49-bb3a-48e2-9a1c-a0c923b88f12",
+    "wordId": "1039580",
+    "pt": "{'a': ['cânfora']}"
+  },
+  {
+    "kana": "カンブリア",
+    "en": [
+      "Cambria (old name for Wales)"
+    ],
+    "senseUid": "0d82e10d-ff6f-48a4-8187-b8d1cd8c0ae4",
+    "wordId": "1039600",
+    "pt": "{'a': ['Cambria (antigo nome do País de Gales)']}"
+  },
+  {
+    "kana": "ガーゼ",
+    "en": [
+      "gauze"
+    ],
+    "senseUid": "25bcbe42-eddf-43ef-a4a8-17dd5363d64d",
+    "wordId": "1039660",
+    "pt": "{'a': ['gaze']}"
+  },
+  {
+    "kana": "ガーター",
+    "en": [
+      "garter"
+    ],
+    "senseUid": "52e0dde6-cec3-4204-903f-4f63fe11ccb3",
+    "wordId": "1039670",
+    "pt": "{'a': ['ligas']}"
+  },
+  {
+    "kana": "ガーゴイル",
+    "en": [
+      "gargoyle"
+    ],
+    "senseUid": "b06b74a2-5ae5-445a-8674-87adbc3af2d5",
+    "wordId": "1039640",
+    "pt": "{'a': ['gárgula']}"
+  },
+  {
+    "kana": "カンボジア",
+    "en": [
+      "Cambodia"
+    ],
+    "senseUid": "a852932f-0375-44bc-bf2b-09e8799ba45b",
+    "wordId": "1039610",
+    "pt": "{'a': ['Camboja']}"
+  },
+  {
+    "kana": "ガーデン",
+    "en": [
+      "garden"
+    ],
+    "senseUid": "e06e3e53-6c0a-4895-b9aa-89b35c3847db",
+    "wordId": "1039680",
+    "pt": "{'a': ['jardim']}"
+  },
+  {
+    "kana": "ガーデンスモーカー",
+    "en": [
+      "garden smoker",
+      "smoker barbecue"
+    ],
+    "senseUid": "20ebe673-e51e-475e-a2af-79931972d8f3",
+    "wordId": "1039690",
+    "pt": "{'a': ['defumador de jardim', 'churrasqueira defumadora']}"
+  },
+  {
+    "kana": "かぎょう",
+    "en": [
+      "the \"ka\" column of the Japanese syllabary table (ka, ki, ku, ke, ko)"
+    ],
+    "senseUid": "e1e4f3c9-24cd-4e08-996f-4601999fd649",
+    "wordId": "1039630",
+    "pt": "{\n  \"a\": [\"a coluna 'ka' da tabela silábica japonesa (ka, ki, ku, ke, ko)\"]\n}"
+  },
+  {
+    "kana": "ガーデンパーティー",
+    "en": [
+      "garden party"
+    ],
+    "senseUid": "2ad534d6-d73f-4627-81a6-43910494a73c",
+    "wordId": "1039700",
+    "pt": "{'a': ['festa no jardim']}"
+  },
+  {
+    "kana": "ガード",
+    "en": [
+      "guarding",
+      "guard"
+    ],
+    "senseUid": "6e91fa49-d828-4a0b-87d6-c3d7af776979",
+    "wordId": "1039710",
+    "pt": "{'a': ['defesa', 'proteger']}"
+  },
+  {
+    "kana": "ガードケーブル",
+    "en": [
+      "guard cable"
+    ],
+    "senseUid": "37f93462-43f5-45d6-a8a3-f4d0c63b30ab",
+    "wordId": "1039720",
+    "pt": "{'a': ['cabo de proteção']}"
+  },
+  {
+    "kana": "ガードル",
+    "en": [
+      "girdle"
+    ],
+    "senseUid": "591ae6f2-5026-4ab6-a669-6c7e70f2f577",
+    "wordId": "1039750",
+    "pt": "{'a': ['cinta']}"
+  },
+  {
+    "kana": "ガードバンカー",
+    "en": [
+      "guard bunker"
+    ],
+    "senseUid": "889405e5-0229-4ea3-92e6-887095b75b56",
+    "wordId": "1039730",
+    "pt": "{'a': ['bunker de proteção']}"
+  },
+  {
+    "kana": "ガードマン",
+    "en": [
+      "security guard"
+    ],
+    "senseUid": "2f97d86a-5673-4c3c-97d2-4fabb34879a5",
+    "wordId": "1039740",
+    "pt": "{'a': ['guardião', 'segurança', 'vigia']}"
+  },
+  {
+    "kana": "ガーネット",
+    "en": [
+      "garnet"
+    ],
+    "senseUid": "9385a912-108d-42fb-aa87-20d9e782bbe3",
+    "wordId": "1039770",
+    "pt": "{'a': ['granada']}"
+  },
+  {
+    "kana": "ガベージ",
+    "en": [
+      "garbage"
+    ],
+    "senseUid": "535b7c4e-d46d-4677-8f87-96873416134c",
+    "wordId": "1039780",
+    "pt": "{'a': ['lixo']}"
+  },
+  {
+    "kana": "ガードレール",
+    "en": [
+      "guardrail"
+    ],
+    "senseUid": "cf384d42-a528-4377-afa8-9281cb9bb6f4",
+    "wordId": "1039760",
+    "pt": "{'a': ['guarda-corpo']}"
+  },
+  {
+    "kana": "ガーベラ",
+    "en": [
+      "gerbera",
+      "African daisy"
+    ],
+    "senseUid": "26ba3bef-1b0b-4b3a-a9ad-d21657bdcf5e",
+    "wordId": "1039790",
+    "pt": "{'a': ['gerbera', 'margarida africana']}"
+  },
+  {
+    "kana": "ガーリック",
+    "en": [
+      "garlic"
+    ],
+    "senseUid": "1f669a3f-311a-49dd-8274-236b32f1e825",
+    "wordId": "1039810",
+    "pt": "{'a': ['alho']}"
+  },
+  {
+    "kana": "ガーボロジー",
+    "en": [
+      "garbology"
+    ],
+    "senseUid": "1ca35b02-8f39-4365-bb66-dfe790c7fc9e",
+    "wordId": "1039800",
+    "pt": "{'a': ['garbologia']}"
+  },
+  {
+    "kana": "ガール",
+    "en": [
+      "girl"
+    ],
+    "senseUid": "6046312a-3981-4887-865f-660a0f58534f",
+    "wordId": "1039820",
+    "pt": "{'a': ['garota']}"
+  },
+  {
+    "kana": "ガールスカウト",
+    "en": [
+      "Girl Scouts"
+    ],
+    "senseUid": "ece3d818-3905-4bc2-bdc4-a9f1a4dd3050",
+    "wordId": "1039830",
+    "pt": "{'a': ['Escoteiras']}"
+  },
+  {
+    "kana": "ガイ",
+    "en": [
+      "guy"
+    ],
+    "senseUid": "b5eb1d8b-5aea-4a1d-aedf-f85be07634e9",
+    "wordId": "1039860",
+    "pt": "{'a': ['cara']}"
+  },
+  {
+    "kana": "ガールフレンド",
+    "en": [
+      "girl friend",
+      "girlfriend"
+    ],
+    "senseUid": "704fc571-7eb5-49ac-bd47-bfd3f70ae78b",
+    "wordId": "1039850",
+    "pt": "{'a': ['namorada', 'amiga (mulher)']}"
+  },
+  {
+    "kana": "ガイスト",
+    "en": [
+      "spirit"
+    ],
+    "senseUid": "48c885b4-73b3-413d-9b65-f56104edc22b",
+    "wordId": "1039880",
+    "pt": "{'a': ['espírito']}"
+  },
+  {
+    "kana": "ガールハント",
+    "en": [
+      "girl hunt",
+      "trying to pick up a girl",
+      "looking for a girlfriend"
+    ],
+    "senseUid": "4e88a885-018a-4b36-ae1f-abc0f9a10317",
+    "wordId": "1039840",
+    "pt": "{'a': ['caçar garotas', 'tentar conquistar uma garota', 'procurando uma namorada']}"
+  },
+  {
+    "kana": "ガイガーカウンター",
+    "en": [
+      "Geiger counter"
+    ],
+    "senseUid": "fbcf2f41-242e-4bc8-a7d7-175161b04819",
+    "wordId": "1039870",
+    "pt": "{'a': ['contador Geiger']}"
+  },
+  {
+    "kana": "ガイド",
+    "en": [
+      "guidebook"
+    ],
+    "senseUid": "4af4aa4c-5d4a-4109-a122-0b9ae7906d5d",
+    "wordId": "1039900",
+    "pt": "{'a': ['guia']}"
+  },
+  {
+    "kana": "ガイダンス",
+    "en": [
+      "guidance"
+    ],
+    "senseUid": "acb585df-1628-4829-b093-b7d67398d4b5",
+    "wordId": "1039890",
+    "pt": "{'a': ['orientação']}"
+  },
+  {
+    "kana": "ガイド",
+    "en": [
+      "guide",
+      "tour guide",
+      "conductor",
+      "guiding",
+      "leading"
+    ],
+    "senseUid": "e98961fe-2ad6-41f6-802f-f4de61607b57",
+    "wordId": "1039900",
+    "pt": "{'a': ['guia', 'guia turístico', 'condutor', 'orientação', 'liderança']}"
+  },
+  {
+    "kana": "ガイドナンバー",
+    "en": [
+      "guide number"
+    ],
+    "senseUid": "bae13ce1-9140-472b-b69f-7faed51c42ad",
+    "wordId": "1039910",
+    "pt": "{'a': ['número guia']}"
+  },
+  {
+    "kana": "ガイドブック",
+    "en": [
+      "guidebook"
+    ],
+    "senseUid": "68defc95-efb7-495b-88c8-29473358a5d3",
+    "wordId": "1039920",
+    "pt": "{'a': ['livro-guia']}"
+  },
+  {
+    "kana": "ガイド",
+    "en": [
+      "guide (on a fishing rod)",
+      "guide ring"
+    ],
+    "senseUid": "3560c587-0915-4091-91d8-cf0319ad1854",
+    "wordId": "1039900",
+    "pt": "{'a': ['guia (em uma vara de pesca)', 'anel guia']}"
+  },
+  {
+    "kana": "ガイドポスト",
+    "en": [
+      "guidepost"
+    ],
+    "senseUid": "326af5c3-0905-4b6c-8723-7ef8ba9ef928",
+    "wordId": "1039930",
+    "pt": "{'a': ['poste de orientação']}"
+  },
+  {
+    "kana": "ガウシアン",
+    "en": [
+      "Gaussian"
+    ],
+    "senseUid": "931d5c58-9e04-4afd-a982-37ff627c00c5",
+    "wordId": "1039960",
+    "pt": "{'a': ['gaussiano']}"
+  },
+  {
+    "kana": "ガイドライン",
+    "en": [
+      "guideline"
+    ],
+    "senseUid": "f51effde-fe1d-476a-bce9-6ca398cb6d11",
+    "wordId": "1039940",
+    "pt": "{'a': ['diretriz']}"
+  },
+  {
+    "kana": "ガウス",
+    "en": [
+      "gauss"
+    ],
+    "senseUid": "084d75c6-f1a8-406e-935d-cf076c420538",
+    "wordId": "1039970",
+    "pt": "{'a': ['gauss']}"
+  },
+  {
+    "kana": "ガウチョ",
+    "en": [
+      "gaucho pants"
+    ],
+    "senseUid": "09210be5-397e-4a45-abe5-a0edb5469a67",
+    "wordId": "1039980",
+    "pt": "{'a': ['calça gaucho']}"
+  },
+  {
+    "kana": "ガウチョ",
+    "en": [
+      "gaucho"
+    ],
+    "senseUid": "104ddb72-9d8b-454f-b26b-6d8cfd9893d9",
+    "wordId": "1039980",
+    "pt": "{'a': ['gaúcho']}"
+  },
+  {
+    "kana": "ガウチョハット",
+    "en": [
+      "gaucho hat"
+    ],
+    "senseUid": "e38fd1a8-e951-4b22-908d-11d5bb6c1d43",
+    "wordId": "1039990",
+    "pt": "{'a': ['chapéu gaúcho']}"
+  },
+  {
+    "kana": "ガウチョパンツ",
+    "en": [
+      "gaucho pants"
+    ],
+    "senseUid": "d2a88d5c-bfc6-48f4-8cce-aff6586eb87c",
+    "wordId": "1040000",
+    "pt": "{'a': ['calças gaucho']}"
+  },
+  {
+    "kana": "ガウン",
+    "en": [
+      "gown",
+      "elegant dress"
+    ],
+    "senseUid": "9feec92a-e692-409b-9517-fc307b79f966",
+    "wordId": "1040020",
+    "pt": "{'a': ['vestido elegante', 'gown']}"
+  },
+  {
+    "kana": "ガウチョルック",
+    "en": [
+      "gaucho look"
+    ],
+    "senseUid": "96614be6-58c2-4ad4-9d40-afa12cc1a70a",
+    "wordId": "1040010",
+    "pt": "{'a': ['visual gaúcho']}"
+  },
+  {
+    "kana": "ガス",
+    "en": [
+      "gasoline",
+      "gas",
+      "petrol"
+    ],
+    "senseUid": "5360d6b6-ef2a-4e7e-80cb-df1f3cf1cb78",
+    "wordId": "1040060",
+    "pt": "{'a': ['gás', 'gasolina', 'combustível']}"
+  },
+  {
+    "kana": "ガクルクス",
+    "en": [
+      "Gacrux (aka Gamma Crucis)"
+    ],
+    "senseUid": "bd31f8c3-b2a2-4045-aa0c-2251d3cb0c7d",
+    "wordId": "1040030",
+    "pt": "{'a': ['Gacrux (também conhecido como Gamma Crucis)']}"
+  },
+  {
+    "kana": "ガジェットバッグ",
+    "en": [
+      "gadget bag"
+    ],
+    "senseUid": "f85cc16f-42f5-41eb-b7f2-93a9b03d3858",
+    "wordId": "1040050",
+    "pt": "{'a': ['bolsa de gadgets']}"
+  },
+  {
+    "kana": "ガス",
+    "en": [
+      "gas (as a fuel)"
+    ],
+    "senseUid": "54cd3d8d-4bc1-413d-a8c7-4ebd5a789c28",
+    "wordId": "1040060",
+    "pt": "{'a': ['gás (como combustível)']}"
+  },
+  {
+    "kana": "ガス",
+    "en": [
+      "flatulence",
+      "gas",
+      "wind",
+      "fart"
+    ],
+    "senseUid": "7e31ed2b-d854-4f8e-b8ba-4b8867648832",
+    "wordId": "1040060",
+    "pt": "{'a': ['gás', 'flatulência', 'vento', 'peido']}"
+  },
+  {
+    "kana": "ガジェット",
+    "en": [
+      "gadget"
+    ],
+    "senseUid": "11c68cc0-4e9c-4831-8745-4d9027dd4dd8",
+    "wordId": "1040040",
+    "pt": "{'a': ['aparelho', 'dispositivo', 'gadget']}"
+  },
+  {
+    "kana": "ガス",
+    "en": [
+      "gas (state of matter)"
+    ],
+    "senseUid": "c3c60afb-806f-4833-b3e0-5d7ce2d36643",
+    "wordId": "1040060",
+    "pt": "{'a': ['gás']}"
+  },
+  {
+    "kana": "ガス",
+    "en": [
+      "gas stove",
+      "gas cooker",
+      "gas range"
+    ],
+    "senseUid": "35e3ed94-89da-4a42-ba71-ca97730d359a",
+    "wordId": "1040060",
+    "pt": "{'a': ['fogão a gás', 'cooktop a gás', 'forno a gás']}"
+  },
+  {
+    "kana": "ガス",
+    "en": [
+      "poison gas"
+    ],
+    "senseUid": "37346d49-26ba-4ae5-9f9b-ccbdfe01a43b",
+    "wordId": "1040060",
+    "pt": "{'a': ['gás venenoso']}"
+  },
+  {
+    "kana": "ガウン",
+    "en": [
+      "dressing gown",
+      "bathrobe"
+    ],
+    "senseUid": "8640f7e0-c734-4d2d-a5e0-61f343794807",
+    "wordId": "1040020",
+    "pt": "{'a': ['roupão', 'vestido de banho']}"
+  },
+  {
+    "kana": "ガス",
+    "en": [
+      "dense fog",
+      "thick fog"
+    ],
+    "senseUid": "c4f0f845-6e5a-4876-95a2-ed7daa2d6496",
+    "wordId": "1040060",
+    "pt": "{'a': ['névoa densa', 'névoa espessa']}"
+  },
+  {
+    "kana": "ガス",
+    "en": [
+      "gassed yarn"
+    ],
+    "senseUid": "0d8e1318-12e0-4070-8e3d-a39a29c85e7c",
+    "wordId": "1040060",
+    "pt": "{'a': ['fio gaseificado']}"
+  },
+  {
+    "kana": "ガスクロマトグラフィー",
+    "en": [
+      "gas chromatography"
+    ],
+    "senseUid": "4b26ea99-24c7-4525-a147-58f96e9d2391",
+    "wordId": "1040070",
+    "pt": "{'a': ['cromatografia gasosa']}"
+  },
+  {
+    "kana": "ガスステーション",
+    "en": [
+      "gas station"
+    ],
+    "senseUid": "c5f210bd-7262-4f2a-96ed-5c1dcdb96ed6",
+    "wordId": "1040090",
+    "pt": "{'a': ['posto de gasolina']}"
+  },
+  {
+    "kana": "ガスケット",
+    "en": [
+      "gasket"
+    ],
+    "senseUid": "8837ba53-ffed-4b01-a6a1-15ec90764984",
+    "wordId": "1040080",
+    "pt": "{'a': ['gaxeta']}"
+  },
+  {
+    "kana": "ガスタービン",
+    "en": [
+      "gas turbine"
+    ],
+    "senseUid": "5473ecf2-9e11-4730-9587-733e5284632a",
+    "wordId": "1040100",
+    "pt": "{'a': ['turbina a gás']}"
+  },
+  {
+    "kana": "ガストロカメラ",
+    "en": [
+      "gastrocamera"
+    ],
+    "senseUid": "20594b54-d6be-44f9-8e98-90a627aab299",
+    "wordId": "1040120",
+    "pt": "{'a': ['gastrocamera']}"
+  },
+  {
+    "kana": "ガストアルバイター",
+    "en": [
+      "foreign worker"
+    ],
+    "senseUid": "554e17f0-3685-4057-a3b2-ea73f988906b",
+    "wordId": "1040110",
+    "pt": "{'a': ['trabalhador estrangeiro']}"
+  },
+  {
+    "kana": "ガストロノミー",
+    "en": [
+      "gastronomy"
+    ],
+    "senseUid": "1e456246-5849-4760-b86d-f003ce7460ec",
+    "wordId": "1040130",
+    "pt": "{'a': ['gastronomia']}"
+  },
+  {
+    "kana": "ガストロノミスト",
+    "en": [
+      "gastronomist"
+    ],
+    "senseUid": "0e5c1ecc-1c9e-44ce-a4ce-4f5a7cb937b1",
+    "wordId": "1040140",
+    "pt": "{'a': ['gastronomista']}"
+  },
+  {
+    "kana": "ガストロノミック",
+    "en": [
+      "gastronomic"
+    ],
+    "senseUid": "e47ab1e2-9c66-4764-bc37-c1511c628efb",
+    "wordId": "1040150",
+    "pt": "{'a': ['gastronômico']}"
+  },
+  {
+    "kana": "ガスボンベ",
+    "en": [
+      "gas cylinder"
+    ],
+    "senseUid": "50835295-d7d8-40f6-8ca8-9f825f26acc7",
+    "wordId": "1040160",
+    "pt": "{'a': ['botijão de gás']}"
+  },
+  {
+    "kana": "ガスマスク",
+    "en": [
+      "gas mask"
+    ],
+    "senseUid": "72696d8b-0fae-4300-b9f4-29bfdc609303",
+    "wordId": "1040170",
+    "pt": "{'a': ['máscara de gás']}"
+  },
+  {
+    "kana": "ガスけつ",
+    "en": [
+      "running out of gasoline (petrol)"
+    ],
+    "senseUid": "6c17e111-dee7-4010-9f9a-fec67df844f4",
+    "wordId": "1040190",
+    "pt": "{'a': ['ficar sem gasolina']}"
+  },
+  {
+    "kana": "ガスマット",
+    "en": [
+      "aluminum-foil burner liner"
+    ],
+    "senseUid": "dd5d1a4e-2534-48d0-ac3a-1cf09711d82c",
+    "wordId": "1040180",
+    "pt": "{'a': ['forro de alumínio para queimador']}"
+  },
+  {
+    "kana": "ガソホール",
+    "en": [
+      "gasohol"
+    ],
+    "senseUid": "23e0c5b4-058c-4cde-bef8-58225357e3fc",
+    "wordId": "1040240",
+    "pt": "{'a': ['gasohol']}"
+  },
+  {
+    "kana": "ガゼット",
+    "en": [
+      "gazette"
+    ],
+    "senseUid": "3f32de74-fe8e-4e90-b1b3-3507881b464d",
+    "wordId": "1040210",
+    "pt": "{'a': ['gazeta']}"
+  },
+  {
+    "kana": "ガスせん",
+    "en": [
+      "gas tap",
+      "gas cock"
+    ],
+    "senseUid": "e77b6bb0-a33c-476e-87c3-40a5fec7881c",
+    "wordId": "1040200",
+    "pt": "{'a': ['torneira de gás', 'válvula de gás']}"
+  },
+  {
+    "kana": "ガソリン",
+    "en": [
+      "gasoline",
+      "petrol"
+    ],
+    "senseUid": "8b5929db-a137-4593-877d-4188b7b1c5f6",
+    "wordId": "1040250",
+    "pt": "{'a': ['gasolina']}"
+  },
+  {
+    "kana": "ガソリンスタンド",
+    "en": [
+      "gas station",
+      "petrol station",
+      "filling station"
+    ],
+    "senseUid": "b14bee35-50be-415d-8540-6c4fe01fd85b",
+    "wordId": "1040260",
+    "pt": "{'a': ['posto de gasolina', 'posto de combustível', 'posto de abastecimento']}"
+  },
+  {
+    "kana": "ガッツ",
+    "en": [
+      "guts"
+    ],
+    "senseUid": "2864e19d-99b0-497d-8338-61a438ac88a0",
+    "wordId": "1040280",
+    "pt": "{'a': ['garra', 'determinação', 'coragem', 'força de vontade']}"
+  },
+  {
+    "kana": "ガッツポーズ",
+    "en": [
+      "triumphant pose (assumed by an athlete, etc.)"
+    ],
+    "senseUid": "087182bf-bad1-4957-81ec-1e2e1fbfae14",
+    "wordId": "1040290",
+    "pt": "{'a': ['pose triunfante (assumida por um atleta, etc.)']}"
+  },
+  {
+    "kana": "ガバナビリティ",
+    "en": [
+      "governability"
+    ],
+    "senseUid": "d156a4b9-ce0d-4d21-9a91-bf2a884fd677",
+    "wordId": "1040330",
+    "pt": "{'a': ['governabilidade']}"
+  },
+  {
+    "kana": "ガトー",
+    "en": [
+      "gateau",
+      "cake"
+    ],
+    "senseUid": "274c2002-0ec6-4926-a47f-cbf242232c99",
+    "wordId": "1040310",
+    "pt": "{'a': ['bolo', 'gateau']}"
+  },
+  {
+    "kana": "ガドリニウム",
+    "en": [
+      "gadolinium (Gd)"
+    ],
+    "senseUid": "f2d14fd4-bdf9-4d67-bd45-aed0f00d5831",
+    "wordId": "1040320",
+    "pt": "{'a': ['gadolínio']}"
+  },
+  {
+    "kana": "ガム",
+    "en": [
+      "chewing gum"
+    ],
+    "senseUid": "aa3c8f4e-e530-4a72-9b3a-cc3acf99e5c4",
+    "wordId": "1040350",
+    "pt": "{'a': ['goma de mascar']}"
+  },
+  {
+    "kana": "ガボット",
+    "en": [
+      "gavotte"
+    ],
+    "senseUid": "74ec4bae-ce04-4d83-941b-01f4b4cf2876",
+    "wordId": "1040340",
+    "pt": "{'a': ['gavotte']}"
+  },
+  {
+    "kana": "ガソール",
+    "en": [
+      "gasohol"
+    ],
+    "senseUid": "5e080e9b-d2bd-43f7-bb79-3bb9de1bfd09",
+    "wordId": "1040230",
+    "pt": "{'a': ['gasol']}\n\nExplicação:  \n- Kana: ガソール  \n- Gloss: ['gasohol']  \n- Tradução considerando o sentido japonês: \"gasol\" (forma aportuguesada, usada para se referir ao combustível misto de gasolina e álcool, similar ao termo japonês)."
+  },
+  {
+    "kana": "ガム",
+    "en": [
+      "gum",
+      "rubber"
+    ],
+    "senseUid": "bafda523-b739-4c49-a980-a347abb9b982",
+    "wordId": "1040350",
+    "pt": "{'a': ['goma', 'borracha']}"
+  },
+  {
+    "kana": "ガムテープ",
+    "en": [
+      "packing tape"
+    ],
+    "senseUid": "ab7cb7f9-65b6-4003-afa8-e3a034a56cfd",
+    "wordId": "1040360",
+    "pt": "{'a': ['fita adesiva']}"
+  },
+  {
+    "kana": "ガラス",
+    "en": [
+      "glass",
+      "pane"
+    ],
+    "senseUid": "b0c04031-b3e1-444b-ab0f-48ecf7a247f1",
+    "wordId": "1040380",
+    "pt": "{'a': ['vidro', 'painel']}"
+  },
+  {
+    "kana": "ガメラン",
+    "en": [
+      "gamelan (traditional Indonesian music ensemble)"
+    ],
+    "senseUid": "ea43f906-8f7a-4f61-b45d-bf2878de1676",
+    "wordId": "1040370",
+    "pt": "{'a': ['gamelan (conjunto musical tradicional indonésio)']}"
+  },
+  {
+    "kana": "ガラスブロック",
+    "en": [
+      "glass block"
+    ],
+    "senseUid": "8dd0df7e-ceed-494a-a463-53e7266edcc4",
+    "wordId": "1040390",
+    "pt": "{'a': ['bloco de vidro']}"
+  },
+  {
+    "kana": "ガラスばり",
+    "en": [
+      "glazing",
+      "fitting with glass"
+    ],
+    "senseUid": "16dd42d5-1ff0-4ba2-9ca6-60176b44276c",
+    "wordId": "1040400",
+    "pt": "{'a': ['envidraçamento', 'colocação de vidro']}"
+  },
+  {
+    "kana": "ガラスめん",
+    "en": [
+      "glass wool"
+    ],
+    "senseUid": "f81164db-0aea-4296-bea3-9a4502fb78ea",
+    "wordId": "1040410",
+    "pt": "{'a': ['lã de vidro']}"
+  },
+  {
+    "kana": "ガリー",
+    "en": [
+      "gully"
+    ],
+    "senseUid": "0ca80564-adbf-4dcf-a088-3b800a737c87",
+    "wordId": "1040420",
+    "pt": "{'a': ['ravina']}"
+  },
+  {
+    "kana": "ガラスばり",
+    "en": [
+      "transparency",
+      "openness",
+      "lack of secrecy",
+      "openness to scrutiny"
+    ],
+    "senseUid": "bdf9d979-c70a-43dd-83f3-02b7425a80d1",
+    "wordId": "1040400",
+    "pt": "{'a': ['transparência', 'abertura', 'ausência de segredo', 'disposição para escrutínio']}"
+  },
+  {
+    "kana": "ガリア",
+    "en": [
+      "Gaul"
+    ],
+    "senseUid": "de258e10-56e8-4b24-8473-8efa7fa891c4",
+    "wordId": "1040440",
+    "pt": "{'a': ['Gália']}"
+  },
+  {
+    "kana": "ガリウム",
+    "en": [
+      "gallium (Ga)"
+    ],
+    "senseUid": "bdc9728e-a0e6-4763-b168-d99f7d3dc7ef",
+    "wordId": "1040460",
+    "pt": "{'a': ['gálio']}"
+  },
+  {
+    "kana": "ガット",
+    "en": [
+      "gut (used to make tennis rackets, violin strings, etc.)",
+      "catgut"
+    ],
+    "senseUid": "7c5f9c2f-85ac-43ed-a358-0f01fcea0c72",
+    "wordId": "1040300",
+    "pt": "{'a': ['tripas (usado para fazer raquetes de tênis, cordas de violino, etc.)', 'catgut']}"
+  },
+  {
+    "kana": "ガリレオ",
+    "en": [
+      "Galileo"
+    ],
+    "senseUid": "e10ec891-e464-4115-b10b-87c0b33d5ef4",
+    "wordId": "1040480",
+    "pt": "{'a': ['Galileu']}"
+  },
+  {
+    "kana": "ガルソンヌ",
+    "en": [
+      "boyish girl"
+    ],
+    "senseUid": "aae532da-95bb-4852-8221-4a66155a15d3",
+    "wordId": "1040490",
+    "pt": "{'a': ['menina de aparência masculina']}"
+  },
+  {
+    "kana": "ガルニ",
+    "en": [
+      "garniture"
+    ],
+    "senseUid": "67b9bea4-260a-4e39-ac30-649c069726d2",
+    "wordId": "1040500",
+    "pt": "{'a': ['guarnição']}"
+  },
+  {
+    "kana": "ガルニチュール",
+    "en": [
+      "garniture"
+    ],
+    "senseUid": "545b2a17-149e-4d28-903f-959c97bf3523",
+    "wordId": "1040510",
+    "pt": "{'a': ['guarnição']}"
+  },
+  {
+    "kana": "ガリバー",
+    "en": [
+      "preeminent example of its kind"
+    ],
+    "senseUid": "a41137ec-6d77-4bdf-8fc5-e0d937671042",
+    "wordId": "1040470",
+    "pt": "{'a': ['exemplo preeminente de seu tipo']}"
+  },
+  {
+    "kana": "ガレージ",
+    "en": [
+      "garage"
+    ],
+    "senseUid": "fcbfb955-49b6-4f24-bde1-e577e762edc0",
+    "wordId": "1040530",
+    "pt": "{'a': ['garagem']}"
+  }
+]

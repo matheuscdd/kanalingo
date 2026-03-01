@@ -1,0 +1,942 @@
+[
+  {
+    "kana": "マイクロリーダー",
+    "en": [
+      "microreader"
+    ],
+    "senseUid": "df465d93-39f7-4489-87c3-162171653fdb",
+    "wordId": "1126850",
+    "pt": "{'a': ['microleitor']}"
+  },
+  {
+    "kana": "マイグレーション",
+    "en": [
+      "migration"
+    ],
+    "senseUid": "f7441b76-369d-4493-8160-d01a2ce2a6f5",
+    "wordId": "1126870",
+    "pt": "{'a': ['migração']}"
+  },
+  {
+    "kana": "マイクロボルト",
+    "en": [
+      "microvolt"
+    ],
+    "senseUid": "4a46b8d5-d4d5-4318-ba83-3583f01fa749",
+    "wordId": "1126810",
+    "pt": "{'a': ['microvolt', 'microvoltagem', 'マイクロボルト']}"
+  },
+  {
+    "kana": "マイクロメーター",
+    "en": [
+      "micrometer (measurement instrument)",
+      "micrometer caliper",
+      "micrometer gauge"
+    ],
+    "senseUid": "6d091d58-c7ed-4c47-8f98-944506e534cc",
+    "wordId": "1126840",
+    "pt": "{'a': ['micrômetro (instrumento de medição)', 'paquímetro micrométrico', 'calibre micrométrico']}"
+  },
+  {
+    "kana": "マイクロフロッピー",
+    "en": [
+      "micro floppy"
+    ],
+    "senseUid": "6b51092e-6db3-419d-a01c-9ecce018987a",
+    "wordId": "1126780",
+    "pt": "{'a': ['microfloppy', 'micro-floppy', 'micro disquete']}"
+  },
+  {
+    "kana": "マイコプラズマ",
+    "en": [
+      "mycoplasma"
+    ],
+    "senseUid": "929b35a3-99bc-4d26-a986-6dbd67d2b2a9",
+    "wordId": "1126910",
+    "pt": "{'a': ['micoplasma']}"
+  },
+  {
+    "kana": "マイグレート",
+    "en": [
+      "migrate"
+    ],
+    "senseUid": "980eb819-ef46-42a0-a777-159aa48858e5",
+    "wordId": "1126880",
+    "pt": "{'a': ['migrar']}"
+  },
+  {
+    "kana": "マイコトキシン",
+    "en": [
+      "mycotoxin"
+    ],
+    "senseUid": "cdacf830-0515-4a5e-87ef-97cb87f9e9a1",
+    "wordId": "1126900",
+    "pt": "{'a': ['micotoxina']}"
+  },
+  {
+    "kana": "マイコン",
+    "en": [
+      "micro-controller",
+      "micro-processor",
+      "MCU"
+    ],
+    "senseUid": "e239723e-0e90-40d6-aabc-09f6f5e4fc5e",
+    "wordId": "1126920",
+    "pt": "{'a': ['microcontrolador', 'microprocessador', 'MCU']}"
+  },
+  {
+    "kana": "マイナー",
+    "en": [
+      "minor (key, scale, etc.)"
+    ],
+    "senseUid": "f9f3f744-10f1-4249-833b-3d0b0f649b34",
+    "wordId": "1126940",
+    "pt": "{'a': ['menor (tom, escala, etc.)']}"
+  },
+  {
+    "kana": "マイナー",
+    "en": [
+      "minor",
+      "small",
+      "unimportant",
+      "obscure"
+    ],
+    "senseUid": "49634948-af53-48e9-97f4-5ebc7df157e1",
+    "wordId": "1126940",
+    "pt": "{'a': ['menor', 'pequeno', 'insignificante', 'obscuro']}"
+  },
+  {
+    "kana": "マイナーリーグ",
+    "en": [
+      "the minor leagues (US baseball)"
+    ],
+    "senseUid": "f1b57082-c7a9-49ec-8213-86cca741952a",
+    "wordId": "1126960",
+    "pt": "{'a': ['ligas menores (beisebol dos EUA)']}"
+  },
+  {
+    "kana": "マイナー",
+    "en": [
+      "the minor leagues (US baseball)"
+    ],
+    "senseUid": "4e7660d5-3b45-43c3-a917-e79a70842a04",
+    "wordId": "1126940",
+    "pt": "{'a': ['ligas menores (beisebol dos EUA)']}"
+  },
+  {
+    "kana": "マイコン",
+    "en": [
+      "moving (animated) icon"
+    ],
+    "senseUid": "4886b434-75ca-42e3-9d88-f7d0efe0eecf",
+    "wordId": "1126920",
+    "pt": "{'a': ['ícone animado', 'ícone em movimento']}"
+  },
+  {
+    "kana": "マイナーチェンジ",
+    "en": [
+      "minor change"
+    ],
+    "senseUid": "8278a650-89a9-4e25-bbc4-3e54f8e5f861",
+    "wordId": "1126950",
+    "pt": "{'a': ['mudança menor', 'alteração pequena', 'ajuste leve']}"
+  },
+  {
+    "kana": "マイコン",
+    "en": [
+      "microcomputer",
+      "personal computer",
+      "home computer"
+    ],
+    "senseUid": "9da9076d-3d3e-4611-b5de-3bf9dc6adb79",
+    "wordId": "1126920",
+    "pt": "{'a': ['microcomputador', 'computador pessoal', 'computador doméstico']}"
+  },
+  {
+    "kana": "マイナス",
+    "en": [
+      "minus",
+      "subtraction",
+      "taking away"
+    ],
+    "senseUid": "82219750-4bdb-458b-b35c-a64257274c4b",
+    "wordId": "1126980",
+    "pt": "{'a': ['menos', 'subtração', 'retirada']}"
+  },
+  {
+    "kana": "マイナス",
+    "en": [
+      "negative (number)"
+    ],
+    "senseUid": "42a3252b-609c-4c87-ae72-62fb1a3b81ef",
+    "wordId": "1126980",
+    "pt": "{'a': ['negativo (número)']}"
+  },
+  {
+    "kana": "マイナス",
+    "en": [
+      "deficit",
+      "loss"
+    ],
+    "senseUid": "48248d20-029f-46b7-87ed-7950111bbca7",
+    "wordId": "1126980",
+    "pt": "{'a': ['déficit', 'prejuízo']}"
+  },
+  {
+    "kana": "マイナス",
+    "en": [
+      "disadvantage",
+      "drawback",
+      "handicap"
+    ],
+    "senseUid": "7b1c07a4-e387-4ad5-8dd7-1ff55602605a",
+    "wordId": "1126980",
+    "pt": "{'a': ['desvantagem', 'prejuízo', 'handicap']}"
+  },
+  {
+    "kana": "マイナス",
+    "en": [
+      "minus sign",
+      "negative sign"
+    ],
+    "senseUid": "c5d66017-80af-4d76-9f59-955d5aa5332f",
+    "wordId": "1126980",
+    "pt": "{'a': ['sinal de menos', 'sinal negativo']}"
+  },
+  {
+    "kana": "マイナス",
+    "en": [
+      "negative (test result)"
+    ],
+    "senseUid": "269bd2aa-adef-4d34-953c-24203b923040",
+    "wordId": "1126980",
+    "pt": "{'a': ['negativo (resultado de teste)']}"
+  },
+  {
+    "kana": "マイナスイメージ",
+    "en": [
+      "negative image (of something or someone)",
+      "bad image"
+    ],
+    "senseUid": "3dc8965c-99d0-4521-8a81-baee5182e0a4",
+    "wordId": "1126990",
+    "pt": "{'a': ['imagem negativa', 'má reputação']}"
+  },
+  {
+    "kana": "マイナス",
+    "en": [
+      "negative charge",
+      "cathode",
+      "negative terminal",
+      "negative pole"
+    ],
+    "senseUid": "f9a72fb9-ad82-4eed-9d2a-4d56ff6db33d",
+    "wordId": "1126980",
+    "pt": "{'a': ['carga negativa', 'cátodo', 'terminal negativo', 'polo negativo']}"
+  },
+  {
+    "kana": "マイナスシーリング",
+    "en": [
+      "budget reduction"
+    ],
+    "senseUid": "8ca8589b-e238-4055-b37e-f754a21119c8",
+    "wordId": "1127000",
+    "pt": "{'a': ['redução orçamentária']}"
+  },
+  {
+    "kana": "マイナス",
+    "en": [
+      "negative (image, effect, thinking, etc.)",
+      "bad"
+    ],
+    "senseUid": "1be4869e-4362-4dd6-851e-5ff2a817a16d",
+    "wordId": "1126980",
+    "pt": "{'a': ['negativo', 'ruim']}"
+  },
+  {
+    "kana": "マイナーレーベル",
+    "en": [
+      "minor (recording) label",
+      "independent record label",
+      "indie label"
+    ],
+    "senseUid": "02aac40b-87b7-45cc-93b1-82f42edb73ec",
+    "wordId": "1126970",
+    "pt": "{'a': ['gravadora independente', 'gravadora alternativa', 'gravadora indie']}"
+  },
+  {
+    "kana": "マイル",
+    "en": [
+      "mile"
+    ],
+    "senseUid": "83145529-4e45-4849-ad4f-1f57b71facb8",
+    "wordId": "1127070",
+    "pt": "{'a': ['milha']}"
+  },
+  {
+    "kana": "マイラー",
+    "en": [
+      "person who accumulates a lot of frequent-flyer points"
+    ],
+    "senseUid": "59eb103b-a49f-4643-963c-a098ed4aace1",
+    "wordId": "1127060",
+    "pt": "{'a': ['acumulador de milhas', 'pessoa que acumula muitos pontos de programas de milhagem']}"
+  },
+  {
+    "kana": "マイルストーン",
+    "en": [
+      "milestone"
+    ],
+    "senseUid": "3a501b59-028b-4039-b919-16c59764dddb",
+    "wordId": "1127090",
+    "pt": "{'a': ['etapa importante']}"
+  },
+  {
+    "kana": "マイルド",
+    "en": [
+      "mild"
+    ],
+    "senseUid": "f30046a7-96e7-4bda-9737-b20b43416f05",
+    "wordId": "1127100",
+    "pt": "{'a': ['suave']}"
+  },
+  {
+    "kana": "マインドコントロール",
+    "en": [
+      "mind-control"
+    ],
+    "senseUid": "3c21c993-702b-403b-a0b4-1bbce5d1dfa9",
+    "wordId": "1127130",
+    "pt": "{'a': ['controle mental']}"
+  },
+  {
+    "kana": "マイルドインフレーション",
+    "en": [
+      "mild inflation"
+    ],
+    "senseUid": "847e30e2-8fcd-4ae2-9f7a-2440075339a9",
+    "wordId": "1127110",
+    "pt": "{'a': ['inflação moderada']}"
+  },
+  {
+    "kana": "マインド",
+    "en": [
+      "mind",
+      "mindset",
+      "mentality",
+      "sentiment"
+    ],
+    "senseUid": "171bc7dd-e3e0-45d4-b060-ac66a24fd3f7",
+    "wordId": "1127120",
+    "pt": "{'a': ['mente', 'mentalidade', 'estado de espírito', 'sentimento']}"
+  },
+  {
+    "kana": "マウス",
+    "en": [
+      "(computer) mouse"
+    ],
+    "senseUid": "4e8fc633-9a54-4fbb-89a3-1fc7626d9ed8",
+    "wordId": "1127140",
+    "pt": "{'a': ['mouse (computador)']}"
+  },
+  {
+    "kana": "マウスピース",
+    "en": [
+      "mouthpiece"
+    ],
+    "senseUid": "54eceb64-e824-429c-a1c1-1fddee9831d2",
+    "wordId": "1127150",
+    "pt": "{'a': ['protetor bucal']}"
+  },
+  {
+    "kana": "マイノリティー",
+    "en": [
+      "minority"
+    ],
+    "senseUid": "37df3405-a388-45b7-91ca-81eaf0fc56d1",
+    "wordId": "1127020",
+    "pt": "{'a': ['minoria']}"
+  },
+  {
+    "kana": "マウスユニット",
+    "en": [
+      "mouse unit (unit of toxicity in poisons)"
+    ],
+    "senseUid": "99328005-37ee-43bb-bde3-6154f1fb0e2e",
+    "wordId": "1127160",
+    "pt": "{'a': ['unidade de rato (unidade de toxicidade em venenos)']}"
+  },
+  {
+    "kana": "マウンテン",
+    "en": [
+      "mountain"
+    ],
+    "senseUid": "952486ce-f451-428e-878a-ebd1f17784d5",
+    "wordId": "1127180",
+    "pt": "{'a': ['montanha']}"
+  },
+  {
+    "kana": "マイナスドライバー",
+    "en": [
+      "standard screwdriver",
+      "flathead screwdriver",
+      "slotted screwdriver",
+      "flat-blade screwdriver"
+    ],
+    "senseUid": "1bc50343-6fb9-4999-9be8-8a3965aa881b",
+    "wordId": "1127010",
+    "pt": "{'a': ['chave de fenda', 'chave de fenda plana', 'chave de fenda de lâmina plana', 'chave de fenda de ponta reta']}"
+  },
+  {
+    "kana": "マイホーム",
+    "en": [
+      "one's (own) house",
+      "one's (own) home"
+    ],
+    "senseUid": "20bc385c-deeb-4e30-8f8e-caed2221083e",
+    "wordId": "1127040",
+    "pt": "{'a': ['casa própria', 'lar próprio']}"
+  },
+  {
+    "kana": "マイノリティー",
+    "en": [
+      "(sexual, ethnic) minority",
+      "minority group"
+    ],
+    "senseUid": "c5200757-9e1d-491b-9b40-694430688981",
+    "wordId": "1127020",
+    "pt": "{'a': ['minoria (sexual, étnica)', 'grupo minoritário']}"
+  },
+  {
+    "kana": "マイム",
+    "en": [
+      "mime"
+    ],
+    "senseUid": "e761d8e7-896e-44c3-8513-5ec6aa541b65",
+    "wordId": "1127050",
+    "pt": "{'a': ['mímico']}"
+  },
+  {
+    "kana": "マイペース",
+    "en": [
+      "(doing things at) one's own pace"
+    ],
+    "senseUid": "6a125fc7-0619-456b-9644-4aadc94264c0",
+    "wordId": "1127030",
+    "pt": "{'a': ['no seu próprio ritmo', 'agir no seu próprio ritmo', 'fazer as coisas ao seu próprio ritmo']}"
+  },
+  {
+    "kana": "マウンティング",
+    "en": [
+      "asserting dominance"
+    ],
+    "senseUid": "7cd0271e-3f35-4a85-a390-4178e005ffae",
+    "wordId": "1127170",
+    "pt": "{'a': ['afirmação de superioridade', 'imposição de domínio', 'demonstrar superioridade']}"
+  },
+  {
+    "kana": "マイペース",
+    "en": [
+      "(doing things) one's own way (esp. in an inconsiderate manner)"
+    ],
+    "senseUid": "e10272cf-bb26-44a1-9dce-d16dcc221dbd",
+    "wordId": "1127030",
+    "pt": "{'a': ['no seu próprio ritmo', 'do seu jeito (especialmente de forma indiferente)', 'seguir o próprio caminho (sem se importar com os outros)']}"
+  },
+  {
+    "kana": "マイラー",
+    "en": [
+      "miler (athlete or horse that specializes in one-mile races)"
+    ],
+    "senseUid": "43c3ec7f-963c-40b4-832b-0bc66390c3df",
+    "wordId": "1127060",
+    "pt": "{'a': ['corredor de milha (atleta ou cavalo especializado em corridas de uma milha)']}"
+  },
+  {
+    "kana": "マウンティング",
+    "en": [
+      "mounting (animal behaviour)"
+    ],
+    "senseUid": "26f8b3b8-5223-4fef-8a3d-9dde393f2218",
+    "wordId": "1127170",
+    "pt": "{'a': ['montagem (comportamento animal)']}"
+  },
+  {
+    "kana": "マウント",
+    "en": [
+      "lens mount"
+    ],
+    "senseUid": "613590e7-252e-46d6-b58b-da113620ae83",
+    "wordId": "1127200",
+    "pt": "{'a': ['montagem de lente']}"
+  },
+  {
+    "kana": "マウンテンミュージック",
+    "en": [
+      "mountain music"
+    ],
+    "senseUid": "5dc0e42d-c74c-4bce-847e-57a81d21f5da",
+    "wordId": "1127190",
+    "pt": "{'a': ['música das montanhas']}"
+  },
+  {
+    "kana": "マウント",
+    "en": [
+      "mounting (animal behaviour)"
+    ],
+    "senseUid": "adee52c9-172d-4735-b92b-0473c3cbe794",
+    "wordId": "1127200",
+    "pt": "{'a': ['montagem (comportamento animal)']}"
+  },
+  {
+    "kana": "マウンド",
+    "en": [
+      "mound"
+    ],
+    "senseUid": "eba6a1ec-7497-4bce-ae72-dab0abc98ee4",
+    "wordId": "1127210",
+    "pt": "{'a': ['montículo']}"
+  },
+  {
+    "kana": "マウス",
+    "en": [
+      "mouse (esp. a laboratory mouse)"
+    ],
+    "senseUid": "715c14e3-392d-4729-8cbd-97bb7d31491c",
+    "wordId": "1127140",
+    "pt": "{'a': ['camundongo (especialmente um camundongo de laboratório)']}"
+  },
+  {
+    "kana": "マウンド",
+    "en": [
+      "(pitcher's) mound"
+    ],
+    "senseUid": "61798c91-deaa-4917-9138-337ff19468e9",
+    "wordId": "1127210",
+    "pt": "{'a': ['montinho (do arremessador)', 'montículo (do arremessador)']}"
+  },
+  {
+    "kana": "マカロニウエスタン",
+    "en": [
+      "spaghetti western (film)"
+    ],
+    "senseUid": "0842b97c-4cfb-4060-928c-ad4d4d057dee",
+    "wordId": "1127250",
+    "pt": "{'a': ['western spaghetti (filme)']}"
+  },
+  {
+    "kana": "マウント",
+    "en": [
+      "mount",
+      "stand",
+      "fixture"
+    ],
+    "senseUid": "22dae576-7ad5-47c3-b989-b96f48f21de4",
+    "wordId": "1127200",
+    "pt": "{'a': ['suporte', 'base', 'fixador']}"
+  },
+  {
+    "kana": "マガジン",
+    "en": [
+      "magazine (periodical)"
+    ],
+    "senseUid": "af2808eb-818e-451f-850c-579d905943d1",
+    "wordId": "1127270",
+    "pt": "{'a': ['revista']}"
+  },
+  {
+    "kana": "マカダム",
+    "en": [
+      "Macadam"
+    ],
+    "senseUid": "02ba7669-906f-487f-aee9-e70d06ce6747",
+    "wordId": "1127230",
+    "pt": "{'a': ['macadame']}"
+  },
+  {
+    "kana": "マウント",
+    "en": [
+      "mounting (e.g. a drive)"
+    ],
+    "senseUid": "6dd71f2b-facc-445f-8592-efb5c6d03aa9",
+    "wordId": "1127200",
+    "pt": "{'a': ['montagem (por exemplo, de uma unidade)']}"
+  },
+  {
+    "kana": "マエストロ",
+    "en": [
+      "maestro"
+    ],
+    "senseUid": "c3f52109-1c3d-4751-8b2a-cfa841c7c1c4",
+    "wordId": "1127220",
+    "pt": "{'a': ['maestro']}"
+  },
+  {
+    "kana": "マガジン",
+    "en": [
+      "magazine (for a firearm)"
+    ],
+    "senseUid": "2b664368-6f76-4206-8ccf-63b98c9b07b7",
+    "wordId": "1127270",
+    "pt": "{'a': ['carregador (de arma de fogo)']}"
+  },
+  {
+    "kana": "マガジンラック",
+    "en": [
+      "magazine rack"
+    ],
+    "senseUid": "de733c75-cd55-4a2b-b1cf-0e13e1ed5218",
+    "wordId": "1127280",
+    "pt": "{'a': ['porta-revistas']}"
+  },
+  {
+    "kana": "マカロニ",
+    "en": [
+      "macaroni"
+    ],
+    "senseUid": "a01ea049-da3c-43f5-8233-2bbfbe7761d5",
+    "wordId": "1127240",
+    "pt": "{'a': ['macarrão (tipo macarroni)']}"
+  },
+  {
+    "kana": "マキシ",
+    "en": [
+      "maxi (skirt, coat, etc.)"
+    ],
+    "senseUid": "f689b63a-834d-4109-966d-aaaa7bae6007",
+    "wordId": "1127290",
+    "pt": "{'a': ['maxi (saia, casaco, etc.)']}"
+  },
+  {
+    "kana": "マキシマム",
+    "en": [
+      "maximum"
+    ],
+    "senseUid": "d0fd3651-bf28-43a7-8874-3573ed473217",
+    "wordId": "1127300",
+    "pt": "{'a': ['máximo']}"
+  },
+  {
+    "kana": "マカロン",
+    "en": [
+      "macaron (meringue-based sandwich cookie)",
+      "French macaroon"
+    ],
+    "senseUid": "e54b4823-1ef4-4317-8d77-57abe574afa1",
+    "wordId": "1127260",
+    "pt": "{'a': ['macaron (biscoito sanduíche à base de merengue)', 'macaron francês']}"
+  },
+  {
+    "kana": "マガジン",
+    "en": [
+      "(reloadable) film cassette",
+      "film canister",
+      "(camera) magazine"
+    ],
+    "senseUid": "4ed19cee-d34c-486a-96a3-f0effe549ae5",
+    "wordId": "1127270",
+    "pt": "{'a': ['cassete de filme (recarregável)', 'canister de filme', 'magazine (de câmera)']}"
+  },
+  {
+    "kana": "マキシム",
+    "en": [
+      "maxim"
+    ],
+    "senseUid": "39cd302f-4644-4993-a42c-8217b5550e50",
+    "wordId": "1127310",
+    "pt": "{'a': ['máxima']}"
+  },
+  {
+    "kana": "マクロ",
+    "en": [
+      "macro"
+    ],
+    "senseUid": "02e125f2-6fa3-4984-9ad1-ef34a8f4052a",
+    "wordId": "1127370",
+    "pt": "{'a': ['macro']}"
+  },
+  {
+    "kana": "マクラメ",
+    "en": [
+      "macramé"
+    ],
+    "senseUid": "a7e0e6c2-3c30-4acb-8451-059260ae7098",
+    "wordId": "1127360",
+    "pt": "{'a': ['macramê']}"
+  },
+  {
+    "kana": "マウント",
+    "en": [
+      "asserting dominance"
+    ],
+    "senseUid": "bb598843-b040-4842-b513-f483b7dd8efa",
+    "wordId": "1127200",
+    "pt": "{'a': ['se impor', 'afirmar superioridade', 'demonstrar domínio']}"
+  },
+  {
+    "kana": "マクロ",
+    "en": [
+      "macro (instruction)"
+    ],
+    "senseUid": "952cbfb9-45a4-4935-b694-548b96884313",
+    "wordId": "1127370",
+    "pt": "{'a': ['macro (instrução)']}"
+  },
+  {
+    "kana": "マクロコスモス",
+    "en": [
+      "macrocosm"
+    ],
+    "senseUid": "2229af0d-91e3-413d-9fb8-c943dbba3a20",
+    "wordId": "1127390",
+    "pt": "{'a': ['macrocosmo']}"
+  },
+  {
+    "kana": "マクロレンズ",
+    "en": [
+      "macro lens"
+    ],
+    "senseUid": "52d8a74c-db13-4c3d-b67e-113f94f39dab",
+    "wordId": "1127400",
+    "pt": "{'a': ['lente macro']}"
+  },
+  {
+    "kana": "マグナム",
+    "en": [
+      "magnum (1.5-litre wine bottle)"
+    ],
+    "senseUid": "0f110cbc-4337-42fd-8bc3-2fc7e27a1806",
+    "wordId": "1127410",
+    "pt": "{'a': ['magnum (garrafa de vinho de 1,5 litro)']}"
+  },
+  {
+    "kana": "マクロエンジニアリング",
+    "en": [
+      "macroengineering"
+    ],
+    "senseUid": "7b726980-3b31-42a7-ba38-509bccbad3c3",
+    "wordId": "1127380",
+    "pt": "{'a': ['macroengenharia']}"
+  },
+  {
+    "kana": "マグナム",
+    "en": [
+      "magnum (cartridge, gun)"
+    ],
+    "senseUid": "cd6dd7c8-0d6c-4b0d-bffa-c140350cbe78",
+    "wordId": "1127410",
+    "pt": "{'a': ['magnum (cartucho, arma)']}"
+  },
+  {
+    "kana": "マキャベリズム",
+    "en": [
+      "Machiavellism",
+      "Machiavellianism"
+    ],
+    "senseUid": "0c921cc1-6561-49a3-ba3d-d14186c9c016",
+    "wordId": "1127320",
+    "pt": "{'a': ['Maquiavelismo', 'Maquiavelianismo']}"
+  },
+  {
+    "kana": "マキシ",
+    "en": [
+      "maxim"
+    ],
+    "senseUid": "76161f25-4abc-4949-9908-6ba28e73090a",
+    "wordId": "1127290",
+    "pt": "{'a': ['máxima']}"
+  },
+  {
+    "kana": "マザーコンプレックス",
+    "en": [
+      "Oedipus complex",
+      "sexual attraction to one's mother"
+    ],
+    "senseUid": "820c064c-10ad-48a4-b413-43e5f9e48d64",
+    "wordId": "1127540",
+    "pt": "{'a': ['complexo materno', 'atração sexual pela própria mãe']}"
+  },
+  {
+    "kana": "マザーズデー",
+    "en": [
+      "Mother's Day"
+    ],
+    "senseUid": "98837f81-5021-4345-a06b-3482ff22543f",
+    "wordId": "1127550",
+    "pt": "{'a': ['Dia das Mães']}"
+  },
+  {
+    "kana": "マグネシウム",
+    "en": [
+      "magnesium (Mg)"
+    ],
+    "senseUid": "94eb2826-ce17-45d8-b194-308a3bcd807c",
+    "wordId": "1127430",
+    "pt": "{'a': ['magnésio']}"
+  },
+  {
+    "kana": "マグネチック",
+    "en": [
+      "magnetic"
+    ],
+    "senseUid": "cba1b35a-a950-460e-9952-a251fec155f6",
+    "wordId": "1127440",
+    "pt": "{'a': ['magnético']}"
+  },
+  {
+    "kana": "マグニチュード",
+    "en": [
+      "magnitude"
+    ],
+    "senseUid": "2cb5d3dc-7ba4-403a-b801-3b6555b4630f",
+    "wordId": "1127420",
+    "pt": "{'a': ['magnitude', 'magnitude sísmica', 'intensidade', 'grau de força']}"
+  },
+  {
+    "kana": "マグネット",
+    "en": [
+      "magnet"
+    ],
+    "senseUid": "3950d1b8-85de-4ccc-bf29-0f7f832c41b6",
+    "wordId": "1127470",
+    "pt": "{'a': ['ímã']}"
+  },
+  {
+    "kana": "マザーテープ",
+    "en": [
+      "mother tape"
+    ],
+    "senseUid": "e98ee147-91c2-48aa-97de-b74774440997",
+    "wordId": "1127560",
+    "pt": "{'a': ['fita-mãe']}"
+  },
+  {
+    "kana": "マグネチックインク",
+    "en": [
+      "magnetic ink"
+    ],
+    "senseUid": "8e119765-c321-4cea-b11f-5425b519eb87",
+    "wordId": "1127450",
+    "pt": "{'a': ['tinta magnética']}"
+  },
+  {
+    "kana": "マグマ",
+    "en": [
+      "magma"
+    ],
+    "senseUid": "54c66827-018e-40bd-ab9c-9f8742b1e5ed",
+    "wordId": "1127480",
+    "pt": "{'a': ['magma']}"
+  },
+  {
+    "kana": "マケドニア",
+    "en": [
+      "Macedonia"
+    ],
+    "senseUid": "53a3eac8-3177-4a54-98c3-e76d6cd79091",
+    "wordId": "1127500",
+    "pt": "{'a': ['Macedônia']}"
+  },
+  {
+    "kana": "マサチューセッツ",
+    "en": [
+      "Massachusetts"
+    ],
+    "senseUid": "2bc6355b-d670-468a-a7fb-ff8f0e5e7bb7",
+    "wordId": "1127510",
+    "pt": "{'a': ['Massachusetts']}"
+  },
+  {
+    "kana": "マシン",
+    "en": [
+      "machine"
+    ],
+    "senseUid": "8269f097-6911-4a20-b255-c0b2e0a1de22",
+    "wordId": "1127600",
+    "pt": "{'a': ['máquina']}"
+  },
+  {
+    "kana": "マサラティー",
+    "en": [
+      "masala tea",
+      "masala chai"
+    ],
+    "senseUid": "cc84acc7-6a19-42cd-a46e-0d0c68cd78b9",
+    "wordId": "1127520",
+    "pt": "{'a': ['chá masala', 'chá masala indiano']}"
+  },
+  {
+    "kana": "マシンガン",
+    "en": [
+      "machine gun"
+    ],
+    "senseUid": "d5f39027-32a0-4ade-8e54-122e936d7d2e",
+    "wordId": "1127610",
+    "pt": "{'a': ['metralhadora']}"
+  },
+  {
+    "kana": "マザコン",
+    "en": [
+      "being a mama's boy",
+      "having an (overly) strong attachment to one's mother"
+    ],
+    "senseUid": "489f3fd9-e2f8-4d0a-9b79-5faf511d23db",
+    "wordId": "1127580",
+    "pt": "{'a': ['ser um filhinho da mamãe', 'ter um apego (excessivo) à mãe']}"
+  },
+  {
+    "kana": "マシュマロ",
+    "en": [
+      "marshmallow"
+    ],
+    "senseUid": "b730f6c4-5464-4086-bb70-4793af34d5e6",
+    "wordId": "1127630",
+    "pt": "{'a': ['marshmallow']}"
+  },
+  {
+    "kana": "マグネチックカード",
+    "en": [
+      "magnetic card"
+    ],
+    "senseUid": "326caf9a-173a-437b-b4d4-1749093e31d3",
+    "wordId": "1127460",
+    "pt": "{'a': ['cartão magnético']}"
+  },
+  {
+    "kana": "マシン",
+    "en": [
+      "race car",
+      "racing motorcycle"
+    ],
+    "senseUid": "f378c17c-7474-4eac-835e-102db5b16110",
+    "wordId": "1127600",
+    "pt": "{'a': ['carro de corrida', 'motocicleta de corrida']}"
+  },
+  {
+    "kana": "マシンビジョン",
+    "en": [
+      "machine-vision"
+    ],
+    "senseUid": "63249522-ed67-457e-bf4b-38e9d857a657",
+    "wordId": "1127660",
+    "pt": "{'a': ['visão de máquina']}"
+  },
+  {
+    "kana": "マザリング",
+    "en": [
+      "mothering"
+    ],
+    "senseUid": "3adf0aac-2a7e-4cae-acf0-49f9e1f4a170",
+    "wordId": "1127590",
+    "pt": "{'a': ['maternagem']}"
+  },
+  {
+    "kana": "マシンルーム",
+    "en": [
+      "machine-room"
+    ],
+    "senseUid": "01c3bcc2-ea58-4586-a9c6-d91e6e03a7d4",
+    "wordId": "1127670",
+    "pt": "{'a': ['sala das máquinas']}"
+  }
+]

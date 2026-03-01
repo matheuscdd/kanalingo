@@ -1,0 +1,936 @@
+[
+  {
+    "kana": "ジャス",
+    "en": [
+      "Japanese Agricultural Standard",
+      "JAS"
+    ],
+    "senseUid": "45623fcc-3f9f-45c1-9ed5-e6aff1683d5f",
+    "wordId": "1065200",
+    "pt": "{'a': ['Padrão Agrícola Japonês', 'JAS']}"
+  },
+  {
+    "kana": "ジャギー",
+    "en": [
+      "jaggies (jagged artifacts in raster graphics)"
+    ],
+    "senseUid": "119643d8-e7c3-4475-8d43-3c2fd21886da",
+    "wordId": "1065140",
+    "pt": "{'a': ['jaggies (artefatos serrilhados em gráficos raster)']}"
+  },
+  {
+    "kana": "ジャケット",
+    "en": [
+      "jacket"
+    ],
+    "senseUid": "c2c5a5ce-5722-4504-a43a-2d56577621bc",
+    "wordId": "1065170",
+    "pt": "{'a': ['jaqueta']}"
+  },
+  {
+    "kana": "ジャグラー",
+    "en": [
+      "juggler"
+    ],
+    "senseUid": "a54befb7-f53c-4d2a-9f26-d70f40f2ca35",
+    "wordId": "1065160",
+    "pt": "{'a': ['malabarista']}"
+  },
+  {
+    "kana": "ジャスティス",
+    "en": [
+      "justice"
+    ],
+    "senseUid": "ba31522a-8e28-40d8-9711-0fc930ff505f",
+    "wordId": "1065210",
+    "pt": "{'a': ['justiça']}"
+  },
+  {
+    "kana": "ジャスティフィケーション",
+    "en": [
+      "justification"
+    ],
+    "senseUid": "5ee1324a-2f7a-425d-9d83-6ec24501c717",
+    "wordId": "1065230",
+    "pt": "{'a': ['justificação']}"
+  },
+  {
+    "kana": "ジャズ",
+    "en": [
+      "jazz"
+    ],
+    "senseUid": "c595714b-d584-41fc-82a8-9c7faa4ab726",
+    "wordId": "1065290",
+    "pt": "{'a': ['ジャズ']}"
+  },
+  {
+    "kana": "ジャスミン",
+    "en": [
+      "jasmine"
+    ],
+    "senseUid": "4c2561e0-17af-40ef-960c-a68814a5d9e1",
+    "wordId": "1065270",
+    "pt": "{'a': ['jasmim']}"
+  },
+  {
+    "kana": "ジャスト",
+    "en": [
+      "just",
+      "exactly",
+      "precisely",
+      "perfectly",
+      "sharp"
+    ],
+    "senseUid": "269aeca2-79fe-434c-927a-1e7e821ef153",
+    "wordId": "1065240",
+    "pt": "{'a': ['exatamente', 'precisamente', 'perfeitamente', 'em ponto', 'justo']}"
+  },
+  {
+    "kana": "ジャズコーラス",
+    "en": [
+      "jazz chorus"
+    ],
+    "senseUid": "6be23aef-140a-41f9-ae52-e1890f0ebe73",
+    "wordId": "1065300",
+    "pt": "{'a': ['coro de jazz']}"
+  },
+  {
+    "kana": "ジャズシンガー",
+    "en": [
+      "jazz singer"
+    ],
+    "senseUid": "ad825582-b1c8-4ede-aa04-5189d158c61f",
+    "wordId": "1065310",
+    "pt": "{'a': ['cantor de jazz']}"
+  },
+  {
+    "kana": "ジャストフィット",
+    "en": [
+      "perfect fit"
+    ],
+    "senseUid": "e470f40d-735c-494a-8ba0-00a3162508f4",
+    "wordId": "1065250",
+    "pt": "{'a': ['encaixe perfeito']}"
+  },
+  {
+    "kana": "ジャストミート",
+    "en": [
+      "hitting the ball squarely"
+    ],
+    "senseUid": "11eb114e-81b2-4697-9510-6bdc93c51bb4",
+    "wordId": "1065260",
+    "pt": "{'a': ['acertar em cheio', 'bater na bola com precisão']}"
+  },
+  {
+    "kana": "ジャスティファイ",
+    "en": [
+      "justify"
+    ],
+    "senseUid": "70e6c71e-d20d-4bf1-bbce-39e2740f5646",
+    "wordId": "1065220",
+    "pt": "{'a': ['justificar']}"
+  },
+  {
+    "kana": "ジャズダンス",
+    "en": [
+      "jazz dance"
+    ],
+    "senseUid": "6f97017f-16d2-4d34-a7aa-24b561ef4a3f",
+    "wordId": "1065330",
+    "pt": "{'a': ['dança jazz']}"
+  },
+  {
+    "kana": "ジャズバンド",
+    "en": [
+      "jazz band"
+    ],
+    "senseUid": "5ea8eb29-7900-4d55-a24a-1901a2e32650",
+    "wordId": "1065340",
+    "pt": "{'a': ['banda de jazz']}"
+  },
+  {
+    "kana": "ジャズピアノ",
+    "en": [
+      "jazz piano"
+    ],
+    "senseUid": "3f62618a-aed2-444c-966e-faae2bdefad0",
+    "wordId": "1065350",
+    "pt": "{'a': ['piano de jazz']}"
+  },
+  {
+    "kana": "ジャズライフ",
+    "en": [
+      "jazz life"
+    ],
+    "senseUid": "fe6f59d6-c8b6-438b-95d7-c178a96cf9f1",
+    "wordId": "1065380",
+    "pt": "{'a': ['vida jazz']}"
+  },
+  {
+    "kana": "ジャズソング",
+    "en": [
+      "jazz song"
+    ],
+    "senseUid": "7e22fb91-4eda-4794-85c6-9ea590501c4a",
+    "wordId": "1065320",
+    "pt": "{'a': ['canção de jazz']}"
+  },
+  {
+    "kana": "ジャズメン",
+    "en": [
+      "jazzmen"
+    ],
+    "senseUid": "8aeef675-82f6-40bd-8d92-ff0d006cdfb4",
+    "wordId": "1065370",
+    "pt": "{'a': ['jazzistas']}"
+  },
+  {
+    "kana": "ジャズフェスティバル",
+    "en": [
+      "jazz festival"
+    ],
+    "senseUid": "f5b06cff-c07a-4d52-b7c6-3f5b2e8a9a7a",
+    "wordId": "1065360",
+    "pt": "{'a': ['Festival de Jazz']}"
+  },
+  {
+    "kana": "ジャック",
+    "en": [
+      "jack",
+      "knave"
+    ],
+    "senseUid": "8b253208-1fe8-4a93-ae6c-ac200216a527",
+    "wordId": "1065410",
+    "pt": "{'a': ['valete', 'jack']}"
+  },
+  {
+    "kana": "ジャッカル",
+    "en": [
+      "jackal (carnivores, Canis aureus ssp., C. adustus, C. mesomelas)"
+    ],
+    "senseUid": "b03e4056-2c68-4094-bb50-9e53a45b2f66",
+    "wordId": "1065390",
+    "pt": "{'a': ['chacal (carnívoros, Canis aureus ssp., C. adustus, C. mesomelas)']}"
+  },
+  {
+    "kana": "ジャッキ",
+    "en": [
+      "jack"
+    ],
+    "senseUid": "f794488f-cbc5-4a5e-93d3-554b68cc0dfb",
+    "wordId": "1065400",
+    "pt": "{'a': ['macaco (ferramenta de levantar carros)']}"
+  },
+  {
+    "kana": "ジャック",
+    "en": [
+      "(electrical) jack"
+    ],
+    "senseUid": "596aedbb-0138-430a-8c96-42f780fb9b9a",
+    "wordId": "1065410",
+    "pt": "{'a': ['conector elétrico']}"
+  },
+  {
+    "kana": "ジャックナイフ",
+    "en": [
+      "jackknife"
+    ],
+    "senseUid": "6e2d3c2d-e3ad-4ad6-af43-2ed409b8fefd",
+    "wordId": "1065420",
+    "pt": "{'a': ['canivete']}"
+  },
+  {
+    "kana": "ジャックポット",
+    "en": [
+      "jackpot"
+    ],
+    "senseUid": "b463cb2f-1025-4869-8e7b-040c6d2c9af4",
+    "wordId": "1065430",
+    "pt": "{'a': ['jackpot']}"
+  },
+  {
+    "kana": "ジャック",
+    "en": [
+      "hijack",
+      "hijacking",
+      "takeover",
+      "seizure"
+    ],
+    "senseUid": "da0a2c12-dda8-4c1e-937f-4f1ec42d5e08",
+    "wordId": "1065410",
+    "pt": "{'a': ['sequestro', 'sequestro de veículo', 'tomada', 'apropriação']}"
+  },
+  {
+    "kana": "ジャッジ",
+    "en": [
+      "judge"
+    ],
+    "senseUid": "73c4e71a-ba1b-4d1c-aea6-0d30ced1f864",
+    "wordId": "1065450",
+    "pt": "{'a': ['julgar', 'avaliar', 'analisar', 'decidir']}"
+  },
+  {
+    "kana": "ジャッジ",
+    "en": [
+      "judging (a person, situation, etc.)",
+      "judgement"
+    ],
+    "senseUid": "d9c4d5e9-d325-4d30-80e7-5e7421e20096",
+    "wordId": "1065450",
+    "pt": "{'a': ['julgar (uma pessoa, situação, etc.)', 'julgamento']}"
+  },
+  {
+    "kana": "ジャッジペーパー",
+    "en": [
+      "(judge's) scoresheet",
+      "scorecard"
+    ],
+    "senseUid": "bf98b36e-2a2a-4a64-a5cb-d44433ef5674",
+    "wordId": "1065460",
+    "pt": "{'a': ['folha de pontuação do juiz', 'cartão de pontuação']}"
+  },
+  {
+    "kana": "ジャッグル",
+    "en": [
+      "juggle (esp. in baseball, handball)",
+      "juggling",
+      "bobble"
+    ],
+    "senseUid": "ab41e7ae-f9b0-4f8b-86d0-bd075ca14a1f",
+    "wordId": "1065440",
+    "pt": "{'a': ['jogar (especialmente em beisebol ou handebol)', 'malabarismo', 'manusear de forma instável']}"
+  },
+  {
+    "kana": "ジャップ",
+    "en": [
+      "Jap",
+      "Japanese person"
+    ],
+    "senseUid": "df39a8bb-2a20-43a8-a026-5d35b99d4fa4",
+    "wordId": "1065480",
+    "pt": "{'a': ['Jap', 'pessoa japonesa']}"
+  },
+  {
+    "kana": "ジャパニーズ",
+    "en": [
+      "Japanese (people, language, style)"
+    ],
+    "senseUid": "ace201da-5d15-4856-81dd-94fe4ec12a95",
+    "wordId": "1065490",
+    "pt": "{'a': ['Japonês (pessoas, idioma, estilo)']}"
+  },
+  {
+    "kana": "ジャパニーズイングリッシュ",
+    "en": [
+      "Japanese English"
+    ],
+    "senseUid": "3ca6f2ed-cce7-4475-8596-3bbfeec0937c",
+    "wordId": "1065500",
+    "pt": "{'a': ['Inglês japonês']}"
+  },
+  {
+    "kana": "ジャパネスク",
+    "en": [
+      "Japanesque"
+    ],
+    "senseUid": "0681302a-d308-4a09-a270-173208e0cf4b",
+    "wordId": "1065530",
+    "pt": "{'a': ['japonesco']}"
+  },
+  {
+    "kana": "ジャッジ",
+    "en": [
+      "judgement",
+      "decision",
+      "call"
+    ],
+    "senseUid": "32e2c80a-f0a3-4b16-aaf1-4cd58f254207",
+    "wordId": "1065450",
+    "pt": "{'a': ['julgamento', 'decisão', 'veredito']}"
+  },
+  {
+    "kana": "ジャッジメント",
+    "en": [
+      "judgement",
+      "judgment"
+    ],
+    "senseUid": "d2d22b20-de3d-49e1-b39e-41eb96ff7daa",
+    "wordId": "1065470",
+    "pt": "{'a': ['julgamento', 'decisão']}"
+  },
+  {
+    "kana": "ジャパノロジスト",
+    "en": [
+      "Japanologist"
+    ],
+    "senseUid": "cc46a75b-b561-4421-b8e2-ca61ccca7788",
+    "wordId": "1065550",
+    "pt": "{'a': ['japanologista']}"
+  },
+  {
+    "kana": "ジャパン",
+    "en": [
+      "Japan"
+    ],
+    "senseUid": "27910b3d-56f7-428e-ae3f-9134c482a3fc",
+    "wordId": "1065560",
+    "pt": "{'a': ['Japão']}"
+  },
+  {
+    "kana": "ジャパニーズスマイル",
+    "en": [
+      "smiling in an embarrassing or uncomfortable situation (as a trait of Japanese culture)"
+    ],
+    "senseUid": "8640bf61-dd22-4fb7-9b37-f2beb539d473",
+    "wordId": "1065510",
+    "pt": "{'a': ['sorriso japonês', 'sorrir em situação constrangedora ou desconfortável (como traço da cultura japonesa)']}"
+  },
+  {
+    "kana": "ジャパンカップ",
+    "en": [
+      "Japan Cup"
+    ],
+    "senseUid": "6391ef4f-5ebb-40ab-abb5-3db7d885944a",
+    "wordId": "1065570",
+    "pt": "{'a': ['Copa do Japão']}"
+  },
+  {
+    "kana": "ジャパノロジー",
+    "en": [
+      "Japanology"
+    ],
+    "senseUid": "51ea57c5-06c4-49c6-b34a-92f8251ea1a9",
+    "wordId": "1065540",
+    "pt": "{'a': ['Japanologia']}"
+  },
+  {
+    "kana": "ジャパンソサエティー",
+    "en": [
+      "Japan Society"
+    ],
+    "senseUid": "56f4061b-2d99-417c-b636-516421b70d21",
+    "wordId": "1065590",
+    "pt": "{'a': ['Sociedade Japão']}"
+  },
+  {
+    "kana": "ジャパンバッシング",
+    "en": [
+      "Japan bashing"
+    ],
+    "senseUid": "4b40ca34-f468-4458-a4b8-d62c32c8e356",
+    "wordId": "1065610",
+    "pt": "{'a': ['Japão sendo alvo de críticas', 'Críticas ao Japão', 'Ataques ao Japão']}"
+  },
+  {
+    "kana": "ジャムセッション",
+    "en": [
+      "jam session"
+    ],
+    "senseUid": "b302b668-c7f6-4c07-beb7-c887f87e3a1e",
+    "wordId": "1065690",
+    "pt": "{'a': ['sessão de improvisação']}"
+  },
+  {
+    "kana": "ジャム",
+    "en": [
+      "jam"
+    ],
+    "senseUid": "d8be2ff1-dd66-4ade-8d74-3e41583b0a6e",
+    "wordId": "1065680",
+    "pt": "{'a': ['geleia']}"
+  },
+  {
+    "kana": "ジャブ",
+    "en": [
+      "jab"
+    ],
+    "senseUid": "549d5fdc-6a0f-4c18-8c68-469951a91e74",
+    "wordId": "1065630",
+    "pt": "{'a': ['soco rápido']}"
+  },
+  {
+    "kana": "ジャポニカ",
+    "en": [
+      "japonica",
+      "common camellia (Camellia japonica)"
+    ],
+    "senseUid": "da58c7ff-78af-434b-9815-a3ce39903e22",
+    "wordId": "1065640",
+    "pt": "{'a': ['japonica', 'camélia comum (Camellia japonica)']}"
+  },
+  {
+    "kana": "ジャミング",
+    "en": [
+      "jamming"
+    ],
+    "senseUid": "97eb5598-7a4d-428b-8d8c-fc7311f1cb4e",
+    "wordId": "1065670",
+    "pt": "{'a': ['interferência']}"
+  },
+  {
+    "kana": "ジャンキー",
+    "en": [
+      "junkie (person with an obsession)"
+    ],
+    "senseUid": "05647a92-553c-4d34-94f3-2466f4c5f190",
+    "wordId": "1065720",
+    "pt": "{'a': ['viciado', 'fanático']}"
+  },
+  {
+    "kana": "ジャポネズリ",
+    "en": [
+      "Japonaiserie"
+    ],
+    "senseUid": "194d1bb8-2464-48b4-a060-abc7cfd6296d",
+    "wordId": "1065650",
+    "pt": "{'a': ['Japonaiserie']}"
+  },
+  {
+    "kana": "ジャンク",
+    "en": [
+      "junk"
+    ],
+    "senseUid": "2bcb40b9-2c10-4a7d-b169-9b69ef5a93af",
+    "wordId": "1065730",
+    "pt": "{'a': ['sucata', 'lixo', 'coisa descartável']}"
+  },
+  {
+    "kana": "ジャンキー",
+    "en": [
+      "junkie (drug addict)"
+    ],
+    "senseUid": "8ee91c01-6dbd-4742-83f9-6e60eab508fe",
+    "wordId": "1065720",
+    "pt": "{'a': ['viciado', 'dependente químico']}"
+  },
+  {
+    "kana": "ジャンクアート",
+    "en": [
+      "junk art"
+    ],
+    "senseUid": "df485cfa-a248-4398-8035-87b2c8c9b001",
+    "wordId": "1065740",
+    "pt": "{'a': ['arte de sucata']}"
+  },
+  {
+    "kana": "ジャマイカ",
+    "en": [
+      "Jamaica"
+    ],
+    "senseUid": "54375996-08a3-43b9-9a64-655b2fe41072",
+    "wordId": "1065660",
+    "pt": "{'a': ['Jamaica']}"
+  },
+  {
+    "kana": "ジャングル",
+    "en": [
+      "jungle"
+    ],
+    "senseUid": "50f92dbc-d88e-46f9-8f72-7f7321a05ac9",
+    "wordId": "1065790",
+    "pt": "{'a': ['selva']}"
+  },
+  {
+    "kana": "ジャングル",
+    "en": [
+      "jungle",
+      "jungle music"
+    ],
+    "senseUid": "6105eeec-4dd8-4ea7-9a1b-ef30e4901210",
+    "wordId": "1065790",
+    "pt": "{'a': ['selva', 'música jungle']}"
+  },
+  {
+    "kana": "ジャンクション",
+    "en": [
+      "junction",
+      "system interchange (between highways)"
+    ],
+    "senseUid": "81d64209-03d4-4de3-ad78-a7b36bcadb7d",
+    "wordId": "1065760",
+    "pt": "{'a': ['junção', 'entroncamento', 'intercâmbio de sistemas (entre rodovias)']}"
+  },
+  {
+    "kana": "ジャンクアクセサリー",
+    "en": [
+      "junk accessories"
+    ],
+    "senseUid": "858e16b1-785d-49d4-b460-65dad0357d5d",
+    "wordId": "1065750",
+    "pt": "{'a': ['acessórios de bijuteria', 'acessórios baratos', 'acessórios de fantasia']}"
+  },
+  {
+    "kana": "ジャンクフード",
+    "en": [
+      "junk food"
+    ],
+    "senseUid": "1f4c8a5d-934a-49a5-bd7e-99e7c74b035a",
+    "wordId": "1065770",
+    "pt": "{'a': ['comida lixo', 'comida industrializada', 'comida não saudável']}"
+  },
+  {
+    "kana": "ジャンクボンド",
+    "en": [
+      "junk bond"
+    ],
+    "senseUid": "cf2b2f39-b680-4bfc-a6c8-3e4bec8ff379",
+    "wordId": "1065780",
+    "pt": "{'a': ['obrigação de alto risco', 'título especulativo', 'título de alto rendimento']}"
+  },
+  {
+    "kana": "ジャンダルム",
+    "en": [
+      "gendarme"
+    ],
+    "senseUid": "34d2ea9e-f752-41a6-920c-359b2fd44018",
+    "wordId": "1065820",
+    "pt": "{'a': ['gendarme']}"
+  },
+  {
+    "kana": "ジャンケット",
+    "en": [
+      "junket"
+    ],
+    "senseUid": "179ad9af-1e9c-401a-bb7f-cc70f2d4b216",
+    "wordId": "1065810",
+    "pt": "{'a': ['viagem promocional', 'excursão patrocinada', 'evento de divulgação']}"
+  },
+  {
+    "kana": "ジャングルジム",
+    "en": [
+      "jungle gym",
+      "monkey bars",
+      "climbing frame"
+    ],
+    "senseUid": "beafdfb4-23bd-44ff-8a7a-2c9ce6f819ad",
+    "wordId": "1065800",
+    "pt": "{'a': ['trepa-trepa', 'escada de playground', 'estrutura de escalada']}"
+  },
+  {
+    "kana": "ジャンパー",
+    "en": [
+      "ski jumper",
+      "jumping event athlete"
+    ],
+    "senseUid": "8ef4a8b7-b467-437f-9422-50b736b776d4",
+    "wordId": "1065840",
+    "pt": "{'a': ['saltador de esqui', 'atleta de salto (evento)']}"
+  },
+  {
+    "kana": "ジャンバライヤ",
+    "en": [
+      "jambalaya"
+    ],
+    "senseUid": "663e62fb-05b8-460a-9fe8-dc377ee80f14",
+    "wordId": "1065830",
+    "pt": "{'a': ['ジャンバライヤ']}"
+  },
+  {
+    "kana": "ジャンパー",
+    "en": [
+      "jumper lead",
+      "jumper wire"
+    ],
+    "senseUid": "9d8d2ca6-8ead-4f4f-8146-2526f5a0fe6d",
+    "wordId": "1065840",
+    "pt": "{'a': ['fio jumper', 'cabo jumper']}"
+  },
+  {
+    "kana": "ジャンパー",
+    "en": [
+      "(short) jacket",
+      "blouson",
+      "windbreaker",
+      "jumper"
+    ],
+    "senseUid": "7a002094-e725-43c4-aef9-8ed63c116c3c",
+    "wordId": "1065840",
+    "pt": "{'a': ['jaqueta (curta)', 'blusão', 'quebra-vento', 'jumper']}"
+  },
+  {
+    "kana": "ジャンプ",
+    "en": [
+      "jumping event (skiing, track and field)"
+    ],
+    "senseUid": "d94c0409-61e0-4af1-8135-32662d807f1b",
+    "wordId": "1065860",
+    "pt": "{'a': ['evento de salto (esqui, atletismo)']}"
+  },
+  {
+    "kana": "ジャンパースカート",
+    "en": [
+      "jumper skirt",
+      "pinafore dress"
+    ],
+    "senseUid": "79897223-5c9c-46ad-a059-06d94bfc604e",
+    "wordId": "1065850",
+    "pt": "{'a': ['jumper skirt', 'vestido tipo avental', 'vestido jumper', 'vestido pinafore']}"
+  },
+  {
+    "kana": "ジャンプ",
+    "en": [
+      "jump"
+    ],
+    "senseUid": "83e4bb71-cc55-4956-8ea1-1a7fe0557fa2",
+    "wordId": "1065860",
+    "pt": "{'a': ['pular', 'salto']}"
+  },
+  {
+    "kana": "ジャンプスーツ",
+    "en": [
+      "jumpsuit"
+    ],
+    "senseUid": "a9dd2c6f-881f-462b-9fce-a862e3e45c68",
+    "wordId": "1065870",
+    "pt": "{'a': ['macacão']}"
+  },
+  {
+    "kana": "ジャンプ",
+    "en": [
+      "jump (in price)",
+      "sudden rise"
+    ],
+    "senseUid": "f1c36890-5cde-4563-b0d1-94a68db4b661",
+    "wordId": "1065860",
+    "pt": "{'a': ['salto (no preço)', 'aumento repentino']}"
+  },
+  {
+    "kana": "ジャンプ",
+    "en": [
+      "jumping (to another page after clicking a hyperlink)"
+    ],
+    "senseUid": "3c3ebe17-42ec-4639-a9ff-b5e58cb3ab10",
+    "wordId": "1065860",
+    "pt": "{'a': ['pular (para outra página após clicar em um hiperlink)']}"
+  },
+  {
+    "kana": "ジャンボ",
+    "en": [
+      "jumbo",
+      "jumbo-sized"
+    ],
+    "senseUid": "125e31c9-5bd1-4721-a01d-43922051df9c",
+    "wordId": "1065880",
+    "pt": "{'a': ['gigante', 'tamanho jumbo']}"
+  },
+  {
+    "kana": "ジャンボサイズ",
+    "en": [
+      "jumbo-size"
+    ],
+    "senseUid": "20f411dc-7c29-4c79-85b8-e8b98f440503",
+    "wordId": "1065890",
+    "pt": "{'a': ['tamanho jumbo']}"
+  },
+  {
+    "kana": "ジャンボ",
+    "en": [
+      "jumbo jet"
+    ],
+    "senseUid": "07b3c568-7df3-418c-9698-50a74ae6e13c",
+    "wordId": "1065880",
+    "pt": "{'a': ['avião jumbo']}"
+  },
+  {
+    "kana": "ジャンボリー",
+    "en": [
+      "jamboree (large gathering of Scouts)"
+    ],
+    "senseUid": "13c0040f-9d8d-4d0d-8c1e-a7d271dd0232",
+    "wordId": "1065910",
+    "pt": "{'a': ['jamboree (grande encontro de escoteiros)']}"
+  },
+  {
+    "kana": "ジャンル",
+    "en": [
+      "genre",
+      "category",
+      "kind"
+    ],
+    "senseUid": "773b6559-0d05-4e00-832d-abe54811becb",
+    "wordId": "1065920",
+    "pt": "{'a': ['gênero', 'categoria', 'tipo']}"
+  },
+  {
+    "kana": "ジャンボジェット",
+    "en": [
+      "jumbo-jet"
+    ],
+    "senseUid": "9602bd05-b56d-410d-80b4-836cfa27ae14",
+    "wordId": "1065900",
+    "pt": "{'a': ['jumbo jato']}"
+  },
+  {
+    "kana": "ジュークボックス",
+    "en": [
+      "juke-box"
+    ],
+    "senseUid": "47e198c0-7f28-48c7-aece-cf3d61cf63b1",
+    "wordId": "1065930",
+    "pt": "{'a': ['jukebox']}"
+  },
+  {
+    "kana": "ジュース",
+    "en": [
+      "juice"
+    ],
+    "senseUid": "f32f7aa7-fb65-4080-b391-c5406daac015",
+    "wordId": "1065950",
+    "pt": "{'a': ['suco']}"
+  },
+  {
+    "kana": "ジューサー",
+    "en": [
+      "juicer"
+    ],
+    "senseUid": "75668fd0-be79-41d7-9bda-b332116d9431",
+    "wordId": "1065940",
+    "pt": "{'a': ['espremedor']}"
+  },
+  {
+    "kana": "ジュール",
+    "en": [
+      "joule"
+    ],
+    "senseUid": "3db73a43-f721-42d4-9f1c-22a068a8a3eb",
+    "wordId": "1065960",
+    "pt": "{'a': ['joule']}"
+  },
+  {
+    "kana": "ジューンブライド",
+    "en": [
+      "June bride"
+    ],
+    "senseUid": "35d23db8-b060-4c56-b6f3-606364e2c503",
+    "wordId": "1065970",
+    "pt": "{'a': ['noiva de junho']}"
+  },
+  {
+    "kana": "ジュエリー",
+    "en": [
+      "jewelry",
+      "jewellery"
+    ],
+    "senseUid": "a6e31cdb-fb6c-4df9-99fe-ec3bb1f36f84",
+    "wordId": "1065980",
+    "pt": "{'a': ['joia', 'jóias']}"
+  },
+  {
+    "kana": "ジュエル",
+    "en": [
+      "jewel"
+    ],
+    "senseUid": "9eaec7d4-108a-4cb8-8bc0-f7f2053c1e19",
+    "wordId": "1065990",
+    "pt": "{'a': ['jóia']}"
+  },
+  {
+    "kana": "ジュース",
+    "en": [
+      "soft drink (usu. fruit-based)",
+      "sweetened drink"
+    ],
+    "senseUid": "d7ce2883-bf87-44f9-a659-4d05329a4002",
+    "wordId": "1065950",
+    "pt": "{'a': ['refrigerante (geralmente à base de frutas)', 'bebida adoçada']}"
+  },
+  {
+    "kana": "ジュジュミュージック",
+    "en": [
+      "juju music"
+    ],
+    "senseUid": "24558825-73e4-4deb-9824-a31551992b26",
+    "wordId": "1066020",
+    "pt": "{'a': ['ジュジュミュージック']}"
+  },
+  {
+    "kana": "ジュグラーのサイクル",
+    "en": [
+      "Juglar cycle"
+    ],
+    "senseUid": "66cd3fd3-bc73-4323-a663-1ed1e4005f60",
+    "wordId": "1066000",
+    "pt": "{'a': ['Ciclo de Juglar']}"
+  },
+  {
+    "kana": "ジュニア",
+    "en": [
+      "junior"
+    ],
+    "senseUid": "465a39d3-c65f-4556-aceb-1d408fdb9db4",
+    "wordId": "1066030",
+    "pt": "{'a': ['júnior']}"
+  },
+  {
+    "kana": "ジュニアウェルター",
+    "en": [
+      "junior welter (weight)"
+    ],
+    "senseUid": "159858fb-fc61-43d7-851f-6f96710d0699",
+    "wordId": "1066040",
+    "pt": "{'a': ['junior welter (peso)', 'peso meio-médio júnior']}"
+  },
+  {
+    "kana": "ジュニアカレッジ",
+    "en": [
+      "junior college"
+    ],
+    "senseUid": "980dd3ff-267f-45f4-9f2e-d192bec257eb",
+    "wordId": "1066050",
+    "pt": "{'a': ['faculdade júnior']}"
+  },
+  {
+    "kana": "ジュニアチーム",
+    "en": [
+      "junior team"
+    ],
+    "senseUid": "29c61234-048e-4815-a7b9-ad9e0c4408c0",
+    "wordId": "1066070",
+    "pt": "{'a': ['equipe júnior']}"
+  },
+  {
+    "kana": "ジュニアハイスクール",
+    "en": [
+      "junior high school"
+    ],
+    "senseUid": "5e0cd8b8-b637-4d9b-9a34-1ae3e944518f",
+    "wordId": "1066080",
+    "pt": "{'a': ['escola secundária júnior']}"
+  },
+  {
+    "kana": "ジュニアスタイル",
+    "en": [
+      "junior style"
+    ],
+    "senseUid": "82e82b12-e60d-403c-8541-be62a45e2246",
+    "wordId": "1066060",
+    "pt": "{'a': ['estilo júnior']}"
+  },
+  {
+    "kana": "ジュニアボードシステム",
+    "en": [
+      "junior board of directors systems"
+    ],
+    "senseUid": "d822617f-cb4c-4acc-a969-94d9fd1f7b54",
+    "wordId": "1066110",
+    "pt": "{'a': ['sistema de conselho júnior']}"
+  },
+  {
+    "kana": "ジュピター",
+    "en": [
+      "Jupiter (planet)"
+    ],
+    "senseUid": "de195ba3-db70-47d1-937a-b7b5632539cf",
+    "wordId": "1066160",
+    "pt": "{'a': ['Júpiter (planeta)']}"
+  },
+  {
+    "kana": "ジュニアフェザー",
+    "en": [
+      "junior feather (weight)"
+    ],
+    "senseUid": "30f97fea-ef7c-4ae9-b79b-e6b67023e5bc",
+    "wordId": "1066090",
+    "pt": "{'a': ['peso-pena júnior']}"
+  }
+]
