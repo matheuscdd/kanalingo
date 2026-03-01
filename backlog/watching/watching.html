@@ -221,8 +221,7 @@
             overflow: hidden;
             margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            /* pointer-events: none;  */
-            /* Disables default controls interaction if any slip through */
+            pointer-events: none; /* Disables default controls interaction if any slip through */
         }
 
         .video-container iframe {
@@ -235,19 +234,13 @@
 
         /* Overlay to block clicks on video */
         .video-blocker {
-            transition: 0.3s;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 10;
-            background-color: transparent;
-        }
-        
-        .video-blocker.paused {
-            transition: 0.3s;
-           backdrop-filter: blur(40px);
+            background: transparent;
         }
 
         .game-controls {
@@ -368,10 +361,10 @@
             <h2>Configuração</h2>
             
             <label>1. Link do YouTube</label>
-            <input type="text" id="yt-url" placeholder="Ex: https://www.youtube.com/watch?v=..." value="">
+            <input type="text" id="yt-url" placeholder="Ex: https://www.youtube.com/watch?v=..." value="https://youtu.be/ixmMxZVfJbU?si=xDIA49l46UEGEpzr">
 
-            <label>2. Arquivo de Legenda (.srt)</label>
-            <input type="file" id="srt-file" accept=".srt">
+            <label>2. Ficheiro de Legendas (.json)</label>
+            <input type="file" id="json-file" accept=".json">
 
             <label>3. Dificuldade</label>
             <div class="difficulty-selector">
@@ -443,23 +436,12 @@
 
         // --- Demo Data (Sintel Trailer) ---
         const DEMO_VIDEO_ID = "qCbbHNtrq2k"; // Blender Sintel Open Movie
-        const DEMO_SRT = `
-1
-00:00:10,000 --> 00:00:12,500
-Este é um dia perigoso.
-
-2
-00:00:14,000 --> 00:00:16,500
-Eu tenho procurado por muito tempo.
-
-3
-00:00:18,000 --> 00:00:20,000
-Você não deveria estar aqui.
-
-4
-00:00:21,000 --> 00:00:24,000
-O dragão é meu amigo.
-`;
+        const DEMO_JSON = [
+            { "start": 10.0, "end": 12.5, "text": "Este é um dia perigoso." },
+            { "start": 14.0, "end": 16.5, "text": "Eu tenho procurado por muito tempo." },
+            { "start": 18.0, "end": 20.0, "text": "Você não deveria estar aqui." },
+            { "start": 21.0, "end": 24.0, "text": "O dragão é meu amigo." }
+        ];
 
         function setDifficulty(level, btn) {
             difficulty = level;
@@ -495,26 +477,16 @@ O dragão é meu amigo.
             }
         }
 
-        // --- SRT Parsing ---
-        function parseSRT(text) {
-            const pattern = /(\d+)\n(\d{2}:\d{2}:\d{2},\d{3}) --> (\d{2}:\d{2}:\d{2},\d{3})\n([\s\S]*?)(?=\n\n|\n$|$)/g;
-            const result = [];
-            let match;
-            
-            while ((match = pattern.exec(text)) !== null) {
-                result.push({
-                    start: timeToSeconds(match[2]),
-                    end: timeToSeconds(match[3]),
-                    text: match[4].replace(/<[^>]*>/g, '').replace(/\n/g, ' ').trim()
-                });
+        // --- JSON Parsing ---
+        function parseJSONSubtitle(text) {
+            try {
+                const parsed = JSON.parse(text);
+                if (!Array.isArray(parsed)) throw new Error("Não é um array");
+                return parsed;
+            } catch (e) {
+                console.error("Erro ao processar JSON:", e);
+                return [];
             }
-            return result;
-        }
-
-        function timeToSeconds(timeString) {
-            const parts = timeString.split(':');
-            const seconds = parts[2].split(',');
-            return parseInt(parts[0], 10) * 3600 + parseInt(parts[1], 10) * 60 + parseInt(seconds[0], 10) + parseInt(seconds[1], 10) / 1000;
         }
 
         // --- Start Handlers ---
@@ -522,10 +494,10 @@ O dragão é meu amigo.
         // Mode 1: Custom
         function startGame() {
             const urlInput = document.getElementById('yt-url').value;
-            const fileInput = document.getElementById('srt-file').files[0];
+            const fileInput = document.getElementById('json-file').files[0];
             
             if (!urlInput || !fileInput) {
-                alert("Por favor, forneça um link do YouTube e um arquivo SRT.");
+                alert("Por favor, forneça um link do YouTube e um ficheiro JSON.");
                 return;
             }
 
@@ -539,8 +511,8 @@ O dragão é meu amigo.
             
             const reader = new FileReader();
             reader.onload = function(e) {
-                const parsed = parseSRT(e.target.result);
-                if(parsed.length === 0) { alert("Erro ao ler SRT. Verifique o formato do arquivo."); return; }
+                const parsed = parseJSONSubtitle(e.target.result);
+                if(parsed.length === 0) { alert("Erro ao ler JSON. Verifique o formato do ficheiro."); return; }
                 initGame(videoIdMatch[1], parsed);
             };
             reader.readAsText(fileInput);
@@ -548,8 +520,7 @@ O dragão é meu amigo.
 
         // Mode 2: Demo
         function startDemo() {
-            const parsed = parseSRT(DEMO_SRT);
-            initGame(DEMO_VIDEO_ID, parsed);
+            initGame(DEMO_VIDEO_ID, DEMO_JSON);
         }
 
         // --- Initialization ---
@@ -581,7 +552,6 @@ O dragão é meu amigo.
                 'fs': 0,
                 'modestbranding': 1,
                 'rel': 0,
-                iv_load_policy: 3,
                 'host': 'https://www.youtube.com'
             };
 
@@ -607,7 +577,6 @@ O dragão é meu amigo.
             document.getElementById('loading-spinner').style.display = 'none';
             document.getElementById('subtitle-area').innerText = "O vídeo começará em breve...";
             event.target.playVideo();
-            document.querySelector('.video-blocker').classList.remove('paused');
             gameLoopInterval = setInterval(gameLoop, 100);
         }
 
@@ -670,7 +639,6 @@ O dragão é meu amigo.
                     if (!isWaitingForInput) {
                         isWaitingForInput = true;
                         player.pauseVideo();
-                        document.querySelector('.video-blocker').classList.add('paused');
                         startHealthDrain();
                     }
                 } else if (isWaitingForInput && isInputComplete()) {
@@ -832,7 +800,6 @@ O dragão é meu amigo.
             document.getElementById('health-bar').style.width = '100%';
             document.getElementById('feedback-msg').innerText = "";
             player.playVideo();
-            document.querySelector('.video-blocker').classList.remove('paused');
         }
 
         function resetHealthBar() {
@@ -849,7 +816,6 @@ O dragão é meu amigo.
                 const curr = player.getCurrentTime();
                 player.seekTo(Math.max(0, curr - seconds), true);
                 player.playVideo();
-                document.querySelector('.video-blocker').classList.remove('paused');
                 resumeGame(); 
                 document.getElementById('subtitle-area').innerHTML = 'Rebobinando...';
                 currentSubtitleIndex = -1; 
