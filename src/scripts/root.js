@@ -2,7 +2,7 @@ import {
     insertLoadingScreen,
     redirectIfLogged,
     removeLoadingScreen,
-} from "./utils.js";
+} from "./router.js";
 
 initEvents();
 

@@ -8,12 +8,12 @@ import {
     katakana,
 } from "../../../database/letters.js";
 import { authFirebase, dbFirebase } from "../../../scripts/config.js";
+import { showNumberIncreasing } from "../../../scripts/utilsDom.js";
 import {
-    getSumFromValues,
+    getTotalScore,
     orderArray,
-    showNumberIncreasing,
     shuffleArray,
-} from "../../../scripts/utils.js";
+} from "../../../scripts/utilsPure.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import {
     getDoc,
@@ -112,10 +112,6 @@ export async function updateScoreDatabase() {
     } catch (error) {
         console.error(error);
     }
-}
-
-export function getTotalScore(ref) {
-    return Object.values(ref).reduce((x, y) => getSumFromValues(y) + x, 0);
 }
 
 export async function updateTotalScoreDisplay(isFirstLoad) {

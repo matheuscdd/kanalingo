@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import { authFirebase } from "../../../scripts/config.js";
-import { isValidEmail } from "../../../scripts/utils.js";
+import { isValidEmail } from "../../../scripts/utilsPure.js";
 
 const btnSend = document.getElementById("login");
 const txtBtnSend = btnSend.querySelector("span");

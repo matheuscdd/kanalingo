@@ -1,13 +1,14 @@
 {
   "scripts": {
-    "format": "npx prettier --write src",
-    "cache": "node createCache.js"
+    "format": "npx prettier --write src tests",
+    "cache": "node createCache.js",
+    "test": "vitest"
   },
   "devDependencies": {
-    "prettier": "^3.8.1"
+    "prettier": "^3.8.1",
+    "vitest": "^1.6.1"
   },
   "name": "kanalingo",
-  "version": "1.0.0",
   "main": "createCache.js",
   "keywords": [],
   "author": "",

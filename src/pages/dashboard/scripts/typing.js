@@ -1,5 +1,6 @@
 import { methodsKeys, scores } from "../../../database/letters.js";
-import { isPWA, sleep } from "../../../scripts/utils.js";
+import { isPWA } from "../../../scripts/utilsDom.js";
+import { sleep } from "../../../scripts/utilsPure.js";
 import {
     gameState,
     getCurrentCharJA,
@@ -29,7 +30,7 @@ export function initEventsTyping() {
         if (window.innerWidth > 1000) return;
         await sleep(300);
         window.scrollTo({
-            top: isPWA ? 40 : 100,
+            top: isPWA() ? 40 : 100,
             behavior: "smooth",
         });
     };

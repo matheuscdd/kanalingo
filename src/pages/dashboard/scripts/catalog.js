@@ -5,8 +5,8 @@ import {
     scores,
 } from "../../../database/letters.js";
 import { levels } from "../../../database/levels.js";
-import { getSumFromValues, orderArray, sleep } from "../../../scripts/utils.js";
-import { gameState, getTotalScore, playLetterSound, screens } from "./utils.js";
+import { getSumFromValues, getTotalScore, orderArray, sleep } from "../../../scripts/utilsPure.js";
+import { gameState, playLetterSound, screens } from "./utils.js";
 
 const container = document.getElementById("catalog-container");
 const progressTypingBar = document.querySelector(

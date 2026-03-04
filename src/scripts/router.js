@@ -1,15 +1,14 @@
-import { authFirebase } from "./config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+import { authFirebase } from "./config.js";
 
-export const isPWA = globalThis.matchMedia(
-    "(display-mode: standalone)",
-).matches;
 const publicRoutes = Object.freeze([
     "login.html",
     "register.html",
     "landing.html",
 ]);
+
 const privateRoutes = Object.freeze(["dashboard.html"]);
+
 const isInPublicRoutes = publicRoutes.find((x) =>
     globalThis.location.href.includes(x),
 );
@@ -50,43 +49,6 @@ const loadingLanguages = Object.freeze([
     "laddar",
     "ladataan",
 ]);
-
-export async function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-export function getSumFromValues(x) {
-    if (Object.values(x).length === 0) return 0;
-    return Object.values(x).reduce((a, b) => a + b, 0);
-}
-
-export async function showNumberIncreasing(
-    destination,
-    initial,
-    el,
-    interval,
-    increaser = 1,
-) {
-    for (let i = initial; i <= destination; i += increaser) {
-        el.innerText = i.toFixed(0);
-        await sleep(interval);
-        if (i >= destination) break;
-    }
-    el.innerText = destination;
-}
-
-export function isValidEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-}
-
-export function shuffleArray(arr) {
-    return arr.toSorted(() => Math.random() - 0.5);
-}
-
-export function orderArray(arr) {
-    return arr.toSorted((a, b) => a - b);
-}
 
 export function redirectIfLogged() {
     insertLoadingScreen();
@@ -142,19 +104,4 @@ function updateLoadingName() {
 
     loadingStatus.current = newest;
     display && (display.innerText = loadingStatus.current);
-}
-
-export function defaultObj(defaultValue) {
-    const map = {};
-    return new Proxy(map, {
-        get(target, prop) {
-            if (!target.hasOwnProperty(prop)) {
-                target[prop] =
-                    typeof defaultValue === "function"
-                        ? new defaultValue()
-                        : defaultValue;
-            }
-            return Reflect.get(...arguments);
-        },
-    });
 }

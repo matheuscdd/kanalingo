@@ -1,5 +1,5 @@
 import { methodsKeys, scores } from "../../../database/letters.js";
-import { sleep } from "../../../scripts/utils.js";
+import { sleep } from "../../../scripts/utilsPure.js";
 import {
     gameState,
     getCurrentSystem,

@@ -1,5 +1,5 @@
 import { authFirebase } from "../../../scripts/config.js";
-import { sleep } from "../../../scripts/utils.js";
+import { sleep } from "../../../scripts/utilsPure.js";
 import { initEventsCatalog, renderCatalog } from "./catalog.js";
 import { renderCategories } from "./categories.js";
 import { initEventsDrawing, renderDrawing } from "./drawing.js";
