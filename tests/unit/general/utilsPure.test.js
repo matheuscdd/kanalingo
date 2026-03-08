@@ -6,7 +6,7 @@ import {
     getSumFromValues,
     getTotalScore,
     sleep,
-} from "../../src/scripts/utilsPure.js";
+} from "@/scripts/utilsPure.js";
 import { describe, it, expect, vi } from "vitest";
 
 describe("defaultObj", () => {
@@ -58,7 +58,7 @@ describe("orderArray", () => {
 
 describe("shuffleArray", () => {
     it("shuffles array (same elements, different order)", () => {
-        const arr = [1, 2, 3, 4, 5];
+        const arr = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20];
         const shuffled = shuffleArray(arr);
         expect(shuffled).not.toEqual(arr); // possible rare fail
     });

@@ -1,4 +1,4 @@
-import { sleep } from "./utilsPure";
+import { sleep } from "./utilsPure.js";
 
 export const isPWA = () =>
     globalThis.matchMedia("(display-mode: standalone)").matches;

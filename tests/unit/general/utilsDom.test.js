@@ -1,7 +1,7 @@
 import {
     showNumberIncreasing
-} from "../../src/scripts/utilsDom.js";
-import { describe, it, expect, vi } from "vitest";
+} from "@/scripts/utilsDom.js";
+import { describe, it, expect } from "vitest";
 
 describe("showNumberIncreasing", () => {
     it("increments innerText from initial to destination", async () => {

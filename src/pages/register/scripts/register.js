@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { authFirebase } from "../../../scripts/config.js";
 import { isValidEmail } from "../../../scripts/utilsPure.js";
 import { redirectIfLogged } from "../../../scripts/router.js";

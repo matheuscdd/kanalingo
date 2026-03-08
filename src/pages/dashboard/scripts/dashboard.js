@@ -13,7 +13,7 @@ import {
     screens,
     updateTotalScoreDisplay,
 } from "./utils.js";
-import { signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+import { signOut } from "firebase/auth";
 
 const btnLogout = document.getElementById("out-button");
 const btnsMethods = Array.from(document.querySelectorAll(".method-card"));

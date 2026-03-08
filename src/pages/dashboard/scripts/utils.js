@@ -14,13 +14,13 @@ import {
     orderArray,
     shuffleArray,
 } from "../../../scripts/utilsPure.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+import { onAuthStateChanged } from "firebase/auth";
 import {
     getDoc,
     setDoc,
     doc,
     updateDoc,
-} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+} from "firebase/firestore";
 
 const totalScoreDisplay = document.getElementById("total-score-course");
 export const gameState = Object.seal({
@@ -240,8 +240,8 @@ function getCurrentStructure() {
 export function selectNextCharsByRimeGroups(key) {
     const structure = getCurrentStructure();
     const rawChars = selectNextChars(key, getCurrentDatabase().length);
-    const terms = structure.map((x) => x.term);
-    const example = rawChars.find((x) => terms.includes(x));
+    const terms = new Set(structure.map((x) => x.term));
+    const example = rawChars.find((x) => terms.has(x));
 
     const rimeGroup = structure.find((x) => x.term === example).rimeGroup;
     const handleChars = structure.filter((x) => x.rimeGroup === rimeGroup);
