@@ -1,16 +1,13 @@
-import { methodsKeys, scores } from "../../../database/letters.js";
-import { shuffleArray, sleep } from "../../../scripts/utilsPure.js";
+import { methodsKeys, scores } from "@/database/letters.js";
+import { shuffleArray, sleep } from "@/scripts/utilsPure.js";
+import { playLetterSound, playSoundEffect } from "./common/audio.js";
 import {
-    gameState,
-    getCurrentSystem,
-    playSoundEffect,
-    playLetterSound,
-    selectNextCharsByRimeGroups,
-    statusRef,
-    updateScoreDatabase,
-    updateScoreLocal,
     getCurrentCharJA,
-} from "./utils.js";
+    getCurrentSystem,
+    selectNextCharsByRimeGroups,
+} from "./common/round.js";
+import { updateScoreDatabase, updateScoreLocal } from "./common/score.js";
+import { gameState, statusRef } from "./common/state.js";
 
 const gameContent = document.getElementById("listening-content");
 const finishContent = document.getElementById("finish-content-listening");

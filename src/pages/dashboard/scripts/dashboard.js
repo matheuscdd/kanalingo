@@ -1,19 +1,15 @@
-import { authFirebase } from "../../../scripts/config.js";
-import { sleep } from "../../../scripts/utilsPure.js";
+import { authFirebase } from "@/scripts/config.js";
+import { sleep } from "@/scripts/utilsPure.js";
 import { initEventsCatalog, renderCatalog } from "./catalog.js";
 import { renderCategories } from "./categories.js";
+import { preloadAudios } from "./common/audio.js";
+import { loadProgress, updateTotalScoreDisplay } from "./common/score.js";
+import { gameState, screens } from "./common/state.js";
 import { initEventsDrawing, renderDrawing } from "./drawing.js";
 import { renderListening } from "./listening.js";
+import { initTabEvents } from "./tabs.js";
 import { initEventsTyping, renderTyping } from "./typing.js";
-import {
-    gameState,
-    initTabEvents,
-    loadProgress,
-    preloadAudios,
-    screens,
-    updateTotalScoreDisplay,
-} from "./utils.js";
-import { signOut } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+import { signOut } from "firebase/auth";
 
 const btnLogout = document.getElementById("out-button");
 const btnsMethods = Array.from(document.querySelectorAll(".method-card"));

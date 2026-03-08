@@ -1,7 +1,5 @@
-import {
-    showNumberIncreasing
-} from "../../src/scripts/utilsDom.js";
-import { describe, it, expect, vi } from "vitest";
+import { showNumberIncreasing } from "@/scripts/utilsDom.js";
+import { describe, it, expect } from "vitest";
 
 describe("showNumberIncreasing", () => {
     it("increments innerText from initial to destination", async () => {
@@ -125,56 +123,56 @@ describe("showNumberIncreasing", () => {
     // adicionar teste para verificar se ficou o foFixed
     // adicionar teste com números quebrados
     // adicionar teste quando o valor passa e depois volta pro original
-        it("garante que innerText é sempre inteiro (toFixed)", async () => {
-            const el = { innerText: "" };
-            const updates = [];
-            Object.defineProperty(el, "innerText", {
-                set(value) {
-                    updates.push(value);
-                },
-                get() {
-                    return updates.length ? updates.at(-1) : "";
-                },
-                configurable: true,
-            });
-            await showNumberIncreasing(5, 1, el, 1, 1);
-            for (const val of updates) {
-                expect(val).toMatch(/^\d+$/);
-            }
+    it("garante que innerText é sempre inteiro (toFixed)", async () => {
+        const el = { innerText: "" };
+        const updates = [];
+        Object.defineProperty(el, "innerText", {
+            set(value) {
+                updates.push(value);
+            },
+            get() {
+                return updates.length ? updates.at(-1) : "";
+            },
+            configurable: true,
         });
+        await showNumberIncreasing(5, 1, el, 1, 1);
+        for (const val of updates) {
+            expect(val).toMatch(/^\d+$/);
+        }
+    });
 
-        it("funciona com números quebrados (decimais)", async () => {
-            const el = { innerText: "" };
-            const updates = [];
-            Object.defineProperty(el, "innerText", {
-                set(value) {
-                    updates.push(value);
-                },
-                get() {
-                    return updates.length ? updates.at(-1) : "";
-                },
-                configurable: true,
-            });
-            await showNumberIncreasing(2.7, 1.2, el, 1, 0.7);
-
-            expect(updates.map(Number)).toEqual([1, 2, 2.7]);
+    it("funciona com números quebrados (decimais)", async () => {
+        const el = { innerText: "" };
+        const updates = [];
+        Object.defineProperty(el, "innerText", {
+            set(value) {
+                updates.push(value);
+            },
+            get() {
+                return updates.length ? updates.at(-1) : "";
+            },
+            configurable: true,
         });
+        await showNumberIncreasing(2.7, 1.2, el, 1, 0.7);
 
-        it("nunca ultrapassa o destination", async () => {
-            const el = { innerText: "" };
-            const updates = [];
-            Object.defineProperty(el, "innerText", {
-                set(value) {
-                    updates.push(Number(value));
-                },
-                get() {
-                    return updates.length ? updates.at(-1) : "";
-                },
-                configurable: true,
-            });
-            await showNumberIncreasing(7, 1, el, 1, 3);
+        expect(updates.map(Number)).toEqual([1, 2, 2.7]);
+    });
 
-            expect(updates.at(-1)).toBeLessThanOrEqual(7);
-            expect(updates).not.toContain(10);
+    it("nunca ultrapassa o destination", async () => {
+        const el = { innerText: "" };
+        const updates = [];
+        Object.defineProperty(el, "innerText", {
+            set(value) {
+                updates.push(Number(value));
+            },
+            get() {
+                return updates.length ? updates.at(-1) : "";
+            },
+            configurable: true,
         });
+        await showNumberIncreasing(7, 1, el, 1, 3);
+
+        expect(updates.at(-1)).toBeLessThanOrEqual(7);
+        expect(updates).not.toContain(10);
+    });
 });

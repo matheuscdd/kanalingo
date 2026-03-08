@@ -1,18 +1,14 @@
-import { methodsKeys, scores } from "../../../database/letters.js";
-import { sleep } from "../../../scripts/utilsPure.js";
+import { methodsKeys, scores } from "@/database/letters.js";
+import { sleep } from "@/scripts/utilsPure.js";
+import { playLetterSound, playSoundEffect } from "./common/audio.js";
 import {
-    gameState,
-    getCurrentSystem,
-    playSoundEffect,
-    playLetterSound,
-    selectNextCharsBySystem,
-    statusRef,
-    updateScoreDatabase,
-    updateScoreLocal,
-    screens,
     getCurrentCharJA,
     getCurrentDatabase,
-} from "./utils.js";
+    getCurrentSystem,
+    selectNextCharsWithSameSystem,
+} from "./common/round.js";
+import { updateScoreDatabase, updateScoreLocal } from "./common/score.js";
+import { gameState, screens, statusRef } from "./common/state.js";
 
 const displayRomaji = document.querySelector(".drawing-romaji");
 const displaySystem = document.querySelector(".drawing-system");
@@ -61,7 +57,7 @@ export function renderDrawing() {
 function startNewRound() {
     gameState.rightRound = [];
     gameState.currentIndex = 0;
-    gameState.currentRound = selectNextCharsBySystem(
+    gameState.currentRound = selectNextCharsWithSameSystem(
         methodsKeys.drawing,
         maxCharsRound,
     );

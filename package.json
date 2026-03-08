@@ -2,10 +2,12 @@
   "scripts": {
     "format": "npx prettier --write src tests",
     "cache": "node createCache.js",
-    "test": "vitest"
+    "test": "vitest",
+    "dev": "vite"
   },
   "devDependencies": {
     "prettier": "^3.8.1",
+    "vite": "^7.3.1",
     "vitest": "^1.6.1"
   },
   "name": "kanalingo",
@@ -16,6 +18,7 @@
   "description": "",
   "dependencies": {
     "axios": "^1.13.5",
+    "firebase": "^12.10.0",
     "fs-extra": "^11.3.3",
     "xml2js": "^0.6.2",
     "zlib": "^1.0.5"

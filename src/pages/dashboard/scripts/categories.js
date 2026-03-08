@@ -1,4 +1,4 @@
-import { leagues } from "../../../database/levels.js";
+import { leagues } from "@/database/levels.js";
 
 function createShield(color) {
     return `

@@ -1,17 +1,14 @@
-import { methodsKeys, scores } from "../../../database/letters.js";
-import { isPWA } from "../../../scripts/utilsDom.js";
-import { sleep } from "../../../scripts/utilsPure.js";
+import { methodsKeys, scores } from "@/database/letters.js";
+import { isPWA } from "@/scripts/utilsDom.js";
+import { sleep } from "@/scripts/utilsPure.js";
+import { playSoundEffect } from "./common/audio.js";
 import {
-    gameState,
     getCurrentCharJA,
     getCurrentDatabase,
-    playSoundEffect,
-    screens,
     selectNextChars,
-    statusRef,
-    updateScoreDatabase,
-    updateScoreLocal,
-} from "./utils.js";
+} from "./common/round.js";
+import { updateScoreDatabase, updateScoreLocal } from "./common/score.js";
+import { gameState, screens, statusRef } from "./common/state.js";
 
 const gameContent = document.getElementById("typing-content");
 const finishContent = document.getElementById("finish-content-typing");

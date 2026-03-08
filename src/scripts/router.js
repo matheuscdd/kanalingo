@@ -1,5 +1,6 @@
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+import { onAuthStateChanged } from "firebase/auth";
 import { authFirebase } from "./config.js";
+import { shuffleArray, sleep } from "./utilsPure.js";
 
 const publicRoutes = Object.freeze([
     "login.html",

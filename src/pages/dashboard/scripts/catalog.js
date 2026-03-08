@@ -3,10 +3,16 @@ import {
     hiragana,
     katakana,
     scores,
-} from "../../../database/letters.js";
-import { levels } from "../../../database/levels.js";
-import { getSumFromValues, getTotalScore, orderArray, sleep } from "../../../scripts/utilsPure.js";
-import { gameState, playLetterSound, screens } from "./utils.js";
+} from "@/database/letters.js";
+import { levels } from "@/database/levels.js";
+import {
+    getSumFromValues,
+    getTotalScore,
+    orderArray,
+    sleep,
+} from "@/scripts/utilsPure.js";
+import { playLetterSound } from "./common/audio.js";
+import { gameState, screens } from "./common/state.js";
 
 const container = document.getElementById("catalog-container");
 const progressTypingBar = document.querySelector(
