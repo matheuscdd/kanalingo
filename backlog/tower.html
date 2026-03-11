@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duo Defense</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #58a700;
+            --duo-green-light: #d7ffb8;
+            --duo-red: #ea2b2b;
+            --duo-red-dark: #c32020;
+            --duo-red-light: #ffdfe0;
+            --duo-blue: #1cb0f6;
+            --duo-blue-dark: #1899d6;
+            --duo-gray-bg: #f7f7f7;
+            --duo-gray-border: #e5e5e5;
+            --duo-text: #4b4b4b;
+            --duo-white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--duo-gray-bg);
+            color: var(--duo-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            touch-action: manipulation; /* Melhora o toque no celular */
+        }
+
+        #game-container {
+            position: relative;
+            width: 95vw;
+            max-width: 800px;
+            max-height: 90vh; /* Evita que estoure a tela verticalmente */
+            aspect-ratio: 4 / 3; /* Mantém a proporção do canvas original */
+            background-color: #a5ed6c; /* Cor da grama */
+            border-radius: 20px;
+            border: 4px solid var(--duo-gray-border);
+            box-shadow: 0 10px 0 var(--duo-gray-border);
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+        }
+
+        /* UI Overlays */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .panel {
+            background: var(--duo-white);
+            border: 2px solid var(--duo-gray-border);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 8px 0 var(--duo-gray-border);
+        }
+
+        h1 {
+            color: var(--duo-green);
+            font-weight: 900;
+            font-size: 3rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--duo-text);
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--duo-text);
+        }
+
+        /* Botões Estilo Duolingo */
+        .duo-btn {
+            background-color: var(--duo-white);
+            border: 2px solid var(--duo-gray-border);
+            border-bottom-width: 4px;
+            border-radius: 16px;
+            color: var(--duo-text);
+            font-weight: 800;
+            font-size: 1.2rem;
+            padding: 15px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .duo-btn:active {
+            border-bottom-width: 2px;
+            transform: translateY(2px);
+        }
+
+        .duo-btn.primary {
+            background-color: var(--duo-green);
+            border-color: var(--duo-green-dark);
+            color: var(--duo-white);
+        }
+
+        .duo-btn.danger {
+            background-color: var(--duo-red);
+            border-color: var(--duo-red-dark);
+            color: var(--duo-white);
+        }
+
+        .duo-btn.blue {
+            background-color: var(--duo-blue);
+            border-color: var(--duo-blue-dark);
+            color: var(--duo-white);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* HUD Superior */
+        .hud {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .hud-box {
+            background: var(--duo-white);
+            border: 2px solid var(--duo-gray-border);
+            border-bottom-width: 4px;
+            border-radius: 16px;
+            padding: 10px 20px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .health-text { color: var(--duo-red); }
+        .wave-text { color: var(--duo-blue); }
+
+        /* Animação de Feedback */
+        #feedback-message {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: white;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .feedback-correct { background-color: var(--duo-green); border-bottom: 4px solid var(--duo-green-dark); }
+        .feedback-wrong { background-color: var(--duo-red); border-bottom: 4px solid var(--duo-red-dark); }
+
+        /* Ajustes de Responsividade para Celulares */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; margin-bottom: 10px; }
+            h2 { font-size: 1.2rem; margin-bottom: 15px; }
+            .panel { padding: 20px; width: 95%; }
+            .question-text { font-size: 1.2rem; margin-bottom: 15px; }
+            .duo-btn { font-size: 1rem; padding: 10px; }
+            .hud { top: 10px; left: 10px; right: 10px; }
+            .hud-box { padding: 5px 10px; font-size: 1rem; }
+            #feedback-message { font-size: 1.2rem; padding: 10px 20px; width: 90%; text-align: center; }
+            .options-grid { gap: 8px; }
+            .duo-btn span:first-child { font-size: 1.8rem !important; } /* Diminui o ícone do animal um pouco */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <div class="hud">
+            <div class="hud-box health-text"><i class="fa-solid fa-heart"></i> <span id="health-display">1</span></div>
+            <div class="hud-box wave-text"><i class="fa-solid fa-flag"></i> Ondas: <span id="wave-display">1/5</span></div>
+        </div>
+
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+        <!-- Menu Inicial -->
+        <div id="start-screen" class="overlay active">
+            <div class="panel">
+                <h1>Duo Defense</h1>
+                <h2>Aprenda e defenda a base!</h2>
+                <p style="margin-bottom: 30px; font-weight: 700;">Responda corretamente para construir torres fortes. Respostas erradas geram torres fracas. <br><strong style="color: var(--duo-red);">Se UM inimigo passar, é Game Over!</strong></p>
+                <button class="duo-btn primary" onclick="startGame()">
+                    <i class="fa-solid fa-play"></i> Jogar Agora
+                </button>
+            </div>
+        </div>
+
+        <!-- Tela de Quiz -->
+        <div id="quiz-screen" class="overlay">
+            <div class="panel">
+                <h2>Próxima Torre!</h2>
+                <div id="question-text" class="question-text">Pergunta aqui?</div>
+                <div class="options-grid" id="options-container">
+                    <!-- Opções geradas por JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Game Over -->
+        <div id="game-over-screen" class="overlay">
+            <div class="panel">
+                <h1 style="color: var(--duo-red);">Fim de Jogo!</h1>
+                <h2>Os inimigos invadiram a base.</h2>
+                <button class="duo-btn danger" onclick="location.reload()">
+                    <i class="fa-solid fa-rotate-right"></i> Tentar Novamente
+                </button>
+            </div>
+        </div>
+
+        <!-- Tela de Vitória -->
+        <div id="victory-screen" class="overlay">
+            <div class="panel">
+                <h1>Excelente!</h1>
+                <h2>Você defendeu a base e aprendeu muito!</h2>
+                <button class="duo-btn primary" onclick="location.reload()">
+                    <i class="fa-solid fa-star"></i> Jogar Novamente
+                </button>
+            </div>
+        </div>
+
+        <!-- Mensagem de feedback ao responder -->
+        <div id="feedback-message">Correto!</div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Configurações do Jogo
+        let gameHealth = 1;
+        let currentWave = 0;
+        let gameState = 'START'; // START, QUIZ, PLAYING, GAMEOVER, VICTORY
+        
+        let pathPoints = [];
+
+
+        let towerSpots = [];
+
+
+        // Quizzes (Inglês Básico)
+        let quizzes = [];
+        const waveConfigs = [3, 4, 5, 6, 7];
+        let enemies = [];
+        let towers = [];
+        let projectiles = [];
+        let enemiesSpawned = 0;
+        let waveTimer = 0;
+        const pathOuterWidth = 60;
+        const towerSpotRadius = 20;
+        const towerPathPadding = 18;
+
+        // Banco de perguntas para geração procedural
+        const questionBank = [
+            { q: 'Como se diz "Maçã" em inglês?', options: ['Apple', 'Dog', 'Car', 'Blue'], ans: 0 },
+            { q: 'Traduza "The cat is black"', options: ['O cachorro é branco', 'O gato é preto', 'O pássaro voa', 'A casa é grande'], ans: 1 },
+            { q: 'Complete: "I _____ a student."', options: ['is', 'are', 'am', 'be'], ans: 2 },
+            { q: 'O que significa "Good morning"?', options: ['Boa noite', 'Boa tarde', 'Adeus', 'Bom dia'], ans: 3 },
+            { q: 'Como se diz "Água"?', options: ['Water', 'Fire', 'Earth', 'Air'], ans: 0 },
+            { q: 'Como se diz "Cachorro" em inglês?', options: ['Dog', 'Cat', 'Bird', 'Fish'], ans: 0 },
+            { q: 'Traduza "Blue"', options: ['Azul', 'Verde', 'Amarelo', 'Vermelho'], ans: 0 },
+            { q: 'Complete: "She _____ happy."', options: ['is', 'are', 'am', 'be'], ans: 0 },
+            { q: 'O que significa "Good night"?', options: ['Boa noite', 'Bom dia', 'Boa tarde', 'Adeus'], ans: 0 },
+            { q: 'Como se diz "Casa"?', options: ['House', 'Car', 'Tree', 'Book'], ans: 0 }
+        ];
+
+        // Função para gerar quizzes proceduralmente
+        function generateQuizzes(numFases) {
+            // Copia e embaralha o banco de perguntas
+            const shuffled = questionBank.slice().sort(() => Math.random() - 0.5);
+            // Seleciona as primeiras numFases perguntas
+            return shuffled.slice(0, numFases);
+        }
+
+        // Configuração das Ondas (Inimigos por onda)
+        function getSegments(path) {
+            const segments = [];
+
+            for (let i = 0; i < path.length - 1; i++) {
+                segments.push({ start: path[i], end: path[i + 1], index: i });
+            }
+
+            return segments;
+        }
+
+        function rangesOverlap(minA, maxA, minB, maxB) {
+            return Math.max(minA, minB) < Math.min(maxA, maxB);
+        }
+
+        function isPathSelfIntersecting(path) {
+            const segments = getSegments(path);
+
+            for (let i = 0; i < segments.length; i++) {
+                for (let j = i + 1; j < segments.length; j++) {
+                    if (Math.abs(i - j) <= 1) {
+                        continue;
+                    }
+
+                    const first = segments[i];
+                    const second = segments[j];
+                    const firstVertical = first.start.x === first.end.x;
+                    const secondVertical = second.start.x === second.end.x;
+
+                    if (firstVertical === secondVertical) {
+                        if (firstVertical && first.start.x === second.start.x) {
+                            const overlap = rangesOverlap(
+                                Math.min(first.start.y, first.end.y),
+                                Math.max(first.start.y, first.end.y),
+                                Math.min(second.start.y, second.end.y),
+                                Math.max(second.start.y, second.end.y)
+                            );
+
+                            if (overlap) {
+                                return true;
+                            }
+                        }
+
+                        if (!firstVertical && first.start.y === second.start.y) {
+                            const overlap = rangesOverlap(
+                                Math.min(first.start.x, first.end.x),
+                                Math.max(first.start.x, first.end.x),
+                                Math.min(second.start.x, second.end.x),
+                                Math.max(second.start.x, second.end.x)
+                            );
+
+                            if (overlap) {
+                                return true;
+                            }
+                        }
+
+                        continue;
+                    }
+
+                    const vertical = firstVertical ? first : second;
+                    const horizontal = firstVertical ? second : first;
+                    const withinX = vertical.start.x > Math.min(horizontal.start.x, horizontal.end.x) && vertical.start.x < Math.max(horizontal.start.x, horizontal.end.x);
+                    const withinY = horizontal.start.y > Math.min(vertical.start.y, vertical.end.y) && horizontal.start.y < Math.max(vertical.start.y, vertical.end.y);
+
+                    if (withinX && withinY) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        function distanceToSegment(point, start, end) {
+            const dx = end.x - start.x;
+            const dy = end.y - start.y;
+
+            if (dx === 0 && dy === 0) {
+                return Math.hypot(point.x - start.x, point.y - start.y);
+            }
+
+            const projection = ((point.x - start.x) * dx + (point.y - start.y) * dy) / (dx * dx + dy * dy);
+            const clamped = Math.max(0, Math.min(1, projection));
+            const closestX = start.x + clamped * dx;
+            const closestY = start.y + clamped * dy;
+            return Math.hypot(point.x - closestX, point.y - closestY);
+        }
+
+        function isPointOutsidePath(point, path) {
+            const requiredDistance = pathOuterWidth / 2 + towerSpotRadius + towerPathPadding;
+
+            for (let i = 0; i < path.length - 1; i++) {
+                const dist = distanceToSegment(point, path[i], path[i + 1]);
+                if (dist < requiredDistance) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function generatePathPoints() {
+            for (let attempt = 0; attempt < 150; attempt++) {
+                const start = { x: -50, y: Math.floor(Math.random() * 400 + 100) };
+                const end = { x: 850, y: Math.floor(Math.random() * 400 + 100) };
+                const points = [start];
+                let lastX = start.x;
+                let lastY = start.y;
+
+                for (let i = 0; i < 4; i++) {
+                    let x;
+                    let y;
+
+                    if (i % 2 === 0) {
+                        do {
+                            x = Math.floor(Math.random() * 600 + 100);
+                        } while (x === lastX);
+                        y = lastY;
+                    } else {
+                        x = lastX;
+                        do {
+                            y = Math.floor(Math.random() * 400 + 100);
+                        } while (y === lastY);
+                    }
+
+                    points.push({ x, y });
+                    lastX = x;
+                    lastY = y;
+                }
+
+                if (lastX !== end.x) points.push({ x: end.x, y: lastY });
+                if (lastY !== end.y) points.push(end);
+
+                if (!isPathSelfIntersecting(points)) {
+                    return points;
+                }
+            }
+
+            return [
+                { x: -50, y: 160 },
+                { x: 180, y: 160 },
+                { x: 180, y: 420 },
+                { x: 520, y: 420 },
+                { x: 520, y: 210 },
+                { x: 850, y: 210 }
+            ];
+        }
+
+        function generateTowerSpots(numSpots, path) {
+            const spots = [];
+            let attempts = 0;
+
+            while (spots.length < numSpots && attempts < 2000) {
+                attempts++;
+                const candidate = {
+                    x: Math.floor(Math.random() * 600 + 100),
+                    y: Math.floor(Math.random() * 400 + 100)
+                };
+                const farFromSpots = spots.every(spot => Math.hypot(spot.x - candidate.x, spot.y - candidate.y) >= 70);
+
+                if (farFromSpots && isPointOutsidePath(candidate, path)) {
+                    spots.push(candidate);
+                }
+            }
+
+            if (spots.length < numSpots) {
+                for (let y = 110; y <= 490 && spots.length < numSpots; y += 55) {
+                    for (let x = 110; x <= 690 && spots.length < numSpots; x += 55) {
+                        const candidate = { x, y };
+                        const farFromSpots = spots.every(spot => Math.hypot(spot.x - candidate.x, spot.y - candidate.y) >= 70);
+
+                        if (farFromSpots && isPointOutsidePath(candidate, path)) {
+                            spots.push(candidate);
+                        }
+                    }
+                }
+            }
+
+            return spots;
+        }
+
+        class Enemy {
+            constructor() {
+                this.pathIndex = 0;
+                this.x = pathPoints[0]?.x ?? -50;
+                this.y = pathPoints[0]?.y ?? 300;
+                this.radius = 14;
+                this.speed = 1.2 + currentWave * 0.15;
+                this.maxHp = 70 + currentWave * 20;
+                this.hp = this.maxHp;
+            }
+
+            update() {
+                const nextPoint = pathPoints[this.pathIndex + 1];
+                if (!nextPoint) {
+                    this.hp = 0;
+                    gameHealth -= 1;
+                    updateHUD();
+                    return;
+                }
+
+                const dx = nextPoint.x - this.x;
+                const dy = nextPoint.y - this.y;
+                const dist = Math.hypot(dx, dy);
+
+                if (dist <= this.speed) {
+                    this.x = nextPoint.x;
+                    this.y = nextPoint.y;
+                    this.pathIndex += 1;
+
+                    if (this.pathIndex >= pathPoints.length - 1) {
+                        this.hp = 0;
+                        gameHealth -= 1;
+                        updateHUD();
+                    }
+                    return;
+                }
+
+                this.x += (dx / dist) * this.speed;
+                this.y += (dy / dist) * this.speed;
+            }
+
+            draw() {
+                ctx.fillStyle = 'rgba(0,0,0,0.2)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y + 10, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ea2b2b';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(this.x - 5, this.y - 3, 4, 0, Math.PI * 2);
+                ctx.arc(this.x + 5, this.y - 3, 4, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'black';
+                ctx.beginPath();
+                ctx.arc(this.x - 5, this.y - 3, 1.5, 0, Math.PI * 2);
+                ctx.arc(this.x + 5, this.y - 3, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                const hpPercent = this.hp / this.maxHp;
+                ctx.fillStyle = '#ffdfe0';
+                ctx.fillRect(this.x - 15, this.y - 25, 30, 6);
+                ctx.fillStyle = '#58cc02';
+                ctx.fillRect(this.x - 15, this.y - 25, 30 * hpPercent, 6);
+            }
+        }
+        
+
+        class Tower {
+            constructor(x, y, isStrong, icon) {
+                this.x = x;
+                this.y = y;
+                this.isStrong = isStrong;
+                this.icon = icon || '🦉';
+                this.range = isStrong ? 200 : 120;
+                this.cooldown = 0;
+            }
+
+            getEffectiveDamage() {
+                // Se houver pelo menos uma torre fraca, todas causam dano baixo
+                const anyWeak = towers.some(t => !t.isStrong);
+                return anyWeak ? 10 : (this.isStrong ? 90 : 10);
+            }
+
+            getEffectiveFireRate() {
+                // Mantém fireRate individual
+                return this.isStrong ? 30 : 90;
+            }
+
+            update() {
+                if (this.cooldown > 0) this.cooldown--;
+
+                if (this.cooldown === 0) {
+                    // Encontrar alvo mais próximo dentro do alcance
+                    let target = null;
+                    let minDist = this.range;
+
+                    for (let enemy of enemies) {
+                        const dist = Math.hypot(enemy.x - this.x, enemy.y - this.y);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            target = enemy;
+                        }
+                    }
+
+                    if (target) {
+                        this.shoot(target);
+                        this.cooldown = this.getEffectiveFireRate();
+                    }
+                }
+            }
+
+            shoot(target) {
+                projectiles.push(new Projectile(this.x, this.y - 15, target, this.getEffectiveDamage(), this.isStrong));
+            }
+
+            draw() {
+                // Base da torre
+                ctx.fillStyle = '#e5e5e5';
+                ctx.beginPath();
+                ctx.ellipse(this.x, this.y + 15, 25, 10, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 20, 0, Math.PI * 2);
+                ctx.fill();
+        
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = '#e5e5e5';
+                ctx.stroke();
+
+                // Ícone / Rosto da torre
+                ctx.font = '24px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+        
+                if (!this.isStrong) {
+                    ctx.filter = 'grayscale(100%) opacity(60%)'; // Torre fraca fica cinza e translúcida
+                }
+        
+                ctx.fillText(this.icon, this.x, this.y + 2);
+        
+                ctx.filter = 'none'; // resetar filtro
+        
+                if (!this.isStrong) {
+                    ctx.font = '14px Arial';
+                    ctx.fillText('💤', this.x + 15, this.y - 10); // Indica que a torre está com sono/inútil
+                }
+            }
+        }
+
+        class Projectile {
+            constructor(x, y, target, damage, isStrong) {
+                this.x = x;
+                this.y = y;
+                this.target = target;
+                this.damage = damage;
+                this.speed = isStrong ? 8 : 4;
+                this.isStrong = isStrong;
+            }
+
+            update() {
+                if (this.target.hp <= 0) {
+                    this.hit = true;
+                    return;
+                }
+
+                const dx = this.target.x - this.x;
+                const dy = this.target.y - this.y;
+                const dist = Math.hypot(dx, dy);
+
+                if (dist < this.speed + this.target.radius) {
+                    this.target.hp -= this.damage;
+                    this.hit = true;
+                } else {
+                    this.x += (dx / dist) * this.speed;
+                    this.y += (dy / dist) * this.speed;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = this.isStrong ? '#58cc02' : '#a5a5a5';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.isStrong ? 6 : 4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Funções de Controle e Renderização
+        function showScreen(id) {
+            document.querySelectorAll('.overlay').forEach(el => el.classList.remove('active'));
+            if(id) document.getElementById(id).classList.add('active');
+        }
+
+        function startGame() {
+            gameHealth = 1;
+            currentWave = 0;
+            enemies = [];
+            towers = [];
+            projectiles = [];
+            enemiesSpawned = 0;
+            waveTimer = 0;
+            pathPoints = generatePathPoints();
+            towerSpots = generateTowerSpots(5, pathPoints);
+            quizzes = generateQuizzes(5);
+            updateHUD();
+            startQuiz();
+        }
+
+        function startQuiz() {
+            gameState = 'QUIZ';
+            const qData = quizzes[currentWave];
+
+            if (!qData) {
+                gameState = 'VICTORY';
+                showScreen('victory-screen');
+                return;
+            }
+            
+            document.getElementById('question-text').innerText = qData.q;
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            const towerIcons = ['🦊', '🐻', '🐼', '🐯']; // Animais para representar cada alternativa
+            
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'duo-btn';
+                btn.style.flexDirection = 'column'; // Organiza o ícone em cima do texto
+                btn.innerHTML = `<span style="font-size: 2.2rem; margin-bottom: 5px;">${towerIcons[idx]}</span> <span>${opt}</span>`;
+                btn.onclick = () => checkAnswer(idx, qData.ans, towerIcons[idx]);
+                optionsContainer.appendChild(btn);
+            });
+
+            showScreen('quiz-screen');
+        }
+
+        function checkAnswer(selected, correct, selectedIcon) {
+            const isCorrect = (selected === correct);
+            const spot = towerSpots[currentWave];
+            
+            towers.push(new Tower(spot.x, spot.y, isCorrect, selectedIcon));
+            
+            showFeedback(isCorrect);
+            
+            showScreen(null);
+            setTimeout(() => {
+                gameState = 'PLAYING';
+                enemiesSpawned = 0;
+                waveTimer = 0;
+                currentWave++;
+                updateHUD();
+            }, 1000);
+        }
+
+        function showFeedback(isCorrect) {
+            const fb = document.getElementById('feedback-message');
+            fb.className = isCorrect ? 'feedback-correct' : 'feedback-wrong';
+            fb.innerHTML = isCorrect ? '<i class="fa-solid fa-check"></i> Perfeito! Torre Forte.' : '<i class="fa-solid fa-xmark"></i> Incorreto. Torre Fraca.';
+            fb.style.opacity = '1';
+            
+            setTimeout(() => {
+                fb.style.opacity = '0';
+            }, 2000);
+        }
+
+        function updateHUD() {
+            document.getElementById('health-display').innerText = Math.max(0, gameHealth);
+            document.getElementById('wave-display').innerText = `${Math.min(currentWave, 5)}/5`;
+            
+            if (gameHealth <= 0 && gameState !== 'GAMEOVER') {
+                gameState = 'GAMEOVER';
+                showScreen('game-over-screen');
+            }
+        }
+
+        function drawPath() {
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+
+            // Verifica se pathPoints está válido
+            if (!Array.isArray(pathPoints) || pathPoints.length < 2 || !pathPoints.every(p => p && typeof p.x === 'number' && typeof p.y === 'number')) {
+                return;
+            }
+
+            // Borda do caminho (Terra escura)
+            ctx.beginPath();
+            ctx.moveTo(pathPoints[0].x, pathPoints[0].y);
+            for (let i = 1; i < pathPoints.length; i++) {
+                ctx.lineTo(pathPoints[i].x, pathPoints[i].y);
+            }
+            ctx.lineWidth = 60;
+            ctx.strokeStyle = '#dfc19c';
+            ctx.stroke();
+
+            // Caminho interno (Terra clara)
+            ctx.beginPath();
+            ctx.moveTo(pathPoints[0].x, pathPoints[0].y);
+            for (let i = 1; i < pathPoints.length; i++) {
+                ctx.lineTo(pathPoints[i].x, pathPoints[i].y);
+            }
+            ctx.lineWidth = 50;
+            ctx.strokeStyle = '#f4dfc3';
+            ctx.stroke();
+        }
+
+        function drawTowerSpots() {
+            // Desenha os locais onde as próximas torres serão colocadas
+            const nextSpotIndex = currentWave;
+            
+            towerSpots.forEach((spot, idx) => {
+                if (idx >= towers.length) {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                    ctx.beginPath();
+                    ctx.arc(spot.x, spot.y, 20, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    if (idx === nextSpotIndex && gameState === 'QUIZ') {
+                        // Piscar o spot atual
+                        ctx.lineWidth = 3;
+                        ctx.strokeStyle = '#1cb0f6';
+                        ctx.setLineDash([5, 5]);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                    }
+                }
+            });
+        }
+
+        function gameLoop() {
+            // Limpa o Canvas (Grama verde)
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Desenhar Cenário
+            drawPath();
+            drawTowerSpots();
+
+            if (gameState === 'PLAYING') {
+                // Gerenciar Spawns
+                waveTimer++;
+                const waveTotalEnemies = waveConfigs[currentWave - 1];
+                
+                if (enemiesSpawned < waveTotalEnemies && waveTimer % 60 === 0) {
+                    enemies.push(new Enemy());
+                    enemiesSpawned++;
+                }
+
+                // Atualizar e Desenhar Entidades
+                for (let i = enemies.length - 1; i >= 0; i--) {
+                    enemies[i].update();
+                    if (enemies[i].hp <= 0) {
+                        enemies.splice(i, 1);
+                    } else {
+                        enemies[i].draw();
+                    }
+                }
+
+                towers.forEach(t => {
+                    t.update();
+                    t.draw();
+                });
+
+                for (let i = projectiles.length - 1; i >= 0; i--) {
+                    projectiles[i].update();
+                    if (projectiles[i].hit) {
+                        projectiles.splice(i, 1);
+                    } else {
+                        projectiles[i].draw();
+                    }
+                }
+
+                // Checar fim de onda
+                if (enemiesSpawned === waveTotalEnemies && enemies.length === 0) {
+                    if (currentWave < quizzes.length) {
+                        startQuiz();
+                    } else {
+                        gameState = 'VICTORY';
+                        showScreen('victory-screen');
+                    }
+                }
+
+            } else {
+                // Apenas desenhar as torres e spots parados durante menu/quiz
+                towers.forEach(t => t.draw());
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Iniciar Loop
+        requestAnimationFrame(gameLoop);
+    </script>        
+</body>
+</html>
