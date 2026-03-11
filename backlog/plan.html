@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Voo do Saber - Bico para Direita</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; user-select: none; }
+
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            max-width: 900px;
+            max-height: 500px;
+            background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+            overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        /* Feedback Visual */
+        .flash-red { animation: flashRed 0.4s ease-in-out; }
+        .flash-green { animation: flashGreen 0.4s ease-in-out; }
+        @keyframes flashRed { 0%, 100% { background: inherit; } 50% { background: #ff4d4d; } }
+        @keyframes flashGreen { 0%, 100% { background: inherit; } 50% { background: #4dff88; } }
+
+        /* Interface (UI) */
+        #ui-layer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 60;
+            pointer-events: none;
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #question-box {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 12px 40px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: bold;
+            font-size: 1.3rem;
+            z-index: 55;
+            text-align: center;
+            border: 3px solid #2980b9;
+            min-width: 280px;
+        }
+
+        /* Botões de Comando (Mobile/Touch) */
+        #mobile-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 70;
+            pointer-events: none;
+        }
+
+        .control-btn {
+            pointer-events: auto;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .control-btn:active {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0.9);
+        }
+
+        /* Avião */
+        #player {
+            position: absolute;
+            left: 80px;
+            top: 50%;
+            font-size: 45px;
+            color: #fff;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.4));
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            transform: translateY(-50%);
+            color: rgb(255, 212, 59);
+        }
+
+        #player i {
+            display: inline-block;
+        }
+
+        /* Nuvens */
+        .option-cloud {
+            position: absolute;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            color: #333;
+            min-width: 100px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .option-cloud::before {
+            content: "\f0c2";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            font-size: 100px;
+            color: rgba(255, 255, 255, 0.98);
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 100;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hidden { display: none !important; }
+
+        button.start-btn {
+            padding: 15px 50px;
+            font-size: 1.4rem;
+            border: none;
+            border-radius: 50px;
+            background: #27ae60;
+            color: white;
+            cursor: pointer;
+            margin-top: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        button.start-btn:hover { transform: scale(1.1); background: #2ecc71; }
+
+        .smoke {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 35;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="ui-layer">
+        <div class="stats"><i class="fa-solid fa-star" style="color:#f1c40f"></i> <span id="score">0</span></div>
+        <div class="stats"><i class="fa-solid fa-heart" style="color:#e74c3c"></i> <span id="lives">3</span></div>
+    </div>
+
+    <div id="question-box" class="hidden"></div>
+    
+    <div id="player" class="hidden">
+        <i class="fa-solid fa-plane" id="plane-icon"></i>
+    </div>
+
+    <div id="elements-container"></div>
+
+    <!-- Botões de Controle -->
+    <div id="mobile-controls" class="hidden">
+        <div id="btn-down" class="control-btn"><i class="fa-solid fa-chevron-down"></i></div>
+        <div id="btn-up" class="control-btn"><i class="fa-solid fa-chevron-up"></i></div>
+    </div>
+
+    <div id="start-menu" class="overlay">
+        <h1 style="font-size: 3.5rem; color: #f1c40f; margin-bottom: 5px;">VOO DO SABER</h1>
+        <p style="letter-spacing: 2px; margin-bottom: 20px;">CONTROLES POR BOTÕES</p>
+        <p>As nuvens agora mantêm distância!<br>Esquerda: <b>BAIXO</b> | Direita: <b>CIMA</b></p>
+        <button class="start-btn" onclick="initGame()">DECOLAR</button>
+    </div>
+
+    <div id="game-over" class="overlay hidden">
+        <h2 id="death-reason" style="font-size: 2.8rem; color:#e74c3c">FIM DE VOO</h2>
+        <p id="correct-info" style="margin: 15px 0; font-size: 1.3rem;"></p>
+        <p>Pontuação: <span id="final-score" style="font-size: 2.2rem; color: #f1c40f;">0</span></p>
+        <button class="start-btn" onclick="location.reload()">RECOMECAR</button>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        { q: "9 x 6 = ?", opts: ["45", "54", "63"], ans: "54" },
+        { q: "Capital de França?", opts: ["Lyon", "Paris", "Nice"], ans: "Paris" },
+        { q: "Planeta Vermelho?", opts: ["Marte", "Vénus", "Terra"], ans: "Marte" },
+        { q: "7 + 8 + 5 = ?", opts: ["18", "20", "22"], ans: "20" },
+        { q: "É um mamífero?", opts: ["Tubarão", "Baleia", "Pipa"], ans: "Baleia" },
+        { q: "Cor da Esmeralda?", opts: ["Azul", "Verde", "Vermelho"], ans: "Verde" },
+        { q: "Satélite da Terra?", opts: ["Lua", "Sol", "Marte"], ans: "Lua" }
+    ];
+
+    let score = 0, lives = 3, isRunning = false;
+    let targetY = 250, currentY = 250;
+    let gameSpeed = 2.8; 
+    
+    let currentQ = null;
+    let activeClouds = [];
+    let lastSpawnTime = 0;
+    let spawnInterval = 3000;
+
+    const player = document.getElementById('player');
+    const planeIcon = document.getElementById('plane-icon');
+    const container = document.getElementById('game-container');
+    const elements = document.getElementById('elements-container');
+    const controls = document.getElementById('mobile-controls');
+
+    // Estado dos controles
+    let keys = {};
+    let isPressingUp = false;
+    let isPressingDown = false;
+
+    // Teclado
+    window.onkeydown = (e) => keys[e.code] = true;
+    window.onkeyup = (e) => keys[e.code] = false;
+
+    // Botões On-Screen
+    const setupButton = (id, action) => {
+        const btn = document.getElementById(id);
+        const start = (e) => { e.preventDefault(); action(true); };
+        const end = (e) => { e.preventDefault(); action(false); };
+        
+        btn.addEventListener('touchstart', start);
+        btn.addEventListener('touchend', end);
+        btn.addEventListener('mousedown', start);
+        btn.addEventListener('mouseup', end);
+        btn.addEventListener('mouseleave', end);
+    };
+
+    setupButton('btn-up', (val) => isPressingUp = val);
+    setupButton('btn-down', (val) => isPressingDown = val);
+
+    function initGame() {
+        document.getElementById('start-menu').classList.add('hidden');
+        document.getElementById('question-box').classList.remove('hidden');
+        player.classList.remove('hidden');
+        controls.classList.remove('hidden');
+        isRunning = true;
+        nextQuestion();
+        requestAnimationFrame(gameLoop);
+    }
+
+    function nextQuestion() {
+        currentQ = questions[Math.floor(Math.random() * questions.length)];
+        document.getElementById('question-box').innerText = currentQ.q;
+        activeClouds.forEach(c => c.el.remove());
+        activeClouds = [];
+        spawnClouds();
+    }
+
+    function spawnClouds() {
+        const rect = container.getBoundingClientRect();
+        let shuffledOpts = [...currentQ.opts].sort(() => Math.random() - 0.5);
+        
+        // Limpa apenas as nuvens da vaga anterior se necessário, mas aqui queremos adicionar novas
+        // Garantir que as nuvens da mesma vaga não se sobrepõem
+        let usedPositions = [];
+
+        shuffledOpts.forEach((text, i) => {
+            const div = document.createElement('div');
+            div.className = 'option-cloud';
+            div.innerText = text;
+            
+            const randomScale = 0.6 + (Math.random() * 0.4);
+            const zoneHeight = rect.height / 3;
+            
+            // Lógica para evitar sobreposição vertical e horizontal nesta vaga
+            let y = (zoneHeight * i) + (Math.random() * (zoneHeight - 120)) + 60;
+            
+            // Afastamento horizontal garantido (min 250px entre elas no início)
+            let startPosX = -200 - (i * 250) - (Math.random() * 300); 
+
+            div.style.top = y + 'px';
+            div.style.transform = `translateY(-50%) scale(${randomScale})`;
+            div.style.right = startPosX + 'px';
+            
+            elements.appendChild(div);
+            
+            activeClouds.push({
+                el: div,
+                text: text,
+                x: startPosX,
+                speedMod: 0.8 + (Math.random() * 0.3)
+            });
+        });
+        lastSpawnTime = Date.now();
+    }
+
+    function createSmoke() {
+        const smoke = document.createElement('div');
+        smoke.className = 'smoke';
+        smoke.style.left = (player.offsetLeft - 15) + 'px';
+        smoke.style.top = (currentY + (Math.random() * 14 - 7)) + 'px';
+        elements.appendChild(smoke);
+
+        let opacity = 0.7;
+        let size = 10;
+        let x = player.offsetLeft - 15;
+
+        const anim = setInterval(() => {
+            opacity -= 0.03;
+            size += 0.5;
+            x -= 2;
+            smoke.style.opacity = opacity;
+            smoke.style.width = size + 'px';
+            smoke.style.height = size + 'px';
+            smoke.style.left = x + 'px';
+            if(opacity <= 0) {
+                clearInterval(anim);
+                smoke.remove();
+            }
+        }, 30);
+    }
+
+    function gameLoop() {
+        if(!isRunning) return;
+
+        // Movimento por Teclado ou Botões
+        const step = 4; 
+        if((keys['ArrowUp'] || isPressingUp) && targetY > 60) targetY -= step;
+        if((keys['ArrowDown'] || isPressingDown) && targetY < container.offsetHeight - 60) targetY += step;
+
+        // Movimento Suave (LERP)
+        let diff = targetY - currentY;
+        currentY += diff * 0.12; 
+
+        player.style.top = currentY + 'px';
+
+        // AJUSTE DE ROTAÇÃO:
+        let tilt = diff * 0.4;
+        tilt = Math.max(-25, Math.min(25, tilt));
+
+        if(Math.random() > 0.9) createSmoke();
+
+        const pRect = player.getBoundingClientRect();
+        let correctCaptured = false;
+
+        for (let i = activeClouds.length - 1; i >= 0; i--) {
+            let cloud = activeClouds[i];
+            cloud.x += gameSpeed * cloud.speedMod;
+            cloud.el.style.right = cloud.x + 'px';
+
+            const cRect = cloud.el.getBoundingClientRect();
+
+            if (pRect.right > cRect.left + 5 && 
+                pRect.left < cRect.right - 5 &&
+                pRect.bottom > cRect.top + 5 && 
+                pRect.top < cRect.bottom - 5) {
+                
+                if(cloud.text === currentQ.ans) {
+                    handleSuccess();
+                    correctCaptured = true;
+                    break; 
+                } else {
+                    handleError("Ops! Errado.");
+                    cloud.el.remove();
+                    activeClouds.splice(i, 1);
+                    continue;
+                }
+            }
+
+            if (cRect.right < -250) {
+                cloud.el.remove();
+                activeClouds.splice(i, 1);
+            }
+        }
+
+        if (!correctCaptured && isRunning) {
+            if (activeClouds.length < 2 || (Date.now() - lastSpawnTime > spawnInterval)) {
+                spawnClouds();
+            }
+        }
+
+        document.getElementById('score').innerText = score;
+        document.getElementById('lives').innerText = lives;
+        requestAnimationFrame(gameLoop);
+    }
+
+    function handleSuccess() {
+        score += 10;
+        gameSpeed += 0.08;
+        container.classList.add('flash-green');
+        setTimeout(() => container.classList.remove('flash-green'), 400);
+        nextQuestion();
+    }
+
+    function handleError(msg) {
+        lives--;
+        container.classList.add('flash-red');
+        setTimeout(() => container.classList.remove('flash-red'), 400);
+        
+        if(lives <= 0) {
+            isRunning = false;
+            document.getElementById('game-over').classList.remove('hidden');
+            document.getElementById('death-reason').innerText = "FIM DE VOO";
+            document.getElementById('correct-info').innerText = "A resposta era: " + currentQ.ans;
+            document.getElementById('final-score').innerText = score;
+        }
+    }
+</script>
+</body>
+</html>
