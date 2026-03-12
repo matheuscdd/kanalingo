@@ -446,36 +446,40 @@
                 const points = [start];
                 let lastX = start.x;
                 let lastY = start.y;
-
+                let lastDirection = null;
                 for (let i = 0; i < 4; i++) {
                     let x;
                     let y;
-
+                    let direction;
                     if (i % 2 === 0) {
                         do {
                             x = Math.floor(Math.random() * 600 + 100);
                         } while (x === lastX);
                         y = lastY;
+                        direction = 'horizontal';
                     } else {
                         x = lastX;
                         do {
                             y = Math.floor(Math.random() * 400 + 100);
                         } while (y === lastY);
+                        direction = 'vertical';
                     }
-
+                    // Evita caminho colado (vai e volta)
+                    if (lastDirection && lastDirection === direction) {
+                        // Se a direção se repete, pula
+                        continue;
+                    }
                     points.push({ x, y });
                     lastX = x;
                     lastY = y;
+                    lastDirection = direction;
                 }
-
                 if (lastX !== end.x) points.push({ x: end.x, y: lastY });
                 if (lastY !== end.y) points.push(end);
-
-                if (!isPathSelfIntersecting(points)) {
+                if (!isPathSelfIntersecting(points) && !hasBacktracking(points)) {
                     return points;
                 }
             }
-
             return [
                 { x: -50, y: 160 },
                 { x: 180, y: 160 },
@@ -484,6 +488,19 @@
                 { x: 520, y: 210 },
                 { x: 850, y: 210 }
             ];
+        }
+
+        function hasBacktracking(path) {
+            // Verifica se há segmentos consecutivos colados (vai e volta)
+            for (let i = 1; i < path.length - 1; i++) {
+                const prev = path[i - 1];
+                const curr = path[i];
+                const next = path[i + 1];
+                if ((prev.x === next.x && prev.y === next.y)) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         function generateTowerSpots(numSpots, path) {
@@ -605,7 +622,7 @@
             getEffectiveDamage() {
                 // Se houver pelo menos uma torre fraca, todas causam dano baixo
                 const anyWeak = towers.some(t => !t.isStrong);
-                return anyWeak ? 10 : (this.isStrong ? 90 : 10);
+                return anyWeak ? 10 : (this.isStrong ? 50 : 10);
             }
 
             getEffectiveFireRate() {
@@ -764,20 +781,42 @@
 
         function checkAnswer(selected, correct, selectedIcon) {
             const isCorrect = (selected === correct);
-            const spot = towerSpots[currentWave];
-            
-            towers.push(new Tower(spot.x, spot.y, isCorrect, selectedIcon));
-            
-            showFeedback(isCorrect);
-            
             showScreen(null);
-            setTimeout(() => {
-                gameState = 'PLAYING';
-                enemiesSpawned = 0;
-                waveTimer = 0;
-                currentWave++;
-                updateHUD();
-            }, 1000);
+            showFeedback(isCorrect);
+            let placingTower = true;
+            function onCanvasClick(e) {
+                if (!placingTower) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = Math.round((e.clientX - rect.left) * (canvas.width / rect.width));
+                const y = Math.round((e.clientY - rect.top) * (canvas.height / rect.height));
+                if (!isPointOutsidePath({x, y}, pathPoints)) {
+                    const fb = document.getElementById('feedback-message');
+                    fb.className = 'feedback-wrong';
+                    fb.innerHTML = '<i class="fa-solid fa-xmark"></i> Não pode colocar no caminho!';
+                    fb.style.opacity = '1';
+                    setTimeout(() => { fb.style.opacity = '0'; }, 1500);
+                    return;
+                }
+                // Cria torre como instância da classe Tower, mas sobrescreve o método draw para quadrado SVG
+                const tower = new Tower(x, y, isCorrect, selectedIcon);
+                tower.draw = function() {
+                    ctx.save();
+                    ctx.fillStyle = this.isStrong ? '#58cc02' : '#a5a5a5';
+                    ctx.fillRect(this.x - 15, this.y - 15, 30, 30);
+                    ctx.restore();
+                };
+                towers.push(tower);
+                placingTower = false;
+                canvas.removeEventListener('click', onCanvasClick);
+                setTimeout(() => {
+                    gameState = 'PLAYING';
+                    enemiesSpawned = 0;
+                    waveTimer = 0;
+                    currentWave++;
+                    updateHUD();
+                }, 500);
+            }
+            canvas.addEventListener('click', onCanvasClick);
         }
 
         function showFeedback(isCorrect) {
@@ -831,36 +870,12 @@
             ctx.stroke();
         }
 
-        function drawTowerSpots() {
-            // Desenha os locais onde as próximas torres serão colocadas
-            const nextSpotIndex = currentWave;
-            
-            towerSpots.forEach((spot, idx) => {
-                if (idx >= towers.length) {
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-                    ctx.beginPath();
-                    ctx.arc(spot.x, spot.y, 20, 0, Math.PI * 2);
-                    ctx.fill();
-                    
-                    if (idx === nextSpotIndex && gameState === 'QUIZ') {
-                        // Piscar o spot atual
-                        ctx.lineWidth = 3;
-                        ctx.strokeStyle = '#1cb0f6';
-                        ctx.setLineDash([5, 5]);
-                        ctx.stroke();
-                        ctx.setLineDash([]);
-                    }
-                }
-            });
-        }
-
         function gameLoop() {
             // Limpa o Canvas (Grama verde)
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             // Desenhar Cenário
             drawPath();
-            drawTowerSpots();
 
             if (gameState === 'PLAYING') {
                 // Gerenciar Spawns
