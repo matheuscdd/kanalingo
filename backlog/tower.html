@@ -85,14 +85,87 @@
         }
 
         .panel {
-            background: var(--duo-white);
-            border: 2px solid var(--duo-gray-border);
-            border-radius: 24px;
-            padding: 40px;
-            text-align: center;
-            max-width: 600px;
-            width: 90%;
-            box-shadow: 0 8px 0 var(--duo-gray-border);
+                background: var(--duo-white);
+                border: 2px solid var(--duo-gray-border);
+                border-radius: 24px;
+                padding: 40px;
+                text-align: center;
+                max-width: 600px;
+                width: 90%;
+                box-shadow: 0 8px 0 var(--duo-gray-border);
+                position: relative;
+            }
+
+            /* Prancheta (Clipboard) para Quiz */
+            #quiz-screen {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 15;
+                display: none;
+            }
+            #quiz-screen .panel {
+                background: linear-gradient(180deg, #f7f7f7 0%, #fff 80%);
+                border-radius: 18px 18px 24px 24px;
+                box-shadow: 0 6px 0 var(--duo-gray-border), 0 16px 24px rgba(0,0,0,0.08);
+                border: 3px solid #a5a5a5;
+                padding-top: 40px;
+                width: 60%;
+                max-width: 400px;
+                position: absolute;
+                top: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                pointer-events: auto;
+                max-height: 60vh;
+                overflow-y: auto;
+                scrollbar-width: none;
+            }
+            #quiz-screen .panel::-webkit-scrollbar {
+                display: none;
+            }
+            #quiz-screen .clipboard-top {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 120px;
+                height: 60px;
+                background: #e5e5e5;
+                border-radius: 0 0 32px 32px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+                z-index: 2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #quiz-screen .clipboard-clip {
+                position: absolute;
+                top: 12px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 24px;
+                background: #bdbdbd;
+                border-radius: 12px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+                z-index: 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #quiz-screen .clipboard-clip:before {
+                content: '';
+                display: block;
+                width: 16px;
+                height: 8px;
+                background: #a5a5a5;
+                border-radius: 4px;
+                margin-top: 8px;
+            }
         }
 
         h1 {
@@ -161,9 +234,11 @@
         }
 
         .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 15px;
+            align-items: stretch;
+        }
         }
 
         /* HUD Superior */
@@ -253,8 +328,10 @@
         </div>
 
         <!-- Tela de Quiz -->
-        <div id="quiz-screen" class="overlay">
+        <div id="quiz-screen">
             <div class="panel">
+                <div class="clipboard-top"></div>
+                <div class="clipboard-clip"></div>
                 <h2>Próxima Torre!</h2>
                 <div id="question-text" class="question-text">Pergunta aqui?</div>
                 <div class="options-grid" id="options-container">
@@ -441,7 +518,7 @@
 
         function generatePathPoints() {
             for (let attempt = 0; attempt < 150; attempt++) {
-                const start = { x: -50, y: Math.floor(Math.random() * 400 + 100) };
+                const start = { x: -50, y: 120 };
                 const end = { x: 850, y: Math.floor(Math.random() * 400 + 100) };
                 const points = [start];
                 let lastX = start.x;
@@ -481,8 +558,8 @@
                 }
             }
             return [
-                { x: -50, y: 160 },
-                { x: 180, y: 160 },
+                { x: -50, y: 120 },
+                { x: 180, y: 300 },
                 { x: 180, y: 420 },
                 { x: 520, y: 420 },
                 { x: 520, y: 210 },
@@ -733,7 +810,14 @@
         // Funções de Controle e Renderização
         function showScreen(id) {
             document.querySelectorAll('.overlay').forEach(el => el.classList.remove('active'));
-            if(id) document.getElementById(id).classList.add('active');
+            // Só mostra a prancheta se id === 'quiz-screen'
+            const quizScreen = document.getElementById('quiz-screen');
+            if (id === 'quiz-screen') {
+                quizScreen.style.display = 'block';
+            } else {
+                quizScreen.style.display = 'none';
+            }
+            if (id && id !== 'quiz-screen') document.getElementById(id).classList.add('active');
         }
 
         function startGame() {
@@ -784,20 +868,108 @@
             showScreen(null);
             showFeedback(isCorrect);
             let placingTower = true;
+            let mouseX = 0;
+            let mouseY = 0;
+            let showRadius = true;
+            const towerRange = isCorrect ? 200 : 120;
+
+            function drawPlacementRadius() {
+                if (placingTower && showRadius) {
+                    // Quadriculado (linhas) em todo o mapa
+                    const gridSize = 40;
+                    ctx.save();
+                    ctx.globalAlpha = 0.18;
+                    ctx.strokeStyle = '#888';
+                    ctx.lineWidth = 1;
+                    for (let x = 0; x <= canvas.width; x += gridSize) {
+                        ctx.beginPath();
+                        ctx.moveTo(x, 0);
+                        ctx.lineTo(x, canvas.height);
+                        ctx.stroke();
+                    }
+                    for (let y = 0; y <= canvas.height; y += gridSize) {
+                        ctx.beginPath();
+                        ctx.moveTo(0, y);
+                        ctx.lineTo(canvas.width, y);
+                        ctx.stroke();
+                    }
+                    ctx.restore();
+
+                    // Destacar quadrados proibidos
+                    for (let gx = 0; gx < canvas.width; gx += gridSize) {
+                        for (let gy = 0; gy < canvas.height; gy += gridSize) {
+                            const center = { x: gx + gridSize / 2, y: gy + gridSize / 2 };
+                            let canPlace = isPointOutsidePath(center, pathPoints);
+                            if (!canPlace) {
+                                ctx.save();
+                                ctx.globalAlpha = 0.18;
+                                ctx.fillStyle = '#ea2b2b';
+                                ctx.fillRect(gx, gy, gridSize, gridSize);
+                                ctx.restore();
+                            }
+                        }
+                    }
+
+                    // Raio
+                    ctx.save();
+                    ctx.globalAlpha = 0.3;
+                    ctx.beginPath();
+                    ctx.arc(mouseX, mouseY, towerRange, 0, Math.PI * 2);
+                    ctx.fillStyle = isCorrect ? '#58cc02' : '#a5a5a5';
+                    ctx.fill();
+                    ctx.restore();
+
+                    // Torre
+                    ctx.save();
+                    ctx.globalAlpha = 0.8;
+                    ctx.fillStyle = isCorrect ? '#58cc02' : '#a5a5a5';
+                    ctx.fillRect(mouseX - 15, mouseY - 15, 30, 30);
+                    ctx.font = '24px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillStyle = 'white';
+                    ctx.fillText(selectedIcon || '\ud83e\udd89', mouseX, mouseY + 2);
+                    ctx.restore();
+                }
+            }
+
+            function onCanvasMouseMove(e) {
+                const rect = canvas.getBoundingClientRect();
+                let mx = Math.round((e.clientX - rect.left) * (canvas.width / rect.width));
+                let my = Math.round((e.clientY - rect.top) * (canvas.height / rect.height));
+                // Alinhar ao centro do quadrado mais próximo
+                const gridSize = 40;
+                mouseX = Math.floor(mx / gridSize) * gridSize + gridSize / 2;
+                mouseY = Math.floor(my / gridSize) * gridSize + gridSize / 2;
+            }
+
             function onCanvasClick(e) {
                 if (!placingTower) return;
                 const rect = canvas.getBoundingClientRect();
-                const x = Math.round((e.clientX - rect.left) * (canvas.width / rect.width));
-                const y = Math.round((e.clientY - rect.top) * (canvas.height / rect.height));
+                let mx = Math.round((e.clientX - rect.left) * (canvas.width / rect.width));
+                let my = Math.round((e.clientY - rect.top) * (canvas.height / rect.height));
+                // Alinhar ao centro do quadrado mais próximo (igual ao mouseMove)
+                const gridSize = 40;
+                let x = Math.floor(mx / gridSize) * gridSize + gridSize / 2;
+                let y = Math.floor(my / gridSize) * gridSize + gridSize / 2;
                 if (!isPointOutsidePath({x, y}, pathPoints)) {
                     const fb = document.getElementById('feedback-message');
                     fb.className = 'feedback-wrong';
-                    fb.innerHTML = '<i class="fa-solid fa-xmark"></i> Não pode colocar no caminho!';
+                    fb.innerHTML = '<i class="fa-solid fa-xmark"></i> Ne pode colocar no caminho!';
                     fb.style.opacity = '1';
                     setTimeout(() => { fb.style.opacity = '0'; }, 1500);
                     return;
                 }
-                // Cria torre como instância da classe Tower, mas sobrescreve o método draw para quadrado SVG
+                const occupied = towers.some(t => t.x === x && t.y === y);
+                if (occupied) {
+                    const fb = document.getElementById('feedback-message');
+                    fb.className = 'feedback-wrong';
+                    fb.innerHTML = '<i class="fa-solid fa-xmark"></i> Já existe uma torre aqui!';
+                    fb.style.opacity = '1';
+                    setTimeout(() => { fb.style.opacity = '0'; }, 1500);
+                    return;
+                }
+                
                 const tower = new Tower(x, y, isCorrect, selectedIcon);
                 tower.draw = function() {
                     ctx.save();
@@ -807,6 +979,8 @@
                 };
                 towers.push(tower);
                 placingTower = false;
+                showRadius = false;
+                canvas.removeEventListener('mousemove', onCanvasMouseMove);
                 canvas.removeEventListener('click', onCanvasClick);
                 setTimeout(() => {
                     gameState = 'PLAYING';
@@ -814,9 +988,37 @@
                     waveTimer = 0;
                     currentWave++;
                     updateHUD();
-                }, 500);
+                }, 200);
             }
+            canvas.addEventListener('mousemove', onCanvasMouseMove);
             canvas.addEventListener('click', onCanvasClick);
+
+            // Adicionar chamada ao drawPlacementRadius no game loop
+            const originalGameLoop = gameLoop;
+            gameLoop = function() {
+                // Desenhar quadriculado sempre
+                const gridSize = 40;
+                ctx.save();
+                ctx.globalAlpha = 0.18;
+                ctx.strokeStyle = '#888';
+                ctx.lineWidth = 1;
+                for (let x = 0; x <= canvas.width; x += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                    ctx.stroke();
+                }
+                for (let y = 0; y <= canvas.height; y += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
+                }
+                ctx.restore();
+
+                originalGameLoop.apply(this, arguments);
+                drawPlacementRadius();
+            };
         }
 
         function showFeedback(isCorrect) {
@@ -882,7 +1084,7 @@
                 waveTimer++;
                 const waveTotalEnemies = waveConfigs[currentWave - 1];
                 
-                if (enemiesSpawned < waveTotalEnemies && waveTimer % 60 === 0) {
+                if (enemiesSpawned < waveTotalEnemies && waveTimer % 120 === 0) {
                     enemies.push(new Enemy());
                     enemiesSpawned++;
                 }
