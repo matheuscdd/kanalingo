@@ -20,6 +20,8 @@
             --duo-gray-border: #e5e5e5;
             --duo-text: #4b4b4b;
             --duo-white: #ffffff;
+            --game-max-width: 960px;
+            --game-aspect-ratio: 4 / 3;
         }
 
         * {
@@ -43,10 +45,10 @@
 
         #game-container {
             position: relative;
-            width: 95vw;
-            max-width: 800px;
-            max-height: 90vh; /* Evita que estoure a tela verticalmente */
-            aspect-ratio: 4 / 3; /* Mantém a proporção do canvas original */
+            width: min(96vw, var(--game-max-width));
+            max-width: var(--game-max-width);
+            max-height: 92vh;
+            aspect-ratio: var(--game-aspect-ratio);
             background-color: #a5ed6c; /* Cor da grama */
             border-radius: 20px;
             border: 4px solid var(--duo-gray-border);
@@ -85,15 +87,87 @@
         }
 
         .panel {
-            background: var(--duo-white);
-            border: 2px solid var(--duo-gray-border);
-            border-radius: 24px;
-            padding: 40px;
-            text-align: center;
-            max-width: 600px;
-            width: 90%;
-            box-shadow: 0 8px 0 var(--duo-gray-border);
-        }
+                background: var(--duo-white);
+                border: 2px solid var(--duo-gray-border);
+                border-radius: 24px;
+                padding: 40px;
+                text-align: center;
+                max-width: 600px;
+                width: 90%;
+                box-shadow: 0 8px 0 var(--duo-gray-border);
+                position: relative;
+            }
+
+            /* Prancheta (Clipboard) para Quiz */
+            #quiz-screen {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 15;
+                display: none;
+            }
+            #quiz-screen .panel {
+                background: linear-gradient(180deg, #f7f7f7 0%, #fff 80%);
+                border-radius: 18px 18px 24px 24px;
+                box-shadow: 0 6px 0 var(--duo-gray-border), 0 16px 24px rgba(0,0,0,0.08);
+                border: 3px solid #a5a5a5;
+                padding-top: 40px;
+                width: 60%;
+                max-width: 400px;
+                position: absolute;
+                top: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                pointer-events: auto;
+                max-height: 60vh;
+                overflow-y: auto;
+                scrollbar-width: none;
+            }
+            #quiz-screen .panel::-webkit-scrollbar {
+                display: none;
+            }
+            #quiz-screen .clipboard-top {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 120px;
+                height: 60px;
+                background: #e5e5e5;
+                border-radius: 0 0 32px 32px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+                z-index: 2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #quiz-screen .clipboard-clip {
+                position: absolute;
+                top: 12px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 24px;
+                background: #bdbdbd;
+                border-radius: 12px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+                z-index: 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #quiz-screen .clipboard-clip:before {
+                content: '';
+                display: block;
+                width: 16px;
+                height: 8px;
+                background: #a5a5a5;
+                border-radius: 4px;
+                margin-top: 8px;
+            }
 
         h1 {
             color: var(--duo-green);
@@ -161,9 +235,10 @@
         }
 
         .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 15px;
+            align-items: stretch;
         }
 
         /* HUD Superior */
@@ -216,6 +291,11 @@
 
         /* Ajustes de Responsividade para Celulares */
         @media (max-width: 768px) {
+            #game-container {
+                width: calc(100vw - 16px);
+                max-height: 78vh;
+                border-radius: 16px;
+            }
             h1 { font-size: 2rem; margin-bottom: 10px; }
             h2 { font-size: 1.2rem; margin-bottom: 15px; }
             .panel { padding: 20px; width: 95%; }
@@ -238,7 +318,7 @@
             <div class="hud-box wave-text"><i class="fa-solid fa-flag"></i> Ondas: <span id="wave-display">1/5</span></div>
         </div>
 
-        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <canvas id="gameCanvas" width="960" height="720"></canvas>
 
         <!-- Menu Inicial -->
         <div id="start-screen" class="overlay active">
@@ -253,8 +333,10 @@
         </div>
 
         <!-- Tela de Quiz -->
-        <div id="quiz-screen" class="overlay">
+        <div id="quiz-screen">
             <div class="panel">
+                <div class="clipboard-top"></div>
+                <div class="clipboard-clip"></div>
                 <h2>Próxima Torre!</h2>
                 <div id="question-text" class="question-text">Pergunta aqui?</div>
                 <div class="options-grid" id="options-container">
@@ -290,8 +372,36 @@
     </div>
 
     <script>
+        const gameContainer = document.getElementById('game-container');
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
+
+        const layout = {
+            logicalWidth: 960,
+            logicalHeight: 720,
+            gridSize: 72,
+            towerRadius: 24,
+            towerBaseOffsetY: 18,
+            towerBaseRadiusX: 30,
+            towerBaseRadiusY: 12,
+            towerIconSize: 28,
+            towerSleepIconSize: 16,
+            towerRangeStrong: 240,
+            towerRangeWeak: 144,
+            pathOuterWidth: 66,
+            pathInnerWidth: 48,
+            towerPathPadding: 20,
+            projectileStrongRadius: 7,
+            projectileWeakRadius: 5,
+            playableMarginX: 96,
+            playableMarginY: 96
+        };
+
+        const towerSpotRadius = layout.towerRadius;
+        const minimumTowerSpacing = layout.gridSize;
+        let placementState = null;
+
+        applyGameLayout();
 
         // Configurações do Jogo
         let gameHealth = 1;
@@ -312,9 +422,249 @@
         let projectiles = [];
         let enemiesSpawned = 0;
         let waveTimer = 0;
-        const pathOuterWidth = 60;
-        const towerSpotRadius = 20;
-        const towerPathPadding = 18;
+
+        function applyGameLayout() {
+            canvas.width = layout.logicalWidth;
+            canvas.height = layout.logicalHeight;
+            gameContainer.style.setProperty('--game-max-width', `${layout.logicalWidth}px`);
+            gameContainer.style.setProperty('--game-aspect-ratio', `${layout.logicalWidth} / ${layout.logicalHeight}`);
+        }
+
+        function getTowerRange(isStrong) {
+            return isStrong ? layout.towerRangeStrong : layout.towerRangeWeak;
+        }
+
+        function getTowerAccentColor(isStrong) {
+            return isStrong ? '#58cc02' : '#a5a5a5';
+        }
+
+        function snapToGrid(value, maxValue) {
+            const halfCell = layout.gridSize / 2;
+            const snapped = Math.floor(value / layout.gridSize) * layout.gridSize + halfCell;
+            return Math.max(halfCell, Math.min(maxValue - halfCell, snapped));
+        }
+
+        function alignPointToGrid(point) {
+            return {
+                x: snapToGrid(point.x, canvas.width),
+                y: snapToGrid(point.y, canvas.height)
+            };
+        }
+
+        function getCanvasPoint(event) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: Math.round((event.clientX - rect.left) * (canvas.width / rect.width)),
+                y: Math.round((event.clientY - rect.top) * (canvas.height / rect.height))
+            };
+        }
+
+        function getPlayableBounds() {
+            return {
+                minX: layout.playableMarginX,
+                maxX: canvas.width - layout.playableMarginX,
+                minY: layout.playableMarginY,
+                maxY: canvas.height - layout.playableMarginY
+            };
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function getRandomGridCenter(minPixel, maxPixel, excludedValue = null) {
+            const halfCell = layout.gridSize / 2;
+            const minIndex = Math.ceil((minPixel - halfCell) / layout.gridSize);
+            const maxIndex = Math.floor((maxPixel - halfCell) / layout.gridSize);
+
+            if (minIndex > maxIndex) {
+                return halfCell;
+            }
+
+            for (let attempt = 0; attempt < 20; attempt++) {
+                const value = getRandomInt(minIndex, maxIndex) * layout.gridSize + halfCell;
+                if (value !== excludedValue) {
+                    return value;
+                }
+            }
+
+            return minIndex * layout.gridSize + halfCell;
+        }
+
+        function shuffleArray(items) {
+            for (let index = items.length - 1; index > 0; index--) {
+                const swapIndex = Math.floor(Math.random() * (index + 1));
+                [items[index], items[swapIndex]] = [items[swapIndex], items[index]];
+            }
+
+            return items;
+        }
+
+        function drawGridOverlay() {
+            ctx.save();
+            ctx.globalAlpha = 0.18;
+            ctx.strokeStyle = '#888';
+            ctx.lineWidth = 1;
+
+            for (let x = 0; x <= canvas.width; x += layout.gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+
+            for (let y = 0; y <= canvas.height; y += layout.gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+
+            ctx.restore();
+        }
+
+        function drawBlockedCellsOverlay() {
+            if (!placementState?.active) {
+                return;
+            }
+
+            for (let gx = 0; gx < canvas.width; gx += layout.gridSize) {
+                for (let gy = 0; gy < canvas.height; gy += layout.gridSize) {
+                    const center = { x: gx + layout.gridSize / 2, y: gy + layout.gridSize / 2 };
+
+                    if (!isPointOutsidePath(center, pathPoints)) {
+                        ctx.save();
+                        ctx.globalAlpha = 0.18;
+                        ctx.fillStyle = '#ea2b2b';
+                        ctx.fillRect(gx, gy, layout.gridSize, layout.gridSize);
+                        ctx.restore();
+                    }
+                }
+            }
+        }
+
+        function drawTowerSprite(x, y, isStrong, icon, alpha = 1) {
+            ctx.save();
+            ctx.globalAlpha = alpha;
+
+            ctx.fillStyle = '#e5e5e5';
+            ctx.beginPath();
+            ctx.ellipse(x, y + layout.towerBaseOffsetY, layout.towerBaseRadiusX, layout.towerBaseRadiusY, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(x, y, layout.towerRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = getTowerAccentColor(isStrong);
+            ctx.stroke();
+
+            ctx.font = `${layout.towerIconSize}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            if (!isStrong) {
+                ctx.filter = 'grayscale(100%) opacity(60%)';
+            }
+
+            ctx.fillText(icon || '🦉', x, y + 2);
+            ctx.filter = 'none';
+
+            if (!isStrong) {
+                ctx.font = `${layout.towerSleepIconSize}px Arial`;
+                ctx.fillText('💤', x + layout.towerRadius - 2, y - layout.towerRadius / 2);
+            }
+
+            ctx.restore();
+        }
+
+        function startPlacement(isStrong, icon) {
+            placementState = {
+                active: true,
+                isStrong,
+                icon,
+                range: getTowerRange(isStrong),
+                mouseX: snapToGrid(canvas.width / 2, canvas.width),
+                mouseY: snapToGrid(canvas.height / 2, canvas.height)
+            };
+        }
+
+        function finishPlacement(x, y) {
+            towers.push(new Tower(x, y, placementState.isStrong, placementState.icon));
+            placementState = null;
+
+            setTimeout(() => {
+                gameState = 'PLAYING';
+                enemiesSpawned = 0;
+                waveTimer = 0;
+                currentWave++;
+                updateHUD();
+            }, 200);
+        }
+
+        function showPlacementError(message) {
+            const fb = document.getElementById('feedback-message');
+            fb.className = 'feedback-wrong';
+            fb.innerHTML = `<i class="fa-solid fa-xmark"></i> ${message}`;
+            fb.style.opacity = '1';
+            setTimeout(() => { fb.style.opacity = '0'; }, 1500);
+        }
+
+        function handleCanvasPointerMove(event) {
+            if (!placementState?.active) {
+                return;
+            }
+
+            const alignedPoint = alignPointToGrid(getCanvasPoint(event));
+            placementState.mouseX = alignedPoint.x;
+            placementState.mouseY = alignedPoint.y;
+        }
+
+        function handleCanvasPlacement(event) {
+            if (!placementState?.active) {
+                return;
+            }
+
+            const { x, y } = alignPointToGrid(getCanvasPoint(event));
+
+            if (!isPointOutsidePath({ x, y }, pathPoints)) {
+                showPlacementError('Não pode colocar no caminho!');
+                return;
+            }
+
+            const occupied = towers.some(tower => tower.x === x && tower.y === y);
+            if (occupied) {
+                showPlacementError('Já existe uma torre aqui!');
+                return;
+            }
+
+            finishPlacement(x, y);
+        }
+
+        function drawPlacementPreview() {
+            if (!placementState?.active) {
+                return;
+            }
+
+            const { mouseX, mouseY, isStrong, icon, range } = placementState;
+
+            drawBlockedCellsOverlay();
+
+            ctx.save();
+            ctx.globalAlpha = 0.25;
+            ctx.beginPath();
+            ctx.arc(mouseX, mouseY, range, 0, Math.PI * 2);
+            ctx.fillStyle = getTowerAccentColor(isStrong);
+            ctx.fill();
+            ctx.restore();
+
+            drawTowerSprite(mouseX, mouseY, isStrong, icon, 0.9);
+        }
+
+        canvas.addEventListener('pointermove', handleCanvasPointerMove);
+        canvas.addEventListener('pointerdown', handleCanvasPlacement);
 
         // Banco de perguntas para geração procedural
         const questionBank = [
@@ -353,6 +703,48 @@
             return Math.max(minA, minB) < Math.min(maxA, maxB);
         }
 
+        function isVerticalSegment(segment) {
+            return segment.start.x === segment.end.x;
+        }
+
+        function hasParallelOverlap(first, second, isVertical) {
+            if (isVertical) {
+                return first.start.x === second.start.x && rangesOverlap(
+                    Math.min(first.start.y, first.end.y),
+                    Math.max(first.start.y, first.end.y),
+                    Math.min(second.start.y, second.end.y),
+                    Math.max(second.start.y, second.end.y)
+                );
+            }
+
+            return first.start.y === second.start.y && rangesOverlap(
+                Math.min(first.start.x, first.end.x),
+                Math.max(first.start.x, first.end.x),
+                Math.min(second.start.x, second.end.x),
+                Math.max(second.start.x, second.end.x)
+            );
+        }
+
+        function hasPerpendicularIntersection(first, second, firstVertical) {
+            const vertical = firstVertical ? first : second;
+            const horizontal = firstVertical ? second : first;
+            const withinX = vertical.start.x > Math.min(horizontal.start.x, horizontal.end.x) && vertical.start.x < Math.max(horizontal.start.x, horizontal.end.x);
+            const withinY = horizontal.start.y > Math.min(vertical.start.y, vertical.end.y) && horizontal.start.y < Math.max(vertical.start.y, vertical.end.y);
+
+            return withinX && withinY;
+        }
+
+        function segmentsIntersect(first, second) {
+            const firstVertical = isVerticalSegment(first);
+            const secondVertical = isVerticalSegment(second);
+
+            if (firstVertical === secondVertical) {
+                return hasParallelOverlap(first, second, firstVertical);
+            }
+
+            return hasPerpendicularIntersection(first, second, firstVertical);
+        }
+
         function isPathSelfIntersecting(path) {
             const segments = getSegments(path);
 
@@ -362,47 +754,7 @@
                         continue;
                     }
 
-                    const first = segments[i];
-                    const second = segments[j];
-                    const firstVertical = first.start.x === first.end.x;
-                    const secondVertical = second.start.x === second.end.x;
-
-                    if (firstVertical === secondVertical) {
-                        if (firstVertical && first.start.x === second.start.x) {
-                            const overlap = rangesOverlap(
-                                Math.min(first.start.y, first.end.y),
-                                Math.max(first.start.y, first.end.y),
-                                Math.min(second.start.y, second.end.y),
-                                Math.max(second.start.y, second.end.y)
-                            );
-
-                            if (overlap) {
-                                return true;
-                            }
-                        }
-
-                        if (!firstVertical && first.start.y === second.start.y) {
-                            const overlap = rangesOverlap(
-                                Math.min(first.start.x, first.end.x),
-                                Math.max(first.start.x, first.end.x),
-                                Math.min(second.start.x, second.end.x),
-                                Math.max(second.start.x, second.end.x)
-                            );
-
-                            if (overlap) {
-                                return true;
-                            }
-                        }
-
-                        continue;
-                    }
-
-                    const vertical = firstVertical ? first : second;
-                    const horizontal = firstVertical ? second : first;
-                    const withinX = vertical.start.x > Math.min(horizontal.start.x, horizontal.end.x) && vertical.start.x < Math.max(horizontal.start.x, horizontal.end.x);
-                    const withinY = horizontal.start.y > Math.min(vertical.start.y, vertical.end.y) && horizontal.start.y < Math.max(vertical.start.y, vertical.end.y);
-
-                    if (withinX && withinY) {
+                    if (segmentsIntersect(segments[i], segments[j])) {
                         return true;
                     }
                 }
@@ -427,7 +779,7 @@
         }
 
         function isPointOutsidePath(point, path) {
-            const requiredDistance = pathOuterWidth / 2 + towerSpotRadius + towerPathPadding;
+            const requiredDistance = layout.pathOuterWidth / 2 + towerSpotRadius + layout.towerPathPadding;
 
             for (let i = 0; i < path.length - 1; i++) {
                 const dist = distanceToSegment(point, path[i], path[i + 1]);
@@ -440,53 +792,53 @@
         }
 
         function generatePathPoints() {
+            const bounds = getPlayableBounds();
+
             for (let attempt = 0; attempt < 150; attempt++) {
-                const start = { x: -50, y: Math.floor(Math.random() * 400 + 100) };
-                const end = { x: 850, y: Math.floor(Math.random() * 400 + 100) };
+                const start = {
+                    x: -layout.pathOuterWidth,
+                    y: getRandomGridCenter(bounds.minY, bounds.maxY)
+                };
                 const points = [start];
                 let lastX = start.x;
                 let lastY = start.y;
-                let lastDirection = null;
+
                 for (let i = 0; i < 4; i++) {
                     let x;
                     let y;
-                    let direction;
+
                     if (i % 2 === 0) {
-                        do {
-                            x = Math.floor(Math.random() * 600 + 100);
-                        } while (x === lastX);
+                        x = getRandomGridCenter(bounds.minX, bounds.maxX, lastX);
                         y = lastY;
-                        direction = 'horizontal';
                     } else {
                         x = lastX;
-                        do {
-                            y = Math.floor(Math.random() * 400 + 100);
-                        } while (y === lastY);
-                        direction = 'vertical';
+                        y = getRandomGridCenter(bounds.minY, bounds.maxY, lastY);
                     }
-                    // Evita caminho colado (vai e volta)
-                    if (lastDirection && lastDirection === direction) {
-                        // Se a direção se repete, pula
-                        continue;
-                    }
+
                     points.push({ x, y });
                     lastX = x;
                     lastY = y;
-                    lastDirection = direction;
                 }
-                if (lastX !== end.x) points.push({ x: end.x, y: lastY });
-                if (lastY !== end.y) points.push(end);
+
+                points.push({ x: canvas.width + layout.pathOuterWidth, y: lastY });
+
                 if (!isPathSelfIntersecting(points) && !hasBacktracking(points)) {
                     return points;
                 }
             }
+
+            const fallbackYTop = snapToGrid(canvas.height * 0.3, canvas.height);
+            const fallbackYBottom = snapToGrid(canvas.height * 0.62, canvas.height);
+            const fallbackXLeft = snapToGrid(canvas.width * 0.22, canvas.width);
+            const fallbackXRight = snapToGrid(canvas.width * 0.64, canvas.width);
+
             return [
-                { x: -50, y: 160 },
-                { x: 180, y: 160 },
-                { x: 180, y: 420 },
-                { x: 520, y: 420 },
-                { x: 520, y: 210 },
-                { x: 850, y: 210 }
+                { x: -layout.pathOuterWidth, y: fallbackYTop },
+                { x: fallbackXLeft, y: fallbackYTop },
+                { x: fallbackXLeft, y: fallbackYBottom },
+                { x: fallbackXRight, y: fallbackYBottom },
+                { x: fallbackXRight, y: snapToGrid(canvas.height * 0.35, canvas.height) },
+                { x: canvas.width + layout.pathOuterWidth, y: snapToGrid(canvas.height * 0.35, canvas.height) }
             ];
         }
 
@@ -494,7 +846,6 @@
             // Verifica se há segmentos consecutivos colados (vai e volta)
             for (let i = 1; i < path.length - 1; i++) {
                 const prev = path[i - 1];
-                const curr = path[i];
                 const next = path[i + 1];
                 if ((prev.x === next.x && prev.y === next.y)) {
                     return true;
@@ -504,32 +855,31 @@
         }
 
         function generateTowerSpots(numSpots, path) {
-            const spots = [];
-            let attempts = 0;
+            const bounds = getPlayableBounds();
+            const candidates = [];
 
-            while (spots.length < numSpots && attempts < 2000) {
-                attempts++;
-                const candidate = {
-                    x: Math.floor(Math.random() * 600 + 100),
-                    y: Math.floor(Math.random() * 400 + 100)
-                };
-                const farFromSpots = spots.every(spot => Math.hypot(spot.x - candidate.x, spot.y - candidate.y) >= 70);
+            for (let y = layout.gridSize / 2; y < canvas.height; y += layout.gridSize) {
+                for (let x = layout.gridSize / 2; x < canvas.width; x += layout.gridSize) {
+                    const insidePlayableArea = x >= bounds.minX && x <= bounds.maxX && y >= bounds.minY && y <= bounds.maxY;
+                    const candidate = { x, y };
 
-                if (farFromSpots && isPointOutsidePath(candidate, path)) {
-                    spots.push(candidate);
+                    if (insidePlayableArea && isPointOutsidePath(candidate, path)) {
+                        candidates.push(candidate);
+                    }
                 }
             }
 
-            if (spots.length < numSpots) {
-                for (let y = 110; y <= 490 && spots.length < numSpots; y += 55) {
-                    for (let x = 110; x <= 690 && spots.length < numSpots; x += 55) {
-                        const candidate = { x, y };
-                        const farFromSpots = spots.every(spot => Math.hypot(spot.x - candidate.x, spot.y - candidate.y) >= 70);
+            shuffleArray(candidates);
 
-                        if (farFromSpots && isPointOutsidePath(candidate, path)) {
-                            spots.push(candidate);
-                        }
-                    }
+            const spots = [];
+            for (const candidate of candidates) {
+                const farFromSpots = spots.every(spot => Math.hypot(spot.x - candidate.x, spot.y - candidate.y) >= minimumTowerSpacing);
+                if (farFromSpots) {
+                    spots.push(candidate);
+                }
+
+                if (spots.length >= numSpots) {
+                    break;
                 }
             }
 
@@ -537,11 +887,12 @@
         }
 
         class Enemy {
+            pathIndex = 0;
+
             constructor() {
-                this.pathIndex = 0;
-                this.x = pathPoints[0]?.x ?? -50;
-                this.y = pathPoints[0]?.y ?? 300;
-                this.radius = 14;
+                this.x = pathPoints[0]?.x ?? -layout.pathOuterWidth;
+                this.y = pathPoints[0]?.y ?? canvas.height / 2;
+                this.radius = 16;
                 this.speed = 1.2 + currentWave * 0.15;
                 this.maxHp = 70 + currentWave * 20;
                 this.hp = this.maxHp;
@@ -580,7 +931,7 @@
             draw() {
                 ctx.fillStyle = 'rgba(0,0,0,0.2)';
                 ctx.beginPath();
-                ctx.arc(this.x, this.y + 10, this.radius, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y + 12, this.radius, 0, Math.PI * 2);
                 ctx.fill();
 
                 ctx.fillStyle = '#ea2b2b';
@@ -615,14 +966,19 @@
                 this.y = y;
                 this.isStrong = isStrong;
                 this.icon = icon || '🦉';
-                this.range = isStrong ? 200 : 120;
+                this.range = getTowerRange(isStrong);
                 this.cooldown = 0;
             }
 
             getEffectiveDamage() {
                 // Se houver pelo menos uma torre fraca, todas causam dano baixo
                 const anyWeak = towers.some(t => !t.isStrong);
-                return anyWeak ? 10 : (this.isStrong ? 50 : 10);
+
+                if (anyWeak) {
+                    return 10;
+                }
+
+                return this.isStrong ? 50 : 10;
             }
 
             getEffectiveFireRate() {
@@ -654,42 +1010,11 @@
             }
 
             shoot(target) {
-                projectiles.push(new Projectile(this.x, this.y - 15, target, this.getEffectiveDamage(), this.isStrong));
+                projectiles.push(new Projectile(this.x, this.y - layout.towerRadius * 0.75, target, this.getEffectiveDamage(), this.isStrong));
             }
 
             draw() {
-                // Base da torre
-                ctx.fillStyle = '#e5e5e5';
-                ctx.beginPath();
-                ctx.ellipse(this.x, this.y + 15, 25, 10, 0, 0, Math.PI * 2);
-                ctx.fill();
-
-                ctx.fillStyle = 'white';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, 20, 0, Math.PI * 2);
-                ctx.fill();
-        
-                ctx.lineWidth = 3;
-                ctx.strokeStyle = '#e5e5e5';
-                ctx.stroke();
-
-                // Ícone / Rosto da torre
-                ctx.font = '24px Arial';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-        
-                if (!this.isStrong) {
-                    ctx.filter = 'grayscale(100%) opacity(60%)'; // Torre fraca fica cinza e translúcida
-                }
-        
-                ctx.fillText(this.icon, this.x, this.y + 2);
-        
-                ctx.filter = 'none'; // resetar filtro
-        
-                if (!this.isStrong) {
-                    ctx.font = '14px Arial';
-                    ctx.fillText('💤', this.x + 15, this.y - 10); // Indica que a torre está com sono/inútil
-                }
+                drawTowerSprite(this.x, this.y, this.isStrong, this.icon);
             }
         }
 
@@ -725,7 +1050,7 @@
             draw() {
                 ctx.fillStyle = this.isStrong ? '#58cc02' : '#a5a5a5';
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.isStrong ? 6 : 4, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.isStrong ? layout.projectileStrongRadius : layout.projectileWeakRadius, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
@@ -733,7 +1058,14 @@
         // Funções de Controle e Renderização
         function showScreen(id) {
             document.querySelectorAll('.overlay').forEach(el => el.classList.remove('active'));
-            if(id) document.getElementById(id).classList.add('active');
+            // Só mostra a prancheta se id === 'quiz-screen'
+            const quizScreen = document.getElementById('quiz-screen');
+            if (id === 'quiz-screen') {
+                quizScreen.style.display = 'block';
+            } else {
+                quizScreen.style.display = 'none';
+            }
+            if (id && id !== 'quiz-screen') document.getElementById(id).classList.add('active');
         }
 
         function startGame() {
@@ -783,40 +1115,7 @@
             const isCorrect = (selected === correct);
             showScreen(null);
             showFeedback(isCorrect);
-            let placingTower = true;
-            function onCanvasClick(e) {
-                if (!placingTower) return;
-                const rect = canvas.getBoundingClientRect();
-                const x = Math.round((e.clientX - rect.left) * (canvas.width / rect.width));
-                const y = Math.round((e.clientY - rect.top) * (canvas.height / rect.height));
-                if (!isPointOutsidePath({x, y}, pathPoints)) {
-                    const fb = document.getElementById('feedback-message');
-                    fb.className = 'feedback-wrong';
-                    fb.innerHTML = '<i class="fa-solid fa-xmark"></i> Não pode colocar no caminho!';
-                    fb.style.opacity = '1';
-                    setTimeout(() => { fb.style.opacity = '0'; }, 1500);
-                    return;
-                }
-                // Cria torre como instância da classe Tower, mas sobrescreve o método draw para quadrado SVG
-                const tower = new Tower(x, y, isCorrect, selectedIcon);
-                tower.draw = function() {
-                    ctx.save();
-                    ctx.fillStyle = this.isStrong ? '#58cc02' : '#a5a5a5';
-                    ctx.fillRect(this.x - 15, this.y - 15, 30, 30);
-                    ctx.restore();
-                };
-                towers.push(tower);
-                placingTower = false;
-                canvas.removeEventListener('click', onCanvasClick);
-                setTimeout(() => {
-                    gameState = 'PLAYING';
-                    enemiesSpawned = 0;
-                    waveTimer = 0;
-                    currentWave++;
-                    updateHUD();
-                }, 500);
-            }
-            canvas.addEventListener('click', onCanvasClick);
+            startPlacement(isCorrect, selectedIcon || '🦉');
         }
 
         function showFeedback(isCorrect) {
@@ -855,7 +1154,7 @@
             for (let i = 1; i < pathPoints.length; i++) {
                 ctx.lineTo(pathPoints[i].x, pathPoints[i].y);
             }
-            ctx.lineWidth = 60;
+            ctx.lineWidth = layout.pathOuterWidth;
             ctx.strokeStyle = '#dfc19c';
             ctx.stroke();
 
@@ -865,66 +1164,88 @@
             for (let i = 1; i < pathPoints.length; i++) {
                 ctx.lineTo(pathPoints[i].x, pathPoints[i].y);
             }
-            ctx.lineWidth = 50;
+            ctx.lineWidth = layout.pathInnerWidth;
             ctx.strokeStyle = '#f4dfc3';
             ctx.stroke();
+        }
+
+        function updateAndDrawEnemies() {
+            for (let i = enemies.length - 1; i >= 0; i--) {
+                enemies[i].update();
+
+                if (enemies[i].hp <= 0) {
+                    enemies.splice(i, 1);
+                } else {
+                    enemies[i].draw();
+                }
+            }
+        }
+
+        function updateAndDrawTowers() {
+            towers.forEach(tower => {
+                tower.update();
+                tower.draw();
+            });
+        }
+
+        function updateAndDrawProjectiles() {
+            for (let i = projectiles.length - 1; i >= 0; i--) {
+                projectiles[i].update();
+
+                if (projectiles[i].hit) {
+                    projectiles.splice(i, 1);
+                } else {
+                    projectiles[i].draw();
+                }
+            }
+        }
+
+        function advanceWaveIfNeeded(waveTotalEnemies) {
+            if (enemiesSpawned !== waveTotalEnemies || enemies.length !== 0) {
+                return;
+            }
+
+            if (currentWave < quizzes.length) {
+                startQuiz();
+                return;
+            }
+
+            gameState = 'VICTORY';
+            showScreen('victory-screen');
+        }
+
+        function runPlayingState() {
+            waveTimer++;
+            const waveTotalEnemies = waveConfigs[currentWave - 1];
+
+            if (enemiesSpawned < waveTotalEnemies && waveTimer % 120 === 0) {
+                enemies.push(new Enemy());
+                enemiesSpawned++;
+            }
+
+            updateAndDrawEnemies();
+            updateAndDrawTowers();
+            updateAndDrawProjectiles();
+            advanceWaveIfNeeded(waveTotalEnemies);
         }
 
         function gameLoop() {
             // Limpa o Canvas (Grama verde)
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            drawGridOverlay();
+
             // Desenhar Cenário
             drawPath();
 
             if (gameState === 'PLAYING') {
-                // Gerenciar Spawns
-                waveTimer++;
-                const waveTotalEnemies = waveConfigs[currentWave - 1];
-                
-                if (enemiesSpawned < waveTotalEnemies && waveTimer % 60 === 0) {
-                    enemies.push(new Enemy());
-                    enemiesSpawned++;
-                }
-
-                // Atualizar e Desenhar Entidades
-                for (let i = enemies.length - 1; i >= 0; i--) {
-                    enemies[i].update();
-                    if (enemies[i].hp <= 0) {
-                        enemies.splice(i, 1);
-                    } else {
-                        enemies[i].draw();
-                    }
-                }
-
-                towers.forEach(t => {
-                    t.update();
-                    t.draw();
-                });
-
-                for (let i = projectiles.length - 1; i >= 0; i--) {
-                    projectiles[i].update();
-                    if (projectiles[i].hit) {
-                        projectiles.splice(i, 1);
-                    } else {
-                        projectiles[i].draw();
-                    }
-                }
-
-                // Checar fim de onda
-                if (enemiesSpawned === waveTotalEnemies && enemies.length === 0) {
-                    if (currentWave < quizzes.length) {
-                        startQuiz();
-                    } else {
-                        gameState = 'VICTORY';
-                        showScreen('victory-screen');
-                    }
-                }
-
+                runPlayingState();
             } else {
                 // Apenas desenhar as torres e spots parados durante menu/quiz
                 towers.forEach(t => t.draw());
             }
+
+            drawPlacementPreview();
 
             requestAnimationFrame(gameLoop);
         }
