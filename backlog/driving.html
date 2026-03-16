@@ -430,10 +430,17 @@
         }
 
         function updatePlayerPos() {
-            // Lane 0: top 10%, Lane 1: top 40%, Lane 2: top 70% (relative to container logic)
-            // Mas estamos usando flex no CSS. Vamos usar top absolute.
-            const laneOffsets = [16, 80, 144]; // Pixels from top of road container
-            els.player.style.top = `${laneOffsets[state.lane]}px`;
+            // Centraliza o carro verticalmente em cada pista
+            // Obtém o container da pista (road)
+            const road = els.lanes[0].parentElement;
+            const roadRect = road.getBoundingClientRect();
+            const laneCount = els.lanes.length;
+            const laneHeight = roadRect.height / laneCount;
+            // Obtém altura do carro
+            const carHeight = els.player.offsetHeight;
+            // Calcula o centro da pista
+            const laneTop = laneHeight * state.lane + (laneHeight - carHeight) / 2;
+            els.player.style.top = `${laneTop}px`;
         }
 
         function spawnQuestion() {
