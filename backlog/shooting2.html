@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduBlock Shooter 3D</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #87CEEB; /* Céu azul */
+            font-family: 'Press Start 2P', cursive, sans-serif;
+            user-select: none;
+        }
+
+        #game-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Interface do Usuário (UI) */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Mira (Crosshair) */
+        #crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        #crosshair::before, #crosshair::after {
+            content: '';
+            position: absolute;
+            background: white;
+            box-shadow: 0 0 2px black;
+        }
+        #crosshair::before { top: 9px; left: 0; width: 20px; height: 2px; }
+        #crosshair::after { top: 0; left: 9px; width: 2px; height: 20px; }
+
+        /* HUD - Topo */
+        #hud-top {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            color: white;
+            text-shadow: 2px 2px 0 #000;
+            font-size: 16px;
+            z-index: 10;
+        }
+
+        /* Pergunta / Regra - Base */
+        #rule-container {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+        #rule-text {
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #FFD700;
+            padding: 15px 30px;
+            border: 4px solid #555;
+            border-radius: 8px;
+            font-size: 18px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        /* Telas de Menu e Fim de Jogo */
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            pointer-events: auto;
+            z-index: 100;
+        }
+
+        .screen h1 {
+            color: #4CAF50;
+            text-shadow: 4px 4px 0 #000;
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .screen p {
+            font-size: 14px;
+            line-height: 2;
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            border: 4px solid #2E7D32;
+            padding: 15px 30px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Overlay de Dano / Erro */
+        #flash-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 5;
+        }
+
+        /* Overlay da Mira Telescópica (Sniper) */
+        #sniper-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.95) 40%);
+            pointer-events: none;
+            display: none;
+            z-index: 4;
+        }
+        #sniper-cross {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        #sniper-cross::before {
+            content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(255,0,0,0.5);
+        }
+        #sniper-cross::after {
+            content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: rgba(255,0,0,0.5);
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div id="game-container"></div>
+
+    <div id="ui-layer" class="hidden">
+        <div id="flash-overlay"></div>
+        <div id="sniper-overlay">
+            <div id="sniper-cross"></div>
+        </div>
+        
+        <div id="hud-top">
+            <div>ALVOS: <span id="score">0</span>/10</div>
+            <div>TEMPO: <span id="timer">0.0</span>s</div>
+        </div>
+        
+        <div id="crosshair"></div>
+        
+        <div id="rule-container">
+            <div id="rule-text">Atire nos números ...</div>
+        </div>
+    </div>
+
+    <!-- Tela Inicial -->
+    <div id="start-screen" class="screen">
+        <h1>EDUBLOCK<br>SHOOTER 3D</h1>
+        <p>
+            Mire com o Mouse. Atire com o Clique Esquerdo.<br><br>
+            Segure o BOTÃO DIREITO ou SHIFT para usar a MIRA DE PRECISÃO (Zoom).<br><br>
+            Atire nos balões corretos segundo a regra! Se deixar um balão correto escapar, você sofre penalidade de tempo.
+        </p>
+        <button class="btn" id="start-btn">JOGAR</button>
+    </div>
+
+    <!-- Tela Final -->
+    <div id="end-screen" class="screen hidden">
+        <h1>DESAFIO CONCLUÍDO!</h1>
+        <p id="final-stats">Tempo Total: 0.0s</p>
+        <button class="btn" id="restart-btn">JOGAR NOVAMENTE</button>
+    </div>
+
+    <!-- Bibliotecas Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/PointerLockControls.js"></script>
+
+    <script>
+        // --- CONFIGURAÇÕES GERAIS ---
+        const TARGET_SCORE = 10;
+        let score = 0;
+        let startTime = 0;
+        let elapsedTime = 0;
+        let timePenalty = 0;
+        let isPlaying = false;
+        let currentRule = {};
+        let difficultyMultiplier = 1;
+
+        // --- REGRAS DO JOGO ---
+        const rules = [
+            { text: "Atire nos números PARES", check: (val) => val % 2 === 0 },
+            { text: "Atire nos números ÍMPARES", check: (val) => val % 2 !== 0 },
+            { text: "Atire nos números MAIORES QUE 5", check: (val) => val > 5 },
+            { text: "Atire nos números MENORES QUE 4", check: (val) => val < 4 }
+        ];
+
+        // --- SISTEMA DE ÁUDIO (Web Audio API Sintetizada) ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'shoot') {
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(150, now);
+                osc.frequency.exponentialRampToValueAtTime(0.01, now + 0.1);
+                gainNode.gain.setValueAtTime(0.1, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+                osc.start(now);
+                osc.stop(now + 0.1);
+            } else if (type === 'hit') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(1200, now + 0.1);
+                gainNode.gain.setValueAtTime(0.2, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                osc.start(now);
+                osc.stop(now + 0.1);
+            } else if (type === 'error') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(100, now);
+                osc.frequency.linearRampToValueAtTime(50, now + 0.3);
+                gainNode.gain.setValueAtTime(0.2, now);
+                gainNode.gain.linearRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            }
+        }
+
+        // --- CONFIGURAÇÃO THREE.JS ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x87CEEB); // Céu Azul
+        scene.fog = new THREE.Fog(0x87CEEB, 20, 100);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.y = 2; // Altura do jogador
+        scene.add(camera); // Necessário para objetos filhos da câmera aparecerem com luz
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        document.getElementById('game-container').appendChild(renderer.domElement);
+
+        // Controles (Mouse Look)
+        const controls = new THREE.PointerLockControls(camera, document.body);
+
+        // Luzes
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        dirLight.position.set(50, 100, 50);
+        dirLight.castShadow = true;
+        dirLight.shadow.camera.top = 50;
+        dirLight.shadow.camera.bottom = -50;
+        dirLight.shadow.camera.left = -50;
+        dirLight.shadow.camera.right = 50;
+        scene.add(dirLight);
+
+        // --- ARMA DO JOGADOR (FPS) ---
+        const gunGroup = new THREE.Group();
+        
+        // Corpo da arma
+        const gunBodyMat = new THREE.MeshLambertMaterial({ color: 0x222222 });
+        const gunBodyGeo = new THREE.BoxGeometry(0.15, 0.2, 0.6);
+        const gunBody = new THREE.Mesh(gunBodyGeo, gunBodyMat);
+        gunGroup.add(gunBody);
+
+        // Cano da arma
+        const gunBarrelMat = new THREE.MeshLambertMaterial({ color: 0x555555 });
+        const gunBarrelGeo = new THREE.BoxGeometry(0.08, 0.08, 0.8);
+        const gunBarrel = new THREE.Mesh(gunBarrelGeo, gunBarrelMat);
+        gunBarrel.position.set(0, 0.05, -0.4); // Posicionado para frente
+        gunGroup.add(gunBarrel);
+
+        // Posicionar arma em relação à câmera
+        gunGroup.position.set(0.4, -0.4, -0.6);
+        camera.add(gunGroup);
+
+        // --- MUNDO (Estilo Minecraft) ---
+        const floorGeo = new THREE.PlaneGeometry(200, 200, 20, 20);
+        const positionAttribute = floorGeo.attributes.position;
+        const colors = [];
+        const color1 = new THREE.Color(0x4CAF50);
+        const color2 = new THREE.Color(0x45a049);
+        for (let i = 0; i < positionAttribute.count; i++) {
+            const x = Math.floor(positionAttribute.getX(i));
+            const y = Math.floor(positionAttribute.getY(i));
+            if ((x + y) % 2 === 0) colors.push(color1.r, color1.g, color1.b);
+            else colors.push(color2.r, color2.g, color2.b);
+        }
+        floorGeo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+        const floorMatColored = new THREE.MeshLambertMaterial({ vertexColors: true });
+        
+        const floor = new THREE.Mesh(floorGeo, floorMatColored);
+        floor.rotation.x = -Math.PI / 2;
+        floor.receiveShadow = true;
+        scene.add(floor);
+
+        // --- SISTEMA DE BALÕES COM CORDINHA ---
+        const balloons = [];
+        const balloonGeo = new THREE.BoxGeometry(2, 2, 2);
+        const stringGeo = new THREE.CylinderGeometry(0.02, 0.02, 3);
+        const stringMat = new THREE.MeshLambertMaterial({ color: 0xffffff });
+        const balloonColors = ['#FF3B30', '#FF9500', '#FFCC00', '#4CD964', '#5AC8FA', '#007AFF', '#AF52DE'];
+
+        function createNumberTexture(number, colorHex) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = colorHex;
+            ctx.fillRect(0, 0, 256, 256);
+            
+            ctx.lineWidth = 16;
+            ctx.strokeStyle = "rgba(0,0,0,0.3)";
+            ctx.strokeRect(8, 8, 240, 240);
+
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 120px "Press Start 2P", Courier, monospace';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = "rgba(0,0,0,0.5)";
+            ctx.shadowOffsetX = 6;
+            ctx.shadowOffsetY = 6;
+            ctx.fillText(number, 128, 140);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.magFilter = THREE.NearestFilter; 
+            return texture;
+        }
+
+        function spawnBalloon() {
+            if (!isPlaying || balloons.length > 8 + difficultyMultiplier) return;
+
+            const value = Math.floor(Math.random() * 9) + 1;
+            const color = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+            const texture = createNumberTexture(value, color);
+            const material = new THREE.MeshLambertMaterial({ map: texture });
+
+            // Grupo contendo bloco e cordinha
+            const balloonGroup = new THREE.Group();
+
+            const mesh = new THREE.Mesh(balloonGeo, material);
+            mesh.castShadow = true;
+            mesh.position.y = 0;
+            balloonGroup.add(mesh);
+
+            const stringMesh = new THREE.Mesh(stringGeo, stringMat);
+            stringMesh.position.y = -2.5; // Cordinha abaixo do cubo
+            balloonGroup.add(stringMesh);
+            
+            const spawnX = (Math.random() - 0.5) * 30;
+            const spawnZ = -20 - Math.random() * 30;
+            const spawnY = -3; // Nasce do chão
+
+            balloonGroup.position.set(spawnX, spawnY, spawnZ);
+            
+            balloonGroup.userData = {
+                value: value,
+                speed: (0.05 + Math.random() * 0.05) * difficultyMultiplier,
+                isCorrect: currentRule.check(value),
+                textureMap: texture // Guarda textura para explosão
+            };
+
+            // Referência cruzada para o Raycaster achar o pai
+            mesh.userData.parentGroup = balloonGroup;
+            stringMesh.userData.parentGroup = balloonGroup;
+
+            scene.add(balloonGroup);
+            balloons.push(balloonGroup);
+        }
+
+        // --- SISTEMA DE PARTÍCULAS E TRAJETÓRIAS ---
+        const particles = [];
+        const bullets = [];
+        const particleGeo = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+
+        function createExplosion(position, colorTexture) {
+            const particleMat = new THREE.MeshLambertMaterial({ map: colorTexture });
+            for (let i = 0; i < 15; i++) {
+                const particle = new THREE.Mesh(particleGeo, particleMat);
+                particle.position.copy(position);
+                
+                particle.userData = {
+                    velocity: new THREE.Vector3(
+                        (Math.random() - 0.5) * 0.5,
+                        (Math.random() - 0.5) * 0.5 + 0.2,
+                        (Math.random() - 0.5) * 0.5
+                    ),
+                    life: 1.0
+                };
+                scene.add(particle);
+                particles.push(particle);
+            }
+        }
+
+        // --- INTERAÇÃO / TIRO ---
+        const raycaster = new THREE.Raycaster();
+        const center = new THREE.Vector2(0, 0);
+
+        function flashScreen(colorClass, duration = 200) {
+            const flash = document.getElementById('flash-overlay');
+            flash.style.backgroundColor = colorClass === 'error' ? 'red' : 'orange';
+            flash.style.opacity = '0.5';
+            setTimeout(() => { flash.style.opacity = '0'; }, duration);
+        }
+
+        function shoot() {
+            if (!isPlaying) return;
+            playSound('shoot');
+
+            // Animação de recuo (recoil) da arma
+            gunGroup.position.z = -0.4; // Chuta a arma pra trás
+            gunGroup.rotation.x = 0.2;  // Levanta o cano
+
+            // Calcula ponto de saída da bala
+            const gunTipLocal = new THREE.Vector3(0, 0.05, -0.8);
+            const startPoint = gunTipLocal.applyMatrix4(gunGroup.matrixWorld);
+
+            raycaster.setFromCamera(center, camera);
+            // Parâmetro true faz o raycaster olhar os filhos do Group
+            const intersects = raycaster.intersectObjects(balloons, true);
+
+            let endPoint = new THREE.Vector3();
+            let targetGroup = null;
+
+            // Encontrar o primeiro alvo válido que não foi mirado ainda
+            for (let i = 0; i < intersects.length; i++) {
+                const grp = intersects[i].object.userData.parentGroup;
+                if (grp && !grp.userData.isHit) {
+                    targetGroup = grp;
+                    endPoint.copy(intersects[i].point);
+                    break;
+                }
+            }
+
+            if (!targetGroup && intersects.length > 0) {
+                // Tiro bateu num balão que já vai explodir
+                endPoint.copy(intersects[0].point);
+            } else if (!targetGroup) {
+                // Tiro no vazio, vai longe
+                raycaster.ray.at(50, endPoint);
+            }
+
+            if (targetGroup) {
+                targetGroup.userData.isHit = true; // Marca para não atirar duas vezes no mesmo antes da bala chegar
+            }
+
+            // Criar bala visual (quadradinho luminoso alongado)
+            const bulletGeo = new THREE.BoxGeometry(0.15, 0.15, 0.4);
+            const bulletMat = new THREE.MeshBasicMaterial({ color: 0xffdd00 });
+            const bullet = new THREE.Mesh(bulletGeo, bulletMat);
+            bullet.position.copy(startPoint);
+            bullet.lookAt(endPoint);
+            scene.add(bullet);
+
+            const direction = new THREE.Vector3().subVectors(endPoint, startPoint).normalize();
+
+            bullets.push({
+                mesh: bullet,
+                direction: direction,
+                targetPoint: endPoint,
+                speed: 1.5, // Velocidade da bala viajando
+                targetGroup: targetGroup
+            });
+        }
+
+        window.addEventListener('mousedown', (e) => {
+            if (e.button === 0 && document.pointerLockElement === document.body) {
+                shoot();
+            }
+        });
+
+        // --- SISTEMA DE MIRA TELESCÓPICA (ZOOM) ---
+        let isZoomed = false;
+        const NORMAL_FOV = 75;
+        const ZOOM_FOV = 20;
+
+        function toggleZoom(enable) {
+            if (!isPlaying) return;
+            isZoomed = enable;
+            camera.fov = isZoomed ? ZOOM_FOV : NORMAL_FOV;
+            camera.updateProjectionMatrix();
+            
+            const sniperOverlay = document.getElementById('sniper-overlay');
+            const crosshair = document.getElementById('crosshair');
+            
+            if (isZoomed) {
+                sniperOverlay.style.display = 'block';
+                crosshair.style.display = 'none';
+                gunGroup.visible = false; // Esconde a arma ao mirar
+            } else {
+                sniperOverlay.style.display = 'none';
+                crosshair.style.display = 'block';
+                gunGroup.visible = true; // Mostra arma novamente
+            }
+        }
+
+        window.addEventListener('mousedown', (e) => { if (e.button === 2 && isPlaying) toggleZoom(true); });
+        window.addEventListener('mouseup', (e) => { if (e.button === 2 && isPlaying) toggleZoom(false); });
+        window.addEventListener('keydown', (e) => { if (e.key === 'Shift' && isPlaying) toggleZoom(true); });
+        window.addEventListener('keyup', (e) => { if (e.key === 'Shift' && isPlaying) toggleZoom(false); });
+        window.addEventListener('contextmenu', e => e.preventDefault());
+
+        // --- LÓGICA DO JOGO ---
+        function startGame() {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('end-screen').classList.add('hidden');
+            document.getElementById('ui-layer').classList.remove('hidden');
+
+            score = 0;
+            timePenalty = 0;
+            difficultyMultiplier = 1;
+            document.getElementById('score').innerText = score;
+            
+            balloons.forEach(b => scene.remove(b));
+            balloons.length = 0;
+            particles.forEach(p => scene.remove(p));
+            particles.length = 0;
+            bullets.forEach(b => scene.remove(b.mesh));
+            bullets.length = 0;
+
+            currentRule = rules[Math.floor(Math.random() * rules.length)];
+            document.getElementById('rule-text').innerText = currentRule.text;
+
+            controls.lock();
+            isPlaying = true;
+            startTime = Date.now();
+        }
+
+        function endGame() {
+            isPlaying = false;
+            controls.unlock();
+            toggleZoom(false);
+            
+            document.getElementById('ui-layer').classList.add('hidden');
+            document.getElementById('end-screen').classList.remove('hidden');
+            
+            const finalTime = ((Date.now() - startTime) / 1000 + timePenalty).toFixed(1);
+            document.getElementById('final-stats').innerHTML = `
+                Sua Pontuação: ${score}/${TARGET_SCORE}<br><br>
+                Penalidades de Tempo: +${timePenalty}s<br><br>
+                <span style="color:#FFD700; font-size: 24px;">TEMPO FINAL: ${finalTime}s</span>
+            `;
+        }
+
+        document.getElementById('start-btn').addEventListener('click', startGame);
+        document.getElementById('restart-btn').addEventListener('click', startGame);
+
+        controls.addEventListener('unlock', function () {
+            if (isPlaying) {
+                document.getElementById('start-screen').classList.remove('hidden');
+                document.getElementById('start-screen').querySelector('h1').innerText = "PAUSADO";
+                document.getElementById('start-btn').innerText = "CONTINUAR";
+                document.getElementById('ui-layer').classList.add('hidden');
+                isPlaying = false;
+            }
+        });
+
+        // --- LOOP PRINCIPAL ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (isPlaying) {
+                elapsedTime = (Date.now() - startTime) / 1000 + timePenalty;
+                document.getElementById('timer').innerText = elapsedTime.toFixed(1);
+
+                if (Math.random() < 0.02 * difficultyMultiplier) {
+                    spawnBalloon();
+                }
+
+                // Recuperação do recuo da arma (suave de volta à posição original)
+                gunGroup.position.z += (-0.6 - gunGroup.position.z) * 0.1;
+                gunGroup.rotation.x += (0 - gunGroup.rotation.x) * 0.1;
+
+                // Animar Balões
+                for (let i = balloons.length - 1; i >= 0; i--) {
+                    const b = balloons[i];
+                    b.position.y += b.userData.speed;
+                    // Removido o b.rotation para deixá-lo reto, facilitando a leitura
+
+                    if (b.position.y > 20) {
+                        // Explode ao chegar no topo
+                        createExplosion(b.position, b.userData.textureMap);
+
+                        if (b.userData.isCorrect) {
+                            timePenalty += 5;
+                            flashScreen('miss');
+                            playSound('error');
+                        }
+                        scene.remove(b);
+                        balloons.splice(i, 1);
+                    }
+                }
+
+                // Animar Balas (Quadradinhos viajando)
+                for (let i = bullets.length - 1; i >= 0; i--) {
+                    const b = bullets[i];
+                    const dist = b.mesh.position.distanceTo(b.targetPoint);
+                    
+                    if (dist <= b.speed) {
+                        // Bala atingiu o alvo!
+                        scene.remove(b.mesh);
+                        
+                        if (b.targetGroup) {
+                            const index = balloons.indexOf(b.targetGroup);
+                            if (index > -1) {
+                                const tg = b.targetGroup;
+                                if (tg.userData.isCorrect) {
+                                    playSound('hit');
+                                    createExplosion(tg.position, tg.userData.textureMap);
+                                    score++;
+                                    difficultyMultiplier += 0.1;
+                                    document.getElementById('score').innerText = score;
+                                    
+                                    if (score >= TARGET_SCORE) endGame();
+                                } else {
+                                    playSound('error');
+                                    flashScreen('error');
+                                    timePenalty += 3;
+                                    createExplosion(tg.position, tg.userData.textureMap);
+                                }
+                                scene.remove(tg);
+                                balloons.splice(index, 1);
+                            }
+                        }
+                        bullets.splice(i, 1);
+                    } else {
+                        // Move a bala fisicamente pra frente
+                        b.mesh.position.addScaledVector(b.direction, b.speed);
+                    }
+                }
+
+                // Animar Partículas
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    p.position.add(p.userData.velocity);
+                    p.userData.velocity.y -= 0.02; // Gravidade
+                    p.rotation.x += 0.1;
+                    p.rotation.y += 0.1;
+                    p.userData.life -= 0.02;
+                    
+                    p.scale.setScalar(Math.max(0, p.userData.life));
+
+                    if (p.userData.life <= 0 || p.position.y < -5) {
+                        scene.remove(p);
+                        particles.splice(i, 1);
+                    }
+                }
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiro ao Alvo Matemático 3D</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
+
+        #game-container {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+        }
+
+        /* Interface de Usuário (HUD) */
+        #hud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        #top-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hud-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: 2px solid #fff;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #question-display {
+            font-size: 32px;
+            color: #ffd700;
+            text-align: center;
+            flex-grow: 1;
+            margin: 0 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #ffd700;
+        }
+
+        /* Mira (Crosshair) */
+        #crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        #crosshair::before, #crosshair::after {
+            content: '';
+            position: absolute;
+            background: rgba(0, 255, 0, 0.8);
+        }
+        #crosshair::before { top: 9px; left: 0; width: 20px; height: 2px; }
+        #crosshair::after { top: 0; left: 9px; width: 2px; height: 20px; }
+
+        /* Telas de Menu e Instruções */
+        #blocker {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 20;
+            text-align: center;
+        }
+
+        #instructions {
+            background: linear-gradient(135deg, #ff4e50, #f9d423);
+            padding: 40px;
+            border-radius: 15px;
+            border: 4px solid white;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+            pointer-events: auto;
+        }
+
+        #instructions:hover {
+            transform: scale(1.05);
+        }
+
+        h1 { margin-top: 0; font-size: 48px; text-shadow: 2px 2px 0 #000; }
+        p { font-size: 20px; line-height: 1.5; text-shadow: 1px 1px 0 #000; }
+        
+        .highlight { color: #fff; font-weight: bold; font-size: 24px; background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px;}
+
+        /* Feedback visual rápido */
+        #hit-feedback {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.5s, top 0.5s;
+            pointer-events: none;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        /* --- NOVOS ESTILOS PARA MOBILE --- */
+        #app-wrapper {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 100vw; height: 100vh;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+            transform-origin: center;
+        }
+
+        #app-wrapper.portrait {
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+        #mobile-controls {
+            display: none;
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        #joystick-zone {
+            position: absolute;
+            bottom: 40px; left: 40px;
+            width: 140px; height: 140px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            pointer-events: auto;
+        }
+
+        #joystick-stick {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 60px; height: 60px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        #shoot-button {
+            position: absolute;
+            bottom: 60px; right: 60px;
+            width: 100px; height: 100px;
+            background: rgba(255, 50, 50, 0.6);
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 32px;
+            text-shadow: 2px 2px 4px #000;
+            user-select: none;
+        }
+
+        #shoot-button:active {
+            background: rgba(255, 50, 50, 0.9);
+            transform: scale(0.95);
+        }
+
+        #pause-button {
+            position: absolute;
+            top: 20px; right: 20px;
+            width: 50px; height: 50px;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid white;
+            border-radius: 10px;
+            color: white;
+            font-size: 24px;
+            display: none; /* Só mostra no mobile */
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto;
+            z-index: 20;
+        }
+    </style>
+    <!-- Importando o Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <div id="app-wrapper">
+        <div id="game-container"></div>
+
+        <div id="hud" style="display: none;">
+            <div id="top-bar">
+                <div class="hud-box">Tempo: <span id="time">60</span>s</div>
+                <div id="question-display">Carregando Pergunta...</div>
+                <div class="hud-box">Pontos: <span id="score">0</span></div>
+            </div>
+            <div id="crosshair"></div>
+            <div id="hit-feedback">+10</div>
+            <div id="pause-button">⏸️</div>
+        </div>
+
+        <div id="mobile-controls">
+            <div id="joystick-zone">
+                <div id="joystick-stick"></div>
+            </div>
+            <div id="shoot-button">🎯</div>
+        </div>
+
+        <div id="blocker">
+            <div id="instructions">
+                <h1>🎡 Tiro ao Alvo Matemático 🎯</h1>
+                <p>
+                    Bem-vindo à feira! Teste sua mira e sua mente.<br><br>
+                    1. Leia a <span class="highlight">regra</span> no topo da tela.<br>
+                    2. Use o <span class="highlight">Mouse ou Analógico</span> para mirar.<br>
+                    3. <span class="highlight">Atire</span> nos números corretos.<br>
+                    4. Acertos dão pontos, erros tiram pontos!<br><br>
+                    <strong>Toque ou Clique aqui para Jogar</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- VARIÁVEIS GLOBAIS ---
+        let scene, camera, renderer;
+        let pitchObject, yawObject; // Para controle de câmera FPS
+        let gunGroup; // Grupo da arma 3D
+        let raycaster = new THREE.Raycaster();
+        let centerVector = new THREE.Vector2(0, 0); // Centro da tela para o raycast
+        let score = 0;
+        let timeLeft = 60;
+        let gameActive = false;
+        let lastTime = performance.now();
+        
+        // Elementos da DOM
+        const scoreEl = document.getElementById('score');
+        const timeEl = document.getElementById('time');
+        const questionEl = document.getElementById('question-display');
+        const feedbackEl = document.getElementById('hit-feedback');
+        const blocker = document.getElementById('blocker');
+        const instructions = document.getElementById('instructions');
+        const hud = document.getElementById('hud');
+
+        // Sistema de Perguntas
+        const questions = [
+            { text: "Atire nos números PARES", check: (n) => n % 2 === 0 },
+            { text: "Atire nos números ÍMPARES", check: (n) => n % 2 !== 0 },
+            { text: "Atire nos números MAIORES que 10", check: (n) => n > 10 },
+            { text: "Atire nos números MENORES que 8", check: (n) => n < 8 },
+            { text: "Atire nos MÚLTIPLOS de 3", check: (n) => n % 3 === 0 },
+            { text: "Atire nos MÚLTIPLOS de 5", check: (n) => n % 5 === 0 }
+        ];
+        let currentQuestion = null;
+
+        // Posições fixas (slots) para os alvos aparecerem
+        const targetSlots = [
+            // Prateleira 1 (inferior)
+            { x: -6, baseY: 1.0, targetY: 2.1, z: -3, inUse: false },
+            { x: -2, baseY: 1.0, targetY: 2.1, z: -3, inUse: false },
+            { x: 2, baseY: 1.0, targetY: 2.1, z: -3, inUse: false },
+            { x: 6, baseY: 1.0, targetY: 2.1, z: -3, inUse: false },
+            // Prateleira 2 (superior)
+            { x: -4, baseY: 2.0, targetY: 3.1, z: -5, inUse: false },
+            { x: 0, baseY: 2.0, targetY: 3.1, z: -5, inUse: false },
+            { x: 4, baseY: 2.0, targetY: 3.1, z: -5, inUse: false }
+        ];
+
+        const targets = []; // Alvos ativos
+        const maxTargets = 5;
+        const numberTextures = {}; // Cache de texturas para performance
+
+        // Projéteis
+        const bullets = [];
+
+        // --- VARIÁVEIS MOBILE ---
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        let isPortrait = false;
+        let joystickActive = false;
+        let joystickDelta = { x: 0, y: 0 };
+        let joystickStart = { id: null, x: 0, y: 0 };
+
+        // Áudio (Sintetizador Básico)
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        // --- INICIALIZAÇÃO ---
+        init();
+        animate();
+
+        function init() {
+            // 1. Configuração da Cena
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x7fbaff); // Céu azul claro (estilo Minecraft)
+            scene.fog = new THREE.Fog(0x7fbaff, 20, 100); // Neblina ajustada para ver montanhas ao fundo
+
+            // 2. Câmera
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            // Sistema de Rotação (Look) - Simula o pescoço e corpo
+            pitchObject = new THREE.Object3D();
+            pitchObject.add(camera);
+            yawObject = new THREE.Object3D();
+            yawObject.position.y = 2; // Altura dos olhos do jogador
+            yawObject.position.z = 5; // Posição do jogador (atrás do balcão)
+            yawObject.add(pitchObject);
+            scene.add(yawObject);
+
+            // 3. Renderizador
+            renderer = new THREE.WebGLRenderer({ antialias: false }); // Sem suavização para visual mais retro/quadrado
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.BasicShadowMap; // Sombra mais dura, sem bordas suaves
+            document.getElementById('game-container').appendChild(renderer.domElement);
+
+            // 4. Luzes (Estilo Minecraft, sol direcional + luz ambiente apenas)
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7); 
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+            dirLight.position.set(5, 10, 7);
+            dirLight.castShadow = true;
+            dirLight.shadow.mapSize.width = 1024;
+            dirLight.shadow.mapSize.height = 1024;
+            scene.add(dirLight);
+
+            // 5. Cenário (A Barraca)
+            createEnvironment();
+
+            // 5.5 Criar a arma e adicioná-la à câmara
+            createGun();
+
+            // 6. Preparar texturas numéricas
+            generateNumberTextures();
+
+            // 7. Eventos
+            window.addEventListener('resize', onWindowResize);
+            onWindowResize(); // Configura a tela corretamente no início
+
+            if (!isTouchDevice) {
+                // Controles de Computador
+                document.addEventListener('mousedown', fireGun);
+                document.addEventListener('mousemove', onMouseMove);
+            } else {
+                // Controles Mobile
+                setupMobileControls();
+                document.getElementById('mobile-controls').style.display = 'block';
+                document.getElementById('pause-button').style.display = 'flex';
+                
+                // Previne scroll / zoom acidental no mobile
+                document.addEventListener('touchmove', (e) => {
+                    if (gameActive) e.preventDefault();
+                }, { passive: false });
+            }
+
+            // Setup do Botão Pause Mobile
+            document.getElementById('pause-button').addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                gameActive = false;
+                blocker.style.display = 'flex';
+                hud.style.display = 'none';
+                instructions.innerHTML = `<h1>Pausado</h1><p>Toque para voltar</p>`;
+            });
+
+            // Pointer Lock Setup
+            instructions.addEventListener('click', () => {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                if (isTouchDevice) {
+                    // Mobile inicia diretamente
+                    gameActive = true;
+                    blocker.style.display = 'none';
+                    hud.style.display = 'flex';
+                    if (!currentQuestion) nextQuestion();
+                    
+                    // Tenta forçar tela cheia
+                    if (document.documentElement.requestFullscreen) {
+                        document.documentElement.requestFullscreen().catch(() => {});
+                    }
+                } else {
+                    // Computador trava o ponteiro do mouse
+                    document.body.requestPointerLock();
+                }
+            });
+
+            document.addEventListener('pointerlockchange', () => {
+                if (document.pointerLockElement === document.body) {
+                    gameActive = true;
+                    blocker.style.display = 'none';
+                    hud.style.display = 'flex';
+                    if (!currentQuestion) nextQuestion();
+                } else {
+                    gameActive = false;
+                    blocker.style.display = 'flex';
+                    hud.style.display = 'none';
+                    instructions.innerHTML = `<h1>Pausado</h1><p>Clique para voltar</p>`;
+                }
+            });
+        }
+
+        // --- CONSTRUÇÃO DO CENÁRIO ---
+        function createEnvironment() {
+            // Chão (Grama estilo Minecraft expandida)
+            const floorGeo = new THREE.PlaneGeometry(200, 200);
+            const floorMat = new THREE.MeshLambertMaterial({ color: 0x4d9c3a });
+            const floor = new THREE.Mesh(floorGeo, floorMat);
+            floor.rotation.x = -Math.PI / 2;
+            floor.receiveShadow = true;
+            scene.add(floor);
+
+            // Balcão (Madeira) da barraca principal
+            const counterGeo = new THREE.BoxGeometry(12, 1.5, 2);
+            const counterMat = new THREE.MeshLambertMaterial({ color: 0x6e4a2c });
+            const counter = new THREE.Mesh(counterGeo, counterMat);
+            counter.position.set(0, 0.75, 1);
+            counter.receiveShadow = true;
+            counter.castShadow = true;
+            scene.add(counter);
+
+            // Fundo da barraca (Pedra)
+            const backWallGeo = new THREE.BoxGeometry(16, 8, 1);
+            const backWallMat = new THREE.MeshLambertMaterial({ color: 0x7a7a7a });
+            const backWall = new THREE.Mesh(backWallGeo, backWallMat);
+            backWall.position.set(0, 4, -7);
+            backWall.receiveShadow = true;
+            scene.add(backWall);
+
+            // Prateleiras para os alvos (Madeira escura)
+            const shelfGeo = new THREE.BoxGeometry(16, 0.5, 1);
+            const shelfMat = new THREE.MeshLambertMaterial({ color: 0x4a3219 });
+            
+            const shelf1 = new THREE.Mesh(shelfGeo, shelfMat);
+            shelf1.position.set(0, 1.5, -3);
+            shelf1.receiveShadow = true;
+            scene.add(shelf1);
+
+            const shelf2 = new THREE.Mesh(shelfGeo, shelfMat);
+            shelf2.position.set(0, 2.5, -5);
+            shelf2.receiveShadow = true;
+            scene.add(shelf2);
+
+            // Pilares de sustentação do teto principal
+            const pillarGeo = new THREE.BoxGeometry(0.8, 8, 0.8);
+            const pillarMat = new THREE.MeshLambertMaterial({ color: 0x5c3a21 }); // Madeira escura
+            const p1 = new THREE.Mesh(pillarGeo, pillarMat);
+            p1.position.set(-7.5, 4, -0.5);
+            p1.castShadow = true;
+            scene.add(p1);
+            
+            const p2 = new THREE.Mesh(pillarGeo, pillarMat);
+            p2.position.set(7.5, 4, -0.5);
+            p2.castShadow = true;
+            scene.add(p2);
+
+            // Teto listrado (Vermelho e Branco em blocos)
+            for (let i = 0; i < 16; i++) {
+                const stripeGeo = new THREE.BoxGeometry(1, 0.5, 7);
+                // Alterna cor entre Vermelho e Branco
+                const color = i % 2 === 0 ? 0xcc2222 : 0xffffff;
+                const stripeMat = new THREE.MeshLambertMaterial({ color: color });
+                const stripe = new THREE.Mesh(stripeGeo, stripeMat);
+                
+                stripe.position.set(-7.5 + i, 8.2, -3.5);
+                stripe.rotation.x = 0.15; // Leve inclinação como um toldo
+                stripe.castShadow = true;
+                scene.add(stripe);
+            }
+
+            // --- Função para criar outras barracas estáticas ---
+            function createStall(x, z, rotationY, primaryColor, secondaryColor) {
+                const stallGroup = new THREE.Group();
+
+                // Balcão
+                const stallCounterGeo = new THREE.BoxGeometry(10, 1.5, 2);
+                const stallCounter = new THREE.Mesh(stallCounterGeo, counterMat);
+                stallCounter.position.set(0, 0.75, 1);
+                stallCounter.castShadow = true;
+                stallCounter.receiveShadow = true;
+                stallGroup.add(stallCounter);
+
+                // Fundo da barraca
+                const stallBackGeo = new THREE.BoxGeometry(10, 7, 1);
+                const stallBack = new THREE.Mesh(stallBackGeo, backWallMat);
+                stallBack.position.set(0, 3.5, -3);
+                stallBack.castShadow = true;
+                stallBack.receiveShadow = true;
+                stallGroup.add(stallBack);
+
+                // Pilares
+                const stallPillarGeo = new THREE.BoxGeometry(0.6, 7, 0.6);
+                const sp1 = new THREE.Mesh(stallPillarGeo, pillarMat);
+                sp1.position.set(-4.5, 3.5, 1);
+                sp1.castShadow = true;
+                stallGroup.add(sp1);
+                const sp2 = new THREE.Mesh(stallPillarGeo, pillarMat);
+                sp2.position.set(4.5, 3.5, 1);
+                sp2.castShadow = true;
+                stallGroup.add(sp2);
+
+                // Teto
+                for (let i = 0; i < 10; i++) {
+                    const stripeGeo = new THREE.BoxGeometry(1, 0.4, 6);
+                    const color = i % 2 === 0 ? primaryColor : secondaryColor;
+                    const stripeMat = new THREE.MeshLambertMaterial({ color: color });
+                    const stripe = new THREE.Mesh(stripeGeo, stripeMat);
+                    stripe.position.set(-4.5 + i, 7.2, -1);
+                    stripe.rotation.x = 0.15;
+                    stripe.castShadow = true;
+                    stallGroup.add(stripe);
+                }
+
+                stallGroup.position.set(x, 0, z);
+                stallGroup.rotation.y = rotationY;
+                scene.add(stallGroup);
+            }
+
+            // Espalhando outras barracas em volta do jogador
+            createStall(-20, 5, Math.PI / 2, 0x2244cc, 0xffffff);  // Barraca Azul na esquerda
+            createStall(20, 5, -Math.PI / 2, 0x22cc44, 0xffffff); // Barraca Verde na direita
+            createStall(-10, 30, Math.PI, 0x9922cc, 0xffffff);     // Barraca Roxa atrás
+            createStall(12, 35, Math.PI - 0.3, 0xcccc22, 0xffffff); // Barraca Amarela atrás
+
+            // --- Função para criar árvores estilo voxel/Minecraft ---
+            function createTree(x, z) {
+                const treeGroup = new THREE.Group();
+                // Tronco
+                const trunkGeo = new THREE.BoxGeometry(1, 3, 1);
+                const trunkMat = new THREE.MeshLambertMaterial({ color: 0x5c3a21 });
+                const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+                trunk.position.y = 1.5;
+                trunk.castShadow = true;
+                treeGroup.add(trunk);
+                // Folhas
+                const leavesGeo = new THREE.BoxGeometry(3, 3, 3);
+                const leavesMat = new THREE.MeshLambertMaterial({ color: 0x2d7a22 });
+                const leaves = new THREE.Mesh(leavesGeo, leavesMat);
+                leaves.position.y = 4.5;
+                leaves.castShadow = true;
+                treeGroup.add(leaves);
+
+                treeGroup.position.set(x, 0, z);
+                scene.add(treeGroup);
+            }
+
+            // Espalhando árvores na frente
+            createTree(-12, -10);
+            createTree(-18, -15);
+            createTree(-14, -25);
+            createTree(12, -12);
+            createTree(18, -18);
+            createTree(22, -10);
+            createTree(15, -28);
+            createTree(-8, -35);
+            createTree(8, -32);
+
+            // Espalhando árvores ATRÁS e nos LADOS do jogador para preencher
+            createTree(-10, 15);
+            createTree(5, 12);
+            createTree(-25, 20);
+            createTree(25, 25);
+            createTree(0, 35);
+            createTree(-15, 42);
+            createTree(18, 45);
+            createTree(-35, 0);
+            createTree(35, -5);
+            createTree(30, 15);
+            createTree(-28, 30);
+
+            // --- Função para criar montanhas (Grandes blocos verdes) ao fundo ---
+            function createMountain(x, z, width, height, depth) {
+                const mountGeo = new THREE.BoxGeometry(width, height, depth);
+                const mountMat = new THREE.MeshLambertMaterial({ color: 0x556b53 }); // Verde musgo / rocha
+                const mountain = new THREE.Mesh(mountGeo, mountMat);
+                mountain.position.set(x, height / 2, z);
+                mountain.castShadow = true;
+                mountain.receiveShadow = true;
+                scene.add(mountain);
+            }
+
+            // Adicionando cenário ao fundo (Montanhas na frente)
+            createMountain(-35, -50, 40, 15, 20);
+            createMountain(0, -60, 50, 25, 25);
+            createMountain(40, -45, 45, 18, 20);
+
+            // Adicionando cenário ao fundo (Montanhas ATRÁS do jogador)
+            createMountain(-25, 65, 45, 20, 25);
+            createMountain(25, 70, 50, 22, 25);
+            createMountain(0, 80, 60, 28, 30);
+        }
+
+        // --- CONSTRUÇÃO DA ARMA ---
+        function createGun() {
+            gunGroup = new THREE.Group();
+
+            // Corpo da arma (traseira)
+            const bodyGeo = new THREE.BoxGeometry(0.1, 0.12, 0.3);
+            const bodyMat = new THREE.MeshLambertMaterial({ color: 0x222222 });
+            const body = new THREE.Mesh(bodyGeo, bodyMat);
+            body.position.set(0, 0, 0);
+            body.castShadow = true;
+            gunGroup.add(body);
+
+            // Cano da arma (Quadrado)
+            const barrelGeo = new THREE.BoxGeometry(0.04, 0.04, 0.4);
+            const barrelMat = new THREE.MeshLambertMaterial({ color: 0x555555 });
+            const barrel = new THREE.Mesh(barrelGeo, barrelMat);
+            barrel.position.set(0, 0.04, -0.3);
+            barrel.castShadow = true;
+            gunGroup.add(barrel);
+
+            // Mira (ponto vermelho na ponta)
+            const sightGeo = new THREE.BoxGeometry(0.01, 0.03, 0.01);
+            const sightMat = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+            const sight = new THREE.Mesh(sightGeo, sightMat);
+            sight.position.set(0, 0.075, -0.48);
+            gunGroup.add(sight);
+
+            // Posicionar a arma no canto inferior direito da visão
+            gunGroup.position.set(0.3, -0.25, -0.5);
+            
+            // Adicionar a arma à câmara para que siga sempre a visão do jogador
+            camera.add(gunGroup);
+        }
+
+        // --- SISTEMA DE TEXTURAS (PERFORMANCE) ---
+        // Gera texturas de números em canvas para aplicar nos alvos 3D
+        function generateNumberTextures() {
+            for (let i = 0; i <= 30; i++) {
+                const canvas = document.createElement('canvas');
+                canvas.width = 64; // Resolução baixa para pixel art
+                canvas.height = 64;
+                const context = canvas.getContext('2d');
+                
+                // Fundo quadrado (Estilo bloco de areia/madeira clara)
+                context.fillStyle = '#e5c98e';
+                context.fillRect(0, 0, 64, 64);
+                
+                // Borda de "pixel"
+                context.fillStyle = '#8f7441';
+                context.fillRect(0, 0, 64, 4);
+                context.fillRect(0, 60, 64, 4);
+                context.fillRect(0, 0, 4, 64);
+                context.fillRect(60, 0, 4, 64);
+
+                // Número
+                context.fillStyle = '#000000';
+                context.font = 'bold 36px monospace'; // Fonte parecida com sistema
+                context.textAlign = 'center';
+                context.textBaseline = 'middle';
+                context.fillText(i.toString(), 32, 34);
+
+                const texture = new THREE.CanvasTexture(canvas);
+                // Filtro "Nearest" para manter os pixels nítidos e não embaçados (estilo Minecraft)
+                texture.magFilter = THREE.NearestFilter;
+                texture.minFilter = THREE.NearestFilter;
+                numberTextures[i] = texture;
+            }
+        }
+
+        // --- LÓGICA DE ALVOS ---
+        function spawnTarget() {
+            if (targets.length >= maxTargets) return;
+
+            // Filtra apenas os slots que não estão em uso
+            const availableSlots = targetSlots.filter(s => !s.inUse);
+            if (availableSlots.length === 0) return; // Se não tem slot livre, não faz nada
+
+            // Escolhe um slot livre aleatoriamente
+            const slot = availableSlots[Math.floor(Math.random() * availableSlots.length)];
+            
+            // Marca o slot como em uso para evitar sobreposição
+            slot.inUse = true;
+
+            // Gerar número aleatório (0 a 30)
+            const number = Math.floor(Math.random() * 30);
+            
+            // Criar Mesh do alvo
+            const geo = new THREE.BoxGeometry(0.8, 0.8, 0.8);
+            
+            // Materiais do cubo (Textura apenas na frente, cor sólida nos outros lados)
+            const sideMat = new THREE.MeshLambertMaterial({ color: 0x8f7441 });
+            const frontMat = new THREE.MeshLambertMaterial({ map: numberTextures[number] });
+            
+            // Ordem das faces: direita, esquerda, topo, baixo, frente, trás
+            const materials = [sideMat, sideMat, sideMat, sideMat, frontMat, sideMat];
+            
+            const mesh = new THREE.Mesh(geo, materials);
+            // Inicia escondido abaixo da prateleira (baseY)
+            mesh.position.set(slot.x, slot.baseY, slot.z); 
+            mesh.castShadow = true;
+
+            scene.add(mesh);
+
+            const targetObj = {
+                mesh: mesh,
+                number: number,
+                slot: slot,
+                state: 'RISING', // RISING, VISIBLE, HIDING, FALLING
+                timer: 2 + Math.random() * 3 // Fica exposto entre 2 e 5 segundos
+            };
+
+            targets.push(targetObj);
+        }
+
+        function updateTargets(delta) {
+            const verticalSpeed = 4.0;
+
+            for (let i = targets.length - 1; i >= 0; i--) {
+                const t = targets[i];
+
+                if (t.state === 'RISING') {
+                    // Sobe até chegar na posição da prateleira
+                    t.mesh.position.y += verticalSpeed * delta;
+                    if (t.mesh.position.y >= t.slot.targetY) {
+                        t.mesh.position.y = t.slot.targetY;
+                        t.state = 'VISIBLE';
+                    }
+                } else if (t.state === 'VISIBLE') {
+                    // Fica parado esperando o tiro
+                    t.timer -= delta;
+                    if (t.timer <= 0) {
+                        t.state = 'HIDING';
+                    }
+                } else if (t.state === 'HIDING') {
+                    // Retorna para baixo (não foi atingido)
+                    t.mesh.position.y -= verticalSpeed * delta;
+                    if (t.mesh.position.y <= t.slot.baseY) {
+                        scene.remove(t.mesh);
+                        t.slot.inUse = false; // Libera o slot
+                        targets.splice(i, 1);
+                    }
+                } else if (t.state === 'FALLING') {
+                    // Animação de queda e giro (quando é atingido)
+                    t.mesh.position.y -= 10 * delta; 
+                    t.mesh.rotation.x += 5 * delta;
+                    t.mesh.rotation.y += 5 * delta;
+                    
+                    if (t.mesh.position.y <= -2) {
+                        scene.remove(t.mesh);
+                        t.slot.inUse = false; // Libera o slot
+                        targets.splice(i, 1);
+                    }
+                }
+            }
+
+            // Chance de spawnar novo alvo
+            if (Math.random() < 0.015 * (60/Math.max(10, timeLeft))) {
+                spawnTarget();
+            }
+        }
+
+        // --- SISTEMA DE PROJÉTEIS (TRAJETÓRIA) ---
+        function spawnBullet(targetPoint) {
+            // Atualiza a matriz do mundo para garantir precisão exata da câmara
+            camera.updateMatrixWorld();
+
+            // Criação visual do projétil (amarelo e brilhante como um "tracer")
+            const bulletGeo = new THREE.BoxGeometry(0.04, 0.04, 1.2); // Mais longo para melhor visibilidade
+            const bulletMat = new THREE.MeshBasicMaterial({ color: 0xffaa00 });
+            const bullet = new THREE.Mesh(bulletGeo, bulletMat);
+
+            // Calcular a posição da ponta da arma no mundo 3D
+            const tipPosition = new THREE.Vector3(0.3, -0.21, -1.0); 
+            tipPosition.applyMatrix4(camera.matrixWorld);
+            
+            bullet.position.copy(tipPosition);
+            
+            // Faz o projétil alinhar a sua geometria na direção do alvo
+            bullet.lookAt(targetPoint);
+
+            // Calcula matematicamente o vetor de direção absoluto
+            const direction = new THREE.Vector3().subVectors(targetPoint, tipPosition).normalize();
+
+            scene.add(bullet);
+
+            bullets.push({
+                mesh: bullet,
+                direction: direction,
+                speed: 70, // Ajustado para dar tempo de ver o feixe amarelo rasgar o ecrã
+                life: 0.5  // Tempo de vida em segundos
+            });
+        }
+
+        function updateBullets(delta) {
+            for (let i = bullets.length - 1; i >= 0; i--) {
+                const b = bullets[i];
+                b.life -= delta;
+                
+                if (b.life <= 0) {
+                    scene.remove(b.mesh);
+                    bullets.splice(i, 1);
+                } else {
+                    // Move o projétil globalmente usando o vetor direção exato calculado
+                    b.mesh.position.addScaledVector(b.direction, b.speed * delta);
+                }
+            }
+        }
+
+        // --- CONTROLES (MOUSE LOOK) ---
+        function onMouseMove(event) {
+            if (document.pointerLockElement === document.body) {
+                const movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+                const movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+
+                const sensitivity = 0.002;
+                yawObject.rotation.y -= movementX * sensitivity;
+                pitchObject.rotation.x -= movementY * sensitivity;
+
+                // Limitar visão para cima/baixo
+                pitchObject.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, pitchObject.rotation.x));
+            }
+        }
+
+        // --- CONTROLES MOBILE (JOYSTICK) ---
+        function setupMobileControls() {
+            const joystickZone = document.getElementById('joystick-zone');
+            const joystickStick = document.getElementById('joystick-stick');
+            const shootBtn = document.getElementById('shoot-button');
+
+            joystickZone.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const touch = e.changedTouches[0];
+                joystickStart = { id: touch.identifier, x: touch.clientX, y: touch.clientY };
+                joystickActive = true;
+            });
+
+            joystickZone.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                for (let i = 0; i < e.changedTouches.length; i++) {
+                    const touch = e.changedTouches[i];
+                    if (joystickActive && touch.identifier === joystickStart.id) {
+                        let dx = touch.clientX - joystickStart.x;
+                        let dy = touch.clientY - joystickStart.y;
+
+                        let localX, localY;
+                        // Mapeamento matemático se o celular estiver em pé (Rotacionado 90 graus pelo CSS)
+                        if (isPortrait) {
+                            localX = dy;
+                            localY = -dx;
+                        } else {
+                            localX = dx;
+                            localY = dy;
+                        }
+
+                        // Limitar o raio do joystick visual
+                        const dist = Math.sqrt(localX**2 + localY**2);
+                        const maxDist = 40;
+                        let visualX = localX;
+                        let visualY = localY;
+                        
+                        if (dist > maxDist) {
+                            visualX = (localX / dist) * maxDist;
+                            visualY = (localY / dist) * maxDist;
+                        }
+
+                        joystickStick.style.transform = `translate(calc(-50% + ${visualX}px), calc(-50% + ${visualY}px))`;
+                        joystickDelta.x = visualX;
+                        joystickDelta.y = visualY;
+                    }
+                }
+            });
+
+            const endJoystick = (e) => {
+                for (let i = 0; i < e.changedTouches.length; i++) {
+                    if (e.changedTouches[i].identifier === joystickStart.id) {
+                        joystickActive = false;
+                        joystickDelta = { x: 0, y: 0 };
+                        joystickStick.style.transform = 'translate(-50%, -50%)';
+                    }
+                }
+            };
+
+            joystickZone.addEventListener('touchend', endJoystick);
+            joystickZone.addEventListener('touchcancel', endJoystick);
+
+            shootBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                fireGun(); // Dispara o tiro
+            });
+        }
+
+        // --- TIRO E COLISÃO ---
+        function fireGun() {
+            if (!gameActive) return;
+
+            playSound('shoot');
+
+            // Efeito de coice (recoil) da arma
+            if (gunGroup) {
+                gunGroup.position.z = -0.35; // Puxa para trás
+                gunGroup.rotation.x = 0.15;  // Levanta o cano
+            }
+
+            // Raycast a partir do centro da câmera para acertar os alvos
+            raycaster.setFromCamera(centerVector, camera);
+
+            // Verifica interseção apenas com as malhas dos alvos ativos
+            const targetMeshes = targets.map(t => t.mesh);
+            const intersects = raycaster.intersectObjects(targetMeshes);
+
+            let targetPoint = new THREE.Vector3();
+
+            if (intersects.length > 0) {
+                const hitMesh = intersects[0].object;
+                targetPoint.copy(intersects[0].point); // Salva o ponto exato do impacto no alvo
+
+                const hitTarget = targets.find(t => t.mesh === hitMesh);
+
+                if (hitTarget && hitTarget.state !== 'FALLING' && hitTarget.state !== 'HIDING') {
+                    processHit(hitTarget);
+                }
+            } else {
+                // Se não acertou nenhum alvo, mira num ponto distante no infinito (50 unidades pra frente)
+                raycaster.ray.at(50, targetPoint);
+            }
+
+            // Gerar a bala visual (Trajetória) disparando da ponta da arma até o ponto alvo
+            spawnBullet(targetPoint);
+        }
+
+        function processHit(target) {
+            // Avalia regra matemática
+            const isCorrect = currentQuestion.check(target.number);
+
+            if (isCorrect) {
+                score += 10;
+                showFeedback("+10", "#00ff00");
+                playSound('correct');
+                // Efeito de cor na textura da face frontal (índice 4 do array de materiais)
+                target.mesh.material[4].color.setHex(0x00ff00);
+            } else {
+                score -= 5;
+                showFeedback("-5", "#ff0000");
+                playSound('wrong');
+                target.mesh.material[4].color.setHex(0xff0000);
+            }
+
+            scoreEl.innerText = score;
+            target.state = 'FALLING'; // Inicia a queda livre do bloco
+        }
+
+        // --- FLUXO DO JOGO ---
+        function nextQuestion() {
+            currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+            questionEl.innerText = currentQuestion.text;
+        }
+
+        function showFeedback(text, color) {
+            feedbackEl.innerText = text;
+            feedbackEl.style.color = color;
+            feedbackEl.style.opacity = 1;
+            feedbackEl.style.top = '55%';
+            
+            // Remove animação anterior se houver
+            clearTimeout(feedbackEl.timeout);
+            
+            feedbackEl.timeout = setTimeout(() => {
+                feedbackEl.style.opacity = 0;
+                feedbackEl.style.top = '60%';
+            }, 800);
+        }
+
+        function endGame() {
+            gameActive = false;
+            document.exitPointerLock();
+            blocker.style.display = 'flex';
+            hud.style.display = 'none';
+            instructions.innerHTML = `
+                <h1>Fim de Jogo!</h1>
+                <p>Sua Pontuação Final: <span class="highlight">${score}</span></p>
+                <p>Clique para jogar novamente.</p>
+            `;
+            // Resetar
+            score = 0;
+            timeLeft = 60;
+            scoreEl.innerText = score;
+            targets.forEach(t => {
+                scene.remove(t.mesh);
+            });
+            targets.length = 0;
+            targetSlots.forEach(slot => slot.inUse = false); // Libera todos os slots
+            
+            // Limpar balas
+            bullets.forEach(b => scene.remove(b.mesh));
+            bullets.length = 0;
+        }
+
+        // --- ÁUDIO (Sintetizador Web Audio API) ---
+        function playSound(type) {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'shoot') {
+                // Som tipo "pew"
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.exponentialRampToValueAtTime(50, now + 0.1);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                osc.start(now);
+                osc.stop(now + 0.1);
+            } else if (type === 'correct') {
+                // Som tipo "ding"
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.setValueAtTime(1200, now + 0.1);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'wrong') {
+                // Som tipo "buzzer"
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, now);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                osc.start(now);
+                osc.stop(now + 0.2);
+            }
+        }
+
+        // --- LOOP PRINCIPAL ---
+        function animate(time) {
+            requestAnimationFrame(animate);
+
+            const delta = (time - lastTime) / 1000;
+            lastTime = time;
+
+            if (gameActive) {
+                // Atualizar Temporizador
+                timeLeft -= delta;
+                timeEl.innerText = Math.ceil(timeLeft);
+                
+                if (timeLeft <= 0) {
+                    endGame();
+                    return;
+                }
+
+                // Trocar pergunta a cada 15 segundos aproximadamente
+                if (Math.floor(timeLeft) % 15 === 0 && Math.floor(timeLeft - delta) % 15 !== 0) {
+                    nextQuestion();
+                }
+
+                updateTargets(delta);
+                updateBullets(delta); // Atualiza os projéteis na tela
+
+                // Aplicar movimento do joystick mobile na câmera de forma contínua
+                if (isTouchDevice && joystickActive) {
+                    const sensitivity = 0.05; // Velocidade da câmera no celular
+                    yawObject.rotation.y -= joystickDelta.x * sensitivity * delta;
+                    pitchObject.rotation.x -= joystickDelta.y * sensitivity * delta;
+                    pitchObject.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, pitchObject.rotation.x));
+                }
+
+                // Animar o recuo da arma de volta à posição normal suavemente
+                if (gunGroup) {
+                    gunGroup.position.z += (-0.5 - gunGroup.position.z) * 10 * delta;
+                    gunGroup.rotation.x += (0 - gunGroup.rotation.x) * 10 * delta;
+                }
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            isPortrait = window.innerHeight > window.innerWidth;
+            const wrapper = document.getElementById('app-wrapper');
+            
+            let width, height;
+            // Se for mobile e a tela estiver na vertical, inverte os eixos forçando a horizontal
+            if (isTouchDevice && isPortrait) {
+                wrapper.classList.add('portrait');
+                width = window.innerHeight;
+                height = window.innerWidth;
+            } else {
+                wrapper.classList.remove('portrait');
+                width = window.innerWidth;
+                height = window.innerHeight;
+            }
+
+            wrapper.style.width = width + 'px';
+            wrapper.style.height = height + 'px';
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+    </script>
+</body>
+</html>
