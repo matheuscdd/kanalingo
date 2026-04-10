@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import pyperclip
 
 def ler_json_array(caminho_arquivo):
     try:
@@ -22,13 +23,25 @@ def ler_json_array(caminho_arquivo):
 
 
 if __name__ == "__main__":
-    caminho = Path("azure_translator.json")
+    caminho = Path("chat_gpt.json")
 
     array_json = ler_json_array(caminho)
 
     if array_json:
         print(f"Total de itens: {len(array_json)}\n")
 
+        counter = 0
         for i in array_json:
             if not isinstance(i["pt"], list):
-                print(i["senseUid"])
+                counter += 1
+                # print(i["senseUid"])
+                # pyperclip.copy(i["senseUid"])
+                # input(i["senseUid"])
+        
+        print(f"Restantes: {counter}")
+        for i in array_json:
+            if not isinstance(i["pt"], list):
+                # print(i["senseUid"])
+                pyperclip.copy(i["senseUid"])
+                input(i["senseUid"])
+        
