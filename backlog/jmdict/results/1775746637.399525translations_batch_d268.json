@@ -1,0 +1,959 @@
+[
+  {
+    "kana": "れんらくもう",
+    "en": [
+      "contact network",
+      "phone tree",
+      "contact information for relevant people (in a given organization)"
+    ],
+    "senseUid": "742e08cc-4190-4361-bc0c-d6fd9ca3d018",
+    "wordId": "2202750",
+    "pt": "['rede de contatos', 'árvore telefônica', 'informações de contato das pessoas relevantes (em uma organização)']"
+  },
+  {
+    "kana": "げんきんじどうしゅつにゅうき",
+    "en": [
+      "automatic teller machine",
+      "ATM"
+    ],
+    "senseUid": "cc474312-acdf-464a-9f4a-ce3b235959a0",
+    "wordId": "2202760",
+    "pt": "{\n  \"a\": [\"caixa eletrônico\", \"ATM\"]\n"
+  },
+  {
+    "kana": "どなたか",
+    "en": [
+      "someone"
+    ],
+    "senseUid": "beb2a45d-ed27-4e9c-b13e-9336b4c28880",
+    "wordId": "2202770",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"どなたか\",\n      \"Português\": \"alguém (forma polida)\",\n      \"Nota\": \"Usado para se referir a uma pessoa desconhecida de maneira respeitosa, comum em contextos formais no japonês.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "ダさいたま",
+    "en": [
+      "Saitama Prefecture"
+    ],
+    "senseUid": "7e31e4c4-012a-4c5e-a39c-a463519a6dac",
+    "wordId": "2202780",
+    "pt": "['Prefeitura de Saitama']"
+  },
+  {
+    "kana": "こういった",
+    "en": [
+      "this sort of",
+      "this type of"
+    ],
+    "senseUid": "c5bc376d-8dc6-4bd4-bc4b-2418f2498ed5",
+    "wordId": "2202790",
+    "pt": "['esse tipo de', 'esse tipo de coisa']"
+  },
+  {
+    "kana": "なんちゃって",
+    "en": [
+      "just kidding",
+      "not!"
+    ],
+    "senseUid": "d2a6dcf4-924b-4cda-8a41-74c9a67be90e",
+    "wordId": "2202800",
+    "pt": "['brincadeirinha', 'mentira!', 'tô zoando', 'só que não']"
+  },
+  {
+    "kana": "なんちゃって",
+    "en": [
+      "ersatz",
+      "imitation",
+      "phony",
+      "pretend",
+      "fake",
+      "faux"
+    ],
+    "senseUid": "00ef4eb8-dae7-436f-b299-9d3362a0f4e2",
+    "wordId": "2202800",
+    "pt": "['fajuto', 'de mentirinha', 'imitação', 'falso', 'meio que', 'de brincadeira']"
+  },
+  {
+    "kana": "しんやざんぎょう",
+    "en": [
+      "late-night overtime"
+    ],
+    "senseUid": "60ffc143-2a0b-4899-8b9e-c28f1a665bff",
+    "wordId": "2202810",
+    "pt": "['hora extra noturna']"
+  },
+  {
+    "kana": "しょとくしょうめいしょ",
+    "en": [
+      "income certificate",
+      "certificate of earnings"
+    ],
+    "senseUid": "0eac4db8-ed0c-488e-bd69-822e353a261d",
+    "wordId": "2202820",
+    "pt": "['certificado de renda', 'certificado de ganhos']"
+  },
+  {
+    "kana": "きんがく",
+    "en": [
+      "studying while working"
+    ],
+    "senseUid": "ae6bef55-e067-4749-ba77-282c977d908a",
+    "wordId": "2202830",
+    "pt": "{\n  \"a\": [\"trabalhar e estudar ao mesmo tempo\", \"conciliar trabalho e estudos\", \"estudar enquanto trabalha\"]\n"
+  },
+  {
+    "kana": "きんがくがくせい",
+    "en": [
+      "working student"
+    ],
+    "senseUid": "8079e68f-bb7f-4e27-a1bc-d04f9afaf6a4",
+    "wordId": "2202840",
+    "pt": "{\n  \"a\": [\"estudante que trabalha\"]\n"
+  },
+  {
+    "kana": "せいさんしょうれい",
+    "en": [
+      "manufacturing promotion",
+      "promotion of production"
+    ],
+    "senseUid": "e4427cac-ea2e-4284-8b6b-7465a358e2d7",
+    "wordId": "2202870",
+    "pt": "['promoção da produção', 'incentivo à manufatura']"
+  },
+  {
+    "kana": "とくべつえいじゅうしゃ",
+    "en": [
+      "special permanent resident",
+      "foreign resident in Japan since before 1945 or the descendant of such a person (mainly Koreans)"
+    ],
+    "senseUid": "3627bf7d-35e4-41cf-aafe-299a0ba030ed",
+    "wordId": "2202880",
+    "pt": "['residente permanente especial', 'estrangeiro residente no Japão desde antes de 1945 ou descendente de tal pessoa (principalmente coreanos)']"
+  },
+  {
+    "kana": "ざいりゅうしかく",
+    "en": [
+      "status of residence",
+      "residence status",
+      "visa status",
+      "immigration status"
+    ],
+    "senseUid": "d455af57-bcbf-4556-9a96-d80a8e75de97",
+    "wordId": "2202890",
+    "pt": "['status de residência', 'condição de residência', 'tipo de visto', 'situação migratória']"
+  },
+  {
+    "kana": "あまおと",
+    "en": [
+      "sound of rainfall"
+    ],
+    "senseUid": "2333460e-9d3d-4e93-b541-ba10371cd1d3",
+    "wordId": "2202900",
+    "pt": "['som da chuva caindo']"
+  },
+  {
+    "kana": "ぎいでんし",
+    "en": [
+      "pseudogene"
+    ],
+    "senseUid": "3cfc9413-3197-4a71-ad56-7200b1043221",
+    "wordId": "2202910",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ぎいでんし\",\n      \"gloss\": [\"pseudogene\"],\n      \"portuguese\": [\"pseudogene\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "なんにちも",
+    "en": [
+      "for many days",
+      "for several days"
+    ],
+    "senseUid": "ccf3e4c8-12da-419b-a2c9-da838b1dc7c7",
+    "wordId": "2202930",
+    "pt": "['por muitos dias', 'por vários dias']"
+  },
+  {
+    "kana": "きょくぶてき",
+    "en": [
+      "localized (pain, rainfall, etc.)",
+      "local"
+    ],
+    "senseUid": "a0192dc4-3ebd-4ec2-9d73-b66995714714",
+    "wordId": "2202920",
+    "pt": "{\n  \"a\": [\n    \"localizado\",\n    \"local\"\n  ]\n"
+  },
+  {
+    "kana": "いくにちもいくにちも",
+    "en": [
+      "day after day",
+      "for many days",
+      "for days on end",
+      "day in, day out"
+    ],
+    "senseUid": "3e457b77-0611-4ef3-a5ea-94ea9e09da49",
+    "wordId": "2202940",
+    "pt": "['dia após dia', 'por muitos dias', 'por vários dias seguidos', 'dia sim, dia não']"
+  },
+  {
+    "kana": "にほどき",
+    "en": [
+      "unpacking (esp. after moving house)"
+    ],
+    "senseUid": "ee849878-b1a1-4233-9342-495c89a430de",
+    "wordId": "2202950",
+    "pt": "['desempacotar (especialmente após mudar de casa)']"
+  },
+  {
+    "kana": "てにつかない",
+    "en": [
+      "unable to focus on ... (due to being preoccupied with something else)",
+      "unable to concentrate on ...",
+      "unable to settle down to ..."
+    ],
+    "senseUid": "9d62e5c5-6226-4b00-bc36-193a1f9c7462",
+    "wordId": "2202960",
+    "pt": "['incapaz de se concentrar em ... (por estar preocupado com outra coisa)', 'não consegue focar em ...', 'não consegue se acalmar para ...']"
+  },
+  {
+    "kana": "せいにする",
+    "en": [
+      "to lay the blame on",
+      "to put the fault on"
+    ],
+    "senseUid": "67509b9c-1a58-4588-a13a-6626d8790b05",
+    "wordId": "2202970",
+    "pt": "['colocar a culpa em', 'atribuir a culpa a']"
+  },
+  {
+    "kana": "っぷり",
+    "en": [
+      "manner",
+      "style"
+    ],
+    "senseUid": "29d7f43c-68ce-4e27-bea6-f130fc0ef992",
+    "wordId": "2202980",
+    "pt": "['maneira', 'estilo']"
+  },
+  {
+    "kana": "ぎゃくゆにゅうしゃ",
+    "en": [
+      "reverse-imported vehicle (esp. high-displacement motorcycles meant for sale outside Japan)"
+    ],
+    "senseUid": "b086a663-67f6-47a0-aac7-56c4475eb1ef",
+    "wordId": "2202990",
+    "pt": "['veículo reimportado (especialmente motocicletas de alta cilindrada destinadas originalmente à venda fora do Japão)']"
+  },
+  {
+    "kana": "アメショー",
+    "en": [
+      "American shorthair (cat breed)"
+    ],
+    "senseUid": "fe01a056-5a16-4906-8ad3-fee157eadb71",
+    "wordId": "2203000",
+    "pt": "{\n  \"a\": [\"gato American Shorthair\"]\n"
+  },
+  {
+    "kana": "けずりしろ",
+    "en": [
+      "cutting stock (extra material cut off in machining operations as a safety margin for tolerances)",
+      "machining allowance"
+    ],
+    "senseUid": "02173472-0652-4980-a0f1-e5d7f15ec3dc",
+    "wordId": "2203010",
+    "pt": "{\n  \"a\": [\n    \"estoque de corte (material extra removido em operações de usinagem como margem de segurança para tolerâncias)\",\n    \"sobremetal de usinagem\"\n  ]\n"
+  },
+  {
+    "kana": "ピカッと",
+    "en": [
+      "with a flash",
+      "brightly",
+      "dazzlingly",
+      "sparklingly",
+      "brilliantly (shining)"
+    ],
+    "senseUid": "a1d857f2-6c63-4b70-aec7-1442367e8a36",
+    "wordId": "2203020",
+    "pt": "['com um clarão', 'brilhantemente', 'ofuscantemente', 'cintilantemente', 'reluzentemente']"
+  },
+  {
+    "kana": "けいぎん",
+    "en": [
+      "aluminium",
+      "aluminum"
+    ],
+    "senseUid": "1f852e92-7a4f-45c9-a102-b227dfb70eff",
+    "wordId": "2203040",
+    "pt": "{\n  \"a\": [\"alumínio\"]\n"
+  },
+  {
+    "kana": "じれいしゅう",
+    "en": [
+      "collection of cases",
+      "collection of instances"
+    ],
+    "senseUid": "bc2ae7c5-ff9e-45d7-80e2-673638a7729c",
+    "wordId": "2203050",
+    "pt": "{\n  \"a\": [\n    \"coleção de casos\",\n    \"coleção de exemplos\"\n  ]\n"
+  },
+  {
+    "kana": "せいしゅんえいが",
+    "en": [
+      "youth film",
+      "teen movie"
+    ],
+    "senseUid": "607245df-a5e1-4d22-818a-1ad1b389ad31",
+    "wordId": "2203060",
+    "pt": "['filme de juventude', 'filme adolescente']"
+  },
+  {
+    "kana": "ねがえりをうつ",
+    "en": [
+      "to turn over (in one's sleep)",
+      "to toss and turn (in bed)"
+    ],
+    "senseUid": "1f1d2841-fde8-46de-9ca0-81034c76ebfa",
+    "wordId": "2203070",
+    "pt": "['virar-se na cama', 'rolar na cama', 'mexer-se enquanto dorme', 'ficar se revirando na cama']"
+  },
+  {
+    "kana": "ねがえりをうつ",
+    "en": [
+      "to change sides",
+      "to double-cross",
+      "to betray"
+    ],
+    "senseUid": "a044bb05-d194-4991-bece-221422b4a481",
+    "wordId": "2203070",
+    "pt": "['mudar de lado', 'trair', 'dar uma volta por cima']"
+  },
+  {
+    "kana": "あてにならない",
+    "en": [
+      "unreliable",
+      "undependable",
+      "untrustworthy",
+      "not to be counted on"
+    ],
+    "senseUid": "10a32d64-402a-413f-b21b-6f3332ef3f1f",
+    "wordId": "2203080",
+    "pt": "['não confiável', 'pouco confiável', 'não digno de confiança', 'não se pode contar com']"
+  },
+  {
+    "kana": "ノートブック",
+    "en": [
+      "notebook"
+    ],
+    "senseUid": "67c2034c-b679-4043-a12d-742f7ea6c2a9",
+    "wordId": "2203090",
+    "pt": "['caderno']"
+  },
+  {
+    "kana": "びげん",
+    "en": [
+      "slight reduction",
+      "small decrease"
+    ],
+    "senseUid": "72a91c6d-88bb-4c2b-8e95-28f07e3701d6",
+    "wordId": "2203100",
+    "pt": "{\n  \"a\": [\n    \"ligeira redução\",\n    \"pequena diminuição\"\n  ]\n"
+  },
+  {
+    "kana": "ようちゃく",
+    "en": [
+      "welding (of thermoplastics or non-ferrous metals)"
+    ],
+    "senseUid": "48cd840e-cdbb-4031-a8a0-7032c380814d",
+    "wordId": "2203110",
+    "pt": "{\n  \"a\": [\n    \"soldagem (de termoplásticos ou metais não ferrosos)\"\n  ]\n"
+  },
+  {
+    "kana": "たべあるく",
+    "en": [
+      "to try out the food at various restaurants"
+    ],
+    "senseUid": "322cc66b-9e7c-4412-9bb1-30b5047322a3",
+    "wordId": "2203120",
+    "pt": "['fazer um tour gastronômico', 'experimentar comidas em vários restaurantes', 'sair para comer em diferentes lugares']"
+  },
+  {
+    "kana": "じょうきどう",
+    "en": [
+      "upper respiratory tract",
+      "upper airway"
+    ],
+    "senseUid": "1e7a7aa8-84ac-492f-bb96-994f87dea705",
+    "wordId": "2203130",
+    "pt": "{\n  \"a\": [\n    \"trato respiratório superior\",\n    \"vias aéreas superiores\"\n  ]\n"
+  },
+  {
+    "kana": "ノーシーボ",
+    "en": [
+      "nocebo (negative response to a dummy drug)"
+    ],
+    "senseUid": "1202b608-f932-40d7-a00a-0ce989f1f75b",
+    "wordId": "2203140",
+    "pt": "['nocebo (resposta negativa a um medicamento simulado)']"
+  },
+  {
+    "kana": "ノセボこうか",
+    "en": [
+      "nocebo effect"
+    ],
+    "senseUid": "92b29131-a3ab-4035-b7b5-7eaa70dd1ef7",
+    "wordId": "2203150",
+    "pt": "['efeito nocebo']"
+  },
+  {
+    "kana": "けもののすうじ",
+    "en": [
+      "number of the beast (666)"
+    ],
+    "senseUid": "92028323-59ee-4184-892c-040514ed39b1",
+    "wordId": "2203170",
+    "pt": "['número da besta (666)']"
+  },
+  {
+    "kana": "しし",
+    "en": [
+      "beast (esp. one used for its meat, such as a boar or a deer)"
+    ],
+    "senseUid": "8e00bf85-445b-408f-9b9c-a1c56a79b595",
+    "wordId": "2203180",
+    "pt": "['fera (especialmente um animal usado por sua carne, como um javali ou um veado)']"
+  },
+  {
+    "kana": "しし",
+    "en": [
+      "hunting (of animals such as boar, deer, etc.)"
+    ],
+    "senseUid": "775537b2-c164-4fe1-b4b0-d9bb6d169229",
+    "wordId": "2203180",
+    "pt": "{\n  \"a\": [\n    \"caça (de animais como javali, veado, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "ししがり",
+    "en": [
+      "hunting (of animals such as boar, deer, etc.)"
+    ],
+    "senseUid": "41e2c918-1c64-43e6-90ee-f24f5aaba78c",
+    "wordId": "2203190",
+    "pt": "['caça (de animais como javali, cervo, etc.)']"
+  },
+  {
+    "kana": "めじか",
+    "en": [
+      "doe (female deer)"
+    ],
+    "senseUid": "bc6be8ba-21c3-434e-87a2-c668c960e434",
+    "wordId": "2203200",
+    "pt": "['corça']"
+  },
+  {
+    "kana": "おじか",
+    "en": [
+      "buck (male deer)"
+    ],
+    "senseUid": "fc81ca17-55eb-46dd-a7a4-916e7d9a23a6",
+    "wordId": "2203210",
+    "pt": "['veado (cervo macho)']"
+  },
+  {
+    "kana": "かのしし",
+    "en": [
+      "venison"
+    ],
+    "senseUid": "fa3c2554-455e-4a56-ac3a-18cd9b3605a3",
+    "wordId": "2203220",
+    "pt": "{\n  \"a\": [\"carne de veado\"]\n"
+  },
+  {
+    "kana": "かのしし",
+    "en": [
+      "deer"
+    ],
+    "senseUid": "d282f4e8-8859-44c3-925c-ebc8c28d61f5",
+    "wordId": "2203220",
+    "pt": "['veado']"
+  },
+  {
+    "kana": "い",
+    "en": [
+      "hog (esp. a wild boar, but also including the domesticated pig)"
+    ],
+    "senseUid": "3e6c43da-0c6d-4cfd-b78d-608fda236e98",
+    "wordId": "2203230",
+    "pt": "{\n  \"a\": [\n    \"javali (especialmente um javali selvagem, mas também incluindo o porco domesticado)\"\n  ]\n"
+  },
+  {
+    "kana": "いのこ",
+    "en": [
+      "wild boar"
+    ],
+    "senseUid": "f8f82cda-da3f-41a8-9abe-0684edc0c925",
+    "wordId": "2203240",
+    "pt": "{\n  \"a\": [\"javali\"]\n"
+  },
+  {
+    "kana": "いのこ",
+    "en": [
+      "infant wild boar"
+    ],
+    "senseUid": "3e641167-5a89-466b-9d0d-1f37b443ea7b",
+    "wordId": "2203240",
+    "pt": "['javaporco filhote', 'filhote de javali']"
+  },
+  {
+    "kana": "いのこ",
+    "en": [
+      "pig"
+    ],
+    "senseUid": "a95a1189-3f12-4608-8754-c08207cd6b66",
+    "wordId": "2203240",
+    "pt": "{\n  \"a\": [\"porco\"]\n"
+  },
+  {
+    "kana": "ペッカリー",
+    "en": [
+      "peccary (Tayassuidae spp.)"
+    ],
+    "senseUid": "15a6dd9a-9069-4e29-88eb-ddda2a2704e7",
+    "wordId": "2203250",
+    "pt": "['cateto (espécie de porco-do-mato, família Tayassuidae)']"
+  },
+  {
+    "kana": "へそいのしし",
+    "en": [
+      "peccary"
+    ],
+    "senseUid": "8708fb9b-8a17-4bc3-89a8-589911b5708e",
+    "wordId": "2203260",
+    "pt": "{\n  \"a\": [\"cateto\"]\n"
+  },
+  {
+    "kana": "くびわペッカリー",
+    "en": [
+      "collared peccary (Tayassu tajacu)"
+    ],
+    "senseUid": "942de747-2868-48a1-9283-448a16295f44",
+    "wordId": "2203270",
+    "pt": "['queixada']"
+  },
+  {
+    "kana": "ししき",
+    "en": [
+      "Judges (book of the Bible)"
+    ],
+    "senseUid": "e003d8da-bccc-4042-9861-bae52a8f2bcc",
+    "wordId": "2203280",
+    "pt": "{\n  \"a\": [\"Juízes (livro da Bíblia)\"]\n"
+  },
+  {
+    "kana": "ハンロンのかみそり",
+    "en": [
+      "Hanlon's razor (\"Never attribute to malice that which can be adequately explained by stupidity\")"
+    ],
+    "senseUid": "507d416a-8eb3-4422-a31b-4535d88127ff",
+    "wordId": "2203290",
+    "pt": "['Navalha de Hanlon (\"Nunca atribua à maldade o que pode ser adequadamente explicado pela estupidez\")']"
+  },
+  {
+    "kana": "マーフィーのほうそく",
+    "en": [
+      "Murphy's Law (\"Whatever can go wrong, will go wrong\")"
+    ],
+    "senseUid": "aa3c15b8-4886-4717-bfc2-a5eb95028c89",
+    "wordId": "2203300",
+    "pt": "['Lei de Murphy (\"Tudo que pode dar errado, dará errado\")']"
+  },
+  {
+    "kana": "きょうめいき",
+    "en": [
+      "resonator"
+    ],
+    "senseUid": "67c586aa-26aa-4c5a-b5f3-60b22c8086d9",
+    "wordId": "2203310",
+    "pt": "['ressonador']"
+  },
+  {
+    "kana": "おんせいきかん",
+    "en": [
+      "speech organ"
+    ],
+    "senseUid": "230b4bd8-8447-4a0d-a84b-58d33545c85f",
+    "wordId": "2203320",
+    "pt": "['órgão de fala']"
+  },
+  {
+    "kana": "はつおんき",
+    "en": [
+      "sound-producing organ (esp. of land-dwelling vertebrates and insects)"
+    ],
+    "senseUid": "8674b79f-c6b1-47d2-a0f6-6a93a61c5754",
+    "wordId": "2203330",
+    "pt": "['órgão produtor de som (especialmente de vertebrados terrestres e insetos)']"
+  },
+  {
+    "kana": "こうとうがい",
+    "en": [
+      "epiglottis"
+    ],
+    "senseUid": "e85cd97b-d1ff-42a5-b81a-6968107023d5",
+    "wordId": "2203350",
+    "pt": "['epiglote']"
+  },
+  {
+    "kana": "はつおんきかん",
+    "en": [
+      "sound-producing organ (i.e. speech organs of mammals, wings of insects)"
+    ],
+    "senseUid": "fe1713db-b875-4c0e-994c-8526c8fe74b8",
+    "wordId": "2203340",
+    "pt": "['órgão produtor de som (ou seja, órgãos da fala dos mamíferos, asas de insetos)']"
+  },
+  {
+    "kana": "ちょうおんきかん",
+    "en": [
+      "articulatory organ (i.e. the tongue, teeth, lips, etc.)"
+    ],
+    "senseUid": "332a7970-9c46-4aa6-9a80-6e46d552bdff",
+    "wordId": "2203360",
+    "pt": "{\n  \"a\": [\n    \"órgão articulatório (ou seja, a língua, dentes, lábios, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "ブッブー",
+    "en": [
+      "bzzz"
+    ],
+    "senseUid": "87a46266-de7e-4cac-b71d-a0d19e0df295",
+    "wordId": "2203370",
+    "pt": "['errado', 'não', 'buzina', 'resposta incorreta']"
+  },
+  {
+    "kana": "こうていえき",
+    "en": [
+      "foot-and-mouth disease",
+      "hoof-and-mouth disease"
+    ],
+    "senseUid": "38a022b0-faf4-4eac-9588-14939bb6bcaa",
+    "wordId": "2203390",
+    "pt": "{\n  \"a\": [\n    \"doença aftosa\",\n    \"febre aftosa\"\n  ]\n"
+  },
+  {
+    "kana": "ウイルスせいしっかん",
+    "en": [
+      "viral disease"
+    ],
+    "senseUid": "e69d9560-a2db-4bb9-9594-8fca6da2a354",
+    "wordId": "2203380",
+    "pt": "{\n  \"a\": [\"doença viral\"]\n"
+  },
+  {
+    "kana": "ペロポネソスせんそう",
+    "en": [
+      "Peloponnesian War"
+    ],
+    "senseUid": "bbd6ac0b-ce0e-4a14-99d4-d5d611b7b1c2",
+    "wordId": "2203410",
+    "pt": "['Guerra do Peloponeso']"
+  },
+  {
+    "kana": "ボンボヤージュ",
+    "en": [
+      "bon voyage"
+    ],
+    "senseUid": "7c0effd3-d9e5-424e-be47-c63692a7b3ed",
+    "wordId": "2203400",
+    "pt": "['boa viagem']"
+  },
+  {
+    "kana": "デロスどうめい",
+    "en": [
+      "Delian League (the Athenian empire)"
+    ],
+    "senseUid": "745e2191-a57c-4abb-acd9-60dc701fa263",
+    "wordId": "2203420",
+    "pt": "['Liga de Delos (o império ateniense)']"
+  },
+  {
+    "kana": "もんどうほう",
+    "en": [
+      "dialectic",
+      "dialectics"
+    ],
+    "senseUid": "8d5e7823-8826-4acf-aff2-35c6a2eaeb59",
+    "wordId": "2203430",
+    "pt": "{\n  \"a\": [\n    \"dialética\"\n  ]\n"
+  },
+  {
+    "kana": "さんばじゅつ",
+    "en": [
+      "maieutics"
+    ],
+    "senseUid": "3a7d449e-264a-4290-a3a7-820704bcc354",
+    "wordId": "2203440",
+    "pt": "['arte de extrair ou fazer nascer ideias (maiêutica)']"
+  },
+  {
+    "kana": "ヘムロック",
+    "en": [
+      "hemlock"
+    ],
+    "senseUid": "6a03119b-fe86-49f6-85c5-a208e2286c54",
+    "wordId": "2203450",
+    "pt": "{\n  \"a\": [\"cicuta\"]\n"
+  },
+  {
+    "kana": "むちのち",
+    "en": [
+      "knowing you know nothing"
+    ],
+    "senseUid": "73a081dc-2819-428e-8022-a782061dde23",
+    "wordId": "2203460",
+    "pt": "{\n  \"a\": [\"sabedoria de saber que nada sabe\"]\n"
+  },
+  {
+    "kana": "ひみつしょうしょゆいごん",
+    "en": [
+      "secret will and testament",
+      "sealed envelope will"
+    ],
+    "senseUid": "b42ee6f8-1718-482f-bd76-21b1bce99c4d",
+    "wordId": "2203470",
+    "pt": "{\n  \"a\": [\n    \"testamento secreto\",\n    \"testamento em envelope lacrado\"\n  ]\n"
+  },
+  {
+    "kana": "しっぱいしゃ",
+    "en": [
+      "loser",
+      "failure"
+    ],
+    "senseUid": "ec18e803-67cf-411a-a837-546926021ab1",
+    "wordId": "2203480",
+    "pt": "['fracassado', 'fracasso']"
+  },
+  {
+    "kana": "よていしゃ",
+    "en": [
+      "person in line (for ...)",
+      "person expected to ..."
+    ],
+    "senseUid": "aa467fba-7b4c-4bda-b6c3-7e42b73772f0",
+    "wordId": "2203490",
+    "pt": "['pessoa na fila (para ...)', 'pessoa esperada para ...']"
+  },
+  {
+    "kana": "せいかつしゃ",
+    "en": [
+      "consumer",
+      "ordinary citizen",
+      "stakeholder"
+    ],
+    "senseUid": "ab76d0a0-fc21-4f2c-9ed9-c6f4ad048e93",
+    "wordId": "2203500",
+    "pt": "{\n  \"a\": [\n    \"consumidor\",\n    \"cidadão comum\",\n    \"parte interessada\"\n  ]\n"
+  },
+  {
+    "kana": "せいかつしゃ",
+    "en": [
+      "person who lives on (e.g. situation, income, place)"
+    ],
+    "senseUid": "46245ab7-962d-46af-94de-a360dce4879b",
+    "wordId": "2203500",
+    "pt": "['pessoa que vive de (por exemplo, situação, renda, lugar)']"
+  },
+  {
+    "kana": "さんかんしゃ",
+    "en": [
+      "visitor"
+    ],
+    "senseUid": "362145d7-71c4-4e13-a767-8068d23caa9f",
+    "wordId": "2203510",
+    "pt": "['visitante']"
+  },
+  {
+    "kana": "アールブイしゃ",
+    "en": [
+      "recreational vehicle (usu. not camper or motor home)",
+      "RV",
+      "sports utility vehicle",
+      "SUV",
+      "four wheel drive (car or minivan)"
+    ],
+    "senseUid": "e1877f60-bbd0-4bc0-9949-e7cbf347e3d0",
+    "wordId": "2203520",
+    "pt": "{\n  \"a\": [\n    \"veículo recreativo (geralmente não um trailer ou motorhome)\",\n    \"RV\",\n    \"veículo utilitário esportivo\",\n    \"SUV\",\n    \"veículo com tração nas quatro rodas (carro ou minivan)\"\n  ]\n"
+  },
+  {
+    "kana": "へやばき",
+    "en": [
+      "(house) slippers"
+    ],
+    "senseUid": "a271fbb4-0281-43e5-a776-3b314b3626ce",
+    "wordId": "2203530",
+    "pt": "['chinelo de quarto', 'pantufa', 'sandália de casa']"
+  },
+  {
+    "kana": "モンモリロンせき",
+    "en": [
+      "montmorillonite"
+    ],
+    "senseUid": "5c5c204a-ea23-4dce-8017-a45c9ea1195b",
+    "wordId": "2203540",
+    "pt": "['montmorilonita']"
+  },
+  {
+    "kana": "モンモリロナイト",
+    "en": [
+      "montmorillonite"
+    ],
+    "senseUid": "f5ffd70f-74fd-4746-a83e-7c4bfec05808",
+    "wordId": "2203550",
+    "pt": "['montmorilonita']"
+  },
+  {
+    "kana": "ねんどこうぶつ",
+    "en": [
+      "clay mineral"
+    ],
+    "senseUid": "9d6a7123-3fb2-4058-a095-76e7f1ec7442",
+    "wordId": "2203560",
+    "pt": "['mineral de argila']"
+  },
+  {
+    "kana": "ベントナイト",
+    "en": [
+      "bentonite"
+    ],
+    "senseUid": "fcdb5b08-d74a-4821-aa26-2da74304a84a",
+    "wordId": "2203570",
+    "pt": "['bentonita']"
+  },
+  {
+    "kana": "あしをすくう",
+    "en": [
+      "to trip someone up",
+      "to pull the carpet from under"
+    ],
+    "senseUid": "7bb90f25-5eef-4006-a77c-7be121f12670",
+    "wordId": "2203580",
+    "pt": "['fazer alguém tropeçar', 'puxar o tapete de alguém']"
+  },
+  {
+    "kana": "わびをいれる",
+    "en": [
+      "to make an apology"
+    ],
+    "senseUid": "f0f56fa7-819f-4695-9410-867c8eac20c7",
+    "wordId": "2203590",
+    "pt": "['pedir desculpas', 'fazer um pedido de desculpas', 'oferecer um pedido de desculpas']"
+  },
+  {
+    "kana": "どうちゅうごぶじに",
+    "en": [
+      "bon voyage",
+      "have a nice trip"
+    ],
+    "senseUid": "3c3b1bc8-c365-4cfc-bf17-6741c943ea0b",
+    "wordId": "2203600",
+    "pt": "['Tenha uma boa viagem', 'Vá em segurança', 'Que você chegue bem']"
+  },
+  {
+    "kana": "チョーパン",
+    "en": [
+      "head butt"
+    ],
+    "senseUid": "1ee63877-9d76-4e77-8e04-50bf713db781",
+    "wordId": "2203610",
+    "pt": "['cabeçada']"
+  },
+  {
+    "kana": "なっとくがいく",
+    "en": [
+      "to accept (e.g. an explanation)",
+      "to be satisfied (with)",
+      "to assent (to)"
+    ],
+    "senseUid": "81724f0d-5110-4aa6-b974-12c17e3ebafa",
+    "wordId": "2203620",
+    "pt": "['aceitar (por exemplo, uma explicação)', 'ficar satisfeito (com)', 'concordar (com)']"
+  },
+  {
+    "kana": "とうちめん",
+    "en": [
+      "isosurface"
+    ],
+    "senseUid": "49867515-81b7-43b1-8858-5fd25c642b12",
+    "wordId": "2203630",
+    "pt": "['superfície de isovalor']"
+  },
+  {
+    "kana": "セプトゥアギンタ",
+    "en": [
+      "Septuagint"
+    ],
+    "senseUid": "f5398469-bedc-4074-85e6-8eeac200aea3",
+    "wordId": "2203640",
+    "pt": "['Septuaginta']"
+  },
+  {
+    "kana": "せいてん",
+    "en": [
+      "canon (i.e. the Biblical canon)"
+    ],
+    "senseUid": "dca0b3f4-1c99-46f1-91f8-fbfe9385b19c",
+    "wordId": "2203650",
+    "pt": "['cânone (por exemplo, o cânone bíblico)']"
+  },
+  {
+    "kana": "しちじゅうにこう",
+    "en": [
+      "the 72 microseasons of the year based on the 24 solar seasons further divided into 3"
+    ],
+    "senseUid": "f9add3ef-8d7f-4ee2-a71a-2bcb1f3673ad",
+    "wordId": "2203660",
+    "pt": "['as 72 microestações do ano baseadas nas 24 estações solares, cada uma subdividida em 3']"
+  },
+  {
+    "kana": "ひゃくはち",
+    "en": [
+      "108",
+      "one hundred and eight"
+    ],
+    "senseUid": "73c3609c-fc77-4cb1-829a-e7a1eb8fcce1",
+    "wordId": "2203670",
+    "pt": "['cento e oito']"
+  },
+  {
+    "kana": "ひゃくはち",
+    "en": [
+      "the number of kleshas, worldly thoughts and passions"
+    ],
+    "senseUid": "1055b57e-d6b5-4395-8d99-2a93c4072cb4",
+    "wordId": "2203670",
+    "pt": "['o número de kleshas, pensamentos mundanos e paixões']"
+  },
+  {
+    "kana": "ひゃくはち",
+    "en": [
+      "the sum of 12 months, 24 seasons of the solar year, and 72 microseasons of one year"
+    ],
+    "senseUid": "89aff4f3-b554-4a99-9fcb-0d821c47c536",
+    "wordId": "2203670",
+    "pt": "{\n  \"a\": [\n    \"a soma dos 12 meses, 24 estações do ano solar e 72 microestações de um ano\"\n  ]\n"
+  },
+  {
+    "kana": "ミセル",
+    "en": [
+      "micelle"
+    ],
+    "senseUid": "8445231f-2e58-4152-b121-b8661315d94d",
+    "wordId": "2203680",
+    "pt": "['micela']"
+  },
+  {
+    "kana": "えんかぶつイオン",
+    "en": [
+      "chloride ion"
+    ],
+    "senseUid": "463f3406-6e14-46d2-9b5f-ad75ef00b080",
+    "wordId": "2203690",
+    "pt": "{\n  \"a\": [\"íon cloreto\"]\n"
+  }
+]

@@ -1,0 +1,932 @@
+[
+  {
+    "kana": "ぜんべいかがくざいだん",
+    "en": [
+      "National Science Foundation (USA)",
+      "NSF"
+    ],
+    "senseUid": "918ba01f-8242-4f42-b9d1-a62ca994fb1e",
+    "wordId": "2370530",
+    "pt": "{\n  \"a\": [\n    \"Fundação Nacional de Ciência dos Estados Unidos\"\n  ]\n"
+  },
+  {
+    "kana": "ぜんべいじょうほうインフラストラクチャ",
+    "en": [
+      "National Information Infrastructure",
+      "NII"
+    ],
+    "senseUid": "41c38b83-a69a-436b-9770-78e4e2f5a252",
+    "wordId": "2370540",
+    "pt": "{\n  \"a\": [\n    \"Infraestrutura Nacional de Informação\"\n  ]\n"
+  },
+  {
+    "kana": "そけつごう",
+    "en": [
+      "loosely-coupled"
+    ],
+    "senseUid": "de7b69e4-80d5-4882-9024-92fc1b639653",
+    "wordId": "2370550",
+    "pt": "{\n  \"a\": [\"acoplamento frouxo\"]\n"
+  },
+  {
+    "kana": "そけつごうシステム",
+    "en": [
+      "loosely coupled system"
+    ],
+    "senseUid": "af265e67-42c7-4c16-812f-f38801ab7173",
+    "wordId": "2370560",
+    "pt": "['sistema fracamente acoplado']"
+  },
+  {
+    "kana": "そけつごうマルチプロセッサ",
+    "en": [
+      "Loosely-Coupled MultiProcessor"
+    ],
+    "senseUid": "8261301a-f28d-4d6f-a2c0-1159c1a3acbd",
+    "wordId": "2370570",
+    "pt": "{\n  \"a\": [\"Multiprocessador fracamente acoplado\"]\n"
+  },
+  {
+    "kana": "くみあわせかいろ",
+    "en": [
+      "combinational circuit"
+    ],
+    "senseUid": "c058f2e5-1f64-4e90-9b75-fbded63cfbc6",
+    "wordId": "2370580",
+    "pt": "['circuito combinacional']"
+  },
+  {
+    "kana": "くみこみコマンド",
+    "en": [
+      "built-in command"
+    ],
+    "senseUid": "00b703f6-43db-41ad-8963-60bd9bfae30d",
+    "wordId": "2370590",
+    "pt": "{\n  \"a\": [\"comando embutido\"]\n"
+  },
+  {
+    "kana": "くみこみプロセッサ",
+    "en": [
+      "embedded processor"
+    ],
+    "senseUid": "88de8344-463d-4c9b-a20d-ab208c194168",
+    "wordId": "2370600",
+    "pt": "['processador embarcado']"
+  },
+  {
+    "kana": "くみあわせじょうけん",
+    "en": [
+      "combined condition"
+    ],
+    "senseUid": "4abe3651-34b7-4f05-988f-ce5120cd6649",
+    "wordId": "2370620",
+    "pt": "{\n  \"a\": [\n    \"condição combinada\"\n  ]\n"
+  },
+  {
+    "kana": "くみしたん",
+    "en": [
+      "first character position of line"
+    ],
+    "senseUid": "999759f4-6055-4be7-ba4f-1994e1c7a9e1",
+    "wordId": "2370630",
+    "pt": "{\n  \"a\": [\n    \"くみしたん\",\n    \"Gloss: ['primeira posição de caractere da linha']\"\n  ]\n"
+  },
+  {
+    "kana": "くみしゅうたん",
+    "en": [
+      "last character position of line"
+    ],
+    "senseUid": "5d795b4f-c273-4eac-9e14-db82e992eb7a",
+    "wordId": "2370640",
+    "pt": "{\n  \"a\": [\"posição do último caractere da linha\"]\n"
+  },
+  {
+    "kana": "くみあがりのうど",
+    "en": [
+      "typographic color"
+    ],
+    "senseUid": "59754f8f-d0d1-4e91-bf6a-2083e9d6dd92",
+    "wordId": "2370650",
+    "pt": "{\n  \"a\": [\"cor tipográfica\"]\n"
+  },
+  {
+    "kana": "そきゅうしょし",
+    "en": [
+      "retrospective bibliography"
+    ],
+    "senseUid": "8a2eaa27-ba67-4f05-9525-15d99680d8a3",
+    "wordId": "2370670",
+    "pt": "{\n  \"a\": [\n    \"bibliografia retrospectiva\"\n  ]\n"
+  },
+  {
+    "kana": "そうあんてい",
+    "en": [
+      "bistable"
+    ],
+    "senseUid": "c19f6ab4-2779-4716-9156-d2031ee431be",
+    "wordId": "2370680",
+    "pt": "{\n  \"a\": [\"bistável\"]\n"
+  },
+  {
+    "kana": "そうあんていトリガーかいろ",
+    "en": [
+      "bistable trigger circuit"
+    ],
+    "senseUid": "8dde50c1-d80b-4c64-9b3e-f4bb840ff2bd",
+    "wordId": "2370690",
+    "pt": "{\n  \"a\": [\"circuito biestável de disparo\"]\n"
+  },
+  {
+    "kana": "そうあんていトリガかいろ",
+    "en": [
+      "bistable trigger circuit",
+      "flip-flop"
+    ],
+    "senseUid": "d656186a-4ed1-4c40-b418-41e7b0441f37",
+    "wordId": "2370700",
+    "pt": "['circuito flip-flop', 'circuito biestável']"
+  },
+  {
+    "kana": "そうあんていかいろ",
+    "en": [
+      "bistable (trigger) circuit",
+      "flip-flop"
+    ],
+    "senseUid": "7c2167f7-711f-4aa2-929e-66c026e3cdda",
+    "wordId": "2370710",
+    "pt": "{\n  \"a\": [\"circuito biestável\", \"flip-flop\"]\n"
+  },
+  {
+    "kana": "そうついえんざん",
+    "en": [
+      "dual operation"
+    ],
+    "senseUid": "c16ffcfb-c886-4b73-8982-98b91c86405a",
+    "wordId": "2370720",
+    "pt": "{\n  \"a\": [\"operação dual\"]\n"
+  },
+  {
+    "kana": "そうほうこうシーエーティーブイ",
+    "en": [
+      "bi-directional CATV"
+    ],
+    "senseUid": "170e4e87-ad30-4f60-aad3-78c7153d8e55",
+    "wordId": "2370730",
+    "pt": "{\n  \"a\": [\"CATV bidirecional\"]\n"
+  },
+  {
+    "kana": "そうほうこういんさつ",
+    "en": [
+      "bidirectional printing"
+    ],
+    "senseUid": "e3792e21-f526-4720-a6d4-13229158e003",
+    "wordId": "2370740",
+    "pt": "['impressão bidirecional']"
+  },
+  {
+    "kana": "そうほうこうせい",
+    "en": [
+      "bidirectionality",
+      "interactivity"
+    ],
+    "senseUid": "d1af217a-4339-4b6e-955f-dc2e8394dce0",
+    "wordId": "2370750",
+    "pt": "{\n  \"a\": [\n    \"bidirecionalidade\",\n    \"interatividade\"\n  ]\n"
+  },
+  {
+    "kana": "そうほうこうつうしん",
+    "en": [
+      "two-way communication",
+      "bidirectional communication"
+    ],
+    "senseUid": "074dbbd9-e240-4622-beda-5b62b3b49378",
+    "wordId": "2370760",
+    "pt": "{\n  \"a\": [\"comunicação bidirecional\", \"comunicação em duas vias\"]\n"
+  },
+  {
+    "kana": "そうかんり",
+    "en": [
+      "layer-management"
+    ],
+    "senseUid": "8ec01868-3010-4abf-874f-e13108a0234e",
+    "wordId": "2370770",
+    "pt": "['gerenciamento de camadas']"
+  },
+  {
+    "kana": "そうていしょうすうてん",
+    "en": [
+      "assumed decimal point"
+    ],
+    "senseUid": "5840b1eb-7d20-4e34-b95c-0ddfb53e0eda",
+    "wordId": "2370800",
+    "pt": "['ponto decimal assumido']"
+  },
+  {
+    "kana": "そうにゅうてん",
+    "en": [
+      "insertion point"
+    ],
+    "senseUid": "c1c8fc8b-ea47-42a5-a3aa-331e2f6284ae",
+    "wordId": "2370820",
+    "pt": "['ponto de inserção']"
+  },
+  {
+    "kana": "そうさインタフェース",
+    "en": [
+      "operation-interface"
+    ],
+    "senseUid": "9f782339-f3e3-4f20-8957-43c1f4056e45",
+    "wordId": "2370830",
+    "pt": "{\n  \"a\": [\"interface de operação\"]\n"
+  },
+  {
+    "kana": "そうさコード",
+    "en": [
+      "operation code"
+    ],
+    "senseUid": "8a811ac8-7c60-4082-861d-a60c2fcfb12f",
+    "wordId": "2370840",
+    "pt": "['código de operação']"
+  },
+  {
+    "kana": "そうさコードトラップ",
+    "en": [
+      "operation code trap"
+    ],
+    "senseUid": "62f4211c-ddf0-429e-bafc-ab969db2397f",
+    "wordId": "2370850",
+    "pt": "{\n  \"a\": [\"Armadilha de código operacional\"]\n"
+  },
+  {
+    "kana": "そうさパネル",
+    "en": [
+      "control panel"
+    ],
+    "senseUid": "598e0ae5-60ee-4806-946b-14ee21eff495",
+    "wordId": "2370860",
+    "pt": "{\n  \"a\": [\"painel de controle\"]\n"
+  },
+  {
+    "kana": "そうさじょがいしゅうごう",
+    "en": [
+      "exclusion set"
+    ],
+    "senseUid": "fc090bb1-ff39-4aa5-9547-86404ffc9d1d",
+    "wordId": "2370870",
+    "pt": "{\n  \"a\": [\"conjunto de exclusão\"]\n"
+  },
+  {
+    "kana": "そうさしんこうじょうきょう",
+    "en": [
+      "operation progress"
+    ],
+    "senseUid": "082b392b-ddf7-49ea-9e0c-2464bfc5a29d",
+    "wordId": "2370880",
+    "pt": "['progresso da operação']"
+  },
+  {
+    "kana": "そうさたいしょうしゅうごう",
+    "en": [
+      "inclusion set"
+    ],
+    "senseUid": "69b78532-86d4-4b5f-8e29-021768c17025",
+    "wordId": "2370890",
+    "pt": "{\n  \"a\": [\"conjunto de inclusão\"]\n"
+  },
+  {
+    "kana": "そうさたく",
+    "en": [
+      "(operator) console"
+    ],
+    "senseUid": "e857b0b6-acfd-4a4d-8c7a-9490496c0d60",
+    "wordId": "2370900",
+    "pt": "{\n  \"a\": [\"console de operações\"]\n"
+  },
+  {
+    "kana": "そうさぼう",
+    "en": [
+      "stick with a hook, claw or other handling mechanism"
+    ],
+    "senseUid": "c79751a2-97fb-40c1-b99f-a193f4876abc",
+    "wordId": "2370910",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"そうさぼう\",\n      \"portugues\": \"bastão com gancho, garra ou outro mecanismo de manuseio\"\n    \n  ]\n"
+  },
+  {
+    "kana": "そうごうんようせい",
+    "en": [
+      "interoperability"
+    ],
+    "senseUid": "59bc31a5-718e-4831-9640-2b864073b331",
+    "wordId": "2370920",
+    "pt": "['interoperabilidade']"
+  },
+  {
+    "kana": "そうごごかんせい",
+    "en": [
+      "interchangeability",
+      "interoperability"
+    ],
+    "senseUid": "f6cbdc1a-5487-489d-bbb9-dd6e53f10d35",
+    "wordId": "2370930",
+    "pt": "['intercambiabilidade', 'interoperabilidade']"
+  },
+  {
+    "kana": "そうごさんしょうひょうじ",
+    "en": [
+      "cross-referencing indication"
+    ],
+    "senseUid": "83c705f0-1564-419f-8fd3-977974025040",
+    "wordId": "2370940",
+    "pt": "{\n  \"a\": [\n    \"Indicação de referência cruzada\"\n  ]\n"
+  },
+  {
+    "kana": "そうごじょうほうりょう",
+    "en": [
+      "transinformation (content)",
+      "transferred information",
+      "transmitted information",
+      "mutual information"
+    ],
+    "senseUid": "cdab88e6-9e4d-47cc-a4ef-b49e24048dfd",
+    "wordId": "2370950",
+    "pt": "{\n  \"a\": [\n    \"informação mútua\",\n    \"informação transmitida\",\n    \"informação transferida\",\n    \"conteúdo de transinformação\"\n  ]\n"
+  },
+  {
+    "kana": "そうごせつぞく",
+    "en": [
+      "cross connection",
+      "interconnection",
+      "internetworking"
+    ],
+    "senseUid": "2f612b6a-ea1d-4387-8035-d2a8a40c1087",
+    "wordId": "2370960",
+    "pt": "{\n  \"a\": [\n    \"conexão cruzada\",\n    \"interconexão\",\n    \"interligação de redes\"\n  ]\n"
+  },
+  {
+    "kana": "そうごせつぞくせい",
+    "en": [
+      "interconnection",
+      "interoperability"
+    ],
+    "senseUid": "eca7b965-ca32-44f9-a772-d08c8e6bb9a4",
+    "wordId": "2370970",
+    "pt": "{\n  \"a\": [\n    \"interconexão\",\n    \"interoperabilidade\"\n  ]\n"
+  },
+  {
+    "kana": "そうごせつぞくせいじけん",
+    "en": [
+      "interconnection test",
+      "interoperability test"
+    ],
+    "senseUid": "de010004-98ce-403c-bda5-6de5a4bb2f86",
+    "wordId": "2370980",
+    "pt": "{\n  \"a\": [\n    \"teste de interconexão\",\n    \"teste de interoperabilidade\"\n  ]\n"
+  },
+  {
+    "kana": "そうごせつぞくちてん",
+    "en": [
+      "cross connection point"
+    ],
+    "senseUid": "a1cec5cb-9734-4a96-aeaf-8d37c05fe63c",
+    "wordId": "2370990",
+    "pt": "{\n  \"a\": [\"ponto de conexão cruzada\"]\n"
+  },
+  {
+    "kana": "そうごそうかん",
+    "en": [
+      "cross-correlation"
+    ],
+    "senseUid": "a184e311-3427-4caa-aa9d-fde91d88e9b5",
+    "wordId": "2371000",
+    "pt": "{\n  \"a\": [\"correlação cruzada\"]\n"
+  },
+  {
+    "kana": "そうごどうさかんり",
+    "en": [
+      "interaction management"
+    ],
+    "senseUid": "069a2fed-d001-4622-84b7-91cf1ed936da",
+    "wordId": "2371010",
+    "pt": "['gestão de interação']"
+  },
+  {
+    "kana": "そうごどうさせい",
+    "en": [
+      "interoperability"
+    ],
+    "senseUid": "58257d93-7964-424c-ac43-d9b4bd493956",
+    "wordId": "2371020",
+    "pt": "['interoperabilidade']"
+  },
+  {
+    "kana": "そうごどうさせいしけん",
+    "en": [
+      "interoperability test, study"
+    ],
+    "senseUid": "664b2ee2-b8d8-43fd-b9eb-b282acaf91d8",
+    "wordId": "2371030",
+    "pt": "{\n  \"a\": [\n    \"teste de interoperabilidade\",\n    \"estudo de interoperabilidade\"\n  ]\n"
+  },
+  {
+    "kana": "そうごはいじょ",
+    "en": [
+      "mutual exclusion"
+    ],
+    "senseUid": "6f6c52ac-3736-49f4-a9bd-8a2fb9172351",
+    "wordId": "2371040",
+    "pt": "{\n  \"a\": [\n    \"exclusão mútua\"\n  ]\n"
+  },
+  {
+    "kana": "あいてこていせつぞく",
+    "en": [
+      "permanent virtual connection",
+      "PVC"
+    ],
+    "senseUid": "def86924-3088-4638-9cbf-44e36ccde6d9",
+    "wordId": "2371060",
+    "pt": "['conexão virtual permanente']"
+  },
+  {
+    "kana": "あいてさきこていせつぞく",
+    "en": [
+      "Permanent Virtual Circuit",
+      "PVC"
+    ],
+    "senseUid": "91ec189f-dbc9-4a13-84c4-c42e07c10b76",
+    "wordId": "2371070",
+    "pt": "{\n  \"a\": [\n    \"Circuito Virtual Permanente\"\n  ]\n"
+  },
+  {
+    "kana": "あいてさきせんたくせつぞく",
+    "en": [
+      "Switched Virtual Circuit",
+      "SVC"
+    ],
+    "senseUid": "43dc7e3d-e317-4806-b719-8add7ebbec6a",
+    "wordId": "2371080",
+    "pt": "['Circuito Virtual Comutado']"
+  },
+  {
+    "kana": "あいてせんたくせつぞく",
+    "en": [
+      "switched virtual connection",
+      "SVC"
+    ],
+    "senseUid": "14896740-17b6-44b4-8147-15dbeb10a970",
+    "wordId": "2371090",
+    "pt": "['conexão virtual comutável', 'SVC']"
+  },
+  {
+    "kana": "あいてせんたくせつぞくきのう",
+    "en": [
+      "virtual call facility"
+    ],
+    "senseUid": "356d489a-674b-425e-a9f3-899c2a75dc9f",
+    "wordId": "2371100",
+    "pt": "{\n  \"a\": [\"função de chamada virtual\"]\n"
+  },
+  {
+    "kana": "あいしょうもんだい",
+    "en": [
+      "compatibility issue"
+    ],
+    "senseUid": "4f9afdd7-2ff4-4db2-a348-8201282019fa",
+    "wordId": "2371110",
+    "pt": "{\n  \"a\": [\n    \"problema de compatibilidade\"\n  ]\n"
+  },
+  {
+    "kana": "そうたいアドレス",
+    "en": [
+      "relative address"
+    ],
+    "senseUid": "56705ba1-7a04-40c7-ae17-958fa3e09be6",
+    "wordId": "2371120",
+    "pt": "{\n  \"a\": [\"endereço relativo\"]\n"
+  },
+  {
+    "kana": "そうたいエントロピー",
+    "en": [
+      "relative entropy"
+    ],
+    "senseUid": "ddd571b2-a734-4155-b10c-54c821d4abc2",
+    "wordId": "2371130",
+    "pt": "['entropia relativa']"
+  },
+  {
+    "kana": "そうたいキー",
+    "en": [
+      "relative key"
+    ],
+    "senseUid": "0769391d-eae1-4c33-9f40-a01401d689ff",
+    "wordId": "2371140",
+    "pt": "['tom relativo']"
+  },
+  {
+    "kana": "そうたいパスめい",
+    "en": [
+      "relative pathname"
+    ],
+    "senseUid": "b7751567-e476-4016-8571-2b4820d32ac9",
+    "wordId": "2371150",
+    "pt": "{\n  \"a\": [\"nome de caminho relativo\"]\n"
+  },
+  {
+    "kana": "そうたいファイル",
+    "en": [
+      "relative file"
+    ],
+    "senseUid": "b905434d-9220-46ca-98f3-17de5e1d4671",
+    "wordId": "2371160",
+    "pt": "['arquivo relativo']"
+  },
+  {
+    "kana": "そうたいレコードばんごう",
+    "en": [
+      "relative record number"
+    ],
+    "senseUid": "93655850-d5b7-4f6c-be7d-f2daf8712313",
+    "wordId": "2371170",
+    "pt": "{\n  \"a\": [\"número relativo de registro\"]\n"
+  },
+  {
+    "kana": "そうたいけいしきプログラム",
+    "en": [
+      "relocatable program"
+    ],
+    "senseUid": "1950eeab-464c-41db-a181-8c73994fd27e",
+    "wordId": "2371180",
+    "pt": "{\n  \"a\": [\"programa relocável\"]\n"
+  },
+  {
+    "kana": "そうたいざひょう",
+    "en": [
+      "relative coordinate"
+    ],
+    "senseUid": "6a5d4543-6145-4b8e-8749-c9a976732b52",
+    "wordId": "2371190",
+    "pt": "{\n  \"a\": [\"coordenada relativa\"]\n"
+  },
+  {
+    "kana": "そうたいざひょうしれい",
+    "en": [
+      "relative command",
+      "relative instruction"
+    ],
+    "senseUid": "33772ce5-2bbe-4516-9f9c-245f8f884d7a",
+    "wordId": "2371200",
+    "pt": "{\n  \"a\": [\n    \"comando relativo\",\n    \"instrução relativa\"\n  ]\n"
+  },
+  {
+    "kana": "そうたいざひょうめいれい",
+    "en": [
+      "relative command",
+      "relative instruction"
+    ],
+    "senseUid": "93bfb102-9cd5-4e17-ba0e-37f4bc4884f0",
+    "wordId": "2371210",
+    "pt": "{\n  \"a\": [\n    \"comando relativo\",\n    \"instrução relativa\"\n  ]\n"
+  },
+  {
+    "kana": "そうたいせだいばんごう",
+    "en": [
+      "relative generation number"
+    ],
+    "senseUid": "73f7e7cb-fb51-4379-adca-0c549d50eb4d",
+    "wordId": "2371220",
+    "pt": "{\n  \"a\": [\"número relativo de geração\"]\n"
+  },
+  {
+    "kana": "そうたいへんい",
+    "en": [
+      "relative offset"
+    ],
+    "senseUid": "1979d2c0-9a3a-418e-9927-d375e9d24e6f",
+    "wordId": "2371240",
+    "pt": "{\n  \"a\": [\"deslocamento relativo\"]\n"
+  },
+  {
+    "kana": "そうたいへんせい",
+    "en": [
+      "relative organization"
+    ],
+    "senseUid": "94e99191-f43b-42a7-9292-c7e59c31a8aa",
+    "wordId": "2371250",
+    "pt": "{\n  \"a\": [\"organização relativa\"]\n"
+  },
+  {
+    "kana": "そうへんかがたひかりディスク",
+    "en": [
+      "phase change optical disk"
+    ],
+    "senseUid": "52d5558a-fc52-40ca-9d3b-f39d5514f252",
+    "wordId": "2371260",
+    "pt": "{\n  \"a\": [\"disco óptico de mudança de fase\"]\n"
+  },
+  {
+    "kana": "そうほえんざん",
+    "en": [
+      "complementary operation"
+    ],
+    "senseUid": "11bea55a-bd54-4cb8-9d16-4cd6d6d1d5e6",
+    "wordId": "2371270",
+    "pt": "{\n  \"a\": [\"operação complementar\"]\n"
+  },
+  {
+    "kana": "そうほがたきんぞくさんかまくはんどうたい",
+    "en": [
+      "complementary metal-oxide semiconductor",
+      "CMOS"
+    ],
+    "senseUid": "b901b278-3a16-427c-b31f-cb9f6c0acd76",
+    "wordId": "2371280",
+    "pt": "{\n  \"a\": [\n    \"semicondutor de óxido metálico complementar\"\n  ]\n"
+  },
+  {
+    "kana": "まどひょうじいきへんかん",
+    "en": [
+      "window",
+      "viewport transformation",
+      "viewing transformation"
+    ],
+    "senseUid": "449e9fef-6400-4189-a234-1ca66cf184c4",
+    "wordId": "2371290",
+    "pt": "{\n  \"a\": [\n    \"transformação de janela para área de exibição\",\n    \"transformação de janela para viewport\",\n    \"transformação de janela para área de visualização\"\n  ]\n"
+  },
+  {
+    "kana": "そうセルすう",
+    "en": [
+      "total cell count"
+    ],
+    "senseUid": "7f7e0ad0-1386-4989-8535-8020f97e83a9",
+    "wordId": "2371300",
+    "pt": "{\n  \"a\": [\"contagem total de células\"]\n"
+  },
+  {
+    "kana": "そうかつひょう",
+    "en": [
+      "batch-header document"
+    ],
+    "senseUid": "f12d51b0-8eb8-4979-8e5a-761c9fd93e8d",
+    "wordId": "2371310",
+    "pt": "{\n  \"a\": [\"documento de cabeçalho de lote\"]\n"
+  },
+  {
+    "kana": "サービスそうごうディジタルもう",
+    "en": [
+      "integrated services digital network",
+      "ISDN"
+    ],
+    "senseUid": "ccb0c41c-574a-403a-8c18-abe4edfcb886",
+    "wordId": "2371320",
+    "pt": "{\n  \"a\": [\"rede digital de serviços integrados\"]\n"
+  },
+  {
+    "kana": "そうごうディスクせいぎょきこう",
+    "en": [
+      "IDC",
+      "Integrated Disk Controller"
+    ],
+    "senseUid": "cc3f7c10-58c0-4dc6-9c6e-ebc9f7a90386",
+    "wordId": "2371330",
+    "pt": "{\n  \"a\": [\n    \"Controlador Integrado de Disco\"\n  ]\n"
+  },
+  {
+    "kana": "そうごうとしょかん",
+    "en": [
+      "general library"
+    ],
+    "senseUid": "c1090fcc-8b64-446e-8535-3038001071b5",
+    "wordId": "2371340",
+    "pt": "{\n  \"a\": [\n    \"biblioteca central\",\n    \"biblioteca geral\"\n  ]\n"
+  },
+  {
+    "kana": "そうしょゆうコスト",
+    "en": [
+      "Total Cost of Ownership"
+    ],
+    "senseUid": "8293adbe-98b6-4fe8-b19a-d46e78409203",
+    "wordId": "2371350",
+    "pt": "['Custo Total de Propriedade']"
+  },
+  {
+    "kana": "そうしょうアドレス",
+    "en": [
+      "generic address"
+    ],
+    "senseUid": "f788cd49-87eb-4a0a-b666-8a0399c04062",
+    "wordId": "2371360",
+    "pt": "{\n  \"a\": [\"endereço genérico\"]\n"
+  },
+  {
+    "kana": "そうしょうしきべつし",
+    "en": [
+      "generic identifier"
+    ],
+    "senseUid": "c0d7c3c8-e0d9-4de6-a069-3f0f7dc8b8a2",
+    "wordId": "2371370",
+    "pt": "{\n  \"a\": [\"identificador genérico\"]\n"
+  },
+  {
+    "kana": "そうはいきセルすう",
+    "en": [
+      "total number of discarded cells"
+    ],
+    "senseUid": "53b36678-208d-463d-a61c-d999379ef4d0",
+    "wordId": "2371380",
+    "pt": "['número total de células descartadas']"
+  },
+  {
+    "kana": "くさのねネット",
+    "en": [
+      "grassroots network"
+    ],
+    "senseUid": "7a997c82-d6ed-4704-8956-244f7a4757c2",
+    "wordId": "2371400",
+    "pt": "{\n  \"a\": [\"Rede de base\"]\n"
+  },
+  {
+    "kana": "そうちクラス",
+    "en": [
+      "device class"
+    ],
+    "senseUid": "5566a23a-df4f-4c2a-84ae-f790593c732d",
+    "wordId": "2371420",
+    "pt": "{\n  \"a\": [\"classe de dispositivo\"]\n"
+  },
+  {
+    "kana": "そうちドライバ",
+    "en": [
+      "device driver"
+    ],
+    "senseUid": "eb1262c9-1ef7-464c-964f-a5e6a631df5e",
+    "wordId": "2371430",
+    "pt": "{\n  \"a\": [\"driver de dispositivo\"]\n"
+  },
+  {
+    "kana": "そうちいぞんのこうかいぶん",
+    "en": [
+      "device-dependent version of public text"
+    ],
+    "senseUid": "78cbba32-c8c4-478a-a965-376bfbd3a1f6",
+    "wordId": "2371440",
+    "pt": "{\n  \"a\": [\"versão pública dependente do dispositivo\"]\n"
+  },
+  {
+    "kana": "そうちくうかん",
+    "en": [
+      "device space"
+    ],
+    "senseUid": "de041ef5-f657-4a4b-9b59-3c8fc093f73d",
+    "wordId": "2371450",
+    "pt": "['espaço do dispositivo']"
+  },
+  {
+    "kana": "そうちざひょう",
+    "en": [
+      "device coordinate",
+      "DC"
+    ],
+    "senseUid": "2b9fecf0-80f6-40cb-98c4-2c5f63dad4e5",
+    "wordId": "2371460",
+    "pt": "{\n  \"a\": [\n    \"coordenada do dispositivo\",\n    \"DC\"\n  ]\n"
+  },
+  {
+    "kana": "そうちざひょうけい",
+    "en": [
+      "device coordinates",
+      "DC"
+    ],
+    "senseUid": "63e47c07-f381-48e6-99bc-e9a4683fd646",
+    "wordId": "2371470",
+    "pt": "{\n  \"a\": [\"coordenadas do dispositivo\", \"DC\"]\n"
+  },
+  {
+    "kana": "そうちしょうがい",
+    "en": [
+      "equipment fault"
+    ],
+    "senseUid": "5dd928a4-2ee9-4076-9d84-04d842c38348",
+    "wordId": "2371480",
+    "pt": "['falha de equipamento']"
+  },
+  {
+    "kana": "そうちじょうたいバイト",
+    "en": [
+      "DSB",
+      "Device Status Byte"
+    ],
+    "senseUid": "24846f0c-b3b6-4c04-a1fd-ff3d5b35057c",
+    "wordId": "2371490",
+    "pt": "{\n  \"a\": [\"Byte de Status do Dispositivo\"]\n"
+  },
+  {
+    "kana": "そうちせいぎょもじ",
+    "en": [
+      "device control character"
+    ],
+    "senseUid": "e82e93c1-e8d2-459b-826a-ddc37c54cb31",
+    "wordId": "2371500",
+    "pt": "{\n  \"a\": [\n    \"caractere de controle de dispositivo\"\n  ]\n"
+  },
+  {
+    "kana": "そうちどくりつ",
+    "en": [
+      "device-independent"
+    ],
+    "senseUid": "838cec57-a55d-4c4e-b55f-b87f5e7cb59f",
+    "wordId": "2371510",
+    "pt": "{\n  \"a\": [\"independente de dispositivo\"]\n"
+  },
+  {
+    "kana": "そうちどくりつせい",
+    "en": [
+      "device independence"
+    ],
+    "senseUid": "e3271a0b-eac5-400f-9b3c-e606a6e7d7f6",
+    "wordId": "2371520",
+    "pt": "['independência de dispositivo']"
+  },
+  {
+    "kana": "そうちめい",
+    "en": [
+      "device name"
+    ],
+    "senseUid": "f38548ce-ea97-4306-9a69-8d0a6750ad49",
+    "wordId": "2371530",
+    "pt": "['nome do dispositivo']"
+  },
+  {
+    "kana": "そうこうのながれ",
+    "en": [
+      "job stream",
+      "run stream",
+      "input stream"
+    ],
+    "senseUid": "e47be864-f9c2-438c-986c-82846e0a610a",
+    "wordId": "2371540",
+    "pt": "{\n  \"a\": [\n    \"fluxo de execução\",\n    \"sequência de processamento\",\n    \"corrente de operações\"\n  ]\n"
+  },
+  {
+    "kana": "そうさき",
+    "en": [
+      "scanner"
+    ],
+    "senseUid": "b16721d1-9ab9-491e-aa47-63466da7c2ee",
+    "wordId": "2371550",
+    "pt": "{\n  \"a\": [\"scanner\"]\n"
+  },
+  {
+    "kana": "そうさしゅうはすう",
+    "en": [
+      "scanning frequency"
+    ],
+    "senseUid": "77557f85-fce0-4d08-946a-d9c87f889676",
+    "wordId": "2371560",
+    "pt": "{\n  \"a\": [\"frequência de varredura\"]\n"
+  },
+  {
+    "kana": "そうさじょうたいリスト",
+    "en": [
+      "traversal state list"
+    ],
+    "senseUid": "07d49c21-3492-47e4-a692-76fc311e16f4",
+    "wordId": "2371570",
+    "pt": "{\n  \"a\": [\"lista de estados de travessia\"]\n"
+  },
+  {
+    "kana": "おくりレジスタ",
+    "en": [
+      "shift register"
+    ],
+    "senseUid": "9652c864-7382-4e98-abd7-ccab9d0f95ff",
+    "wordId": "2371580",
+    "pt": "['registrador de deslocamento']"
+  },
+  {
+    "kana": "おくりこう",
+    "en": [
+      "feed hole"
+    ],
+    "senseUid": "6579c8db-0f19-4e3b-b3ea-cb70fd5e8683",
+    "wordId": "2371590",
+    "pt": "['orifício de alimentação']"
+  },
+  {
+    "kana": "おくりこみ",
+    "en": [
+      "feed"
+    ],
+    "senseUid": "b5c3ca1d-2f15-4f2e-8c4c-7e015058fe89",
+    "wordId": "2371600",
+    "pt": "['alimentação', 'envio', 'fornecimento']"
+  },
+  {
+    "kana": "おくりがわドライブ",
+    "en": [
+      "source drive"
+    ],
+    "senseUid": "94f3914a-9000-445f-9aa2-866710edfffa",
+    "wordId": "2371610",
+    "pt": "{\n  \"a\": [\"condução da fonte\"]\n"
+  }
+]

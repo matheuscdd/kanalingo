@@ -1,0 +1,933 @@
+[
+  {
+    "kana": "きざみタバコ",
+    "en": [
+      "shredded tobacco",
+      "pipe tobacco"
+    ],
+    "senseUid": "5b3c3db1-4837-44a5-92bd-81042fb1d077",
+    "wordId": "2265030",
+    "pt": "['tabaco picado', 'tabaco para cachimbo']"
+  },
+  {
+    "kana": "とうじつけん",
+    "en": [
+      "same-day ticket"
+    ],
+    "senseUid": "2594792a-35c5-4205-a1e3-866118081582",
+    "wordId": "2265040",
+    "pt": "['ingresso do dia']"
+  },
+  {
+    "kana": "へいぶん",
+    "en": [
+      "plain text",
+      "unciphered text"
+    ],
+    "senseUid": "605d516f-89f4-4984-84f2-57ddb5a186a6",
+    "wordId": "2265060",
+    "pt": "{\n  \"a\": [\n    \"texto simples\",\n    \"texto não cifrado\"\n  ]\n"
+  },
+  {
+    "kana": "ひょうもん",
+    "en": [
+      "type of lacquer ware"
+    ],
+    "senseUid": "3ba9882d-b063-4b3d-a57e-167aeb21f6d5",
+    "wordId": "2265070",
+    "pt": "['tipo de laca japonesa']"
+  },
+  {
+    "kana": "まがき",
+    "en": [
+      "Pacific oyster (Crassostrea gigas)"
+    ],
+    "senseUid": "ceeb1bca-f9dc-4492-9aaf-27792bd5df36",
+    "wordId": "2265080",
+    "pt": "{\n  \"a\": [\"ostra-do-Pacífico (Crassostrea gigas)\"]\n"
+  },
+  {
+    "kana": "まがき",
+    "en": [
+      "roughly woven fence"
+    ],
+    "senseUid": "608c1832-513b-46ab-b391-6cccfd2b1965",
+    "wordId": "2265090",
+    "pt": "['cerca de bambu entrelaçada de forma rústica']"
+  },
+  {
+    "kana": "めじ",
+    "en": [
+      "young tuna (esp. northern bluefin tuna under 1 meter)"
+    ],
+    "senseUid": "b4916551-5cc0-4752-9e07-8c7f244502a4",
+    "wordId": "2265100",
+    "pt": "['atum jovem (especialmente o atum-rabilho-do-norte com menos de 1 metro)']"
+  },
+  {
+    "kana": "におどり",
+    "en": [
+      "little grebe"
+    ],
+    "senseUid": "c834c9ad-4b5a-4697-baac-119c8c519df4",
+    "wordId": "2265110",
+    "pt": "{\n  \"a\": [\"pequeno mergulhador\"]\n"
+  },
+  {
+    "kana": "ていかかずら",
+    "en": [
+      "Asiatic jasmine (Trachelospermum asiaticum)",
+      "Asian jasmine"
+    ],
+    "senseUid": "c1bde39e-7406-4ded-a450-09c29b1da058",
+    "wordId": "2265120",
+    "pt": "{\n  \"a\": [\n    \"jasmim-asiático (Trachelospermum asiaticum)\",\n    \"jasmim asiático\"\n  ]\n"
+  },
+  {
+    "kana": "まさきのかずら",
+    "en": [
+      "Asiatic jasmine (Trachelospermum asiaticum)",
+      "Asian jasmine"
+    ],
+    "senseUid": "a2c34a80-5f22-4121-bfa4-2efe4eb27ba5",
+    "wordId": "2265130",
+    "pt": "['Jasmim-asiático (Trachelospermum asiaticum)', 'Jasmim asiático']"
+  },
+  {
+    "kana": "まさきずら",
+    "en": [
+      "Asiatic jasmine (Trachelospermum asiaticum)",
+      "Asian jasmine"
+    ],
+    "senseUid": "405c3375-2468-4245-9763-6328371ee4d3",
+    "wordId": "2265140",
+    "pt": "{\n  \"a\": [\n    \"jasmim-asiático (Trachelospermum asiaticum)\",\n    \"jasmim asiático\"\n  ]\n"
+  },
+  {
+    "kana": "まさき",
+    "en": [
+      "Asiatic jasmine (Trachelospermum asiaticum)",
+      "Asian jasmine"
+    ],
+    "senseUid": "1cbe7eb1-79f3-4565-8e99-d3564ef0b377",
+    "wordId": "2265150",
+    "pt": "['jasmim-asiático', 'jasmim asiático']"
+  },
+  {
+    "kana": "はじかみ",
+    "en": [
+      "ginger (Zingiber officinale)"
+    ],
+    "senseUid": "4c52e3bc-3d12-4ffc-bc89-765ad03b51f9",
+    "wordId": "2265160",
+    "pt": "['gengibre (Zingiber officinale); rizoma jovem de gengibre usado como condimento japonês']"
+  },
+  {
+    "kana": "はじかみ",
+    "en": [
+      "Japanese pepper (Zanthoxylum piperitum)"
+    ],
+    "senseUid": "7636ee4a-c6a6-4f1d-8b74-8e22e4e8a9fa",
+    "wordId": "2265160",
+    "pt": "['pimenta japonesa (Zanthoxylum piperitum)']"
+  },
+  {
+    "kana": "せいようひいらぎ",
+    "en": [
+      "English holly (Ilex aquifolium)"
+    ],
+    "senseUid": "a3460747-b118-4efa-91c1-03a757b799e8",
+    "wordId": "2265170",
+    "pt": "['Azevinho-inglês (Ilex aquifolium)']"
+  },
+  {
+    "kana": "ホーリー",
+    "en": [
+      "English holly (Ilex aquifolium)"
+    ],
+    "senseUid": "80308572-abec-4709-802f-b72fbcbaa221",
+    "wordId": "2265180",
+    "pt": "['Azevinho inglês (Ilex aquifolium)']"
+  },
+  {
+    "kana": "ホーリー",
+    "en": [
+      "holy"
+    ],
+    "senseUid": "40e22dc1-9bc8-46e6-bf71-ee501da2abc9",
+    "wordId": "2265180",
+    "pt": "['sagrado']"
+  },
+  {
+    "kana": "きんだみ",
+    "en": [
+      "gold leaf",
+      "gold paint",
+      "gold glazing"
+    ],
+    "senseUid": "dd5dbd27-0d0c-40c9-bad9-80d1cebbfbb0",
+    "wordId": "2265190",
+    "pt": "{\n  \"a\": [\n    \"folha de ouro\",\n    \"tinta dourada\",\n    \"douramento\"\n  ]\n"
+  },
+  {
+    "kana": "きんらんで",
+    "en": [
+      "gold-painted porcelain"
+    ],
+    "senseUid": "0b9dd3a7-4347-4533-a111-9a52f3b8e5da",
+    "wordId": "2265200",
+    "pt": "['porcelana pintada de ouro']"
+  },
+  {
+    "kana": "がくせいしょくどう",
+    "en": [
+      "school cafeteria"
+    ],
+    "senseUid": "6fbee35d-ebd9-4de3-98e0-87bb221285df",
+    "wordId": "2265210",
+    "pt": "['restaurante universitário']"
+  },
+  {
+    "kana": "がくしょく",
+    "en": [
+      "school cafeteria"
+    ],
+    "senseUid": "c0431dca-e1bb-478e-8f74-5c7d6d2d28f0",
+    "wordId": "2265220",
+    "pt": "['restaurante universitário']"
+  },
+  {
+    "kana": "おびと",
+    "en": [
+      "Obito (hereditary title, often given to powerful regional families)"
+    ],
+    "senseUid": "aa7c658a-5b36-4966-9db3-01516e070641",
+    "wordId": "2265230",
+    "pt": "['Obito (título hereditário, frequentemente concedido a famílias regionais poderosas)']"
+  },
+  {
+    "kana": "かわらなでしこ",
+    "en": [
+      "large pink (Dianthus superbus var. longicalycinus)"
+    ],
+    "senseUid": "8f1d5981-d440-40c5-a5e3-a9e4fdad5c87",
+    "wordId": "2265240",
+    "pt": "['grande cravo-rosa (Dianthus superbus var. longicalycinus)']"
+  },
+  {
+    "kana": "からなでしこ",
+    "en": [
+      "China pink (species of flower, Dianthus chinensis)"
+    ],
+    "senseUid": "ada5a796-11c4-4f87-a374-d67337b71f31",
+    "wordId": "2265250",
+    "pt": "{\n  \"a\": [\n    \"cravo-da-china (espécie de flor, Dianthus chinensis)\"\n  ]\n"
+  },
+  {
+    "kana": "しょうがちゃ",
+    "en": [
+      "ginger tea"
+    ],
+    "senseUid": "b46842cb-eb62-4fb9-bf4f-eb97f72b3162",
+    "wordId": "2265260",
+    "pt": "['chá de gengibre']"
+  },
+  {
+    "kana": "プラナリア",
+    "en": [
+      "planarian (any flatworm of family Planaria)"
+    ],
+    "senseUid": "06829e39-0979-410f-ac11-5c8cfe96fcbe",
+    "wordId": "2265270",
+    "pt": "['planária (qualquer verme achatado da família Planaria)']"
+  },
+  {
+    "kana": "ひもむし",
+    "en": [
+      "ribbon worm (any worm of phylum Nemertea)"
+    ],
+    "senseUid": "c0f7cd51-8a2b-4c44-a6bb-0a8884a6cb28",
+    "wordId": "2265280",
+    "pt": "{\n  \"a\": [\n    \"verme fita (qualquer verme do filo Nemertea)\"\n  ]\n"
+  },
+  {
+    "kana": "ひもがたどうぶつ",
+    "en": [
+      "nemertean (any worm of phylum Nemertea)"
+    ],
+    "senseUid": "7ad321ea-b122-4879-9715-423b78f773cf",
+    "wordId": "2265290",
+    "pt": "{\n  \"a\": [\n    \"verme fita (qualquer verme do filo Nemertea)\"\n  ]\n"
+  },
+  {
+    "kana": "いっかいせい",
+    "en": [
+      "first-year (university) student",
+      "freshman"
+    ],
+    "senseUid": "ce52bc9f-c658-4d49-9626-9f3ed089ad91",
+    "wordId": "2265300",
+    "pt": "{\n  \"a\": [\n    \"estudante do primeiro ano (universidade)\",\n    \"calouro\"\n  ]\n"
+  },
+  {
+    "kana": "いっかいせい",
+    "en": [
+      "(one of the) first graduates of a new school"
+    ],
+    "senseUid": "37639821-0423-4942-82a2-9cc572efad09",
+    "wordId": "2265300",
+    "pt": "{\n  \"a\": [\n    \"primeira turma de formandos de uma nova escola\"\n  ]\n"
+  },
+  {
+    "kana": "にかいせい",
+    "en": [
+      "second year (college) student",
+      "sophomore"
+    ],
+    "senseUid": "72bfc934-92f4-4ae5-949b-eaf0400c446b",
+    "wordId": "2265310",
+    "pt": "['estudante do segundo ano (da faculdade)', 'aluno do segundo ano']"
+  },
+  {
+    "kana": "さんかいせい",
+    "en": [
+      "third year (college) student",
+      "junior"
+    ],
+    "senseUid": "2ced804e-4583-4ccd-ab7a-d2a2cb504ad2",
+    "wordId": "2265320",
+    "pt": "['estudante do terceiro ano (da faculdade)', 'aluno do terceiro ano']"
+  },
+  {
+    "kana": "りんけいどうぶつ",
+    "en": [
+      "rotifer"
+    ],
+    "senseUid": "c856198a-90ed-4fb5-93f9-7983ee30881b",
+    "wordId": "2265340",
+    "pt": "{\n  \"a\": [\"rotífero\"]\n"
+  },
+  {
+    "kana": "よんかいせい",
+    "en": [
+      "fourth year (college) student",
+      "senior"
+    ],
+    "senseUid": "f7785baf-b3fc-489f-8b82-3fa0f0a9c978",
+    "wordId": "2265330",
+    "pt": "{\n  \"a\": [\n    \"estudante do quarto ano (da faculdade)\",\n    \"aluno do último ano\"\n  ]\n"
+  },
+  {
+    "kana": "ないこうどうぶつ",
+    "en": [
+      "entoproct (any animal of phylum Entoprocta)"
+    ],
+    "senseUid": "13165716-2735-456c-be67-227782b3c071",
+    "wordId": "2265350",
+    "pt": "{\n  \"a\": [\n    \"entoprocto (qualquer animal do filo Entoprocta)\"\n  ]\n"
+  },
+  {
+    "kana": "せんけいどうぶつ",
+    "en": [
+      "nematode"
+    ],
+    "senseUid": "943061b1-ac1a-4829-a633-ab1e0899c5d5",
+    "wordId": "2265360",
+    "pt": "{\n  \"a\": [\"nematódeo\"]\n"
+  },
+  {
+    "kana": "こけむし",
+    "en": [
+      "moss animal (any animal of phylum Bryozoa)"
+    ],
+    "senseUid": "bd0a090e-7c4f-4010-b790-25b84cd4f64a",
+    "wordId": "2265370",
+    "pt": "['animal musgo (qualquer animal do filo Bryozoa)']"
+  },
+  {
+    "kana": "こけむしるい",
+    "en": [
+      "bryozoans (animals of phylum Bryozoa)"
+    ],
+    "senseUid": "d9b58396-fb6b-447e-9865-972d1e1fbbfa",
+    "wordId": "2265380",
+    "pt": "['briozoários (animais do filo Bryozoa)']"
+  },
+  {
+    "kana": "ほうきむし",
+    "en": [
+      "phoronid (any wormlike animal of phylum Phoronida)"
+    ],
+    "senseUid": "ab05276d-4627-4a08-a9d5-14baa9454b8a",
+    "wordId": "2265390",
+    "pt": "{\n  \"a\": [\n    \"foronídeo (qualquer animal semelhante a verme do filo Phoronida)\"\n  ]\n"
+  },
+  {
+    "kana": "しゃみせんがい",
+    "en": [
+      "lingulate brachiopod (esp. species Lingula anatina)"
+    ],
+    "senseUid": "cd20b8bd-0548-41c1-8154-f57bae4cafd5",
+    "wordId": "2265400",
+    "pt": "{\n  \"a\": [\n    \"braquiópode lingulado (especialmente a espécie Lingula anatina)\"\n  ]\n"
+  },
+  {
+    "kana": "ほおずきがい",
+    "en": [
+      "lampshell (excluding the lingulate brachiopods)",
+      "lamp shell"
+    ],
+    "senseUid": "a7656358-13f0-4282-bcdd-367595709b84",
+    "wordId": "2265410",
+    "pt": "{\n  \"a\": [\n    \"concha-lâmpada (exceto os braquiópodes lingulados)\",\n    \"concha de lâmpada\"\n  ]\n"
+  },
+  {
+    "kana": "ほしぐちどうぶつ",
+    "en": [
+      "sipunculan (any worm of phylum Sipuncula)",
+      "sipunculid"
+    ],
+    "senseUid": "3cb5c7f9-8a04-405c-acd4-951f2d03ded6",
+    "wordId": "2265420",
+    "pt": "{\n  \"a\": [\n    \"sipunculídeo (qualquer verme do filo Sipuncula)\",\n    \"sipunculídeo\"\n  ]\n"
+  },
+  {
+    "kana": "ほしむし",
+    "en": [
+      "peanut worm (any worm of phylum Sipuncula)"
+    ],
+    "senseUid": "6e4e5d48-1003-428f-8e70-8d7de5fae8e2",
+    "wordId": "2265430",
+    "pt": "{\n  \"a\": [\"verme-amendoim (qualquer verme do filo Sipuncula)\"]\n"
+  },
+  {
+    "kana": "ゆむし",
+    "en": [
+      "echiurid",
+      "spoon worm"
+    ],
+    "senseUid": "ee5dd301-add5-4ff9-bd12-556df295b7e4",
+    "wordId": "2265440",
+    "pt": "['verme-colher', 'equiúrido']"
+  },
+  {
+    "kana": "ゆむし",
+    "en": [
+      "fat innkeeper worm (Urechis unicinctus)",
+      "penis fish"
+    ],
+    "senseUid": "a26cd06b-f61d-4fc9-bac5-4ca9736335fa",
+    "wordId": "2265440",
+    "pt": "['verme-gordo-estalajadeiro (Urechis unicinctus)', 'peixe-pênis']"
+  },
+  {
+    "kana": "したがたどうぶつ",
+    "en": [
+      "pentastomid (any worm of phylum Pentastomida)"
+    ],
+    "senseUid": "891054bb-c957-4f84-b2fc-d79f8046f4e9",
+    "wordId": "2265450",
+    "pt": "{\n  \"a\": [\n    \"pentastômido (qualquer verme do filo Pentastomida)\"\n  ]\n"
+  },
+  {
+    "kana": "したむし",
+    "en": [
+      "tongue worm (any worm of phylum Pentastomida)"
+    ],
+    "senseUid": "79500e04-a352-4d64-bb6c-5accf0766bfd",
+    "wordId": "2265460",
+    "pt": "{\n  \"a\": [\n    \"verme-da-língua (qualquer verme do filo Pentastomida)\"\n  ]\n"
+  },
+  {
+    "kana": "ひげむし",
+    "en": [
+      "beard worm (any worm of phylum Pogonophora)"
+    ],
+    "senseUid": "9375a697-8100-4ed3-87fb-3798513b9f5d",
+    "wordId": "2265480",
+    "pt": "{\n  \"a\": [\n    \"verme-barba (qualquer verme do filo Pogonophora)\"\n  ]\n"
+  },
+  {
+    "kana": "ゆうしゅどうぶつ",
+    "en": [
+      "pogonophoran (any worm of phylum Pogonophora)"
+    ],
+    "senseUid": "3b4da925-6b9c-4880-8bcd-9b8f6c908291",
+    "wordId": "2265470",
+    "pt": "['pogonóforo (qualquer verme do filo Pogonophora)']"
+  },
+  {
+    "kana": "はおりむし",
+    "en": [
+      "vestimentiferan (any tube worm of order Vestimentifera)"
+    ],
+    "senseUid": "d2ad71ce-dded-4103-af07-63ea35ed0e65",
+    "wordId": "2265490",
+    "pt": "{\n  \"a\": [\n    \"verme vestimentífero (qualquer verme tubular da ordem Vestimentifera)\"\n  ]\n"
+  },
+  {
+    "kana": "もうがくどうぶつ",
+    "en": [
+      "chaetognath (any worm of phylum Chaetognatha)"
+    ],
+    "senseUid": "f4c9a912-e337-41f2-a3e3-8f9c5982fa2b",
+    "wordId": "2265500",
+    "pt": "{\n  \"a\": [\n    \"quétognato (qualquer verme do filo Chaetognatha)\"\n  ]\n"
+  },
+  {
+    "kana": "やむし",
+    "en": [
+      "arrow worm (any worm of phylum Chaetognatha)"
+    ],
+    "senseUid": "6d198c99-cc8c-48d1-8154-9c896fe98f50",
+    "wordId": "2265510",
+    "pt": "['verme-flecha (qualquer verme do filo Chaetognatha)']"
+  },
+  {
+    "kana": "はんさくどうぶつ",
+    "en": [
+      "hemichordate (any worm of phylum Hemichordata)"
+    ],
+    "senseUid": "3b78766b-de17-420b-b78d-20b966478256",
+    "wordId": "2265520",
+    "pt": "['hemicordado (qualquer verme do filo Hemichordata)']"
+  },
+  {
+    "kana": "ぎぼしむし",
+    "en": [
+      "acorn worm (any hemichordate of class Enteropneusta)"
+    ],
+    "senseUid": "96555d7a-680c-4f95-8e76-b20dd7b9e819",
+    "wordId": "2265530",
+    "pt": "['verme-bolota (qualquer hemicordado da classe Enteropneusta)']"
+  },
+  {
+    "kana": "ちょうさいるい",
+    "en": [
+      "enteropneusts (hemichordates of class Enteropneusta)"
+    ],
+    "senseUid": "0be0c8d9-dc58-4cf5-b1ed-51d848e7064e",
+    "wordId": "2265540",
+    "pt": "{\n  \"a\": [\"enteropneustos (hemicordados da classe Enteropneusta)\"]\n"
+  },
+  {
+    "kana": "ほうしゃそうしょう",
+    "en": [
+      "radial symmetry"
+    ],
+    "senseUid": "93bf9ed6-21c8-4a81-99c0-ff6842751280",
+    "wordId": "2265560",
+    "pt": "{\n  \"a\": [\"simetria radial\"]\n"
+  },
+  {
+    "kana": "わかやぐ",
+    "en": [
+      "to act young",
+      "to look young"
+    ],
+    "senseUid": "01a0317c-8618-4be7-b125-3224956ba65b",
+    "wordId": "2265570",
+    "pt": "['agir de forma jovem', 'parecer jovem']"
+  },
+  {
+    "kana": "だんせいき",
+    "en": [
+      "male genitalia",
+      "male genital organs",
+      "penis"
+    ],
+    "senseUid": "c052f6fa-5c0a-48fd-925f-05e41895c596",
+    "wordId": "2265580",
+    "pt": "{\n  \"a\": [\n    \"órgãos genitais masculinos\",\n    \"genitália masculina\",\n    \"pênis\"\n  ]\n"
+  },
+  {
+    "kana": "よくさいるい",
+    "en": [
+      "pterobranchs (hemichordates of class Pterobranchia)"
+    ],
+    "senseUid": "e92d149a-7009-40e9-a2e1-cd630cd207f5",
+    "wordId": "2265550",
+    "pt": "{\n  \"a\": [\"pterobrânquios (hemicordados da classe Pterobranchia)\"]\n"
+  },
+  {
+    "kana": "ぬり",
+    "en": [
+      "coating (esp. lacquering)"
+    ],
+    "senseUid": "406a9599-6853-449b-ab8b-39ef532a9bd1",
+    "wordId": "2265610",
+    "pt": "{\n  \"a\": [\"revestimento (especialmente lacagem)\"]\n"
+  },
+  {
+    "kana": "ほり",
+    "en": [
+      "carving",
+      "engraving"
+    ],
+    "senseUid": "afff9a0c-4c8d-4a7a-88ad-06ca24628e7b",
+    "wordId": "2265620",
+    "pt": "{\n  \"a\": [\n    \"escultura\",\n    \"entalhe\",\n    \"gravação\",\n    \"técnica de esculpir\",\n    \"arte de gravar\"\n  ]\n"
+  },
+  {
+    "kana": "ほり",
+    "en": [
+      "chiselled features"
+    ],
+    "senseUid": "24e7ee63-8dc3-4bd2-b335-f7e5a0d375ab",
+    "wordId": "2265620",
+    "pt": "{\n  \"a\": [\"traços faciais marcantes\", \"traços faciais definidos\", \"traços do rosto bem esculpidos\"]\n"
+  },
+  {
+    "kana": "やき",
+    "en": [
+      "roasting",
+      "grilling",
+      "toasting",
+      "broiling",
+      "baking"
+    ],
+    "senseUid": "700763c0-a816-458d-a201-a488a4afc703",
+    "wordId": "2265630",
+    "pt": "['assar', 'grelhar', 'tostar', 'gratinar', 'cozinhar ao forno']"
+  },
+  {
+    "kana": "やき",
+    "en": [
+      "tempering (in metallurgy)"
+    ],
+    "senseUid": "0d655662-06cb-44c8-937a-f521bc2de3ab",
+    "wordId": "2265630",
+    "pt": "['têmpera (em metalurgia)']"
+  },
+  {
+    "kana": "やき",
+    "en": [
+      "-ware",
+      "porcelain",
+      "pottery"
+    ],
+    "senseUid": "50bad460-6738-4ff2-811f-0c45bf2a83f0",
+    "wordId": "2265630",
+    "pt": "['cerâmica', 'porcelana', 'louça']"
+  },
+  {
+    "kana": "こづつみゆうびんぶつ",
+    "en": [
+      "parcel (to be sent by post)"
+    ],
+    "senseUid": "7e523cc1-99ac-43ce-96ae-56f2f5bd84dc",
+    "wordId": "2265640",
+    "pt": "{\n  \"a\": [\n    \"encomenda postal\"\n  ]\n"
+  },
+  {
+    "kana": "ひきうけじこく",
+    "en": [
+      "time of receipt (of a package, etc. by the post office)"
+    ],
+    "senseUid": "fbf81c82-4451-4ea8-bd12-db87ee8ff8c7",
+    "wordId": "2265660",
+    "pt": "['hora de recebimento (de um pacote, etc. pelos correios)']"
+  },
+  {
+    "kana": "あずかりきん",
+    "en": [
+      "deposit (received)"
+    ],
+    "senseUid": "984ef266-c950-4187-8a9c-f7b0dce5de60",
+    "wordId": "2265670",
+    "pt": "['depósito recebido']"
+  },
+  {
+    "kana": "こうこくがいしゃ",
+    "en": [
+      "advertising company"
+    ],
+    "senseUid": "b3b514c3-e534-4bea-8cfc-bec4050da425",
+    "wordId": "2265680",
+    "pt": "['empresa de publicidade']"
+  },
+  {
+    "kana": "えんかだて",
+    "en": [
+      "yen-denominated (e.g. bond)"
+    ],
+    "senseUid": "92ef7529-3b5e-4052-8b6a-b0ca4a006224",
+    "wordId": "2265690",
+    "pt": "['denominado em ienes']"
+  },
+  {
+    "kana": "じもとせいふ",
+    "en": [
+      "local government"
+    ],
+    "senseUid": "239da3c5-8c48-4002-b120-d2524d491f37",
+    "wordId": "2265700",
+    "pt": "['governo local']"
+  },
+  {
+    "kana": "こけらいた",
+    "en": [
+      "thin shingles"
+    ],
+    "senseUid": "d2e0fc25-3c56-40c0-9816-59031a08b3a6",
+    "wordId": "2265710",
+    "pt": "{\n  \"a\": [\"telhas finas\", \"ripinhas de madeira\", \"finas tábuas de madeira para cobertura\"]\n"
+  },
+  {
+    "kana": "ワン",
+    "en": [
+      "wide area network",
+      "WAN"
+    ],
+    "senseUid": "dd2ed479-1568-481e-b78f-cac4ee45c41e",
+    "wordId": "2265720",
+    "pt": "{\n  \"a\": [\n    \"rede de área ampla\",\n    \"WAN\"\n  ]\n"
+  },
+  {
+    "kana": "エル・イー・ディー",
+    "en": [
+      "light-emitting diode",
+      "LED"
+    ],
+    "senseUid": "5a38dc63-e548-4bf5-9c53-a3b8d3a08489",
+    "wordId": "2265730",
+    "pt": "['diodo emissor de luz', 'LED']"
+  },
+  {
+    "kana": "ルーマニアご",
+    "en": [
+      "Romanian (language)"
+    ],
+    "senseUid": "ec714a0e-0aea-4e8b-8c3d-ad2cd01eff34",
+    "wordId": "2265740",
+    "pt": "{\n  \"a\": [\"romeno\", \"língua romena\"]\n"
+  },
+  {
+    "kana": "ラス",
+    "en": [
+      "remote access service",
+      "RAS"
+    ],
+    "senseUid": "6160fdbb-755d-4c70-adfa-7c90f3c91879",
+    "wordId": "2265750",
+    "pt": "['serviço de acesso remoto', 'RAS']"
+  },
+  {
+    "kana": "ラス",
+    "en": [
+      "reliability, availability, serviceability",
+      "RAS"
+    ],
+    "senseUid": "c4a8b637-721e-425a-9724-5771cc1db33e",
+    "wordId": "2265750",
+    "pt": "{\n  \"a\": [\n    \"confiabilidade, disponibilidade, facilidade de manutenção\",\n    \"RAS\"\n  ]\n"
+  },
+  {
+    "kana": "イーラーニング",
+    "en": [
+      "e-learning"
+    ],
+    "senseUid": "9b526de8-bda4-4f13-862c-e8294537abb9",
+    "wordId": "2265760",
+    "pt": "['e-learning']"
+  },
+  {
+    "kana": "べいこくしゃ",
+    "en": [
+      "American car"
+    ],
+    "senseUid": "5ffc9f0d-04a7-40eb-9e7c-de5e39668aa9",
+    "wordId": "2265770",
+    "pt": "{\n  \"a\": [\"carro americano\"]\n"
+  },
+  {
+    "kana": "じゅうろくらかん",
+    "en": [
+      "the sixteen arhats"
+    ],
+    "senseUid": "59f8d330-55e7-4ac7-b9b4-dc3c116b88ee",
+    "wordId": "2265790",
+    "pt": "['os dezesseis arhat']"
+  },
+  {
+    "kana": "じゅうはちらかん",
+    "en": [
+      "the eighteen arhats"
+    ],
+    "senseUid": "0f6379cb-03f4-4020-b122-e77d6b4ba590",
+    "wordId": "2265780",
+    "pt": "{\n  \"a\": [\"os dezoito arhats\"]\n"
+  },
+  {
+    "kana": "ごちにょらい",
+    "en": [
+      "five dhyani buddhas",
+      "five wisdom buddhas"
+    ],
+    "senseUid": "beb1cfe6-31a9-4b3f-9b4b-ba7e4cefb129",
+    "wordId": "2265800",
+    "pt": "{\n  \"a\": [\"Cinco Budas Dhyani\", \"Cinco Budas da Sabedoria\"]\n"
+  },
+  {
+    "kana": "じゅうだいでし",
+    "en": [
+      "the ten great disciples (of Buddha)"
+    ],
+    "senseUid": "7864e7c7-bad9-4841-a50b-b5e90fae522b",
+    "wordId": "2265810",
+    "pt": "['os dez grandes discípulos (de Buda)']"
+  },
+  {
+    "kana": "じゅうにじんしょう",
+    "en": [
+      "the twelve divine generals (of Bhaisajyaguru)"
+    ],
+    "senseUid": "c08e617c-3540-4bd7-a157-464cc5276fb5",
+    "wordId": "2265820",
+    "pt": "{\n  \"a\": [\n    \"os doze generais divinos (de Bhaisajyaguru)\"\n  ]\n"
+  },
+  {
+    "kana": "かんぎてん",
+    "en": [
+      "Nandikesvara (Ganesh in the Buddhist pantheon)"
+    ],
+    "senseUid": "34f9bad0-b650-4967-98d0-17dcaf3cf155",
+    "wordId": "2265830",
+    "pt": "{\n  \"a\": [\n    \"Nandikesvara (Ganesh no panteão budista)\"\n  ]\n"
+  },
+  {
+    "kana": "しょうてん",
+    "en": [
+      "Nandikesvara (Ganesh in the Buddhist pantheon)"
+    ],
+    "senseUid": "e2c12c53-b7d6-41a3-a90f-ef06b20f1d1a",
+    "wordId": "2265840",
+    "pt": "{\n  \"a\": [\n    \"Nandikesvara (Ganesh no panteão budista)\"\n  ]\n"
+  },
+  {
+    "kana": "だいじざいてん",
+    "en": [
+      "Mahesvara (Shiva in the Buddhist pantheon)"
+    ],
+    "senseUid": "4dd2cbb7-a85b-4d99-9b19-65544622e62c",
+    "wordId": "2265850",
+    "pt": "{\n  \"a\": [\n    \"Mahesvara (Shiva no panteão budista)\"\n  ]\n"
+  },
+  {
+    "kana": "じざいてん",
+    "en": [
+      "Mahesvara (Shiva in the Buddhist pantheon)"
+    ],
+    "senseUid": "e9e1d37c-70d5-4eba-9482-545fb1dc68c3",
+    "wordId": "2265860",
+    "pt": "{\n  \"a\": [\n    \"Mahesvara (Shiva no panteão budista)\"\n  ]\n"
+  },
+  {
+    "kana": "たもんてん",
+    "en": [
+      "Vaisravana (one of the Four Heavenly Kings)"
+    ],
+    "senseUid": "eb026002-4f0a-43db-b357-cefba2ff6df1",
+    "wordId": "2265870",
+    "pt": "['Vaisravana (um dos Quatro Reis Celestiais)']"
+  },
+  {
+    "kana": "こうもくてん",
+    "en": [
+      "Virupaksa (Buddhist deity)"
+    ],
+    "senseUid": "0da10ed0-99e0-4dbe-ad0e-8c8abbd29ff8",
+    "wordId": "2265880",
+    "pt": "['Virupaixa (divindade budista)']"
+  },
+  {
+    "kana": "ぞうじょうてん",
+    "en": [
+      "Virudhaka (Buddhist deity)"
+    ],
+    "senseUid": "3f0fc939-c9de-470b-88f3-b58db8d3f543",
+    "wordId": "2265890",
+    "pt": "{\n  \"a\": [\n    \"Virudhaka (deidade budista)\"\n  ]\n"
+  },
+  {
+    "kana": "じこくてん",
+    "en": [
+      "Dhrtarastra (Buddhist deity)"
+    ],
+    "senseUid": "e01c7bb4-dc90-4e8a-9a86-d7010ea33632",
+    "wordId": "2265900",
+    "pt": "{\n  \"a\": [\n    \"Dhrtarastra (deidade budista) — no contexto japonês, refere-se a Jikokuten (じこくてん), um dos Quatro Reis Celestiais (Shitennō), protetor do leste.\"\n  ]\n"
+  },
+  {
+    "kana": "インセストタブー",
+    "en": [
+      "incest taboo"
+    ],
+    "senseUid": "24893917-745e-45c6-aa39-80b32101a710",
+    "wordId": "2265910",
+    "pt": "['tabu do incesto']"
+  },
+  {
+    "kana": "かん",
+    "en": [
+      "cunning and wickedness"
+    ],
+    "senseUid": "6e7ebd54-098a-4f0b-ae06-e5f66b73e211",
+    "wordId": "2265920",
+    "pt": "{\n  \"a\": [\"astúcia e malícia\"]\n"
+  },
+  {
+    "kana": "かん",
+    "en": [
+      "cunning and wicked person"
+    ],
+    "senseUid": "27fb5500-1c5b-4d2d-9f2a-52fc72684a74",
+    "wordId": "2265920",
+    "pt": "{\n  \"a\": [\"pessoa astuta e maldosa\"]\n"
+  },
+  {
+    "kana": "くんそくのかん",
+    "en": [
+      "someone who curries favor with their master while secretly plotting against him"
+    ],
+    "senseUid": "89255180-b0ca-4d0e-8a55-930d359cd3aa",
+    "wordId": "2265930",
+    "pt": "{\n  \"a\": [\n    \"Alguém que bajula seu mestre enquanto secretamente conspira contra ele.\"\n  ]\n"
+  },
+  {
+    "kana": "しょうかんのん",
+    "en": [
+      "Aryavalokitesvara (manifestation of Avalokitesvara)"
+    ],
+    "senseUid": "4d4c1183-668d-4424-9d07-f243750ec199",
+    "wordId": "2265940",
+    "pt": "{\n  \"a\": [\n    \"Avalokiteshvara da Compaixão\",\n    \"Manifestação compassiva de Avalokiteshvara\",\n    \"Kannon da Misericórdia\",\n    \"Kannon Manifestado\",\n    \"Avalokiteshvara em sua forma compassiva\"\n  ]\n"
+  },
+  {
+    "kana": "しょうかんぜのん",
+    "en": [
+      "Aryavalokitesvara (manifestation of Avalokitesvara)"
+    ],
+    "senseUid": "f48dfc47-180e-4e88-a326-096777b21591",
+    "wordId": "2265950",
+    "pt": "{\n  \"a\": [\n    \"Avalokiteshvara Manifestado\",\n    \"Avalokiteshvara em sua manifestação compassiva\",\n    \"Avalokiteshvara na forma de manifestação\",\n    \"Avalokiteshvara Manifestação\"\n  ]\n"
+  },
+  {
+    "kana": "にょいりんかんのん",
+    "en": [
+      "Cintamani-cakra (manifestation of Avalokitesvara)"
+    ],
+    "senseUid": "27119d5f-7888-4045-963e-de3578ccd091",
+    "wordId": "2265960",
+    "pt": "['Cintamani-cakra (manifestação de Avalokitesvara)']"
+  },
+  {
+    "kana": "ふくうけんじゃくかんのん",
+    "en": [
+      "Amoghapasa (manifestation of Kannon)"
+    ],
+    "senseUid": "574fa238-11a0-4c49-8f86-14d3a3281b85",
+    "wordId": "2265970",
+    "pt": "{\n  \"a\": [\n    \"Amoghapasa (manifestação de Kannon)\"\n  ]\n"
+  }
+]

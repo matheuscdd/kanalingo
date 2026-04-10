@@ -1,0 +1,915 @@
+[
+  {
+    "kana": "マークくかん",
+    "en": [
+      "marked section"
+    ],
+    "senseUid": "d41ae8db-750d-435d-b08c-372c107c708c",
+    "wordId": "2331020",
+    "pt": "{\n  \"a\": [\"seção marcada\"]\n"
+  },
+  {
+    "kana": "マークくかんかいし",
+    "en": [
+      "marked section start"
+    ],
+    "senseUid": "b3fd6191-31ff-4ad9-9ef2-89f34f0e8a4e",
+    "wordId": "2331040",
+    "pt": "{\n  \"a\": [\"início da seção marcada\"]\n"
+  },
+  {
+    "kana": "マークくかんしゅうりょう",
+    "en": [
+      "marked section end"
+    ],
+    "senseUid": "b0b0ed47-3804-4034-877a-67ce1b60f394",
+    "wordId": "2331050",
+    "pt": "['fim da seção marcada']"
+  },
+  {
+    "kana": "マークくかんせんげん",
+    "en": [
+      "marked section declaration"
+    ],
+    "senseUid": "c1822807-e40e-46ad-8203-f332691a425a",
+    "wordId": "2331060",
+    "pt": "['declaração de seção marcada']"
+  },
+  {
+    "kana": "マークさいしょうかきこう",
+    "en": [
+      "markup minimization feature"
+    ],
+    "senseUid": "8a1558fd-fd81-498f-9f63-97da54eb87f9",
+    "wordId": "2331070",
+    "pt": "{\n  \"a\": [\"recurso de minimização de marcação\"]\n"
+  },
+  {
+    "kana": "マークせんげん",
+    "en": [
+      "markup declaration"
+    ],
+    "senseUid": "be2b37d9-cc5d-40f4-a260-fc4a1f138ef9",
+    "wordId": "2331080",
+    "pt": "{\n  \"a\": [\n    \"declaração de marcação\"\n  ]\n"
+  },
+  {
+    "kana": "マークよみとり",
+    "en": [
+      "mark scanning",
+      "optical mark reading"
+    ],
+    "senseUid": "244fb971-f161-412f-8c27-6e16037b2ff4",
+    "wordId": "2331090",
+    "pt": "{\n  \"a\": [\n    \"leitura de marca\",\n    \"leitura óptica de marca\"\n  ]\n"
+  },
+  {
+    "kana": "マークよみとりそうち",
+    "en": [
+      "mark reader"
+    ],
+    "senseUid": "0a9cc493-48f6-4920-969e-78b514d8cfa7",
+    "wordId": "2331100",
+    "pt": "['leitor de marcas']"
+  },
+  {
+    "kana": "マークづけ",
+    "en": [
+      "mark up"
+    ],
+    "senseUid": "2997e435-0a28-4a08-a6a2-d48543fa6746",
+    "wordId": "2331140",
+    "pt": "['marcação']"
+  },
+  {
+    "kana": "マークもじ",
+    "en": [
+      "markup character"
+    ],
+    "senseUid": "785f930a-2dab-424e-aab1-4c7932cb75e8",
+    "wordId": "2331150",
+    "pt": "{\n  \"a\": [\n    \"caractere de marcação\"\n  ]\n"
+  },
+  {
+    "kana": "マーケットアウェアネス",
+    "en": [
+      "market awareness"
+    ],
+    "senseUid": "5ad1c8d0-ad2b-46f2-9b98-5c0bb73a302e",
+    "wordId": "2331160",
+    "pt": "['consciência de mercado']"
+  },
+  {
+    "kana": "マーケティングじょうほうシステム",
+    "en": [
+      "Marketing Information System",
+      "MIS"
+    ],
+    "senseUid": "b417184a-c4d9-46f7-8020-0ddc9cffe881",
+    "wordId": "2331170",
+    "pt": "['Sistema de Informação de Marketing', 'SIM']"
+  },
+  {
+    "kana": "マイクノイズ",
+    "en": [
+      "microphone noise"
+    ],
+    "senseUid": "f9d8d13a-a111-43bc-b4ef-924262855090",
+    "wordId": "2331200",
+    "pt": "['ruído de microfone']"
+  },
+  {
+    "kana": "マイクロアーキテクチャ",
+    "en": [
+      "micro-architecture"
+    ],
+    "senseUid": "8013ae02-e727-4791-aab7-f32c3a8acd22",
+    "wordId": "2331210",
+    "pt": "['micro-arquitetura']"
+  },
+  {
+    "kana": "マイクロカーネル",
+    "en": [
+      "microkernel"
+    ],
+    "senseUid": "21fd3330-3742-4605-b7b7-4fb717a54b2d",
+    "wordId": "2331220",
+    "pt": "['microkernel']"
+  },
+  {
+    "kana": "マイクロコード",
+    "en": [
+      "microcode"
+    ],
+    "senseUid": "065b5ba5-c3a2-4ca3-8324-371d5c75e4e4",
+    "wordId": "2331230",
+    "pt": "['microcódigo']"
+  },
+  {
+    "kana": "マイクロコム",
+    "en": [
+      "Microcom"
+    ],
+    "senseUid": "dde3b65c-ec9d-403f-bd69-adecbfea2607",
+    "wordId": "2331240",
+    "pt": "{\n  \"a\": [\"Microcom\"]\n"
+  },
+  {
+    "kana": "マイクロシソーラス",
+    "en": [
+      "microthesaurus"
+    ],
+    "senseUid": "326cc059-b55a-4b13-b38e-15f9fe254fed",
+    "wordId": "2331260",
+    "pt": "['microtesauro']"
+  },
+  {
+    "kana": "マイクロチャネル",
+    "en": [
+      "Micro Channel"
+    ],
+    "senseUid": "658aa99e-68dd-40a4-8d23-6b1bb0172183",
+    "wordId": "2331310",
+    "pt": "{\n  \"a\": [\"Microcanal\"]\n"
+  },
+  {
+    "kana": "マイクロチャネルアーキテクチャ",
+    "en": [
+      "microchannel architecture"
+    ],
+    "senseUid": "c80a6ce8-163d-415f-ba61-9dfd7395f420",
+    "wordId": "2331320",
+    "pt": "{\n  \"a\": [\"arquitetura de microcanais\"]\n"
+  },
+  {
+    "kana": "マイクロドライブ",
+    "en": [
+      "microdrive"
+    ],
+    "senseUid": "5b275d68-1d5d-4c2f-8ae1-cb8161e3ddcc",
+    "wordId": "2331340",
+    "pt": "['microdrive']"
+  },
+  {
+    "kana": "マイクロヒートパイプ",
+    "en": [
+      "micro heat pipe"
+    ],
+    "senseUid": "e39a1e0d-66a1-4463-a5c4-123db83cf990",
+    "wordId": "2331350",
+    "pt": "['microtubo de calor']"
+  },
+  {
+    "kana": "マイクロフロッピーディスク",
+    "en": [
+      "microfloppy disk"
+    ],
+    "senseUid": "185d1a25-f4c0-44f3-b5d6-d4b3b844018e",
+    "wordId": "2331360",
+    "pt": "['disquete microfloppy']"
+  },
+  {
+    "kana": "マイクロメディア",
+    "en": [
+      "micromedia"
+    ],
+    "senseUid": "0bcba6dc-c634-42b3-8ec3-69acb53f2eb0",
+    "wordId": "2331390",
+    "pt": "['micromídia']"
+  },
+  {
+    "kana": "マイクロプログラミング",
+    "en": [
+      "microprogramming"
+    ],
+    "senseUid": "0ad6bc65-ad1e-4509-949d-e5bef2b5842c",
+    "wordId": "2331370",
+    "pt": "['microprogramação']"
+  },
+  {
+    "kana": "マイクロン",
+    "en": [
+      "Micron"
+    ],
+    "senseUid": "3931c971-5770-4088-af95-de0806bba5e0",
+    "wordId": "2331400",
+    "pt": "['Micron']"
+  },
+  {
+    "kana": "マイクロびょう",
+    "en": [
+      "microsecond"
+    ],
+    "senseUid": "81e2eff3-334c-4632-84c1-50f921d3a6c8",
+    "wordId": "2331410",
+    "pt": "{\n  \"a\": [\"microssegundo\"]\n"
+  },
+  {
+    "kana": "マイドキュメント",
+    "en": [
+      "My Documents"
+    ],
+    "senseUid": "6a8916b6-0ada-4eaa-b3f1-bccab4437c8b",
+    "wordId": "2331450",
+    "pt": "['Meus Documentos']"
+  },
+  {
+    "kana": "マイクロめいれい",
+    "en": [
+      "microinstruction"
+    ],
+    "senseUid": "a5e5b94f-629f-4b01-8adc-fa382d4a6eb6",
+    "wordId": "2331420",
+    "pt": "['microinstrução']"
+  },
+  {
+    "kana": "マイナーバージョンアップ",
+    "en": [
+      "minor upgrade"
+    ],
+    "senseUid": "c6dbecca-5a16-4223-93f3-9235e420e190",
+    "wordId": "2331460",
+    "pt": "['atualização menor']"
+  },
+  {
+    "kana": "マイナーバージョンばんごう",
+    "en": [
+      "minor version number"
+    ],
+    "senseUid": "48a934ec-cc2e-4b8b-9c96-b0cf6310431c",
+    "wordId": "2331470",
+    "pt": "['número da versão secundária']"
+  },
+  {
+    "kana": "マイナスのねじまわし",
+    "en": [
+      "flat-bladed screwdriver"
+    ],
+    "senseUid": "d7b3f8b5-bf74-42c9-be89-429a42648d30",
+    "wordId": "2331480",
+    "pt": "{\n  \"a\": [\"chave de fenda de ponta chata\"]\n"
+  },
+  {
+    "kana": "マイビデオ",
+    "en": [
+      "My Videos"
+    ],
+    "senseUid": "810fcaff-8e18-4b79-967c-834563f8e534",
+    "wordId": "2331490",
+    "pt": "{\n  \"a\": [\"Meus Vídeos\"]\n"
+  },
+  {
+    "kana": "マウスのひだりボタン",
+    "en": [
+      "left mouse button"
+    ],
+    "senseUid": "ad325aad-36c4-458c-b0cb-5e582e38d586",
+    "wordId": "2331510",
+    "pt": "['botão esquerdo do mouse']"
+  },
+  {
+    "kana": "マウスアイコン",
+    "en": [
+      "mouse icon"
+    ],
+    "senseUid": "a44a3d94-eeff-44c0-9796-89246f67bb80",
+    "wordId": "2331520",
+    "pt": "['ícone do mouse']"
+  },
+  {
+    "kana": "マウスカーソル",
+    "en": [
+      "mouse cursor"
+    ],
+    "senseUid": "329bd16e-9aef-4c0a-afd0-df1922159c7f",
+    "wordId": "2331530",
+    "pt": "['cursor do mouse']"
+  },
+  {
+    "kana": "マウスクリック",
+    "en": [
+      "mouse click"
+    ],
+    "senseUid": "256dda60-f307-4b6d-aed5-50ed399321ca",
+    "wordId": "2331540",
+    "pt": "{\n  \"a\": [\"clique do mouse\"]\n"
+  },
+  {
+    "kana": "マウスドライバ",
+    "en": [
+      "mouse (device) driver"
+    ],
+    "senseUid": "bb4290cf-35d6-4536-98ac-31767f3df4b1",
+    "wordId": "2331550",
+    "pt": "['driver do mouse']"
+  },
+  {
+    "kana": "マウスパッド",
+    "en": [
+      "mouse pad",
+      "mouse mat"
+    ],
+    "senseUid": "91eda1ee-2c15-4d31-8e11-69ae506178e1",
+    "wordId": "2331560",
+    "pt": "{\n  \"a\": [\"mouse pad\", \"mouse mat\", \"tapete de mouse\", \"mousepad\"]\n"
+  },
+  {
+    "kana": "マウスボタン",
+    "en": [
+      "mouse button"
+    ],
+    "senseUid": "18d17d11-9b44-4b90-9d98-1d79b631f098",
+    "wordId": "2331570",
+    "pt": "['botão do mouse']"
+  },
+  {
+    "kana": "マウスポインタ",
+    "en": [
+      "mouse pointer"
+    ],
+    "senseUid": "c2a93b59-02c4-4e8e-9ccf-da7ef284fa24",
+    "wordId": "2331580",
+    "pt": "['ponteiro do mouse']"
+  },
+  {
+    "kana": "マウスいどうかんど",
+    "en": [
+      "acceleration"
+    ],
+    "senseUid": "29f9b5d7-2e83-4bbb-b70d-17e746d9031d",
+    "wordId": "2331590",
+    "pt": "{\n  \"a\": [\"aceleração do movimento do mouse\"]\n"
+  },
+  {
+    "kana": "マウンテンフレーム",
+    "en": [
+      "mounting frame"
+    ],
+    "senseUid": "8e4521e8-4e4e-481e-be0c-71531e204342",
+    "wordId": "2331600",
+    "pt": "['estrutura de montagem']"
+  },
+  {
+    "kana": "マウンテンレール",
+    "en": [
+      "mounting rail"
+    ],
+    "senseUid": "189a96d8-2816-4348-b89b-4dbb90f168e4",
+    "wordId": "2331610",
+    "pt": "{\n  \"a\": [\"trilho de montagem\"]\n"
+  },
+  {
+    "kana": "マウントポイント",
+    "en": [
+      "mount point"
+    ],
+    "senseUid": "024a0511-e42d-469a-b1a5-3ac3aef68658",
+    "wordId": "2331620",
+    "pt": "['ponto de montagem']"
+  },
+  {
+    "kana": "マウントしょり",
+    "en": [
+      "mount(ing) process"
+    ],
+    "senseUid": "d0ace379-939d-4861-8e4c-847aef088fa5",
+    "wordId": "2331630",
+    "pt": "['processo de montagem']"
+  },
+  {
+    "kana": "マクロのてんかい",
+    "en": [
+      "macro expansion"
+    ],
+    "senseUid": "a8f38757-bec1-41a3-b2f1-ed326a277333",
+    "wordId": "2331640",
+    "pt": "['expansão de macro']"
+  },
+  {
+    "kana": "マクロアセンブラ",
+    "en": [
+      "macro assembler"
+    ],
+    "senseUid": "ece16789-0903-4964-ba43-9e805b0aae0c",
+    "wordId": "2331650",
+    "pt": "['montador de macros']"
+  },
+  {
+    "kana": "マクロウイルス",
+    "en": [
+      "macro virus"
+    ],
+    "senseUid": "427c5b47-6767-40dd-9f64-6c73b0ab4815",
+    "wordId": "2331660",
+    "pt": "['vírus de macro']"
+  },
+  {
+    "kana": "マクロウィンドウ",
+    "en": [
+      "macro window"
+    ],
+    "senseUid": "c63e074a-19ed-440f-b527-f46eaff54491",
+    "wordId": "2331670",
+    "pt": "['janela macro']"
+  },
+  {
+    "kana": "マクロシソーラス",
+    "en": [
+      "macrothesaurus"
+    ],
+    "senseUid": "68bfad11-ffc2-4d9c-b1bb-4bba15ceda31",
+    "wordId": "2331680",
+    "pt": "['macrotesauro']"
+  },
+  {
+    "kana": "マクロデータ",
+    "en": [
+      "macro data"
+    ],
+    "senseUid": "60374bbe-a033-465e-9d69-74ac5cd2172f",
+    "wordId": "2331690",
+    "pt": "['dados macro']"
+  },
+  {
+    "kana": "マクロプロジェクト",
+    "en": [
+      "macro project"
+    ],
+    "senseUid": "baf58990-d9d5-4fb8-8349-50d4e5875b21",
+    "wordId": "2331700",
+    "pt": "['macroprojeto']"
+  },
+  {
+    "kana": "マクロプロセッサ",
+    "en": [
+      "macro-processor"
+    ],
+    "senseUid": "fbb92d2b-619c-4447-8585-5131bdd01304",
+    "wordId": "2331710",
+    "pt": "['macroprocessador']"
+  },
+  {
+    "kana": "マクロかんせんがたウイルス",
+    "en": [
+      "macro virus"
+    ],
+    "senseUid": "5ac9c9cd-9277-424f-9e55-395625b11b73",
+    "wordId": "2331720",
+    "pt": "['vírus macro']"
+  },
+  {
+    "kana": "マクロきのう",
+    "en": [
+      "macro-function"
+    ],
+    "senseUid": "413532da-1632-4e5c-9a38-87cf705100d4",
+    "wordId": "2331730",
+    "pt": "['função de macro']"
+  },
+  {
+    "kana": "マクロげんご",
+    "en": [
+      "macro language"
+    ],
+    "senseUid": "913e9282-1fe5-4256-a3fe-738edb7f9961",
+    "wordId": "2331740",
+    "pt": "['linguagem de macro']"
+  },
+  {
+    "kana": "マクロよびだし",
+    "en": [
+      "macro call"
+    ],
+    "senseUid": "fa6b1944-31be-45a7-a8ab-8f3967ecba04",
+    "wordId": "2331750",
+    "pt": "['chamada de macro']"
+  },
+  {
+    "kana": "マクロしき",
+    "en": [
+      "macro expression"
+    ],
+    "senseUid": "36a2a062-0198-4971-9dff-837d83eff8e9",
+    "wordId": "2331760",
+    "pt": "{\n  \"a\": [\"expressão macro\"]\n"
+  },
+  {
+    "kana": "マクロしょりプログラム",
+    "en": [
+      "macrogenerator",
+      "macroprocessor"
+    ],
+    "senseUid": "6fd94173-54fb-400a-91bf-d8f24a809f53",
+    "wordId": "2331770",
+    "pt": "{\n  \"a\": [\"processador de macro\", \"gerador de macro\"]\n"
+  },
+  {
+    "kana": "マクロしょりけい",
+    "en": [
+      "macrogenerator",
+      "macroprocessor"
+    ],
+    "senseUid": "db4c70c1-85a4-483c-a999-d81b76dbdb3b",
+    "wordId": "2331780",
+    "pt": "['processador de macros', 'gerador de macros']"
+  },
+  {
+    "kana": "マクロせいせいプログラム",
+    "en": [
+      "macrogenerator",
+      "macroprocessor"
+    ],
+    "senseUid": "336899e4-efcf-4a8a-b529-0255bc706a27",
+    "wordId": "2331790",
+    "pt": "{\n  \"a\": [\"programa gerador de macros\", \"programa processador de macros\"]\n"
+  },
+  {
+    "kana": "マクロせいせいけい",
+    "en": [
+      "macrogenerator",
+      "macroprocessor"
+    ],
+    "senseUid": "3ced2162-9613-4dcb-9cd9-7bb6d64a9ffc",
+    "wordId": "2331800",
+    "pt": "{\n  \"a\": [\"gerador de macros\", \"processador de macros\"]\n"
+  },
+  {
+    "kana": "マクロていぎ",
+    "en": [
+      "macro definition"
+    ],
+    "senseUid": "3e4467e6-5ff4-48bc-9722-69b621ddce44",
+    "wordId": "2331810",
+    "pt": "['definição de macro']"
+  },
+  {
+    "kana": "マクロほんたい",
+    "en": [
+      "macro definition",
+      "macro prototype"
+    ],
+    "senseUid": "89fdb097-87ba-4872-9835-b209b9c84df3",
+    "wordId": "2331820",
+    "pt": "['definição de macro', 'protótipo de macro']"
+  },
+  {
+    "kana": "マクロめいれい",
+    "en": [
+      "macro instruction"
+    ],
+    "senseUid": "29ab274e-6c53-48ca-a47a-9d4dccfee8bf",
+    "wordId": "2331830",
+    "pt": "['instrução macro']"
+  },
+  {
+    "kana": "マザーボード",
+    "en": [
+      "motherboard"
+    ],
+    "senseUid": "8b73f64e-cd7a-4a2c-8dbd-cfa161c502bc",
+    "wordId": "2331840",
+    "pt": "['placa-mãe']"
+  },
+  {
+    "kana": "マシンがよみとりかのう",
+    "en": [
+      "machine-readable"
+    ],
+    "senseUid": "48df03b5-0935-46e1-9de2-49d5ccae516e",
+    "wordId": "2331850",
+    "pt": "{\n  \"a\": [\"legível por máquina\"]\n"
+  },
+  {
+    "kana": "マシンコード",
+    "en": [
+      "machine code"
+    ],
+    "senseUid": "db3bc963-9f96-4a6a-abde-7204fee0b2ad",
+    "wordId": "2331860",
+    "pt": "['código de máquina']"
+  },
+  {
+    "kana": "マシンサイクル",
+    "en": [
+      "machine cycle"
+    ],
+    "senseUid": "370b0ded-4694-41c8-afb5-a4e9cd5fd696",
+    "wordId": "2331870",
+    "pt": "['ciclo de máquina']"
+  },
+  {
+    "kana": "マシンいぞんがた",
+    "en": [
+      "machine-dependent"
+    ],
+    "senseUid": "593383f9-441b-45f3-8f02-c027e4ce8329",
+    "wordId": "2331880",
+    "pt": "{\n  \"a\": [\"dependente de máquina\"]\n"
+  },
+  {
+    "kana": "マシンどくりつがた",
+    "en": [
+      "machine-independent"
+    ],
+    "senseUid": "a161617d-ff3e-40d6-9c8c-6bbd8dbc6378",
+    "wordId": "2331890",
+    "pt": "{\n  \"a\": [\"independente de máquina\"]\n"
+  },
+  {
+    "kana": "マスクロム",
+    "en": [
+      "mask read-only-memory",
+      "MROM"
+    ],
+    "senseUid": "c8801b2c-e140-49fc-8ceb-26e85b070f30",
+    "wordId": "2331900",
+    "pt": "['memória somente de leitura por máscara', 'MROM']"
+  },
+  {
+    "kana": "マスクロム",
+    "en": [
+      "mask ROM"
+    ],
+    "senseUid": "9567d575-e61c-4131-bb56-675c46d7e767",
+    "wordId": "2331910",
+    "pt": "['ROM de máscara']"
+  },
+  {
+    "kana": "マスクふかのうわりこみ",
+    "en": [
+      "non-maskable interrupt",
+      "NMI"
+    ],
+    "senseUid": "34e752db-41fc-4f7b-b353-b0cc3e08cedd",
+    "wordId": "2331920",
+    "pt": "{\n  \"a\": [\"interrupção não mascarável\", \"NMI\"]\n"
+  },
+  {
+    "kana": "マスターハブ",
+    "en": [
+      "master hub"
+    ],
+    "senseUid": "73f7d690-f094-45f6-aa0c-98c685f7c7d9",
+    "wordId": "2331940",
+    "pt": "{\n  \"a\": [\"hub mestre\"]\n"
+  },
+  {
+    "kana": "マスターディスク",
+    "en": [
+      "original disk"
+    ],
+    "senseUid": "35fc9711-d375-43f5-be78-e12ca28d3416",
+    "wordId": "2331930",
+    "pt": "['disco mestre']"
+  },
+  {
+    "kana": "マスターページ",
+    "en": [
+      "master page"
+    ],
+    "senseUid": "b3531f5d-4fae-48c7-ab90-7857ca289a5c",
+    "wordId": "2331950",
+    "pt": "['página mestra']"
+  },
+  {
+    "kana": "マスターワークステーション",
+    "en": [
+      "master workstation"
+    ],
+    "senseUid": "a03992e9-be92-46d1-a731-a35365f3eb20",
+    "wordId": "2331960",
+    "pt": "['estação de trabalho mestre']"
+  },
+  {
+    "kana": "マスタドキュメント",
+    "en": [
+      "master document"
+    ],
+    "senseUid": "5bdaaaaa-4d9b-4bfb-90ec-f3fa482ecf45",
+    "wordId": "2331970",
+    "pt": "{\n  \"a\": [\n    \"documento mestre\"\n  ]\n"
+  },
+  {
+    "kana": "マスタドライブ",
+    "en": [
+      "master drive"
+    ],
+    "senseUid": "5a36422c-0360-4615-a13b-eabeaa488720",
+    "wordId": "2331980",
+    "pt": "['unidade principal']"
+  },
+  {
+    "kana": "マスタブートレコード",
+    "en": [
+      "master boot record",
+      "MBR"
+    ],
+    "senseUid": "5d2977dd-3319-40a8-b1fc-05003a0e6ff3",
+    "wordId": "2331990",
+    "pt": "['registro mestre de inicialização', 'MBR']"
+  },
+  {
+    "kana": "マックばん",
+    "en": [
+      "Mac version (of software, etc.)"
+    ],
+    "senseUid": "52905939-d814-45f6-938e-86e65a23b7d4",
+    "wordId": "2332020",
+    "pt": "['Versão para Mac (de software, etc.)']"
+  },
+  {
+    "kana": "マッチえんざんし",
+    "en": [
+      "match(ing) operator"
+    ],
+    "senseUid": "28cfb025-d7db-48a9-b7b6-f67291099e27",
+    "wordId": "2332030",
+    "pt": "['operador de correspondência']"
+  },
+  {
+    "kana": "マッハバンド",
+    "en": [
+      "mach band"
+    ],
+    "senseUid": "81d04240-1b3e-421f-87c3-b51396f39cc6",
+    "wordId": "2332040",
+    "pt": "['faixa de Mach']"
+  },
+  {
+    "kana": "マッピ",
+    "en": [
+      "MAPI",
+      "Messaging API"
+    ],
+    "senseUid": "affd028b-c235-49e5-935b-aeca6f7af141",
+    "wordId": "2332050",
+    "pt": "{\n  \"a\": [\n    \"マッピ\",\n    \"API de Mensagens\",\n    \"API de Mensageria\"\n  ]\n"
+  },
+  {
+    "kana": "マップクリック",
+    "en": [
+      "map click"
+    ],
+    "senseUid": "bb975c08-3bda-4cc1-8d2f-8e5c37864c6b",
+    "wordId": "2332060",
+    "pt": "{\n  \"a\": [\"Clique no mapa\"]\n"
+  },
+  {
+    "kana": "マトリクススイッチャー",
+    "en": [
+      "matrix switcher"
+    ],
+    "senseUid": "4d106741-b505-489d-be4a-2d68b781ae2f",
+    "wordId": "2332070",
+    "pt": "['comutador de matriz']"
+  },
+  {
+    "kana": "マネージコード",
+    "en": [
+      "managed code"
+    ],
+    "senseUid": "35dbbdf5-e1a4-4464-93d6-b7f5187d2b77",
+    "wordId": "2332090",
+    "pt": "['código gerenciado']"
+  },
+  {
+    "kana": "マルウェア",
+    "en": [
+      "malware"
+    ],
+    "senseUid": "66d4c050-7157-47be-a2de-0caf4d88dfdc",
+    "wordId": "2332110",
+    "pt": "['malware']"
+  },
+  {
+    "kana": "マルコフモデル",
+    "en": [
+      "Markov model"
+    ],
+    "senseUid": "27a8d023-3ccc-46ff-bafe-b4f7a8f0060e",
+    "wordId": "2332120",
+    "pt": "['Modelo de Markov']"
+  },
+  {
+    "kana": "マルコフかいせき",
+    "en": [
+      "Markov analysis"
+    ],
+    "senseUid": "87dc5c64-195a-46d4-8deb-f6fa6354f96c",
+    "wordId": "2332130",
+    "pt": "{\n  \"a\": [\"análise de Markov\"]\n"
+  },
+  {
+    "kana": "マルコフれんさ",
+    "en": [
+      "Markov chain"
+    ],
+    "senseUid": "0cd7c9ab-0181-4d90-a4ef-0d2d8e0235a9",
+    "wordId": "2332140",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"マルコフれんさ\",\n      \"Português\": \"cadeia de Markov\",\n      \"Gloss\": \"Markov chain\"\n    \n  ]\n"
+  },
+  {
+    "kana": "マルチウィンドウ",
+    "en": [
+      "multiwindow",
+      "multi-window"
+    ],
+    "senseUid": "5f04e937-7220-458b-8fca-5dfe4d99b596",
+    "wordId": "2332160",
+    "pt": "['multiwindow', 'multi-janela']"
+  },
+  {
+    "kana": "マルチティーティーハブ",
+    "en": [
+      "multiple TT hub"
+    ],
+    "senseUid": "69d8262b-ada5-4df0-a6b2-79b50e7d32ec",
+    "wordId": "2332150",
+    "pt": "['cubo TT múltiplo']"
+  },
+  {
+    "kana": "マルチキャストアドレス",
+    "en": [
+      "multicast address"
+    ],
+    "senseUid": "7af2ffae-6660-4f5a-a722-6257c4e9f15e",
+    "wordId": "2332180",
+    "pt": "['endereço de multicast']"
+  },
+  {
+    "kana": "マルチウィンドウシステム",
+    "en": [
+      "multi window system"
+    ],
+    "senseUid": "ffaf175e-1529-4156-9ce4-100b1cbcb97e",
+    "wordId": "2332170",
+    "pt": "['sistema de múltiplas janelas']"
+  },
+  {
+    "kana": "マルチキャストバックボーン",
+    "en": [
+      "multicast backbone (Mbone)"
+    ],
+    "senseUid": "7fe0cfd2-97fa-454f-870b-917ad23271c1",
+    "wordId": "2332190",
+    "pt": "{\n  \"a\": [\"espinha dorsal de multicast (Mbone)\"]\n"
+  },
+  {
+    "kana": "マルチクス",
+    "en": [
+      "Multics"
+    ],
+    "senseUid": "dea9be52-0b9a-4c19-9fbb-12763e54e8f7",
+    "wordId": "2332200",
+    "pt": "['Multics']"
+  },
+  {
+    "kana": "マルチサービス",
+    "en": [
+      "multiservice"
+    ],
+    "senseUid": "b854e992-ea29-4d37-82e2-47ae3977aae6",
+    "wordId": "2332210",
+    "pt": "['multisserviço']"
+  }
+]

@@ -1,0 +1,925 @@
+[
+  {
+    "kana": "とうまつそろえ",
+    "en": [
+      "justified"
+    ],
+    "senseUid": "e2a6a9ec-fc30-418f-aeba-74cd6bb69a52",
+    "wordId": "2378340",
+    "pt": "{\n  \"a\": [\"alinhamento justificado\"]\n"
+  },
+  {
+    "kana": "どうがコーデック",
+    "en": [
+      "video codec"
+    ],
+    "senseUid": "7a544315-f583-4dd4-8136-f44fe02c28c9",
+    "wordId": "2378350",
+    "pt": "['codec de vídeo']"
+  },
+  {
+    "kana": "どうがぞう",
+    "en": [
+      "video",
+      "moving image"
+    ],
+    "senseUid": "d70ef290-fceb-4104-a0fb-6c63e550c33c",
+    "wordId": "2378360",
+    "pt": "{\n  \"a\": [\n    \"vídeo\",\n    \"imagem em movimento\"\n  ]\n"
+  },
+  {
+    "kana": "どうさフィールド",
+    "en": [
+      "active field"
+    ],
+    "senseUid": "a0fd9e80-f19c-469a-b68f-d377a6aadad3",
+    "wordId": "2378370",
+    "pt": "['campo de ação']"
+  },
+  {
+    "kana": "どうさページ",
+    "en": [
+      "active page"
+    ],
+    "senseUid": "953ff028-d072-4d1e-aa65-da2c3e68e809",
+    "wordId": "2378380",
+    "pt": "{\n  \"a\": [\"página ativa\"]\n"
+  },
+  {
+    "kana": "どうさモード",
+    "en": [
+      "operating mode"
+    ],
+    "senseUid": "d904d13f-6f00-4cc1-a115-9d19b30ad97f",
+    "wordId": "2378390",
+    "pt": "['modo de operação']"
+  },
+  {
+    "kana": "どうさいち",
+    "en": [
+      "active position"
+    ],
+    "senseUid": "02afc4f0-8c47-490b-9a0a-86cfb512af34",
+    "wordId": "2378400",
+    "pt": "{\n  \"a\": [\"posição ativa\"]\n"
+  },
+  {
+    "kana": "どうさかのうじかん",
+    "en": [
+      "operable time",
+      "uptime"
+    ],
+    "senseUid": "139cf9ad-bae9-4795-a246-5f663fca5981",
+    "wordId": "2378410",
+    "pt": "{\n  \"a\": [\n    \"tempo de operação\",\n    \"tempo em que é possível operar\"\n  ]\n"
+  },
+  {
+    "kana": "どうさかんきょう",
+    "en": [
+      "operating environment"
+    ],
+    "senseUid": "88ec5edc-834c-433f-a004-cc3dde0c3537",
+    "wordId": "2378420",
+    "pt": "{\n  \"a\": [\"ambiente operacional\"]\n"
+  },
+  {
+    "kana": "どうさきじゅつぶ",
+    "en": [
+      "action stub"
+    ],
+    "senseUid": "c3cfa3ff-41be-4f6b-8c73-5a58e20c9463",
+    "wordId": "2378430",
+    "pt": "{\n  \"a\": [\"esboço de ação\"]\n"
+  },
+  {
+    "kana": "どうさぎょう",
+    "en": [
+      "active line"
+    ],
+    "senseUid": "f25f8fc3-e6a7-4906-a13c-6fab6435db17",
+    "wordId": "2378440",
+    "pt": "['linha ativa']"
+  },
+  {
+    "kana": "どうさしてい",
+    "en": [
+      "action entry"
+    ],
+    "senseUid": "bee8b9f5-a30c-406a-8513-c63189b53cd0",
+    "wordId": "2378450",
+    "pt": "{\n  \"a\": [\"entrada de ação\"]\n"
+  },
+  {
+    "kana": "どうさじかん",
+    "en": [
+      "operating time"
+    ],
+    "senseUid": "9b6fb199-af9a-4867-90ff-0409790e6358",
+    "wordId": "2378460",
+    "pt": "['tempo de operação']"
+  },
+  {
+    "kana": "どうさじょうきょう",
+    "en": [
+      "run state (of a process)"
+    ],
+    "senseUid": "d6cbb976-339d-4018-a20a-e1131d3fb8a1",
+    "wordId": "2378470",
+    "pt": "{\n  \"a\": [\"estado de execução (de um processo)\"]\n"
+  },
+  {
+    "kana": "どうさじょうたい",
+    "en": [
+      "active"
+    ],
+    "senseUid": "20fc2bca-89e6-4aa3-86bc-690410bfdea6",
+    "wordId": "2378480",
+    "pt": "{\n  \"a\": [\"estado ativo\"]\n"
+  },
+  {
+    "kana": "どうさふのうじかん",
+    "en": [
+      "inoperable time"
+    ],
+    "senseUid": "9eef521b-e5e0-441e-b9e6-fdff8b901e33",
+    "wordId": "2378490",
+    "pt": "['tempo de inoperabilidade']"
+  },
+  {
+    "kana": "どうさゆうこうきかん",
+    "en": [
+      "regime"
+    ],
+    "senseUid": "666dddd6-491e-4909-90d9-537124c693aa",
+    "wordId": "2378500",
+    "pt": "{\n  \"a\": [\"regime de operação\", \"sistema operacional\", \"mecanismo de funcionamento\"]\n"
+  },
+  {
+    "kana": "どうさりつ",
+    "en": [
+      "availability ratio"
+    ],
+    "senseUid": "ec5be6a1-9693-4549-bb92-0b096189937a",
+    "wordId": "2378510",
+    "pt": "{\n  \"a\": [\"taxa de disponibilidade\"]\n"
+  },
+  {
+    "kana": "どうさりょういき",
+    "en": [
+      "active area"
+    ],
+    "senseUid": "77072130-e54a-4888-be51-320ff36a5bc0",
+    "wordId": "2378520",
+    "pt": "{\n  \"a\": [\"área ativa\"]\n"
+  },
+  {
+    "kana": "どうてきアドレスへんかん",
+    "en": [
+      "Dynamic Address Translation",
+      "DAT"
+    ],
+    "senseUid": "f50ceeb6-4df1-439f-a814-6aabc5b15215",
+    "wordId": "2378550",
+    "pt": "{\n  \"a\": [\n    \"Tradução dinâmica de endereços\"\n  ]\n"
+  },
+  {
+    "kana": "どうてきアドレスへんかんきこう",
+    "en": [
+      "DAT",
+      "Dynamic Address Translation"
+    ],
+    "senseUid": "3c38e410-918f-4a9c-9103-512a6a7181b7",
+    "wordId": "2378560",
+    "pt": "{\n  \"a\": [\"Mecanismo de Tradução Dinâmica de Endereços\"]\n"
+  },
+  {
+    "kana": "どうてきルーティング",
+    "en": [
+      "dynamic routing"
+    ],
+    "senseUid": "d88fa5f5-f2cf-48fd-8c38-8bb3dbceddf7",
+    "wordId": "2378580",
+    "pt": "['roteamento dinâmico']"
+  },
+  {
+    "kana": "どうてきかいせき",
+    "en": [
+      "dynamic response analysis"
+    ],
+    "senseUid": "83ed6ba6-89e7-4b89-99d4-2ff075603d7b",
+    "wordId": "2378590",
+    "pt": "{\n  \"a\": [\"análise de resposta dinâmica\"]\n"
+  },
+  {
+    "kana": "どうてきわりふり",
+    "en": [
+      "dynamic (resource) allocation"
+    ],
+    "senseUid": "734b45ec-d343-4f9d-88f5-cc967774c797",
+    "wordId": "2378600",
+    "pt": "{\n  \"a\": [\n    \"alocação dinâmica de recursos\"\n  ]\n"
+  },
+  {
+    "kana": "どうてきかんしょうほう",
+    "en": [
+      "dynamic buffering"
+    ],
+    "senseUid": "2e059a11-40ba-4333-a1d7-a04444108c9c",
+    "wordId": "2378610",
+    "pt": "{\n  \"a\": [\"bufferização dinâmica\"]\n"
+  },
+  {
+    "kana": "どうてききおくそうち",
+    "en": [
+      "dynamic storage"
+    ],
+    "senseUid": "88c37011-ace3-4c04-a631-27b15780e33c",
+    "wordId": "2378620",
+    "pt": "['armazenamento dinâmico']"
+  },
+  {
+    "kana": "どうてきよびだし",
+    "en": [
+      "dynamic access"
+    ],
+    "senseUid": "c2f59258-b83a-467c-8423-dc117c57783d",
+    "wordId": "2378630",
+    "pt": "{\n  \"a\": [\"acesso dinâmico\"]\n"
+  },
+  {
+    "kana": "どうてきさいはいち",
+    "en": [
+      "dynamic relocation"
+    ],
+    "senseUid": "645eec0d-e635-4732-ae0e-53457afdcffb",
+    "wordId": "2378640",
+    "pt": "['realocação dinâmica']"
+  },
+  {
+    "kana": "どうてきしげんわりふり",
+    "en": [
+      "dynamic resource allocation"
+    ],
+    "senseUid": "9201b61b-1769-43fc-8703-5bc85061441a",
+    "wordId": "2378650",
+    "pt": "['alocação dinâmica de recursos']"
+  },
+  {
+    "kana": "どうてきしげんわりふり",
+    "en": [
+      "dynamic resource allocation"
+    ],
+    "senseUid": "4732b255-16c2-418e-aa92-d41bf433a63a",
+    "wordId": "2378660",
+    "pt": "['alocação dinâmica de recursos']"
+  },
+  {
+    "kana": "どうてきそうちさいこうせい",
+    "en": [
+      "DDR",
+      "Dynamic Device Reconfiguration"
+    ],
+    "senseUid": "01d8439d-4275-48fd-9ac3-bd34e936ccbb",
+    "wordId": "2378670",
+    "pt": "{\n  \"a\": [\n    \"Reconfiguração Dinâmica de Dispositivo DDR\"\n  ]\n"
+  },
+  {
+    "kana": "どうてきてきごうせい",
+    "en": [
+      "dynamic conformance"
+    ],
+    "senseUid": "be111c06-f779-4df1-8601-572f1da75b98",
+    "wordId": "2378680",
+    "pt": "{\n  \"a\": [\"conformidade dinâmica\"]\n"
+  },
+  {
+    "kana": "どうてきてきごうせいようけん",
+    "en": [
+      "dynamic conformance requirements"
+    ],
+    "senseUid": "612224f8-595c-4812-9ea2-b0427ac4d5d0",
+    "wordId": "2378690",
+    "pt": "{\n  \"a\": [\"requisitos dinâmicos de conformidade\"]\n"
+  },
+  {
+    "kana": "どういエンティティ",
+    "en": [
+      "peer-entities"
+    ],
+    "senseUid": "7fb6b4ba-18c5-4a4a-9f78-bb54bac2f32b",
+    "wordId": "2378700",
+    "pt": "{\n  \"a\": [\"entidades pares\"]\n"
+  },
+  {
+    "kana": "どういエンティティにんしょう",
+    "en": [
+      "peer-entity authentication"
+    ],
+    "senseUid": "6565f690-a170-4d2d-b9f1-e80d3e354e4f",
+    "wordId": "2378720",
+    "pt": "{\n  \"a\": [\"autenticação entre entidades\"]\n"
+  },
+  {
+    "kana": "どういれつ",
+    "en": [
+      "array"
+    ],
+    "senseUid": "3e4af1bb-2adf-4656-8853-95bcafa6342b",
+    "wordId": "2378730",
+    "pt": "['arranjo']"
+  },
+  {
+    "kana": "どういつぶんぷ",
+    "en": [
+      "uniform distribution"
+    ],
+    "senseUid": "407a08b2-6686-4ca5-a57d-1f8b25e3b4c5",
+    "wordId": "2378750",
+    "pt": "{\n  \"a\": [\"distribuição uniforme\"]\n"
+  },
+  {
+    "kana": "どうかくかんけい",
+    "en": [
+      "coordinate relation"
+    ],
+    "senseUid": "0fa4b1de-34e5-42c5-9309-aa4cea9af0cd",
+    "wordId": "2378770",
+    "pt": "['relação de coordenadas']"
+  },
+  {
+    "kana": "どうきがとれる",
+    "en": [
+      "to be synchronized"
+    ],
+    "senseUid": "1ba347b1-ddf4-42e4-a1d6-f1984b200337",
+    "wordId": "2378780",
+    "pt": "['estar em sintonia', 'ficar sincronizado', 'alcançar harmonia']"
+  },
+  {
+    "kana": "どうきをとる",
+    "en": [
+      "to synchronize"
+    ],
+    "senseUid": "b82a0b3f-ab6c-4c91-8eb6-58680c19bd87",
+    "wordId": "2378790",
+    "pt": "['sincronizar os movimentos']"
+  },
+  {
+    "kana": "どうきデータリンクせいぎょ",
+    "en": [
+      "Synchronous Data Link Control",
+      "SDLC"
+    ],
+    "senseUid": "3c33b9a0-ede2-427f-8f4c-fc678515b35f",
+    "wordId": "2378800",
+    "pt": "{\n  \"a\": [\"Controle de Link de Dados Síncrono\"]\n"
+  },
+  {
+    "kana": "どうきデジタルハイアラキー",
+    "en": [
+      "Synchronous Digital Hierarchy",
+      "SDH"
+    ],
+    "senseUid": "f2e62db4-f350-4ee3-a5d2-dcbb61dd79e2",
+    "wordId": "2378810",
+    "pt": "{\n  \"a\": [\n    \"Hierarquia Digital Síncrona\"\n  ]\n"
+  },
+  {
+    "kana": "どうきビットストリーム",
+    "en": [
+      "synchronous bit stream"
+    ],
+    "senseUid": "1616bf37-0044-4cd2-9e04-28b68950ab53",
+    "wordId": "2378820",
+    "pt": "['fluxo de bits síncrono']"
+  },
+  {
+    "kana": "どうきか",
+    "en": [
+      "synchronization"
+    ],
+    "senseUid": "50fdc460-7014-4ad6-9bf2-28582dc73e7b",
+    "wordId": "2378830",
+    "pt": "['sincronização']"
+  },
+  {
+    "kana": "どうきてき",
+    "en": [
+      "synchronous"
+    ],
+    "senseUid": "d4853854-1be9-45c1-b07c-1fdc4eca3a0f",
+    "wordId": "2378840",
+    "pt": "['sincrônico']"
+  },
+  {
+    "kana": "どうきてんしきべつし",
+    "en": [
+      "syncpoint identifier"
+    ],
+    "senseUid": "b05fdfd9-5ab3-4677-8db0-946830fe8e86",
+    "wordId": "2378860",
+    "pt": "{\n  \"a\": [\"identificador de ponto de sincronização\"]\n"
+  },
+  {
+    "kana": "どうきでんそう",
+    "en": [
+      "synchronous transmission"
+    ],
+    "senseUid": "db5147e7-ebae-48d8-9208-4b3de9bfe703",
+    "wordId": "2378870",
+    "pt": "['transmissão síncrona']"
+  },
+  {
+    "kana": "どうぎめい",
+    "en": [
+      "synonymous name",
+      "synonym"
+    ],
+    "senseUid": "55607052-dd8f-40fd-8f5b-b0a972665728",
+    "wordId": "2378890",
+    "pt": "{\n  \"a\": [\n    \"nome sinônimo\",\n    \"nome equivalente\"\n  ]\n"
+  },
+  {
+    "kana": "どうぎせい",
+    "en": [
+      "synonymy",
+      "synonymity"
+    ],
+    "senseUid": "b12f7b77-5e7d-44b7-8bf4-0452bcc57092",
+    "wordId": "2378880",
+    "pt": "{\n  \"a\": [\n    \"sinonímia\",\n    \"sinonímia (a relação ou estado de palavras que têm o mesmo ou quase o mesmo significado; どうぎせい refere-se ao conceito de palavras sinônimas, enfatizando a equivalência de sentido entre elas, como entendido na linguística japonesa)\"\n  ]\n"
+  },
+  {
+    "kana": "どうけいいぎせい",
+    "en": [
+      "homography"
+    ],
+    "senseUid": "bdfe6dfb-d9a9-46e1-8449-4bfa3217aa51",
+    "wordId": "2378910",
+    "pt": "{\n  \"a\": [\"homenagem\", \"respeito cerimonial\", \"ato de reverência\"]\n"
+  },
+  {
+    "kana": "どうけいどうおんいぎせい",
+    "en": [
+      "homonymy",
+      "homonymity"
+    ],
+    "senseUid": "87cfae8c-4141-4d17-88dc-1b5651f77818",
+    "wordId": "2378920",
+    "pt": "{\n  \"a\": [\n    \"homonímia\",\n    \"homonimidade\"\n  ]\n"
+  },
+  {
+    "kana": "どうじかん",
+    "en": [
+      "same time (of day)"
+    ],
+    "senseUid": "72b982b3-4997-4e37-b949-3334e7c3d8cb",
+    "wordId": "2378930",
+    "pt": "['mesma hora do dia']"
+  },
+  {
+    "kana": "どうしゅけいさんきネットワーク",
+    "en": [
+      "homogeneous computer network"
+    ],
+    "senseUid": "4a9c1c77-b8e8-4a82-8383-5cde2f02fc58",
+    "wordId": "2378940",
+    "pt": "{\n  \"a\": [\"rede homogênea de computadores\"]\n"
+  },
+  {
+    "kana": "どうそうでんあつ",
+    "en": [
+      "common mode voltage"
+    ],
+    "senseUid": "6f9b186b-ed4a-4970-a6f4-4893fa4a69e5",
+    "wordId": "2378950",
+    "pt": "['tensão de modo comum']"
+  },
+  {
+    "kana": "どうほう",
+    "en": [
+      "broadcast"
+    ],
+    "senseUid": "40e5711a-951e-46dc-969d-8df2a926cdbd",
+    "wordId": "2378970",
+    "pt": "['transmissão']"
+  },
+  {
+    "kana": "どうほうサービス",
+    "en": [
+      "multiple addressing service"
+    ],
+    "senseUid": "5d9bc2eb-7e8a-4a6b-8d4a-722f1ca8ba7a",
+    "wordId": "2378980",
+    "pt": "['serviço de endereçamento múltiplo']"
+  },
+  {
+    "kana": "どうそうぶんじょきょ",
+    "en": [
+      "common mode rejection"
+    ],
+    "senseUid": "08f0715c-d484-473d-a0b6-e1e64b30a3ec",
+    "wordId": "2378960",
+    "pt": "['rejeição de modo comum']"
+  },
+  {
+    "kana": "どうほうつうしん",
+    "en": [
+      "broadcast communication"
+    ],
+    "senseUid": "e48de0de-5955-4fc6-b29f-57f665059441",
+    "wordId": "2378990",
+    "pt": "{\n  \"a\": [\"comunicação de transmissão\"]\n"
+  },
+  {
+    "kana": "どうほうでんそう",
+    "en": [
+      "broadcast transmission"
+    ],
+    "senseUid": "6e969233-33ef-499b-996a-4aa7963d2601",
+    "wordId": "2379000",
+    "pt": "{\n  \"a\": [\"transmissão por difusão\"]\n"
+  },
+  {
+    "kana": "どうようび",
+    "en": [
+      "same day (of the week)"
+    ],
+    "senseUid": "e00aa6e8-6d33-4579-ab9a-2951ed3d81ca",
+    "wordId": "2379010",
+    "pt": "['mesmo dia da semana']"
+  },
+  {
+    "kana": "どうつうしけん",
+    "en": [
+      "continuity test"
+    ],
+    "senseUid": "142d43cc-9cb8-4729-9b71-9b6ab1b11ac2",
+    "wordId": "2379020",
+    "pt": "['teste de continuidade']"
+  },
+  {
+    "kana": "どうにゅうずみ",
+    "en": [
+      "already introduced",
+      "already installed",
+      "already implemented",
+      "already in place"
+    ],
+    "senseUid": "a1fa975e-863a-43d1-a455-22e78dddceab",
+    "wordId": "2379030",
+    "pt": "['já introduzido', 'já instalado', 'já implementado', 'já em funcionamento']"
+  },
+  {
+    "kana": "どうろこうつうじょうほうつうしんシステム",
+    "en": [
+      "VICS",
+      "Vehicle Information and Communication Systems"
+    ],
+    "senseUid": "3c434490-db4e-4ef0-81e3-b651d82dcf8f",
+    "wordId": "2379040",
+    "pt": "{\n  \"a\": [\n    \"Sistema de Informação e Comunicação de Tráfego Rodoviário (VICS)\"\n  ]\n"
+  },
+  {
+    "kana": "とくめいエフティーピー",
+    "en": [
+      "anonymous FTP"
+    ],
+    "senseUid": "df64a245-ff9d-4e12-8782-46cdf3fc6cf5",
+    "wordId": "2379050",
+    "pt": "['FTP anônimo']"
+  },
+  {
+    "kana": "とくいデータ",
+    "en": [
+      "unique data",
+      "non-typical data"
+    ],
+    "senseUid": "cccdf382-6fe2-425a-9dd6-2025deb55d74",
+    "wordId": "2379060",
+    "pt": "['dados únicos', 'dados não típicos']"
+  },
+  {
+    "kana": "とっけんグループ",
+    "en": [
+      "privileged groups"
+    ],
+    "senseUid": "e8ad4126-afdd-4250-8b4f-aa3fed519106",
+    "wordId": "2379070",
+    "pt": "{\n  \"a\": [\"grupos privilegiados\"]\n"
+  },
+  {
+    "kana": "とっけんユーザ",
+    "en": [
+      "privileged user",
+      "super user"
+    ],
+    "senseUid": "11fe7775-f072-479b-9312-ddf5be00b703",
+    "wordId": "2379080",
+    "pt": "['usuário privilegiado', 'superusuário']"
+  },
+  {
+    "kana": "とっけんぞくせいしょうめい",
+    "en": [
+      "Privilege-Attribute-Certificate"
+    ],
+    "senseUid": "a103348d-a042-4737-9ebe-8ff403d2673f",
+    "wordId": "2379090",
+    "pt": "['Certificado de Atributo de Privilégio']"
+  },
+  {
+    "kana": "とっけんめいれい",
+    "en": [
+      "privileged instruction"
+    ],
+    "senseUid": "3ef256f9-5f10-4932-aae9-72437632a685",
+    "wordId": "2379100",
+    "pt": "{\n  \"a\": [\"instrução privilegiada\"]\n"
+  },
+  {
+    "kana": "とくしゅアクセス",
+    "en": [
+      "specialized access"
+    ],
+    "senseUid": "b92e6dcc-942b-4a24-9f3f-6969539e8d1d",
+    "wordId": "2379110",
+    "pt": "['acesso especializado']"
+  },
+  {
+    "kana": "とくしゅレジスタ",
+    "en": [
+      "special register"
+    ],
+    "senseUid": "30c3cf6f-ea4a-4670-8c4b-4e63908896ba",
+    "wordId": "2379120",
+    "pt": "['registrador especial']"
+  },
+  {
+    "kana": "とくしゅもじ",
+    "en": [
+      "special character"
+    ],
+    "senseUid": "5795b71d-0435-4c9e-951f-f5ac9346935e",
+    "wordId": "2379140",
+    "pt": "['caractere especial']"
+  },
+  {
+    "kana": "とくしゅはいたつ",
+    "en": [
+      "special delivery",
+      "PD PR"
+    ],
+    "senseUid": "1eb288a2-6327-4fb4-9a9b-6e393187141d",
+    "wordId": "2379130",
+    "pt": "['entrega especial']"
+  },
+  {
+    "kana": "とくしゅもじご",
+    "en": [
+      "special-character word"
+    ],
+    "senseUid": "e895c791-9999-4541-8026-6010bacdd492",
+    "wordId": "2379150",
+    "pt": "{\n  \"a\": [\"palavra de caractere especial\"]\n"
+  },
+  {
+    "kana": "とくしゅめい",
+    "en": [
+      "special-names"
+    ],
+    "senseUid": "77294304-7e61-4b49-8ffa-f0ada2ad91c1",
+    "wordId": "2379160",
+    "pt": "{\n  \"a\": [\"nomes especiais\"]\n"
+  },
+  {
+    "kana": "とくしゅめいきじゅつこう",
+    "en": [
+      "special names entry"
+    ],
+    "senseUid": "dc8d79c9-6581-4b49-8038-4c8f5ad3ce05",
+    "wordId": "2379170",
+    "pt": "['entrada de nomes especiais']"
+  },
+  {
+    "kana": "とくちゅうソフトウェア",
+    "en": [
+      "custom software"
+    ],
+    "senseUid": "6e90df99-9ec7-4c45-b951-e6404e0698d3",
+    "wordId": "2379180",
+    "pt": "['software personalizado']"
+  },
+  {
+    "kana": "とくていのしょり",
+    "en": [
+      "specific task"
+    ],
+    "senseUid": "636e3297-a0e6-4d75-9097-d08ccb49a866",
+    "wordId": "2379190",
+    "pt": "['tarefa específica']"
+  },
+  {
+    "kana": "とくていわりつけこうぞう",
+    "en": [
+      "specific layout structure"
+    ],
+    "senseUid": "57f4fbf4-b188-4628-9b25-fdf3103d272b",
+    "wordId": "2379210",
+    "pt": "{\n  \"a\": [\"estrutura de layout específica\"]\n"
+  },
+  {
+    "kana": "とくていきごう",
+    "en": [
+      "identifier"
+    ],
+    "senseUid": "29e7c781-11a2-4f0f-bdc4-cbbc4d84c1b9",
+    "wordId": "2379220",
+    "pt": "['identificador']"
+  },
+  {
+    "kana": "とくていぎょうむむきげんご",
+    "en": [
+      "application-oriented language"
+    ],
+    "senseUid": "ace79c17-6a25-4906-aa97-3a3156383447",
+    "wordId": "2379230",
+    "pt": "['linguagem orientada para aplicação']"
+  },
+  {
+    "kana": "とくていし",
+    "en": [
+      "designator"
+    ],
+    "senseUid": "01755b0b-1b69-448a-aeae-9fc9f7226cef",
+    "wordId": "2379240",
+    "pt": "{\n  \"a\": [\n    \"designador\"\n  ]\n"
+  },
+  {
+    "kana": "とくていすうじ",
+    "en": [
+      "significant digit"
+    ],
+    "senseUid": "e09fb511-0323-4bf8-bf6f-de754fbacdd0",
+    "wordId": "2379250",
+    "pt": "['algarismo significativo']"
+  },
+  {
+    "kana": "とくていもじデータじったい",
+    "en": [
+      "specific character data entity"
+    ],
+    "senseUid": "d23c9286-ea50-4a25-9947-7d9f301f9b60",
+    "wordId": "2379260",
+    "pt": "{\n  \"a\": [\"entidade de dados de caractere específico\"]\n"
+  },
+  {
+    "kana": "とくていようとむけアイシー",
+    "en": [
+      "Application Specific Integrated Circuit"
+    ],
+    "senseUid": "7b802c92-14fe-4c26-91c1-701a004d71ad",
+    "wordId": "2379270",
+    "pt": "['Circuito Integrado de Aplicação Específica']"
+  },
+  {
+    "kana": "とくていようとむけしゅうせきかいろ",
+    "en": [
+      "Application-Specific Integrated Circuit",
+      "ASIC"
+    ],
+    "senseUid": "421f43eb-d994-4ae8-976d-1f425cbb1882",
+    "wordId": "2379280",
+    "pt": "{\n  \"a\": [\n    \"Circuito Integrado de Aplicação Específica\"\n  ]\n"
+  },
+  {
+    "kana": "とくていろんりこうぞう",
+    "en": [
+      "specific logical structure"
+    ],
+    "senseUid": "a282e7c5-bc94-47a8-9008-f28832205719",
+    "wordId": "2379290",
+    "pt": "['estrutura lógica específica']"
+  },
+  {
+    "kana": "どくだんてき",
+    "en": [
+      "dogmatic",
+      "arbitrary"
+    ],
+    "senseUid": "0e17a4f6-7947-4fd8-b955-1e0ae3417f25",
+    "wordId": "2379300",
+    "pt": "['dogmático', 'arbitrário']"
+  },
+  {
+    "kana": "どくりつコンパイル",
+    "en": [
+      "independent compilation",
+      "separate compilation"
+    ],
+    "senseUid": "0892ac45-c6c0-467c-8c62-8199482f6279",
+    "wordId": "2379320",
+    "pt": "{\n  \"a\": [\n    \"compilação independente\",\n    \"compilação separada\"\n  ]\n"
+  },
+  {
+    "kana": "どくりつユティリティプログラム",
+    "en": [
+      "independent utility program"
+    ],
+    "senseUid": "8a21bfe7-5f99-4485-ae77-bf504f70d36f",
+    "wordId": "2379340",
+    "pt": "{\n  \"a\": [\"programa utilitário independente\"]\n"
+  },
+  {
+    "kana": "どくりつこうもく",
+    "en": [
+      "noncontiguous item"
+    ],
+    "senseUid": "043ed890-7b4b-475d-a049-cb247ad1a885",
+    "wordId": "2379370",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"どくりつこうもく\",\n      \"gloss\": \"item não contíguo\"\n    \n  ]\n"
+  },
+  {
+    "kana": "よみこみ",
+    "en": [
+      "reading",
+      "loading"
+    ],
+    "senseUid": "3c3ddf6a-cba1-4496-8923-0fbfbfd9fece",
+    "wordId": "2379380",
+    "pt": "['carregando', 'leitura']"
+  },
+  {
+    "kana": "よみこみきょか",
+    "en": [
+      "read permission"
+    ],
+    "senseUid": "3464d4d5-7f44-4377-b927-62bdd21fbcc5",
+    "wordId": "2379390",
+    "pt": "['permissão de leitura']"
+  },
+  {
+    "kana": "よみとりせんよう",
+    "en": [
+      "read-only"
+    ],
+    "senseUid": "c94dc9e6-158e-4b7f-9588-8ca85425060a",
+    "wordId": "2379400",
+    "pt": "['somente para leitura']"
+  },
+  {
+    "kana": "よみとりせんようメモリ",
+    "en": [
+      "read-only memory",
+      "ROM"
+    ],
+    "senseUid": "da4df2d8-640d-44ad-830b-b2dfcf7df7e8",
+    "wordId": "2379410",
+    "pt": "['memória somente de leitura']"
+  },
+  {
+    "kana": "よみとりせんようモード",
+    "en": [
+      "read only mode"
+    ],
+    "senseUid": "e87cb768-5aac-447f-b29b-24d4f507f835",
+    "wordId": "2379420",
+    "pt": "{\n  \"a\": [\"modo exclusivo para leitura\"]\n"
+  },
+  {
+    "kana": "よみだしせんようメモリ",
+    "en": [
+      "read-only memory",
+      "ROM"
+    ],
+    "senseUid": "5791c725-a4a0-4abb-96b1-2a8268200344",
+    "wordId": "2379430",
+    "pt": "{\n  \"a\": [\"memória somente de leitura\"]\n"
+  },
+  {
+    "kana": "よみだしたんまつ",
+    "en": [
+      "readout terminal"
+    ],
+    "senseUid": "d9f7cfab-e33a-4f93-a1c2-b80a25ada56d",
+    "wordId": "2379440",
+    "pt": "['terminal de leitura']"
+  },
+  {
+    "kana": "よみだしほご",
+    "en": [
+      "read protection"
+    ],
+    "senseUid": "0d3546bb-c559-4f1e-85e7-dae618fe357e",
+    "wordId": "2379450",
+    "pt": "{\n  \"a\": [\"proteção de leitura\"]\n"
+  },
+  {
+    "kana": "よみとりサイクルじかん",
+    "en": [
+      "read cycle time"
+    ],
+    "senseUid": "16d5a014-4920-4376-b534-a3bda45de7be",
+    "wordId": "2379460",
+    "pt": "['tempo de ciclo de leitura']"
+  }
+]

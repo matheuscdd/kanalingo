@@ -1,0 +1,912 @@
+[
+  {
+    "kana": "アウトラインプロセッサ",
+    "en": [
+      "outline processor",
+      "outliner"
+    ],
+    "senseUid": "b3e4865a-2157-4ae7-9c03-cd9264be5b2f",
+    "wordId": "2278600",
+    "pt": "['processador de estrutura', 'editor de tópicos']"
+  },
+  {
+    "kana": "アウトラインレベル",
+    "en": [
+      "outline level"
+    ],
+    "senseUid": "08c174d8-5efa-4a1d-a27c-95920305b6e4",
+    "wordId": "2278620",
+    "pt": "['nível de estrutura']"
+  },
+  {
+    "kana": "アカウンティングファイル",
+    "en": [
+      "accounting file"
+    ],
+    "senseUid": "d890c00b-2e0e-4e42-9abe-4279a165dbb5",
+    "wordId": "2278630",
+    "pt": "{\n  \"a\": [\"arquivo de contabilidade\"]\n"
+  },
+  {
+    "kana": "アカウントエイリアス",
+    "en": [
+      "account alias"
+    ],
+    "senseUid": "800114e5-0f86-43c8-ae87-ec5e30f6a099",
+    "wordId": "2278640",
+    "pt": "{\n  \"a\": [\"Apelido de conta\"]\n"
+  },
+  {
+    "kana": "アカウントドメイン",
+    "en": [
+      "account domain"
+    ],
+    "senseUid": "d9f22a52-adfa-45a5-a039-dcb42596614f",
+    "wordId": "2278650",
+    "pt": "['domínio de conta']"
+  },
+  {
+    "kana": "アカウントポリシー",
+    "en": [
+      "account policy"
+    ],
+    "senseUid": "30e489a1-1b89-4aa4-99d5-7f0abb2587c1",
+    "wordId": "2278660",
+    "pt": "['Política de Conta']"
+  },
+  {
+    "kana": "アカウントロックアウト",
+    "en": [
+      "account lockout"
+    ],
+    "senseUid": "0e1db316-9be7-43cf-b235-3dfdfd7b0efb",
+    "wordId": "2278670",
+    "pt": "['bloqueio de conta']"
+  },
+  {
+    "kana": "アカデミックパッケージ",
+    "en": [
+      "academic package"
+    ],
+    "senseUid": "45d05b76-2393-4cd5-a6f7-a67d0d8e57ea",
+    "wordId": "2278680",
+    "pt": "['pacote acadêmico']"
+  },
+  {
+    "kana": "アクションゲーム",
+    "en": [
+      "action game"
+    ],
+    "senseUid": "f3788489-2646-4a98-8074-1f7c8f770d41",
+    "wordId": "2278710",
+    "pt": "['jogo de ação']"
+  },
+  {
+    "kana": "アクションタイプ",
+    "en": [
+      "action type"
+    ],
+    "senseUid": "ddacbbb2-cded-48de-be87-d8915f9640f1",
+    "wordId": "2278720",
+    "pt": "['tipo de ação']"
+  },
+  {
+    "kana": "アクセサ",
+    "en": [
+      "accessor"
+    ],
+    "senseUid": "e9990da5-780c-41c8-a47a-90612621419a",
+    "wordId": "2278730",
+    "pt": "{\n  \"a\": [\n    \"acessório\"\n  ]\n"
+  },
+  {
+    "kana": "アクセスアーム",
+    "en": [
+      "access arm"
+    ],
+    "senseUid": "2bd22c74-f0b5-4fb7-8d3f-38c9c8778f6d",
+    "wordId": "2278750",
+    "pt": "['braço de acesso']"
+  },
+  {
+    "kana": "アクセスキー",
+    "en": [
+      "access key"
+    ],
+    "senseUid": "e9271816-a310-4914-829f-5604b768e3db",
+    "wordId": "2278760",
+    "pt": "['tecla de acesso']"
+  },
+  {
+    "kana": "アクセスコンテキスト",
+    "en": [
+      "access context"
+    ],
+    "senseUid": "76165fbc-0713-41ee-b238-2e159a1eadf9",
+    "wordId": "2278770",
+    "pt": "['contexto de acesso']"
+  },
+  {
+    "kana": "アクセスコントロールリスト",
+    "en": [
+      "access control list",
+      "ACL"
+    ],
+    "senseUid": "80062f2b-7d35-4410-a194-029acd4909d2",
+    "wordId": "2278780",
+    "pt": "{\n  \"a\": [\n    \"lista de controle de acesso\",\n    \"ACL\"\n  ]\n"
+  },
+  {
+    "kana": "アクセススイッチ",
+    "en": [
+      "access switch"
+    ],
+    "senseUid": "20e5052e-ae4d-45d6-b9eb-7d171cc54721",
+    "wordId": "2278790",
+    "pt": "['switch de acesso']"
+  },
+  {
+    "kana": "アクセススピード",
+    "en": [
+      "access speed"
+    ],
+    "senseUid": "87521845-3f39-4736-94c2-7308df8cf725",
+    "wordId": "2278800",
+    "pt": "['velocidade de acesso']"
+  },
+  {
+    "kana": "アクセスブロック",
+    "en": [
+      "access block"
+    ],
+    "senseUid": "e9ef91a1-9629-48de-a395-b0a9f6d410ec",
+    "wordId": "2278810",
+    "pt": "['bloqueio de acesso']"
+  },
+  {
+    "kana": "アクセスプロバイダ",
+    "en": [
+      "access provider"
+    ],
+    "senseUid": "8215176d-2608-4932-8816-eb103bc92c6a",
+    "wordId": "2278820",
+    "pt": "['provedor de acesso']"
+  },
+  {
+    "kana": "アクセスマスク",
+    "en": [
+      "access mask"
+    ],
+    "senseUid": "3a93c49f-8d04-4169-a7fb-ba98d3121031",
+    "wordId": "2278830",
+    "pt": "['máscara de acesso']"
+  },
+  {
+    "kana": "アクセスモード",
+    "en": [
+      "access mode"
+    ],
+    "senseUid": "94aaf2b4-2b5c-48b0-a5bc-adf1f8760ad3",
+    "wordId": "2278840",
+    "pt": "['modo de acesso']"
+  },
+  {
+    "kana": "アクセスレベル",
+    "en": [
+      "access level"
+    ],
+    "senseUid": "646a7ef0-18e0-46f4-95e4-9891e67dce26",
+    "wordId": "2278850",
+    "pt": "['nível de acesso']"
+  },
+  {
+    "kana": "アクセスログ",
+    "en": [
+      "access log"
+    ],
+    "senseUid": "1bdb762a-0195-444c-b3f5-7342653864a0",
+    "wordId": "2278860",
+    "pt": "['registro de acesso']"
+  },
+  {
+    "kana": "アクセスかのう",
+    "en": [
+      "accessible"
+    ],
+    "senseUid": "c5fe430f-2e8b-4e05-ba3c-dba232239342",
+    "wordId": "2278870",
+    "pt": "['acessível']"
+  },
+  {
+    "kana": "アクセスかいせん",
+    "en": [
+      "access line"
+    ],
+    "senseUid": "bab1418a-eac1-4e64-9cbf-6360d05e2208",
+    "wordId": "2278880",
+    "pt": "['linha de acesso']"
+  },
+  {
+    "kana": "アクセスかんり",
+    "en": [
+      "access management"
+    ],
+    "senseUid": "181cccc0-0429-40ca-a0e9-26f51f5e6ce0",
+    "wordId": "2278890",
+    "pt": "['gerenciamento de acesso']"
+  },
+  {
+    "kana": "アクセスきょか",
+    "en": [
+      "access permission"
+    ],
+    "senseUid": "0835637c-dc94-4523-870c-8eec1038b95e",
+    "wordId": "2278910",
+    "pt": "['Permissão de acesso']"
+  },
+  {
+    "kana": "アクセスけい",
+    "en": [
+      "access system"
+    ],
+    "senseUid": "5662722d-a0db-405e-9aaa-04bac6e878b6",
+    "wordId": "2278920",
+    "pt": "['sistema de acesso']"
+  },
+  {
+    "kana": "アクセスきこう",
+    "en": [
+      "access mechanism",
+      "actuator"
+    ],
+    "senseUid": "04574f6d-ce7c-4ccf-ad78-742938bfc0b6",
+    "wordId": "2278900",
+    "pt": "['mecanismo de acesso', 'atuador']"
+  },
+  {
+    "kana": "アクセスけんげん",
+    "en": [
+      "access authorizations"
+    ],
+    "senseUid": "0a3e91eb-6959-430d-b615-f8f28dc14fbc",
+    "wordId": "2278940",
+    "pt": "['autorizações de acesso']"
+  },
+  {
+    "kana": "アクセスじかん",
+    "en": [
+      "access time"
+    ],
+    "senseUid": "a0395c3b-1886-41a9-98a9-061dfa37a3ea",
+    "wordId": "2278950",
+    "pt": "['tempo de acesso']"
+  },
+  {
+    "kana": "アクセスしっぱいりつ",
+    "en": [
+      "failure rate"
+    ],
+    "senseUid": "421534cc-6925-4b56-8a1f-0f3d94bdf86a",
+    "wordId": "2278960",
+    "pt": "{\n  \"a\": [\"taxa de falha de acesso\"]\n"
+  },
+  {
+    "kana": "アクセスじょうほう",
+    "en": [
+      "access information"
+    ],
+    "senseUid": "f8ad3e72-8163-420f-bad1-280e505635b2",
+    "wordId": "2278970",
+    "pt": "['informações de acesso']"
+  },
+  {
+    "kana": "アクセスせいぎょ",
+    "en": [
+      "access control"
+    ],
+    "senseUid": "2286b8d4-5fb2-4477-9973-46f5c69cb34a",
+    "wordId": "2278980",
+    "pt": "['controle de acesso']"
+  },
+  {
+    "kana": "アクセスせいぎょフィールド",
+    "en": [
+      "access control field"
+    ],
+    "senseUid": "4f066ebb-877d-4682-a6b8-7a839289986b",
+    "wordId": "2278990",
+    "pt": "['campo de controle de acesso']"
+  },
+  {
+    "kana": "アクセスせいぎょいちらん",
+    "en": [
+      "access control list"
+    ],
+    "senseUid": "c1cb7663-9b71-4cf2-a5b9-5cbcc97cdab7",
+    "wordId": "2279000",
+    "pt": "['lista de controle de acesso']"
+  },
+  {
+    "kana": "アクセスせいぎょご",
+    "en": [
+      "access control word"
+    ],
+    "senseUid": "1e5a256e-2817-4258-a554-cdd9f9a43629",
+    "wordId": "2279010",
+    "pt": "['palavra de controle de acesso']"
+  },
+  {
+    "kana": "アクセスたんい",
+    "en": [
+      "Access Unit",
+      "AU"
+    ],
+    "senseUid": "3c4900eb-21e4-4b62-8346-506cfd0f2e28",
+    "wordId": "2279020",
+    "pt": "['Unidade de Acesso']"
+  },
+  {
+    "kana": "アクセスてん",
+    "en": [
+      "access point"
+    ],
+    "senseUid": "2362318c-e5e5-4285-b2b5-85a727145040",
+    "wordId": "2279030",
+    "pt": "['ponto de acesso']"
+  },
+  {
+    "kana": "アクセスばんごう",
+    "en": [
+      "access number"
+    ],
+    "senseUid": "5c9a21b5-a38f-428e-9ce7-015873af4759",
+    "wordId": "2279040",
+    "pt": "['número de acesso']"
+  },
+  {
+    "kana": "アクセスふのう",
+    "en": [
+      "unaccessible"
+    ],
+    "senseUid": "ac9280c4-50f7-402e-a97d-4f3d552c92be",
+    "wordId": "2279070",
+    "pt": "['inacessível']"
+  },
+  {
+    "kana": "アクセスほごてつづき",
+    "en": [
+      "access security procedure"
+    ],
+    "senseUid": "d16e7a42-e67c-41b5-955c-46d73e63ba01",
+    "wordId": "2279080",
+    "pt": "['procedimento de proteção de acesso']"
+  },
+  {
+    "kana": "アクセスほうしき",
+    "en": [
+      "access method"
+    ],
+    "senseUid": "23825ec8-039b-4896-a354-5864259c223b",
+    "wordId": "2279090",
+    "pt": "{\n  \"a\": [\n    \"método de acesso\"\n  ]\n"
+  },
+  {
+    "kana": "アクセスほう",
+    "en": [
+      "access method"
+    ],
+    "senseUid": "b89e01cc-0d49-4875-8bb5-fc0bac948b14",
+    "wordId": "2279110",
+    "pt": "['método de acesso']"
+  },
+  {
+    "kana": "アクセスもう",
+    "en": [
+      "access network"
+    ],
+    "senseUid": "33fc1293-531f-4838-a6e4-67973692c6ff",
+    "wordId": "2279120",
+    "pt": "{\n  \"a\": [\"rede de acesso\"]\n"
+  },
+  {
+    "kana": "アクセスりょうきん",
+    "en": [
+      "access charge",
+      "access fee"
+    ],
+    "senseUid": "ae30e3b4-3af4-47e3-ac5b-ca744eb8b72e",
+    "wordId": "2279140",
+    "pt": "['taxa de acesso', 'tarifa de acesso']"
+  },
+  {
+    "kana": "アクセスれいがい",
+    "en": [
+      "access exception"
+    ],
+    "senseUid": "41d3f404-0539-4b4a-ae2d-3236c5bcffb9",
+    "wordId": "2279150",
+    "pt": "['exceção de acesso']"
+  },
+  {
+    "kana": "アクセラレータカード",
+    "en": [
+      "accelerator card"
+    ],
+    "senseUid": "8bd97fb1-8b6b-43ca-abdc-c2e0ccb2072b",
+    "wordId": "2279170",
+    "pt": "['placa aceleradora']"
+  },
+  {
+    "kana": "アクセントつきもじ",
+    "en": [
+      "accented character"
+    ],
+    "senseUid": "ddbe2965-fa23-40c8-b190-a3f575b5332c",
+    "wordId": "2279180",
+    "pt": "{\n  \"a\": [\"caractere com acento\"]\n"
+  },
+  {
+    "kana": "アクチュエータ",
+    "en": [
+      "actuator",
+      "access mechanism (e.g. disk)"
+    ],
+    "senseUid": "eebfe17d-a735-45af-919a-177a420263ed",
+    "wordId": "2279190",
+    "pt": "{\n  \"a\": [\n    \"atuador\",\n    \"mecanismo de acesso (ex.: disco)\"\n  ]\n"
+  },
+  {
+    "kana": "アクティビティぞくせい",
+    "en": [
+      "activity attributes"
+    ],
+    "senseUid": "6022d491-d647-4e4b-8956-76ac705fe59d",
+    "wordId": "2279220",
+    "pt": "{\n  \"a\": [\"atributos de atividade\"]\n"
+  },
+  {
+    "kana": "アクティブなバス",
+    "en": [
+      "active bus"
+    ],
+    "senseUid": "48e71371-1bd5-4849-b3b5-7ab76971ba9d",
+    "wordId": "2279230",
+    "pt": "['ônibus ativo']"
+  },
+  {
+    "kana": "アクティブウィンドウ",
+    "en": [
+      "active window"
+    ],
+    "senseUid": "236191ab-b0fb-4842-8f86-58ecf2827dd2",
+    "wordId": "2279240",
+    "pt": "['janela ativa']"
+  },
+  {
+    "kana": "アクティブオブジェクト",
+    "en": [
+      "active object"
+    ],
+    "senseUid": "867bf7dd-2784-4eb8-81b7-6ee3b80089b6",
+    "wordId": "2279270",
+    "pt": "['objeto ativo']"
+  },
+  {
+    "kana": "アクティブキャッシュ",
+    "en": [
+      "active cache"
+    ],
+    "senseUid": "7b0802ae-dff5-48ac-b930-4b489e44ea76",
+    "wordId": "2279280",
+    "pt": "['cache ativo']"
+  },
+  {
+    "kana": "アクティブコンテンツ",
+    "en": [
+      "active content"
+    ],
+    "senseUid": "b5a2d728-c81c-4270-a646-62bf78b1294c",
+    "wordId": "2279290",
+    "pt": "['conteúdo ativo']"
+  },
+  {
+    "kana": "アクティブサーバーページ",
+    "en": [
+      "Active Server Page",
+      "ASP"
+    ],
+    "senseUid": "940096b8-05b2-445c-88a5-ab847073a096",
+    "wordId": "2279300",
+    "pt": "['Página de Servidor Ativa', 'ASP']"
+  },
+  {
+    "kana": "アクティブセットアップ",
+    "en": [
+      "active setup"
+    ],
+    "senseUid": "d33879ce-d6b5-41f1-afa9-b2502a85e105",
+    "wordId": "2279340",
+    "pt": "['configuração ativa']"
+  },
+  {
+    "kana": "アクティブスクリプト",
+    "en": [
+      "active script"
+    ],
+    "senseUid": "06faa904-3c34-4944-94fb-fb63c5f66039",
+    "wordId": "2279330",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"アクティブスクリプト\",\n      \"romaji\": \"akutibu sukuriputo\",\n      \"ingles\": \"active script\",\n      \"portugues\": \"script ativo\",\n      \"explicacao\": \"No contexto japonês de tecnologia, 'アクティブスクリプト' refere-se a um script (código) que é executado dinamicamente em uma página ou sistema, geralmente para adicionar interatividade ou funcionalidades automáticas.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "アクティブターミネータ",
+    "en": [
+      "active-terminator"
+    ],
+    "senseUid": "a4704f30-437d-46af-9834-c60ac60c057f",
+    "wordId": "2279360",
+    "pt": "['terminador ativo']"
+  },
+  {
+    "kana": "アクティブセル",
+    "en": [
+      "active cell"
+    ],
+    "senseUid": "df5d8a7e-bd64-46fe-bae8-3d1a44f17821",
+    "wordId": "2279350",
+    "pt": "['célula ativa']"
+  },
+  {
+    "kana": "アクティブチャネル",
+    "en": [
+      "active channel"
+    ],
+    "senseUid": "04aa9d9d-4f9b-436f-aeb4-fd280ccab159",
+    "wordId": "2279370",
+    "pt": "['canal ativo']"
+  },
+  {
+    "kana": "アクティブディレクトリ",
+    "en": [
+      "Active Directory"
+    ],
+    "senseUid": "62620443-8f07-4cab-b21c-e62319855662",
+    "wordId": "2279380",
+    "pt": "['Diretório Ativo']"
+  },
+  {
+    "kana": "アクティブデスクトップ",
+    "en": [
+      "Active Desktop"
+    ],
+    "senseUid": "c53fc11d-8fe1-4456-b05c-ae80e1adfe5f",
+    "wordId": "2279390",
+    "pt": "{\n  \"a\": [\"Área de Trabalho Ativa\"]\n"
+  },
+  {
+    "kana": "アクティブハブ",
+    "en": [
+      "active hub"
+    ],
+    "senseUid": "d89ec3aa-667e-43d4-a280-88585f5cddf8",
+    "wordId": "2279400",
+    "pt": "['hub ativo']"
+  },
+  {
+    "kana": "アクティブパール",
+    "en": [
+      "Active Perl"
+    ],
+    "senseUid": "7e86627f-9ab1-4db1-932c-81f094888898",
+    "wordId": "2279410",
+    "pt": "['Pérola Ativa']"
+  },
+  {
+    "kana": "アクティブファイル",
+    "en": [
+      "active file"
+    ],
+    "senseUid": "7887a7f6-7b66-4023-b568-61cebbaf6250",
+    "wordId": "2279420",
+    "pt": "['arquivo ativo']"
+  },
+  {
+    "kana": "アクティブプログラム",
+    "en": [
+      "active program"
+    ],
+    "senseUid": "5ecd8651-428a-4e6e-a13d-aab9295bf763",
+    "wordId": "2279430",
+    "pt": "['programa ativo']"
+  },
+  {
+    "kana": "アクティブマトリクスディスプレイ",
+    "en": [
+      "active matrix display"
+    ],
+    "senseUid": "74ad39a6-756c-42be-b397-d740a7d73c39",
+    "wordId": "2279440",
+    "pt": "['tela de matriz ativa']"
+  },
+  {
+    "kana": "アクティブマトリクスほうしき",
+    "en": [
+      "active matrix"
+    ],
+    "senseUid": "1fe1a27d-697f-47ab-afb4-cf26a4b0eb2c",
+    "wordId": "2279450",
+    "pt": "['método de matriz ativa']"
+  },
+  {
+    "kana": "アクティブロジックきのう",
+    "en": [
+      "active logic function"
+    ],
+    "senseUid": "6d29953a-28d2-49f9-a7a1-0bd84cafc4e7",
+    "wordId": "2279460",
+    "pt": "['função de lógica ativa']"
+  },
+  {
+    "kana": "アクティブか",
+    "en": [
+      "activation"
+    ],
+    "senseUid": "fb636922-0aaa-42ed-87b1-2c5244cbd39b",
+    "wordId": "2279470",
+    "pt": "['Ativação?']"
+  },
+  {
+    "kana": "アクノリッジ",
+    "en": [
+      "acknowledge"
+    ],
+    "senseUid": "2eea9773-7ab4-4c71-af47-6422e11354f1",
+    "wordId": "2279480",
+    "pt": "['reconhecer']"
+  },
+  {
+    "kana": "アゴラ",
+    "en": [
+      "agora (public open space in ancient Greece)"
+    ],
+    "senseUid": "be17bcb0-903e-4611-ba21-b9df1eb5091d",
+    "wordId": "2279490",
+    "pt": "{\n  \"a\": [\n    \"ágora (espaço público aberto na Grécia Antiga)\"\n  ]\n"
+  },
+  {
+    "kana": "アゴラ",
+    "en": [
+      "Agora (programming language)"
+    ],
+    "senseUid": "9f389072-f863-46f8-8a2b-f93bd43489da",
+    "wordId": "2279490",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"アゴラ\",\n      \"Português\": \"Agora (linguagem de programação)\",\n      \"Gloss\": [\"Agora (linguagem de programação)\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "アシスタントオブジェクト",
+    "en": [
+      "assistant object"
+    ],
+    "senseUid": "c233a4d0-2617-4c93-ae09-e2000cb4add8",
+    "wordId": "2279520",
+    "pt": "['objeto assistente']"
+  },
+  {
+    "kana": "アジマスかく",
+    "en": [
+      "azimuth angle"
+    ],
+    "senseUid": "78e563a6-f633-4aea-ab03-818058282729",
+    "wordId": "2279530",
+    "pt": "{\n  \"a\": [\"ângulo de azimute\"]\n"
+  },
+  {
+    "kana": "アジリティ",
+    "en": [
+      "agility"
+    ],
+    "senseUid": "a1b9081f-efd5-4bd3-b284-b79417c1f428",
+    "wordId": "2279540",
+    "pt": "['agilidade']"
+  },
+  {
+    "kana": "アジリティ",
+    "en": [
+      "agility (dog sport)"
+    ],
+    "senseUid": "845c4bbf-bd15-4707-a80d-23770ba35851",
+    "wordId": "2279540",
+    "pt": "['agilidade (esporte canino)']"
+  },
+  {
+    "kana": "アスキーファイル",
+    "en": [
+      "ASCII file"
+    ],
+    "senseUid": "41a1c797-fc67-480c-b4ec-cc8d88fdf3a8",
+    "wordId": "2279560",
+    "pt": "['arquivo ASCII']"
+  },
+  {
+    "kana": "アスキーモード",
+    "en": [
+      "ASCII mode"
+    ],
+    "senseUid": "1b54d81d-896a-445d-b5ae-bd389913db9a",
+    "wordId": "2279570",
+    "pt": "['modo ASCII']"
+  },
+  {
+    "kana": "アスピー",
+    "en": [
+      "ASPI (Advanced SCSI Programming Interface)"
+    ],
+    "senseUid": "ed6a4098-4773-4efb-8ad2-ded9acbd16c9",
+    "wordId": "2279600",
+    "pt": "{\n  \"a\": [\n    \"ASPI (Interface Avançada de Programação SCSI)\"\n  ]\n"
+  },
+  {
+    "kana": "アスペクトひ",
+    "en": [
+      "aspect ratio"
+    ],
+    "senseUid": "4904fcd0-c38b-4ace-86f6-9a96390c4f88",
+    "wordId": "2279620",
+    "pt": "['proporção de aspecto']"
+  },
+  {
+    "kana": "アスロン",
+    "en": [
+      "Athlon"
+    ],
+    "senseUid": "07b9088f-fab1-4c76-8249-894992408b5a",
+    "wordId": "2279630",
+    "pt": "['Athlon']"
+  },
+  {
+    "kana": "アセンダー",
+    "en": [
+      "ascender (typography)"
+    ],
+    "senseUid": "c0eeb90c-ca24-4253-8bea-f51d9b8c3c7a",
+    "wordId": "2279640",
+    "pt": "['ascendente (tipografia)']"
+  },
+  {
+    "kana": "アセンブラせいぎょめいれい",
+    "en": [
+      "assembler control instruction"
+    ],
+    "senseUid": "11abad8c-92e9-4482-8b5f-1b84710370d5",
+    "wordId": "2279670",
+    "pt": "['instrução de controle de assembler']"
+  },
+  {
+    "kana": "アセンブリキャッシュ",
+    "en": [
+      "assembly cache"
+    ],
+    "senseUid": "25d2237d-cf5d-4846-a8e8-913a88b1d293",
+    "wordId": "2279680",
+    "pt": "['cache de assembly']"
+  },
+  {
+    "kana": "アセンブリマニフェスト",
+    "en": [
+      "assembly manifest"
+    ],
+    "senseUid": "e13025c8-2d23-4f71-96cf-03825c2c1f1b",
+    "wordId": "2279690",
+    "pt": "{\n  \"a\": [\n    \"Manifesto de montagem\"\n  ]\n"
+  },
+  {
+    "kana": "アセンブリげんご",
+    "en": [
+      "assembly language"
+    ],
+    "senseUid": "810a4eb3-7760-45ba-aaca-1b22048c12da",
+    "wordId": "2279700",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"アセンブリげんご\",\n      \"gloss\": [\"linguagem de montagem\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "アセンブルじ",
+    "en": [
+      "assembly time"
+    ],
+    "senseUid": "ab1c0983-55a6-4915-93dc-ec0f6e714237",
+    "wordId": "2279710",
+    "pt": "['hora de montagem']"
+  },
+  {
+    "kana": "アセンブルじかん",
+    "en": [
+      "assembly time"
+    ],
+    "senseUid": "5a4d7046-3bf5-4d16-a0c5-23f90ce43fbb",
+    "wordId": "2279720",
+    "pt": "['hora do encontro']"
+  },
+  {
+    "kana": "アセンブルへんしゅう",
+    "en": [
+      "assemble edit"
+    ],
+    "senseUid": "7c964dfd-67c3-4a11-9b6d-251427deb5b5",
+    "wordId": "2279730",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"アセンブルへんしゅう\",\n      \"ingles\": \"assemble edit\",\n      \"portugues\": \"edição de montagem\"\n    \n  ]\n"
+  },
+  {
+    "kana": "アソシエーションせいぎょサービスようそ",
+    "en": [
+      "association control service element",
+      "ACSE"
+    ],
+    "senseUid": "f5c1e724-8cd7-456c-84cc-7e7b05a1d85b",
+    "wordId": "2279780",
+    "pt": "{\n  \"a\": [\n    \"elemento de serviço de controle de associação\"\n  ]\n"
+  },
+  {
+    "kana": "アソシエーションきどうがわ",
+    "en": [
+      "association-initiator"
+    ],
+    "senseUid": "a5d49e80-ef2b-4529-96a1-a44d21fc0e5e",
+    "wordId": "2279760",
+    "pt": "{\n  \"a\": [\"iniciador de associação\"]\n"
+  },
+  {
+    "kana": "アタッチファイル",
+    "en": [
+      "attach file"
+    ],
+    "senseUid": "5be49e12-b8c0-477c-9d1f-210502d74d0f",
+    "wordId": "2279810",
+    "pt": "{\n  \"a\": [\"anexar arquivo\"]\n"
+  },
+  {
+    "kana": "アタピー",
+    "en": [
+      "ATAPI",
+      "ATA packet interface"
+    ],
+    "senseUid": "778c394a-c456-4227-8e55-c4d18f6a8fdd",
+    "wordId": "2279830",
+    "pt": "{\n  \"a\": [\n    \"ATAPI\",\n    \"Interface de Pacote ATA\"\n  ]\n"
+  },
+  {
+    "kana": "アタッチメントユニットインタフェース",
+    "en": [
+      "attachment unit interface",
+      "AUI"
+    ],
+    "senseUid": "d288ffda-856e-4ccd-b077-995f45ceaf00",
+    "wordId": "2279820",
+    "pt": "['interface de unidade de acoplamento', 'AUI']"
+  },
+  {
+    "kana": "アダプタカード",
+    "en": [
+      "adaptor card"
+    ],
+    "senseUid": "b2175693-81e0-4e1f-be15-b1246c54d02a",
+    "wordId": "2279840",
+    "pt": "['placa adaptadora']"
+  },
+  {
+    "kana": "アダプテーションレイヤ",
+    "en": [
+      "adaptation layer"
+    ],
+    "senseUid": "cbac3453-0d93-41b7-9d24-0e855e64c5cb",
+    "wordId": "2279850",
+    "pt": "['camada de adaptação']"
+  },
+  {
+    "kana": "アダプテーションきのう",
+    "en": [
+      "adaptation function"
+    ],
+    "senseUid": "5ea2e54f-f1ea-41db-88ff-f69740b00d08",
+    "wordId": "2279860",
+    "pt": "['função de adaptação']"
+  }
+]

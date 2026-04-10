@@ -1,0 +1,955 @@
+[
+  {
+    "kana": "コーチン",
+    "en": [
+      "Cochin (breed of chicken)"
+    ],
+    "senseUid": "8e860b6c-e88e-4d87-8866-d1aa69e51f3b",
+    "wordId": "2183010",
+    "pt": "['Cochin (raça de galinha)']"
+  },
+  {
+    "kana": "はなのさき",
+    "en": [
+      "in front of your nose",
+      "right next to you"
+    ],
+    "senseUid": "175d6e7a-0a6b-4c7e-94be-a3a59c7b21dd",
+    "wordId": "2183020",
+    "pt": "['bem diante do seu nariz', 'bem ao seu lado']"
+  },
+  {
+    "kana": "はなのさき",
+    "en": [
+      "tip of one's nose"
+    ],
+    "senseUid": "8c255293-daee-4bf0-b872-ca6e6543b548",
+    "wordId": "2183020",
+    "pt": "['ponta do nariz']"
+  },
+  {
+    "kana": "めとはなのさき",
+    "en": [
+      "very close (to)",
+      "within a stone's throw (of)",
+      "a stone's throw away (from)"
+    ],
+    "senseUid": "22cdd99a-77df-4ee2-8320-c4487441f8e6",
+    "wordId": "2183030",
+    "pt": "['muito próximo (de)', 'a um passo (de)', 'a um palmo (de)']"
+  },
+  {
+    "kana": "はんすうせい",
+    "en": [
+      "haploidy"
+    ],
+    "senseUid": "9f7a022e-b320-44ef-8396-6e303bba2587",
+    "wordId": "2183040",
+    "pt": "['haploidia']"
+  },
+  {
+    "kana": "にばいたい",
+    "en": [
+      "diploid"
+    ],
+    "senseUid": "434079ec-4106-4fc0-beda-baa3245214b3",
+    "wordId": "2183060",
+    "pt": "['diplóide']"
+  },
+  {
+    "kana": "はんすうたい",
+    "en": [
+      "haploid"
+    ],
+    "senseUid": "7f88c83d-97af-45dd-8849-bd1c84227caf",
+    "wordId": "2183050",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"はんすうたい\",\n      \"portugues\": \"haploide\",\n      \"explicacao\": \"Célula ou organismo que possui apenas um conjunto de cromossomos, comum em gametas ou em certos estágios do ciclo de vida de plantas e fungos.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "きょくたい",
+    "en": [
+      "polar body (cell structure within the ovum)"
+    ],
+    "senseUid": "f7fca00d-91eb-4224-8b0f-1f3d25ca8799",
+    "wordId": "2183070",
+    "pt": "['corpo polar (estrutura celular dentro do óvulo)']"
+  },
+  {
+    "kana": "みのまわりのせわをする",
+    "en": [
+      "to wait on someone hand and foot",
+      "to take personal care of someone"
+    ],
+    "senseUid": "6d80f394-4a59-40c3-97ba-44dc51aa4ed5",
+    "wordId": "2183080",
+    "pt": "['cuidar pessoalmente de alguém', 'tomar conta das necessidades diárias de alguém']"
+  },
+  {
+    "kana": "せいしん",
+    "en": [
+      "(in the) Kobe area"
+    ],
+    "senseUid": "74bc0d9a-c411-461c-bcff-8662a6429c4e",
+    "wordId": "2183090",
+    "pt": "{\n  \"a\": [\"área de Kobe\"]\n"
+  },
+  {
+    "kana": "カラオケボックス",
+    "en": [
+      "karaoke box",
+      "club with individual rooms that can be rented with karaoke machines"
+    ],
+    "senseUid": "87551b82-0f2d-4b29-b24e-85b58ec4a6bf",
+    "wordId": "2183100",
+    "pt": "['karaokê box', 'estabelecimento com salas individuais que podem ser alugadas com máquinas de karaokê']"
+  },
+  {
+    "kana": "ピンヒール",
+    "en": [
+      "stiletto (high heels)"
+    ],
+    "senseUid": "81101ae0-0b16-4ff8-9dbf-4b958a410123",
+    "wordId": "2183110",
+    "pt": "['salto agulha']"
+  },
+  {
+    "kana": "さらうどん",
+    "en": [
+      "sara udon",
+      "Nagasaki dish of fried noodles with cabbage and other toppings"
+    ],
+    "senseUid": "deba1087-3605-48c4-aa28-210198a61dc4",
+    "wordId": "2183120",
+    "pt": "['sara udon', 'prato de Nagasaki de macarrão frito com repolho e outras coberturas']"
+  },
+  {
+    "kana": "イカゲソ",
+    "en": [
+      "squid tentacles"
+    ],
+    "senseUid": "8eda4e16-3f19-4606-a048-af06fe5e0eb9",
+    "wordId": "2183130",
+    "pt": "['tentáculos de lula']"
+  },
+  {
+    "kana": "インナーキャビネット",
+    "en": [
+      "inner cabinet"
+    ],
+    "senseUid": "e6615ad6-5032-487e-bed0-e77c339001ed",
+    "wordId": "2183150",
+    "pt": "['gabinete interno']"
+  },
+  {
+    "kana": "さきばしりえき",
+    "en": [
+      "pre-cum",
+      "pre-ejaculate",
+      "Cowper's fluid"
+    ],
+    "senseUid": "728cbeae-60f1-43c3-8144-d75652b943a0",
+    "wordId": "2183140",
+    "pt": "{\n  \"a\": [\n    \"líquido pré-ejaculatório\",\n    \"fluido pré-ejaculatório\",\n    \"fluido de Cowper\"\n  ]\n"
+  },
+  {
+    "kana": "インナーシティー",
+    "en": [
+      "inner city"
+    ],
+    "senseUid": "2207889d-eebc-44b9-a0b5-2545aed1d20e",
+    "wordId": "2183160",
+    "pt": "{\n  \"a\": [\"área central urbana\", \"centro urbano\", \"região central da cidade\"]\n"
+  },
+  {
+    "kana": "ダークエージ",
+    "en": [
+      "dark age",
+      "the Dark Ages"
+    ],
+    "senseUid": "9e9da4a2-26a0-4949-a967-5a3163b3c1dd",
+    "wordId": "2183170",
+    "pt": "{\n  \"a\": [\n    \"Idade das Trevas\",\n    \"as Idades das Trevas\"\n  ]\n"
+  },
+  {
+    "kana": "ダークサイド",
+    "en": [
+      "dark side"
+    ],
+    "senseUid": "463176b0-4556-4ed9-ae8e-0ba35d919fa3",
+    "wordId": "2183180",
+    "pt": "['lado sombrio']"
+  },
+  {
+    "kana": "アメリカンカジュアル",
+    "en": [
+      "American casual (fashion style)"
+    ],
+    "senseUid": "e6819f94-6742-451e-aaa2-59394d877c4d",
+    "wordId": "2183190",
+    "pt": "['casual americano (estilo de moda)']"
+  },
+  {
+    "kana": "ミリタリー",
+    "en": [
+      "military"
+    ],
+    "senseUid": "49f8ebbc-b0aa-41f1-9908-79a2fcc17e2e",
+    "wordId": "2183200",
+    "pt": "{\n  \"a\": [\"militar\"]\n"
+  },
+  {
+    "kana": "ライダースジャケット",
+    "en": [
+      "racing jacket"
+    ],
+    "senseUid": "96b2a169-03e5-44e3-92cc-7e1027a8814c",
+    "wordId": "2183210",
+    "pt": "['jaqueta de motociclista']"
+  },
+  {
+    "kana": "アームホール",
+    "en": [
+      "armhole",
+      "sleeve-hole"
+    ],
+    "senseUid": "daf253e1-1635-4a24-bb97-8f0c4ee69b22",
+    "wordId": "2183220",
+    "pt": "['cava', 'abertura da manga']"
+  },
+  {
+    "kana": "いはいをけがす",
+    "en": [
+      "to disgrace one's ancestors",
+      "to tarnish the honour of one's ancestors"
+    ],
+    "senseUid": "eff88fa7-ba7f-452a-89f6-6d6ac57a2349",
+    "wordId": "2183230",
+    "pt": "['desonrar os ancestrais', 'manchar a honra dos ancestrais']"
+  },
+  {
+    "kana": "いはいじょ",
+    "en": [
+      "site of a Buddhist mortuary tablet"
+    ],
+    "senseUid": "390b3fbc-9c6f-44c3-bdc6-2a7d2784b0cc",
+    "wordId": "2183240",
+    "pt": "{\n  \"a\": [\n    \"local de uma tábua mortuária budista\"\n  ]\n"
+  },
+  {
+    "kana": "こっぱい",
+    "en": [
+      "playing cards"
+    ],
+    "senseUid": "8fb179d6-3938-4548-be75-ef3a8e399cb7",
+    "wordId": "2183250",
+    "pt": "['cartas de jogar']"
+  },
+  {
+    "kana": "こっぱい",
+    "en": [
+      "mahjong tiles made of animal bone"
+    ],
+    "senseUid": "b137976a-aeab-447d-a932-8d36ef7f4712",
+    "wordId": "2183250",
+    "pt": "{\n  \"a\": [\"peças de mahjong feitas de osso de animal\"]\n"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "high school"
+    ],
+    "senseUid": "4e4208f5-2d1b-4c3c-998b-2ba4e9821f63",
+    "wordId": "2183260",
+    "pt": "['ensino médio']"
+  },
+  {
+    "kana": "かねにめがくらむ",
+    "en": [
+      "to be lost in lust for riches",
+      "to throw all caution and conscience away in pursuit of riches"
+    ],
+    "senseUid": "efcf6eb9-5b01-42fd-b367-10f67c8c5334",
+    "wordId": "2183270",
+    "pt": "{\n  \"a\": [\n    \"ficar cego pelo desejo de riqueza\",\n    \"jogar toda cautela e consciência fora em busca de dinheiro\"\n  ]\n"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "high"
+    ],
+    "senseUid": "4b1df4b3-e1fc-4d7f-9bc7-0aafac6bb4bf",
+    "wordId": "2183260",
+    "pt": "['alto']"
+  },
+  {
+    "kana": "わせだ",
+    "en": [
+      "field of early-blooming (or ripening) rice"
+    ],
+    "senseUid": "655abe47-2b70-4521-9505-e635f66dfc05",
+    "wordId": "2183280",
+    "pt": "{\n  \"a\": [\"Campo de arroz de maturação precoce\"]\n"
+  },
+  {
+    "kana": "くるめく",
+    "en": [
+      "to feel dizzy",
+      "to feel faint"
+    ],
+    "senseUid": "ac285f70-ec62-43dc-91f6-f4234b74a2ee",
+    "wordId": "2183290",
+    "pt": "{\n  \"a\": [\n    \"sentir-se tonto\",\n    \"sentir-se zonzo\",\n    \"ficar com a cabeça girando\",\n    \"sentir-se fraco (a ponto de desmaiar)\"\n  ]\n"
+  },
+  {
+    "kana": "くるめく",
+    "en": [
+      "to spin",
+      "to revolve",
+      "to twirl"
+    ],
+    "senseUid": "db3ece3b-ab2a-4364-b8ff-a45c9f532f72",
+    "wordId": "2183290",
+    "pt": "['girar', 'rodopiar', 'dar voltas']"
+  },
+  {
+    "kana": "まう",
+    "en": [
+      "to be dizzy",
+      "to be vertiginous"
+    ],
+    "senseUid": "1aaecb73-de52-4364-b2e7-26a0f72a5c65",
+    "wordId": "2183300",
+    "pt": "{\n  \"a\": [\"ficar tonto\", \"sentir vertigem\"]\n"
+  },
+  {
+    "kana": "めがくらむ",
+    "en": [
+      "to be dizzy",
+      "to be disoriented"
+    ],
+    "senseUid": "aa8b3259-4eba-44c8-8df1-044a4197226e",
+    "wordId": "2183310",
+    "pt": "['ficar tonto', 'ficar desorientado']"
+  },
+  {
+    "kana": "めがくらむ",
+    "en": [
+      "to be dazzled"
+    ],
+    "senseUid": "12614f08-2969-43d7-b2a8-065a4398b94e",
+    "wordId": "2183310",
+    "pt": "['ficar deslumbrado', 'ficar atordoado', 'ficar tonto']"
+  },
+  {
+    "kana": "めがくらむ",
+    "en": [
+      "to be lost in (greed, lust, etc.)"
+    ],
+    "senseUid": "93038092-bd5a-474d-9437-187fe56b1d85",
+    "wordId": "2183310",
+    "pt": "['ficar cego por (ganância, luxúria, etc.)']"
+  },
+  {
+    "kana": "ろせき",
+    "en": [
+      "halide"
+    ],
+    "senseUid": "1369313a-e6c1-4c5c-acb9-f7f3554f8147",
+    "wordId": "2183320",
+    "pt": "['haleto']"
+  },
+  {
+    "kana": "ばくにょう",
+    "en": [
+      "kanji \"wheat\" radical"
+    ],
+    "senseUid": "000c474a-e813-4b11-8920-beb2853cf8f0",
+    "wordId": "2183330",
+    "pt": "{\n  \"a\": [\n    \"Radical do kanji 'trigo'\"\n  ]\n"
+  },
+  {
+    "kana": "たそがれる",
+    "en": [
+      "to get dark after sunset",
+      "to turn to dusk",
+      "to fade into twilight"
+    ],
+    "senseUid": "3f450992-cf7f-4096-872e-c24956db79c2",
+    "wordId": "2183340",
+    "pt": "['escurecer após o pôr do sol', 'anoitecer', 'desvanecer-se no crepúsculo']"
+  },
+  {
+    "kana": "たそがれる",
+    "en": [
+      "to decline (after a peak)",
+      "to wane",
+      "to lose vigour"
+    ],
+    "senseUid": "c1ebc00f-64fe-4ccf-9c12-b3cd3fcef803",
+    "wordId": "2183340",
+    "pt": "['declinar (após um auge)', 'minguar', 'perder o vigor']"
+  },
+  {
+    "kana": "たそがれる",
+    "en": [
+      "to be lost in thought",
+      "to be in a pensive mood",
+      "to look melancholic"
+    ],
+    "senseUid": "334eb219-8a0f-4f51-b5e8-7fdf4fe70bcf",
+    "wordId": "2183340",
+    "pt": "['ficar pensativo', 'mergulhar em pensamentos', 'parecer melancólico']"
+  },
+  {
+    "kana": "まかんむり",
+    "en": [
+      "kanji \"dotted cliff\" radical (radical 53)"
+    ],
+    "senseUid": "02c65d02-f359-4ade-9ae9-268a79fa20dc",
+    "wordId": "2183350",
+    "pt": "{\n  \"a\": [\n    \"radical kanji 'penhasco pontilhado' (radical 53)\"\n  ]\n"
+  },
+  {
+    "kana": "あさかんむり",
+    "en": [
+      "kanji \"hemp\" radical at top"
+    ],
+    "senseUid": "a3ff4010-fd6b-4457-8c9e-c1eace4c3301",
+    "wordId": "2183360",
+    "pt": "{\n  \"a\": [\n    \"radical 'cânhamo' no topo (usado em kanji japoneses)\"\n  ]\n"
+  },
+  {
+    "kana": "くらきみち",
+    "en": [
+      "Hades",
+      "underworld",
+      "realm of the dead",
+      "other world"
+    ],
+    "senseUid": "f7f1e9a3-8044-4fe5-8f48-5b127afad613",
+    "wordId": "2183370",
+    "pt": "['Mundo dos mortos', 'submundo', 'Hades', 'outro mundo']"
+  },
+  {
+    "kana": "こんめい",
+    "en": [
+      "darkness",
+      "gloom"
+    ],
+    "senseUid": "3ddd1e49-7022-4302-8110-cc970989eb0a",
+    "wordId": "2183380",
+    "pt": "{\n  \"a\": [\"escuridão\", \"melancolia\"]\n"
+  },
+  {
+    "kana": "はなへん",
+    "en": [
+      "kanji \"nose\" radical at left"
+    ],
+    "senseUid": "d3a93aab-2021-4aef-98d1-22a8da299185",
+    "wordId": "2183390",
+    "pt": "['radical do kanji \"nariz\" à esquerda']"
+  },
+  {
+    "kana": "はへん",
+    "en": [
+      "kanji \"tooth\" radical at left"
+    ],
+    "senseUid": "cd53bd71-bb2c-43ed-91d9-98e19c098a0f",
+    "wordId": "2183400",
+    "pt": "{\n  \"a\": [\n    \"Radical do kanji 'dente' à esquerda\"\n  ]\n"
+  },
+  {
+    "kana": "めいばく",
+    "en": [
+      "dim and distant"
+    ],
+    "senseUid": "c75f17d4-c513-4be6-9045-df6646470cdc",
+    "wordId": "2183410",
+    "pt": "['distante e obscuro']"
+  },
+  {
+    "kana": "シャワーキャップ",
+    "en": [
+      "shower cap"
+    ],
+    "senseUid": "09159291-3395-4775-8964-e1b592564081",
+    "wordId": "2183420",
+    "pt": "['touca de banho']"
+  },
+  {
+    "kana": "ミアキス",
+    "en": [
+      "miacis"
+    ],
+    "senseUid": "f1f602af-9dd5-48d2-9d51-222661f8dab1",
+    "wordId": "2183430",
+    "pt": "['miacis']"
+  },
+  {
+    "kana": "めっちゃ",
+    "en": [
+      "extremely",
+      "very",
+      "really",
+      "super",
+      "so"
+    ],
+    "senseUid": "8342c269-e649-4c24-8068-9f40f529b343",
+    "wordId": "2183440",
+    "pt": "['extremamente', 'muito', 'realmente', 'super', 'tão']"
+  },
+  {
+    "kana": "ブルータス、おまえもか",
+    "en": [
+      "et tu, Brute?"
+    ],
+    "senseUid": "48bfaebc-c158-4480-8f8a-94ecdf6024c2",
+    "wordId": "2183450",
+    "pt": "['Até tu, Brutus?']"
+  },
+  {
+    "kana": "しい",
+    "en": [
+      "any beech tree of genus Castanopsis",
+      "chinquapin",
+      "chinkapin"
+    ],
+    "senseUid": "eea7ea29-1122-4599-97e2-716539b9f1b8",
+    "wordId": "2183460",
+    "pt": "{\n  \"a\": [\n    \"qualquer árvore de faia do gênero Castanopsis\",\n    \"castanheira-americana\",\n    \"chinquapin\"\n  ]\n"
+  },
+  {
+    "kana": "しいのき",
+    "en": [
+      "any beech tree of genus Castanopsis"
+    ],
+    "senseUid": "68d33e5b-04a1-4b6c-ba3c-e0b3f723562c",
+    "wordId": "2183470",
+    "pt": "['qualquer árvore-de-fagácea do gênero Castanopsis']"
+  },
+  {
+    "kana": "ようけい",
+    "en": [
+      "Japanese Western-style envelope (opening on the long dimension; numbered 0-7, each with different sizes)"
+    ],
+    "senseUid": "c4beb6b4-0a80-4b32-8d53-33cea1e65617",
+    "wordId": "2183480",
+    "pt": "['Envelope japonês estilo ocidental (abertura no lado mais longo; numerados de 0 a 7, cada um com tamanhos diferentes)']"
+  },
+  {
+    "kana": "かくけい",
+    "en": [
+      "-gon (as in pentagon, hexagon, etc.)"
+    ],
+    "senseUid": "50394ecb-4a98-4fd4-a9f9-fa2c39e9df56",
+    "wordId": "2183490",
+    "pt": "{\n  \"a\": [\n    \"-gono (como em pentágono, hexágono, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "めんてい",
+    "en": [
+      "driving license suspension"
+    ],
+    "senseUid": "b7e007d5-237e-4fa6-9ebf-b730c9a31f1b",
+    "wordId": "2183500",
+    "pt": "['suspensão da carteira de motorista']"
+  },
+  {
+    "kana": "めんきょていし",
+    "en": [
+      "driving license suspension"
+    ],
+    "senseUid": "563261cd-dd5b-4098-b5bf-48e4a4af4217",
+    "wordId": "2183510",
+    "pt": "['suspensão da carteira de motorista']"
+  },
+  {
+    "kana": "あいたくちがふさがらない",
+    "en": [
+      "dumbfounded",
+      "speechless",
+      "flabbergasted",
+      "openmouthed (with surprise)"
+    ],
+    "senseUid": "bf675ce9-52f8-4e29-ad78-6ec1f601e5af",
+    "wordId": "2183520",
+    "pt": "['Fiquei de boca aberta', 'Fiquei sem palavras', 'Fiquei pasmo', 'Fiquei boquiaberto']"
+  },
+  {
+    "kana": "すじをちがえる",
+    "en": [
+      "to pull a muscle",
+      "to strain a muscle"
+    ],
+    "senseUid": "0ba30a40-a5ef-4543-9476-78584589ce8e",
+    "wordId": "2183530",
+    "pt": "['puxar um músculo', 'distender um músculo']"
+  },
+  {
+    "kana": "ちゅういをひく",
+    "en": [
+      "to attract attention"
+    ],
+    "senseUid": "18edd77b-f6ca-41c3-9ff4-86fc97b6b5b2",
+    "wordId": "2183540",
+    "pt": "{\n  \"a\": [\n    \"atrair atenção\",\n    \"chamar atenção\"\n  ]\n"
+  },
+  {
+    "kana": "びんぼうくじをひく",
+    "en": [
+      "to get the short end of the stick",
+      "to get the bad end of a bargain"
+    ],
+    "senseUid": "8661c05b-78d6-4355-a91a-1145ab337994",
+    "wordId": "2183550",
+    "pt": "['ficar com a pior parte', 'levar a pior', 'sair no prejuízo']"
+  },
+  {
+    "kana": "いとをひく",
+    "en": [
+      "to pull (the puppet) strings",
+      "to direct things from behind the scenes"
+    ],
+    "senseUid": "7a7256b1-961f-47de-80b6-99c51678ea96",
+    "wordId": "2183560",
+    "pt": "['puxar as cordas (do fantoche)', 'dirigir as coisas nos bastidores']"
+  },
+  {
+    "kana": "いとをひく",
+    "en": [
+      "to stretch out (and keep going)",
+      "to linger on"
+    ],
+    "senseUid": "a3ab7072-f124-4a8d-ae70-5c26804a3213",
+    "wordId": "2183560",
+    "pt": "['prolongar', 'persistir', 'manter-se', 'perdurar']"
+  },
+  {
+    "kana": "くじをひく",
+    "en": [
+      "to draw lots"
+    ],
+    "senseUid": "90963af3-980e-4b6a-851b-6493be028f83",
+    "wordId": "2183570",
+    "pt": "{\n  \"a\": [\n    \"tirar a sorte\",\n    \"sortear\",\n    \"fazer sorteio\"\n  ]\n"
+  },
+  {
+    "kana": "かぜひく",
+    "en": [
+      "to catch a cold"
+    ],
+    "senseUid": "f2854da8-722b-4aef-b6f3-8e89ca6bcc4a",
+    "wordId": "2183580",
+    "pt": "['pegar um resfriado']"
+  },
+  {
+    "kana": "あとをひく",
+    "en": [
+      "to be moreish",
+      "to have a quality that encourages you to eat (drink) more of them after"
+    ],
+    "senseUid": "18f58313-3119-48b9-a571-3fe8f6c579a9",
+    "wordId": "2183590",
+    "pt": "['ser viciante', 'ter uma qualidade que faz você querer comer (ou beber) mais depois']"
+  },
+  {
+    "kana": "がいしゅつさき",
+    "en": [
+      "where one has gone to",
+      "place one has gone to",
+      "(outing) destination"
+    ],
+    "senseUid": "93b3e92d-f452-4f81-bfc3-d8a7c5d7e757",
+    "wordId": "2183600",
+    "pt": "['local para onde alguém foi', 'destino de saída', 'lugar para onde se foi']"
+  },
+  {
+    "kana": "あとをひく",
+    "en": [
+      "to have lingering effects"
+    ],
+    "senseUid": "1bdbb2f5-197a-4472-9e0c-0a16a86bd1f3",
+    "wordId": "2183590",
+    "pt": "['ter efeitos persistentes', 'deixar resquícios', 'ficar com um gosto/sensação que permanece']"
+  },
+  {
+    "kana": "びょうびょう",
+    "en": [
+      "slight",
+      "trifling"
+    ],
+    "senseUid": "d2cb8dd4-540d-403c-86b6-97a772476639",
+    "wordId": "2183610",
+    "pt": "{\n  \"a\": [\"ligeiro\", \"insignificante\"]\n"
+  },
+  {
+    "kana": "せいこんをかたむける",
+    "en": [
+      "to put one's heart and soul into something"
+    ],
+    "senseUid": "78a6aea3-ae00-471e-9deb-9d133d692c8e",
+    "wordId": "2183620",
+    "pt": "['dedicar-se de corpo e alma a algo', 'colocar todo o coração e alma em algo', 'entregar-se completamente a algo']"
+  },
+  {
+    "kana": "ワンランク",
+    "en": [
+      "one rank",
+      "one grade"
+    ],
+    "senseUid": "ae087c4f-ab3f-4ba3-bdb1-69b6d352ec2c",
+    "wordId": "2183640",
+    "pt": "{\n  \"a\": [\"um nível\", \"um grau\"]\n"
+  },
+  {
+    "kana": "きたきつね",
+    "en": [
+      "Ezo red fox (Vulpes vulpes schrencki)"
+    ],
+    "senseUid": "fd325506-4274-42a5-b01e-122457a7f10b",
+    "wordId": "2183630",
+    "pt": "{\n  \"a\": [\n    \"Raposa vermelha de Ezo (Vulpes vulpes schrencki)\"\n  ]\n"
+  },
+  {
+    "kana": "ヌバック",
+    "en": [
+      "nubuck (type of leather)"
+    ],
+    "senseUid": "72930b49-7fa8-4aab-b3a7-a3b15b380db4",
+    "wordId": "2183670",
+    "pt": "['nubuck (tipo de couro)']"
+  },
+  {
+    "kana": "アンクル",
+    "en": [
+      "uncle"
+    ],
+    "senseUid": "95b2e223-c299-4f13-944b-17b150c069ef",
+    "wordId": "2183650",
+    "pt": "['tio']"
+  },
+  {
+    "kana": "ホリスティック",
+    "en": [
+      "holistic"
+    ],
+    "senseUid": "1f9eb567-4fe2-43c7-92bd-6849a22f9a30",
+    "wordId": "2183680",
+    "pt": "{\n  \"a\": [\"holístico\"]\n"
+  },
+  {
+    "kana": "めいじょう",
+    "en": [
+      "famous winery",
+      "famous brewery"
+    ],
+    "senseUid": "da6a88a3-a795-4ed6-8ebe-0903f4be84d3",
+    "wordId": "2183690",
+    "pt": "{\n  \"a\": [\n    \"vinícola famosa\",\n    \"cervejaria famosa\"\n  ]\n"
+  },
+  {
+    "kana": "フローラル",
+    "en": [
+      "floral"
+    ],
+    "senseUid": "2cbed2d2-4d24-4293-b8cc-68f04de85a48",
+    "wordId": "2183700",
+    "pt": "['floral']"
+  },
+  {
+    "kana": "タンニン",
+    "en": [
+      "tannin"
+    ],
+    "senseUid": "6d81e1f8-07ea-4c51-b455-9d0600d81c1d",
+    "wordId": "2183710",
+    "pt": "{\n  \"a\": [\n    \"tanino\"\n  ]\n"
+  },
+  {
+    "kana": "シトラス",
+    "en": [
+      "citrus (fruit)"
+    ],
+    "senseUid": "31512d39-9598-40d0-ac0b-fde600d1b391",
+    "wordId": "2183720",
+    "pt": "['citrus']"
+  },
+  {
+    "kana": "ワインセラー",
+    "en": [
+      "wine cellar"
+    ],
+    "senseUid": "d8c73d23-b99a-4f37-98b5-f6727ec12a1a",
+    "wordId": "2183730",
+    "pt": "['adega de vinho']"
+  },
+  {
+    "kana": "けらまじか",
+    "en": [
+      "Kerama deer",
+      "Ryukyu sika (Cervus nippon keramae)"
+    ],
+    "senseUid": "c305dffa-ff7c-416a-9360-14cad4b6e35a",
+    "wordId": "2183740",
+    "pt": "{\n  \"a\": [\n    \"Cervo de Kerama\",\n    \"Sika de Ryukyu (Cervus nippon keramae)\"\n  ]\n"
+  },
+  {
+    "kana": "やくしか",
+    "en": [
+      "Yakushima sika (Cervus nippon yakushimae)"
+    ],
+    "senseUid": "95474b22-6476-43de-b106-5ee2d5bf9683",
+    "wordId": "2183750",
+    "pt": "{\n  \"a\": [\n    \"Cervo-sika de Yakushima (Cervus nippon yakushimae)\"\n  ]\n"
+  },
+  {
+    "kana": "えぞしか",
+    "en": [
+      "Hokkaido sika (Cervus nippon yesoensis)",
+      "Yezo sika"
+    ],
+    "senseUid": "c8e6fcbb-7971-40ac-87c4-1b0eb529f035",
+    "wordId": "2183760",
+    "pt": "['veado-sika de Hokkaido', 'veado-sika de Yezo']"
+  },
+  {
+    "kana": "たいわんじか",
+    "en": [
+      "Formosan sika",
+      "Taiwan sika (Cervus nippon taiouanus)"
+    ],
+    "senseUid": "9e828940-9fa5-4035-bb2c-059cacf796f2",
+    "wordId": "2183770",
+    "pt": "{\n  \"a\": [\n    \"Cervo-sika de Taiwan\",\n    \"Cervo-sika formosano (Cervus nippon taiouanus)\"\n  ]\n"
+  },
+  {
+    "kana": "スパイシー",
+    "en": [
+      "spicy"
+    ],
+    "senseUid": "6e92c1b0-c3e4-4723-a1ca-76d0c026a375",
+    "wordId": "2183780",
+    "pt": "['picante']"
+  },
+  {
+    "kana": "ターニング",
+    "en": [
+      "turning",
+      "revolution",
+      "rotation"
+    ],
+    "senseUid": "d5ef6f3d-13d3-4549-b110-6b97f9ed17e3",
+    "wordId": "2183790",
+    "pt": "['giro', 'rotação', 'revolução']"
+  },
+  {
+    "kana": "ターニングポイント",
+    "en": [
+      "turning point"
+    ],
+    "senseUid": "8c74f34c-bccf-4810-94f3-a4fcc3e6e4ad",
+    "wordId": "2183800",
+    "pt": "['ponto de virada']"
+  },
+  {
+    "kana": "ブラックベリー",
+    "en": [
+      "blackberry (esp. the common blackberry, Rubus fruticosus)"
+    ],
+    "senseUid": "5258480c-4c2c-4f05-8b93-6b9311f36691",
+    "wordId": "2183810",
+    "pt": "['amora-preta (especialmente a amora-preta comum, Rubus fruticosus)']"
+  },
+  {
+    "kana": "ジビエ",
+    "en": [
+      "wild game"
+    ],
+    "senseUid": "b946951b-7086-4085-bca5-3886831a8091",
+    "wordId": "2183820",
+    "pt": "{\n  \"a\": [\n    \"carne de caça\"\n  ]\n"
+  },
+  {
+    "kana": "いのちをはる",
+    "en": [
+      "to put one's life on the line"
+    ],
+    "senseUid": "b202955e-1f21-4b52-8505-caca4153b30b",
+    "wordId": "2183830",
+    "pt": "['arriscar a própria vida', 'colocar a vida em risco', 'apostar a vida', 'arriscar tudo']"
+  },
+  {
+    "kana": "いのちはる",
+    "en": [
+      "to put one's life on the line"
+    ],
+    "senseUid": "129d6023-c254-479a-908b-aa5ae65a910e",
+    "wordId": "2183840",
+    "pt": "['arriscar a própria vida']"
+  },
+  {
+    "kana": "グレビーしまうま",
+    "en": [
+      "Grevy's zebra (Equus grevyi)"
+    ],
+    "senseUid": "c6392b85-a83e-455d-8088-f48a43c21b18",
+    "wordId": "2183850",
+    "pt": "{\n  \"a\": [\"zebra-de-grevy\"]\n"
+  },
+  {
+    "kana": "インドさい",
+    "en": [
+      "Indian rhinoceros (Rhinoceros unicornis)",
+      "great one-horned rhinoceros"
+    ],
+    "senseUid": "be351d77-6e0a-4838-96f2-86d599073aaf",
+    "wordId": "2183860",
+    "pt": "{\n  \"a\": [\n    \"rinoceronte-indiano (Rhinoceros unicornis)\",\n    \"grande rinoceronte-de-um-chifre\"\n  ]\n"
+  },
+  {
+    "kana": "いっかくさい",
+    "en": [
+      "great one-horned rhinoceros (Rhinoceros unicornis)",
+      "Indian rhinoceros"
+    ],
+    "senseUid": "acbd7341-e430-4f86-bd0c-e7dc3ee28057",
+    "wordId": "2183870",
+    "pt": "['grande rinoceronte-de-um-chifre (Rhinoceros unicornis)', 'rinoceronte-indiano']"
+  },
+  {
+    "kana": "ジャワさい",
+    "en": [
+      "Javan rhinoceros (Rhinoceros sondaicus)"
+    ],
+    "senseUid": "9bf80815-46d4-45b5-b5bf-34e102d6870a",
+    "wordId": "2183880",
+    "pt": "{\n  \"a\": [\n    \"Rinoceronte-de-java\"\n  ]\n"
+  },
+  {
+    "kana": "うさいたい",
+    "en": [
+      "type of leather belt worn with ceremonial court dress and decorated with a rhinoceros horn"
+    ],
+    "senseUid": "5f1ef730-23b8-49fc-bcd2-2dc9b123d26d",
+    "wordId": "2183890",
+    "pt": "{\n  \"a\": [\n    \"Tipo de cinto de couro usado com traje cerimonial da corte e decorado com chifre de rinoceronte.\"\n  ]\n"
+  },
+  {
+    "kana": "せきたい",
+    "en": [
+      "special leather belt used in ceremonial court dress, covered in black lacquer and decorated with stones and jewels"
+    ],
+    "senseUid": "80a4f5d9-752d-4e8e-b7cb-90ff55741b53",
+    "wordId": "2183900",
+    "pt": "['cinto especial de couro usado em trajes cerimoniais da corte, coberto com laca preta e decorado com pedras e joias']"
+  },
+  {
+    "kana": "ごくのおび",
+    "en": [
+      "special leather belt used in ceremonial court dress, covered in black lacquer and decorated with stones and jewels"
+    ],
+    "senseUid": "2de2108e-991f-42d0-97e6-de133e7d51bd",
+    "wordId": "2183910",
+    "pt": "['cinto especial de couro usado em trajes cerimoniais da corte, coberto com laca preta e decorado com pedras e joias']"
+  }
+]

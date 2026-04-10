@@ -1,0 +1,914 @@
+[
+  {
+    "kana": "こうげんじょうたい",
+    "en": [
+      "light source state"
+    ],
+    "senseUid": "21d5838d-efef-4964-b2c7-bac73591fcc4",
+    "wordId": "2355190",
+    "pt": "{\n  \"a\": [\"estado de fonte de luz\"]\n"
+  },
+  {
+    "kana": "ひかりじきディスク",
+    "en": [
+      "magneto-optical disk"
+    ],
+    "senseUid": "5dbea70e-9b35-46eb-958e-740fcf929900",
+    "wordId": "2355200",
+    "pt": "['disco magneto-óptico']"
+  },
+  {
+    "kana": "ひかりしゅうちゅうしすう",
+    "en": [
+      "concentration exponent"
+    ],
+    "senseUid": "28a90974-6cf0-42c5-81cf-8cf21e93a91c",
+    "wordId": "2355210",
+    "pt": "{\n  \"a\": [\"expoente de concentração de luz\"]\n"
+  },
+  {
+    "kana": "ひかりぞうけいシステム",
+    "en": [
+      "rapid prototyping",
+      "RP"
+    ],
+    "senseUid": "fe137f06-6fa1-41bf-bac6-7c38c22d6a25",
+    "wordId": "2355220",
+    "pt": "{\n  \"a\": [\n    \"sistema de prototipagem rápida\"\n  ]\n"
+  },
+  {
+    "kana": "ひかりたちさがりじかん",
+    "en": [
+      "optical fall time"
+    ],
+    "senseUid": "343bfba4-7ab3-4f1c-a77e-246724161d8d",
+    "wordId": "2355230",
+    "pt": "{\n  \"a\": [\"tempo de queda da luz\"]\n"
+  },
+  {
+    "kana": "ひかりたちあがりじかん",
+    "en": [
+      "optical rise time"
+    ],
+    "senseUid": "b6524cc7-9aab-40a2-86ae-38e2a75196c3",
+    "wordId": "2355240",
+    "pt": "['tempo de subida óptico']"
+  },
+  {
+    "kana": "こうかいかぎ",
+    "en": [
+      "public key"
+    ],
+    "senseUid": "efdee9ad-703a-4f72-adba-3a66311b7e5a",
+    "wordId": "2355250",
+    "pt": "['chave pública']"
+  },
+  {
+    "kana": "こうかいアーカイブ",
+    "en": [
+      "public archive"
+    ],
+    "senseUid": "1a271267-3217-47a1-8d4d-b5bfb5e6d63c",
+    "wordId": "2355260",
+    "pt": "{\n  \"a\": [\"arquivo público\"]\n"
+  },
+  {
+    "kana": "こうかいキー",
+    "en": [
+      "public key"
+    ],
+    "senseUid": "c4a6b0b3-7bbe-4ceb-b1bb-52b3e41c8bdf",
+    "wordId": "2355270",
+    "pt": "{\n  \"a\": [\"chave pública\"]\n"
+  },
+  {
+    "kana": "こうかいかぎ",
+    "en": [
+      "public key"
+    ],
+    "senseUid": "eee3ee70-4f38-4723-b557-f3121de6d63d",
+    "wordId": "2355280",
+    "pt": "['chave pública']"
+  },
+  {
+    "kana": "こうかいかぎあんごう",
+    "en": [
+      "public key encryption"
+    ],
+    "senseUid": "b2f1c0e4-09a1-451e-83fe-064a0f6878f0",
+    "wordId": "2355290",
+    "pt": "['criptografia de chave pública']"
+  },
+  {
+    "kana": "こうかいかぎあんごうほうしき",
+    "en": [
+      "public key cryptosystem"
+    ],
+    "senseUid": "42265ea8-d1d3-4632-a59b-91d515f4c079",
+    "wordId": "2355300",
+    "pt": "{\n  \"a\": [\"sistema criptográfico de chave pública\"]\n"
+  },
+  {
+    "kana": "こうかいかぎきばん",
+    "en": [
+      "Public Key Infrastructure"
+    ],
+    "senseUid": "2be0c09a-7c45-495e-a52a-230112f982c9",
+    "wordId": "2355310",
+    "pt": "{\n  \"a\": [\"Infraestrutura de Chave Pública\"]\n"
+  },
+  {
+    "kana": "こうかいしきべつし",
+    "en": [
+      "public identifier"
+    ],
+    "senseUid": "4f92fdf9-1272-4b76-8113-133775d5820d",
+    "wordId": "2355320",
+    "pt": "['identificador público']"
+  },
+  {
+    "kana": "こうかいぶん",
+    "en": [
+      "public text"
+    ],
+    "senseUid": "846f619d-f9b4-4dbd-8a80-01924c3cdcff",
+    "wordId": "2355330",
+    "pt": "['texto público']"
+  },
+  {
+    "kana": "こうかいぶんきじゅつ",
+    "en": [
+      "public text description"
+    ],
+    "senseUid": "7427fbd3-f741-4f9b-a475-672b420f6cbe",
+    "wordId": "2355340",
+    "pt": "{\n  \"a\": [\"descrição de texto público\"]\n"
+  },
+  {
+    "kana": "こうかいぶんげんご",
+    "en": [
+      "public text language"
+    ],
+    "senseUid": "5390a37e-9047-47ee-87a1-b4932ac53b51",
+    "wordId": "2355350",
+    "pt": "['língua de texto público']"
+  },
+  {
+    "kana": "こうかいぶんしじシーケンス",
+    "en": [
+      "public text designating sequence"
+    ],
+    "senseUid": "63c97b93-e9ce-4ab3-b6bc-c6ca8d0e53d2",
+    "wordId": "2355360",
+    "pt": "{\n  \"a\": [\"sequência de designação de texto público\"]\n"
+  },
+  {
+    "kana": "こうかいぶんひょうじばん",
+    "en": [
+      "public text display version"
+    ],
+    "senseUid": "6c480a1d-0acb-4bcb-92b6-48d6bbabb3c7",
+    "wordId": "2355380",
+    "pt": "{\n  \"a\": [\n    \"versão de exibição de texto público\"\n  ]\n"
+  },
+  {
+    "kana": "こうかいぶんしゅべつ",
+    "en": [
+      "public text class"
+    ],
+    "senseUid": "ef09a960-9d87-4199-a05e-f5f5ade66162",
+    "wordId": "2355370",
+    "pt": "{\n  \"a\": [\"classe de texto público\"]\n"
+  },
+  {
+    "kana": "こうしゅうサービス",
+    "en": [
+      "public services"
+    ],
+    "senseUid": "1d4d6bf8-4250-484a-9291-ba327136a738",
+    "wordId": "2355390",
+    "pt": "['serviços públicos']"
+  },
+  {
+    "kana": "こうしゅうデータネットワーク",
+    "en": [
+      "public data network"
+    ],
+    "senseUid": "07173f43-27ca-4eac-908a-67a612b4ba4e",
+    "wordId": "2355400",
+    "pt": "['rede pública de dados']"
+  },
+  {
+    "kana": "こうしゅうメッセージつうしんしょりサービス",
+    "en": [
+      "public message handling service"
+    ],
+    "senseUid": "05dff4ff-67a7-422d-87a1-f379ef24d1c3",
+    "wordId": "2355410",
+    "pt": "{\n  \"a\": [\"serviço de processamento de mensagens públicas\"]\n"
+  },
+  {
+    "kana": "こうしゅうかいせん",
+    "en": [
+      "public line (as opposed to a private or leased line)"
+    ],
+    "senseUid": "ea639f3c-cbaa-47af-91c5-76a04bd8fb0f",
+    "wordId": "2355420",
+    "pt": "['linha pública (em contraste com uma linha privada ou alugada)']"
+  },
+  {
+    "kana": "こうしゅうかいせんもう",
+    "en": [
+      "public network"
+    ],
+    "senseUid": "00096add-204b-4594-a105-e88a78af7f40",
+    "wordId": "2355430",
+    "pt": "{\n  \"a\": [\"rede pública\"]\n"
+  },
+  {
+    "kana": "こうしゅうでんせんもう",
+    "en": [
+      "public wireline network"
+    ],
+    "senseUid": "3f0d9d1e-e18b-420b-9eed-8aced7265e89",
+    "wordId": "2355440",
+    "pt": "['rede pública com fio']"
+  },
+  {
+    "kana": "こうしゅうでんわもう",
+    "en": [
+      "public telephone network"
+    ],
+    "senseUid": "7793ec05-aaaf-4ebe-9291-b2730126735a",
+    "wordId": "2355450",
+    "pt": "['rede telefônica pública']"
+  },
+  {
+    "kana": "こうてきこうかいしきべつし",
+    "en": [
+      "formal public identifier"
+    ],
+    "senseUid": "3164cc68-e0fe-4345-8b94-5cdd42bdf64b",
+    "wordId": "2355460",
+    "pt": "{\n  \"a\": [\"identificador público formal\"]\n"
+  },
+  {
+    "kana": "こうてきこうかいしきべつしあやまり",
+    "en": [
+      "formal public identifier error"
+    ],
+    "senseUid": "99874f59-f7e2-479e-bc75-20d1a7afd690",
+    "wordId": "2355470",
+    "pt": "{\n  \"a\": [\"erro de identificação pública formal\"]\n"
+  },
+  {
+    "kana": "こうパターン",
+    "en": [
+      "hole pattern"
+    ],
+    "senseUid": "3a6c39d3-3485-4251-93bc-9918b96d2acb",
+    "wordId": "2355490",
+    "pt": "{\n  \"a\": [\"padrão de furos\"]\n"
+  },
+  {
+    "kana": "こういきラン",
+    "en": [
+      "wide area LAN"
+    ],
+    "senseUid": "b964c27f-666c-4114-8f1f-e07031ebed3e",
+    "wordId": "2355500",
+    "pt": "['LAN de área ampla']"
+  },
+  {
+    "kana": "こういきイーサネット",
+    "en": [
+      "wide area ethernet"
+    ],
+    "senseUid": "585ecedb-2c65-4ae8-9d91-6274e749279b",
+    "wordId": "2355510",
+    "pt": "{\n  \"a\": [\"Ethernet de área ampla\"]\n"
+  },
+  {
+    "kana": "こういきネットワーク",
+    "en": [
+      "wide area network"
+    ],
+    "senseUid": "52d39b1b-d0cc-4c1b-998c-0d6953ed8944",
+    "wordId": "2355520",
+    "pt": "['rede de área ampla']"
+  },
+  {
+    "kana": "こういきもう",
+    "en": [
+      "wide area network"
+    ],
+    "senseUid": "cb189082-83e8-4d7f-892e-2b70f044f7e6",
+    "wordId": "2355530",
+    "pt": "{\n  \"a\": [\"rede de área ampla\"]\n"
+  },
+  {
+    "kana": "こうたいいき",
+    "en": [
+      "broadband",
+      "wideband"
+    ],
+    "senseUid": "b4792eb7-bfd3-44ac-99f8-ff1500ae8e54",
+    "wordId": "2355550",
+    "pt": "{\n  \"a\": [\"faixa larga\", \"banda larga\"]\n"
+  },
+  {
+    "kana": "こうたいいきネットワーク",
+    "en": [
+      "broadband network"
+    ],
+    "senseUid": "585dec38-45ac-43a7-9016-32acd6497ffd",
+    "wordId": "2355560",
+    "pt": "{\n  \"a\": [\"rede de banda larga\"]\n"
+  },
+  {
+    "kana": "こうたいいきそうごうディジタルつうしんもう",
+    "en": [
+      "B-ISDN",
+      "Broadband Integrated Services Digital Network"
+    ],
+    "senseUid": "25de41b1-8fbd-4534-a877-4f557e1f09c8",
+    "wordId": "2355570",
+    "pt": "['Rede Digital de Serviços Integrados de Banda Larga']"
+  },
+  {
+    "kana": "こうたいいきでんそう",
+    "en": [
+      "broadband transmission"
+    ],
+    "senseUid": "4e67bdc8-c013-4ee4-a43b-417517bab7eb",
+    "wordId": "2355580",
+    "pt": "['transmissão de banda larga']"
+  },
+  {
+    "kana": "こうせいデータ",
+    "en": [
+      "configuration data"
+    ],
+    "senseUid": "35747ebc-44f6-4430-864b-16aaae01de71",
+    "wordId": "2355600",
+    "pt": "['dados de configuração']"
+  },
+  {
+    "kana": "こうせいかんり",
+    "en": [
+      "configuration management"
+    ],
+    "senseUid": "574f78ba-fac3-4205-b227-1b53897cbe6e",
+    "wordId": "2355610",
+    "pt": "['gestão de configuração']"
+  },
+  {
+    "kana": "こうせいきき",
+    "en": [
+      "components"
+    ],
+    "senseUid": "215828f7-7f2a-4ad8-b21d-08f28b154cc9",
+    "wordId": "2355620",
+    "pt": "['componentes']"
+  },
+  {
+    "kana": "こうせいせいぎょ",
+    "en": [
+      "configuration control"
+    ],
+    "senseUid": "78d6c146-728d-440f-8881-f2d1e28e9ad5",
+    "wordId": "2355630",
+    "pt": "['controle de configuração']"
+  },
+  {
+    "kana": "こうせいせつ",
+    "en": [
+      "configuration section"
+    ],
+    "senseUid": "aac3f95e-7442-40ca-b800-ac35c2ed884a",
+    "wordId": "2355650",
+    "pt": "{\n  \"a\": [\"seção de configuração\"]\n"
+  },
+  {
+    "kana": "こうせいせいぎょいいんかい",
+    "en": [
+      "configuration control board"
+    ],
+    "senseUid": "aad7130a-9f51-4167-b667-eed903afb722",
+    "wordId": "2355640",
+    "pt": "{\n  \"a\": [\"comitê de controle de configuração\"]\n"
+  },
+  {
+    "kana": "こうせいたい",
+    "en": [
+      "constituent"
+    ],
+    "senseUid": "6c21108f-9b67-4ac9-a3a9-3c44f57c931e",
+    "wordId": "2355660",
+    "pt": "{\n  \"a\": [\"constituinte\"]\n"
+  },
+  {
+    "kana": "こうせいぶひん",
+    "en": [
+      "component"
+    ],
+    "senseUid": "e17a03a4-2ddc-4122-b7ed-bc1cd264d811",
+    "wordId": "2355670",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"こうせいぶひん\",\n      \"gloss\": [\"componente\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "こうせいようそがた",
+    "en": [
+      "component type"
+    ],
+    "senseUid": "3e0a3bda-6100-4a80-9cb2-887722462b1a",
+    "wordId": "2355690",
+    "pt": "['tipo de componente']"
+  },
+  {
+    "kana": "こうぞうかプログラミング",
+    "en": [
+      "structured programming"
+    ],
+    "senseUid": "52147f22-cfa3-4307-8646-1cc856a17f3d",
+    "wordId": "2355700",
+    "pt": "['programação estruturada']"
+  },
+  {
+    "kana": "こうぞうかプログラム",
+    "en": [
+      "structured program"
+    ],
+    "senseUid": "367aec82-5385-4fa7-ab40-0a70d6486304",
+    "wordId": "2355710",
+    "pt": "['programa estruturado']"
+  },
+  {
+    "kana": "こうぞうかげんご",
+    "en": [
+      "structured language"
+    ],
+    "senseUid": "56c3254d-799f-4b88-a482-f1abeec55eb9",
+    "wordId": "2355720",
+    "pt": "['linguagem estruturada']"
+  },
+  {
+    "kana": "こうぞうかしょうかいげんご",
+    "en": [
+      "SQL",
+      "Structured Query Language"
+    ],
+    "senseUid": "5c7180ac-db75-497e-ab05-7b7821676cac",
+    "wordId": "2355730",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"こうぞうかしょうかいげんご\",\n      \"gloss\": [\"SQL\", \"Linguagem de Consulta Estruturada\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "こうぞうかぶんせき",
+    "en": [
+      "Structured Analysis",
+      "SA"
+    ],
+    "senseUid": "caac2f73-8fe9-4758-9952-039bd2609324",
+    "wordId": "2355740",
+    "pt": "{\n  \"a\": [\n    \"Análise Estruturada\"\n  ]\n"
+  },
+  {
+    "kana": "こうせいへんこう",
+    "en": [
+      "configuration change"
+    ],
+    "senseUid": "f37742cf-66f1-467e-9c99-229b308f306d",
+    "wordId": "2355680",
+    "pt": "['alteração de configuração']"
+  },
+  {
+    "kana": "こうぞうがたふごうか",
+    "en": [
+      "constructed encoding"
+    ],
+    "senseUid": "0ab1b023-89c0-4b09-bdb0-cc3e26164cac",
+    "wordId": "2355760",
+    "pt": "['codificação construída']"
+  },
+  {
+    "kana": "こうぞうがた",
+    "en": [
+      "derived type",
+      "structured type"
+    ],
+    "senseUid": "a190be4f-d036-4992-8602-4b769a11a8b8",
+    "wordId": "2355750",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"こうぞうがた\",\n      \"portugues\": [\"tipo derivado\", \"tipo estruturado\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "こうぞうたいネットワーク",
+    "en": [
+      "structure network"
+    ],
+    "senseUid": "2a4f87d3-0fa3-4f5c-8a0a-d51a79096c4d",
+    "wordId": "2355780",
+    "pt": "{\n  \"a\": [\"rede estrutural\"]\n"
+  },
+  {
+    "kana": "こうぞうこうぶん",
+    "en": [
+      "construct"
+    ],
+    "senseUid": "22fb504b-427c-48e4-9957-f1a7d5fbc32e",
+    "wordId": "2355770",
+    "pt": "{\n  \"a\": [\n    \"construção\",\n    \"estrutura\",\n    \"formação\",\n    \"composição\"\n  ]\n"
+  },
+  {
+    "kana": "こうぞうたいさんしょう",
+    "en": [
+      "structure reference"
+    ],
+    "senseUid": "1ee6dec9-8e30-4ef1-87af-0115a8e4c3a8",
+    "wordId": "2355790",
+    "pt": "{\n  \"a\": [\"referência de estrutura\"]\n"
+  },
+  {
+    "kana": "こうぞうたいしきべつし",
+    "en": [
+      "structure identifier"
+    ],
+    "senseUid": "a6e73421-6264-4e14-bf2c-b6808ccb88ae",
+    "wordId": "2355800",
+    "pt": "{\n  \"a\": [\"identificador de estrutura\"]\n"
+  },
+  {
+    "kana": "こうぞうたいとりだし",
+    "en": [
+      "structure retrieval"
+    ],
+    "senseUid": "9cf26dde-88dd-4158-a1f4-0f19358345bd",
+    "wordId": "2355810",
+    "pt": "['extração de estrutura']"
+  },
+  {
+    "kana": "こうぞうたいせいぶん",
+    "en": [
+      "structure component"
+    ],
+    "senseUid": "bf9d2d17-054b-4ebf-ba06-43e9eae8fd0f",
+    "wordId": "2355830",
+    "pt": "['componente estrutural']"
+  },
+  {
+    "kana": "こうぞうたいじょうたいリスト",
+    "en": [
+      "structure state list"
+    ],
+    "senseUid": "a0bc64fa-0995-4c42-acd8-efcc078b0b08",
+    "wordId": "2355820",
+    "pt": "{\n  \"a\": [\"lista de estados de estrutura\"]\n"
+  },
+  {
+    "kana": "こうぞうたいちゅうおうきおく",
+    "en": [
+      "centralized structure store"
+    ],
+    "senseUid": "99459825-5d02-4795-8b76-9547a35b617b",
+    "wordId": "2355840",
+    "pt": "{\n  \"a\": [\"armazenamento centralizado de estrutura\"]\n"
+  },
+  {
+    "kana": "こうぞうたいへんすう",
+    "en": [
+      "structured variable"
+    ],
+    "senseUid": "0624c84d-67f3-4d0b-94b3-d362ad05b4c4",
+    "wordId": "2355850",
+    "pt": "{\n  \"a\": [\"variável estruturada\"]\n"
+  },
+  {
+    "kana": "こうぞうたいへんしゅう",
+    "en": [
+      "structure editing"
+    ],
+    "senseUid": "3e770d78-c7b3-4bd4-83d3-fa51da15afab",
+    "wordId": "2355860",
+    "pt": "{\n  \"a\": [\n    \"edição estrutural\"\n  ]\n"
+  },
+  {
+    "kana": "こうぞうたいほかん",
+    "en": [
+      "structure archiving"
+    ],
+    "senseUid": "c9ea9c6e-7ffc-427c-9388-28a153b6a7ad",
+    "wordId": "2355870",
+    "pt": "{\n  \"a\": [\"arquivamento de estruturas\"]\n"
+  },
+  {
+    "kana": "こうぞうたいようそ",
+    "en": [
+      "structure element"
+    ],
+    "senseUid": "d1c00f45-04be-40a7-ba69-7c0b96685466",
+    "wordId": "2355880",
+    "pt": "['elemento estrutural']"
+  },
+  {
+    "kana": "こうぞうようそ",
+    "en": [
+      "structural element"
+    ],
+    "senseUid": "aa6fc9d1-353d-4592-bf23-ace7eac36229",
+    "wordId": "2355900",
+    "pt": "{\n  \"a\": [\n    \"elemento estrutural\"\n  ]\n"
+  },
+  {
+    "kana": "こうないこうかんき",
+    "en": [
+      "private branch exchange",
+      "PBX"
+    ],
+    "senseUid": "498ec945-896c-40a7-9db6-3b3af7ef5a2d",
+    "wordId": "2355910",
+    "pt": "{\n  \"a\": [\"central telefônica privada\", \"PABX\"]\n"
+  },
+  {
+    "kana": "こうないでんわこうかんき",
+    "en": [
+      "private branch exchange",
+      "PBX"
+    ],
+    "senseUid": "3b512929-6ea7-46cd-a471-7d10ceb97f16",
+    "wordId": "2355930",
+    "pt": "{\n  \"a\": [\"central telefônica privada\"]\n"
+  },
+  {
+    "kana": "こうないつうしんもう",
+    "en": [
+      "local area network",
+      "LAN"
+    ],
+    "senseUid": "06b97759-e684-4d3a-8c42-98d9d22c16a9",
+    "wordId": "2355920",
+    "pt": "{\n  \"a\": [\"rede local\", \"LAN\"]\n"
+  },
+  {
+    "kana": "こうぶんエラー",
+    "en": [
+      "syntactic error"
+    ],
+    "senseUid": "8679a8ef-24f7-4692-b3d7-42435b3ccc4f",
+    "wordId": "2355940",
+    "pt": "{\n  \"a\": [\n    \"Erro sintático\"\n  ]\n"
+  },
+  {
+    "kana": "こうぶんチェッカ",
+    "en": [
+      "syntax checker"
+    ],
+    "senseUid": "aedfec79-3db0-4daf-8474-005801654b10",
+    "wordId": "2355950",
+    "pt": "['verificador de sintaxe']"
+  },
+  {
+    "kana": "こうぶんかいせき",
+    "en": [
+      "parsing",
+      "syntactic analysis"
+    ],
+    "senseUid": "fcb2bb6e-80b2-4499-95d2-45c1149d6086",
+    "wordId": "2355960",
+    "pt": "['análise sintática', 'parsing']"
+  },
+  {
+    "kana": "こうぶんきそく",
+    "en": [
+      "syntax"
+    ],
+    "senseUid": "3ea435e3-17c2-4bf4-b6fd-9aeb8dabad6f",
+    "wordId": "2355980",
+    "pt": "['regras sintáticas']"
+  },
+  {
+    "kana": "こうぶんさんしょうもじしゅうごう",
+    "en": [
+      "syntax-reference character set"
+    ],
+    "senseUid": "e0264870-3a3b-40bc-a737-c20b7016d426",
+    "wordId": "2355990",
+    "pt": "{\n  \"a\": [\"conjunto de caracteres de referência sintática\"]\n"
+  },
+  {
+    "kana": "こうぶんそ",
+    "en": [
+      "lexical token"
+    ],
+    "senseUid": "430236b6-2fb4-4731-9fda-451a9cb119b3",
+    "wordId": "2356000",
+    "pt": "{\n  \"a\": [\"token lexical\"]\n"
+  },
+  {
+    "kana": "ぎょうのたかさ",
+    "en": [
+      "line height"
+    ],
+    "senseUid": "eea943c9-9448-4f4d-9193-117d1c57c6c5",
+    "wordId": "2356030",
+    "pt": "{\n  \"a\": [\"altura da linha\"]\n"
+  },
+  {
+    "kana": "ぎょうのすすむほうこう",
+    "en": [
+      "line progression"
+    ],
+    "senseUid": "08cbc4f9-85c8-4d6f-b016-880d300b2e80",
+    "wordId": "2356040",
+    "pt": "{\n  \"a\": [\"direção do avanço das linhas\"]\n"
+  },
+  {
+    "kana": "ぎょうのながさ",
+    "en": [
+      "line length"
+    ],
+    "senseUid": "234a4760-fbf5-45a8-ac99-ab94b35b7e12",
+    "wordId": "2356050",
+    "pt": "['comprimento da linha']"
+  },
+  {
+    "kana": "ぎょうピッチ",
+    "en": [
+      "line pitch"
+    ],
+    "senseUid": "0e4604dd-e323-48a7-aaec-3d7b0111b6c5",
+    "wordId": "2356060",
+    "pt": "{\n  \"a\": [\"passo de linha\"]\n"
+  },
+  {
+    "kana": "ぎょういち",
+    "en": [
+      "line number"
+    ],
+    "senseUid": "87790731-942d-49d9-afb3-382b74231c2e",
+    "wordId": "2356070",
+    "pt": "{\n  \"a\": [\n    \"número da linha\"\n  ]\n"
+  },
+  {
+    "kana": "ぎょういんじそうち",
+    "en": [
+      "line printer"
+    ],
+    "senseUid": "9777b87a-cd8b-4728-89e2-e010c9e7a192",
+    "wordId": "2356080",
+    "pt": "{\n  \"a\": [\"impressora de linha\"]\n"
+  },
+  {
+    "kana": "ぎょうかんかく",
+    "en": [
+      "line spacing"
+    ],
+    "senseUid": "071014f1-fa2e-45b3-900f-afae418e1f80",
+    "wordId": "2356090",
+    "pt": "{\n  \"a\": [\n    \"espaçamento entre linhas\"\n  ]\n"
+  },
+  {
+    "kana": "ぎょうきてん",
+    "en": [
+      "line home position"
+    ],
+    "senseUid": "0172322a-0306-4b99-ad25-b17372e4b258",
+    "wordId": "2356100",
+    "pt": "{\n  \"a\": [\"posição inicial da linha\"]\n"
+  },
+  {
+    "kana": "ぎょうしたん",
+    "en": [
+      "home position of line"
+    ],
+    "senseUid": "0794d7a9-ce99-484a-9be2-135f5d9a67d1",
+    "wordId": "2356110",
+    "pt": "{\n  \"a\": [\"posição inicial da linha\"]\n"
+  },
+  {
+    "kana": "ぎょうしんこうほうこう",
+    "en": [
+      "line progression"
+    ],
+    "senseUid": "1c6a64d8-88fd-494c-9a17-57d32133e43c",
+    "wordId": "2356120",
+    "pt": "{\n  \"a\": [\"progresso em linha\"]\n"
+  },
+  {
+    "kana": "ぎょうすうカウンタ",
+    "en": [
+      "linage-counter"
+    ],
+    "senseUid": "f57bd707-f1c4-4d26-9d77-a133e1e99387",
+    "wordId": "2356130",
+    "pt": "['contador de linhas']"
+  },
+  {
+    "kana": "いきさきしじコード",
+    "en": [
+      "routing code"
+    ],
+    "senseUid": "bbf2c80f-afc9-4f45-9f27-2f1eb7a71e27",
+    "wordId": "2356140",
+    "pt": "['código de roteamento']"
+  },
+  {
+    "kana": "ぎょうおくり",
+    "en": [
+      "linefeed"
+    ],
+    "senseUid": "46b0d0c9-b1ee-4555-9d8e-478361cb1121",
+    "wordId": "2356160",
+    "pt": "['avanço de linha']"
+  },
+  {
+    "kana": "ぎょうおくりはば",
+    "en": [
+      "line spacing"
+    ],
+    "senseUid": "83ef7fc2-1490-46b7-9c92-0e61ca3415fc",
+    "wordId": "2356150",
+    "pt": "{\n  \"a\": [\"espaçamento entre linhas\"]\n"
+  },
+  {
+    "kana": "ぎょうぞろえ",
+    "en": [
+      "alignment",
+      "justification"
+    ],
+    "senseUid": "10915a64-210c-49ab-829f-8acb9b547e8d",
+    "wordId": "2356170",
+    "pt": "{\n  \"a\": [\n    \"alinhamento\",\n    \"justificação\"\n  ]\n"
+  },
+  {
+    "kana": "ぎょうたんぞろえ",
+    "en": [
+      "full justification"
+    ],
+    "senseUid": "2dde11ff-ed8f-4a8c-b63e-8b2d34b574f5",
+    "wordId": "2356180",
+    "pt": "{\n  \"a\": [\"alinhamento justificado\"]\n"
+  },
+  {
+    "kana": "ぎょうばんごう",
+    "en": [
+      "line number"
+    ],
+    "senseUid": "3d952b90-c7c2-4f7a-939b-6840eec71be6",
+    "wordId": "2356200",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ぎょうばんごう\",\n      \"português\": \"número da linha\",\n      \"notas\": \"Usado para se referir ao número de uma linha em um texto, código ou documento, seguindo o uso comum em japonês.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "ぎょうほうこう",
+    "en": [
+      "line writing direction"
+    ],
+    "senseUid": "1245b96f-adbe-43e9-bb0c-d87bc56afa27",
+    "wordId": "2356210",
+    "pt": "{\n  \"a\": [\n    \"direção de escrita em linhas\"\n  ]\n"
+  },
+  {
+    "kana": "ぎょうほうこうきぐうけんさ",
+    "en": [
+      "longitudinal parity check"
+    ],
+    "senseUid": "58ccc74c-ffe6-42a6-b3ce-5547a8dd21b2",
+    "wordId": "2356220",
+    "pt": "{\n  \"a\": [\"verificação de paridade longitudinal\"]\n"
+  },
+  {
+    "kana": "ぎょうれつえんざん",
+    "en": [
+      "matrix operation"
+    ],
+    "senseUid": "6845d9f1-10b7-4e17-afd6-c7a5fb500353",
+    "wordId": "2356230",
+    "pt": "{\n  \"a\": [\"operação de matriz\"]\n"
+  },
+  {
+    "kana": "ぎょうれつきほう",
+    "en": [
+      "matrix notation"
+    ],
+    "senseUid": "692dcd44-e2ef-4413-b17e-2366780787d8",
+    "wordId": "2356240",
+    "pt": "['notação de matriz']"
+  },
+  {
+    "kana": "ぎょうれつだいすう",
+    "en": [
+      "linear algebra",
+      "matrix algebra"
+    ],
+    "senseUid": "6a934db1-4e28-4733-bd3f-ad940d2fbe68",
+    "wordId": "2356250",
+    "pt": "{\n  \"a\": [\"álgebra linear\", \"álgebra de matrizes\"]\n"
+  },
+  {
+    "kana": "ぎょうれつひょうげん",
+    "en": [
+      "matrix representation"
+    ],
+    "senseUid": "bde2c2f3-f18d-4207-a03e-9a910bf94acb",
+    "wordId": "2356260",
+    "pt": "{\n  \"a\": [\"representação matricial\"]\n"
+  }
+]

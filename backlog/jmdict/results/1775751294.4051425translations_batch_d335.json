@@ -1,0 +1,959 @@
+[
+  {
+    "kana": "ねんだんせい",
+    "en": [
+      "viscoelasticity"
+    ],
+    "senseUid": "3fb86f03-49f1-4eb9-8244-dd8f9cf7140d",
+    "wordId": "2264140",
+    "pt": "['viscoelasticidade']"
+  },
+  {
+    "kana": "ふきんしつせい",
+    "en": [
+      "heterogeneity"
+    ],
+    "senseUid": "fe474465-3185-42a5-9015-bdd3384e5ade",
+    "wordId": "2264150",
+    "pt": "{\n  \"a\": [\"heterogeneidade\"]\n"
+  },
+  {
+    "kana": "ボイリング",
+    "en": [
+      "boiling"
+    ],
+    "senseUid": "ff2d4fa3-9289-4a74-807c-52cd096d3d5a",
+    "wordId": "2264170",
+    "pt": "['ebulição']"
+  },
+  {
+    "kana": "フーチング",
+    "en": [
+      "footing"
+    ],
+    "senseUid": "e482245b-e9bc-4179-b85c-a9ef9b8e7537",
+    "wordId": "2264160",
+    "pt": "['sapata']"
+  },
+  {
+    "kana": "ゆうげんようそほう",
+    "en": [
+      "finite element method"
+    ],
+    "senseUid": "20a1b57c-8027-4639-9717-38525b8cd1c6",
+    "wordId": "2264180",
+    "pt": "{\n  \"a\": [\"método dos elementos finitos\"]\n"
+  },
+  {
+    "kana": "レオロジー",
+    "en": [
+      "rheology"
+    ],
+    "senseUid": "394c6371-8058-4588-b51f-09ad49cdbb80",
+    "wordId": "2264190",
+    "pt": "['reologia']"
+  },
+  {
+    "kana": "ロックフィル",
+    "en": [
+      "rockfill"
+    ],
+    "senseUid": "412c0fb9-47bb-48c0-bb2b-b7950bb00e3f",
+    "wordId": "2264200",
+    "pt": "['enrocamento']"
+  },
+  {
+    "kana": "よろしければ",
+    "en": [
+      "if you please",
+      "if you don't mind",
+      "when you're ready",
+      "if you want",
+      "if that's alright with you"
+    ],
+    "senseUid": "e10a08cd-a37f-4df7-b271-c83eb5c7443c",
+    "wordId": "2264210",
+    "pt": "['se não se importar', 'se quiser', 'quando estiver pronto', 'se for do seu agrado', 'se estiver tudo bem para você']"
+  },
+  {
+    "kana": "そく",
+    "en": [
+      "equals",
+      "means",
+      "is"
+    ],
+    "senseUid": "5fed489e-2012-4a5c-805d-2db08b8913c1",
+    "wordId": "2264220",
+    "pt": "{\n  \"a\": [\n    \"equivale a\",\n    \"significa\",\n    \"é\"\n  ]\n"
+  },
+  {
+    "kana": "そく",
+    "en": [
+      "instantly",
+      "immediately",
+      "at once"
+    ],
+    "senseUid": "d5a09bdc-a51c-43d9-becd-4614c0a6a6aa",
+    "wordId": "2264220",
+    "pt": "['imediatamente', 'instantaneamente', 'de imediato']"
+  },
+  {
+    "kana": "そく",
+    "en": [
+      "oneness (of two opposing things)",
+      "inseparability"
+    ],
+    "senseUid": "f53111fd-4774-4f2f-a513-53f62e3ea99d",
+    "wordId": "2264220",
+    "pt": "{\n  \"a\": [\n    \"unidade (de duas coisas opostas)\",\n    \"inseparabilidade\"\n  ]\n"
+  },
+  {
+    "kana": "ななつのほし",
+    "en": [
+      "the Big Dipper (asterism)",
+      "the Plough",
+      "the Plow"
+    ],
+    "senseUid": "a698e3ff-3a64-4799-bef0-44b99fe68d5f",
+    "wordId": "2264230",
+    "pt": "['a Ursa Maior (asterismo)', 'o Arado', 'o Arado']"
+  },
+  {
+    "kana": "ななつのほし",
+    "en": [
+      "Sun, Moon, Mercury, Venus, Mars, Jupiter and Saturn"
+    ],
+    "senseUid": "deba91ed-81a6-440c-a3fc-d76fbafe3f9c",
+    "wordId": "2264230",
+    "pt": "{\n  \"a\": [\"Sol\", \"Lua\", \"Mercúrio\", \"Vênus\", \"Marte\", \"Júpiter\", \"Saturno\"]\n"
+  },
+  {
+    "kana": "さざめく",
+    "en": [
+      "to be boisterously noisy",
+      "to do merrily (laughing, chattering, etc.)"
+    ],
+    "senseUid": "938140a2-8f22-4be9-b6d2-48abe9c01102",
+    "wordId": "2264240",
+    "pt": "['estar ruidosamente animado', 'agir alegremente (rindo, conversando, etc.)']"
+  },
+  {
+    "kana": "さざめく",
+    "en": [
+      "to shimmer",
+      "to ripple",
+      "to sparkle",
+      "to gleam"
+    ],
+    "senseUid": "38dd4504-b837-46e7-aa94-2c1a924996fe",
+    "wordId": "2264240",
+    "pt": "['brilhar', 'cintilar', 'ondular', 'reluzir']"
+  },
+  {
+    "kana": "ふちふしき",
+    "en": [
+      "being unaware of what one is doing"
+    ],
+    "senseUid": "40f5bc28-39ae-42e5-9070-eb1e611dafcd",
+    "wordId": "2264250",
+    "pt": "{\n  \"a\": [\n    \"agir sem perceber o que está fazendo\",\n    \"estar alheio ao que se faz\",\n    \"não ter consciência dos próprios atos\"\n  ]\n"
+  },
+  {
+    "kana": "みをまかせる",
+    "en": [
+      "to give oneself to (esp. of a woman to a man)",
+      "to surrender oneself to"
+    ],
+    "senseUid": "bda4bd80-f274-4310-bc68-c98b6c3d171f",
+    "wordId": "2264260",
+    "pt": "['entregar-se (especialmente de uma mulher para um homem)', 'abandonar-se', 'deixar-se levar', 'render-se']"
+  },
+  {
+    "kana": "ねば",
+    "en": [
+      "if not ...",
+      "unless ..."
+    ],
+    "senseUid": "72be0fe6-d83d-410e-99a4-283e39fb3a6a",
+    "wordId": "2264270",
+    "pt": "{\n  \"a\": [\"se não...\", \"a menos que...\"]\n"
+  },
+  {
+    "kana": "にゃ",
+    "en": [
+      "if not ...",
+      "unless ..."
+    ],
+    "senseUid": "496fa742-c166-4eaa-b2ca-5818d2a3ef00",
+    "wordId": "2264280",
+    "pt": "{\n  \"a\": [\"se não...\", \"a menos que...\"]\n"
+  },
+  {
+    "kana": "にゃ",
+    "en": [
+      "have to (do)"
+    ],
+    "senseUid": "2353f23f-f5a1-4a3f-b22e-3b0a7d7078dc",
+    "wordId": "2264280",
+    "pt": "{\n  \"a\": [\"tem que\", \"precisa (fazer)\", \"deve (fazer)\"]\n"
+  },
+  {
+    "kana": "にゃ",
+    "en": [
+      "to",
+      "for",
+      "on",
+      "in",
+      "at"
+    ],
+    "senseUid": "34e150c8-4b27-4fa1-b642-61be595ed466",
+    "wordId": "2264280",
+    "pt": "{\n  \"a\": [\"para\", \"a\", \"em\", \"no\", \"na\"]\n"
+  },
+  {
+    "kana": "シャント",
+    "en": [
+      "shunt"
+    ],
+    "senseUid": "c5d30a2a-f46c-4ae2-bcf0-df61ad6259e2",
+    "wordId": "2264290",
+    "pt": "{\n  \"a\": [\"shunt\", \"desvio (cirúrgico)\", \"shunt (dispositivo médico para desviar fluidos no corpo)\"]\n"
+  },
+  {
+    "kana": "じゃのめがさ",
+    "en": [
+      "paper umbrella (with a bull's-eye design)"
+    ],
+    "senseUid": "737c70fc-cf39-4a1f-a53e-4e10dc4bbb25",
+    "wordId": "2264300",
+    "pt": "{\n  \"a\": [\"guarda-chuva de papel (com desenho de olho de boi)\"]\n"
+  },
+  {
+    "kana": "かたりつくす",
+    "en": [
+      "to say everything one wants to say",
+      "to exhaust a topic"
+    ],
+    "senseUid": "1644abba-c777-4acd-a3cd-281e4384db47",
+    "wordId": "2264320",
+    "pt": "['dizer tudo o que se quer dizer', 'esgotar um assunto']"
+  },
+  {
+    "kana": "あれから",
+    "en": [
+      "since then",
+      "after that"
+    ],
+    "senseUid": "ce114cc5-6064-43ee-a078-ba4fd58641b0",
+    "wordId": "2264330",
+    "pt": "['desde então', 'depois daquilo']"
+  },
+  {
+    "kana": "キャンドルライト",
+    "en": [
+      "candlelight"
+    ],
+    "senseUid": "07f08389-bcd4-4e49-9dfa-de3323a154b3",
+    "wordId": "2264340",
+    "pt": "['luz de vela']"
+  },
+  {
+    "kana": "どくぜつか",
+    "en": [
+      "person with a sharp tongue"
+    ],
+    "senseUid": "ebd31661-4970-4693-924f-0a170b3ac01b",
+    "wordId": "2264350",
+    "pt": "{\n  \"a\": [\n    \"pessoa de língua afiada\",\n    \"alguém que fala de forma cortante\",\n    \"alguém que faz comentários mordazes\"\n  ]\n"
+  },
+  {
+    "kana": "かもなくふかもなし",
+    "en": [
+      "neither good nor bad"
+    ],
+    "senseUid": "b32bbd1a-9a63-47b1-9fdc-e2821cf9511b",
+    "wordId": "2264360",
+    "pt": "['Nem bom, nem ruim']"
+  },
+  {
+    "kana": "ちわっす",
+    "en": [
+      "hi",
+      "yo"
+    ],
+    "senseUid": "d86341ba-5025-4cd9-aca3-532344a34041",
+    "wordId": "2264370",
+    "pt": "['oi', 'e aí']"
+  },
+  {
+    "kana": "しょか",
+    "en": [
+      "hot summer"
+    ],
+    "senseUid": "2119162a-9c3b-4729-9f8b-7fd493c40ca5",
+    "wordId": "2264380",
+    "pt": "['verão escaldante']"
+  },
+  {
+    "kana": "げんしょうてきいしき",
+    "en": [
+      "phenomenal consciousness"
+    ],
+    "senseUid": "58a3daef-ade9-4dce-8a26-db9237b77c72",
+    "wordId": "2264390",
+    "pt": "['consciência fenomênica']"
+  },
+  {
+    "kana": "はいじょう",
+    "en": [
+      "abandoned castle"
+    ],
+    "senseUid": "e06c09c3-43c0-4c98-9b30-4dd79ac0cb85",
+    "wordId": "2264400",
+    "pt": "['castelo abandonado']"
+  },
+  {
+    "kana": "セットメニュー",
+    "en": [
+      "set menu",
+      "fixed-course menu",
+      "table d'hôte"
+    ],
+    "senseUid": "2e7eb815-0f74-454b-9c19-6a57473a7c09",
+    "wordId": "2264410",
+    "pt": "['menu combinado', 'menu fixo', 'refeição completa']"
+  },
+  {
+    "kana": "ガット",
+    "en": [
+      "General Agreement on Tariffs and Trade",
+      "GATT"
+    ],
+    "senseUid": "a8f3d975-318d-43c7-817b-1d6616661560",
+    "wordId": "2264420",
+    "pt": "['Acordo Geral sobre Tarifas e Comércio', 'GATT']"
+  },
+  {
+    "kana": "かんりくいき",
+    "en": [
+      "controlled access location"
+    ],
+    "senseUid": "99c83cdf-c521-46fc-a9a3-6c988e7cd155",
+    "wordId": "2264430",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かんりくいき\",\n      \"gloss\": [\"local de acesso controlado\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "なくして",
+    "en": [
+      "without",
+      "in the event that it did not (or does not) exist"
+    ],
+    "senseUid": "80f88947-ed78-4570-9467-550688db72b6",
+    "wordId": "2264440",
+    "pt": "{\n  \"a\": [\n    \"sem\",\n    \"na ausência de\",\n    \"caso não exista\",\n    \"caso não houvesse\",\n    \"se não houver\",\n    \"se não existisse\"\n  ]\n"
+  },
+  {
+    "kana": "さても",
+    "en": [
+      "oh my",
+      "dear me",
+      "wow",
+      "indeed",
+      "truly"
+    ],
+    "senseUid": "57c862f9-e61a-424c-a7a1-ee3292e74adf",
+    "wordId": "2264450",
+    "pt": "['ora essa', 'puxa vida', 'nossa', 'de fato', 'realmente']"
+  },
+  {
+    "kana": "ても",
+    "en": [
+      "even if",
+      "even though"
+    ],
+    "senseUid": "f53fdf2e-0895-49b8-9d0e-e85db4a556b3",
+    "wordId": "2264460",
+    "pt": "['mesmo que', 'ainda que']"
+  },
+  {
+    "kana": "ても",
+    "en": [
+      "wow"
+    ],
+    "senseUid": "74e2bdc3-3646-4704-831e-958adb802058",
+    "wordId": "2264460",
+    "pt": "{\n  \"a\": [\"mesmo que\", \"ainda que\", \"até se\", \"mesmo se\"]\n"
+  },
+  {
+    "kana": "はっしゃとう",
+    "en": [
+      "(grenade, etc.) launcher"
+    ],
+    "senseUid": "a4c0dca2-8552-4dfd-98d4-35e334a37ff6",
+    "wordId": "2264470",
+    "pt": "{\n  \"a\": [\"lançador (de granadas, etc.)\"]\n"
+  },
+  {
+    "kana": "はんさい",
+    "en": [
+      "burnt offering (i.e. religious animal sacrifice)"
+    ],
+    "senseUid": "157f53a1-2b2e-470c-9d18-3cfccca3982a",
+    "wordId": "2264480",
+    "pt": "{\n  \"a\": [\"oferta queimada (ou seja, sacrifício religioso de animal)\"]\n"
+  },
+  {
+    "kana": "ほじょいす",
+    "en": [
+      "auxiliary seat",
+      "booster seat",
+      "baby seat"
+    ],
+    "senseUid": "f9e58d25-12f9-49ce-87ba-269e8b64e05a",
+    "wordId": "2264490",
+    "pt": "{\n  \"a\": [\n    \"assento auxiliar\",\n    \"assento elevatório\",\n    \"cadeirinha de bebê\"\n  ]\n"
+  },
+  {
+    "kana": "さんにんのり",
+    "en": [
+      "three people on the same vehicle (usu. bike)"
+    ],
+    "senseUid": "947e6b89-8b85-4723-828f-8e2ee714e2ec",
+    "wordId": "2264500",
+    "pt": "['três pessoas no mesmo veículo (geralmente bicicleta)']"
+  },
+  {
+    "kana": "ほうがよろしい",
+    "en": [
+      "had better",
+      "is advisable"
+    ],
+    "senseUid": "8e9ca6d9-c789-4f6e-9b26-f03b667118b2",
+    "wordId": "2264510",
+    "pt": "['é melhor', 'seria aconselhável']"
+  },
+  {
+    "kana": "ほうがよろしければ",
+    "en": [
+      "if you need",
+      "if it is necessary"
+    ],
+    "senseUid": "1c4ea4ba-472b-4c71-b235-9931d5e6b7b9",
+    "wordId": "2264520",
+    "pt": "['Se for melhor', 'Se preferir', 'Se achar melhor']"
+  },
+  {
+    "kana": "しょくよくふしんしょう",
+    "en": [
+      "anorexia"
+    ],
+    "senseUid": "e1aa2566-1067-4d42-b57f-b7bb9a6b0003",
+    "wordId": "2264530",
+    "pt": "['transtorno de perda de apetite']"
+  },
+  {
+    "kana": "くびをよこにふる",
+    "en": [
+      "to shake one's head (in disagreement)",
+      "to disagree",
+      "to refuse",
+      "to say no",
+      "to turn down (a request)"
+    ],
+    "senseUid": "7f965ab4-8c42-4491-b71d-3065a3e789a1",
+    "wordId": "2264540",
+    "pt": "['balançar a cabeça (em sinal de discordância)', 'discordar', 'recusar', 'dizer não', 'rejeitar (um pedido)']"
+  },
+  {
+    "kana": "つごうがよろしい",
+    "en": [
+      "convenient"
+    ],
+    "senseUid": "5db01939-e4cd-448d-9e7a-56eaa9cbe034",
+    "wordId": "2264550",
+    "pt": "['conveniente', 'oportuno', 'favorável', 'adequado']"
+  },
+  {
+    "kana": "べにたで",
+    "en": [
+      "water pepper (Persicaria hydropiper f. purpurascens)"
+    ],
+    "senseUid": "ed8f99c7-6264-4508-8af2-c33c471ce019",
+    "wordId": "2264570",
+    "pt": "['pimenta-d’água (Persicaria hydropiper f. purpurascens)']"
+  },
+  {
+    "kana": "オーバーテクノロジー",
+    "en": [
+      "super technology",
+      "technology beyond our current capabilities, mainly in science fiction"
+    ],
+    "senseUid": "8614350f-f622-4983-ac24-67293e48b2a4",
+    "wordId": "2264560",
+    "pt": "['supertecnologia', 'tecnologia além das nossas capacidades atuais, principalmente em ficção científica']"
+  },
+  {
+    "kana": "ポリタンク",
+    "en": [
+      "plastic container (e.g. gas can, water can or similar)"
+    ],
+    "senseUid": "60212b6a-3517-4198-9743-6c07381f53f1",
+    "wordId": "2264580",
+    "pt": "['galão de plástico']"
+  },
+  {
+    "kana": "スミレか",
+    "en": [
+      "Violaceae (violet family)"
+    ],
+    "senseUid": "7f287c33-c621-4588-afb6-2f36398bfc91",
+    "wordId": "2264590",
+    "pt": "['família das violetas']"
+  },
+  {
+    "kana": "とま",
+    "en": [
+      "woven mat (of sedge, hay, etc.)"
+    ],
+    "senseUid": "c920d12a-5dd9-4063-8649-955b47964bd1",
+    "wordId": "2264600",
+    "pt": "{\n  \"a\": [\"esteira trançada (de junco, feno, etc.)\"]\n"
+  },
+  {
+    "kana": "ちほうぎょうせいかん",
+    "en": [
+      "regional administrator",
+      "local government official"
+    ],
+    "senseUid": "b9386691-9122-4b6c-aa99-4ec3ee585080",
+    "wordId": "2264610",
+    "pt": "{\n  \"a\": [\n    \"administrador regional\",\n    \"funcionário do governo local\"\n  ]\n"
+  },
+  {
+    "kana": "ちほうかん",
+    "en": [
+      "regional administrator",
+      "local government official"
+    ],
+    "senseUid": "7bdc80e1-8439-4032-b711-eeca99b0f98d",
+    "wordId": "2264620",
+    "pt": "{\n  \"a\": [\n    \"administrador regional\",\n    \"funcionário do governo local\"\n  ]\n"
+  },
+  {
+    "kana": "くにのみやつこ",
+    "en": [
+      "regional administrator (pre-Taika hereditary title)"
+    ],
+    "senseUid": "908822f8-9c03-49da-9d1b-b9b547cdfde8",
+    "wordId": "2264630",
+    "pt": "{\n  \"a\": [\n    \"administrador regional (título hereditário anterior à Reforma Taika)\"\n  ]\n"
+  },
+  {
+    "kana": "あたい",
+    "en": [
+      "Atai (post-Taika reform hereditary title often given to regional administrators)"
+    ],
+    "senseUid": "df6f8838-42c0-4180-b637-7c20f1698fb8",
+    "wordId": "2264640",
+    "pt": "['Atai (título hereditário pós-reforma Taika, frequentemente concedido a administradores regionais)']"
+  },
+  {
+    "kana": "あがたぬし",
+    "en": [
+      "territorial ruler (Yamato period)"
+    ],
+    "senseUid": "1e009e3c-a521-420e-9c8b-97cfe05b20b2",
+    "wordId": "2264650",
+    "pt": "{\n  \"a\": [\n    \"senhor territorial (período Yamato)\"\n  ]\n"
+  },
+  {
+    "kana": "ひこ",
+    "en": [
+      "boy"
+    ],
+    "senseUid": "1aff6310-9161-434e-8e21-03bebe553722",
+    "wordId": "2264660",
+    "pt": "['menino']"
+  },
+  {
+    "kana": "いらつめ",
+    "en": [
+      "lass"
+    ],
+    "senseUid": "4ab9c2fc-7787-430a-9a0c-da5950b9d919",
+    "wordId": "2264670",
+    "pt": "{\n  \"a\": [\n    \"donzela\",\n    \"moça\",\n    \"jovem dama\"\n  ]\n"
+  },
+  {
+    "kana": "いらつこ",
+    "en": [
+      "lad"
+    ],
+    "senseUid": "e62bad26-a707-4a85-83e2-8c9a0d2c6386",
+    "wordId": "2264680",
+    "pt": "['rapaz']"
+  },
+  {
+    "kana": "たにぐく",
+    "en": [
+      "Japanese toad (Bufo japonicus)"
+    ],
+    "senseUid": "4634491c-7473-408c-a484-55135f0ee3e5",
+    "wordId": "2264690",
+    "pt": "['sapo japonês (Bufo japonicus)']"
+  },
+  {
+    "kana": "ごみのひ",
+    "en": [
+      "garbage day",
+      "rubbish collection day"
+    ],
+    "senseUid": "e36adbac-f6c3-4f6f-99e6-c3849d414080",
+    "wordId": "2264700",
+    "pt": "{\n  \"a\": [\n    \"dia do lixo\",\n    \"dia da coleta de lixo\"\n  ]\n"
+  },
+  {
+    "kana": "ライバルがいしゃ",
+    "en": [
+      "rival (company)",
+      "competitor"
+    ],
+    "senseUid": "69d2e764-1c15-433e-a3f3-ed3d7b641068",
+    "wordId": "2264710",
+    "pt": "{\n  \"a\": [\"empresa concorrente\", \"empresa rival\"]\n"
+  },
+  {
+    "kana": "みなしはいとう",
+    "en": [
+      "consent dividend",
+      "constructive dividend",
+      "deemed dividend"
+    ],
+    "senseUid": "029e03df-f5f3-45c0-ac70-03585d7fa8d1",
+    "wordId": "2264720",
+    "pt": "['dividendo presumido', 'dividendo considerado', 'dividendo fictício']"
+  },
+  {
+    "kana": "とうさんがいしゃ",
+    "en": [
+      "bankrupt company"
+    ],
+    "senseUid": "db89ede2-61ed-46a6-8596-d2d08cf9bdad",
+    "wordId": "2264730",
+    "pt": "['empresa falida']"
+  },
+  {
+    "kana": "つごうのいい",
+    "en": [
+      "convenient"
+    ],
+    "senseUid": "59cf74e2-ffa0-46e7-aa15-abe5a55b9cee",
+    "wordId": "2264740",
+    "pt": "['conveniente']"
+  },
+  {
+    "kana": "つごうがいい",
+    "en": [
+      "convenient"
+    ],
+    "senseUid": "5a306bb0-ea92-4070-b32b-8e5ddec25c1f",
+    "wordId": "2264750",
+    "pt": "['conveniente']"
+  },
+  {
+    "kana": "つごうがわるい",
+    "en": [
+      "inconvenient"
+    ],
+    "senseUid": "9d1587fa-5b57-43a9-b78e-0180831a777a",
+    "wordId": "2264760",
+    "pt": "['inconveniente']"
+  },
+  {
+    "kana": "つごうのわるい",
+    "en": [
+      "inconvenient"
+    ],
+    "senseUid": "285c9a41-e4d5-4e31-98a7-84024cca7885",
+    "wordId": "2264770",
+    "pt": "{\n  \"a\": [\"inconveniente\"]\n"
+  },
+  {
+    "kana": "フォーチュンクッキー",
+    "en": [
+      "fortune cookie"
+    ],
+    "senseUid": "91ec58b1-fd0b-4cc2-b3c9-2c76c6877b17",
+    "wordId": "2264780",
+    "pt": "{\n  \"a\": [\"biscoito da sorte\"]\n"
+  },
+  {
+    "kana": "がく",
+    "en": [
+      "calyx"
+    ],
+    "senseUid": "e8c61e8f-cf5f-48de-9011-e98cc9bdc083",
+    "wordId": "2264790",
+    "pt": "['cálice']"
+  },
+  {
+    "kana": "プラムプディング",
+    "en": [
+      "Christmas pudding",
+      "plum pudding"
+    ],
+    "senseUid": "f9697fc9-4714-4cbe-8fd8-dc1f533a30c3",
+    "wordId": "2264800",
+    "pt": "{\n  \"a\": [\"pudim de Natal\", \"pudim de ameixa\"]\n"
+  },
+  {
+    "kana": "ブリヌイ",
+    "en": [
+      "blini",
+      "bliny",
+      "buckwheat flour pancakes (usu. served with sour cream)"
+    ],
+    "senseUid": "d096fdb3-35a8-47d4-bd31-93c9df01fb68",
+    "wordId": "2264810",
+    "pt": "['blini', 'bliny', 'panquecas de farinha de trigo sarraceno (geralmente servidas com creme azedo)']"
+  },
+  {
+    "kana": "ブリンツ",
+    "en": [
+      "blintz",
+      "blintze"
+    ],
+    "senseUid": "f168edf0-bcdc-4b92-9b4c-9b96436384b2",
+    "wordId": "2264820",
+    "pt": "{\n  \"a\": [\"blintz\", \"panqueca fina recheada (prato de origem judaica, semelhante a uma panqueca, popular também no Japão como sobremesa ou lanche)\"]\n"
+  },
+  {
+    "kana": "りっけんくんしゅこく",
+    "en": [
+      "constitutional monarchy"
+    ],
+    "senseUid": "9fbbb400-4019-4f43-b079-4cfe19ed4f44",
+    "wordId": "2264830",
+    "pt": "{\n  \"a\": [\"monarquia constitucional\"]\n"
+  },
+  {
+    "kana": "ひし",
+    "en": [
+      "caltrop (weapon)"
+    ],
+    "senseUid": "61eab32f-cccb-45aa-a531-320ef74c35e9",
+    "wordId": "2264840",
+    "pt": "{\n  \"a\": [\"estrela de ferro (arma)\", \"caltrop (arma)\", \"tetsubishi\"]\n"
+  },
+  {
+    "kana": "ひし",
+    "en": [
+      "water caltrop (esp. Trapa japonica)",
+      "water chestnut"
+    ],
+    "senseUid": "1286de43-e537-43d3-8620-fba4c6f0a465",
+    "wordId": "2264840",
+    "pt": "{\n  \"a\": [\n    \"castanha-d'água (especialmente Trapa japonica)\",\n    \"castanha-d'água japonesa\"\n  ]\n"
+  },
+  {
+    "kana": "しゃしゃんぼ",
+    "en": [
+      "sea bilberry (Vaccinium bracteatum)"
+    ],
+    "senseUid": "15a6d038-7dd5-4e53-a8a3-2b3847ca7aa8",
+    "wordId": "2264850",
+    "pt": "{\n  \"a\": [\n    \"mirtilo-do-mar (Vaccinium bracteatum)\"\n  ]\n"
+  },
+  {
+    "kana": "さしぶ",
+    "en": [
+      "sea bilberry (Vaccinium bracteatum)"
+    ],
+    "senseUid": "1eb1bd85-2590-4e6a-8df9-927b179a714b",
+    "wordId": "2264860",
+    "pt": "{\n  \"a\": [\"mirtilo-do-mar (Vaccinium bracteatum)\"]\n"
+  },
+  {
+    "kana": "らかんまき",
+    "en": [
+      "Podocarpus macrophyllus var. maki (variety of yew plum pine)"
+    ],
+    "senseUid": "7b70e624-1831-49c1-bccd-bae478a2bb68",
+    "wordId": "2264870",
+    "pt": "{\n  \"a\": [\n    \"Podocarpo-maki (variedade de pinheiro-ameixa teixo)\"\n  ]\n"
+  },
+  {
+    "kana": "いちいがし",
+    "en": [
+      "Quercus gilva (species of oak)"
+    ],
+    "senseUid": "e3af4515-c790-44b3-bf09-dca0b7d9b49f",
+    "wordId": "2264880",
+    "pt": "['carvalho-ichii (Quercus gilva, espécie de carvalho)']"
+  },
+  {
+    "kana": "いちい",
+    "en": [
+      "Japanese yew (Taxus cuspidata)"
+    ],
+    "senseUid": "e2f6fe39-e7b7-4ee1-b820-67c124429e9e",
+    "wordId": "2264890",
+    "pt": "{\n  \"a\": [\n    \"teixo-japonês (Taxus cuspidata)\"\n  ]\n"
+  },
+  {
+    "kana": "ところずら",
+    "en": [
+      "Dioscorea tokoro (species of wild yam)"
+    ],
+    "senseUid": "09548496-42f8-492a-8e7e-40ec3b645396",
+    "wordId": "2264900",
+    "pt": "['inhame selvagem japonês (Dioscorea tokoro)']"
+  },
+  {
+    "kana": "ところ",
+    "en": [
+      "Dioscorea tokoro (species of wild yam)"
+    ],
+    "senseUid": "19cb2dd5-0c56-40ea-8da2-5df0768c4a39",
+    "wordId": "2264910",
+    "pt": "{\n  \"a\": [\n    \"inhame selvagem (Dioscorea tokoro)\",\n    \"tokoro (espécie de inhame selvagem japonês)\"\n  ]\n"
+  },
+  {
+    "kana": "ところ",
+    "en": [
+      "old man living in the countryside"
+    ],
+    "senseUid": "c18617a1-f4bc-43bf-8c47-de41e140edd8",
+    "wordId": "2264910",
+    "pt": "{\n  \"a\": [\n    \"velho que vive no interior\",\n    \"idoso do campo\",\n    \"senhor do campo\"\n  ]\n"
+  },
+  {
+    "kana": "きささげ",
+    "en": [
+      "yellow catalpa (Catalpa ovata)",
+      "Chinese catalpa"
+    ],
+    "senseUid": "bc39db82-12a8-4795-9254-31e871229efe",
+    "wordId": "2264920",
+    "pt": "{\n  \"a\": [\n    \"catalpa-amarela (Catalpa ovata)\",\n    \"catalpa-chinesa\"\n  ]\n"
+  },
+  {
+    "kana": "ぬなわ",
+    "en": [
+      "water shield (Brasenia schreberi)"
+    ],
+    "senseUid": "0c6534bc-7a21-401f-ada3-f07ab079bcb0",
+    "wordId": "2264930",
+    "pt": "['escudo-d’água (Brasenia schreberi)']"
+  },
+  {
+    "kana": "おおたにわたり",
+    "en": [
+      "Asplenium antiquum (species of spleenwort)"
+    ],
+    "senseUid": "68274471-32a1-4f41-88c0-d5fd43a3e4ae",
+    "wordId": "2264940",
+    "pt": "{\n  \"a\": [\"Asplenium antiquum (espécie de samambaia japonesa chamada 'ootaniwatari')\"]\n"
+  },
+  {
+    "kana": "みつのかしわ",
+    "en": [
+      "leaves used for serving or offering sake, rice, etc."
+    ],
+    "senseUid": "ecb66047-291c-4e2b-98d3-43525e98fd13",
+    "wordId": "2264950",
+    "pt": "{\n  \"a\": [\n    \"folhas usadas para servir ou oferecer saquê, arroz, etc.\"\n  ]\n"
+  },
+  {
+    "kana": "みつながしわ",
+    "en": [
+      "Asplenium antiquum (species of spleenwort)"
+    ],
+    "senseUid": "17494a78-a4e9-4044-8ebc-e0123b2c9181",
+    "wordId": "2264960",
+    "pt": "{\n  \"a\": [\"Asplenium antiquum (espécie de samambaia japonesa conhecida como 'mitsunaga-shiwa')\"]\n"
+  },
+  {
+    "kana": "みつながしわ",
+    "en": [
+      "Dendropanax trifidus (species of flowering plant)"
+    ],
+    "senseUid": "210494bb-cef0-46f7-b91c-4638edb5e927",
+    "wordId": "2264960",
+    "pt": "{\n  \"a\": [\n    \"Dendropanax trifidus (espécie de planta com flores)\"\n  ]\n"
+  },
+  {
+    "kana": "みつながしわ",
+    "en": [
+      "leaves used for serving or offering sake, rice, etc."
+    ],
+    "senseUid": "b8ec4524-5fe0-4a66-934a-56f29d483431",
+    "wordId": "2264960",
+    "pt": "{\n  \"a\": [\n    \"folhas usadas para servir ou oferecer saquê, arroz, etc.\"\n  ]\n"
+  },
+  {
+    "kana": "やまたのおろち",
+    "en": [
+      "eight-headed, eight-tailed serpent (in Japanese mythology)"
+    ],
+    "senseUid": "a1ad3ad6-bffe-442f-9002-d29e45503a85",
+    "wordId": "2264970",
+    "pt": "['serpente de oito cabeças e oito caudas (na mitologia japonesa)']"
+  },
+  {
+    "kana": "ひさぎ",
+    "en": [
+      "yellow catalpa (Catalpa ovata)",
+      "Chinese catalpa"
+    ],
+    "senseUid": "19fef898-2fbd-4fe8-80c8-99a9a711eb2d",
+    "wordId": "2264980",
+    "pt": "{\n  \"a\": [\n    \"catalpa-amarela (Catalpa ovata)\",\n    \"catalpa-chinesa\"\n  ]\n"
+  },
+  {
+    "kana": "ひさぎ",
+    "en": [
+      "Japanese mallotus (Mallotus japonicus)"
+    ],
+    "senseUid": "82542b22-d0ed-4723-a1d3-cb92c79e43d8",
+    "wordId": "2264980",
+    "pt": "{\n  \"a\": [\"malloto-japonês\", \"mallotus japonicus\", \"árvore japonesa mallotus\"]\n"
+  },
+  {
+    "kana": "おんがくかい",
+    "en": [
+      "the world of music",
+      "the music world"
+    ],
+    "senseUid": "1718feb9-a0b2-4216-a29a-5f3734800614",
+    "wordId": "2264990",
+    "pt": "['o mundo da música', 'o meio musical']"
+  },
+  {
+    "kana": "コンソリデーション",
+    "en": [
+      "consolidation"
+    ],
+    "senseUid": "054ceea4-1eef-4a28-8a35-ebf32088b980",
+    "wordId": "2265000",
+    "pt": "{\n  \"a\": [\n    \"consolidação\"\n  ]\n"
+  },
+  {
+    "kana": "リフトバス",
+    "en": [
+      "kneeling bus"
+    ],
+    "senseUid": "454c527e-2df0-4885-8122-8c0751de89f8",
+    "wordId": "2265010",
+    "pt": "['ônibus rebaixado']"
+  },
+  {
+    "kana": "しもう",
+    "en": [
+      "stinging hair (of a nettle, caterpillar, etc.)"
+    ],
+    "senseUid": "236264d5-1798-4e9e-b912-dfcedf8be292",
+    "wordId": "2265020",
+    "pt": "['pêlo urticante (de urtiga, lagarta, etc.)']"
+  }
+]

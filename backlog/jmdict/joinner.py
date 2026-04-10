@@ -2,7 +2,7 @@ import os
 import json
 from pathlib import Path
 
-PASTA_JSON = "chat_gpt"
+PASTA_JSON = "results"
 ARQUIVO_SAIDA = "chat_gpt.json"
 
 

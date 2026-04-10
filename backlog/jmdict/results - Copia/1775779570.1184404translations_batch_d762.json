@@ -1,0 +1,963 @@
+[
+  {
+    "kana": "きしょうレーダー",
+    "en": [
+      "weather radar"
+    ],
+    "senseUid": "667d742d-985d-42f2-afae-ffa4d030c419",
+    "wordId": "2845248",
+    "pt": "{\n  \"a\": [\"radar meteorológico\"]\n"
+  },
+  {
+    "kana": "まてばかんろのひよりあり",
+    "en": [
+      "good things come to those who wait",
+      "if you wait, there will come a fine day of nectar (falling from the sky)"
+    ],
+    "senseUid": "13757cae-2440-481f-ba41-6a298acdacf9",
+    "wordId": "2845249",
+    "pt": "{\n  \"a\": [\n    \"Boas coisas acontecem para quem espera.\",\n    \"Se você esperar, chegará um dia doce como néctar.\"\n  ]\n"
+  },
+  {
+    "kana": "げいはみをたすける",
+    "en": [
+      "art brings bread"
+    ],
+    "senseUid": "355344a1-d5c7-4117-ab43-927412f3b47b",
+    "wordId": "2845250",
+    "pt": "{\n  \"a\": [\"A arte traz o pão.\"]\n"
+  },
+  {
+    "kana": "げいがみをたすけるほどのふしあわせ",
+    "en": [
+      "being able to live as an artist is no blessing"
+    ],
+    "senseUid": "427d9ba7-db5c-46f4-bf9b-f9560d971eac",
+    "wordId": "2845251",
+    "pt": "{\n  \"a\": [\n    \"Viver como artista não é uma bênção.\",\n    \"Ser capaz de viver como artista não é uma sorte.\",\n    \"Poder sobreviver como artista não é motivo de felicidade.\"\n  ]\n"
+  },
+  {
+    "kana": "げこのたてたくらはない",
+    "en": [
+      "don't act all high and mighty just because you don't drink",
+      "no teetotaler has (ever) built a storehouse"
+    ],
+    "senseUid": "efd40f86-a176-4a65-b3bf-4ab0fb3a386b",
+    "wordId": "2845252",
+    "pt": "{\n  \"a\": [\n    \"Não se ache superior só porque não bebe.\",\n    \"Nenhum abstêmio jamais construiu um armazém.\"\n  ]\n"
+  },
+  {
+    "kana": "よいさめのみずげこしらず",
+    "en": [
+      "a teetotaler doesn't know (how tasty) water is when waking up after having been drunk"
+    ],
+    "senseUid": "a08deb10-abf7-40ec-bd4b-122c1ad3fa08",
+    "wordId": "2845253",
+    "pt": "{\n  \"a\": [\n    \"Quem não bebe não sabe como a água é gostosa ao acordar de uma bebedeira.\"\n  ]\n"
+  },
+  {
+    "kana": "じょうごはどくをしらずげこはくすりをしらず",
+    "en": [
+      "drinkers drink too much (and harm themselves in the process), nondrinkers drink too little (and miss out on the medicinal benefits of alcohol)"
+    ],
+    "senseUid": "9609db29-c676-43f0-ba90-11aa24bd879a",
+    "wordId": "2845254",
+    "pt": "['Os que bebem demais não percebem o veneno, os que não bebem não conhecem o remédio.']"
+  },
+  {
+    "kana": "ふみはやりたしかくてはもたぬ",
+    "en": [
+      "I want to send a (love) letter but I cannot write"
+    ],
+    "senseUid": "434f3f00-5ba2-4db5-ac81-4b1d6a159d7b",
+    "wordId": "2845255",
+    "pt": "{\n  \"a\": [\n    \"Quero enviar uma carta (de amor), mas não consigo escrevê-la.\"\n  ]\n"
+  },
+  {
+    "kana": "こころざしはまつのはにつつめ",
+    "en": [
+      "for gifts, it's the thought that counts"
+    ],
+    "senseUid": "ebd50d5d-35f9-44f5-b3c1-68e0f507418e",
+    "wordId": "2845256",
+    "pt": "{\n  \"a\": [\n    \"O que importa é a intenção por trás do presente.\"\n  ]\n"
+  },
+  {
+    "kana": "ラブい",
+    "en": [
+      "lovely",
+      "lovable"
+    ],
+    "senseUid": "6df99819-c1d8-4de3-ad57-2b7dd525bc0f",
+    "wordId": "2845257",
+    "pt": "['fofo', 'adorável']"
+  },
+  {
+    "kana": "たつのひ",
+    "en": [
+      "day of the Dragon"
+    ],
+    "senseUid": "0f6381d2-feb9-44b6-8a0a-eb83ed45dc1b",
+    "wordId": "2845258",
+    "pt": "['Dia do Dragão']"
+  },
+  {
+    "kana": "よそはよそ、うちはうち",
+    "en": [
+      "we have our rules, they have theirs",
+      "our house, our rules"
+    ],
+    "senseUid": "0c886f74-001d-409f-99bf-7172685e1f2a",
+    "wordId": "2845260",
+    "pt": "['cada casa com suas regras', 'aqui é diferente de lá']"
+  },
+  {
+    "kana": "ぬっぽり",
+    "en": [
+      "flat",
+      "smooth"
+    ],
+    "senseUid": "a128325e-9bfc-4ca3-85d6-9b503dd344cd",
+    "wordId": "2845261",
+    "pt": "['liso', 'suave']"
+  },
+  {
+    "kana": "ぬっぽり",
+    "en": [
+      "shamelessly",
+      "brazenly"
+    ],
+    "senseUid": "2aaeca23-5029-4f84-b33a-eda42b7fc328",
+    "wordId": "2845261",
+    "pt": "['descaradamente', 'sem vergonha']"
+  },
+  {
+    "kana": "ぬっぽり",
+    "en": [
+      "absentmindedly",
+      "vacantly"
+    ],
+    "senseUid": "07664b16-fc6e-431c-96b5-5fb8879a0786",
+    "wordId": "2845261",
+    "pt": "['distraidamente', 'com olhar vazio']"
+  },
+  {
+    "kana": "ぬっぽり",
+    "en": [
+      "fool",
+      "simpleton"
+    ],
+    "senseUid": "7d644aa2-07d6-4ff2-8389-4ea02b98ff87",
+    "wordId": "2845261",
+    "pt": "{\n  \"a\": [\"bobo\", \"simplório\"]\n"
+  },
+  {
+    "kana": "こうそげんまい",
+    "en": [
+      "koso genmai",
+      "fermented brown rice"
+    ],
+    "senseUid": "97332508-62bc-4630-b06d-be0cfd1445fd",
+    "wordId": "2845262",
+    "pt": "{\n  \"a\": [\n    \"arroz integral fermentado\"\n  ]\n"
+  },
+  {
+    "kana": "スマホゲーム",
+    "en": [
+      "smartphone game"
+    ],
+    "senseUid": "d1359f23-eeba-4c58-885c-dd0e81dc2b14",
+    "wordId": "2845264",
+    "pt": "['jogo de celular']"
+  },
+  {
+    "kana": "コミックし",
+    "en": [
+      "matte comic book paper"
+    ],
+    "senseUid": "47e27506-dfea-41d8-846c-b747b62ceca4",
+    "wordId": "2845265",
+    "pt": "{\n  \"a\": [\"papel de quadrinhos fosco\"]\n"
+  },
+  {
+    "kana": "じれいしょうこ",
+    "en": [
+      "anecdotal evidence"
+    ],
+    "senseUid": "13334405-2cf0-4105-9c3f-7e16fa66d379",
+    "wordId": "2845266",
+    "pt": "['evidência anedótica']"
+  },
+  {
+    "kana": "トレードイン",
+    "en": [
+      "trade-in"
+    ],
+    "senseUid": "3868acbc-1607-4868-b9d6-8414e9aa5b51",
+    "wordId": "2845267",
+    "pt": "['troca de usado']"
+  },
+  {
+    "kana": "のみっぷり",
+    "en": [
+      "the way one drinks",
+      "one's manner of drinking"
+    ],
+    "senseUid": "aad73041-c5b7-4d7e-9c28-5ae2e58b18ff",
+    "wordId": "2845269",
+    "pt": "['o modo de beber', 'a maneira de beber']"
+  },
+  {
+    "kana": "のみぶり",
+    "en": [
+      "the way one drinks",
+      "one's manner of drinking"
+    ],
+    "senseUid": "1219ec6c-539e-4e6b-ab08-40dd2c22b0bd",
+    "wordId": "2845270",
+    "pt": "{\n  \"a\": [\n    \"o modo de beber\",\n    \"a maneira de beber\"\n  ]\n"
+  },
+  {
+    "kana": "まけっぷり",
+    "en": [
+      "one's manner (attitude) when losing",
+      "one's way of losing"
+    ],
+    "senseUid": "3785caa2-54de-420f-9fcf-c6526d1479f3",
+    "wordId": "2845271",
+    "pt": "['a maneira de alguém ao perder', 'a atitude de alguém ao ser derrotado', 'o jeito de alguém perder']"
+  },
+  {
+    "kana": "かきっぷり",
+    "en": [
+      "style of writing",
+      "manner of writing"
+    ],
+    "senseUid": "697292b1-dcf3-435d-a3a7-18c8e766e418",
+    "wordId": "2845272",
+    "pt": "{\n  \"a\": [\n    \"estilo de escrita\",\n    \"maneira de escrever\"\n  ]\n"
+  },
+  {
+    "kana": "せんもんがいらい",
+    "en": [
+      "specialist outpatient department"
+    ],
+    "senseUid": "5e74af46-92e9-4d6d-9582-2a23d28ab759",
+    "wordId": "2845273",
+    "pt": "['ambulatório de especialidades']"
+  },
+  {
+    "kana": "まけぶり",
+    "en": [
+      "one's manner (attitude) when losing",
+      "one's way of losing"
+    ],
+    "senseUid": "de99d0f1-1bf4-4d68-90fb-e47427572520",
+    "wordId": "2845274",
+    "pt": "['maneira de perder', 'atitude ao perder']"
+  },
+  {
+    "kana": "じょうがいせん",
+    "en": [
+      "fight outside the stadium",
+      "fighting outside the ring"
+    ],
+    "senseUid": "7e026cc3-bd19-4e06-b14b-58f1f1377031",
+    "wordId": "2845275",
+    "pt": "{\n  \"a\": [\n    \"luta fora do estádio\",\n    \"luta fora do ringue\"\n  ]\n"
+  },
+  {
+    "kana": "えいせいこうげきへいき",
+    "en": [
+      "anti-satellite weapon"
+    ],
+    "senseUid": "2022568f-d223-4936-9981-bb311f3f88ed",
+    "wordId": "2845276",
+    "pt": "{\n  \"a\": [\"arma anti-satélite\"]\n"
+  },
+  {
+    "kana": "けんこうひがい",
+    "en": [
+      "health hazard",
+      "health damage"
+    ],
+    "senseUid": "99be2412-6a09-4b86-aed8-9cd299b4d31f",
+    "wordId": "2845277",
+    "pt": "{\n  \"a\": [\n    \"dano à saúde\",\n    \"prejuízo à saúde\"\n  ]\n"
+  },
+  {
+    "kana": "にしまわりこうろ",
+    "en": [
+      "east-to-west sea route"
+    ],
+    "senseUid": "706fdbf2-fb22-4cee-98d2-2bf2679d296f",
+    "wordId": "2845278",
+    "pt": "['rota marítima de oeste para leste']"
+  },
+  {
+    "kana": "きゃくたいか",
+    "en": [
+      "objectification"
+    ],
+    "senseUid": "adc8963a-6314-43bd-9164-c48792186d53",
+    "wordId": "2845279",
+    "pt": "['objetificação']"
+  },
+  {
+    "kana": "ばばをひく",
+    "en": [
+      "to get the short end of the stick",
+      "to get the bad side of a bargain",
+      "to draw the joker (when playing Old Maid)"
+    ],
+    "senseUid": "24185f38-792f-4117-8ac8-6e5967b091be",
+    "wordId": "2845280",
+    "pt": "['ficar com a pior parte', 'sair perdendo', 'tirar o curinga (no jogo de cartas Old Maid)']"
+  },
+  {
+    "kana": "センターパート",
+    "en": [
+      "center part (hairstyle)",
+      "middle part"
+    ],
+    "senseUid": "de7aa262-0070-463d-99f1-14d57861e640",
+    "wordId": "2845281",
+    "pt": "['divisão central (penteado)', 'risca no meio']"
+  },
+  {
+    "kana": "けっかをだす",
+    "en": [
+      "to achieve results",
+      "to be successful (in a venture, etc.)"
+    ],
+    "senseUid": "0e090eec-e42e-4c32-b1a5-d42c36be5aff",
+    "wordId": "2845282",
+    "pt": "['alcançar resultados', 'ter sucesso (em um empreendimento, etc.)']"
+  },
+  {
+    "kana": "すきまなく",
+    "en": [
+      "closely",
+      "compactly",
+      "leaving no space"
+    ],
+    "senseUid": "73669948-2aad-4eae-923c-abfb00b19fe7",
+    "wordId": "2845284",
+    "pt": "['sem deixar espaço', 'compactamente', 'de forma justa']"
+  },
+  {
+    "kana": "せいそけいビッチ",
+    "en": [
+      "neat and tidy woman who is (unexpectedly) promiscuous"
+    ],
+    "senseUid": "e7e3bac5-cb8c-4d49-ab0f-8387af2f8481",
+    "wordId": "2845285",
+    "pt": "['mulher limpa e arrumada que (inesperadamente) é promíscua']"
+  },
+  {
+    "kana": "こしのくに",
+    "en": [
+      "Koshi (former province located in present-day Fukui, Ishikawa, Toyama and Niigata prefectures; later split into Echizen, Etchū, and Echigo)"
+    ],
+    "senseUid": "79572e7b-952d-429b-9d21-3b7ad05a06c7",
+    "wordId": "2845287",
+    "pt": "['Koshi (antiga província localizada no que hoje são as prefeituras de Fukui, Ishikawa, Toyama e Niigata; mais tarde dividida em Echizen, Etchū e Echigo)']"
+  },
+  {
+    "kana": "さんえつ",
+    "en": [
+      "San'etsu (the three former provinces of Echizen, Etchū and Echigo)"
+    ],
+    "senseUid": "30d9e61e-999b-454d-95ae-3273cd966c1d",
+    "wordId": "2845288",
+    "pt": "['San\\'etsu (as três antigas províncias de Echizen, Etchū e Echigo)']"
+  },
+  {
+    "kana": "えっしゅう",
+    "en": [
+      "Esshū (the three former provinces of Echizen, Etchū and Echigo)"
+    ],
+    "senseUid": "add76cdd-7218-4180-82cb-eb8ee66411c8",
+    "wordId": "2845289",
+    "pt": "['Esshū (as três antigas províncias de Echizen, Etchū e Echigo)']"
+  },
+  {
+    "kana": "すだおし",
+    "en": [
+      "sudaoshi (type of game)"
+    ],
+    "senseUid": "bcdc37d9-b59a-4021-8ad4-3434ddb7ee2d",
+    "wordId": "2845290",
+    "pt": "['sudaoshi (tipo de jogo)']"
+  },
+  {
+    "kana": "いっしょうにいちど",
+    "en": [
+      "once in a lifetime",
+      "once in one's life"
+    ],
+    "senseUid": "f9e3c2e0-38a4-4e92-ade3-1650fd46cd59",
+    "wordId": "2845291",
+    "pt": "['uma vez na vida', 'única vez na vida']"
+  },
+  {
+    "kana": "かんいばん",
+    "en": [
+      "simplified version",
+      "abridged edition"
+    ],
+    "senseUid": "3886fd63-cc06-4da1-bad1-09af6476c44e",
+    "wordId": "2845292",
+    "pt": "{\n  \"a\": [\"versão simplificada\", \"edição abreviada\"]\n"
+  },
+  {
+    "kana": "センターわけ",
+    "en": [
+      "center part (hairstyle)",
+      "middle part"
+    ],
+    "senseUid": "433dcc38-546e-43e8-94af-1c4254e29a7d",
+    "wordId": "2845293",
+    "pt": "['divisão ao meio (penteado)', 'risca central']"
+  },
+  {
+    "kana": "じゅうりょうりょうきん",
+    "en": [
+      "meter rate",
+      "usage charge"
+    ],
+    "senseUid": "8844f855-5efc-459a-a23e-182c31175b20",
+    "wordId": "2845294",
+    "pt": "['taxa de uso', 'tarifa por medição']"
+  },
+  {
+    "kana": "ようさいか",
+    "en": [
+      "fortifying",
+      "fortification"
+    ],
+    "senseUid": "9aa3da24-9487-4040-84bc-d4dd10ebe124",
+    "wordId": "2845295",
+    "pt": "{\n  \"a\": [\n    \"fortificação\",\n    \"fortificando\",\n    \"reforço defensivo\",\n    \"ato de fortificar\"\n  ]\n"
+  },
+  {
+    "kana": "うすだいだい",
+    "en": [
+      "pale orange (color)"
+    ],
+    "senseUid": "7e0d9378-cf2d-4b7e-ae8c-817429e5d257",
+    "wordId": "2845296",
+    "pt": "{\n  \"a\": [\"laranja pálido (cor)\"]\n"
+  },
+  {
+    "kana": "ペールオレンジ",
+    "en": [
+      "pale orange (color)"
+    ],
+    "senseUid": "c631b9eb-b0a8-41b8-92ce-f30b9a6f2d5d",
+    "wordId": "2845297",
+    "pt": "['laranja pálido']"
+  },
+  {
+    "kana": "なんかいどう",
+    "en": [
+      "Nankaidō (alt. name for the Shikoku region)"
+    ],
+    "senseUid": "a72d42ed-aff1-45c7-9a66-5ea46dda1ac0",
+    "wordId": "2845298",
+    "pt": "['Nankaidō (nome alternativo para a região de Shikoku)']"
+  },
+  {
+    "kana": "さいかいどう",
+    "en": [
+      "Saikaidō (name for the Kyūshū region under the ritsuryō system)"
+    ],
+    "senseUid": "11a8d1c8-eded-4f14-851e-428eecb7a81e",
+    "wordId": "2845299",
+    "pt": "['Saikaidō (nome da região de Kyūshū sob o sistema ritsuryō)']"
+  },
+  {
+    "kana": "ちくしゅう",
+    "en": [
+      "Chikushū (the two former provinces of Chikuzen and Chikugo)"
+    ],
+    "senseUid": "dce9441b-1aea-4381-b7d9-8a63fec1e780",
+    "wordId": "2845300",
+    "pt": "['Chikushū (as duas antigas províncias de Chikuzen e Chikugo)']"
+  },
+  {
+    "kana": "にちく",
+    "en": [
+      "Nichiku (the two former provinces of Chikuzen and Chikugo)"
+    ],
+    "senseUid": "6b118d33-9df1-4500-bbf7-429a0fb8fc9a",
+    "wordId": "2845301",
+    "pt": "['Nichiku (as duas antigas províncias de Chikuzen e Chikugo)']"
+  },
+  {
+    "kana": "りょうちく",
+    "en": [
+      "Ryōchiku (the two former provinces of Chikuzen and Chikugo)"
+    ],
+    "senseUid": "0408874d-4b59-4bf9-8f19-af602434a311",
+    "wordId": "2845302",
+    "pt": "['Ryōchiku (as duas antigas províncias de Chikuzen e Chikugo)']"
+  },
+  {
+    "kana": "ひしゅう",
+    "en": [
+      "Hishū (the two former provinces of Hizen and Higo)"
+    ],
+    "senseUid": "5ef1b14e-45c2-4114-b428-81c28aa2ebb7",
+    "wordId": "2845304",
+    "pt": "['Hishū (as duas antigas províncias de Hizen e Higo)']"
+  },
+  {
+    "kana": "にひ",
+    "en": [
+      "Nihi (the two former provinces of Hizen and Higo)"
+    ],
+    "senseUid": "cb57587a-c752-43a2-b257-b7e2cb9c79b0",
+    "wordId": "2845305",
+    "pt": "['Nihi (as duas antigas províncias de Hizen e Higo)']"
+  },
+  {
+    "kana": "ひのくに",
+    "en": [
+      "Hi (former province located in present-day Nagasaki, Saga and Kumamoto prefectures; later split into Hizen and Higo provinces)"
+    ],
+    "senseUid": "d2983564-d668-4dcd-a392-f2ca371084ba",
+    "wordId": "2845306",
+    "pt": "{\n  \"a\": [\n    \"Hi no Kuni (antiga província localizada nas atuais prefeituras de Nagasaki, Saga e Kumamoto; posteriormente dividida em Hizen e Higo)\"\n  ]\n"
+  },
+  {
+    "kana": "えんとつきひ",
+    "en": [
+      "don't try to force good things to happen"
+    ],
+    "senseUid": "8498da2d-6900-4714-bee4-db48231781db",
+    "wordId": "2845307",
+    "pt": "['Não tente forçar coisas boas a acontecerem.']"
+  },
+  {
+    "kana": "マシンガントーク",
+    "en": [
+      "incessant talking",
+      "rapid talking"
+    ],
+    "senseUid": "295a8345-14ee-4b06-a209-4d5ae266321a",
+    "wordId": "2845309",
+    "pt": "['fala incessante', 'fala rápida']"
+  },
+  {
+    "kana": "てらからさとへ",
+    "en": [
+      "putting the cart before the horse"
+    ],
+    "senseUid": "0dbc5179-0162-4bcb-98f3-61ba364c71e5",
+    "wordId": "2845308",
+    "pt": "{\n  \"a\": [\"colocar a carroça na frente dos bois\"]\n"
+  },
+  {
+    "kana": "ツールチップ",
+    "en": [
+      "tooltip"
+    ],
+    "senseUid": "0fb81886-51d9-4a20-9afc-b7a9c8386416",
+    "wordId": "2845310",
+    "pt": "['dica de ferramenta']"
+  },
+  {
+    "kana": "おそれをしらない",
+    "en": [
+      "fearless",
+      "daring",
+      "knowing no fear"
+    ],
+    "senseUid": "45a53452-e789-40c4-b53b-8a5ab0a2ba7d",
+    "wordId": "2845311",
+    "pt": "['destemido', 'audacioso', 'sem conhecer o medo']"
+  },
+  {
+    "kana": "バス",
+    "en": [
+      "bath"
+    ],
+    "senseUid": "6be1c4fd-d946-4d6e-ac5b-d3fdd359f032",
+    "wordId": "2845312",
+    "pt": "['banheira']"
+  },
+  {
+    "kana": "ベース",
+    "en": [
+      "bass guitar",
+      "electric bass",
+      "bass"
+    ],
+    "senseUid": "32f4f0c9-4048-42e1-b165-3221bc11baab",
+    "wordId": "2845313",
+    "pt": "{\n  \"a\": [\n    \"baixo elétrico\",\n    \"baixo\",\n    \"guitarra baixo\"\n  ]\n"
+  },
+  {
+    "kana": "ベース",
+    "en": [
+      "bass",
+      "low register"
+    ],
+    "senseUid": "68df58d6-77e3-46c6-a5d9-c60c0effd838",
+    "wordId": "2845313",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ベース\",\n      \"portugues\": [\n        \"baixo (instrumento musical)\",\n        \"registro grave\"\n      ],\n      \"notas\": \"No contexto japonês, ベース geralmente se refere ao instrumento musical 'baixo' ou ao registro grave em música.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "ベース",
+    "en": [
+      "double bass",
+      "contrabass",
+      "bass"
+    ],
+    "senseUid": "5cd4649f-54d7-4591-8732-73d5eda7a7d7",
+    "wordId": "2845313",
+    "pt": "{\n  \"a\": [\"contrabaixo\", \"baixo acústico\", \"baixo\"]\n"
+  },
+  {
+    "kana": "バス",
+    "en": [
+      "bass"
+    ],
+    "senseUid": "00ddae9c-6fb0-422e-960a-1c49b50e89e5",
+    "wordId": "2845314",
+    "pt": "['ônibus']"
+  },
+  {
+    "kana": "バス",
+    "en": [
+      "double bass"
+    ],
+    "senseUid": "273e078a-49ca-423f-a511-ec795d0d9fbc",
+    "wordId": "2845314",
+    "pt": "['contrabaixo']"
+  },
+  {
+    "kana": "バス",
+    "en": [
+      "bass (fish; esp. black bass)"
+    ],
+    "senseUid": "e18728ef-832a-4da1-abd0-0113d71cc543",
+    "wordId": "2845315",
+    "pt": "['robalo (peixe; especialmente black bass)']"
+  },
+  {
+    "kana": "くさびふぐ",
+    "en": [
+      "slender sunfish (Ranzania laevis)",
+      "oblong sunfish"
+    ],
+    "senseUid": "0f8ed361-662d-448f-bce8-39ada0abe5cc",
+    "wordId": "2845316",
+    "pt": "{\n  \"a\": [\n    \"peixe-lua delgado (Ranzania laevis)\",\n    \"peixe-lua oblongo\"\n  ]\n"
+  },
+  {
+    "kana": "サンフィッシュ",
+    "en": [
+      "sunfish"
+    ],
+    "senseUid": "4e8b8c65-42aa-4afe-9bb1-3d66ae9d717c",
+    "wordId": "2845317",
+    "pt": "{\n  \"a\": [\"peixe-lua\"]\n"
+  },
+  {
+    "kana": "はんこうたくし",
+    "en": [
+      "semi-gloss paper",
+      "semi-glossy paper"
+    ],
+    "senseUid": "025c872c-8683-48e9-a418-7c4d07983c42",
+    "wordId": "2845318",
+    "pt": "{\n  \"a\": [\"papel semibrilhante\", \"papel meio-brilhante\"]\n"
+  },
+  {
+    "kana": "がそくえん",
+    "en": [
+      "pes anserine bursitis",
+      "goosefoot bursitis",
+      "knee tendon bursitis"
+    ],
+    "senseUid": "e0ea9b7c-edaf-4597-b96e-943bc1f8e7b0",
+    "wordId": "2845319",
+    "pt": "['bursite anserina', 'bursite do pé de ganso', 'bursite dos tendões do joelho']"
+  },
+  {
+    "kana": "ファンシーペーパー",
+    "en": [
+      "high-quality coloured and textured paper"
+    ],
+    "senseUid": "d3606644-1370-4fbd-99fa-b3397a7685a4",
+    "wordId": "2845320",
+    "pt": "['papel especial', 'papel fantasia', 'papel artístico', 'papel decorativo']"
+  },
+  {
+    "kana": "はんこうたく",
+    "en": [
+      "semigloss",
+      "semimatte",
+      "semimat"
+    ],
+    "senseUid": "8a750b95-fb48-4e80-a41d-4315e2606fb2",
+    "wordId": "2845321",
+    "pt": "{\n  \"a\": [\n    \"semibrilho\",\n    \"semimate\",\n    \"semimate\"\n  ]\n"
+  },
+  {
+    "kana": "おといあわせフォーム",
+    "en": [
+      "contact form"
+    ],
+    "senseUid": "3b59b63b-2b74-4bbc-97af-f51f700ed953",
+    "wordId": "2845322",
+    "pt": "['formulário de contato']"
+  },
+  {
+    "kana": "グラシンし",
+    "en": [
+      "glassine",
+      "glassine paper"
+    ],
+    "senseUid": "cc195807-021d-4dfc-ac8d-d3e0a2a2f797",
+    "wordId": "2845323",
+    "pt": "{\n  \"a\": [\"papel glassine\", \"papel translúcido\"]\n"
+  },
+  {
+    "kana": "グラシン",
+    "en": [
+      "glassine",
+      "glassine paper"
+    ],
+    "senseUid": "e3dfae12-3162-4f89-8f2c-bf40539823ca",
+    "wordId": "2845324",
+    "pt": "{\n  \"a\": [\"papel glassine\", \"papel glassina\"]\n"
+  },
+  {
+    "kana": "じつによく",
+    "en": [
+      "skillfully",
+      "admirably",
+      "really well",
+      "excellently"
+    ],
+    "senseUid": "09e20a51-eb01-4845-8b40-ec7263e20f36",
+    "wordId": "2845325",
+    "pt": "['habilmente', 'admiravelmente', 'realmente bem', 'excelentemente']"
+  },
+  {
+    "kana": "ケソン",
+    "en": [
+      "Kaesong (North Korea)"
+    ],
+    "senseUid": "b796c877-41bb-4509-8a94-6f424321a48e",
+    "wordId": "2845326",
+    "pt": "['Kaesong (Coreia do Norte)']"
+  },
+  {
+    "kana": "といあわせフォーム",
+    "en": [
+      "contact form"
+    ],
+    "senseUid": "eb45dbf3-931c-44a9-89d0-a0239d1b8dd0",
+    "wordId": "2845327",
+    "pt": "['formulário de contato']"
+  },
+  {
+    "kana": "チュンチョンプクト",
+    "en": [
+      "Chungcheongbuk-do (South Korea)",
+      "North Chungcheong Province"
+    ],
+    "senseUid": "07928bbc-8915-4a1a-9472-96b981eefdb7",
+    "wordId": "2845328",
+    "pt": "{\n  \"a\": [\"Chungcheongbuk-do (Coreia do Sul)\", \"Província de Chungcheong do Norte\"]\n"
+  },
+  {
+    "kana": "チュンチョンナムド",
+    "en": [
+      "Chungcheongnam-do (South Korea)",
+      "South Chungcheong Province"
+    ],
+    "senseUid": "18e28401-39e5-4cb8-ae0c-ec4b3ff7556b",
+    "wordId": "2845329",
+    "pt": "{\n  \"a\": [\n    \"Chungcheongnam-do (Coreia do Sul)\",\n    \"Província de Chungcheong do Sul\"\n  ]\n"
+  },
+  {
+    "kana": "カンウォンド",
+    "en": [
+      "Gangwon-do (South Korea)",
+      "Gangwon Province"
+    ],
+    "senseUid": "eef43363-a5b0-4c0c-ba1d-6f21bf5a1b2f",
+    "wordId": "2845330",
+    "pt": "{\n  \"a\": [\n    \"Gangwon-do (Coreia do Sul)\",\n    \"Província de Gangwon\"\n  ]\n"
+  },
+  {
+    "kana": "カンウォンド",
+    "en": [
+      "Kangwon Province (North Korea)"
+    ],
+    "senseUid": "404e239e-a12b-47ca-851d-6b0120880201",
+    "wordId": "2845330",
+    "pt": "{\n  \"a\": [\"Província de Kangwon (Coreia do Norte)\"]\n"
+  },
+  {
+    "kana": "キョンギド",
+    "en": [
+      "Gyeonggi-do (South Korea)",
+      "Gyeonggi Province"
+    ],
+    "senseUid": "192488ed-07fc-4893-ba02-946be06ca0e5",
+    "wordId": "2845331",
+    "pt": "['Província de Gyeonggi']"
+  },
+  {
+    "kana": "キョンサンプクト",
+    "en": [
+      "Gyeongsangbuk-do (South Korea)",
+      "North Gyeongsang Province"
+    ],
+    "senseUid": "c5bfd27c-3e90-468f-a585-68366db6cb39",
+    "wordId": "2845332",
+    "pt": "{\n  \"a\": [\n    \"Gyeongsangbuk-do (Coreia do Sul)\",\n    \"Província de Gyeongsang do Norte\"\n  ]\n"
+  },
+  {
+    "kana": "ツールヒント",
+    "en": [
+      "tooltip"
+    ],
+    "senseUid": "3612f794-290e-4246-9de9-ed7ca1ffc433",
+    "wordId": "2845333",
+    "pt": "['dica de ferramenta']"
+  },
+  {
+    "kana": "キョンサンナムド",
+    "en": [
+      "Gyeongsangnam-do (South Korea)",
+      "South Gyeongsang Province"
+    ],
+    "senseUid": "fbd4f153-ad34-427c-9aa2-529f48b942fc",
+    "wordId": "2845334",
+    "pt": "['Gyeongsangnam-do (Coreia do Sul)', 'Província de Gyeongsang do Sul']"
+  },
+  {
+    "kana": "チョルラプクト",
+    "en": [
+      "Jeollabuk-do (South Korea)",
+      "North Jeolla Province"
+    ],
+    "senseUid": "e9aff455-d11e-43d7-b597-9760ff9f918c",
+    "wordId": "2845335",
+    "pt": "{\n  \"a\": [\"Jeolla do Norte\", \"Província de Jeolla do Norte (Coreia do Sul)\"]\n"
+  },
+  {
+    "kana": "チョルラナムド",
+    "en": [
+      "Jeollanam-do (South Korea)",
+      "South Jeolla Province"
+    ],
+    "senseUid": "ad1d89cc-8fc6-4859-94b8-3fa097a6d072",
+    "wordId": "2845336",
+    "pt": "{\n  \"a\": [\n    \"Jeollanam-do (Coreia do Sul)\",\n    \"Província de Jeolla do Sul\"\n  ]\n"
+  },
+  {
+    "kana": "チップヘルプ",
+    "en": [
+      "tooltip"
+    ],
+    "senseUid": "56165b07-8292-4135-9a82-b9e249e10c80",
+    "wordId": "2845337",
+    "pt": "['Dica de ferramenta']"
+  },
+  {
+    "kana": "ツールバーボタン",
+    "en": [
+      "toolbar button"
+    ],
+    "senseUid": "241ac142-de3c-464e-bb80-cf3b11db5af8",
+    "wordId": "2845338",
+    "pt": "['botão da barra de ferramentas']"
+  },
+  {
+    "kana": "ツールボタン",
+    "en": [
+      "toolbar button"
+    ],
+    "senseUid": "2fc1ccb7-bab0-445a-9f60-54f86f20670e",
+    "wordId": "2845339",
+    "pt": "['botão da barra de ferramentas']"
+  },
+  {
+    "kana": "チェジュ",
+    "en": [
+      "Jeju (special self-governing province and island in South Korea)"
+    ],
+    "senseUid": "75968520-71ce-4aa5-bfec-bd9450c3d4a4",
+    "wordId": "2845340",
+    "pt": "['Jeju (província autônoma especial e ilha na Coreia do Sul)']"
+  },
+  {
+    "kana": "うんめいのいたずら",
+    "en": [
+      "quirk of fate",
+      "twist of fate",
+      "(an) irony"
+    ],
+    "senseUid": "f4472d81-4ea4-4f7e-af41-ce94c4343431",
+    "wordId": "2845341",
+    "pt": "['capricho do destino', 'reviravolta do destino', 'ironia do destino']"
+  },
+  {
+    "kana": "しゅっせよく",
+    "en": [
+      "desire to succeed in life",
+      "ambition to make one's mark in the world"
+    ],
+    "senseUid": "145f0707-0696-4414-92a6-77497f421c13",
+    "wordId": "2845342",
+    "pt": "['desejo de ter sucesso na vida', 'ambição de deixar sua marca no mundo']"
+  },
+  {
+    "kana": "りょうか",
+    "en": [
+      "improvement",
+      "amelioration"
+    ],
+    "senseUid": "dc1c530a-6fc7-48f3-8c10-10051ca99f25",
+    "wordId": "2845343",
+    "pt": "{\n  \"a\": [\"melhoria\", \"aperfeiçoamento\"]\n"
+  },
+  {
+    "kana": "ルームフレグランス",
+    "en": [
+      "room fragrance",
+      "home fragrance"
+    ],
+    "senseUid": "f21f6684-30a2-47d4-979c-d655e251f40d",
+    "wordId": "2845344",
+    "pt": "['fragrância de ambiente', 'aromatizador de ambiente']"
+  },
+  {
+    "kana": "プレスコート",
+    "en": [
+      "resin-based pressed paper coating"
+    ],
+    "senseUid": "defe3f94-8516-413d-9d13-9b7515700b5e",
+    "wordId": "2845345",
+    "pt": "{\n  \"a\": [\"revestimento de papel prensado à base de resina\"]\n"
+  },
+  {
+    "kana": "ちゃいます",
+    "en": [
+      "no",
+      "that's wrong",
+      "it's not like that"
+    ],
+    "senseUid": "6ccbf7ec-6636-45c1-bb91-31f6483e395b",
+    "wordId": "2845346",
+    "pt": "{\n  \"a\": [\n    \"não é isso\",\n    \"não é assim\",\n    \"não está certo\",\n    \"não é bem assim\"\n  ]\n"
+  }
+]

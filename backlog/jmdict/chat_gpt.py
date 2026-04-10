@@ -36,7 +36,7 @@ words_to_translate = []
 with open('jmdict-eng-3.6.2.handle.json', "r", encoding="utf-8") as ff:
     res = json.load(ff)
     for word in res["words"]:
-        if int(word["id"]) < 1382170 or (int(word["id"]) > 2392830 and int(word["id"]) < 2710330):
+        if int(word["id"]) < 1944180 or (int(word["id"]) > 2392830 and int(word["id"]) < 2710330):
             continue
         for sense in word["sense"]:
             words_to_translate.append({
@@ -52,7 +52,7 @@ print(MAX_TRANSLATIONS)
 
 # parar depois de 1000
 BATCH_SIZE = 100         # salvar a cada 100
-THREADS = 10
+THREADS = 2
 
 client = AzureOpenAI(
     api_version="2024-12-01-preview",

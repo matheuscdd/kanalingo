@@ -1,0 +1,921 @@
+[
+  {
+    "kana": "つうしんきやく",
+    "en": [
+      "protocol"
+    ],
+    "senseUid": "530539d1-9814-4a39-989a-17cf2b1e7742",
+    "wordId": "2376050",
+    "pt": "{\n  \"a\": [\"protocolo de comunicação\"]\n"
+  },
+  {
+    "kana": "つうしんきじゅつこう",
+    "en": [
+      "communication description entry"
+    ],
+    "senseUid": "4bc541a3-2ad9-42ef-b5dd-7cea0cf1ac98",
+    "wordId": "2376060",
+    "pt": "['entrada de descrição de comunicação']"
+  },
+  {
+    "kana": "つうしんきじゅつめい",
+    "en": [
+      "cd-name"
+    ],
+    "senseUid": "117e1249-b54d-458a-8cba-8a517d0a2f63",
+    "wordId": "2376070",
+    "pt": "{\n  \"a\": [\"nome do padrão de comunicação\"]\n"
+  },
+  {
+    "kana": "つうしんぎょう",
+    "en": [
+      "message segment"
+    ],
+    "senseUid": "6adb6481-42ee-49d8-8d3e-28a141ee1460",
+    "wordId": "2376080",
+    "pt": "{\n  \"a\": [\"segmento de mensagem\"]\n"
+  },
+  {
+    "kana": "つうしんじぎょうしゃ",
+    "en": [
+      "carrier"
+    ],
+    "senseUid": "506989e0-d7d8-435a-8d82-a2adadcd41e2",
+    "wordId": "2376090",
+    "pt": "{\n  \"a\": [\"operadora de telecomunicações\"]\n"
+  },
+  {
+    "kana": "つうしんてじゅん",
+    "en": [
+      "transmission protocol"
+    ],
+    "senseUid": "f893252f-cad0-4ed3-9239-fdb261b14dd8",
+    "wordId": "2376100",
+    "pt": "{\n  \"a\": [\"protocolo de transmissão\"]\n"
+  },
+  {
+    "kana": "つうしんせいぎょきこう",
+    "en": [
+      "communication control unit"
+    ],
+    "senseUid": "f7765919-d6f0-4f76-8c88-c650a7cc32b3",
+    "wordId": "2376120",
+    "pt": "['unidade de controle de comunicação']"
+  },
+  {
+    "kana": "つうしんじょうけん",
+    "en": [
+      "communications protocol"
+    ],
+    "senseUid": "6c962f0d-dbb0-43e5-87e2-08403efda677",
+    "wordId": "2376110",
+    "pt": "['protocolo de comunicação']"
+  },
+  {
+    "kana": "つうしんせいぎょしょりそうち",
+    "en": [
+      "CCP",
+      "Communication Control Processor"
+    ],
+    "senseUid": "618aae19-13e8-4675-b4ef-218588803afa",
+    "wordId": "2376130",
+    "pt": "{\n  \"a\": [\n    \"Processador de Controle de Comunicação\"\n  ]\n"
+  },
+  {
+    "kana": "つうしんせいぎょそうち",
+    "en": [
+      "communication control unit"
+    ],
+    "senseUid": "b05600e9-c7a8-47bb-be2c-781ca0708b41",
+    "wordId": "2376140",
+    "pt": "['unidade de controle de comunicação']"
+  },
+  {
+    "kana": "つうしんせつび",
+    "en": [
+      "transmission equipment"
+    ],
+    "senseUid": "c91fa4d6-62de-4c09-aa64-bb35667c5c4e",
+    "wordId": "2376150",
+    "pt": "['equipamento de transmissão']"
+  },
+  {
+    "kana": "つうしんせつ",
+    "en": [
+      "communication section"
+    ],
+    "senseUid": "1c610502-8b2b-498f-8131-7f84eee2e1b9",
+    "wordId": "2376160",
+    "pt": "{\n  \"a\": [\n    \"seção de comunicações\"\n  ]\n"
+  },
+  {
+    "kana": "つうしんあいて",
+    "en": [
+      "communications partner",
+      "entity at the end of a communication"
+    ],
+    "senseUid": "e66bf21a-1985-4958-9b4a-8d0f8a5c1df0",
+    "wordId": "2376170",
+    "pt": "['parceiro de comunicação', 'entidade no outro extremo da comunicação']"
+  },
+  {
+    "kana": "つうしんたんまつ",
+    "en": [
+      "communication terminal"
+    ],
+    "senseUid": "f35c9d45-32e2-4dca-9da4-eb7feabc350e",
+    "wordId": "2376180",
+    "pt": "{\n  \"a\": [\"terminal de comunicação\"]\n"
+  },
+  {
+    "kana": "つうしんひんいほう",
+    "en": [
+      "Communications Decency Act",
+      "CDA"
+    ],
+    "senseUid": "9e3c4d31-8915-43f1-9f18-c7bc2165166e",
+    "wordId": "2376190",
+    "pt": "{\n  \"a\": [\n    \"Lei de Decência nas Comunicações\"\n  ]\n"
+  },
+  {
+    "kana": "つうしんひんしつ",
+    "en": [
+      "communication quality"
+    ],
+    "senseUid": "311b3e0e-d2eb-4b53-8ffa-21856ce6f131",
+    "wordId": "2376200",
+    "pt": "{\n  \"a\": [\"qualidade da comunicação\"]\n"
+  },
+  {
+    "kana": "つうしんふか",
+    "en": [
+      "communication load"
+    ],
+    "senseUid": "b87f0188-89e1-422c-a889-c4ab34cff296",
+    "wordId": "2376210",
+    "pt": "['sobrecarga de comunicação']"
+  },
+  {
+    "kana": "つうしんりろん",
+    "en": [
+      "communication theory"
+    ],
+    "senseUid": "a494ac11-9fa1-4d4d-9dda-9220a09b6a24",
+    "wordId": "2376230",
+    "pt": "['teoria da comunicação']"
+  },
+  {
+    "kana": "つうしんぶんこすう",
+    "en": [
+      "message count"
+    ],
+    "senseUid": "524c86d2-0547-408b-a45e-eb2655561c12",
+    "wordId": "2376220",
+    "pt": "{\n  \"a\": [\"contagem de mensagens\"]\n"
+  },
+  {
+    "kana": "つうしんりょう",
+    "en": [
+      "traffic"
+    ],
+    "senseUid": "8ce71087-9f68-41f1-9abf-16114395e8dc",
+    "wordId": "2376250",
+    "pt": "{\n  \"a\": [\n    \"taxa de comunicação\"\n  ]\n"
+  },
+  {
+    "kana": "つうしんりょうきん",
+    "en": [
+      "communication fees, charges"
+    ],
+    "senseUid": "d8899e09-fc03-42e1-bc27-f5630e76b54d",
+    "wordId": "2376240",
+    "pt": "['taxas de comunicação', 'tarifas de comunicação', 'custos de comunicação']"
+  },
+  {
+    "kana": "つうしんろ",
+    "en": [
+      "channel",
+      "data transmission channel"
+    ],
+    "senseUid": "a5935430-c5c4-4691-b4fb-194efbd911c9",
+    "wordId": "2376260",
+    "pt": "['canal de comunicação', 'canal de transmissão de dados']"
+  },
+  {
+    "kana": "つうしんろようりょう",
+    "en": [
+      "channel capacity"
+    ],
+    "senseUid": "cb5ee022-14e5-4a00-8042-2f682df3fa2c",
+    "wordId": "2376270",
+    "pt": "{\n  \"a\": [\"capacidade do canal\"]\n"
+  },
+  {
+    "kana": "つうちがた",
+    "en": [
+      "notification type"
+    ],
+    "senseUid": "ecebed1f-b1fe-4acd-831c-778af5f4bb0e",
+    "wordId": "2376280",
+    "pt": "{\n  \"a\": [\n    \"tipo de notificação\"\n  ]\n"
+  },
+  {
+    "kana": "つうちつききょくどめ",
+    "en": [
+      "counter collection with advice",
+      "PD PR"
+    ],
+    "senseUid": "d63807fc-ea6e-4c72-9d59-da1773e1f69a",
+    "wordId": "2376290",
+    "pt": "{\n  \"a\": [\n    \"coleta no balcão com aviso\",\n    \"PD PR\"\n  ]\n"
+  },
+  {
+    "kana": "つうわせつぞく",
+    "en": [
+      "call completion"
+    ],
+    "senseUid": "bf0173c6-fbae-4433-87a0-347642297ad7",
+    "wordId": "2376310",
+    "pt": "['conclusão de chamada']"
+  },
+  {
+    "kana": "つうほうじゅたん",
+    "en": [
+      "message sink"
+    ],
+    "senseUid": "8afdd5c4-2a3b-440f-83cf-d5064ec6c851",
+    "wordId": "2376300",
+    "pt": "{\n  \"a\": [\"sumidouro de mensagens\"]\n"
+  },
+  {
+    "kana": "つうわりょうきんせい",
+    "en": [
+      "message-rated"
+    ],
+    "senseUid": "57d5dc35-abdd-4fbf-9a98-c64f8cc51eb9",
+    "wordId": "2376320",
+    "pt": "{\n  \"a\": [\"tarifa por mensagem\"]\n"
+  },
+  {
+    "kana": "ひくいゆうせんじゅんい",
+    "en": [
+      "low priority (e.g. cell)"
+    ],
+    "senseUid": "27a120c9-a896-4d7d-926b-ae72eab265c8",
+    "wordId": "2376330",
+    "pt": "['baixa prioridade']"
+  },
+  {
+    "kana": "ていコスト",
+    "en": [
+      "low cost"
+    ],
+    "senseUid": "0d14a604-e9c1-42f8-a842-8cfa935da2e7",
+    "wordId": "2376340",
+    "pt": "['baixo custo']"
+  },
+  {
+    "kana": "ていビットレート",
+    "en": [
+      "low bit rate"
+    ],
+    "senseUid": "909b4ff9-b5da-464f-ba34-fefdb945c747",
+    "wordId": "2376350",
+    "pt": "{\n  \"a\": [\"taxa de bits baixa\"]\n"
+  },
+  {
+    "kana": "ていプライオリティ",
+    "en": [
+      "low priority"
+    ],
+    "senseUid": "020091c9-f5a7-4a98-bc2e-3434896adcf1",
+    "wordId": "2376360",
+    "pt": "{\n  \"a\": [\"baixa prioridade\"]\n"
+  },
+  {
+    "kana": "ていレベル",
+    "en": [
+      "low-level"
+    ],
+    "senseUid": "a7710822-9d56-42bb-84e1-f89321b7afb8",
+    "wordId": "2376370",
+    "pt": "{\n  \"a\": [\"baixo nível\"]\n"
+  },
+  {
+    "kana": "ていいきつうかフィルタ",
+    "en": [
+      "low pass filter",
+      "LPF"
+    ],
+    "senseUid": "d213f256-f0d9-4708-8058-3d0a17bf72a8",
+    "wordId": "2376380",
+    "pt": "{\n  \"a\": [\"filtro passa-baixas\"]\n"
+  },
+  {
+    "kana": "ていかいぞうど",
+    "en": [
+      "low resolution"
+    ],
+    "senseUid": "21af1973-f8fa-42db-a5ca-7483b9035ca6",
+    "wordId": "2376390",
+    "pt": "{\n  \"a\": [\"baixa resolução\"]\n"
+  },
+  {
+    "kana": "ていきゅうげんご",
+    "en": [
+      "low-level language"
+    ],
+    "senseUid": "896d3598-07d1-4665-8af5-293e6894119d",
+    "wordId": "2376400",
+    "pt": "['linguagem de baixo nível']"
+  },
+  {
+    "kana": "ていしょうひでんりょく",
+    "en": [
+      "low power consumption"
+    ],
+    "senseUid": "3834646c-764a-4dba-9e67-ca1000645769",
+    "wordId": "2376420",
+    "pt": "['baixo consumo de energia']"
+  },
+  {
+    "kana": "ていしゅうははっしんき",
+    "en": [
+      "Low Frequency Oscillator",
+      "LFO"
+    ],
+    "senseUid": "1e6a5a9f-68f7-4f72-9f0a-cf20c54a6bf2",
+    "wordId": "2376410",
+    "pt": "{\n  \"a\": [\"Oscilador de Baixa Frequência\"]\n"
+  },
+  {
+    "kana": "ていしょうひでんりょくじょうたい",
+    "en": [
+      "reduced power state"
+    ],
+    "senseUid": "1971a892-c089-4b1d-a4a5-b3f969ed0442",
+    "wordId": "2376430",
+    "pt": "['estado de energia reduzida']"
+  },
+  {
+    "kana": "ていすいじゅんげんご",
+    "en": [
+      "low-level language"
+    ],
+    "senseUid": "844e2bac-d701-420c-833a-a068cf6ffa8e",
+    "wordId": "2376440",
+    "pt": "['linguagem de baixo nível']"
+  },
+  {
+    "kana": "ていそくつうしん",
+    "en": [
+      "low speed communication"
+    ],
+    "senseUid": "675eccf6-4cb7-4173-9cdb-a19cccb323f5",
+    "wordId": "2376450",
+    "pt": "{\n  \"a\": [\"comunicação de baixa velocidade\"]\n"
+  },
+  {
+    "kana": "ていそんしつ",
+    "en": [
+      "low loss"
+    ],
+    "senseUid": "fedb29f6-11a6-426f-b386-7dda147ed619",
+    "wordId": "2376460",
+    "pt": "['baixa perda']"
+  },
+  {
+    "kana": "ていちえん",
+    "en": [
+      "low delay",
+      "low latency"
+    ],
+    "senseUid": "289914e1-b5e3-46a5-8f5f-255e5731919d",
+    "wordId": "2376470",
+    "pt": "['baixa latência', 'baixa demora']"
+  },
+  {
+    "kana": "ていでんあつばんジーオン",
+    "en": [
+      "low voltage xeon"
+    ],
+    "senseUid": "9f146a9d-ce8c-42aa-a4ec-6bbc97ebafdc",
+    "wordId": "2376480",
+    "pt": "{\n  \"a\": [\"Xeon de baixa tensão\"]\n"
+  },
+  {
+    "kana": "ていでんあつばんモバイル",
+    "en": [
+      "low voltage mobile (processor)"
+    ],
+    "senseUid": "70f4176e-212d-42d4-8407-e2cb054da576",
+    "wordId": "2376490",
+    "pt": "['processador móvel de baixa tensão']"
+  },
+  {
+    "kana": "ていでんりょく",
+    "en": [
+      "low power (electrical)"
+    ],
+    "senseUid": "51e393e9-27a7-4aea-b428-7606cf180e98",
+    "wordId": "2376500",
+    "pt": "['baixa potência elétrica']"
+  },
+  {
+    "kana": "ていみつどディスケット",
+    "en": [
+      "low-density diskette"
+    ],
+    "senseUid": "0e1c8562-dcd6-4bd1-8bea-5c374583a3b4",
+    "wordId": "2376510",
+    "pt": "['disquete de baixa densidade']"
+  },
+  {
+    "kana": "ていしシグナル",
+    "en": [
+      "quit signal"
+    ],
+    "senseUid": "95d3448f-57ee-48cd-bf6f-b73540475659",
+    "wordId": "2376530",
+    "pt": "['sinal de parada']"
+  },
+  {
+    "kana": "ていようりょう",
+    "en": [
+      "low capacity"
+    ],
+    "senseUid": "02a16352-46d6-40fb-be4b-96a009b7e3b4",
+    "wordId": "2376520",
+    "pt": "['baixa capacidade']"
+  },
+  {
+    "kana": "ていきぎょうむ",
+    "en": [
+      "fixed task",
+      "scheduled task"
+    ],
+    "senseUid": "1a6f9714-448e-4ab5-85f8-54fc2299155f",
+    "wordId": "2376540",
+    "pt": "['tarefa fixa', 'tarefa programada']"
+  },
+  {
+    "kana": "ていきほしゅ",
+    "en": [
+      "scheduled maintenance"
+    ],
+    "senseUid": "0a96a925-466a-4182-8ee4-301e7e1d1f19",
+    "wordId": "2376560",
+    "pt": "['manutenção programada']"
+  },
+  {
+    "kana": "ていきほぜん",
+    "en": [
+      "scheduled maintenance"
+    ],
+    "senseUid": "9277dd8a-9abc-4723-a552-b3ea7f8f9d98",
+    "wordId": "2376570",
+    "pt": "['manutenção programada']"
+  },
+  {
+    "kana": "ていぎかのう",
+    "en": [
+      "definable"
+    ],
+    "senseUid": "b5eddb06-5da7-4d46-bb25-ad5f66f429d2",
+    "wordId": "2376580",
+    "pt": "{\n  \"a\": [\"definível\"]\n"
+  },
+  {
+    "kana": "ていぎずみ",
+    "en": [
+      "built-in",
+      "predefined"
+    ],
+    "senseUid": "5e0a5d74-1df3-43f4-afa5-632f79bb51fe",
+    "wordId": "2376590",
+    "pt": "{\n  \"a\": [\n    \"embutido\",\n    \"predefinido\"\n  ]\n"
+  },
+  {
+    "kana": "ていぎずみかんすう",
+    "en": [
+      "predefined function"
+    ],
+    "senseUid": "95d9fc2f-1a76-4f08-b671-7cbce27f5555",
+    "wordId": "2376600",
+    "pt": "['função predefinida']"
+  },
+  {
+    "kana": "ていぎずみへんすう",
+    "en": [
+      "built-in variable",
+      "predefined variable"
+    ],
+    "senseUid": "fa824f29-e047-42f5-9bbf-e3da9a79f080",
+    "wordId": "2376610",
+    "pt": "{\n  \"a\": [\n    \"variável pré-definida\",\n    \"variável incorporada\"\n  ]\n"
+  },
+  {
+    "kana": "ていぎもじじったいしゅうごう",
+    "en": [
+      "definitional character entity set"
+    ],
+    "senseUid": "5f33a4cf-be6c-4a2e-a024-bc8543b56fcc",
+    "wordId": "2376620",
+    "pt": "['conjunto de entidades de caracteres definicionais']"
+  },
+  {
+    "kana": "ていじょうじょうほうげん",
+    "en": [
+      "stationary message source",
+      "stationary information source"
+    ],
+    "senseUid": "42c8385b-3ae0-4cb1-9ca4-621a6245fe06",
+    "wordId": "2376640",
+    "pt": "{\n  \"a\": [\n    \"fonte de informação estacionária\",\n    \"fonte estacionária de mensagens\"\n  ]\n"
+  },
+  {
+    "kana": "ていじょうせい",
+    "en": [
+      "being stationary (of a process)"
+    ],
+    "senseUid": "f55064b6-e577-4cb9-a8ab-e2a2fa498ecf",
+    "wordId": "2376650",
+    "pt": "['estar estacionário (de um processo)']"
+  },
+  {
+    "kana": "ていすうきのう",
+    "en": [
+      "constant function"
+    ],
+    "senseUid": "8910c728-83d8-48fc-8ac5-d4b6c4fe032e",
+    "wordId": "2376660",
+    "pt": "{\n  \"a\": [\n    \"função constante\"\n  ]\n"
+  },
+  {
+    "kana": "ていすうしき",
+    "en": [
+      "constant expression"
+    ],
+    "senseUid": "4e563be9-cd18-442e-b4f9-32a42481ab55",
+    "wordId": "2376670",
+    "pt": "{\n  \"a\": [\"expressão constante\"]\n"
+  },
+  {
+    "kana": "ていすうひょうげん",
+    "en": [
+      "literal constant"
+    ],
+    "senseUid": "7628cfc1-35e7-4fb1-b264-6b5a2c53d68f",
+    "wordId": "2376680",
+    "pt": "{\n  \"a\": [\"constante literal\"]\n"
+  },
+  {
+    "kana": "ていでんあつていしゅうはすうでんげんそうち",
+    "en": [
+      "CVCF",
+      "Constant Voltage Frequency Power Supply"
+    ],
+    "senseUid": "c41c40f7-6124-48a0-94f2-5acfbcf0bcc3",
+    "wordId": "2376690",
+    "pt": "['Fonte de alimentação de tensão e frequência constantes (CVCF)']"
+  },
+  {
+    "kana": "ていあんクラス",
+    "en": [
+      "proposed class"
+    ],
+    "senseUid": "1fbaf052-6f91-40b2-95cc-28931a354307",
+    "wordId": "2376700",
+    "pt": "['classe proposta']"
+  },
+  {
+    "kana": "てきおうデルタへんちょう",
+    "en": [
+      "Adaptive Delta Modulation"
+    ],
+    "senseUid": "78e24e5f-6e02-4e57-b1ae-08895f40cc99",
+    "wordId": "2376740",
+    "pt": "{\n  \"a\": [\"Modulação Delta Adaptativa\"]\n"
+  },
+  {
+    "kana": "てきおうせいぎょけい",
+    "en": [
+      "adaptive control system"
+    ],
+    "senseUid": "68d6fece-06a3-4648-a342-3192aeffec3c",
+    "wordId": "2376750",
+    "pt": "['sistema de controle adaptativo']"
+  },
+  {
+    "kana": "てきおうへんかんふごうか",
+    "en": [
+      "Adaptive Transform Coding",
+      "ATC"
+    ],
+    "senseUid": "b4e82eef-1dea-430b-9b9a-67e8a2459ca5",
+    "wordId": "2376760",
+    "pt": "{\n  \"a\": [\n    \"Codificação Adaptativa por Transformada\",\n    \"ATC\"\n  ]\n"
+  },
+  {
+    "kana": "てきかくである",
+    "en": [
+      "eligible"
+    ],
+    "senseUid": "7c6e797a-7ffb-4805-9978-cf3f046a04c1",
+    "wordId": "2376770",
+    "pt": "['ser elegível', 'atender aos requisitos', 'estar qualificado']"
+  },
+  {
+    "kana": "てきごうエスジーエムエルおうよう",
+    "en": [
+      "conforming SGML application"
+    ],
+    "senseUid": "0a54baf3-7544-4994-aeff-6762006ffe23",
+    "wordId": "2376780",
+    "pt": "['aplicação compatível com SGML']"
+  },
+  {
+    "kana": "てきごうエスジーエムエルぶんしょ",
+    "en": [
+      "conforming SGML document"
+    ],
+    "senseUid": "fca1db6f-eb6c-4487-9d4d-bd025cd08f3b",
+    "wordId": "2376790",
+    "pt": "{\n  \"a\": [\"documento SGML conforme\"]\n"
+  },
+  {
+    "kana": "てきごうするじっそう",
+    "en": [
+      "conforming implementation"
+    ],
+    "senseUid": "96853cce-c571-4ebf-b64d-75ad6859d98f",
+    "wordId": "2376800",
+    "pt": "['implementação conforme']"
+  },
+  {
+    "kana": "てきごうけんさしけん",
+    "en": [
+      "conformance test"
+    ],
+    "senseUid": "12876f7a-99b9-45b9-af5a-30958a39ce09",
+    "wordId": "2376820",
+    "pt": "{\n  \"a\": [\"teste de conformidade\"]\n"
+  },
+  {
+    "kana": "てきごうけんさ",
+    "en": [
+      "conformance"
+    ],
+    "senseUid": "7e205896-81c3-467a-a8d4-b6986c3de972",
+    "wordId": "2376810",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"てきごうけんさ\",\n      \"portuguese\": \"verificação de conformidade\",\n      \"explicação\": \"No contexto japonês, てきごうけんさ refere-se ao processo de examinar se algo está em conformidade com padrões ou requisitos estabelecidos, especialmente em inspeções técnicas ou regulatórias.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "てきごうせいログ",
+    "en": [
+      "conformance log"
+    ],
+    "senseUid": "94170325-7756-4fcc-8bed-f2be787056bf",
+    "wordId": "2376830",
+    "pt": "['registro de conformidade']"
+  },
+  {
+    "kana": "てきごうせいかいけつしけん",
+    "en": [
+      "conformance resolution tests"
+    ],
+    "senseUid": "bdfab871-30e2-4d05-b027-e359dbbebb8a",
+    "wordId": "2376840",
+    "pt": "['testes de resolução de conformidade']"
+  },
+  {
+    "kana": "てきごうせいひょうかかてい",
+    "en": [
+      "conformance assessment process"
+    ],
+    "senseUid": "3278c377-2f81-4f82-834f-351eb0103fa8",
+    "wordId": "2376860",
+    "pt": "['processo de avaliação de conformidade']"
+  },
+  {
+    "kana": "てきごうせいしけん",
+    "en": [
+      "conformance testing"
+    ],
+    "senseUid": "d59f68d5-711a-4560-a510-51be9e44829c",
+    "wordId": "2376850",
+    "pt": "['teste de conformidade']"
+  },
+  {
+    "kana": "てきごうせいぶんしょ",
+    "en": [
+      "conformance document"
+    ],
+    "senseUid": "665f91c1-dd25-4a74-8774-241be1467747",
+    "wordId": "2376870",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"てきごうせいぶんしょ\",\n      \"gloss\": [\"documento de conformidade\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "てきせいひょうじじょうたい",
+    "en": [
+      "visually correct"
+    ],
+    "senseUid": "5a324936-3dd7-4f95-a287-b44e48e0fe36",
+    "wordId": "2376880",
+    "pt": "{\n  \"a\": [\"estado de exibição apropriada\"]\n"
+  },
+  {
+    "kana": "てきようぎょうむソフトウェア",
+    "en": [
+      "application software"
+    ],
+    "senseUid": "8c93daeb-26ba-425d-82eb-c18bc0f38b78",
+    "wordId": "2376900",
+    "pt": "['software aplicativo']"
+  },
+  {
+    "kana": "てきようぎょうむソフトウェアプログラム",
+    "en": [
+      "application software program"
+    ],
+    "senseUid": "822dcb53-bba7-4f7e-be0a-f023f9790903",
+    "wordId": "2376920",
+    "pt": "['programa de software aplicativo']"
+  },
+  {
+    "kana": "てきようぎょうむプログラム",
+    "en": [
+      "application software"
+    ],
+    "senseUid": "788bb156-d4c0-430b-bedf-d9a2f1bfca02",
+    "wordId": "2376930",
+    "pt": "['programa de aplicação']"
+  },
+  {
+    "kana": "てきようぎょうむもんだい",
+    "en": [
+      "application problem"
+    ],
+    "senseUid": "1ecb2e18-2f84-4cea-afac-38139dd328ba",
+    "wordId": "2376950",
+    "pt": "{\n  \"a\": [\"problema de aplicação\"]\n"
+  },
+  {
+    "kana": "てきようはんい",
+    "en": [
+      "range of use",
+      "range of application",
+      "range of applications",
+      "scope (of a document)"
+    ],
+    "senseUid": "4fe50f29-f497-4a6e-a45f-7dcd11f5356e",
+    "wordId": "2376960",
+    "pt": "['abrangência de uso', 'escopo de aplicação', 'campo de aplicação', 'âmbito de uso']"
+  },
+  {
+    "kana": "てきようぶんや",
+    "en": [
+      "field of application"
+    ],
+    "senseUid": "5fbadbb0-87bf-4d21-9904-2d0f6d597184",
+    "wordId": "2376970",
+    "pt": "['campo de aplicação']"
+  },
+  {
+    "kana": "そえじづきへんすう",
+    "en": [
+      "subscripted variable"
+    ],
+    "senseUid": "8863df35-4387-48cf-98eb-0fe22177aff6",
+    "wordId": "2377000",
+    "pt": "{\n  \"a\": [\"variável indexada\"]\n"
+  },
+  {
+    "kana": "てんかぶぶんようそ",
+    "en": [
+      "included subelement"
+    ],
+    "senseUid": "6c853849-b9fa-4c65-ae36-8a990fb6e573",
+    "wordId": "2377010",
+    "pt": "{\n  \"a\": [\"subelemento incluído\"]\n"
+  },
+  {
+    "kana": "てんかようそ",
+    "en": [
+      "inclusions"
+    ],
+    "senseUid": "8b81a6de-8971-4d70-9ca1-337b78f8f5e9",
+    "wordId": "2377020",
+    "pt": "{\n  \"a\": [\"elementos incluídos\", \"componentes incorporados\", \"itens contidos\"]\n"
+  },
+  {
+    "kana": "そえじみつぐみ",
+    "en": [
+      "subscript triplet"
+    ],
+    "senseUid": "d7360004-e13b-47b5-be45-0f16f09372c3",
+    "wordId": "2377040",
+    "pt": "{\n  \"a\": [\"trio subscrito\"]\n"
+  },
+  {
+    "kana": "そえじしてい",
+    "en": [
+      "subscripting"
+    ],
+    "senseUid": "792e915f-ec9b-44e5-8ffd-9cfa3bc61027",
+    "wordId": "2377050",
+    "pt": "{\n  \"a\": [\"subscrição\", \"anotação marginal\", \"adição de nota ao lado\"]\n"
+  },
+  {
+    "kana": "そえじつきデータめい",
+    "en": [
+      "subscripted data-name"
+    ],
+    "senseUid": "d2301b9f-a5e2-47b6-8a1c-c435fcb3ccba",
+    "wordId": "2377060",
+    "pt": "{\n  \"a\": [\"nome de dado subscrito\"]\n"
+  },
+  {
+    "kana": "てんそうルート",
+    "en": [
+      "transmission route"
+    ],
+    "senseUid": "ceef46fe-b21a-4aae-aedf-df7d693b7e1d",
+    "wordId": "2377090",
+    "pt": "{\n  \"a\": [\"rota de transmissão\"]\n"
+  },
+  {
+    "kana": "てんそうシステム",
+    "en": [
+      "transfer system"
+    ],
+    "senseUid": "1bbdad57-398c-47b6-ad7e-d278fa9e0eb2",
+    "wordId": "2377080",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"てんそうシステム\",\n      \"gloss\": [\"sistema de transferência\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "てんそうレート",
+    "en": [
+      "transmission rate",
+      "transfer rate"
+    ],
+    "senseUid": "b359a3ad-7d1d-48fb-8ae9-1ea1873e189e",
+    "wordId": "2377100",
+    "pt": "['taxa de transmissão', 'taxa de transferência']"
+  },
+  {
+    "kana": "てんそうこうぶんめい",
+    "en": [
+      "transfer syntax name"
+    ],
+    "senseUid": "bab86464-5a1f-41c9-8cd5-4f7a080aff36",
+    "wordId": "2377120",
+    "pt": "{\n  \"a\": [\"nome da sintaxe de transferência\"]\n"
+  },
+  {
+    "kana": "てんそうこうぶん",
+    "en": [
+      "transfer syntax"
+    ],
+    "senseUid": "312396ff-e0c2-4af7-a964-a9a4963c6de5",
+    "wordId": "2377110",
+    "pt": "{\n  \"a\": [\"sintaxe de transferência\"]\n"
+  },
+  {
+    "kana": "てんそうじかん",
+    "en": [
+      "transfer time",
+      "transmission time"
+    ],
+    "senseUid": "000288dc-6e25-4142-b546-64694e050c6a",
+    "wordId": "2377140",
+    "pt": "{\n  \"a\": [\n    \"tempo de transferência\",\n    \"tempo de transmissão\"\n  ]\n"
+  },
+  {
+    "kana": "てんそうしょり",
+    "en": [
+      "transmittal"
+    ],
+    "senseUid": "b9b56692-ab2f-4bff-a051-ab26f4c7db7f",
+    "wordId": "2377150",
+    "pt": "['processamento de transmissão']"
+  },
+  {
+    "kana": "てんそうせんこうほんやくき",
+    "en": [
+      "transfer interpreter"
+    ],
+    "senseUid": "b944ce30-3e33-4184-93d7-e1fd19cd6a69",
+    "wordId": "2377160",
+    "pt": "{\n  \"a\": [\"máquina de tradução de transferência\"]\n"
+  },
+  {
+    "kana": "てんち",
+    "en": [
+      "transposition"
+    ],
+    "senseUid": "e700c13f-3544-4eff-af3a-e717e4352baf",
+    "wordId": "2377170",
+    "pt": "['transposição']"
+  }
+]

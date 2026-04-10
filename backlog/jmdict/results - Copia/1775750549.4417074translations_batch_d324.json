@@ -1,0 +1,981 @@
+[
+  {
+    "kana": "どくきん",
+    "en": [
+      "poison mushroom"
+    ],
+    "senseUid": "3af2314b-7224-4f99-a37d-c61687be55c8",
+    "wordId": "2254410",
+    "pt": "{\n  \"a\": [\"cogumelo venenoso\"]\n"
+  },
+  {
+    "kana": "しょくきん",
+    "en": [
+      "edible mushroom"
+    ],
+    "senseUid": "f3c0a2b6-e95b-4681-8adb-0c8117e90751",
+    "wordId": "2254420",
+    "pt": "{\n  \"a\": [\"cogumelo comestível\"]\n"
+  },
+  {
+    "kana": "せいきゅうこう",
+    "en": [
+      "claim (esp. in a patent)"
+    ],
+    "senseUid": "060679a3-4bfd-4f6c-9137-70416cb82721",
+    "wordId": "2254430",
+    "pt": "['reivindicação (especialmente em uma patente)']"
+  },
+  {
+    "kana": "ひきゅう",
+    "en": [
+      "tears of grief",
+      "crying with sadness"
+    ],
+    "senseUid": "869e43ff-7e58-4497-b533-d86bde799de1",
+    "wordId": "2254440",
+    "pt": "{\n  \"a\": [\"lágrimas de tristeza\", \"chorar de pesar\"]\n"
+  },
+  {
+    "kana": "めがすわって",
+    "en": [
+      "with set eyes"
+    ],
+    "senseUid": "87246506-5d66-4305-bba8-928b8eca16fc",
+    "wordId": "2254450",
+    "pt": "{\n  \"a\": [\"com o olhar fixo\"]\n"
+  },
+  {
+    "kana": "まふぐ",
+    "en": [
+      "purple puffer (Takifugu porphyreus)"
+    ],
+    "senseUid": "de97f297-fe32-4492-b68c-9236e8b294c6",
+    "wordId": "2254460",
+    "pt": "{\n  \"a\": [\"baiacu-roxo (Takifugu porphyreus)\"]\n"
+  },
+  {
+    "kana": "はこふぐ",
+    "en": [
+      "bluespotted boxfish (Ostracion immaculatus)"
+    ],
+    "senseUid": "804f1876-91a9-44b0-b8e9-c37850996ee9",
+    "wordId": "2254470",
+    "pt": "{\n  \"a\": [\n    \"baiacu-caixa-azul-pintado (Ostracion immaculatus)\"\n  ]\n"
+  },
+  {
+    "kana": "はこふぐ",
+    "en": [
+      "boxfish (any fish of family Ostraciidae)",
+      "trunkfish"
+    ],
+    "senseUid": "8b6fae4b-a176-43b0-9d2a-a31f23556cdd",
+    "wordId": "2254470",
+    "pt": "['peixe-cofre (qualquer peixe da família Ostraciidae)', 'peixe-tronco']"
+  },
+  {
+    "kana": "うみすずめ",
+    "en": [
+      "murrelet (esp. the ancient murrelet, Synthliboramphus antiquus)"
+    ],
+    "senseUid": "d210a171-d731-4987-a6c8-467217851c8d",
+    "wordId": "2254480",
+    "pt": "['murrelet (especialmente o murrelet-ancestral, Synthliboramphus antiquus)']"
+  },
+  {
+    "kana": "おおうみがらす",
+    "en": [
+      "great auk (Pinguinus impennis)"
+    ],
+    "senseUid": "eb1ddfa2-6311-4edb-b616-b6f7fd5dec6d",
+    "wordId": "2254490",
+    "pt": "['grande alca']"
+  },
+  {
+    "kana": "うみすずめ",
+    "en": [
+      "roundbelly cowfish (Lactoria diaphana)"
+    ],
+    "senseUid": "3edc783f-15f1-42dd-b61f-ab49b1fd0f95",
+    "wordId": "2254480",
+    "pt": "{\n  \"a\": [\n    \"peixe-cofre-barriga-redonda (Lactoria diaphana)\"\n  ]\n"
+  },
+  {
+    "kana": "ひめうみすずめ",
+    "en": [
+      "dovekie (Alle alle)",
+      "dovekey",
+      "little auk"
+    ],
+    "senseUid": "606460e0-50c2-4725-9d99-f1ba29a8cc75",
+    "wordId": "2254500",
+    "pt": "{\n  \"a\": [\n    \"mergulhinho-do-ártico\",\n    \"pombinho-do-mar\",\n    \"alquim-pequeno\"\n  ]\n"
+  },
+  {
+    "kana": "おおはしうみがらす",
+    "en": [
+      "razorbill (Alca torda)"
+    ],
+    "senseUid": "e01f65de-c9aa-4688-9b6e-3d2192a25477",
+    "wordId": "2254520",
+    "pt": "{\n  \"a\": [\"alca-torda\"]\n"
+  },
+  {
+    "kana": "はじろうみばと",
+    "en": [
+      "black guillemot (Cepphus grylle)",
+      "tystie"
+    ],
+    "senseUid": "8113875c-26ea-4ccb-b0d7-d28f74ed444c",
+    "wordId": "2254510",
+    "pt": "{\n  \"a\": [\n    \"mérgulo-preto (Cepphus grylle)\",\n    \"tystie\"\n  ]\n"
+  },
+  {
+    "kana": "アデリーペンギン",
+    "en": [
+      "Adelie penguin (Pygoscelis adeliae)"
+    ],
+    "senseUid": "eacfb1b0-fe18-4983-98fa-e191d28e9516",
+    "wordId": "2254540",
+    "pt": "['pinguim-de-adélia']"
+  },
+  {
+    "kana": "はしぶとうみがらす",
+    "en": [
+      "thick-billed murre (Uria lomvia)",
+      "Brunnich's guillemot"
+    ],
+    "senseUid": "32c5db08-70be-4d27-b22e-34ecebd8eba8",
+    "wordId": "2254530",
+    "pt": "{\n  \"a\": [\n    \"murre-de-bico-grosso (Uria lomvia)\",\n    \"guillemot-de-Brünnich\"\n  ]\n"
+  },
+  {
+    "kana": "キングペンギン",
+    "en": [
+      "king penguin (Aptenodytes patagonicus)"
+    ],
+    "senseUid": "e61f8951-5c14-4597-a81c-c3f6bc283bc9",
+    "wordId": "2254550",
+    "pt": "['pinguim-rei (Aptenodytes patagonicus)']"
+  },
+  {
+    "kana": "エンペラーペンギン",
+    "en": [
+      "emperor penguin (Aptenodytes forsteri)"
+    ],
+    "senseUid": "9bb5db13-ed2a-4257-bed6-2758069a2482",
+    "wordId": "2254560",
+    "pt": "['pinguim-imperador (Aptenodytes forsteri)']"
+  },
+  {
+    "kana": "おうさまペンギン",
+    "en": [
+      "king penguin (Aptenodytes patagonicus)"
+    ],
+    "senseUid": "bda3e55d-da14-4aa8-9205-4c11857e0302",
+    "wordId": "2254580",
+    "pt": "['pinguim-rei']"
+  },
+  {
+    "kana": "にしつのめどり",
+    "en": [
+      "Atlantic puffin (Fratercula arctica)"
+    ],
+    "senseUid": "d4fcfaba-7808-410f-b15a-b944bb72482d",
+    "wordId": "2254570",
+    "pt": "{\n  \"a\": [\"papagaio-do-mar-do-Atlântico (Fratercula arctica)\"]\n"
+  },
+  {
+    "kana": "こびとペンギン",
+    "en": [
+      "little penguin (Eudyptula minor)",
+      "fairy penguin"
+    ],
+    "senseUid": "b708202e-2702-40e1-a5e8-eb6930fb5c2e",
+    "wordId": "2254590",
+    "pt": "['pinguim-pequeno (Eudyptula minor)', 'pinguim-fada']"
+  },
+  {
+    "kana": "ジェンツーペンギン",
+    "en": [
+      "gentoo penguin (Pygoscelis papua)"
+    ],
+    "senseUid": "cd88aa62-b146-4ad7-aea7-8c91eac9e9cb",
+    "wordId": "2254600",
+    "pt": "{\n  \"a\": [\n    \"pinguim-gentoo (Pygoscelis papua)\"\n  ]\n"
+  },
+  {
+    "kana": "フンボルトペンギン",
+    "en": [
+      "Humboldt penguin (Spheniscus humboldti)"
+    ],
+    "senseUid": "c1d6d67a-94ff-418e-b4e8-8c7033d26b55",
+    "wordId": "2254610",
+    "pt": "['Pinguim-de-Humboldt (Spheniscus humboldti)']"
+  },
+  {
+    "kana": "マゼランペンギン",
+    "en": [
+      "Magellanic penguin (Spheniscus magellanicus)"
+    ],
+    "senseUid": "df95220d-a4a9-4985-8721-631877bed7f7",
+    "wordId": "2254620",
+    "pt": "['Pinguim-de-Magalhães']"
+  },
+  {
+    "kana": "しょうさいふぐ",
+    "en": [
+      "Takifugu snyderi (species of pufferfish)"
+    ],
+    "senseUid": "032ed5d5-638b-4a89-a990-e34b062dd043",
+    "wordId": "2254640",
+    "pt": "['baiacu-detalhado (espécie de peixe-balão, Takifugu snyderi)']"
+  },
+  {
+    "kana": "マカロニペンギン",
+    "en": [
+      "macaroni penguin (Eudyptes chrysolophus)"
+    ],
+    "senseUid": "684eb473-1d71-4d88-bf4e-f61ed05b3c4e",
+    "wordId": "2254630",
+    "pt": "['pinguim-macaroni (Eudyptes chrysolophus)']"
+  },
+  {
+    "kana": "ざっしょくどうぶつ",
+    "en": [
+      "omnivore",
+      "omnivorous animal"
+    ],
+    "senseUid": "31f28abc-6ac6-4989-a778-6e795c9c1c47",
+    "wordId": "2254650",
+    "pt": "{\n  \"a\": [\n    \"animal onívoro\",\n    \"onívoro\"\n  ]\n"
+  },
+  {
+    "kana": "レッドミート",
+    "en": [
+      "red meat"
+    ],
+    "senseUid": "1e0ebfe4-6d70-4480-9143-186a3bc9681c",
+    "wordId": "2254660",
+    "pt": "['carne vermelha']"
+  },
+  {
+    "kana": "あおたうり",
+    "en": [
+      "pre-harvest estimate of a rice field's yield and selling price"
+    ],
+    "senseUid": "51f1687c-1e19-4ad0-91e7-7da5b568ce42",
+    "wordId": "2254670",
+    "pt": "['estimativa pré-colheita do rendimento e preço de venda de um arrozal']"
+  },
+  {
+    "kana": "きゅうしょくしつ",
+    "en": [
+      "Japanese (school) lunchroom",
+      "Japanese (school) cafeteria"
+    ],
+    "senseUid": "98cb096b-1f68-4208-86cb-aa6d30113c50",
+    "wordId": "2254680",
+    "pt": "['refeitório escolar japonês', 'cantina escolar japonesa']"
+  },
+  {
+    "kana": "くちのききかた",
+    "en": [
+      "the way one talks",
+      "one's way of speaking"
+    ],
+    "senseUid": "3044e185-bd1b-44a2-a729-59b78d38c5f4",
+    "wordId": "2254690",
+    "pt": "['modo de falar', 'jeito de falar']"
+  },
+  {
+    "kana": "さんらい",
+    "en": [
+      "adoration which is performed three times or repeatedly",
+      "act of worship which is performed three times or repeatedly"
+    ],
+    "senseUid": "45843f54-712d-4934-9015-33713b33942e",
+    "wordId": "2254700",
+    "pt": "['adoração realizada três vezes ou repetidamente', 'ato de culto realizado três vezes ou repetidamente']"
+  },
+  {
+    "kana": "へんとうしゅういのうよう",
+    "en": [
+      "peritonsillar abscess",
+      "quinsy"
+    ],
+    "senseUid": "76cc99a3-38a6-4102-9cd4-9ddfa09d5ac5",
+    "wordId": "2254710",
+    "pt": "{\n  \"a\": [\n    \"Abscesso periamigdaliano\",\n    \"Abscesso peritonsilar\",\n    \"Quinsy\"\n  ]\n"
+  },
+  {
+    "kana": "へんとうのうよう",
+    "en": [
+      "peritonsillar abscess",
+      "quinsy"
+    ],
+    "senseUid": "35fcc677-7100-4f4d-a0a7-07ca5bbff330",
+    "wordId": "2254720",
+    "pt": "['abscesso periamigdaliano', 'abscesso peritonsilar', 'quinsy']"
+  },
+  {
+    "kana": "こえがかれる",
+    "en": [
+      "to become hoarse"
+    ],
+    "senseUid": "76c8f304-ba18-4c46-b743-276eb3decaf9",
+    "wordId": "2254730",
+    "pt": "{\n  \"a\": [\n    \"ficar rouco\",\n    \"a voz ficar rouca\",\n    \"a voz falhar\"\n  ]\n"
+  },
+  {
+    "kana": "スカスカ",
+    "en": [
+      "full of openings",
+      "half empty",
+      "spongy",
+      "pithy",
+      "patchy",
+      "thin",
+      "insubstantial",
+      "threadbare"
+    ],
+    "senseUid": "4ee21918-0e32-449b-b69b-c6aa73f13104",
+    "wordId": "2254740",
+    "pt": "{\n  \"a\": [\n    \"cheio de aberturas\",\n    \"meio vazio\",\n    \"esponjoso\",\n    \"fibroso\",\n    \"irregular\",\n    \"fino\",\n    \"insubstancial\",\n    \"puído\"\n  ]\n"
+  },
+  {
+    "kana": "スカスカ",
+    "en": [
+      "(cutting) sharply",
+      "cleanly"
+    ],
+    "senseUid": "6d5ccd05-1dff-43d9-b97b-5e6398cf9d2e",
+    "wordId": "2254740",
+    "pt": "['(cortando) de forma afiada', 'limpamente']"
+  },
+  {
+    "kana": "スカスカ",
+    "en": [
+      "(progressing) smoothly"
+    ],
+    "senseUid": "8f5b85aa-41bd-4073-9bf5-a78a490d195b",
+    "wordId": "2254740",
+    "pt": "{\n  \"a\": [\"(andando) sem obstáculos\", \"(progredindo) facilmente\", \"(fluindo) suavemente\"]\n"
+  },
+  {
+    "kana": "みなみする",
+    "en": [
+      "to go south"
+    ],
+    "senseUid": "665342cc-51b8-4924-971e-7c8375bca0a2",
+    "wordId": "2254750",
+    "pt": "['ir para o sul']"
+  },
+  {
+    "kana": "ふくしょうしき",
+    "en": [
+      "place bet (in horse racing, etc.)",
+      "show bet",
+      "bet that predicts a top 2 or top 3 finish (depending on number of horses, etc. in race)"
+    ],
+    "senseUid": "afea0702-856d-4b6d-a810-b8b27cd5225c",
+    "wordId": "2254770",
+    "pt": "['aposta de colocação (em corridas de cavalos, etc.)', 'aposta show', 'aposta que prevê uma chegada entre os 2 ou 3 primeiros colocados (dependendo do número de cavalos, etc. na corrida)']"
+  },
+  {
+    "kana": "ふくしあい",
+    "en": [
+      "doubles (tennis, badminton, etc.)"
+    ],
+    "senseUid": "76b14a0c-2734-4257-9674-3d13dfe4a617",
+    "wordId": "2254780",
+    "pt": "['duplas (tênis, badminton, etc.)']"
+  },
+  {
+    "kana": "へんする",
+    "en": [
+      "to be biased",
+      "to be prejudiced",
+      "to be partial",
+      "to be one-sided"
+    ],
+    "senseUid": "46cb832e-311c-46fd-9014-fcca49e4b827",
+    "wordId": "2254790",
+    "pt": "['ser tendencioso', 'ser preconceituoso', 'ser parcial', 'ser unilateral']"
+  },
+  {
+    "kana": "けんぽうじょうのけんり",
+    "en": [
+      "constitutional right"
+    ],
+    "senseUid": "ef72f477-1846-4993-8812-05d9084074d4",
+    "wordId": "2254800",
+    "pt": "['direito constitucional']"
+  },
+  {
+    "kana": "みせだな",
+    "en": [
+      "display shelf (in a store)"
+    ],
+    "senseUid": "dba2891a-c0d4-47fb-b542-79fe70077b49",
+    "wordId": "2254810",
+    "pt": "['prateleira de exposição (em uma loja)']"
+  },
+  {
+    "kana": "みせだな",
+    "en": [
+      "store",
+      "shop"
+    ],
+    "senseUid": "4057ad52-d665-4950-93e3-80be1fc6d39f",
+    "wordId": "2254810",
+    "pt": "{\n  \"a\": [\n    \"prateleira de loja\"\n  ]\n"
+  },
+  {
+    "kana": "じかんがあく",
+    "en": [
+      "to have time free",
+      "to have time to spare"
+    ],
+    "senseUid": "a4ffcdd7-c2c1-4032-94b8-7ecfc389bb6a",
+    "wordId": "2254820",
+    "pt": "['ter tempo livre', 'ter tempo de sobra']"
+  },
+  {
+    "kana": "きょうどうせんせいきょうじゅつしょ",
+    "en": [
+      "joint affidavit"
+    ],
+    "senseUid": "0e741017-8d51-4dba-85ad-9598bef7d6f9",
+    "wordId": "2254830",
+    "pt": "{\n  \"a\": [\"declaração conjunta\"]\n"
+  },
+  {
+    "kana": "みをひそめる",
+    "en": [
+      "to hide oneself"
+    ],
+    "senseUid": "910e7358-3be1-459c-968e-4b9fe3fa5076",
+    "wordId": "2254840",
+    "pt": "['esconder-se', 'ocultar-se', 'retirar-se discretamente']"
+  },
+  {
+    "kana": "エッサッサ",
+    "en": [
+      "heave-ho (chant when doing heavy work)"
+    ],
+    "senseUid": "5b1ac17a-c649-4c5a-905e-becf3e23d113",
+    "wordId": "2254850",
+    "pt": "{\n  \"a\": [\"heave-ho\", \"força!\", \"vamos lá!\", \"ei, empurra!\", \"um, dois, já!\"]\n"
+  },
+  {
+    "kana": "おうりょうしゃ",
+    "en": [
+      "embezzler"
+    ],
+    "senseUid": "9d69b4ee-7579-4c9f-8904-f7352b63a453",
+    "wordId": "2254860",
+    "pt": "['malversador', 'desviador de fundos', 'pessoa que comete apropriação indébita']"
+  },
+  {
+    "kana": "ふるざっし",
+    "en": [
+      "old magazines"
+    ],
+    "senseUid": "a000ee05-7bfd-45db-8bce-fca10bd8cc5a",
+    "wordId": "2254870",
+    "pt": "{\n  \"a\": [\"revistas velhas\"]\n"
+  },
+  {
+    "kana": "ふるどけい",
+    "en": [
+      "antique clock",
+      "old clock"
+    ],
+    "senseUid": "7916bd27-8fb9-41cb-819c-9e2b614cfc52",
+    "wordId": "2254880",
+    "pt": "['relógio antigo', 'relógio velho']"
+  },
+  {
+    "kana": "あらずんば",
+    "en": [
+      "if not",
+      "unless"
+    ],
+    "senseUid": "0f1fca76-8e62-4098-87e6-75db931e617b",
+    "wordId": "2254890",
+    "pt": "['se não for', 'a menos que']"
+  },
+  {
+    "kana": "りっししき",
+    "en": [
+      "coming-of-age ceremony for middle school students"
+    ],
+    "senseUid": "db40f31e-2061-4dcc-bcad-23b117965c36",
+    "wordId": "2254920",
+    "pt": "{\n  \"a\": [\n    \"cerimônia de maioridade para estudantes do ensino fundamental\"\n  ]\n"
+  },
+  {
+    "kana": "えきする",
+    "en": [
+      "to benefit (the world, society, etc.)",
+      "to be of use to",
+      "to be of service to"
+    ],
+    "senseUid": "cf2ae210-764b-4cae-8c6e-693ee7998e02",
+    "wordId": "2254910",
+    "pt": "{\n  \"a\": [\n    \"beneficiar (o mundo, a sociedade, etc.)\",\n    \"ser útil para\",\n    \"prestar serviço a\"\n  ]\n"
+  },
+  {
+    "kana": "メイロン",
+    "en": [
+      "mei long (dinosaur discovered in China)"
+    ],
+    "senseUid": "8fa2978e-e2c7-477e-ab29-c9f31cde336e",
+    "wordId": "2254930",
+    "pt": "{\n  \"a\": [\"mei long (dinossauro descoberto na China)\"]\n"
+  },
+  {
+    "kana": "ぞくっと",
+    "en": [
+      "tremblingly",
+      "having the chills (through fear, cold, anticipation, etc.)"
+    ],
+    "senseUid": "c827954d-2b0b-4020-82f2-0665057e0d79",
+    "wordId": "2254940",
+    "pt": "['arrepiado', 'com um calafrio (por medo, frio, expectativa, etc.)']"
+  },
+  {
+    "kana": "はまのまさご",
+    "en": [
+      "grains of sand on the beach (i.e. something countless)"
+    ],
+    "senseUid": "135389a4-03e6-43db-ac6a-dba0ad94d615",
+    "wordId": "2254950",
+    "pt": "{\n  \"a\": [\"grãos de areia na praia (ou seja, algo incontável)\"]\n"
+  },
+  {
+    "kana": "へ",
+    "en": [
+      "surrounding area",
+      "vicinity"
+    ],
+    "senseUid": "eb95bcb3-cb06-4adb-9c31-32e3ce67da3e",
+    "wordId": "2254960",
+    "pt": "{\n  \"a\": [\"arredores\", \"vizinhança\"]\n"
+  },
+  {
+    "kana": "へ",
+    "en": [
+      "seashore",
+      "seaside",
+      "coast"
+    ],
+    "senseUid": "519c779d-73fa-47f0-912c-63e3f9ef5466",
+    "wordId": "2254960",
+    "pt": "{\n  \"a\": [\"beira-mar\", \"litoral\", \"costa\"]\n"
+  },
+  {
+    "kana": "へ",
+    "en": [
+      "suffix used as a rough indicator of location, direction, time, etc."
+    ],
+    "senseUid": "adb49146-b895-4fd1-86a5-98f998791207",
+    "wordId": "2254960",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"へ\",\n      \"portuguese\": \"para (sufixo usado como um indicador aproximado de local, direção, tempo, etc.)\"\n    \n  ]\n"
+  },
+  {
+    "kana": "にい",
+    "en": [
+      "older brother",
+      "elder brother"
+    ],
+    "senseUid": "d02c7c3d-17c5-4d37-8dad-587cde6e63ba",
+    "wordId": "2254970",
+    "pt": "{\n  \"a\": [\"irmão mais velho\"]\n"
+  },
+  {
+    "kana": "たるみ",
+    "en": [
+      "waterfall"
+    ],
+    "senseUid": "02e095e6-f96d-4b7e-a597-8a613d17bdfe",
+    "wordId": "2254980",
+    "pt": "['queda d’água']"
+  },
+  {
+    "kana": "うみをわたる",
+    "en": [
+      "to cross the ocean (i.e. to go to or come from overseas)"
+    ],
+    "senseUid": "c5fb9b7d-1f9b-4391-9d1b-cfb45a2c79a1",
+    "wordId": "2254990",
+    "pt": "['atravessar o oceano (ou seja, ir para o exterior ou vir do exterior)']"
+  },
+  {
+    "kana": "みお",
+    "en": [
+      "waterway",
+      "channel"
+    ],
+    "senseUid": "5f09a46f-0185-43cd-9d75-6242634ef96d",
+    "wordId": "2255000",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"みお\",\n      \"português\": \"canal de navegação\",\n      \"notas\": \"Refere-se a um canal ou passagem de água, especialmente aqueles usados para navegação ou orientação de barcos, comum em contextos marítimos japoneses.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "みお",
+    "en": [
+      "wake (of a ship)"
+    ],
+    "senseUid": "9a75e8c5-6888-4bd4-a098-e06b86df92c0",
+    "wordId": "2255000",
+    "pt": "['esteira (de um navio)']"
+  },
+  {
+    "kana": "しゅう",
+    "en": [
+      "preeminence",
+      "supremacy",
+      "distinction",
+      "excellence"
+    ],
+    "senseUid": "cd2d6a1f-bbe2-4070-a92c-4042483e3f06",
+    "wordId": "2255010",
+    "pt": "{\n  \"a\": [\n    \"preeminência\",\n    \"supremacia\",\n    \"distinção\",\n    \"excelência\"\n  ]\n"
+  },
+  {
+    "kana": "よ",
+    "en": [
+      "space between two nodes (on bamboo, etc.)"
+    ],
+    "senseUid": "62bd62a1-405c-4ced-a558-af0f38de6f1d",
+    "wordId": "2255020",
+    "pt": "{\n  \"a\": [\"espaço entre dois nós (em bambu, etc.)\"]\n"
+  },
+  {
+    "kana": "ふしのま",
+    "en": [
+      "space between two nodes (on bamboo, etc.)"
+    ],
+    "senseUid": "e0dfdf83-ea73-4773-bf08-0b9673a1fbb5",
+    "wordId": "2255030",
+    "pt": "['espaço entre dois nós (em bambu, etc.)']"
+  },
+  {
+    "kana": "ふしのま",
+    "en": [
+      "a short time"
+    ],
+    "senseUid": "8e224b5b-d57b-44e2-a9d9-2145dc238d8f",
+    "wordId": "2255030",
+    "pt": "['um breve momento']"
+  },
+  {
+    "kana": "つぼむ",
+    "en": [
+      "to bud",
+      "to be budding"
+    ],
+    "senseUid": "f1fe4853-81f2-4e80-9b35-f894de2ee637",
+    "wordId": "2255040",
+    "pt": "['brotar', 'estar brotando']"
+  },
+  {
+    "kana": "いづらい",
+    "en": [
+      "difficult to be (in a place)",
+      "not feeling like staying"
+    ],
+    "senseUid": "e53afddf-d852-4391-8ded-26da4ab6ca8b",
+    "wordId": "2255050",
+    "pt": "{\n  \"a\": [\n    \"difícil de estar (em um lugar)\",\n    \"não sentir vontade de ficar\"\n  ]\n"
+  },
+  {
+    "kana": "みる",
+    "en": [
+      "to go around"
+    ],
+    "senseUid": "efc60dd9-5f10-40ea-9232-939446092652",
+    "wordId": "2255060",
+    "pt": "['dar uma volta']"
+  },
+  {
+    "kana": "ふとい",
+    "en": [
+      "softstem bulrush (Scirpus tabernaemontani)"
+    ],
+    "senseUid": "b22c9f95-24ee-4324-89d3-e379a50dcbf7",
+    "wordId": "2255070",
+    "pt": "['junco-grosso (Scirpus tabernaemontani)']"
+  },
+  {
+    "kana": "いんする",
+    "en": [
+      "to stamp (one's mark, etc.)",
+      "to seal"
+    ],
+    "senseUid": "4dd47c70-8374-42cc-a287-b0f8075cc691",
+    "wordId": "2255090",
+    "pt": "['carimbar (sua marca, etc.)', 'selar']"
+  },
+  {
+    "kana": "いする",
+    "en": [
+      "to cure",
+      "to heal"
+    ],
+    "senseUid": "d55557fa-fd65-412a-83a4-186d6ed0d360",
+    "wordId": "2255080",
+    "pt": "{\n  \"a\": [\n    \"curar\",\n    \"sarar\"\n  ]\n"
+  },
+  {
+    "kana": "いんする",
+    "en": [
+      "to leave (one's footprints, etc.)"
+    ],
+    "senseUid": "99d4b9da-7cdc-49a9-9844-8aea649d7a58",
+    "wordId": "2255090",
+    "pt": "['deixar (pegadas, marcas, etc.)']"
+  },
+  {
+    "kana": "さんする",
+    "en": [
+      "to bear (a child)",
+      "to be born"
+    ],
+    "senseUid": "abe6c9f2-5493-4ad5-a344-0b4802822fbc",
+    "wordId": "2255110",
+    "pt": "{\n  \"a\": [\n    \"dar à luz (uma criança)\",\n    \"nascer\"\n  ]\n"
+  },
+  {
+    "kana": "さんする",
+    "en": [
+      "to produce",
+      "to yield",
+      "to be produced",
+      "to be yielded"
+    ],
+    "senseUid": "cb68f99a-80cf-4533-ba0c-99b4365e5107",
+    "wordId": "2255110",
+    "pt": "{\n  \"a\": [\n    \"produzir\",\n    \"render\",\n    \"ser produzido\",\n    \"ser gerado\"\n  ]\n"
+  },
+  {
+    "kana": "グキグキ",
+    "en": [
+      "throbbing pain"
+    ],
+    "senseUid": "2dfd9fb3-04ab-4c17-9f8d-863036f73e56",
+    "wordId": "2255120",
+    "pt": "['dor latejante']"
+  },
+  {
+    "kana": "グキグキ",
+    "en": [
+      "jerkily",
+      "awkwardly"
+    ],
+    "senseUid": "838e3891-ded2-4617-b421-ab1f15efc852",
+    "wordId": "2255120",
+    "pt": "['de modo brusco', 'de forma desajeitada']"
+  },
+  {
+    "kana": "グチョグチョ",
+    "en": [
+      "sopping",
+      "soaking"
+    ],
+    "senseUid": "5f2b254a-32fc-4129-bb1f-c24b494e5f1d",
+    "wordId": "2255130",
+    "pt": "{\n  \"a\": [\n    \"encharcado\",\n    \"ensopado\"\n  ]\n"
+  },
+  {
+    "kana": "たいする",
+    "en": [
+      "to keep in mind and do as one has been told",
+      "to learn and obey",
+      "to act in accordance",
+      "to comply"
+    ],
+    "senseUid": "cd34f128-07c3-4421-8b94-ee8b0581fae4",
+    "wordId": "2255140",
+    "pt": "{\n  \"a\": [\n    \"agir conforme instruído\",\n    \"aprender e obedecer\",\n    \"cumprir\",\n    \"seguir o que foi dito\"\n  ]\n"
+  },
+  {
+    "kana": "やむえず",
+    "en": [
+      "unavoidably",
+      "inevitably",
+      "necessarily",
+      "reluctantly",
+      "against one's will"
+    ],
+    "senseUid": "4fa7f31e-ac85-466f-8d9f-f21d5c4c70b0",
+    "wordId": "2255150",
+    "pt": "['inevitavelmente', 'inevitavelmente', 'necessariamente', 'relutantemente', 'contra a própria vontade']"
+  },
+  {
+    "kana": "う",
+    "en": [
+      "bhava (becoming, existence)"
+    ],
+    "senseUid": "a251dfe6-408f-48f7-a2e9-60291ef496d7",
+    "wordId": "2255160",
+    "pt": "{\n  \"a\": [\"existência\", \"vir a ser\", \"tornar-se\"]\n"
+  },
+  {
+    "kana": "りゃくする",
+    "en": [
+      "to abbreviate",
+      "to abridge",
+      "to shorten"
+    ],
+    "senseUid": "65a4bc68-58af-45a2-b655-adcc74327358",
+    "wordId": "2255170",
+    "pt": "['abreviar', 'resumir', 'encurtar']"
+  },
+  {
+    "kana": "りゃくする",
+    "en": [
+      "to omit",
+      "to leave out"
+    ],
+    "senseUid": "97a5ecdc-5e17-4eb0-9869-aba10806a654",
+    "wordId": "2255170",
+    "pt": "['omitir', 'deixar de fora']"
+  },
+  {
+    "kana": "りゃくする",
+    "en": [
+      "to take",
+      "to capture",
+      "to steal"
+    ],
+    "senseUid": "d98c631c-ce04-48f3-8a47-bcd4aed4ffe9",
+    "wordId": "2255170",
+    "pt": "['resumir', 'abreviar', 'omitir']"
+  },
+  {
+    "kana": "ひとっこひとり",
+    "en": [
+      "(not) a soul",
+      "(not) a single person"
+    ],
+    "senseUid": "f4449392-2c2d-442e-8bc5-482cb7d50a11",
+    "wordId": "2255180",
+    "pt": "{\n  \"a\": [\"nenhuma alma\", \"nenhuma pessoa\", \"ninguém\", \"nem uma pessoa sequer\"]\n"
+  },
+  {
+    "kana": "ろうする",
+    "en": [
+      "to work",
+      "to labor",
+      "to labour"
+    ],
+    "senseUid": "1ee920b7-69ab-4641-84ed-633f2dc7355c",
+    "wordId": "2255190",
+    "pt": "['trabalhar', 'labutar', 'esforçar-se']"
+  },
+  {
+    "kana": "ろうする",
+    "en": [
+      "to put to work",
+      "to make (someone) work"
+    ],
+    "senseUid": "66690db2-4035-4746-956b-6f25c09c13b0",
+    "wordId": "2255190",
+    "pt": "['colocar para trabalhar', 'fazer (alguém) trabalhar']"
+  },
+  {
+    "kana": "にくづきがよい",
+    "en": [
+      "stout",
+      "well-fleshed",
+      "well-padded",
+      "plump"
+    ],
+    "senseUid": "a0fa5b6f-db7f-4f8a-8ea0-0bef4b38ed74",
+    "wordId": "2255200",
+    "pt": "['corpulento', 'bem-carnudo', 'bem-recheado', 'roliço']"
+  },
+  {
+    "kana": "ぬりなおし",
+    "en": [
+      "re-coating (e.g. repainting, respraying, etc.)"
+    ],
+    "senseUid": "7c529eb2-97e8-4af4-bfde-8a46c4fc96e8",
+    "wordId": "2255210",
+    "pt": "['repintura', 'reaplicação de tinta', 'nova demão']"
+  },
+  {
+    "kana": "れいする",
+    "en": [
+      "to command",
+      "to order"
+    ],
+    "senseUid": "8b1d63e2-97b7-4896-8c3c-d67c2fd8edf4",
+    "wordId": "2255220",
+    "pt": "['ordenar', 'comandar']"
+  },
+  {
+    "kana": "むせびなき",
+    "en": [
+      "sobbing"
+    ],
+    "senseUid": "fc6a8f01-ddcb-4a09-8e47-6d0d94d03c63",
+    "wordId": "2255240",
+    "pt": "['soluçar', 'chorar convulsivamente', 'pranto sufocado']"
+  },
+  {
+    "kana": "とりかえっこ",
+    "en": [
+      "swap",
+      "exchange"
+    ],
+    "senseUid": "5c7ce335-b90f-4416-b4c7-a1906fb61be3",
+    "wordId": "2255250",
+    "pt": "['troca', 'permuta']"
+  },
+  {
+    "kana": "ツンと",
+    "en": [
+      "standoffishly",
+      "primly",
+      "prickly",
+      "irritably",
+      "aloofly"
+    ],
+    "senseUid": "7e78beaf-2884-4db0-a722-620c1ecea3cd",
+    "wordId": "2255260",
+    "pt": "['de modo arrogante', 'de maneira reservada', 'de forma ríspida', 'irritadamente', 'friamente']"
+  },
+  {
+    "kana": "ツンと",
+    "en": [
+      "pungently (of a smell)",
+      "acridly",
+      "sharply"
+    ],
+    "senseUid": "e4f730e5-5348-46aa-9753-0a8e73edf0eb",
+    "wordId": "2255260",
+    "pt": "['de forma pungente (de um cheiro)', 'de modo acre', 'de maneira cortante']"
+  },
+  {
+    "kana": "ツンと",
+    "en": [
+      "long and pointed (e.g. of a nose)"
+    ],
+    "senseUid": "f87d9208-b012-41db-98b8-82ed3778876f",
+    "wordId": "2255260",
+    "pt": "{\n  \"a\": [\n    \"afiado e pontudo (por exemplo, de um nariz)\"\n  ]\n"
+  },
+  {
+    "kana": "ツンと",
+    "en": [
+      "popping (of ears)",
+      "clearing (of sinuses)"
+    ],
+    "senseUid": "26b9959b-8f23-462f-af30-d8ffe8a962fe",
+    "wordId": "2255260",
+    "pt": "['estalo (dos ouvidos)', 'desobstrução (dos seios nasais)']"
+  }
+]

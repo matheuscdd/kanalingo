@@ -1,0 +1,915 @@
+[
+  {
+    "kana": "ぜったいざひょうめいれい",
+    "en": [
+      "absolute command",
+      "absolute instruction"
+    ],
+    "senseUid": "ff86f26a-eab5-4c76-9c9a-2f2cfba1762f",
+    "wordId": "2369440",
+    "pt": "['ordem absoluta', 'instrução absoluta']"
+  },
+  {
+    "kana": "ぜったいばんち",
+    "en": [
+      "absolute address"
+    ],
+    "senseUid": "a45a1fcc-6236-440f-a2e8-1cccebb173a5",
+    "wordId": "2369450",
+    "pt": "{\n  \"a\": [\"endereço absoluto\"]\n"
+  },
+  {
+    "kana": "せんこうゼロ",
+    "en": [
+      "leading zero"
+    ],
+    "senseUid": "1b00fe15-a2cf-4d1b-99a5-98bbccb69585",
+    "wordId": "2369460",
+    "pt": "['zero à esquerda']"
+  },
+  {
+    "kana": "せんこうパッド",
+    "en": [
+      "leading pad"
+    ],
+    "senseUid": "24ad52d6-b901-4e13-983f-6bef3cc2d0a8",
+    "wordId": "2369470",
+    "pt": "{\n  \"a\": [\"almofada dianteira\"]\n"
+  },
+  {
+    "kana": "せんこうページング",
+    "en": [
+      "anticipatory paging"
+    ],
+    "senseUid": "d6e4ec2a-9dbf-4dee-a2ad-d428358a19a4",
+    "wordId": "2369480",
+    "pt": "{\n  \"a\": [\"paginação antecipatória\"]\n"
+  },
+  {
+    "kana": "せんこうせいぎょ",
+    "en": [
+      "advanced control"
+    ],
+    "senseUid": "dd704951-6b9d-4dd3-b884-a27100dc6283",
+    "wordId": "2369490",
+    "pt": "['controle avançado']"
+  },
+  {
+    "kana": "せんこうよみとりヘッド",
+    "en": [
+      "pre-read head"
+    ],
+    "senseUid": "113b4ea6-933c-4bf3-8388-a8a0bb86d6ce",
+    "wordId": "2369500",
+    "pt": "{\n  \"a\": [\"cabeça de pré-leitura\"]\n"
+  },
+  {
+    "kana": "せんしんユーザ",
+    "en": [
+      "advanced user"
+    ],
+    "senseUid": "f3966789-c8e3-4e2a-9656-e637147f5361",
+    "wordId": "2369510",
+    "pt": "['usuário avançado']"
+  },
+  {
+    "kana": "せんぞこうぞうたい",
+    "en": [
+      "ancestor structure"
+    ],
+    "senseUid": "8d9d9c6a-0f93-4caf-8a30-df93bb6b6dc8",
+    "wordId": "2369520",
+    "pt": "{\n  \"a\": [\"estrutura ancestral\"]\n"
+  },
+  {
+    "kana": "せんとうのくうはく",
+    "en": [
+      "leading whitespace"
+    ],
+    "senseUid": "ada54ff0-d5f0-4a63-8cc4-3ffcb6889cbd",
+    "wordId": "2369530",
+    "pt": "{\n  \"a\": [\"espaço em branco no início\"]\n"
+  },
+  {
+    "kana": "さきいれさきだしリスト",
+    "en": [
+      "queue",
+      "pushup list"
+    ],
+    "senseUid": "0c402658-7ba9-4ab3-96fa-c0a161971587",
+    "wordId": "2369550",
+    "pt": "{\n  \"a\": [\"lista FIFO\", \"lista de entrada-saída em ordem\", \"lista de processamento em ordem de chegada\"]\n"
+  },
+  {
+    "kana": "せんとういち",
+    "en": [
+      "lead position",
+      "first position (in a string)"
+    ],
+    "senseUid": "630ae3ab-a319-4575-8abc-c6e77efc63a3",
+    "wordId": "2369540",
+    "pt": "{\n  \"a\": [\n    \"posição de liderança\",\n    \"primeira posição (em uma sequência)\"\n  ]\n"
+  },
+  {
+    "kana": "さきいれさきだしきおくそうち",
+    "en": [
+      "pushup storage"
+    ],
+    "senseUid": "8e32930d-5a70-411c-8c87-9f031e7bb48e",
+    "wordId": "2369560",
+    "pt": "{\n  \"a\": [\"armazenamento push-up\"]\n"
+  },
+  {
+    "kana": "せんげんのゆうこうはんい",
+    "en": [
+      "scope of declaration"
+    ],
+    "senseUid": "2148fd45-e289-48fa-87f2-bf35cac0bef5",
+    "wordId": "2369580",
+    "pt": "{\n  \"a\": [\"âmbito de aplicação da declaração\"]\n"
+  },
+  {
+    "kana": "せんげんかんけつぶん",
+    "en": [
+      "declarative sentence"
+    ],
+    "senseUid": "60a1f46a-11c6-4863-b12a-953ae7f9a663",
+    "wordId": "2369590",
+    "pt": "{\n  \"a\": [\n    \"sentença declarativa\"\n  ]\n"
+  },
+  {
+    "kana": "せんげんけいマクロめいれい",
+    "en": [
+      "declarative macro instruction"
+    ],
+    "senseUid": "c74d0b70-d7f3-4fe9-ad08-9d05f1571dd7",
+    "wordId": "2369600",
+    "pt": "{\n  \"a\": [\"instrução de macro declarativa\"]\n"
+  },
+  {
+    "kana": "せんげんがたげんご",
+    "en": [
+      "declarative language"
+    ],
+    "senseUid": "56ed1bbd-b37b-4b75-80bb-084097e70615",
+    "wordId": "2369610",
+    "pt": "{\n  \"a\": [\"linguagem declarativa\"]\n"
+  },
+  {
+    "kana": "せんげんがたげんご",
+    "en": [
+      "declarative language"
+    ],
+    "senseUid": "1a2a4b91-8135-4c4b-a5cf-bcc9b51d9928",
+    "wordId": "2369620",
+    "pt": "['linguagem declarativa']"
+  },
+  {
+    "kana": "せんげんずみぐしょうこうぶん",
+    "en": [
+      "declared concrete syntax"
+    ],
+    "senseUid": "88163c04-5693-4d9e-ac0b-672b8cbe186a",
+    "wordId": "2369630",
+    "pt": "{\n  \"a\": [\"sintaxe concreta declarada\"]\n"
+  },
+  {
+    "kana": "せんげんし",
+    "en": [
+      "declarator"
+    ],
+    "senseUid": "9ca01634-621b-4792-8921-158f63f1c8a3",
+    "wordId": "2369640",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"せんげんし\",\n      \"gloss\": [\"declarador\", \"enunciador\", \"afirmador\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "せんげんぶぶん",
+    "en": [
+      "declaratives"
+    ],
+    "senseUid": "8a8baf84-b371-45de-bd0c-4a9c45c5847e",
+    "wordId": "2369650",
+    "pt": "{\n  \"a\": [\"partes declarativas\"]\n"
+  },
+  {
+    "kana": "せんげんぶぶんしゅうごう",
+    "en": [
+      "declaration subset"
+    ],
+    "senseUid": "076e4f1d-8338-4829-9174-b5fb05ee5f64",
+    "wordId": "2369660",
+    "pt": "{\n  \"a\": [\"subconjunto de declaração\"]\n"
+  },
+  {
+    "kana": "せんげんぶん",
+    "en": [
+      "declarative statement"
+    ],
+    "senseUid": "214e4c64-3eda-47d4-a437-6bc77a0314a4",
+    "wordId": "2369670",
+    "pt": "['declaração', 'afirmação']"
+  },
+  {
+    "kana": "せんもんシソーラス",
+    "en": [
+      "specialized thesaurus"
+    ],
+    "senseUid": "6f53c151-2cd0-4016-85e1-71ad219889d8",
+    "wordId": "2369680",
+    "pt": "['tesauro especializado']"
+  },
+  {
+    "kana": "せんもんかシステム",
+    "en": [
+      "expert system"
+    ],
+    "senseUid": "4e3e8b5c-9e37-4a80-b527-e1120bf879f9",
+    "wordId": "2369690",
+    "pt": "['sistema especialista']"
+  },
+  {
+    "kana": "せんもんじしょ",
+    "en": [
+      "specialized dictionary"
+    ],
+    "senseUid": "55fb3436-f23f-4d3a-990b-b9236a9ab8e1",
+    "wordId": "2369700",
+    "pt": "{\n  \"a\": [\"dicionário especializado\"]\n"
+  },
+  {
+    "kana": "せんもんとしょかん",
+    "en": [
+      "special library"
+    ],
+    "senseUid": "2fecc3cf-b693-4981-8d52-0daf88b61b89",
+    "wordId": "2369710",
+    "pt": "{\n  \"a\": [\"biblioteca especializada\"]\n"
+  },
+  {
+    "kana": "せんもんぶんるいたいけい",
+    "en": [
+      "specialized classification system"
+    ],
+    "senseUid": "3fe996c4-13c5-426f-a5fb-5f099b3dd577",
+    "wordId": "2369720",
+    "pt": "['sistema de classificação especializada']"
+  },
+  {
+    "kana": "せんもんようごしゅう",
+    "en": [
+      "glossary of technical terms"
+    ],
+    "senseUid": "350e8428-807e-457d-b93c-b7207bedcfa2",
+    "wordId": "2369730",
+    "pt": "['glossário de termos técnicos']"
+  },
+  {
+    "kana": "せんようキー",
+    "en": [
+      "dedicated key"
+    ],
+    "senseUid": "ef944a08-78a1-4ea2-8977-01aa9fb22c0a",
+    "wordId": "2369750",
+    "pt": "['tecla dedicada']"
+  },
+  {
+    "kana": "せんようレジスタ",
+    "en": [
+      "special-purpose register"
+    ],
+    "senseUid": "f7286a02-c9dc-4e5e-a666-7e15f7e7fc01",
+    "wordId": "2369760",
+    "pt": "['registrador de uso especial']"
+  },
+  {
+    "kana": "せんりゃくじょうほうシステム",
+    "en": [
+      "strategic information system",
+      "SIS"
+    ],
+    "senseUid": "95ac2f1b-bfde-4351-84c3-9b57c35900c5",
+    "wordId": "2369780",
+    "pt": "['sistema de informação estratégica', 'SIS']"
+  },
+  {
+    "kana": "せんりゃくてき",
+    "en": [
+      "strategic"
+    ],
+    "senseUid": "e078c010-db0e-44c1-8e74-b0af56a4d43b",
+    "wordId": "2369790",
+    "pt": "{\n  \"a\": [\"estratégico\"]\n"
+  },
+  {
+    "kana": "せんざいじゅしんしゃ",
+    "en": [
+      "potential recipient"
+    ],
+    "senseUid": "968a33fa-293b-45fb-90b3-5761953de698",
+    "wordId": "2369800",
+    "pt": "{\n  \"a\": [\n    \"potencial destinatário\"\n  ]\n"
+  },
+  {
+    "kana": "せんこうカード",
+    "en": [
+      "punch card"
+    ],
+    "senseUid": "5e2354fa-b806-4020-b5ef-966919d338ca",
+    "wordId": "2369810",
+    "pt": "['cartão perfurado']"
+  },
+  {
+    "kana": "せんこうテープ",
+    "en": [
+      "punched tape",
+      "(perforated) paper tape"
+    ],
+    "senseUid": "8bf84ce4-b9d5-4687-8eec-bc62cf5e1759",
+    "wordId": "2369820",
+    "pt": "['fita perfurada', 'fita de papel perfurada']"
+  },
+  {
+    "kana": "せんこういち",
+    "en": [
+      "punch position",
+      "punching position"
+    ],
+    "senseUid": "94ab44b1-f2cd-404e-8f54-a3fa48bc3300",
+    "wordId": "2369830",
+    "pt": "{\n  \"a\": [\"posição de soco\", \"posição de golpear\"]\n"
+  },
+  {
+    "kana": "せんこうずみカード",
+    "en": [
+      "punched card"
+    ],
+    "senseUid": "94f6e158-3073-4219-9511-dffc4c04e267",
+    "wordId": "2369850",
+    "pt": "{\n  \"a\": [\"cartão perfurado\"]\n"
+  },
+  {
+    "kana": "せんこうきこう",
+    "en": [
+      "punch (e.g. card, tape)"
+    ],
+    "senseUid": "cb448f71-652f-40a4-bdcc-e478917603a5",
+    "wordId": "2369840",
+    "pt": "['perfuração (ex: cartão, fita)']"
+  },
+  {
+    "kana": "せんこうそうち",
+    "en": [
+      "punch"
+    ],
+    "senseUid": "d328a12e-7506-45fa-9fb2-e6345b89af05",
+    "wordId": "2369860",
+    "pt": "{\n  \"a\": [\"soco\", \"furador\", \"perfurador\"]\n"
+  },
+  {
+    "kana": "せんこうつうろ",
+    "en": [
+      "punch path"
+    ],
+    "senseUid": "406e6ff8-4330-4d2e-86bd-dc7115037b66",
+    "wordId": "2369870",
+    "pt": "{\n  \"a\": [\"caminho de perfuração\"]\n"
+  },
+  {
+    "kana": "せんこうぶ",
+    "en": [
+      "punch station"
+    ],
+    "senseUid": "7b34fe2f-0e90-459f-a05a-4c93fe587673",
+    "wordId": "2369880",
+    "pt": "['estação de perfuração']"
+  },
+  {
+    "kana": "せんこうほんやくき",
+    "en": [
+      "interpreter (device)"
+    ],
+    "senseUid": "e2059e21-cc90-4f5d-ba65-3bec15fd6035",
+    "wordId": "2369890",
+    "pt": "{\n  \"a\": [\n    \"dispositivo de interpretação\"\n  ]\n"
+  },
+  {
+    "kana": "せんかんかく",
+    "en": [
+      "line spacing"
+    ],
+    "senseUid": "97dc5179-5ba7-48a3-96a3-f2356a8435ce",
+    "wordId": "2369900",
+    "pt": "{\n  \"a\": [\"espaçamento entre linhas\"]\n"
+  },
+  {
+    "kana": "せんけいシステム",
+    "en": [
+      "linear system"
+    ],
+    "senseUid": "d068b5b6-8860-41cd-92a8-bbddba340e2f",
+    "wordId": "2369910",
+    "pt": "['sistema linear']"
+  },
+  {
+    "kana": "せんけいフィルタ",
+    "en": [
+      "linear filter"
+    ],
+    "senseUid": "d882a2f1-d71e-4d2a-b736-b52fb47b9b71",
+    "wordId": "2369920",
+    "pt": "['filtro linear']"
+  },
+  {
+    "kana": "せんけいリスト",
+    "en": [
+      "linear list"
+    ],
+    "senseUid": "8f762776-2698-4a57-b16a-1a7ae2aeca9f",
+    "wordId": "2369930",
+    "pt": "{\n  \"a\": [\"lista linear\"]\n"
+  },
+  {
+    "kana": "せんけいたんさく",
+    "en": [
+      "linear search"
+    ],
+    "senseUid": "914fbe71-887c-4abb-8ce8-bf859e36cc4f",
+    "wordId": "2369940",
+    "pt": "{\n  \"a\": [\"busca linear\"]\n"
+  },
+  {
+    "kana": "せんけいどくりつ",
+    "en": [
+      "linearly independent"
+    ],
+    "senseUid": "a7316220-0957-4a1b-b7f1-fc2ef3cda547",
+    "wordId": "2369950",
+    "pt": "['linearmente independente']"
+  },
+  {
+    "kana": "せんけいにげんけいれつせいせいき",
+    "en": [
+      "linear binary sequence generator"
+    ],
+    "senseUid": "fd8d99e2-d99e-4958-83a2-21a969315beb",
+    "wordId": "2369960",
+    "pt": "{\n  \"a\": [\"gerador de sequência binária linear\"]\n"
+  },
+  {
+    "kana": "せんけいひょうきほう",
+    "en": [
+      "linear notation"
+    ],
+    "senseUid": "97c311e2-1b9c-4b77-b358-b4d2bf65ff28",
+    "wordId": "2369970",
+    "pt": "['notação linear']"
+  },
+  {
+    "kana": "せんけいぶんるいたいけい",
+    "en": [
+      "linear classification system"
+    ],
+    "senseUid": "5947ffe8-be67-49e7-a9bb-d2fb53db0ade",
+    "wordId": "2369980",
+    "pt": "{\n  \"a\": [\"sistema de classificação linear\"]\n"
+  },
+  {
+    "kana": "せんけいほかん",
+    "en": [
+      "linear interpolation"
+    ],
+    "senseUid": "2c3f18b4-1e94-44a3-9a85-611b88842313",
+    "wordId": "2369990",
+    "pt": "{\n  \"a\": [\"interpolação linear\"]\n"
+  },
+  {
+    "kana": "せんけいほうていしき",
+    "en": [
+      "linear equation"
+    ],
+    "senseUid": "8c97d8a8-7cc2-40cb-ba46-3976de34dcb5",
+    "wordId": "2370000",
+    "pt": "['equação linear']"
+  },
+  {
+    "kana": "せんしゅ",
+    "en": [
+      "linetype"
+    ],
+    "senseUid": "257b70be-cc60-4699-894a-f837631c8973",
+    "wordId": "2370010",
+    "pt": "{\n  \"a\": [\"tipo de linha\"]\n"
+  },
+  {
+    "kana": "せんじょうネットワーク",
+    "en": [
+      "linear network"
+    ],
+    "senseUid": "a267b25e-d032-4436-b668-8767b6e7a709",
+    "wordId": "2370020",
+    "pt": "{\n  \"a\": [\n    \"rede linear\"\n  ]\n"
+  },
+  {
+    "kana": "せんじょうもう",
+    "en": [
+      "linear network"
+    ],
+    "senseUid": "64777a94-f324-42f0-88ac-d021ab57e1f1",
+    "wordId": "2370030",
+    "pt": "['rede linear']"
+  },
+  {
+    "kana": "せんしんこうほうこう",
+    "en": [
+      "line progression"
+    ],
+    "senseUid": "81248e88-8f9f-4923-a691-113690bfed36",
+    "wordId": "2370040",
+    "pt": "{\n  \"a\": [\"progressão em linha\"]\n"
+  },
+  {
+    "kana": "せんずけいしょり",
+    "en": [
+      "coordinate graphics",
+      "line graphics"
+    ],
+    "senseUid": "0eda945f-fcec-4295-bc72-7a9f23108031",
+    "wordId": "2370050",
+    "pt": "{\n  \"a\": [\n    \"gráficos vetoriais\",\n    \"gráficos de linhas\"\n  ]\n"
+  },
+  {
+    "kana": "せんぷくばいりつ",
+    "en": [
+      "linewidth scale factor"
+    ],
+    "senseUid": "9d809f7d-5c64-4b06-99e7-6e2601fea506",
+    "wordId": "2370060",
+    "pt": "{\n  \"a\": [\"fator de escala da largura da linha\"]\n"
+  },
+  {
+    "kana": "せんぶんもじはっせいき",
+    "en": [
+      "stroke character generator"
+    ],
+    "senseUid": "4aa8511d-09ba-4cba-8ef8-5dfa07d61b32",
+    "wordId": "2370070",
+    "pt": "{\n  \"a\": [\"gerador de caracteres por traço\"]\n"
+  },
+  {
+    "kana": "せんたくされたじっこうかのうしけんこうもくぐん",
+    "en": [
+      "selected executable test suite"
+    ],
+    "senseUid": "4b0f5af3-b44a-4eda-bf37-f02e87bf897a",
+    "wordId": "2370090",
+    "pt": "{\n  \"a\": [\"conjunto de casos de teste executáveis selecionados\"]\n"
+  },
+  {
+    "kana": "せんたくクラス",
+    "en": [
+      "selected class"
+    ],
+    "senseUid": "ae1ef862-1050-4d0d-aecf-f92dbd798307",
+    "wordId": "2370110",
+    "pt": "{\n  \"a\": [\"classe selecionada\"]\n"
+  },
+  {
+    "kana": "せんたくチャネル",
+    "en": [
+      "selector channel"
+    ],
+    "senseUid": "3f4ccf04-c4b7-4b3b-9f6e-1710e9924de2",
+    "wordId": "2370120",
+    "pt": "{\n  \"a\": [\n    \"canal seletor\"\n  ]\n"
+  },
+  {
+    "kana": "せんたくフィールドほご",
+    "en": [
+      "selective field protection"
+    ],
+    "senseUid": "7b9baba5-c6e1-44fa-9f14-4b55aea807d4",
+    "wordId": "2370140",
+    "pt": "{\n  \"a\": [\"proteção seletiva de campo\"]\n"
+  },
+  {
+    "kana": "せんたくかいじょ",
+    "en": [
+      "deselection"
+    ],
+    "senseUid": "e16cc30b-aca2-48df-8dab-bee5774bd64f",
+    "wordId": "2370150",
+    "pt": "['cancelamento da seleção']"
+  },
+  {
+    "kana": "せんたくきのう",
+    "en": [
+      "function preselection capability"
+    ],
+    "senseUid": "6b0ded88-f342-4ca6-8680-927da43680e3",
+    "wordId": "2370160",
+    "pt": "{\n  \"a\": [\"capacidade de pré-seleção de função\"]\n"
+  },
+  {
+    "kana": "せんたくがた",
+    "en": [
+      "choice type"
+    ],
+    "senseUid": "2d99b395-20f4-4a48-a2aa-b19544a18c69",
+    "wordId": "2370170",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"せんたくがた\",\n      \"portugues\": \"tipo de escolha\",\n      \"explicacao\": \"Refere-se a um formato ou categoria em que se faz uma escolha entre opções, comum em contextos como perguntas de múltipla escolha ou tipos de seleção.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "せんたくしょうろく",
+    "en": [
+      "selective abstract",
+      "slanted abstract"
+    ],
+    "senseUid": "c9c72823-ffc7-4498-98fc-af65efe46a6c",
+    "wordId": "2370180",
+    "pt": "{\n  \"a\": [\n    \"abstração seletiva\",\n    \"abstração inclinada\"\n  ]\n"
+  },
+  {
+    "kana": "せんたくじょうほうりょう",
+    "en": [
+      "decision content"
+    ],
+    "senseUid": "a397cc65-926d-485d-9762-949df00693d3",
+    "wordId": "2370190",
+    "pt": "{\n  \"a"
+  },
+  {
+    "kana": "せんたくしんごう",
+    "en": [
+      "selection signal"
+    ],
+    "senseUid": "6fdaf6f6-8856-405c-be79-ec11f299f385",
+    "wordId": "2370200",
+    "pt": "{\n  \"a\": [\"sinal de seleção\"]\n"
+  },
+  {
+    "kana": "せんたくちにゅうりょくそうち",
+    "en": [
+      "choice device"
+    ],
+    "senseUid": "42f4291d-ab35-44d7-8c7e-c46a303d2b8e",
+    "wordId": "2370210",
+    "pt": "{\n  \"a\": [\"dispositivo de entrada de escolha\"]\n"
+  },
+  {
+    "kana": "せんたくてき",
+    "en": [
+      "selective",
+      "optional",
+      "alternative"
+    ],
+    "senseUid": "16493ea2-7ff1-4296-b1cf-952f71f927b9",
+    "wordId": "2370220",
+    "pt": "{\n  \"a\": [\n    \"seletivo\",\n    \"opcional\",\n    \"alternativo\"\n  ]\n"
+  },
+  {
+    "kana": "せんたくりょういき",
+    "en": [
+      "selected area"
+    ],
+    "senseUid": "52a69def-7d70-4307-972c-694db787c956",
+    "wordId": "2370230",
+    "pt": "{\n  \"a\": [\"área selecionada\"]\n"
+  },
+  {
+    "kana": "せんいかくりつ",
+    "en": [
+      "transition probability"
+    ],
+    "senseUid": "8358fdcd-9e34-4bb1-b8b4-9fb1cd9fdbdf",
+    "wordId": "2370240",
+    "pt": "['probabilidade de transição']"
+  },
+  {
+    "kana": "せんいかんすう",
+    "en": [
+      "transfer function"
+    ],
+    "senseUid": "b6ce583a-64a7-434b-ba70-3a44313cbc02",
+    "wordId": "2370250",
+    "pt": "{\n  \"a\": [\"função de transferência\"]\n"
+  },
+  {
+    "kana": "せんいず",
+    "en": [
+      "transition diagram"
+    ],
+    "senseUid": "1af4f2a4-e17d-4e64-87de-a2bd8fcbd860",
+    "wordId": "2370260",
+    "pt": "{\n  \"a\": [\n    \"diagrama de transição\"\n  ]\n"
+  },
+  {
+    "kana": "ぜんけいがぞう",
+    "en": [
+      "foreground image",
+      "dynamic image"
+    ],
+    "senseUid": "555d6253-fb13-4783-a87f-a0576cd5af5a",
+    "wordId": "2370270",
+    "pt": "{\n  \"a\": [\n    \"imagem em primeiro plano\",\n    \"imagem dinâmica\"\n  ]\n"
+  },
+  {
+    "kana": "まえむきすいろん",
+    "en": [
+      "forward reasoning"
+    ],
+    "senseUid": "be2ebd99-e27f-4dcf-b595-5c7e7329d5e4",
+    "wordId": "2370280",
+    "pt": "['raciocínio progressivo']"
+  },
+  {
+    "kana": "ぜんしんかいふく",
+    "en": [
+      "forward recovery"
+    ],
+    "senseUid": "21d42c56-0f36-4362-a1a3-bbd05685a190",
+    "wordId": "2370290",
+    "pt": "{\n  \"a\": [\"recuperação total\"]\n"
+  },
+  {
+    "kana": "まえおきパスめい",
+    "en": [
+      "path prefix"
+    ],
+    "senseUid": "093de066-2c1d-418e-a7f8-85fdf7291c5b",
+    "wordId": "2370300",
+    "pt": "{\n  \"a\": [\"prefixo de caminho\"]\n"
+  },
+  {
+    "kana": "ぜんちプロセッサ",
+    "en": [
+      "front end processor"
+    ],
+    "senseUid": "f7da317c-d71b-4fce-be7d-04067a90239d",
+    "wordId": "2370310",
+    "pt": "{\n  \"a\": [\"processador de interface\"]\n"
+  },
+  {
+    "kana": "ぜんぽうきょうかいめん",
+    "en": [
+      "front plane"
+    ],
+    "senseUid": "9b4c9557-d3d9-4b19-976c-28258c8135d8",
+    "wordId": "2370330",
+    "pt": "['plano frontal']"
+  },
+  {
+    "kana": "ぜんちきほう",
+    "en": [
+      "prefix notation",
+      "Polish notation"
+    ],
+    "senseUid": "df403727-38cd-4baf-9682-4931af9d27f9",
+    "wordId": "2370320",
+    "pt": "{\n  \"a\": [\n    \"notação prefixa\",\n    \"notação polonesa\"\n  ]\n"
+  },
+  {
+    "kana": "ぜんぽうさんしょう",
+    "en": [
+      "forward reference"
+    ],
+    "senseUid": "749af3b2-3167-4ed6-a1f4-9cf05d9a6c8e",
+    "wordId": "2370340",
+    "pt": "['referência adiantada']"
+  },
+  {
+    "kana": "ぜんぽうすいろん",
+    "en": [
+      "forward reasoning (AI)"
+    ],
+    "senseUid": "aad76017-8257-4614-8126-0686de97fdd3",
+    "wordId": "2370350",
+    "pt": "['raciocínio progressivo (IA)']"
+  },
+  {
+    "kana": "ぜんけたあげ",
+    "en": [
+      "complete carry"
+    ],
+    "senseUid": "e8913c97-5bc7-40c2-bbd6-f82927db261b",
+    "wordId": "2370370",
+    "pt": "['elevação completa']"
+  },
+  {
+    "kana": "ぜんぽうたん",
+    "en": [
+      "leading edge"
+    ],
+    "senseUid": "d490f26c-6a4f-4f54-bf99-c62c246b0b25",
+    "wordId": "2370360",
+    "pt": "{\n  \"a\": [\"borda dianteira\"]\n"
+  },
+  {
+    "kana": "ぜんかさんき",
+    "en": [
+      "full adder"
+    ],
+    "senseUid": "80540341-8988-4343-9082-fc34a284f788",
+    "wordId": "2370390",
+    "pt": "{\n  \"a\": [\"somador completo\"]\n"
+  },
+  {
+    "kana": "ぜんかどうじかん",
+    "en": [
+      "busy period"
+    ],
+    "senseUid": "ae6e2664-2fb6-4e36-8c33-cf2cced03d4e",
+    "wordId": "2370400",
+    "pt": "['período movimentado']"
+  },
+  {
+    "kana": "ぜんけたあげ",
+    "en": [
+      "complete carry"
+    ],
+    "senseUid": "093d8eeb-62fb-45b9-b308-f5b32f8230c7",
+    "wordId": "2370410",
+    "pt": "{\n  \"a\": [\"transporte completo\"]\n"
+  },
+  {
+    "kana": "ぜんげんさんき",
+    "en": [
+      "full subtracter"
+    ],
+    "senseUid": "5dd9c32f-df87-46ef-b9dc-85539edb6e00",
+    "wordId": "2370420",
+    "pt": "{\n  \"a\": [\"subtrator completo\"]\n"
+  },
+  {
+    "kana": "ぜんしゅうごう",
+    "en": [
+      "universal set"
+    ],
+    "senseUid": "804abba7-4cdb-4402-bce3-c261abc2ffd6",
+    "wordId": "2370450",
+    "pt": "['conjunto universal']"
+  },
+  {
+    "kana": "ぜんこくしょし",
+    "en": [
+      "national bibliography"
+    ],
+    "senseUid": "8e07a869-18df-4334-aa5d-8d0d21caa77c",
+    "wordId": "2370430",
+    "pt": "['bibliografia nacional']"
+  },
+  {
+    "kana": "ぜんしょうきょきのう",
+    "en": [
+      "clear all function"
+    ],
+    "senseUid": "e3f05f57-abe7-4ffd-a046-132402299fee",
+    "wordId": "2370460",
+    "pt": "['função de limpar tudo']"
+  },
+  {
+    "kana": "ぜんたいご",
+    "en": [
+      "collective term"
+    ],
+    "senseUid": "8b8f5150-6972-4395-813a-8ab5315d3d57",
+    "wordId": "2370470",
+    "pt": "['termo coletivo']"
+  },
+  {
+    "kana": "ぜんたいはいれつ",
+    "en": [
+      "whole array"
+    ],
+    "senseUid": "da7e307f-ae40-4b02-b9c4-43637900eace",
+    "wordId": "2370490",
+    "pt": "['arranjo inteiro']"
+  },
+  {
+    "kana": "つうしんほうしき",
+    "en": [
+      "transmission method",
+      "communication system"
+    ],
+    "senseUid": "de93fb95-e4a9-4cf1-9424-8b3ed2c2aa5a",
+    "wordId": "2370500",
+    "pt": "['método de transmissão', 'sistema de comunicação']"
+  },
+  {
+    "kana": "ぜんにじゅうでんそう",
+    "en": [
+      "duplex transmission"
+    ],
+    "senseUid": "d43baca2-9fcd-4da0-9b07-9bf97530b53d",
+    "wordId": "2370510",
+    "pt": "{\n  \"a\": [\"transmissão duplex\"]\n"
+  },
+  {
+    "kana": "ぜんぶんけんさく",
+    "en": [
+      "full-text search"
+    ],
+    "senseUid": "838f56bb-4050-447a-ad72-06a35a9e56b3",
+    "wordId": "2370520",
+    "pt": "['busca textual completa']"
+  }
+]

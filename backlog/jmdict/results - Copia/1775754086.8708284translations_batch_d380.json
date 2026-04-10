@@ -1,0 +1,913 @@
+[
+  {
+    "kana": "バイトち",
+    "en": [
+      "byte value"
+    ],
+    "senseUid": "14a6b6c3-1495-48c7-8d11-d29083821cb2",
+    "wordId": "2318490",
+    "pt": "{\n  \"a\": [\"valor de byte\"]\n"
+  },
+  {
+    "kana": "バイナリデータ",
+    "en": [
+      "binary data"
+    ],
+    "senseUid": "3a47c0c4-eba2-4013-9744-1b9c335ae79b",
+    "wordId": "2318500",
+    "pt": "['dados binários']"
+  },
+  {
+    "kana": "バイナリフォーマット",
+    "en": [
+      "binary format"
+    ],
+    "senseUid": "74cc0bd0-6a9a-42b1-abe5-6ff02a3b0a24",
+    "wordId": "2318510",
+    "pt": "['formato binário']"
+  },
+  {
+    "kana": "バイナリモード",
+    "en": [
+      "binary mode"
+    ],
+    "senseUid": "20a84054-72d5-4484-89f3-80ffe0bab5cd",
+    "wordId": "2318520",
+    "pt": "['modo binário']"
+  },
+  {
+    "kana": "バイナリラージオブジェクト",
+    "en": [
+      "binary large object",
+      "BLOB"
+    ],
+    "senseUid": "bc59b748-4a34-4671-9e49-f51249dbcf7b",
+    "wordId": "2318530",
+    "pt": "['objeto binário grande', 'BLOB']"
+  },
+  {
+    "kana": "バイナリーレベルごかん",
+    "en": [
+      "binary level compatibility"
+    ],
+    "senseUid": "d78ddaae-f4ff-4bb2-a137-80c1cb26e974",
+    "wordId": "2318540",
+    "pt": "['compatibilidade em nível binário']"
+  },
+  {
+    "kana": "バイナリごかん",
+    "en": [
+      "binary compatible"
+    ],
+    "senseUid": "b1d7be36-2e96-45cc-b092-9c723d2dd954",
+    "wordId": "2318550",
+    "pt": "['compatível binário']"
+  },
+  {
+    "kana": "バイポーラトランジスタ",
+    "en": [
+      "bipolar transistor",
+      "bipolar junction transistor"
+    ],
+    "senseUid": "23ab056c-1a07-48af-9baa-ad9b87b409ba",
+    "wordId": "2318570",
+    "pt": "['transistor bipolar', 'transistor de junção bipolar']"
+  },
+  {
+    "kana": "バイリニアフィルタリング",
+    "en": [
+      "bilinear filtering"
+    ],
+    "senseUid": "5414cc98-e979-494a-85ed-1c49a92f3998",
+    "wordId": "2318580",
+    "pt": "['filtragem bilinear']"
+  },
+  {
+    "kana": "バインドタイム",
+    "en": [
+      "binding time"
+    ],
+    "senseUid": "3b515884-eefc-41f7-a8dd-d21e5289e441",
+    "wordId": "2318590",
+    "pt": "['tempo de vinculação']"
+  },
+  {
+    "kana": "バウ",
+    "en": [
+      "bow (of boat)"
+    ],
+    "senseUid": "e9cf739d-15e5-4fff-a579-a0c0bccc0648",
+    "wordId": "2318630",
+    "pt": "['proa']"
+  },
+  {
+    "kana": "バインドファイル",
+    "en": [
+      "binding file"
+    ],
+    "senseUid": "3a96b9b4-1258-48f5-ad8d-29424f894698",
+    "wordId": "2318600",
+    "pt": "['arquivo de fichário']"
+  },
+  {
+    "kana": "バウンス",
+    "en": [
+      "bounce (email)"
+    ],
+    "senseUid": "e41c0f71-a353-4c89-a85e-f371de027548",
+    "wordId": "2318640",
+    "pt": "['mensagem de e-mail devolvida']"
+  },
+  {
+    "kana": "バウンスメール",
+    "en": [
+      "bounced email"
+    ],
+    "senseUid": "0b9cd4dd-04f9-4474-84ab-55d78c6a757f",
+    "wordId": "2318650",
+    "pt": "['e-mail devolvido']"
+  },
+  {
+    "kana": "バウンダリちょうせい",
+    "en": [
+      "boundary alignment"
+    ],
+    "senseUid": "2353828f-2055-4e9c-8af1-b0e234836e40",
+    "wordId": "2318660",
+    "pt": "['alinhamento de fronteira']"
+  },
+  {
+    "kana": "バウンドトラップ",
+    "en": [
+      "bound trap"
+    ],
+    "senseUid": "ba0a1532-f369-46ad-8c90-bbfdf957a61c",
+    "wordId": "2318670",
+    "pt": "['armadilha de barreira']"
+  },
+  {
+    "kana": "バケツリレーそし",
+    "en": [
+      "bucket-brigade device",
+      "BBD"
+    ],
+    "senseUid": "a14260ce-2f7e-44dc-81ab-35ea49065688",
+    "wordId": "2318690",
+    "pt": "['dispositivo de corrente de baldes', 'BBD']"
+  },
+  {
+    "kana": "バスアービトレーション",
+    "en": [
+      "bus arbitration"
+    ],
+    "senseUid": "e8154c3f-7759-4d0d-bd71-864da211cc52",
+    "wordId": "2318700",
+    "pt": "['arbitragem de barramento']"
+  },
+  {
+    "kana": "バスエラー",
+    "en": [
+      "bus error"
+    ],
+    "senseUid": "7671667f-0551-4908-8788-cf3312d00125",
+    "wordId": "2318710",
+    "pt": "['erro de barramento']"
+  },
+  {
+    "kana": "バスクロック",
+    "en": [
+      "bus clock"
+    ],
+    "senseUid": "1a24be68-8f64-4b33-b1ee-7aa2134de39e",
+    "wordId": "2318720",
+    "pt": "{\n  \"a\": [\"relógio de barramento\"]\n"
+  },
+  {
+    "kana": "バスクロック",
+    "en": [
+      "bath clock",
+      "bathroom clock"
+    ],
+    "senseUid": "8e6203f6-06de-454d-9725-10da26f42bbb",
+    "wordId": "2318720",
+    "pt": "['relógio de banho', 'relógio para banheiro']"
+  },
+  {
+    "kana": "バスドライバ",
+    "en": [
+      "bus driver"
+    ],
+    "senseUid": "956b0970-c510-487c-8153-04f7ff828f5e",
+    "wordId": "2318730",
+    "pt": "['motorista de ônibus']"
+  },
+  {
+    "kana": "バスネットワーク",
+    "en": [
+      "bus network"
+    ],
+    "senseUid": "fb0a3e7c-3e3a-4c63-a440-145b08bed109",
+    "wordId": "2318740",
+    "pt": "['rede de ônibus']"
+  },
+  {
+    "kana": "バスマウス",
+    "en": [
+      "bus mouse"
+    ],
+    "senseUid": "5201c2d6-e5f8-4abf-92ab-9d69d6d8d9bf",
+    "wordId": "2318750",
+    "pt": "['mouse de barragem']"
+  },
+  {
+    "kana": "バスマスタディーエムエー",
+    "en": [
+      "bus master Direct Memory Access"
+    ],
+    "senseUid": "846f447d-3d65-4eed-8b73-beb3771ba35e",
+    "wordId": "2318770",
+    "pt": "{\n  \"a\": [\"mestre de barramento Acesso Direto à Memória\"]\n"
+  },
+  {
+    "kana": "バスマスター",
+    "en": [
+      "bus master"
+    ],
+    "senseUid": "653aba26-e3ee-43d2-aa21-5a823ba81d67",
+    "wordId": "2318780",
+    "pt": "['mestre do ônibus']"
+  },
+  {
+    "kana": "バスがた",
+    "en": [
+      "bus configuration"
+    ],
+    "senseUid": "8c4c6e5f-d773-4853-95c0-ba06949af779",
+    "wordId": "2318790",
+    "pt": "{\n  \"a\": [\"configuração de barramento\"]\n"
+  },
+  {
+    "kana": "バスちょうてい",
+    "en": [
+      "bus arbitration"
+    ],
+    "senseUid": "fc9e04e1-5fcb-4e52-9874-b10911703a2c",
+    "wordId": "2318800",
+    "pt": "['arbitragem de barramento']"
+  },
+  {
+    "kana": "バスはば",
+    "en": [
+      "bus width"
+    ],
+    "senseUid": "4af99e50-ce37-4334-a88e-488f3c33ea64",
+    "wordId": "2318810",
+    "pt": "{\n  \"a\": [\"largura do barramento\"]\n"
+  },
+  {
+    "kana": "バッカスきほう",
+    "en": [
+      "Backus-Naur form",
+      "BNF",
+      "Backus-Naur notation"
+    ],
+    "senseUid": "3a1d5e77-9c23-4f43-927b-09c7fcc95633",
+    "wordId": "2318830",
+    "pt": "{\n  \"a\": [\n    \"Forma de Backus-Naur\",\n    \"BNF\",\n    \"Notação de Backus-Naur\"\n  ]\n"
+  },
+  {
+    "kana": "バッキングストア",
+    "en": [
+      "backing store"
+    ],
+    "senseUid": "30deec49-d3b0-46ce-a896-a4584daa647e",
+    "wordId": "2318840",
+    "pt": "['armazenamento de apoio']"
+  },
+  {
+    "kana": "バックアップコピー",
+    "en": [
+      "backup copy"
+    ],
+    "senseUid": "95960080-b6c0-40f0-b73f-1ca8fa3d6e17",
+    "wordId": "2318850",
+    "pt": "['cópia de backup']"
+  },
+  {
+    "kana": "バックアップスナップショット",
+    "en": [
+      "backup snapshot"
+    ],
+    "senseUid": "62422b7b-6ba5-4788-95c9-30b84a927b8c",
+    "wordId": "2318860",
+    "pt": "['instantâneo de backup']"
+  },
+  {
+    "kana": "バックアップディスケット",
+    "en": [
+      "backup diskette"
+    ],
+    "senseUid": "bccfda5a-6bb1-421b-ad41-de5768a8a069",
+    "wordId": "2318880",
+    "pt": "['disquete de backup']"
+  },
+  {
+    "kana": "バックアップバッテリ",
+    "en": [
+      "backup battery"
+    ],
+    "senseUid": "e3d00f46-9fbc-4656-a288-cd49c7d88f80",
+    "wordId": "2318890",
+    "pt": "['bateria de backup']"
+  },
+  {
+    "kana": "バックアップファイル",
+    "en": [
+      "backup file",
+      "job-recovery control file"
+    ],
+    "senseUid": "034a14d7-4b1f-44e3-94eb-964762df2660",
+    "wordId": "2318900",
+    "pt": "{\n  \"a\": [\n    \"arquivo de backup\",\n    \"arquivo de controle para recuperação de tarefas\"\n  ]\n"
+  },
+  {
+    "kana": "バックアップルート",
+    "en": [
+      "backup route"
+    ],
+    "senseUid": "496afbb2-b7a2-4578-8025-7f5d5dacead7",
+    "wordId": "2318910",
+    "pt": "{\n  \"a\": [\"rota alternativa\"]\n"
+  },
+  {
+    "kana": "バックアップでんげん",
+    "en": [
+      "backup power supply"
+    ],
+    "senseUid": "158c154a-11c6-43d0-a261-59d8174a22ef",
+    "wordId": "2318920",
+    "pt": "{\n  \"a\": [\"fonte de alimentação de backup\"]\n"
+  },
+  {
+    "kana": "バックエンド",
+    "en": [
+      "backend",
+      "back end"
+    ],
+    "senseUid": "576377a2-d53d-4d27-b082-4ed1a719fb8b",
+    "wordId": "2318930",
+    "pt": "['back-end', 'parte de trás', 'sistema de apoio', 'infraestrutura (de um sistema)']"
+  },
+  {
+    "kana": "バックエンド",
+    "en": [
+      "back end (of the nuclear fuel cycle)"
+    ],
+    "senseUid": "4a11427c-817f-4684-a19a-66d61808e8d7",
+    "wordId": "2318930",
+    "pt": "{\n  \"a\": [\n    \"parte final (do ciclo do combustível nuclear)\"\n  ]\n"
+  },
+  {
+    "kana": "バックエンドプロセッサ",
+    "en": [
+      "back-end processor"
+    ],
+    "senseUid": "2c66e493-ca97-4bf4-b921-1ef27f374ada",
+    "wordId": "2318940",
+    "pt": "{\n  \"a\": [\"processador de back-end\"]\n"
+  },
+  {
+    "kana": "バックエンドしょり",
+    "en": [
+      "back-end processing"
+    ],
+    "senseUid": "c8e6b758-52f2-4be3-afc4-5d9591761098",
+    "wordId": "2318950",
+    "pt": "{\n  \"a\": [\n    \"Processamento de back-end\"\n  ]\n"
+  },
+  {
+    "kana": "バッククォート",
+    "en": [
+      "backquote (character)"
+    ],
+    "senseUid": "ae2867bc-63c3-42bf-81bd-bc983b329882",
+    "wordId": "2318960",
+    "pt": "{\n  \"a\": [\n    \"acento grave (caractere)\"\n  ]\n"
+  },
+  {
+    "kana": "バックグラウンドサウンド",
+    "en": [
+      "background sound"
+    ],
+    "senseUid": "862f9e7d-1d0f-4d9e-a601-b46da184053d",
+    "wordId": "2318970",
+    "pt": "{\n  \"a\": [\"som de fundo\"]\n"
+  },
+  {
+    "kana": "バックグラウンドジョブ",
+    "en": [
+      "background job"
+    ],
+    "senseUid": "ad7c425e-db8a-41e2-a086-b8a73c84e532",
+    "wordId": "2318980",
+    "pt": "['trabalho em segundo plano']"
+  },
+  {
+    "kana": "バックグラウンドいんさつ",
+    "en": [
+      "background printing"
+    ],
+    "senseUid": "3390a1aa-2772-4868-b1e7-9b389ba994b4",
+    "wordId": "2318990",
+    "pt": "{\n  \"a\": [\"impressão de fundo\"]\n"
+  },
+  {
+    "kana": "バックスクロール",
+    "en": [
+      "back-scroll"
+    ],
+    "senseUid": "06d27d77-134b-474e-b5df-a4b0262de1f3",
+    "wordId": "2319010",
+    "pt": "['rolagem para trás']"
+  },
+  {
+    "kana": "バックドア",
+    "en": [
+      "back door",
+      "tailgate"
+    ],
+    "senseUid": "7c0b7444-b2d6-42de-86e9-be232b932a3e",
+    "wordId": "2319020",
+    "pt": "{\n  \"a\": [\n    \"porta dos fundos\",\n    \"porta traseira\"\n  ]\n"
+  },
+  {
+    "kana": "バックドア",
+    "en": [
+      "back door"
+    ],
+    "senseUid": "b8fb5059-556a-45c4-a06c-ef2c6352a60b",
+    "wordId": "2319020",
+    "pt": "['porta dos fundos']"
+  },
+  {
+    "kana": "バックドア",
+    "en": [
+      "back door (pitch)"
+    ],
+    "senseUid": "ac943859-6ba0-44ab-b95a-697a0f108d0f",
+    "wordId": "2319020",
+    "pt": "['arremesso pelas costas']"
+  },
+  {
+    "kana": "バックバッファ",
+    "en": [
+      "back buffer"
+    ],
+    "senseUid": "0fb9d1b2-e14e-4a44-bc86-8f3834a8521c",
+    "wordId": "2319040",
+    "pt": "['buffer de fundo']"
+  },
+  {
+    "kana": "バックプレーン",
+    "en": [
+      "backplane"
+    ],
+    "senseUid": "a3136822-1681-451b-a1ee-04941773ce0c",
+    "wordId": "2319050",
+    "pt": "['placa-mãe de conexão']"
+  },
+  {
+    "kana": "バックボーンネットワーク",
+    "en": [
+      "backbone network"
+    ],
+    "senseUid": "23e962d2-0392-4063-a95b-07343ef7699b",
+    "wordId": "2319060",
+    "pt": "{\n  \"a\": [\"rede backbone\"]\n"
+  },
+  {
+    "kana": "バックライトタイムアウト",
+    "en": [
+      "backlight time out"
+    ],
+    "senseUid": "478e0afa-88da-488b-b249-b944b5e31ae9",
+    "wordId": "2319070",
+    "pt": "['tempo limite da luz de fundo']"
+  },
+  {
+    "kana": "バックワードかいふく",
+    "en": [
+      "backward recovery"
+    ],
+    "senseUid": "18c047ee-62d8-4b4b-a101-fac91ad08eb8",
+    "wordId": "2319080",
+    "pt": "['recuperação reversa']"
+  },
+  {
+    "kana": "バッチジョブ",
+    "en": [
+      "batch job"
+    ],
+    "senseUid": "6760f2d5-ed78-4f45-80b6-400450cf761a",
+    "wordId": "2319090",
+    "pt": "['processo em lote']"
+  },
+  {
+    "kana": "バッチファイル",
+    "en": [
+      "batch file"
+    ],
+    "senseUid": "a01dcc0c-c0c8-4ad2-9ae7-7dd6f91ae441",
+    "wordId": "2319100",
+    "pt": "['arquivo em lote']"
+  },
+  {
+    "kana": "バッチプログラム",
+    "en": [
+      "batch program"
+    ],
+    "senseUid": "c8d3aec2-1d83-4d67-a1aa-135a437ec328",
+    "wordId": "2319110",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"バッチプログラム\",\n      \"gloss\": \"programa em lote\"\n    \n  ]\n"
+  },
+  {
+    "kana": "バッテリーゲージ",
+    "en": [
+      "battery gauge"
+    ],
+    "senseUid": "20bec132-2b77-4680-954c-1383b6a18ae5",
+    "wordId": "2319150",
+    "pt": "['indicador de bateria']"
+  },
+  {
+    "kana": "バッテリーバックアップ",
+    "en": [
+      "battery backup"
+    ],
+    "senseUid": "c28b5261-d1ad-4d4a-a34f-5967967cec20",
+    "wordId": "2319160",
+    "pt": "['backup de bateria']"
+  },
+  {
+    "kana": "バッテリーパック",
+    "en": [
+      "battery pack"
+    ],
+    "senseUid": "b25ad308-a9d4-4cee-9c12-79841c411902",
+    "wordId": "2319170",
+    "pt": "{\n  \"a\": [\"pacote de bateria\"]\n"
+  },
+  {
+    "kana": "バッテリーくどう",
+    "en": [
+      "battery-powered"
+    ],
+    "senseUid": "bef3f3b8-9ed7-454f-a9bb-41be7d66812d",
+    "wordId": "2319180",
+    "pt": "['funcionamento por bateria']"
+  },
+  {
+    "kana": "バッファアンダーランエラー",
+    "en": [
+      "buffer under-run error"
+    ],
+    "senseUid": "9a150bfd-ea95-40cb-9596-91481fe2eefb",
+    "wordId": "2319190",
+    "pt": "['erro de buffer under-run']"
+  },
+  {
+    "kana": "バッファオーバーフロー",
+    "en": [
+      "buffer overflow"
+    ],
+    "senseUid": "1ca3e0cb-53e4-4591-bac5-acea6ff1513e",
+    "wordId": "2319200",
+    "pt": "{\n  \"a\": [\n    \"estouro de buffer\"\n  ]\n"
+  },
+  {
+    "kana": "バッファオーバーフローこうげき",
+    "en": [
+      "buffer overflow attack"
+    ],
+    "senseUid": "af4bc81f-6c3a-4463-81da-ab502b81ed61",
+    "wordId": "2319210",
+    "pt": "['ataque de estouro de buffer']"
+  },
+  {
+    "kana": "バッファプール",
+    "en": [
+      "buffer pool"
+    ],
+    "senseUid": "f80ee48c-dcd7-4ca8-a7c1-65b5affa8f11",
+    "wordId": "2319220",
+    "pt": "{\n  \"a\": [\"pool de buffers\"]\n"
+  },
+  {
+    "kana": "バッファメモリ",
+    "en": [
+      "buffer memory"
+    ],
+    "senseUid": "7cda42d5-4b58-426e-96f4-7525b8c37904",
+    "wordId": "2319230",
+    "pt": "['memória buffer']"
+  },
+  {
+    "kana": "バッファリングレベル",
+    "en": [
+      "buffering level"
+    ],
+    "senseUid": "cf0c959f-1916-4dd3-ae49-d36fe0af70d9",
+    "wordId": "2319240",
+    "pt": "['nível de buffer']"
+  },
+  {
+    "kana": "バッファきおく",
+    "en": [
+      "buffer storage",
+      "buffer"
+    ],
+    "senseUid": "e782383b-9508-470c-98ef-bb70f3bd1b9d",
+    "wordId": "2319250",
+    "pt": "{\n  \"a\": [\n    \"armazenamento intermediário\",\n    \"memória temporária\"\n  ]\n"
+  },
+  {
+    "kana": "バッファづき",
+    "en": [
+      "buffered"
+    ],
+    "senseUid": "8cfbb18b-617e-4ada-9ac6-8fc16b822a1b",
+    "wordId": "2319260",
+    "pt": "{\n  \"a\": [\"com buffer\", \"em estado de buffer\", \"bufferizado\"]\n"
+  },
+  {
+    "kana": "バッファづきそうち",
+    "en": [
+      "buffered device"
+    ],
+    "senseUid": "754b7bbb-a436-46f6-9112-c2a225e69472",
+    "wordId": "2319270",
+    "pt": "{\n  \"a\": [\"dispositivo com buffer\"]\n"
+  },
+  {
+    "kana": "バナーこうこく",
+    "en": [
+      "ad banner"
+    ],
+    "senseUid": "a9facc96-9c35-41fb-a279-7793eb604a46",
+    "wordId": "2319280",
+    "pt": "['banner de anúncio']"
+  },
+  {
+    "kana": "バニアン",
+    "en": [
+      "Banyan tree (esp. Indian Banyan, Ficus benghalensis)"
+    ],
+    "senseUid": "af598545-5d51-41d1-a26a-71aabfbe418e",
+    "wordId": "2319290",
+    "pt": "{\n  \"a\": [\n    \"árvore-de-baniã (especialmente a baniã indiana, Ficus benghalensis)\"\n  ]\n"
+  },
+  {
+    "kana": "バブルジェットプリンタ",
+    "en": [
+      "bubble jet printer"
+    ],
+    "senseUid": "de24c5c0-09d6-4204-a389-b0876dcef900",
+    "wordId": "2319320",
+    "pt": "['impressora jato de bolhas']"
+  },
+  {
+    "kana": "バブルソート",
+    "en": [
+      "bubble sort"
+    ],
+    "senseUid": "22d05269-334b-48a6-befe-54db0d98e8e5",
+    "wordId": "2319330",
+    "pt": "['ordenamento bolha']"
+  },
+  {
+    "kana": "バブルメモリ",
+    "en": [
+      "bubble memory"
+    ],
+    "senseUid": "fc75b394-58b3-44d4-9451-d90b4f80006b",
+    "wordId": "2319340",
+    "pt": "['memória de bolha']"
+  },
+  {
+    "kana": "バランシング",
+    "en": [
+      "balancing"
+    ],
+    "senseUid": "58ee85d8-ede8-4a77-b3b9-4dc376e4fabb",
+    "wordId": "2319370",
+    "pt": "['equilíbrio']"
+  },
+  {
+    "kana": "バブルきおくそうち",
+    "en": [
+      "bubble memory"
+    ],
+    "senseUid": "d8ad4511-44f2-4921-8c0d-c20eeb417f73",
+    "wordId": "2319360",
+    "pt": "['memória de bolha']"
+  },
+  {
+    "kana": "バルアン",
+    "en": [
+      "balun"
+    ],
+    "senseUid": "0e6db712-900d-4ce7-b404-203bb8f81c01",
+    "wordId": "2319410",
+    "pt": "['balun']"
+  },
+  {
+    "kana": "バルクひん",
+    "en": [
+      "bulk goods"
+    ],
+    "senseUid": "0d84fa90-57e5-4e64-a504-8aef31971c2e",
+    "wordId": "2319420",
+    "pt": "{\n  \"a\": [\"mercadorias a granel\"]\n"
+  },
+  {
+    "kana": "バンクメモリー",
+    "en": [
+      "bank memory"
+    ],
+    "senseUid": "003f87d3-35ac-4dee-a49e-4c88512cdf17",
+    "wordId": "2319430",
+    "pt": "['memória de banco']"
+  },
+  {
+    "kana": "バンドパスフィルタ",
+    "en": [
+      "band-pass filter"
+    ],
+    "senseUid": "7ddc4326-b864-44d1-8b71-58684ceeef04",
+    "wordId": "2319450",
+    "pt": "['filtro passa-faixa']"
+  },
+  {
+    "kana": "バンドプリンタ",
+    "en": [
+      "band printer"
+    ],
+    "senseUid": "a63466ec-ba7a-4ee6-a6a1-8d6708b488d5",
+    "wordId": "2319460",
+    "pt": "['impressora de banda']"
+  },
+  {
+    "kana": "バンドはば",
+    "en": [
+      "bandwidth"
+    ],
+    "senseUid": "97d47706-609f-4fc5-9b49-6596a26da0e9",
+    "wordId": "2319480",
+    "pt": "{\n  \"a\": [\"largura de banda\"]\n"
+  },
+  {
+    "kana": "バンドいんじそうち",
+    "en": [
+      "band printer"
+    ],
+    "senseUid": "464e296c-c1bb-4c0b-b92b-69eecb33eea9",
+    "wordId": "2319470",
+    "pt": "{\n  \"a\": [\"impressora de banda\"]\n"
+  },
+  {
+    "kana": "バンプマッピング",
+    "en": [
+      "bump mapping"
+    ],
+    "senseUid": "371e508a-1258-492a-a0b8-9ffc0f3a7cd0",
+    "wordId": "2319490",
+    "pt": "['mapeamento de relevo']"
+  },
+  {
+    "kana": "バンプマップ",
+    "en": [
+      "bump map"
+    ],
+    "senseUid": "0494b3a9-39b0-43f4-9dcb-bdec5dddc25d",
+    "wordId": "2319500",
+    "pt": "{\n  \"a\": [\"mapa de relevo\"]\n"
+  },
+  {
+    "kana": "パーサー",
+    "en": [
+      "parser"
+    ],
+    "senseUid": "314e1a17-612a-481d-82ca-10bf3a691aef",
+    "wordId": "2319510",
+    "pt": "{\n  \"a\": [\n    \"analisador sintático\"\n  ]\n"
+  },
+  {
+    "kana": "パーシステンス",
+    "en": [
+      "persistence"
+    ],
+    "senseUid": "4e94d406-ca47-4356-8f62-19337de5e3bd",
+    "wordId": "2319520",
+    "pt": "{\n  \"a\": [\n    \"persistência\"\n  ]\n"
+  },
+  {
+    "kana": "パーシャルシーエーブイ",
+    "en": [
+      "partial CAV"
+    ],
+    "senseUid": "b48fd75a-f801-4c73-aa42-dc2f544a6eef",
+    "wordId": "2319530",
+    "pt": "['CAV parcial']"
+  },
+  {
+    "kana": "パーセンタイル",
+    "en": [
+      "percentile"
+    ],
+    "senseUid": "2790cb49-83ab-41f3-bf3f-cdcd1e93fca6",
+    "wordId": "2319540",
+    "pt": "{\n  \"a\": [\"percentil\"]\n"
+  },
+  {
+    "kana": "パーセントきごう",
+    "en": [
+      "percent sign"
+    ],
+    "senseUid": "b4608009-7d01-4587-9f89-8e41939aaffb",
+    "wordId": "2319550",
+    "pt": "{\n  \"a\": [\"sinal de porcentagem\"]\n"
+  },
+  {
+    "kana": "パーソナライズ",
+    "en": [
+      "personalization (esp. of web pages, online ads, product recommendations, etc.)"
+    ],
+    "senseUid": "98dbb2b1-6a1e-4b1a-8a9f-8d40524035a2",
+    "wordId": "2319560",
+    "pt": "['personalização (especialmente de páginas da web, anúncios online, recomendações de produtos, etc.)']"
+  },
+  {
+    "kana": "パーソナルエリアネットワーク",
+    "en": [
+      "Personal Area Network"
+    ],
+    "senseUid": "c94c7092-8e0c-44e0-aaea-11ed24f010c5",
+    "wordId": "2319570",
+    "pt": "['Rede de Área Pessoal']"
+  },
+  {
+    "kana": "パーソナルデジタルアシスタント",
+    "en": [
+      "personal digital assistant",
+      "PDA"
+    ],
+    "senseUid": "9936a8f0-8824-42ac-b624-ea31fd168508",
+    "wordId": "2319590",
+    "pt": "{\n  \"a\": [\"assistente digital pessoal\", \"PDA\"]\n"
+  },
+  {
+    "kana": "パーティクル",
+    "en": [
+      "particle"
+    ],
+    "senseUid": "794fc2b9-f4c0-4e48-8787-be78c8b8bf85",
+    "wordId": "2319600",
+    "pt": "{\n  \"a\": [\"partícula\"]\n"
+  },
+  {
+    "kana": "パーティクルシステム",
+    "en": [
+      "Particle System"
+    ],
+    "senseUid": "95833811-4254-47f0-b7ce-3ae1db2a054c",
+    "wordId": "2319610",
+    "pt": "{\n  \"a\": [\"Sistema de Partículas\"]\n"
+  },
+  {
+    "kana": "パーティショニング",
+    "en": [
+      "partitioning"
+    ],
+    "senseUid": "9f836762-6859-4613-8489-042dc4aab4e8",
+    "wordId": "2319620",
+    "pt": "{\n  \"a\": [\"particionamento\"]\n"
+  },
+  {
+    "kana": "パーティションをきる",
+    "en": [
+      "to partition (e.g. a hard drive)"
+    ],
+    "senseUid": "e1b3043d-2a8f-44c3-bcf7-6498fc315063",
+    "wordId": "2319630",
+    "pt": "['particionar (por exemplo, um disco rígido)']"
+  },
+  {
+    "kana": "パーティションテーブル",
+    "en": [
+      "partition table"
+    ],
+    "senseUid": "4ac056e4-ba8c-4c62-9eb2-8d961470db6d",
+    "wordId": "2319640",
+    "pt": "['tabela de partição']"
+  }
+]

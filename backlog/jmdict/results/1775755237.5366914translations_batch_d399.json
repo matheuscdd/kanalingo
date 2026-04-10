@@ -1,0 +1,919 @@
+[
+  {
+    "kana": "ひきすうじったいさんしょう",
+    "en": [
+      "parameter entity reference"
+    ],
+    "senseUid": "5b6ed6ad-4ca9-454e-80e1-4a2f6d6c5669",
+    "wordId": "2341850",
+    "pt": "{\n  \"a\": [\n    \"referência de entidade de parâmetro\"\n  ]\n"
+  },
+  {
+    "kana": "ひきすうひょうき",
+    "en": [
+      "parameter literal"
+    ],
+    "senseUid": "7faae5ba-9425-45cb-816f-b28c5e7fedd9",
+    "wordId": "2341860",
+    "pt": "{\n  \"a\": [\"literal de parâmetro\"]\n"
+  },
+  {
+    "kana": "ひきすうぶんりし",
+    "en": [
+      "parameter separator"
+    ],
+    "senseUid": "df05391c-cdcc-4605-87be-0c84cac0853d",
+    "wordId": "2341870",
+    "pt": "{\n  \"a\": [\n    \"separador de parâmetros\"\n  ]\n"
+  },
+  {
+    "kana": "ひきすうりょういき",
+    "en": [
+      "argument range"
+    ],
+    "senseUid": "03326319-34b9-429e-937c-92964fe9c17d",
+    "wordId": "2341880",
+    "pt": "{\n  \"a\": [\"intervalo de argumentos\"]\n"
+  },
+  {
+    "kana": "いんようさくいん",
+    "en": [
+      "citation index"
+    ],
+    "senseUid": "ba5e9aa2-51cc-470c-b1de-24cb62ac39f5",
+    "wordId": "2341890",
+    "pt": "{\n  \"a\": [\"índice de citações\"]\n"
+  },
+  {
+    "kana": "いんようしようせんげん",
+    "en": [
+      "interface block"
+    ],
+    "senseUid": "b970af5d-4512-48e3-9695-dba137aeaf43",
+    "wordId": "2341910",
+    "pt": "{\n  \"a\": [\"Bloco de interface\"]\n"
+  },
+  {
+    "kana": "いんようしよう",
+    "en": [
+      "interface"
+    ],
+    "senseUid": "0e06cfaf-196e-4545-87f3-79f7ac2912c0",
+    "wordId": "2341900",
+    "pt": "{\n  \"a\": [\"interface\", no sentido japonês, pode ser traduzido como 'interface' mesmo em português, especialmente em contextos técnicos. No entanto, considerando o uso japonês, 'interface' (いんようしよう) pode também ser entendido como 'superfície de contato', 'ponto de interação' ou 'meio de ligação' dependendo do contexto. Portanto, traduções possíveis incluem: 'interface', 'superfície de contato', 'meio de ligação', 'ponto de interação'.\"]\n"
+  },
+  {
+    "kana": "いんようしようほんたい",
+    "en": [
+      "interface body"
+    ],
+    "senseUid": "762f6d2a-0c2d-47b1-aa11-d738aea03523",
+    "wordId": "2341920",
+    "pt": "{\n  \"a\": [\"corpo da interface\"]\n"
+  },
+  {
+    "kana": "いんようもじれつ",
+    "en": [
+      "quoted (character) string"
+    ],
+    "senseUid": "647f8da1-8886-4cf5-a390-a193f4719597",
+    "wordId": "2341930",
+    "pt": "{\n  \"a\": [\"sequência de caracteres entre aspas\"]\n"
+  },
+  {
+    "kana": "いんえいをつける",
+    "en": [
+      "to crosshatch"
+    ],
+    "senseUid": "d237614d-6916-4d4e-9427-29a1b92cc2b8",
+    "wordId": "2341940",
+    "pt": "['fazer sombreamento cruzado', 'cruzar hachuras']"
+  },
+  {
+    "kana": "かげつけしょり",
+    "en": [
+      "shading"
+    ],
+    "senseUid": "c7053827-50d6-4c7a-b8f7-a82589f41f87",
+    "wordId": "2341970",
+    "pt": "['processamento de sombreamento']"
+  },
+  {
+    "kana": "いんめんしょうきょ",
+    "en": [
+      "hidden surface removal"
+    ],
+    "senseUid": "3c525e81-9f32-43ab-84a1-5ce187d26fdd",
+    "wordId": "2341980",
+    "pt": "['remoção de superfícies ocultas']"
+  },
+  {
+    "kana": "かくしファイル",
+    "en": [
+      "hidden file"
+    ],
+    "senseUid": "f5ae8c8f-e6e1-43ad-90ce-3996e466280d",
+    "wordId": "2341990",
+    "pt": "['arquivo oculto']"
+  },
+  {
+    "kana": "かくしきのう",
+    "en": [
+      "Easter egg",
+      "hidden feature"
+    ],
+    "senseUid": "ff1b0662-e7c8-4799-874f-582bc7c7c6cc",
+    "wordId": "2342000",
+    "pt": "{\n  \"a\": [\n    \"Recurso oculto\",\n    \"Funcionalidade secreta\"\n  ]\n"
+  },
+  {
+    "kana": "かくしぞくせい",
+    "en": [
+      "hidden attribute"
+    ],
+    "senseUid": "7e3e08d3-f9d7-4c23-ba1e-27d888cda74c",
+    "wordId": "2342010",
+    "pt": "['atributo oculto']"
+  },
+  {
+    "kana": "かくれマルコフモデル",
+    "en": [
+      "hidden Markov model"
+    ],
+    "senseUid": "99fc0590-9a15-4f69-b6b5-37653f86a318",
+    "wordId": "2342020",
+    "pt": "['modelo oculto de Markov']"
+  },
+  {
+    "kana": "かくれせん",
+    "en": [
+      "hidden line (in a technical drawing)"
+    ],
+    "senseUid": "1778de7d-5ccf-4945-9c53-980ad00b7c94",
+    "wordId": "2342030",
+    "pt": "['linha oculta (em um desenho técnico)']"
+  },
+  {
+    "kana": "いんせんいんめんしょうきょ",
+    "en": [
+      "hidden line and surface removal"
+    ],
+    "senseUid": "7a7e6070-2a30-4f86-888e-6904d3bba214",
+    "wordId": "2342040",
+    "pt": "['remoção de linhas e superfícies ocultas']"
+  },
+  {
+    "kana": "いんせんしょり",
+    "en": [
+      "hidden line removal",
+      "hidden line elimination"
+    ],
+    "senseUid": "ee33699c-9d16-4175-b1a7-8aa2b1b885c3",
+    "wordId": "2342050",
+    "pt": "{\n  \"a\": [\"remoção de linhas ocultas\", \"eliminação de linhas ocultas\"]\n"
+  },
+  {
+    "kana": "いんせんしょうきょ",
+    "en": [
+      "hidden-line elimination"
+    ],
+    "senseUid": "7b70a2b0-9aec-43e4-926b-4c60b3c3bbe6",
+    "wordId": "2342060",
+    "pt": "['eliminação de linhas ocultas']"
+  },
+  {
+    "kana": "いんめんしょり",
+    "en": [
+      "hidden surface removal"
+    ],
+    "senseUid": "53fc4891-c655-403d-853d-c00742a05d05",
+    "wordId": "2342070",
+    "pt": "['remoção de superfícies ocultas']"
+  },
+  {
+    "kana": "みぎシフト",
+    "en": [
+      "right shift (bitwise, arithmetic)"
+    ],
+    "senseUid": "6b686963-cec4-4d9a-a3ca-c8a37d811ee2",
+    "wordId": "2342080",
+    "pt": "['deslocamento à direita (bit a bit, aritmético)']"
+  },
+  {
+    "kana": "みぎしたすみ",
+    "en": [
+      "bottom right corner"
+    ],
+    "senseUid": "5f10522f-bd7f-4fb3-ac58-58a969046f3e",
+    "wordId": "2342090",
+    "pt": "{\n  \"a\": [\"canto inferior direito\"]\n"
+  },
+  {
+    "kana": "みぎてざひょうけい",
+    "en": [
+      "right-handed coordinate system"
+    ],
+    "senseUid": "8a5ef663-bc45-404e-92b3-b44ea1b3ae6b",
+    "wordId": "2342100",
+    "pt": "{\n  \"a\": [\"sistema de coordenadas destrógiro\"]\n"
+  },
+  {
+    "kana": "みぎうえすみ",
+    "en": [
+      "top right corner"
+    ],
+    "senseUid": "ad317a7b-1c71-4b77-afb3-f805734a06ba",
+    "wordId": "2342110",
+    "pt": "['canto superior direito']"
+  },
+  {
+    "kana": "みぎぞろえ",
+    "en": [
+      "right alignment",
+      "right justification"
+    ],
+    "senseUid": "24fd3a07-faea-4284-96e3-4d35fe71208c",
+    "wordId": "2342130",
+    "pt": "{\n  \"a\": [\n    \"alinhamento à direita\",\n    \"justificação à direita\"\n  ]\n"
+  },
+  {
+    "kana": "みぎだいかっこ",
+    "en": [
+      "closing bracket"
+    ],
+    "senseUid": "3dd858f5-d3d9-44ce-88cc-4014b0b0d102",
+    "wordId": "2342140",
+    "pt": "['fechamento de colchete']"
+  },
+  {
+    "kana": "うほうたん",
+    "en": [
+      "right hand edge"
+    ],
+    "senseUid": "8c0228bf-a85c-4c33-980a-a2ae83863580",
+    "wordId": "2342150",
+    "pt": "{\n  \"a\": [\"borda direita\"]\n"
+  },
+  {
+    "kana": "うちゅうきょく",
+    "en": [
+      "space agency"
+    ],
+    "senseUid": "f4f171c9-8abd-4e3b-b94a-693e83e14d7d",
+    "wordId": "2342160",
+    "pt": "['agência espacial']"
+  },
+  {
+    "kana": "うかいルーティング",
+    "en": [
+      "alternate, detour routing"
+    ],
+    "senseUid": "896d00cc-3d4b-44f8-b9a0-b740bc58ee3a",
+    "wordId": "2342170",
+    "pt": "['roteamento alternativo', 'roteamento de desvio']"
+  },
+  {
+    "kana": "うんてんじかん",
+    "en": [
+      "attended time"
+    ],
+    "senseUid": "e3c26ca8-1ec5-4966-81ee-954fca4d45ad",
+    "wordId": "2342180",
+    "pt": "['horário de funcionamento']"
+  },
+  {
+    "kana": "うんぱんクラス",
+    "en": [
+      "bearer class"
+    ],
+    "senseUid": "ecbd4cfd-b4b2-4e69-896d-c49914a894e9",
+    "wordId": "2342190",
+    "pt": "{\n  \"a\": [\"classe de transporte\"]\n"
+  },
+  {
+    "kana": "うんようかんり",
+    "en": [
+      "application management"
+    ],
+    "senseUid": "a78fae0e-8d45-4880-9ffd-59f0ac9774be",
+    "wordId": "2342200",
+    "pt": "['gestão operacional']"
+  },
+  {
+    "kana": "うんようけいたい",
+    "en": [
+      "practical configuration",
+      "practical form"
+    ],
+    "senseUid": "d88646fe-c6c0-4d68-803e-a7c4273594aa",
+    "wordId": "2342220",
+    "pt": "{\n  \"a\": [\n    \"forma de uso prático\",\n    \"configuração prática\",\n    \"modo de operação\",\n    \"forma operacional\"\n  ]\n"
+  },
+  {
+    "kana": "えいきょうえんすい",
+    "en": [
+      "cone of influence"
+    ],
+    "senseUid": "e0452595-62da-4701-96b8-2f9217b19fdd",
+    "wordId": "2342230",
+    "pt": "['cone de influência']"
+  },
+  {
+    "kana": "えいぞうデータ",
+    "en": [
+      "image data"
+    ],
+    "senseUid": "2c66dc9a-3cbf-411a-a50f-02deee34165d",
+    "wordId": "2342240",
+    "pt": "['dados de imagem']"
+  },
+  {
+    "kana": "えいぞうあっしゅく",
+    "en": [
+      "image compression"
+    ],
+    "senseUid": "b4ad63ef-9a68-46f8-9fae-500159c12c68",
+    "wordId": "2342250",
+    "pt": "{\n  \"a\": [\"compressão de imagem\"]\n"
+  },
+  {
+    "kana": "えいぞうひんしつ",
+    "en": [
+      "image quality",
+      "picture quality"
+    ],
+    "senseUid": "94956ba4-47fe-4fcb-86ce-1bc937050687",
+    "wordId": "2342260",
+    "pt": "{\n  \"a\": [\n    \"qualidade da imagem\",\n    \"qualidade do vídeo\"\n  ]\n"
+  },
+  {
+    "kana": "えいきゅうきおくそうち",
+    "en": [
+      "permanent storage"
+    ],
+    "senseUid": "1d779ad5-4b0a-488d-af24-ecd86e9600cd",
+    "wordId": "2342280",
+    "pt": "['armazenamento permanente']"
+  },
+  {
+    "kana": "えいじコードかしゅうごう",
+    "en": [
+      "alphabetic coded set"
+    ],
+    "senseUid": "9ea20c04-5b82-47e0-87f4-8cd8ade093f6",
+    "wordId": "2342330",
+    "pt": "{\n  \"a\": [\"conjunto codificado alfabético\"]\n"
+  },
+  {
+    "kana": "えいすうじコード",
+    "en": [
+      "alphanumeric code"
+    ],
+    "senseUid": "8db6a790-f24f-493f-be46-fbd637220138",
+    "wordId": "2342340",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"えいすうじコード\",\n      \"portuguese\": \"código alfanumérico\"\n    \n  ]\n"
+  },
+  {
+    "kana": "えいすうじコードかしゅうごう",
+    "en": [
+      "alphanumeric coded set"
+    ],
+    "senseUid": "a84a2bbc-5a51-4e1f-9507-4693facff9e1",
+    "wordId": "2342350",
+    "pt": "{\n  \"a\": [\"conjunto codificado alfanumérico\"]\n"
+  },
+  {
+    "kana": "えいすうじデータ",
+    "en": [
+      "alphanumeric data"
+    ],
+    "senseUid": "f2a064a2-c3a6-4a52-b526-0f14617022d5",
+    "wordId": "2342360",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"えいすうじデータ\",\n      \"gloss\": [\"dados alfanuméricos\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "えいすうじしゅうごう",
+    "en": [
+      "alphanumeric character set"
+    ],
+    "senseUid": "8902f723-338c-418d-b165-fe3172a4d9ce",
+    "wordId": "2342370",
+    "pt": "{\n  \"a\": [\"conjunto de caracteres alfanuméricos\"]\n"
+  },
+  {
+    "kana": "えいすうもじ",
+    "en": [
+      "alphanumeric character"
+    ],
+    "senseUid": "343556be-682a-4864-9a30-a64ff3e422cc",
+    "wordId": "2342380",
+    "pt": "{\n  \"a\": [\"caractere alfanumérico\"]\n"
+  },
+  {
+    "kana": "えいおおもじ",
+    "en": [
+      "upper-case letters (of the English alphabet)"
+    ],
+    "senseUid": "6e1b0677-c834-4292-8546-1d37b78465ac",
+    "wordId": "2342390",
+    "pt": "{\n  \"a\": [\n    {\n      \"pt\": \"letras maiúsculas (do alfabeto inglês)\",\n      \"notas\": [\n        \"Expressa o conceito de letras maiúsculas do alfabeto inglês, conforme usado em japonês.\",\n        \"No japonês, えい (英) refere-se ao inglês, おおもじ (大文字) significa 'letra maiúscula'.\"\n      ]\n    \n  ]\n"
+  },
+  {
+    "kana": "えいもじ",
+    "en": [
+      "English letter",
+      "alphabetic character"
+    ],
+    "senseUid": "dda1d38a-7906-4fcc-96c7-016a4a7ccd27",
+    "wordId": "2342400",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"えいもじ\",\n      \"Gloss\": [\"letra inglesa\", \"caractere alfabético\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "えいせいインターネットせつぞく",
+    "en": [
+      "satellite Internet connection"
+    ],
+    "senseUid": "0a8003a0-2535-481d-ab1e-a2a4d70c142e",
+    "wordId": "2342410",
+    "pt": "{\n  \"a\": [\"conexão de Internet via satélite\"]\n"
+  },
+  {
+    "kana": "えいせいリンク",
+    "en": [
+      "satellite link"
+    ],
+    "senseUid": "c85a8e69-07e9-42af-b240-87be0e9c37fc",
+    "wordId": "2342420",
+    "pt": "{\n  \"a\": [\"link de satélite\"]\n"
+  },
+  {
+    "kana": "えいせいけい",
+    "en": [
+      "satellite link"
+    ],
+    "senseUid": "e7eb6565-6fc0-4434-b869-8b434d31980d",
+    "wordId": "2342430",
+    "pt": "['ligação via satélite']"
+  },
+  {
+    "kana": "えきしょうディスプレイ",
+    "en": [
+      "liquid-crystal display",
+      "LCD"
+    ],
+    "senseUid": "edcf8e9b-3efd-4f8a-af7e-4c32efe80741",
+    "wordId": "2342440",
+    "pt": "{\n  \"a\": [\n    \"display de cristal líquido\",\n    \"LCD\"\n  ]\n"
+  },
+  {
+    "kana": "えきしょうパネル",
+    "en": [
+      "liquid crystal panel",
+      "LCD panel"
+    ],
+    "senseUid": "54b150d0-36a5-4df4-b5ea-8351fca7fcf1",
+    "wordId": "2342450",
+    "pt": "{\n  \"a\": [\"painel de cristal líquido\", \"painel LCD\"]\n"
+  },
+  {
+    "kana": "えきしょうプロジェクタ",
+    "en": [
+      "liquid crystal projector"
+    ],
+    "senseUid": "2668c4c8-bf19-408f-aeba-00528745f93d",
+    "wordId": "2342460",
+    "pt": "{\n  \"a\": [\"projetor de cristal líquido\"]\n"
+  },
+  {
+    "kana": "えんとうプリンター",
+    "en": [
+      "barrel printer"
+    ],
+    "senseUid": "046a6088-e4da-45dc-9c53-03f42f023b0c",
+    "wordId": "2342470",
+    "pt": "{\n  \"a\": [\"impressora de tambor\"]\n"
+  },
+  {
+    "kana": "えんざんコード",
+    "en": [
+      "operation code"
+    ],
+    "senseUid": "ccb86840-1a36-44f0-b939-248dd1d2de3f",
+    "wordId": "2342480",
+    "pt": "['código de operação']"
+  },
+  {
+    "kana": "えんざんモード",
+    "en": [
+      "compute mode",
+      "operate mode"
+    ],
+    "senseUid": "48233d31-a2de-4c9a-8f96-78f9e9fa8edb",
+    "wordId": "2342490",
+    "pt": "['modo de cálculo', 'modo de operação']"
+  },
+  {
+    "kana": "えんざんき",
+    "en": [
+      "functional unit (e.g. in analog computing)"
+    ],
+    "senseUid": "3eb2198e-5cf2-4619-b201-e077ca06dc89",
+    "wordId": "2342500",
+    "pt": "['unidade funcional (por exemplo, em computação analógica)']"
+  },
+  {
+    "kana": "えんざんきごうしょうりゃく",
+    "en": [
+      "asyndetic"
+    ],
+    "senseUid": "2d26eadb-40e4-4c59-8207-a5ce1867b335",
+    "wordId": "2342510",
+    "pt": "{\n  \"a\": [\n    \"omissão de conectivos\",\n    \"enumeração sem conjunção\",\n    \"listagem assindética\"\n  ]\n"
+  },
+  {
+    "kana": "えんざんじかん",
+    "en": [
+      "operation time"
+    ],
+    "senseUid": "d1ef6736-8115-423f-b161-f992aafed3ee",
+    "wordId": "2342520",
+    "pt": "{\n  \"a\": [\"tempo de operação\"]\n"
+  },
+  {
+    "kana": "えんざんしょりユニット",
+    "en": [
+      "Arithmetic and Logic Unit",
+      "ALU"
+    ],
+    "senseUid": "65e04caa-31a2-4bb4-95ae-d6a0bce693cb",
+    "wordId": "2342530",
+    "pt": "['Unidade de Processamento Aritmético e Lógico', 'ALU']"
+  },
+  {
+    "kana": "えんざんすう",
+    "en": [
+      "operand"
+    ],
+    "senseUid": "fe7d9278-f2d3-4879-ae6f-aef5503837a3",
+    "wordId": "2342540",
+    "pt": "{\n  \"a\": [\"operando\"]\n"
+  },
+  {
+    "kana": "えんざんせいぎょそうち",
+    "en": [
+      "arithmetic and control unit",
+      "ACU"
+    ],
+    "senseUid": "a81c7f9f-1d83-4aad-b03f-936204c8e4ff",
+    "wordId": "2342550",
+    "pt": "{\n  \"a\": [\n    \"unidade aritmética e de controle\"\n  ]\n"
+  },
+  {
+    "kana": "えんざんぞうふくき",
+    "en": [
+      "operational amplifier"
+    ],
+    "senseUid": "6b0e85db-4463-46d4-a3c7-948a5f22bb32",
+    "wordId": "2342570",
+    "pt": "{\n  \"a\": [\"amplificador operacional\"]\n"
+  },
+  {
+    "kana": "えんざんたいしょう",
+    "en": [
+      "operand"
+    ],
+    "senseUid": "5392b4bb-e85c-469c-9cae-741c3aaf83f6",
+    "wordId": "2342580",
+    "pt": "['operando']"
+  },
+  {
+    "kana": "えんざんひょう",
+    "en": [
+      "operation table"
+    ],
+    "senseUid": "8f33ec3e-be70-45d4-952d-7bbf772edd57",
+    "wordId": "2342590",
+    "pt": "{\n  \"a\": [\"tabela de operações\"]\n"
+  },
+  {
+    "kana": "えんざんふごう",
+    "en": [
+      "operational sign"
+    ],
+    "senseUid": "0fd00403-0464-4437-ad36-3973b6e87b3c",
+    "wordId": "2342600",
+    "pt": "{\n  \"a\": [\n    \"sinal operacional\"\n  ]\n"
+  },
+  {
+    "kana": "えんざんぶ",
+    "en": [
+      "operation part"
+    ],
+    "senseUid": "6e77c921-1f66-4f5d-b1a8-b9cdb919d340",
+    "wordId": "2342610",
+    "pt": "{\n  \"a\": [\"parte de operação\"]\n"
+  },
+  {
+    "kana": "えんざんほうしき",
+    "en": [
+      "arithmetic equation"
+    ],
+    "senseUid": "777bf45b-6756-4919-800e-93225af18d5a",
+    "wordId": "2342620",
+    "pt": "['fórmula aritmética']"
+  },
+  {
+    "kana": "えんざんろんりそうち",
+    "en": [
+      "arithmetic and logic unit",
+      "ALU"
+    ],
+    "senseUid": "98a7f5c6-2ba9-4db2-9fd6-c201d99fb4dd",
+    "wordId": "2342630",
+    "pt": "{\n  \"a\": [\n    \"unidade aritmética e lógica\",\n    \"UAL\"\n  ]\n"
+  },
+  {
+    "kana": "えんかくアクセス",
+    "en": [
+      "remote access"
+    ],
+    "senseUid": "4d19811f-76a0-4c02-b60b-4dc8eea927ff",
+    "wordId": "2342640",
+    "pt": "['acesso remoto']"
+  },
+  {
+    "kana": "えんかくアクセスデータしょり",
+    "en": [
+      "remote-access data processing"
+    ],
+    "senseUid": "6141543d-175d-4c96-8933-ed04c86d750f",
+    "wordId": "2342650",
+    "pt": "{\n  \"a\": [\"processamento de dados de acesso remoto\"]\n"
+  },
+  {
+    "kana": "えんかくサイト",
+    "en": [
+      "remote site"
+    ],
+    "senseUid": "3090662d-1bae-474d-bdc7-468a15700622",
+    "wordId": "2342660",
+    "pt": "{\n  \"a\": [\n    \"local remoto\"\n  ]\n"
+  },
+  {
+    "kana": "えんかくジョブにゅうりょく",
+    "en": [
+      "remote job entry",
+      "RJE"
+    ],
+    "senseUid": "e43a94b1-5c90-4540-b280-f20a2ea91f72",
+    "wordId": "2342670",
+    "pt": "{\n  \"a\": [\n    \"entrada de trabalho remota\",\n    \"RJE\"\n  ]\n"
+  },
+  {
+    "kana": "えんかくバッチしょり",
+    "en": [
+      "remote batch processing"
+    ],
+    "senseUid": "c34ce24e-5c60-4078-8b0f-0b432df97985",
+    "wordId": "2342680",
+    "pt": "{\n  \"a\": [\"processamento em lote remoto\"]\n"
+  },
+  {
+    "kana": "えんかくバッチにゅうりょく",
+    "en": [
+      "remote batch entry"
+    ],
+    "senseUid": "0f55a0ea-845a-4f83-9f69-c2f9e56049fb",
+    "wordId": "2342690",
+    "pt": "{\n  \"a\": [\"entrada remota em lote\"]\n"
+  },
+  {
+    "kana": "えんかくマシン",
+    "en": [
+      "remote machine"
+    ],
+    "senseUid": "3ce4649e-cd1f-40d9-ba3a-30adb823ea66",
+    "wordId": "2342700",
+    "pt": "['máquina remota']"
+  },
+  {
+    "kana": "えんかくいっかつしょり",
+    "en": [
+      "remote batch processing"
+    ],
+    "senseUid": "3c1ef81b-cbe5-44f3-aff0-c1c1a78ec7db",
+    "wordId": "2342720",
+    "pt": "['processamento em lote remoto']"
+  },
+  {
+    "kana": "えんかくいりょう",
+    "en": [
+      "telemedicine",
+      "remote medicine"
+    ],
+    "senseUid": "f3c15ea1-b271-4633-8b3b-e62c2de773be",
+    "wordId": "2342710",
+    "pt": "{\n  \"a\": [\n    \"medicina remota\",\n    \"telemedicina\"\n  ]\n"
+  },
+  {
+    "kana": "えんかくいっかつにゅうりょく",
+    "en": [
+      "remote batch entry"
+    ],
+    "senseUid": "8d767b2c-a37c-4488-8627-7e4c96ed4dbc",
+    "wordId": "2342730",
+    "pt": "{\n  \"a\": [\"entrada remota em lote\"]\n"
+  },
+  {
+    "kana": "えんかくかんし",
+    "en": [
+      "remote supervision"
+    ],
+    "senseUid": "4fafc000-c26a-4cc2-8f0c-5daf5f0d0650",
+    "wordId": "2342740",
+    "pt": "['supervisão remota']"
+  },
+  {
+    "kana": "えんかくしけんほう",
+    "en": [
+      "remote test method"
+    ],
+    "senseUid": "c48bc921-f261-4f2a-aaa5-b47a78a5ec42",
+    "wordId": "2342750",
+    "pt": "['método de teste remoto']"
+  },
+  {
+    "kana": "えんかくしげん",
+    "en": [
+      "remote resource"
+    ],
+    "senseUid": "31cf966a-513f-430d-a1cc-233013416dbc",
+    "wordId": "2342760",
+    "pt": "['recurso remoto']"
+  },
+  {
+    "kana": "えんかくしょり",
+    "en": [
+      "teleprocessing"
+    ],
+    "senseUid": "60d7fc0d-1a21-49d0-8d93-a44f6a43fa81",
+    "wordId": "2342770",
+    "pt": "['processamento remoto']"
+  },
+  {
+    "kana": "えんかくそうさサービスようそ",
+    "en": [
+      "Remote Operation Service Element"
+    ],
+    "senseUid": "c92abb37-78a9-44d8-8962-033a04507cb2",
+    "wordId": "2342780",
+    "pt": "['Elemento do Serviço de Operação Remota']"
+  },
+  {
+    "kana": "えんかくそうさプロトコルきかい",
+    "en": [
+      "remote-operation-protocol-machine"
+    ],
+    "senseUid": "c6064c02-fe13-42d6-a67c-268799925f5f",
+    "wordId": "2342790",
+    "pt": "{\n  \"a\": [\n    \"máquina de protocolo de operação remota\"\n  ]\n"
+  },
+  {
+    "kana": "えんかくたんまつそうち",
+    "en": [
+      "remote terminal"
+    ],
+    "senseUid": "11aab60b-6944-49c4-b861-380cd9267e1c",
+    "wordId": "2342810",
+    "pt": "{\n  \"a\": [\"dispositivo terminal remoto\"]\n"
+  },
+  {
+    "kana": "えんかくそくてい",
+    "en": [
+      "telemetry",
+      "remote measurement"
+    ],
+    "senseUid": "48588646-9a8b-430c-8106-8199aa1a46f6",
+    "wordId": "2342800",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"えんかくそくてい\",\n      \"portugues\": \"medição remota\",\n      \"explicação\": \"Refere-se à medição de dados ou informações à distância, sem contato direto com o objeto ou local, conceito comum em tecnologia e ciências, similar ao termo 'telemetria'.\"\n    ,\n    {\n      \"kana\": \"えんかくそくてい\",\n      \"portugues\": \"telemetria\",\n      \"explicação\": \"Processo de coleta e transmissão de dados de sensores ou instrumentos localizados remotamente, frequentemente usado em engenharia, monitoramento ambiental e sistemas automáticos.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "えんかくつうしん",
+    "en": [
+      "telecommunications"
+    ],
+    "senseUid": "84acaffa-fad8-4cf8-ace3-84e48ab96eb9",
+    "wordId": "2342820",
+    "pt": "{\n  \"a\": [\n    \"telecomunicações\"\n  ]\n"
+  },
+  {
+    "kana": "えんかくほしゅ",
+    "en": [
+      "remote maintenance"
+    ],
+    "senseUid": "c9975a34-4790-4b3c-92e2-aacc9769347d",
+    "wordId": "2342830",
+    "pt": "['manutenção remota']"
+  },
+  {
+    "kana": "えんかくほしゅシステム",
+    "en": [
+      "ASSIST",
+      "Advanced Service Support Information System Technology"
+    ],
+    "senseUid": "bb24479e-cdd5-4a14-98b5-117ac186fecc",
+    "wordId": "2342840",
+    "pt": "{\n  \"a\": [\n    \"Sistema de Suporte Avançado à Informação de Serviços (ASSIST)\"\n  ]\n"
+  },
+  {
+    "kana": "おくゆきひょうげん",
+    "en": [
+      "depth cueing"
+    ],
+    "senseUid": "2768abd7-15a2-4bb0-b727-52e1dc0ee532",
+    "wordId": "2342850",
+    "pt": "{\n  \"a\": [\n    \"indicação de profundidade\"\n  ]\n"
+  },
+  {
+    "kana": "おくゆきひょうげんモード",
+    "en": [
+      "depth cue mode"
+    ],
+    "senseUid": "6ef322bf-a7c3-4c00-b9d0-4b7aae5cf4ed",
+    "wordId": "2342860",
+    "pt": "{\n  \"a\": [\"modo de expressão de profundidade\"]\n"
+  },
+  {
+    "kana": "おくゆきひょうげんていぎひょう",
+    "en": [
+      "depth cue table"
+    ],
+    "senseUid": "08029f18-1a2b-44de-a465-423a7bd7ab0c",
+    "wordId": "2342870",
+    "pt": "{\n  \"a\": [\"tabela de pistas de profundidade\"]\n"
+  },
+  {
+    "kana": "おうふくでんぱんじかん",
+    "en": [
+      "round-trip propagation time"
+    ],
+    "senseUid": "a2afa7d0-b0ff-44e5-b054-f418cbdb829c",
+    "wordId": "2342880",
+    "pt": "['tempo de propagação de ida e volta']"
+  },
+  {
+    "kana": "おうとうメッセージ",
+    "en": [
+      "greeting"
+    ],
+    "senseUid": "de9d6c56-3c9d-4a9d-ab6c-bda706af956b",
+    "wordId": "2342890",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"おうとうメッセージ\",\n      \"Português\": \"mensagem de resposta\",\n      \"Gloss\": \"greeting\"\n    \n  ]\n"
+  },
+  {
+    "kana": "おうとうかくにん",
+    "en": [
+      "response confirmation"
+    ],
+    "senseUid": "77ab8a48-e5f0-4569-a562-275b5cb47fa8",
+    "wordId": "2342900",
+    "pt": "{\n  \"a\": [\n    \"confirmação de resposta\"\n  ]\n"
+  },
+  {
+    "kana": "おうとうじかん",
+    "en": [
+      "response time"
+    ],
+    "senseUid": "1393cc16-9b95-450b-9abc-b46290419e76",
+    "wordId": "2342910",
+    "pt": "['tempo de resposta']"
+  },
+  {
+    "kana": "おうとうじかんウインドウ",
+    "en": [
+      "response time window",
+      "response window"
+    ],
+    "senseUid": "b1950a4e-239d-4f7a-a3cb-6d31a1ede2b5",
+    "wordId": "2342920",
+    "pt": "{\n  \"a\": [\n    \"janela de tempo de resposta\",\n    \"janela de resposta\"\n  ]\n"
+  },
+  {
+    "kana": "おうとうがわ",
+    "en": [
+      "responder"
+    ],
+    "senseUid": "1fb3b039-3ca3-4add-afeb-d7233990e8a2",
+    "wordId": "2342930",
+    "pt": "{\n  \"a\": [\"lado que responde\"]\n"
+  },
+  {
+    "kana": "おうようビーオーエス",
+    "en": [
+      "application BOS"
+    ],
+    "senseUid": "2f18b82c-c223-4f2d-a73f-2a8e181b7602",
+    "wordId": "2342960",
+    "pt": "{\n  \"a\": [\"aplicação BOS\"]\n"
+  }
+]

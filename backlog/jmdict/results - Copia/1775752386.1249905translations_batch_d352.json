@@ -1,0 +1,932 @@
+[
+  {
+    "kana": "アプリケーションプログラミングインタフェース",
+    "en": [
+      "application programming interface",
+      "API"
+    ],
+    "senseUid": "5f93dccf-a51a-4448-b0a4-d39e135f5ee9",
+    "wordId": "2281160",
+    "pt": "['interface de programação de aplicativos', 'API']"
+  },
+  {
+    "kana": "アプリケーションプロセッサ",
+    "en": [
+      "application processor"
+    ],
+    "senseUid": "dc4b1f3a-4dff-4592-9b37-79a44e8b5ca5",
+    "wordId": "2281170",
+    "pt": "['processador de aplicação']"
+  },
+  {
+    "kana": "アプリケーションかいはつ",
+    "en": [
+      "application development"
+    ],
+    "senseUid": "0a087908-4f4e-4ed9-954f-9a13888bd7fa",
+    "wordId": "2281180",
+    "pt": "{\n  \"a\": [\n    \"desenvolvimento de aplicativos\"\n  ]\n"
+  },
+  {
+    "kana": "アプリケーションかいはつツール",
+    "en": [
+      "application development tool"
+    ],
+    "senseUid": "a50d37e7-e2dd-4f17-8f72-7484d46d4e21",
+    "wordId": "2281200",
+    "pt": "{\n  \"a\": [\"ferramenta de desenvolvimento de aplicativos\"]\n"
+  },
+  {
+    "kana": "アプリケーションかいはつシステム",
+    "en": [
+      "application development system"
+    ],
+    "senseUid": "c9457cfa-07bf-4d52-8a2f-e8d6870d5b5e",
+    "wordId": "2281190",
+    "pt": "['sistema de desenvolvimento de aplicações']"
+  },
+  {
+    "kana": "アプリケーションかいはつかんきょう",
+    "en": [
+      "Application Development Environment",
+      "ADE"
+    ],
+    "senseUid": "3201e417-614c-41cf-96f9-c0ac59f5a4e7",
+    "wordId": "2281210",
+    "pt": "['Ambiente de Desenvolvimento de Aplicações']"
+  },
+  {
+    "kana": "アプリケーションかいはつげんご",
+    "en": [
+      "application development language"
+    ],
+    "senseUid": "3a42240d-28cf-4a7b-ba9d-82bbebfa9141",
+    "wordId": "2281220",
+    "pt": "{\n  \"a\": [\"linguagem de desenvolvimento de aplicações\"]\n"
+  },
+  {
+    "kana": "アプリケーションかいはつしゃ",
+    "en": [
+      "application developer",
+      "applications developer",
+      "applications programmer"
+    ],
+    "senseUid": "5fc472b0-e440-4369-86a3-d2404589047b",
+    "wordId": "2281230",
+    "pt": "['desenvolvedor de aplicativos', 'desenvolvedor de aplicações', 'programador de aplicações']"
+  },
+  {
+    "kana": "アプリケーションせっけいプロセス",
+    "en": [
+      "application design process"
+    ],
+    "senseUid": "56be1f42-1941-43ec-8396-7ae97581cff5",
+    "wordId": "2281240",
+    "pt": "['processo de projeto de aplicação']"
+  },
+  {
+    "kana": "アプリケーションそう",
+    "en": [
+      "application layer"
+    ],
+    "senseUid": "ee6275a0-a64e-459b-a8a8-dbf6c4125ed2",
+    "wordId": "2281250",
+    "pt": "['camada de aplicação']"
+  },
+  {
+    "kana": "アプリケーションぶ",
+    "en": [
+      "application part"
+    ],
+    "senseUid": "4261a681-34e3-4c30-b004-912e72433172",
+    "wordId": "2281260",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"アプリケーションぶ\",\n      \"gloss\": [\"parte de aplicação\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "アプレット",
+    "en": [
+      "applet"
+    ],
+    "senseUid": "d24bfd58-fa39-455d-af76-8a96524dc49a",
+    "wordId": "2281270",
+    "pt": "{\n  \"a\": [\"applet\", \"pequeno programa\", \"aplicativo leve\"]\n"
+  },
+  {
+    "kana": "アプレットビューアー",
+    "en": [
+      "applet viewer"
+    ],
+    "senseUid": "48f9060c-8b19-4bc3-80a1-e6431a01a0fe",
+    "wordId": "2281280",
+    "pt": "['visualizador de applet']"
+  },
+  {
+    "kana": "アベンド",
+    "en": [
+      "abend"
+    ],
+    "senseUid": "2f94782d-5c2f-4b6c-9a26-a9d40a0a740a",
+    "wordId": "2281300",
+    "pt": "['interrupção anormal']"
+  },
+  {
+    "kana": "アラームスピーカ",
+    "en": [
+      "audible alarm speaker"
+    ],
+    "senseUid": "bc68e6a3-e8e3-43f3-8287-417edddb89ad",
+    "wordId": "2281360",
+    "pt": "['alto-falante de alarme audível']"
+  },
+  {
+    "kana": "アラームプロファイル",
+    "en": [
+      "alarm profile"
+    ],
+    "senseUid": "ca51b438-166f-47a7-afc7-b19f23118a73",
+    "wordId": "2281370",
+    "pt": "{\n  \"a\": [\"perfil de alarme\"]\n"
+  },
+  {
+    "kana": "アラームランプ",
+    "en": [
+      "alarm lamp"
+    ],
+    "senseUid": "8c768457-1540-47f9-9123-b126d085ecb5",
+    "wordId": "2281380",
+    "pt": "['lâmpada de alarme']"
+  },
+  {
+    "kana": "アラームけんしゅつ",
+    "en": [
+      "alarm detection"
+    ],
+    "senseUid": "aa390337-b0b6-45b9-beaf-e093910067c9",
+    "wordId": "2281390",
+    "pt": "['detecção de alarme']"
+  },
+  {
+    "kana": "アラームじゅうようど",
+    "en": [
+      "alarm severity"
+    ],
+    "senseUid": "c9558f97-95e6-469e-99c8-7be6bdf9cf86",
+    "wordId": "2281400",
+    "pt": "{\n  \"a\": [\"gravidade do alarme\"]\n"
+  },
+  {
+    "kana": "アルファチャンネル",
+    "en": [
+      "alpha channel"
+    ],
+    "senseUid": "c3dcea74-2eba-4d19-b7ee-2f151bba8adf",
+    "wordId": "2281440",
+    "pt": "['canal alfa']"
+  },
+  {
+    "kana": "アルファテスト",
+    "en": [
+      "alpha test"
+    ],
+    "senseUid": "78650077-6007-48bb-9bd2-a45cd8987529",
+    "wordId": "2281450",
+    "pt": "['teste alfa']"
+  },
+  {
+    "kana": "アルファニューメリック",
+    "en": [
+      "alphanumeric"
+    ],
+    "senseUid": "85d53334-be8a-480f-90b4-5aa0948b520d",
+    "wordId": "2281470",
+    "pt": "{\n  \"a\": [\"alfanumérico\"]\n"
+  },
+  {
+    "kana": "アルファバージョン",
+    "en": [
+      "alpha version"
+    ],
+    "senseUid": "d7d65885-ab6d-46df-8998-c6ff4dabc1ef",
+    "wordId": "2281490",
+    "pt": "['versão alfa']"
+  },
+  {
+    "kana": "アルファばん",
+    "en": [
+      "alpha version"
+    ],
+    "senseUid": "b06f014a-6f3c-4bf0-935c-d5dda8e41e5d",
+    "wordId": "2281520",
+    "pt": "['versão alfa']"
+  },
+  {
+    "kana": "アレイコンピュータ",
+    "en": [
+      "array computer"
+    ],
+    "senseUid": "912fd249-c2de-446e-88bd-b90c855a5b1e",
+    "wordId": "2281540",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"アレイコンピュータ\",\n      \"gloss\": [\"computador de array\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "アレイプロセッサー",
+    "en": [
+      "array processor"
+    ],
+    "senseUid": "2e5ed629-5594-48a8-9dc4-1158376c9541",
+    "wordId": "2281550",
+    "pt": "['processador de array']"
+  },
+  {
+    "kana": "アレイしょり",
+    "en": [
+      "array processing"
+    ],
+    "senseUid": "328bdaaa-b81b-473d-b6a1-728f5c8296f8",
+    "wordId": "2281570",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"アレイしょり\",\n      \"gloss\": [\"processamento de array\", \"processamento de matrizes\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "アレイしょりきこう",
+    "en": [
+      "array processor",
+      "vector processor"
+    ],
+    "senseUid": "06768bee-b5cc-4710-bd25-012bd15a9aa9",
+    "wordId": "2281580",
+    "pt": "['processador de array', 'processador vetorial']"
+  },
+  {
+    "kana": "アレイしょりそうち",
+    "en": [
+      "array processor",
+      "vector processor"
+    ],
+    "senseUid": "ae650279-56b3-4e68-a992-2d5c5c7ddcb5",
+    "wordId": "2281600",
+    "pt": "{\n  \"a\": [\n    \"processador de array\",\n    \"processador vetorial\"\n  ]\n"
+  },
+  {
+    "kana": "アンインストール",
+    "en": [
+      "uninstallation"
+    ],
+    "senseUid": "f4ed2ae1-7d82-49ef-a4a8-add0cdba2db9",
+    "wordId": "2281620",
+    "pt": "{\n  \"a\": [\n    \"Desinstalação\"\n  ]\n"
+  },
+  {
+    "kana": "アングルかっこ",
+    "en": [
+      "less-than mark",
+      "left angle bracket"
+    ],
+    "senseUid": "d7701932-34ad-412b-af57-c4a1a2438bd9",
+    "wordId": "2281640",
+    "pt": "{\n  \"a\": [\n    \"sinal de menor\",\n    \"colchete angular esquerdo\"\n  ]\n"
+  },
+  {
+    "kana": "アンサーファイル",
+    "en": [
+      "answer file"
+    ],
+    "senseUid": "206bbfe4-fadf-414f-b66e-40bb32f16e69",
+    "wordId": "2281650",
+    "pt": "{\n  \"a\": [\"arquivo de resposta\"]\n"
+  },
+  {
+    "kana": "アンサーモード",
+    "en": [
+      "answer mode"
+    ],
+    "senseUid": "939d49ab-4a4d-4074-96b6-9e3a282bc300",
+    "wordId": "2281660",
+    "pt": "['modo de resposta']"
+  },
+  {
+    "kana": "アンサブスクライブ",
+    "en": [
+      "unsubscribe"
+    ],
+    "senseUid": "e2a5844d-1577-4593-99f7-a8d58cd205b7",
+    "wordId": "2281670",
+    "pt": "['cancelar a assinatura']"
+  },
+  {
+    "kana": "アンダーフロー",
+    "en": [
+      "underflow"
+    ],
+    "senseUid": "6d562884-a3f0-44a7-858a-cf3942d21790",
+    "wordId": "2281700",
+    "pt": "{\n  \"a\": [\n    \"subfluxo\"\n  ]\n"
+  },
+  {
+    "kana": "アンダフローひょうじ",
+    "en": [
+      "underflow indication"
+    ],
+    "senseUid": "dcc6894d-b111-4e2a-af6a-87e3de8e7b86",
+    "wordId": "2281720",
+    "pt": "{\n  \"a\": [\"indicação de underflow\"]\n"
+  },
+  {
+    "kana": "アンチウィルス",
+    "en": [
+      "anti-virus (e.g. software)"
+    ],
+    "senseUid": "90b08d2f-2c6f-4e18-9577-78da71273f7f",
+    "wordId": "2281730",
+    "pt": "['antivírus']"
+  },
+  {
+    "kana": "アンチウィルスソフト",
+    "en": [
+      "anti-virus software"
+    ],
+    "senseUid": "d688fa10-c582-4e1d-b98b-cc2cc6619f3f",
+    "wordId": "2281740",
+    "pt": "['software antivírus']"
+  },
+  {
+    "kana": "アンチエイリアシング",
+    "en": [
+      "anti-aliasing",
+      "antialiasing"
+    ],
+    "senseUid": "d00ad8da-51cc-4b10-80fe-932c5df5c7e8",
+    "wordId": "2281750",
+    "pt": "['suavização de serrilhado', 'anti-aliasing']"
+  },
+  {
+    "kana": "アンチコピーぎじゅつ",
+    "en": [
+      "anti-copying technology (software)"
+    ],
+    "senseUid": "9adb4e3e-f37d-43d8-9f0c-9c92e408b135",
+    "wordId": "2281760",
+    "pt": "['tecnologia anti-cópia (software)']"
+  },
+  {
+    "kana": "アンチハッキング",
+    "en": [
+      "anti-hacking"
+    ],
+    "senseUid": "c0ed356a-9a55-4c22-a864-cbb8f23b57e6",
+    "wordId": "2281770",
+    "pt": "['anti-hacking', 'anti-hackeamento', 'proteção contra hackers']"
+  },
+  {
+    "kana": "アンテナりとくりつ",
+    "en": [
+      "antenna gain factor"
+    ],
+    "senseUid": "c509a6b5-a077-4214-b75f-4ee7f096ad23",
+    "wordId": "2281780",
+    "pt": "['fator de ganho de antena']"
+  },
+  {
+    "kana": "アンデリート",
+    "en": [
+      "undelete (command)"
+    ],
+    "senseUid": "6d4b1a41-d830-4029-9d95-dcb5ddf7b7d2",
+    "wordId": "2281790",
+    "pt": "{\n  \"a\": [\"restaurar (comando)\", \"desfazer exclusão (comando)\"]\n"
+  },
+  {
+    "kana": "アンナンバードせつぞく",
+    "en": [
+      "unnumbered connection"
+    ],
+    "senseUid": "1d5d714c-4115-4185-9966-09afdfee51f1",
+    "wordId": "2281800",
+    "pt": "{\n  \"a\": [\"conexão sem número\"]\n"
+  },
+  {
+    "kana": "アンパサンド",
+    "en": [
+      "ampersand"
+    ],
+    "senseUid": "fcffb74c-30cf-49c3-b77e-969bee116def",
+    "wordId": "2281810",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"アンパサンド\",\n      \"portugues\": \"e comercial\",\n      \"explicacao\": \"O símbolo '&', chamado 'ampersand' em inglês, é conhecido em japonês como アンパサンド (anpasando). Ele representa a conjunção 'e' (como em 'A & B').\"\n    \n  ]\n"
+  },
+  {
+    "kana": "アンパック",
+    "en": [
+      "unpacking (data)"
+    ],
+    "senseUid": "32c5ab5e-6d6f-4f21-9e3d-2b57049778b7",
+    "wordId": "2281830",
+    "pt": "{\n  \"a\": [\n    \"desempacotamento (de dados)\"\n  ]\n"
+  },
+  {
+    "kana": "アンビエント",
+    "en": [
+      "ambient"
+    ],
+    "senseUid": "6d6693e8-4be7-4fcf-ad20-c4371bbe6a52",
+    "wordId": "2281850",
+    "pt": "['ambiente']"
+  },
+  {
+    "kana": "アンビエントこう",
+    "en": [
+      "ambient light"
+    ],
+    "senseUid": "31d3f3ea-736c-4864-8f96-e1507b039869",
+    "wordId": "2281860",
+    "pt": "['luz ambiente']"
+  },
+  {
+    "kana": "アンフォーマット",
+    "en": [
+      "unformatting"
+    ],
+    "senseUid": "02dfcb22-6ff8-410c-ad98-088065eebee3",
+    "wordId": "2281880",
+    "pt": "['desformatar']"
+  },
+  {
+    "kana": "アンフォーマット",
+    "en": [
+      "unformatted"
+    ],
+    "senseUid": "896a68b2-0938-4165-8f1a-6368cabaf515",
+    "wordId": "2281880",
+    "pt": "['não formatado']"
+  },
+  {
+    "kana": "アンマネージコード",
+    "en": [
+      "unmanaged code"
+    ],
+    "senseUid": "8f7dc55d-1292-4191-b996-77805e302031",
+    "wordId": "2281900",
+    "pt": "['código não gerenciado']"
+  },
+  {
+    "kana": "アンロード",
+    "en": [
+      "unloading (from memory)"
+    ],
+    "senseUid": "88d98f98-4aa9-4bf4-b334-ae0fd22e8176",
+    "wordId": "2281910",
+    "pt": "{\n  \"a\": [\"descarregamento (da memória)\"]\n"
+  },
+  {
+    "kana": "イー・アール・ピー",
+    "en": [
+      "enterprise resource planning",
+      "ERP"
+    ],
+    "senseUid": "b4957245-bab4-4e2b-8825-214cf6f807c3",
+    "wordId": "2281920",
+    "pt": "{\n  \"a\": [\n    \"planejamento de recursos empresariais\",\n    \"ERP\"\n  ]\n"
+  },
+  {
+    "kana": "イー・アイ・エー",
+    "en": [
+      "environmental impact assessment",
+      "EIA"
+    ],
+    "senseUid": "48fe2c58-1a37-4f72-aa8b-e11f35b7d419",
+    "wordId": "2281930",
+    "pt": "{\n  \"a\": [\n    \"Avaliação de Impacto Ambiental\",\n    \"AIA\"\n  ]\n"
+  },
+  {
+    "kana": "イー・アイ・エー",
+    "en": [
+      "economic integration agreement",
+      "EIA"
+    ],
+    "senseUid": "69ca198f-abb5-4f1e-a48b-ffa9b2edbeff",
+    "wordId": "2281930",
+    "pt": "{\n  \"a\": [\n    \"acordo de integração econômica\",\n    \"AIE\"\n  ]\n"
+  },
+  {
+    "kana": "イー・イー・ピー・ロム",
+    "en": [
+      "EEPROM",
+      "electrically erasable programmable ROM"
+    ],
+    "senseUid": "9ea38de1-03b0-4754-bdeb-867b63bfe935",
+    "wordId": "2281960",
+    "pt": "{\n  \"a\": [\n    \"EEPROM\",\n    \"ROM programável eletricamente apagável\"\n  ]\n"
+  },
+  {
+    "kana": "イー・エム・エス",
+    "en": [
+      "Express Mail Service",
+      "EMS"
+    ],
+    "senseUid": "6c0344b9-83c5-46ba-925a-8cd11cd397d5",
+    "wordId": "2281980",
+    "pt": "['Serviço Expresso de Correspondência', 'EMS']"
+  },
+  {
+    "kana": "イー・エム・エス",
+    "en": [
+      "European Monetary System"
+    ],
+    "senseUid": "3226caa5-2398-4a5d-a443-e30634fd7944",
+    "wordId": "2281980",
+    "pt": "['Sistema Monetário Europeu']"
+  },
+  {
+    "kana": "イー・エム・エス",
+    "en": [
+      "Engine Management System"
+    ],
+    "senseUid": "016f9c67-9e5e-4c85-94b9-311f51d3e099",
+    "wordId": "2281980",
+    "pt": "['Sistema de Gerenciamento do Motor']"
+  },
+  {
+    "kana": "イー・エム・エス",
+    "en": [
+      "Electronics Manufacturing Services"
+    ],
+    "senseUid": "bcb87698-8bb8-4c27-8356-71c50ea460dd",
+    "wordId": "2281980",
+    "pt": "['Serviços de Manufatura Eletrônica']"
+  },
+  {
+    "kana": "イー・エム・エス",
+    "en": [
+      "Expanded Memory Specification (MS-DOS)"
+    ],
+    "senseUid": "e7c8f7dc-2678-4605-bf4e-5083dbc4c4bc",
+    "wordId": "2281980",
+    "pt": "{\n  \"a\": [\n    \"Especificação de Memória Expandida (MS-DOS)\"\n  ]\n"
+  },
+  {
+    "kana": "イー・エム・エス",
+    "en": [
+      "Environmental Management System"
+    ],
+    "senseUid": "d682e96f-4665-41a8-b490-cc11f8a74b63",
+    "wordId": "2281980",
+    "pt": "['Sistema de Gestão Ambiental']"
+  },
+  {
+    "kana": "イー・エム・シー",
+    "en": [
+      "electromagnetic compatibility",
+      "EMC"
+    ],
+    "senseUid": "4f277b2a-d911-427b-9afb-68a652c6dceb",
+    "wordId": "2282000",
+    "pt": "{\n  \"a\": [\n    \"compatibilidade eletromagnética\",\n    \"EMC\"\n  ]\n"
+  },
+  {
+    "kana": "イー・オー・エス",
+    "en": [
+      "electronic ordering system",
+      "EOS"
+    ],
+    "senseUid": "e15b7a66-f31a-4ad3-a683-516b648ce795",
+    "wordId": "2282030",
+    "pt": "['sistema eletrônico de pedidos']"
+  },
+  {
+    "kana": "イー・オー・エフ",
+    "en": [
+      "end of file",
+      "EOF"
+    ],
+    "senseUid": "42c4ae92-a14c-426f-b121-4daedbcf3b6a",
+    "wordId": "2282040",
+    "pt": "{\n  \"a\": [\"fim de arquivo\", \"EOF\"]\n"
+  },
+  {
+    "kana": "イー・オー・エス",
+    "en": [
+      "end of sales",
+      "EOS"
+    ],
+    "senseUid": "6c09610b-1ff4-456d-acd2-888bfcfa334d",
+    "wordId": "2282030",
+    "pt": "['fim das vendas', 'EOS']"
+  },
+  {
+    "kana": "イーサネットアドレス",
+    "en": [
+      "Ethernet address"
+    ],
+    "senseUid": "9d0beecf-1f66-4a39-a9e1-aa92c67d24f3",
+    "wordId": "2282070",
+    "pt": "{\n  \"a\": [\"endereço Ethernet\"]\n"
+  },
+  {
+    "kana": "イー・シー・エム",
+    "en": [
+      "electronic countermeasures",
+      "ECM"
+    ],
+    "senseUid": "22d8ab6b-4665-4a7e-b824-46010ce78bba",
+    "wordId": "2282080",
+    "pt": "['contramedidas eletrônicas']"
+  },
+  {
+    "kana": "イー・ジー・エー",
+    "en": [
+      "Enhanced Graphics Adapter",
+      "EGA"
+    ],
+    "senseUid": "fb84d480-943f-458b-af6a-b816875ba6d0",
+    "wordId": "2282100",
+    "pt": "['Adaptador Gráfico Aprimorado', 'EGA']"
+  },
+  {
+    "kana": "イー・ダブリュー・エス",
+    "en": [
+      "engineering workstation",
+      "EWS"
+    ],
+    "senseUid": "fafcead6-8f65-43e0-ab2b-3605c64c8856",
+    "wordId": "2282160",
+    "pt": "['estação de trabalho de engenharia', 'EWS']"
+  },
+  {
+    "kana": "イー・ダブリュー・エス",
+    "en": [
+      "emergency warning system",
+      "EWS"
+    ],
+    "senseUid": "48d02ef9-005d-4da2-b848-1dc3dbe9274e",
+    "wordId": "2282160",
+    "pt": "{\n  \"a\": [\n    \"sistema de alerta de emergência\",\n    \"EWS\"\n  ]\n"
+  },
+  {
+    "kana": "イー・ディー・アイ",
+    "en": [
+      "electronic data interchange",
+      "EDI"
+    ],
+    "senseUid": "d1791138-7dbc-47ef-8e18-1e7f8bdc3331",
+    "wordId": "2282190",
+    "pt": "{\n  \"a\": [\n    \"intercâmbio eletrônico de dados\",\n    \"EDI\"\n  ]\n"
+  },
+  {
+    "kana": "イービジネス",
+    "en": [
+      "e-business"
+    ],
+    "senseUid": "a45e52da-3b30-4270-8f21-91a40b2950d6",
+    "wordId": "2282240",
+    "pt": "{\n  \"a\": [\"negócios eletrônicos\"]\n"
+  },
+  {
+    "kana": "イーピーウィング",
+    "en": [
+      "EPWING (file format for electronic dictionaries)"
+    ],
+    "senseUid": "07eab452-9e44-4305-b423-0feed50291d7",
+    "wordId": "2282250",
+    "pt": "['EPWING (formato de arquivo para dicionários eletrônicos)']"
+  },
+  {
+    "kana": "イーピーロム",
+    "en": [
+      "erasable programmable read-only memory",
+      "EPROM"
+    ],
+    "senseUid": "31ae5baa-5e27-4df5-af39-2327a017cfdf",
+    "wordId": "2282260",
+    "pt": "{\n  \"a\": [\n    \"memória somente de leitura programável e apagável\",\n    \"EPROM\"\n  ]\n"
+  },
+  {
+    "kana": "イーマックス",
+    "en": [
+      "Emacs (text editor)"
+    ],
+    "senseUid": "6a016f43-bf94-43ce-8582-709c7f9a67f5",
+    "wordId": "2282290",
+    "pt": "['Emacs (editor de texto)']"
+  },
+  {
+    "kana": "イー・ユー・シー",
+    "en": [
+      "EUC (encoding)",
+      "extended UNIX code"
+    ],
+    "senseUid": "b0f24744-8b15-43d3-b29b-72ec438f0c18",
+    "wordId": "2282320",
+    "pt": "['EUC (codificação)', 'código UNIX estendido']"
+  },
+  {
+    "kana": "イー・ユー・シー",
+    "en": [
+      "end-user computing",
+      "EUC"
+    ],
+    "senseUid": "c5cf764a-6ee9-49f7-922a-c012b28bc82e",
+    "wordId": "2282320",
+    "pt": "['computação de usuário final', 'EUC']"
+  },
+  {
+    "kana": "イエローケーブル",
+    "en": [
+      "Ethernet 10BASE5 coaxial cable",
+      "yellow cable"
+    ],
+    "senseUid": "6fee2b7f-9308-43d2-8dbd-eb254b69eae9",
+    "wordId": "2282350",
+    "pt": "['cabo coaxial Ethernet 10BASE5', 'cabo amarelo']"
+  },
+  {
+    "kana": "イオンデポジションプリンタ",
+    "en": [
+      "ion-deposition printer"
+    ],
+    "senseUid": "e979e9be-f2f4-49e8-ba24-74e0f36f0aad",
+    "wordId": "2282360",
+    "pt": "['impressora de deposição iônica']"
+  },
+  {
+    "kana": "イコールきのう",
+    "en": [
+      "equals function"
+    ],
+    "senseUid": "e214485d-6d75-473f-b056-609d67735c71",
+    "wordId": "2282370",
+    "pt": "{\n  \"a\": [\"função igual\"]\n"
+  },
+  {
+    "kana": "イジェクト",
+    "en": [
+      "eject"
+    ],
+    "senseUid": "dd182bb6-8ec3-4e44-b38c-945637feb3d0",
+    "wordId": "2282390",
+    "pt": "['ejetar']"
+  },
+  {
+    "kana": "イタリックたい",
+    "en": [
+      "italic typeface"
+    ],
+    "senseUid": "d8b099af-d278-4189-8b97-503ee6642877",
+    "wordId": "2282420",
+    "pt": "{\n  \"a\": [\"tipo itálico\"]\n"
+  },
+  {
+    "kana": "イジェクトボタン",
+    "en": [
+      "eject button"
+    ],
+    "senseUid": "a10baa80-8a5e-47e8-965d-9a4dc256a19b",
+    "wordId": "2282400",
+    "pt": "['botão de ejeção']"
+  },
+  {
+    "kana": "いちまるいちキーボード",
+    "en": [
+      "101-key keyboard (standard keyboard layout developed by IBM)"
+    ],
+    "senseUid": "19db479f-0fb1-4b55-af98-1037a815608f",
+    "wordId": "2282430",
+    "pt": "{\n  \"a\": [\n    \"Teclado 101 teclas (layout padrão de teclado desenvolvido pela IBM)\"\n  ]\n"
+  },
+  {
+    "kana": "イニ",
+    "en": [
+      ".ini"
+    ],
+    "senseUid": "9fd777ce-14f7-409a-8134-d8e1bba2e802",
+    "wordId": "2282450",
+    "pt": "{\n  \"a\": [\"イニ\"]\n"
+  },
+  {
+    "kana": "イニシャライザルーチン",
+    "en": [
+      "initializer routine"
+    ],
+    "senseUid": "3847464f-3567-4e5f-b7bb-69e1118359b0",
+    "wordId": "2282460",
+    "pt": "['rotina de inicialização']"
+  },
+  {
+    "kana": "イニシャルコスト",
+    "en": [
+      "initial cost",
+      "startup cost"
+    ],
+    "senseUid": "cac934b1-1ecc-489a-b298-00f4ffbf185c",
+    "wordId": "2282470",
+    "pt": "['custo inicial', 'custo de implantação']"
+  },
+  {
+    "kana": "イニシャルプログラムロード",
+    "en": [
+      "initial program load",
+      "IPL"
+    ],
+    "senseUid": "e38b9608-512b-4cf4-82b5-f08a3a010493",
+    "wordId": "2282480",
+    "pt": "{\n  \"a\": [\n    \"Carregamento Inicial do Programa\"\n  ]\n"
+  },
+  {
+    "kana": "イニット",
+    "en": [
+      "init",
+      "INIT"
+    ],
+    "senseUid": "4d341ec1-5c0c-42ee-b2e1-56a6a56c9b44",
+    "wordId": "2282490",
+    "pt": "['inicialização', 'INIT']"
+  },
+  {
+    "kana": "イネーブル",
+    "en": [
+      "enabling"
+    ],
+    "senseUid": "13cc14aa-f39f-4d08-b7b5-40b9fc06fba1",
+    "wordId": "2282510",
+    "pt": "['habilitação', 'permitir', 'ativação']"
+  },
+  {
+    "kana": "イネーブルしんごう",
+    "en": [
+      "enable signal"
+    ],
+    "senseUid": "52dea4ec-0d18-4fa6-b516-41202c131d10",
+    "wordId": "2282520",
+    "pt": "['sinal de habilitação']"
+  },
+  {
+    "kana": "イベントをせいせいする",
+    "en": [
+      "to generate an event",
+      "to trigger an event"
+    ],
+    "senseUid": "b48a2196-2018-4f92-aaeb-cb1a1da72bdd",
+    "wordId": "2282540",
+    "pt": "['gerar um evento', 'disparar um evento']"
+  },
+  {
+    "kana": "イベントカテゴリ",
+    "en": [
+      "event category"
+    ],
+    "senseUid": "a05ed9d5-48c4-4751-9a19-ae302075f394",
+    "wordId": "2282550",
+    "pt": "['categoria de evento']"
+  },
+  {
+    "kana": "イベントキュー",
+    "en": [
+      "event queue"
+    ],
+    "senseUid": "f185f36e-df43-49a7-88d9-823a3c520eb6",
+    "wordId": "2282560",
+    "pt": "{\n  \"a\": [\"fila de eventos\"]\n"
+  },
+  {
+    "kana": "イベントクラス",
+    "en": [
+      "event class"
+    ],
+    "senseUid": "7e31145a-5db0-4b4c-8883-e0abdef046b0",
+    "wordId": "2282570",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"イベントクラス\",\n      \"gloss\": [\"classe de evento\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "イベントドリブン",
+    "en": [
+      "event driven"
+    ],
+    "senseUid": "0aea4d4d-52de-4640-8453-3b6be4531508",
+    "wordId": "2282580",
+    "pt": "['orientado a eventos']"
+  },
+  {
+    "kana": "イベントドリブンプログラミング",
+    "en": [
+      "event-driven programming"
+    ],
+    "senseUid": "5d3ede9b-b8be-44fc-868d-068be2c332ba",
+    "wordId": "2282590",
+    "pt": "['programação dirigida a eventos']"
+  },
+  {
+    "kana": "イベントハンドラ",
+    "en": [
+      "event handler"
+    ],
+    "senseUid": "394043ff-71f7-4efd-a9e7-272124920730",
+    "wordId": "2282600",
+    "pt": "['manipulador de eventos']"
+  },
+  {
+    "kana": "イベントプロバイダ",
+    "en": [
+      "event provider"
+    ],
+    "senseUid": "6555083b-8af7-448a-8e3f-ba67f2d9522c",
+    "wordId": "2282610",
+    "pt": "['provedor de eventos']"
+  }
+]

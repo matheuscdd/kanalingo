@@ -1,0 +1,983 @@
+[
+  {
+    "kana": "アレンジボール",
+    "en": [
+      "arrange ball",
+      "pin-ball arcade game"
+    ],
+    "senseUid": "49b64f22-f71e-4d39-adca-ba13c9aa1dda",
+    "wordId": "2812750",
+    "pt": "['bola de arranjo', 'jogo de fliperama (pinball)']"
+  },
+  {
+    "kana": "アレパチ",
+    "en": [
+      "pachinko machine based on the \"arrange ball\" game"
+    ],
+    "senseUid": "747976d5-5403-4793-b68d-0645a661f3a5",
+    "wordId": "2812760",
+    "pt": "{\n  \"a\": [\n    \"máquina de pachinko baseada no jogo 'arrange ball'\"\n  ]\n"
+  },
+  {
+    "kana": "ぶばん",
+    "en": [
+      "part number",
+      "PN"
+    ],
+    "senseUid": "4f244863-d904-4b0b-991f-75c4502b9661",
+    "wordId": "2812770",
+    "pt": "{\n  \"a\": [\"número da peça\", \"PN\"]\n"
+  },
+  {
+    "kana": "ぶひんばんごう",
+    "en": [
+      "part number",
+      "PN"
+    ],
+    "senseUid": "493cc2b9-9b9b-43eb-88d9-9efa89b7fe40",
+    "wordId": "2812780",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ぶひんばんごう\",\n      \"português\": \"número da peça\",\n      \"notas\": \"Usado em contextos técnicos para identificar componentes ou peças específicas, equivalente a 'part number' (PN) em inglês.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "どうあつ",
+    "en": [
+      "dynamic pressure"
+    ],
+    "senseUid": "e6ae70d9-332c-4e00-9506-bce07de998a3",
+    "wordId": "2812790",
+    "pt": "['pressão dinâmica']"
+  },
+  {
+    "kana": "せいようすもも",
+    "en": [
+      "common plum (Prunus domestica)",
+      "European plum"
+    ],
+    "senseUid": "1c74e033-7ed7-4143-8657-eaeeb0d6700e",
+    "wordId": "2812800",
+    "pt": "{\n  \"a\": [\n    \"ameixa-europeia\",\n    \"ameixa-comum\"\n  ]\n"
+  },
+  {
+    "kana": "やこうびん",
+    "en": [
+      "overnight flight",
+      "red-eye flight"
+    ],
+    "senseUid": "df93dbbd-954e-4617-bec6-53168fc5a248",
+    "wordId": "2812810",
+    "pt": "['voo noturno', 'voo de madrugada']"
+  },
+  {
+    "kana": "じゅしゅ",
+    "en": [
+      "tree species"
+    ],
+    "senseUid": "795acff0-9911-42a1-b2e2-a81870867cdf",
+    "wordId": "2812820",
+    "pt": "{\n  \"a\": [\"espécie de árvore\"]\n"
+  },
+  {
+    "kana": "さくらびと",
+    "en": [
+      "cherry blossom viewer",
+      "cherry blossom admirer"
+    ],
+    "senseUid": "cda6cfd4-0602-438c-bb62-e293db6a2444",
+    "wordId": "2812830",
+    "pt": "['apreciador de flores de cerejeira', 'admirador das flores de cerejeira']"
+  },
+  {
+    "kana": "えぞのうわみずざくら",
+    "en": [
+      "bird cherry (Prunus padus)"
+    ],
+    "senseUid": "7f8406ef-9a03-49b9-964d-3aff35e09420",
+    "wordId": "2812840",
+    "pt": "['cerejeira-do-norte (Prunus padus)']"
+  },
+  {
+    "kana": "いぬざくら",
+    "en": [
+      "Prunus buergeriana (species of flowering cherry)"
+    ],
+    "senseUid": "7f816165-a112-4808-aa69-27ededc5d662",
+    "wordId": "2812850",
+    "pt": "['Cerejeira-de-cachorro (Prunus buergeriana, espécie de cerejeira ornamental)']"
+  },
+  {
+    "kana": "しゅちょうおん",
+    "en": [
+      "keynote"
+    ],
+    "senseUid": "8dc3c9c0-120f-45da-a62b-670d0288066d",
+    "wordId": "2812870",
+    "pt": "{\n  \"a\": [\n    \"nota principal\",\n    \"tom principal\",\n    \"tema central\"\n  ]\n"
+  },
+  {
+    "kana": "クリティカルシンキング",
+    "en": [
+      "critical thinking"
+    ],
+    "senseUid": "a27e1a91-dc3d-49a9-b584-b21916608452",
+    "wordId": "2812880",
+    "pt": "['pensamento crítico']"
+  },
+  {
+    "kana": "めいべん",
+    "en": [
+      "discernment",
+      "clear analysis"
+    ],
+    "senseUid": "65a7196f-2f6d-443f-8c24-b1f060e68c4d",
+    "wordId": "2812890",
+    "pt": "['discernimento', 'análise clara']"
+  },
+  {
+    "kana": "めいべん",
+    "en": [
+      "clear expression",
+      "distinguished speech"
+    ],
+    "senseUid": "9b2ddfa8-db61-4842-acd1-39bcbde764c7",
+    "wordId": "2812890",
+    "pt": "['expressão clara', 'fala distinta']"
+  },
+  {
+    "kana": "さだ",
+    "en": [
+      "certainly",
+      "truly"
+    ],
+    "senseUid": "693dfdaf-0ce7-4bfb-836c-b58f2cc14a6c",
+    "wordId": "2812900",
+    "pt": "['certamente', 'verdadeiramente']"
+  },
+  {
+    "kana": "しず",
+    "en": [
+      "quiet",
+      "calm",
+      "still"
+    ],
+    "senseUid": "6283c54d-f8bc-4f28-b01e-95ae2a49530c",
+    "wordId": "2812910",
+    "pt": "{\n  \"a\": [\n    \"tranquilo\",\n    \"calmo\",\n    \"sereno\"\n  ]\n"
+  },
+  {
+    "kana": "しずこころなし",
+    "en": [
+      "uneasy",
+      "restless",
+      "restive"
+    ],
+    "senseUid": "ddfaecbe-0061-4783-bb7a-27ece8d1040e",
+    "wordId": "2812920",
+    "pt": "{\n  \"a\": [\n    \"inquieto\",\n    \"agitado\",\n    \"desassossegado\"\n  ]\n"
+  },
+  {
+    "kana": "のど",
+    "en": [
+      "tranquil",
+      "calm",
+      "quiet",
+      "peaceful"
+    ],
+    "senseUid": "1be2baf4-9374-4f76-9d33-884bc63053d3",
+    "wordId": "2812930",
+    "pt": "['tranquilo', 'calmo', 'quieto', 'pacífico']"
+  },
+  {
+    "kana": "きゅうじょうをあたためる",
+    "en": [
+      "to renew an old friendship"
+    ],
+    "senseUid": "0d50ee76-829e-419b-80b7-b750b931da61",
+    "wordId": "2812950",
+    "pt": "['renovar uma velha amizade']"
+  },
+  {
+    "kana": "ゆた",
+    "en": [
+      "shaman (Okinawa, Amami)",
+      "medium",
+      "exorcist"
+    ],
+    "senseUid": "5bfb97ef-c0ec-4ef1-ba2b-1293435b073f",
+    "wordId": "2812960",
+    "pt": "{\n  \"a\": [\n    \"xamã (Okinawa, Amami)\",\n    \"médium\",\n    \"exorcista\"\n  ]\n"
+  },
+  {
+    "kana": "なにかといえば",
+    "en": [
+      "on the least pretext",
+      "at every opportunity",
+      "whenever there is a chance",
+      "at the drop of a hat"
+    ],
+    "senseUid": "c6f050f9-2b2d-487f-b8eb-5ca208b4a050",
+    "wordId": "2812970",
+    "pt": "['ao menor pretexto', 'a cada oportunidade', 'sempre que houver uma chance', 'por qualquer motivo']"
+  },
+  {
+    "kana": "かかい",
+    "en": [
+      "floor below",
+      "floor downstairs"
+    ],
+    "senseUid": "cf4b78ba-27d8-430d-8fc6-d9e4e30164f1",
+    "wordId": "2812980",
+    "pt": "{\n  \"a\": [\"andar de baixo\", \"piso inferior\"]\n"
+  },
+  {
+    "kana": "じょうかい",
+    "en": [
+      "floor above",
+      "floor upstairs"
+    ],
+    "senseUid": "65c7b0db-9bd9-4bf3-9993-837388137f3d",
+    "wordId": "2812990",
+    "pt": "{\n  \"a\": [\"andar de cima\", \"andar superior\"]\n"
+  },
+  {
+    "kana": "さいかかい",
+    "en": [
+      "bottom floor",
+      "lowest floor"
+    ],
+    "senseUid": "50ef9bdb-2c12-42f0-a370-7b25ad7513da",
+    "wordId": "2813000",
+    "pt": "{\n  \"a\": [\n    \"andar mais baixo\",\n    \"andar inferior\",\n    \"piso inferior\",\n    \"piso mais baixo\"\n  ]\n"
+  },
+  {
+    "kana": "ぎんこう",
+    "en": [
+      "going to scenic spots, ruins, etc. in search of inspiration for waka or haiku"
+    ],
+    "senseUid": "7ea95c54-8b89-48b9-9f68-f37d0f0663a0",
+    "wordId": "2813010",
+    "pt": "['visitar locais pitorescos ou ruínas em busca de inspiração para compor waka ou haicai']"
+  },
+  {
+    "kana": "ぎんこう",
+    "en": [
+      "reciting or composing poetry while walking"
+    ],
+    "senseUid": "dc94c492-fea9-420e-916e-d338817768ea",
+    "wordId": "2813010",
+    "pt": "{\n  \"a\": [\n    \"recitar ou compor poesia enquanto caminha\"\n  ]\n"
+  },
+  {
+    "kana": "スタップさいぼう",
+    "en": [
+      "STAP cell (proposed but disproven type of pluripotency cell)",
+      "stimulus-triggered acquisition of pluripotency cell"
+    ],
+    "senseUid": "c5b284a9-f584-475b-92f8-7e0744f3aaa2",
+    "wordId": "2813020",
+    "pt": "{\n  \"a\": [\n    \"célula STAP (tipo de célula pluripotente proposto, mas refutado)\",\n    \"célula de pluripotência adquirida por estímulo\"\n  ]\n"
+  },
+  {
+    "kana": "こうちのじじつ",
+    "en": [
+      "common knowledge",
+      "public knowledge",
+      "well-known fact"
+    ],
+    "senseUid": "46dd8802-029f-4828-906c-b3e00a4c5144",
+    "wordId": "2813030",
+    "pt": "['conhecimento comum', 'conhecimento público', 'fato bem conhecido']"
+  },
+  {
+    "kana": "くわしく",
+    "en": [
+      "tell me more",
+      "give me more details"
+    ],
+    "senseUid": "9df57f20-6676-46e9-8120-70449ff05a37",
+    "wordId": "2813040",
+    "pt": "['explique melhor', 'dê mais detalhes']"
+  },
+  {
+    "kana": "ググれかす",
+    "en": [
+      "just fucking google it",
+      "JFGI",
+      "google it, scum"
+    ],
+    "senseUid": "b539c474-0240-42db-944c-0c3ba46eb986",
+    "wordId": "2813050",
+    "pt": "['Vai dar um Google, seu inútil', 'Procura no Google, seu idiota', 'Pesquisa no Google, seu inútil']"
+  },
+  {
+    "kana": "きこんじょせい",
+    "en": [
+      "married woman"
+    ],
+    "senseUid": "fc20850d-0767-454c-8862-3415158d1e32",
+    "wordId": "2813060",
+    "pt": "['mulher casada']"
+  },
+  {
+    "kana": "きじょ",
+    "en": [
+      "married woman"
+    ],
+    "senseUid": "d49cbf30-8aff-4630-af2e-df0fde578522",
+    "wordId": "2813070",
+    "pt": "{\n  \"a\": [\"mulher casada\"]\n"
+  },
+  {
+    "kana": "き",
+    "en": [
+      "dilute"
+    ],
+    "senseUid": "9abdc781-d229-4c95-90e5-a7c2c3f0c66f",
+    "wordId": "2813080",
+    "pt": "{\n  \"a\": [\"diluir\", \"afinar\", \"tornar mais fraco\", \"desvanecer\"]\n"
+  },
+  {
+    "kana": "き",
+    "en": [
+      "rare"
+    ],
+    "senseUid": "0c1e6ef7-d551-45e1-ae0a-131fb8fe0f18",
+    "wordId": "2813080",
+    "pt": "{\n  \"a\": [\"raro\", \"precioso\", \"incomum\"]\n"
+  },
+  {
+    "kana": "き",
+    "en": [
+      "Greece"
+    ],
+    "senseUid": "682182b1-7bae-4335-96ee-447111e5ae23",
+    "wordId": "2813080",
+    "pt": "{\n  \"a\": [\"Grécia\"]\n"
+  },
+  {
+    "kana": "ヘブル",
+    "en": [
+      "Hebrew"
+    ],
+    "senseUid": "d441d3ac-b330-46af-9b39-c7332c5897d9",
+    "wordId": "2813090",
+    "pt": "{\n  \"a\": [\"hebraico\"]\n"
+  },
+  {
+    "kana": "しんさせいきゅう",
+    "en": [
+      "formal objection (to an administrative disposition)",
+      "request for examination (of a patent)",
+      "request for administrative review"
+    ],
+    "senseUid": "dadf081b-a12b-47f8-ab5a-3c5a698f3573",
+    "wordId": "2813100",
+    "pt": "{\n  \"a\": [\n    \"objeção formal (a um ato administrativo)\",\n    \"pedido de exame (de uma patente)\",\n    \"pedido de revisão administrativa\"\n  ]\n"
+  },
+  {
+    "kana": "いぎのもうしたて",
+    "en": [
+      "formal complaint (regarding conduct of a criminal case)",
+      "appeal for reconsideration",
+      "protest"
+    ],
+    "senseUid": "d3d8d813-cbd9-410f-a5a4-e6f303b22502",
+    "wordId": "2813110",
+    "pt": "{\n  \"a\": [\n    \"reclamação formal (sobre a condução de um caso criminal)\",\n    \"apelo para reconsideração\",\n    \"protesto\"\n  ]\n"
+  },
+  {
+    "kana": "ヘブルびとへのてがみ",
+    "en": [
+      "Epistle to the Hebrews (book of the Bible)",
+      "Letter to the Hebrews",
+      "Hebrews"
+    ],
+    "senseUid": "6a5150d6-29c3-4c3a-ac1a-53ae8c33d7ce",
+    "wordId": "2813120",
+    "pt": "{\n  \"a\": [\n    \"Epístola aos Hebreus\",\n    \"Carta aos Hebreus\",\n    \"Hebreus\"\n  ]\n"
+  },
+  {
+    "kana": "ことばをきる",
+    "en": [
+      "to stop talking",
+      "to break off",
+      "to pause"
+    ],
+    "senseUid": "a42b69a9-bd4a-434a-886a-143703d4c47c",
+    "wordId": "2813130",
+    "pt": "{\n  \"a\": [\n    \"parar de falar\",\n    \"interromper\",\n    \"fazer uma pausa\"\n  ]\n"
+  },
+  {
+    "kana": "せいせいき",
+    "en": [
+      "generator (e.g. signal generator)"
+    ],
+    "senseUid": "da8747fe-006b-4d76-96fa-c2ab631faba3",
+    "wordId": "2813150",
+    "pt": "['gerador (por exemplo, gerador de sinais)']"
+  },
+  {
+    "kana": "ぎょうせいふふくしんさほう",
+    "en": [
+      "Administrative Complaint Review Act"
+    ],
+    "senseUid": "0baf77f9-084f-42be-aeb3-fb96179905e4",
+    "wordId": "2813160",
+    "pt": "['Lei de Revisão de Queixas Administrativas']"
+  },
+  {
+    "kana": "ふふくもうしたて",
+    "en": [
+      "petitioning (an administration) for redress",
+      "suing civilly to seek redress (for a court's action)",
+      "lodging an appeal"
+    ],
+    "senseUid": "2eae2ff4-d91b-4917-bc36-a3a5bdabc7f0",
+    "wordId": "2813170",
+    "pt": "['petição para reparação (a uma administração)', 'ação civil para buscar reparação (de uma decisão judicial)', 'apresentação de recurso']"
+  },
+  {
+    "kana": "せきじひょう",
+    "en": [
+      "seating plan (e.g. banquet)",
+      "seating chart"
+    ],
+    "senseUid": "afde6fb7-d42f-4396-85a7-55a3bb6b737f",
+    "wordId": "2813180",
+    "pt": "['plano de assentos (por exemplo, banquete)', 'mapa de assentos']"
+  },
+  {
+    "kana": "フェロー",
+    "en": [
+      "fellow (at an academic institution, etc.)"
+    ],
+    "senseUid": "ff5bd00a-9175-4c88-86eb-e5872db75710",
+    "wordId": "2813190",
+    "pt": "['bolsista (em uma instituição acadêmica, etc.)']"
+  },
+  {
+    "kana": "たんぽけん",
+    "en": [
+      "security interest",
+      "security right",
+      "hypothec"
+    ],
+    "senseUid": "c2c37868-a3df-4dc3-8b8a-cc548c16700b",
+    "wordId": "2813200",
+    "pt": "{\n  \"a\": [\n    \"direito de garantia\",\n    \"direito real de garantia\",\n    \"garantia real\"\n  ]\n"
+  },
+  {
+    "kana": "ぬきがたい",
+    "en": [
+      "deep-rooted (suspicion, etc.)"
+    ],
+    "senseUid": "7da3545a-0461-4171-a14a-dc6afaff2d47",
+    "wordId": "2813230",
+    "pt": "['profundo e difícil de remover (suspeita, etc.)', 'enraizado (suspeita, etc.)']"
+  },
+  {
+    "kana": "ぬくべからざる",
+    "en": [
+      "deep-rooted (suspicion, etc.)"
+    ],
+    "senseUid": "243a3b0c-9039-4662-bc2b-78cd14d95840",
+    "wordId": "2813240",
+    "pt": "{\n  \"a\": [\"profundo e difícil de remover (suspeita, etc.)\", \"enraizado (suspeita, etc.)\"]\n"
+  },
+  {
+    "kana": "ぶじゅつたいきょくけん",
+    "en": [
+      "wushu",
+      "modern sport derived from traditional Chinese martial arts"
+    ],
+    "senseUid": "6eec1d3d-83a5-43d7-92e8-0a4dab2ff010",
+    "wordId": "2813250",
+    "pt": "{\n  \"a\": [\n    \"wushu\",\n    \"esporte moderno derivado das artes marciais tradicionais chinesas\"\n  ]\n"
+  },
+  {
+    "kana": "しんどうかく",
+    "en": [
+      "pallesthesia",
+      "sense of vibration",
+      "vibratory sense",
+      "vibratory sensation",
+      "vibration perception",
+      "vibratory perception"
+    ],
+    "senseUid": "f39b059c-17f6-4824-98b2-9558ff5e7958",
+    "wordId": "2813260",
+    "pt": "{\n  \"a\": [\n    \"pallestesia\",\n    \"sentido de vibração\",\n    \"sensação vibratória\",\n    \"percepção de vibração\",\n    \"percepção vibratória\"\n  ]\n"
+  },
+  {
+    "kana": "いまさっき",
+    "en": [
+      "just now",
+      "a moment ago"
+    ],
+    "senseUid": "a0fb4586-91e4-4d77-b922-abd3304b9d3d",
+    "wordId": "2813270",
+    "pt": "['agora há pouco', 'bem agora']"
+  },
+  {
+    "kana": "バリキャリ",
+    "en": [
+      "career woman"
+    ],
+    "senseUid": "1d6a8c3b-9668-407d-a189-49b5a1da2a2f",
+    "wordId": "2813290",
+    "pt": "['mulher de carreira']"
+  },
+  {
+    "kana": "ひとにざる",
+    "en": [
+      "anthropoid ape",
+      "anthropoid",
+      "pongid",
+      "ape"
+    ],
+    "senseUid": "7feb017e-d781-4ea5-93c0-dd3a649d379a",
+    "wordId": "2813300",
+    "pt": "{\n  \"a\": [\"macaco antropoide\", \"antropoide\", \"pongo\", \"grande macaco\"]\n"
+  },
+  {
+    "kana": "はんちょう",
+    "en": [
+      "administrative headquarters of a feudal domain (early Meiji period)"
+    ],
+    "senseUid": "0b50df9b-27d9-4576-a944-05d4d2294755",
+    "wordId": "2813310",
+    "pt": "['sede administrativa de um domínio feudal (início do período Meiji)']"
+  },
+  {
+    "kana": "はぬけ",
+    "en": [
+      "molting",
+      "moulting"
+    ],
+    "senseUid": "743ddbc3-a10c-4186-bf4f-5c35ec883231",
+    "wordId": "2813320",
+    "pt": "{\n  \"a\": [\n    \"queda de dentes\",\n    \"troca de dentes\"\n  ]\n"
+  },
+  {
+    "kana": "ビッグフット",
+    "en": [
+      "Bigfoot",
+      "Sasquatch"
+    ],
+    "senseUid": "b0601619-fc7b-410f-9fb8-b93d3505ea35",
+    "wordId": "2813330",
+    "pt": "['Pé Grande', 'Sasquatch']"
+  },
+  {
+    "kana": "ビッグフット",
+    "en": [
+      "Bigfoot (monster truck)"
+    ],
+    "senseUid": "2ca8ddfc-472c-437d-82de-5e272298da80",
+    "wordId": "2813330",
+    "pt": "['Bigfoot (caminhão monstro)']"
+  },
+  {
+    "kana": "サスクワッチ",
+    "en": [
+      "Sasquatch"
+    ],
+    "senseUid": "2bcd658d-9d7c-4956-af1d-2995a3290988",
+    "wordId": "2813340",
+    "pt": "['Pé-grande']"
+  },
+  {
+    "kana": "こくえいぶもん",
+    "en": [
+      "public sector (as opposed to private sector)"
+    ],
+    "senseUid": "a407493b-ce86-4791-8b05-e65bd8338159",
+    "wordId": "2813350",
+    "pt": "['setor público (em oposição ao setor privado)']"
+  },
+  {
+    "kana": "おやくそく",
+    "en": [
+      "promise",
+      "agreement",
+      "arrangement",
+      "one's word",
+      "contract",
+      "pact",
+      "appointment",
+      "engagement",
+      "date"
+    ],
+    "senseUid": "7a64e447-4eca-4828-810b-7106394b5ceb",
+    "wordId": "2813370",
+    "pt": "['promessa', 'acordo', 'arranjo', 'palavra dada', 'contrato', 'pacto', 'compromisso', 'encontro', 'reunião']"
+  },
+  {
+    "kana": "おやくそく",
+    "en": [
+      "something expected or predictable (e.g. running gag)",
+      "typical or clichéd development (in a story)",
+      "something considered obligatory or guaranteed (in a certain situation)"
+    ],
+    "senseUid": "8dc89763-8da3-4d8e-8685-91da6e97506b",
+    "wordId": "2813370",
+    "pt": "['algo esperado ou previsível (por exemplo, uma piada recorrente)', 'desenvolvimento típico ou clichê (em uma história)', 'algo considerado obrigatório ou garantido (em certa situação)']"
+  },
+  {
+    "kana": "やまとたける",
+    "en": [
+      "Yamato Takeru",
+      "12th Emperor of Japan, who dressed as a maidservant in a successful plot to kill the leaders of the Kumaso tribe in Kumamoto"
+    ],
+    "senseUid": "3d7b65ff-42a4-41e3-9e69-3274b4f3edca",
+    "wordId": "2813390",
+    "pt": "['Yamato Takeru', '12º Imperador do Japão, que se disfarçou de criada em um plano bem-sucedido para matar os líderes da tribo Kumaso em Kumamoto']"
+  },
+  {
+    "kana": "それにひきかえて",
+    "en": [
+      "in contrast",
+      "on the contrary",
+      "on the other hand"
+    ],
+    "senseUid": "27dd5411-f8e2-41d8-b221-e7041394afd1",
+    "wordId": "2813400",
+    "pt": "['em contraste', 'pelo contrário', 'por outro lado']"
+  },
+  {
+    "kana": "けんわんちょくひつ",
+    "en": [
+      "calligraphy technique of holding the brush perpendicularly, lower arm raised, and elbow held away from the body"
+    ],
+    "senseUid": "4813e2e1-c136-40f9-831a-862323b8fd2f",
+    "wordId": "2813410",
+    "pt": "{\n  \"a\": [\n    \"técnica de caligrafia de segurar o pincel na vertical, com o antebraço elevado e o cotovelo afastado do corpo\"\n  ]\n"
+  },
+  {
+    "kana": "さんきん",
+    "en": [
+      "going to serve one's lord"
+    ],
+    "senseUid": "59385b7d-f31b-4b01-a327-d06e223483cd",
+    "wordId": "2813420",
+    "pt": "['ir servir o senhor']"
+  },
+  {
+    "kana": "さんきん",
+    "en": [
+      "daimyo's alternating Edo residence",
+      "official attendance service (by a daimyo in the Edo period)"
+    ],
+    "senseUid": "bc9521af-5055-41c2-ac3e-9b58b6f8ad72",
+    "wordId": "2813420",
+    "pt": "['residência alternada do daimyo em Edo', 'serviço oficial de comparecimento (por um daimyo no período Edo)']"
+  },
+  {
+    "kana": "だいひつしゃ",
+    "en": [
+      "amanuensis"
+    ],
+    "senseUid": "f49aae09-b10c-46e2-9723-318e3738a322",
+    "wordId": "2813430",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"だいひつしゃ\",\n      \"portugues\": \"copista\",\n      \"explicação\": \"No contexto japonês, だいひつしゃ (amanuensis) refere-se a uma pessoa que escreve ou copia documentos em nome de outra, como um secretário ou escriba.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "たひつ",
+    "en": [
+      "someone else writing",
+      "someone else's writing"
+    ],
+    "senseUid": "93ec7ba1-b2d1-4e2e-b227-36ea086ad7d5",
+    "wordId": "2813440",
+    "pt": "{\n  \"a\": [\n    \"escrita de outra pessoa\",\n    \"texto escrito por outra pessoa\"\n  ]\n"
+  },
+  {
+    "kana": "もりつちじばん",
+    "en": [
+      "raised ground level"
+    ],
+    "senseUid": "98e79c59-f06b-4018-b19e-7457f6fea58a",
+    "wordId": "2813450",
+    "pt": "{\n  \"a\": [\"nível do solo elevado\"]\n"
+  },
+  {
+    "kana": "しょうぞう",
+    "en": [
+      "sheet forming",
+      "papermaking"
+    ],
+    "senseUid": "e53fd237-d016-4ab5-b304-3571eaa06701",
+    "wordId": "2813460",
+    "pt": "{\n  \"a\": [\n    \"formação da folha\",\n    \"fabricação de papel\"\n  ]\n"
+  },
+  {
+    "kana": "ズボッと",
+    "en": [
+      "(going) right into (a tight space)",
+      "(sinking into) deeply and suddenly",
+      "(popping) out",
+      "(coming out) with a pop",
+      "with a squelch"
+    ],
+    "senseUid": "f87501b5-235d-47c9-8a29-5d3d41536d46",
+    "wordId": "2813470",
+    "pt": "['entrando direto (em um espaço apertado)', 'afundando profundamente e de repente', 'saindo com um estalo', 'aparecendo de repente', 'com um som de “ploc” ou “squelch”']"
+  },
+  {
+    "kana": "れんさちず",
+    "en": [
+      "linkage map"
+    ],
+    "senseUid": "770756b5-b055-4067-b0d0-90d74c567744",
+    "wordId": "2813490",
+    "pt": "{\n  \"a\": [\"mapa de ligação\"]\n"
+  },
+  {
+    "kana": "いでんしちず",
+    "en": [
+      "genetic map"
+    ],
+    "senseUid": "4306bc08-19b4-4559-a5e7-4c1cd53d378a",
+    "wordId": "2813500",
+    "pt": "{\n  \"a\": [\n    \"mapa genético\"\n  ]\n"
+  },
+  {
+    "kana": "いでんしちずさくせい",
+    "en": [
+      "gene mapping"
+    ],
+    "senseUid": "4e9576d2-44cf-4230-95f8-4929bb6ee0d8",
+    "wordId": "2813510",
+    "pt": "{\n  \"a\": [\"mapeamento genético\"]\n"
+  },
+  {
+    "kana": "ぶつりてきちず",
+    "en": [
+      "physical map"
+    ],
+    "senseUid": "f122b2f6-44a8-4e70-8683-f1a078214f91",
+    "wordId": "2813520",
+    "pt": "['mapa físico']"
+  },
+  {
+    "kana": "ゲノムデータベース",
+    "en": [
+      "genome database"
+    ],
+    "senseUid": "4d66a226-ab9f-4b1b-a5c6-4ba88a8c0303",
+    "wordId": "2813530",
+    "pt": "['banco de dados genômico']"
+  },
+  {
+    "kana": "いねゲノム",
+    "en": [
+      "rice genome"
+    ],
+    "senseUid": "8fc7b22e-b594-4deb-b12e-2924ca030ee4",
+    "wordId": "2813540",
+    "pt": "{\n  \"a\": [\"genoma do arroz\"]\n"
+  },
+  {
+    "kana": "ポストゲノム",
+    "en": [
+      "post-genome",
+      "post-genomic"
+    ],
+    "senseUid": "96e25c0d-a877-406a-a70b-5cd2fcb758a4",
+    "wordId": "2813550",
+    "pt": "['pós-genoma', 'pós-genômico']"
+  },
+  {
+    "kana": "ボンフェローニほせい",
+    "en": [
+      "Bonferroni correction"
+    ],
+    "senseUid": "9224a50c-a925-47b4-b353-2fcffb3f702b",
+    "wordId": "2813560",
+    "pt": "['correção de Bonferroni']"
+  },
+  {
+    "kana": "ピーち",
+    "en": [
+      "p-value"
+    ],
+    "senseUid": "c19e136d-ecd6-4fe2-bb14-7e2adfbe04db",
+    "wordId": "2813570",
+    "pt": "['valor-p']"
+  },
+  {
+    "kana": "ノンパラメトリックほう",
+    "en": [
+      "non-parametric method"
+    ],
+    "senseUid": "d3e25f57-9058-41db-95c3-2d675cf427f8",
+    "wordId": "2813580",
+    "pt": "{\n  \"a\": [\"método não paramétrico\"]\n"
+  },
+  {
+    "kana": "やきなましほう",
+    "en": [
+      "simulated annealing"
+    ],
+    "senseUid": "948960fb-0edf-4d09-823c-39d1f05a4cf4",
+    "wordId": "2813590",
+    "pt": "['recosimento simulado']"
+  },
+  {
+    "kana": "やまのぼりほう",
+    "en": [
+      "hill-climbing method"
+    ],
+    "senseUid": "78bbc265-4c2c-48c0-a238-a189af980e05",
+    "wordId": "2813600",
+    "pt": "['método de subida de montanha']"
+  },
+  {
+    "kana": "シーケンスアラインメント",
+    "en": [
+      "sequence alignment"
+    ],
+    "senseUid": "f13ae2c5-5b72-400f-abe6-0faf9dca6ab1",
+    "wordId": "2813610",
+    "pt": "['alinhamento de sequência']"
+  },
+  {
+    "kana": "さいだいせつやくほう",
+    "en": [
+      "maximum parsimony method"
+    ],
+    "senseUid": "776dc63f-5ac0-4c2d-a22a-a236ec734ad1",
+    "wordId": "2813620",
+    "pt": "['método da máxima parcimônia']"
+  },
+  {
+    "kana": "れつにくし",
+    "en": [
+      "carnassial",
+      "carnassial tooth"
+    ],
+    "senseUid": "52ef5988-7244-4331-ab10-0bdb7db90ef6",
+    "wordId": "2813630",
+    "pt": "['dente carniceiro', 'dente carniceiro (dente especializado para cortar carne, típico de carnívoros)']"
+  },
+  {
+    "kana": "さいぼうないしょうきかん",
+    "en": [
+      "organelle"
+    ],
+    "senseUid": "d81db115-3d65-4919-8e9e-95cb771d9aa1",
+    "wordId": "2813640",
+    "pt": "{\n  \"a\": [\"organelo intracelular\"]\n"
+  },
+  {
+    "kana": "さいぼうないきょうせい",
+    "en": [
+      "endosymbiosis"
+    ],
+    "senseUid": "879a5ba8-05fc-443a-93a8-1bb44cadd4ca",
+    "wordId": "2813650",
+    "pt": "['endossimbiose']"
+  },
+  {
+    "kana": "ばっちょうがさ",
+    "en": [
+      "conical bamboo hat"
+    ],
+    "senseUid": "76268825-4e24-48c1-8657-531ea6d736cf",
+    "wordId": "2813660",
+    "pt": "['chapéu cônico de bambu']"
+  },
+  {
+    "kana": "ばんじょうがさ",
+    "en": [
+      "large primitive bamboo hat"
+    ],
+    "senseUid": "df5ef88e-9c3f-4c9b-bbee-a3bcc5755010",
+    "wordId": "2813670",
+    "pt": "{\n  \"a\": [\n    \"grande chapéu de bambu primitivo\"\n  ]\n"
+  },
+  {
+    "kana": "ホバーボード",
+    "en": [
+      "hoverboard",
+      "hover board",
+      "fictional hovering skateboard from the Back to the Future series"
+    ],
+    "senseUid": "0af3ac0b-ad0d-44f5-ab5e-8e1db77d7bcd",
+    "wordId": "2813680",
+    "pt": "['hoverboard', 'prancha flutuante', 'skate voador fictício da série De Volta para o Futuro']"
+  },
+  {
+    "kana": "そうしないと",
+    "en": [
+      "otherwise",
+      "if not",
+      "or else"
+    ],
+    "senseUid": "1f4acd71-336c-4e22-b999-815d380356b1",
+    "wordId": "2813720",
+    "pt": "['caso contrário', 'se não', 'do contrário']"
+  },
+  {
+    "kana": "じょへんすう",
+    "en": [
+      "parameter"
+    ],
+    "senseUid": "2dc4bf35-4c48-48b8-9003-512c8a8b4b4c",
+    "wordId": "2813730",
+    "pt": "{\n  \"a\": [\"parâmetro\"]\n"
+  },
+  {
+    "kana": "すいそくとうけいがく",
+    "en": [
+      "inferential statistics"
+    ],
+    "senseUid": "4acfe798-4700-45d6-8d9e-c81b42dc697e",
+    "wordId": "2813740",
+    "pt": "['estatística inferencial']"
+  },
+  {
+    "kana": "きじゅつとうけいがく",
+    "en": [
+      "descriptive statistics"
+    ],
+    "senseUid": "fe3b9c9f-43b2-483e-9100-7f6270a8b338",
+    "wordId": "2813750",
+    "pt": "['estatística descritiva']"
+  },
+  {
+    "kana": "へんりょうこうか",
+    "en": [
+      "random effect"
+    ],
+    "senseUid": "969ee273-2b36-4f0a-8943-1a01e7cfd80e",
+    "wordId": "2813760",
+    "pt": "['efeito aleatório']"
+  },
+  {
+    "kana": "すうりとうけいがく",
+    "en": [
+      "mathematical statistics"
+    ],
+    "senseUid": "d7048018-01bc-43d8-9970-60ccaa68237b",
+    "wordId": "2813770",
+    "pt": "['estatística matemática']"
+  },
+  {
+    "kana": "こていこうか",
+    "en": [
+      "fixed effect"
+    ],
+    "senseUid": "bd0fe22a-9a43-4581-8fec-1bfa3ee1d564",
+    "wordId": "2813780",
+    "pt": "['efeito fixo']"
+  },
+  {
+    "kana": "こんごうモデル",
+    "en": [
+      "mixed model"
+    ],
+    "senseUid": "c189e936-f826-4544-840e-c153fd864344",
+    "wordId": "2813790",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"こんごうモデル\",\n      \"gloss\": \"modelo misto\"\n    \n  ]\n"
+  }
+]

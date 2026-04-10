@@ -1,0 +1,939 @@
+[
+  {
+    "kana": "しょうごう",
+    "en": [
+      "correct meditative activity (in Jodo, saying the name of Amitabha)"
+    ],
+    "senseUid": "7fffd0d5-4cc0-4962-95af-5f6a2e8e9eb6",
+    "wordId": "2269570",
+    "pt": "['atividade meditativa correta (no Jōdo, recitar o nome de Amitābha)']"
+  },
+  {
+    "kana": "しょうぎょう",
+    "en": [
+      "correct practices (esp. in Jodo, the path to rebirth in paradise)"
+    ],
+    "senseUid": "0a4ef250-41a8-45d5-a237-ab85945605f0",
+    "wordId": "2269580",
+    "pt": "['práticas corretas (especialmente no Jōdo, o caminho para o renascimento no paraíso)']"
+  },
+  {
+    "kana": "じょごう",
+    "en": [
+      "auxiliary actions (in Jodo: recitation, observation, worship, praise and offering)"
+    ],
+    "senseUid": "ceb2dddc-64cb-4fe8-81c3-22ae8ad9121f",
+    "wordId": "2269590",
+    "pt": "{\n  \"a\": [\n    \"ações auxiliares (no Jōdo: recitação, contemplação, adoração, louvor e oferenda)\"\n  ]\n"
+  },
+  {
+    "kana": "しょうみょう",
+    "en": [
+      "right livelihood"
+    ],
+    "senseUid": "61f856dc-09e6-49a0-92da-1b691ae717cb",
+    "wordId": "2269600",
+    "pt": "{\n  \"a\": [\n    \"meio de vida correto\"\n  ]\n"
+  },
+  {
+    "kana": "しょうねん",
+    "en": [
+      "right mindfulness"
+    ],
+    "senseUid": "3e5f7e59-a99f-4fae-9ba1-419110fb3688",
+    "wordId": "2269610",
+    "pt": "{\n  \"a\": [\"atenção correta\"]\n"
+  },
+  {
+    "kana": "しょうねん",
+    "en": [
+      "true faith (in rebirth in the promised land)"
+    ],
+    "senseUid": "c6b2f19d-563f-4534-8a8c-8e847c7a4793",
+    "wordId": "2269610",
+    "pt": "{\n  \"a\": [\"fé verdadeira (na renascença na terra prometida)\"]\n"
+  },
+  {
+    "kana": "しょうじょう",
+    "en": [
+      "right concentration"
+    ],
+    "senseUid": "49874005-1f80-4dc8-8e20-42c14a7f8f87",
+    "wordId": "2269620",
+    "pt": "['concentração correta']"
+  },
+  {
+    "kana": "くたい",
+    "en": [
+      "truth of suffering"
+    ],
+    "senseUid": "632fff0c-d04e-4633-88d1-afd46e65650e",
+    "wordId": "2269630",
+    "pt": "['verdade do sofrimento']"
+  },
+  {
+    "kana": "めったい",
+    "en": [
+      "truth of the cessation of suffering"
+    ],
+    "senseUid": "2e623967-5be9-4d98-a454-ec4c942d712c",
+    "wordId": "2269640",
+    "pt": "{\n  \"a\": [\"verdade da cessação do sofrimento\"]\n"
+  },
+  {
+    "kana": "どうたい",
+    "en": [
+      "truth of the way to the cessation of suffering"
+    ],
+    "senseUid": "e2585227-e8fe-4459-952f-65b4ba5afcb3",
+    "wordId": "2269650",
+    "pt": "{\n  \"a\": [\"verdade do caminho para a cessação do sofrimento\"]\n"
+  },
+  {
+    "kana": "あのくたらさんみゃくさんぼだい",
+    "en": [
+      "anuttara samyak sambodhi (supreme perfect enlightenment)"
+    ],
+    "senseUid": "ff7b64a6-7553-47c7-863d-42514b0ed7e9",
+    "wordId": "2269660",
+    "pt": "{\n  \"a\": [\n    \"anuttara samyak sambodhi (suprema perfeita iluminação)\"\n  ]\n"
+  },
+  {
+    "kana": "なかみち",
+    "en": [
+      "road through the middle",
+      "middle road"
+    ],
+    "senseUid": "db1e67eb-fd28-4aa7-bfb8-4816301401e4",
+    "wordId": "2269670",
+    "pt": "['estrada do meio', 'caminho do meio']"
+  },
+  {
+    "kana": "はっかい",
+    "en": [
+      "the eight precepts (the five precepts with the addition of prohibitions against lying in a luxurious bed, self-decoration, song and dance, and eating after noon)"
+    ],
+    "senseUid": "929df296-fc5f-454c-b428-abd2842bfc38",
+    "wordId": "2269680",
+    "pt": "['os oito preceitos (os cinco preceitos com o acréscimo das proibições contra deitar-se em cama luxuosa, auto-ornamentação, canto e dança, e comer após o meio-dia)']"
+  },
+  {
+    "kana": "かい",
+    "en": [
+      "admonition",
+      "commandment"
+    ],
+    "senseUid": "18195489-2d5f-4c90-9b52-922fe08c61e1",
+    "wordId": "2269690",
+    "pt": "{\n  \"a\": [\n    \"advertência\",\n    \"mandamento\"\n  ]\n"
+  },
+  {
+    "kana": "かい",
+    "en": [
+      "sila (precept)"
+    ],
+    "senseUid": "b84de7b4-f00f-4d3e-906b-cd96248ee940",
+    "wordId": "2269690",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かい\",\n      \"português\": \"preceito (sila)\",\n      \"explicação\": \"No contexto japonês-budista, 'かい' (kai) refere-se aos preceitos ou regras de conduta moral, conhecidos em sânscrito como 'sila'. São princípios éticos seguidos pelos praticantes do budismo.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "おおボケ",
+    "en": [
+      "great idiot",
+      "fool",
+      "(saying) something silly or stupid"
+    ],
+    "senseUid": "fecc7f82-0e0b-4ab3-8d5b-3209058b982e",
+    "wordId": "2269700",
+    "pt": "{\n  \"a\": [\n    \"grande bobo\",\n    \"grande idiota\",\n    \"alguém que diz algo muito tolo\",\n    \"quem fala besteira\",\n    \"quem faz papel de bobo\"\n  ]\n"
+  },
+  {
+    "kana": "さいしょうにじょう",
+    "en": [
+      "least-squares (method)"
+    ],
+    "senseUid": "6f50f1af-9072-4bce-89f8-0acf80b6bf4c",
+    "wordId": "2269710",
+    "pt": "{\n  \"a\": [\"método dos mínimos quadrados\"]\n"
+  },
+  {
+    "kana": "まか",
+    "en": [
+      "greatness",
+      "enormity",
+      "superiority",
+      "maha"
+    ],
+    "senseUid": "608b11c6-ef30-4651-a77b-fce17c16d931",
+    "wordId": "2269720",
+    "pt": "{\n  \"a\": [\n    \"grandiosidade\",\n    \"enormidade\",\n    \"superioridade\",\n    \"maha\"\n  ]\n"
+  },
+  {
+    "kana": "おんぎ",
+    "en": [
+      "kanji reading and meaning"
+    ],
+    "senseUid": "1b9c2ab0-29a4-4c7e-a95a-99e2ee3fdcfa",
+    "wordId": "2269730",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"おんぎ\",\n      \"kanji\": \"恩義\",\n      \"leitura\": \"on-gi\",\n      \"significado\": \"obrigação de gratidão; sentimento de dívida moral por um favor recebido\"\n    \n  ]\n"
+  },
+  {
+    "kana": "でんしじょうほう",
+    "en": [
+      "electronic information",
+      "electronic data",
+      "electronics and information"
+    ],
+    "senseUid": "4ae87b0b-2ded-4862-a47b-a173e74b6e02",
+    "wordId": "2269740",
+    "pt": "{\n  \"a\": [\n    \"informação eletrônica\",\n    \"dados eletrônicos\",\n    \"eletrônica e informação\"\n  ]\n"
+  },
+  {
+    "kana": "しょちゅうおみまいもうしあげます",
+    "en": [
+      "midsummer greetings",
+      "to inquiry after someone's health in the hot season"
+    ],
+    "senseUid": "237a2c1d-92b9-475d-8ff0-e3b1cff12a4b",
+    "wordId": "2269750",
+    "pt": "['Saudações de meio de verão', 'Expressando votos de saúde durante a estação quente']"
+  },
+  {
+    "kana": "ぶんのいち",
+    "en": [
+      "one Nth part (e.g. one fifth, one tenth)",
+      "one out of N"
+    ],
+    "senseUid": "6ec144a2-3424-432c-9195-2437165b0eab",
+    "wordId": "2269760",
+    "pt": "{\n  \"a\": [\n    \"uma parte de N (por exemplo, um quinto, um décimo)\",\n    \"um entre N\"\n  ]\n"
+  },
+  {
+    "kana": "こういち",
+    "en": [
+      "first year of high school",
+      "first-year high school student"
+    ],
+    "senseUid": "30977335-1c5f-42d0-9da4-ac7239ac8913",
+    "wordId": "2269770",
+    "pt": "{\n  \"a\": [\n    \"primeiro ano do ensino médio\",\n    \"estudante do primeiro ano do ensino médio\"\n  ]\n"
+  },
+  {
+    "kana": "ゆはいそう",
+    "en": [
+      "transportation and delivery"
+    ],
+    "senseUid": "8df7c3a2-2e05-42cd-9c44-f57251a0633d",
+    "wordId": "2269780",
+    "pt": "['transporte e entrega']"
+  },
+  {
+    "kana": "こうに",
+    "en": [
+      "second year of high school",
+      "second-year high-school student"
+    ],
+    "senseUid": "0e2fe2fe-db76-42d6-af45-1ffe56785b18",
+    "wordId": "2269790",
+    "pt": "{\n  \"a\": [\n    \"segundo ano do ensino médio\",\n    \"aluno do segundo ano do ensino médio\"\n  ]\n"
+  },
+  {
+    "kana": "こうさん",
+    "en": [
+      "third year of high school",
+      "third-year high-school student"
+    ],
+    "senseUid": "9d5b2f4a-8083-412d-88c5-6f6885114293",
+    "wordId": "2269800",
+    "pt": "['terceiro ano do ensino médio', 'aluno do terceiro ano do ensino médio']"
+  },
+  {
+    "kana": "だいよん",
+    "en": [
+      "fourth"
+    ],
+    "senseUid": "f490d521-88bd-45b3-98b6-2b3c948e784a",
+    "wordId": "2269810",
+    "pt": "{\n  \"a\": [\"quarto\"]\n"
+  },
+  {
+    "kana": "される",
+    "en": [
+      "to be done (to someone or something)"
+    ],
+    "senseUid": "53c53242-332c-4516-b98f-a127e4e66671",
+    "wordId": "2269820",
+    "pt": "['ser feito (a alguém ou a algo)']"
+  },
+  {
+    "kana": "される",
+    "en": [
+      "to do",
+      "to be doing"
+    ],
+    "senseUid": "1d5c8271-388f-4f97-a70b-de7af43bac6c",
+    "wordId": "2269820",
+    "pt": "{\n  \"a\": [\n    \"ser feito\",\n    \"estar sendo feito\"\n  ]\n"
+  },
+  {
+    "kana": "しゃしゃりでる",
+    "en": [
+      "to come uninvited",
+      "to crash (a party)",
+      "to butt in"
+    ],
+    "senseUid": "d2ad55b3-2715-4bb2-9555-e69675d37761",
+    "wordId": "2269830",
+    "pt": "['intrometer-se', 'aparecer sem ser convidado', 'meter-se onde não é chamado']"
+  },
+  {
+    "kana": "あくうかん",
+    "en": [
+      "subspace (in science fiction)",
+      "space free from the laws of physics"
+    ],
+    "senseUid": "1502355e-6576-4584-97e3-3d55c045188a",
+    "wordId": "2269840",
+    "pt": "['subespaço (em ficção científica)', 'espaço livre das leis da física']"
+  },
+  {
+    "kana": "あこうそく",
+    "en": [
+      "near light speed",
+      "sublight speed"
+    ],
+    "senseUid": "01034df3-cbb2-4657-9327-aa5a7f45a71b",
+    "wordId": "2269850",
+    "pt": "{\n  \"a\": [\n    \"velocidade próxima à da luz\",\n    \"velocidade subluz\"\n  ]\n"
+  },
+  {
+    "kana": "にちにちそう",
+    "en": [
+      "Madagascar periwinkle (Catharanthus roseus)"
+    ],
+    "senseUid": "951e70e6-ec2e-4565-a4d2-3dfcad5ae589",
+    "wordId": "2269860",
+    "pt": "['Boa-noite-de-Madagascar (Catharanthus roseus)']"
+  },
+  {
+    "kana": "しょうエネタップ",
+    "en": [
+      "energy-saving power strip (power board)"
+    ],
+    "senseUid": "0ca2be06-cb3d-44ae-a297-f39270572ed3",
+    "wordId": "2269870",
+    "pt": "['régua de energia econômica', 'régua de energia para economia de energia', 'extensão de energia econômica']"
+  },
+  {
+    "kana": "ポケ",
+    "en": [
+      "poke (Hawaiian raw-fish salad)"
+    ],
+    "senseUid": "48eb803b-5533-4b01-b725-ee1599f2e215",
+    "wordId": "2269880",
+    "pt": "{\n  \"a\": [\"poke (salada havaiana de peixe cru)\"]\n"
+  },
+  {
+    "kana": "ゆいいつしんきょう",
+    "en": [
+      "monotheism"
+    ],
+    "senseUid": "2035f56c-fbf5-4368-88a0-bc3de9357b7a",
+    "wordId": "2269890",
+    "pt": "['monoteísmo']"
+  },
+  {
+    "kana": "ぜんそん",
+    "en": [
+      "the whole village"
+    ],
+    "senseUid": "ef9414ba-dde7-44f7-a1a5-0bea4b62b85b",
+    "wordId": "2269900",
+    "pt": "['a aldeia inteira']"
+  },
+  {
+    "kana": "ぜんそん",
+    "en": [
+      "all the villages (in an area)"
+    ],
+    "senseUid": "4cce0ea8-0619-433b-b437-01987b7990f1",
+    "wordId": "2269900",
+    "pt": "['todas as aldeias (de uma região)']"
+  },
+  {
+    "kana": "ものおきごや",
+    "en": [
+      "storage shed"
+    ],
+    "senseUid": "1fa55107-d0e9-40ec-a14e-3c939ba1d69f",
+    "wordId": "2269920",
+    "pt": "['depósito', 'galpão de armazenamento', 'abrigo de ferramentas']"
+  },
+  {
+    "kana": "いじげん",
+    "en": [
+      "different dimension"
+    ],
+    "senseUid": "0bbf2f11-1dba-4a20-b141-ae35cde75eeb",
+    "wordId": "2269910",
+    "pt": "['dimensão diferente']"
+  },
+  {
+    "kana": "ゆうれいのしょうたいみたりかれおばな",
+    "en": [
+      "fear makes the wolf bigger than he is",
+      "things are not as scary as they seem",
+      "the ghost, when examined closely, is withered silver grass"
+    ],
+    "senseUid": "7a2cc8f7-0818-4664-99b3-93558c56039b",
+    "wordId": "2269940",
+    "pt": "['O medo faz o lobo parecer maior do que é', 'As coisas não são tão assustadoras quanto parecem', 'O fantasma, quando visto de perto, é apenas uma murcha flor de prata (susuki)']"
+  },
+  {
+    "kana": "かれおばな",
+    "en": [
+      "withered silver grass"
+    ],
+    "senseUid": "14b1ed78-dd64-485b-8ce6-8c8c3f0fa9cf",
+    "wordId": "2269930",
+    "pt": "{\n  \"a\": [\"grama-prata murcha\"]\n"
+  },
+  {
+    "kana": "ひにちじょうせい",
+    "en": [
+      "extraordinariness"
+    ],
+    "senseUid": "47639362-1f87-4d6a-a9e1-c6313d8532dd",
+    "wordId": "2269950",
+    "pt": "{\n  \"a\": [\"extraordinariedade\", \"caráter extraordinário\", \"não-quotidianidade\"]\n"
+  },
+  {
+    "kana": "だいしどう",
+    "en": [
+      "hall with an enshrined statue of Kobo Daishi (at a Shingon temple)"
+    ],
+    "senseUid": "dbcc1d95-5dd6-4a13-af3d-e2e2d751136b",
+    "wordId": "2269960",
+    "pt": "['salão com uma estátua consagrada de Kobo Daishi (em um templo Shingon)']"
+  },
+  {
+    "kana": "しこくへんろ",
+    "en": [
+      "Shikoku pilgrimage (to the 88 temples)",
+      "Shikoku pilgrim"
+    ],
+    "senseUid": "789d44af-7025-4329-b51d-b86bba0fee8a",
+    "wordId": "2269970",
+    "pt": "['Peregrinação de Shikoku (aos 88 templos)', 'Peregrino de Shikoku']"
+  },
+  {
+    "kana": "しこくじゅんれい",
+    "en": [
+      "Shikoku pilgrimage (to the 88 temples)",
+      "Shikoku pilgrim"
+    ],
+    "senseUid": "7004bf0f-d853-4054-9770-195a1fb14e2f",
+    "wordId": "2269980",
+    "pt": "['Peregrinação de Shikoku (aos 88 templos)', 'Peregrino de Shikoku']"
+  },
+  {
+    "kana": "しこくはちじゅうはっかしょ",
+    "en": [
+      "88 temples of Shikoku (holy spots related to Kobo Daishi)"
+    ],
+    "senseUid": "b550a2a7-163d-4956-92fa-c364e6576d85",
+    "wordId": "2269990",
+    "pt": "{\n  \"a\": [\n    \"Os 88 templos de Shikoku (locais sagrados relacionados a Kobo Daishi)\"\n  ]\n"
+  },
+  {
+    "kana": "しゅつじょう",
+    "en": [
+      "leaving a state of intense concentration"
+    ],
+    "senseUid": "774d5b5e-8b6a-4054-89a7-a37c22d98db2",
+    "wordId": "2270000",
+    "pt": "{\n  \"a\": [\n    \"sair de um estado de intensa concentração\",\n    \"deixar um estado de foco profundo\",\n    \"emergir de uma imersão mental\"\n  ]\n"
+  },
+  {
+    "kana": "ほそくじょうほう",
+    "en": [
+      "supplementary information"
+    ],
+    "senseUid": "d33135d8-8f51-47f0-83a7-556c62893363",
+    "wordId": "2270010",
+    "pt": "{\n  \"a\": [\n    \"informação suplementar\"\n  ]\n"
+  },
+  {
+    "kana": "どうぎょうににん",
+    "en": [
+      "Kobo Daishi is always with me (written on the hats of Shikoku pilgrims)"
+    ],
+    "senseUid": "5cdcefb2-53c5-4e36-bce5-e0ea13c1ff0f",
+    "wordId": "2270020",
+    "pt": "{\n  \"a\": [\n    \"Kobo Daishi está sempre comigo (escrito nos chapéus dos peregrinos de Shikoku)\"\n  ]\n"
+  },
+  {
+    "kana": "はめあい",
+    "en": [
+      "fitting together (e.g. nuts and bolts)",
+      "fit"
+    ],
+    "senseUid": "ebbf5562-2700-4485-8b75-93adb009bd20",
+    "wordId": "2270040",
+    "pt": "['encaixe (por exemplo, porcas e parafusos)', 'ajuste']"
+  },
+  {
+    "kana": "おさめふだ",
+    "en": [
+      "votive tablet donated to a shrine or temple"
+    ],
+    "senseUid": "110c9ea7-fa84-459e-905a-2398350b5c2d",
+    "wordId": "2270050",
+    "pt": "['tábua votiva oferecida a um santuário ou templo']"
+  },
+  {
+    "kana": "おさめふだ",
+    "en": [
+      "treasury or granary receipt statement"
+    ],
+    "senseUid": "1d6fb70b-ddc2-4a0b-8d74-38ae5510eb9f",
+    "wordId": "2270050",
+    "pt": "['recibo de depósito em tesouraria ou armazém de grãos']"
+  },
+  {
+    "kana": "はんにゃしんぎょう",
+    "en": [
+      "Heart Sutra"
+    ],
+    "senseUid": "a9e61a78-90ed-49c8-9d9d-a7570b2a7a80",
+    "wordId": "2270060",
+    "pt": "{\n  \"a\": [\"Sutra do Coração\"]\n"
+  },
+  {
+    "kana": "ころがし",
+    "en": [
+      "rolling (something)",
+      "knocking down"
+    ],
+    "senseUid": "8a00c57f-a06d-433f-a948-c81b6588132d",
+    "wordId": "2270080",
+    "pt": "{\n  \"a\": [\n    \"rolar (algo)\",\n    \"derrubar\"\n  ]\n"
+  },
+  {
+    "kana": "ころがし",
+    "en": [
+      "fishing with multiple hooks on a weighted line"
+    ],
+    "senseUid": "868c73d6-b0f1-4b37-9a76-8e93a832a6db",
+    "wordId": "2270080",
+    "pt": "['pesca com vários anzóis em uma linha com peso']"
+  },
+  {
+    "kana": "ころがし",
+    "en": [
+      "repeatedly buying and selling"
+    ],
+    "senseUid": "34466181-bff2-496a-a0fa-4c585badcee8",
+    "wordId": "2270080",
+    "pt": "['compra e venda repetida']"
+  },
+  {
+    "kana": "ころがしづり",
+    "en": [
+      "fishing with multiple hooks on a weighted line"
+    ],
+    "senseUid": "180c0e1d-efec-4790-bfb9-920ab7560266",
+    "wordId": "2270090",
+    "pt": "['pesca com vários anzóis em uma linha com peso']"
+  },
+  {
+    "kana": "ほつがん",
+    "en": [
+      "giving rise to the desire to save all sentient beings"
+    ],
+    "senseUid": "2fdfebda-42e4-4238-a9a7-a92af12d9128",
+    "wordId": "2270100",
+    "pt": "['despertar o desejo de salvar todos os seres sencientes']"
+  },
+  {
+    "kana": "ほつがん",
+    "en": [
+      "praying",
+      "prayer"
+    ],
+    "senseUid": "38f63542-9adb-416a-a10a-c23a2256b510",
+    "wordId": "2270100",
+    "pt": "['oração', 'prece']"
+  },
+  {
+    "kana": "ぜんこんやど",
+    "en": [
+      "free lodging (for pilgrims, etc.)"
+    ],
+    "senseUid": "7f6ef7b5-45c8-4bd9-b8f8-35d3f36789f1",
+    "wordId": "2270110",
+    "pt": "['alojamento gratuito (para peregrinos, etc.)']"
+  },
+  {
+    "kana": "だいはんにゃきょう",
+    "en": [
+      "Great Perfection of Wisdom Sutra"
+    ],
+    "senseUid": "e2d3ae78-382f-4424-87ff-6cbef66460c7",
+    "wordId": "2270120",
+    "pt": "{\n  \"a\": [\"Sutra da Grande Perfeição da Sabedoria\"]\n"
+  },
+  {
+    "kana": "いしみち",
+    "en": [
+      "stony path",
+      "stony road"
+    ],
+    "senseUid": "6110279b-8aaa-406b-87e2-915844112fa8",
+    "wordId": "2270130",
+    "pt": "['caminho de pedras', 'estrada de pedras']"
+  },
+  {
+    "kana": "わげさ",
+    "en": [
+      "loop-shaped monk's stole"
+    ],
+    "senseUid": "228a6a87-6050-46d1-98af-d4175851e440",
+    "wordId": "2270140",
+    "pt": "['estola de monge em forma"
+  },
+  {
+    "kana": "きょうほん",
+    "en": [
+      "sutra book"
+    ],
+    "senseUid": "e0d88daf-878f-4298-87d9-c30f56fb0ca2",
+    "wordId": "2270150",
+    "pt": "{\n  \"a\": [\"livro de sutra\"]\n"
+  },
+  {
+    "kana": "のうきょうちょう",
+    "en": [
+      "book of stamps (each confirming donation to a temple on a pilgrimage)"
+    ],
+    "senseUid": "cbb4e6e3-2980-4034-991f-d8e7b2637082",
+    "wordId": "2270160",
+    "pt": "['livro de carimbos (cada um confirmando uma doação a um templo durante uma peregrinação)']"
+  },
+  {
+    "kana": "へんろすがた",
+    "en": [
+      "pilgrim's outfit"
+    ],
+    "senseUid": "e2bcf650-fef8-4231-880c-674e09a05cc7",
+    "wordId": "2270170",
+    "pt": "['traje de peregrino']"
+  },
+  {
+    "kana": "さんやぶくろ",
+    "en": [
+      "pilgrim's carry-all bag"
+    ],
+    "senseUid": "16d05835-97e5-4bfd-b08f-a34dc7ed3251",
+    "wordId": "2270180",
+    "pt": "['bolsa de viagem do peregrino']"
+  },
+  {
+    "kana": "はちじゅうはっかしょ",
+    "en": [
+      "88 temples (of, or modeled after those of, Shikoku)"
+    ],
+    "senseUid": "07049750-95df-4733-a26d-b9cc9575a7aa",
+    "wordId": "2270190",
+    "pt": "{\n  \"a\": [\n    \"88 templos (de Shikoku ou inspirados nos de Shikoku)\"\n  ]\n"
+  },
+  {
+    "kana": "しましこく",
+    "en": [
+      "small-scale version of the 88 temples of Shikoku (Awaji Island, Shōdoshima, etc.)"
+    ],
+    "senseUid": "e75a5e77-faa8-484a-b187-0981c1efcdf5",
+    "wordId": "2270200",
+    "pt": "{\n  \"a\": [\n    \"Versão em pequena escala dos 88 templos de Shikoku (como na Ilha Awaji, Shōdoshima, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "かんふげんぎょう",
+    "en": [
+      "Samantabhadra Contemplation Sutra"
+    ],
+    "senseUid": "eb8d083b-0d35-440e-9a1a-90f2e6e29bc0",
+    "wordId": "2270210",
+    "pt": "{\n  \"a\": [\"Sutra da Contemplação de Samantabhadra\"]\n"
+  },
+  {
+    "kana": "むりょうぎきょう",
+    "en": [
+      "Sutra of Immeasurable Meanings"
+    ],
+    "senseUid": "261c62bb-5532-41de-b7e1-b4fe9b293889",
+    "wordId": "2270220",
+    "pt": "['Sutra dos Significados Incomensuráveis']"
+  },
+  {
+    "kana": "かいきょう",
+    "en": [
+      "prefatory sutra"
+    ],
+    "senseUid": "9565a43c-e271-4be7-8eb2-ba42e9e9578d",
+    "wordId": "2270230",
+    "pt": "{\n  \"a\": [\"Sutra introdutório\"]\n"
+  },
+  {
+    "kana": "かいきょう",
+    "en": [
+      "opening a sutra",
+      "beginning to read a sutra"
+    ],
+    "senseUid": "6f80dec6-28dd-4bfa-b3e8-c0b5b9e5a799",
+    "wordId": "2270230",
+    "pt": "['abrir um sutra', 'começar a leitura de um sutra']"
+  },
+  {
+    "kana": "けっきょう",
+    "en": [
+      "sutra read in conclusion"
+    ],
+    "senseUid": "8eadbd05-fa3b-4e6c-901b-a0901b90e1b4",
+    "wordId": "2270240",
+    "pt": "{\n  \"a\": [\n    \"sutra lido na conclusão\"\n  ]\n"
+  },
+  {
+    "kana": "ほんぎょう",
+    "en": [
+      "main sutra (of a lecture)"
+    ],
+    "senseUid": "0d9a3217-348f-4149-a957-b9bef3f5d0e4",
+    "wordId": "2270250",
+    "pt": "['sutra principal (de uma palestra)']"
+  },
+  {
+    "kana": "かいきょうげ",
+    "en": [
+      "opening chant of a sutra"
+    ],
+    "senseUid": "493e7b5b-3de0-4e3a-acd3-173f75abb47d",
+    "wordId": "2270260",
+    "pt": "{\n  \"a\": [\"cântico de abertura de um sutra\"]\n"
+  },
+  {
+    "kana": "ほうごう",
+    "en": [
+      "name (of a buddha or bodhisattva)"
+    ],
+    "senseUid": "53526e93-6c57-406f-a719-ae5fa95d3cd8",
+    "wordId": "2270270",
+    "pt": "['nome (de um Buda ou bodisatva)']"
+  },
+  {
+    "kana": "ぼだいさった",
+    "en": [
+      "bodhisattva"
+    ],
+    "senseUid": "881b3e27-c685-45aa-8e10-8b4257ea8669",
+    "wordId": "2270280",
+    "pt": "['bodisatva']"
+  },
+  {
+    "kana": "さった",
+    "en": [
+      "bodhisattva"
+    ],
+    "senseUid": "84344da1-1297-45c3-9223-7464edc986b0",
+    "wordId": "2270290",
+    "pt": "{\n  \"a\": [\"bodisatva\"]\n"
+  },
+  {
+    "kana": "さった",
+    "en": [
+      "sattva (sentient beings)"
+    ],
+    "senseUid": "c11544f3-e138-48a3-b14d-d14d7ded2960",
+    "wordId": "2270290",
+    "pt": "['seres sencientes']"
+  },
+  {
+    "kana": "さった",
+    "en": [
+      "Vajrasattva"
+    ],
+    "senseUid": "3b576af5-1b9e-43b7-9249-3138d658f39b",
+    "wordId": "2270290",
+    "pt": "{\n  \"a\": [\"Vajrasattva\"]\n"
+  },
+  {
+    "kana": "しょぶつ",
+    "en": [
+      "various buddhas"
+    ],
+    "senseUid": "e1dcb5ba-6a35-4402-9d93-4109e6482be4",
+    "wordId": "2270300",
+    "pt": "['vários budas']"
+  },
+  {
+    "kana": "さんぜしょぶつ",
+    "en": [
+      "all Buddhas of past, present and future"
+    ],
+    "senseUid": "de4b3520-4066-4513-b39b-2e8ecfe7b86b",
+    "wordId": "2270310",
+    "pt": "['todos os Budas do passado, presente e futuro']"
+  },
+  {
+    "kana": "つごうのよろしい",
+    "en": [
+      "convenient"
+    ],
+    "senseUid": "f5c94d4d-cd28-471a-9397-d236ce7e77f1",
+    "wordId": "2270320",
+    "pt": "['conveniente', 'oportuno', 'favorável']"
+  },
+  {
+    "kana": "じんしん",
+    "en": [
+      "extremely deep (i.e. profound)"
+    ],
+    "senseUid": "8896cbd6-12b4-4522-b08b-ca935a5dcb53",
+    "wordId": "2270330",
+    "pt": "{\n  \"a\": [\"extremamente profundo\", \"profundidade extrema\", \"profundamente significativo\"]\n"
+  },
+  {
+    "kana": "みみょう",
+    "en": [
+      "unspeakably wonderful",
+      "sublime",
+      "exquisite",
+      "marvelous"
+    ],
+    "senseUid": "afc71b07-b4e8-4c32-95fc-c66c8a335205",
+    "wordId": "2270340",
+    "pt": "['indescritivelmente maravilhoso', 'sublime', 'exquisito', 'maravilhoso']"
+  },
+  {
+    "kana": "ひゃくせんまん",
+    "en": [
+      "multitudinousness"
+    ],
+    "senseUid": "1eb83bc7-3227-4df8-a7d9-98231a84515d",
+    "wordId": "2270350",
+    "pt": "{\n  \"a\": [\"multitudinosidade\"]\n"
+  },
+  {
+    "kana": "じゅじ",
+    "en": [
+      "remembering (and honoring) the teachings of Buddha"
+    ],
+    "senseUid": "568333bf-042b-470f-b154-f2e557c7145e",
+    "wordId": "2270360",
+    "pt": "{\n  \"a\": [\n    \"lembrar (e honrar) os ensinamentos de Buda\"\n  ]\n"
+  },
+  {
+    "kana": "なにごころない",
+    "en": [
+      "casual",
+      "unconcerned"
+    ],
+    "senseUid": "d78afac5-3814-47f9-a096-43b9cf534a0c",
+    "wordId": "2270370",
+    "pt": "['despreocupado', 'casual', 'sem intenção']"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "going",
+      "travelling",
+      "traveling",
+      "journey",
+      "trip"
+    ],
+    "senseUid": "74963ea7-3551-44e7-bc2f-d5497f398fa8",
+    "wordId": "2270390",
+    "pt": "['viagem', 'jornada', 'deslocamento', 'ida', 'trajeto']"
+  },
+  {
+    "kana": "まわりどおい",
+    "en": [
+      "roundabout"
+    ],
+    "senseUid": "f7fae2d0-1fea-4e83-ba8c-31f005999dce",
+    "wordId": "2270380",
+    "pt": "['indireto', 'circunvencional', 'rodeio', 'não direto']"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "bank"
+    ],
+    "senseUid": "b17aac3b-4f52-4c6c-a64b-3d1fdf1a470c",
+    "wordId": "2270390",
+    "pt": "{\n  \"a\": [\"banco\"]\n"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "act",
+      "action"
+    ],
+    "senseUid": "ca56f04b-15b4-4048-89d5-4642d2af61dc",
+    "wordId": "2270390",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"こう\",\n      \"gloss\": [\"ato\", \"ação\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "counter for groups or parties of people"
+    ],
+    "senseUid": "cf0d1e2a-f361-44a0-9ed7-6d9e884028a9",
+    "wordId": "2270390",
+    "pt": "['contador para grupos ou festas de pessoas']"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "counter for banks"
+    ],
+    "senseUid": "ff68e5a0-37e0-4397-bf23-9e35432fec98",
+    "wordId": "2270390",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"こう\",\n      \"português\": \"balcão (contador para bancos)\",\n      \"explicação\": \"Usado para contar agências bancárias ou balcões de bancos, seguindo o sentido japonês de contador específico para instituições financeiras.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "type of classical Chinese verse (usu. an epic from the Tang period onwards)"
+    ],
+    "senseUid": "c02d8612-e8e9-4811-9481-bfdf45abeaa6",
+    "wordId": "2270390",
+    "pt": "['tipo de poesia clássica chinesa (geralmente um épico do período Tang em diante)']"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "shopping district (of similar merchants; in the Sui and Tang periods)"
+    ],
+    "senseUid": "36fc00a1-e87f-4557-9410-4ad47cfc3594",
+    "wordId": "2270390",
+    "pt": "{\n  \"a\": [\n    \"distrito comercial (de mercadores semelhantes; nos períodos Sui e Tang)\"\n  ]\n"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "merchants' guild (in the Tang period)"
+    ],
+    "senseUid": "1e554ebb-ef22-4ae4-929f-3319830943d7",
+    "wordId": "2270390",
+    "pt": "{\n  \"a\": [\"guilda de mercadores (no período Tang)\"]\n"
+  },
+  {
+    "kana": "くやく",
+    "en": [
+      "hardship and misfortune"
+    ],
+    "senseUid": "b62c9767-7a19-4c28-aeef-92b20bb0d120",
+    "wordId": "2270410",
+    "pt": "['adversidade e infortúnio']"
+  }
+]

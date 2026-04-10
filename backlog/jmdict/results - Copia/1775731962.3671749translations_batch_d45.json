@@ -1,0 +1,931 @@
+[
+  {
+    "kana": "かくぎけってい",
+    "en": [
+      "cabinet decision"
+    ],
+    "senseUid": "380484ee-e917-40ae-8056-fde7e886b11d",
+    "wordId": "1989610",
+    "pt": "['decisão do gabinete']"
+  },
+  {
+    "kana": "かくりめいれい",
+    "en": [
+      "isolation order"
+    ],
+    "senseUid": "ca79bf65-7db0-473f-a349-27ed97026a2f",
+    "wordId": "1989620",
+    "pt": "['ordem de isolamento']"
+  },
+  {
+    "kana": "がくしゅうしょうがい",
+    "en": [
+      "learning disability"
+    ],
+    "senseUid": "2aa9ccb3-95b5-4dc4-abb1-107a05116d75",
+    "wordId": "1989630",
+    "pt": "{\n  \"a\": [\n    \"Transtorno de aprendizagem\"\n  ]\n"
+  },
+  {
+    "kana": "がくめんちょうかがく",
+    "en": [
+      "premium"
+    ],
+    "senseUid": "0fc51521-27fa-4205-b0be-911cd68d13fc",
+    "wordId": "1989640",
+    "pt": "{\n  \"a\": [\"prêmio\", \"valor facial adicional\", \"acréscimo ao valor nominal\"]\n"
+  },
+  {
+    "kana": "かぶのもちあい",
+    "en": [
+      "crossholding"
+    ],
+    "senseUid": "54aa5027-8bad-4d15-bae9-526ea4f2f8df",
+    "wordId": "1989650",
+    "pt": "{\n  \"a\": [\"participação cruzada de ações\"]\n"
+  },
+  {
+    "kana": "かぶかのはんぱつ",
+    "en": [
+      "rebound (of stock prices)"
+    ],
+    "senseUid": "821486e6-c02e-49b2-bfe7-38bb9943ec93",
+    "wordId": "1989660",
+    "pt": "{\n  \"a\": [\n    \"reação dos preços das ações\",\n    \"recuperação dos preços das ações\",\n    \"repique dos preços das ações\"\n  ]\n"
+  },
+  {
+    "kana": "かぶかいじそうさ",
+    "en": [
+      "price-keeping operation",
+      "PKO"
+    ],
+    "senseUid": "dab955ca-e743-4afd-9899-c312f7794000",
+    "wordId": "1989670",
+    "pt": "{\n  \"a\": [\n    \"operação de sustentação de preços\",\n    \"PKO\"\n  ]\n"
+  },
+  {
+    "kana": "かぶかそうさ",
+    "en": [
+      "share price manipulation"
+    ],
+    "senseUid": "2f5ab805-9fbc-4c94-a740-738685fa7866",
+    "wordId": "1989680",
+    "pt": "['manipulação do preço das ações']"
+  },
+  {
+    "kana": "かぶしきオプション",
+    "en": [
+      "stock option"
+    ],
+    "senseUid": "03568d80-ad76-4f58-93e4-758f26ba12dc",
+    "wordId": "1989690",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かぶしきオプション\",\n      \"portugues\": \"opção de ações\",\n      \"explicação\": \"Direito de comprar ou vender ações de uma empresa a um preço pré-determinado, geralmente usado como benefício para funcionários.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "かぶしきスワップ",
+    "en": [
+      "stock swap"
+    ],
+    "senseUid": "f56d591c-ced6-49dd-8183-5c2cf168e7e6",
+    "wordId": "1989700",
+    "pt": "['troca de ações']"
+  },
+  {
+    "kana": "かぶしきこうかん",
+    "en": [
+      "stock swap",
+      "share exchange"
+    ],
+    "senseUid": "736edfc1-60bd-4aa8-874d-175f5b36389d",
+    "wordId": "1989710",
+    "pt": "['troca de ações', 'permuta de ações']"
+  },
+  {
+    "kana": "かぶしきこうかんりつ",
+    "en": [
+      "stock exchange percentage"
+    ],
+    "senseUid": "5a08a82b-2f66-481f-8801-48bfb72ae8d2",
+    "wordId": "1989720",
+    "pt": "{\n  \"a\": [\"percentual de troca de ações\"]\n"
+  },
+  {
+    "kana": "かぶしきとうし",
+    "en": [
+      "investment in stocks",
+      "stock investment",
+      "equity investment"
+    ],
+    "senseUid": "30d971c7-6fa0-4cb9-9213-38bdb7dc7915",
+    "wordId": "1989730",
+    "pt": "{\n  \"a\": [\n    \"investimento em ações\",\n    \"investimento em ações de empresas\",\n    \"investimento acionário\"\n  ]\n"
+  },
+  {
+    "kana": "かぶしきはっこう",
+    "en": [
+      "share issuance"
+    ],
+    "senseUid": "bedfa22e-dbe5-484a-ac33-cb181c122034",
+    "wordId": "1989740",
+    "pt": "['emissão de ações']"
+  },
+  {
+    "kana": "かぶしきへいごう",
+    "en": [
+      "reverse stock split"
+    ],
+    "senseUid": "3d8f0e69-7b23-48ba-94f5-178fc82caf1c",
+    "wordId": "1989750",
+    "pt": "['agrupamento reverso de ações']"
+  },
+  {
+    "kana": "かぶぬししほんりえきりつ",
+    "en": [
+      "return on equity",
+      "ROE"
+    ],
+    "senseUid": "6ad4c129-fc4a-4df1-a405-7cce4b2fe868",
+    "wordId": "1989760",
+    "pt": "{\n  \"a\": [\n    \"retorno sobre o capital próprio\"\n  ]\n"
+  },
+  {
+    "kana": "かぶぬしだいひょうそしょう",
+    "en": [
+      "shareholder lawsuit"
+    ],
+    "senseUid": "339a1ada-e948-4af5-b800-c63eac64c62a",
+    "wordId": "1989770",
+    "pt": "['ação de responsabilidade de acionista']"
+  },
+  {
+    "kana": "かぶぬしとうひょう",
+    "en": [
+      "shareholder vote"
+    ],
+    "senseUid": "76db335d-a59c-41fe-aee8-f6299b8c1aca",
+    "wordId": "1989780",
+    "pt": "['votação de acionistas']"
+  },
+  {
+    "kana": "かまやり",
+    "en": [
+      "spear with curved or straight cross-blades"
+    ],
+    "senseUid": "89522db9-b23c-482e-b64e-ec20e6fc9948",
+    "wordId": "1989790",
+    "pt": "{\n  \"a\": [\"lança com lâminas cruzadas curvas ou retas\"]\n"
+  },
+  {
+    "kana": "かんじょうどうみゃくしっかん",
+    "en": [
+      "coronary-artery disease"
+    ],
+    "senseUid": "43db580a-28ad-44a3-a8ab-0dd3d25ee969",
+    "wordId": "1989800",
+    "pt": "['doença arterial coronariana']"
+  },
+  {
+    "kana": "かんじょうしょうがい",
+    "en": [
+      "emotional disorder"
+    ],
+    "senseUid": "9c5cb31d-3fe5-4ea0-aa02-757534724053",
+    "wordId": "1989820",
+    "pt": "{\n  \"a\": [\"transtorno emocional\"]\n"
+  },
+  {
+    "kana": "かんかくかびんしょう",
+    "en": [
+      "hypersensitivity"
+    ],
+    "senseUid": "d48985ad-cee2-4dca-ba00-a8e23ed512cd",
+    "wordId": "1989810",
+    "pt": "['hipersensibilidade']"
+  },
+  {
+    "kana": "かんせんりつ",
+    "en": [
+      "infection rate"
+    ],
+    "senseUid": "b0de5c9d-7d8a-4220-9bcf-e339108168f4",
+    "wordId": "1989830",
+    "pt": "['taxa de infecção']"
+  },
+  {
+    "kana": "かんきょうストレス",
+    "en": [
+      "environmental stress"
+    ],
+    "senseUid": "f48f456f-4237-4141-bc04-9c55971ee4cd",
+    "wordId": "1989840",
+    "pt": "['estresse ambiental']"
+  },
+  {
+    "kana": "かんきょうスワップ",
+    "en": [
+      "debt-for-nature swap"
+    ],
+    "senseUid": "c01d4c36-86c7-4a9e-860c-6382e4478ff7",
+    "wordId": "1989850",
+    "pt": "['troca de dívida por natureza']"
+  },
+  {
+    "kana": "かんきょうホルモン",
+    "en": [
+      "endocrine disruptor",
+      "endocrine disrupting-chemicals"
+    ],
+    "senseUid": "9bb9642e-fbf6-4f9d-9768-a67df0a6c167",
+    "wordId": "1989860",
+    "pt": "['disruptor endócrino', 'substância química desreguladora endócrina']"
+  },
+  {
+    "kana": "かんきょうあっか",
+    "en": [
+      "environmental degradation"
+    ],
+    "senseUid": "2ee0d7d8-ba4f-4a05-a4f2-98d13f971f00",
+    "wordId": "1989870",
+    "pt": "['degradação ambiental']"
+  },
+  {
+    "kana": "かんきょうかつどうか",
+    "en": [
+      "environmental activist",
+      "environmentalist"
+    ],
+    "senseUid": "7d07c0e6-7c20-4a76-98a4-4fd9887e9a4d",
+    "wordId": "1989880",
+    "pt": "['ativista ambiental', 'ambientalista']"
+  },
+  {
+    "kana": "かんきょうきせい",
+    "en": [
+      "environmental regulation"
+    ],
+    "senseUid": "7040db15-4e80-460b-8264-e3fab16d4669",
+    "wordId": "1989890",
+    "pt": "['regulação ambiental']"
+  },
+  {
+    "kana": "かんきょうさいがい",
+    "en": [
+      "environmental disaster"
+    ],
+    "senseUid": "22600715-eac0-4608-9e3a-819c69d682bd",
+    "wordId": "1989900",
+    "pt": "['desastre ambiental']"
+  },
+  {
+    "kana": "かんきょうせいさく",
+    "en": [
+      "environmental policy"
+    ],
+    "senseUid": "8a97a090-b743-4f04-af95-f3a167187561",
+    "wordId": "1989910",
+    "pt": "['política ambiental']"
+  },
+  {
+    "kana": "かんきょうだいじん",
+    "en": [
+      "Minister of the Environment"
+    ],
+    "senseUid": "54a04be1-79ca-408e-9852-640d35a693f1",
+    "wordId": "1989920",
+    "pt": "{\n  \"a\": [\n    \"Ministro do Meio Ambiente\"\n  ]\n"
+  },
+  {
+    "kana": "かんきょうちょうさ",
+    "en": [
+      "environmental research"
+    ],
+    "senseUid": "9c48cde1-6c86-4093-8823-bc04aab0b3cb",
+    "wordId": "1989930",
+    "pt": "['pesquisa ambiental']"
+  },
+  {
+    "kana": "かんきょうなんみん",
+    "en": [
+      "environmental refugee"
+    ],
+    "senseUid": "9bcd0cc0-d3f3-4b29-9b49-3b65d557863c",
+    "wordId": "1989940",
+    "pt": "['refugiado ambiental']"
+  },
+  {
+    "kana": "かんきょうほごだんたい",
+    "en": [
+      "pro-environment group"
+    ],
+    "senseUid": "473fb8a7-4251-431a-98f8-0a929cdb242c",
+    "wordId": "1989950",
+    "pt": "{\n  \"a\": [\n    \"grupo pró-meio ambiente\"\n  ]\n"
+  },
+  {
+    "kana": "かんきょうほう",
+    "en": [
+      "environmental laws"
+    ],
+    "senseUid": "2241d806-b4db-4947-bfd8-c283556653ec",
+    "wordId": "1989960",
+    "pt": "['leis ambientais']"
+  },
+  {
+    "kana": "かんきょうほうき",
+    "en": [
+      "environmental laws"
+    ],
+    "senseUid": "148bdd4d-04a4-4104-a5b5-99b9b264e8bb",
+    "wordId": "1989970",
+    "pt": "['leis ambientais']"
+  },
+  {
+    "kana": "かんきょうもんだいせんもんか",
+    "en": [
+      "environmentalist"
+    ],
+    "senseUid": "94264e80-5054-4dbd-a8fd-4e92496bff6c",
+    "wordId": "1989980",
+    "pt": "{\n  \"a\": [\"especialista em questões ambientais\"]\n"
+  },
+  {
+    "kana": "かんきょうりろん",
+    "en": [
+      "ecological theory"
+    ],
+    "senseUid": "8fed6e0f-3f8b-4466-9ede-cf3a5c73e95f",
+    "wordId": "1989990",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かんきょうりろん\",\n      \"gloss\": [\"teoria ecológica\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "かんさほうじん",
+    "en": [
+      "audit corporation",
+      "auditing firm"
+    ],
+    "senseUid": "7642dbd0-6b6a-4b1c-9bae-5936f041cac1",
+    "wordId": "1990010",
+    "pt": "{\n  \"a\": [\n    \"sociedade de auditoria\",\n    \"firma de auditoria\"\n  ]\n"
+  },
+  {
+    "kana": "かんきょうれっか",
+    "en": [
+      "environmental degradation"
+    ],
+    "senseUid": "b8b079a0-9192-41d9-a3a1-a8a1f52828c0",
+    "wordId": "1990000",
+    "pt": "['degradação ambiental']"
+  },
+  {
+    "kana": "かんしカメラ",
+    "en": [
+      "surveillance camera",
+      "security camera"
+    ],
+    "senseUid": "5bab5a5d-8f29-431b-a85d-66ab475be197",
+    "wordId": "1990020",
+    "pt": "{\n  \"a\": [\n    \"câmera de vigilância\",\n    \"câmera de segurança\"\n  ]\n"
+  },
+  {
+    "kana": "かんとくいいんかい",
+    "en": [
+      "supervisory board"
+    ],
+    "senseUid": "b39fdd0e-675b-427d-8555-529ce9b6abb9",
+    "wordId": "1990030",
+    "pt": "{\n  \"a\": [\"conselho supervisor\"]\n"
+  },
+  {
+    "kana": "かんばんほうしき",
+    "en": [
+      "just-in-time inventory management",
+      "JIT"
+    ],
+    "senseUid": "2153c73e-9628-4c3f-9d35-14de78eb8959",
+    "wordId": "1990040",
+    "pt": "{\n  \"a\": [\n    \"gestão de estoque just-in-time\",\n    \"JIT\"\n  ]\n"
+  },
+  {
+    "kana": "かんりコスト",
+    "en": [
+      "management cost"
+    ],
+    "senseUid": "53f6e113-a327-4822-8f4b-ba7e6ab65123",
+    "wordId": "1990050",
+    "pt": "['custo de gestão']"
+  },
+  {
+    "kana": "かんいがたけいたいでんわ",
+    "en": [
+      "personal handyphone system",
+      "PHS"
+    ],
+    "senseUid": "432a9bf7-1c14-469d-96ac-5633d6f19c23",
+    "wordId": "1990060",
+    "pt": "{\n  \"a\": [\n    \"Sistema pessoal de telefonia portátil\"\n  ]\n"
+  },
+  {
+    "kana": "かんきのう",
+    "en": [
+      "liver function"
+    ],
+    "senseUid": "b5673263-739f-4ec2-9bea-42a2946f23bb",
+    "wordId": "1990070",
+    "pt": "{\n  \"a\": [\n    \"função do fígado\"\n  ]\n"
+  },
+  {
+    "kana": "かんふぜん",
+    "en": [
+      "liver failure"
+    ],
+    "senseUid": "069cc011-b287-4d53-9870-e84fcabc8ffe",
+    "wordId": "1990080",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かんふぜん\",\n      \"portugues\": \"insuficiência hepática\"\n    \n  ]\n"
+  },
+  {
+    "kana": "かんこくそうごうかぶかしすう",
+    "en": [
+      "Korea Composite Stock Price Index",
+      "KOSPI"
+    ],
+    "senseUid": "662e8bb0-1380-48cf-9f33-51b89ae95cd8",
+    "wordId": "1990100",
+    "pt": "{\n  \"a\": [\n    \"Índice Composto de Preços das Ações da Coreia\",\n    \"KOSPI\"\n  ]\n"
+  },
+  {
+    "kana": "かんせつひ",
+    "en": [
+      "overhead"
+    ],
+    "senseUid": "0390ba6c-f544-46f0-914f-7f3463468bb5",
+    "wordId": "1990090",
+    "pt": "{\n  \"a\": [\"despesas gerais\"]\n"
+  },
+  {
+    "kana": "きぎょうイメージ",
+    "en": [
+      "corporate image"
+    ],
+    "senseUid": "d0f85ebe-201e-4346-8c18-cf16ec12851a",
+    "wordId": "1990110",
+    "pt": "{\n  \"a\": [\n    \"imagem corporativa\"\n  ]\n"
+  },
+  {
+    "kana": "きぎょうかいけい",
+    "en": [
+      "corporate accounting"
+    ],
+    "senseUid": "64f98c48-d4ca-43f2-9473-af8d567282b0",
+    "wordId": "1990120",
+    "pt": "{\n  \"a\": [\"contabilidade empresarial\"]\n"
+  },
+  {
+    "kana": "きぎょうかいけいげんそく",
+    "en": [
+      "corporate accounting principles"
+    ],
+    "senseUid": "60597247-27c1-4543-83db-a49b857a3fd8",
+    "wordId": "1990130",
+    "pt": "{\n  \"a\": [\"princípios de contabilidade corporativa\"]\n"
+  },
+  {
+    "kana": "きぎょうききかんり",
+    "en": [
+      "corporate risk management"
+    ],
+    "senseUid": "c02623ff-2d2a-4c32-9bd5-63335cf428b1",
+    "wordId": "1990140",
+    "pt": "{\n  \"a\": [\"gestão de riscos corporativos\"]\n"
+  },
+  {
+    "kana": "きぎょうぎょうせき",
+    "en": [
+      "corporate earnings",
+      "corporate performance"
+    ],
+    "senseUid": "e6a70aba-0aa2-4de5-b562-196752349309",
+    "wordId": "1990150",
+    "pt": "['desempenho corporativo', 'resultados corporativos']"
+  },
+  {
+    "kana": "きぎょうさいむ",
+    "en": [
+      "corporate debt"
+    ],
+    "senseUid": "80758f7e-2d6e-40ea-a28a-47d42d6a979c",
+    "wordId": "1990170",
+    "pt": "['dívida corporativa']"
+  },
+  {
+    "kana": "きぎょうこうどう",
+    "en": [
+      "corporate activity"
+    ],
+    "senseUid": "00c4925f-f0d7-4b0d-ab2b-25e8b7122bf8",
+    "wordId": "1990160",
+    "pt": "['atividade empresarial']"
+  },
+  {
+    "kana": "きぎょうざいこ",
+    "en": [
+      "business inventory"
+    ],
+    "senseUid": "f5f3a725-3efb-424f-8346-3b26b5882d9c",
+    "wordId": "1990180",
+    "pt": "['estoque empresarial']"
+  },
+  {
+    "kana": "きぎょうしゅうえき",
+    "en": [
+      "corporate earnings",
+      "corporate profits"
+    ],
+    "senseUid": "6fef6895-2850-4dbf-8d44-8f3208427f1b",
+    "wordId": "1990190",
+    "pt": "['lucros corporativos', 'ganhos corporativos']"
+  },
+  {
+    "kana": "きぎょうせきにん",
+    "en": [
+      "corporate responsibility"
+    ],
+    "senseUid": "2730fc21-d516-427b-bc34-69a66e7820bd",
+    "wordId": "1990200",
+    "pt": "{\n  \"a\": [\"responsabilidade corporativa\"]\n"
+  },
+  {
+    "kana": "きぎょうとうさん",
+    "en": [
+      "corporate bankruptcy"
+    ],
+    "senseUid": "a469ce63-027c-47e1-9822-db8602c7b97a",
+    "wordId": "1990210",
+    "pt": "['falência empresarial']"
+  },
+  {
+    "kana": "きぎょうとうし",
+    "en": [
+      "corporate spending"
+    ],
+    "senseUid": "8b56b446-a416-4e6d-a80a-341a20bbc4d9",
+    "wordId": "1990220",
+    "pt": "['investimento empresarial']"
+  },
+  {
+    "kana": "きぎょうねんきんせいど",
+    "en": [
+      "corporate pension plan"
+    ],
+    "senseUid": "e0fc6ce2-d360-412c-a175-bd53d922360b",
+    "wordId": "1990230",
+    "pt": "{\n  \"a\": [\"sistema de pensão corporativa\"]\n"
+  },
+  {
+    "kana": "きぎょうはんざい",
+    "en": [
+      "corporate crime"
+    ],
+    "senseUid": "91fc6201-b7ad-482c-92c1-6e4b534a5b40",
+    "wordId": "1990240",
+    "pt": "{\n  \"a\": [\n    \"crime corporativo\"\n  ]\n"
+  },
+  {
+    "kana": "きぎょうふうど",
+    "en": [
+      "corporate culture"
+    ],
+    "senseUid": "159d0f98-6e24-4fa6-a628-1f8b9bf71386",
+    "wordId": "1990250",
+    "pt": "['cultura empresarial']"
+  },
+  {
+    "kana": "ききかんりいいんかい",
+    "en": [
+      "crisis committee"
+    ],
+    "senseUid": "d9ed3144-0bea-472e-ab5f-9db6ea48cddb",
+    "wordId": "1990260",
+    "pt": "['comitê de crise']"
+  },
+  {
+    "kana": "きとくじょうたい",
+    "en": [
+      "critical condition"
+    ],
+    "senseUid": "906ac5f2-aaad-40a1-bb64-9bd043495ce3",
+    "wordId": "1990270",
+    "pt": "{\n  \"a\": [\"estado crítico\"]\n"
+  },
+  {
+    "kana": "きしゅうこうげき",
+    "en": [
+      "surprise attack",
+      "ambush"
+    ],
+    "senseUid": "90efac16-31d7-44cf-807c-fa5ed10e0ab2",
+    "wordId": "1990290",
+    "pt": "{\n  \"a\": [\n    \"ataque surpresa\",\n    \"emboscada\"\n  ]\n"
+  },
+  {
+    "kana": "きかんぎょうむ",
+    "en": [
+      "mission-critical task",
+      "business-critical matter"
+    ],
+    "senseUid": "642613a3-b6db-4d60-a4ba-4f5741e14e32",
+    "wordId": "1990280",
+    "pt": "['tarefa crítica para a missão', 'questão crítica para os negócios']"
+  },
+  {
+    "kana": "きぼうたいしょく",
+    "en": [
+      "voluntary resignation",
+      "voluntary retirement",
+      "voluntary redundancy",
+      "voluntary layoff"
+    ],
+    "senseUid": "6c1725a7-8f5a-44fd-9890-4039eb9e19d9",
+    "wordId": "1990300",
+    "pt": "['demissão voluntária', 'aposentadoria voluntária', 'redundância voluntária', 'dispensa voluntária']"
+  },
+  {
+    "kana": "きみつぶんしょ",
+    "en": [
+      "classified document",
+      "confidential document"
+    ],
+    "senseUid": "091bb517-1944-4000-b4c3-9e87e033e337",
+    "wordId": "1990310",
+    "pt": "['documento confidencial', 'documento classificado']"
+  },
+  {
+    "kana": "きかんないチューブ",
+    "en": [
+      "tracheal tube"
+    ],
+    "senseUid": "94087635-e221-438b-86b0-4f108c1c92f3",
+    "wordId": "1990320",
+    "pt": "{\n  \"a\": [\"tubo traqueal\"]\n"
+  },
+  {
+    "kana": "きせつちょうせい",
+    "en": [
+      "seasonal adjustment"
+    ],
+    "senseUid": "8c2ea84d-8533-484e-ad80-88f924e86f3e",
+    "wordId": "1990330",
+    "pt": "['ajuste sazonal']"
+  },
+  {
+    "kana": "きぎょうかせいしん",
+    "en": [
+      "entrepreneurial spirit",
+      "entrepreneurship"
+    ],
+    "senseUid": "5af05548-7fb4-42a1-8870-6b2352b98020",
+    "wordId": "1990340",
+    "pt": "['espírito empreendedor', 'empreendedorismo']"
+  },
+  {
+    "kana": "ぎぞうしへい",
+    "en": [
+      "fake bill"
+    ],
+    "senseUid": "72ef1a76-6d12-495d-abec-25c91c513282",
+    "wordId": "1990360",
+    "pt": "['nota falsa']"
+  },
+  {
+    "kana": "ぎせいフライ",
+    "en": [
+      "sacrifice fly"
+    ],
+    "senseUid": "dc310e30-611c-45f1-b61c-0f737517d7c5",
+    "wordId": "1990370",
+    "pt": "{\n  \"a\": [\"fly de sacrifício\"]\n"
+  },
+  {
+    "kana": "ぎじたいけんりょうほう",
+    "en": [
+      "exposure therapy"
+    ],
+    "senseUid": "4c7e99e7-27ec-45a0-be13-ed43ebb0cf03",
+    "wordId": "1990380",
+    "pt": "['terapia de exposição']"
+  },
+  {
+    "kana": "ぎもんひょう",
+    "en": [
+      "disputed ballot"
+    ],
+    "senseUid": "be403976-8fd5-4505-ac48-0c584628ef5f",
+    "wordId": "1990390",
+    "pt": "{\n  \"a\": [\"cédula contestada\"]\n"
+  },
+  {
+    "kana": "ぎいんとっけん",
+    "en": [
+      "parliamentary privilege"
+    ],
+    "senseUid": "318e4709-ae81-46ba-9403-f156cb03dbc1",
+    "wordId": "1990400",
+    "pt": "['privilégio parlamentar']"
+  },
+  {
+    "kana": "ぎかいせいみんしゅしゅぎ",
+    "en": [
+      "parliamentary democracy"
+    ],
+    "senseUid": "c35d9bb7-fcd6-441f-b60b-4469fa05bf79",
+    "wordId": "1990410",
+    "pt": "['democracia parlamentar']"
+  },
+  {
+    "kana": "きゅうせんちたい",
+    "en": [
+      "demilitarized zone",
+      "demilitarised zone",
+      "DMZ"
+    ],
+    "senseUid": "078b0aff-f0b4-4a41-be2f-aebfd1d940df",
+    "wordId": "1990420",
+    "pt": "{\n  \"a\": [\"zona desmilitarizada\"]\n"
+  },
+  {
+    "kana": "きゅうせいかんせんしょう",
+    "en": [
+      "acute infection"
+    ],
+    "senseUid": "0fbf1c05-7782-43e9-8353-831ccb73aad3",
+    "wordId": "1990430",
+    "pt": "['infecção aguda']"
+  },
+  {
+    "kana": "きゅうせいちょうきぎょう",
+    "en": [
+      "rapidly growing company"
+    ],
+    "senseUid": "c5c0e3a7-d663-48f6-90b3-39d99cf5528d",
+    "wordId": "1990440",
+    "pt": "{\n  \"a\": [\"empresa de rápido crescimento\"]\n"
+  },
+  {
+    "kana": "きゅうきゅういりょう",
+    "en": [
+      "emergency medicine"
+    ],
+    "senseUid": "b98cc76f-ec3c-4d1a-9fce-b31da2113d38",
+    "wordId": "1990450",
+    "pt": "{\n  \"a\": [\"medicina de emergência\"]\n"
+  },
+  {
+    "kana": "きゅうしょくもうしこみ",
+    "en": [
+      "job application"
+    ],
+    "senseUid": "2ac40d10-4f18-42c8-b9b5-c5684d153f92",
+    "wordId": "1990460",
+    "pt": "{\n  \"a\": [\"inscrição para refeição escolar\"]\n"
+  },
+  {
+    "kana": "きゅうじんしじょう",
+    "en": [
+      "job market"
+    ],
+    "senseUid": "2331064c-59da-4471-aa71-7093cacf921c",
+    "wordId": "1990470",
+    "pt": "{\n  \"a\": [\n    \"mercado de trabalho\"\n  ]\n"
+  },
+  {
+    "kana": "きゅうじんじょうほうし",
+    "en": [
+      "job magazine"
+    ],
+    "senseUid": "501e74bc-676a-4ff8-9cfb-5c7d65b7f4b8",
+    "wordId": "1990480",
+    "pt": "{\n  \"a\": [\"revista de empregos\"]\n"
+  },
+  {
+    "kana": "きゅうりょうしはらいこぎって",
+    "en": [
+      "paycheck"
+    ],
+    "senseUid": "c3707af5-1ca0-4c7a-a0e2-c90178f18783",
+    "wordId": "1990490",
+    "pt": "{\n  \"a\": [\"cheque de pagamento\"]\n"
+  },
+  {
+    "kana": "きょだいきぎょう",
+    "en": [
+      "corporate giant"
+    ],
+    "senseUid": "e3ca8a0c-8e17-4cd3-b500-6fdfd7204e47",
+    "wordId": "1990500",
+    "pt": "['gigante corporativo']"
+  },
+  {
+    "kana": "きょだいぎんこう",
+    "en": [
+      "megabank"
+    ],
+    "senseUid": "ee0d66e0-bc4a-4d61-a5a8-544ca847e401",
+    "wordId": "1990510",
+    "pt": "{\n  \"a\": [\"megabanco\"]\n"
+  },
+  {
+    "kana": "きょだいふくごうきぎょう",
+    "en": [
+      "large conglomerate",
+      "large group of related companies"
+    ],
+    "senseUid": "9bdf14ec-844e-4279-8f13-5414c939a6e2",
+    "wordId": "1990520",
+    "pt": "['grande conglomerado', 'grande grupo de empresas relacionadas']"
+  },
+  {
+    "kana": "きょうとぎていしょ",
+    "en": [
+      "Kyoto Protocol"
+    ],
+    "senseUid": "30a70e29-fb0f-4ae3-9dbf-3cd68cec9246",
+    "wordId": "1990530",
+    "pt": "['Protocolo de Kyoto']"
+  },
+  {
+    "kana": "きょうきゅうコスト",
+    "en": [
+      "supply cost"
+    ],
+    "senseUid": "5921b1c7-bed9-4127-bb25-5a99ee6a1050",
+    "wordId": "1990540",
+    "pt": "['custo de fornecimento']"
+  },
+  {
+    "kana": "きょうぎかいじょう",
+    "en": [
+      "sporting venue",
+      "grounds",
+      "stadium",
+      "competition venue"
+    ],
+    "senseUid": "03489ded-d2bb-4348-8d67-c98f01415b4d",
+    "wordId": "1990550",
+    "pt": "{\n  \"a\": [\n    \"local de competição\",\n    \"local esportivo\",\n    \"estádio\",\n    \"arena de competições\"\n  ]\n"
+  },
+  {
+    "kana": "きょうどうきぎょうたい",
+    "en": [
+      "joint venture",
+      "consortium",
+      "JV"
+    ],
+    "senseUid": "84b77742-98ce-4fd9-9598-593d863fb945",
+    "wordId": "1990560",
+    "pt": "['empreendimento conjunto', 'consórcio', 'joint venture']"
+  },
+  {
+    "kana": "きょうどうぐんじえんしゅう",
+    "en": [
+      "joint military exercise"
+    ],
+    "senseUid": "e4089c7b-3088-4f25-b377-1d3649f6ba9c",
+    "wordId": "1990570",
+    "pt": "{\n  \"a\": [\"exercício militar conjunto\"]\n"
+  },
+  {
+    "kana": "きょうどうもちかぶがいしゃ",
+    "en": [
+      "joint holding company"
+    ],
+    "senseUid": "3d0929b0-5b58-4e57-8da5-1315494265a9",
+    "wordId": "1990580",
+    "pt": "{\n  \"a\": [\"companhia holding conjunta\"]\n"
+  },
+  {
+    "kana": "きょうどうそうさ",
+    "en": [
+      "joint investigation"
+    ],
+    "senseUid": "b23f2026-91d3-4ca5-b203-2d80be465164",
+    "wordId": "1990590",
+    "pt": "['investigação conjunta']"
+  },
+  {
+    "kana": "つよきしじょう",
+    "en": [
+      "bull market"
+    ],
+    "senseUid": "952d7ab5-480b-4304-b2e2-9bcda9dc3f69",
+    "wordId": "1990610",
+    "pt": "['mercado em alta']"
+  },
+  {
+    "kana": "つよふくみしきょう",
+    "en": [
+      "bull market"
+    ],
+    "senseUid": "1fe7562b-cfb8-44c3-b494-daf1d8ad34fe",
+    "wordId": "1990600",
+    "pt": "{\n  \"a\": [\"mercado em alta\"]\n"
+  }
+]

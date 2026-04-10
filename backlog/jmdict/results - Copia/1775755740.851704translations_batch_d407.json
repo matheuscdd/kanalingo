@@ -1,0 +1,930 @@
+[
+  {
+    "kana": "きょうつうぶんしょ",
+    "en": [
+      "generic-document"
+    ],
+    "senseUid": "763b3b72-8107-4e52-8184-05b85d684570",
+    "wordId": "2350730",
+    "pt": "['documento genérico']"
+  },
+  {
+    "kana": "きょうつうりょういき",
+    "en": [
+      "common area"
+    ],
+    "senseUid": "8e8beb46-62ad-4057-8e41-4343b679a5e5",
+    "wordId": "2350740",
+    "pt": "{\n  \"a\": [\"área comum\"]\n"
+  },
+  {
+    "kana": "きょうつうろんりこうぞう",
+    "en": [
+      "generic logical structure"
+    ],
+    "senseUid": "3642020c-943d-48d1-a374-cbe30f45eecd",
+    "wordId": "2350750",
+    "pt": "['estrutura lógica genérica']"
+  },
+  {
+    "kana": "きょうどうかいはつ",
+    "en": [
+      "joint development"
+    ],
+    "senseUid": "ed15116d-8073-45a3-9f14-176f732aecc8",
+    "wordId": "2350760",
+    "pt": "['desenvolvimento conjunto']"
+  },
+  {
+    "kana": "きょうどうじっけん",
+    "en": [
+      "joint test"
+    ],
+    "senseUid": "37508b67-1165-468f-9c82-4df42b95c525",
+    "wordId": "2350770",
+    "pt": "{\n  \"a\": [\"teste conjunto\"]\n"
+  },
+  {
+    "kana": "きょうどうりようけいおんせいしょうかいつうちシステム",
+    "en": [
+      "ANSER",
+      "Automatic Answer Network System for Electrical Request"
+    ],
+    "senseUid": "701126ce-fd2d-48b0-8ec5-d3a8279b67d7",
+    "wordId": "2350780",
+    "pt": "{\n  \"a\": [\n    \"Sistema de Notificação de Consulta de Uso Compartilhado de Voz Suave\",\n    \"ANSER: Sistema de Resposta Automática em Rede para Solicitações Elétricas\"\n  ]\n"
+  },
+  {
+    "kana": "きょうえきちょっけいたい",
+    "en": [
+      "conjugate diameter pair",
+      "CDP"
+    ],
+    "senseUid": "9db4aecb-6a25-4768-88f2-5ea7dbb518de",
+    "wordId": "2350800",
+    "pt": "{\n  \"a\": [\n    \"par de diâmetros conjugados\"\n  ]\n"
+  },
+  {
+    "kana": "きょうやくてんち",
+    "en": [
+      "complex conjugate transpose (of a matrix)"
+    ],
+    "senseUid": "05efde50-35b7-4e01-9086-1e77b7fdd90a",
+    "wordId": "2350810",
+    "pt": "{\n  \"a\": [\"transposta conjugada complexa (de uma matriz)\"]\n"
+  },
+  {
+    "kana": "きょうゆうディスク",
+    "en": [
+      "shared disk"
+    ],
+    "senseUid": "9fb86acb-bbba-497c-bf94-ae1128429e03",
+    "wordId": "2350820",
+    "pt": "{\n  \"a\": [\"disco compartilhado\"]\n"
+  },
+  {
+    "kana": "きょうゆうディレクトリ",
+    "en": [
+      "shared directory"
+    ],
+    "senseUid": "14471958-0362-4acb-83d6-75e38223cb78",
+    "wordId": "2350830",
+    "pt": "['diretório compartilhado']"
+  },
+  {
+    "kana": "きょうゆうフォルダ",
+    "en": [
+      "shared folder"
+    ],
+    "senseUid": "ac3d07bb-af89-4749-8b58-cc047ed1e142",
+    "wordId": "2350840",
+    "pt": "['pasta compartilhada']"
+  },
+  {
+    "kana": "きょうゆうプリンタ",
+    "en": [
+      "shared printer"
+    ],
+    "senseUid": "0c62bb91-a349-4ba2-954b-0463f7de2cda",
+    "wordId": "2350850",
+    "pt": "{\n  \"a\": [\"impressora compartilhada\"]\n"
+  },
+  {
+    "kana": "きょうゆうメディア",
+    "en": [
+      "shared (communication) medium"
+    ],
+    "senseUid": "64c59b59-598c-43d0-b49c-34d7345ebe2a",
+    "wordId": "2350860",
+    "pt": "{\n  \"a\": [\"meio de comunicação compartilhado\"]\n"
+  },
+  {
+    "kana": "きょうゆうメモリー",
+    "en": [
+      "shared memory"
+    ],
+    "senseUid": "ee1db47c-48f9-45e5-82ba-f57514efc4e9",
+    "wordId": "2350870",
+    "pt": "{\n  \"a\": [\"memória compartilhada\"]\n"
+  },
+  {
+    "kana": "きょうゆうライブラリ",
+    "en": [
+      "shared library"
+    ],
+    "senseUid": "2d725cb7-b309-42cb-96db-11eb94945370",
+    "wordId": "2350890",
+    "pt": "['biblioteca compartilhada']"
+  },
+  {
+    "kana": "きょうゆうかぎあんごうほうしき",
+    "en": [
+      "shared key encryption"
+    ],
+    "senseUid": "baebe73e-66b1-4ee0-ae52-4835a6e68808",
+    "wordId": "2350900",
+    "pt": "{\n  \"a\": [\"método de criptografia por chave compartilhada\"]\n"
+  },
+  {
+    "kana": "きょうゆうしげん",
+    "en": [
+      "shared resources"
+    ],
+    "senseUid": "f8f235a4-4de5-4336-911e-6209e2ab2766",
+    "wordId": "2350910",
+    "pt": "{\n  \"a\": [\"recursos compartilhados\"]\n"
+  },
+  {
+    "kana": "きょうゆうしさん",
+    "en": [
+      "joint resource",
+      "shared resource"
+    ],
+    "senseUid": "60f9afd8-e79b-443c-b99a-2b624c42c9dd",
+    "wordId": "2350920",
+    "pt": "{\n  \"a\": [\n    \"recurso conjunto\",\n    \"recurso compartilhado\"\n  ]\n"
+  },
+  {
+    "kana": "きょうようプログラム",
+    "en": [
+      "utility program",
+      "service program"
+    ],
+    "senseUid": "e6d63e6b-a135-455c-b30c-e2f0a6a1501b",
+    "wordId": "2350930",
+    "pt": "['programa utilitário', 'programa de serviço']"
+  },
+  {
+    "kana": "きょうようルーチン",
+    "en": [
+      "utility routine",
+      "service routine"
+    ],
+    "senseUid": "22ac7c25-728f-49ec-b31a-d99d641f1a02",
+    "wordId": "2350940",
+    "pt": "{\n  \"a\": [\"rotina utilitária\", \"rotina de serviço\"]\n"
+  },
+  {
+    "kana": "きょうようかそうりょういき",
+    "en": [
+      "SVA",
+      "Shared Virtual Area"
+    ],
+    "senseUid": "a2649a04-c3a0-4672-b3c9-2178f0d3c417",
+    "wordId": "2350950",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"きょうようかそうりょういき\",\n      \"gloss\": [\"Área Virtual Compartilhada\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "きょうようへんすう",
+    "en": [
+      "shared variable"
+    ],
+    "senseUid": "e427aad4-88a3-4d62-a950-69e54b204451",
+    "wordId": "2350970",
+    "pt": "['variável compartilhada']"
+  },
+  {
+    "kana": "きょうちょうしけんほう",
+    "en": [
+      "coordinated test method"
+    ],
+    "senseUid": "7ea37a29-46fc-411d-ba31-46f306f464f7",
+    "wordId": "2350980",
+    "pt": "{\n  \"a\": [\"método de teste coordenado\"]\n"
+  },
+  {
+    "kana": "きょうどうしゅうしゅう",
+    "en": [
+      "co-operative acquisition"
+    ],
+    "senseUid": "a465a0a0-9e3e-4cfb-8df4-90433aa2e14e",
+    "wordId": "2351000",
+    "pt": "['aquisição cooperativa']"
+  },
+  {
+    "kana": "きょうかいあわせ",
+    "en": [
+      "boundary alignment"
+    ],
+    "senseUid": "dd483898-ca33-4056-857e-ef4cfaa674ed",
+    "wordId": "2351010",
+    "pt": "['alinhamento de fronteira']"
+  },
+  {
+    "kana": "きょうかいないオブジェクトしゅうごう",
+    "en": [
+      "bounded object set",
+      "BOS"
+    ],
+    "senseUid": "60b30843-f89d-46da-8ca0-6ec6cfa13cbb",
+    "wordId": "2351020",
+    "pt": "{\n  \"a\": [\n    \"conjunto de objetos delimitado\",\n    \"conjunto de objetos limitado\",\n    \"conjunto de objetos com fronteiras\",\n    \"BOS\"\n  ]\n"
+  },
+  {
+    "kana": "きょうかいひょうげん",
+    "en": [
+      "boundary representation"
+    ],
+    "senseUid": "0a850143-eba8-4d27-b3ea-8faf49387664",
+    "wordId": "2351030",
+    "pt": "{\n  \"a\": [\n    \"representação de fronteira\"\n  ]\n"
+  },
+  {
+    "kana": "きょうせいページくぎり",
+    "en": [
+      "forced page break"
+    ],
+    "senseUid": "72828381-7ce0-4109-9671-d02a3f9841a5",
+    "wordId": "2351040",
+    "pt": "{\n  \"a\": [\"quebra de página forçada\"]\n"
+  },
+  {
+    "kana": "きょうせいモード",
+    "en": [
+      "closed mode"
+    ],
+    "senseUid": "e261f975-9262-4446-bc14-b375978db783",
+    "wordId": "2351050",
+    "pt": "['modo fechado']"
+  },
+  {
+    "kana": "きょうせいかいぎょう",
+    "en": [
+      "hard line break",
+      "hard return"
+    ],
+    "senseUid": "1910be0f-bb42-4b42-88e9-5648fa5f4653",
+    "wordId": "2351060",
+    "pt": "{\n  \"a\": [\n    \"quebra de linha forçada\",\n    \"retorno forçado\"\n  ]\n"
+  },
+  {
+    "kana": "きょうせいしゅうりょう",
+    "en": [
+      "forced termination"
+    ],
+    "senseUid": "35214a71-45ca-4fd1-9753-56cd36309c77",
+    "wordId": "2351070",
+    "pt": "['Encerramento forçado']"
+  },
+  {
+    "kana": "きょうせいしょうとつ",
+    "en": [
+      "collision enforcement"
+    ],
+    "senseUid": "ec1a24d7-562b-4e96-91db-237d7c403d0a",
+    "wordId": "2351080",
+    "pt": "['imposição de colisão']"
+  },
+  {
+    "kana": "きょうちょうひょうじ",
+    "en": [
+      "highlighting"
+    ],
+    "senseUid": "d5bf96fe-3e4d-4d6d-8461-9d6a5b7ad085",
+    "wordId": "2351090",
+    "pt": "{\n  \"a\": [\n    \"destaque\",\n    \"realce\",\n    \"enfatização\",\n    \"colocação em evidência\"\n  ]\n"
+  },
+  {
+    "kana": "きょうちょうひょうじフィルタ",
+    "en": [
+      "highlighting filter"
+    ],
+    "senseUid": "29283eb5-fae8-4d70-a747-389bc0454158",
+    "wordId": "2351100",
+    "pt": "['filtro de destaque']"
+  },
+  {
+    "kana": "きょうゆうでんたいメモリ",
+    "en": [
+      "ferroelectric memory"
+    ],
+    "senseUid": "c92fabe1-5cc8-494c-a42e-221081cdd11d",
+    "wordId": "2351110",
+    "pt": "{\n  \"a\": [\"memória ferroeétrica\"]\n"
+  },
+  {
+    "kana": "きょうざいセンタ",
+    "en": [
+      "media resource centre",
+      "resource centre"
+    ],
+    "senseUid": "6f27dc9d-d0bf-4ed3-9c0d-b811a0cfb55c",
+    "wordId": "2351120",
+    "pt": "{\n  \"a\": [\n    \"centro de recursos\",\n    \"centro de recursos de mídia\"\n  ]\n"
+  },
+  {
+    "kana": "きょうざいプログラム",
+    "en": [
+      "courseware",
+      "teaching program"
+    ],
+    "senseUid": "8dce17b4-557e-4c2e-8647-a0b17962e122",
+    "wordId": "2351130",
+    "pt": "{\n  \"a\": [\"programa de ensino\", \"material didático\"]\n"
+  },
+  {
+    "kana": "きょうたいいき",
+    "en": [
+      "narrowband"
+    ],
+    "senseUid": "f2a58576-0a97-4e4c-abf9-36919680e696",
+    "wordId": "2351140",
+    "pt": "{\n  \"a\": [\"faixa estreita\"]\n"
+  },
+  {
+    "kana": "きょうえい",
+    "en": [
+      "reflection"
+    ],
+    "senseUid": "9b07e0ef-ac63-4cea-bd87-001c9b6b988f",
+    "wordId": "2351150",
+    "pt": "{\n  \"a\": [\n    \"reflexão\"\n  ]\n"
+  },
+  {
+    "kana": "きょうめんはんしゃ",
+    "en": [
+      "specular reflection"
+    ],
+    "senseUid": "11763522-eb6f-4e01-9f5b-5926cf497a57",
+    "wordId": "2351160",
+    "pt": "{\n  \"a\": [\n    \"reflexão especular\"\n  ]\n"
+  },
+  {
+    "kana": "きょうめんはんしゃけいすう",
+    "en": [
+      "specular reflection coefficient"
+    ],
+    "senseUid": "3f809228-c0d6-4c5e-b93b-396201d0ea68",
+    "wordId": "2351170",
+    "pt": "['coeficiente de reflexão especular']"
+  },
+  {
+    "kana": "きょうめんはんしゃしすう",
+    "en": [
+      "specular exponent"
+    ],
+    "senseUid": "1cbf1fd7-cc22-464c-9ee3-ed7cb6056494",
+    "wordId": "2351180",
+    "pt": "['expoente especular']"
+  },
+  {
+    "kana": "きょうめんはんしゃしょく",
+    "en": [
+      "specular colour"
+    ],
+    "senseUid": "d2b25689-1cb7-4141-84ce-fab6f385055c",
+    "wordId": "2351190",
+    "pt": "{\n  \"a\": [\"cor especular\"]\n"
+  },
+  {
+    "kana": "ぎょうかいきはん",
+    "en": [
+      "industry standard",
+      "industry norm"
+    ],
+    "senseUid": "9f25bda4-6b7f-4c39-a8b0-f0d2ab18a617",
+    "wordId": "2351200",
+    "pt": "['padrão da indústria', 'norma da indústria']"
+  },
+  {
+    "kana": "ぎょうかいせいつうしゃ",
+    "en": [
+      "industry expert"
+    ],
+    "senseUid": "e59edf68-53f5-41d8-9c60-dc93b7bff051",
+    "wordId": "2351210",
+    "pt": "['especialista do setor']"
+  },
+  {
+    "kana": "ぎょうかいひょうじゅんアーキテクチャ",
+    "en": [
+      "Industry Standard Architecture",
+      "ISA"
+    ],
+    "senseUid": "0787fbc3-b196-4cd3-9ee8-cb945504d067",
+    "wordId": "2351220",
+    "pt": "{\n  \"a\": [\n    \"Arquitetura Padrão da Indústria\"\n  ]\n"
+  },
+  {
+    "kana": "ぎょうかいひょうじゅんか",
+    "en": [
+      "industry standardization"
+    ],
+    "senseUid": "67acd4f6-63f1-40a1-bc3c-8ce3faefe54c",
+    "wordId": "2351230",
+    "pt": "['padronização da indústria']"
+  },
+  {
+    "kana": "ぎょうむアプリケーション",
+    "en": [
+      "business application",
+      "business-oriented software"
+    ],
+    "senseUid": "87b0477d-0d92-42f4-976f-b0f20d9069e7",
+    "wordId": "2351250",
+    "pt": "['aplicativo empresarial', 'software voltado para negócios']"
+  },
+  {
+    "kana": "ぎょうむスケジュール",
+    "en": [
+      "task schedule"
+    ],
+    "senseUid": "50c31785-60a6-42ca-9063-2f4ce2e4127f",
+    "wordId": "2351260",
+    "pt": "['agenda de tarefas']"
+  },
+  {
+    "kana": "ぎょうむがいよう",
+    "en": [
+      "task overview"
+    ],
+    "senseUid": "73a409aa-e714-4c30-bb7e-0f7588abc74d",
+    "wordId": "2351270",
+    "pt": "['Visão geral das tarefas']"
+  },
+  {
+    "kana": "きょくコード",
+    "en": [
+      "office code"
+    ],
+    "senseUid": "ef030455-34be-48b7-be6c-0d07825d96d0",
+    "wordId": "2351280",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"きょくコード\",\n      \"Gloss\": [\"código do escritório\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "きょくかんり",
+    "en": [
+      "SMT",
+      "Station Management"
+    ],
+    "senseUid": "35f122f3-14e8-424c-86d9-1b70e883feb1",
+    "wordId": "2351300",
+    "pt": "['Gestão da Estação']"
+  },
+  {
+    "kana": "きょくかんかいせん",
+    "en": [
+      "trunk",
+      "inter-office line"
+    ],
+    "senseUid": "57e9e38a-98dd-4453-97b4-f0cab7a7fb1e",
+    "wordId": "2351310",
+    "pt": "{\n  \"a\": [\"linha tronco\", \"linha interdepartamental\"]\n"
+  },
+  {
+    "kana": "きょくげん",
+    "en": [
+      "office setup",
+      "office establishment"
+    ],
+    "senseUid": "f076f184-456a-4361-aa48-d70d5e2908a2",
+    "wordId": "2351320",
+    "pt": "{\n  \"a\": [\"instalação de escritório\", \"montagem de escritório\"]\n"
+  },
+  {
+    "kana": "きょくデータ",
+    "en": [
+      "office data"
+    ],
+    "senseUid": "8a2e8beb-f199-46fe-aa10-d2c2d62fadf6",
+    "wordId": "2351290",
+    "pt": "{\n  \"a\": [\"dados do escritório\"]\n"
+  },
+  {
+    "kana": "きょくしょアドレスかんり",
+    "en": [
+      "local address administration"
+    ],
+    "senseUid": "5bcd75da-8c0e-4e7c-b7d4-5c59711f9d52",
+    "wordId": "2351330",
+    "pt": "{\n  \"a\": [\"administração de endereços locais\"]\n"
+  },
+  {
+    "kana": "きょくしょモデリングへんかん",
+    "en": [
+      "local modelling transformation"
+    ],
+    "senseUid": "b928adda-9ea2-42da-987f-cc43f5c71af8",
+    "wordId": "2351340",
+    "pt": "{\n  \"a\": [\"transformação local de modelagem\"]\n"
+  },
+  {
+    "kana": "きょくしょレベル",
+    "en": [
+      "local level"
+    ],
+    "senseUid": "bb0843d0-6f2c-4d31-9767-122a03cff38c",
+    "wordId": "2351350",
+    "pt": "{\n  \"a\": [\"nível local\"]\n"
+  },
+  {
+    "kana": "きょくしょせんけいけいかくほう",
+    "en": [
+      "local linear programming"
+    ],
+    "senseUid": "93e98488-8655-4cfc-9d15-745f1db391f9",
+    "wordId": "2351360",
+    "pt": "{\n  \"a\": [\"programação linear local\"]\n"
+  },
+  {
+    "kana": "きょくしょてき",
+    "en": [
+      "local",
+      "localized",
+      "partial",
+      "topical (application)"
+    ],
+    "senseUid": "c4ee4f70-9b4d-4736-b648-8905f3d2a4ea",
+    "wordId": "2351370",
+    "pt": "{\n  \"a\": [\n    \"local\",\n    \"localizado\",\n    \"parcial\",\n    \"tópico (aplicação)\"\n  ]\n"
+  },
+  {
+    "kana": "きょくしょてきしけんほう",
+    "en": [
+      "local test methods"
+    ],
+    "senseUid": "83b53361-7ef8-46a8-980a-b2fee1fe089a",
+    "wordId": "2351380",
+    "pt": "{\n  \"a\": [\"métodos de teste localizados\"]\n"
+  },
+  {
+    "kana": "きょくしょへんすう",
+    "en": [
+      "local variable"
+    ],
+    "senseUid": "78be19b3-f6e8-4390-976e-a496429f3b61",
+    "wordId": "2351390",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"きょくしょへんすう\",\n      \"gloss\": \"variável local\"\n    \n  ]\n"
+  },
+  {
+    "kana": "きょくしょめい",
+    "en": [
+      "local name"
+    ],
+    "senseUid": "8c2007c0-ef8c-41ac-b681-122ae500392d",
+    "wordId": "2351400",
+    "pt": "['nome local']"
+  },
+  {
+    "kana": "きょくしょようそ",
+    "en": [
+      "local entity"
+    ],
+    "senseUid": "34e26277-279f-421b-8148-9273eb8a37d2",
+    "wordId": "2351410",
+    "pt": "{\n  \"a\": [\"entidade local\"]\n"
+  },
+  {
+    "kana": "きょくないクロストーク",
+    "en": [
+      "local crosstalk"
+    ],
+    "senseUid": "9bcac484-db0a-4e36-8277-bf319ec0739a",
+    "wordId": "2351420",
+    "pt": "{\n  \"a\": [\"crosstalk local\"]\n"
+  },
+  {
+    "kana": "きょくせんきんじあっしゅく",
+    "en": [
+      "curve-fitting compaction"
+    ],
+    "senseUid": "63c4a6f5-42e3-4902-bc3d-3fdfc6a41fb5",
+    "wordId": "2351440",
+    "pt": "{\n  \"a\": [\"compactação por ajuste de curva\"]\n"
+  },
+  {
+    "kana": "きょくせんはっせいき",
+    "en": [
+      "curve generator"
+    ],
+    "senseUid": "72714f1e-bd5b-4019-8cdb-87fe5ed2820e",
+    "wordId": "2351450",
+    "pt": "{\n  \"a\": [\"gerador de curvas\"]\n"
+  },
+  {
+    "kana": "きょくせいゼロふっききろく",
+    "en": [
+      "polarized return-to-zero recording",
+      "RZ(P)"
+    ],
+    "senseUid": "e338954d-ea70-4502-b5ef-18546f6bd8dd",
+    "wordId": "2351470",
+    "pt": "{\n  \"a\": [\n    \"gravação polarizada retorno a zero\",\n    \"RZ(P)\"\n  ]\n"
+  },
+  {
+    "kana": "きんとうわりつけ",
+    "en": [
+      "full justification with even inter-character spacing"
+    ],
+    "senseUid": "9c31a055-d1f0-4da0-bbdc-5b59ea98812a",
+    "wordId": "2351490",
+    "pt": "{\n  \"a\": [\n    \"justificação total com espaçamento uniforme entre os caracteres\"\n  ]\n"
+  },
+  {
+    "kana": "きんそくしょり",
+    "en": [
+      "word processor function for handling line breaking rules in Japanese",
+      "line break control"
+    ],
+    "senseUid": "a8b874c5-a029-4a2e-b503-fd63e58c3613",
+    "wordId": "2351500",
+    "pt": "['função de processador de texto para lidar com regras de quebra de linha em japonês', 'controle de quebra de linha']"
+  },
+  {
+    "kana": "きんきゅうど",
+    "en": [
+      "(degree of) urgency"
+    ],
+    "senseUid": "e3abccf8-60db-4fae-b8b0-3b08f024ad06",
+    "wordId": "2351510",
+    "pt": "['grau de urgência']"
+  },
+  {
+    "kana": "きんじランダム",
+    "en": [
+      "pseudorandom"
+    ],
+    "senseUid": "9601dacc-dff7-4296-8d31-332ce2d178a9",
+    "wordId": "2351520",
+    "pt": "['pseudorrandômico']"
+  },
+  {
+    "kana": "きんじランダムけいれつ",
+    "en": [
+      "pseudorandom sequence"
+    ],
+    "senseUid": "37ed67da-1dfa-411c-8775-7620da30dcaf",
+    "wordId": "2351530",
+    "pt": "{\n  \"a\": [\"sequência pseudoaleatória\"]\n"
+  },
+  {
+    "kana": "きんじざつおん",
+    "en": [
+      "pseudonoise",
+      "PN"
+    ],
+    "senseUid": "21687f43-1536-4bc3-8798-a22c671be859",
+    "wordId": "2351540",
+    "pt": "{\n  \"a\": [\n    \"ruído pseudoaleatório\",\n    \"PN\"\n  ]\n"
+  },
+  {
+    "kana": "きんじざつおんけいれつ",
+    "en": [
+      "pseudonoise sequence",
+      "pn sequence"
+    ],
+    "senseUid": "4ca38bd4-4f02-4aa1-9e1d-560770766b7c",
+    "wordId": "2351550",
+    "pt": "{\n  \"a\": [\"sequência de pseudoruído\", \"sequência PN\"]\n"
+  },
+  {
+    "kana": "きんぞくさんかぶつはんどうたい",
+    "en": [
+      "metal oxide semiconductor",
+      "MOS"
+    ],
+    "senseUid": "9fb731ca-2d45-4a18-a44a-2760546564ea",
+    "wordId": "2351560",
+    "pt": "{\n  \"a\": [\"semicondutor de óxido metálico\"]\n"
+  },
+  {
+    "kana": "きんぞくさんかまくはんどうたい",
+    "en": [
+      "Metal Oxide Semiconductor",
+      "MOS"
+    ],
+    "senseUid": "d225d297-f57b-49f9-9f3d-b1ce704aef63",
+    "wordId": "2351570",
+    "pt": "{\n  \"a\": [\n    \"Semicondutor de óxido metálico\"\n  ]\n"
+  },
+  {
+    "kana": "きんぞくひまくかこう",
+    "en": [
+      "metalization"
+    ],
+    "senseUid": "0efc01ab-862e-4cfb-979d-9518d3bb24e6",
+    "wordId": "2351580",
+    "pt": "{\n  \"a\": [\"metalização de membrana fina\"]\n"
+  },
+  {
+    "kana": "ぎんこうアンサー",
+    "en": [
+      "Automatic answer Network System for Electrical Request"
+    ],
+    "senseUid": "f873b11a-ddf1-4620-8d30-e414a917cb1c",
+    "wordId": "2351590",
+    "pt": "{\n  \"a\": [\n    \"Sistema de Resposta Automática em Rede para Solicitações Elétricas\"\n  ]\n"
+  },
+  {
+    "kana": "くとうもじ",
+    "en": [
+      "punctuation character"
+    ],
+    "senseUid": "e88419e1-f05e-4469-819f-155c01a1931f",
+    "wordId": "2351600",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"くとうもじ\",\n      \"Português\": \"caractere de pontuação\",\n      \"Gloss\": \"caractere de pontuação\"\n    \n  ]\n"
+  },
+  {
+    "kana": "くきりし",
+    "en": [
+      "delimiter"
+    ],
+    "senseUid": "6c2c8c0c-0e21-4ec1-b892-df8a00cb20ec",
+    "wordId": "2351610",
+    "pt": "['delimitador']"
+  },
+  {
+    "kana": "くオクテット",
+    "en": [
+      "row octet"
+    ],
+    "senseUid": "8845292c-b569-43c9-8a48-19cb39fd6a59",
+    "wordId": "2351620",
+    "pt": "{\n  \"a\": [\"fileira de octetos\"]\n"
+  },
+  {
+    "kana": "くぎりしきのう",
+    "en": [
+      "delimiter role"
+    ],
+    "senseUid": "76f3bc2d-2226-443a-89bb-0011297d9bd4",
+    "wordId": "2351640",
+    "pt": "['função de delimitador']"
+  },
+  {
+    "kana": "くぎりきごう",
+    "en": [
+      "delimiter",
+      "separator"
+    ],
+    "senseUid": "ae034ccd-c58e-42b0-8205-6370f3b7706b",
+    "wordId": "2351630",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"くぎりきごう\",\n      \"portugues\": [\"delimitador\", \"separador\"],\n      \"explicacao\": \"Um símbolo ou caractere usado para marcar a separação entre partes de uma frase, palavras ou elementos em um texto, comum em japonês para indicar limites claros entre informações.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "くぎりししゅうごう",
+    "en": [
+      "delimiter set"
+    ],
+    "senseUid": "c0709816-1406-4fa5-8708-9aeb8741ac6f",
+    "wordId": "2351650",
+    "pt": "{\n  \"a\": [\"conjunto delimitador\"]\n"
+  },
+  {
+    "kana": "くぎりししゅうごうひきすう",
+    "en": [
+      "delimiter set parameter"
+    ],
+    "senseUid": "5ab3e220-177d-4c5c-9c17-0520fa3191f3",
+    "wordId": "2351660",
+    "pt": "{\n  \"a\": [\"parâmetro de conjunto delimitador\"]\n"
+  },
+  {
+    "kana": "くぎりしもじ",
+    "en": [
+      "delimiter characters"
+    ],
+    "senseUid": "244cfabc-e924-46e9-8cc2-d82eb400c995",
+    "wordId": "2351670",
+    "pt": "['caracteres delimitadores']"
+  },
+  {
+    "kana": "くぎりしもじれつ",
+    "en": [
+      "delimiter string"
+    ],
+    "senseUid": "52329cb2-ae31-4bb6-ab0f-0ba1ee13b1cf",
+    "wordId": "2351680",
+    "pt": "{\n  \"a\": [\"string delimitadora\"]\n"
+  },
+  {
+    "kana": "くぎりてん",
+    "en": [
+      "breakpoint"
+    ],
+    "senseUid": "6e716faa-fb6a-42b1-a32f-afd6fee49125",
+    "wordId": "2351690",
+    "pt": "{\n  \"a\": [\"ponto de separação\"]\n"
+  },
+  {
+    "kana": "くぎりもじ",
+    "en": [
+      "delimiter"
+    ],
+    "senseUid": "c7a634a5-a89e-43c5-b961-87f792c65a4d",
+    "wordId": "2351700",
+    "pt": "['delimitador']"
+  },
+  {
+    "kana": "くてんコード",
+    "en": [
+      "KuTen code",
+      "matrix code system used in JIS character standards"
+    ],
+    "senseUid": "eb5d6cf7-215c-4e26-a777-719519be786d",
+    "wordId": "2351710",
+    "pt": "{\n  \"a\": [\n    \"código KuTen\",\n    \"sistema de código em matriz usado nos padrões de caracteres JIS\"\n  ]\n"
+  },
+  {
+    "kana": "くぶんデータセット",
+    "en": [
+      "partitioned data set"
+    ],
+    "senseUid": "49d94f9f-a3a8-4fcb-9b68-5f6de51ccdcc",
+    "wordId": "2351720",
+    "pt": "{\n  \"a\": [\"conjunto de dados particionado\"]\n"
+  },
+  {
+    "kana": "くぶんファイル",
+    "en": [
+      "partitioned file"
+    ],
+    "senseUid": "7d394d23-3441-4e31-a75a-7aad124e2e22",
+    "wordId": "2351730",
+    "pt": "{\n  \"a\": [\"arquivo particionado\"]\n"
+  },
+  {
+    "kana": "くぶんばんごう",
+    "en": [
+      "segment-number"
+    ],
+    "senseUid": "a08bf29a-8f42-4470-b713-c5f6820d3466",
+    "wordId": "2351740",
+    "pt": "['número do segmento']"
+  },
+  {
+    "kana": "くぶんへんせいほう",
+    "en": [
+      "BPAM",
+      "Basic Partitioned Access Method"
+    ],
+    "senseUid": "2100d8b7-dcdb-48ac-bc11-73517f285d04",
+    "wordId": "2351750",
+    "pt": "{\n  \"a\": [\n    \"BPAM\",\n    \"Método Básico de Acesso Particionado\"\n  ]\n"
+  },
+  {
+    "kana": "くぶんへんせいデータセット",
+    "en": [
+      "partitioned organization data set"
+    ],
+    "senseUid": "64226ea7-5fe3-4298-a430-22a97c06a711",
+    "wordId": "2351760",
+    "pt": "{\n  \"a\": [\"conjunto de dados de organização particionada\"]\n"
+  },
+  {
+    "kana": "くぶんへんせいファイル",
+    "en": [
+      "partitioned file"
+    ],
+    "senseUid": "e5aee85e-a894-45dd-9535-2d33eafac63d",
+    "wordId": "2351770",
+    "pt": "{\n  \"a\": [\"arquivo particionado\"]\n"
+  },
+  {
+    "kana": "ぐしょうこうぶん",
+    "en": [
+      "concrete syntax (of SGML)"
+    ],
+    "senseUid": "4ca3f6e0-7a85-4c06-826f-f32b53708ef9",
+    "wordId": "2351780",
+    "pt": "{\n  \"a\": [\"sintaxe concreta (de SGML)\"]\n"
+  },
+  {
+    "kana": "ぐしょうこうぶんひきすう",
+    "en": [
+      "concrete syntax parameter"
+    ],
+    "senseUid": "fda86d60-c44d-4831-9e30-46761c568ed8",
+    "wordId": "2351790",
+    "pt": "{\n  \"a\": [\"parâmetro de sintaxe concreta\"]\n"
+  },
+  {
+    "kana": "あきファイル",
+    "en": [
+      "empty file"
+    ],
+    "senseUid": "0e479a8b-895e-4ba8-a338-42598e41bcf4",
+    "wordId": "2351810",
+    "pt": "['arquivo vazio']"
+  }
+]

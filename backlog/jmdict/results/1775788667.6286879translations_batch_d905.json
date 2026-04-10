@@ -1,0 +1,982 @@
+[
+  {
+    "kana": "ごふく",
+    "en": [
+      "the five blessings (health, wealth, longevity, love of virtue and dying a natural death)"
+    ],
+    "senseUid": "553239d3-ab81-47a5-8f2a-5ad3f8fcb578",
+    "wordId": "2859416",
+    "pt": "['as cinco bênçãos (saúde, riqueza, longevidade, amor à virtude e morrer de morte natural)']"
+  },
+  {
+    "kana": "てんじゅをまっとうする",
+    "en": [
+      "to die a natural death (at an advanced age)",
+      "to live out one's allotted span of life"
+    ],
+    "senseUid": "06d68d46-b257-4a7a-b117-b8af69743fdc",
+    "wordId": "2859417",
+    "pt": "['morrer de morte natural (em idade avançada)', 'viver até o fim do tempo de vida destinado']"
+  },
+  {
+    "kana": "しゅうりょう",
+    "en": [
+      "chieftain"
+    ],
+    "senseUid": "7a1cce83-9a40-4939-bee0-1bf08095de5b",
+    "wordId": "2859418",
+    "pt": "['chefe tribal']"
+  },
+  {
+    "kana": "リアリティショー",
+    "en": [
+      "reality show"
+    ],
+    "senseUid": "4e7aa141-7f7f-4eb1-81b1-7ddfc0fa89a1",
+    "wordId": "2859419",
+    "pt": "['reality show']"
+  },
+  {
+    "kana": "そうげんのみち",
+    "en": [
+      "Steppe Route (precursor to the Silk Road)"
+    ],
+    "senseUid": "2740281a-b89b-448d-9380-51f37dc9b334",
+    "wordId": "2859420",
+    "pt": "['Rota das Estepes (precursora da Rota da Seda)']"
+  },
+  {
+    "kana": "めおといわ",
+    "en": [
+      "pair of rocks resembling a married couple (one larger representing the husband, one smaller the wife)"
+    ],
+    "senseUid": "3e31a3ce-fb6a-469d-b931-6a94a93658d0",
+    "wordId": "2859421",
+    "pt": "['par de rochas que lembram um casal (uma maior representando o marido, outra menor a esposa)']"
+  },
+  {
+    "kana": "じこく",
+    "en": [
+      "self-portrait (sculpture, carving, engraving, etc.)"
+    ],
+    "senseUid": "7aa614ee-511c-41bf-9f3f-9fb930d2165f",
+    "wordId": "2859422",
+    "pt": "['autorretrato (escultura, entalhe, gravura, etc.)']"
+  },
+  {
+    "kana": "じこく",
+    "en": [
+      "carved by oneself",
+      "sculpted by oneself"
+    ],
+    "senseUid": "08be2190-8443-4f22-af47-a30624fb4276",
+    "wordId": "2859422",
+    "pt": "{\n  \"a\": [\n    \"esculpido por si mesmo\",\n    \"tallado por si mesmo\"\n  ]\n"
+  },
+  {
+    "kana": "しゅんゆう",
+    "en": [
+      "spring outing"
+    ],
+    "senseUid": "7a5c101f-39f1-403d-8969-376c076c7851",
+    "wordId": "2859423",
+    "pt": "['passeio de primavera']"
+  },
+  {
+    "kana": "げんじ",
+    "en": [
+      "original kanji form",
+      "base kanji form"
+    ],
+    "senseUid": "dbf4c3ae-4aca-4c8b-9b4d-d8d25cecbcf6",
+    "wordId": "2859424",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"げんじ\",\n      \"tradução\": [\n        \"forma original do kanji\",\n        \"forma base do kanji\"\n      ],\n      \"explicação\": \"Refere-se ao kanji em seu formato original ou fundamental, antes de sofrer variações ou simplificações.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "じゅにんげんど",
+    "en": [
+      "tolerable limit",
+      "human limits",
+      "maximum permissible limit"
+    ],
+    "senseUid": "62383262-4cb6-4846-8982-72b7244b21b7",
+    "wordId": "2859425",
+    "pt": "['limite tolerável', 'limite humano', 'limite máximo permitido']"
+  },
+  {
+    "kana": "キャンドルブッシュ",
+    "en": [
+      "candlebush (Senna alata)"
+    ],
+    "senseUid": "6553530c-cc54-4f3b-9b7c-718465417fc1",
+    "wordId": "2859428",
+    "pt": "['candelabro (Senna alata)']"
+  },
+  {
+    "kana": "やめちゃ",
+    "en": [
+      "Yamecha",
+      "Yame tea",
+      "high-quality tea from the Yame area in Fukuoka"
+    ],
+    "senseUid": "dfd42cd0-a1b5-481a-9a8d-9fbd00f7cd19",
+    "wordId": "2859429",
+    "pt": "['Yamecha', 'Chá Yame', 'chá de alta qualidade da região de Yame, em Fukuoka']"
+  },
+  {
+    "kana": "モリンガ",
+    "en": [
+      "horseradish tree (Moringa oleifera)",
+      "drumstick tree",
+      "moringa"
+    ],
+    "senseUid": "fb4c90a8-4eb3-4f2b-b242-3e6ec099459a",
+    "wordId": "2859430",
+    "pt": "['árvore-raiz-forte (Moringa oleifera)', 'árvore-drumstick', 'moringa']"
+  },
+  {
+    "kana": "マンジェリコン",
+    "en": [
+      "clove basil (Ocimum gratissimum)",
+      "African basil"
+    ],
+    "senseUid": "28ba18e1-2885-4d26-a1d4-e2c9434faf34",
+    "wordId": "2859431",
+    "pt": "{\n  \"a\": [\n    \"manjericão-clove (Ocimum gratissimum)\",\n    \"manjericão-africano\"\n  ]\n"
+  },
+  {
+    "kana": "しゅあか",
+    "en": [
+      "vermilion"
+    ],
+    "senseUid": "dfa54e06-86be-4e6a-8767-4ca90dc22d69",
+    "wordId": "2859432",
+    "pt": "['vermelhão']"
+  },
+  {
+    "kana": "かざりがき",
+    "en": [
+      "decorative writing",
+      "flourish"
+    ],
+    "senseUid": "3d41dab4-9274-44c8-8157-b0c53d73ec14",
+    "wordId": "2859434",
+    "pt": "{\n  \"a\": [\n    \"escrita decorativa\",\n    \"floreio\"\n  ]\n"
+  },
+  {
+    "kana": "がはい",
+    "en": [
+      "bone tile (e.g. for Chinese dominoes)"
+    ],
+    "senseUid": "e060e91f-c105-4e02-a237-0a3c5ca94a42",
+    "wordId": "2859437",
+    "pt": "['peça de osso (por exemplo, para dominó chinês)']"
+  },
+  {
+    "kana": "ゆきどまる",
+    "en": [
+      "to come to a dead end",
+      "to reach an impasse",
+      "to get bogged down"
+    ],
+    "senseUid": "67be81f0-315a-47c8-aff4-e22c3da2616a",
+    "wordId": "2859438",
+    "pt": "['chegar a um beco sem saída', 'atingir um impasse', 'ficar emperrado']"
+  },
+  {
+    "kana": "すいぜんじのり",
+    "en": [
+      "Suizenji-nori (Aphanothece sacrum; edible freshwater algae grown in Fukuoka prefecture)"
+    ],
+    "senseUid": "85b93977-2bbc-4de3-8bff-d5c0fc9b9d4b",
+    "wordId": "2859439",
+    "pt": "['Suizenji-nori (Aphanothece sacrum; alga de água doce comestível cultivada na província de Fukuoka)']"
+  },
+  {
+    "kana": "ノーストレス",
+    "en": [
+      "stress-free"
+    ],
+    "senseUid": "effee3cd-e8db-4d85-8d6b-c94e2d07eb08",
+    "wordId": "2859440",
+    "pt": "['sem estresse']"
+  },
+  {
+    "kana": "ならびじゅん",
+    "en": [
+      "(sorting) order",
+      "sequence"
+    ],
+    "senseUid": "70a7e9a9-1587-4945-81ce-02dcfea7605d",
+    "wordId": "2859441",
+    "pt": "['ordem de classificação', 'sequência']"
+  },
+  {
+    "kana": "マラヤれんぽう",
+    "en": [
+      "Federation of Malaya (1948-1963)"
+    ],
+    "senseUid": "f86c3207-8555-4499-8efa-661c52bec2ce",
+    "wordId": "2859443",
+    "pt": "['Federação Malaia']"
+  },
+  {
+    "kana": "マレー",
+    "en": [
+      "Malaya"
+    ],
+    "senseUid": "be198e65-3424-47e7-9820-d9c9bc5c43fe",
+    "wordId": "2859444",
+    "pt": "{\n  \"a\": [\"Malásia\"]\n"
+  },
+  {
+    "kana": "マレー",
+    "en": [
+      "Malay",
+      "Malayan"
+    ],
+    "senseUid": "c430cf56-59a0-46da-913f-6697dd042d34",
+    "wordId": "2859444",
+    "pt": "{\n  \"a\": [\"Malaio\", \"Malaia\"]\n"
+  },
+  {
+    "kana": "ゆうはつざい",
+    "en": [
+      "inducing agent (e.g. for birth)",
+      "inducer"
+    ],
+    "senseUid": "451a2638-cc18-42e9-8aef-a7aab21d4e8b",
+    "wordId": "2859445",
+    "pt": "{\n  \"a\": [\n    \"agente indutor (por exemplo, para parto)\",\n    \"indutor\"\n  ]\n"
+  },
+  {
+    "kana": "ふともじ",
+    "en": [
+      "boldface",
+      "bold-type",
+      "thick characters"
+    ],
+    "senseUid": "5a0f7622-e6bc-4ec6-92ab-cf1c0c306a08",
+    "wordId": "2859447",
+    "pt": "['negrito', 'tipo em negrito', 'caracteres grossos']"
+  },
+  {
+    "kana": "ななめってる",
+    "en": [
+      "to be leaning (to one side)",
+      "to be tilting"
+    ],
+    "senseUid": "d532a39d-01ef-4e75-9a3c-fcc773adab5c",
+    "wordId": "2859448",
+    "pt": "['estar inclinado', 'estar torto']"
+  },
+  {
+    "kana": "にっぱい",
+    "en": [
+      "daily delivery (esp. of perishable food, e.g. milk)"
+    ],
+    "senseUid": "180a1fd8-e392-4c54-8133-c8e0804eaec3",
+    "wordId": "2859449",
+    "pt": "['entrega diária (especialmente de alimentos perecíveis, como leite)']"
+  },
+  {
+    "kana": "クリスマスかい",
+    "en": [
+      "Christmas party"
+    ],
+    "senseUid": "5d58755e-a728-4b07-9aeb-5f24bbdaebd1",
+    "wordId": "2859450",
+    "pt": "['Festa de Natal']"
+  },
+  {
+    "kana": "おうばんぶるまい",
+    "en": [
+      "lavish feast",
+      "splendid banquet"
+    ],
+    "senseUid": "f503d351-080c-431b-908b-4ef36e64192b",
+    "wordId": "2859452",
+    "pt": "['banquete esplêndido', 'festa generosa', 'refeição farta', 'banquete suntuoso']"
+  },
+  {
+    "kana": "おうばんぶるまい",
+    "en": [
+      "corporate largess",
+      "lavish hospitality"
+    ],
+    "senseUid": "07911d8c-2fde-4a8c-9ca9-6b6933339d48",
+    "wordId": "2859452",
+    "pt": "['generosidade extravagante', 'hospitalidade pródiga']"
+  },
+  {
+    "kana": "ふりきれる",
+    "en": [
+      "to swing past the maximum (e.g. of a needle on a dial)"
+    ],
+    "senseUid": "f87efe6e-a190-4d8f-b58f-09182e38406c",
+    "wordId": "2859453",
+    "pt": "['ultrapassar o máximo (por exemplo, de um ponteiro em um mostrador)']"
+  },
+  {
+    "kana": "ヘリボーン",
+    "en": [
+      "heliborne (e.g. operation, assault)"
+    ],
+    "senseUid": "e1c3a29e-1a94-4616-8d81-edb7bb559713",
+    "wordId": "2859454",
+    "pt": "['transporte aéreo por helicóptero (ex: operação, assalto)']"
+  },
+  {
+    "kana": "よめる",
+    "en": [
+      "to be able to read",
+      "to be legible",
+      "to be decipherable"
+    ],
+    "senseUid": "2855d868-cc30-4adb-bf94-15c7f8523afc",
+    "wordId": "2859455",
+    "pt": "['ser capaz de ler', 'ser legível', 'ser decifrável']"
+  },
+  {
+    "kana": "よめる",
+    "en": [
+      "to be readable (text, etc.)",
+      "to read well"
+    ],
+    "senseUid": "45c8f576-ca36-420f-9613-77340c813ecb",
+    "wordId": "2859455",
+    "pt": "{\n  \"a\": [\n    \"ser legível\",\n    \"conseguir ler bem\"\n  ]\n"
+  },
+  {
+    "kana": "よめる",
+    "en": [
+      "to understand",
+      "to divine",
+      "to perceive",
+      "to see"
+    ],
+    "senseUid": "1da0db58-88fa-4b6b-8746-681d5dbf1211",
+    "wordId": "2859455",
+    "pt": "['compreender', 'adivinhar', 'perceber', 'enxergar']"
+  },
+  {
+    "kana": "しんやびん",
+    "en": [
+      "overnight transportation (train service, flight, etc.)",
+      "late-night departure",
+      "red-eye flight"
+    ],
+    "senseUid": "676b13cd-aa8d-4819-a15f-e7669967052a",
+    "wordId": "2859456",
+    "pt": "['transporte noturno (serviço de trem, voo, etc.)', 'partida durante a madrugada', 'voo noturno']"
+  },
+  {
+    "kana": "ファンそう",
+    "en": [
+      "fan base",
+      "fanbase",
+      "fan demographic",
+      "fandom"
+    ],
+    "senseUid": "15b499a6-dffd-413a-8266-19dbfd4b2e75",
+    "wordId": "2859457",
+    "pt": "['fã base', 'base de fãs', 'demografia de fãs', 'fandom']"
+  },
+  {
+    "kana": "マオカラー",
+    "en": [
+      "Mao collar",
+      "Mandarin collar"
+    ],
+    "senseUid": "0f3bcab8-7b67-4a73-88a2-b56694564c63",
+    "wordId": "2859458",
+    "pt": "{\n  \"a\": [\n    \"Gola Mao\",\n    \"Gola Mandarim\"\n  ]\n"
+  },
+  {
+    "kana": "わらいあう",
+    "en": [
+      "to laugh together"
+    ],
+    "senseUid": "f7fb3aa1-e933-48d1-b633-b6680accfc32",
+    "wordId": "2859459",
+    "pt": "['rir juntos', 'rir um com o outro', 'rir em companhia']"
+  },
+  {
+    "kana": "ぎじてき",
+    "en": [
+      "pseudo",
+      "quasi",
+      "artificial",
+      "simulated"
+    ],
+    "senseUid": "d9e98da5-9674-4ab2-be4a-bc026a9a8de7",
+    "wordId": "2859460",
+    "pt": "{\n  \"a\": [\n    \"pseudo\",\n    \"quase\",\n    \"artificial\",\n    \"simulado\"\n  ]\n"
+  },
+  {
+    "kana": "でんせつてき",
+    "en": [
+      "legendary",
+      "folkloric",
+      "traditional"
+    ],
+    "senseUid": "b48c8ee0-e42e-4d5a-bb78-60e2ab771769",
+    "wordId": "2859461",
+    "pt": "['lendário', 'folclórico', 'tradicional']"
+  },
+  {
+    "kana": "フォローがえし",
+    "en": [
+      "follow back (on social media)",
+      "following the account of someone who follows you"
+    ],
+    "senseUid": "b455dfc3-0566-46b7-ac24-428c77eb2d56",
+    "wordId": "2859462",
+    "pt": "['seguir de volta (em redes sociais)', 'seguir a conta de alguém que te segue']"
+  },
+  {
+    "kana": "さいほうばり",
+    "en": [
+      "sewing needle"
+    ],
+    "senseUid": "466717c4-2a48-4c99-9533-5cafe27209a9",
+    "wordId": "2859463",
+    "pt": "['agulha de costura']"
+  },
+  {
+    "kana": "たべおえる",
+    "en": [
+      "to finish eating"
+    ],
+    "senseUid": "c7ae3af5-af5b-4421-85fe-235541967f59",
+    "wordId": "2859465",
+    "pt": "['terminar de comer']"
+  },
+  {
+    "kana": "ジャイレース",
+    "en": [
+      "gyrase",
+      "DNA gyrase"
+    ],
+    "senseUid": "d18f129d-4f94-4ad1-bd73-52a5e89240dd",
+    "wordId": "2859467",
+    "pt": "['girase', 'girase de DNA']"
+  },
+  {
+    "kana": "しんじあう",
+    "en": [
+      "to believe in each other",
+      "to trust each other"
+    ],
+    "senseUid": "ed8325f8-d5a4-48d4-beee-0a5e4b842b01",
+    "wordId": "2859466",
+    "pt": "['acreditar um no outro', 'confiar um no outro']"
+  },
+  {
+    "kana": "はんはちょう",
+    "en": [
+      "half wavelength"
+    ],
+    "senseUid": "07bcd9f7-39b2-4536-bd76-78d3dc873c27",
+    "wordId": "2859468",
+    "pt": "['meia onda']"
+  },
+  {
+    "kana": "そつぶ",
+    "en": [
+      "leaving a school club (upon graduation)"
+    ],
+    "senseUid": "42f5be4f-fa65-4148-a1fe-893145679d0e",
+    "wordId": "2859470",
+    "pt": "['deixar um clube escolar (ao se formar)']"
+  },
+  {
+    "kana": "いいえてる",
+    "en": [
+      "to fit perfectly (of an expression, etc.)"
+    ],
+    "senseUid": "7ad3378f-bdae-44ae-86f1-08276d96482b",
+    "wordId": "2859471",
+    "pt": "['expressar perfeitamente', 'caber perfeitamente (em relação a uma expressão, etc.)']"
+  },
+  {
+    "kana": "ぼうとくてき",
+    "en": [
+      "blasphemous",
+      "profane",
+      "sacrilegious"
+    ],
+    "senseUid": "fc4dd357-be76-436d-8d6f-c4b380c40167",
+    "wordId": "2859472",
+    "pt": "{\n  \"a\": [\n    \"blasfemo\",\n    \"profano\",\n    \"sacrílego\"\n  ]\n"
+  },
+  {
+    "kana": "もうそうてき",
+    "en": [
+      "delusional",
+      "chimerical"
+    ],
+    "senseUid": "44081a81-3710-4b7e-b638-cab01fe817c7",
+    "wordId": "2859473",
+    "pt": "['delirante', 'fantasioso']"
+  },
+  {
+    "kana": "むらじゅう",
+    "en": [
+      "within the village",
+      "all over the village",
+      "throughout the village"
+    ],
+    "senseUid": "d924fd37-f52c-4b84-bc0e-dff4f19c82eb",
+    "wordId": "2859474",
+    "pt": "['por toda a aldeia', 'em toda a aldeia', 'pela aldeia inteira']"
+  },
+  {
+    "kana": "ものする",
+    "en": [
+      "to compose",
+      "to write",
+      "to author"
+    ],
+    "senseUid": "ca29882f-71a6-46be-b1ea-fcf115861b2d",
+    "wordId": "2859475",
+    "pt": "['compor', 'escrever', 'autor'] "
+  },
+  {
+    "kana": "うとんずる",
+    "en": [
+      "to shun",
+      "to avoid",
+      "to ostracize",
+      "to neglect",
+      "to distance oneself from",
+      "to give the hard shoulder"
+    ],
+    "senseUid": "1268af4a-16f2-409d-9355-8d0544a08fca",
+    "wordId": "2859476",
+    "pt": "{\n  \"a\": [\n    \"evitar\",\n    \"fugir de\",\n    \"ostracizar\",\n    \"negligenciar\",\n    \"distanciar-se de\",\n    \"dar o ombro frio\"\n  ]\n"
+  },
+  {
+    "kana": "こうおん",
+    "en": [
+      "temperature decrease",
+      "fall in temperature",
+      "cooling"
+    ],
+    "senseUid": "61f59708-035f-4c3d-9522-d9c6f9f241ae",
+    "wordId": "2859477",
+    "pt": "{\n  \"a\": [\n    \"queda de temperatura\",\n    \"diminuição da temperatura\",\n    \"resfriamento\"\n  ]\n"
+  },
+  {
+    "kana": "きょくしょう",
+    "en": [
+      "minimal amount"
+    ],
+    "senseUid": "15f9713f-c523-4a55-90d4-a107a22ee7aa",
+    "wordId": "2859478",
+    "pt": "{\n  \"a\": [\n    \"quantidade mínima\"\n  ]\n"
+  },
+  {
+    "kana": "ちゅうおうよせ",
+    "en": [
+      "center alignment",
+      "centering"
+    ],
+    "senseUid": "af513be4-e49c-438f-9b22-ffc27defba95",
+    "wordId": "2859479",
+    "pt": "{\n  \"a\": [\n    \"alinhamento central\",\n    \"centralização\"\n  ]\n"
+  },
+  {
+    "kana": "ひきうつす",
+    "en": [
+      "to copy verbatim",
+      "to copy word-by-word"
+    ],
+    "senseUid": "245ba33c-4ae0-4c12-9508-aa307aeb9a5a",
+    "wordId": "2859480",
+    "pt": "['copiar literalmente', 'copiar palavra por palavra']"
+  },
+  {
+    "kana": "ひきうつす",
+    "en": [
+      "to trace",
+      "to copy (an illustration) by tracing"
+    ],
+    "senseUid": "2666f50f-6e1d-4ef9-98b4-327c465fd3f3",
+    "wordId": "2859480",
+    "pt": "{\n  \"a\": [\n    \"copiar (um desenho) traçando\",\n    \"traçar (uma ilustração)\",\n    \"fazer uma cópia por meio de traçado\"\n  ]\n"
+  },
+  {
+    "kana": "ぶっこぬく",
+    "en": [
+      "to pull out (with force)"
+    ],
+    "senseUid": "7a578bd7-f888-4e94-a2f6-89a8ff7de8c7",
+    "wordId": "2859481",
+    "pt": "['arrancar (com força)', 'puxar para fora (com força)']"
+  },
+  {
+    "kana": "ぶっこぬく",
+    "en": [
+      "to pierce",
+      "to bore into",
+      "to join (multiple rooms) into one"
+    ],
+    "senseUid": "18b9695f-e3be-4e7d-98f0-1dc1369a6d58",
+    "wordId": "2859481",
+    "pt": "['perfurar', 'abrir um buraco', 'juntar vários cômodos em um só']"
+  },
+  {
+    "kana": "ぶっこぬく",
+    "en": [
+      "to steal (e.g. personal information)"
+    ],
+    "senseUid": "0f5c5b4e-91c2-4d2a-a12d-d4e97944f8ce",
+    "wordId": "2859481",
+    "pt": "['roubar (por exemplo, informações pessoais)']"
+  },
+  {
+    "kana": "つばめがえし",
+    "en": [
+      "quickly reversed cut (sword technique)"
+    ],
+    "senseUid": "bbc6bbdf-c64c-438d-bc7a-993a7fa2bf69",
+    "wordId": "2859482",
+    "pt": "['corte invertido rápido (técnica de espada)']"
+  },
+  {
+    "kana": "つばめがえし",
+    "en": [
+      "swallow counter (judo technique)",
+      "swallow flight reversal"
+    ],
+    "senseUid": "9ac88a29-2ac3-475c-ad2a-e5fe1d228a20",
+    "wordId": "2859482",
+    "pt": "{\n  \"a\": [\n    \"contragolpe da andorinha (técnica de judô)\",\n    \"reversão do voo da andorinha\"\n  ]\n"
+  },
+  {
+    "kana": "つばめがえし",
+    "en": [
+      "swapping one's hand with the bottom row of the nearest wall (cheating technique)"
+    ],
+    "senseUid": "1c05a99b-cc0d-4f98-9898-8487732068c7",
+    "wordId": "2859482",
+    "pt": "['trocar a própria mão com a fileira de baixo da parede mais próxima (técnica de trapaça)']"
+  },
+  {
+    "kana": "つばめがえし",
+    "en": [
+      "completing a hand with an opponent's discarded riichi tile"
+    ],
+    "senseUid": "3dc8ffc5-e2d7-40ae-b7e9-0a87f4cb6e5b",
+    "wordId": "2859482",
+    "pt": "['completar uma mão usando a peça descartada de riichi de um oponente']"
+  },
+  {
+    "kana": "やまはい",
+    "en": [
+      "wall",
+      "wall tiles"
+    ],
+    "senseUid": "6455f9e6-9e58-4134-81dc-62ee82ea8725",
+    "wordId": "2859483",
+    "pt": "{\n  \"a\": [\"azulejos de parede\"]\n"
+  },
+  {
+    "kana": "きおもて",
+    "en": [
+      "part of a wooden board closer to the bark",
+      "face side"
+    ],
+    "senseUid": "66b58694-3739-43ec-a30e-620b44dcda91",
+    "wordId": "2859485",
+    "pt": "{\n  \"a\": [\n    \"parte de uma tábua de madeira mais próxima da casca\",\n    \"lado da face\"\n  ]\n"
+  },
+  {
+    "kana": "きうら",
+    "en": [
+      "inner side of a wooden board",
+      "core side of sawn timber"
+    ],
+    "senseUid": "ead515d7-4c90-4452-a4e5-9c7315acdc6d",
+    "wordId": "2859486",
+    "pt": "{\n  \"a\": [\n    \"lado interno de uma tábua de madeira\",\n    \"lado do núcleo da madeira serrada\"\n  ]\n"
+  },
+  {
+    "kana": "とうじょう",
+    "en": [
+      "battlefield",
+      "battleground"
+    ],
+    "senseUid": "01f2323d-2cd1-48bf-8503-ae81267c5158",
+    "wordId": "2859487",
+    "pt": "{\n  \"a\": [\"campo de batalha\", \"local de combate\"]\n"
+  },
+  {
+    "kana": "ぶらん",
+    "en": [
+      "hanging loosely",
+      "dangling limply"
+    ],
+    "senseUid": "208b23ac-5491-4e96-acab-9e4a040c8cca",
+    "wordId": "2859488",
+    "pt": "{\n  \"a\": [\n    \"pendurado frouxamente\",\n    \"balançando mole\"\n  ]\n"
+  },
+  {
+    "kana": "そつだん",
+    "en": [
+      "leaving a (school) club (upon graduation)"
+    ],
+    "senseUid": "c3aa4a96-a68c-428b-bc1e-ec24ca96479d",
+    "wordId": "2859489",
+    "pt": "['deixar um clube (da escola) ao se formar']"
+  },
+  {
+    "kana": "とじタグ",
+    "en": [
+      "end tag",
+      "closing tag"
+    ],
+    "senseUid": "c6defe47-0395-4182-9e00-ec496b3c2a2a",
+    "wordId": "2859490",
+    "pt": "{\n  \"a\": [\n    \"tag de fechamento\",\n    \"tag final\"\n  ]\n"
+  },
+  {
+    "kana": "きじゅんいち",
+    "en": [
+      "reference position",
+      "reference location"
+    ],
+    "senseUid": "bf266104-993e-4479-b298-b361f0cb503f",
+    "wordId": "2859491",
+    "pt": "{\n  \"a\": [\n    \"posição de referência\",\n    \"localização de referência\"\n  ]\n"
+  },
+  {
+    "kana": "ふが",
+    "en": [
+      "fuga (placeholder name for a variable, similar to foobar)"
+    ],
+    "senseUid": "58fc132e-077c-40a3-99a2-304d2e068795",
+    "wordId": "2859492",
+    "pt": "{\n  \"a\": [\n    \"fuga (nome genérico usado como variável, semelhante a foobar)\"\n  ]\n"
+  },
+  {
+    "kana": "ぴよ",
+    "en": [
+      "piyo (placeholder name for a variable, similar to foobar)"
+    ],
+    "senseUid": "42b7351d-4f65-4e4c-a206-73add31936e9",
+    "wordId": "2859493",
+    "pt": "{\n  \"a\": [\n    \"piyo (nome genérico usado como variável, semelhante a foobar)\"\n  ]\n"
+  },
+  {
+    "kana": "ほげら",
+    "en": [
+      "hogera (placeholder name for a variable, similar to foobar)"
+    ],
+    "senseUid": "fdc6cc23-5941-437c-b2ab-63f376d1cc1a",
+    "wordId": "2859494",
+    "pt": "['hogera (nome genérico para variável, semelhante a foobar)']"
+  },
+  {
+    "kana": "ほげほげ",
+    "en": [
+      "hogehoge (placeholder name for a variable, similar to foobar)"
+    ],
+    "senseUid": "dc55a4b1-3c50-4246-b24c-4e20a8840c76",
+    "wordId": "2859495",
+    "pt": "['hogehoge (nome genérico usado como variável, semelhante a foobar)']"
+  },
+  {
+    "kana": "そくじかんすう",
+    "en": [
+      "immediately invoked function expression (in JavaScript)",
+      "IIFE"
+    ],
+    "senseUid": "f711be39-11d3-49dd-a7f5-af9eefb5440a",
+    "wordId": "2859496",
+    "pt": "['expressão de função invocada imediatamente (em JavaScript)', 'IIFE']"
+  },
+  {
+    "kana": "ババア",
+    "en": [
+      "hag",
+      "old bag"
+    ],
+    "senseUid": "2c9f8f3e-542a-41b8-b284-ae2b5d8455c4",
+    "wordId": "2859497",
+    "pt": "['velha', 'bruaca']"
+  },
+  {
+    "kana": "セマグルチド",
+    "en": [
+      "semaglutide"
+    ],
+    "senseUid": "cff4a80b-f554-4e6e-a96c-1c29df388297",
+    "wordId": "2859498",
+    "pt": "['semaglutida']"
+  },
+  {
+    "kana": "だいきぼげんごモデル",
+    "en": [
+      "large language model",
+      "LLM"
+    ],
+    "senseUid": "142d03fb-8f31-4b44-80a2-fd9dd0865188",
+    "wordId": "2859499",
+    "pt": "{\n  \"a\": [\n    \"modelo de linguagem de grande escala\"\n  ]\n"
+  },
+  {
+    "kana": "テンソルプロセッシングユニット",
+    "en": [
+      "tensor processing unit",
+      "TPU"
+    ],
+    "senseUid": "9c92f851-8675-44a2-a8fd-ae5814d301ea",
+    "wordId": "2859500",
+    "pt": "['unidade de processamento de tensores', 'TPU']"
+  },
+  {
+    "kana": "チャット・ジー・ピー・ティー",
+    "en": [
+      "ChatGPT (chatbot developed by OpenAI)"
+    ],
+    "senseUid": "23a3b26e-b982-4a5a-9d83-70964046cbfb",
+    "wordId": "2859501",
+    "pt": "['ChatGPT (chatbot desenvolvido pela OpenAI)']"
+  },
+  {
+    "kana": "せいせいてきじんこうちのう",
+    "en": [
+      "generative artificial intelligence",
+      "generative AI"
+    ],
+    "senseUid": "b66b260b-bd3d-441b-81e8-c3f1e4a36213",
+    "wordId": "2859502",
+    "pt": "{\n  \"a\": [\n    \"inteligência artificial generativa\",\n    \"IA generativa\"\n  ]\n"
+  },
+  {
+    "kana": "クリスパーキャスナイン",
+    "en": [
+      "CRISPR/Cas9",
+      "clustered regularly interspaced short palindromic repeats/CRISPR associated protein 9"
+    ],
+    "senseUid": "f274acca-90b8-4b3e-9c91-03128ce8ec9b",
+    "wordId": "2859503",
+    "pt": "{\n  \"a\": [\n    \"CRISPR/Cas9\",\n    \"repetições palindrômicas curtas agrupadas e regularmente interespaçadas/proteína associada ao CRISPR 9\"\n  ]\n"
+  },
+  {
+    "kana": "クリスパーキャスナインシステム",
+    "en": [
+      "CRISPR/Cas9 system",
+      "clustered regularly interspaced short palindromic repeats/CRISPR associated protein 9 system"
+    ],
+    "senseUid": "9d7b3ea7-8fba-4424-8309-0e3ffdceeecc",
+    "wordId": "2859504",
+    "pt": "{\n  \"a\": [\n    \"sistema CRISPR/Cas9\",\n    \"sistema de repetições palindrômicas curtas agrupadas e regularmente interespaçadas/proteína associada ao CRISPR 9\"\n  ]\n"
+  },
+  {
+    "kana": "ちほうけいさつ",
+    "en": [
+      "local police"
+    ],
+    "senseUid": "c31a0df7-2a86-480c-bba3-5bc38b8e1efc",
+    "wordId": "2859505",
+    "pt": "['polícia local']"
+  },
+  {
+    "kana": "ちそうがく",
+    "en": [
+      "stratigraphy"
+    ],
+    "senseUid": "eab36619-37eb-413c-aec5-3623d2b5b298",
+    "wordId": "2859506",
+    "pt": "{\n  \"a\": [\n    \"estratigrafia\"\n  ]\n"
+  },
+  {
+    "kana": "ちょうし",
+    "en": [
+      "long shoot"
+    ],
+    "senseUid": "6b21d6b2-c60d-4052-95f7-4783d97d0d8c",
+    "wordId": "2859507",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ちょうし\",\n      \"portugues\": \"tiro longo\",\n      \"notas\": \"No contexto japonês, 'ちょうし' (choushi) pode se referir a um disparo ou arremesso longo, especialmente em esportes como arco e flecha ou futebol. A tradução literal seria 'tiro longo', mantendo o sentido original.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "ふじんすう",
+    "en": [
+      "non-terminating decimal",
+      "infinite decimal"
+    ],
+    "senseUid": "7e9cbf51-b273-430e-944a-8d956f563ec8",
+    "wordId": "2859508",
+    "pt": "{\n  \"a\": [\n    \"decimal não finito\",\n    \"decimal infinito\"\n  ]\n"
+  },
+  {
+    "kana": "ふじんこんすう",
+    "en": [
+      "surd",
+      "irrational root"
+    ],
+    "senseUid": "981a3214-02e1-46aa-b3cf-660227545617",
+    "wordId": "2859509",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ふじんこんすう\",\n      \"gloss\": [\"raiz surda\", \"raiz irracional\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "せいとそうかい",
+    "en": [
+      "assembly of the student body (esp. one led by the student council)",
+      "regular student meeting"
+    ],
+    "senseUid": "37a07a83-ee1a-4d8d-93c6-8ad485a42c7b",
+    "wordId": "2859510",
+    "pt": "['assembleia do corpo estudantil (especialmente uma liderada pelo conselho estudantil)', 'reunião regular de estudantes']"
+  },
+  {
+    "kana": "にほんにんぎょう",
+    "en": [
+      "Japanese-style doll",
+      "doll with traditional Japanese clothing"
+    ],
+    "senseUid": "a1b13a2a-ebb9-43e1-9662-dc577c272348",
+    "wordId": "2859511",
+    "pt": "{\n  \"a\": [\n    \"boneca japonesa\",\n    \"boneca com roupas tradicionais japonesas\"\n  ]\n"
+  },
+  {
+    "kana": "きょうこうてき",
+    "en": [
+      "forceful"
+    ],
+    "senseUid": "2e2c0cb6-e688-4365-8f0d-cc8c631ad462",
+    "wordId": "2859512",
+    "pt": "['enérgico', 'impositivo', 'coercitivo', 'forçado']"
+  },
+  {
+    "kana": "いのちをちらす",
+    "en": [
+      "to die (in action, in one's youth)"
+    ],
+    "senseUid": "ee570e3c-0c5d-4f97-8d94-4d380f66c2dc",
+    "wordId": "2859513",
+    "pt": "['perder a vida (em ação, na juventude)']"
+  },
+  {
+    "kana": "いのちがちる",
+    "en": [
+      "to die (e.g. in action)"
+    ],
+    "senseUid": "fa8351ae-ebf0-4c03-a39d-0d0b6da57b88",
+    "wordId": "2859514",
+    "pt": "{\n  \"a\": [\"perder a vida (por exemplo, em combate)\"]\n"
+  },
+  {
+    "kana": "おうこらいこん",
+    "en": [
+      "in all ages",
+      "since antiquity"
+    ],
+    "senseUid": "fe6b8dcf-3577-4977-8343-5a8cc4992425",
+    "wordId": "2859517",
+    "pt": "{\n  \"a\": [\"desde os tempos antigos\", \"desde a antiguidade\", \"em todas as eras\"]\n"
+  }
+]

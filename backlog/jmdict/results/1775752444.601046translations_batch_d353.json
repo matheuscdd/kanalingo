@@ -1,0 +1,916 @@
+[
+  {
+    "kana": "イベントプロパティ",
+    "en": [
+      "event property"
+    ],
+    "senseUid": "98be745a-90c7-4f4b-ac7a-d71c8995249b",
+    "wordId": "2282620",
+    "pt": "['propriedade de evento']"
+  },
+  {
+    "kana": "イベントログ",
+    "en": [
+      "event log",
+      "event logging"
+    ],
+    "senseUid": "b7440512-416d-42f1-9b87-18224c8421e2",
+    "wordId": "2282630",
+    "pt": "{\n  \"a\": [\n    \"registro de eventos\",\n    \"log de eventos\"\n  ]\n"
+  },
+  {
+    "kana": "イベントログエントリー",
+    "en": [
+      "event log entry"
+    ],
+    "senseUid": "071c6124-fd46-4404-abe4-86be69cb32e5",
+    "wordId": "2282650",
+    "pt": "['entrada de registro de evento']"
+  },
+  {
+    "kana": "イベントくどう",
+    "en": [
+      "event driven"
+    ],
+    "senseUid": "60523c9d-5d4a-4dac-995c-accbb87b7357",
+    "wordId": "2282660",
+    "pt": "{\n  \"a\": [\"acionado por evento\"]\n"
+  },
+  {
+    "kana": "イベントくどうがた",
+    "en": [
+      "event driven"
+    ],
+    "senseUid": "066335ef-11c2-4897-9412-3d8f98234a60",
+    "wordId": "2282670",
+    "pt": "['orientado a eventos']"
+  },
+  {
+    "kana": "イベントしていし",
+    "en": [
+      "event descriptor"
+    ],
+    "senseUid": "c47abac2-456d-4f9a-b26c-3407a441e194",
+    "wordId": "2282680",
+    "pt": "{\n  \"a\": [\n    \"descritor de evento\"\n  ]\n"
+  },
+  {
+    "kana": "イベントしょり",
+    "en": [
+      "event processing"
+    ],
+    "senseUid": "fe4eb30b-f662-4789-b2a6-e09a9f5dafca",
+    "wordId": "2282690",
+    "pt": "{\n  \"a\": [\n    \"processamento de eventos\"\n  ]\n"
+  },
+  {
+    "kana": "イベントほうこく",
+    "en": [
+      "event reporting"
+    ],
+    "senseUid": "90e702ba-a5ee-4173-8f77-05b5b5a1354e",
+    "wordId": "2282700",
+    "pt": "{\n  \"a\": [\"relato de evento\"]\n"
+  },
+  {
+    "kana": "イメージサイズ",
+    "en": [
+      "image size"
+    ],
+    "senseUid": "d7cda3e6-b480-4cff-8229-8feaf97ac144",
+    "wordId": "2282710",
+    "pt": "{\n  \"a\": [\"tamanho da imagem\"]\n"
+  },
+  {
+    "kana": "イメージセッター",
+    "en": [
+      "imagesetter"
+    ],
+    "senseUid": "e2d64da4-a962-4d50-a391-0805ad4f9d4b",
+    "wordId": "2282730",
+    "pt": "{\n  \"a\": [\"fotocompositora\"]\n"
+  },
+  {
+    "kana": "イメージデータ",
+    "en": [
+      "image data"
+    ],
+    "senseUid": "439e0b47-6c43-4dd8-bbeb-42d6981c20d5",
+    "wordId": "2282740",
+    "pt": "{\n  \"a\": [\"dados de imagem\"]\n"
+  },
+  {
+    "kana": "イメージバッファ",
+    "en": [
+      "image buffer"
+    ],
+    "senseUid": "8832034f-73f7-46e0-874a-c88f7fe4d509",
+    "wordId": "2282750",
+    "pt": "['buffer de imagem']"
+  },
+  {
+    "kana": "イメージマップ",
+    "en": [
+      "image map (image on a web page with clickable areas)"
+    ],
+    "senseUid": "d30136f5-efe1-4e5a-94a9-1de8c19abce3",
+    "wordId": "2282760",
+    "pt": "['mapa de imagem (imagem em uma página da web com áreas clicáveis)']"
+  },
+  {
+    "kana": "イメージング",
+    "en": [
+      "imaging"
+    ],
+    "senseUid": "ba6d4c9f-16ee-4e96-b6e1-49e98bcf8356",
+    "wordId": "2282770",
+    "pt": "{\n  \"a\": [\"imagem\", \"imaginamento\", \"processamento de imagem\"]\n"
+  },
+  {
+    "kana": "イメージしょり",
+    "en": [
+      "image processing"
+    ],
+    "senseUid": "2bc873f2-3f47-4a11-aeb3-e8c4a3b61e8f",
+    "wordId": "2282780",
+    "pt": "{\n  \"a\": [\"processamento de imagem\"]\n"
+  },
+  {
+    "kana": "インキュナブラ",
+    "en": [
+      "incunable",
+      "incunabulum"
+    ],
+    "senseUid": "ef3e8419-972e-4267-8ec5-9d4e88a0340b",
+    "wordId": "2282830",
+    "pt": "{\n  \"a\": [\n    \"incunábulo\"\n  ]\n"
+  },
+  {
+    "kana": "インアクティブウィンドウ",
+    "en": [
+      "inactive window",
+      "IAW"
+    ],
+    "senseUid": "595e25cc-02f2-4393-b5f4-fe9ccd77869e",
+    "wordId": "2282820",
+    "pt": "['janela inativa', 'IAW']"
+  },
+  {
+    "kana": "インキング",
+    "en": [
+      "inking"
+    ],
+    "senseUid": "8deddf47-9d7f-433d-87e8-41bb5d99c11b",
+    "wordId": "2282840",
+    "pt": "['passar a nanquim', 'tintar', 'finalizar com tinta']"
+  },
+  {
+    "kana": "インクカートリッジ",
+    "en": [
+      "ink cartridge"
+    ],
+    "senseUid": "d98f1689-df1d-4abd-961f-f593e531f40a",
+    "wordId": "2282850",
+    "pt": "{\n  \"a\": [\"cartucho de tinta\"]\n"
+  },
+  {
+    "kana": "インクジェットプリンター",
+    "en": [
+      "inkjet printer"
+    ],
+    "senseUid": "86920961-8aab-42bb-a822-5b434fc5b145",
+    "wordId": "2282860",
+    "pt": "['impressora jato de tinta']"
+  },
+  {
+    "kana": "インクジェットいんじそうち",
+    "en": [
+      "ink jet printer"
+    ],
+    "senseUid": "bcfc57a6-8663-4984-a983-515b857743d7",
+    "wordId": "2282870",
+    "pt": "['impressora jato de tinta']"
+  },
+  {
+    "kana": "インクジェットほうしき",
+    "en": [
+      "ink-jet method"
+    ],
+    "senseUid": "f5da4196-005d-45c6-97ca-f3815f5a70bc",
+    "wordId": "2282880",
+    "pt": "{\n  \"a\": [\n    \"método de jato de tinta\"\n  ]\n"
+  },
+  {
+    "kana": "インクデスクトップ",
+    "en": [
+      "ink desktop"
+    ],
+    "senseUid": "5bda1144-3f00-48e8-adee-2c5feb1ab13c",
+    "wordId": "2282890",
+    "pt": "['Área de Trabalho Ink']"
+  },
+  {
+    "kana": "インクリボン",
+    "en": [
+      "inked ribbon"
+    ],
+    "senseUid": "d47ec77f-552a-4ca9-aac6-45ec07ee79b4",
+    "wordId": "2282910",
+    "pt": "{\n  \"a\": [\"fita de tinta\"]\n"
+  },
+  {
+    "kana": "インクリメンタルサーチ",
+    "en": [
+      "incremental search"
+    ],
+    "senseUid": "8f281352-5d99-4511-a22d-929b12322965",
+    "wordId": "2282920",
+    "pt": "['busca incremental']"
+  },
+  {
+    "kana": "インクリメンタルバックアップ",
+    "en": [
+      "incremental backup"
+    ],
+    "senseUid": "b5a7e4bf-f184-423b-b04f-98edd4a0b936",
+    "wordId": "2282930",
+    "pt": "['backup incremental']"
+  },
+  {
+    "kana": "インサーキットエミュレータ",
+    "en": [
+      "in-circuit emulator"
+    ],
+    "senseUid": "3a9f0fbc-af47-483b-baa7-7474586e911a",
+    "wordId": "2282950",
+    "pt": "['emulador em circuito']"
+  },
+  {
+    "kana": "インサートモード",
+    "en": [
+      "insert mode"
+    ],
+    "senseUid": "4d195dff-4374-4465-a938-714d4313c0ae",
+    "wordId": "2282960",
+    "pt": "['modo de inserção']"
+  },
+  {
+    "kana": "インサートへんしゅう",
+    "en": [
+      "insert edit"
+    ],
+    "senseUid": "5a52514b-a65d-42e7-b3ed-1fea790498e3",
+    "wordId": "2282970",
+    "pt": "['edição de inserção']"
+  },
+  {
+    "kana": "インジケータランプ",
+    "en": [
+      "indicator light"
+    ],
+    "senseUid": "030171fd-ee79-4db1-825e-0742fb6cb3d9",
+    "wordId": "2282980",
+    "pt": "['luz indicadora']"
+  },
+  {
+    "kana": "インスタンスか",
+    "en": [
+      "instantiation (in object-oriented programming)"
+    ],
+    "senseUid": "dd1be51e-5613-4a70-9989-95c1f1f106b7",
+    "wordId": "2283000",
+    "pt": "['instanciação (em programação orientada a objetos)']"
+  },
+  {
+    "kana": "インスタンスへんすう",
+    "en": [
+      "instance variable"
+    ],
+    "senseUid": "9fa877ca-1717-48d5-8c15-460a28b33cc3",
+    "wordId": "2283010",
+    "pt": "{\n  \"a\": [\n    \"variável de instância\"\n  ]\n"
+  },
+  {
+    "kana": "インストールプログラム",
+    "en": [
+      "installation program"
+    ],
+    "senseUid": "78ebe3be-6024-4798-98ca-2318172ca77b",
+    "wordId": "2283020",
+    "pt": "['programa de instalação']"
+  },
+  {
+    "kana": "インストールログファイル",
+    "en": [
+      "installation log file"
+    ],
+    "senseUid": "2332e31f-00e9-4ab4-8a66-4952a18078ee",
+    "wordId": "2283030",
+    "pt": "{\n  \"a\": [\"arquivo de log de instalação\"]\n"
+  },
+  {
+    "kana": "インストールかのうデバイスドライバ",
+    "en": [
+      "installable device driver"
+    ],
+    "senseUid": "c12ecaf9-5216-4ef2-945e-6600540d9a5d",
+    "wordId": "2283040",
+    "pt": "['driver de dispositivo instalável']"
+  },
+  {
+    "kana": "インストラクションセット",
+    "en": [
+      "instruction set"
+    ],
+    "senseUid": "9f751765-38ba-4230-a60c-17a7a7fe8e00",
+    "wordId": "2283080",
+    "pt": "['conjunto de instruções']"
+  },
+  {
+    "kana": "インストラクションセットアーキテクチャ",
+    "en": [
+      "instruction set architecture",
+      "ISA"
+    ],
+    "senseUid": "fa070f5b-3553-4347-847f-160a83068cda",
+    "wordId": "2283090",
+    "pt": "{\n  \"a\": [\n    \"arquitetura de conjunto de instruções\"\n  ]\n"
+  },
+  {
+    "kana": "インストレーション",
+    "en": [
+      "installation"
+    ],
+    "senseUid": "25c2780f-3f53-405b-bf11-b014347daf74",
+    "wordId": "2283100",
+    "pt": "['instalação']"
+  },
+  {
+    "kana": "インストレーションプログラム",
+    "en": [
+      "installation program"
+    ],
+    "senseUid": "fbf712b1-4b26-4adb-87d1-69d005098397",
+    "wordId": "2283110",
+    "pt": "['programa de instalação']"
+  },
+  {
+    "kana": "インターエクスチェンジ",
+    "en": [
+      "interexchange"
+    ],
+    "senseUid": "fc666dda-8d02-441c-8301-993ba03bd706",
+    "wordId": "2283120",
+    "pt": "['intercâmbio']"
+  },
+  {
+    "kana": "インターオペラビリティ",
+    "en": [
+      "interoperability"
+    ],
+    "senseUid": "80fa5c85-1976-4f3b-856e-eb2ca7ff78bd",
+    "wordId": "2283130",
+    "pt": "['interoperabilidade']"
+  },
+  {
+    "kana": "インターナショナライゼーション",
+    "en": [
+      "internationalization"
+    ],
+    "senseUid": "629ee4fd-c691-4aeb-98e5-6007a964ee39",
+    "wordId": "2283200",
+    "pt": "['internacionalização']"
+  },
+  {
+    "kana": "インターネットブイピーエヌ",
+    "en": [
+      "Internet Virtual Private Network"
+    ],
+    "senseUid": "94ad6450-d8d2-4b4b-8545-b193a6959c11",
+    "wordId": "2283220",
+    "pt": "['Rede Privada Virtual de Internet']"
+  },
+  {
+    "kana": "インターネットアクセス",
+    "en": [
+      "Internet access"
+    ],
+    "senseUid": "8134a130-bac9-43e5-ada8-a91417e9b1d0",
+    "wordId": "2283260",
+    "pt": "['Acesso à Internet']"
+  },
+  {
+    "kana": "インターネットエクスプローラ",
+    "en": [
+      "Internet Explorer"
+    ],
+    "senseUid": "ec3fdc3a-8340-453f-913a-2ab8f899f9bd",
+    "wordId": "2283270",
+    "pt": "['Internet Explorer']"
+  },
+  {
+    "kana": "インターネットデータセンター",
+    "en": [
+      "Internet Data Center"
+    ],
+    "senseUid": "7ce4391f-656b-424b-b528-9d9f366ad7ce",
+    "wordId": "2283300",
+    "pt": "['Centro de Dados da Internet']"
+  },
+  {
+    "kana": "インターネットフォン",
+    "en": [
+      "Internet Phone"
+    ],
+    "senseUid": "b3681b55-6930-41bd-b1ff-62ac1e3f7985",
+    "wordId": "2283310",
+    "pt": "['Telefone pela Internet']"
+  },
+  {
+    "kana": "インターネットメール",
+    "en": [
+      "Internet mail"
+    ],
+    "senseUid": "d311039b-05f7-42ba-a2ea-740fe09e6346",
+    "wordId": "2283340",
+    "pt": "['correio eletrônico']"
+  },
+  {
+    "kana": "インターネットワーム",
+    "en": [
+      "Internet worm"
+    ],
+    "senseUid": "8def7209-074a-4a9b-bc61-4d5783b6c52f",
+    "wordId": "2283360",
+    "pt": "{\n  \"a\": [\"verme de internet\"]\n"
+  },
+  {
+    "kana": "インターネットリレーチャット",
+    "en": [
+      "Internet relay chat",
+      "IRC"
+    ],
+    "senseUid": "4b7cd761-960c-4028-aa52-a1474a4dc25d",
+    "wordId": "2283350",
+    "pt": "['Chat de retransmissão pela Internet', 'IRC']"
+  },
+  {
+    "kana": "インターネットぎじゅつすいしんグループ",
+    "en": [
+      "Internet Engineering Steering Group",
+      "IESG"
+    ],
+    "senseUid": "4f3d7f62-9cb1-4964-a043-d7289e70e726",
+    "wordId": "2283390",
+    "pt": "{\n  \"a\": [\n    \"Grupo Diretor de Engenharia da Internet\"\n  ]\n"
+  },
+  {
+    "kana": "インターネットぎじゅつとくべつちょうさいいんかい",
+    "en": [
+      "Internet Engineering Task Force",
+      "IETF"
+    ],
+    "senseUid": "bda6637b-be2b-4254-9fab-9badd82c5fb6",
+    "wordId": "2283400",
+    "pt": "['Força-Tarefa de Engenharia da Internet']"
+  },
+  {
+    "kana": "インターネットけんさく",
+    "en": [
+      "web search"
+    ],
+    "senseUid": "a892ab81-233a-4aae-99e7-09633c779d43",
+    "wordId": "2283410",
+    "pt": "['pesquisa na internet']"
+  },
+  {
+    "kana": "インターネットけんきゅうすいしんグループ",
+    "en": [
+      "Internet Research Steering Group",
+      "IRSG"
+    ],
+    "senseUid": "b87ec538-79af-410b-8afd-15e83eccd141",
+    "wordId": "2283420",
+    "pt": "{\n  \"a\": [\n    \"Grupo de Direção de Pesquisa da Internet\",\n    \"IRSG\"\n  ]\n"
+  },
+  {
+    "kana": "インターネットけんきゅうとくべつちょうさいいんかい",
+    "en": [
+      "Internet Research Task Force",
+      "IRTF"
+    ],
+    "senseUid": "6bf5f617-d638-4c72-b410-76e9c99eb6fe",
+    "wordId": "2283430",
+    "pt": "{\n  \"a\": [\n    \"Comitê Especial de Investigação em Pesquisa da Internet\"\n  ]\n"
+  },
+  {
+    "kana": "インターネットせつぞくきょうゆう",
+    "en": [
+      "Internet Connection Sharing",
+      "ICS"
+    ],
+    "senseUid": "62ade40a-4235-40aa-b1cc-2a5d463cb162",
+    "wordId": "2283440",
+    "pt": "{\n  \"a\": [\n    \"Compartilhamento de Conexão com a Internet\"\n  ]\n"
+  },
+  {
+    "kana": "インターバルタイマ",
+    "en": [
+      "interval timer"
+    ],
+    "senseUid": "503b15af-e7c4-4f7f-935c-831129ab287c",
+    "wordId": "2283450",
+    "pt": "['temporizador de intervalo']"
+  },
+  {
+    "kana": "インターフェースアダプタ",
+    "en": [
+      "interface adapter"
+    ],
+    "senseUid": "440c3f79-d789-42e3-8bf9-5ca38db97c6f",
+    "wordId": "2283460",
+    "pt": "{\n  \"a\": [\n    \"Adaptador de interface\"\n  ]\n"
+  },
+  {
+    "kana": "インターフェースビルダ",
+    "en": [
+      "interface builder"
+    ],
+    "senseUid": "2077c4b5-1f67-4579-9110-9553b5e8d34d",
+    "wordId": "2283470",
+    "pt": "{\n  \"a\": [\"construtor de interface\"]\n"
+  },
+  {
+    "kana": "インターフェイスボード",
+    "en": [
+      "interface board"
+    ],
+    "senseUid": "33134ca5-5f3f-4903-acd8-13dbeb531a8e",
+    "wordId": "2283480",
+    "pt": "['placa de interface']"
+  },
+  {
+    "kana": "インターフェイスメッセージプロセッサー",
+    "en": [
+      "Interface Message Processor",
+      "IMP"
+    ],
+    "senseUid": "698a35ff-32f9-4b75-b4d9-5bd8c5bdf2a4",
+    "wordId": "2283490",
+    "pt": "['Processador de Mensagens de Interface']"
+  },
+  {
+    "kana": "インターメディア",
+    "en": [
+      "intermedia"
+    ],
+    "senseUid": "ba7ce1e3-4909-4c05-9b13-801bc2a16f40",
+    "wordId": "2283510",
+    "pt": "['intermédia']"
+  },
+  {
+    "kana": "インターリービング",
+    "en": [
+      "interleaving"
+    ],
+    "senseUid": "bd630626-ebe3-4701-ac31-a9fc242bbfa8",
+    "wordId": "2283520",
+    "pt": "['entrelaçamento']"
+  },
+  {
+    "kana": "インターリーブメモリ",
+    "en": [
+      "interleaved memory"
+    ],
+    "senseUid": "3924cae4-d5a2-406f-9813-9ffc6daea04d",
+    "wordId": "2283530",
+    "pt": "['memória intercalada']"
+  },
+  {
+    "kana": "インターレース",
+    "en": [
+      "interlace (e.g. on CRT screens)",
+      "interlaced scanning"
+    ],
+    "senseUid": "0962fcdd-51bd-4170-850e-48609bc49446",
+    "wordId": "2283540",
+    "pt": "{\n  \"a\": [\n    \"entrelaçamento (por exemplo, em telas CRT)\",\n    \"varredura entrelaçada\"\n  ]\n"
+  },
+  {
+    "kana": "インターレースジフ",
+    "en": [
+      "interlaced GIF"
+    ],
+    "senseUid": "3be8147c-c8d5-409d-977f-51a4d540d7a2",
+    "wordId": "2283550",
+    "pt": "{\n  \"a\": [\"GIF entrelaçado\"]\n"
+  },
+  {
+    "kana": "インターワーキング",
+    "en": [
+      "interworking"
+    ],
+    "senseUid": "61a632b7-5c2b-460c-a604-1f092dcb9025",
+    "wordId": "2283560",
+    "pt": "['interfuncionamento']"
+  },
+  {
+    "kana": "インタフェースアドレス",
+    "en": [
+      "interface address"
+    ],
+    "senseUid": "6d4bd0fe-2fd7-47c7-8b85-648521e9252b",
+    "wordId": "2283570",
+    "pt": "{\n  \"a\": [\"endereço de interface\"]\n"
+  },
+  {
+    "kana": "インタフェースカード",
+    "en": [
+      "interface card"
+    ],
+    "senseUid": "1785add8-2ef1-448f-9073-9522f3318ebf",
+    "wordId": "2283580",
+    "pt": "{\n  \"a\": [\"placa de interface\"]\n"
+  },
+  {
+    "kana": "インタフェースモジュール",
+    "en": [
+      "interface module"
+    ],
+    "senseUid": "b9ef450b-350e-4684-b1ca-591eff921e16",
+    "wordId": "2283590",
+    "pt": "['módulo de interface']"
+  },
+  {
+    "kana": "インタフェースしゅべつ",
+    "en": [
+      "interface type"
+    ],
+    "senseUid": "0691774e-d221-40d9-9d46-eeef1b9b0cb0",
+    "wordId": "2283600",
+    "pt": "{\n  \"a\": [\"tipo de interface\"]\n"
+  },
+  {
+    "kana": "インタフェースていぎげんご",
+    "en": [
+      "Interface Definition Language"
+    ],
+    "senseUid": "2c35f4ac-0ad8-4282-bd9e-ff6583daac92",
+    "wordId": "2283610",
+    "pt": "['Linguagem de Definição de Interface']"
+  },
+  {
+    "kana": "インタプリタがたげんご",
+    "en": [
+      "interpreted language"
+    ],
+    "senseUid": "2f7168d1-9e53-4c9a-88aa-b1bd4a7bfdb9",
+    "wordId": "2283630",
+    "pt": "{\n  \"a\": [\"linguagem interpretada\"]\n"
+  },
+  {
+    "kana": "インタラクティブテレビ",
+    "en": [
+      "interactive television"
+    ],
+    "senseUid": "6b774072-bf97-45ad-8d46-4506b95bec5d",
+    "wordId": "2283640",
+    "pt": "{\n  \"a\": [\"televisão interativa\"]\n"
+  },
+  {
+    "kana": "インタラクティブボタン",
+    "en": [
+      "interactive button"
+    ],
+    "senseUid": "014d5c46-d69c-47c3-884d-d64bf7b4a0a0",
+    "wordId": "2283650",
+    "pt": "['botão interativo']"
+  },
+  {
+    "kana": "インタレストグループ",
+    "en": [
+      "interest group"
+    ],
+    "senseUid": "81b4a433-1816-4fa1-97da-e0d6dc003b69",
+    "wordId": "2283680",
+    "pt": "['grupo de interesse']"
+  },
+  {
+    "kana": "インチネジ",
+    "en": [
+      "inch screw threads"
+    ],
+    "senseUid": "50ae633f-32c0-42ad-8039-cbf2f181e72e",
+    "wordId": "2283690",
+    "pt": "['parafuso de rosca em polegadas']"
+  },
+  {
+    "kana": "インテリジェントケーブル",
+    "en": [
+      "intelligent cable"
+    ],
+    "senseUid": "8dc687e7-1ac1-4c2c-9459-5e58cc8bc6d2",
+    "wordId": "2283720",
+    "pt": "['cabo inteligente']"
+  },
+  {
+    "kana": "インテリジェントデータベース",
+    "en": [
+      "intelligent database"
+    ],
+    "senseUid": "0f6852f1-9c6e-4910-8934-c5515e394d52",
+    "wordId": "2283730",
+    "pt": "['banco de dados inteligente']"
+  },
+  {
+    "kana": "インテリジェントネットワーク",
+    "en": [
+      "intelligent network"
+    ],
+    "senseUid": "66f072d7-352d-4e18-add0-742de1c193ec",
+    "wordId": "2283740",
+    "pt": "{\n  \"a\": [\"rede inteligente\"]\n"
+  },
+  {
+    "kana": "インテリジェントハブ",
+    "en": [
+      "intelligent hub"
+    ],
+    "senseUid": "136dbaf5-1683-43c6-9917-c7c8fc8ceeae",
+    "wordId": "2283750",
+    "pt": "['Hub Inteligente']"
+  },
+  {
+    "kana": "インテリジェントマルチプレクサ",
+    "en": [
+      "intelligent mux",
+      "intelligent multiplexer"
+    ],
+    "senseUid": "e2d92424-0bb4-4859-b9b1-536ce6842027",
+    "wordId": "2283760",
+    "pt": "{\n  \"a\": [\"multiplexador inteligente\"]\n"
+  },
+  {
+    "kana": "インテリジェントそうち",
+    "en": [
+      "intelligent device"
+    ],
+    "senseUid": "bc891a6c-ea1c-4ea6-b530-21411d84a35a",
+    "wordId": "2283770",
+    "pt": "{\n  \"a\": [\n    \"dispositivo inteligente\"\n  ]\n"
+  },
+  {
+    "kana": "インテリジェントたんまつ",
+    "en": [
+      "intelligent (as opposed to dumb) terminal"
+    ],
+    "senseUid": "0b11312b-bedb-49da-a584-9ab546dbb0b9",
+    "wordId": "2283780",
+    "pt": "['terminal inteligente']"
+  },
+  {
+    "kana": "インデクサ",
+    "en": [
+      "indexer"
+    ],
+    "senseUid": "bbd4395c-182f-459f-a6ae-f87bbd49f587",
+    "wordId": "2283790",
+    "pt": "['indexador']"
+  },
+  {
+    "kana": "インデックスバッファ",
+    "en": [
+      "index buffer"
+    ],
+    "senseUid": "b4c63083-03bf-4304-8084-577a9802b57d",
+    "wordId": "2283810",
+    "pt": "['buffer de índice']"
+  },
+  {
+    "kana": "インデックスファイル",
+    "en": [
+      "indexed file"
+    ],
+    "senseUid": "89904df1-5cb6-4402-ae66-20b78d17a2e3",
+    "wordId": "2283820",
+    "pt": "['arquivo indexado']"
+  },
+  {
+    "kana": "インデックスホール",
+    "en": [
+      "index hole (in a floppy disc)"
+    ],
+    "senseUid": "87063f99-7ed2-403c-a6c1-db0b932458d3",
+    "wordId": "2283830",
+    "pt": "['orifício de índice (em um disquete)']"
+  },
+  {
+    "kana": "インデックスレジスタ",
+    "en": [
+      "index register"
+    ],
+    "senseUid": "82fb308e-634a-450d-8479-7a7380685c01",
+    "wordId": "2283840",
+    "pt": "['registrador de índice']"
+  },
+  {
+    "kana": "イントロパック",
+    "en": [
+      "intro-pack"
+    ],
+    "senseUid": "2f76d884-fe86-4d15-b39a-19a48593f852",
+    "wordId": "2283890",
+    "pt": "['pacote de introdução']"
+  },
+  {
+    "kana": "インバウンド",
+    "en": [
+      "inbound"
+    ],
+    "senseUid": "094eb966-de6b-43fc-9854-60df02902dd4",
+    "wordId": "2283900",
+    "pt": "['turismo receptivo']"
+  },
+  {
+    "kana": "インバウンド",
+    "en": [
+      "inbound tourism"
+    ],
+    "senseUid": "842350c3-abf6-4cd6-9f97-6f273e5efc81",
+    "wordId": "2283900",
+    "pt": "['turismo receptivo']"
+  },
+  {
+    "kana": "インパクトプリンタ",
+    "en": [
+      "impact printer"
+    ],
+    "senseUid": "2bb8e4b4-416e-475c-bfe7-64ab1b1e11f0",
+    "wordId": "2283910",
+    "pt": "['impressora de impacto']"
+  },
+  {
+    "kana": "インフォシーク",
+    "en": [
+      "Infoseek"
+    ],
+    "senseUid": "c25a392b-f8d5-434a-81ad-b14e01b3a22f",
+    "wordId": "2283950",
+    "pt": "['Infoseek']"
+  },
+  {
+    "kana": "インフォストラクチャー",
+    "en": [
+      "infostructure",
+      "information structure"
+    ],
+    "senseUid": "e25244be-2e18-49de-9dfc-fce5c04b5613",
+    "wordId": "2283960",
+    "pt": "{\n  \"a\": [\n    \"infostrutura\",\n    \"estrutura de informação\"\n  ]\n"
+  },
+  {
+    "kana": "インフォスフィア",
+    "en": [
+      "InfoSphere"
+    ],
+    "senseUid": "50688de5-fda8-4ea8-901a-9850e0539734",
+    "wordId": "2283970",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"インフォスフィア\",\n      \"Português\": \"Infosfera\",\n      \"Explicação\": \"No contexto japonês, インフォスフィア (Infosfera) refere-se ao espaço ou ambiente onde informações digitais circulam e interagem, abrangendo redes, mídias e sistemas de comunicação.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "インフォテイメント",
+    "en": [
+      "infotainment"
+    ],
+    "senseUid": "28a01849-4aad-4702-a302-0c50e56cd46b",
+    "wordId": "2283980",
+    "pt": "['infotenimento']"
+  },
+  {
+    "kana": "インフォナビゲーター",
+    "en": [
+      "InfoNavigator"
+    ],
+    "senseUid": "bd8f0a42-fdf1-4ef4-af29-0c493919c759",
+    "wordId": "2283990",
+    "pt": "{\n  \"a\": [\"Navegador de Informações\"]\n"
+  },
+  {
+    "kana": "インフォマック",
+    "en": [
+      "Info-Mac"
+    ],
+    "senseUid": "1d06e6db-4895-42b1-87fd-c508fad48a68",
+    "wordId": "2284000",
+    "pt": "{\n  \"a\": [\"Info-Mac\"]\n"
+  },
+  {
+    "kana": "インフォミックス",
+    "en": [
+      "Informix"
+    ],
+    "senseUid": "cc94c655-fa94-4a9f-aee0-69b1235fc192",
+    "wordId": "2284010",
+    "pt": "{\n  \"a\": [\"Informix\"]\n"
+  }
+]

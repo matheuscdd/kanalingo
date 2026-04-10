@@ -1,0 +1,964 @@
+[
+  {
+    "kana": "ハーフコート",
+    "en": [
+      "three-quarter",
+      "half coat",
+      "top coat"
+    ],
+    "senseUid": "372e4aba-62d8-4110-b891-198880056ddb",
+    "wordId": "1927250",
+    "pt": "['casaco 7/8', 'sobretudo curto', 'casaco três-quartos']"
+  },
+  {
+    "kana": "バギーカー",
+    "en": [
+      "dune buggy",
+      "beach buggy"
+    ],
+    "senseUid": "79341009-fe06-4bc9-82be-eb4fd24a848e",
+    "wordId": "1927260",
+    "pt": "{\n  \"a\": [\"buggy de praia\", \"buggy de dunas\"]\n"
+  },
+  {
+    "kana": "バッティングピッチャー",
+    "en": [
+      "batting practice pitcher"
+    ],
+    "senseUid": "d67dbcca-1b34-4793-a631-10928e60e9ca",
+    "wordId": "1927270",
+    "pt": "['arremessador de treino de rebatidas']"
+  },
+  {
+    "kana": "バテンレース",
+    "en": [
+      "Battenberg lace"
+    ],
+    "senseUid": "2d235b7f-8efe-41c1-942a-479c81b5cdae",
+    "wordId": "1927280",
+    "pt": "['Renda Battenberg']"
+  },
+  {
+    "kana": "バトルロイヤル",
+    "en": [
+      "battle royal"
+    ],
+    "senseUid": "f7c29c6b-e62e-4680-8cbb-b517eb41aad7",
+    "wordId": "1927290",
+    "pt": "['batalha real']"
+  },
+  {
+    "kana": "バトルロイヤル",
+    "en": [
+      "battle royale (genre)"
+    ],
+    "senseUid": "17e86ddb-6aa7-4dc1-8407-6e0e89fcdc3d",
+    "wordId": "1927290",
+    "pt": "['batalha real (gênero)']"
+  },
+  {
+    "kana": "バルカンファイバー",
+    "en": [
+      "vulcanized fiber",
+      "vulcanised fiber",
+      "vulcanized fibre",
+      "vulcanised fibre"
+    ],
+    "senseUid": "92724fb5-363f-4089-b177-d42698c5bec0",
+    "wordId": "1927300",
+    "pt": "{\n  \"a\": [\n    \"fibra vulcanizada\"\n  ]\n"
+  },
+  {
+    "kana": "バルクワイン",
+    "en": [
+      "barreled wine"
+    ],
+    "senseUid": "77b361b2-72c5-47de-93c2-6e2f04aa9d46",
+    "wordId": "1927310",
+    "pt": "['vinho a granel']"
+  },
+  {
+    "kana": "パスボール",
+    "en": [
+      "passed ball"
+    ],
+    "senseUid": "8d6a2d21-8c23-4bf7-bb5c-fb9cbcf43126",
+    "wordId": "1927320",
+    "pt": "['bola passada']"
+  },
+  {
+    "kana": "パリコミューン",
+    "en": [
+      "Paris Commune"
+    ],
+    "senseUid": "a20985ce-6cb9-4ab8-972c-b423e8985b0f",
+    "wordId": "1927330",
+    "pt": "['Comuna de Paris']"
+  },
+  {
+    "kana": "パワーウェイトレシオ",
+    "en": [
+      "power-to-weight ratio"
+    ],
+    "senseUid": "5f029955-3029-4398-9ede-c93d45c64b01",
+    "wordId": "1927340",
+    "pt": "['relação peso-potência']"
+  },
+  {
+    "kana": "パンクロ",
+    "en": [
+      "panchromatic"
+    ],
+    "senseUid": "4c873f64-0fb8-46cb-b9de-ec28bfee1a80",
+    "wordId": "1927350",
+    "pt": "['pancromático']"
+  },
+  {
+    "kana": "ビーチバレー",
+    "en": [
+      "beach volleyball"
+    ],
+    "senseUid": "8cc007ee-05a5-45f7-9ebb-4a41750cd479",
+    "wordId": "1927360",
+    "pt": "['vôlei de praia']"
+  },
+  {
+    "kana": "ビッグニュース",
+    "en": [
+      "big news",
+      "important news"
+    ],
+    "senseUid": "1ccc82ea-4db0-47c8-bf48-2bbd615ae28b",
+    "wordId": "1927370",
+    "pt": "{\n  \"a\": [\n    \"grande notícia\",\n    \"notícia importante\"\n  ]\n"
+  },
+  {
+    "kana": "ピンボケ",
+    "en": [
+      "out of focus"
+    ],
+    "senseUid": "2c094879-d6b4-48bd-bbcd-3d2e65b7407c",
+    "wordId": "1927380",
+    "pt": "['desfocado']"
+  },
+  {
+    "kana": "ピンボケ",
+    "en": [
+      "off the point"
+    ],
+    "senseUid": "cfad5da5-b06b-4e1e-becd-bf316274fda8",
+    "wordId": "1927380",
+    "pt": "['fora de foco']"
+  },
+  {
+    "kana": "ファゴッティングステッチ",
+    "en": [
+      "fagot-stitch",
+      "fagotting stitch"
+    ],
+    "senseUid": "37c03021-2d63-4a6f-951c-2c01392a88b2",
+    "wordId": "1927390",
+    "pt": "['ponto fagote', 'ponto de fagotagem']"
+  },
+  {
+    "kana": "ブラッシュボール",
+    "en": [
+      "brushback (pitch)"
+    ],
+    "senseUid": "db69923f-b88f-40be-bef1-6bfdd1daa288",
+    "wordId": "1927400",
+    "pt": "['arremesso de intimidação']"
+  },
+  {
+    "kana": "プルトップ",
+    "en": [
+      "pull-top",
+      "pop-top",
+      "pop top",
+      "pull tab"
+    ],
+    "senseUid": "1ecdf5f7-c86e-4861-86f8-9404a5be0a0e",
+    "wordId": "1927410",
+    "pt": "['lacre de lata', 'abertura fácil', 'abertura em anel', 'abertura com anel']"
+  },
+  {
+    "kana": "プロショップ",
+    "en": [
+      "speciality shop",
+      "specialty shop",
+      "pro shop"
+    ],
+    "senseUid": "592e9757-02a2-4b08-b2f2-26acf501d554",
+    "wordId": "1927420",
+    "pt": "['loja especializada', 'loja profissional', 'pro shop']"
+  },
+  {
+    "kana": "プロスポーツ",
+    "en": [
+      "professional sports"
+    ],
+    "senseUid": "1b516340-42e5-4520-97c5-8f7db3895317",
+    "wordId": "1927430",
+    "pt": "['esportes profissionais']"
+  },
+  {
+    "kana": "ベッドシーン",
+    "en": [
+      "bedroom scene",
+      "sex scene"
+    ],
+    "senseUid": "2cb8c364-dd42-4f62-9d47-bff6de375475",
+    "wordId": "1927440",
+    "pt": "['cena de sexo', 'cena de cama']"
+  },
+  {
+    "kana": "ベリカード",
+    "en": [
+      "verification card"
+    ],
+    "senseUid": "30d60b34-e7dc-4b69-aaeb-4e787085b489",
+    "wordId": "1927450",
+    "pt": "['cartão de verificação']"
+  },
+  {
+    "kana": "ホームパーティー",
+    "en": [
+      "house party",
+      "stayover"
+    ],
+    "senseUid": "c11d1bf7-1f3c-4274-8d4e-89bec87cea23",
+    "wordId": "1927460",
+    "pt": "{\n  \"a\": [\n    \"festa em casa\",\n    \"noite do pijama\"\n  ]\n"
+  },
+  {
+    "kana": "ホスジャンプ",
+    "en": [
+      "hop, step and jump",
+      "triple jump"
+    ],
+    "senseUid": "ce84edc6-d15a-4a9b-9921-e2e21acfa8fb",
+    "wordId": "1927470",
+    "pt": "['salto triplo', 'salto em distância triplo']"
+  },
+  {
+    "kana": "ホットカーペット",
+    "en": [
+      "electric carpet"
+    ],
+    "senseUid": "0a69d2ad-30f2-4ce5-a5da-938da749e2eb",
+    "wordId": "1927480",
+    "pt": "['tapete elétrico']"
+  },
+  {
+    "kana": "ホッピング",
+    "en": [
+      "pogo stick"
+    ],
+    "senseUid": "6c339b34-1260-4f44-9bb8-7af5e74cc557",
+    "wordId": "1927490",
+    "pt": "['pular com perna de pau']"
+  },
+  {
+    "kana": "ホンコンシャツ",
+    "en": [
+      "short-sleeved dress shirt"
+    ],
+    "senseUid": "25be68f1-51c7-4a7f-8d2c-bf2d039be917",
+    "wordId": "1927500",
+    "pt": "['camisa social de manga curta']"
+  },
+  {
+    "kana": "ポシャる",
+    "en": [
+      "to fall through (of a plan, project, etc.)",
+      "to fail",
+      "to flop",
+      "to collapse",
+      "to fizzle out"
+    ],
+    "senseUid": "e6f4459c-02ac-48f3-a7d4-3fad7a0d7e7e",
+    "wordId": "1927510",
+    "pt": "['fracassar (de um plano, projeto, etc.)', 'falhar', 'dar errado', 'desmoronar', 'ir por água abaixo']"
+  },
+  {
+    "kana": "ポッケ",
+    "en": [
+      "pocket"
+    ],
+    "senseUid": "d14364ad-9c22-4c9e-a583-5bc386cbffe6",
+    "wordId": "1927520",
+    "pt": "{\n  \"a\": [\"bolsinho\"]\n"
+  },
+  {
+    "kana": "ポリバケツ",
+    "en": [
+      "polyethylene bucket"
+    ],
+    "senseUid": "5e1ed2ec-f31d-4810-8175-1958b4ae33bb",
+    "wordId": "1927530",
+    "pt": "['balde de plástico']"
+  },
+  {
+    "kana": "ポリバス",
+    "en": [
+      "polyethylene bathtub"
+    ],
+    "senseUid": "2b101a7a-b9eb-41cc-8236-d00b9a1dee0f",
+    "wordId": "1927540",
+    "pt": "{\n  \"a\": [\"banheira de polietileno\"]\n"
+  },
+  {
+    "kana": "マイクロケ",
+    "en": [
+      "microphone location"
+    ],
+    "senseUid": "b88e44b6-733f-45d2-8da2-a5337deea351",
+    "wordId": "1927550",
+    "pt": "['localização do microfone']"
+  },
+  {
+    "kana": "マグネチックスピーカー",
+    "en": [
+      "electromagnetic loudspeaker"
+    ],
+    "senseUid": "61102c97-55a6-4e0f-99cf-3106ad5fe616",
+    "wordId": "1927560",
+    "pt": "['alto-falante eletromagnético']"
+  },
+  {
+    "kana": "マルチョイ",
+    "en": [
+      "multiple choice (method)"
+    ],
+    "senseUid": "8c478af4-1281-4c0c-a73a-bc460cd9ef28",
+    "wordId": "1927570",
+    "pt": "['escolha múltipla']"
+  },
+  {
+    "kana": "ミルクプラント",
+    "en": [
+      "dairy",
+      "milk plant"
+    ],
+    "senseUid": "904dd527-6806-4a09-9426-4d93f572ccad",
+    "wordId": "1927580",
+    "pt": "['usina de leite', 'laticínio']"
+  },
+  {
+    "kana": "ミルクホール",
+    "en": [
+      "milk bar",
+      "small shop selling milk, sweets, snacks, limited foodstuffs, etc. (Meiji-Showa)"
+    ],
+    "senseUid": "45b4ca64-862c-47a9-a727-c0f9182fb80e",
+    "wordId": "1927590",
+    "pt": "['leitaria', 'pequena loja que vende leite, doces, lanches, alimentos limitados, etc. (Era Meiji-Showa)']"
+  },
+  {
+    "kana": "ムーンフェース",
+    "en": [
+      "swollen face",
+      "puffy face"
+    ],
+    "senseUid": "d93a1b1a-5d41-4c41-a179-8ee803dadcd7",
+    "wordId": "1927600",
+    "pt": "{\n  \"a\": [\n    \"rosto inchado\",\n    \"rosto arredondado\",\n    \"face inchada\",\n    \"face arredondada\"\n  ]\n"
+  },
+  {
+    "kana": "ムーンフェース",
+    "en": [
+      "moon display on a watch indicating am or pm (usually analogue)"
+    ],
+    "senseUid": "3b549828-07ee-40b5-85b1-3b1e75784c25",
+    "wordId": "1927600",
+    "pt": "['indicador de lua em um relógio que mostra se é manhã ou tarde (geralmente analógico)']"
+  },
+  {
+    "kana": "モザイクパーケットフロア",
+    "en": [
+      "mosaic parquetry"
+    ],
+    "senseUid": "2b6409e0-4b54-4673-81e4-3aa7da5749f4",
+    "wordId": "1927610",
+    "pt": "['assoalho de parquet mosaico']"
+  },
+  {
+    "kana": "モスグレー",
+    "en": [
+      "greenish gray",
+      "greenish grey"
+    ],
+    "senseUid": "46ea9dc1-db93-4470-8130-20b6597a22bd",
+    "wordId": "1927620",
+    "pt": "['cinza esverdeado', 'cinza com tom esverdeado']"
+  },
+  {
+    "kana": "ライスカレー",
+    "en": [
+      "curry and rice"
+    ],
+    "senseUid": "3aece0d2-0557-4ab9-871a-9cbfff2858de",
+    "wordId": "1927630",
+    "pt": "['arroz com curry']"
+  },
+  {
+    "kana": "ラッキーセブン",
+    "en": [
+      "lucky seventh (inning)",
+      "seventh-inning stretch"
+    ],
+    "senseUid": "70909b49-8b33-4f77-84c3-e4275a924dc6",
+    "wordId": "1927650",
+    "pt": "{\n  \"a\": [\n    \"sétima entrada da sorte\",\n    \"intervalo da sétima entrada\"\n  ]\n"
+  },
+  {
+    "kana": "ラインダンス",
+    "en": [
+      "revue dance performed in a line",
+      "line dance"
+    ],
+    "senseUid": "ee5a9bb8-b1b9-4d5c-ac05-0f350614d8ca",
+    "wordId": "1927640",
+    "pt": "['dança de revista realizada em linha', 'dança em linha']"
+  },
+  {
+    "kana": "ラップスカート",
+    "en": [
+      "wraparound skirt"
+    ],
+    "senseUid": "25953051-c19b-4b8f-8914-291618e38d19",
+    "wordId": "1927660",
+    "pt": "['saia envelope']"
+  },
+  {
+    "kana": "ラブチェア",
+    "en": [
+      "love seat",
+      "love chair"
+    ],
+    "senseUid": "0d5e340b-e771-49ef-9dfb-b042d4c74a51",
+    "wordId": "1927670",
+    "pt": "['poltrona de casal', 'sofá de dois lugares']"
+  },
+  {
+    "kana": "ラムネ",
+    "en": [
+      "ramune",
+      "type of lemon soda sold in a Codd-neck bottle"
+    ],
+    "senseUid": "6b5e12cf-4eaa-40e9-a1db-13aa4271d47e",
+    "wordId": "1927680",
+    "pt": "['ramune', 'tipo de refrigerante de limão vendido em uma garrafa Codd']"
+  },
+  {
+    "kana": "ラムネ",
+    "en": [
+      "compressed tablet candy",
+      "glucose tablet"
+    ],
+    "senseUid": "f9cd7ead-0836-414e-a7d2-c517a2858535",
+    "wordId": "1927680",
+    "pt": "['doce comprimido', 'pastilha de glicose']"
+  },
+  {
+    "kana": "ランニングシャツ",
+    "en": [
+      "tank top (worn as an undergarment or sportswear)",
+      "vest",
+      "singlet"
+    ],
+    "senseUid": "75c18e8d-2995-46db-9df5-a592252c6da3",
+    "wordId": "1927690",
+    "pt": "['camiseta regata (usada como roupa de baixo ou para esportes)', 'regata', 'camiseta sem mangas']"
+  },
+  {
+    "kana": "リゾートハウス",
+    "en": [
+      "villa"
+    ],
+    "senseUid": "624520da-20f3-430e-9d46-da57043084d1",
+    "wordId": "1927700",
+    "pt": "['casa de veraneio']"
+  },
+  {
+    "kana": "リビングセット",
+    "en": [
+      "living room set"
+    ],
+    "senseUid": "889cd532-50c6-43d3-83e8-bf593699f311",
+    "wordId": "1927710",
+    "pt": "['conjunto de sala de estar']"
+  },
+  {
+    "kana": "リヤカー",
+    "en": [
+      "light two-wheeled trailer (towed by bicycle, pulled by hand, etc.)"
+    ],
+    "senseUid": "2055a9c0-a132-411d-8701-3df73da6557f",
+    "wordId": "1927720",
+    "pt": "['carretinha leve de duas rodas (puxada por bicicleta, à mão, etc.)']"
+  },
+  {
+    "kana": "リリーフカー",
+    "en": [
+      "bullpen cart",
+      "bullpen car"
+    ],
+    "senseUid": "6bb9bce7-55a7-43c1-a303-01ca7517ba62",
+    "wordId": "1927730",
+    "pt": "['carro do bullpen', 'carro de alívio']"
+  },
+  {
+    "kana": "リングノート",
+    "en": [
+      "ring binder"
+    ],
+    "senseUid": "6a874e31-da60-4ca3-b796-1afedc0adc7c",
+    "wordId": "1927740",
+    "pt": "['caderno de argolas']"
+  },
+  {
+    "kana": "ルビーガラス",
+    "en": [
+      "ruby glass"
+    ],
+    "senseUid": "5f64d244-79af-49fc-bc90-c9d887cd3447",
+    "wordId": "1927750",
+    "pt": "['vidro rubi']"
+  },
+  {
+    "kana": "レースペーパー",
+    "en": [
+      "lace paper doily"
+    ],
+    "senseUid": "a0b6555f-ab9a-4a2f-884c-3bf503af4938",
+    "wordId": "1927760",
+    "pt": "{\n  \"a\": [\"papel rendado\"]\n"
+  },
+  {
+    "kana": "レシプロ",
+    "en": [
+      "reciprocating engine"
+    ],
+    "senseUid": "cd9cdb22-108b-4657-86df-9c79f7fa5544",
+    "wordId": "1927770",
+    "pt": "{\n  \"a\": [\"motor alternativo\"]\n"
+  },
+  {
+    "kana": "レジャーランド",
+    "en": [
+      "recreational area",
+      "leisure land"
+    ],
+    "senseUid": "5e097ea8-091f-4f2b-9e77-3baf42d8fb11",
+    "wordId": "1927780",
+    "pt": "['terra de lazer', 'área de lazer']"
+  },
+  {
+    "kana": "レステル",
+    "en": [
+      "facility that serves meals and provides rooms for short-stay or overnight guests"
+    ],
+    "senseUid": "5b9c175d-4844-4c7d-bce3-13fa14883895",
+    "wordId": "1927790",
+    "pt": "{\n  \"a\": [\n    \"pousada\",\n    \"estalagem\",\n    \"alojamento\",\n    \"hotel\",\n    \"pensão\"\n  ]\n"
+  },
+  {
+    "kana": "レタックス",
+    "en": [
+      "Letax",
+      "letter facsimile"
+    ],
+    "senseUid": "eae463e5-a460-47c2-8dc4-625c852d4329",
+    "wordId": "1927800",
+    "pt": "{\n  \"a\": [\n    \"Letax\",\n    \"fac-símile de carta\"\n  ]\n"
+  },
+  {
+    "kana": "ロールケーキ",
+    "en": [
+      "Swiss roll",
+      "jelly roll",
+      "roll cake"
+    ],
+    "senseUid": "893887da-0dad-4872-9cf5-f013e274d594",
+    "wordId": "1927810",
+    "pt": "['rocambole', 'bolo de rolo', 'pão de ló enrolado']"
+  },
+  {
+    "kana": "ロールサンド",
+    "en": [
+      "roll sandwich",
+      "sandwich roll"
+    ],
+    "senseUid": "db495dbc-77ce-4b0d-b37b-0ad40ca26206",
+    "wordId": "1927820",
+    "pt": "['sanduíche enrolado', 'pão de sanduíche enrolado']"
+  },
+  {
+    "kana": "ロスタイム",
+    "en": [
+      "stoppage time",
+      "injury time",
+      "added time"
+    ],
+    "senseUid": "8190a900-54a8-4620-8786-17dba4db82a6",
+    "wordId": "1927840",
+    "pt": "['tempo adicional', 'acréscimos', 'tempo de compensação']"
+  },
+  {
+    "kana": "ロールパン",
+    "en": [
+      "bread roll"
+    ],
+    "senseUid": "b646c8b0-af07-455d-adf5-c26cd4e89db3",
+    "wordId": "1927830",
+    "pt": "['pãozinho']"
+  },
+  {
+    "kana": "ロマンチスト",
+    "en": [
+      "romanticist"
+    ],
+    "senseUid": "66f59fd4-64f4-49e8-a981-e4d6cf9361ae",
+    "wordId": "1927850",
+    "pt": "['romântico', 'pessoa romântica', 'sonhador']"
+  },
+  {
+    "kana": "ロスタイム",
+    "en": [
+      "lost time",
+      "wasted time"
+    ],
+    "senseUid": "4003c966-0e6c-4405-b3e4-cc69df963a09",
+    "wordId": "1927840",
+    "pt": "['tempo adicional', 'acréscimo']"
+  },
+  {
+    "kana": "ロマンチスト",
+    "en": [
+      "romantic",
+      "dreamer"
+    ],
+    "senseUid": "1c8b1331-68eb-4326-adf7-2f08b8a5be61",
+    "wordId": "1927850",
+    "pt": "['romântico', 'sonhador']"
+  },
+  {
+    "kana": "ロングリリーフ",
+    "en": [
+      "long relief pitcher"
+    ],
+    "senseUid": "984b4c18-1072-49c2-9575-8ecb8c8993c5",
+    "wordId": "1927860",
+    "pt": "['arremessador de longos turnos']"
+  },
+  {
+    "kana": "ワイドニュース",
+    "en": [
+      "news program",
+      "news programme"
+    ],
+    "senseUid": "42f767d8-938e-4417-851b-49a506ec14e7",
+    "wordId": "1927870",
+    "pt": "['programa de notícias', 'telejornal']"
+  },
+  {
+    "kana": "ワイドレンズ",
+    "en": [
+      "wide-angle lens"
+    ],
+    "senseUid": "02e95fb9-b1ff-4d46-a682-a1a49707b902",
+    "wordId": "1927880",
+    "pt": "['lente grande-angular']"
+  },
+  {
+    "kana": "ワンダン",
+    "en": [
+      "one down",
+      "one out"
+    ],
+    "senseUid": "a46a812f-0096-4709-80bc-0ab2a7a93b2e",
+    "wordId": "1927890",
+    "pt": "['um eliminado', 'um fora']"
+  },
+  {
+    "kana": "ワンツー",
+    "en": [
+      "one-two punch"
+    ],
+    "senseUid": "8765d828-7786-49cb-ba78-7b532fa64fa9",
+    "wordId": "1927900",
+    "pt": "['um-dois']"
+  },
+  {
+    "kana": "ワンツー",
+    "en": [
+      "one-two (soccer pass)",
+      "wall pass",
+      "give-and-go",
+      "push-and-run"
+    ],
+    "senseUid": "9d467cf3-01c8-40d7-8729-fdabad6ee482",
+    "wordId": "1927900",
+    "pt": "['tabela (no futebol)', 'passe e devolução', 'um-dois', 'passe de parede']"
+  },
+  {
+    "kana": "ワンツー",
+    "en": [
+      "one-two finish",
+      "competitors from the same country or team finishing first and second"
+    ],
+    "senseUid": "a44fd424-e491-4b3a-8f2c-6a9feae12ce9",
+    "wordId": "1927900",
+    "pt": "['primeiro e segundo lugar', 'dupla vitória', 'dois atletas do mesmo país ou equipe chegando em primeiro e segundo']"
+  },
+  {
+    "kana": "ワンツー",
+    "en": [
+      "one ball two strikes",
+      "two balls one strike"
+    ],
+    "senseUid": "ed05f2ee-49b7-4900-9f66-b8dd28c23cdf",
+    "wordId": "1927900",
+    "pt": "['um bola dois strikes', 'dois bolas um strike']"
+  },
+  {
+    "kana": "ちゅうかんテスト",
+    "en": [
+      "midterm (mid-semester) test or exam"
+    ],
+    "senseUid": "e8205db4-15c2-4e65-a7dd-e05a17a83631",
+    "wordId": "1927910",
+    "pt": "{\n  \"a\": [\n    \"prova intermediária\",\n    \"teste intermediário\",\n    \"avaliação do meio do semestre\"\n  ]\n"
+  },
+  {
+    "kana": "アテレコ",
+    "en": [
+      "dubbing (of a film, etc. into a different language)"
+    ],
+    "senseUid": "b0da391c-4a28-4fc6-98c1-d2290cebda5e",
+    "wordId": "1927940",
+    "pt": "['dublagem (de um filme, etc. para outro idioma)']"
+  },
+  {
+    "kana": "シスアド",
+    "en": [
+      "(computer) systems administrator"
+    ],
+    "senseUid": "e4942ff4-f7e5-44b3-8bec-6576a35129b9",
+    "wordId": "1927960",
+    "pt": "['Administrador de sistemas']"
+  },
+  {
+    "kana": "とくべつそち",
+    "en": [
+      "special measure",
+      "special measures"
+    ],
+    "senseUid": "fc8a8d79-57e8-4544-9a60-addc0bb62042",
+    "wordId": "1927980",
+    "pt": "{\n  \"a\": [\n    \"medida especial\",\n    \"medidas especiais\"\n  ]\n"
+  },
+  {
+    "kana": "とくそ",
+    "en": [
+      "special measure",
+      "special measures"
+    ],
+    "senseUid": "7f1a87ed-8fc2-4c10-905b-4b95bc3d99d8",
+    "wordId": "1927990",
+    "pt": "{\n  \"a\": [\"medida especial\", \"medidas especiais\"]\n"
+  },
+  {
+    "kana": "しゃかいけいざい",
+    "en": [
+      "socio-economics",
+      "social economy"
+    ],
+    "senseUid": "cf08e09a-2520-46b0-b695-d74b074d7628",
+    "wordId": "1928000",
+    "pt": "['socioeconomia', 'economia social']"
+  },
+  {
+    "kana": "ちほうぎょうざいせい",
+    "en": [
+      "local economy",
+      "local financial affairs"
+    ],
+    "senseUid": "be8356b8-f021-45cd-9d91-af39c8b0e5fb",
+    "wordId": "1928010",
+    "pt": "{\n  \"a\": [\n    \"finanças locais\",\n    \"assuntos financeiros locais\",\n    \"economia local\"\n  ]\n"
+  },
+  {
+    "kana": "ちんさ",
+    "en": [
+      "grit"
+    ],
+    "senseUid": "51fe9b10-78c0-44aa-b68a-7eb22d7621a5",
+    "wordId": "1928020",
+    "pt": "{\n  \"a\": [\"coragem\", \"determinação\", \"firmeza\"]\n"
+  },
+  {
+    "kana": "べいいちば",
+    "en": [
+      "the rice market"
+    ],
+    "senseUid": "972206eb-3c52-47a2-bc91-843ac14179da",
+    "wordId": "1928030",
+    "pt": "['mercado de arroz']"
+  },
+  {
+    "kana": "わえいじしょ",
+    "en": [
+      "Japanese-English dictionary"
+    ],
+    "senseUid": "6ac38ccd-c9b1-4bc5-84a8-5d500f303799",
+    "wordId": "1928040",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"わえいじしょ\",\n      \"Gloss\": \"Dicionário Japonês-Inglês\"\n    \n  ]\n"
+  },
+  {
+    "kana": "さくふう",
+    "en": [
+      "north wind"
+    ],
+    "senseUid": "be4fa955-ef86-4e48-8430-e381f664d672",
+    "wordId": "1928050",
+    "pt": "{\n  \"a\": [\"vento norte\"]\n"
+  },
+  {
+    "kana": "へいわきょうりょく",
+    "en": [
+      "peace collaboration"
+    ],
+    "senseUid": "7bdc8edc-bc3d-451f-8799-eb21e439f56e",
+    "wordId": "1928060",
+    "pt": "['colaboração pela paz']"
+  },
+  {
+    "kana": "せいろう",
+    "en": [
+      "government-labour (e.g. liaison meeting)",
+      "government-labor"
+    ],
+    "senseUid": "eb8aa9f7-d129-479e-aecd-40bc92b797aa",
+    "wordId": "1928070",
+    "pt": "{\n  \"a\": [\n    \"reunião de cooperação entre governo e trabalhadores\",\n    \"colaboração governo-trabalhadores\"\n  ]\n"
+  },
+  {
+    "kana": "しょうし",
+    "en": [
+      "small number of children (per family)",
+      "bearing few children"
+    ],
+    "senseUid": "fbcc5a86-f3d8-49b2-ba12-d182e0c72763",
+    "wordId": "1928080",
+    "pt": "['pequeno número de filhos (por família)', 'ter poucos filhos']"
+  },
+  {
+    "kana": "しょうし",
+    "en": [
+      "youngest child (in the family)"
+    ],
+    "senseUid": "c136af38-4de0-42e3-84d6-33c1d91a7cf2",
+    "wordId": "1928080",
+    "pt": "['filho mais novo (da família)']"
+  },
+  {
+    "kana": "かまど",
+    "en": [
+      "kamado",
+      "traditional Japanese wood or charcoal-fueled cook stove"
+    ],
+    "senseUid": "8b6b1209-e52b-448a-8243-e990f2cf7593",
+    "wordId": "1928090",
+    "pt": "{\n  \"a\": [\n    \"kamado\",\n    \"fogão tradicional japonês a lenha ou carvão\"\n  ]\n"
+  },
+  {
+    "kana": "かまど",
+    "en": [
+      "household",
+      "family"
+    ],
+    "senseUid": "690aba41-1e21-4087-8aef-9658e21eca66",
+    "wordId": "1928090",
+    "pt": "['fogão tradicional', 'lar (da família)', 'fogo do lar']"
+  },
+  {
+    "kana": "かんごし",
+    "en": [
+      "(hospital) nurse",
+      "registered nurse",
+      "RN"
+    ],
+    "senseUid": "9893cb64-2a45-40d6-9616-972a59ad8535",
+    "wordId": "1928100",
+    "pt": "{\n  \"a\": [\n    \"enfermeira\",\n    \"enfermeiro\",\n    \"profissional de enfermagem\"\n  ]\n"
+  },
+  {
+    "kana": "けびいし",
+    "en": [
+      "police and judicial chief (Heian and Kamakura periods)"
+    ],
+    "senseUid": "5c6ba2e9-5bbe-4fb3-bb49-61f51aac0cb4",
+    "wordId": "1928130",
+    "pt": "['chefe de polícia e justiça (períodos Heian e Kamakura)']"
+  },
+  {
+    "kana": "としさいせい",
+    "en": [
+      "urban regeneration"
+    ],
+    "senseUid": "0a73a145-df7d-4933-a834-652441eeb8c9",
+    "wordId": "1928110",
+    "pt": "['renovação urbana']"
+  },
+  {
+    "kana": "ふなもり",
+    "en": [
+      "boat-wrap sushi"
+    ],
+    "senseUid": "a6732ce3-fa09-4c35-8b09-aaf5a53280d3",
+    "wordId": "1928150",
+    "pt": "['sushi servido em barco']"
+  },
+  {
+    "kana": "ふとまき",
+    "en": [
+      "futomaki",
+      "thick roll of makizushi"
+    ],
+    "senseUid": "91ff37ae-9204-4314-9f95-2e27508fce90",
+    "wordId": "1928160",
+    "pt": "{\n  \"a\": [\n    \"futomaki\",\n    \"enrolado grosso de makizushi\"\n  ]\n"
+  },
+  {
+    "kana": "ふとまき",
+    "en": [
+      "rolling something thickly",
+      "something rolled thickly (a cigar, etc.)"
+    ],
+    "senseUid": "b0728a43-6d71-4dfe-8dd4-d44002abac76",
+    "wordId": "1928160",
+    "pt": "{\n  \"a\": [\n    \"enrolar algo de forma grossa\",\n    \"algo enrolado de forma grossa (um charuto, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "ぐんかんまき",
+    "en": [
+      "battleship sushi",
+      "gunkan maki",
+      "sushi made by wrapping a strip of nori around a rice ball with a topping"
+    ],
+    "senseUid": "8c53ccdd-502a-4dae-9a26-b2234548f61b",
+    "wordId": "1928170",
+    "pt": "['sushi tipo navio de guerra', 'gunkan maki', 'sushi feito enrolando uma tira de nori ao redor de uma bola de arroz com cobertura']"
+  },
+  {
+    "kana": "あじのたたき",
+    "en": [
+      "fresh scad"
+    ],
+    "senseUid": "69e98349-61aa-4b9e-bc36-8168005444f5",
+    "wordId": "1928180",
+    "pt": "['carapau fresco picado']"
+  }
+]

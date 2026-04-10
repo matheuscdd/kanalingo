@@ -1,0 +1,986 @@
+[
+  {
+    "kana": "わくない",
+    "en": [
+      "within the limits (framework, boundaries, price, etc.)"
+    ],
+    "senseUid": "a24f792a-06ca-4a2b-997e-8711ee79e99b",
+    "wordId": "1562620",
+    "pt": "['dentro dos limites (estrutura, fronteiras, preço, etc.)']"
+  },
+  {
+    "kana": "わし",
+    "en": [
+      "eagle (Accipitridae family)"
+    ],
+    "senseUid": "8e1e8a38-61c1-4104-9d54-32425f7ddde0",
+    "wordId": "1562630",
+    "pt": "['água (família Accipitridae)']"
+  },
+  {
+    "kana": "わに",
+    "en": [
+      "shark"
+    ],
+    "senseUid": "895e9f14-74e9-4828-a37c-555f9510f1e4",
+    "wordId": "1562640",
+    "pt": "['tubarão']"
+  },
+  {
+    "kana": "わに",
+    "en": [
+      "crocodile",
+      "alligator"
+    ],
+    "senseUid": "0e725fd3-7e24-4440-aa05-3afac81fa039",
+    "wordId": "1562640",
+    "pt": "['jacaré', 'crocodilo']"
+  },
+  {
+    "kana": "わにぐち",
+    "en": [
+      "alligator"
+    ],
+    "senseUid": "cee09822-6bca-47a2-922e-3004ea6064fa",
+    "wordId": "1562650",
+    "pt": "['boca de jacaré']"
+  },
+  {
+    "kana": "わにぐち",
+    "en": [
+      "wide mouth"
+    ],
+    "senseUid": "6c57d8e1-962b-46ec-92ed-2c1e7e67a21c",
+    "wordId": "1562650",
+    "pt": "['boca larga']"
+  },
+  {
+    "kana": "わにぐち",
+    "en": [
+      "temple gong"
+    ],
+    "senseUid": "24f5e421-3a04-4a46-b949-39868f99dedb",
+    "wordId": "1562650",
+    "pt": "['gongo de templo']"
+  },
+  {
+    "kana": "わにざめ",
+    "en": [
+      "ferocious shark"
+    ],
+    "senseUid": "b0bb314e-1046-4c8a-9968-8ae6d48da3ea",
+    "wordId": "1562660",
+    "pt": "['tubarão feroz']"
+  },
+  {
+    "kana": "わび",
+    "en": [
+      "apology"
+    ],
+    "senseUid": "537ad3ad-8a96-4827-911a-74a1fa5c2a3b",
+    "wordId": "1562670",
+    "pt": "['desculpas', 'arrependimento', 'remorso', 'sentimento de pesar', 'expressão de pesar']"
+  },
+  {
+    "kana": "わびごと",
+    "en": [
+      "apology"
+    ],
+    "senseUid": "0c570e9c-4a77-4859-9561-4d7062a84e79",
+    "wordId": "1562680",
+    "pt": "['pedido de desculpas']"
+  },
+  {
+    "kana": "わびじょう",
+    "en": [
+      "letter of apology"
+    ],
+    "senseUid": "1d849871-b415-463c-9bb2-80e91f0c8f5e",
+    "wordId": "1562700",
+    "pt": "['carta de desculpas']"
+  },
+  {
+    "kana": "わら",
+    "en": [
+      "straw"
+    ],
+    "senseUid": "625c5b2e-7efd-4945-b4e8-2a4cddbd803e",
+    "wordId": "1562710",
+    "pt": "['palha']"
+  },
+  {
+    "kana": "わらぐつ",
+    "en": [
+      "straw boots"
+    ],
+    "senseUid": "e4430d9c-3db1-4d79-b947-5b1affe5598a",
+    "wordId": "1562720",
+    "pt": "{\n  \"a\": [\"waragutsu\", \"sandálias de palha\", \"calçado tradicional japonês feito de palha\"]\n"
+  },
+  {
+    "kana": "わらがみ",
+    "en": [
+      "straw paper",
+      "rice paper"
+    ],
+    "senseUid": "a20031bf-0081-47db-865f-8998ee77a263",
+    "wordId": "1562730",
+    "pt": "{\n  \"a\": [\"papel de palha\", \"papel de arroz\"]\n"
+  },
+  {
+    "kana": "わらばんし",
+    "en": [
+      "straw paper"
+    ],
+    "senseUid": "47c8b506-631a-4f4f-a47d-8607a9889300",
+    "wordId": "1562740",
+    "pt": "['papel de arroz']"
+  },
+  {
+    "kana": "わらぶき",
+    "en": [
+      "straw-thatching",
+      "straw-thatched roof"
+    ],
+    "senseUid": "4e2bf722-3881-430e-a5fe-bfa1de21cdd6",
+    "wordId": "1562750",
+    "pt": "['cobertura de palha', 'telhado de palha']"
+  },
+  {
+    "kana": "わらづと",
+    "en": [
+      "straw wrapper"
+    ],
+    "senseUid": "0be7dd8f-ef3c-4764-936b-e837989be2c8",
+    "wordId": "1562760",
+    "pt": "['envoltório de palha']"
+  },
+  {
+    "kana": "わらび",
+    "en": [
+      "bracken"
+    ],
+    "senseUid": "e2a60a7a-cff9-4ed1-b572-2eeab6762afd",
+    "wordId": "1562770",
+    "pt": "['samambaia']"
+  },
+  {
+    "kana": "わん",
+    "en": [
+      "bowl (wooden)"
+    ],
+    "senseUid": "2f8e17fb-8d8c-430a-bf29-d7ca9a621d34",
+    "wordId": "1562780",
+    "pt": "{\n  \"a\": [\"tigela (de madeira)\"]\n"
+  },
+  {
+    "kana": "わん",
+    "en": [
+      "counter for bowls of food or drink"
+    ],
+    "senseUid": "d29825a9-a310-4d0c-9acb-81133a45ca23",
+    "wordId": "1562780",
+    "pt": "['contador para tigelas de comida ou bebida']"
+  },
+  {
+    "kana": "もぐ",
+    "en": [
+      "to pluck (esp. by twisting from a tree)",
+      "to pick (e.g. apples)"
+    ],
+    "senseUid": "10448de8-24aa-45d8-8ade-13092038331c",
+    "wordId": "1562790",
+    "pt": "['colher (especialmente torcendo de uma árvore)', 'apanhar (por exemplo, maçãs)']"
+  },
+  {
+    "kana": "わんがん",
+    "en": [
+      "gulf coast",
+      "bay coast"
+    ],
+    "senseUid": "d3aca7e0-7e5e-4996-9186-f8d97cb85009",
+    "wordId": "1562810",
+    "pt": "['costa da baía', 'costa do golfo']"
+  },
+  {
+    "kana": "わん",
+    "en": [
+      "bay",
+      "gulf",
+      "inlet"
+    ],
+    "senseUid": "35b44f80-a5c3-4cdd-9d13-a55ea08db73b",
+    "wordId": "1562800",
+    "pt": "{\n  \"a\": [\"baía\", \"golfo\", \"enseada\"]\n"
+  },
+  {
+    "kana": "わんきょく",
+    "en": [
+      "curve",
+      "bend",
+      "crook"
+    ],
+    "senseUid": "3a0bd147-ec51-48e5-9657-00a35312ed53",
+    "wordId": "1562820",
+    "pt": "{\n  \"a\": [\n    \"curva\",\n    \"dobra\",\n    \"torção\"\n  ]\n"
+  },
+  {
+    "kana": "わんにゅう",
+    "en": [
+      "embayment",
+      "indentation (of a shoreline)"
+    ],
+    "senseUid": "4e14b6b5-6c07-47f7-967d-c7ee6cfe7af7",
+    "wordId": "1562830",
+    "pt": "['enseada', 'reentrância (de uma linha costeira)']"
+  },
+  {
+    "kana": "わん",
+    "en": [
+      "bowl (ceramic, porcelain)"
+    ],
+    "senseUid": "bebeb6f3-69d3-4cbf-86fd-5801d2f1739a",
+    "wordId": "1562840",
+    "pt": "{\n  \"a\": [\n    \"tigela (cerâmica, porcelana)\"\n  ]\n"
+  },
+  {
+    "kana": "わん",
+    "en": [
+      "counter for bowls of food or drink"
+    ],
+    "senseUid": "6ac9ffa0-2f2d-4c4c-8686-1b71536e112e",
+    "wordId": "1562840",
+    "pt": "['tigela (classificador para porções de comida ou bebida)']"
+  },
+  {
+    "kana": "うで",
+    "en": [
+      "arm"
+    ],
+    "senseUid": "26060c38-3a0c-4662-96ce-c2a496b17200",
+    "wordId": "1562850",
+    "pt": "['braço']"
+  },
+  {
+    "kana": "うで",
+    "en": [
+      "ability",
+      "skill",
+      "talent",
+      "competence"
+    ],
+    "senseUid": "bb1b2c10-6e56-4379-8648-a78a9b1106bd",
+    "wordId": "1562850",
+    "pt": "['habilidade', 'destreza', 'talento', 'competência']"
+  },
+  {
+    "kana": "うで",
+    "en": [
+      "(physical) strength"
+    ],
+    "senseUid": "9a556592-cb27-40b6-8475-6111e3e85945",
+    "wordId": "1562850",
+    "pt": "{\n  \"a\": [\"força física\", \"vigor\", \"potência (do corpo)\", \"capacidade física\"]\n"
+  },
+  {
+    "kana": "うでだめし",
+    "en": [
+      "trying one's ability"
+    ],
+    "senseUid": "e1b78a38-45cf-44f1-8cd1-2b69ff5730ba",
+    "wordId": "1562860",
+    "pt": "['teste de habilidade']"
+  },
+  {
+    "kana": "うでどけい",
+    "en": [
+      "wristwatch",
+      "watch"
+    ],
+    "senseUid": "c0bf9ed9-0d72-4f10-9555-1305759ec6e2",
+    "wordId": "1562870",
+    "pt": "{\n  \"a\": [\n    {\n      \"portuguese\": \"relógio de pulso\",\n      \"notas\": \"Refere-se especificamente ao relógio usado no pulso, como no japonês うでどけい (udedokei).\"\n    \n  ]\n"
+  },
+  {
+    "kana": "わんしょう",
+    "en": [
+      "armband",
+      "arm band",
+      "brassard"
+    ],
+    "senseUid": "ead0764f-275f-454c-aff2-c444ae7493c2",
+    "wordId": "1562880",
+    "pt": "['braçadeira', 'braçadeira de braço', 'brassard']"
+  },
+  {
+    "kana": "うでまえ",
+    "en": [
+      "ability",
+      "skill",
+      "facility"
+    ],
+    "senseUid": "88c351f1-0ac3-4afb-ad7f-3c0200f09269",
+    "wordId": "1562890",
+    "pt": "['habilidade', 'destreza', 'facilidade']"
+  },
+  {
+    "kana": "うでぐみ",
+    "en": [
+      "folding one's arms"
+    ],
+    "senseUid": "cbdde6a6-4d4e-48e1-8468-1c661730530b",
+    "wordId": "1562900",
+    "pt": "{\n  \"a\": [\n    \"cruzar os braços\",\n    \"ficar de braços cruzados\",\n    \"postura de braços cruzados\"\n  ]\n"
+  },
+  {
+    "kana": "わんぱく",
+    "en": [
+      "naughty",
+      "mischievous",
+      "unruly"
+    ],
+    "senseUid": "5fc9e60d-f1c8-4a1c-a132-24067cbbefd3",
+    "wordId": "1562910",
+    "pt": "['arteiro', 'travesso', 'levado']"
+  },
+  {
+    "kana": "うできき",
+    "en": [
+      "highly skilled",
+      "skillful",
+      "very capable",
+      "competent",
+      "able"
+    ],
+    "senseUid": "ffb01b88-b533-4735-ab2f-c618c6444571",
+    "wordId": "1562920",
+    "pt": "['altamente habilidoso', 'habilidoso', 'muito capaz', 'competente', 'capaz']"
+  },
+  {
+    "kana": "うできき",
+    "en": [
+      "particularly able person",
+      "master-hand",
+      "person of ability"
+    ],
+    "senseUid": "47d9d837-dfba-4652-8a7e-e79a77584c77",
+    "wordId": "1562920",
+    "pt": "{\n  \"a\": [\n    \"pessoa especialmente habilidosa\",\n    \"mestre\",\n    \"pessoa de talento\"\n  ]\n"
+  },
+  {
+    "kana": "うでたて",
+    "en": [
+      "push-up"
+    ],
+    "senseUid": "57dc2f2b-8e4d-4d28-aa1f-5a3b3c618da4",
+    "wordId": "1562930",
+    "pt": "['flexão de braço']"
+  },
+  {
+    "kana": "うでたてふせ",
+    "en": [
+      "push-up (exercise)",
+      "press-up"
+    ],
+    "senseUid": "0e8b8bc5-5b28-4743-b4c8-0804f3b33478",
+    "wordId": "1562940",
+    "pt": "['flexão de braço', 'flexão']"
+  },
+  {
+    "kana": "わんりょく",
+    "en": [
+      "force",
+      "violence"
+    ],
+    "senseUid": "6d0d90d0-1d0f-4de4-8245-13cb92d97f7a",
+    "wordId": "1562950",
+    "pt": "{'a"
+  },
+  {
+    "kana": "わんりょく",
+    "en": [
+      "strength in one's arms",
+      "physical strength",
+      "muscular strength"
+    ],
+    "senseUid": "84ac5208-a689-41c9-91a3-ec38c5824ff1",
+    "wordId": "1562950",
+    "pt": "['força nos braços', 'força física', 'força muscular']"
+  },
+  {
+    "kana": "うでわ",
+    "en": [
+      "bracelet",
+      "bangle"
+    ],
+    "senseUid": "2f13f66e-3307-4335-af30-49dab883dc11",
+    "wordId": "1562960",
+    "pt": "['pulseira', 'bracelete']"
+  },
+  {
+    "kana": "どんぶり",
+    "en": [
+      "porcelain bowl"
+    ],
+    "senseUid": "b1276d6b-58c3-41e4-883f-f7f2c86808f9",
+    "wordId": "1562970",
+    "pt": "['tigela grande de porcelana']"
+  },
+  {
+    "kana": "どんぶり",
+    "en": [
+      "donburi",
+      "bowl of meat, fish, etc. served over rice"
+    ],
+    "senseUid": "317e74cc-7148-40a8-8c06-ec6a48599ea7",
+    "wordId": "1562970",
+    "pt": "{\n  \"a\": [\n    \"donburi\",\n    \"tigela de carne, peixe, etc. servidos sobre arroz\"\n  ]\n"
+  },
+  {
+    "kana": "どんぶりかんじょう",
+    "en": [
+      "rough estimate",
+      "sloppy accounting",
+      "slapdash bookkeeping"
+    ],
+    "senseUid": "baaed485-c003-4dd7-b019-1f345e4f1c1f",
+    "wordId": "1562980",
+    "pt": "['estimativa grosseira', 'contabilidade descuidada', 'lançamento de contas de qualquer jeito']"
+  },
+  {
+    "kana": "どんぶりばち",
+    "en": [
+      "bowl (medium-large, suitable for donburi)"
+    ],
+    "senseUid": "bcf826e8-2e61-4265-bdd9-e0433e7b0456",
+    "wordId": "1562990",
+    "pt": "{\n  \"a\": [\n    \"tigela (média a grande, adequada para donburi)\"\n  ]\n"
+  },
+  {
+    "kana": "どんぶりもの",
+    "en": [
+      "bowl of rice with food on top"
+    ],
+    "senseUid": "4a0682d6-cdc8-4334-9539-27bff9bd0e3b",
+    "wordId": "1563000",
+    "pt": "['tigela de arroz com cobertura']"
+  },
+  {
+    "kana": "かいり",
+    "en": [
+      "divergence",
+      "alienation",
+      "deviation",
+      "estrangement",
+      "separation",
+      "detachment"
+    ],
+    "senseUid": "2b1136e3-3f9f-42ff-8d10-d3f6b4b01b18",
+    "wordId": "1563010",
+    "pt": "['divergência', 'alienação', 'desvio', 'afastamento', 'separação', 'desapego']"
+  },
+  {
+    "kana": "ほのめかす",
+    "en": [
+      "to hint at",
+      "to intimate",
+      "to suggest",
+      "to allude to",
+      "to imply"
+    ],
+    "senseUid": "2207dfcb-49f1-40b1-8ec9-daaba0940d23",
+    "wordId": "1563040",
+    "pt": "['sugerir', 'insinuar', 'dar a entender', 'aludir a', 'dar uma pista']"
+  },
+  {
+    "kana": "ほのめかし",
+    "en": [
+      "hint",
+      "intimation",
+      "suggestion",
+      "inkling"
+    ],
+    "senseUid": "7b7a611f-8f81-4b66-bf2a-1375f56b7fc3",
+    "wordId": "1563030",
+    "pt": "{\n  \"a\": [\n    \"insinuação\",\n    \"alusão\",\n    \"sugestão sutil\",\n    \"indício\",\n    \"pista\",\n    \"dica\",\n    \"menção indireta\"\n  ]\n"
+  },
+  {
+    "kana": "ほのぐらい",
+    "en": [
+      "dim",
+      "dusky",
+      "gloomy"
+    ],
+    "senseUid": "5a3693f7-37a5-415f-9154-ef7a78994cd2",
+    "wordId": "1563060",
+    "pt": "['meio escuro', 'sombrio', 'penumbroso']"
+  },
+  {
+    "kana": "ほのめく",
+    "en": [
+      "to be seen dimly",
+      "to glimmer"
+    ],
+    "senseUid": "c62b93c2-72d1-413e-995a-91d2e30e31c6",
+    "wordId": "1563050",
+    "pt": "['ser visto de forma tênue', 'brilhar suavemente']"
+  },
+  {
+    "kana": "ほのじろい",
+    "en": [
+      "dimly white"
+    ],
+    "senseUid": "76f55359-16b9-418f-9473-47c21769cadb",
+    "wordId": "1563070",
+    "pt": "['esbranquiçado', 'branco pálido', 'levemente branco']"
+  },
+  {
+    "kana": "こうはい",
+    "en": [
+      "spouse",
+      "married couple"
+    ],
+    "senseUid": "5b20f15f-91ed-4ae9-93ef-71aa20c84489",
+    "wordId": "1563090",
+    "pt": "{\n  \"a\": [\n    \"junior (em um contexto de hierarquia, como na escola ou no trabalho; alguém com menos experiência ou tempo de casa que você)\"\n  ]\n"
+  },
+  {
+    "kana": "わびる",
+    "en": [
+      "to be worried",
+      "to be grieved",
+      "to pine for"
+    ],
+    "senseUid": "6093fab0-fe38-4caf-b8e9-7d0677573b52",
+    "wordId": "1563120",
+    "pt": "{\n  \"a\": [\n    \"lamentar\",\n    \"afligir-se\",\n    \"sofrer de saudade\"\n  ]\n"
+  },
+  {
+    "kana": "わびこと",
+    "en": [
+      "words used when miserable or anxious"
+    ],
+    "senseUid": "8422e698-1a09-4896-9c99-436e26d3454e",
+    "wordId": "1563150",
+    "pt": "['palavras usadas quando se está miserável ou ansioso']"
+  },
+  {
+    "kana": "わびうた",
+    "en": [
+      "sad song",
+      "singing in a lonesome tone"
+    ],
+    "senseUid": "9e17ac48-a8f8-444b-ac77-7a4fd32d5bc7",
+    "wordId": "1563140",
+    "pt": "['canção triste', 'canto em tom solitário']"
+  },
+  {
+    "kana": "わびこと",
+    "en": [
+      "words used to decline or refuse something"
+    ],
+    "senseUid": "def77418-eeef-4f48-bdb0-f2796000b811",
+    "wordId": "1563150",
+    "pt": "['palavras usadas para recusar ou declinar algo']"
+  },
+  {
+    "kana": "わびこと",
+    "en": [
+      "words used when making an appeal"
+    ],
+    "senseUid": "5f21bb3e-bfdd-49fa-8a39-1488e8dc198b",
+    "wordId": "1563150",
+    "pt": "['palavras usadas ao fazer um pedido', 'expressões para apelar a alguém', 'termos usados ao solicitar algo']"
+  },
+  {
+    "kana": "わびね",
+    "en": [
+      "lonesome sleep",
+      "sleeping alone"
+    ],
+    "senseUid": "db743457-c7f3-42d6-9111-1deb49cde089",
+    "wordId": "1563160",
+    "pt": "{\n  \"a\": [\"sono solitário\", \"dormir sozinho\"]\n"
+  },
+  {
+    "kana": "わびびと",
+    "en": [
+      "lonesome person",
+      "unwanted person",
+      "poverty-stricken person"
+    ],
+    "senseUid": "dee396db-4e71-4880-a988-7262d06df96c",
+    "wordId": "1563170",
+    "pt": "['pessoa solitária', 'pessoa indesejada', 'pessoa empobrecida']"
+  },
+  {
+    "kana": "わびごえ",
+    "en": [
+      "sad voice"
+    ],
+    "senseUid": "ca7e13fc-fbfe-4644-b3ff-dcc0557a998f",
+    "wordId": "1563180",
+    "pt": "['voz triste']"
+  },
+  {
+    "kana": "たたずむ",
+    "en": [
+      "to stand (still) a while",
+      "to loiter",
+      "to stop"
+    ],
+    "senseUid": "6359cfa3-9f2a-4803-a147-eea0d134af32",
+    "wordId": "1563190",
+    "pt": "['ficar parado por um tempo', 'vagar', 'parar']"
+  },
+  {
+    "kana": "ちょりつ",
+    "en": [
+      "standing still"
+    ],
+    "senseUid": "f10b9579-d0e8-4b2d-b00a-aaa70d35facf",
+    "wordId": "1563200",
+    "pt": "{\n  \"a\": [\"ficar parado\", \"ficar imóvel\", \"manter-se imóvel\"]\n"
+  },
+  {
+    "kana": "はい",
+    "en": [
+      "type of ancient oriental belt"
+    ],
+    "senseUid": "d0749203-c2f1-457a-b75f-8340d13494af",
+    "wordId": "1563260",
+    "pt": "['tipo de cinto oriental antigo']"
+  },
+  {
+    "kana": "はい",
+    "en": [
+      "counter for swords"
+    ],
+    "senseUid": "b7a37003-e2af-444f-9d9c-a2a1985d69ca",
+    "wordId": "1563260",
+    "pt": "{\n  \"a\": [\"contador para espadas\"]\n"
+  },
+  {
+    "kana": "はいけん",
+    "en": [
+      "wearing a sword"
+    ],
+    "senseUid": "f8a3f686-8f0d-41c7-98dd-7135383e97f5",
+    "wordId": "1563280",
+    "pt": "['usar uma espada']"
+  },
+  {
+    "kana": "はいとう",
+    "en": [
+      "wearing a sword",
+      "sword one is wearing"
+    ],
+    "senseUid": "1e0b0186-6565-47f8-bca3-e0ede609d9df",
+    "wordId": "1563290",
+    "pt": "{\n  \"a\": [\n    \"usando uma espada\",\n    \"espada que se está usando\"\n  ]\n"
+  },
+  {
+    "kana": "はいよう",
+    "en": [
+      "wearing (an insignia, sword, etc.)"
+    ],
+    "senseUid": "c8b32a5c-6c30-4afd-a65a-439cc139bacf",
+    "wordId": "1563300",
+    "pt": "['usando (uma insígnia, espada, etc.)']"
+  },
+  {
+    "kana": "ようきょう",
+    "en": [
+      "feigned madness"
+    ],
+    "senseUid": "3345ed02-2ac8-409b-8636-e4a575159931",
+    "wordId": "1563320",
+    "pt": "{\n  \"a\": [\n    \"loucura fingida\"\n  ]\n"
+  },
+  {
+    "kana": "そ",
+    "en": [
+      "altar of sacrifice"
+    ],
+    "senseUid": "41d533f2-988c-498c-b699-eb0ce125eb6f",
+    "wordId": "1563330",
+    "pt": "['altar de sacrifício']"
+  },
+  {
+    "kana": "そじょう",
+    "en": [
+      "on the chopping board"
+    ],
+    "senseUid": "47cfaba8-aa80-4a45-9b83-685f76e90aad",
+    "wordId": "1563340",
+    "pt": "['sobre a tábua de cortar']"
+  },
+  {
+    "kana": "ふりょ",
+    "en": [
+      "prisoner of war",
+      "captive"
+    ],
+    "senseUid": "d3cc8147-ea2e-478c-81e0-229d0276d6d0",
+    "wordId": "1563350",
+    "pt": "['prisioneiro de guerra', 'cativo']"
+  },
+  {
+    "kana": "ふりょしゅうようじょ",
+    "en": [
+      "prisoner-of-war camp",
+      "POW camp"
+    ],
+    "senseUid": "1dc3b109-344a-43a0-9344-ee84d3448203",
+    "wordId": "1563360",
+    "pt": "{\n  \"a\": [\"campo de prisioneiros de guerra\", \"campo de prisioneiros\"]\n"
+  },
+  {
+    "kana": "りげん",
+    "en": [
+      "dialect"
+    ],
+    "senseUid": "5feb44f8-cef6-4bb0-92bd-b0c170bc4021",
+    "wordId": "1563380",
+    "pt": "{\n  \"a\": [\"dialeto\"]\n"
+  },
+  {
+    "kana": "りげん",
+    "en": [
+      "language of the common people",
+      "colloquial language",
+      "slang"
+    ],
+    "senseUid": "f1a219c2-583a-49b8-904f-a4ba56d24605",
+    "wordId": "1563380",
+    "pt": "{\n  \"a\": [\n    \"linguagem do povo\",\n    \"linguagem coloquial\",\n    \"gíria\"\n  ]\n"
+  },
+  {
+    "kana": "りげん",
+    "en": [
+      "proverb",
+      "saying"
+    ],
+    "senseUid": "3f8243e8-b5c1-4d97-944b-b4196acb3579",
+    "wordId": "1563390",
+    "pt": "{\n  \"a\": [\"provérbio\", \"ditado\"]\n"
+  },
+  {
+    "kana": "りご",
+    "en": [
+      "dialect"
+    ],
+    "senseUid": "75875a89-2bf6-494d-9c3a-586188520766",
+    "wordId": "1563400",
+    "pt": "{\n  \"a\": [\"dialeto\"]\n"
+  },
+  {
+    "kana": "りご",
+    "en": [
+      "language of the common people",
+      "colloquial language",
+      "slang"
+    ],
+    "senseUid": "13a53406-e3e4-42c1-82bb-25de69cfb808",
+    "wordId": "1563400",
+    "pt": "{\n  \"a\": [\n    \"língua do povo\",\n    \"linguagem coloquial\",\n    \"gíria\"\n  ]\n"
+  },
+  {
+    "kana": "りじ",
+    "en": [
+      "the ears of the public"
+    ],
+    "senseUid": "4503c912-c802-4baa-a3f6-5d85cfe11dd9",
+    "wordId": "1563410",
+    "pt": "{\n  \"a\": [\"os ouvidos do público\"]\n"
+  },
+  {
+    "kana": "りぞく",
+    "en": [
+      "vulgarity",
+      "rural customs"
+    ],
+    "senseUid": "f0c686ff-a9a6-4e73-a630-d449ec60d022",
+    "wordId": "1563420",
+    "pt": "['vulgaridade', 'costumes rurais']"
+  },
+  {
+    "kana": "りよう",
+    "en": [
+      "ballad",
+      "folk song",
+      "popular song"
+    ],
+    "senseUid": "ad476813-a4c0-4df9-8f3c-922407c751a1",
+    "wordId": "1563430",
+    "pt": "{\n  \"a\": [\"canção popular\", \"balada\", \"canção folclórica\"]\n"
+  },
+  {
+    "kana": "くるま",
+    "en": [
+      "rickshaw",
+      "jinrikisha"
+    ],
+    "senseUid": "25f72c13-56a7-4996-8bae-67ce6138d68a",
+    "wordId": "1563460",
+    "pt": "['riquixá', 'jinrikisha']"
+  },
+  {
+    "kana": "いし",
+    "en": [
+      "traditional square chair with armrests and a torii-shaped back (used by the emperor, etc. during ceremonies)"
+    ],
+    "senseUid": "356a39b6-13b7-4ecd-adf1-f00af05f60ff",
+    "wordId": "1563470",
+    "pt": "{\n  \"a\": [\n    \"cadeira quadrada tradicional com braços e encosto em forma de torii (usada pelo imperador, etc. durante cerimônias)\"\n  ]\n"
+  },
+  {
+    "kana": "きょごう",
+    "en": [
+      "haughty",
+      "arrogant",
+      "insolent",
+      "proud"
+    ],
+    "senseUid": "76b46435-fd13-41e0-b6bd-23cfc32934b6",
+    "wordId": "1563490",
+    "pt": "{\n  \"a\": [\n    \"altivo\",\n    \"arrogante\",\n    \"insolente\",\n    \"orgulhoso\"\n  ]\n"
+  },
+  {
+    "kana": "こうそう",
+    "en": [
+      "hurrying"
+    ],
+    "senseUid": "8c86b846-50bb-4883-a78c-67cf97fdbe83",
+    "wordId": "1563530",
+    "pt": "['pressa']"
+  },
+  {
+    "kana": "しょうよう",
+    "en": [
+      "wandering"
+    ],
+    "senseUid": "8d79314c-81d0-47d9-acfa-7b091562c3d5",
+    "wordId": "1563550",
+    "pt": "['vagando', 'perambulando', 'deambulação', 'errância']"
+  },
+  {
+    "kana": "うつむきがち",
+    "en": [
+      "looking down"
+    ],
+    "senseUid": "f6072301-dce0-4a99-8c2f-07ae7bab5069",
+    "wordId": "1563560",
+    "pt": "['tendência a olhar para baixo', 'costuma olhar para baixo', 'fica cabisbaixo', 'fica de cabeça baixa']"
+  },
+  {
+    "kana": "うつむく",
+    "en": [
+      "to hang one's head",
+      "to look down",
+      "to cast one's eyes downward"
+    ],
+    "senseUid": "dcedc2b8-74ad-4673-ba8e-f54e929ddcb3",
+    "wordId": "1563570",
+    "pt": "['baixar a cabeça', 'olhar para baixo', 'desviar o olhar para baixo']"
+  },
+  {
+    "kana": "ふかく",
+    "en": [
+      "depression",
+      "angle of dip"
+    ],
+    "senseUid": "d44eee90-00dc-483c-ba63-9ac8639b7e14",
+    "wordId": "1563580",
+    "pt": "{\n  \"a\": [\n    \"depressão\",\n    \"ângulo de inclinação\"\n  ]\n"
+  },
+  {
+    "kana": "ふぎょう",
+    "en": [
+      "looking up and down",
+      "actions",
+      "being obliging"
+    ],
+    "senseUid": "a7e6344c-437d-43de-aca0-0a0481241394",
+    "wordId": "1563590",
+    "pt": "{\n  \"a\": [\n    \"olhar para cima e para baixo\",\n    \"ações\",\n    \"ser prestativo\"\n  ]\n"
+  },
+  {
+    "kana": "ふぎょうかく",
+    "en": [
+      "angle of elevation"
+    ],
+    "senseUid": "64205ef6-82d7-41d1-8217-a83ae9b21acf",
+    "wordId": "1563600",
+    "pt": "['ângulo de elevação']"
+  },
+  {
+    "kana": "うつむき",
+    "en": [
+      "facing downward"
+    ],
+    "senseUid": "62272a0c-3659-40c7-9909-d68ba3e4d696",
+    "wordId": "1563610",
+    "pt": "['cabeça baixa', 'olhar para baixo', 'encolhido', 'cabizbaixo']"
+  },
+  {
+    "kana": "うつむき",
+    "en": [
+      "lying face down",
+      "upside down",
+      "prone"
+    ],
+    "senseUid": "9ecaa498-c5e7-493e-9e61-1f9b17c2f338",
+    "wordId": "1563610",
+    "pt": "['de cabeça baixa', 'olhando para baixo', 'cabizbaixo']"
+  },
+  {
+    "kana": "うつむけ",
+    "en": [
+      "facing downward"
+    ],
+    "senseUid": "8258e03b-a4ee-4de3-bae0-646daf9ec27d",
+    "wordId": "1563630",
+    "pt": "['de bruços', 'voltado para baixo', 'com o rosto para baixo']"
+  },
+  {
+    "kana": "うつむけ",
+    "en": [
+      "lying face down",
+      "upside down",
+      "prone"
+    ],
+    "senseUid": "d0960435-bc9e-482d-8937-9d61a207cdbe",
+    "wordId": "1563630",
+    "pt": "{\n  \"a\": [\n    \"deitado de bruços\",\n    \"de cabeça para baixo\",\n    \"em posição prona\"\n  ]\n"
+  },
+  {
+    "kana": "うつむける",
+    "en": [
+      "to turn upside down",
+      "to turn (face) downward"
+    ],
+    "senseUid": "477ea98a-56b4-42ee-af76-86ce459ea22a",
+    "wordId": "1563640",
+    "pt": "['virar de cabeça para baixo', 'virar (o rosto) para baixo']"
+  },
+  {
+    "kana": "ふふく",
+    "en": [
+      "prostration"
+    ],
+    "senseUid": "ee6dd2da-b7ff-4660-b322-66e968586a7d",
+    "wordId": "1563650",
+    "pt": "{\n  \"a\": [\n    \"prostração\"\n  ]\n"
+  },
+  {
+    "kana": "うつぶす",
+    "en": [
+      "to lie face down (e.g. on the ground, napping on a desk)",
+      "to lie prone"
+    ],
+    "senseUid": "c8dadf44-f783-4c1f-bdc3-17efdee73095",
+    "wordId": "1563660",
+    "pt": "{\n  \"a\": [\n    \"deitar-se de bruços (por exemplo, no chão ou cochilando sobre a mesa)\",\n    \"ficar deitado de barriga para baixo\"\n  ]\n"
+  }
+]

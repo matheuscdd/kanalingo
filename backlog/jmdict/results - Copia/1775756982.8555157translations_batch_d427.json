@@ -1,0 +1,917 @@
+[
+  {
+    "kana": "たいしょうたいしゅべつ",
+    "en": [
+      "object type"
+    ],
+    "senseUid": "23f34c3a-f846-41d4-9fc0-8fbf813dc409",
+    "wordId": "2372700",
+    "pt": "['tipo de objeto']"
+  },
+  {
+    "kana": "たいしょうたいようりょう",
+    "en": [
+      "object capacity"
+    ],
+    "senseUid": "cfeff583-1e60-4d4a-9c57-cb2438cc4768",
+    "wordId": "2372710",
+    "pt": "{\n  \"a\": [\"capacidade do objeto\"]\n"
+  },
+  {
+    "kana": "たいすうのしすう",
+    "en": [
+      "characteristic of a logarithm"
+    ],
+    "senseUid": "1909a041-bfd7-43a8-8476-ae13466becf1",
+    "wordId": "2372720",
+    "pt": "{\n  \"a\": [\"característica de um logaritmo\"]\n"
+  },
+  {
+    "kana": "たいすうをとる",
+    "en": [
+      "to take the logarithm of"
+    ],
+    "senseUid": "444c7b8c-1223-4b93-ad33-cbaad2cb9720",
+    "wordId": "2372730",
+    "pt": "['tirar o logaritmo de']"
+  },
+  {
+    "kana": "たいすうてき",
+    "en": [
+      "logarithmic"
+    ],
+    "senseUid": "fa49a28d-b32b-4307-abee-f5096de5120c",
+    "wordId": "2372740",
+    "pt": "['logarítmico']"
+  },
+  {
+    "kana": "たいわがた",
+    "en": [
+      "interactive"
+    ],
+    "senseUid": "3e468075-c180-47fe-a8d3-f92068303272",
+    "wordId": "2372750",
+    "pt": "{\n  \"a\": [\n    \"interativo\"\n  ]\n"
+  },
+  {
+    "kana": "たいわがたプログラム",
+    "en": [
+      "interactive program"
+    ],
+    "senseUid": "69ab9660-0b55-42b3-909c-be8ce44af41a",
+    "wordId": "2372770",
+    "pt": "['programa interativo']"
+  },
+  {
+    "kana": "たいわしょり",
+    "en": [
+      "interactive processing"
+    ],
+    "senseUid": "76312e15-94c1-4438-9b45-31d246c5ebe1",
+    "wordId": "2372790",
+    "pt": "{\n  \"a\": [\n    \"processamento interativo\"\n  ]\n"
+  },
+  {
+    "kana": "たいわほうしき",
+    "en": [
+      "interactive mode"
+    ],
+    "senseUid": "0d37da02-d6aa-4e43-864b-0fc05bb5cb4b",
+    "wordId": "2372810",
+    "pt": "['modo interativo']"
+  },
+  {
+    "kana": "たいわてき",
+    "en": [
+      "interactive"
+    ],
+    "senseUid": "ded1b4b7-a23b-4497-977e-6a0772631a92",
+    "wordId": "2372800",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"たいわてき\",\n      \"ingles\": \"interactive\",\n      \"portugues\": \"interativo\",\n      \"explicacao\": \"No contexto japonês, たいわてき (taiwateki) refere-se a algo que envolve diálogo ou troca mútua, como uma comunicação ou atividade em que ambas as partes participam ativamente.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "たいタンパーせい",
+    "en": [
+      "tamper resistant"
+    ],
+    "senseUid": "64e0f8ae-599c-431c-bdbb-85e56b650aa3",
+    "wordId": "2372820",
+    "pt": "{\n  \"a\": [\"resistente à violação\"]\n"
+  },
+  {
+    "kana": "たいいきあっしゅく",
+    "en": [
+      "band compression"
+    ],
+    "senseUid": "9a297f10-061d-477a-a67d-0b19039b36f3",
+    "wordId": "2372830",
+    "pt": "['compressão de banda']"
+  },
+  {
+    "kana": "たいいきせいげん",
+    "en": [
+      "bandlimited"
+    ],
+    "senseUid": "d2a740a9-58cd-4e74-9ed5-c0b38946cc03",
+    "wordId": "2372850",
+    "pt": "{\n  \"a\": [\"limitado em banda\"]\n"
+  },
+  {
+    "kana": "たいいきせいげんしんごう",
+    "en": [
+      "bandlimited signal"
+    ],
+    "senseUid": "3af6964b-3edd-4093-b70a-349a89b5dd5d",
+    "wordId": "2372860",
+    "pt": "{\n  \"a\": [\"sinal limitado em banda\"]\n"
+  },
+  {
+    "kana": "たいいきかくほ",
+    "en": [
+      "bandwidth guarantee"
+    ],
+    "senseUid": "60df945b-b9c5-40ce-abc4-023f258c8554",
+    "wordId": "2372840",
+    "pt": "['garantia de largura de banda']"
+  },
+  {
+    "kana": "たいいきせいぎょ",
+    "en": [
+      "bandwidth control"
+    ],
+    "senseUid": "4d3b18cd-f1ac-432d-84cf-32f39a972582",
+    "wordId": "2372870",
+    "pt": "['controle de largura de banda']"
+  },
+  {
+    "kana": "たいいきつうかフィルタ",
+    "en": [
+      "band pass filter",
+      "BPF"
+    ],
+    "senseUid": "33c745ee-c158-487f-9190-76f4010925cd",
+    "wordId": "2372880",
+    "pt": "{\n  \"a\": [\"filtro passa-faixa\", \"BPF\"]\n"
+  },
+  {
+    "kana": "たいいきはばりよう",
+    "en": [
+      "bandwidth usage"
+    ],
+    "senseUid": "13bd1387-08e0-48e2-b63c-6c98ea181e64",
+    "wordId": "2372890",
+    "pt": "['uso de largura de banda']"
+  },
+  {
+    "kana": "たいいきよやく",
+    "en": [
+      "bandwidth reservation",
+      "bandwidth contract"
+    ],
+    "senseUid": "60ca264c-942b-468f-8db0-0e7f98a29fb3",
+    "wordId": "2372900",
+    "pt": "['reserva de largura de banda', 'contrato de largura de banda']"
+  },
+  {
+    "kana": "おびじょうれんけつさんかくけい",
+    "en": [
+      "triangle strip"
+    ],
+    "senseUid": "32f930ac-34c2-423e-b159-242dc9453cea",
+    "wordId": "2372910",
+    "pt": "{\n  \"a\": [\"faixa triangular\"]\n"
+  },
+  {
+    "kana": "まちぎょうれつ",
+    "en": [
+      "queue"
+    ],
+    "senseUid": "b504eb3d-9cc4-4e77-813c-e052bd4b5519",
+    "wordId": "2372920",
+    "pt": "['fila de pessoas na rua']"
+  },
+  {
+    "kana": "まちぎょうれつにいれる",
+    "en": [
+      "to enqueue"
+    ],
+    "senseUid": "1e90cdc9-ab4b-4eb6-b180-f5cd0eef3af6",
+    "wordId": "2372940",
+    "pt": "{\n  \"a\": [\"entrar na fila\", \"colocar na fila\", \"alinhar-se na fila\"]\n"
+  },
+  {
+    "kana": "まちぎょうれつほうしき",
+    "en": [
+      "queue-driven"
+    ],
+    "senseUid": "84cc58a2-79d6-4582-9280-291761889f20",
+    "wordId": "2372950",
+    "pt": "['método baseado em filas']"
+  },
+  {
+    "kana": "まちぎょうれつめい",
+    "en": [
+      "queue name"
+    ],
+    "senseUid": "fc58996e-e78e-4bfe-b605-7b4a2591546e",
+    "wordId": "2372960",
+    "pt": "{\n  \"a\": [\"nome da fila\"]\n"
+  },
+  {
+    "kana": "まちぎょうれつりろん",
+    "en": [
+      "queueing theory"
+    ],
+    "senseUid": "297df3d7-844f-4c41-9fee-e7a055b07971",
+    "wordId": "2372970",
+    "pt": "['teoria das filas']"
+  },
+  {
+    "kana": "まちじょうたい",
+    "en": [
+      "waiting state"
+    ],
+    "senseUid": "c9be3f97-af89-4557-805f-cce3a71d8ad8",
+    "wordId": "2372980",
+    "pt": "['estado de espera']"
+  },
+  {
+    "kana": "ふくろもじ",
+    "en": [
+      "open face"
+    ],
+    "senseUid": "58eefa25-66eb-4f67-a674-fb855e7c8775",
+    "wordId": "2372990",
+    "pt": "{\n  \"a\": [\"rosto aberto\"]\n"
+  },
+  {
+    "kana": "たいこうテスト",
+    "en": [
+      "regression test"
+    ],
+    "senseUid": "d6c00d72-4489-4f2e-b6bf-8b7fd16edcae",
+    "wordId": "2373000",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"たいこうテスト\",\n      \"gloss\": [\"teste de regressão\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "だいこうじゅしんしゃ",
+    "en": [
+      "alternate recipient"
+    ],
+    "senseUid": "5914c73b-7acd-4fbc-8419-539b1604fbab",
+    "wordId": "2373030",
+    "pt": "{\n  \"a\": [\"destinatário alternativo\"]\n"
+  },
+  {
+    "kana": "だいこうじゅしんしゃきょか",
+    "en": [
+      "alternate recipient allowed"
+    ],
+    "senseUid": "3451bcbc-5a3e-4f52-aee8-892689f2a8c8",
+    "wordId": "2373040",
+    "pt": "{\n  \"a\": [\"Permissão para destinatário alternativo\"]\n"
+  },
+  {
+    "kana": "だいこうじゅしんしゃとうろく",
+    "en": [
+      "alternate recipient assignment"
+    ],
+    "senseUid": "cf06b846-607a-4fef-a053-fe22c6c5c906",
+    "wordId": "2373050",
+    "pt": "{\n  \"a\": [\"atribuição de destinatário alternativo\"]\n"
+  },
+  {
+    "kana": "だいこうそうしん",
+    "en": [
+      "delayed delivery"
+    ],
+    "senseUid": "6fc46442-fbe1-4b92-b121-d513f4bc55db",
+    "wordId": "2373060",
+    "pt": "{\n  \"a\": [\"entrega atrasada\"]\n"
+  },
+  {
+    "kana": "だいすうえんざんし",
+    "en": [
+      "algebraic operator"
+    ],
+    "senseUid": "931bf5b3-2cc8-4813-b253-1e24a1d4281c",
+    "wordId": "2373070",
+    "pt": "{\n  \"a\": [\"operador algébrico\"]\n"
+  },
+  {
+    "kana": "だいすうりろん",
+    "en": [
+      "algebraic theory"
+    ],
+    "senseUid": "1700c345-3851-4245-808a-fd11632336f5",
+    "wordId": "2373080",
+    "pt": "['teoria algébrica']"
+  },
+  {
+    "kana": "だいたいクラス",
+    "en": [
+      "alternative class"
+    ],
+    "senseUid": "0cfa73d8-d825-49f8-b6dc-d2fb20e25e34",
+    "wordId": "2373100",
+    "pt": "['classe alternativa']"
+  },
+  {
+    "kana": "だいたいトラック",
+    "en": [
+      "alternate track",
+      "alternative track"
+    ],
+    "senseUid": "6f5342c5-cb45-42d1-a25f-e0049108f26a",
+    "wordId": "2373110",
+    "pt": "['faixa alternativa', 'trilha alternativa']"
+  },
+  {
+    "kana": "だいたいパス",
+    "en": [
+      "alternate path",
+      "alternative path"
+    ],
+    "senseUid": "6baef47e-05c7-4451-85b5-f9000b1537ee",
+    "wordId": "2373130",
+    "pt": "{\n  \"a\": [\"caminho alternativo\", \"rota alternativa\"]\n"
+  },
+  {
+    "kana": "だいにゅうえんざんし",
+    "en": [
+      "assignment operator",
+      "substitution operator"
+    ],
+    "senseUid": "43eaa9b4-ccb2-468a-b0b3-3e25043b510c",
+    "wordId": "2373140",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"だいにゅうえんざんし\",\n      \"gloss\": [\"operador de atribuição\", \"operador de substituição\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "だいにゅうぶん",
+    "en": [
+      "assignment statement"
+    ],
+    "senseUid": "c11063d8-06e3-487b-8282-c6ba940c49ff",
+    "wordId": "2373150",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"だいにゅうぶん\",\n      \"portugues\": \"declaração de atribuição\"\n    \n  ]\n"
+  },
+  {
+    "kana": "だいりサーバー",
+    "en": [
+      "proxy server"
+    ],
+    "senseUid": "d502e697-0827-4078-b324-116cb18c2bdb",
+    "wordId": "2373160",
+    "pt": "{\n  \"a\": [\"servidor proxy\"]\n"
+  },
+  {
+    "kana": "だいりじゅしんしゃ",
+    "en": [
+      "substitute recipient"
+    ],
+    "senseUid": "07793164-3306-4341-8b8b-fa36ac961de6",
+    "wordId": "2373170",
+    "pt": "{\n  \"a\": [\n    \"destinatário substituto\"\n  ]\n"
+  },
+  {
+    "kana": "おおきさひきつぎはいれつ",
+    "en": [
+      "assumed-size array"
+    ],
+    "senseUid": "698164ff-f82b-4726-bf7e-d107ec3780c3",
+    "wordId": "2373190",
+    "pt": "{\n  \"a\": [\"vetor de tamanho assumido\"]\n"
+  },
+  {
+    "kana": "だいいきモデリングへんかん",
+    "en": [
+      "global modelling transformation"
+    ],
+    "senseUid": "ac9e783b-4824-4bb0-bc62-127122b6ec9d",
+    "wordId": "2373200",
+    "pt": "['transformação global de modelagem']"
+  },
+  {
+    "kana": "たいいきてき",
+    "en": [
+      "global"
+    ],
+    "senseUid": "458a6656-5b2c-40e6-baba-0dd9ca5cca16",
+    "wordId": "2373210",
+    "pt": "{\n  \"a\": [\"global\", \"atmosférico\", \"relativo à atmosfera\", \"de grande escala\", \"abrangente\"]\n"
+  },
+  {
+    "kana": "たいいきめい",
+    "en": [
+      "global name"
+    ],
+    "senseUid": "64f54199-480b-4a09-9371-9002350f7311",
+    "wordId": "2373220",
+    "pt": "['nome global']"
+  },
+  {
+    "kana": "だいいきようそ",
+    "en": [
+      "global entity"
+    ],
+    "senseUid": "b59a04b7-9335-41e9-abb1-788f8cbe7484",
+    "wordId": "2373230",
+    "pt": "['entidade global']"
+  },
+  {
+    "kana": "だいかいてい",
+    "en": [
+      "major revision"
+    ],
+    "senseUid": "fb39ac00-f972-47fc-ad3f-fb9413a0e3a1",
+    "wordId": "2373240",
+    "pt": "{\n  \"a\": [\"grande revisão\"]\n"
+  },
+  {
+    "kana": "だいきおく",
+    "en": [
+      "mass storage"
+    ],
+    "senseUid": "80a57ad5-f8e1-4296-a8d6-0694e4fe0339",
+    "wordId": "2373250",
+    "pt": "{\n  \"a\": [\"armazenamento em massa\"]\n"
+  },
+  {
+    "kana": "だいきおくファイル",
+    "en": [
+      "mass storage file"
+    ],
+    "senseUid": "030b1f25-d275-404b-8173-e64fafa29f5e",
+    "wordId": "2373260",
+    "pt": "{\n  \"a\": [\"arquivo de armazenamento em massa\"]\n"
+  },
+  {
+    "kana": "だいきおくかんりシステム",
+    "en": [
+      "mass storage control system",
+      "MSCS"
+    ],
+    "senseUid": "405e6f63-ea62-4684-bc74-25537e048dbc",
+    "wordId": "2373270",
+    "pt": "{\n  \"a\": [\n    \"sistema de controle de armazenamento em massa\"\n  ]\n"
+  },
+  {
+    "kana": "だいしょうじゅんじょ",
+    "en": [
+      "collating sequence"
+    ],
+    "senseUid": "ab609e48-4ef4-42fd-8289-18444022988d",
+    "wordId": "2373280",
+    "pt": "['ordem de classificação']"
+  },
+  {
+    "kana": "だいようりょう",
+    "en": [
+      "high-capacity",
+      "high-volume"
+    ],
+    "senseUid": "6f642137-9cd2-46f7-8bb1-25aafa2f99af",
+    "wordId": "2373320",
+    "pt": "{\n  \"a\": [\"alta capacidade\", \"grande volume\"]\n"
+  },
+  {
+    "kana": "だいようりょうデータストレージ",
+    "en": [
+      "high capacity data storage"
+    ],
+    "senseUid": "b5782a17-8b89-4aaa-81ef-c00cb9bdd099",
+    "wordId": "2373330",
+    "pt": "{\n  \"a\": [\"armazenamento de dados de alta capacidade\"]\n"
+  },
+  {
+    "kana": "だいようりょうきおくシステム",
+    "en": [
+      "MSS",
+      "Mass Storage System"
+    ],
+    "senseUid": "a82b1fbb-3daa-4612-8e3d-f013836cb99a",
+    "wordId": "2373340",
+    "pt": "{\n  \"a\": [\n    \"Sistema de Armazenamento em Massa\"\n  ]\n"
+  },
+  {
+    "kana": "だいようりょうきおくそうち",
+    "en": [
+      "mass storage"
+    ],
+    "senseUid": "a7b340ac-991c-4b19-9dee-dbe372a65593",
+    "wordId": "2373350",
+    "pt": "{\n  \"a\": [\"dispositivo de armazenamento em massa\"]\n"
+  },
+  {
+    "kana": "だいよんせだいげんご",
+    "en": [
+      "fourth generation language",
+      "4GL"
+    ],
+    "senseUid": "b58dcac5-4e53-4322-9f72-8b2bf3108c8b",
+    "wordId": "2373390",
+    "pt": "{\n  \"a\": [\n    \"linguagem de quarta geração\",\n    \"4GL\"\n  ]\n"
+  },
+  {
+    "kana": "だいごせだいコンピュータ",
+    "en": [
+      "Fifth Generation Computer System",
+      "FGCS"
+    ],
+    "senseUid": "fb0e7224-fa54-4879-8b12-6b5a6b9d8409",
+    "wordId": "2373400",
+    "pt": "['Sistema de Computador de Quinta Geração', 'FGCS']"
+  },
+  {
+    "kana": "だいいちレベルドメイン",
+    "en": [
+      "top-level domain"
+    ],
+    "senseUid": "4595e551-cdd1-4eb9-99a5-ac570cee1af5",
+    "wordId": "2373420",
+    "pt": "['domínio de nível superior']"
+  },
+  {
+    "kana": "だいにしゅでんきつうしんじぎょうしゃ",
+    "en": [
+      "type II carriers"
+    ],
+    "senseUid": "cb949d6b-fc5c-46db-931d-f5e6debedfef",
+    "wordId": "2373440",
+    "pt": "['operadoras de telecomunicações de tipo II']"
+  },
+  {
+    "kana": "たくじょうがたコンピュータ",
+    "en": [
+      "desktop computer"
+    ],
+    "senseUid": "9f5c8e20-2d0c-4ad9-8bf7-0039304cef31",
+    "wordId": "2373450",
+    "pt": "['computador de mesa']"
+  },
+  {
+    "kana": "たくじょうけいさんき",
+    "en": [
+      "desk-top calculator"
+    ],
+    "senseUid": "2beaf26e-ca9e-49e4-9407-f104e2b840dd",
+    "wordId": "2373460",
+    "pt": "['calculadora de mesa']"
+  },
+  {
+    "kana": "たくじょうしゅっぱん",
+    "en": [
+      "desktop publishing",
+      "DTP"
+    ],
+    "senseUid": "af3c36aa-1e35-408d-9acb-11ac606ee212",
+    "wordId": "2373470",
+    "pt": "['publicação de mesa', 'editoração eletrônica']"
+  },
+  {
+    "kana": "たっせいのレベル",
+    "en": [
+      "level of performance"
+    ],
+    "senseUid": "bcbb6188-45a1-401e-951a-472ae721ec98",
+    "wordId": "2373480",
+    "pt": "['nível de desempenho']"
+  },
+  {
+    "kana": "たんあんていトリガかいろ",
+    "en": [
+      "monostable trigger circuit"
+    ],
+    "senseUid": "a656fc10-2307-497e-8ba2-521f200d2eac",
+    "wordId": "2373490",
+    "pt": "['circuito disparador monoestável']"
+  },
+  {
+    "kana": "たんあんていかいろ",
+    "en": [
+      "monostable (trigger) circuit"
+    ],
+    "senseUid": "a0235a39-8812-4479-8dc0-4ee9543138e3",
+    "wordId": "2373500",
+    "pt": "['circuito monoestável']"
+  },
+  {
+    "kana": "たんいばいりつ",
+    "en": [
+      "unit scaling"
+    ],
+    "senseUid": "56a6049c-9d15-4da8-b9b0-98a349f9cdb6",
+    "wordId": "2373510",
+    "pt": "{\n  \"a\": [\"escala unitária\"]\n"
+  },
+  {
+    "kana": "たんいりょうきんくいき",
+    "en": [
+      "message area",
+      "MA"
+    ],
+    "senseUid": "d1f21614-8ba5-4b1d-99f7-4d15d42fe29c",
+    "wordId": "2373520",
+    "pt": "{\n  \"a\": [\"área de tarifa unitária\"]\n"
+  },
+  {
+    "kana": "たんいれつ",
+    "en": [
+      "unit string"
+    ],
+    "senseUid": "bbc24f8b-559f-495d-a2c1-3cf1a8068fd3",
+    "wordId": "2373530",
+    "pt": "['sequência unitária']"
+  },
+  {
+    "kana": "たんいつがたしゅうごうがた",
+    "en": [
+      "set-of type"
+    ],
+    "senseUid": "7d4c0a07-cf12-4add-b666-0f1e26acdbd2",
+    "wordId": "2373540",
+    "pt": "{\n  \"a\": [\"tipo conjunto\"]\n"
+  },
+  {
+    "kana": "たんいつがたじゅんじょれつがた",
+    "en": [
+      "sequence-of type"
+    ],
+    "senseUid": "74aee517-1834-483f-b10f-d7deece457d9",
+    "wordId": "2373550",
+    "pt": "{\n  \"a\": [\"tipo de sequência\"]\n"
+  },
+  {
+    "kana": "たんいつせつぞくコンセントレータ",
+    "en": [
+      "single attachment concentrator"
+    ],
+    "senseUid": "cd3f724e-1c0c-48e0-8f22-b569b1dea1ae",
+    "wordId": "2373570",
+    "pt": "['concentrador de conexão única']"
+  },
+  {
+    "kana": "たんいつせつぞくきょく",
+    "en": [
+      "single attachment station"
+    ],
+    "senseUid": "69a85f53-655e-4d9a-9dce-4d138ea1af7b",
+    "wordId": "2373580",
+    "pt": "{\n  \"a\": [\"estação de conexão única\"]\n"
+  },
+  {
+    "kana": "たんいつちぞくせい",
+    "en": [
+      "single-valued attribute"
+    ],
+    "senseUid": "798427e1-3c02-4ca8-bdc5-dd416789e9a5",
+    "wordId": "2373590",
+    "pt": "['atributo de valor único']"
+  },
+  {
+    "kana": "たんいつめいれいそうさ",
+    "en": [
+      "single step operation",
+      "step-by-step operation"
+    ],
+    "senseUid": "2289ad7c-2953-4246-9e6a-2ac57a873818",
+    "wordId": "2373610",
+    "pt": "{\n  \"a\": [\n    \"operação passo a passo\",\n    \"operação de etapa única\"\n  ]\n"
+  },
+  {
+    "kana": "たんごカウント",
+    "en": [
+      "word count"
+    ],
+    "senseUid": "600b517e-3ae9-4655-babd-cfae542076a3",
+    "wordId": "2373620",
+    "pt": "{\n  \"a\": [\"contagem de palavras\"]\n"
+  },
+  {
+    "kana": "たんこうしゅっぱんぶつ",
+    "en": [
+      "monographic publication"
+    ],
+    "senseUid": "b488e57d-affd-47a2-9348-25e0e7a2bbfc",
+    "wordId": "2373630",
+    "pt": "{\n  \"a\": [\"publicação monográfica\"]\n"
+  },
+  {
+    "kana": "たんこうえんざん",
+    "en": [
+      "monadic operation",
+      "unary operation"
+    ],
+    "senseUid": "a1429061-dfb5-4e67-9551-555c0717d433",
+    "wordId": "2373640",
+    "pt": "['operação monádica', 'operação unária']"
+  },
+  {
+    "kana": "たんこうえんざんし",
+    "en": [
+      "monadic operator",
+      "unary operator"
+    ],
+    "senseUid": "35244e81-801a-4f3f-afa5-f3a021ecb1ad",
+    "wordId": "2373650",
+    "pt": "{\n  \"a\": [\"operador monádico\", \"operador unitário\"]\n"
+  },
+  {
+    "kana": "たんし",
+    "en": [
+      "cut sheet (paper)"
+    ],
+    "senseUid": "0e13e158-1b5f-4701-86e1-2caa32bdeeae",
+    "wordId": "2373660",
+    "pt": "['folha cortada (papel)']"
+  },
+  {
+    "kana": "たんじゅんコマンド",
+    "en": [
+      "simple command"
+    ],
+    "senseUid": "a1b7984f-744a-4b1f-86e1-8aff1a41bc9a",
+    "wordId": "2373670",
+    "pt": "['comando simples']"
+  },
+  {
+    "kana": "たんじゅんマトリックスほうしき",
+    "en": [
+      "passive matrix LCD"
+    ],
+    "senseUid": "bda63fbc-e7f9-4edc-8dce-fbccdff776da",
+    "wordId": "2373680",
+    "pt": "['LCD de matriz passiva']"
+  },
+  {
+    "kana": "たんじゅんかいそう",
+    "en": [
+      "mono-hierarchy"
+    ],
+    "senseUid": "db4b517c-48d0-4d7b-87c1-a0008ccf69cf",
+    "wordId": "2373690",
+    "pt": "['hierarquia simples']"
+  },
+  {
+    "kana": "たんじゅんがた",
+    "en": [
+      "simple type"
+    ],
+    "senseUid": "61304cfa-43f4-4c54-97e0-5e4f33c47e80",
+    "wordId": "2373710",
+    "pt": "{\n  \"a\": [\"tipo simples\"]\n"
+  },
+  {
+    "kana": "たんじゅんかんしょうほう",
+    "en": [
+      "simple buffering"
+    ],
+    "senseUid": "2a874424-6244-4b24-a586-f5fa70f25aae",
+    "wordId": "2373700",
+    "pt": "['método de apreciação simples']"
+  },
+  {
+    "kana": "たんじゅんじっこうぶん",
+    "en": [
+      "action statement"
+    ],
+    "senseUid": "59c2f73a-27f8-4eb5-83ae-9f1ee0db1f8c",
+    "wordId": "2373720",
+    "pt": "{\n  \"a\": [\"declaração de ação\"]\n"
+  },
+  {
+    "kana": "たんじゅんじょうけん",
+    "en": [
+      "simple condition"
+    ],
+    "senseUid": "6543b561-99c1-495d-8a2f-b011edb9313b",
+    "wordId": "2373730",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"たんじゅんじょうけん\",\n      \"romaji\": \"tanjun jouken\",\n      \"portugues\": \"condição simples\",\n      \"explicação\": \"No contexto japonês, refere-se a uma condição ou critério que é direto e não envolve complexidade.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "たんじゅんれんけつしょりていぎ",
+    "en": [
+      "simple link (process definition)"
+    ],
+    "senseUid": "e9e49eea-7e50-405c-a185-cb76ea79ee6f",
+    "wordId": "2373740",
+    "pt": "{\n  \"a\": [\n    \"definição de processo de ligação simples\"\n  ]\n"
+  },
+  {
+    "kana": "たんせいどふどうしょうすうてんすう",
+    "en": [
+      "single precision floating point number"
+    ],
+    "senseUid": "2ebf7bac-24ea-4212-884b-d5edc1acc02f",
+    "wordId": "2373750",
+    "pt": "['número de ponto flutuante de precisão simples']"
+  },
+  {
+    "kana": "たんせんしきかいせん",
+    "en": [
+      "single-wire line"
+    ],
+    "senseUid": "9d86b71a-3f8d-41aa-bf56-7af9110dad8f",
+    "wordId": "2373760",
+    "pt": "{\n  \"a\": [\"linha de fio único\"]\n"
+  },
+  {
+    "kana": "たんそううめこみしけん",
+    "en": [
+      "embedded testing"
+    ],
+    "senseUid": "5c89a25a-f9ba-424c-8d27-079f2c12df40",
+    "wordId": "2373770",
+    "pt": "{\n  \"a\": [\"teste embutido\"]\n"
+  },
+  {
+    "kana": "たんたいしけん",
+    "en": [
+      "unit test"
+    ],
+    "senseUid": "b0676ad0-357e-4c5c-b93e-5e74865f5006",
+    "wordId": "2373780",
+    "pt": "{\n  \"a\": [\"teste unitário\"]\n"
+  },
+  {
+    "kana": "たんちょうぞうか",
+    "en": [
+      "monotonic increase"
+    ],
+    "senseUid": "dde54142-b811-43d8-b29a-98f812cdc2e0",
+    "wordId": "2373790",
+    "pt": "{\n  \"a\": [\n    \"aumento monotônico\"\n  ]\n"
+  },
+  {
+    "kana": "たんてきごうけっていひょう",
+    "en": [
+      "single-hit decision table"
+    ],
+    "senseUid": "d76a4258-2bbc-4ae3-b4ed-1632841bd643",
+    "wordId": "2373800",
+    "pt": "['tabela de decisão de acerto único']"
+  },
+  {
+    "kana": "たんぴょう",
+    "en": [
+      "cut form"
+    ],
+    "senseUid": "36ddb4df-5782-4e1a-986c-a033e88c61ec",
+    "wordId": "2373810",
+    "pt": "['forma cortada']"
+  },
+  {
+    "kana": "たんほうこう",
+    "en": [
+      "simplex"
+    ],
+    "senseUid": "819db20f-f7a3-40fc-ae7b-4da9c3adaba3",
+    "wordId": "2373820",
+    "pt": "['unidirecional']"
+  },
+  {
+    "kana": "たんほうこうつうしん",
+    "en": [
+      "simplex communication"
+    ],
+    "senseUid": "3c0717c6-829a-48c3-9ede-012c42642cff",
+    "wordId": "2373830",
+    "pt": "{\n  \"a\": [\"comunicação simplex\"]\n"
+  },
+  {
+    "kana": "たんほうこうでんそう",
+    "en": [
+      "simplex transmission"
+    ],
+    "senseUid": "76533735-e0fa-42e4-a477-c25033aa159c",
+    "wordId": "2373840",
+    "pt": "['transmissão simplex']"
+  },
+  {
+    "kana": "たんみつど",
+    "en": [
+      "single density"
+    ],
+    "senseUid": "29d57e00-c065-4121-b4f1-7f797901a1e2",
+    "wordId": "2373850",
+    "pt": "['densidade simples']"
+  },
+  {
+    "kana": "たんさくかぎ",
+    "en": [
+      "search key"
+    ],
+    "senseUid": "b0dc50d0-3801-4dae-941f-3f4be90eece4",
+    "wordId": "2373860",
+    "pt": "{\n  \"a\": [\n    \"chave de busca\"\n  ]\n"
+  },
+  {
+    "kana": "たんさくサイクル",
+    "en": [
+      "search cycle"
+    ],
+    "senseUid": "4f0f13f2-c14c-479b-9dca-11f4e3b4fc83",
+    "wordId": "2373870",
+    "pt": "{\n  \"a\": [\"ciclo de exploração\"]\n"
+  }
+]

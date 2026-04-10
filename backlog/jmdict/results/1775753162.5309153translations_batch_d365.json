@@ -1,0 +1,941 @@
+[
+  {
+    "kana": "サブネットか",
+    "en": [
+      "subnetting"
+    ],
+    "senseUid": "3cbe1b1e-a657-4a0c-92ca-40e4f59bb537",
+    "wordId": "2299290",
+    "pt": "['sub-rede']"
+  },
+  {
+    "kana": "サブノートがたパソコン",
+    "en": [
+      "subnotebook",
+      "ultraportable (computer)"
+    ],
+    "senseUid": "ef6602db-ec72-49c2-b2ea-b14f626d23ac",
+    "wordId": "2299300",
+    "pt": "{\n  \"a\": [\"computador subnotebook\", \"computador ultraportátil\"]\n"
+  },
+  {
+    "kana": "サブパス",
+    "en": [
+      "subpath"
+    ],
+    "senseUid": "4cb92dd5-e866-4b89-b89b-4f60fc27db9c",
+    "wordId": "2299310",
+    "pt": "['subcaminho']"
+  },
+  {
+    "kana": "サブフィールド",
+    "en": [
+      "subfield"
+    ],
+    "senseUid": "2bb08ab0-7a4e-4f7d-840b-e26b12ec0840",
+    "wordId": "2299330",
+    "pt": "['subcampo']"
+  },
+  {
+    "kana": "サブプログラム",
+    "en": [
+      "subprogram"
+    ],
+    "senseUid": "d69eade0-09da-4f7e-a2d2-eb771c5b8c3e",
+    "wordId": "2299340",
+    "pt": "['subprograma']"
+  },
+  {
+    "kana": "サブレンジ",
+    "en": [
+      "subrange"
+    ],
+    "senseUid": "f0ffcbea-7028-4ac0-98a1-cb778673b369",
+    "wordId": "2299370",
+    "pt": "['subfaixa']"
+  },
+  {
+    "kana": "サプリカント",
+    "en": [
+      "supplicant"
+    ],
+    "senseUid": "e6859942-0f9a-4c09-b86f-bcefab484ea5",
+    "wordId": "2299400",
+    "pt": "['suplicante']"
+  },
+  {
+    "kana": "サプレス",
+    "en": [
+      "suppression"
+    ],
+    "senseUid": "aa1dcc95-bf85-4aed-ae85-82435f8160ab",
+    "wordId": "2299410",
+    "pt": "['supressão']"
+  },
+  {
+    "kana": "サプレスか",
+    "en": [
+      "suppressible"
+    ],
+    "senseUid": "6f1ee50d-ab80-4af0-9cbe-2b8624ac047f",
+    "wordId": "2299420",
+    "pt": "{\n  \"a\": [\"suprimível\"]\n"
+  },
+  {
+    "kana": "サポートウェア",
+    "en": [
+      "support-ware"
+    ],
+    "senseUid": "bcea6106-04eb-4e5d-8d9a-0fd50e5b20c7",
+    "wordId": "2299430",
+    "pt": "['software de suporte']"
+  },
+  {
+    "kana": "サポートグループ",
+    "en": [
+      "support group"
+    ],
+    "senseUid": "b08958e3-6ffc-4c92-974f-661c8d0a1a94",
+    "wordId": "2299440",
+    "pt": "['grupo de apoio']"
+  },
+  {
+    "kana": "サポートスタッフ",
+    "en": [
+      "support staff"
+    ],
+    "senseUid": "90c6d80c-7a1c-49e5-a961-079dc7f85c01",
+    "wordId": "2299450",
+    "pt": "['equipe de apoio']"
+  },
+  {
+    "kana": "サマリプロジェクト",
+    "en": [
+      "summary project"
+    ],
+    "senseUid": "b9d8c0c8-b42e-4a26-916b-64204fb92400",
+    "wordId": "2299460",
+    "pt": "['projeto de resumo']"
+  },
+  {
+    "kana": "サムホイール",
+    "en": [
+      "thumb wheel"
+    ],
+    "senseUid": "fc006589-f79b-4a92-93fb-775804e4fc6f",
+    "wordId": "2299470",
+    "pt": "['roda de polegar']"
+  },
+  {
+    "kana": "サンオーエス",
+    "en": [
+      "SunOS"
+    ],
+    "senseUid": "5241ef0f-b643-4657-a8d2-bb9cd1206fd6",
+    "wordId": "2299480",
+    "pt": "['SunOS']"
+  },
+  {
+    "kana": "サンセリフ",
+    "en": [
+      "sans serif"
+    ],
+    "senseUid": "97c2eac7-5dd2-416a-a734-8282a31fa65f",
+    "wordId": "2299490",
+    "pt": "{\n  \"a\": [\n    \"sem serifa\"\n  ]\n"
+  },
+  {
+    "kana": "サンソフト",
+    "en": [
+      "SunSoft"
+    ],
+    "senseUid": "305e8cb8-0d53-4a3a-a763-c3777d793601",
+    "wordId": "2299500",
+    "pt": "['SunSoft']"
+  },
+  {
+    "kana": "サンドボックス",
+    "en": [
+      "sandbox (environment)",
+      "test environment"
+    ],
+    "senseUid": "05550990-6477-4886-8f2e-9cfcee889c1c",
+    "wordId": "2299510",
+    "pt": "['ambiente de teste', 'sandbox (ambiente)']"
+  },
+  {
+    "kana": "サンプリングレート",
+    "en": [
+      "sampling rate"
+    ],
+    "senseUid": "f56b2976-866f-4a8c-8e11-c025697393b3",
+    "wordId": "2299540",
+    "pt": "['taxa de amostragem']"
+  },
+  {
+    "kana": "サンプリングキーボード",
+    "en": [
+      "sampling keyboard"
+    ],
+    "senseUid": "d3327959-21e3-4536-a283-caceafb7baa6",
+    "wordId": "2299530",
+    "pt": "['teclado de sampling']"
+  },
+  {
+    "kana": "サンプルサイズ",
+    "en": [
+      "sample size"
+    ],
+    "senseUid": "5369baef-ad93-49ba-b00a-daf5ad30a492",
+    "wordId": "2299560",
+    "pt": "{\n  \"a\": [\"tamanho da amostra\"]\n"
+  },
+  {
+    "kana": "サンプリングていり",
+    "en": [
+      "sampling theorem"
+    ],
+    "senseUid": "5de7e8ff-0044-4396-80ba-8d225cc156bb",
+    "wordId": "2299550",
+    "pt": "{\n  \"a\": [\"teorema da amostragem\"]\n"
+  },
+  {
+    "kana": "サンプルドキュメント",
+    "en": [
+      "sample document"
+    ],
+    "senseUid": "d05813e8-14a6-43eb-9df2-4ccbaeb8ba26",
+    "wordId": "2299570",
+    "pt": "{\n  \"a\": [\"documento de amostra\"]\n"
+  },
+  {
+    "kana": "サンプルホールドそうち",
+    "en": [
+      "sample-and-hold device"
+    ],
+    "senseUid": "fbe1bc91-f49a-4fbb-97fb-71ae81eed934",
+    "wordId": "2299580",
+    "pt": "{\n  \"a\": [\n    \"dispositivo de amostragem e retenção\"\n  ]\n"
+  },
+  {
+    "kana": "サンプルしゅうだん",
+    "en": [
+      "sample group",
+      "sample set"
+    ],
+    "senseUid": "4123a643-a0ed-4fe1-9b8b-889018efa3ee",
+    "wordId": "2299590",
+    "pt": "{\n  \"a\": [\"grupo de amostra\", \"conjunto de amostra\"]\n"
+  },
+  {
+    "kana": "シー・アール・エム",
+    "en": [
+      "customer relationship management",
+      "CRM"
+    ],
+    "senseUid": "bf880faf-dbe9-467d-aa56-28c8a349eab6",
+    "wordId": "2299650",
+    "pt": "['gestão de relacionamento com o cliente', 'CRM']"
+  },
+  {
+    "kana": "シー・アール・シー",
+    "en": [
+      "cyclic redundancy check",
+      "CRC"
+    ],
+    "senseUid": "0b7d8c48-4aca-4d62-966a-7ddebe46aa88",
+    "wordId": "2299660",
+    "pt": "{\n  \"a\": [\"verificação cíclica de redundância\"]\n"
+  },
+  {
+    "kana": "シー・アイ・イー",
+    "en": [
+      "Civil Information and Education Section (of the General Headquarters of the Allied Powers in Japan; 1945-1952)",
+      "CIE"
+    ],
+    "senseUid": "7bf687ec-59d1-48b7-bcde-2776d03a2b3a",
+    "wordId": "2299680",
+    "pt": "['Seção de Informação e Educação Civil (do Quartel-General das Forças Aliadas no Japão; 1945-1952)', 'CIE']"
+  },
+  {
+    "kana": "シー・イー",
+    "en": [
+      "concurrent engineering",
+      "CE"
+    ],
+    "senseUid": "36e9609e-7f3b-4846-a506-3d6af1f74d15",
+    "wordId": "2299690",
+    "pt": "{\n  \"a\": [\"engenharia simultânea\", \"CE\"]\n"
+  },
+  {
+    "kana": "シー・エー・イー",
+    "en": [
+      "computer-aided engineering",
+      "CAE"
+    ],
+    "senseUid": "9ba8ec83-42ba-4dab-8034-bba60690a9e1",
+    "wordId": "2299710",
+    "pt": "{\n  \"a\": [\n    \"engenharia assistida por computador\",\n    \"CAE\"\n  ]\n"
+  },
+  {
+    "kana": "シー・エス・ブイ",
+    "en": [
+      "comma-separated values (data format)",
+      "CSV"
+    ],
+    "senseUid": "15fe32c0-e183-4586-ad69-3ab538d0c4a6",
+    "wordId": "2299770",
+    "pt": "{\n  \"a\": [\n    \"valores separados por vírgula (formato de dados)\",\n    \"CSV\"\n  ]\n"
+  },
+  {
+    "kana": "シー・エー・ブイ",
+    "en": [
+      "constant angular velocity",
+      "CAV"
+    ],
+    "senseUid": "f1cdec56-ed50-4c4f-a173-77dc666841ab",
+    "wordId": "2299720",
+    "pt": "{\n  \"a\": [\n    \"velocidade angular constante\",\n    \"CAV\"\n  ]\n"
+  },
+  {
+    "kana": "シー・エム・ワイ・ケー",
+    "en": [
+      "cyan, magenta, yellow and key (black)",
+      "CMYK"
+    ],
+    "senseUid": "42da499a-27fd-40a0-90d8-71204e07b73b",
+    "wordId": "2299780",
+    "pt": "['ciano, magenta, amarelo e preto (chave)', 'CMYK']"
+  },
+  {
+    "kana": "シー・エル・ブイ",
+    "en": [
+      "constant linear velocity",
+      "CLV"
+    ],
+    "senseUid": "57bb989b-3cc0-488f-861f-0ab87a375672",
+    "wordId": "2299790",
+    "pt": "{\n  \"a\": [\n    \"velocidade linear constante\",\n    \"CLV\"\n  ]\n"
+  },
+  {
+    "kana": "シークタイム",
+    "en": [
+      "seek time"
+    ],
+    "senseUid": "546706d2-296b-4057-8c54-81b154ccc764",
+    "wordId": "2299800",
+    "pt": "['tempo de busca']"
+  },
+  {
+    "kana": "シークじかん",
+    "en": [
+      "positioning time",
+      "seek time"
+    ],
+    "senseUid": "ff1d67e3-1260-4ddb-97bf-38c9c8d7b73c",
+    "wordId": "2299810",
+    "pt": "['tempo de posicionamento', 'tempo de busca']"
+  },
+  {
+    "kana": "シーケンシャルアクセス",
+    "en": [
+      "sequential access"
+    ],
+    "senseUid": "bc420e8c-e40b-4a99-a6eb-918b48f10a4c",
+    "wordId": "2299820",
+    "pt": "['acesso sequencial']"
+  },
+  {
+    "kana": "シーケンシャルファイル",
+    "en": [
+      "sequential file"
+    ],
+    "senseUid": "b365a49c-700d-404d-bd49-05a37990c0fc",
+    "wordId": "2299830",
+    "pt": "{\n  \"a\": [\"arquivo sequencial\"]\n"
+  },
+  {
+    "kana": "シーケンスソフト",
+    "en": [
+      "sequence soft"
+    ],
+    "senseUid": "69d14ada-cd17-4276-bac2-b915ffe5699a",
+    "wordId": "2299840",
+    "pt": "['software de sequência']"
+  },
+  {
+    "kana": "シーケンスばんごう",
+    "en": [
+      "sequence number"
+    ],
+    "senseUid": "a2b79b8e-c103-4220-9341-07033b0fd19e",
+    "wordId": "2299850",
+    "pt": "['número de sequência']"
+  },
+  {
+    "kana": "シー・シー",
+    "en": [
+      "cc (email)",
+      "carbon copy"
+    ],
+    "senseUid": "6e8108b8-d3b0-48e5-9f0d-3a274c3ee845",
+    "wordId": "2299870",
+    "pt": "{\n  \"a\": [\"cópia carbono\", \"cc (e-mail)\"]\n"
+  },
+  {
+    "kana": "シー・シー",
+    "en": [
+      "cubic centimeter",
+      "cubic centimetre",
+      "milliliter",
+      "millilitre"
+    ],
+    "senseUid": "b05b6f6f-50c5-4415-beec-7619c030751e",
+    "wordId": "2299870",
+    "pt": "['centímetro cúbico', 'mililitro']"
+  },
+  {
+    "kana": "シー・シー・ディー",
+    "en": [
+      "CCD",
+      "charge-coupled device"
+    ],
+    "senseUid": "3c464e5e-4421-4d57-a879-263b9eec8b39",
+    "wordId": "2299890",
+    "pt": "['dispositivo de carga acoplada']"
+  },
+  {
+    "kana": "シーシェル",
+    "en": [
+      "C shell"
+    ],
+    "senseUid": "77af9dd1-6b09-4bf3-9d5a-5531c3ca223c",
+    "wordId": "2299910",
+    "pt": "['C shell']"
+  },
+  {
+    "kana": "シー・ジー・エー",
+    "en": [
+      "color graphics adapter",
+      "CGA"
+    ],
+    "senseUid": "aba1de18-1e58-4023-9f50-e4397f9afc34",
+    "wordId": "2299930",
+    "pt": "{\n  \"a\": [\n    \"adaptador de gráficos coloridos\",\n    \"CGA\"\n  ]\n"
+  },
+  {
+    "kana": "シー・ディー・アール",
+    "en": [
+      "Compact Disc-Recordable",
+      "CD-R"
+    ],
+    "senseUid": "18db21d0-995e-4cdf-bed1-c9a7f7dd9d1b",
+    "wordId": "2299960",
+    "pt": "['Disco Compacto Gravável', 'CD-R']"
+  },
+  {
+    "kana": "シー・ディー・アイ",
+    "en": [
+      "Compact Disc-Interactive",
+      "CD-i"
+    ],
+    "senseUid": "438ad020-e228-4d52-a842-1b315e52cc5e",
+    "wordId": "2299970",
+    "pt": "{\n  \"a\": [\n    \"Disco Compacto Interativo\",\n    \"CD-i\"\n  ]\n"
+  },
+  {
+    "kana": "シー・ディー・エム・エー",
+    "en": [
+      "code-division multiple access",
+      "CDMA"
+    ],
+    "senseUid": "79bad537-307a-42fb-9f04-e80646ce8bd9",
+    "wordId": "2299980",
+    "pt": "{\n  \"a\": [\"acesso múltiplo por divisão de código\", \"CDMA\"]\n"
+  },
+  {
+    "kana": "シー・ディー・ディー・エー",
+    "en": [
+      "compact disc digital audio",
+      "CD-DA"
+    ],
+    "senseUid": "7894db2a-69f8-40e3-b3ad-aa4a84559f66",
+    "wordId": "2300000",
+    "pt": "{\n  \"a\": [\n    \"áudio digital de disco compacto\",\n    \"CD-DA\"\n  ]\n"
+  },
+  {
+    "kana": "シー・ディー・ブイ",
+    "en": [
+      "CD Video (format)",
+      "CD-V",
+      "CDV"
+    ],
+    "senseUid": "e3c50496-47a1-4b79-9823-a837c9cf9f70",
+    "wordId": "2300010",
+    "pt": "{\n  \"a\": [\n    \"CD Vídeo (formato)\",\n    \"CD-V\",\n    \"CDV\"\n  ]\n"
+  },
+  {
+    "kana": "シートフィードスキャナ",
+    "en": [
+      "sheet-fed scanner"
+    ],
+    "senseUid": "e267b617-9fa2-46ec-bf15-5fbae0444029",
+    "wordId": "2300020",
+    "pt": "['scanner alimentado por folhas']"
+  },
+  {
+    "kana": "シー・ピー・エム",
+    "en": [
+      "critical path method",
+      "CPM"
+    ],
+    "senseUid": "29b2c8d6-a231-4216-9e63-26414b35af4f",
+    "wordId": "2300060",
+    "pt": "['método do caminho crítico', 'CPM']"
+  },
+  {
+    "kana": "シー・ピー・エム",
+    "en": [
+      "cost per mille",
+      "CPM",
+      "cost per thousand"
+    ],
+    "senseUid": "072d7278-e3e8-4737-aad4-04084af7552f",
+    "wordId": "2300060",
+    "pt": "['custo por mil impressões', 'CPM', 'custo por mil']"
+  },
+  {
+    "kana": "シー・ピー・エム",
+    "en": [
+      "control program for microcomputers",
+      "CP/M"
+    ],
+    "senseUid": "f465a29c-d0d5-4146-b3af-5e9b71f29f76",
+    "wordId": "2300060",
+    "pt": "{\n  \"a\": [\n    \"programa de controle para microcomputadores\",\n    \"CP/M\"\n  ]\n"
+  },
+  {
+    "kana": "シー・ピー・ユー",
+    "en": [
+      "CPU",
+      "central processing unit"
+    ],
+    "senseUid": "ec557721-4ce5-4fa3-8f77-d17058a697f8",
+    "wordId": "2300080",
+    "pt": "['CPU', 'unidade central de processamento']"
+  },
+  {
+    "kana": "シーモス",
+    "en": [
+      "CMOS",
+      "complementary metal-oxide-semiconductor"
+    ],
+    "senseUid": "4fc33beb-995c-4931-ab13-6beb094da33c",
+    "wordId": "2300090",
+    "pt": "['CMOS', 'semicondutor de óxido metálico complementar']"
+  },
+  {
+    "kana": "シー・ユー・アイ",
+    "en": [
+      "character-based user interface",
+      "CUI"
+    ],
+    "senseUid": "d1e3216d-1b0f-4274-a6ef-2981d7f9afad",
+    "wordId": "2300100",
+    "pt": "{\n  \"a\": [\n    \"interface de usuário baseada em caracteres\",\n    \"CUI\"\n  ]\n"
+  },
+  {
+    "kana": "シー・ユー・ジー",
+    "en": [
+      "closed user group",
+      "CUG"
+    ],
+    "senseUid": "d351ceec-2e38-45a4-a0e8-d2c171f029ea",
+    "wordId": "2300130",
+    "pt": "{\n  \"a\": [\n    \"grupo de usuários fechado\",\n    \"CUG\"\n  ]\n"
+  },
+  {
+    "kana": "シェーピング",
+    "en": [
+      "(traffic) shaping"
+    ],
+    "senseUid": "7658a956-f7ab-4230-9a6a-e682ffbeb490",
+    "wordId": "2300150",
+    "pt": "['modelagem de tráfego']"
+  },
+  {
+    "kana": "シェーピング",
+    "en": [
+      "shaping"
+    ],
+    "senseUid": "cae1e864-fb4d-4132-8623-71a022e49973",
+    "wordId": "2300150",
+    "pt": "['modelagem']"
+  },
+  {
+    "kana": "シェアードハブ",
+    "en": [
+      "shared hub"
+    ],
+    "senseUid": "5ef6cd82-6532-459e-b36f-7b3addf93b4e",
+    "wordId": "2300160",
+    "pt": "['hub compartilhado']"
+  },
+  {
+    "kana": "シェアードメモリ",
+    "en": [
+      "shared memory"
+    ],
+    "senseUid": "6c0d32aa-b000-4680-b45d-ffaee3b106d4",
+    "wordId": "2300170",
+    "pt": "['memória compartilhada']"
+  },
+  {
+    "kana": "シェアードライブラリ",
+    "en": [
+      "shared library"
+    ],
+    "senseUid": "6ff94c28-b3c6-4ac5-8274-65118e107917",
+    "wordId": "2300190",
+    "pt": "{\n  \"a\": [\"biblioteca compartilhada\"]\n"
+  },
+  {
+    "kana": "シェイパ",
+    "en": [
+      "shaper"
+    ],
+    "senseUid": "b9420487-39c5-49d5-aaec-c52dac84d62e",
+    "wordId": "2300200",
+    "pt": "['modelador']"
+  },
+  {
+    "kana": "シェルフ",
+    "en": [
+      "shelf"
+    ],
+    "senseUid": "85e691e3-9c49-4fe9-8763-8d72430c3c8f",
+    "wordId": "2300220",
+    "pt": "['prateleira']"
+  },
+  {
+    "kana": "シェルプログラム",
+    "en": [
+      "shell program"
+    ],
+    "senseUid": "8184481e-3a05-42e0-8503-4340cbc8fbfa",
+    "wordId": "2300230",
+    "pt": "['programa de shell']"
+  },
+  {
+    "kana": "シェルプロンプト",
+    "en": [
+      "shell prompt"
+    ],
+    "senseUid": "6deda74d-7ecc-4f81-ba52-e9a3fa440481",
+    "wordId": "2300240",
+    "pt": "{\n  \"a\": [\"prompt do shell\"]\n"
+  },
+  {
+    "kana": "シェルへんすう",
+    "en": [
+      "shell variable"
+    ],
+    "senseUid": "617d768a-bba0-45b9-875f-2e8a157a97ba",
+    "wordId": "2300250",
+    "pt": "['variável de shell']"
+  },
+  {
+    "kana": "シグ",
+    "en": [
+      "SIG",
+      "special interest group"
+    ],
+    "senseUid": "0f90d100-aabe-41f4-b821-982f2ae7156f",
+    "wordId": "2300260",
+    "pt": "{\n  \"a\": [\n    \"SIG\",\n    \"grupo de interesse especial\"\n  ]\n"
+  },
+  {
+    "kana": "シグナリング",
+    "en": [
+      "signalling"
+    ],
+    "senseUid": "40d35e3f-d484-4333-be9a-4cf970b7e879",
+    "wordId": "2300270",
+    "pt": "['sinalização']"
+  },
+  {
+    "kana": "シグナリングメカニズム",
+    "en": [
+      "signalling mechanism"
+    ],
+    "senseUid": "b09e5875-b7cd-4499-8b24-201bc9b573f5",
+    "wordId": "2300280",
+    "pt": "['mecanismo de sinalização']"
+  },
+  {
+    "kana": "シグナリングメッセージ",
+    "en": [
+      "signalling message"
+    ],
+    "senseUid": "b48d5349-18f5-4752-a65c-e158ecab9bc4",
+    "wordId": "2300290",
+    "pt": "['mensagem de sinalização']"
+  },
+  {
+    "kana": "シグナリングきのう",
+    "en": [
+      "signalling function"
+    ],
+    "senseUid": "1da58f3b-97a2-4e4e-a4b1-b3d18c25fa6e",
+    "wordId": "2300300",
+    "pt": "['função de sinalização']"
+  },
+  {
+    "kana": "シグナリングそう",
+    "en": [
+      "signalling layer"
+    ],
+    "senseUid": "add63d1b-4234-4bb2-b1c7-d57128e26342",
+    "wordId": "2300310",
+    "pt": "{\n  \"a\": [\"camada de sinalização\"]\n"
+  },
+  {
+    "kana": "シグナルハンドラ",
+    "en": [
+      "signal handler"
+    ],
+    "senseUid": "20ba79da-80c7-4934-b52d-38cee6f833bb",
+    "wordId": "2300320",
+    "pt": "['manipulador de sinal']"
+  },
+  {
+    "kana": "シグナルめい",
+    "en": [
+      "signal name"
+    ],
+    "senseUid": "be0b1cf7-7f3c-40fa-8ae6-098e90e05f2c",
+    "wordId": "2300330",
+    "pt": "['nome do sinal']"
+  },
+  {
+    "kana": "システムのエナジーセーブレベル",
+    "en": [
+      "system energy saver level"
+    ],
+    "senseUid": "21c41a36-22e5-4a53-9d92-2e22a9dc0a3c",
+    "wordId": "2300360",
+    "pt": "['nível de economia de energia do sistema']"
+  },
+  {
+    "kana": "システムのリセット",
+    "en": [
+      "system reset"
+    ],
+    "senseUid": "b25bd0b9-eff0-4663-8182-94f6ceb70b4b",
+    "wordId": "2300370",
+    "pt": "['reinicialização do sistema']"
+  },
+  {
+    "kana": "システムアーキテクチャ",
+    "en": [
+      "system architecture"
+    ],
+    "senseUid": "c33861a3-da47-4679-b00a-77214a502e1f",
+    "wordId": "2300380",
+    "pt": "['arquitetura de sistema']"
+  },
+  {
+    "kana": "システムアクティビティ",
+    "en": [
+      "system activity"
+    ],
+    "senseUid": "9a0cd24f-2f53-4dfd-9e2a-23618e42419a",
+    "wordId": "2300390",
+    "pt": "['atividade do sistema']"
+  },
+  {
+    "kana": "システムアドミニストレーター",
+    "en": [
+      "system administrator"
+    ],
+    "senseUid": "9c615bcc-0659-4900-afe7-220cdf3c91af",
+    "wordId": "2300400",
+    "pt": "{\n  \"a\": [\"Administrador de sistemas\"]\n"
+  },
+  {
+    "kana": "システムイベント",
+    "en": [
+      "system event"
+    ],
+    "senseUid": "17b44d7a-c672-4173-8f72-1667fd755087",
+    "wordId": "2300430",
+    "pt": "{\n  \"a\": [\"evento do sistema\"]\n"
+  },
+  {
+    "kana": "システムインテグレーション",
+    "en": [
+      "system integration",
+      "SI"
+    ],
+    "senseUid": "318d9407-5f8c-417e-b992-83d55abb4862",
+    "wordId": "2300440",
+    "pt": "['integração de sistemas', 'SI']"
+  },
+  {
+    "kana": "システムインテグレーター",
+    "en": [
+      "system integrator",
+      "systems integrator"
+    ],
+    "senseUid": "0aede526-a52a-4e39-91cd-299d6ed4563f",
+    "wordId": "2300450",
+    "pt": "['integrador de sistemas']"
+  },
+  {
+    "kana": "システムエラー",
+    "en": [
+      "system error"
+    ],
+    "senseUid": "6c876a72-6086-4915-98d7-f2835dd3dc21",
+    "wordId": "2300460",
+    "pt": "['erro de sistema']"
+  },
+  {
+    "kana": "システムエリア",
+    "en": [
+      "system area (of memory)"
+    ],
+    "senseUid": "a51674a7-1b47-43ec-821e-49bc3d6d82bd",
+    "wordId": "2300470",
+    "pt": "['área do sistema (de memória)']"
+  },
+  {
+    "kana": "システムオペレーター",
+    "en": [
+      "system operator",
+      "sysop"
+    ],
+    "senseUid": "a0dc252f-b9ff-4e8b-84e4-876227b49612",
+    "wordId": "2300480",
+    "pt": "['operador de sistema', 'sysop']"
+  },
+  {
+    "kana": "システムキャレット",
+    "en": [
+      "system caret"
+    ],
+    "senseUid": "59df5607-4be7-42ab-bee5-ea93a22b2d38",
+    "wordId": "2300490",
+    "pt": "{\n  \"a\": [\n    \"caret do sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムクラッシュ",
+    "en": [
+      "system crash"
+    ],
+    "senseUid": "6d951213-24ef-4e83-abb6-6e60a5ed0013",
+    "wordId": "2300500",
+    "pt": "['pane do sistema']"
+  },
+  {
+    "kana": "システムクロック",
+    "en": [
+      "system clock"
+    ],
+    "senseUid": "9ea65ddb-62f2-45d0-80b3-7b281a4d8f4f",
+    "wordId": "2300510",
+    "pt": "['relógio do sistema']"
+  },
+  {
+    "kana": "システムコール",
+    "en": [
+      "system call"
+    ],
+    "senseUid": "8ee41811-58e7-4dc1-8a4d-6bd3506355aa",
+    "wordId": "2300520",
+    "pt": "['chamada de sistema']"
+  },
+  {
+    "kana": "システムコンテキスト",
+    "en": [
+      "system context"
+    ],
+    "senseUid": "28e18a9b-e55c-46b6-9ddd-ca71c5b60797",
+    "wordId": "2300530",
+    "pt": "{\n  \"a\": [\"contexto do sistema\"]\n"
+  },
+  {
+    "kana": "システムコンフィギュレーション",
+    "en": [
+      "system configuration"
+    ],
+    "senseUid": "d5f1990b-f1e9-49b3-9f23-56691816f571",
+    "wordId": "2300540",
+    "pt": "['configuração do sistema']"
+  },
+  {
+    "kana": "システムソフトウェア",
+    "en": [
+      "system software"
+    ],
+    "senseUid": "1f2a58bb-5a65-49c8-a3dd-8eafe05347f4",
+    "wordId": "2300570",
+    "pt": "['software de sistema']"
+  },
+  {
+    "kana": "システムダウン",
+    "en": [
+      "system failure",
+      "system crash"
+    ],
+    "senseUid": "a5105d60-0a1c-43d8-b1dd-2fcad4023f80",
+    "wordId": "2300580",
+    "pt": "['falha do sistema', 'pane no sistema']"
+  },
+  {
+    "kana": "システムデータ",
+    "en": [
+      "system data"
+    ],
+    "senseUid": "0db51894-b1f0-41b0-bbdf-6ed6e6eba427",
+    "wordId": "2300600",
+    "pt": "['dados do sistema']"
+  },
+  {
+    "kana": "システムディスク",
+    "en": [
+      "system disk"
+    ],
+    "senseUid": "3dedb241-9b51-4fc5-ad93-2ace10025c21",
+    "wordId": "2300610",
+    "pt": "['disco do sistema']"
+  },
+  {
+    "kana": "システムデバイス",
+    "en": [
+      "system device"
+    ],
+    "senseUid": "32e3b8ca-f323-4dfe-a44e-7fadbb33c2cc",
+    "wordId": "2300620",
+    "pt": "['dispositivo do sistema']"
+  },
+  {
+    "kana": "システムドライブ",
+    "en": [
+      "system drive"
+    ],
+    "senseUid": "b6c74f75-7a5a-4a7b-9f66-7709925e772f",
+    "wordId": "2300630",
+    "pt": "['unidade do sistema']"
+  },
+  {
+    "kana": "システムネットワークアーキテクチャ",
+    "en": [
+      "Systems Network Architecture",
+      "SNA"
+    ],
+    "senseUid": "a40a6622-3c35-4d73-8989-ea6487eeca7f",
+    "wordId": "2300640",
+    "pt": "{\n  \"a\": [\"Arquitetura de Rede de Sistemas\"]\n"
+  }
+]

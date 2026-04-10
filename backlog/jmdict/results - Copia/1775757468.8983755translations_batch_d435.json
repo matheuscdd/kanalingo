@@ -1,0 +1,936 @@
+[
+  {
+    "kana": "ばいたいアクセスせいぎょプロトコル",
+    "en": [
+      "MAC Protocol",
+      "Media Access Control Protocol"
+    ],
+    "senseUid": "24bcaee8-faa9-465d-a56e-687f8d2082ed",
+    "wordId": "2381870",
+    "pt": "['Protocolo de Controle de Acesso ao Meio']"
+  },
+  {
+    "kana": "ばいたいアクセスせいぎょふくそう",
+    "en": [
+      "Media Access Control sublayer"
+    ],
+    "senseUid": "e564b31a-1da8-498c-a532-7f5da27ea469",
+    "wordId": "2381880",
+    "pt": "['Sublayer de Controle de Acesso ao Meio']"
+  },
+  {
+    "kana": "ばいたいインタフェースコネクタ",
+    "en": [
+      "media interface connector",
+      "MIC"
+    ],
+    "senseUid": "3fffc8aa-bcbc-4dbf-a1de-810001fb4c9b",
+    "wordId": "2381890",
+    "pt": "{\n  \"a\": [\n    \"conector de interface de mídia\",\n    \"MIC\"\n  ]\n"
+  },
+  {
+    "kana": "ばいたいいぞんインタフェース",
+    "en": [
+      "medium-dependent interface"
+    ],
+    "senseUid": "000b216b-773e-4e04-a045-e2f7abfa0110",
+    "wordId": "2381900",
+    "pt": "{\n  \"a\": [\"interface dependente do meio\"]\n"
+  },
+  {
+    "kana": "ばいたいせつぞくきこう",
+    "en": [
+      "medium attachment unit",
+      "MAU"
+    ],
+    "senseUid": "d801025e-ed59-42d5-a479-5ccff63d49ce",
+    "wordId": "2381910",
+    "pt": "{\n  \"a\": [\n    \"unidade de conexão de meio\",\n    \"MAU\"\n  ]\n"
+  },
+  {
+    "kana": "はくぶつかんがく",
+    "en": [
+      "museology",
+      "museum studies"
+    ],
+    "senseUid": "a581d39f-8c98-45e9-90c7-e6af1546cc53",
+    "wordId": "2381920",
+    "pt": "{\n  \"a\": [\"estudos museológicos\", \"museologia\"]\n"
+  },
+  {
+    "kana": "はくぶつかんしりょう",
+    "en": [
+      "museum material",
+      "museum piece"
+    ],
+    "senseUid": "a58cc206-a7e4-4f16-8118-ed6b299399cc",
+    "wordId": "2381930",
+    "pt": "{\n  \"a\": [\n    \"material de museu\",\n    \"peça de museu\"\n  ]\n"
+  },
+  {
+    "kana": "しろくろディスプレイ",
+    "en": [
+      "monochrome display"
+    ],
+    "senseUid": "d978c559-dc25-40a0-bb16-07f300f60311",
+    "wordId": "2381950",
+    "pt": "['tela monocromática']"
+  },
+  {
+    "kana": "しろくろはんてん",
+    "en": [
+      "reverse video",
+      "white-on-black",
+      "white and black inversion"
+    ],
+    "senseUid": "c5b67dd9-7a4a-47d3-8d56-28b67ff96868",
+    "wordId": "2381960",
+    "pt": "{\n  \"a\": [\n    \"inversão de branco e preto\",\n    \"preto no branco\",\n    \"imagem invertida\",\n    \"negativo (visual)\",\n    \"preto sobre branco invertido\"\n  ]\n"
+  },
+  {
+    "kana": "はくしょくざつおん",
+    "en": [
+      "white noise"
+    ],
+    "senseUid": "ca9b34c4-d8ec-4b5c-a3b3-3fedde8d7b59",
+    "wordId": "2381970",
+    "pt": "{\n  \"a\": [\"ruído branco\"]\n"
+  },
+  {
+    "kana": "うすまくトランジスタ",
+    "en": [
+      "thin film transistor",
+      "TFT"
+    ],
+    "senseUid": "9f17da72-aef1-47ff-a379-ce18f2a5e13d",
+    "wordId": "2381980",
+    "pt": "{\n  \"a\": [\"transistor de película fina\", \"TFT\"]\n"
+  },
+  {
+    "kana": "ばくだんマーク",
+    "en": [
+      "bomb"
+    ],
+    "senseUid": "414ed161-5e80-49ff-b3c4-53e930cb89e6",
+    "wordId": "2382000",
+    "pt": "{\n  \"a\": [\"marca de bomba\"]\n"
+  },
+  {
+    "kana": "はちしんさいぶんきごう",
+    "en": [
+      "octave device"
+    ],
+    "senseUid": "32e40515-e3c1-4af7-9d99-e4cce661b993",
+    "wordId": "2382010",
+    "pt": "['dispositivo de oitava']"
+  },
+  {
+    "kana": "はっかにゅうしゃ",
+    "en": [
+      "calling subscriber",
+      "calling party"
+    ],
+    "senseUid": "6529a10b-1e16-4055-a577-ba5b3545fbf9",
+    "wordId": "2382030",
+    "pt": "{\n  \"a\": [\n    \"assinante originador\",\n    \"parte originadora\"\n  ]\n"
+  },
+  {
+    "kana": "はっきょく",
+    "en": [
+      "sending office",
+      "transmitting office"
+    ],
+    "senseUid": "279bb934-1b29-4168-85bf-c85fbea189d5",
+    "wordId": "2382040",
+    "pt": "{\n  \"a\": [\n    \"escritório de envio\",\n    \"escritório transmissor\"\n  ]\n"
+  },
+  {
+    "kana": "はっけんてき",
+    "en": [
+      "heuristic"
+    ],
+    "senseUid": "562f4b02-7835-4d68-ae4d-8d4225d8e1d1",
+    "wordId": "2382050",
+    "pt": "['heurístico']"
+  },
+  {
+    "kana": "はっけんてきほうほう",
+    "en": [
+      "heuristic method"
+    ],
+    "senseUid": "77132a84-878d-4b71-af43-863f6da403bf",
+    "wordId": "2382060",
+    "pt": "{\n  \"a\": [\"método heurístico\"]\n"
+  },
+  {
+    "kana": "はっこ",
+    "en": [
+      "outgoing call"
+    ],
+    "senseUid": "f873ac70-96b5-46ec-8101-9057d289de91",
+    "wordId": "2382070",
+    "pt": "['chamada originada']"
+  },
+  {
+    "kana": "はっこうそし",
+    "en": [
+      "light emitter (fiber optics)"
+    ],
+    "senseUid": "cade756d-2572-4400-a82e-ac0d36b78b36",
+    "wordId": "2382130",
+    "pt": "{\n  \"a\": [\"emissor de luz (fibras ópticas)\"]\n"
+  },
+  {
+    "kana": "はっこうといんよう",
+    "en": [
+      "publish and subscribe"
+    ],
+    "senseUid": "8fcbf3da-3c5a-4366-aea1-749552b7fcf7",
+    "wordId": "2382140",
+    "pt": "['publicar e assinar']"
+  },
+  {
+    "kana": "はっしんのひにんふのう",
+    "en": [
+      "non-repudiation of submission"
+    ],
+    "senseUid": "f8969bd0-fd06-4d18-8078-5cb5e58b8a13",
+    "wordId": "2382150",
+    "pt": "{\n  \"a\": [\"não repúdio do envio\"]\n"
+  },
+  {
+    "kana": "はっしんきょてん",
+    "en": [
+      "transmission point"
+    ],
+    "senseUid": "ef75841a-8e5d-42aa-adcb-1f7bb5c8844b",
+    "wordId": "2382160",
+    "pt": "{\n  \"a\": [\"ponto de transmissão\"]\n"
+  },
+  {
+    "kana": "はっしんもと",
+    "en": [
+      "originator"
+    ],
+    "senseUid": "248edb90-73f6-4acb-97ed-6ae208762a76",
+    "wordId": "2382170",
+    "pt": "{\n  \"a\": [\"originador\"]\n"
+  },
+  {
+    "kana": "はっしんげん",
+    "en": [
+      "source (of a transmission, broadcast, etc.)",
+      "point of origin"
+    ],
+    "senseUid": "f4e38c14-87e5-45a3-aa5d-102e8cb5fbea",
+    "wordId": "2382180",
+    "pt": "['fonte (de uma transmissão, transmissão de rádio, etc.)', 'ponto de origem']"
+  },
+  {
+    "kana": "はっしんじこくひょうじ",
+    "en": [
+      "submission time stamp indication",
+      "MS"
+    ],
+    "senseUid": "21caaa6d-9e1e-4e89-814b-e8c281fd7b43",
+    "wordId": "2382190",
+    "pt": "['indicação do horário de envio']"
+  },
+  {
+    "kana": "はっしんしゃ",
+    "en": [
+      "originator"
+    ],
+    "senseUid": "4e050dd2-4580-446d-8328-e45bf955b79c",
+    "wordId": "2382200",
+    "pt": "{\n  \"a\": [\n    \"originador\"\n  ]\n"
+  },
+  {
+    "kana": "はっしんしゃしきべつばんごう",
+    "en": [
+      "call ID"
+    ],
+    "senseUid": "fec8fa74-fee0-4ce7-9064-4422f74b1535",
+    "wordId": "2382210",
+    "pt": "{\n  \"a\": [\"identificador de chamada\"]\n"
+  },
+  {
+    "kana": "はっしんしゃひょうじ",
+    "en": [
+      "originator indication"
+    ],
+    "senseUid": "5340e1e4-c45a-49b7-8554-18d698a8bb4f",
+    "wordId": "2382220",
+    "pt": "{\n  \"a\": [\"indicação do remetente\"]\n"
+  },
+  {
+    "kana": "はっしんしゃようきゅうだいこうじゅしんしゃ",
+    "en": [
+      "originator requested alternate recipient"
+    ],
+    "senseUid": "423c41d9-e68d-4a7e-9f04-fce471e57371",
+    "wordId": "2382230",
+    "pt": "{\n  \"a\": [\"destinatário alternativo solicitado pelo originador\"]\n"
+  },
+  {
+    "kana": "はっしんしょうめい",
+    "en": [
+      "proof of submission"
+    ],
+    "senseUid": "6d4a41c6-5972-44a4-a2c6-85d637a3ee1c",
+    "wordId": "2382240",
+    "pt": "['comprovante de envio']"
+  },
+  {
+    "kana": "はっしんひんど",
+    "en": [
+      "transmission frequency"
+    ],
+    "senseUid": "e21e5be2-70c9-425d-805e-e521aaea030e",
+    "wordId": "2382250",
+    "pt": "{\n  \"a\": [\"frequência de transmissão\"]\n"
+  },
+  {
+    "kana": "はっせいげんのひにんふのう",
+    "en": [
+      "non-repudiation of origin"
+    ],
+    "senseUid": "065650c1-7424-46cf-901b-432f59f41736",
+    "wordId": "2382260",
+    "pt": "{\n  \"a\": [\"não-repúdio de origem\"]\n"
+  },
+  {
+    "kana": "はっせいじゅん",
+    "en": [
+      "chronological"
+    ],
+    "senseUid": "09920a98-138e-4332-83bf-2dc6257226c7",
+    "wordId": "2382270",
+    "pt": "{\n  \"a\": [\"ordem de ocorrência\"]\n"
+  },
+  {
+    "kana": "はっせいひんど",
+    "en": [
+      "frequency of occurrence"
+    ],
+    "senseUid": "492fd7fb-9a71-427a-b820-7087b3c037cc",
+    "wordId": "2382280",
+    "pt": "['frequência de ocorrência']"
+  },
+  {
+    "kana": "はんだんきごう",
+    "en": [
+      "decision symbol"
+    ],
+    "senseUid": "1664902b-9c2d-4349-aa39-554daeb5c76e",
+    "wordId": "2382290",
+    "pt": "{\n  \"a\": [\n    \"símbolo de decisão\"\n  ]\n"
+  },
+  {
+    "kana": "はんだんめいれい",
+    "en": [
+      "decision instruction"
+    ],
+    "senseUid": "14516fa8-1766-4e3a-b7de-d7024a62c8ee",
+    "wordId": "2382300",
+    "pt": "{\n  \"a\": [\n    \"ordem de decisão\"\n  ]\n"
+  },
+  {
+    "kana": "はんていきじゅん",
+    "en": [
+      "criterion"
+    ],
+    "senseUid": "6b90f09d-06f0-45fe-9eb1-18aa9aa4ba09",
+    "wordId": "2382310",
+    "pt": "{\n  \"a\": [\n    \"critério de julgamento\"\n  ]\n"
+  },
+  {
+    "kana": "はんかさんき",
+    "en": [
+      "half-adder"
+    ],
+    "senseUid": "eabe4b60-4111-4697-b7e8-e1dd54d47008",
+    "wordId": "2382320",
+    "pt": "{\n  \"a\": [\"meio-somador\"]\n"
+  },
+  {
+    "kana": "はんかさんき",
+    "en": [
+      "half adder"
+    ],
+    "senseUid": "f827d01b-7b45-4a72-88d7-16079cdbe2b7",
+    "wordId": "2382330",
+    "pt": "{\n  \"a\": [\"meio somador\"]\n"
+  },
+  {
+    "kana": "はんげんさんき",
+    "en": [
+      "half subtractor"
+    ],
+    "senseUid": "a4f5b88f-8740-400b-b5b3-50350a0cb9fd",
+    "wordId": "2382340",
+    "pt": "['meio subtrator']"
+  },
+  {
+    "kana": "はんご",
+    "en": [
+      "half-word"
+    ],
+    "senseUid": "02a94294-c46c-4c94-9bab-bc8018b823c1",
+    "wordId": "2382350",
+    "pt": "['meia-palavra']"
+  },
+  {
+    "kana": "はんちでんりょくはば",
+    "en": [
+      "half power beamwidth (also 3dB beamwidth)"
+    ],
+    "senseUid": "4658fbe4-6847-42c8-8f19-9797dd532f69",
+    "wordId": "2382360",
+    "pt": "['largura de feixe a meia potência (também largura de feixe de 3 dB)']"
+  },
+  {
+    "kana": "はんどうたいウエハ",
+    "en": [
+      "semiconductor wafer"
+    ],
+    "senseUid": "63b15cae-6941-406a-b454-888afa28c972",
+    "wordId": "2382370",
+    "pt": "['bolacha semicondutora']"
+  },
+  {
+    "kana": "はんどうたいディスク",
+    "en": [
+      "semiconductor disk"
+    ],
+    "senseUid": "1a27dd9b-7526-47b6-8116-46fa8b09b45c",
+    "wordId": "2382380",
+    "pt": "{\n  \"a\": [\"disco semicondutor\"]\n"
+  },
+  {
+    "kana": "はんにじゅうでんそう",
+    "en": [
+      "half-duplex transmission"
+    ],
+    "senseUid": "6a08959f-51f8-4971-a529-aa95442d1094",
+    "wordId": "2382390",
+    "pt": "{\n  \"a\": [\"transmissão half-duplex\"]\n"
+  },
+  {
+    "kana": "はんしゃモデル",
+    "en": [
+      "reflectance model"
+    ],
+    "senseUid": "c6ea830b-be25-436f-a758-c7e578451429",
+    "wordId": "2382400",
+    "pt": "['modelo de reflectância']"
+  },
+  {
+    "kana": "はんしゃがたカラーえきしょうディスプレイ",
+    "en": [
+      "reflective color LCD"
+    ],
+    "senseUid": "eeffa2b6-79e6-4667-9e53-a92a7ad85b39",
+    "wordId": "2382410",
+    "pt": "['LCD colorido refletivo']"
+  },
+  {
+    "kana": "はんしゃけいさん",
+    "en": [
+      "reflectance calculation"
+    ],
+    "senseUid": "10b82a9f-85c4-47a7-b520-78a938be2832",
+    "wordId": "2382420",
+    "pt": "['cálculo de refletância']"
+  },
+  {
+    "kana": "はんしゃこうしき",
+    "en": [
+      "reflectance formulae"
+    ],
+    "senseUid": "5fab87a2-c02e-4d08-83c8-3aab79a29df9",
+    "wordId": "2382430",
+    "pt": "{\n  \"a\": [\"fórmulas de refletância\"]\n"
+  },
+  {
+    "kana": "はんしゃとくせい",
+    "en": [
+      "reflectance properties"
+    ],
+    "senseUid": "47313355-2a08-411c-bc60-0c7091bb550e",
+    "wordId": "2382440",
+    "pt": "['propriedades de refletância']"
+  },
+  {
+    "kana": "はんしゃほうせん",
+    "en": [
+      "reflectance normal"
+    ],
+    "senseUid": "dd1458e2-85d4-4b9a-8a7d-bf6f1aa1dc44",
+    "wordId": "2382450",
+    "pt": "{\n  \"a\": [\"normal de refletância\"]\n"
+  },
+  {
+    "kana": "はんてんひょうじ",
+    "en": [
+      "reverse video"
+    ],
+    "senseUid": "4af67f8a-4249-4e50-a36c-3dd51546e133",
+    "wordId": "2382460",
+    "pt": "{\n  \"a\": [\"exibição invertida\"]\n"
+  },
+  {
+    "kana": "はんぷくえんざん",
+    "en": [
+      "iterative operation",
+      "automatic sequential operation"
+    ],
+    "senseUid": "4493d93f-131b-40fa-a4ad-2cbfe288255d",
+    "wordId": "2382470",
+    "pt": "{\n  \"a\": [\n    \"operação iterativa\",\n    \"operação sequencial automática\"\n  ]\n"
+  },
+  {
+    "kana": "はんおうしゅう",
+    "en": [
+      "pan-European"
+    ],
+    "senseUid": "bddb4893-a7c4-4902-887c-6746e5d729f8",
+    "wordId": "2382480",
+    "pt": "['pan-europeu']"
+  },
+  {
+    "kana": "はんようジェーピードメインめい",
+    "en": [
+      "General-use JP Domain Names"
+    ],
+    "senseUid": "b1e40426-06ff-44c0-8a74-22436dc9552b",
+    "wordId": "2382490",
+    "pt": "{\n  \"a\": [\"Nomes de Domínio JP de Uso Geral\"]\n"
+  },
+  {
+    "kana": "はんようコンピュータ",
+    "en": [
+      "general purpose computer"
+    ],
+    "senseUid": "7871595b-7480-474f-93e6-d20ec09fb6bb",
+    "wordId": "2382500",
+    "pt": "['computador de uso geral']"
+  },
+  {
+    "kana": "はんようレジスタ",
+    "en": [
+      "general purpose register"
+    ],
+    "senseUid": "1e754812-f17d-46e4-b0ed-0ee99c70f184",
+    "wordId": "2382510",
+    "pt": "{\n  \"a\": [\"registrador de uso geral\"]\n"
+  },
+  {
+    "kana": "はんようかいそうファイルモデル",
+    "en": [
+      "general hierarchical model"
+    ],
+    "senseUid": "941e5978-5ecd-4633-b426-4a9d9849fbc5",
+    "wordId": "2382520",
+    "pt": "{\n  \"a\": [\"modelo hierárquico geral\"]\n"
+  },
+  {
+    "kana": "はんようたい",
+    "en": [
+      "generic unit"
+    ],
+    "senseUid": "734491b1-8234-4b88-a0a4-bbd03a0a15b1",
+    "wordId": "2382530",
+    "pt": "['unidade genérica']"
+  },
+  {
+    "kana": "はんようていぎ",
+    "en": [
+      "generic definitions"
+    ],
+    "senseUid": "3759d19c-4431-4323-b5f1-e07a0b01518a",
+    "wordId": "2382540",
+    "pt": "{\n  \"a\": [\"definições genéricas\"]\n"
+  },
+  {
+    "kana": "はんようてきしけんこうもく",
+    "en": [
+      "generic test case"
+    ],
+    "senseUid": "f21fad19-3942-41f5-a58c-6a26b80f3e11",
+    "wordId": "2382550",
+    "pt": "{\n  \"a\": [\"caso de teste genérico\"]\n"
+  },
+  {
+    "kana": "はんようてきしけんこうもくぐん",
+    "en": [
+      "generic test suite"
+    ],
+    "senseUid": "a0143edc-35c8-446d-b609-871a3f4457c5",
+    "wordId": "2382560",
+    "pt": "{\n  \"a\": [\"conjunto de itens de teste genéricos\"]\n"
+  },
+  {
+    "kana": "はんようにゅうしゅつりょくせいぎょそうち",
+    "en": [
+      "UIOC",
+      "Universal I",
+      "O Control unit"
+    ],
+    "senseUid": "09c962bb-b836-4900-b1a9-102c0fae7c2c",
+    "wordId": "2382570",
+    "pt": "{\n  \"a\": [\n    \"Dispositivo de controle universal de entrada e saída\"\n  ]\n"
+  },
+  {
+    "kana": "はんようなまえつけきそく",
+    "en": [
+      "Universal Naming Convention"
+    ],
+    "senseUid": "7e0dad72-0b1c-4aa5-9a8e-1b455a612628",
+    "wordId": "2382580",
+    "pt": "{\n  \"a\": [\"Convenção Universal de Nomeação\"]\n"
+  },
+  {
+    "kana": "はんすうかんり",
+    "en": [
+      "version management",
+      "revision management"
+    ],
+    "senseUid": "a3e36de2-9f75-45c0-bee9-9210f393e1ce",
+    "wordId": "2382590",
+    "pt": "{\n  \"a\": [\n    \"gerenciamento de versões\",\n    \"gerenciamento de revisões\"\n  ]\n"
+  },
+  {
+    "kana": "はんばいじてん",
+    "en": [
+      "point of sale",
+      "POS"
+    ],
+    "senseUid": "cce4cd74-65cd-4c98-b891-f2c653477907",
+    "wordId": "2382600",
+    "pt": "['ponto de venda']"
+  },
+  {
+    "kana": "はんばいじてんかんり",
+    "en": [
+      "POS",
+      "Point Of Sales"
+    ],
+    "senseUid": "2b276f37-9bbd-40d0-9c61-c50dc17d0e6d",
+    "wordId": "2382610",
+    "pt": "{\n  \"a\": [\n    \"Gestão de ponto de venda\"\n  ]\n"
+  },
+  {
+    "kana": "はんいえんざんし",
+    "en": [
+      "range operator (..)"
+    ],
+    "senseUid": "25d87fa3-e4a4-473d-9926-986e682d2cd9",
+    "wordId": "2382620",
+    "pt": "['operador de intervalo (..)']"
+  },
+  {
+    "kana": "はんいけんさ",
+    "en": [
+      "range check"
+    ],
+    "senseUid": "a2a059f4-522e-4517-af5e-ec0fd184e809",
+    "wordId": "2382630",
+    "pt": "{\n  \"a\": [\"verificação de intervalo\"]\n"
+  },
+  {
+    "kana": "はんいない",
+    "en": [
+      "in range",
+      "within the limits (of ...)",
+      "within (a) range"
+    ],
+    "senseUid": "9339f167-13b5-4877-8279-292ccf4f02bd",
+    "wordId": "2382640",
+    "pt": "['dentro do alcance', 'dentro dos limites (de ...)', 'dentro de um alcance']"
+  },
+  {
+    "kana": "はんいめい",
+    "en": [
+      "range name"
+    ],
+    "senseUid": "8656271b-79df-4d42-9e32-cdb4eafb57ea",
+    "wordId": "2382650",
+    "pt": "{\n  \"a\": [\"nome de alcance\"]\n"
+  },
+  {
+    "kana": "はんいめいじぶん",
+    "en": [
+      "delimited scope statement"
+    ],
+    "senseUid": "1d74c4c2-bb7a-4d69-933d-3a335fca0750",
+    "wordId": "2382660",
+    "pt": "['declaração de escopo delimitado']"
+  },
+  {
+    "kana": "ばんごうあんない",
+    "en": [
+      "directory assistance"
+    ],
+    "senseUid": "33d496c7-6275-4aa2-84e8-0e540edc4446",
+    "wordId": "2382670",
+    "pt": "['informação de números de telefone']"
+  },
+  {
+    "kana": "ばんごうけいかく",
+    "en": [
+      "numbering plan"
+    ],
+    "senseUid": "72ff19ca-8b16-4976-bd10-198aa768fc17",
+    "wordId": "2382680",
+    "pt": "['plano de numeração']"
+  },
+  {
+    "kana": "ばんごうつうわ",
+    "en": [
+      "station-to-station (comms)"
+    ],
+    "senseUid": "884b3c98-2c05-4a38-99cc-7b536006deab",
+    "wordId": "2382690",
+    "pt": "{\n  \"a\": [\"comunicação de estação para estação\"]\n"
+  },
+  {
+    "kana": "ひていせき",
+    "en": [
+      "non-conjunction",
+      "NAND operation",
+      "NOT-BOTH operation"
+    ],
+    "senseUid": "c7ec5b1a-f881-4b5f-a254-d029bd6295b7",
+    "wordId": "2382700",
+    "pt": "{\n  \"a\": [\n    \"não-conjunção\",\n    \"operação NAND\",\n    \"operação NÃO-AMBOS\"\n  ]\n"
+  },
+  {
+    "kana": "ひていそし",
+    "en": [
+      "NOT gate",
+      "NOT element"
+    ],
+    "senseUid": "b4816289-130b-47db-a2c0-c9a1e3d9fe3a",
+    "wordId": "2382710",
+    "pt": "{\n  \"a\": [\n    \"porta NÃO\",\n    \"elemento NÃO\"\n  ]\n"
+  },
+  {
+    "kana": "ひていくみあわせじょうけん",
+    "en": [
+      "negated combined condition"
+    ],
+    "senseUid": "7441c403-ca6d-4fc2-a976-850e0f241401",
+    "wordId": "2382720",
+    "pt": "{\n  \"a\": [\"condição combinada negada\"]\n"
+  },
+  {
+    "kana": "ひていたんじゅんじょうけん",
+    "en": [
+      "negated simple condition"
+    ],
+    "senseUid": "f2beebae-f687-420a-b76f-f01c2ab6c034",
+    "wordId": "2382730",
+    "pt": "{\n  \"a\": [\n    \"condição simples negada\"\n  ]\n"
+  },
+  {
+    "kana": "ひていろんりせき",
+    "en": [
+      "non-conjunction",
+      "NAND operation",
+      "NOT-BOTH operation"
+    ],
+    "senseUid": "77cd2530-74f9-4243-b9dd-21041ecb558b",
+    "wordId": "2382740",
+    "pt": "{\n  \"a\": [\n    \"não-conjunção\",\n    \"operação NAND\",\n    \"operação NÃO-AMBOS\"\n  ]\n"
+  },
+  {
+    "kana": "ひていろんりせきえんざん",
+    "en": [
+      "Negative AND operation"
+    ],
+    "senseUid": "1936160c-1230-4fba-a96e-617b8ab5a50b",
+    "wordId": "2382750",
+    "pt": "{\n  \"a\": [\"Operação E negativa\"]\n"
+  },
+  {
+    "kana": "ひていろんりわ",
+    "en": [
+      "non-disjunction",
+      "NOR operation",
+      "NEITHER-NOR operation"
+    ],
+    "senseUid": "c465c570-e646-482c-b458-8fd3b5c16c7b",
+    "wordId": "2382770",
+    "pt": "{\n  \"a\": [\n    \"não-disjunção\",\n    \"operação NOR\",\n    \"operação NEM-NEM\"\n  ]\n"
+  },
+  {
+    "kana": "ひていろんりわえんざん",
+    "en": [
+      "Negative OR operation"
+    ],
+    "senseUid": "6af7615d-6b05-45f9-a3d3-7b6eccac8373",
+    "wordId": "2382780",
+    "pt": "{\n  \"a\": [\"Operação OU negativa\"]\n"
+  },
+  {
+    "kana": "ひていろんりわそし",
+    "en": [
+      "NOR gate",
+      "NOR element"
+    ],
+    "senseUid": "747be7e8-bd3d-4145-a635-f0e3ab11a097",
+    "wordId": "2382790",
+    "pt": "{\n  \"a\": [\n    \"Porta NOR\",\n    \"Elemento NOR\"\n  ]\n"
+  },
+  {
+    "kana": "ひていわ",
+    "en": [
+      "non-disjunction",
+      "NOR operation",
+      "NEITHER-NOR operation"
+    ],
+    "senseUid": "5e147b41-bef8-4a00-ae52-fe6b3028d998",
+    "wordId": "2382800",
+    "pt": "{\n  \"a\": [\n    \"não-disjunção\",\n    \"operação NOR\",\n    \"operação NEM-NEM\"\n  ]\n"
+  },
+  {
+    "kana": "ひかくえんざんし",
+    "en": [
+      "relational operator",
+      "relation"
+    ],
+    "senseUid": "be3983b4-7885-4ef4-b880-ba432965de8b",
+    "wordId": "2382810",
+    "pt": "{\n  \"a\": [\"operador relacional\", \"relação\"]\n"
+  },
+  {
+    "kana": "ひかくかんけい",
+    "en": [
+      "comparative relation"
+    ],
+    "senseUid": "5cec1ebd-0078-4c2a-85d1-00b2110bd1f6",
+    "wordId": "2382820",
+    "pt": "{\n  \"a\": [\n    \"relação comparativa\"\n  ]\n"
+  },
+  {
+    "kana": "ひかくき",
+    "en": [
+      "comparator"
+    ],
+    "senseUid": "638c9dbb-8804-4e34-bfba-0a910f0b7019",
+    "wordId": "2382830",
+    "pt": "{\n  \"a\": [\"comparador\"]\n"
+  },
+  {
+    "kana": "ひかくしき",
+    "en": [
+      "comparison expression"
+    ],
+    "senseUid": "f74f489b-a71e-4cc5-86c8-5c448716ca85",
+    "wordId": "2382840",
+    "pt": "{\n  \"a\": [\"expressão de comparação\"]\n"
+  },
+  {
+    "kana": "ひかくじょうけん",
+    "en": [
+      "relation condition"
+    ],
+    "senseUid": "0c26e271-c87f-420f-ace0-3e8d48258d25",
+    "wordId": "2382850",
+    "pt": "{\n  \"a\": [\n    \"condição de comparação\"\n  ]\n"
+  },
+  {
+    "kana": "ひかくもじ",
+    "en": [
+      "relation character"
+    ],
+    "senseUid": "fdbf156b-5121-4b7c-8abb-4f4b964eb4b5",
+    "wordId": "2382860",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ひかくもじ\",\n      \"gloss\": [\"caractere de relação\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "ひれいにおうじて",
+    "en": [
+      "proportional"
+    ],
+    "senseUid": "e00d3253-6ba4-434b-906f-4e0b495a0315",
+    "wordId": "2382870",
+    "pt": "['proporcionalmente', 'de acordo com a proporção', 'em proporção']"
+  },
+  {
+    "kana": "ひみつかぎ",
+    "en": [
+      "private key (cryptography)",
+      "secret key"
+    ],
+    "senseUid": "4629fdec-8fbc-4700-b2cf-387c8d9b68be",
+    "wordId": "2382880",
+    "pt": "['chave secreta', 'chave privada (criptografia)']"
+  },
+  {
+    "kana": "ひみつかぎあんごうほうしき",
+    "en": [
+      "secret key cryptosystem"
+    ],
+    "senseUid": "0cad60ac-62e6-40b6-8c88-efdb2e0adcce",
+    "wordId": "2382890",
+    "pt": "{\n  \"a\": [\"sistema criptográfico de chave secreta\"]\n"
+  },
+  {
+    "kana": "ひみつどひょうじ",
+    "en": [
+      "sensitivity indication"
+    ],
+    "senseUid": "abb13ce5-4091-4e45-8669-cfca9009b5b6",
+    "wordId": "2382900",
+    "pt": "{\n  \"a\": [\n    \"indicação de sensibilidade\"\n  ]\n"
+  },
+  {
+    "kana": "ひみつほじけいやく",
+    "en": [
+      "non-disclosure agreement",
+      "NDA"
+    ],
+    "senseUid": "6a31657a-052d-4931-b99c-d4b1604fc905",
+    "wordId": "2382910",
+    "pt": "['acordo de confidencialidade', 'NDA']"
+  },
+  {
+    "kana": "ひかすう",
+    "en": [
+      "augend",
+      "summand"
+    ],
+    "senseUid": "d7c80fdc-24b3-46ee-8c21-a20e1fe694b9",
+    "wordId": "2382920",
+    "pt": "{\n  \"a\": [\n    \"parcela (primeiro termo de uma soma)\",\n    \"termo a ser somado\"\n  ]\n"
+  },
+  {
+    "kana": "ひかんりシステム",
+    "en": [
+      "managed (open) system"
+    ],
+    "senseUid": "e1d30688-9b8d-4de2-9fe0-23e24965bae3",
+    "wordId": "2382930",
+    "pt": "{\n  \"a\": [\"sistema gerenciado (aberto)\"]\n"
+  },
+  {
+    "kana": "ひかんりかいほうがたシステム",
+    "en": [
+      "managed open system"
+    ],
+    "senseUid": "a67a70fc-2104-466e-bb31-e45e7854e21d",
+    "wordId": "2382940",
+    "pt": "['sistema aberto gerenciado']"
+  },
+  {
+    "kana": "ひエスジーエムエルデータじったい",
+    "en": [
+      "non-SGML data entity"
+    ],
+    "senseUid": "1aafa672-7cf0-40a4-abc1-44a8be9658f4",
+    "wordId": "2382950",
+    "pt": "{\n  \"a\": [\"entidade de dados não-SGML\"]\n"
+  }
+]

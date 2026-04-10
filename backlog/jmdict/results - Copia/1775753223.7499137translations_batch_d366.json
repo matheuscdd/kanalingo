@@ -1,0 +1,918 @@
+[
+  {
+    "kana": "システムパラメータ",
+    "en": [
+      "system parameter"
+    ],
+    "senseUid": "17c9ef84-fc99-4f4f-802b-1aba169fccb6",
+    "wordId": "2300650",
+    "pt": "['parâmetro de sistema']"
+  },
+  {
+    "kana": "システムビルダ",
+    "en": [
+      "system builder"
+    ],
+    "senseUid": "52672a59-f3be-45f6-9847-69241ec03df4",
+    "wordId": "2300670",
+    "pt": "{\n  \"a\": [\"construtor de sistemas\"]\n"
+  },
+  {
+    "kana": "システムファイル",
+    "en": [
+      "system file"
+    ],
+    "senseUid": "2a1e62bf-ba4e-48d2-a57f-c48f99215d14",
+    "wordId": "2300680",
+    "pt": "{\n  \"a\": [\"arquivo de sistema\"]\n"
+  },
+  {
+    "kana": "システムファイルきじゅつし",
+    "en": [
+      "system file descriptor"
+    ],
+    "senseUid": "820d0b5a-49d5-44ad-b02f-2487314c5e22",
+    "wordId": "2300690",
+    "pt": "{\n  \"a\": [\"descritor de arquivo de sistema\"]\n"
+  },
+  {
+    "kana": "システムフォルダ",
+    "en": [
+      "system folder"
+    ],
+    "senseUid": "292d0586-4705-4970-98cc-6d7dd3c75fef",
+    "wordId": "2300700",
+    "pt": "['pasta do sistema']"
+  },
+  {
+    "kana": "システムフォローアップ",
+    "en": [
+      "system follow-up",
+      "post-implementation review",
+      "post-development review"
+    ],
+    "senseUid": "74866b15-d80a-43f8-90d3-6338071f7615",
+    "wordId": "2300710",
+    "pt": "['acompanhamento do sistema', 'revisão pós-implementação', 'revisão pós-desenvolvimento']"
+  },
+  {
+    "kana": "システムフォント",
+    "en": [
+      "system font"
+    ],
+    "senseUid": "6d673b12-d7df-413b-bbcd-1de70d41f6ef",
+    "wordId": "2300720",
+    "pt": "['fonte do sistema']"
+  },
+  {
+    "kana": "システムプログラマ",
+    "en": [
+      "system programmer"
+    ],
+    "senseUid": "6cbae1eb-ca9d-416d-b207-c0a1b6101826",
+    "wordId": "2300730",
+    "pt": "{\n  \"a\": [\"programador de sistemas\"]\n"
+  },
+  {
+    "kana": "システムプロセス",
+    "en": [
+      "system process"
+    ],
+    "senseUid": "4a9233e7-19f3-470e-9384-13cec17199da",
+    "wordId": "2300740",
+    "pt": "['processo do sistema']"
+  },
+  {
+    "kana": "システムプロンプト",
+    "en": [
+      "system prompt"
+    ],
+    "senseUid": "55b034e3-2e1b-414b-acd4-63beee88eefc",
+    "wordId": "2300750",
+    "pt": "{\n  \"a\": [\n    \"Prompt do sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムボード",
+    "en": [
+      "system board",
+      "motherboard"
+    ],
+    "senseUid": "76656fb0-09fd-4ce7-9d00-b357323e1309",
+    "wordId": "2300760",
+    "pt": "{\n  \"a\": [\n    \"placa-mãe\",\n    \"placa do sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムメモリ",
+    "en": [
+      "system memory"
+    ],
+    "senseUid": "3b335739-1643-4639-a9d2-bc3772c66dd5",
+    "wordId": "2300770",
+    "pt": "['memória do sistema']"
+  },
+  {
+    "kana": "システムメンテナンス",
+    "en": [
+      "system maintenance"
+    ],
+    "senseUid": "5dc4125a-0cee-48a2-b632-0a3cc012f207",
+    "wordId": "2300780",
+    "pt": "['manutenção do sistema']"
+  },
+  {
+    "kana": "システムライフサイクル",
+    "en": [
+      "system life cycle"
+    ],
+    "senseUid": "f05d6137-32cd-46d6-a129-b4cd445b81be",
+    "wordId": "2300790",
+    "pt": "{\n  \"a\": [\"ciclo de vida do sistema\"]\n"
+  },
+  {
+    "kana": "システムライブラリ",
+    "en": [
+      "system library"
+    ],
+    "senseUid": "f1f88a38-630b-48d8-bb97-160b81baed3b",
+    "wordId": "2300800",
+    "pt": "['biblioteca do sistema']"
+  },
+  {
+    "kana": "システムラベル",
+    "en": [
+      "system label"
+    ],
+    "senseUid": "e7604111-aae8-427d-be49-6f775e4f81dc",
+    "wordId": "2300810",
+    "pt": "['rótulo do sistema']"
+  },
+  {
+    "kana": "システムリソース",
+    "en": [
+      "system resource"
+    ],
+    "senseUid": "82aecfca-305f-40bf-b178-836d2d7da334",
+    "wordId": "2300820",
+    "pt": "['recurso do sistema']"
+  },
+  {
+    "kana": "システムかいはつ",
+    "en": [
+      "system development"
+    ],
+    "senseUid": "158b4ddd-c0c4-4441-ab3e-8b8eb364a99e",
+    "wordId": "2300830",
+    "pt": "{\n  \"a\": [\n    \"desenvolvimento de sistemas\"\n  ]\n"
+  },
+  {
+    "kana": "システムかんさ",
+    "en": [
+      "system auditing"
+    ],
+    "senseUid": "f450891d-cbf5-4d8c-921e-eb833dc92669",
+    "wordId": "2300850",
+    "pt": "{\n  \"a\": [\n    \"auditoria de sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムかんり",
+    "en": [
+      "systems-management"
+    ],
+    "senseUid": "9ba13845-bd2c-44d0-b0c9-be8a6692e2dd",
+    "wordId": "2300860",
+    "pt": "{\n  \"a\": [\"gestão de sistemas\"]\n"
+  },
+  {
+    "kana": "システムかんりオブジェクト",
+    "en": [
+      "systems managed object"
+    ],
+    "senseUid": "857971d4-8ad1-45dc-990d-34790ad2e50a",
+    "wordId": "2300870",
+    "pt": "['objeto gerenciado pelo sistema']"
+  },
+  {
+    "kana": "システムかんりサービス",
+    "en": [
+      "systems management service"
+    ],
+    "senseUid": "3317acc3-34fa-4c90-a8d2-1174256588be",
+    "wordId": "2300880",
+    "pt": "['serviço de gerenciamento de sistemas']"
+  },
+  {
+    "kana": "システムかんりきのう",
+    "en": [
+      "systems management function"
+    ],
+    "senseUid": "2ac2db9b-ea73-4dba-b723-2637ef6c57db",
+    "wordId": "2300920",
+    "pt": "{\n  \"a\": [\n    \"função de gerenciamento de sistemas\"\n  ]\n"
+  },
+  {
+    "kana": "システムかんりきのうたんい",
+    "en": [
+      "systems management functional unit"
+    ],
+    "senseUid": "bef6d8fc-ddff-44c8-b08d-79a56ee8f6ad",
+    "wordId": "2300930",
+    "pt": "['unidade funcional de gestão de sistemas']"
+  },
+  {
+    "kana": "システムかんりきのうたんいパッケージ",
+    "en": [
+      "systems management package"
+    ],
+    "senseUid": "ec3ea983-7e39-4bda-afa6-00e1f8f5afef",
+    "wordId": "2300940",
+    "pt": "{\n  \"a\": [\"pacote de funções de gerenciamento de sistemas\"]\n"
+  },
+  {
+    "kana": "システムかんりきのうりょういき",
+    "en": [
+      "systems management functional area"
+    ],
+    "senseUid": "f0c98dd3-670d-41d2-94f8-95d40ebcd796",
+    "wordId": "2300950",
+    "pt": "['área funcional de gestão de sistemas']"
+  },
+  {
+    "kana": "システムかんりしゃ",
+    "en": [
+      "system administrator"
+    ],
+    "senseUid": "aa933e46-8eb7-424a-a1a4-6a3ab32382af",
+    "wordId": "2300960",
+    "pt": "{\n  \"a\": [\n    \"Administrador do sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムかんりそうさ",
+    "en": [
+      "(systems management) operation"
+    ],
+    "senseUid": "b9fdccf6-2546-4e42-8559-f189c3dd4d0b",
+    "wordId": "2300970",
+    "pt": "['operação de gerenciamento de sistemas']"
+  },
+  {
+    "kana": "システムきょうつうりょういき",
+    "en": [
+      "system common area"
+    ],
+    "senseUid": "82cf127d-2ced-4b56-aca3-b4116713fc03",
+    "wordId": "2300990",
+    "pt": "{\n  \"a\": [\"área comum do sistema\"]\n"
+  },
+  {
+    "kana": "システムきじゅつ",
+    "en": [
+      "system description"
+    ],
+    "senseUid": "f0318303-b482-4b0f-adde-ddc467e96182",
+    "wordId": "2300980",
+    "pt": "{\n  \"a\": [\n    \"descrição do sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムしけんじかん",
+    "en": [
+      "system test time"
+    ],
+    "senseUid": "eff0cf27-54ef-4de2-a95c-0f99911fe9f4",
+    "wordId": "2301010",
+    "pt": "['tempo de teste do sistema']"
+  },
+  {
+    "kana": "システムしけんひょうかけいかく",
+    "en": [
+      "test plan",
+      "system test and evaluation plan"
+    ],
+    "senseUid": "6172ede7-5347-4f9a-8e8b-98cf8fdadd4e",
+    "wordId": "2301020",
+    "pt": "['plano de avaliação e teste do sistema']"
+  },
+  {
+    "kana": "システムしげん",
+    "en": [
+      "system resource"
+    ],
+    "senseUid": "daa8e0e2-8976-4c95-8c6f-0120a5b10422",
+    "wordId": "2301030",
+    "pt": "{\n  \"a\": [\"recurso do sistema\"]\n"
+  },
+  {
+    "kana": "システムしきべつし",
+    "en": [
+      "system identifier"
+    ],
+    "senseUid": "5ae999bd-2059-4699-b467-ecbe31d7d0d5",
+    "wordId": "2301040",
+    "pt": "{\n  \"a\": [\"identificador do sistema\"]\n"
+  },
+  {
+    "kana": "システムじつどうじかん",
+    "en": [
+      "system production time"
+    ],
+    "senseUid": "7143b1c5-1905-4a09-a35a-a482d6c50dfa",
+    "wordId": "2301050",
+    "pt": "{\n  \"a\": [\"tempo de operação do sistema\"]\n"
+  },
+  {
+    "kana": "システムしゅうふくディスク",
+    "en": [
+      "Emergency Repair Disk"
+    ],
+    "senseUid": "377cd412-b592-4e6a-8091-ea26fb8b818d",
+    "wordId": "2301060",
+    "pt": "['Disco de Reparo de Emergência']"
+  },
+  {
+    "kana": "システムしょうがい",
+    "en": [
+      "system failure",
+      "system error"
+    ],
+    "senseUid": "6c428f6c-614f-43c5-bf6a-9548453419d9",
+    "wordId": "2301070",
+    "pt": "['falha do sistema', 'erro do sistema']"
+  },
+  {
+    "kana": "システムせいぎょプログラム",
+    "en": [
+      "system control program"
+    ],
+    "senseUid": "58d2225a-33eb-473d-a0b0-27d8bdcc9615",
+    "wordId": "2301080",
+    "pt": "['programa de controle do sistema']"
+  },
+  {
+    "kana": "システムせいせい",
+    "en": [
+      "system generation",
+      "sysgen (acronym)"
+    ],
+    "senseUid": "c19208ee-403d-4736-8470-e07503979ef4",
+    "wordId": "2301090",
+    "pt": "{\n  \"a\": [\n    \"geração de sistema\",\n    \"sysgen (acrônimo)\"\n  ]\n"
+  },
+  {
+    "kana": "システムせっけい",
+    "en": [
+      "system design"
+    ],
+    "senseUid": "67c5d29d-28c5-4e88-ae87-23e32d261011",
+    "wordId": "2301100",
+    "pt": "['projeto de sistema']"
+  },
+  {
+    "kana": "システムせんげん",
+    "en": [
+      "system declaration"
+    ],
+    "senseUid": "8421fc45-a017-495a-8349-90040af65b73",
+    "wordId": "2301110",
+    "pt": "{\n  \"a\": [\n    \"declaração de sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムてきごうせいしけんほうこくしょ",
+    "en": [
+      "system conformance test report",
+      "SCTR"
+    ],
+    "senseUid": "397383f9-f39e-4151-ba66-67d21387a63a",
+    "wordId": "2301120",
+    "pt": "{\n  \"a\": [\n    \"Relatório de Teste de Conformidade do Sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムてきごうせいせんげん",
+    "en": [
+      "system conformance statement"
+    ],
+    "senseUid": "6d99b4ea-ea59-435f-b85b-2a547ebf96b0",
+    "wordId": "2301130",
+    "pt": "{\n  \"a\": [\n    \"Declaração de Conformidade do Sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムとうごう",
+    "en": [
+      "system integration"
+    ],
+    "senseUid": "ca369d9b-97a6-4338-84bc-3743664f4749",
+    "wordId": "2301140",
+    "pt": "{\n  \"a\": [\n    \"integração de sistemas\"\n  ]\n"
+  },
+  {
+    "kana": "システムふかレベル",
+    "en": [
+      "system work load level"
+    ],
+    "senseUid": "7cfa9582-e63a-4853-acfb-bf3eea6b5de0",
+    "wordId": "2301150",
+    "pt": "{\n  \"a\": [\"Nível de carga de trabalho do sistema\"]\n"
+  },
+  {
+    "kana": "システムもじしゅうごう",
+    "en": [
+      "system character set"
+    ],
+    "senseUid": "93604c8b-ef58-4d0f-85d8-283ae6ec915f",
+    "wordId": "2301160",
+    "pt": "['conjunto de caracteres do sistema']"
+  },
+  {
+    "kana": "システムぶんしょ",
+    "en": [
+      "system documentation"
+    ],
+    "senseUid": "d812a68d-279a-42cb-92da-7d7ad9da89f0",
+    "wordId": "2301170",
+    "pt": "{\n  \"a\": [\n    \"documentação do sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムほしゅ",
+    "en": [
+      "system maintenance"
+    ],
+    "senseUid": "d496f13e-3a79-48df-9797-11ca8c338dfa",
+    "wordId": "2301180",
+    "pt": "['manutenção do sistema']"
+  },
+  {
+    "kana": "システムめい",
+    "en": [
+      "system-name"
+    ],
+    "senseUid": "77732149-76a5-4abe-a86f-ba88fa635c64",
+    "wordId": "2301190",
+    "pt": "['nome do sistema']"
+  },
+  {
+    "kana": "システムめいしょう",
+    "en": [
+      "system-title"
+    ],
+    "senseUid": "5bae2580-88d1-46f6-ba08-62d0d43ca058",
+    "wordId": "2301200",
+    "pt": "['título do sistema']"
+  },
+  {
+    "kana": "システムようきゅう",
+    "en": [
+      "system requirement"
+    ],
+    "senseUid": "e328ba19-fa37-4ce9-8a21-5f4aa0268051",
+    "wordId": "2301210",
+    "pt": "['requisito do sistema']"
+  },
+  {
+    "kana": "システムようけん",
+    "en": [
+      "system requirement"
+    ],
+    "senseUid": "04651485-3342-4643-931b-29f041dac2f7",
+    "wordId": "2301220",
+    "pt": "{\n  \"a\": [\n    \"requisito do sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムたちあげ",
+    "en": [
+      "system initialization",
+      "system start up"
+    ],
+    "senseUid": "4d4bfc36-cbeb-4012-a60f-e85009eb5f46",
+    "wordId": "2301230",
+    "pt": "{\n  \"a\": [\n    \"inicialização do sistema\",\n    \"início do sistema\"\n  ]\n"
+  },
+  {
+    "kana": "システムりょう",
+    "en": [
+      "system capacity"
+    ],
+    "senseUid": "98c39b54-c54a-4448-937b-c7d33e776e64",
+    "wordId": "2301240",
+    "pt": "['capacidade do sistema']"
+  },
+  {
+    "kana": "システムりょういき",
+    "en": [
+      "system area"
+    ],
+    "senseUid": "9907a88f-e75f-4814-be63-f8d4524a26f0",
+    "wordId": "2301250",
+    "pt": "{\n  \"a\": [\"área do sistema\"]\n"
+  },
+  {
+    "kana": "システムろんりそうち",
+    "en": [
+      "system logical unit"
+    ],
+    "senseUid": "4151c645-c8ce-4340-8484-532febe7e9b8",
+    "wordId": "2301260",
+    "pt": "['unidade lógica do sistema']"
+  },
+  {
+    "kana": "シックスシグマ",
+    "en": [
+      "six sigma"
+    ],
+    "senseUid": "a7bc0bf5-04eb-44f7-9dda-8f9e66a5fdeb",
+    "wordId": "2301280",
+    "pt": "['Seis Sigma']"
+  },
+  {
+    "kana": "シックスシグマディーエムエーアイシーサイクル",
+    "en": [
+      "six sigma DMAIC cycle"
+    ],
+    "senseUid": "80a16e82-51f1-48fa-891c-105e9b226e5c",
+    "wordId": "2301290",
+    "pt": "{\n  \"a\": [\"ciclo DMAIC do Seis Sigma\"]\n"
+  },
+  {
+    "kana": "シフトレジスタ",
+    "en": [
+      "shift register"
+    ],
+    "senseUid": "3e2db0f9-6f69-46ee-9144-4b48d6ef70db",
+    "wordId": "2301330",
+    "pt": "['registrador de deslocamento']"
+  },
+  {
+    "kana": "シフトきのう",
+    "en": [
+      "shift function"
+    ],
+    "senseUid": "86336ac7-87d0-4f7c-86d2-19f25cce8966",
+    "wordId": "2301340",
+    "pt": "{\n  \"a\": [\"função shift\"]\n"
+  },
+  {
+    "kana": "シミュレーションゲーム",
+    "en": [
+      "simulation game"
+    ],
+    "senseUid": "9c5720ad-b0ce-4eff-a73f-4389f7903683",
+    "wordId": "2301350",
+    "pt": "['jogo de simulação']"
+  },
+  {
+    "kana": "シムシティー",
+    "en": [
+      "Simcity"
+    ],
+    "senseUid": "c7be67ea-132b-4799-a35b-bf40f9110ee3",
+    "wordId": "2301370",
+    "pt": "['SimCity']"
+  },
+  {
+    "kana": "シャーシせっち",
+    "en": [
+      "chassis ground"
+    ],
+    "senseUid": "d4c2b6ea-831b-4429-9aa8-737b04987d64",
+    "wordId": "2301390",
+    "pt": "['aterramento do chassi']"
+  },
+  {
+    "kana": "シャドウラム",
+    "en": [
+      "shadow RAM"
+    ],
+    "senseUid": "6146ebac-4491-4eea-a3df-887e69f0c930",
+    "wordId": "2301400",
+    "pt": "['RAM sombra']"
+  },
+  {
+    "kana": "シャノンのりろん",
+    "en": [
+      "Shannon-Hartley theorem",
+      "Shannon's law"
+    ],
+    "senseUid": "0d0f2717-aa2e-4fa9-b358-2bc433ddb137",
+    "wordId": "2301420",
+    "pt": "{\n  \"a\": [\n    \"teorema de Shannon-Hartley\",\n    \"lei de Shannon\"\n  ]\n"
+  },
+  {
+    "kana": "シューティングゲーム",
+    "en": [
+      "shooter game"
+    ],
+    "senseUid": "8b3ee53a-1bc1-4657-9c5b-41354deb9b80",
+    "wordId": "2301430",
+    "pt": "['jogo de tiro']"
+  },
+  {
+    "kana": "ショートピン",
+    "en": [
+      "short pin"
+    ],
+    "senseUid": "5180813a-a1fd-4ec2-9f94-7da2bd7209f5",
+    "wordId": "2301440",
+    "pt": "['pino curto']"
+  },
+  {
+    "kana": "ショートプラグ",
+    "en": [
+      "short plug"
+    ],
+    "senseUid": "998af1ab-acd4-4415-9132-943bc5956162",
+    "wordId": "2301450",
+    "pt": "['plugue curto']"
+  },
+  {
+    "kana": "ショートメール",
+    "en": [
+      "SMS",
+      "short message service"
+    ],
+    "senseUid": "0858166a-61a5-491c-9200-9b44c4471f86",
+    "wordId": "2301460",
+    "pt": "['mensagem curta', 'SMS']"
+  },
+  {
+    "kana": "しょうなり",
+    "en": [
+      "less than"
+    ],
+    "senseUid": "5a37fe6c-cd9b-42ae-b54f-51056c5eb69f",
+    "wordId": "2301470",
+    "pt": "{\n  \"a\": [\"menos que\"]\n"
+  },
+  {
+    "kana": "しょうなり",
+    "en": [
+      "less-than mark (<)",
+      "left angle bracket"
+    ],
+    "senseUid": "71b68c79-4aa1-4adb-adde-37186f2c10de",
+    "wordId": "2301470",
+    "pt": "['sinal de menor (<)', '"
+  },
+  {
+    "kana": "シリーズレギュレータ",
+    "en": [
+      "series (voltage) regulator"
+    ],
+    "senseUid": "9b09b788-890c-4f03-a836-f0b7b8aca814",
+    "wordId": "2301490",
+    "pt": "{\n  \"a\": [\"regulador de tensão série\"]\n"
+  },
+  {
+    "kana": "シリアルエーティーエー",
+    "en": [
+      "Serial ATA",
+      "SATA",
+      "Serial AT Attachment"
+    ],
+    "senseUid": "3d45941d-fcc6-430a-bdf3-b8ceabffe30d",
+    "wordId": "2301500",
+    "pt": "['Serial ATA', 'SATA', 'Anexação AT Serial']"
+  },
+  {
+    "kana": "シリアルイーイープロム",
+    "en": [
+      "serial EEPROM"
+    ],
+    "senseUid": "6917b6e9-c749-4f69-9ef6-d8aa0fa05b16",
+    "wordId": "2301520",
+    "pt": "['EEPROM serial']"
+  },
+  {
+    "kana": "シリアルインタフェース",
+    "en": [
+      "serial interface"
+    ],
+    "senseUid": "917cae3d-59b3-4b39-9e5a-26bb67a90dea",
+    "wordId": "2301550",
+    "pt": "['interface serial']"
+  },
+  {
+    "kana": "シリアルコネクタ",
+    "en": [
+      "serial connector"
+    ],
+    "senseUid": "9934733d-45d7-424b-9711-a1854ec52bb5",
+    "wordId": "2301560",
+    "pt": "['conector serial']"
+  },
+  {
+    "kana": "シリアルデバイス",
+    "en": [
+      "serial device"
+    ],
+    "senseUid": "69836815-0ec1-4e98-b497-58315f4950d9",
+    "wordId": "2301570",
+    "pt": "['dispositivo serial']"
+  },
+  {
+    "kana": "シリアルトラックボール",
+    "en": [
+      "serial trackball"
+    ],
+    "senseUid": "def4b9ab-2e69-4653-a3a4-073388940759",
+    "wordId": "2301580",
+    "pt": "{\n  \"a\": [\"trackball serial\"]\n"
+  },
+  {
+    "kana": "シリアルナンバー",
+    "en": [
+      "serial number"
+    ],
+    "senseUid": "06fdb13f-2314-4b57-b873-88b75ab3c70b",
+    "wordId": "2301590",
+    "pt": "['número de série']"
+  },
+  {
+    "kana": "シリアルポート",
+    "en": [
+      "serial port"
+    ],
+    "senseUid": "94c2437f-e14b-4f0f-8c91-e25dc6030635",
+    "wordId": "2301610",
+    "pt": "['porta serial']"
+  },
+  {
+    "kana": "シリアルポインティングデバイス",
+    "en": [
+      "serial pointing device"
+    ],
+    "senseUid": "70e16232-f8f9-4e6b-b257-7df40dff365b",
+    "wordId": "2301620",
+    "pt": "['dispositivo apontador serial']"
+  },
+  {
+    "kana": "シリアルマウス",
+    "en": [
+      "serial mouse"
+    ],
+    "senseUid": "240dd44e-8c3a-4d1e-9e15-0632f21a9f50",
+    "wordId": "2301630",
+    "pt": "['mouse serial']"
+  },
+  {
+    "kana": "シリアルラインインターネットプロトコル",
+    "en": [
+      "Serial Line Internet Protocol",
+      "SLIP"
+    ],
+    "senseUid": "ab8f0dee-6347-4fb7-9f81-a187e2a326e8",
+    "wordId": "2301640",
+    "pt": "{\n  \"a\": [\n    \"Protocolo de Internet de Linha Serial\"\n  ]\n"
+  },
+  {
+    "kana": "シリアルせつぞく",
+    "en": [
+      "serial connection"
+    ],
+    "senseUid": "6b751f0e-444d-409c-9223-a3143d8cb2c4",
+    "wordId": "2301650",
+    "pt": "{\n  \"a\": [\n    \"conexão serial\"\n  ]\n"
+  },
+  {
+    "kana": "シリアルてんそう",
+    "en": [
+      "serial transfer"
+    ],
+    "senseUid": "718935e3-e808-4064-9645-eec35b141366",
+    "wordId": "2301660",
+    "pt": "['transferência serial']"
+  },
+  {
+    "kana": "シリアルばんごう",
+    "en": [
+      "serial number"
+    ],
+    "senseUid": "c753662d-ba7f-43d7-bcf2-ee585db8da36",
+    "wordId": "2301670",
+    "pt": "{\n  \"a\": [\n    \"número de série\"\n  ]\n"
+  },
+  {
+    "kana": "シリコンウエハー",
+    "en": [
+      "silicon wafer"
+    ],
+    "senseUid": "fd4704d4-3d9f-4c2d-add8-41bc9ad777a5",
+    "wordId": "2301690",
+    "pt": "['bolacha de silício']"
+  },
+  {
+    "kana": "シリコンディスク",
+    "en": [
+      "silicon disk"
+    ],
+    "senseUid": "41164e39-de8b-4dbd-8ec3-b6f164525492",
+    "wordId": "2301710",
+    "pt": "{\n  \"a\": [\"disco de silício\"]\n"
+  },
+  {
+    "kana": "シルクけいしき",
+    "en": [
+      "Symbolic LinK format"
+    ],
+    "senseUid": "f070954f-5ac2-49d6-a641-c6ae0d5efd7a",
+    "wordId": "2301720",
+    "pt": "['formato de link simbólico']"
+  },
+  {
+    "kana": "シンクライアント",
+    "en": [
+      "thin client"
+    ],
+    "senseUid": "ccbdf0a0-e75c-4afb-91ba-8b7db8e68414",
+    "wordId": "2301750",
+    "pt": "['cliente magro']"
+  },
+  {
+    "kana": "シンクロナスディーラム",
+    "en": [
+      "Synchronous Dynamic Random Access Memory",
+      "SDRAM"
+    ],
+    "senseUid": "f51e5b03-ce00-42d9-bf02-3f18bd3d21a5",
+    "wordId": "2301760",
+    "pt": "['Memória Dinâmica de Acesso Aleatório Síncrona', 'SDRAM']"
+  },
+  {
+    "kana": "シングルアイティーハブ",
+    "en": [
+      "single TT hub"
+    ],
+    "senseUid": "a049c702-014c-4dc0-9af2-34bed051c121",
+    "wordId": "2301770",
+    "pt": "{\n  \"a\": [\"cubo traseiro single TT\"]\n"
+  },
+  {
+    "kana": "シングルエンド",
+    "en": [
+      "single ended"
+    ],
+    "senseUid": "9c7fb67c-ed08-4b81-b3ea-371190b8d9c1",
+    "wordId": "2301780",
+    "pt": "['extremidade única']"
+  },
+  {
+    "kana": "シングルキャスト",
+    "en": [
+      "single cast"
+    ],
+    "senseUid": "98c77abf-de43-4533-aa3c-8c7c0d17d2b4",
+    "wordId": "2301790",
+    "pt": "['fundição única']"
+  },
+  {
+    "kana": "シングルクォーテーション",
+    "en": [
+      "single quotation (mark)",
+      "apostrophe"
+    ],
+    "senseUid": "15ad4ab8-5352-4c06-877b-89cf1ed01d59",
+    "wordId": "2301800",
+    "pt": "{\n  \"a\": [\n    \"aspas simples\",\n    \"apóstrofo\"\n  ]\n"
+  },
+  {
+    "kana": "シングルクォート",
+    "en": [
+      "single quote"
+    ],
+    "senseUid": "687cf61f-4eef-4e5a-8b7f-d4c3c3625c06",
+    "wordId": "2301810",
+    "pt": "{\n  \"a\": [\n    \"Aspas simples\"\n  ]\n"
+  },
+  {
+    "kana": "シングルクリック",
+    "en": [
+      "single click"
+    ],
+    "senseUid": "1c0865f8-84f5-40bb-92e0-661202e9bc71",
+    "wordId": "2301820",
+    "pt": "['clique único']"
+  },
+  {
+    "kana": "シングルサインオン",
+    "en": [
+      "single sign-on"
+    ],
+    "senseUid": "85fbbd6a-1b19-4c88-a3f3-bd840c510a1c",
+    "wordId": "2301830",
+    "pt": "['autenticação única']"
+  },
+  {
+    "kana": "シングルシフト",
+    "en": [
+      "single shift"
+    ],
+    "senseUid": "c971b27b-0a62-4205-90db-88c0b810cffa",
+    "wordId": "2301840",
+    "pt": "['mudança única']"
+  },
+  {
+    "kana": "シングルステップ",
+    "en": [
+      "single step (debugging mode)"
+    ],
+    "senseUid": "6e3bdf2b-cc4d-4dd6-8257-24881dc39385",
+    "wordId": "2301850",
+    "pt": "['passo único (modo de depuração)']"
+  }
+]

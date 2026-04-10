@@ -1,0 +1,917 @@
+[
+  {
+    "kana": "マルチシステムネットワーク",
+    "en": [
+      "multisystem network"
+    ],
+    "senseUid": "d1528905-493d-462e-92b7-137da0e9290b",
+    "wordId": "2332220",
+    "pt": "['rede multissistema']"
+  },
+  {
+    "kana": "マルチシンクモニター",
+    "en": [
+      "multisync monitor"
+    ],
+    "senseUid": "bab7d318-c218-4542-9f1a-eddd51e896d3",
+    "wordId": "2332230",
+    "pt": "['monitor multisync']"
+  },
+  {
+    "kana": "マルチスキャン",
+    "en": [
+      "multiscan"
+    ],
+    "senseUid": "73836e24-f357-4494-b34f-b173910a40f7",
+    "wordId": "2332240",
+    "pt": "['multivarredura']"
+  },
+  {
+    "kana": "マルチスキャンディスプレイ",
+    "en": [
+      "multi-scan display"
+    ],
+    "senseUid": "cdb8215c-c7c8-46f6-9711-51f5b3905a0a",
+    "wordId": "2332250",
+    "pt": "['tela multivarredura']"
+  },
+  {
+    "kana": "マルチスキャンモニター",
+    "en": [
+      "multi-scan monitor"
+    ],
+    "senseUid": "648887a3-057e-4003-a977-e79cba65cbc6",
+    "wordId": "2332260",
+    "pt": "['monitor multivarredura']"
+  },
+  {
+    "kana": "マルチスレッディング",
+    "en": [
+      "multithreading"
+    ],
+    "senseUid": "36704d78-f0a4-497d-b216-ac1e977bfea9",
+    "wordId": "2332270",
+    "pt": "['multithreading', 'multitarefas', 'execução paralela de threads']"
+  },
+  {
+    "kana": "マルチスレッド",
+    "en": [
+      "multithreading"
+    ],
+    "senseUid": "3ddcf92c-9923-4bb8-8f83-7abb0c53db10",
+    "wordId": "2332280",
+    "pt": "['multithreading', 'multithread', 'multifios', 'multitarefa']"
+  },
+  {
+    "kana": "マルチセッション",
+    "en": [
+      "multi-session"
+    ],
+    "senseUid": "15d077d3-67ef-4633-8ff5-8387947d9e7b",
+    "wordId": "2332290",
+    "pt": "['multi-sessão']"
+  },
+  {
+    "kana": "マルチソケット",
+    "en": [
+      "multi-socket (spanner set, drill set, power strip, etc.)"
+    ],
+    "senseUid": "e7ac744c-8362-4c90-a3ad-bfceba3120b9",
+    "wordId": "2332300",
+    "pt": "{\n  \"a\": [\n    \"multi-soquete (conjunto de chaves, conjunto de brocas, régua de energia, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "マルチタスキング",
+    "en": [
+      "multitasking"
+    ],
+    "senseUid": "1f1d034b-a61c-436f-b1cc-3773c6ef8823",
+    "wordId": "2332310",
+    "pt": "['multitarefas']"
+  },
+  {
+    "kana": "マルチタスク",
+    "en": [
+      "multitasking"
+    ],
+    "senseUid": "ca80746c-8820-4cfc-9bf4-acb06793737f",
+    "wordId": "2332320",
+    "pt": "{\n  \"a\": [\"multitarefa\"]\n"
+  },
+  {
+    "kana": "マルチタスク",
+    "en": [
+      "multitasking (person)",
+      "simultaneous (activity)",
+      "concurrent"
+    ],
+    "senseUid": "8ec60745-1bc1-484d-ae2e-c35a1420afbb",
+    "wordId": "2332320",
+    "pt": "['multitarefas (pessoa)', 'atividade simultânea', 'concorrente']"
+  },
+  {
+    "kana": "マルチタスクオーエス",
+    "en": [
+      "multitasking operation system"
+    ],
+    "senseUid": "13deb0b9-7c5f-4904-971a-4d70c139021a",
+    "wordId": "2332330",
+    "pt": "['sistema operacional multitarefa']"
+  },
+  {
+    "kana": "マルチタスクオペレーティングシステム",
+    "en": [
+      "multitasking operating system"
+    ],
+    "senseUid": "b57ebf9f-f1dc-4bd8-ba73-cd8ad62a4256",
+    "wordId": "2332340",
+    "pt": "['sistema operacional multitarefa']"
+  },
+  {
+    "kana": "マルチディスプレイ",
+    "en": [
+      "multi-display",
+      "multi-monitor"
+    ],
+    "senseUid": "6cf8c8af-7044-41bc-b489-5a9e01bc5e69",
+    "wordId": "2332360",
+    "pt": "['multi-display', 'multi-monitor', 'multitelas', 'multimonitor']"
+  },
+  {
+    "kana": "マルチドロップ",
+    "en": [
+      "multidrop"
+    ],
+    "senseUid": "cb7724f9-6300-4dcd-88bf-164b18b2b982",
+    "wordId": "2332370",
+    "pt": "['multidrop', 'multigotas', 'multilinha', 'multiconexão']"
+  },
+  {
+    "kana": "マルチバンクディーラム",
+    "en": [
+      "multibank Dynamic Random Access Memory",
+      "MDRA"
+    ],
+    "senseUid": "ee26444d-b986-4a89-a8f1-966c29b4a9ca",
+    "wordId": "2332380",
+    "pt": "{\n  \"a\": [\n    \"Memória Dinâmica de Acesso Aleatório Multibanco\",\n    \"MDRA\"\n  ]\n"
+  },
+  {
+    "kana": "マルチパートメッセージ",
+    "en": [
+      "multi-part message"
+    ],
+    "senseUid": "2f7ccf7c-7f51-47cc-990b-217812c17165",
+    "wordId": "2332390",
+    "pt": "{\n  \"a\": [\"mensagem multipartida\"]\n"
+  },
+  {
+    "kana": "マルチパス",
+    "en": [
+      "multipath"
+    ],
+    "senseUid": "0c2e9972-a141-4ca5-bee9-79166e93a1be",
+    "wordId": "2332400",
+    "pt": "{\n  \"a\": [\"multipercurso\"]\n"
+  },
+  {
+    "kana": "マルチパスアイオー",
+    "en": [
+      "multipath IO"
+    ],
+    "senseUid": "d07537fa-f15d-4c1d-a565-a8e94ec620bb",
+    "wordId": "2332410",
+    "pt": "{\n  \"a\": [\"Entrada/Saída multipercurso\"]\n"
+  },
+  {
+    "kana": "マルチファンクション",
+    "en": [
+      "multifunction"
+    ],
+    "senseUid": "b9b4c452-f62b-4f30-9d0c-858321fb8569",
+    "wordId": "2332430",
+    "pt": "['multifuncional']"
+  },
+  {
+    "kana": "マルチフォント",
+    "en": [
+      "multi-font"
+    ],
+    "senseUid": "11af322e-93e3-40dc-986e-3c85db87791e",
+    "wordId": "2332440",
+    "pt": "['multifonte']"
+  },
+  {
+    "kana": "マルチブート",
+    "en": [
+      "multi boot"
+    ],
+    "senseUid": "b1c7173d-2828-4f57-a9b9-e8eabce38d2a",
+    "wordId": "2332450",
+    "pt": "['multiboot']"
+  },
+  {
+    "kana": "マルチプラットフォーム",
+    "en": [
+      "multiplatform"
+    ],
+    "senseUid": "d8cf17ac-3ddc-4bbc-84eb-a09e2120111d",
+    "wordId": "2332470",
+    "pt": "{\n  \"a\": [\"multiplataforma\"]\n"
+  },
+  {
+    "kana": "マルチプルアクセス",
+    "en": [
+      "multiple access"
+    ],
+    "senseUid": "085a22e2-1d1a-45f4-abf3-8df1f605e9ee",
+    "wordId": "2332480",
+    "pt": "['acesso múltiplo']"
+  },
+  {
+    "kana": "マルチプレイヤーゲーム",
+    "en": [
+      "multiplayer game"
+    ],
+    "senseUid": "eb25aa6f-24b1-4997-b31b-2e867c067d86",
+    "wordId": "2332490",
+    "pt": "['jogo multijogador']"
+  },
+  {
+    "kana": "マルチプレキシング",
+    "en": [
+      "multiplexing"
+    ],
+    "senseUid": "e45694d3-7e01-4f86-9204-2bd3d88da4b5",
+    "wordId": "2332510",
+    "pt": "{\n  \"a\": [\n    \"multiplexação\"\n  ]\n"
+  },
+  {
+    "kana": "マルチプレクサチャネル",
+    "en": [
+      "multiplexer channel"
+    ],
+    "senseUid": "b7bd98e7-5cae-4061-9ad9-f29d66a4bb2f",
+    "wordId": "2332520",
+    "pt": "['canal multiplexador']"
+  },
+  {
+    "kana": "マルチプロセッシング",
+    "en": [
+      "multiprocessing"
+    ],
+    "senseUid": "d18e5e40-1596-40ad-8656-ba893b01ccc3",
+    "wordId": "2332550",
+    "pt": "{\n  \"a\": [\"multiprocessamento\"]\n"
+  },
+  {
+    "kana": "マルチプロトコル",
+    "en": [
+      "multiprotocol"
+    ],
+    "senseUid": "fb1a5d31-7d2e-4673-b8cf-b3c0e4d01121",
+    "wordId": "2332560",
+    "pt": "['multiprotocolo']"
+  },
+  {
+    "kana": "マルチベンダー",
+    "en": [
+      "multivendor"
+    ],
+    "senseUid": "724f6a80-9717-4c73-b79a-1e1fa1a3d592",
+    "wordId": "2332570",
+    "pt": "['multifornecedor']"
+  },
+  {
+    "kana": "マルチベンダーかんきょう",
+    "en": [
+      "multivendor environment"
+    ],
+    "senseUid": "0c6d22c8-abf9-4a93-b754-e572924d8c48",
+    "wordId": "2332580",
+    "pt": "['ambiente multivendor']"
+  },
+  {
+    "kana": "マルチホスティング",
+    "en": [
+      "multi-hosting"
+    ],
+    "senseUid": "725932d7-b2f0-4a06-8ad7-9b1aab5542a5",
+    "wordId": "2332590",
+    "pt": "['multi-hospedagem']"
+  },
+  {
+    "kana": "マルチボリューム",
+    "en": [
+      "multivolume"
+    ],
+    "senseUid": "c8b3f87c-0577-483e-91df-a04e69d62edb",
+    "wordId": "2332600",
+    "pt": "['multivolume']"
+  },
+  {
+    "kana": "マルチポイント",
+    "en": [
+      "multipoint"
+    ],
+    "senseUid": "a4408392-fca3-44da-80f5-cba5bae2643e",
+    "wordId": "2332620",
+    "pt": "{\n  \"a\": [\"multiponto\"]\n"
+  },
+  {
+    "kana": "マルチポイントせつぞく",
+    "en": [
+      "multipoint connection"
+    ],
+    "senseUid": "d8c6130d-f60a-4570-9e2d-4f7bcebbacf2",
+    "wordId": "2332630",
+    "pt": "['conexão multiponto']"
+  },
+  {
+    "kana": "マルチメディアエクステンション",
+    "en": [
+      "multimedia extension",
+      "MMX"
+    ],
+    "senseUid": "abd54886-bfa1-4b23-beb9-7e6a49ca145c",
+    "wordId": "2332640",
+    "pt": "{\n  \"a\": [\n    \"Extensão multimídia\"\n  ]\n"
+  },
+  {
+    "kana": "マルチメディアタイトル",
+    "en": [
+      "multimedia title"
+    ],
+    "senseUid": "08518479-50ae-4702-bbf7-9b2dc4533c67",
+    "wordId": "2332650",
+    "pt": "['título multimídia']"
+  },
+  {
+    "kana": "マルチメディアデータベース",
+    "en": [
+      "multimedia database",
+      "MDB"
+    ],
+    "senseUid": "9193a80d-e85f-43a3-adff-2514801f4c8b",
+    "wordId": "2332660",
+    "pt": "{\n  \"a\": [\"banco de dados multimídia\", \"MDB\"]\n"
+  },
+  {
+    "kana": "マルチメディアパソコン",
+    "en": [
+      "multimedia personal computer"
+    ],
+    "senseUid": "c7658b15-f949-4f43-91e3-77b3cb272e1c",
+    "wordId": "2332670",
+    "pt": "['computador pessoal multimídia']"
+  },
+  {
+    "kana": "マルチメディアつうしん",
+    "en": [
+      "multimedia communication"
+    ],
+    "senseUid": "d865ff41-7d12-4d56-b8b8-6545c40af747",
+    "wordId": "2332690",
+    "pt": "['comunicação multimídia']"
+  },
+  {
+    "kana": "マルチモード",
+    "en": [
+      "multimode"
+    ],
+    "senseUid": "5e948f53-ef77-489a-9a94-5725fd5d9896",
+    "wordId": "2332700",
+    "pt": "['multimodo']"
+  },
+  {
+    "kana": "マルチモードファイバ",
+    "en": [
+      "multimode fiber"
+    ],
+    "senseUid": "e48018b5-cf9f-4591-8a5e-8d068d92be84",
+    "wordId": "2332710",
+    "pt": "['fibra multimodo']"
+  },
+  {
+    "kana": "マルチユーザー",
+    "en": [
+      "multi-user",
+      "multiuser"
+    ],
+    "senseUid": "39d0ebed-c826-482d-9d9f-6cc896838d72",
+    "wordId": "2332730",
+    "pt": "['multiusuário']"
+  },
+  {
+    "kana": "マルチユーザシステム",
+    "en": [
+      "multiuser system"
+    ],
+    "senseUid": "26b648e6-1c1f-4da1-8308-b3f2a7de8f6c",
+    "wordId": "2332750",
+    "pt": "{\n  \"a\": [\"sistema multiusuário\"]\n"
+  },
+  {
+    "kana": "マルチユーザモード",
+    "en": [
+      "multiuser mode"
+    ],
+    "senseUid": "eded8f7a-2be0-4182-8397-fb5927bacb04",
+    "wordId": "2332760",
+    "pt": "['modo multiusuário']"
+  },
+  {
+    "kana": "マルチリンガル",
+    "en": [
+      "multilingual"
+    ],
+    "senseUid": "9ad8125c-9ca6-4daf-96a5-d2f5e60c0286",
+    "wordId": "2332770",
+    "pt": "['multilíngue']"
+  },
+  {
+    "kana": "マルチリンクダイヤル",
+    "en": [
+      "multilink dialing"
+    ],
+    "senseUid": "b13c09f0-7e50-4c1b-9b32-3e9db0ca5620",
+    "wordId": "2332780",
+    "pt": "['discagem multilink']"
+  },
+  {
+    "kana": "マルチレッグ",
+    "en": [
+      "multileg"
+    ],
+    "senseUid": "24b479f1-955f-4cb4-883c-3cfd8bd847cc",
+    "wordId": "2332800",
+    "pt": "{\n  \"a\": [\"multiperna\"]\n"
+  },
+  {
+    "kana": "マルチリンクフレーム",
+    "en": [
+      "multi-link frame"
+    ],
+    "senseUid": "6ccf963f-b072-40fe-b62e-96ff5a1bce87",
+    "wordId": "2332790",
+    "pt": "['estrutura multibraço']"
+  },
+  {
+    "kana": "マルチレンジぞうふくき",
+    "en": [
+      "multirange amplifier"
+    ],
+    "senseUid": "2c4f7af3-38c5-4de6-86d0-277788346863",
+    "wordId": "2332810",
+    "pt": "{\n  \"a\": [\"amplificador multifaixa\"]\n"
+  },
+  {
+    "kana": "マルチワードディーエムエー",
+    "en": [
+      "multiword Direct Memory Access"
+    ],
+    "senseUid": "4641bfe9-97a5-4553-92fd-8cea281672c2",
+    "wordId": "2332820",
+    "pt": "{\n  \"a\": [\"DMA de múltiplas palavras\"]\n"
+  },
+  {
+    "kana": "マンセルひょうしょくけい",
+    "en": [
+      "Munsell color system"
+    ],
+    "senseUid": "2ebcad2f-8d36-4a7a-803c-831cf52e034a",
+    "wordId": "2332840",
+    "pt": "['Sistema de cores Munsell']"
+  },
+  {
+    "kana": "ミクロセル",
+    "en": [
+      "microcell"
+    ],
+    "senseUid": "18203fa1-bf6d-4952-bfe7-bb52ae6f0734",
+    "wordId": "2332860",
+    "pt": "{\n  \"a\": [\"microcélula\"]\n"
+  },
+  {
+    "kana": "ミクロデータ",
+    "en": [
+      "micro data"
+    ],
+    "senseUid": "799641f6-09d5-4226-8a2a-03892ff298f1",
+    "wordId": "2332870",
+    "pt": "['microdados']"
+  },
+  {
+    "kana": "ミシンめ",
+    "en": [
+      "perforation"
+    ],
+    "senseUid": "aaac9744-fce7-447a-90bd-1cb913fa12bc",
+    "wordId": "2332880",
+    "pt": "['perfuração de picote']"
+  },
+  {
+    "kana": "ミスク",
+    "en": [
+      "misc"
+    ],
+    "senseUid": "fc2e59df-dab8-463b-b9be-d3a9c4f590f1",
+    "wordId": "2332890",
+    "pt": "['diversos']"
+  },
+  {
+    "kana": "ミッションクリティカル",
+    "en": [
+      "mission-critical"
+    ],
+    "senseUid": "adab5c9d-ea0d-4378-87eb-effd6705e68c",
+    "wordId": "2332910",
+    "pt": "['crítico para a missão']"
+  },
+  {
+    "kana": "ミッドティア",
+    "en": [
+      "mid tier (server, array, etc.)"
+    ],
+    "senseUid": "05c9b675-08be-4745-9dec-ed9c594f034a",
+    "wordId": "2332920",
+    "pt": "['intermediário (servidor, array, etc.)']"
+  },
+  {
+    "kana": "ミッドレンジ",
+    "en": [
+      "midrange"
+    ],
+    "senseUid": "56d1c0d7-82b6-44c3-96c1-414d287edda0",
+    "wordId": "2332930",
+    "pt": "['médio alcance']"
+  },
+  {
+    "kana": "ミッドレンジマシン",
+    "en": [
+      "mid-range machine"
+    ],
+    "senseUid": "b44630d2-8392-4122-9c8e-757254c180b4",
+    "wordId": "2332940",
+    "pt": "['máquina de porte médio']"
+  },
+  {
+    "kana": "ミッドレンジモデル",
+    "en": [
+      "mid-range model"
+    ],
+    "senseUid": "24260724-6bf2-4381-ac8c-b3a2166a5c0b",
+    "wordId": "2332950",
+    "pt": "['modelo intermediário']"
+  },
+  {
+    "kana": "ミドルウェア",
+    "en": [
+      "middleware"
+    ],
+    "senseUid": "b8e3e127-84cb-4a75-adfd-65afe3b6e51e",
+    "wordId": "2332970",
+    "pt": "['middleware']"
+  },
+  {
+    "kana": "ミップマッピング",
+    "en": [
+      "Multum In Parvo mapping",
+      "MIP mapping",
+      "MIPMAP"
+    ],
+    "senseUid": "e07233af-dba7-4a71-8023-e81a8a3a3fed",
+    "wordId": "2332960",
+    "pt": "{\n  \"a\": [\n    \"mapeamento MIP\",\n    \"mapeamento Multum In Parvo\",\n    \"MIPMAP\"\n  ]\n"
+  },
+  {
+    "kana": "ミドルタワーがた",
+    "en": [
+      "middle-tower-style"
+    ],
+    "senseUid": "da07a52f-cf9c-466d-8525-f7131a267de5",
+    "wordId": "2332980",
+    "pt": "['estilo torre média']"
+  },
+  {
+    "kana": "ミドルタワーがたピーシー",
+    "en": [
+      "middle-tower-style PC"
+    ],
+    "senseUid": "7f71ba58-04e4-4a67-8560-0ecb034ec5d6",
+    "wordId": "2332990",
+    "pt": "{\n  \"a\": [\"PC estilo torre média\"]\n"
+  },
+  {
+    "kana": "ミドルタワーがたコンピュータ",
+    "en": [
+      "middle-tower-style computer"
+    ],
+    "senseUid": "ac724e2f-18f7-49a3-aa2b-6dd3c7296d77",
+    "wordId": "2333000",
+    "pt": "['computador estilo torre média']"
+  },
+  {
+    "kana": "ミドルレンジマシン",
+    "en": [
+      "middle range machine"
+    ],
+    "senseUid": "c2e2e8ba-4850-4187-a27c-d45909aa8cdf",
+    "wordId": "2333010",
+    "pt": "['máquina de porte médio']"
+  },
+  {
+    "kana": "ミドルレンジモデル",
+    "en": [
+      "middle range model"
+    ],
+    "senseUid": "5bb4a621-76d3-4ea1-9ebb-85825daff2c3",
+    "wordId": "2333020",
+    "pt": "['modelo de faixa intermediária']"
+  },
+  {
+    "kana": "ミニディーブイディー",
+    "en": [
+      "mini DVD"
+    ],
+    "senseUid": "fc7a3f4c-bae8-44ba-b429-17d9bf32e937",
+    "wordId": "2333030",
+    "pt": "{\n  \"a\": [\"mini DVD\"]\n"
+  },
+  {
+    "kana": "ミニセットアップ",
+    "en": [
+      "mini-Setup"
+    ],
+    "senseUid": "f4e4ec6c-bf74-4572-af11-4732f681c366",
+    "wordId": "2333040",
+    "pt": "['Mini-conjunto']"
+  },
+  {
+    "kana": "ミニタワーがた",
+    "en": [
+      "mini-tower-style"
+    ],
+    "senseUid": "56ef5692-5d27-42f1-8d19-feb627d2aa1f",
+    "wordId": "2333060",
+    "pt": "{\n  \"a\": [\"estilo mini-torre\"]\n"
+  },
+  {
+    "kana": "ミニタワーがたピーシー",
+    "en": [
+      "mini-tower-style PC"
+    ],
+    "senseUid": "d3789176-c227-4215-87e3-229bd6125daa",
+    "wordId": "2333070",
+    "pt": "['PC estilo mini-torre']"
+  },
+  {
+    "kana": "ミニタワー",
+    "en": [
+      "mini tower"
+    ],
+    "senseUid": "ade5e6a9-c9ec-4245-b91d-d36cceccb8ce",
+    "wordId": "2333050",
+    "pt": "['mini torre']"
+  },
+  {
+    "kana": "ミニタワーがたコンピュータ",
+    "en": [
+      "mini-tower-style computer"
+    ],
+    "senseUid": "b391f237-fd49-43b9-a885-0e3eab282f18",
+    "wordId": "2333080",
+    "pt": "['computador tipo mini-torre']"
+  },
+  {
+    "kana": "ミニチュアカード",
+    "en": [
+      "miniature card"
+    ],
+    "senseUid": "d7ecaca3-d2c3-4594-8777-11d8bf300bfd",
+    "wordId": "2333090",
+    "pt": "['cartão em miniatura']"
+  },
+  {
+    "kana": "ミラーサーバー",
+    "en": [
+      "mirror server"
+    ],
+    "senseUid": "1d88e36f-74e1-4d65-a8a3-b9628a4b162a",
+    "wordId": "2333110",
+    "pt": "['servidor espelho']"
+  },
+  {
+    "kana": "ミラードライブ",
+    "en": [
+      "mirrored drives"
+    ],
+    "senseUid": "bc91a4cb-b23f-43c0-84fe-2327d909f592",
+    "wordId": "2333120",
+    "pt": "['unidades espelhadas']"
+  },
+  {
+    "kana": "ミラーページ",
+    "en": [
+      "mirror page",
+      "mirror site"
+    ],
+    "senseUid": "d968c790-7409-4bec-883c-74ed77c737fb",
+    "wordId": "2333130",
+    "pt": "['página espelho', 'site espelho']"
+  },
+  {
+    "kana": "ミラーリング",
+    "en": [
+      "mirroring"
+    ],
+    "senseUid": "ecf36178-4f5c-4417-87f3-afd3c8aa0ecd",
+    "wordId": "2333140",
+    "pt": "['espelhamento']"
+  },
+  {
+    "kana": "ミリネジ",
+    "en": [
+      "metric screw threads"
+    ],
+    "senseUid": "174919b9-d95b-4fda-9f43-f389b65d4da5",
+    "wordId": "2333150",
+    "pt": "['rosca métrica']"
+  },
+  {
+    "kana": "ミリびょう",
+    "en": [
+      "millisecond"
+    ],
+    "senseUid": "3d82e159-3da5-4f22-be7b-80dbbcd0ffaa",
+    "wordId": "2333160",
+    "pt": "['milissegundo']"
+  },
+  {
+    "kana": "メートルネジ",
+    "en": [
+      "metric screw threads"
+    ],
+    "senseUid": "eb9389cd-0104-492a-a1e6-6c8c8fae3f52",
+    "wordId": "2333190",
+    "pt": "['rosca métrica']"
+  },
+  {
+    "kana": "メーラー",
+    "en": [
+      "email software",
+      "mailer"
+    ],
+    "senseUid": "ab73d15b-dafe-4db5-9420-7b93f6028d4f",
+    "wordId": "2333210",
+    "pt": "['programa de e-mail', 'aplicativo de e-mail']"
+  },
+  {
+    "kana": "メールエージェント",
+    "en": [
+      "mail agent"
+    ],
+    "senseUid": "45ae889c-5478-40f0-98eb-12e9dd8c0b0b",
+    "wordId": "2333220",
+    "pt": "['agente de correio']"
+  },
+  {
+    "kana": "メールサーバ",
+    "en": [
+      "mail server"
+    ],
+    "senseUid": "12bcce06-f189-405c-88e6-7eccdaf55605",
+    "wordId": "2333230",
+    "pt": "{\n  \"a\": [\"servidor de e-mail\"]\n"
+  },
+  {
+    "kana": "メールスプール",
+    "en": [
+      "mail spool"
+    ],
+    "senseUid": "7284438b-b6d3-46f1-b0d4-58a7d668d461",
+    "wordId": "2333240",
+    "pt": "['fila de emails']"
+  },
+  {
+    "kana": "メールソフト",
+    "en": [
+      "email software",
+      "email program",
+      "mail program"
+    ],
+    "senseUid": "2d637176-854c-4684-b550-a53682c2820b",
+    "wordId": "2333250",
+    "pt": "['programa de e-mail', 'software de e-mail', 'aplicativo de e-mail']"
+  },
+  {
+    "kana": "メールソフトウェア",
+    "en": [
+      "mail software"
+    ],
+    "senseUid": "2d182b72-49a4-4899-97fb-588dad264f8b",
+    "wordId": "2333260",
+    "pt": "['software de e-mail']"
+  },
+  {
+    "kana": "メールばくだん",
+    "en": [
+      "mail bomb"
+    ],
+    "senseUid": "be81c295-f4e9-43a2-986b-1c3e727d5ace",
+    "wordId": "2333270",
+    "pt": "['bomba de e-mail']"
+  },
+  {
+    "kana": "メイトけい",
+    "en": [
+      "mate system",
+      "redundant system"
+    ],
+    "senseUid": "aaa5a42d-0531-4548-986e-c4ef0fbe8d78",
+    "wordId": "2333280",
+    "pt": "['sistema mate', 'sistema redundante']"
+  },
+  {
+    "kana": "メインキー",
+    "en": [
+      "main key"
+    ],
+    "senseUid": "dd98705a-87bf-4f77-8ab2-be8b140ff13b",
+    "wordId": "2333310",
+    "pt": "['chave principal']"
+  },
+  {
+    "kana": "メインディレクトリ",
+    "en": [
+      "main directory"
+    ],
+    "senseUid": "1602f03e-d072-4972-8f6a-d6b8cd4eb7b0",
+    "wordId": "2333330",
+    "pt": "['diretório principal']"
+  },
+  {
+    "kana": "メインフレーマ",
+    "en": [
+      "mainframer"
+    ],
+    "senseUid": "7a07145b-9e0b-42ee-85ae-ce561f46ef06",
+    "wordId": "2333340",
+    "pt": "['mainframer', 'usuário de mainframe', 'especialista em mainframe', 'profissional de mainframe']"
+  },
+  {
+    "kana": "メインフレームコンピュータ",
+    "en": [
+      "mainframe computer"
+    ],
+    "senseUid": "3938d4be-2406-4ef1-a9ea-9c7d399ba051",
+    "wordId": "2333350",
+    "pt": "['computador de grande porte']"
+  },
+  {
+    "kana": "メインボード",
+    "en": [
+      "mainboard",
+      "motherboard"
+    ],
+    "senseUid": "ae9b535a-11bc-46a5-ae55-c665cc981da5",
+    "wordId": "2333360",
+    "pt": "['placa-mãe', 'placa principal']"
+  },
+  {
+    "kana": "メインメニュー",
+    "en": [
+      "main menu"
+    ],
+    "senseUid": "de88d424-16d2-4170-83ba-656451fb0467",
+    "wordId": "2333370",
+    "pt": "['menu principal']"
+  },
+  {
+    "kana": "メインルーチン",
+    "en": [
+      "main routine"
+    ],
+    "senseUid": "33ef4efe-fdb4-4a2b-88bb-a034a145069b",
+    "wordId": "2333390",
+    "pt": "{\n  \"a\": [\"rotina principal\"]\n"
+  },
+  {
+    "kana": "メインループ",
+    "en": [
+      "main loop"
+    ],
+    "senseUid": "c63e27ec-4f5b-48ee-ba7b-fabe44078343",
+    "wordId": "2333400",
+    "pt": "['laço principal']"
+  },
+  {
+    "kana": "メカニカルマウス",
+    "en": [
+      "mechanical mouse"
+    ],
+    "senseUid": "d071fc71-80fe-4457-be1b-da959c9b1d06",
+    "wordId": "2333410",
+    "pt": "['mouse mecânico']"
+  }
+]

@@ -1,0 +1,934 @@
+[
+  {
+    "kana": "たんしゅくアドレスよびだし",
+    "en": [
+      "abbreviated address calling"
+    ],
+    "senseUid": "43237890-a1b3-4306-9c74-26fb85c13807",
+    "wordId": "2373890",
+    "pt": "['chamada de endereço abreviado']"
+  },
+  {
+    "kana": "たんしゅくダイヤル",
+    "en": [
+      "speed dialing"
+    ],
+    "senseUid": "5ddb41e5-d095-45c7-bb13-83bf019500ed",
+    "wordId": "2373900",
+    "pt": "['discagem rápida']"
+  },
+  {
+    "kana": "たんしゅくさんしょうくぎりしきのう",
+    "en": [
+      "short reference delimiter role"
+    ],
+    "senseUid": "972596b3-cde9-4142-ae91-d99cf260f400",
+    "wordId": "2373910",
+    "pt": "{\n  \"a\": [\"função de delimitador de referência curta\"]\n"
+  },
+  {
+    "kana": "たんしゅくさんしょうしようせんげん",
+    "en": [
+      "short reference use declaration"
+    ],
+    "senseUid": "669f25dd-bf5b-48d1-bd9f-7f1b8d0cbf13",
+    "wordId": "2373920",
+    "pt": "{\n  \"a\": [\"Declaração de uso de referência abreviada\"]\n"
+  },
+  {
+    "kana": "たんしゅくさんしょうしゅうごう",
+    "en": [
+      "short reference set"
+    ],
+    "senseUid": "858f7da2-83d9-4f1a-81ca-cf7e77cc7c4f",
+    "wordId": "2373930",
+    "pt": "{\n  \"a\": [\"conjunto de referência abreviada\"]\n"
+  },
+  {
+    "kana": "たんしゅくさんしょうたいおうひょうせんげん",
+    "en": [
+      "short reference mapping declaration"
+    ],
+    "senseUid": "9af3d085-56bb-4d8e-8ea6-bc4bd1494f05",
+    "wordId": "2373940",
+    "pt": "{\n  \"a\": [\n    \"declaração de mapeamento de referência curta\"\n  ]\n"
+  },
+  {
+    "kana": "たんしゅくさんしょうれつ",
+    "en": [
+      "short reference (string)"
+    ],
+    "senseUid": "d70e7928-5a15-4c17-8b66-86e8773ec67f",
+    "wordId": "2373950",
+    "pt": "{\n  \"a\": [\"referência curta\"]\n"
+  },
+  {
+    "kana": "たんてん",
+    "en": [
+      "anchor",
+      "endpoint node",
+      "peripheral node"
+    ],
+    "senseUid": "511567a3-5e2c-4094-b502-101ef32f3d7b",
+    "wordId": "2373960",
+    "pt": "{\n  \"a\": [\n    \"âncora\",\n    \"nó terminal\",\n    \"nó periférico\"\n  ]\n"
+  },
+  {
+    "kana": "たんまつエミュレーション",
+    "en": [
+      "terminal emulation"
+    ],
+    "senseUid": "ba766146-a915-4d80-b566-9d0b1ffd2ad9",
+    "wordId": "2373980",
+    "pt": "['emulação de terminal']"
+  },
+  {
+    "kana": "たんまつエミュレータ",
+    "en": [
+      "terminal emulator"
+    ],
+    "senseUid": "1e15f000-4e60-4f53-9b73-5ff70792d136",
+    "wordId": "2373990",
+    "pt": "{\n  \"a\": [\"emulador de terminal\"]\n"
+  },
+  {
+    "kana": "たんまつサーバー",
+    "en": [
+      "terminal server"
+    ],
+    "senseUid": "976dbba2-b90a-489b-b77b-68eb2cfa8ca2",
+    "wordId": "2374000",
+    "pt": "['servidor de terminais']"
+  },
+  {
+    "kana": "たんまつがめん",
+    "en": [
+      "terminal screen"
+    ],
+    "senseUid": "7c769994-970d-4a42-804d-aca28cd26b31",
+    "wordId": "2374010",
+    "pt": "['tela do terminal']"
+  },
+  {
+    "kana": "たんまつしきべつし",
+    "en": [
+      "terminal identifier"
+    ],
+    "senseUid": "30e3e107-a59a-4f53-acbd-bf9676804786",
+    "wordId": "2374020",
+    "pt": "['identificador de terminal']"
+  },
+  {
+    "kana": "たんまつしゅべつ",
+    "en": [
+      "terminal type"
+    ],
+    "senseUid": "112b1985-902d-4e05-8c23-298dd3734e99",
+    "wordId": "2374030",
+    "pt": "{\n  \"a\": [\"tipo de terminal\"]\n"
+  },
+  {
+    "kana": "たんまつにゅうりょく",
+    "en": [
+      "terminal input"
+    ],
+    "senseUid": "b6cd5876-e305-4f01-bb1e-521e2eb083d9",
+    "wordId": "2374040",
+    "pt": "{\n  \"a\": [\"entrada de terminal\"]\n"
+  },
+  {
+    "kana": "だんたいちょしゃ",
+    "en": [
+      "corporate author"
+    ],
+    "senseUid": "b43fa7f5-0d7e-4526-827c-44114148b75b",
+    "wordId": "2374050",
+    "pt": "['autor corporativo']"
+  },
+  {
+    "kana": "だんぺんか",
+    "en": [
+      "fragmentation"
+    ],
+    "senseUid": "703d80e0-187f-41e7-9720-bf37bcb80f52",
+    "wordId": "2374060",
+    "pt": "{\n  \"a\": [\"fragmentação\"]\n"
+  },
+  {
+    "kana": "だんめんプロット",
+    "en": [
+      "slice plot"
+    ],
+    "senseUid": "64c537fc-4abe-43f2-839b-ce31bf4a1134",
+    "wordId": "2374070",
+    "pt": "{\n  \"a\": [\"gráfico de corte\"]\n"
+  },
+  {
+    "kana": "だんシフト",
+    "en": [
+      "case shift"
+    ],
+    "senseUid": "ae663d9c-219f-408f-89d6-a7c9020f2baa",
+    "wordId": "2374080",
+    "pt": "{\n  \"a\": [\"mudança de caso\"]\n"
+  },
+  {
+    "kana": "だんかいてきしょうさいか",
+    "en": [
+      "stepwise refinement"
+    ],
+    "senseUid": "15bbc9d5-5c59-4651-8da1-554e792860c9",
+    "wordId": "2374090",
+    "pt": "['refinamento progressivo']"
+  },
+  {
+    "kana": "だんぐみ",
+    "en": [
+      "multicolumn layout",
+      "column setting"
+    ],
+    "senseUid": "56e6dd75-42d6-4140-8c45-1170580a2281",
+    "wordId": "2374100",
+    "pt": "['layout de múltiplas colunas', 'configuração de colunas']"
+  },
+  {
+    "kana": "あたいさんしょうめい",
+    "en": [
+      "value reference name"
+    ],
+    "senseUid": "2cf6cc43-cbe6-441e-901f-09196ab7f669",
+    "wordId": "2374140",
+    "pt": "['nome de referência de valor']"
+  },
+  {
+    "kana": "ちしきベース",
+    "en": [
+      "knowledge base"
+    ],
+    "senseUid": "67533027-9284-40fd-9df6-d9793247934a",
+    "wordId": "2374150",
+    "pt": "{\n  \"a\": [\n    \"base de conhecimento\"\n  ]\n"
+  },
+  {
+    "kana": "ちしきさんしょう",
+    "en": [
+      "knowledge reference"
+    ],
+    "senseUid": "ef2105b6-a050-4953-9396-cda2af03d360",
+    "wordId": "2374160",
+    "pt": "{\n  \"a\": [\n    \"referência de conhecimento\"\n  ]\n"
+  },
+  {
+    "kana": "ちしきじょうほう",
+    "en": [
+      "knowledge information"
+    ],
+    "senseUid": "4a4d1590-9617-48d0-930d-b82c482a97c6",
+    "wordId": "2374170",
+    "pt": "['informação de conhecimento']"
+  },
+  {
+    "kana": "ちしきじょうほうしょり",
+    "en": [
+      "intelligent information processing"
+    ],
+    "senseUid": "03b27ad1-dbb4-4c17-9023-2fda1126f49c",
+    "wordId": "2374180",
+    "pt": "['processamento inteligente de informações']"
+  },
+  {
+    "kana": "ちしきじょうほうしょりシステム",
+    "en": [
+      "knowledge information processing system"
+    ],
+    "senseUid": "83f72153-0019-4ea8-bd82-c6e15324fa21",
+    "wordId": "2374190",
+    "pt": "['sistema de processamento de informações de conhecimento']"
+  },
+  {
+    "kana": "ちしきぎ",
+    "en": [
+      "knowledge tree"
+    ],
+    "senseUid": "0006e5e4-5a45-4e08-94b7-a88bc4acaa0b",
+    "wordId": "2374200",
+    "pt": "{\n  \"a\": [\n    \"árvore do conhecimento\"\n  ]\n"
+  },
+  {
+    "kana": "ちてきざいさんけん",
+    "en": [
+      "intellectual property rights",
+      "IP rights"
+    ],
+    "senseUid": "e9769b3f-2750-4856-ac54-720c49cf32e1",
+    "wordId": "2374210",
+    "pt": "['direitos de propriedade intelectual', 'direitos de PI']"
+  },
+  {
+    "kana": "ちてきたんまつ",
+    "en": [
+      "intelligent terminal"
+    ],
+    "senseUid": "582fe6e6-ac7e-4389-89a7-2028284d4603",
+    "wordId": "2374220",
+    "pt": "['terminal inteligente']"
+  },
+  {
+    "kana": "ちいきコード",
+    "en": [
+      "local code",
+      "area code"
+    ],
+    "senseUid": "b26da732-2a57-4f3d-bb2c-6246152d524f",
+    "wordId": "2374230",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"ちいきコード\",\n      \"Tradução\": \"código de área\",\n      \"Notas\": \"No contexto japonês, 'ちいきコード' geralmente se refere a um código que identifica uma região ou área específica, semelhante ao conceito de 'código de área' ou 'código local' em português.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "ちいきベルオペレーティングがいしゃ",
+    "en": [
+      "Regional Bell Operating Company (USA)",
+      "RBOC"
+    ],
+    "senseUid": "c59cdba3-6bb6-49ee-a62b-5f74f566fe57",
+    "wordId": "2374240",
+    "pt": "{\n  \"a\": [\n    \"Companhia Regional de Operação Bell (EUA)\",\n    \"RBOC\"\n  ]\n"
+  },
+  {
+    "kana": "ちいきベルでんわがいしゃ",
+    "en": [
+      "regional Bell operating company",
+      "RBOC"
+    ],
+    "senseUid": "c6cb3b8e-72fd-420c-a301-4a280709773c",
+    "wordId": "2374250",
+    "pt": "{\n  \"a\": [\"companhia regional de telefonia Bell\"]\n"
+  },
+  {
+    "kana": "ちいきでんわサービス",
+    "en": [
+      "local telephone service"
+    ],
+    "senseUid": "2b416f11-4bbf-4dba-ad9e-67abaf203bff",
+    "wordId": "2374280",
+    "pt": "['serviço telefônico local']"
+  },
+  {
+    "kana": "ちいきでんわがいしゃ",
+    "en": [
+      "local telephone company"
+    ],
+    "senseUid": "61255d25-8c88-41dc-b80d-462066257b68",
+    "wordId": "2374290",
+    "pt": "['companhia telefônica local']"
+  },
+  {
+    "kana": "ちきゅうきょく",
+    "en": [
+      "earth station (for a satellite)"
+    ],
+    "senseUid": "4c4b44f3-5b61-4bd4-a172-c85a618ab574",
+    "wordId": "2374310",
+    "pt": "{\n  \"a\": [\"estação terrestre (para satélite)\"]\n"
+  },
+  {
+    "kana": "ちいきゆうびんぞくせい",
+    "en": [
+      "local postal attributes"
+    ],
+    "senseUid": "94e321f3-6400-4f33-9fb7-e8ed75f2f157",
+    "wordId": "2374300",
+    "pt": "{\n  \"a\": [\"atributos postais locais\"]\n"
+  },
+  {
+    "kana": "ちじょうは",
+    "en": [
+      "terrestrial",
+      "over-the-air"
+    ],
+    "senseUid": "f69e552c-7362-4828-857a-3c5f8904ead2",
+    "wordId": "2374320",
+    "pt": "['terrestre', 'transmissão aberta']"
+  },
+  {
+    "kana": "ちじょうは",
+    "en": [
+      "ground wave",
+      "terrestrial broadcast signal (i.e. not satellite)"
+    ],
+    "senseUid": "f07c2fd5-70fb-459e-bd63-85420117aa84",
+    "wordId": "2374320",
+    "pt": "{\n  \"a\": [\n    \"onda terrestre\",\n    \"sinal de transmissão terrestre (ou seja, não via satélite)\"\n  ]\n"
+  },
+  {
+    "kana": "ちずさくせい",
+    "en": [
+      "cartography",
+      "mapping"
+    ],
+    "senseUid": "aa6ea627-6fa7-410a-9d6f-6b70c15e9a3f",
+    "wordId": "2374330",
+    "pt": "['cartografia', 'mapeamento']"
+  },
+  {
+    "kana": "ちずちょう",
+    "en": [
+      "atlas"
+    ],
+    "senseUid": "3618eb77-fa3e-4454-b551-b28ec34007d1",
+    "wordId": "2374340",
+    "pt": "['atlas']"
+  },
+  {
+    "kana": "ちてんえんかくち",
+    "en": [
+      "remote location"
+    ],
+    "senseUid": "19851948-f82b-4644-83a8-a7d425a19b59",
+    "wordId": "2374350",
+    "pt": "['local remoto']"
+  },
+  {
+    "kana": "ちりてき",
+    "en": [
+      "geographical",
+      "geographic"
+    ],
+    "senseUid": "76ed1a58-612a-4607-b37f-780f1c75dcbf",
+    "wordId": "2374360",
+    "pt": "{\n  \"a\": [\"geográfico\", \"relativo à geografia\"]\n"
+  },
+  {
+    "kana": "おきかえ",
+    "en": [
+      "replacement",
+      "substitute",
+      "displacement",
+      "transposition",
+      "reset"
+    ],
+    "senseUid": "5de546fb-ec6f-4e2f-91b4-e402e277fc98",
+    "wordId": "2374370",
+    "pt": "{\n  \"a\": [\n    \"substituição\",\n    \"troca\",\n    \"reposicionamento\",\n    \"transposição\",\n    \"reinicialização\"\n  ]\n"
+  },
+  {
+    "kana": "ちかんリスト",
+    "en": [
+      "substitution list"
+    ],
+    "senseUid": "ecfe0c2a-6ced-4777-b836-124d0318b17e",
+    "wordId": "2374380",
+    "pt": "['lista de substituição']"
+  },
+  {
+    "kana": "ちかんかのうひきすうデータ",
+    "en": [
+      "replaceable parameter data"
+    ],
+    "senseUid": "70904992-2494-4827-9349-e2ac517dcae3",
+    "wordId": "2374390",
+    "pt": "{\n  \"a\": [\"dados de parâmetros substituíveis\"]\n"
+  },
+  {
+    "kana": "ちかんかのうもじデータ",
+    "en": [
+      "replaceable character data"
+    ],
+    "senseUid": "3323b993-0eb3-408f-9fb1-46a658967c74",
+    "wordId": "2374400",
+    "pt": "{\n  \"a\": [\"dados de caracteres substituíveis\"]\n"
+  },
+  {
+    "kana": "ちかんぶん",
+    "en": [
+      "replacement text"
+    ],
+    "senseUid": "f484fa3f-b1e2-4844-aaf5-e61ce708d51f",
+    "wordId": "2374410",
+    "pt": "{\n  \"a\": [\"texto de substituição\"]\n"
+  },
+  {
+    "kana": "ちすうしょうきょきのう",
+    "en": [
+      "clear entry function"
+    ],
+    "senseUid": "f21721cd-5e08-4439-9b61-04672498d452",
+    "wordId": "2374430",
+    "pt": "{\n  \"a\": [\"função de limpar entrada\"]\n"
+  },
+  {
+    "kana": "ちかんもじ",
+    "en": [
+      "replacement character"
+    ],
+    "senseUid": "d62d1cd5-8990-46ad-a2b6-8083938c627a",
+    "wordId": "2374420",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ちかんもじ\",\n      \"português\": \"caractere de substituição\",\n      \"explicação\": \"No contexto japonês, ちかんもじ refere-se a um caractere usado para substituir outro quando o original não pode ser exibido corretamente, como um símbolo de erro ou caractere genérico.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "ちめいてきエラー",
+    "en": [
+      "fatal error"
+    ],
+    "senseUid": "c498c781-2d91-4b90-ab90-df7e2ec11c16",
+    "wordId": "2374440",
+    "pt": "{\n  \"a\": [\"erro fatal\"]\n"
+  },
+  {
+    "kana": "ちめいてきあやまり",
+    "en": [
+      "fatal error"
+    ],
+    "senseUid": "88675ac4-d225-4880-8653-5fc988ea1a7f",
+    "wordId": "2374450",
+    "pt": "['erro fatal']"
+  },
+  {
+    "kana": "ちえんセンシティブ",
+    "en": [
+      "delay sensitive"
+    ],
+    "senseUid": "b5e055b0-944b-42d1-9d59-498b4c86a4b4",
+    "wordId": "2374470",
+    "pt": "{\n  \"a\": [\"sensível a atraso\"]\n"
+  },
+  {
+    "kana": "ちえんモード",
+    "en": [
+      "deferral mode"
+    ],
+    "senseUid": "b5484708-f0e5-41c0-b733-7c4a8d21134c",
+    "wordId": "2374480",
+    "pt": "{\n  \"a\": [\"modo de adiamento\"]\n"
+  },
+  {
+    "kana": "ちえんかいろ",
+    "en": [
+      "delay circuit"
+    ],
+    "senseUid": "a5de4418-8aea-449e-9681-518c1698eed4",
+    "wordId": "2374490",
+    "pt": "['circuito de atraso']"
+  },
+  {
+    "kana": "ちえんひろがり",
+    "en": [
+      "delay spread"
+    ],
+    "senseUid": "32518c79-b6c6-4664-a5b3-8020ec45935e",
+    "wordId": "2374500",
+    "pt": "['espalhamento de atraso']"
+  },
+  {
+    "kana": "ちえんこうしん",
+    "en": [
+      "deferred update"
+    ],
+    "senseUid": "49ec8265-a740-4f03-a055-2e60eb43c5ca",
+    "wordId": "2374510",
+    "pt": "['atualização adiada']"
+  },
+  {
+    "kana": "ちえんしょり",
+    "en": [
+      "deference"
+    ],
+    "senseUid": "812161e3-8d92-4b92-9f91-97d9c00e3c41",
+    "wordId": "2374520",
+    "pt": "{\n  \"a\": [\"deferência\"]\n"
+  },
+  {
+    "kana": "ちえんせん",
+    "en": [
+      "delay line"
+    ],
+    "senseUid": "95def732-5be0-435f-ae79-0a8c81e9df25",
+    "wordId": "2374530",
+    "pt": "['linha de atraso']"
+  },
+  {
+    "kana": "ちえんそし",
+    "en": [
+      "delay element"
+    ],
+    "senseUid": "0323b1e6-7191-4fe8-93bc-01cf7b7527bd",
+    "wordId": "2374540",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ちえんそし\",\n      \"gloss\": [\"elemento de atraso\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "ちえんはいしん",
+    "en": [
+      "deferred delivery"
+    ],
+    "senseUid": "82074680-cf0e-4bde-a107-b87bafd8a9de",
+    "wordId": "2374550",
+    "pt": "['transmissão adiada']"
+  },
+  {
+    "kana": "ちえんはいしんとりけし",
+    "en": [
+      "deferred delivery cancellation"
+    ],
+    "senseUid": "8428e8cc-b1f1-4f30-9aeb-11b850bdc4b1",
+    "wordId": "2374560",
+    "pt": "['Cancelamento de entrega adiada']"
+  },
+  {
+    "kana": "ちえんへんどう",
+    "en": [
+      "delay variation"
+    ],
+    "senseUid": "2c8231b3-c307-4844-9abd-f12757b57903",
+    "wordId": "2374570",
+    "pt": "['variação de atraso']"
+  },
+  {
+    "kana": "ちえんへんどうセンシティブ",
+    "en": [
+      "delay variation sensitive"
+    ],
+    "senseUid": "23fae8e0-093a-47d9-8c74-500b3398fa56",
+    "wordId": "2374580",
+    "pt": "['sensível à variação de atraso']"
+  },
+  {
+    "kana": "ちえんゆらぎ",
+    "en": [
+      "delay variation"
+    ],
+    "senseUid": "7ce5d266-67ef-4c0c-8e6d-4f57a83b01c6",
+    "wordId": "2374590",
+    "pt": "{\n  \"a\": [\"variação de atraso\"]\n"
+  },
+  {
+    "kana": "ちえんひずみ",
+    "en": [
+      "delay distortion"
+    ],
+    "senseUid": "7a42f8cf-49e8-4f90-a50e-72c1045ee467",
+    "wordId": "2374600",
+    "pt": "{\n  \"a\": [\n    \"distorção de atraso\"\n  ]\n"
+  },
+  {
+    "kana": "ちくいちめいれいそうさ",
+    "en": [
+      "single step operation",
+      "step-by-step operation"
+    ],
+    "senseUid": "0907f895-e753-481d-9990-1645056981ee",
+    "wordId": "2374610",
+    "pt": "['operação passo a passo', 'operação em etapas']"
+  },
+  {
+    "kana": "ちくじいんじそうち",
+    "en": [
+      "character printer",
+      "serial printer"
+    ],
+    "senseUid": "dbad0c82-807c-4628-b48b-63e7d9a73d65",
+    "wordId": "2374620",
+    "pt": "{\n  \"a\": [\"impressora de caracteres\", \"impressora serial\"]\n"
+  },
+  {
+    "kana": "ちくじかんこうぶつ",
+    "en": [
+      "serial publication"
+    ],
+    "senseUid": "6f73b116-2769-46c0-b891-ad40d2b18330",
+    "wordId": "2374630",
+    "pt": "{\n  \"a\": [\n    \"publicação seriada\"\n  ]\n"
+  },
+  {
+    "kana": "ちくじじっこう",
+    "en": [
+      "sequential execution"
+    ],
+    "senseUid": "c0257d87-b22f-4f83-90c7-642944e16074",
+    "wordId": "2374650",
+    "pt": "['execução sequencial']"
+  },
+  {
+    "kana": "ちゃっかにゅうしゃ",
+    "en": [
+      "called party",
+      "called subscriber"
+    ],
+    "senseUid": "7725db57-c4e7-469e-ae09-4a7ea5ff108d",
+    "wordId": "2374660",
+    "pt": "{\n  \"a\": [\n    \"parte chamada\",\n    \"assinante chamado\"\n  ]\n"
+  },
+  {
+    "kana": "ちゃっこ",
+    "en": [
+      "incoming call"
+    ],
+    "senseUid": "7403ba93-57f1-4b1e-badb-270b381e49f4",
+    "wordId": "2374670",
+    "pt": "['chamada recebida']"
+  },
+  {
+    "kana": "ちゃっこうけつけしんごう",
+    "en": [
+      "call-accepted signal"
+    ],
+    "senseUid": "d83f0ab3-b587-4f99-aee9-ec15b670464b",
+    "wordId": "2374680",
+    "pt": "['sinal de chamada aceita']"
+  },
+  {
+    "kana": "ちゃっこうけつけふかしんごう",
+    "en": [
+      "call-not-accepted signal"
+    ],
+    "senseUid": "39869c8a-9e9c-474b-8853-effa689ba19b",
+    "wordId": "2374690",
+    "pt": "{\n  \"a\": [\"sinal de chamada não aceita\"]\n"
+  },
+  {
+    "kana": "ちゃっこがわエヌエスりようしゃ",
+    "en": [
+      "called NS user"
+    ],
+    "senseUid": "a4c179a0-f41b-480a-a82a-70a2f5083d23",
+    "wordId": "2374700",
+    "pt": "{\n  \"a\": [\"usuário chamado NS\"]\n"
+  },
+  {
+    "kana": "ちゃっこがわエスエスりようしゃ",
+    "en": [
+      "called SS user"
+    ],
+    "senseUid": "77ba4e1a-c133-42db-acdc-d1c6797b069d",
+    "wordId": "2374720",
+    "pt": "{\n  \"a\": [\"Usuário chamado SS\"]\n"
+  },
+  {
+    "kana": "ちゃっこがわティーエスりようしゃ",
+    "en": [
+      "called TS user"
+    ],
+    "senseUid": "816d4393-d8e2-4789-b9cb-8418cc53345e",
+    "wordId": "2374730",
+    "pt": "{\n  \"a\": [\"chamado usuário TS\"]\n"
+  },
+  {
+    "kana": "ちゃくしんしゃ",
+    "en": [
+      "recipient (of a transmission)"
+    ],
+    "senseUid": "1f0675ec-c3cd-4618-ad7e-82b310ed2409",
+    "wordId": "2374740",
+    "pt": "{\n  \"a\": [\"destinatário ("
+  },
+  {
+    "kana": "ちゃくしんてんそうきのう",
+    "en": [
+      "call forwarding"
+    ],
+    "senseUid": "72a535ae-f9a6-4a9e-8410-ef74be0f650d",
+    "wordId": "2374750",
+    "pt": "['função de encaminhamento de chamadas']"
+  },
+  {
+    "kana": "ちゃくだつかのう",
+    "en": [
+      "removable",
+      "detachable",
+      "demountable"
+    ],
+    "senseUid": "d2d9f875-f97a-4ca0-ad6e-9df203420d7a",
+    "wordId": "2374760",
+    "pt": "{\n  \"a\": [\n    \"removível\",\n    \"destacável\",\n    \"desmontável\"\n  ]\n"
+  },
+  {
+    "kana": "ちゅうかっこ",
+    "en": [
+      "curly braces",
+      "curly brackets"
+    ],
+    "senseUid": "90d5d5d0-3a6d-4790-91fe-2f30beef2b10",
+    "wordId": "2374770",
+    "pt": "{\n  \"a\": [\n    \"chaves\",\n    \"colchetes em forma de onda\"\n  ]\n"
+  },
+  {
+    "kana": "ちゅうおうえんざんしょりそうち",
+    "en": [
+      "central processing unit",
+      "CPU"
+    ],
+    "senseUid": "43f15e0f-b541-4042-ba90-3c9871ed3077",
+    "wordId": "2374790",
+    "pt": "['unidade central de processamento', 'CPU']"
+  },
+  {
+    "kana": "ちゅうおうぞろえ",
+    "en": [
+      "center alignment",
+      "center justification",
+      "centering"
+    ],
+    "senseUid": "29c2f05e-080f-4893-8c23-575481838621",
+    "wordId": "2374810",
+    "pt": "{\n  \"a\": [\n    \"alinhamento central\",\n    \"justificação central\",\n    \"centralização\"\n  ]\n"
+  },
+  {
+    "kana": "ちゅうかくぶんしょ",
+    "en": [
+      "hub document"
+    ],
+    "senseUid": "fb9067fc-e80a-4715-b1f3-3b07bd81bb84",
+    "wordId": "2374820",
+    "pt": "{\n  \"a\": [\"documento central\"]\n"
+  },
+  {
+    "kana": "ちゅうかんコード",
+    "en": [
+      "intermediate code"
+    ],
+    "senseUid": "f5bce881-fcce-4e52-ab44-b3e7f0f70955",
+    "wordId": "2374840",
+    "pt": "{\n  \"a\": [\"código intermediário\"]\n"
+  },
+  {
+    "kana": "ちゅうかんシステム",
+    "en": [
+      "intermediate system",
+      "IS"
+    ],
+    "senseUid": "621cdba5-0206-4f17-b380-0f1a867ad99a",
+    "wordId": "2374850",
+    "pt": "['sistema intermediário', 'IS']"
+  },
+  {
+    "kana": "ちゅうかんノード",
+    "en": [
+      "intermediate node"
+    ],
+    "senseUid": "7417ce2e-cd29-4f8f-9d79-56ba8c5bb90c",
+    "wordId": "2374860",
+    "pt": "{\n  \"a\": [\"nó intermediário\"]\n"
+  },
+  {
+    "kana": "ちゅうかんバイト",
+    "en": [
+      "intermediate byte"
+    ],
+    "senseUid": "485cb5d2-4098-4c23-97b1-ba87c4e35851",
+    "wordId": "2374870",
+    "pt": "{\n  \"a\": [\"byte intermediário\"]\n"
+  },
+  {
+    "kana": "ちゅうかんげんご",
+    "en": [
+      "intermediate language"
+    ],
+    "senseUid": "6f4da672-f5dc-4a10-8b69-4a27e2929290",
+    "wordId": "2374880",
+    "pt": "['língua intermediária']"
+  },
+  {
+    "kana": "ちゅうかんげんご",
+    "en": [
+      "interlanguage"
+    ],
+    "senseUid": "d02b0add-1f9f-4f8e-87f9-d98a4734bf42",
+    "wordId": "2374880",
+    "pt": "['língua intermédia']"
+  },
+  {
+    "kana": "ちゅうかんげんごレベル",
+    "en": [
+      "intermediate language level"
+    ],
+    "senseUid": "2b89d3fb-f3c8-4b27-a5f1-793e025e4e2a",
+    "wordId": "2374890",
+    "pt": "{\n  \"a\": [\"nível intermediário de linguagem\"]\n"
+  },
+  {
+    "kana": "ちゅうかんそうち",
+    "en": [
+      "intermediate equipment"
+    ],
+    "senseUid": "81bea4a6-3104-4ea7-9324-edf537650a73",
+    "wordId": "2374910",
+    "pt": "['equipamento intermediário']"
+  },
+  {
+    "kana": "ちゅうかんせってん",
+    "en": [
+      "intermediate node"
+    ],
+    "senseUid": "5d7dd4db-4a46-454e-87b9-3e6ecec6588a",
+    "wordId": "2374900",
+    "pt": "{\n  \"a\": [\"nó intermediário\"]\n"
+  },
+  {
+    "kana": "ちゅうかんそくど",
+    "en": [
+      "middle speed (vs. low or high speed)"
+    ],
+    "senseUid": "a78fab89-5296-48c0-8ac7-e0ce79cf4ce6",
+    "wordId": "2374920",
+    "pt": "{\n  \"a\": [\n    \"velocidade intermediária (em comparação com baixa ou alta velocidade)\"\n  ]\n"
+  },
+  {
+    "kana": "ちゅうかんはいせんばん",
+    "en": [
+      "IDF",
+      "Intermediate Division Frame"
+    ],
+    "senseUid": "a9e70ecd-9b87-4195-adb6-559afa1389e4",
+    "wordId": "2374930",
+    "pt": "{\n  \"a\": [\"Painel de Distribuição Intermediária (IDF)\"]\n"
+  },
+  {
+    "kana": "ちゅうかんもじ",
+    "en": [
+      "intermediate character"
+    ],
+    "senseUid": "bce4856b-5667-4880-9e75-0800f7460f9f",
+    "wordId": "2374940",
+    "pt": "{\n  \"a\": [\n    \"caractere intermediário\"\n  ]\n"
+  },
+  {
+    "kana": "ちゅうきどう",
+    "en": [
+      "ICO",
+      "Intermediate Circular Orbit"
+    ],
+    "senseUid": "752fca9c-c238-4f19-ba77-d3eaeffa6c97",
+    "wordId": "2374950",
+    "pt": "{\n  \"a\": [\n    \"Órbita Circular Intermediária\"\n  ]\n"
+  },
+  {
+    "kana": "ちゅうけいき",
+    "en": [
+      "repeater",
+      "relay"
+    ],
+    "senseUid": "f568d3aa-7109-407a-93b0-f7fc2ea43d14",
+    "wordId": "2374970",
+    "pt": "['repetidor', 'relé']"
+  },
+  {
+    "kana": "ちゅうけいこうかんき",
+    "en": [
+      "toll switch",
+      "TS",
+      "trunk exchange"
+    ],
+    "senseUid": "e1f90f98-8841-4dd9-b983-1e26d455a583",
+    "wordId": "2374980",
+    "pt": "{\n  \"a\": [\n    \"central de comutação de longa distância\",\n    \"central troncal\",\n    \"central de comutação troncal\"\n  ]\n"
+  },
+  {
+    "kana": "ちゅうけいせんこうかんき",
+    "en": [
+      "toll switch",
+      "TS",
+      "trunk exchange"
+    ],
+    "senseUid": "99e4a65a-6c4f-45c6-bcae-4e0ed89d01e4",
+    "wordId": "2374990",
+    "pt": "{\n  \"a\": [\n    \"central troncal\",\n    \"central de comutação troncal\",\n    \"TS (central troncal de comutação de chamadas interurbanas)\"\n  ]\n"
+  }
+]

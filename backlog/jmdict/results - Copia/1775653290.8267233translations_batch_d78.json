@@ -1,0 +1,961 @@
+[
+  {
+    "kana": "とのご",
+    "en": [
+      "gentlemen"
+    ],
+    "senseUid": "6829e6a1-f62c-471b-9a2e-049c134c5dd8",
+    "wordId": "1442560",
+    "pt": "{\n  \"a\": [\"senhores\"]\n"
+  },
+  {
+    "kana": "でんしゃ",
+    "en": [
+      "palace"
+    ],
+    "senseUid": "6aa0e476-0823-43a6-9b83-78cd31e7cbae",
+    "wordId": "1442570",
+    "pt": "{\n  \"a\": [\"trem\"]\n"
+  },
+  {
+    "kana": "てんじょう",
+    "en": [
+      "the court",
+      "palace circles",
+      "palace floor"
+    ],
+    "senseUid": "dac93598-ca99-4ff8-b1d2-bff89f9f0b41",
+    "wordId": "1442580",
+    "pt": "['a corte', 'círculos do palácio', 'piso do palácio']"
+  },
+  {
+    "kana": "てんじょうのま",
+    "en": [
+      "palace floor"
+    ],
+    "senseUid": "867f7928-b9cc-4f8e-ad14-b0f561c8a822",
+    "wordId": "1442590",
+    "pt": "{\n  \"a\": [\"espaço entre o teto\", \"espaço entre o teto e o forro\"]\n"
+  },
+  {
+    "kana": "てんじょうびと",
+    "en": [
+      "courtier",
+      "court official"
+    ],
+    "senseUid": "c45ec956-920f-4714-8b49-a1c19a5ba9b8",
+    "wordId": "1442600",
+    "pt": "{\n  \"a\": [\"cortesão\", \"oficial da corte\"]\n"
+  },
+  {
+    "kana": "とのたち",
+    "en": [
+      "the nobility"
+    ],
+    "senseUid": "44078bee-bc33-4e84-adb9-96e11ab27ba2",
+    "wordId": "1442610",
+    "pt": "{\n  \"a\": [\"os nobres\"]\n"
+  },
+  {
+    "kana": "とのたち",
+    "en": [
+      "visitors"
+    ],
+    "senseUid": "4dd484b3-93be-4a59-b1c6-3d493e5b218f",
+    "wordId": "1442610",
+    "pt": "['visitantes']"
+  },
+  {
+    "kana": "でんちゅう",
+    "en": [
+      "in the palace"
+    ],
+    "senseUid": "57cd502d-e433-421e-a92c-afae7615eafb",
+    "wordId": "1442620",
+    "pt": "{\n  \"a\": [\"no palácio\"]\n"
+  },
+  {
+    "kana": "でんどう",
+    "en": [
+      "palace",
+      "hall"
+    ],
+    "senseUid": "5f79b452-546b-4da2-983f-d0907cc69819",
+    "wordId": "1442630",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"でんどう\",\n      \"português\": [\"salão\", \"palácio\"],\n      \"notas\": \"No contexto japonês, でんどう (dendō) refere-se geralmente a um grande salão ou edifício importante, como um salão principal de um templo ou palácio.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "でんどう",
+    "en": [
+      "shrine",
+      "temple",
+      "sanctuary"
+    ],
+    "senseUid": "02dc0dce-54d2-4538-be01-e5443ed9009f",
+    "wordId": "1442630",
+    "pt": "{\n  \"a\": [\"templo\", \"santuário\", \"santuário xintoísta\"]\n"
+  },
+  {
+    "kana": "でんどう",
+    "en": [
+      "hall of fame"
+    ],
+    "senseUid": "91147437-5ba5-4cff-9895-32cd1c400806",
+    "wordId": "1442630",
+    "pt": "{\n  \"a\": [\n    \"salão da fama\"\n  ]\n"
+  },
+  {
+    "kana": "とのがた",
+    "en": [
+      "gentlemen",
+      "men"
+    ],
+    "senseUid": "f0d06308-52fc-425a-8f3a-aa64aa961635",
+    "wordId": "1442640",
+    "pt": "{\n  \"a\": [\"senhores\", \"cavalheiros\"]\n"
+  },
+  {
+    "kana": "とのがた",
+    "en": [
+      "the men's (sign on toilet, bathroom, etc. doors)"
+    ],
+    "senseUid": "7d6fe9b5-6668-4e85-ad23-0ee51c43209e",
+    "wordId": "1442640",
+    "pt": "{\n  \"a\": [\n    \"dos homens (placa em portas de banheiro, toalete, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "とのさま",
+    "en": [
+      "nobleman",
+      "dignitary",
+      "lord"
+    ],
+    "senseUid": "e09882eb-2a7e-4313-be38-553b3396fa21",
+    "wordId": "1442650",
+    "pt": "{\n  \"a\": [\n    \"senhor feudal\",\n    \"nobre\",\n    \"dignitário\"\n  ]\n"
+  },
+  {
+    "kana": "とのさま",
+    "en": [
+      "feudal lord (of the Edo period)",
+      "daimyo"
+    ],
+    "senseUid": "30530875-da02-44f2-b4b2-ae28f9a95a62",
+    "wordId": "1442650",
+    "pt": "{\n  \"a\": [\n    \"senhor feudal (do período Edo)\",\n    \"daimyō\"\n  ]\n"
+  },
+  {
+    "kana": "とのさま",
+    "en": [
+      "man brought up away from the world",
+      "arrogant man with little knowledge of the ways of the world"
+    ],
+    "senseUid": "26c159c2-90b3-4d05-9fce-094d535ac28c",
+    "wordId": "1442650",
+    "pt": "['homem criado afastado do mundo', 'homem arrogante com pouco conhecimento das coisas do mundo']"
+  },
+  {
+    "kana": "とのさまそだち",
+    "en": [
+      "brought up in luxury"
+    ],
+    "senseUid": "b9d60dfd-ee1e-4cff-acb0-18c958f9bdd6",
+    "wordId": "1442660",
+    "pt": "['criado como um senhor feudal']"
+  },
+  {
+    "kana": "とのさまがえる",
+    "en": [
+      "black-spotted pond frog (Rana nigromaculata)"
+    ],
+    "senseUid": "ca026222-7032-4c12-ba2f-2976f059861c",
+    "wordId": "1442670",
+    "pt": "['rã-do-senhor-feudal (rã-de-lago com manchas pretas, Rana nigromaculata)']"
+  },
+  {
+    "kana": "とのさまげい",
+    "en": [
+      "dilettantism",
+      "amateurism (in art)"
+    ],
+    "senseUid": "bd82351f-42cc-461c-b131-c1129c21a507",
+    "wordId": "1442680",
+    "pt": "{\n  \"a\": [\n    \"diletantismo\",\n    \"amadorismo (nas artes)\"\n  ]\n"
+  },
+  {
+    "kana": "とのさましごと",
+    "en": [
+      "amateur work (in art)",
+      "work done in carefree mood without regard to time or expenses"
+    ],
+    "senseUid": "103ab5d8-564b-48f2-8b7d-800e0774d30a",
+    "wordId": "1442690",
+    "pt": "['trabalho amador (em arte)', 'trabalho feito de modo despreocupado, sem se importar com tempo ou despesas']"
+  },
+  {
+    "kana": "とのさまふう",
+    "en": [
+      "lordly air"
+    ],
+    "senseUid": "64315975-3201-41ae-a92a-8e5b7ea9933d",
+    "wordId": "1442700",
+    "pt": "{\n  \"a\": [\"ar de senhor feudal\", \"atitude de lorde\", \"comportamento de daimyo\"]\n"
+  },
+  {
+    "kana": "でんぷん",
+    "en": [
+      "starch"
+    ],
+    "senseUid": "caf156ac-649d-4d57-ae15-151bc64d0669",
+    "wordId": "1442710",
+    "pt": "['amido']"
+  },
+  {
+    "kana": "でんぷんしつ",
+    "en": [
+      "starchiness",
+      "starchy",
+      "farinaceous"
+    ],
+    "senseUid": "3c5af738-12f4-4b42-b92d-9d4018aafe2d",
+    "wordId": "1442720",
+    "pt": "{\n  \"a\": [\n    \"amidoso\",\n    \"com amido\",\n    \"farináceo\"\n  ]\n"
+  },
+  {
+    "kana": "た",
+    "en": [
+      "rice field"
+    ],
+    "senseUid": "39796f6a-883c-48db-a463-8e91c762690e",
+    "wordId": "1442730",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"た\",\n      \"português\": \"arrozal\",\n      \"explicação\": \"No contexto japonês, た (ta) refere-se a um campo de arroz, que é uma paisagem comum no Japão e parte importante da cultura agrícola japonesa.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "でんえん",
+    "en": [
+      "the country",
+      "countryside",
+      "rural districts"
+    ],
+    "senseUid": "d20f1a95-9d86-4e96-b36d-c8206afb5f53",
+    "wordId": "1442740",
+    "pt": "['o campo', 'zona rural', 'distritos rurais']"
+  },
+  {
+    "kana": "でんえん",
+    "en": [
+      "cultivated land",
+      "fields"
+    ],
+    "senseUid": "0d7e87e5-15cb-4731-99eb-45acacd992bf",
+    "wordId": "1442740",
+    "pt": "['terras cultivadas', 'campos']"
+  },
+  {
+    "kana": "いなか",
+    "en": [
+      "rural area",
+      "countryside",
+      "the sticks"
+    ],
+    "senseUid": "5f0ad2b0-4498-450c-9e40-add7924d7807",
+    "wordId": "1442750",
+    "pt": "['zona rural', 'interior', 'campo']"
+  },
+  {
+    "kana": "いなか",
+    "en": [
+      "hometown"
+    ],
+    "senseUid": "bdd6b7d9-14db-4d9a-a8d6-88c52e2263f9",
+    "wordId": "1442750",
+    "pt": "['interior', 'zona rural', 'campo', 'terra natal']"
+  },
+  {
+    "kana": "いなかそだち",
+    "en": [
+      "country-bred",
+      "raised in the country"
+    ],
+    "senseUid": "a14e986f-2b84-4654-a8ab-3f42bd7e4877",
+    "wordId": "1442760",
+    "pt": "['criado no interior', 'criado na zona rural']"
+  },
+  {
+    "kana": "いなかもの",
+    "en": [
+      "person from the countryside",
+      "countryman",
+      "countryfolk",
+      "provincial person",
+      "bumpkin",
+      "hick",
+      "hillbilly",
+      "redneck"
+    ],
+    "senseUid": "22916ca5-215c-40d4-917a-7f9fc8527b74",
+    "wordId": "1442770",
+    "pt": "['pessoa do interior', 'camponês', 'habitante rural', 'pessoa provinciana', 'matuto', 'caipira', 'jeca', 'tabaréu']"
+  },
+  {
+    "kana": "いなかみち",
+    "en": [
+      "country road"
+    ],
+    "senseUid": "c3857d12-1569-443b-bad2-db21eb4ef050",
+    "wordId": "1442780",
+    "pt": "['estrada do interior']"
+  },
+  {
+    "kana": "いなかふう",
+    "en": [
+      "rustic",
+      "country-style"
+    ],
+    "senseUid": "5cad3ce0-604e-4204-b120-d303fedb62ac",
+    "wordId": "1442790",
+    "pt": "['estilo rural', 'rústico', 'ao modo do interior']"
+  },
+  {
+    "kana": "いなかむすめ",
+    "en": [
+      "country girl"
+    ],
+    "senseUid": "83f6ef0d-5783-485e-b9da-12a9011b1aa9",
+    "wordId": "1442800",
+    "pt": "['camponesa']"
+  },
+  {
+    "kana": "たうえ",
+    "en": [
+      "rice planting"
+    ],
+    "senseUid": "e89899d7-7c23-4d90-9fa5-5208a1250ac2",
+    "wordId": "1442810",
+    "pt": "['plantio de arroz']"
+  },
+  {
+    "kana": "でんち",
+    "en": [
+      "farmland",
+      "rice field or paddy"
+    ],
+    "senseUid": "74cadc55-064c-4eb0-80de-b5ed6b16d4a4",
+    "wordId": "1442820",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"でんち\",\n      \"português\": [\"arrozal\", \"campo de arroz\", \"plantação de arroz\"],\n      \"nota\": \"Refere-se a um campo alagado onde se cultiva arroz, típico da agricultura japonesa.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "たはた",
+    "en": [
+      "fields (of rice and other crops)"
+    ],
+    "senseUid": "59e2f92c-66c4-40c0-9bd1-1bd25310714b",
+    "wordId": "1442830",
+    "pt": "['campos (de arroz e outras culturas)']"
+  },
+  {
+    "kana": "でんあつ",
+    "en": [
+      "voltage"
+    ],
+    "senseUid": "9539e2c1-6f51-4b1b-992d-de6599a24e24",
+    "wordId": "1442850",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"でんあつ\",\n      \"portugues\": \"tensão elétrica\"\n    \n  ]\n"
+  },
+  {
+    "kana": "たんぼ",
+    "en": [
+      "rice field",
+      "rice paddy",
+      "paddy field"
+    ],
+    "senseUid": "2fa35209-41f7-4faf-8516-677d51957d4e",
+    "wordId": "1442840",
+    "pt": "['arrozal', 'campo de arroz', 'plantação de arroz']"
+  },
+  {
+    "kana": "でんあつけい",
+    "en": [
+      "voltmeter"
+    ],
+    "senseUid": "7056bc27-6464-4967-a788-a930b24e8ba7",
+    "wordId": "1442860",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"でんあつけい\",\n      \"portugues\": \"voltímetro\",\n      \"explicação\": \"Instrumento usado para medir a diferença de potencial elétrico (voltagem) entre dois pontos de um circuito, comum em laboratórios e eletrônica, refletindo o uso prático e técnico do termo no contexto japonês.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "でんい",
+    "en": [
+      "electric potential"
+    ],
+    "senseUid": "3f90281a-fd07-4033-a18e-36668b3eb89a",
+    "wordId": "1442870",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"でんい\",\n      \"portugues\": \"potencial elétrico\",\n      \"explicação\": \"No contexto japonês, でんい (den'i) refere-se ao potencial elétrico, que é a quantidade de energia elétrica potencial por unidade de carga em um ponto de um campo elétrico.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "でんいさけい",
+    "en": [
+      "potentiometer",
+      "voltage measuring device"
+    ],
+    "senseUid": "7ae19c7c-f0a4-4b5e-927d-572ea9bec43c",
+    "wordId": "1442880",
+    "pt": "{\n  \"a\": [\n    \"potenciômetro\",\n    \"dispositivo de medição de tensão\"\n  ]\n"
+  },
+  {
+    "kana": "でんか",
+    "en": [
+      "electrification"
+    ],
+    "senseUid": "931713d0-4398-4acf-b8d9-062f74571d3a",
+    "wordId": "1442890",
+    "pt": "['eletrificação']"
+  },
+  {
+    "kana": "でんか",
+    "en": [
+      "electric charge",
+      "charge"
+    ],
+    "senseUid": "1e8d54a7-0889-4f58-ade9-a15acbb96def",
+    "wordId": "1442900",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"でんか\",\n      \"gloss\": [\"carga elétrica\", \"carga\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "でんかけつごうそし",
+    "en": [
+      "Charge-Coupled Device",
+      "CCD"
+    ],
+    "senseUid": "0f54334c-53cd-4f0a-bb97-3700e8d0a0fa",
+    "wordId": "1442910",
+    "pt": "{\n  \"a\": [\n    \"Dispositivo de Carga Acoplada\"\n  ]\n"
+  },
+  {
+    "kana": "でんかい",
+    "en": [
+      "electrolysis"
+    ],
+    "senseUid": "6b288b80-e442-4c72-b158-46a6c8382387",
+    "wordId": "1442920",
+    "pt": "['eletrólise']"
+  },
+  {
+    "kana": "でんかいコンデンサー",
+    "en": [
+      "electrolytic capacitor"
+    ],
+    "senseUid": "7379f8a2-fba8-4300-81c6-676a33a767f5",
+    "wordId": "1442930",
+    "pt": "['capacitor eletrolítico']"
+  },
+  {
+    "kana": "でんかいえき",
+    "en": [
+      "electrolyte solution",
+      "electrolytic solution"
+    ],
+    "senseUid": "f505059a-47ca-452b-88a0-31093632bb2e",
+    "wordId": "1442940",
+    "pt": "{\n  \"a\": [\n    \"solução eletrolítica\"\n  ]\n"
+  },
+  {
+    "kana": "でんかいしつ",
+    "en": [
+      "electrolyte"
+    ],
+    "senseUid": "0c9695bf-2a3b-41fb-b0e7-69e08b57e822",
+    "wordId": "1442950",
+    "pt": "['eletrólito']"
+  },
+  {
+    "kana": "でんかいそう",
+    "en": [
+      "electrolytic cell",
+      "electrolytic bath"
+    ],
+    "senseUid": "8e3bc021-de6e-4cb8-bfa7-f713d40dcec7",
+    "wordId": "1442960",
+    "pt": "['célula eletrolítica', 'banho eletrolítico']"
+  },
+  {
+    "kana": "でんかい",
+    "en": [
+      "electric field"
+    ],
+    "senseUid": "8781aaa5-c277-4703-9226-9290e9af0d69",
+    "wordId": "1442970",
+    "pt": "['campo elétrico']"
+  },
+  {
+    "kana": "でんき",
+    "en": [
+      "electric (goods)"
+    ],
+    "senseUid": "904913c8-1ade-43c6-8387-4170f4f1780a",
+    "wordId": "1442980",
+    "pt": "['elétrico', 'aparelho elétrico', 'eletrodoméstico']"
+  },
+  {
+    "kana": "でんき",
+    "en": [
+      "electrical machinery",
+      "appliances"
+    ],
+    "senseUid": "e7be3dcb-d49f-481b-8311-ce645b37b2d4",
+    "wordId": "1442990",
+    "pt": "['aparelhos elétricos', 'eletrodomésticos']"
+  },
+  {
+    "kana": "でんき",
+    "en": [
+      "electricity"
+    ],
+    "senseUid": "4ad639d9-0bf7-4c4b-855b-f83e6c8f73f5",
+    "wordId": "1443000",
+    "pt": "['eletricidade']"
+  },
+  {
+    "kana": "でんき",
+    "en": [
+      "(electric) light"
+    ],
+    "senseUid": "4980cbbd-9bf6-4775-83b8-1b96389ae5b5",
+    "wordId": "1443000",
+    "pt": "['luz elétrica']"
+  },
+  {
+    "kana": "でんきスタンド",
+    "en": [
+      "desk lamp",
+      "floor lamp",
+      "standard lamp"
+    ],
+    "senseUid": "9b74d32f-a391-4f4a-a10f-aeaff03fb9b4",
+    "wordId": "1443010",
+    "pt": "{\n  \"a\": [\"luminária de mesa\", \"luminária de chão\", \"abajur\"]\n"
+  },
+  {
+    "kana": "でんきストーブ",
+    "en": [
+      "electric heater"
+    ],
+    "senseUid": "d96baf7a-c0f5-4dc3-b869-0aa8bbb8f062",
+    "wordId": "1443020",
+    "pt": "['aquecedor elétrico']"
+  },
+  {
+    "kana": "でんきかいろ",
+    "en": [
+      "electric circuit"
+    ],
+    "senseUid": "1b6b5476-90e6-46f6-ad6b-bb6a0b5580ac",
+    "wordId": "1443040",
+    "pt": "['circuito elétrico']"
+  },
+  {
+    "kana": "でんきがいしゃ",
+    "en": [
+      "electric company"
+    ],
+    "senseUid": "1fd3d5de-5317-4450-a685-e6a11617f0bf",
+    "wordId": "1443030",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"でんきがいしゃ\",\n      \"portugues\": \"companhia elétrica\",\n      \"explicação\": \"No contexto japonês, でんきがいしゃ refere-se a uma empresa responsável pelo fornecimento de eletricidade, como as grandes companhias regionais do Japão.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "でんききき",
+    "en": [
+      "electrical equipment",
+      "electrical machinery",
+      "electrical appliances"
+    ],
+    "senseUid": "11318cb6-8485-495f-9a31-a608f8f395df",
+    "wordId": "1443060",
+    "pt": "['equipamento elétrico', 'máquinas elétricas', 'aparelhos elétricos']"
+  },
+  {
+    "kana": "でんきこう",
+    "en": [
+      "electrician"
+    ],
+    "senseUid": "00f65589-fb61-46bf-a735-45614e0cef74",
+    "wordId": "1443070",
+    "pt": "['eletricista']"
+  },
+  {
+    "kana": "でんきしんごう",
+    "en": [
+      "electrical signal"
+    ],
+    "senseUid": "1ac26d49-8616-4b1a-b3fb-2a9e24381d9f",
+    "wordId": "1443080",
+    "pt": "{\n  \"a\": [\"sinal elétrico\"]\n"
+  },
+  {
+    "kana": "でんきせいひん",
+    "en": [
+      "electronic goods"
+    ],
+    "senseUid": "167f5fa4-5e15-4bcd-92d1-0d5b101289a5",
+    "wordId": "1443090",
+    "pt": "{\n  \"a\": [\"produtos eletrônicos\"]\n"
+  },
+  {
+    "kana": "でんきだい",
+    "en": [
+      "electricity bill",
+      "electric bill"
+    ],
+    "senseUid": "634ffeba-dbfe-4d6a-98fc-3160023a2f97",
+    "wordId": "1443100",
+    "pt": "['conta de luz', 'conta de eletricidade']"
+  },
+  {
+    "kana": "でんきカミソリ",
+    "en": [
+      "electric razor",
+      "electric shaver"
+    ],
+    "senseUid": "1f3b5e44-2387-4db8-b053-ee15b88c06b6",
+    "wordId": "1443120",
+    "pt": "['barbeador elétrico', 'aparelho de barbear elétrico']"
+  },
+  {
+    "kana": "でんきていこう",
+    "en": [
+      "electrical resistance"
+    ],
+    "senseUid": "0296cfd1-2402-4462-92d2-caba3324d4fb",
+    "wordId": "1443130",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"でんきていこう\",\n      \"romaji\": \"denki teikou\",\n      \"portugues\": \"resistência elétrica\",\n      \"explicação\": \"No contexto japonês, でんきていこう refere-se à propriedade de um material ou componente que dificulta a passagem da corrente elétrica, ou seja, resistência elétrica.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "でんきでんし",
+    "en": [
+      "electrical and electronic"
+    ],
+    "senseUid": "8e7899c5-f9cf-4fed-8103-8f797fb1a349",
+    "wordId": "1443140",
+    "pt": "{\n  \"a\": [\"elétrico e eletrônico\"]\n"
+  },
+  {
+    "kana": "でんきぶんかい",
+    "en": [
+      "electrolysis"
+    ],
+    "senseUid": "d0bdc348-3a32-477f-9bf4-d5de792e1049",
+    "wordId": "1443150",
+    "pt": "['eletrólise']"
+  },
+  {
+    "kana": "でんきようりょう",
+    "en": [
+      "capacitance"
+    ],
+    "senseUid": "5cd33ecc-1307-4bd3-a2e1-996990879451",
+    "wordId": "1443160",
+    "pt": "['capacitância']"
+  },
+  {
+    "kana": "でんきゅう",
+    "en": [
+      "light bulb"
+    ],
+    "senseUid": "c09a6bc6-6e8c-4f1c-b53d-df356491d06f",
+    "wordId": "1443170",
+    "pt": "['lâmpada']"
+  },
+  {
+    "kana": "でんきょく",
+    "en": [
+      "electrode"
+    ],
+    "senseUid": "b472cb96-1316-4804-8e83-4d2f0faef639",
+    "wordId": "1443180",
+    "pt": "['eletrodo']"
+  },
+  {
+    "kana": "でんきょくでんい",
+    "en": [
+      "electrode potential"
+    ],
+    "senseUid": "3ac59ed6-6f11-42cd-a025-29d184fa046d",
+    "wordId": "1443190",
+    "pt": "['potencial de eletrodo']"
+  },
+  {
+    "kana": "でんげき",
+    "en": [
+      "electric shock"
+    ],
+    "senseUid": "e4556073-2a67-4d5f-a956-a8813332f965",
+    "wordId": "1443200",
+    "pt": "['choque elétrico']"
+  },
+  {
+    "kana": "でんげき",
+    "en": [
+      "blitz",
+      "lightning attack"
+    ],
+    "senseUid": "29531f9c-2364-468d-b8c2-38bed5729344",
+    "wordId": "1443200",
+    "pt": "{\n  \"a\": [\n    \"ataque relâmpago\",\n    \"investida rápida\",\n    \"golpe elétrico\",\n    \"ataque súbito\"\n  ]\n"
+  },
+  {
+    "kana": "でんげき",
+    "en": [
+      "sudden and without warning",
+      "shocking"
+    ],
+    "senseUid": "476fb7e8-9fc0-4e60-bee2-be7f75131309",
+    "wordId": "1443200",
+    "pt": "['repentino e sem aviso', 'chocante']"
+  },
+  {
+    "kana": "でんけん",
+    "en": [
+      "electron microscope"
+    ],
+    "senseUid": "f588fcca-31fc-4a30-97d6-b64a7d638e87",
+    "wordId": "1443210",
+    "pt": "['microscópio eletrônico']"
+  },
+  {
+    "kana": "でんげん",
+    "en": [
+      "source of electricity",
+      "electrical power"
+    ],
+    "senseUid": "10ddad22-be16-4ae7-a490-204b4de0b873",
+    "wordId": "1443220",
+    "pt": "{\n  \"a\": [\n    \"fonte de eletricidade\",\n    \"energia elétrica\"\n  ]\n"
+  },
+  {
+    "kana": "でんげん",
+    "en": [
+      "power (button on TV, etc.)"
+    ],
+    "senseUid": "5083f67d-e2bd-4cab-832f-f92a5fe109c8",
+    "wordId": "1443220",
+    "pt": "['botão de energia']"
+  },
+  {
+    "kana": "でんげんをきる",
+    "en": [
+      "to turn off power"
+    ],
+    "senseUid": "7f8b2510-c93f-4525-8c46-1699bd71f13a",
+    "wordId": "1443230",
+    "pt": "['desligar o aparelho', 'desligar a energia', 'desligar o dispositivo', 'desligar a fonte de energia']"
+  },
+  {
+    "kana": "でんげんをいれる",
+    "en": [
+      "to turn on power"
+    ],
+    "senseUid": "3033b10b-3e1c-4df1-a60c-cb9c928679c3",
+    "wordId": "1443240",
+    "pt": "['ligar o aparelho', 'ligar a energia', 'ligar (um dispositivo)']"
+  },
+  {
+    "kana": "でんげんきょうきゅう",
+    "en": [
+      "power supply"
+    ],
+    "senseUid": "3c26912a-117d-4523-ab7e-bdc1d728ff57",
+    "wordId": "1443250",
+    "pt": "['fonte de alimentação']"
+  },
+  {
+    "kana": "でんこう",
+    "en": [
+      "electric illumination",
+      "light from an electric source"
+    ],
+    "senseUid": "8acf5e9d-4354-42c0-8307-1c70be4b7a00",
+    "wordId": "1443260",
+    "pt": "['iluminação elétrica', 'luz de fonte elétrica']"
+  },
+  {
+    "kana": "でんこうせっか",
+    "en": [
+      "flash",
+      "instant",
+      "lightning (speed)"
+    ],
+    "senseUid": "d8dc3651-d9e1-46cc-b34b-8db216e60b1f",
+    "wordId": "1443270",
+    "pt": "['relâmpago', 'instante', 'velocidade de raio']"
+  },
+  {
+    "kana": "でんこう",
+    "en": [
+      "lightning"
+    ],
+    "senseUid": "eaa1a6e6-d885-47a5-b49d-21e781460220",
+    "wordId": "1443260",
+    "pt": "['relâmpago']"
+  },
+  {
+    "kana": "でんこう",
+    "en": [
+      "electrical engineering"
+    ],
+    "senseUid": "bec51f73-9b0e-4ebd-8c59-b342dbb061e4",
+    "wordId": "1443290",
+    "pt": "['engenharia elétrica']"
+  },
+  {
+    "kana": "でんこう",
+    "en": [
+      "electrician"
+    ],
+    "senseUid": "cfcf3099-752f-48d6-a1d0-d8448bac655f",
+    "wordId": "1443290",
+    "pt": "{\n  \"a\": [\n    \"eletricista\"\n  ]\n"
+  },
+  {
+    "kana": "でんこう",
+    "en": [
+      "electric works (following company name)"
+    ],
+    "senseUid": "37840064-3ea0-4034-901a-6da898290e95",
+    "wordId": "1443290",
+    "pt": "['obras elétricas (após o nome da empresa)']"
+  },
+  {
+    "kana": "でんさんき",
+    "en": [
+      "electronic computer"
+    ],
+    "senseUid": "23336ed3-2230-4f7f-91ed-e18d49cc993e",
+    "wordId": "1443310",
+    "pt": "['computador eletrônico']"
+  },
+  {
+    "kana": "でんさん",
+    "en": [
+      "computer"
+    ],
+    "senseUid": "b12166ea-a301-4bad-9997-7f9fe4d34ea4",
+    "wordId": "1443300",
+    "pt": "{\n  \"a\": [\"computador\"]\n"
+  },
+  {
+    "kana": "でんし",
+    "en": [
+      "electronic"
+    ],
+    "senseUid": "e5cb2e9b-8676-4401-b7ff-0c39f28d5fe4",
+    "wordId": "1443320",
+    "pt": "{\n  \"a\": [\"eletrônico\"]\n"
+  },
+  {
+    "kana": "でんしデータしょり",
+    "en": [
+      "electronic data processing",
+      "EDP"
+    ],
+    "senseUid": "9a7db41f-6f63-491f-a3c1-ea2e508d0b59",
+    "wordId": "1443330",
+    "pt": "{\n  \"a\": [\n    \"processamento eletrônico de dados\"\n  ]\n"
+  },
+  {
+    "kana": "でんし",
+    "en": [
+      "electron"
+    ],
+    "senseUid": "eb152bb2-5425-4331-bc09-728a37d79141",
+    "wordId": "1443320",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"でんし\",\n      \"portugues\": \"elétron\",\n      \"explicação\": \"No contexto japonês, でんし (denshi) refere-se ao 'elétron', a partícula subatômica com carga negativa encontrada nos átomos.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "でんしブック",
+    "en": [
+      "electronic book",
+      "e-book",
+      "ebook"
+    ],
+    "senseUid": "4973fe8a-1ce8-4820-a1bf-71a2d5e268aa",
+    "wordId": "1443340",
+    "pt": "{\n  \"a\": [\"livro digital\", \"livro eletrônico\", \"e-book\"]\n"
+  },
+  {
+    "kana": "でんしメール",
+    "en": [
+      "email",
+      "e-mail",
+      "electronic mail"
+    ],
+    "senseUid": "2c4bd462-29d8-422f-b58e-3e4811525b44",
+    "wordId": "1443350",
+    "pt": "['correio eletrônico', 'e-mail', 'mensagem eletrônica']"
+  },
+  {
+    "kana": "でんしか",
+    "en": [
+      "electronization",
+      "digitization",
+      "computerization"
+    ],
+    "senseUid": "c3d4ec9b-0b35-4b6f-b6d6-4a51675fb56e",
+    "wordId": "1443390",
+    "pt": "['eletronização', 'digitalização', 'informatização']"
+  },
+  {
+    "kana": "でんしレンジ",
+    "en": [
+      "microwave oven"
+    ],
+    "senseUid": "ba743cae-d1b4-4452-85e5-c14e885de003",
+    "wordId": "1443380",
+    "pt": "{\n  \"a\": [\"forno de micro-ondas\"]\n"
+  },
+  {
+    "kana": "でんしかいろ",
+    "en": [
+      "electronic circuit"
+    ],
+    "senseUid": "e203e1ff-f3cd-4428-a54a-bdcdce48c7fe",
+    "wordId": "1443400",
+    "pt": "['circuito eletrônico']"
+  },
+  {
+    "kana": "でんしかく",
+    "en": [
+      "electron shell"
+    ],
+    "senseUid": "3d88122b-fd32-4312-a693-07e51c33656a",
+    "wordId": "1443410",
+    "pt": "{\n  \"a\": [\"camada eletrônica\"]\n"
+  },
+  {
+    "kana": "でんしけいさんき",
+    "en": [
+      "computer"
+    ],
+    "senseUid": "16aade5b-09a2-479b-8781-034ac1f38ad9",
+    "wordId": "1443420",
+    "pt": "['computador']"
+  },
+  {
+    "kana": "でんしこうがく",
+    "en": [
+      "electronics",
+      "electronic engineering"
+    ],
+    "senseUid": "0eabed26-79dd-4379-bb2f-1e7299f97149",
+    "wordId": "1443430",
+    "pt": "['engenharia eletrônica', 'eletrônica']"
+  },
+  {
+    "kana": "でんししきんふりかえ",
+    "en": [
+      "electronic fund transfer",
+      "EFT"
+    ],
+    "senseUid": "a953349d-8ce4-44a0-8fe3-5a4e43cf6855",
+    "wordId": "1443450",
+    "pt": "['transferência eletrônica de fundos', 'TED']"
+  }
+]

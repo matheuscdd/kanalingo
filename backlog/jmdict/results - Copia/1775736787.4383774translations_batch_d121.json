@@ -1,0 +1,983 @@
+[
+  {
+    "kana": "キャピトル",
+    "en": [
+      "capitol"
+    ],
+    "senseUid": "4e86f98b-a2b9-43f1-ac86-72002aec3ff4",
+    "wordId": "2062340",
+    "pt": "['capitólio']"
+  },
+  {
+    "kana": "べいがわ",
+    "en": [
+      "American position",
+      "American side",
+      "American representatives",
+      "American delegation"
+    ],
+    "senseUid": "cd424257-b79e-420f-b3c1-6adffec0aadc",
+    "wordId": "2062350",
+    "pt": "{\n  \"a\": [\n    \"posição americana\",\n    \"lado americano\",\n    \"representantes americanos\",\n    \"delegação americana\"\n  ]\n"
+  },
+  {
+    "kana": "こうねつすい",
+    "en": [
+      "light, heating and water (utilities)"
+    ],
+    "senseUid": "42ef1048-dec0-4bc2-9f52-e88ed5e71e0d",
+    "wordId": "2062360",
+    "pt": "['luz, aquecimento e água (utilidades)']"
+  },
+  {
+    "kana": "こうねつすいひ",
+    "en": [
+      "light, heating and water utility costs"
+    ],
+    "senseUid": "3d0afd03-9429-4724-9276-6a703749a719",
+    "wordId": "2062370",
+    "pt": "['custos de luz, aquecimento e água']"
+  },
+  {
+    "kana": "みぎわき",
+    "en": [
+      "right armpit",
+      "right side"
+    ],
+    "senseUid": "faac6798-5309-4c04-9986-9a1b1570535d",
+    "wordId": "2062380",
+    "pt": "['axila direita', 'lado direito']"
+  },
+  {
+    "kana": "かくふかくさん",
+    "en": [
+      "nuclear nonproliferation"
+    ],
+    "senseUid": "392fab06-4d7c-4f54-971a-dcb6f561f8df",
+    "wordId": "2062390",
+    "pt": "{\n  \"a\": [\"não proliferação nuclear\"]\n"
+  },
+  {
+    "kana": "かくもんだい",
+    "en": [
+      "nuclear issue (esp. weapon proliferation)",
+      "nuclear problem"
+    ],
+    "senseUid": "b7d58fb1-f481-4863-8764-5531d23a5814",
+    "wordId": "2062400",
+    "pt": "{\n  \"a\": [\n    \"questão nuclear (especialmente proliferação de armas)\",\n    \"problema nuclear\"\n  ]\n"
+  },
+  {
+    "kana": "ぐんれき",
+    "en": [
+      "(one's) military service record"
+    ],
+    "senseUid": "42c0bc11-4411-4a05-a65c-86f1072296d6",
+    "wordId": "2062410",
+    "pt": "['histórico de serviço militar']"
+  },
+  {
+    "kana": "けんいき",
+    "en": [
+      "sphere (e.g. of knowledge, influence)"
+    ],
+    "senseUid": "d0be85d9-555d-4eb9-b685-e685965379e2",
+    "wordId": "2062420",
+    "pt": "['esfera (por exemplo, de conhecimento, influência)']"
+  },
+  {
+    "kana": "こうどく",
+    "en": [
+      "anti-German"
+    ],
+    "senseUid": "0c062283-14ae-4aba-b875-35d9db30eb4d",
+    "wordId": "2062430",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"こうどく\",\n      \"português\": \"anti-alemão\",\n      \"explicação\": \"No contexto japonês, こうどく pode ser usado para se referir a uma postura ou sentimento contrário à Alemanha ou aos alemães, especialmente em contextos históricos ou políticos.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "こう",
+    "en": [
+      "anti-"
+    ],
+    "senseUid": "f3ceac81-b01c-4752-963a-0dbfef1cfb3a",
+    "wordId": "2062440",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"こう\",\n      \"gloss\": \"anti-\",\n      \"portuguese\": \"anti-\"\n    \n  ]\n"
+  },
+  {
+    "kana": "くろばん",
+    "en": [
+      "black player"
+    ],
+    "senseUid": "c6eee4a6-af28-4632-876f-29e3d555f5c7",
+    "wordId": "2062450",
+    "pt": "{\n  \"a\": [\"jogador das peças pretas\"]\n"
+  },
+  {
+    "kana": "しゅうがい",
+    "en": [
+      "out of state",
+      "outside the state"
+    ],
+    "senseUid": "ef956835-b2c3-4288-82af-62bfcc7a1717",
+    "wordId": "2062460",
+    "pt": "{\n  \"a\": [\"fora do estado\", \"de fora do estado\"]\n"
+  },
+  {
+    "kana": "しゅうない",
+    "en": [
+      "in the state",
+      "within the state"
+    ],
+    "senseUid": "e7f18a5d-4605-44b7-b221-507afe6af479",
+    "wordId": "2062470",
+    "pt": "{\n  \"a\": [\"no estado\", \"dentro do estado\"]\n"
+  },
+  {
+    "kana": "べいかん",
+    "en": [
+      "United States and South Korea",
+      "American-Korean"
+    ],
+    "senseUid": "fd90b3e8-d5fc-4ffe-92d6-e528361df670",
+    "wordId": "2062480",
+    "pt": "{\n  \"a\": [\n    \"Estados Unidos e Coreia do Sul\",\n    \"Americano-coreano\"\n  ]\n"
+  },
+  {
+    "kana": "べいし",
+    "en": [
+      "American newspaper",
+      "American press"
+    ],
+    "senseUid": "fd240bb9-caa7-4114-a627-4b3f57820c71",
+    "wordId": "2062490",
+    "pt": "['imprensa americana', 'jornal americano']"
+  },
+  {
+    "kana": "えんせい",
+    "en": [
+      "garden (esp. with trees)",
+      "park"
+    ],
+    "senseUid": "9b949e40-c126-49a6-ac73-4a933e5dedee",
+    "wordId": "2062510",
+    "pt": "{\n  \"a\": [\n    \"jardim (especialmente com árvores)\",\n    \"parque\"\n  ]\n"
+  },
+  {
+    "kana": "おんき",
+    "en": [
+      "anniversary of a death twelve or more years earlier"
+    ],
+    "senseUid": "e5a10867-2864-4f99-9f8f-14f9de680eb9",
+    "wordId": "2062520",
+    "pt": "['aniversário de morte ocorrido doze ou mais anos antes']"
+  },
+  {
+    "kana": "おしがみ",
+    "en": [
+      "paper on which questions and comments are pasted"
+    ],
+    "senseUid": "238d3c6f-6661-442e-a2df-3215a4aa2a30",
+    "wordId": "2062530",
+    "pt": "['papel onde perguntas e comentários são colados']"
+  },
+  {
+    "kana": "おしがみ",
+    "en": [
+      "backing paper"
+    ],
+    "senseUid": "dad816cc-4844-4cc4-ac2f-7c3b1f11d5ed",
+    "wordId": "2062530",
+    "pt": "{\n  \"a\": [\"papel de apoio\"]\n"
+  },
+  {
+    "kana": "おしがみ",
+    "en": [
+      "blotting paper"
+    ],
+    "senseUid": "1173a605-ac08-4765-bdb0-82e6ef5afa86",
+    "wordId": "2062530",
+    "pt": "['papel mata-borrão']"
+  },
+  {
+    "kana": "おうどう",
+    "en": [
+      "wickedness",
+      "evil",
+      "iniquity",
+      "wrongness"
+    ],
+    "senseUid": "c0b04dfa-ec15-4b67-a1cb-f4de6d6d79f4",
+    "wordId": "2062540",
+    "pt": "['maldade', 'iniquidade', 'perversidade', 'caráter errado']"
+  },
+  {
+    "kana": "とろろあおい",
+    "en": [
+      "sunset hibiscus (Hibiscus manihot)"
+    ],
+    "senseUid": "f729e8e3-d302-4224-a924-e97c7effcabd",
+    "wordId": "2062550",
+    "pt": "['hibisco-do-pôr-do-sol (Hibiscus manihot)']"
+  },
+  {
+    "kana": "にゅうさつだんごう",
+    "en": [
+      "collusion before a bid or tender",
+      "bid-rigging"
+    ],
+    "senseUid": "532858e6-39f3-45b0-a2f1-746d2129920d",
+    "wordId": "2062560",
+    "pt": "{\n  \"a\": [\n    \"conluio antes de uma licitação\",\n    \"fraude em licitação\"\n  ]\n"
+  },
+  {
+    "kana": "しゅうにゅうきんがく",
+    "en": [
+      "total receipts",
+      "income amount"
+    ],
+    "senseUid": "47afb4bf-dd6c-4183-9b4e-f02a4e0d8682",
+    "wordId": "2062570",
+    "pt": "['valor total de recebimentos', 'quantia de renda']"
+  },
+  {
+    "kana": "うどんこびょう",
+    "en": [
+      "powdery mildew"
+    ],
+    "senseUid": "7502400b-9d72-42ef-a5ea-a4fe038bf603",
+    "wordId": "2062580",
+    "pt": "['míldio em pó']"
+  },
+  {
+    "kana": "りする",
+    "en": [
+      "to profit",
+      "to benefit (from)",
+      "to gain"
+    ],
+    "senseUid": "18b7adf0-c45d-4cf5-b086-8c5b14323729",
+    "wordId": "2062590",
+    "pt": "{\n  \"a\": [\n    \"lucrar\",\n    \"beneficiar-se (de)\",\n    \"ganhar\"\n  ]\n"
+  },
+  {
+    "kana": "りする",
+    "en": [
+      "to benefit (someone or something)",
+      "to be beneficial to",
+      "to profit",
+      "to do (someone) good"
+    ],
+    "senseUid": "4f55cf3a-174c-4b38-beb5-39b82f5fe198",
+    "wordId": "2062590",
+    "pt": "['beneficiar', 'ser benéfico para', 'dar lucro', 'fazer bem (a alguém)']"
+  },
+  {
+    "kana": "りする",
+    "en": [
+      "to make good use of",
+      "to take advantage of",
+      "to exploit"
+    ],
+    "senseUid": "fba54018-e10b-434d-806d-34947d37983c",
+    "wordId": "2062590",
+    "pt": "{\n  \"a\": [\n    \"aproveitar bem\",\n    \"tirar proveito de\",\n    \"explorar (no sentido de usar algo de forma vantajosa)\"\n  ]\n"
+  },
+  {
+    "kana": "そうしぶ",
+    "en": [
+      "election campaign office"
+    ],
+    "senseUid": "8aa6f387-2d9f-433a-a272-dd466ddb478d",
+    "wordId": "2062600",
+    "pt": "{\n  \"a\": [\"comitê de campanha eleitoral\"]\n"
+  },
+  {
+    "kana": "しょうむ",
+    "en": [
+      "litigation"
+    ],
+    "senseUid": "0d27a19d-c0b0-47ea-a96a-c53482e5b551",
+    "wordId": "2062610",
+    "pt": "['litígio']"
+  },
+  {
+    "kana": "はいせいかんさいぼう",
+    "en": [
+      "embryonic stem cell",
+      "ES"
+    ],
+    "senseUid": "68fb31bc-4959-4379-8480-16cf58b4375b",
+    "wordId": "2062620",
+    "pt": "{\n  \"a\": [\"célula-tronco embrionária\", \"ES\"]\n"
+  },
+  {
+    "kana": "せんがい",
+    "en": [
+      "outside the boat (ship, spaceship, etc.)"
+    ],
+    "senseUid": "6ccf2c94-0daa-4323-8563-e5240d00386d",
+    "wordId": "2062630",
+    "pt": "['fora do barco (navio, nave espacial, etc.)']"
+  },
+  {
+    "kana": "せんがい",
+    "en": [
+      "outboard",
+      "extravehicular"
+    ],
+    "senseUid": "c1dc357f-585f-455c-993d-03c1b0eab2a4",
+    "wordId": "2062630",
+    "pt": "{\n  \"a\": [\"fora do casco\", \"extraveicular\"]\n"
+  },
+  {
+    "kana": "ぜんこくそうごうかいはつけいかく",
+    "en": [
+      "Comprehensive National Development Plan (1962-)"
+    ],
+    "senseUid": "d74419cb-3593-4d71-89c4-a81ddf546bda",
+    "wordId": "2062640",
+    "pt": "{\n  \"a\": [\n    \"Plano Nacional de Desenvolvimento Abrangente (1962-)\"\n  ]\n"
+  },
+  {
+    "kana": "ぜんそう",
+    "en": [
+      "Comprehensive National Development Plan (1962-)"
+    ],
+    "senseUid": "adc7d718-d01b-4a94-9181-0c24242528d1",
+    "wordId": "2062650",
+    "pt": "{\n  \"a\": [\n    \"Plano Nacional de Desenvolvimento Abrangente (1962-)\"\n  ]\n"
+  },
+  {
+    "kana": "にゅうきょう",
+    "en": [
+      "crossing a border",
+      "border entry"
+    ],
+    "senseUid": "b99ee97f-ca91-4594-9448-6d5ad8637e8a",
+    "wordId": "2062670",
+    "pt": "['entrada em território', 'cruzar a fronteira']"
+  },
+  {
+    "kana": "ソドミー",
+    "en": [
+      "sodomy"
+    ],
+    "senseUid": "81714e8c-1380-4da7-94c2-e7142b1cbc80",
+    "wordId": "2062700",
+    "pt": "{\n  \"a\": [\"sodomia\"]\n"
+  },
+  {
+    "kana": "そとだし",
+    "en": [
+      "extravaginal ejaculation"
+    ],
+    "senseUid": "d57ea045-2c55-4511-8842-724b3751cf86",
+    "wordId": "2062710",
+    "pt": "['ejaculação extravaginal']"
+  },
+  {
+    "kana": "このぶん",
+    "en": [
+      "at this rate"
+    ],
+    "senseUid": "a8fa6162-df39-4c1b-b191-953783fc2e6a",
+    "wordId": "2062720",
+    "pt": "['desse jeito']"
+  },
+  {
+    "kana": "このうち",
+    "en": [
+      "meanwhile",
+      "the other day",
+      "recently"
+    ],
+    "senseUid": "8d55ef13-bdc2-4e3e-978c-66add6f25d2e",
+    "wordId": "2062730",
+    "pt": "['recentemente', 'esses dias', 'ultimamente']"
+  },
+  {
+    "kana": "こうじょ",
+    "en": [
+      "public assistance (i.e. assistance provided by a public body)"
+    ],
+    "senseUid": "da34ed04-2405-4e47-bdb0-bce3eaf21f89",
+    "wordId": "2062740",
+    "pt": "['assistência pública']"
+  },
+  {
+    "kana": "せつめいせきにん",
+    "en": [
+      "accountability",
+      "being held accountable"
+    ],
+    "senseUid": "f82e2c77-95ef-431c-b695-022b98e2f3e4",
+    "wordId": "2062750",
+    "pt": "['responsabilidade de explicação', 'obrigação de prestar contas']"
+  },
+  {
+    "kana": "きりこ",
+    "en": [
+      "chips or shavings left after cutting wood or metal with a saw, etc."
+    ],
+    "senseUid": "619a8f3c-30b6-4aa5-b2c5-d9c14ca5b928",
+    "wordId": "2062760",
+    "pt": "{\n  \"a\": [\n    \"cavacos\",\n    \"lascas\",\n    \"restos de corte (de madeira ou metal)\",\n    \"aparas (de madeira ou metal)\"\n  ]\n"
+  },
+  {
+    "kana": "ふえつづける",
+    "en": [
+      "to continue to increase",
+      "to continue to mount"
+    ],
+    "senseUid": "952f4823-e481-4450-bcd9-099945fe4574",
+    "wordId": "2062770",
+    "pt": "['continuar a aumentar', 'continuar a crescer']"
+  },
+  {
+    "kana": "いっぱ",
+    "en": [
+      "as for ...",
+      "when it comes to ...",
+      "regarding ..."
+    ],
+    "senseUid": "d7e9c6f0-9ba9-44c9-a7a8-081b9860db1a",
+    "wordId": "2062780",
+    "pt": "{\n  \"a\": [\"quanto a...\", \"no que diz respeito a...\", \"em relação a...\"]\n"
+  },
+  {
+    "kana": "いっとくけど",
+    "en": [
+      "for your information",
+      "I'm telling you"
+    ],
+    "senseUid": "f23087ce-fde1-4102-ae31-e612b87eb234",
+    "wordId": "2062790",
+    "pt": "['Só para você saber', 'Tô te avisando']"
+  },
+  {
+    "kana": "かいちょう",
+    "en": [
+      "gradation",
+      "gradient"
+    ],
+    "senseUid": "78ae56c7-ec21-44ea-9c90-4fbee6cc6dff",
+    "wordId": "2062800",
+    "pt": "{\n  \"a\": [\n    \"graduação\",\n    \"degradê\"\n  ]\n"
+  },
+  {
+    "kana": "みこころ",
+    "en": [
+      "(another's) spirit"
+    ],
+    "senseUid": "cc1d9468-d318-40b4-9319-2e3f23125451",
+    "wordId": "2062810",
+    "pt": "{\n  \"a\": [\n    \"espírito (de outra pessoa)\"\n  ]\n"
+  },
+  {
+    "kana": "みこころ",
+    "en": [
+      "God's heart or spirit",
+      "Lord's will"
+    ],
+    "senseUid": "44869aff-846e-4602-8bb0-d9a410f889e9",
+    "wordId": "2062810",
+    "pt": "['coração de Deus', 'vontade do Senhor']"
+  },
+  {
+    "kana": "しゅうさんかくいん",
+    "en": [
+      "(in) each of the houses of the Japanese parliament"
+    ],
+    "senseUid": "f6d240e4-f425-42e9-8020-7ef54db9da21",
+    "wordId": "2062820",
+    "pt": "{\n  \"a\": [\n    \"em cada uma das casas do parlamento japonês\"\n  ]\n"
+  },
+  {
+    "kana": "もとしょく",
+    "en": [
+      "former job",
+      "former position"
+    ],
+    "senseUid": "fda36ec2-ee61-42f7-afb4-c8c39986182e",
+    "wordId": "2062830",
+    "pt": "['emprego anterior', 'cargo anterior']"
+  },
+  {
+    "kana": "せいしん",
+    "en": [
+      "policy deliberation"
+    ],
+    "senseUid": "1caa1ce9-f73f-43a5-904c-97cf514340a4",
+    "wordId": "2062840",
+    "pt": "{\n  \"a\": [\"deliberação de políticas\"]\n"
+  },
+  {
+    "kana": "せいさくしんぎ",
+    "en": [
+      "policy deliberation"
+    ],
+    "senseUid": "0d277651-854a-402e-9d04-64b552b4bcb9",
+    "wordId": "2062850",
+    "pt": "{\n  \"a\": [\n    \"deliberação de políticas\"\n  ]\n"
+  },
+  {
+    "kana": "しょうしゅう",
+    "en": [
+      "deodorization"
+    ],
+    "senseUid": "ccc098ae-4183-464e-ab97-fe0cdb3613a0",
+    "wordId": "2062860",
+    "pt": "['desodorização']"
+  },
+  {
+    "kana": "とうへき",
+    "en": [
+      "east wall",
+      "east face (of a mountain)"
+    ],
+    "senseUid": "16b2970a-c775-4392-84d3-452570330449",
+    "wordId": "2062870",
+    "pt": "['parede leste', 'face leste (de uma montanha)']"
+  },
+  {
+    "kana": "ふつし",
+    "en": [
+      "French newspaper",
+      "French press"
+    ],
+    "senseUid": "ffe93356-4e65-4087-9731-00bb8209458c",
+    "wordId": "2062880",
+    "pt": "{\n  \"a\": [\"jornal francês\", \"imprensa francesa\"]\n"
+  },
+  {
+    "kana": "はいせい",
+    "en": [
+      "embryonic",
+      "embryonal"
+    ],
+    "senseUid": "9a559346-0934-4703-9d67-22d9215ebc05",
+    "wordId": "2062890",
+    "pt": "{\n  \"a\": [\"embrionário\", \"embrionária\"]\n"
+  },
+  {
+    "kana": "ちゅうひ",
+    "en": [
+      "mesothelium",
+      "mesothelial"
+    ],
+    "senseUid": "e22f8848-bf3b-4636-9983-16f0a385c9ba",
+    "wordId": "2062900",
+    "pt": "{\n  \"a\": [\n    \"mesotélio\",\n    \"mesotelial\"\n  ]\n"
+  },
+  {
+    "kana": "ふくごうき",
+    "en": [
+      "multifunction machine"
+    ],
+    "senseUid": "51588776-2d1c-457d-95a6-b0083c058aa7",
+    "wordId": "2062910",
+    "pt": "['máquina multifuncional']"
+  },
+  {
+    "kana": "ふくごうき",
+    "en": [
+      "combination printer-copier-scanner-fax"
+    ],
+    "senseUid": "e1eaf8f3-e750-4a37-aa49-cb53b8808bac",
+    "wordId": "2062910",
+    "pt": "{\n  \"a\": [\"impressora-copiadora-digitalizadora-fax multifuncional\"]\n"
+  },
+  {
+    "kana": "かえりしな",
+    "en": [
+      "when about to go back"
+    ],
+    "senseUid": "8af6707d-2f30-4767-be07-f9f94a2997e9",
+    "wordId": "2062920",
+    "pt": "['na hora de voltar', 'quando estava prestes a voltar', 'ao sair para ir embora']"
+  },
+  {
+    "kana": "かえりしな",
+    "en": [
+      "on the way back",
+      "on the way home"
+    ],
+    "senseUid": "33f10d84-ae7b-4d10-a164-3b6f046e0cf2",
+    "wordId": "2062920",
+    "pt": "['no caminho de volta', 'no caminho para casa']"
+  },
+  {
+    "kana": "ごつい",
+    "en": [
+      "large and rough",
+      "big and tough",
+      "rugged (hands, features, etc.)",
+      "hard",
+      "sturdy",
+      "chunky",
+      "burly"
+    ],
+    "senseUid": "c17066ab-87a0-4f37-b577-31ace70934cc",
+    "wordId": "2062930",
+    "pt": "['grande e robusto', 'grande e forte', 'áspero (mãos, traços, etc.)', 'duro', 'resistente', 'troncudo', 'corpulento']"
+  },
+  {
+    "kana": "ごつい",
+    "en": [
+      "unrefined",
+      "rustic",
+      "boorish"
+    ],
+    "senseUid": "84fe12ff-3cb1-41dc-a3e6-831426fb1574",
+    "wordId": "2062930",
+    "pt": "['grosseiro', 'rústico', 'brutamontes']"
+  },
+  {
+    "kana": "ごつい",
+    "en": [
+      "extreme",
+      "excessive",
+      "tremendous",
+      "terrible"
+    ],
+    "senseUid": "e39a3d16-9ae6-4b2e-9b4a-491be371b7cf",
+    "wordId": "2062930",
+    "pt": "['extremo', 'excessivo', 'tremendo', 'terrível']"
+  },
+  {
+    "kana": "やつす",
+    "en": [
+      "to be absorbed in",
+      "to lose oneself to"
+    ],
+    "senseUid": "12ceade0-1eb0-40a8-a97d-359a33bd5419",
+    "wordId": "2062950",
+    "pt": "['ficar absorto em', 'perder-se em']"
+  },
+  {
+    "kana": "ちゅうけいじ",
+    "en": [
+      "stopping point",
+      "stopover"
+    ],
+    "senseUid": "2471d2be-617c-4d66-8320-33fad4b2240e",
+    "wordId": "2062940",
+    "pt": "{\n  \"a\": [\n    \"ponto de parada\",\n    \"parada intermediária\"\n  ]\n"
+  },
+  {
+    "kana": "みをやつす",
+    "en": [
+      "to be enthralled by"
+    ],
+    "senseUid": "732f2e55-23fc-431a-89cb-1ce08c3cdc8e",
+    "wordId": "2062960",
+    "pt": "['ficar absorto', 'ficar completamente envolvido', 'dedicar-se de corpo e alma']"
+  },
+  {
+    "kana": "やつす",
+    "en": [
+      "to disguise oneself as",
+      "to adorn oneself"
+    ],
+    "senseUid": "e2b4435b-68f1-48c3-b6e1-50a37ab40c3e",
+    "wordId": "2062950",
+    "pt": "['disfarçar-se como', 'adornar-se']"
+  },
+  {
+    "kana": "みをやつす",
+    "en": [
+      "to be disguised as"
+    ],
+    "senseUid": "2dcb7c7a-0129-4c09-9c86-4677682f7242",
+    "wordId": "2062960",
+    "pt": "['estar disfarçado como', 'assumir outra forma', 'ocultar a verdadeira identidade']"
+  },
+  {
+    "kana": "ありゃしない",
+    "en": [
+      "doesn't even exist"
+    ],
+    "senseUid": "fd7939ce-9f6b-48fe-8612-c6821927b4ba",
+    "wordId": "2062980",
+    "pt": "['não existe nem']\n\nExplicação:  \n- ありゃしない é uma expressão coloquial japonesa usada para enfatizar que algo realmente não existe, não está presente ou não acontece de jeito nenhum.  \n- A tradução \"não existe nem\" mantém o tom enfático e coloquial, semelhante ao uso japonês."
+  },
+  {
+    "kana": "しょくしつ",
+    "en": [
+      "police questioning (of a suspicious person)",
+      "police checkup"
+    ],
+    "senseUid": "9f6d92db-d674-4904-a69e-b436a4e9738c",
+    "wordId": "2062990",
+    "pt": "['abordagem policial', 'interrogatório policial (de pessoa suspeita)', 'cheque policial']"
+  },
+  {
+    "kana": "べんがたつ",
+    "en": [
+      "to be eloquent",
+      "to have a way with words"
+    ],
+    "senseUid": "9cbed73b-6983-4293-86e8-f6ea20c8b295",
+    "wordId": "2063000",
+    "pt": "['ser eloquente', 'ter facilidade com as palavras']"
+  },
+  {
+    "kana": "げんよう",
+    "en": [
+      "confusing people"
+    ],
+    "senseUid": "62c37f69-7b0c-4084-a555-5e17d30095f1",
+    "wordId": "2063010",
+    "pt": "['confundir pessoas']"
+  },
+  {
+    "kana": "げんよう",
+    "en": [
+      "magic"
+    ],
+    "senseUid": "df3932b1-2817-4ee2-aef4-63b00b2c4ac7",
+    "wordId": "2063010",
+    "pt": "['magia']"
+  },
+  {
+    "kana": "げんよう",
+    "en": [
+      "ghost, monster, etc., the true identity of which is unknown"
+    ],
+    "senseUid": "870c0d08-e5aa-49f2-ae40-98f6b24cda2f",
+    "wordId": "2063010",
+    "pt": "['fantasma, monstro, etc., cuja verdadeira identidade é desconhecida']"
+  },
+  {
+    "kana": "くしけずる",
+    "en": [
+      "to comb"
+    ],
+    "senseUid": "19407aee-4c63-4c08-a6b4-c56db7b79cec",
+    "wordId": "2063020",
+    "pt": "['pentear']"
+  },
+  {
+    "kana": "きゅうする",
+    "en": [
+      "to be at a loss",
+      "to be puzzled",
+      "to be perplexed",
+      "to be at one's wit's end",
+      "to be in a dilemma",
+      "to not know what to (do, say, etc)"
+    ],
+    "senseUid": "e565f4e3-c733-4d39-8192-2e2cd967cb14",
+    "wordId": "2063030",
+    "pt": "['ficar sem saber o que fazer', 'ficar perplexo', 'ficar confuso', 'ficar sem palavras', 'ficar em um dilema', 'não saber como agir']"
+  },
+  {
+    "kana": "きゅうする",
+    "en": [
+      "to be pressed for",
+      "to be pinched for",
+      "to become poor",
+      "to be reduced to poverty"
+    ],
+    "senseUid": "6b999fd9-1184-4a8a-9caa-8889430fa867",
+    "wordId": "2063030",
+    "pt": "{\n  \"a\": [\n    \"ficar apertado por\",\n    \"estar em apuros por\",\n    \"ficar pobre\",\n    \"ser reduzido à pobreza\"\n  ]\n"
+  },
+  {
+    "kana": "ごしょうだから",
+    "en": [
+      "for goodness' sake",
+      "for the love of God",
+      "I implore you, ...",
+      "I beg of you, ..."
+    ],
+    "senseUid": "0a9fc33c-c94d-471b-a908-dcc05c6997e4",
+    "wordId": "2063040",
+    "pt": "['Pelo amor de Deus', 'Por tudo o que é sagrado', 'Eu te imploro, ...', 'Eu lhe suplico, ...']"
+  },
+  {
+    "kana": "すく",
+    "en": [
+      "to comb (out)",
+      "to card",
+      "to untangle (hair)"
+    ],
+    "senseUid": "7cab01b5-190f-49d7-879f-d8bc4fb75b01",
+    "wordId": "2063050",
+    "pt": "{\n  \"a\": [\n    \"pentear (cabelos ou lã para desembaraçar)\",\n    \"desembaraçar (cabelos)\",\n    \"cardar (lã)\"\n  ]\n"
+  },
+  {
+    "kana": "すく",
+    "en": [
+      "to thin (hair)",
+      "to reduce in volume"
+    ],
+    "senseUid": "c1c50ea8-abb8-48e0-b144-0a70c0529bc8",
+    "wordId": "2063050",
+    "pt": "{\n  \"a\": [\n    \"desbastar (o cabelo)\",\n    \"reduzir o volume\"\n  ]\n"
+  },
+  {
+    "kana": "ねちっこい",
+    "en": [
+      "persistent",
+      "obstinate",
+      "stubborn",
+      "pigheaded"
+    ],
+    "senseUid": "62c47825-9694-4a6d-8b4e-0559d72608bb",
+    "wordId": "2063060",
+    "pt": "['persistente', 'obstinado', 'teimoso', 'cabeça-dura']"
+  },
+  {
+    "kana": "はっすい",
+    "en": [
+      "water repellency"
+    ],
+    "senseUid": "f1517e21-18aa-463d-a99b-156afa7917fe",
+    "wordId": "2063070",
+    "pt": "['repelência à água']"
+  },
+  {
+    "kana": "いてもたってもいられない",
+    "en": [
+      "unable to contain oneself",
+      "itching to do something",
+      "cannot sit still"
+    ],
+    "senseUid": "ec5765d0-0280-4c4e-a3ed-0945745dad14",
+    "wordId": "2063080",
+    "pt": "['não consigo me conter', 'estou ansioso para fazer algo', 'não consigo ficar parado']"
+  },
+  {
+    "kana": "てんさいはだ",
+    "en": [
+      "(person) seeming like a genius",
+      "(having) the temperament of a prodigy"
+    ],
+    "senseUid": "65dc6379-f095-450b-b564-2eb69b4f22f1",
+    "wordId": "2063090",
+    "pt": "['parecendo um gênio', 'com temperamento de prodígio']"
+  },
+  {
+    "kana": "きょうしょう",
+    "en": [
+      "eutectic point",
+      "lowest melting point"
+    ],
+    "senseUid": "66d00a2f-e6ca-4103-84bd-953021e65af8",
+    "wordId": "2063100",
+    "pt": "{\n  \"a\": [\n    \"ponto eutético\",\n    \"ponto de fusão mais baixo\"\n  ]\n"
+  },
+  {
+    "kana": "ぶちあける",
+    "en": [
+      "to forcefully open up (a hole; in a wall, etc.)"
+    ],
+    "senseUid": "5c3f3e2e-ef35-4348-b89e-1bc2914b6f40",
+    "wordId": "2063110",
+    "pt": "['abrir à força (um buraco; em uma parede, etc.)']"
+  },
+  {
+    "kana": "ぶちあける",
+    "en": [
+      "to speak frankly",
+      "to open one's heart"
+    ],
+    "senseUid": "21ba005f-ead0-46d0-9a4b-567198015de9",
+    "wordId": "2063110",
+    "pt": "['falar abertamente', 'abrir o coração']"
+  },
+  {
+    "kana": "ぶちあける",
+    "en": [
+      "to throw out (everything inside)",
+      "to empty (e.g. a box)"
+    ],
+    "senseUid": "bb08ef91-e4e8-447e-8eeb-882a55776d87",
+    "wordId": "2063110",
+    "pt": "['desabafar', 'abrir o coração', 'contar tudo', 'revelar (tudo o que sente)', 'esvaziar (algo, como uma caixa)']"
+  },
+  {
+    "kana": "ぱっくんちょ",
+    "en": [
+      "eating in one bite"
+    ],
+    "senseUid": "6462a7fd-57b5-42fe-8861-c12d77704369",
+    "wordId": "2063120",
+    "pt": "['comer de uma só vez']"
+  },
+  {
+    "kana": "ぱっくんちょ",
+    "en": [
+      "sexual intercourse"
+    ],
+    "senseUid": "521c0954-bb8c-4fc3-b3ee-fef42bf459b2",
+    "wordId": "2063120",
+    "pt": "['papai e mamãe']"
+  },
+  {
+    "kana": "つれかえる",
+    "en": [
+      "to bring (someone) back home",
+      "to take (someone) back home"
+    ],
+    "senseUid": "a4da9925-bc22-42a5-a74c-8fc8a99ebec4",
+    "wordId": "2063130",
+    "pt": "['levar (alguém) para casa', 'trazer (alguém) de volta para casa']"
+  },
+  {
+    "kana": "にくきゅう",
+    "en": [
+      "(sole of the) paw",
+      "pad"
+    ],
+    "senseUid": "8dea492c-773b-4403-a84e-54b7fdd7e46e",
+    "wordId": "2063140",
+    "pt": "{\n  \"a\": [\"almofada (da pata)\", \"almofada plantar\"]\n"
+  },
+  {
+    "kana": "くうぼうそう",
+    "en": [
+      "depletion layer (of transistor)"
+    ],
+    "senseUid": "204a7095-8318-469e-ac64-d4875c15b643",
+    "wordId": "2063150",
+    "pt": "['camada de depleção (de transistor)']"
+  },
+  {
+    "kana": "ぜんたいじょうかい",
+    "en": [
+      "anterior cingulate gyrus"
+    ],
+    "senseUid": "a2b20182-57af-4454-8dfa-aabb0c25492f",
+    "wordId": "2063160",
+    "pt": "['giro do cíngulo anterior']"
+  },
+  {
+    "kana": "ぜんたいじょうかいひしつ",
+    "en": [
+      "anterior cingulate cortex"
+    ],
+    "senseUid": "8c3d58fc-2dc9-4ffb-b952-f46ac73e15f4",
+    "wordId": "2063170",
+    "pt": "['córtex cingulado anterior']"
+  },
+  {
+    "kana": "ポマード",
+    "en": [
+      "pomade"
+    ],
+    "senseUid": "fd5db954-e01b-4900-8257-da67416b8f10",
+    "wordId": "2063180",
+    "pt": "['pomada']"
+  },
+  {
+    "kana": "はりせん",
+    "en": [
+      "paper-covered folded fan used in noh and storytelling"
+    ],
+    "senseUid": "f337b60b-1154-4d17-ad53-46fe794ab7e4",
+    "wordId": "2063190",
+    "pt": "{\n  \"a\": [\n    \"leque dobrável coberto de papel usado no noh e em contação de histórias\"\n  ]\n"
+  }
+]

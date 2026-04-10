@@ -1,0 +1,985 @@
+[
+  {
+    "kana": "てどりきん",
+    "en": [
+      "net proceeds (e.g. after an offering of securities)"
+    ],
+    "senseUid": "8237d1b5-61af-4708-9cb3-32d2b37b2021",
+    "wordId": "2029600",
+    "pt": "['proventos líquidos', 'receita líquida (por exemplo, após uma oferta de valores mobiliários)']"
+  },
+  {
+    "kana": "しゅきん",
+    "en": [
+      "(hand) towel"
+    ],
+    "senseUid": "4531b4ca-10af-4256-a891-b8f2856d33b1",
+    "wordId": "2029610",
+    "pt": "['toalha de mão']"
+  },
+  {
+    "kana": "しゅきん",
+    "en": [
+      "handkerchief"
+    ],
+    "senseUid": "0de79952-ea03-4694-933a-618ca48b979c",
+    "wordId": "2029610",
+    "pt": "['lenço (de mão)']"
+  },
+  {
+    "kana": "でんしせん",
+    "en": [
+      "electron beam"
+    ],
+    "senseUid": "2ffe64b6-9f0c-4628-b57f-85af5742971d",
+    "wordId": "2029620",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"でんしせん\",\n      \"portugues\": \"feixe de elétrons\",\n      \"notas\": \"No contexto japonês, でんしせん refere-se especificamente ao feixe de partículas subatômicas (elétrons) usado em equipamentos como microscópios eletrônicos ou tubos de raios catódicos.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "たいぶつレンズ",
+    "en": [
+      "objective lens"
+    ],
+    "senseUid": "f265a8d1-82e0-49c8-9939-c0d388154f1d",
+    "wordId": "2029630",
+    "pt": "['lente objetiva']"
+  },
+  {
+    "kana": "うすあじ",
+    "en": [
+      "light seasoning",
+      "mild flavour",
+      "bland taste"
+    ],
+    "senseUid": "f05d917a-de79-42b2-86c0-ef87a4a8e10c",
+    "wordId": "2029640",
+    "pt": "['tempero suave', 'sabor leve', 'gosto suave']"
+  },
+  {
+    "kana": "ド",
+    "en": [
+      "doh (1st note of a major scale in movable-do solfège)",
+      "do"
+    ],
+    "senseUid": "9ad1cc16-456b-4fdf-8fb8-aa0475bd6c56",
+    "wordId": "2029650",
+    "pt": "{\n  \"a\": [\n    \"dó (primeira nota da escala maior no solfejo móvel)\",\n    \"dó\"\n  ]\n"
+  },
+  {
+    "kana": "レ",
+    "en": [
+      "re (2nd note of a major scale in movable-do solfège)",
+      "ray"
+    ],
+    "senseUid": "90f76ce2-2460-4558-8e61-0abf30d04351",
+    "wordId": "2029660",
+    "pt": "{\n  \"a\": [\n    \"ré (segunda nota da escala maior no solfejo móvel)\",\n    \"raio\"\n  ]\n"
+  },
+  {
+    "kana": "ド",
+    "en": [
+      "C (note in the fixed-do system)"
+    ],
+    "senseUid": "491c5429-18f7-4928-87b2-818cbe3b53a8",
+    "wordId": "2029650",
+    "pt": "{\n  \"a\": [\"Dó (nota musical no sistema fixo-dó)\"]\n"
+  },
+  {
+    "kana": "レ",
+    "en": [
+      "D (note in the fixed-do system)"
+    ],
+    "senseUid": "d2ee0ea9-8059-457f-9c63-07197e83151b",
+    "wordId": "2029660",
+    "pt": "{\n  \"a\": [\"Ré (nota musical no sistema fixo de dó)\"]\n"
+  },
+  {
+    "kana": "ミ",
+    "en": [
+      "mi (3rd note of a major scale in movable-do solfège)",
+      "me"
+    ],
+    "senseUid": "b4b8ae6a-0af7-4a7a-8808-ccac88558e9c",
+    "wordId": "2029670",
+    "pt": "{\n  \"a\": [\n    \"mi (terceira nota da escala maior no solfejo móvel-dó)\",\n    \"eu (forma de 'me')\"\n  ]\n"
+  },
+  {
+    "kana": "ミ",
+    "en": [
+      "E (note in the fixed-do system)"
+    ],
+    "senseUid": "a04e4ff5-b879-42f5-a3c0-6b7f2f56a89a",
+    "wordId": "2029670",
+    "pt": "{\n  \"a\": [\n    \"Mi (nota musical no sistema de nomeação fixa, equivalente ao 'E' em inglês)\"\n  ]\n"
+  },
+  {
+    "kana": "ファ",
+    "en": [
+      "fa (4th note of a major scale in movable-do solfège)",
+      "fah"
+    ],
+    "senseUid": "4b856650-c614-4247-98a5-5fb1889d8cd1",
+    "wordId": "2029680",
+    "pt": "{\n  \"a\": [\n    \"fa (quarta nota de uma escala maior no solfejo móvel-dó)\",\n    \"fá\"\n  ]\n"
+  },
+  {
+    "kana": "ファ",
+    "en": [
+      "F (note in the fixed-do system)"
+    ],
+    "senseUid": "a617cdd2-9ec5-4d76-80e3-d81b2fa01e14",
+    "wordId": "2029680",
+    "pt": "{\n  \"a\": [\n    \"Fá (nota musical no sistema fixo-do)\"\n  ]\n"
+  },
+  {
+    "kana": "ソ",
+    "en": [
+      "so (5th note of a major scale in movable-do solfège)",
+      "soh"
+    ],
+    "senseUid": "3d4b82c2-9167-4b8c-bfeb-03cfe12a1ee7",
+    "wordId": "2029690",
+    "pt": "{\n  \"a\": [\n    \"so (quinta nota de uma escala maior no solfejo móvel-dó)\",\n    \"soh\"\n  ]\n"
+  },
+  {
+    "kana": "ソ",
+    "en": [
+      "G (note in the fixed-do system)"
+    ],
+    "senseUid": "00512b02-a018-4c59-98f5-a0d97985bb58",
+    "wordId": "2029690",
+    "pt": "{\n  \"a\": [\"Sol (nota musical no sistema fixo-dó)\"]\n"
+  },
+  {
+    "kana": "ラ",
+    "en": [
+      "la (6th note of a major scale in movable-do solfège)",
+      "lah"
+    ],
+    "senseUid": "d49439f4-b912-4f2c-9a3b-a2e1c05c42f1",
+    "wordId": "2029700",
+    "pt": "{\n  \"a\": [\n    \"ラ\",\n    \"la (6ª nota de uma escala maior no solfejo móvel-dó)\",\n    \"lah\"\n  ]\n"
+  },
+  {
+    "kana": "ラ",
+    "en": [
+      "A (note in the fixed-do system)"
+    ],
+    "senseUid": "a42f12ed-8f56-4624-899e-e940bb88d86f",
+    "wordId": "2029700",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ラ\",\n      \"gloss\": [\"Lá (nota musical no sistema fixo-dó)\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "シ",
+    "en": [
+      "ti (7th note of a major scale in movable-do solfège)",
+      "si"
+    ],
+    "senseUid": "46ebbd07-b880-4684-8187-85b79f12128a",
+    "wordId": "2029710",
+    "pt": "{\n  \"a\": [\n    \"si\",\n    \"ti (sétima nota de uma escala maior no solfejo móvel-do)\"\n  ]\n"
+  },
+  {
+    "kana": "シ",
+    "en": [
+      "B (note in the fixed-do system)"
+    ],
+    "senseUid": "11c94b6a-ede9-4fe0-858e-a76f0163e626",
+    "wordId": "2029710",
+    "pt": "{\n  \"a\": [\"シ (nota Si no sistema de dó fixo)\"]\n"
+  },
+  {
+    "kana": "イ",
+    "en": [
+      "1st (in a sequence denoted by the iroha system)",
+      "a",
+      "i"
+    ],
+    "senseUid": "08ebcfb2-d741-4f89-9e00-3b785e5b0a19",
+    "wordId": "2029720",
+    "pt": "{\n  \"a\": [\n    \"primeiro (em uma sequência denotada pelo sistema iroha)\",\n    \"a\",\n    \"i\"\n  ]\n"
+  },
+  {
+    "kana": "イ",
+    "en": [
+      "A (note)"
+    ],
+    "senseUid": "cdc36aa3-2d49-415f-b425-bc7b05fe49e5",
+    "wordId": "2029720",
+    "pt": "{\n  \"a\": [\n    {\n      \"portuguese\": \"Lá (nota musical)\",\n      \"notas\": \"Refere-se à nota musical 'Lá' na escala ocidental, equivalente ao 'A' em inglês. No contexto japonês, イ (I) é usado para representar essa nota.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "イ",
+    "en": [
+      "Indonesia"
+    ],
+    "senseUid": "a8937aa3-dd0e-4d0e-ad88-8e2401e3fa36",
+    "wordId": "2029720",
+    "pt": "{\n  \"a\": [\"Indonésia\"]\n"
+  },
+  {
+    "kana": "ロ",
+    "en": [
+      "B (note)"
+    ],
+    "senseUid": "4b9720f5-265f-403c-bc32-e49f2b08867b",
+    "wordId": "2029730",
+    "pt": "{\n  \"a\": [\"Si (nota musical)\"]\n"
+  },
+  {
+    "kana": "ロ",
+    "en": [
+      "2nd (in a sequence denoted by the iroha system)",
+      "b",
+      "ii"
+    ],
+    "senseUid": "cba863f4-7d75-4a2a-bb71-07447db2400e",
+    "wordId": "2029730",
+    "pt": "{\n  \"a\": [\n    \"2º (em uma sequência indicada pelo sistema iroha)\",\n    \"b\",\n    \"ii\"\n  ]\n"
+  },
+  {
+    "kana": "ハ",
+    "en": [
+      "3rd (in a sequence denoted by the iroha system)",
+      "c",
+      "iii"
+    ],
+    "senseUid": "6520eb6d-9499-4f15-9417-a98d76f3a6ab",
+    "wordId": "2029740",
+    "pt": "{\n  \"a\": [\n    \"3º (em uma sequência indicada pelo sistema iroha)\",\n    \"c\",\n    \"iii\"\n  ]\n"
+  },
+  {
+    "kana": "ハ",
+    "en": [
+      "C (note)"
+    ],
+    "senseUid": "8918572d-3ef1-4279-af34-70fdad36481c",
+    "wordId": "2029740",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ハ\",\n      \"gloss\": [\"Dó (nota musical)\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "ニ",
+    "en": [
+      "4th (in a sequence denoted by the iroha system)",
+      "d",
+      "iv"
+    ],
+    "senseUid": "0172900a-ad3f-4f6e-a4fc-e358f291efa8",
+    "wordId": "2029750",
+    "pt": "{\n  \"a\": [\n    \"4º (em uma sequência indicada pelo sistema iroha)\",\n    \"d\",\n    \"iv\"\n  ]\n"
+  },
+  {
+    "kana": "ニ",
+    "en": [
+      "D (note)"
+    ],
+    "senseUid": "a5f58755-8a6c-40c0-903e-f593ce278cb9",
+    "wordId": "2029750",
+    "pt": "{\n  \"a\": [\"Ré (nota musical)\"]\n"
+  },
+  {
+    "kana": "ホ",
+    "en": [
+      "5th (in a sequence denoted by the iroha system)",
+      "e",
+      "v"
+    ],
+    "senseUid": "ce2503c4-1c86-44d7-9b0d-f4cf1197198e",
+    "wordId": "2029760",
+    "pt": "{\n  \"a\": [\n    \"5º (em uma sequência denotada pelo sistema iroha)\",\n    \"e\",\n    \"v\"\n  ]\n"
+  },
+  {
+    "kana": "ホ",
+    "en": [
+      "E (note)"
+    ],
+    "senseUid": "342eb17a-c5a6-4e31-87fb-c2d6292d0568",
+    "wordId": "2029760",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"ホ\",\n      \"gloss\": [\"Mi (nota musical)\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "ヘ",
+    "en": [
+      "6th (in a sequence denoted by the iroha system)",
+      "f",
+      "vi"
+    ],
+    "senseUid": "963e34f4-6884-4c2b-9ec0-b337938f8a05",
+    "wordId": "2029770",
+    "pt": "{\n  \"a\": [\n    \"6º (em uma sequência indicada pelo sistema iroha)\",\n    \"f\",\n    \"vi\"\n  ]\n"
+  },
+  {
+    "kana": "ト",
+    "en": [
+      "7th (in a sequence denoted by the iroha system)",
+      "g",
+      "vii"
+    ],
+    "senseUid": "c219febc-4edf-48cb-b99a-04464418f73e",
+    "wordId": "2029780",
+    "pt": "{\n  \"a\": [\n    \"7º (em uma sequência indicada pelo sistema iroha)\",\n    \"g\",\n    \"vii\"\n  ]\n"
+  },
+  {
+    "kana": "ヘ",
+    "en": [
+      "F (note)"
+    ],
+    "senseUid": "3b417cdb-ccf0-474e-ac08-67ca73ac4cd4",
+    "wordId": "2029770",
+    "pt": "['Fá (nota musical)']"
+  },
+  {
+    "kana": "ト",
+    "en": [
+      "G (note)"
+    ],
+    "senseUid": "c395bbff-a109-4ee7-a4cc-ca4a3a7ec3b9",
+    "wordId": "2029780",
+    "pt": "{\n  \"a\": [\"Sol (nota musical)\"]\n"
+  },
+  {
+    "kana": "おこげ",
+    "en": [
+      "scorched rice (at the bottom of the pot)",
+      "crispy rice",
+      "crunchy rice"
+    ],
+    "senseUid": "6b87ebab-c75a-4371-9adc-ccfacf07c229",
+    "wordId": "2029790",
+    "pt": "['arroz queimado (no fundo da panela)', 'arroz crocante', 'arroz torrado']"
+  },
+  {
+    "kana": "おこげ",
+    "en": [
+      "woman who enjoys the company of gay men"
+    ],
+    "senseUid": "a160c71f-083a-4949-a57a-562461f18957",
+    "wordId": "2029790",
+    "pt": "{\n  \"a\": [\n    \"mulher que gosta da companhia de homens gays\"\n  ]\n"
+  },
+  {
+    "kana": "あいうえおじゅん",
+    "en": [
+      "aiueo-order",
+      "standard gojūon syllabary order"
+    ],
+    "senseUid": "3d23e581-6517-4258-bf27-679a15717b88",
+    "wordId": "2029800",
+    "pt": "{\n  \"a\": [\n    \"ordem aiueo\",\n    \"ordem padrão do silabário gojūon\",\n    \"ordem das sílabas japonesas (a, i, u, e, o)\",\n    \"ordem silábica japonesa tradicional\"\n  ]\n"
+  },
+  {
+    "kana": "あいとうつうせき",
+    "en": [
+      "condolence",
+      "mourning",
+      "sorrow",
+      "lamentation"
+    ],
+    "senseUid": "2a235ec8-13c5-42e9-9f9e-9b2b753484bc",
+    "wordId": "2029810",
+    "pt": "{\n  \"a\": [\n    \"condolências\",\n    \"luto\",\n    \"tristeza\",\n    \"lamentação\"\n  ]\n"
+  },
+  {
+    "kana": "あくじせんり",
+    "en": [
+      "bad news traveling fast",
+      "ill news spreading like wildfire"
+    ],
+    "senseUid": "c700cb58-966f-4a36-b1c7-2c8195b50426",
+    "wordId": "2029820",
+    "pt": "{\n  \"a\": [\n    \"más notícias se espalham rápido\",\n    \"más notícias se espalham como fogo selvagem\"\n  ]\n"
+  },
+  {
+    "kana": "けんらんごうか",
+    "en": [
+      "luxurious and gorgeous",
+      "splendid",
+      "dazzling"
+    ],
+    "senseUid": "6ec2ea88-749c-43d1-81c0-17e4c7a65a39",
+    "wordId": "2029830",
+    "pt": "{\n  \"a\": [\n    \"luxuoso e esplêndido\",\n    \"deslumbrante\",\n    \"magnífico\",\n    \"suntuoso\",\n    \"de uma beleza exuberante\"\n  ]\n"
+  },
+  {
+    "kana": "あんうんていめい",
+    "en": [
+      "gathering dark clouds",
+      "being under the shadow of"
+    ],
+    "senseUid": "7fb2299d-c277-407b-897b-3a5e2f7eb2b9",
+    "wordId": "2029840",
+    "pt": "{\n  \"a\": [\n    \"Nuvens escuras se acumulando\",\n    \"Estar sob uma sombra (de preocupação ou incerteza)\"\n  ]\n"
+  },
+  {
+    "kana": "いどくせいどく",
+    "en": [
+      "using poisonous medication to control poison",
+      "fighting evil with evil",
+      "fighting fire with fire"
+    ],
+    "senseUid": "23461df6-d38b-4d92-a35f-2e407308e7ae",
+    "wordId": "2029850",
+    "pt": "['usar veneno para controlar veneno', 'combater o mal com o mal', 'lutar fogo com fogo']"
+  },
+  {
+    "kana": "いしょうさんたん",
+    "en": [
+      "taxing one's ingenuity in devising something",
+      "agonizing over designing or creating something",
+      "making strenuous efforts to devise good ways and means to do something"
+    ],
+    "senseUid": "7bdefc4c-d347-48ee-835c-af0d4478c120",
+    "wordId": "2029870",
+    "pt": "['esforçar-se ao máximo para criar algo', 'agonizar sobre como projetar ou criar algo', 'fazer grandes esforços para encontrar boas maneiras e meios de realizar algo']"
+  },
+  {
+    "kana": "いしそつう",
+    "en": [
+      "(reciprocal) communication",
+      "(coming to a) mutual understanding"
+    ],
+    "senseUid": "a997e660-7bd1-45ea-8197-a431532c564f",
+    "wordId": "2029860",
+    "pt": "{\n  \"a\": [\n    \"comunicação recíproca\",\n    \"entendimento mútuo\",\n    \"chegar a um entendimento mútuo\"\n  ]\n"
+  },
+  {
+    "kana": "えきせいかくめい",
+    "en": [
+      "revolution (change of dynasty) decreed by Heaven when the incumbent emperor is found lacking in moral virtue (old Chinese political thought)"
+    ],
+    "senseUid": "4beb6f52-a5c6-4e6f-a022-5425cfda3a24",
+    "wordId": "2029880",
+    "pt": "{\n  \"a\": [\n    \"Revolução decretada pelo Céu (mudança de dinastia) quando o imperador vigente é considerado carente de virtude moral (antigo pensamento político chinês)\"\n  ]\n"
+  },
+  {
+    "kana": "いたんじゃせつ",
+    "en": [
+      "heretical doctrine (thought, faith)"
+    ],
+    "senseUid": "12d90678-2597-4827-8dc8-0a8aaf1bbe78",
+    "wordId": "2029890",
+    "pt": "{\n  \"a\": [\n    \"doutrina herética\",\n    \"pensamento herético\",\n    \"fé herética\"\n  ]\n"
+  },
+  {
+    "kana": "いかんそくたい",
+    "en": [
+      "full Japanese court dress of traditional fashion"
+    ],
+    "senseUid": "e11a2f25-0346-4700-81dd-fe6bf6567d54",
+    "wordId": "2029900",
+    "pt": "['traje de corte japonês completo de estilo tradicional']"
+  },
+  {
+    "kana": "いかんせんばん",
+    "en": [
+      "highly regrettable",
+      "utterly deplorable"
+    ],
+    "senseUid": "e4420648-0276-478b-82dd-1eeef3ffad2e",
+    "wordId": "2029910",
+    "pt": "{\n  \"a\": [\n    \"Altamente lamentável\",\n    \"Totalmente deplorável\"\n  ]\n"
+  },
+  {
+    "kana": "いしょくどうげん",
+    "en": [
+      "a balanced diet leads to a healthy body",
+      "healthy food both prevents and cures sickness"
+    ],
+    "senseUid": "ff4dfa39-c871-458a-80fa-53a75f0c6d1d",
+    "wordId": "2029920",
+    "pt": "{\n  \"a\": [\n    \"Uma alimentação equilibrada leva a um corpo saudável.\",\n    \"Alimentos saudáveis tanto previnem quanto curam doenças.\"\n  ]\n"
+  },
+  {
+    "kana": "いっかけんぞく",
+    "en": [
+      "one's family, relations, and followers"
+    ],
+    "senseUid": "01b3274f-c37e-4b0f-8c27-4ca77c8e4c43",
+    "wordId": "2029930",
+    "pt": "['toda a família, parentes e seguidores de alguém']"
+  },
+  {
+    "kana": "いっきょいちじつ",
+    "en": [
+      "constantly changing phase and being highly unpredictable"
+    ],
+    "senseUid": "e4cee809-537b-49df-86cd-1c924e274c21",
+    "wordId": "2029940",
+    "pt": "['fase constantemente mutável e altamente imprevisível']"
+  },
+  {
+    "kana": "いっけんらくちゃく",
+    "en": [
+      "an issue being settled",
+      "a case being closed"
+    ],
+    "senseUid": "f83217fb-0683-474f-8c94-af9b758e123a",
+    "wordId": "2029950",
+    "pt": "['um assunto resolvido', 'um caso encerrado']"
+  },
+  {
+    "kana": "ひとりてんぐ",
+    "en": [
+      "self-conceited person",
+      "ego-tripper",
+      "swelled head"
+    ],
+    "senseUid": "aea4242f-a46d-4486-b212-80cc262352c8",
+    "wordId": "2029970",
+    "pt": "{\n  \"a\": [\n    \"pessoa convencida\",\n    \"alguém que se acha\",\n    \"pessoa de cabeça inchada\"\n  ]\n"
+  },
+  {
+    "kana": "いちぞくろうとう",
+    "en": [
+      "one's family and followers",
+      "one's whole clan"
+    ],
+    "senseUid": "c8be4970-0bfb-4031-aed9-d02cd64c1f7a",
+    "wordId": "2029980",
+    "pt": "['toda a família e seguidores', 'todo o clã']"
+  },
+  {
+    "kana": "いちだくせんきん",
+    "en": [
+      "one's word is worth 1,000 pieces of gold",
+      "a promise should be kept at all cost"
+    ],
+    "senseUid": "af8fe34a-a0f7-4b0f-af4d-0f164745b272",
+    "wordId": "2029990",
+    "pt": "['A palavra de alguém vale mil peças de ouro', 'Uma promessa deve ser cumprida a todo custo']"
+  },
+  {
+    "kana": "いちじつさんしゅう",
+    "en": [
+      "(waiting) impatiently",
+      "(spending) many a weary day",
+      "each moment seeming like an eternity"
+    ],
+    "senseUid": "f3867d96-8e7c-4aa2-8da7-7ead7396734e",
+    "wordId": "2030000",
+    "pt": "{\n  \"a\": [\n    \"esperando impacientemente\",\n    \"passando muitos dias cansativos\",\n    \"cada momento parecendo uma eternidade\"\n  ]\n"
+  },
+  {
+    "kana": "いちばつひゃっかい",
+    "en": [
+      "punishing a crime to make an example for others"
+    ],
+    "senseUid": "7da1c6fe-0bb1-46e2-bf44-5caa56eb26bd",
+    "wordId": "2030010",
+    "pt": "['punir um crime para servir de exemplo aos outros']"
+  },
+  {
+    "kana": "いちみととう",
+    "en": [
+      "whole party to a plot",
+      "whole gang",
+      "fellow conspirators"
+    ],
+    "senseUid": "4964d708-5e34-41a5-9ccc-1337bd4fd5e4",
+    "wordId": "2030030",
+    "pt": "{\n  \"a\": [\n    \"todo o grupo envolvido em um complô\",\n    \"toda a quadrilha\",\n    \"cúmplices\"\n  ]\n"
+  },
+  {
+    "kana": "いちべついらい",
+    "en": [
+      "since our last meeting",
+      "since we parted"
+    ],
+    "senseUid": "f1b06726-75c2-4746-94d9-21d0587b3e91",
+    "wordId": "2030020",
+    "pt": "{\n  \"a\": [\n    \"Desde que nos vimos pela última vez\",\n    \"Desde que nos separamos\"\n  ]\n"
+  },
+  {
+    "kana": "いちろじゅんぷう",
+    "en": [
+      "sailing before the wind",
+      "everything is going well"
+    ],
+    "senseUid": "0a42e814-4415-4fa1-991b-0383c9895f04",
+    "wordId": "2030040",
+    "pt": "['navegando com o vento a favor', 'tudo está indo bem']"
+  },
+  {
+    "kana": "いちろへいあん",
+    "en": [
+      "(wishing someone) bon voyage"
+    ],
+    "senseUid": "49d376f1-1e2e-415f-9b6a-d0e727c4f51e",
+    "wordId": "2030050",
+    "pt": "['Tenha uma boa viagem']"
+  },
+  {
+    "kana": "いんにんじちょう",
+    "en": [
+      "(behaving with) patience and prudence",
+      "putting up with something"
+    ],
+    "senseUid": "e80e5d71-2070-4598-975d-7f2dfd4da351",
+    "wordId": "2030060",
+    "pt": "['agir com paciência e prudência', 'suportar algo', 'tolerar com resignação']"
+  },
+  {
+    "kana": "うんえんばんり",
+    "en": [
+      "limitless expanse of clouds and smoke"
+    ],
+    "senseUid": "a4d27330-0253-4547-bde3-df7c014164f1",
+    "wordId": "2030070",
+    "pt": "{\n  \"a\": [\"imensa extensão de nuvens e fumaça\"]\n"
+  },
+  {
+    "kana": "うんでいばんり",
+    "en": [
+      "being poles apart",
+      "(there being) all the difference in the world"
+    ],
+    "senseUid": "3485430c-f376-4f15-8f45-2f7ad9ba2571",
+    "wordId": "2030080",
+    "pt": "{\n  \"a\": [\n    \"ser polos opostos\",\n    \"haver toda a diferença do mundo\"\n  ]\n"
+  },
+  {
+    "kana": "えいしさっそう",
+    "en": [
+      "cutting a fine (dashing, gallant, noble) figure"
+    ],
+    "senseUid": "5424f3b2-5775-4c9c-94b6-9836b984b1c6",
+    "wordId": "2030090",
+    "pt": "['Cortando uma bela (impressionante, galante, nobre) figura']"
+  },
+  {
+    "kana": "えんかつしゃだつ",
+    "en": [
+      "being smooth, free and easy",
+      "refined and unconventional"
+    ],
+    "senseUid": "f6874ddc-ff8a-4bf2-acd4-0aff2bf0ed4d",
+    "wordId": "2030100",
+    "pt": "{\n  \"a\": [\n    \"ser suave, livre e descontraído\",\n    \"refinado e fora do convencional\"\n  ]\n"
+  },
+  {
+    "kana": "えんまんかいけつ",
+    "en": [
+      "amicable settlement",
+      "settling the case leaving no parties dissatisfied"
+    ],
+    "senseUid": "84166a08-354f-4bc1-8ee5-9e89c3582e59",
+    "wordId": "2030110",
+    "pt": "['solução amigável', 'resolução do caso sem deixar partes insatisfeitas']"
+  },
+  {
+    "kana": "えんまんぐそく",
+    "en": [
+      "(things) being complete, tranquil, and in harmony"
+    ],
+    "senseUid": "21074f65-3767-42e9-b5af-2e87c40b64cb",
+    "wordId": "2030120",
+    "pt": "['completo, tranquilo e em harmonia']"
+  },
+  {
+    "kana": "おうじびょうぼう",
+    "en": [
+      "memories of the past events (being, becoming) far and distant"
+    ],
+    "senseUid": "ea2caee2-6543-4f78-94f3-226229f30b0e",
+    "wordId": "2030130",
+    "pt": "['lembranças de acontecimentos passados que se tornam cada vez mais distantes']"
+  },
+  {
+    "kana": "おうじぼうぼう",
+    "en": [
+      "memories of the past events (being, becoming) far and distant"
+    ],
+    "senseUid": "71f187a3-6230-440d-a0e7-be3d514eeb90",
+    "wordId": "2030140",
+    "pt": "{\n  \"a\": [\n    \"memórias de acontecimentos passados (estando, tornando-se) distantes e longínquos\"\n  ]\n"
+  },
+  {
+    "kana": "おうこうばっこ",
+    "en": [
+      "being rampant",
+      "(evildoers) roaming at will"
+    ],
+    "senseUid": "c549fb08-f081-42bc-8df6-be0ec434d2d3",
+    "wordId": "2030150",
+    "pt": "['estar desenfreado', '(malfeitores) vagando à vontade']"
+  },
+  {
+    "kana": "こうじんばんじょう",
+    "en": [
+      "rising cloud of (yellowish) dust"
+    ],
+    "senseUid": "0ad1f9c3-b798-4888-a262-1dbff2c04be4",
+    "wordId": "2030160",
+    "pt": "['nuvem crescente de poeira amarelada']"
+  },
+  {
+    "kana": "おくじょうかおく",
+    "en": [
+      "gilding the lily",
+      "adding redundant things"
+    ],
+    "senseUid": "edfa287b-6b19-4b67-b71a-8e34060aa14e",
+    "wordId": "2030170",
+    "pt": "{\n  \"a\": [\n    \"dourar o lírio\",\n    \"adicionar coisas redundantes\"\n  ]\n"
+  },
+  {
+    "kana": "おんこうとくじつ",
+    "en": [
+      "having a gentle and sincere personality"
+    ],
+    "senseUid": "6f3dc711-6ab9-4d2c-bde9-10110693d805",
+    "wordId": "2030180",
+    "pt": "['ter uma personalidade gentil e sincera']"
+  },
+  {
+    "kana": "あたらしんみょう",
+    "en": [
+      "valuing one's body and life",
+      "holding one's life dear"
+    ],
+    "senseUid": "6751ba34-8548-4dab-89ee-6d8603e01dd0",
+    "wordId": "2030190",
+    "pt": "{\n  \"a\": [\n    \"valorizar o próprio corpo e a vida\",\n    \"prezar a própria vida\"\n  ]\n"
+  },
+  {
+    "kana": "かれんちゅうきゅう",
+    "en": [
+      "exaction of heavy taxes",
+      "imposing oppressive taxes"
+    ],
+    "senseUid": "891939d8-1557-4b0d-a41c-34c6407a5af3",
+    "wordId": "2030200",
+    "pt": "{\n  \"a\": [\n    \"exação de impostos pesados\",\n    \"imposição de impostos opressivos\"\n  ]\n"
+  },
+  {
+    "kana": "えしゃじょうり",
+    "en": [
+      "those who meet must part (suggesting the transient nature of this life)",
+      "we meet only to part"
+    ],
+    "senseUid": "63ae810c-86a9-4cda-82b4-23cdd6dcde87",
+    "wordId": "2030210",
+    "pt": "['Aqueles que se encontram devem se separar (sugerindo a natureza transitória desta vida)', 'Nos encontramos apenas para nos separar']"
+  },
+  {
+    "kana": "かいこしゅみ",
+    "en": [
+      "nostalgia for the good old days",
+      "taste for the past",
+      "retro tastes"
+    ],
+    "senseUid": "5860db5e-c1ec-4839-8dc0-8ee63138f1b8",
+    "wordId": "2030220",
+    "pt": "['nostalgia pelos bons velhos tempos', 'apreço pelo passado', 'gosto pelo retrô']"
+  },
+  {
+    "kana": "かいだいむそう",
+    "en": [
+      "unparalleled in the whole country"
+    ],
+    "senseUid": "2740e7ae-a5ff-4458-9942-97391c98d0ba",
+    "wordId": "2030230",
+    "pt": "['incomparável em todo o país']"
+  },
+  {
+    "kana": "がいごうないじゅう",
+    "en": [
+      "being tough on the outside but soft at heart",
+      "a faint-hearted person pretending to be brave"
+    ],
+    "senseUid": "0eed05d4-c215-4542-860c-90fbfab8c8c3",
+    "wordId": "2030240",
+    "pt": "['Ser duro por fora, mas gentil por dentro', 'Uma pessoa de coração fraco fingindo ser corajosa']"
+  },
+  {
+    "kana": "がいだんこうせつ",
+    "en": [
+      "street gossips and idle rumors"
+    ],
+    "senseUid": "f986c855-5cef-4497-88d4-706d5329b936",
+    "wordId": "2030250",
+    "pt": "['fofocas de rua e boatos infundados']"
+  },
+  {
+    "kana": "がいしゅういっしょく",
+    "en": [
+      "(beating someone) hands down",
+      "with a single blow"
+    ],
+    "senseUid": "f29ddd8d-a690-4732-8c0f-3109a07b27d8",
+    "wordId": "2030260",
+    "pt": "{\n  \"a\": [\n    \"vitória esmagadora\",\n    \"derrota com um único golpe\"\n  ]\n"
+  },
+  {
+    "kana": "かっこふばつ",
+    "en": [
+      "determined",
+      "steadfast",
+      "unswerving",
+      "unshakable"
+    ],
+    "senseUid": "18100b8e-f79e-462e-92ad-1e54234ab7d4",
+    "wordId": "2030270",
+    "pt": "['determinado', 'firme', 'inabalável', 'resoluto']"
+  },
+  {
+    "kana": "こっけいしゃだつ",
+    "en": [
+      "smooth-talking and polished",
+      "witty",
+      "free, easy, and urbane"
+    ],
+    "senseUid": "ee725f8a-e4ae-477b-95ce-a3f03cb3e327",
+    "wordId": "2030280",
+    "pt": "['eloquente e refinado', 'espirituoso', 'livre, descontraído e urbano']"
+  },
+  {
+    "kana": "かんじんたいど",
+    "en": [
+      "being generous, benevolent and magnanimous in disposition"
+    ],
+    "senseUid": "c44889be-5289-426d-a31a-e8f33d6b5bf0",
+    "wordId": "2030290",
+    "pt": "['ter uma disposição generosa, benevolente e magnânima']"
+  },
+  {
+    "kana": "かんてんじう",
+    "en": [
+      "welcome (beneficial) rain in a drought",
+      "realization of something eagerly looked for",
+      "a welcome relief"
+    ],
+    "senseUid": "46223a2a-1a56-448f-8dcf-9f01ca991a83",
+    "wordId": "2030300",
+    "pt": "{\n  \"a\": [\n    \"chuva bem-vinda durante uma seca\",\n    \"realização de algo muito aguardado\",\n    \"um alívio bem-vindo\"\n  ]\n"
+  },
+  {
+    "kana": "かんがいひとしお",
+    "en": [
+      "one's heart is filled with even deeper emotion",
+      "feeling the emotion all the more deeply"
+    ],
+    "senseUid": "c95e936c-7918-427b-aa33-c214c69ff0f7",
+    "wordId": "2030310",
+    "pt": "['o coração fica ainda mais comovido', 'sentir a emoção ainda mais profundamente']"
+  },
+  {
+    "kana": "かんぎゅうじゅうとう",
+    "en": [
+      "(having, there being) a great number of books"
+    ],
+    "senseUid": "fc021b32-5079-4e88-860b-a8d95847b5d9",
+    "wordId": "2030320",
+    "pt": "{\n  \"a\": [\n    \"haver uma grande quantidade de livros\",\n    \"existir muitos livros\",\n    \"estar repleto de livros\"\n  ]\n"
+  },
+  {
+    "kana": "かんたんめいりょう",
+    "en": [
+      "simple and clear"
+    ],
+    "senseUid": "f33cec03-cfbb-4d87-9cce-3ee7108d0896",
+    "wordId": "2030330",
+    "pt": "['simples e claro']"
+  },
+  {
+    "kana": "かんきゅうじざい",
+    "en": [
+      "varying the tempo or speed (of something) at will"
+    ],
+    "senseUid": "419ae205-8a61-4d79-8182-668e16562616",
+    "wordId": "2030340",
+    "pt": "{\n  \"a\": [\n    \"variar o tempo ou a velocidade (de algo) à vontade\"\n  ]\n"
+  },
+  {
+    "kana": "がんこうしはい",
+    "en": [
+      "reading between the lines"
+    ],
+    "senseUid": "311293a5-4afa-4382-9381-cff61d393adf",
+    "wordId": "2030350",
+    "pt": "{\n  \"a\": [\"ler nas entrelinhas\"]\n"
+  },
+  {
+    "kana": "がんこうけいけい",
+    "en": [
+      "with shining, piercing eyes"
+    ],
+    "senseUid": "63aef9b8-1b82-4858-8e84-e21a0bc2b0b1",
+    "wordId": "2030360",
+    "pt": "{\n  \"a\": [\n    \"com olhos brilhantes e penetrantes\"\n  ]\n"
+  },
+  {
+    "kana": "がんこいってつ",
+    "en": [
+      "stubborn",
+      "obstinate",
+      "adamant",
+      "immovable"
+    ],
+    "senseUid": "5b23e793-fc0e-4fa2-b190-0ed8d29de143",
+    "wordId": "2030370",
+    "pt": "['teimoso', 'obstinado', 'irredutível', 'inflexível']"
+  },
+  {
+    "kana": "がんめいころう",
+    "en": [
+      "obstinate",
+      "wrong-headed",
+      "bigoted"
+    ],
+    "senseUid": "4fb7a606-fa06-4b1b-a73d-5516757c4c0a",
+    "wordId": "2030380",
+    "pt": "['obstinado', 'teimoso', 'cabeça-dura', 'intolerante']"
+  },
+  {
+    "kana": "きかいせんばん",
+    "en": [
+      "very strange (mysterious, weird)",
+      "bizarre",
+      "monstrous",
+      "outrageous"
+    ],
+    "senseUid": "b3b892e9-a318-491b-8afb-57c08ee4923f",
+    "wordId": "2030390",
+    "pt": "['muito estranho (misterioso, esquisito)', 'bizarro', 'monstruoso', 'ultrajante']"
+  },
+  {
+    "kana": "きしせんめい",
+    "en": [
+      "making one's attitude (position, stand) clear",
+      "unfurling and clearly showing one's banner"
+    ],
+    "senseUid": "fc295647-c90c-409c-a62f-082b970ea182",
+    "wordId": "2030400",
+    "pt": "{\n  \"a\": [\n    \"deixar clara a própria posição\",\n    \"deixar evidente a própria postura\",\n    \"deixar explícita a própria atitude\",\n    \"mostrar abertamente de que lado está\",\n    \"deixar claro de que lado está\",\n    \"deixar claro o próprio posicionamento\",\n    \"deixar claro o próprio ponto de vista\",\n    \"mostrar claramente a própria bandeira\",\n    \"desfraldar e mostrar claramente a própria bandeira\"\n  ]\n"
+  },
+  {
+    "kana": "きせいかんねん",
+    "en": [
+      "ready-made ideas"
+    ],
+    "senseUid": "61778fc7-3de7-4bbc-be6a-5ce8cb7623f5",
+    "wordId": "2030410",
+    "pt": "{\n  \"a\": [\"ideias preconcebidas\"]\n"
+  },
+  {
+    "kana": "きちじゅうおう",
+    "en": [
+      "being very witty",
+      "very ingenious and resourceful"
+    ],
+    "senseUid": "4ecec75b-4f75-4dd8-a6b5-0d90b9e2e7cb",
+    "wordId": "2030420",
+    "pt": "['ser muito espirituoso', 'muito engenhoso e cheio de recursos']"
+  },
+  {
+    "kana": "きうそうだい",
+    "en": [
+      "magnanimous in one's attitude of mind",
+      "grand in one's idea or mind-set"
+    ],
+    "senseUid": "3cfd3898-d67c-49ca-bb18-336ff2eb4ec2",
+    "wordId": "2030440",
+    "pt": "{\n  \"a\": [\n    \"Magnânimo em sua atitude mental\",\n    \"Grandioso em sua ideia ou mentalidade\"\n  ]\n"
+  }
+]

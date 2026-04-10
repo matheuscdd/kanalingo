@@ -1,0 +1,933 @@
+[
+  {
+    "kana": "ようそしはらい",
+    "en": [
+      "factor payment"
+    ],
+    "senseUid": "1113d30f-20c6-45dd-9a83-1682d9f34cc3",
+    "wordId": "2162360",
+    "pt": "['pagamento de fatores']"
+  },
+  {
+    "kana": "ようそかかく",
+    "en": [
+      "factor price"
+    ],
+    "senseUid": "6c139da7-3942-4f4c-980e-5d655d53b83e",
+    "wordId": "2162370",
+    "pt": "['preço dos fatores']"
+  },
+  {
+    "kana": "ようそかかくきんとうかていり",
+    "en": [
+      "factor price equalization theorem"
+    ],
+    "senseUid": "25b96250-ad5a-4d0f-9a01-7d084cbba7d5",
+    "wordId": "2162380",
+    "pt": "['teorema da equalização do preço dos fatores']"
+  },
+  {
+    "kana": "ジニけいすう",
+    "en": [
+      "Gini coefficient"
+    ],
+    "senseUid": "345e71ea-07e8-4ff2-b134-17d077dbe8cb",
+    "wordId": "2162390",
+    "pt": "['Coeficiente de Gini']"
+  },
+  {
+    "kana": "しょとくふびょうどうどけいすう",
+    "en": [
+      "income inequality coefficient",
+      "Gini coefficient"
+    ],
+    "senseUid": "0f833c54-5100-4b72-b5ec-e7005f5627c5",
+    "wordId": "2162400",
+    "pt": "{\n  \"a\": [\n    \"coeficiente de desigualdade de renda\",\n    \"coeficiente de Gini\"\n  ]\n"
+  },
+  {
+    "kana": "ざいせいさいけんだんたい",
+    "en": [
+      "local governmental body that requires federal oversight to recover from its debts"
+    ],
+    "senseUid": "5b6aca86-9192-4d05-98bb-7b60af24db44",
+    "wordId": "2162410",
+    "pt": "{\n  \"a\": [\n    \"órgão governamental local que necessita de supervisão federal para se recuperar de suas dívidas\"\n  ]\n"
+  },
+  {
+    "kana": "せいふししゅつ",
+    "en": [
+      "government expenditure"
+    ],
+    "senseUid": "70a5ae67-7f3e-4812-8840-a83e8752adcc",
+    "wordId": "2162420",
+    "pt": "['despesa do governo']"
+  },
+  {
+    "kana": "じんてきしほん",
+    "en": [
+      "human capital"
+    ],
+    "senseUid": "e19ebc19-09f8-4d68-ac45-8297f06f712e",
+    "wordId": "2162430",
+    "pt": "['capital humano']"
+  },
+  {
+    "kana": "いんパ",
+    "en": [
+      "India and Pakistan",
+      "Indian-Pakistani"
+    ],
+    "senseUid": "06e63a90-a740-44cc-b674-99c0bef852c8",
+    "wordId": "2162440",
+    "pt": "{\n  \"a\": [\n    \"Índia e Paquistão\",\n    \"indo-paquistanês\"\n  ]\n"
+  },
+  {
+    "kana": "きぞくしょとく",
+    "en": [
+      "imputed income"
+    ],
+    "senseUid": "6fa84fb1-873a-41d6-b5f5-0182306ec4b5",
+    "wordId": "2162450",
+    "pt": "['renda imputada']"
+  },
+  {
+    "kana": "きぞくしゅうにゅう",
+    "en": [
+      "imputed income"
+    ],
+    "senseUid": "b528ecad-e264-4cff-9d08-5ed67a254138",
+    "wordId": "2162460",
+    "pt": "['renda imputada']"
+  },
+  {
+    "kana": "どく",
+    "en": [
+      "Germany"
+    ],
+    "senseUid": "f7149f71-aa48-4bb7-bf24-78e47e80d99b",
+    "wordId": "2162470",
+    "pt": "['Alemanha']"
+  },
+  {
+    "kana": "そぜいふたん",
+    "en": [
+      "tax burden"
+    ],
+    "senseUid": "3f5be48d-1974-459d-a25f-b5d8896e8760",
+    "wordId": "2162480",
+    "pt": "{\n  \"a\": [\n    \"ônus tributário\"\n  ]\n"
+  },
+  {
+    "kana": "そぜいのきちゃく",
+    "en": [
+      "incidence of taxation",
+      "tax incidence"
+    ],
+    "senseUid": "44d94cab-2974-4e57-81a2-feef05cc49b3",
+    "wordId": "2162490",
+    "pt": "{\n  \"a\": [\"incidência da tributação\", \"incidência fiscal\"]\n"
+  },
+  {
+    "kana": "そぜいてんか",
+    "en": [
+      "shifting of tax",
+      "tax shifting"
+    ],
+    "senseUid": "623a3f48-ee16-4580-89e6-0f52663d7cf6",
+    "wordId": "2162500",
+    "pt": "{\n  \"a\": [\n    \"transferência de imposto\",\n    \"repasse de imposto\"\n  ]\n"
+  },
+  {
+    "kana": "インディア",
+    "en": [
+      "India"
+    ],
+    "senseUid": "058b58f6-39d3-4297-9ba9-0175ff40ceeb",
+    "wordId": "2162510",
+    "pt": "['Índia']"
+  },
+  {
+    "kana": "かきゅうざい",
+    "en": [
+      "inferior goods (i.e. goods for which demand decreases when consumer's income increases)"
+    ],
+    "senseUid": "f2cfab4f-b250-4283-bcec-136eb5d32102",
+    "wordId": "2162520",
+    "pt": "{\n  \"a\": [\n    \"bens inferiores (ou seja, bens cuja demanda diminui quando a renda do consumidor aumenta)\"\n  ]\n"
+  },
+  {
+    "kana": "じょうきゅうざい",
+    "en": [
+      "superior goods"
+    ],
+    "senseUid": "0a4b1b45-cc09-43d3-b189-d3b9c1d1da4c",
+    "wordId": "2162530",
+    "pt": "['bens superiores']"
+  },
+  {
+    "kana": "かつれいをほどこす",
+    "en": [
+      "to circumcise (someone)"
+    ],
+    "senseUid": "22618054-051b-40b6-851e-2955b56a1918",
+    "wordId": "2162550",
+    "pt": "['circuncidar (alguém)']"
+  },
+  {
+    "kana": "かつれいをうける",
+    "en": [
+      "to undergo circumcision",
+      "to be circumcised"
+    ],
+    "senseUid": "c3435f0f-2328-43ed-aad6-b464641585be",
+    "wordId": "2162560",
+    "pt": "['submeter-se à circuncisão', 'ser circuncidado']"
+  },
+  {
+    "kana": "げんぶつきゅうふ",
+    "en": [
+      "benefit in kind"
+    ],
+    "senseUid": "e5d3f0ec-54ad-4435-8754-1aaff080af29",
+    "wordId": "2162570",
+    "pt": "{\n  \"a\": [\"benefício em bens\"]\n"
+  },
+  {
+    "kana": "こうもくべつこうじょ",
+    "en": [
+      "itemized deduction"
+    ],
+    "senseUid": "22f5f734-1beb-4209-9cdd-47acbd3b8d51",
+    "wordId": "2162580",
+    "pt": "['dedução discriminada']"
+  },
+  {
+    "kana": "ざいことうし",
+    "en": [
+      "inventory investment"
+    ],
+    "senseUid": "27d9f53c-150f-4ab3-ad63-617c219b4248",
+    "wordId": "2162590",
+    "pt": "['investimento em estoques']"
+  },
+  {
+    "kana": "とうしししゅつ",
+    "en": [
+      "investment spending",
+      "investment expenditure"
+    ],
+    "senseUid": "c89817a3-7036-4d14-8acc-96571539c2ed",
+    "wordId": "2162600",
+    "pt": "{\n  \"a\": [\"gastos com investimento\", \"despesas de investimento\"]\n"
+  },
+  {
+    "kana": "みえざるて",
+    "en": [
+      "invisible hand"
+    ],
+    "senseUid": "c537df9c-ee28-437f-b6a7-4083b6f49633",
+    "wordId": "2162610",
+    "pt": "['mão invisível']"
+  },
+  {
+    "kana": "ローレンツきょくせん",
+    "en": [
+      "Lorenz curve"
+    ],
+    "senseUid": "5c8ae73a-cd00-4f04-a66a-592ce7f01881",
+    "wordId": "2162620",
+    "pt": "{'a':"
+  },
+  {
+    "kana": "きぬらん",
+    "en": [
+      "lawn orchid",
+      "soldier's orchid (Zeuxine strateumatica)"
+    ],
+    "senseUid": "67b23d4c-e862-4eeb-9348-4b68915224ba",
+    "wordId": "2162630",
+    "pt": "{\n  \"a\": [\n    \"orquídea-do-gramado\",\n    \"orquídea-do-soldado (Zeuxine strateumatica)\"\n  ]\n"
+  },
+  {
+    "kana": "しじょうのしっぱい",
+    "en": [
+      "market failure"
+    ],
+    "senseUid": "4ca73f39-3b84-4d0c-a972-d179c858db24",
+    "wordId": "2162640",
+    "pt": "{\n  \"a\": [\n    \"falha de mercado\"\n  ]\n"
+  },
+  {
+    "kana": "かへいさっかく",
+    "en": [
+      "money illusion"
+    ],
+    "senseUid": "210e0059-cc30-401e-90af-aec53ead516b",
+    "wordId": "2162650",
+    "pt": "['ilusão monetária']"
+  },
+  {
+    "kana": "カクタスペア",
+    "en": [
+      "fruit of a cactus in genus Opuntia (incl. prickly pears and cholla)",
+      "cactus pear"
+    ],
+    "senseUid": "85e3fc54-fd50-4d6f-8fc4-48adf873cd93",
+    "wordId": "2162660",
+    "pt": "['fruto de um cacto do gênero Opuntia (incluindo figo-da-índia e cholla)', 'pera-do-cacto']"
+  },
+  {
+    "kana": "ふのがいぶせい",
+    "en": [
+      "negative externalities"
+    ],
+    "senseUid": "2325a556-a2c6-4306-896c-ecb092fbafb4",
+    "wordId": "2162670",
+    "pt": "{\n  \"a\": [\"externalidades negativas\"]\n"
+  },
+  {
+    "kana": "めいもくジーディーピー",
+    "en": [
+      "nominal GDP"
+    ],
+    "senseUid": "a14b1c5b-f341-417f-a5a2-cdec25043579",
+    "wordId": "2162680",
+    "pt": "['PIB nominal']"
+  },
+  {
+    "kana": "きはんてきけいざいがく",
+    "en": [
+      "normative economics"
+    ],
+    "senseUid": "053f6b93-4324-4c75-85b4-4c1f40ede581",
+    "wordId": "2162690",
+    "pt": "{\n  \"a\": [\"economia normativa\"]\n"
+  },
+  {
+    "kana": "じっしょうてきけいざいがく",
+    "en": [
+      "positive economics"
+    ],
+    "senseUid": "0064c306-d836-49fd-a576-74f4ffdfeb56",
+    "wordId": "2162700",
+    "pt": "{\n  \"a\": [\n    \"economia positiva\"\n  ]\n"
+  },
+  {
+    "kana": "さいてきかぜい",
+    "en": [
+      "optimal taxation",
+      "optimum taxation"
+    ],
+    "senseUid": "bc0cddd7-ced8-4bcc-a442-243e74613bfd",
+    "wordId": "2162710",
+    "pt": "{\n  \"a\": [\"tributação ótima\", \"tributação ideal\"]\n"
+  },
+  {
+    "kana": "パレートさいてき",
+    "en": [
+      "Pareto optimum"
+    ],
+    "senseUid": "d4f845b3-f393-4334-bc55-c704a8d16075",
+    "wordId": "2162720",
+    "pt": "{\n  \"a\": [\"ótimo de Pareto\"]\n"
+  },
+  {
+    "kana": "ぶぶんきんこう",
+    "en": [
+      "partial equilibrium"
+    ],
+    "senseUid": "b47093b7-4181-4356-91bd-06cc564d9d05",
+    "wordId": "2162730",
+    "pt": "['equilíbrio parcial']"
+  },
+  {
+    "kana": "こうじょうしょとくかせつ",
+    "en": [
+      "permanent income hypothesis"
+    ],
+    "senseUid": "7c94223e-3800-4352-833f-63dc80058198",
+    "wordId": "2162740",
+    "pt": "['hipótese da renda permanente']"
+  },
+  {
+    "kana": "せいのがいぶせい",
+    "en": [
+      "positive externalities"
+    ],
+    "senseUid": "9f00c442-f384-45a7-9ece-196393a3b224",
+    "wordId": "2162750",
+    "pt": "{\n  \"a\": [\"externalidades positivas\"]\n"
+  },
+  {
+    "kana": "せいさんしゃよじょう",
+    "en": [
+      "producer surplus"
+    ],
+    "senseUid": "29d5aee3-82c2-4451-a96c-337a3c9ef885",
+    "wordId": "2162760",
+    "pt": "['excedente do produtor']"
+  },
+  {
+    "kana": "りじゅんさいだいか",
+    "en": [
+      "profit maximization",
+      "profit maximisation"
+    ],
+    "senseUid": "94698ec5-4851-42a5-bf8f-097747081a8d",
+    "wordId": "2162770",
+    "pt": "{\n  \"a\": [\"maximização do lucro\", \"maximização dos lucros\"]\n"
+  },
+  {
+    "kana": "ぎゃくしんぜい",
+    "en": [
+      "regressive tax"
+    ],
+    "senseUid": "9019b890-9b01-4062-9d5f-dfd891f03b20",
+    "wordId": "2162780",
+    "pt": "{\n  \"a\": [\n    \"imposto regressivo\"\n  ]\n"
+  },
+  {
+    "kana": "ひれいぜい",
+    "en": [
+      "proportional tax"
+    ],
+    "senseUid": "7f32110e-2404-4234-ba70-d825b7dfc9da",
+    "wordId": "2162790",
+    "pt": "['imposto proporcional']"
+  },
+  {
+    "kana": "こうきょうぶもん",
+    "en": [
+      "public sector"
+    ],
+    "senseUid": "aac66d4c-fc90-4fb3-bffe-49383473d8a3",
+    "wordId": "2162800",
+    "pt": "['setor público']"
+  },
+  {
+    "kana": "げんざいかち",
+    "en": [
+      "present value"
+    ],
+    "senseUid": "0fdfac33-aedd-4af2-979b-c4061bfb434c",
+    "wordId": "2162810",
+    "pt": "['valor presente']"
+  },
+  {
+    "kana": "カルノーず",
+    "en": [
+      "Karnaugh map",
+      "Karnaugh diagram (for mapping Boolean expressions)"
+    ],
+    "senseUid": "01e2a7d5-ee6f-467c-a86e-d763177949ec",
+    "wordId": "2162820",
+    "pt": "['Mapa de Karnaugh', 'Diagrama de Karnaugh (para mapear expressões booleanas)']"
+  },
+  {
+    "kana": "こたち",
+    "en": [
+      "children"
+    ],
+    "senseUid": "55cbb887-d33c-4463-8d49-424b8d2fcf49",
+    "wordId": "2162830",
+    "pt": "['crianças']"
+  },
+  {
+    "kana": "ごうりてききたいかせつ",
+    "en": [
+      "rational expectations hypothesis"
+    ],
+    "senseUid": "564ddd1a-52b5-4fb6-97c6-1b38716bf60a",
+    "wordId": "2162840",
+    "pt": "['hipótese das expectativas racionais']"
+  },
+  {
+    "kana": "ごうりてききたいけいせいかせつ",
+    "en": [
+      "rational expectations hypothesis"
+    ],
+    "senseUid": "a1418697-7129-4d1a-ba52-d91ff947af56",
+    "wordId": "2162850",
+    "pt": "['hipótese das expectativas racionais']"
+  },
+  {
+    "kana": "じっしつジーディーピー",
+    "en": [
+      "real GDP"
+    ],
+    "senseUid": "5cb0ba1d-60f2-44d9-bbd5-751af0a51646",
+    "wordId": "2162860",
+    "pt": "['PIB real']"
+  },
+  {
+    "kana": "じっしつりしりつ",
+    "en": [
+      "real rate of interest"
+    ],
+    "senseUid": "ea9905ef-5ae0-4f88-90db-0a4becf4a5b2",
+    "wordId": "2162870",
+    "pt": "{\n  \"a\": [\"taxa de juros real\"]\n"
+  },
+  {
+    "kana": "めいもくりしりつ",
+    "en": [
+      "nominal rate of interest"
+    ],
+    "senseUid": "e1458743-833f-4d09-8524-6acf07295bcb",
+    "wordId": "2162880",
+    "pt": "['taxa nominal de juros']"
+  },
+  {
+    "kana": "りゅうほちんぎん",
+    "en": [
+      "reservation wage"
+    ],
+    "senseUid": "b97978cb-806c-486c-9f45-e0279b26fa5c",
+    "wordId": "2162890",
+    "pt": "{\n  \"a\": [\"salário de reserva\"]\n"
+  },
+  {
+    "kana": "けんじせんこう",
+    "en": [
+      "revealed preference"
+    ],
+    "senseUid": "47e1c942-51db-4d37-816e-f29502bb157c",
+    "wordId": "2162900",
+    "pt": "['preferência revelada']"
+  },
+  {
+    "kana": "こうようかんすう",
+    "en": [
+      "utility function"
+    ],
+    "senseUid": "faf8f929-dad7-4552-9f73-80f7023bcc03",
+    "wordId": "2162910",
+    "pt": "{\n  \"a\": [\n    \"função utilidade\"\n  ]\n"
+  },
+  {
+    "kana": "こうようさいだいか",
+    "en": [
+      "utility maximization",
+      "utility maximisation"
+    ],
+    "senseUid": "19168469-ad4c-48e7-a77e-107d565f4ca3",
+    "wordId": "2162920",
+    "pt": "['maximização da utilidade']"
+  },
+  {
+    "kana": "じはつてきしつぎょう",
+    "en": [
+      "voluntary unemployment"
+    ],
+    "senseUid": "3cf6da8e-dd81-4ae1-be8d-f5bc509a9e5a",
+    "wordId": "2162930",
+    "pt": "['desemprego voluntário']"
+  },
+  {
+    "kana": "ごうせいのごびゅう",
+    "en": [
+      "fallacy of composition"
+    ],
+    "senseUid": "496675aa-0b7b-4c03-a549-6da575d5b2a7",
+    "wordId": "2162940",
+    "pt": "['falácia da composição']"
+  },
+  {
+    "kana": "こうせいけいざいがく",
+    "en": [
+      "welfare economics"
+    ],
+    "senseUid": "af3afbdd-00bd-4897-8604-53791ea514e8",
+    "wordId": "2162950",
+    "pt": "{\n  \"a\": [\"economia do bem-estar\"]\n"
+  },
+  {
+    "kana": "きぞくかかく",
+    "en": [
+      "imputed price"
+    ],
+    "senseUid": "621219b0-eaf7-4d63-b343-205e23c46deb",
+    "wordId": "2162960",
+    "pt": "['preço imputado']"
+  },
+  {
+    "kana": "ほうていへいか",
+    "en": [
+      "mint parity",
+      "mint par of exchange"
+    ],
+    "senseUid": "bc360095-a0e7-4b80-aa23-dcdaa432663d",
+    "wordId": "2162970",
+    "pt": "{\n  \"a\": [\n    \"paridade de cunhagem\",\n    \"paridade de cunhagem de moedas\"\n  ]\n"
+  },
+  {
+    "kana": "こうばいりょくへいか",
+    "en": [
+      "purchasing power parity",
+      "PPP"
+    ],
+    "senseUid": "25964bc7-1acb-4661-b8e6-fe72d37ffabc",
+    "wordId": "2162980",
+    "pt": "['paridade do poder de compra']"
+  },
+  {
+    "kana": "きんかわせほんいせいど",
+    "en": [
+      "gold exchange standard system"
+    ],
+    "senseUid": "4e61a383-62fd-42e0-be69-e32e6f22cbd7",
+    "wordId": "2162990",
+    "pt": "{\n  \"a\": [\"sistema padrão de câmbio-ouro\"]\n"
+  },
+  {
+    "kana": "きんじかへい",
+    "en": [
+      "near money"
+    ],
+    "senseUid": "81b58f68-4a09-4894-aab6-95ea6f33b399",
+    "wordId": "2163000",
+    "pt": "{\n  \"a\": [\"quase-moeda\"]\n"
+  },
+  {
+    "kana": "くものすりろん",
+    "en": [
+      "cobweb theorem"
+    ],
+    "senseUid": "0a09e2c6-1998-44c8-8b2e-304b30a1634b",
+    "wordId": "2163010",
+    "pt": "['teorema da teia de aranha']"
+  },
+  {
+    "kana": "こくさいりゅうどうせい",
+    "en": [
+      "international liquidity"
+    ],
+    "senseUid": "667d7e30-8901-4221-b3a0-4fa1c80017f0",
+    "wordId": "2163020",
+    "pt": "['liquidez internacional']"
+  },
+  {
+    "kana": "こていかわせそうばせい",
+    "en": [
+      "fixed exchange rate system"
+    ],
+    "senseUid": "7beeb1bd-3fba-44a2-9452-d12d5264d316",
+    "wordId": "2163040",
+    "pt": "['sistema de taxa de câmbio fixa']"
+  },
+  {
+    "kana": "さいしゅうじゅよう",
+    "en": [
+      "final demand"
+    ],
+    "senseUid": "723b2ef1-835c-4012-b6f9-7b0f58e0329b",
+    "wordId": "2163050",
+    "pt": "['demanda final']"
+  },
+  {
+    "kana": "さんぎょうせいさく",
+    "en": [
+      "industrial policy"
+    ],
+    "senseUid": "afc33681-3227-470e-a063-ce792a7952ac",
+    "wordId": "2163060",
+    "pt": "{\n  \"a\": [\"política industrial\"]\n"
+  },
+  {
+    "kana": "げいがない",
+    "en": [
+      "lacking skill",
+      "uninspiring",
+      "unexciting",
+      "dull",
+      "unrefined",
+      "boring (from being too plain)"
+    ],
+    "senseUid": "326a7fa9-1ceb-4215-936f-2db23c6e45dd",
+    "wordId": "2163030",
+    "pt": "['sem habilidade', 'sem inspiração', 'sem emoção', 'monótono', 'sem refinamento', 'entediante (por ser simples demais)']"
+  },
+  {
+    "kana": "さんぎょうそしき",
+    "en": [
+      "industrial organization"
+    ],
+    "senseUid": "57a100d3-c635-47aa-a35d-ccc79232d2ab",
+    "wordId": "2163070",
+    "pt": "['organização industrial']"
+  },
+  {
+    "kana": "ジーエヌピーデフレーター",
+    "en": [
+      "GNP deflator"
+    ],
+    "senseUid": "a1a02032-cc02-4873-83c1-9fb111c1a79a",
+    "wordId": "2163080",
+    "pt": "['deflator do PNB']"
+  },
+  {
+    "kana": "シャドープライス",
+    "en": [
+      "shadow price"
+    ],
+    "senseUid": "b833abe8-ef8a-408b-9376-0c91410f9f70",
+    "wordId": "2163090",
+    "pt": "['preço sombra']"
+  },
+  {
+    "kana": "しじょうきんこう",
+    "en": [
+      "market equilibrium"
+    ],
+    "senseUid": "7aafa432-72bc-4fda-9ecc-9ffa7e7e2ce7",
+    "wordId": "2163100",
+    "pt": "{\n  \"a\": [\n    \"equilíbrio de mercado\"\n  ]\n"
+  },
+  {
+    "kana": "しぜんどくせん",
+    "en": [
+      "natural monopoly"
+    ],
+    "senseUid": "28fa1039-6774-461d-8e2b-8602743d709f",
+    "wordId": "2163110",
+    "pt": "['monopólio natural']"
+  },
+  {
+    "kana": "じぜんぶんせき",
+    "en": [
+      "ex-ante analysis"
+    ],
+    "senseUid": "9b3d6344-aeb7-4033-9493-801df8fd79a2",
+    "wordId": "2163120",
+    "pt": "['análise ex-ante']"
+  },
+  {
+    "kana": "じごぶんせき",
+    "en": [
+      "ex-post analysis"
+    ],
+    "senseUid": "939c4004-fb0e-42a6-9122-672e51b3a303",
+    "wordId": "2163130",
+    "pt": "['análise ex-post']"
+  },
+  {
+    "kana": "そうほうどくせん",
+    "en": [
+      "bilateral monopoly"
+    ],
+    "senseUid": "14c69fb8-430b-4bf6-bd66-b5ded795d9ab",
+    "wordId": "2163140",
+    "pt": "['monopólio bilateral']"
+  },
+  {
+    "kana": "せいひんさべつか",
+    "en": [
+      "product differentiation"
+    ],
+    "senseUid": "c3e81695-1661-4a19-9320-3df5232e629c",
+    "wordId": "2163150",
+    "pt": "{\n  \"a\": [\"diferenciação de produtos\"]\n"
+  },
+  {
+    "kana": "ワイルドフラワー",
+    "en": [
+      "wildflower"
+    ],
+    "senseUid": "2a817d78-fc5a-469d-b593-ae59f8c24b87",
+    "wordId": "2163160",
+    "pt": "{\n  \"a\": [\"flor silvestre\"]\n"
+  },
+  {
+    "kana": "きおくじゅつ",
+    "en": [
+      "mnemonics",
+      "art of memorizing",
+      "mnemonic device"
+    ],
+    "senseUid": "cc8f27cf-784c-45e9-8434-e4f301b894fd",
+    "wordId": "2163170",
+    "pt": "{\n  \"a\": [\n    \"mnemônica\",\n    \"arte de memorizar\",\n    \"dispositivo mnemônico\"\n  ]\n"
+  },
+  {
+    "kana": "しゅくけい",
+    "en": [
+      "Dear (name)"
+    ],
+    "senseUid": "f489d1c2-6bc1-4b06-b012-19d241bc1dae",
+    "wordId": "2163180",
+    "pt": "{\n  \"a\": [\"Prezado(a) (nome)\"]\n"
+  },
+  {
+    "kana": "となる",
+    "en": [
+      "to neighbor (neighbour)",
+      "to be adjacent to",
+      "to be next to",
+      "to border"
+    ],
+    "senseUid": "4e3eba35-ac1c-4f7d-b093-66734b4f0781",
+    "wordId": "2163190",
+    "pt": "{\n  \"a\": [\n    \"ficar ao lado de\",\n    \"ser vizinho de\",\n    \"estar adjacente a\",\n    \"fazer fronteira com\"\n  ]\n"
+  },
+  {
+    "kana": "あいせっする",
+    "en": [
+      "to be adjacent (with each other)",
+      "to come into contact (with each other)",
+      "to touch (each other)",
+      "to neighbor (neighbour)",
+      "to border"
+    ],
+    "senseUid": "501f243e-1f88-482c-b310-06e8989e50aa",
+    "wordId": "2163200",
+    "pt": "{\n  \"a\": [\n    \"ser adjacente (um ao outro)\",\n    \"entrar em contato (um com o outro)\",\n    \"tocar (um ao outro)\",\n    \"ser vizinho\",\n    \"fazer fronteira\"\n  ]\n"
+  },
+  {
+    "kana": "かがくしゅぎ",
+    "en": [
+      "scientism"
+    ],
+    "senseUid": "ecb20c24-df7a-4ddd-a0e1-9a48e95a92ad",
+    "wordId": "2163210",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かがくしゅぎ\",\n      \"gloss\": \"cientificismo\"\n    \n  ]\n"
+  },
+  {
+    "kana": "フツメン",
+    "en": [
+      "average-looking guy"
+    ],
+    "senseUid": "7d4dbbe5-e0e7-4aaf-ba94-d917f2119133",
+    "wordId": "2163220",
+    "pt": "['cara comum']"
+  },
+  {
+    "kana": "チャラつく",
+    "en": [
+      "to make (the effort to make) oneself look cool"
+    ],
+    "senseUid": "dace651e-c135-4fbc-8c60-8fe52ee643f6",
+    "wordId": "2163230",
+    "pt": "['fazer um esforço para parecer descolado', 'tentar se mostrar estiloso', 'bancar o descolado']"
+  },
+  {
+    "kana": "ジャイナきょう",
+    "en": [
+      "Jainism"
+    ],
+    "senseUid": "4d01c268-0f2d-4cde-87ff-012c41e22138",
+    "wordId": "2163240",
+    "pt": "['Jainismo']"
+  },
+  {
+    "kana": "キモメン",
+    "en": [
+      "repulsive man"
+    ],
+    "senseUid": "26c2b251-74b2-4da7-b098-dacb3c9ebc65",
+    "wordId": "2163250",
+    "pt": "['homem repulsivo']"
+  },
+  {
+    "kana": "ブサメン",
+    "en": [
+      "ugly man"
+    ],
+    "senseUid": "92d41492-a637-4f0f-8dad-64679c6bd402",
+    "wordId": "2163260",
+    "pt": "['homem feio']"
+  },
+  {
+    "kana": "ダサメン",
+    "en": [
+      "unfashionable and unattractive man"
+    ],
+    "senseUid": "90ed2523-3282-4a9d-9c49-c83b9eaf3e6e",
+    "wordId": "2163270",
+    "pt": "['homem cafona e pouco atraente']"
+  },
+  {
+    "kana": "いけめん",
+    "en": [
+      "exceptionally ugly man"
+    ],
+    "senseUid": "d2819de6-2270-46e4-9fa8-b238106ac859",
+    "wordId": "2163280",
+    "pt": "['homem excepcionalmente bonito']"
+  },
+  {
+    "kana": "シケメン",
+    "en": [
+      "drab, depressed man"
+    ],
+    "senseUid": "fae7d3ea-3e4d-4685-b838-ab9e65c34d0e",
+    "wordId": "2163290",
+    "pt": "['homem sem graça', 'homem desanimado']"
+  },
+  {
+    "kana": "へいばよう",
+    "en": [
+      "terracotta army (clay figurines found near the mausoleum of the first Qin emperor in China)",
+      "terracotta warriors and horses"
+    ],
+    "senseUid": "b77f4088-47d5-490c-9ed3-4bfafc1e1c61",
+    "wordId": "2163300",
+    "pt": "{\n  \"a\": [\n    \"exército de terracota (figuras de argila encontradas perto do mausoléu do primeiro imperador Qin na China)\",\n    \"guerreiros e cavalos de terracota\"\n  ]\n"
+  },
+  {
+    "kana": "ざいこじゅんかん",
+    "en": [
+      "inventory cycle"
+    ],
+    "senseUid": "17a252a1-26a1-4c84-97f4-f81ff4458601",
+    "wordId": "2163310",
+    "pt": "{\n  \"a\": [\"ciclo de estoque\"]\n"
+  },
+  {
+    "kana": "さんにゅうしょうへき",
+    "en": [
+      "barriers to entry"
+    ],
+    "senseUid": "151ce9a7-2bbb-447d-a9c2-b6ef11aaafd0",
+    "wordId": "2163320",
+    "pt": "['barreiras à entrada']"
+  },
+  {
+    "kana": "さきものそうば",
+    "en": [
+      "futures price",
+      "forward price",
+      "forward rate (of exchange)"
+    ],
+    "senseUid": "af68e204-4466-4601-a592-9a3628796641",
+    "wordId": "2163330",
+    "pt": "{\n  \"a\": [\n    \"preço futuro\",\n    \"preço a termo\",\n    \"taxa a termo (de câmbio)\"\n  ]\n"
+  },
+  {
+    "kana": "じきものしじょう",
+    "en": [
+      "spot market"
+    ],
+    "senseUid": "f817f6dc-a83e-4c83-bdfe-c91c584fc3c5",
+    "wordId": "2163340",
+    "pt": "['mercado à vista']"
+  },
+  {
+    "kana": "じきものそうば",
+    "en": [
+      "spot rate (of exchange)"
+    ],
+    "senseUid": "d1b3039a-1797-4e78-aafa-636d924f7e88",
+    "wordId": "2163350",
+    "pt": "['taxa à vista (de câmbio)']"
+  },
+  {
+    "kana": "ピタゴラスのていり",
+    "en": [
+      "Pythagorean theorem"
+    ],
+    "senseUid": "03e9b72b-ff35-4e48-bd56-4cd03ff53698",
+    "wordId": "2163360",
+    "pt": "['Teorema de Pitágoras']"
+  }
+]

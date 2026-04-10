@@ -1,0 +1,955 @@
+[
+  {
+    "kana": "あっしゅくこうりつ",
+    "en": [
+      "compression efficiency"
+    ],
+    "senseUid": "58cec806-08fa-43e3-b4ff-93fbe5109f9d",
+    "wordId": "1929280",
+    "pt": "['eficiência de compressão']"
+  },
+  {
+    "kana": "あっしゅくさんそ",
+    "en": [
+      "compressed oxygen"
+    ],
+    "senseUid": "6db74436-e217-4489-aa07-bfa570bceb6f",
+    "wordId": "1929290",
+    "pt": "['oxigênio comprimido']"
+  },
+  {
+    "kana": "あっぱくほうたい",
+    "en": [
+      "pressure bandage"
+    ],
+    "senseUid": "68f3469a-5049-4b11-90fc-906a8479d93d",
+    "wordId": "1929300",
+    "pt": "['bandagem de pressão']"
+  },
+  {
+    "kana": "あつりょくがま",
+    "en": [
+      "pressure cooker"
+    ],
+    "senseUid": "9b287a27-038c-43a2-b5b9-4448034d02ef",
+    "wordId": "1929310",
+    "pt": "['panela de pressão']"
+  },
+  {
+    "kana": "あつりょくようき",
+    "en": [
+      "pressure vessel"
+    ],
+    "senseUid": "10692088-f09e-45bb-9185-05c1a8bef6d7",
+    "wordId": "1929320",
+    "pt": "['vaso de pressão']"
+  },
+  {
+    "kana": "くらます",
+    "en": [
+      "to conceal (oneself)",
+      "to hide",
+      "to abscond"
+    ],
+    "senseUid": "e1a8698b-cbc8-446e-a5e3-dfdded6bb1a8",
+    "wordId": "1929350",
+    "pt": "['esconder-se', 'ocultar-se', 'fugir às escondidas']"
+  },
+  {
+    "kana": "くらます",
+    "en": [
+      "to deceive",
+      "to dissemble",
+      "to fool"
+    ],
+    "senseUid": "ab63231b-935b-4869-870a-8227318e33d6",
+    "wordId": "1929350",
+    "pt": "{\n  \"a\": [\n    \"enganar\",\n    \"dissimular\",\n    \"iludir\"\n  ]\n"
+  },
+  {
+    "kana": "あんごうちょう",
+    "en": [
+      "codebook"
+    ],
+    "senseUid": "c089bc64-ae80-4a55-b6fc-7de456aa1fde",
+    "wordId": "1929370",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"あんごうちょう\",\n      \"gloss\": [\"livro de códigos\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "あんしそうち",
+    "en": [
+      "night-vision device"
+    ],
+    "senseUid": "b11e58b4-ec7a-4e30-97d0-6ce08c71df3e",
+    "wordId": "1929380",
+    "pt": "['dispositivo de visão noturna']"
+  },
+  {
+    "kana": "あんし",
+    "en": [
+      "night vision"
+    ],
+    "senseUid": "cf90554a-41c9-482e-b12d-d6cc2ba45b4b",
+    "wordId": "1929390",
+    "pt": "['visão noturna']"
+  },
+  {
+    "kana": "あんてん",
+    "en": [
+      "scotoma",
+      "scotomatous"
+    ],
+    "senseUid": "bf957cbc-7ce9-4a6d-8e45-753fde9930b5",
+    "wordId": "1929400",
+    "pt": "['escotoma', 'escotomatoso']"
+  },
+  {
+    "kana": "あんまく",
+    "en": [
+      "blackout curtain"
+    ],
+    "senseUid": "90232846-8cda-4da5-ad13-cf115a4e3dd7",
+    "wordId": "1929410",
+    "pt": "['cortina blackout']"
+  },
+  {
+    "kana": "あんうつ",
+    "en": [
+      "gloom",
+      "melancholy"
+    ],
+    "senseUid": "cf478dd6-7134-4ec1-8af2-0b29e41b2876",
+    "wordId": "1929420",
+    "pt": "{\n  \"a\": [\n    \"tristeza profunda\",\n    \"melancolia\",\n    \"abatimento\",\n    \"desânimo sombrio\"\n  ]\n"
+  },
+  {
+    "kana": "やみいちば",
+    "en": [
+      "black market"
+    ],
+    "senseUid": "f770418c-59e5-4f99-a2a5-16876b507fc9",
+    "wordId": "1929430",
+    "pt": "['mercado negro']"
+  },
+  {
+    "kana": "やみよにてっぽう",
+    "en": [
+      "aimless attempt",
+      "shot in the dark"
+    ],
+    "senseUid": "b215db02-76e3-4de2-aada-1847eb87cc8c",
+    "wordId": "1929440",
+    "pt": "['tentativa às cegas', 'tiro no escuro']"
+  },
+  {
+    "kana": "いそうさ",
+    "en": [
+      "phase contrast"
+    ],
+    "senseUid": "1d1330a2-5f74-4c55-8889-d998e0667c7c",
+    "wordId": "1929450",
+    "pt": "{\n  \"a\": [\"contraste de fase\"]\n"
+  },
+  {
+    "kana": "エクスカリバー",
+    "en": [
+      "Excalibur"
+    ],
+    "senseUid": "568fe2ca-0601-4d19-9bb2-307f1f3dd34c",
+    "wordId": "1929490",
+    "pt": "{\n  \"a\": [\"Excalibur\"]\n"
+  },
+  {
+    "kana": "ヴァルキリー",
+    "en": [
+      "Valkyrie"
+    ],
+    "senseUid": "9949f7d1-ed1b-48f5-afad-ab7d137f9d88",
+    "wordId": "1929500",
+    "pt": "['Valquíria']"
+  },
+  {
+    "kana": "ユミル",
+    "en": [
+      "Ymir (giant in Norse mythology)"
+    ],
+    "senseUid": "c60151ec-a3b0-4a98-a537-1ba182b9305f",
+    "wordId": "1929520",
+    "pt": "['Ymir (gigante na mitologia nórdica)']"
+  },
+  {
+    "kana": "モレキュラー",
+    "en": [
+      "molecular"
+    ],
+    "senseUid": "84caf843-1e41-42c6-8795-6a69e63d7302",
+    "wordId": "1929530",
+    "pt": "{\n  \"a\": [\"molecular\"]\n"
+  },
+  {
+    "kana": "ロアー",
+    "en": [
+      "lore"
+    ],
+    "senseUid": "6da3f90b-eb79-4a21-91e2-de55a8e05394",
+    "wordId": "1929540",
+    "pt": "['tradição']"
+  },
+  {
+    "kana": "エルヴン",
+    "en": [
+      "elven"
+    ],
+    "senseUid": "4463327e-abcf-4f2d-bb4b-56653c004936",
+    "wordId": "1929550",
+    "pt": "{\n  \"a\": [\"élfico\"]\n"
+  },
+  {
+    "kana": "プライマル",
+    "en": [
+      "primal"
+    ],
+    "senseUid": "2d92a126-e3de-440a-991c-fcb6a9e4dd2e",
+    "wordId": "1929560",
+    "pt": "{\n  \"a\": [\"primordial\", \"original\", \"básico\", \"fundamental\"]\n"
+  },
+  {
+    "kana": "ドワーフ",
+    "en": [
+      "dwarf (esp. in folklore or fantasy literature)"
+    ],
+    "senseUid": "80fff727-3b5b-4a32-bac8-2567c92166d5",
+    "wordId": "1929570",
+    "pt": "{\n  \"a\": [\"anão (especialmente em folclore ou literatura de fantasia)\"]\n"
+  },
+  {
+    "kana": "ホーネット",
+    "en": [
+      "hornet"
+    ],
+    "senseUid": "7455c3b3-1ae8-4bb4-ac80-adf537c89ea3",
+    "wordId": "1929580",
+    "pt": "{\n  \"a\": [\"vespa\"]\n"
+  },
+  {
+    "kana": "オーブ",
+    "en": [
+      "orb"
+    ],
+    "senseUid": "cd33f401-4c05-4af4-8689-629684950a4e",
+    "wordId": "1929590",
+    "pt": "['orbe']"
+  },
+  {
+    "kana": "ワイヴァーン",
+    "en": [
+      "wyvern (two-legged dragon)",
+      "wivern"
+    ],
+    "senseUid": "559c0ad4-47ae-4fc7-969f-fb3d16a16498",
+    "wordId": "1929610",
+    "pt": "{\n  \"a\": [\n    \"wyvern (dragão de duas patas)\",\n    \"wivern\"\n  ]\n"
+  },
+  {
+    "kana": "ターコイズ",
+    "en": [
+      "turquoise (mineral)"
+    ],
+    "senseUid": "d9504d82-a82a-4adb-9ef7-092afcc6f2ed",
+    "wordId": "1929620",
+    "pt": "['turquesa (mineral)']"
+  },
+  {
+    "kana": "ターコイズ",
+    "en": [
+      "turquoise blue"
+    ],
+    "senseUid": "1082d66c-7a9e-4eaa-bc65-12696fda7331",
+    "wordId": "1929620",
+    "pt": "['azul-turquesa']"
+  },
+  {
+    "kana": "バシリスク",
+    "en": [
+      "basilisk"
+    ],
+    "senseUid": "dbf714f0-348f-4797-8f8d-10cc824f8bcb",
+    "wordId": "1929630",
+    "pt": "{\n  \"a\": [\"basilisco\"]\n"
+  },
+  {
+    "kana": "アデプト",
+    "en": [
+      "adept"
+    ],
+    "senseUid": "16365a6f-bd02-48af-9ea1-b3eb3ecb53fe",
+    "wordId": "1929640",
+    "pt": "['adepto']"
+  },
+  {
+    "kana": "クレリック",
+    "en": [
+      "cleric"
+    ],
+    "senseUid": "8cfd3e07-d6de-4d9d-a3d6-8d99f3906b7c",
+    "wordId": "1929650",
+    "pt": "['clérigo']"
+  },
+  {
+    "kana": "スクイッド",
+    "en": [
+      "squid"
+    ],
+    "senseUid": "52f5c727-75d0-4f1e-9d3b-1bc1ac115c54",
+    "wordId": "1929660",
+    "pt": "['lula']"
+  },
+  {
+    "kana": "バグベア",
+    "en": [
+      "bugbear"
+    ],
+    "senseUid": "b11d4457-8cf8-4439-958a-4367270f6668",
+    "wordId": "1929670",
+    "pt": "{\n  \"a\": [\n    \"bicho-papão\"\n  ]\n"
+  },
+  {
+    "kana": "ビー",
+    "en": [
+      "bee"
+    ],
+    "senseUid": "27e6bcd3-b337-4bb3-a0e0-7f3b7f3e3e33",
+    "wordId": "1929680",
+    "pt": "{\n  \"a\": [\"ビー\"]\n"
+  },
+  {
+    "kana": "スラッグ",
+    "en": [
+      "slug"
+    ],
+    "senseUid": "f1cbb540-f3a2-4fd7-b1d1-e4ace7c041c5",
+    "wordId": "1929690",
+    "pt": "{\n  \"a\": [\n    \"lesma\"\n  ]\n"
+  },
+  {
+    "kana": "コープス",
+    "en": [
+      "corpse"
+    ],
+    "senseUid": "4939e1dd-41ae-40c4-8d45-e95b63148b96",
+    "wordId": "1929710",
+    "pt": "['cadáver']"
+  },
+  {
+    "kana": "トード",
+    "en": [
+      "toad"
+    ],
+    "senseUid": "96734c5c-468a-4171-86ae-83e8a4f03250",
+    "wordId": "1929700",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"トード\",\n      \"portugues\": \"sapo\",\n      \"notas\": \"No contexto japonês, トード refere-se especificamente ao sapo, frequentemente associado a folclore, magia ou personagens místicos.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "バンシー",
+    "en": [
+      "banshee"
+    ],
+    "senseUid": "dd03cd14-31a1-44c5-919b-aebe30302164",
+    "wordId": "1929720",
+    "pt": "['banshee']"
+  },
+  {
+    "kana": "イービル",
+    "en": [
+      "evil"
+    ],
+    "senseUid": "5dac5f81-c67c-448c-9641-5e379c4ed994",
+    "wordId": "1929730",
+    "pt": "['mal']"
+  },
+  {
+    "kana": "ポルターガイスト",
+    "en": [
+      "poltergeist"
+    ],
+    "senseUid": "33cf1a5a-35c6-4eba-93d5-63608a9c46af",
+    "wordId": "1929740",
+    "pt": "['poltergeist']"
+  },
+  {
+    "kana": "ろばのはし",
+    "en": [
+      "pons asinorum (hurdle to learning)"
+    ],
+    "senseUid": "cb0bed2d-5090-422a-86ff-18e7cdf09fda",
+    "wordId": "1929750",
+    "pt": "['ponte dos asnos (obstáculo para o aprendizado)']"
+  },
+  {
+    "kana": "あいぞめ",
+    "en": [
+      "indigo dye"
+    ],
+    "senseUid": "5fa2ca72-7ff1-4e21-a29e-27c3a532c86f",
+    "wordId": "1929770",
+    "pt": "['tingimento índigo']"
+  },
+  {
+    "kana": "じょうふ",
+    "en": [
+      "high-quality plain-woven hemp cloth"
+    ],
+    "senseUid": "cc1332d4-b294-47ce-9cbd-267daabecd5d",
+    "wordId": "1929790",
+    "pt": "['pano de cânhamo de alta qualidade']"
+  },
+  {
+    "kana": "しゅうりょうしょう",
+    "en": [
+      "evidence of course completion (e.g. diploma)"
+    ],
+    "senseUid": "ad4cbab9-639b-4eea-9e9e-a7cb94815ca1",
+    "wordId": "1929800",
+    "pt": "['certificado de conclusão de curso']"
+  },
+  {
+    "kana": "かすり",
+    "en": [
+      "splash pattern (e.g. on a kimono)",
+      "dye pattern",
+      "kasuri"
+    ],
+    "senseUid": "99eeca2d-8197-476d-91ce-fcac96eff230",
+    "wordId": "1929810",
+    "pt": "{\n  \"a\": [\n    \"padrão de respingos (por exemplo, em um quimono)\",\n    \"padrão de tingimento\",\n    \"kasuri\"\n  ]\n"
+  },
+  {
+    "kana": "おり",
+    "en": [
+      "weave",
+      "weaving",
+      "woven item"
+    ],
+    "senseUid": "d154ddb2-dd06-4ac5-be52-a6d85f7e671e",
+    "wordId": "1929820",
+    "pt": "['tecer', 'tecelagem', 'item tecido']"
+  },
+  {
+    "kana": "ふくびこう",
+    "en": [
+      "paranasal sinus",
+      "paranasal cavity",
+      "sinus paranasales"
+    ],
+    "senseUid": "1ee5322f-3fb8-41bd-aa64-0b8441a914f2",
+    "wordId": "1929850",
+    "pt": "{\n  \"a\": [\n    \"seio paranasal\",\n    \"cavidade paranasal\",\n    \"seio paranasales\"\n  ]\n"
+  },
+  {
+    "kana": "ふくびこうえん",
+    "en": [
+      "sinusitis"
+    ],
+    "senseUid": "e7864c40-f31c-45cf-887c-17c493bdedcc",
+    "wordId": "1929860",
+    "pt": "{\n  \"a\": [\"sinusite\"]\n"
+  },
+  {
+    "kana": "かん",
+    "en": [
+      "(large) building",
+      "public building",
+      "hall"
+    ],
+    "senseUid": "e70ef8c3-463a-4a3a-8f71-abbbf3ba9917",
+    "wordId": "1929870",
+    "pt": "{\n  \"a\": [\n    \"edifício (grande)\",\n    \"edifício público\",\n    \"salão\"\n  ]\n"
+  },
+  {
+    "kana": "ソリューション",
+    "en": [
+      "solution (to a problem)"
+    ],
+    "senseUid": "797ea24a-9d0a-4576-a70d-de71e6336736",
+    "wordId": "1929880",
+    "pt": "['solução']"
+  },
+  {
+    "kana": "ソリューション",
+    "en": [
+      "solution (mixture)"
+    ],
+    "senseUid": "956bdf2d-80b2-42b7-b622-68e2a4ee971f",
+    "wordId": "1929880",
+    "pt": "{\n  \"a\": [\"solução (mistura)\"]\n"
+  },
+  {
+    "kana": "へんかんずみ",
+    "en": [
+      "(something) converted"
+    ],
+    "senseUid": "16da6550-874a-4e06-99d2-a70cf7c13b9c",
+    "wordId": "1929890",
+    "pt": "{\n  \"a\": [\"convertido\", \"já convertido\", \"transformado\", \"algo que foi convertido\"]\n"
+  },
+  {
+    "kana": "トラクタトラック",
+    "en": [
+      "tractor-trailer",
+      "semi-trailer",
+      "18-wheeler",
+      "articulated lorry"
+    ],
+    "senseUid": "73909eb2-90af-4295-8ad4-d79418239483",
+    "wordId": "1929900",
+    "pt": "['caminhão articulado', 'caminhão-trator', 'caminhão semi-reboque', 'caminhão 18 rodas']"
+  },
+  {
+    "kana": "ダンプトラック",
+    "en": [
+      "dump truck"
+    ],
+    "senseUid": "752cd176-23d7-4d3d-b9f3-6ad2d0fb8157",
+    "wordId": "1929910",
+    "pt": "{\n  \"a\": [\"caminhão basculante\"]\n"
+  },
+  {
+    "kana": "こころがこめられた",
+    "en": [
+      "wholehearted"
+    ],
+    "senseUid": "03d71509-cc16-4b62-b0bb-3e096a489a25",
+    "wordId": "1929930",
+    "pt": "['feito com todo o coração']"
+  },
+  {
+    "kana": "にほんこくみん",
+    "en": [
+      "Japanese citizen",
+      "Japanese citizens"
+    ],
+    "senseUid": "17005e97-365b-4384-a148-8b3bcadbf9a9",
+    "wordId": "1929940",
+    "pt": "{\n  \"a\": [\n    \"cidadão japonês\",\n    \"cidadãos japoneses\"\n  ]\n"
+  },
+  {
+    "kana": "し",
+    "en": [
+      "poem",
+      "poetry",
+      "verse"
+    ],
+    "senseUid": "4969d604-a4d6-46f1-bf67-fdda233aacf4",
+    "wordId": "1929950",
+    "pt": "{\n  \"a\": [\"poesia\", \"poema\", \"verso\"]\n"
+  },
+  {
+    "kana": "し",
+    "en": [
+      "Chinese poem"
+    ],
+    "senseUid": "e88199ec-8115-4f0e-8b96-0ea9f632d977",
+    "wordId": "1929950",
+    "pt": "{\n  \"a\": [\"poema chinês\"]\n"
+  },
+  {
+    "kana": "きがよわい",
+    "en": [
+      "timid",
+      "faint of heart"
+    ],
+    "senseUid": "e604f6e0-afc9-4d9d-b3f7-081f4dda94e3",
+    "wordId": "1929960",
+    "pt": "['tímido', 'de coração fraco']"
+  },
+  {
+    "kana": "やまがわ",
+    "en": [
+      "mountain-side"
+    ],
+    "senseUid": "5a9972e0-afbe-40cc-a537-507edbcd5b56",
+    "wordId": "1929970",
+    "pt": "['lado da montanha']"
+  },
+  {
+    "kana": "やまがわ",
+    "en": [
+      "mountain river",
+      "mountain stream"
+    ],
+    "senseUid": "7af4d7c4-c831-4c1f-a5ad-b5f54e124cb2",
+    "wordId": "1929980",
+    "pt": "{\n  \"a\": [\n    \"rio de montanha\",\n    \"riacho de montanha\"\n  ]\n"
+  },
+  {
+    "kana": "ハートフル",
+    "en": [
+      "heart-warming",
+      "kind-hearted",
+      "warm-hearted",
+      "considerate",
+      "kind",
+      "heartfelt"
+    ],
+    "senseUid": "82c50bd6-dcb4-444f-9bbb-e41ea377d190",
+    "wordId": "1929990",
+    "pt": "['comovente', 'afetuoso', 'de bom coração', 'atencioso', 'gentil', 'sincero']"
+  },
+  {
+    "kana": "ハートビルほう",
+    "en": [
+      "Building Access Act"
+    ],
+    "senseUid": "abc93fee-12b2-4adf-955a-5d9426a191e9",
+    "wordId": "1930000",
+    "pt": "{\n  \"a\": [\"Lei de Acessibilidade a Edifícios\"]\n"
+  },
+  {
+    "kana": "のんどり",
+    "en": [
+      "tranquil",
+      "leisurely",
+      "relaxed"
+    ],
+    "senseUid": "26c30ace-645c-4026-8a42-4a16dfa45d23",
+    "wordId": "1930010",
+    "pt": "['tranquilo', 'despreocupado', 'relaxado']"
+  },
+  {
+    "kana": "ごちゅうもん",
+    "en": [
+      "order",
+      "request"
+    ],
+    "senseUid": "64a0b97a-0e2a-45f6-9c09-090298b17377",
+    "wordId": "1930020",
+    "pt": "['pedido', 'encomenda']"
+  },
+  {
+    "kana": "パイイツ",
+    "en": [
+      "full cup"
+    ],
+    "senseUid": "0e13a274-b61f-4007-93c3-5cd9b26fa590",
+    "wordId": "1930040",
+    "pt": "{\n  \"a\": [\"seios grandes\"]\n"
+  },
+  {
+    "kana": "ふりかんじ",
+    "en": [
+      "kanji printed as ruby, usually to explain kana"
+    ],
+    "senseUid": "472fada6-212a-4a2f-b1e0-12bc678f4b6e",
+    "wordId": "1930030",
+    "pt": "{\n  \"a\": [\n    {\n      \"Inglês\": \"kanji printed as ruby, usually to explain kana\",\n      \"Português\": \"kanji impresso como rubi, geralmente para explicar kana\",\n      \"Sentido japonês\": \"No contexto japonês, refere-se ao uso de pequenos caracteres kanji acima ou ao lado de kana para indicar o significado ou leitura correta.\",\n      \"Kana\": \"ふりかんじ\",\n      \"Glossário\": \"kanji impresso como rubi, geralmente para explicar kana\"\n    \n  ]\n"
+  },
+  {
+    "kana": "ばらす",
+    "en": [
+      "to expose (a secret)",
+      "to disclose",
+      "to reveal",
+      "to lay bare",
+      "to let out",
+      "to give away"
+    ],
+    "senseUid": "aa5b9bb2-ab89-4782-b6c7-3721c5bc02e4",
+    "wordId": "1930050",
+    "pt": "['expor (um segredo)', 'divulgar', 'revelar', 'desvendar', 'deixar escapar', 'entregar (um segredo)']"
+  },
+  {
+    "kana": "ばらす",
+    "en": [
+      "to take apart",
+      "to take to pieces",
+      "to disassemble"
+    ],
+    "senseUid": "c3359323-73ac-4d26-ba6e-5c40d685ac0f",
+    "wordId": "1930050",
+    "pt": "['desmontar', 'desmanchar', 'desmembrar']"
+  },
+  {
+    "kana": "ばらす",
+    "en": [
+      "to kill",
+      "to do away with",
+      "to get rid of"
+    ],
+    "senseUid": "56661357-f4a6-4c1a-bc06-de582c70629f",
+    "wordId": "1930050",
+    "pt": "['matar', 'dar fim em', 'se livrar de']"
+  },
+  {
+    "kana": "ばらす",
+    "en": [
+      "to sell (stolen goods)",
+      "to fence"
+    ],
+    "senseUid": "386fddeb-4f96-4e30-9e23-d21d1da0b042",
+    "wordId": "1930050",
+    "pt": "{\n  \"a\": [\n    \"vender (bens roubados)\",\n    \"repassar (mercadoria roubada)\"\n  ]\n"
+  },
+  {
+    "kana": "ばらす",
+    "en": [
+      "to let (a fish) get away",
+      "to lose (a fish) from the hook"
+    ],
+    "senseUid": "8924fece-a7f5-4c78-a9bf-2ffa8d5bf2b8",
+    "wordId": "1930050",
+    "pt": "{\n  \"a\": [\n    \"deixar um peixe escapar\",\n    \"perder um peixe do anzol\"\n  ]\n"
+  },
+  {
+    "kana": "いしきか",
+    "en": [
+      "subconscious"
+    ],
+    "senseUid": "2aa6f4cb-9730-4491-a037-5faabc476639",
+    "wordId": "1930060",
+    "pt": "{\n  \"a\": [\"subconsciente\"]\n"
+  },
+  {
+    "kana": "いぞんしょう",
+    "en": [
+      "dependence (on alcohol, drugs, etc.)"
+    ],
+    "senseUid": "7856a99c-4746-4782-9354-5dd1d9d3dfcc",
+    "wordId": "1930070",
+    "pt": "['dependência (de álcool, drogas, etc.)']"
+  },
+  {
+    "kana": "いたくけんきゅう",
+    "en": [
+      "contract research"
+    ],
+    "senseUid": "441ab2fc-0940-4a17-83df-30b6b5683fcb",
+    "wordId": "1930080",
+    "pt": "{\n  \"a\": [\n    \"pesquisa contratada\",\n    \"pesquisa sob encomenda\",\n    \"pesquisa por encomenda\"\n  ]\n"
+  },
+  {
+    "kana": "いたくはんばい",
+    "en": [
+      "consignment sale"
+    ],
+    "senseUid": "a7199db1-c9f4-4636-993c-eae133359cf1",
+    "wordId": "1930090",
+    "pt": "['venda consignada']"
+  },
+  {
+    "kana": "いけんこうこく",
+    "en": [
+      "protest advertising (on an issue by a pressure group)"
+    ],
+    "senseUid": "77a3046b-fc43-49d8-8290-e1eaba4b7c39",
+    "wordId": "1930100",
+    "pt": "['publicidade de protesto (sobre uma questão por um grupo de pressão)']"
+  },
+  {
+    "kana": "いしょうけん",
+    "en": [
+      "design right",
+      "right(s) to a design"
+    ],
+    "senseUid": "5efdfac7-ac6f-4aaf-9f87-db75710b3aa4",
+    "wordId": "1930120",
+    "pt": "{\n  \"a\": [\n    \"direito de design\",\n    \"direitos sobre um design\"\n  ]\n"
+  },
+  {
+    "kana": "いしょうとうろく",
+    "en": [
+      "registration of a design"
+    ],
+    "senseUid": "dab00db9-0e2b-4412-be10-8950c582ab7f",
+    "wordId": "1930130",
+    "pt": "['registro de design']"
+  },
+  {
+    "kana": "いみないよう",
+    "en": [
+      "semantic content (of a term)",
+      "meaning (of a sentence)"
+    ],
+    "senseUid": "36bcd78b-392c-4947-b6c7-70da6e225521",
+    "wordId": "1930140",
+    "pt": "{\n  \"a\": [\n    \"conteúdo semântico (de um termo)\",\n    \"significado (de uma frase)\"\n  ]\n"
+  },
+  {
+    "kana": "いあんりょこう",
+    "en": [
+      "pleasure trip",
+      "company (office) trip"
+    ],
+    "senseUid": "fcea2bec-e1b1-4160-b272-82f9516ed6a3",
+    "wordId": "1930150",
+    "pt": "{\n  \"a\": [\n    \"viagem de lazer\",\n    \"viagem da empresa\"\n  ]\n"
+  },
+  {
+    "kana": "いろうきん",
+    "en": [
+      "bonus",
+      "reward for one's services"
+    ],
+    "senseUid": "2fb15e54-3b72-464a-b5d4-1af57ab68b8f",
+    "wordId": "1930160",
+    "pt": "{\n  \"a\": [\"bônus\", \"gratificação por serviços prestados\"]\n"
+  },
+  {
+    "kana": "いじょうきしょう",
+    "en": [
+      "abnormal weather"
+    ],
+    "senseUid": "131793b0-6c30-4ea3-be47-a4294f4ef77a",
+    "wordId": "1930170",
+    "pt": "['clima anormal']"
+  },
+  {
+    "kana": "いせいかんけい",
+    "en": [
+      "relationships with the opposite sex"
+    ],
+    "senseUid": "11a3b430-9797-4e0f-9a50-665fdf0ecd7f",
+    "wordId": "1930180",
+    "pt": "['relações com o sexo oposto']"
+  },
+  {
+    "kana": "いこうきかん",
+    "en": [
+      "period of transition (e.g. from old to new system)"
+    ],
+    "senseUid": "a0113fa9-d519-4f50-8962-39e21670fb96",
+    "wordId": "1930190",
+    "pt": "['período de transição (por exemplo, de um sistema antigo para um novo)']"
+  },
+  {
+    "kana": "いてんさき",
+    "en": [
+      "one's new address"
+    ],
+    "senseUid": "5f97199a-a368-45b1-89dc-40a12d480570",
+    "wordId": "1930200",
+    "pt": "['novo endereço']"
+  },
+  {
+    "kana": "いりょうひんてん",
+    "en": [
+      "clothing store"
+    ],
+    "senseUid": "8530011e-8baa-45a5-befe-f4df591a79d4",
+    "wordId": "1930220",
+    "pt": "['loja de roupas']"
+  },
+  {
+    "kana": "いけんせい",
+    "en": [
+      "unconstitutionality"
+    ],
+    "senseUid": "8445ec10-5158-40f1-8fd1-35413c6f80eb",
+    "wordId": "1930230",
+    "pt": "{\n  \"a\": [\"inconstitucionalidade\"]\n"
+  },
+  {
+    "kana": "いがくざっし",
+    "en": [
+      "medical journal"
+    ],
+    "senseUid": "5f66b218-bf00-48b1-8e77-f657994f8242",
+    "wordId": "1930240",
+    "pt": "['revista médica']"
+  },
+  {
+    "kana": "いがくしゃ",
+    "en": [
+      "medical scientist"
+    ],
+    "senseUid": "4aabb1e5-d82e-4092-899c-94fc6a14253c",
+    "wordId": "1930250",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"いがくしゃ\",\n      \"portugues\": \"cientista médico\"\n    \n  ]\n"
+  },
+  {
+    "kana": "いしこっかしけん",
+    "en": [
+      "National Medical Practitioners Qualifying Examination"
+    ],
+    "senseUid": "dac6bab3-7051-406f-9851-93533b58782b",
+    "wordId": "1930260",
+    "pt": "['Exame Nacional de Qualificação para Médicos']"
+  },
+  {
+    "kana": "いりょうぎじゅつ",
+    "en": [
+      "medical technology"
+    ],
+    "senseUid": "1098f0e5-c95d-498d-aa24-a43cfb4dcf84",
+    "wordId": "1930270",
+    "pt": "['tecnologia médica']"
+  },
+  {
+    "kana": "いりょうひ",
+    "en": [
+      "medical expenses",
+      "doctor's bill"
+    ],
+    "senseUid": "ce72b952-d63a-498b-9977-f906a4ec1ba4",
+    "wordId": "1930280",
+    "pt": "['despesas médicas', 'conta do médico']"
+  },
+  {
+    "kana": "いくじしょ",
+    "en": [
+      "book on child-rearing"
+    ],
+    "senseUid": "6f741392-0528-4d58-ac2b-7e7a79bdb6eb",
+    "wordId": "1930290",
+    "pt": "{\n  \"a\": [\"livro sobre criação de filhos\"]\n"
+  },
+  {
+    "kana": "ひとりべや",
+    "en": [
+      "single room",
+      "own room"
+    ],
+    "senseUid": "4db84e02-3551-4e48-af36-d57d941056d6",
+    "wordId": "1930300",
+    "pt": "['quarto individual', 'quarto próprio']"
+  },
+  {
+    "kana": "いったいかん",
+    "en": [
+      "(feeling of) identification",
+      "sense of unity"
+    ],
+    "senseUid": "945ed9af-48fe-454c-9c8e-8da95ff9f774",
+    "wordId": "1930310",
+    "pt": "{\n  \"a\": [\n    \"sentimento de identificação\",\n    \"sensação de unidade\"\n  ]\n"
+  },
+  {
+    "kana": "いっちだんけつ",
+    "en": [
+      "solidarity",
+      "banding together and working as one for a common cause"
+    ],
+    "senseUid": "0770e2ec-dc38-4909-bb02-b11dad1df13f",
+    "wordId": "1930320",
+    "pt": "['solidariedade', 'união e trabalho conjunto por uma causa comum']"
+  },
+  {
+    "kana": "いっとうどくさい",
+    "en": [
+      "one-party rule"
+    ],
+    "senseUid": "1d81c32f-f866-444e-a4c0-40fec3de9575",
+    "wordId": "1930330",
+    "pt": "['governo de partido único']"
+  },
+  {
+    "kana": "いっとうち",
+    "en": [
+      "prime location (for offices, housing, etc.)",
+      "best district (in town)",
+      "excellent piece of land"
+    ],
+    "senseUid": "a04cbe28-a98f-45d1-9ed1-0e90b6efbeb1",
+    "wordId": "1930340",
+    "pt": "['localização principal (para escritórios, moradias, etc.)', 'melhor distrito (da cidade)', 'excelente terreno']"
+  }
+]

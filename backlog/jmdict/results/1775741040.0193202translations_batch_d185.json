@@ -1,0 +1,951 @@
+[
+  {
+    "kana": "ふくくうきょうしゅじゅつ",
+    "en": [
+      "laparoscopic surgery",
+      "laparoscopy"
+    ],
+    "senseUid": "9154a5ba-ea31-4073-903b-d3737a2be47e",
+    "wordId": "2123860",
+    "pt": "['cirurgia laparoscópica', 'laparoscopia']"
+  },
+  {
+    "kana": "じこぼうし",
+    "en": [
+      "accident prevention"
+    ],
+    "senseUid": "796d5f30-d99c-4573-9921-777961cdf8c3",
+    "wordId": "2123870",
+    "pt": "['prevenção de acidentes']"
+  },
+  {
+    "kana": "きょうどうはつめい",
+    "en": [
+      "joint invention"
+    ],
+    "senseUid": "7ae5b70b-0231-4728-a941-92f88d12a397",
+    "wordId": "2123880",
+    "pt": "{\n  \"a\": [\n    \"invenção conjunta\"\n  ]\n"
+  },
+  {
+    "kana": "じんこうべん",
+    "en": [
+      "artificial valve",
+      "artificial heart valve"
+    ],
+    "senseUid": "1046f660-35d7-4140-91f0-651683a116fd",
+    "wordId": "2123890",
+    "pt": "['válvula artificial', 'válvula cardíaca artificial']"
+  },
+  {
+    "kana": "しんしつさいどう",
+    "en": [
+      "ventricular fibrillation"
+    ],
+    "senseUid": "42030822-db2d-4124-a8a9-81d4022e63bb",
+    "wordId": "2123900",
+    "pt": "['fibrilação ventricular']"
+  },
+  {
+    "kana": "さいどう",
+    "en": [
+      "fibrillation"
+    ],
+    "senseUid": "bf81f358-e0de-4567-9ddf-880a81f26cf9",
+    "wordId": "2123910",
+    "pt": "['fibrilação']"
+  },
+  {
+    "kana": "ぎゃくりゅうせいしょくどうえん",
+    "en": [
+      "reflux esophagitis"
+    ],
+    "senseUid": "6fd2d68b-ed4a-495c-a79a-e94efc2f0462",
+    "wordId": "2123920",
+    "pt": "['esofagite de refluxo']"
+  },
+  {
+    "kana": "しょくどうがん",
+    "en": [
+      "esophageal cancer"
+    ],
+    "senseUid": "46ab55fd-25fa-4cd9-b52c-4aa170777bd3",
+    "wordId": "2123930",
+    "pt": "['câncer de esôfago']"
+  },
+  {
+    "kana": "けいびないしきょう",
+    "en": [
+      "nasal endoscope"
+    ],
+    "senseUid": "bf2c96fe-de61-4ce5-b9ae-44462d392aef",
+    "wordId": "2123940",
+    "pt": "['endoscópio nasal']"
+  },
+  {
+    "kana": "そうにゅうぐち",
+    "en": [
+      "insertion point",
+      "insertion slot",
+      "insertion opening"
+    ],
+    "senseUid": "5f897bb2-ecc4-4ec5-910c-2a37b28cebc4",
+    "wordId": "2123950",
+    "pt": "['ponto de inserção', 'ranhura de inserção', 'abertura de inserção']"
+  },
+  {
+    "kana": "いんとうはんしゃ",
+    "en": [
+      "gag reflex"
+    ],
+    "senseUid": "42a4d077-7bc8-4086-a95e-c054f575aa05",
+    "wordId": "2123960",
+    "pt": "{\n  \"a\": [\n    \"reflexo de vômito\"\n  ]\n"
+  },
+  {
+    "kana": "ふたんかん",
+    "en": [
+      "(sense of) burden"
+    ],
+    "senseUid": "fb98f10f-a748-4c98-805d-13c32affb443",
+    "wordId": "2123970",
+    "pt": "['sentimento de peso', 'sensação de fardo', 'impressão de sobrecarga', 'sentir-se sobrecarregado', 'sensação de responsabilidade pesada']"
+  },
+  {
+    "kana": "ようかいごにんてい",
+    "en": [
+      "primary nursing care requirement authorization (a 5-level graded system under health insurance)"
+    ],
+    "senseUid": "56950a70-1a45-466f-9b9e-f6862f2e795f",
+    "wordId": "2123980",
+    "pt": "['autorização de necessidade de cuidados primários de enfermagem (um sistema graduado em 5 níveis sob o seguro de saúde)']"
+  },
+  {
+    "kana": "へいそくせいどうみゃくこうかしょう",
+    "en": [
+      "arteriosclerosis obliterans"
+    ],
+    "senseUid": "76c42095-b7e9-4193-a140-325aee1755cc",
+    "wordId": "2123990",
+    "pt": "['arteriosclerose obliterante dos membros']"
+  },
+  {
+    "kana": "のうけっかんしょうがい",
+    "en": [
+      "cerebrovascular disease"
+    ],
+    "senseUid": "160bfbc4-9057-4f8a-ac44-c08586c9d47d",
+    "wordId": "2124000",
+    "pt": "['doença cerebrovascular']"
+  },
+  {
+    "kana": "けっこうぶそく",
+    "en": [
+      "lack of blood flow",
+      "poor circulation"
+    ],
+    "senseUid": "d257950f-5db8-4782-87ac-15d6f8655348",
+    "wordId": "2124010",
+    "pt": "{\n  \"a\": [\n    \"falta de fluxo sanguíneo\",\n    \"má circulação\"\n  ]\n"
+  },
+  {
+    "kana": "かいごにんてい",
+    "en": [
+      "nursing care authorization"
+    ],
+    "senseUid": "d1f0c6db-0b39-47d1-a071-6f8ad30a3f8a",
+    "wordId": "2124020",
+    "pt": "['autorização para cuidados de enfermagem']"
+  },
+  {
+    "kana": "ステント",
+    "en": [
+      "stent (tubular support temporarily placed inside a blood vessel, etc.)"
+    ],
+    "senseUid": "66170db9-fcaa-44e7-beab-4ac2a37cbd52",
+    "wordId": "2124030",
+    "pt": "['stent (suporte tubular temporariamente colocado dentro de um vaso sanguíneo, etc.)']"
+  },
+  {
+    "kana": "けっかんない",
+    "en": [
+      "intravascular"
+    ],
+    "senseUid": "648d58b7-1e8e-4307-85f9-8deb0539e175",
+    "wordId": "2124040",
+    "pt": "{\n  \"a\": [\"intravascular\", \"intravascular (dentro dos vasos sanguíneos)\", \"intravasal\"]\n"
+  },
+  {
+    "kana": "ようかいごど",
+    "en": [
+      "nursing care level (between 1 and 5 based on assessment of care requirements)"
+    ],
+    "senseUid": "07bfeb48-fd62-449c-9643-85d91607525a",
+    "wordId": "2124050",
+    "pt": "['nível de cuidado de enfermagem (entre 1 e 5, baseado na avaliação das necessidades de cuidado)']"
+  },
+  {
+    "kana": "きゅうきゅうはんそう",
+    "en": [
+      "emergency transport",
+      "ambulance transport"
+    ],
+    "senseUid": "1798a5c2-2be4-4708-b1b6-71d436b772f0",
+    "wordId": "2124060",
+    "pt": "{\n  \"a\": [\"transporte de emergência\", \"transporte de ambulância\"]\n"
+  },
+  {
+    "kana": "こうかれいドック",
+    "en": [
+      "medical checkup that focuses primarily on problems that worsen with age"
+    ],
+    "senseUid": "3886797f-1353-46fd-aa57-cb864925b714",
+    "wordId": "2124080",
+    "pt": "{\n  \"a\": [\n    \"check-up médico focado principalmente em problemas que pioram com a idade\"\n  ]\n"
+  },
+  {
+    "kana": "しんこうど",
+    "en": [
+      "rate of progression"
+    ],
+    "senseUid": "25e8299a-0ca6-4ba1-961d-a0946e08af96",
+    "wordId": "2124090",
+    "pt": "['taxa de progresso']"
+  },
+  {
+    "kana": "さんかストレス",
+    "en": [
+      "oxidative stress"
+    ],
+    "senseUid": "68c323af-d87d-4394-b206-cfd81f767bcf",
+    "wordId": "2124100",
+    "pt": "['estresse oxidativo']"
+  },
+  {
+    "kana": "すすみぐあい",
+    "en": [
+      "state of progress"
+    ],
+    "senseUid": "db5bd2d5-319c-40d4-b54e-5590c6f6574e",
+    "wordId": "2124110",
+    "pt": "['estado de progresso']"
+  },
+  {
+    "kana": "けいどうみゃくエコー",
+    "en": [
+      "carotid ultrasound",
+      "carotid duplex"
+    ],
+    "senseUid": "df9b07b6-27a6-4541-93d1-cf0a90508ec5",
+    "wordId": "2124120",
+    "pt": "['ultrassom de carótida', 'duplex de carótida']"
+  },
+  {
+    "kana": "よぼういりょう",
+    "en": [
+      "preventive medicine"
+    ],
+    "senseUid": "41d660fa-7b2c-4330-bd53-d9db3a5dfaa4",
+    "wordId": "2124130",
+    "pt": "['medicina preventiva']"
+  },
+  {
+    "kana": "ウイルスせいかんえん",
+    "en": [
+      "viral hepatitis"
+    ],
+    "senseUid": "049054cf-b232-4fa3-91d7-a20971e07262",
+    "wordId": "2124140",
+    "pt": "['hepatite viral']"
+  },
+  {
+    "kana": "フィブリノーゲン",
+    "en": [
+      "fibrinogen"
+    ],
+    "senseUid": "9b57d391-40c5-450e-912c-bb3ad5bf5f11",
+    "wordId": "2124150",
+    "pt": "{\n  \"a\": [\"fibrinogênio\"]\n"
+  },
+  {
+    "kana": "ひかねつけつえきせいざい",
+    "en": [
+      "untreated (unheated) blood products"
+    ],
+    "senseUid": "49a5718a-7ac3-4c37-a2e4-fee72c1c4b57",
+    "wordId": "2124160",
+    "pt": "{\n  \"a\": [\"produtos sanguíneos não tratados (não aquecidos)\"]\n"
+  },
+  {
+    "kana": "かんがん",
+    "en": [
+      "liver cancer (esp. hepatoma)"
+    ],
+    "senseUid": "1199afc3-b760-424b-b65a-770058713222",
+    "wordId": "2124170",
+    "pt": "{\n  \"a\": [\n    \"câncer de fígado (especialmente hepatoma)\"\n  ]\n"
+  },
+  {
+    "kana": "こうウイルスざい",
+    "en": [
+      "antiviral drug"
+    ],
+    "senseUid": "6fd0bfc9-3abf-4c30-9235-da40a4388933",
+    "wordId": "2124180",
+    "pt": "{\n  \"a\": [\n    \"medicamento antiviral\"\n  ]\n"
+  },
+  {
+    "kana": "かいりょうがた",
+    "en": [
+      "improved version"
+    ],
+    "senseUid": "8317c6ce-bb3f-436b-9993-4c238a76a13c",
+    "wordId": "2124200",
+    "pt": "{\n  \"a\": [\n    \"versão aprimorada\"\n  ]\n"
+  },
+  {
+    "kana": "かいりょうがた",
+    "en": [
+      "variant (of a pathogen)"
+    ],
+    "senseUid": "7ca1b0af-1c3a-4e68-9788-efadf23a7b5a",
+    "wordId": "2124200",
+    "pt": "{\n  \"a\": [\"variante (de um patógeno)\"]\n"
+  },
+  {
+    "kana": "へいようりょうほう",
+    "en": [
+      "combined therapy"
+    ],
+    "senseUid": "3c8962fe-25ae-4830-b546-501719b6dbb2",
+    "wordId": "2124210",
+    "pt": "{\n  \"a\": [\"terapia combinada\"]\n"
+  },
+  {
+    "kana": "けいこうかんせん",
+    "en": [
+      "oral infection",
+      "orally transmitted infection"
+    ],
+    "senseUid": "072396dd-5ec4-4835-b33a-d6a306d07b6c",
+    "wordId": "2124230",
+    "pt": "{\n  \"a\": [\"infecção transmitida pela boca\", \"infecção oral\"]\n"
+  },
+  {
+    "kana": "かんえんウイルス",
+    "en": [
+      "hepatitis virus"
+    ],
+    "senseUid": "ed52f0aa-d278-4bbb-bbe9-d09f2e9a4cc7",
+    "wordId": "2124220",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かんえんウイルス\",\n      \"portuguese\": \"vírus da hepatite\",\n      \"notas\": \"No contexto japonês, かんえん (kan'en) refere-se especificamente à inflamação do fígado, ou seja, hepatite. ウイルス (uirusu) significa vírus. Portanto, a tradução mais adequada é 'vírus da hepatite', que corresponde ao agente causador da hepatite.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "まんせいかんえん",
+    "en": [
+      "chronic hepatitis"
+    ],
+    "senseUid": "9606dfee-99d0-46f0-a9cf-213cc04aee82",
+    "wordId": "2124240",
+    "pt": "['hepatite crônica']"
+  },
+  {
+    "kana": "じぞくかんせんしゃ",
+    "en": [
+      "carrier of an infection (esp. hepatitis)"
+    ],
+    "senseUid": "f388363b-5b7e-47db-868f-2efa2523195c",
+    "wordId": "2124250",
+    "pt": "['portador de uma infecção (especialmente hepatite)']"
+  },
+  {
+    "kana": "かんせんしゃ",
+    "en": [
+      "infected person",
+      "carrier (e.g. of a virus)"
+    ],
+    "senseUid": "e3c3bca1-f358-452e-8556-33411581f60e",
+    "wordId": "2124260",
+    "pt": "{\n  \"a\": [\n    \"pessoa infectada\",\n    \"portador (por exemplo, de um vírus)\"\n  ]\n"
+  },
+  {
+    "kana": "しゅうじょう",
+    "en": [
+      "boat-shaped",
+      "scaphoid"
+    ],
+    "senseUid": "b447711b-2e0f-48f6-9886-c03d73820da1",
+    "wordId": "2124280",
+    "pt": "{\n  \"a\": [\n    \"em forma de barco\",\n    \"escafóide\"\n  ]\n"
+  },
+  {
+    "kana": "あんていき",
+    "en": [
+      "stable period",
+      "period of stability"
+    ],
+    "senseUid": "08d7002c-a003-4c4d-a3af-4f5ba976c93a",
+    "wordId": "2124290",
+    "pt": "['período estável', 'período de estabilidade']"
+  },
+  {
+    "kana": "あんていき",
+    "en": [
+      "stable stage of pregnancy (i.e. 12th week and onwards, when risk of miscarriage decreases)"
+    ],
+    "senseUid": "ff2dcb78-f554-4a76-9ba3-9994a493438d",
+    "wordId": "2124290",
+    "pt": "['estágio estável da gravidez (ou seja, a partir da 12ª semana, quando o risco de aborto espontâneo diminui)']"
+  },
+  {
+    "kana": "サーズ",
+    "en": [
+      "severe acute respiratory syndrome",
+      "SARS"
+    ],
+    "senseUid": "4f3ada68-502c-4a62-888c-2fb36c1baed8",
+    "wordId": "2124300",
+    "pt": "{\n  \"a\": [\n    \"síndrome respiratória aguda grave\",\n    \"SARS\"\n  ]\n"
+  },
+  {
+    "kana": "ねんくれ",
+    "en": [
+      "year end"
+    ],
+    "senseUid": "1ed103bf-a69a-4fdf-8bdf-b8db62733dff",
+    "wordId": "2124310",
+    "pt": "['fim de ano']"
+  },
+  {
+    "kana": "じんちくきょうつうかんせんしょう",
+    "en": [
+      "zoonosis (disease transmissible from animals to humans or vice versa)"
+    ],
+    "senseUid": "55e93549-907a-4f19-a4c0-94afc9378ccf",
+    "wordId": "2124320",
+    "pt": "['zoonose (doença transmissível de animais para humanos ou vice-versa)']"
+  },
+  {
+    "kana": "ズーノーシス",
+    "en": [
+      "zoonosis (disease transmissible from animals to humans or vice versa)"
+    ],
+    "senseUid": "59426054-8118-4450-b0d2-51e2d8056677",
+    "wordId": "2124330",
+    "pt": "['zoonose (doença transmissível de animais para humanos ou vice-versa)']"
+  },
+  {
+    "kana": "じんじゅうきょうつうかんせんしょう",
+    "en": [
+      "zoonosis (disease transmissible from animals to humans or vice versa)"
+    ],
+    "senseUid": "2fc5658c-8ccb-4a43-a25c-3ec177af4d17",
+    "wordId": "2124340",
+    "pt": "['zoonose (doença transmissível de animais para humanos ou vice-versa)']"
+  },
+  {
+    "kana": "どうぶつゆらいかんせんしょう",
+    "en": [
+      "anthropozoonosis (diseases transmitted to humans by animals)"
+    ],
+    "senseUid": "28738848-6661-4391-91f7-695dae8d507b",
+    "wordId": "2124350",
+    "pt": "['zoonose (doenças transmitidas de animais para humanos)']"
+  },
+  {
+    "kana": "モデラー",
+    "en": [
+      "modeller",
+      "modeler"
+    ],
+    "senseUid": "73545727-f89c-4e66-93ca-4d7762d63fbb",
+    "wordId": "2124360",
+    "pt": "['modelador', 'maquetista']"
+  },
+  {
+    "kana": "おおぼら",
+    "en": [
+      "big lie",
+      "whopper"
+    ],
+    "senseUid": "7bfd1bd8-b81a-4ac8-a283-138aabe6d129",
+    "wordId": "2124370",
+    "pt": "['grande mentira', 'mentira deslavada']"
+  },
+  {
+    "kana": "おおぼらをふく",
+    "en": [
+      "to talk through one's hat",
+      "to blow one's own horn"
+    ],
+    "senseUid": "2a1d0a44-1d89-49d7-a48c-3f78cd3ebdb9",
+    "wordId": "2124380",
+    "pt": "['falar vantagem', 'se gabar', 'contar vantagem', 'falar bravatas']"
+  },
+  {
+    "kana": "ひつまぶし",
+    "en": [
+      "chopped kabayaki eel on rice",
+      "eel fillets cooked over charcoal with soy flavoured sauce, cut in small pieces and served on rice"
+    ],
+    "senseUid": "40de22bd-31f5-4cc5-bc83-a534a7a44f80",
+    "wordId": "2124390",
+    "pt": "['enguia kabayaki picada sobre arroz', 'filés de enguia grelhados no carvão com molho à base de soja, cortados em pedaços pequenos e servidos sobre arroz']"
+  },
+  {
+    "kana": "こうたんさい",
+    "en": [
+      "Christmas",
+      "Nativity"
+    ],
+    "senseUid": "a529502f-2f79-41aa-8fc3-baa3bbd205ed",
+    "wordId": "2124400",
+    "pt": "{\n  \"a\": [\"Natal\", \"Natividade\"]\n"
+  },
+  {
+    "kana": "こうたんさい",
+    "en": [
+      "celebration of the birthday of a saint or great man"
+    ],
+    "senseUid": "f4b52ab3-c87c-4133-b399-fa6f6e01c585",
+    "wordId": "2124400",
+    "pt": "{\n  \"a\": [\n    \"Celebração do aniversário de um santo ou grande homem\"\n  ]\n"
+  },
+  {
+    "kana": "キリストこうたんさい",
+    "en": [
+      "Christmas"
+    ],
+    "senseUid": "b9affaae-4431-411d-910e-d7e918b46be6",
+    "wordId": "2124410",
+    "pt": "['Natal']"
+  },
+  {
+    "kana": "どめ",
+    "en": [
+      "-stopper (thing that halts or prevents something)",
+      "-blocker",
+      "-preventer"
+    ],
+    "senseUid": "9de9f744-6568-4fa4-961d-08c27d1a97b5",
+    "wordId": "2124420",
+    "pt": "{\n  \"a\": [\n    \"-parador (coisa que interrompe ou impede algo)\",\n    \"-bloqueador\",\n    \"-impedidor\"\n  ]\n"
+  },
+  {
+    "kana": "ちょうどいま",
+    "en": [
+      "right now",
+      "just now"
+    ],
+    "senseUid": "4e50ae59-f1cb-416b-a522-4206ab14da65",
+    "wordId": "2124430",
+    "pt": "['bem agora', 'agora mesmo', 'neste exato momento']"
+  },
+  {
+    "kana": "げんごにぜっする",
+    "en": [
+      "to be beyond words",
+      "to defy description"
+    ],
+    "senseUid": "56e6f61e-0e78-4115-bca1-84244cca9618",
+    "wordId": "2124440",
+    "pt": "['ficar além das palavras', 'descrever é impossível']"
+  },
+  {
+    "kana": "げんをさゆうにする",
+    "en": [
+      "to equivocate",
+      "to beat around the bush"
+    ],
+    "senseUid": "af15ccef-822b-427b-a467-4554b7498f34",
+    "wordId": "2124450",
+    "pt": "{\n  \"a\": [\n    \"falar de forma evasiva\",\n    \"enrolar na resposta\",\n    \"ficar em cima do muro\",\n    \"desviar do assunto\"\n  ]\n"
+  },
+  {
+    "kana": "げんをまたない",
+    "en": [
+      "needless to say",
+      "it goes without saying that"
+    ],
+    "senseUid": "e071fde2-d783-4be4-9126-7219195a6abf",
+    "wordId": "2124460",
+    "pt": "['Dispensa comentários', 'Nem precisa dizer', 'É óbvio', 'Está implícito', 'Não é necessário mencionar']"
+  },
+  {
+    "kana": "こいのさやあて",
+    "en": [
+      "rivalry in love",
+      "rivalry for the heart of a woman"
+    ],
+    "senseUid": "33908bfd-2347-4bd6-8d12-f134b63d87f9",
+    "wordId": "2124470",
+    "pt": "['rivalidade amorosa', 'disputa pelo coração de uma mulher']"
+  },
+  {
+    "kana": "こいのてくだ",
+    "en": [
+      "wooing technique",
+      "the way to a man's (woman's) heart"
+    ],
+    "senseUid": "c420d3c9-bcdf-4274-a457-d9dc9b11791a",
+    "wordId": "2124480",
+    "pt": "{\n  \"a\": [\n    \"técnica de conquista\",\n    \"o caminho para o coração de um homem (ou de uma mulher)\"\n  ]\n"
+  },
+  {
+    "kana": "こうおつつけがたい",
+    "en": [
+      "difficult to say which of the two is better",
+      "hard to tell which is better",
+      "(there is) little to choose between them"
+    ],
+    "senseUid": "8e2f9d3d-00d5-4685-9216-db35727aa38e",
+    "wordId": "2124490",
+    "pt": "['difícil dizer qual dos dois é melhor', 'difícil saber qual é melhor', 'há pouca diferença entre eles']"
+  },
+  {
+    "kana": "こうかくあわをとばす",
+    "en": [
+      "to engage in a heated discussion"
+    ],
+    "senseUid": "e5ce4417-9954-4e88-af2d-b47df54b4b71",
+    "wordId": "2124500",
+    "pt": "{\n  \"a\": [\"entrar em uma discussão acalorada\"]\n"
+  },
+  {
+    "kana": "こくびをかしげる",
+    "en": [
+      "to look slightly doubtful",
+      "to look puzzled",
+      "to bend one's head slightly to one side"
+    ],
+    "senseUid": "48f50a80-c867-4a2a-adb4-c9786d4f62fb",
+    "wordId": "2124510",
+    "pt": "['parecer um pouco duvidoso', 'parecer confuso', 'inclinar levemente a cabeça para o lado']"
+  },
+  {
+    "kana": "コケにする",
+    "en": [
+      "to make a fool of (someone)"
+    ],
+    "senseUid": "c90b7bd6-e12a-4210-9bc0-a01ebf2d2ce9",
+    "wordId": "2124520",
+    "pt": "['zombar de', 'fazer pouco de', 'ridicularizar', 'menosprezar']"
+  },
+  {
+    "kana": "ごけをたてる",
+    "en": [
+      "to remain faithful to the memory of one's husband and never remarry"
+    ],
+    "senseUid": "9a65154c-3834-46f1-b85e-0c9c81f969cb",
+    "wordId": "2124530",
+    "pt": "['permanecer fiel à memória do marido e nunca se casar novamente']"
+  },
+  {
+    "kana": "こけんにかかわる",
+    "en": [
+      "to be a point of honor",
+      "to affect someone's good name"
+    ],
+    "senseUid": "a8445a84-cd9f-49fd-8bb0-39c621f6e599",
+    "wordId": "2124540",
+    "pt": "['ser uma questão de honra', 'afetar o bom nome de alguém']"
+  },
+  {
+    "kana": "ウエストナイルねつ",
+    "en": [
+      "West Nile fever"
+    ],
+    "senseUid": "be935e30-6ff7-4e57-9128-92ff152f322e",
+    "wordId": "2124550",
+    "pt": "{\n  \"a\": [\"febre do Nilo Ocidental\"]\n"
+  },
+  {
+    "kana": "にしナイルねつ",
+    "en": [
+      "West Nile fever"
+    ],
+    "senseUid": "b963ce86-44a5-49c6-a44a-79adef2ad5e1",
+    "wordId": "2124560",
+    "pt": "{\n  \"a\": [\"febre do Nilo Ocidental\"]\n"
+  },
+  {
+    "kana": "ウエストナイルウイルス",
+    "en": [
+      "West Nile virus"
+    ],
+    "senseUid": "347a5ea6-2421-40e3-9def-f67eac8c8400",
+    "wordId": "2124570",
+    "pt": "['Vírus do Nilo Ocidental']"
+  },
+  {
+    "kana": "フラビウイルス",
+    "en": [
+      "flavivirus"
+    ],
+    "senseUid": "3f3a0dc4-6f4d-469d-9d43-79faa841f0e2",
+    "wordId": "2124580",
+    "pt": "{\n  \"a\": [\"flavivírus\"]\n"
+  },
+  {
+    "kana": "マールブルグびょう",
+    "en": [
+      "Marburg disease",
+      "Marburg hemorrhagic fever",
+      "green monkey disease"
+    ],
+    "senseUid": "eb1970c1-ae3b-4786-9ab8-e09d4d827c71",
+    "wordId": "2124590",
+    "pt": "['doença de Marburg', 'febre hemorrágica de Marburg', 'doença do macaco-verde']"
+  },
+  {
+    "kana": "ウイルスせいしゅっけつねつ",
+    "en": [
+      "viral hemorrhagic fever"
+    ],
+    "senseUid": "cfddb9cb-7b99-4e9b-a757-1c769d3ac215",
+    "wordId": "2124600",
+    "pt": "['febre hemorrágica viral']"
+  },
+  {
+    "kana": "アールエヌエーウイルス",
+    "en": [
+      "RNA virus"
+    ],
+    "senseUid": "0a99dbd6-46fe-4465-b8fd-fa3d838b6cea",
+    "wordId": "2124610",
+    "pt": "['Vírus de RNA']"
+  },
+  {
+    "kana": "いりょうじこ",
+    "en": [
+      "medical error"
+    ],
+    "senseUid": "1bf1f526-cede-4f28-89e5-cd2400cf6213",
+    "wordId": "2124620",
+    "pt": "['erro médico']"
+  },
+  {
+    "kana": "びょうげんびせいぶつ",
+    "en": [
+      "pathogenic microbe"
+    ],
+    "senseUid": "dab3e3f5-bdae-447c-baa5-08fe7074b201",
+    "wordId": "2124630",
+    "pt": "{\n  \"a\": [\"microrganismo patogênico\"]\n"
+  },
+  {
+    "kana": "セラチアきん",
+    "en": [
+      "Serratia marcescens"
+    ],
+    "senseUid": "237df8a0-16fa-4cfe-a5bf-baac3e97895f",
+    "wordId": "2124640",
+    "pt": "['Serratia marcescens']"
+  },
+  {
+    "kana": "ひよりみかんせん",
+    "en": [
+      "opportunistic infection"
+    ],
+    "senseUid": "adf39486-3151-4dcd-8522-ece041be6361",
+    "wordId": "2124650",
+    "pt": "['infecção oportunista']"
+  },
+  {
+    "kana": "ひよりみきん",
+    "en": [
+      "opportunistic pathogen"
+    ],
+    "senseUid": "8a96e211-ea10-4a90-977b-6ee617360e33",
+    "wordId": "2124660",
+    "pt": "['patógeno oportunista']"
+  },
+  {
+    "kana": "エム・アール・エス・エー",
+    "en": [
+      "methicillin-resistant staphylococcus aureus",
+      "MRSA"
+    ],
+    "senseUid": "cce89a9d-1b5f-4e15-9ab6-471f2d03907a",
+    "wordId": "2124670",
+    "pt": "{\n  \"a\": [\n    \"Staphylococcus aureus resistente à meticilina\",\n    \"MRSA\"\n  ]\n"
+  },
+  {
+    "kana": "ブイ・アール・イー",
+    "en": [
+      "vancomycin-resistant enterococcus",
+      "VRE"
+    ],
+    "senseUid": "6c78b0b3-9623-46b2-9e13-b4d9ce2611f1",
+    "wordId": "2124680",
+    "pt": "{\n  \"a\": [\n    \"enterococo resistente à vancomicina\",\n    \"VRE\"\n  ]\n"
+  },
+  {
+    "kana": "ゆにゅうかんせんしょう",
+    "en": [
+      "infectious disease originating overseas entering the country through an infected traveller or goods"
+    ],
+    "senseUid": "5a9f7fc9-8fea-4c24-8656-c3c318b46b60",
+    "wordId": "2124690",
+    "pt": "['doença infecciosa importada', 'doença infecciosa trazida do exterior', 'doença infecciosa que entra no país por viajante ou mercadoria infectada']"
+  },
+  {
+    "kana": "エボラしゅっけつねつ",
+    "en": [
+      "Ebola hemorrhagic fever"
+    ],
+    "senseUid": "f539ae61-ee91-466f-9402-21936a240282",
+    "wordId": "2124700",
+    "pt": "['Febre hemorrágica do Ebola']"
+  },
+  {
+    "kana": "うしかいめんじょうのうしょう",
+    "en": [
+      "bovine spongiform encephalopathy",
+      "BSE",
+      "mad cow disease"
+    ],
+    "senseUid": "7e783726-ebe2-456e-b1a6-f2366bbe667a",
+    "wordId": "2124710",
+    "pt": "{\n  \"a\": [\n    \"encefalopatia espongiforme bovina\",\n    \"EEB\",\n    \"doença da vaca louca\"\n  ]\n"
+  },
+  {
+    "kana": "きんけつしょう",
+    "en": [
+      "bacteremia",
+      "bacteraemia (presence of bacteria in the blood)"
+    ],
+    "senseUid": "b816b267-12a4-4439-aae9-41270fd96855",
+    "wordId": "2124720",
+    "pt": "{\n  \"a\": [\n    \"bacteremia\",\n    \"bacteraemia (presença de bactérias no sangue)\"\n  ]\n"
+  },
+  {
+    "kana": "しんないまくえん",
+    "en": [
+      "endocarditis"
+    ],
+    "senseUid": "aa005ecf-a541-4061-9401-1a2d9e51424b",
+    "wordId": "2124730",
+    "pt": "['endocardite']"
+  },
+  {
+    "kana": "こうきんざい",
+    "en": [
+      "antimicrobial",
+      "antibacterial"
+    ],
+    "senseUid": "0046f15c-98fb-4c3e-9d28-c4c23cb9c62e",
+    "wordId": "2124740",
+    "pt": "['agente antimicrobiano', 'agente antibacteriano']"
+  },
+  {
+    "kana": "よぼうせっしゅほう",
+    "en": [
+      "Immunization Act"
+    ],
+    "senseUid": "e89c4a44-27b3-49c9-bf62-14cd82886da9",
+    "wordId": "2124750",
+    "pt": "['Lei de Imunização']"
+  },
+  {
+    "kana": "きゅうせいさんざいせいのうせきずいえん",
+    "en": [
+      "acute disseminated encephalomyelitis",
+      "ADEM"
+    ],
+    "senseUid": "3ae435b1-424d-4cab-922b-8e58ff5cf822",
+    "wordId": "2124760",
+    "pt": "['encefalomielite aguda disseminada', 'ADEM']"
+  },
+  {
+    "kana": "ベータラクタムけい",
+    "en": [
+      "beta-lactam (var. of antibiotic)"
+    ],
+    "senseUid": "8353be03-2b75-4823-94fc-33872e6fd05f",
+    "wordId": "2124770",
+    "pt": "['antibiótico beta-lactâmico']"
+  },
+  {
+    "kana": "せかいかくち",
+    "en": [
+      "every part of the world",
+      "all over the world",
+      "the four corners of the world"
+    ],
+    "senseUid": "7620983e-3d7a-4570-b68a-7eec82d0eada",
+    "wordId": "2124780",
+    "pt": "['todas as partes do mundo', 'em todo o mundo', 'os quatro cantos do mundo']"
+  },
+  {
+    "kana": "にほんかくち",
+    "en": [
+      "all over Japan"
+    ],
+    "senseUid": "ca704458-fbd3-4b8f-a77f-4b209197cc54",
+    "wordId": "2124790",
+    "pt": "['por todo o Japão']"
+  },
+  {
+    "kana": "だいりゅうこう",
+    "en": [
+      "big craze",
+      "boom",
+      "popular trend",
+      "huge popularity"
+    ],
+    "senseUid": "0d50634e-5f1e-4ca9-b12f-ea0a720d8660",
+    "wordId": "2124800",
+    "pt": "['grande mania', 'febre', 'tendência popular', 'enorme popularidade']"
+  },
+  {
+    "kana": "だいりゅうこう",
+    "en": [
+      "widespread contagion",
+      "large outbreak"
+    ],
+    "senseUid": "152135d7-cd57-4904-b14f-852a092bdd92",
+    "wordId": "2124800",
+    "pt": "['contágio generalizado', 'grande surto']"
+  },
+  {
+    "kana": "じょうほうていきょう",
+    "en": [
+      "providing information",
+      "provision of information",
+      "information provision"
+    ],
+    "senseUid": "a6dd4c3e-28a7-4cef-a0c0-8b3bd98890b7",
+    "wordId": "2124810",
+    "pt": "{\n  \"a\": [\n    \"fornecimento de informações\",\n    \"provisão de informações\",\n    \"oferta de informações\"\n  ]\n"
+  },
+  {
+    "kana": "コロナウイルス",
+    "en": [
+      "coronavirus"
+    ],
+    "senseUid": "161a8ca0-df1b-4a5d-822d-c4e7053ea9d6",
+    "wordId": "2124820",
+    "pt": "['coronavírus']"
+  },
+  {
+    "kana": "はんぱつ",
+    "en": [
+      "pandemic",
+      "widespread"
+    ],
+    "senseUid": "1d117f18-2357-4164-84df-788b9f8cad77",
+    "wordId": "2124830",
+    "pt": "['reação', 'resistência']"
+  },
+  {
+    "kana": "びょうげんせい",
+    "en": [
+      "pathogenicity",
+      "virulence"
+    ],
+    "senseUid": "dcc17a56-f01f-41a5-b882-d1eee7b24cb6",
+    "wordId": "2124840",
+    "pt": "{\n  \"a\": [\n    \"patogenicidade\",\n    \"virulência\"\n  ]\n"
+  }
+]

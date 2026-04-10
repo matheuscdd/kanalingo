@@ -1,0 +1,946 @@
+[
+  {
+    "kana": "ムーバー",
+    "en": [
+      "mover",
+      "mechanical ride"
+    ],
+    "senseUid": "74245047-1ba7-4546-a0d6-fde0c751ce93",
+    "wordId": "1925150",
+    "pt": "{\n  \"a\": [\n    \"mover\",\n    \"brinquedo mecânico\"\n  ]\n"
+  },
+  {
+    "kana": "メーカーオプション",
+    "en": [
+      "factory-installed option",
+      "factory option"
+    ],
+    "senseUid": "50edc7b6-3fbc-4edd-9f4c-bdbe94d053f4",
+    "wordId": "1925160",
+    "pt": "['opção de fábrica', 'opção instalada de fábrica']"
+  },
+  {
+    "kana": "メモる",
+    "en": [
+      "to make a note (of)",
+      "to take a note (of)"
+    ],
+    "senseUid": "257283ab-c883-41bd-82bb-8a81971c65b2",
+    "wordId": "1925180",
+    "pt": "['anotar', 'fazer uma anotação']"
+  },
+  {
+    "kana": "メクラキャップ",
+    "en": [
+      "blank plug"
+    ],
+    "senseUid": "fb48f60e-2236-411e-b59a-44cc60fee57d",
+    "wordId": "1925170",
+    "pt": "['tampa cega']"
+  },
+  {
+    "kana": "メルアド",
+    "en": [
+      "email address"
+    ],
+    "senseUid": "8e0c9d8d-3e8d-4586-a511-ee4bf7da5293",
+    "wordId": "1925190",
+    "pt": "['endereço de e-mail']"
+  },
+  {
+    "kana": "メルヘンチック",
+    "en": [
+      "fairy-tale-like"
+    ],
+    "senseUid": "d851b9ec-5029-4104-a821-dde3e68b7809",
+    "wordId": "1925200",
+    "pt": "['com atmosfera de conto de fadas', 'fantasioso', 'de estilo conto de fadas']"
+  },
+  {
+    "kana": "メンテ",
+    "en": [
+      "maintenance"
+    ],
+    "senseUid": "4381f4e7-79fa-4d9e-a574-cda5b01b0b0c",
+    "wordId": "1925210",
+    "pt": "['manutenção']"
+  },
+  {
+    "kana": "モガ",
+    "en": [
+      "modern girl",
+      "flapper"
+    ],
+    "senseUid": "3e7da66f-0c4e-4a1a-a347-9d8dc0911f5c",
+    "wordId": "1925220",
+    "pt": "['garota moderna', 'flapper']"
+  },
+  {
+    "kana": "モバイラー",
+    "en": [
+      "person fond of using a mobile phone"
+    ],
+    "senseUid": "1b93a677-33ea-4c56-9caf-bd2f0b35e9cc",
+    "wordId": "1925230",
+    "pt": "['pessoa que gosta de usar telefone celular']"
+  },
+  {
+    "kana": "モールファブリック",
+    "en": [
+      "chenille"
+    ],
+    "senseUid": "bf65f84e-c04a-4855-8987-c1a6a92c0cf5",
+    "wordId": "1925250",
+    "pt": "['tecido chenille']"
+  },
+  {
+    "kana": "モリダグ",
+    "en": [
+      "dag coating containing molybdenum"
+    ],
+    "senseUid": "c21ea837-ae22-425a-b593-9ccc98bfd10b",
+    "wordId": "1925240",
+    "pt": "{\n  \"a\": [\"revestimento dag contendo molibdênio\"]\n"
+  },
+  {
+    "kana": "ヤマンバ",
+    "en": [
+      "yamanba",
+      "manba",
+      "girl or young woman adhering to a fashion trend often characterized by extremely gaudy and colourful facial make up, heavily tanned skin and hair dyed in a bright hue"
+    ],
+    "senseUid": "2bb2fd56-62d6-40f8-9cda-a674447d3332",
+    "wordId": "1925260",
+    "pt": "['yamanba', 'manba', 'garota ou jovem mulher adepta de uma tendência de moda frequentemente caracterizada por maquiagem facial extremamente chamativa e colorida, pele muito bronzeada e cabelo tingido em um tom vibrante']"
+  },
+  {
+    "kana": "ランコン",
+    "en": [
+      "lunchtime concert"
+    ],
+    "senseUid": "13f4efd1-81ca-4dac-929b-3d4e032d55fc",
+    "wordId": "1925290",
+    "pt": "['concerto na hora do almoço']"
+  },
+  {
+    "kana": "ヤンママ",
+    "en": [
+      "young mother (sometimes previously a juvenile delinquent)"
+    ],
+    "senseUid": "472e5a21-bedc-404f-8bc9-b5692d765b0f",
+    "wordId": "1925270",
+    "pt": "['mãe jovem (às vezes anteriormente uma delinquente juvenil)']"
+  },
+  {
+    "kana": "リベンジ",
+    "en": [
+      "revenge"
+    ],
+    "senseUid": "63b32e1d-2a7b-43ec-bee5-1490ca8a7f12",
+    "wordId": "1925300",
+    "pt": "['dar o troco', 'tentar novamente', 'segunda chance']"
+  },
+  {
+    "kana": "リュック",
+    "en": [
+      "rucksack",
+      "knapsack",
+      "backpack"
+    ],
+    "senseUid": "c5d8e589-ea9d-4730-8081-4e5eec533cab",
+    "wordId": "1925310",
+    "pt": "['mochila', 'mochila de costas', 'mochila tipo rucksack']"
+  },
+  {
+    "kana": "リベンジ",
+    "en": [
+      "having a second go (at something)"
+    ],
+    "senseUid": "741fd210-68bc-41ed-81da-f86473e6e20b",
+    "wordId": "1925300",
+    "pt": "['tentar de novo', 'ter uma segunda chance', 'fazer uma nova tentativa']"
+  },
+  {
+    "kana": "ロビイズム",
+    "en": [
+      "lobbying"
+    ],
+    "senseUid": "f68b806a-59e4-4dc7-a23d-7989328310d4",
+    "wordId": "1925330",
+    "pt": "{\n  \"a\": [\"lobbyismo\", \"atividade de lobby\", \"prática de lobby\"]\n"
+  },
+  {
+    "kana": "ローレットねじ",
+    "en": [
+      "knurled screw"
+    ],
+    "senseUid": "9700869f-0826-4b2c-891e-ea15bdccc096",
+    "wordId": "1925340",
+    "pt": "['parafuso moletado']"
+  },
+  {
+    "kana": "ホワイトキック",
+    "en": [
+      "dead silence after a joke falls flat"
+    ],
+    "senseUid": "dafc6211-4430-4b3d-a1e6-7415f1312ecb",
+    "wordId": "1925350",
+    "pt": "['silêncio constrangedor depois que uma piada não tem graça']"
+  },
+  {
+    "kana": "ワンウェイびん",
+    "en": [
+      "one way bottle",
+      "non-returnable bottle"
+    ],
+    "senseUid": "66c944ce-c826-4d82-83ae-18c9673e4e8f",
+    "wordId": "1925360",
+    "pt": "{\n  \"a\": [\n    \"garrafa descartável\",\n    \"garrafa não retornável\"\n  ]\n"
+  },
+  {
+    "kana": "ワンレン",
+    "en": [
+      "haircut of uniform length"
+    ],
+    "senseUid": "37c21332-f59d-4d0b-9574-0b360389642d",
+    "wordId": "1925370",
+    "pt": "['corte de cabelo de comprimento uniforme']"
+  },
+  {
+    "kana": "イソたい",
+    "en": [
+      "isomer"
+    ],
+    "senseUid": "8991e819-7d8f-4a96-8052-3fe2fb6d3972",
+    "wordId": "1925380",
+    "pt": "{\n  \"a\": [\"isômero\"]\n"
+  },
+  {
+    "kana": "インポやく",
+    "en": [
+      "anti-impotence medication"
+    ],
+    "senseUid": "28cc1e04-1f4a-4e47-ab49-4585c31f8069",
+    "wordId": "1925390",
+    "pt": "['medicamento contra impotência']"
+  },
+  {
+    "kana": "えコンテ",
+    "en": [
+      "storyboard (film, television)",
+      "design for a series of movie scenes"
+    ],
+    "senseUid": "beae9395-5ef7-4222-8b28-8b9eee977d99",
+    "wordId": "1925400",
+    "pt": "{\n  \"a\": [\n    \"storyboard (filme, televisão)\",\n    \"design para uma sequência de cenas de filme\"\n  ]\n"
+  },
+  {
+    "kana": "かおアップ",
+    "en": [
+      "close-up of a face"
+    ],
+    "senseUid": "9617decc-a0a4-4d63-8fef-b6f12b90039e",
+    "wordId": "1925410",
+    "pt": "['close-up do rosto']"
+  },
+  {
+    "kana": "けいトラック",
+    "en": [
+      "minitruck",
+      "light truck",
+      "small truck",
+      "light pickup"
+    ],
+    "senseUid": "30c8c019-2b44-48a8-b29e-476749698d33",
+    "wordId": "1925420",
+    "pt": "['minicaminhão', 'caminhão leve', 'caminhonete pequena', 'picape leve']"
+  },
+  {
+    "kana": "けいカー",
+    "en": [
+      "k-car",
+      "kei car",
+      "lightweight car with lower registration costs"
+    ],
+    "senseUid": "4fd9687e-bfdc-4a14-bf88-c63d2de1dc78",
+    "wordId": "1925430",
+    "pt": "{\n  \"a\": [\n    \"carro kei\",\n    \"carro leve com custos de registro reduzidos\",\n    \"k-car\"\n  ]\n"
+  },
+  {
+    "kana": "こうえんデビュー",
+    "en": [
+      "bringing one's child to the local park to play for the first time"
+    ],
+    "senseUid": "8e63aca9-641c-4909-95fe-12ef290851b5",
+    "wordId": "1925440",
+    "pt": "['levar o filho para brincar no parque do bairro pela primeira vez']"
+  },
+  {
+    "kana": "ごうどうコンパ",
+    "en": [
+      "joint party (e.g. by students from several colleges)",
+      "combined party",
+      "mixer",
+      "two or more groups, esp. female and male students, combining for a party"
+    ],
+    "senseUid": "3d366d30-126d-4432-8e0a-54ace2df0e5c",
+    "wordId": "1925450",
+    "pt": "['festa conjunta (por exemplo, de estudantes de várias faculdades)', 'festa combinada', 'encontro social', 'duas ou mais turmas, especialmente de estudantes homens e mulheres, se reunindo para uma festa']"
+  },
+  {
+    "kana": "サンケアしすう",
+    "en": [
+      "sun protection index"
+    ],
+    "senseUid": "ce6d3ae0-b642-423a-bca8-81c33c38b544",
+    "wordId": "1925470",
+    "pt": "['índice de proteção solar']"
+  },
+  {
+    "kana": "こマダム",
+    "en": [
+      "little madam",
+      "young and fashion-conscious woman married to a high-earning man"
+    ],
+    "senseUid": "dc73598d-78c4-45bc-876a-d02edb62f6cc",
+    "wordId": "1925460",
+    "pt": "{\n  \"a\": [\n    \"jovem madame\",\n    \"jovem elegante casada com um homem de alta renda\"\n  ]\n"
+  },
+  {
+    "kana": "シルボンし",
+    "en": [
+      "lens-cleaning paper"
+    ],
+    "senseUid": "66f06347-dd30-46a7-907d-579130fbb184",
+    "wordId": "1925480",
+    "pt": "['papel de limpeza para lentes']"
+  },
+  {
+    "kana": "シンクロのうにゅう",
+    "en": [
+      "synchronous supply"
+    ],
+    "senseUid": "cff11d9d-1799-4ef7-9e79-70ab0122dd90",
+    "wordId": "1925490",
+    "pt": "['fornecimento síncrono']"
+  },
+  {
+    "kana": "すてポジ",
+    "en": [
+      "photographic prints that you don't keep"
+    ],
+    "senseUid": "d89d39f7-64ed-4ca9-9d09-fbf544ea65f7",
+    "wordId": "1925510",
+    "pt": "['fotos descartáveis', 'fotos que você não guarda', 'impressões fotográficas que você joga fora']"
+  },
+  {
+    "kana": "セルつき",
+    "en": [
+      "with a self-starter"
+    ],
+    "senseUid": "963d9349-022e-4609-b6a5-b326ccd64540",
+    "wordId": "1925520",
+    "pt": "{\n  \"a\": [\"com partida elétrica\"]\n"
+  },
+  {
+    "kana": "ソルベンりつ",
+    "en": [
+      "solvency ratio"
+    ],
+    "senseUid": "26c0cf57-0c6e-428d-81cd-9a4a15d3ff7c",
+    "wordId": "1925530",
+    "pt": "['índice de solvência']"
+  },
+  {
+    "kana": "チクソせい",
+    "en": [
+      "thixotrophy (property of certain gels to liquefy when subjected to vibratory forces)"
+    ],
+    "senseUid": "66953bd0-6fbf-4420-9944-b86e0ed88e57",
+    "wordId": "1925540",
+    "pt": "['tixotropia (propriedade de certos géis de se liquefazerem quando submetidos a forças vibratórias)']"
+  },
+  {
+    "kana": "チップていこう",
+    "en": [
+      "SMT resistor"
+    ],
+    "senseUid": "034dbb68-529c-4df8-a47b-0b88567d6ded",
+    "wordId": "1925550",
+    "pt": "['resistor SMD']"
+  },
+  {
+    "kana": "バイフューエルしゃ",
+    "en": [
+      "dual-fuel vehicle",
+      "bi-fuel vehicle"
+    ],
+    "senseUid": "44b6a884-4abc-4f3c-8a88-cd95aae18761",
+    "wordId": "1925570",
+    "pt": "{\n  \"a\": [\"veículo bi-combustível\", \"veículo dual-combustível\"]\n"
+  },
+  {
+    "kana": "ビタビふくごう",
+    "en": [
+      "Viterbi decoding"
+    ],
+    "senseUid": "d1c22b60-4f36-4cc5-8d1b-e200746ed795",
+    "wordId": "1925580",
+    "pt": "{\n  \"a\": [\"decodificação de Viterbi\"]\n"
+  },
+  {
+    "kana": "フレコンか",
+    "en": [
+      "changing something to full remote control"
+    ],
+    "senseUid": "d44bdce0-28c2-4282-80f6-3fcee68fb702",
+    "wordId": "1925600",
+    "pt": "['Mudar algo para controle totalmente remoto']"
+  },
+  {
+    "kana": "ベルとも",
+    "en": [
+      "person with whom one communicates by pager"
+    ],
+    "senseUid": "1a14062d-bce4-42ef-8a5c-09c6cb9d8bc3",
+    "wordId": "1925610",
+    "pt": "{\n  \"a\": [\n    \"Pessoa com quem se comunica por pager\"\n  ]\n"
+  },
+  {
+    "kana": "ボキャひん",
+    "en": [
+      "lacking the words to say what one means"
+    ],
+    "senseUid": "05adbc8b-f189-491b-868e-4cdcc02beb4a",
+    "wordId": "1925620",
+    "pt": "['sem palavras para expressar o que se quer dizer']"
+  },
+  {
+    "kana": "ポリこう",
+    "en": [
+      "police",
+      "policeman",
+      "police officer"
+    ],
+    "senseUid": "40284494-d4db-422a-9494-0b59f1525614",
+    "wordId": "1925630",
+    "pt": "['policial', 'polícia', 'oficial de polícia']"
+  },
+  {
+    "kana": "ポリぶくろ",
+    "en": [
+      "plastic bag",
+      "polyethylene bag"
+    ],
+    "senseUid": "b17f947a-a401-4f23-a20c-77408e6d9b02",
+    "wordId": "1925640",
+    "pt": "['saco plástico', 'saco de polietileno']"
+  },
+  {
+    "kana": "メルとも",
+    "en": [
+      "email friend",
+      "email penpal"
+    ],
+    "senseUid": "5be6f2ef-422f-45fc-a25b-c9b786a24169",
+    "wordId": "1925650",
+    "pt": "['amigo de e-mail', 'amigo por correspondência eletrônica']"
+  },
+  {
+    "kana": "ヤングラいちば",
+    "en": [
+      "young underground market (the underground economy in goods and services, involving lots of barter and buying and selling of secondhand goods)"
+    ],
+    "senseUid": "93e95f17-d713-46fd-b8ad-5efd2f844c20",
+    "wordId": "1925660",
+    "pt": "{\n  \"a\": [\n    \"mercado jovem subterrâneo (a economia subterrânea de bens e serviços, envolvendo muita troca, compra e venda de produtos de segunda mão)\"\n  ]\n"
+  },
+  {
+    "kana": "テらん",
+    "en": [
+      "television listings"
+    ],
+    "senseUid": "1af5367d-ba54-44df-880c-0abc477769ea",
+    "wordId": "1925670",
+    "pt": "{\n  \"a\": [\"lista de programação de TV\"]\n"
+  },
+  {
+    "kana": "ラらん",
+    "en": [
+      "radio listings"
+    ],
+    "senseUid": "302f6d02-1e8c-4ffb-83df-f018325c07b8",
+    "wordId": "1925680",
+    "pt": "{\n  \"a\": [\"programação de rádio\"]\n"
+  },
+  {
+    "kana": "ローラーぞく",
+    "en": [
+      "rockabillies"
+    ],
+    "senseUid": "355fa07e-235a-4655-bdbe-cdba27315df2",
+    "wordId": "1925690",
+    "pt": "{\n  \"a\": [\"tribo dos rockabillies\"]\n"
+  },
+  {
+    "kana": "ロンげ",
+    "en": [
+      "long hair (usu. of a man)"
+    ],
+    "senseUid": "8b2f681b-7697-4986-a2f8-2a2047d71b82",
+    "wordId": "1925700",
+    "pt": "['cabelos compridos (geralmente de homem)']"
+  },
+  {
+    "kana": "おききいただく",
+    "en": [
+      "to ask"
+    ],
+    "senseUid": "db8c543b-eef2-448a-87f3-9eeda746081a",
+    "wordId": "1925710",
+    "pt": "{\n  \"a\": [\n    \"ouvir (com respeito)\",\n    \"escutar (de forma polida)\",\n    \"perguntar (de modo honorífico)\"\n  ]\n"
+  },
+  {
+    "kana": "ときをきざむ",
+    "en": [
+      "to mark the passage of time",
+      "to let (feel) time pass"
+    ],
+    "senseUid": "492cbe4a-ec8f-472f-b731-ae1809b6898c",
+    "wordId": "1925730",
+    "pt": "['marcar a passagem do tempo', 'deixar o tempo passar']"
+  },
+  {
+    "kana": "れきしをきざむ",
+    "en": [
+      "to carve out a history",
+      "to make history",
+      "to have a history"
+    ],
+    "senseUid": "af342be0-d057-4a8e-8902-981f4623af54",
+    "wordId": "1925740",
+    "pt": "['deixar sua marca na história', 'fazer história', 'ter uma trajetória']"
+  },
+  {
+    "kana": "そうする",
+    "en": [
+      "to report to the Emperor"
+    ],
+    "senseUid": "5ec934d5-2bc6-418b-921d-e06b541fc636",
+    "wordId": "1925750",
+    "pt": "['reportar ao Imperador']"
+  },
+  {
+    "kana": "そうする",
+    "en": [
+      "to play (musical instrument)"
+    ],
+    "senseUid": "5a59865b-e88f-453a-910b-9617ed7271b0",
+    "wordId": "1925750",
+    "pt": "{\n  \"a\": [\"tocar (instrumento musical)\"]\n"
+  },
+  {
+    "kana": "そうする",
+    "en": [
+      "to accomplish"
+    ],
+    "senseUid": "edea6809-5106-4e9c-9519-fbce7f1df2b3",
+    "wordId": "1925750",
+    "pt": "{\n  \"a\": [\"fazer isso\", \"agir assim\", \"proceder dessa forma\"]\n"
+  },
+  {
+    "kana": "びしゃもんてん",
+    "en": [
+      "Vaisravana (guardian god of Buddhism)"
+    ],
+    "senseUid": "6270d47a-7aa1-4cd8-8954-57013b0a334b",
+    "wordId": "1925760",
+    "pt": "['Bishamonten (divindade guardiã do budismo)']"
+  },
+  {
+    "kana": "ちっこい",
+    "en": [
+      "very small"
+    ],
+    "senseUid": "c7f12b7c-d151-49a5-aa2e-eb2482bb24a5",
+    "wordId": "1925780",
+    "pt": "['bem pequenininho', 'bem pequeno']"
+  },
+  {
+    "kana": "いけんしょ",
+    "en": [
+      "opinion in writing",
+      "written opinion",
+      "argument"
+    ],
+    "senseUid": "6f0442ed-b22f-4666-9f7a-a28162a1bb10",
+    "wordId": "1925800",
+    "pt": "{\n  \"a\": [\n    \"opinião por escrito\",\n    \"parecer escrito\",\n    \"argumento (apresentado por escrito)\"\n  ]\n"
+  },
+  {
+    "kana": "じしゃせいひん",
+    "en": [
+      "in-house manufactured goods"
+    ],
+    "senseUid": "a89c6014-d958-4ff6-ba2b-312b1db1dbe5",
+    "wordId": "1925840",
+    "pt": "['produtos fabricados internamente']"
+  },
+  {
+    "kana": "アイススケート",
+    "en": [
+      "ice skating"
+    ],
+    "senseUid": "4eae0898-3bfe-48a1-bec8-e5e36c19a891",
+    "wordId": "1925870",
+    "pt": "['patinação no gelo']"
+  },
+  {
+    "kana": "アイスダンス",
+    "en": [
+      "ice dancing"
+    ],
+    "senseUid": "ca80e51a-d666-4fa3-b559-7596772eddcc",
+    "wordId": "1925880",
+    "pt": "['dança no gelo']"
+  },
+  {
+    "kana": "アウトコーナー",
+    "en": [
+      "outside corner (baseball, racetrack, etc.)"
+    ],
+    "senseUid": "89ebfed8-84f5-46b8-bfc7-c31315d07af3",
+    "wordId": "1925900",
+    "pt": "['canto externo (beisebol, pista de corrida, etc.)']"
+  },
+  {
+    "kana": "アクアポリス",
+    "en": [
+      "city on water"
+    ],
+    "senseUid": "1e006699-6e75-4906-b656-6d713f8a9568",
+    "wordId": "1925910",
+    "pt": "['cidade sobre a água']"
+  },
+  {
+    "kana": "アメリカざりがに",
+    "en": [
+      "red swamp crayfish (Procambarus clarkii)"
+    ],
+    "senseUid": "ad06eb64-7909-4ce2-9856-fa7c9c846d69",
+    "wordId": "1925920",
+    "pt": "['lagostim-do-pântano-vermelho (Procambarus clarkii)']"
+  },
+  {
+    "kana": "アメリカねずこ",
+    "en": [
+      "redwood"
+    ],
+    "senseUid": "28833591-04aa-4835-b0ad-c6d5dce8c884",
+    "wordId": "1925930",
+    "pt": "['sequóia americana']"
+  },
+  {
+    "kana": "アラビアゴム",
+    "en": [
+      "gum arabic"
+    ],
+    "senseUid": "26a207f7-f5ee-4dfc-b358-f3eef27697d5",
+    "wordId": "1925950",
+    "pt": "['goma arábica']"
+  },
+  {
+    "kana": "アメリケーヌソース",
+    "en": [
+      "sauce américaine",
+      "American sauce"
+    ],
+    "senseUid": "8eca8727-ce27-4d57-8a87-94422dd574dc",
+    "wordId": "1925940",
+    "pt": "['molho americano']"
+  },
+  {
+    "kana": "イソプレンゴム",
+    "en": [
+      "isoprene rubber"
+    ],
+    "senseUid": "b60cda95-066e-4c6a-8186-57afb05ea7cd",
+    "wordId": "1925960",
+    "pt": "['borracha de isopreno']"
+  },
+  {
+    "kana": "イチボ",
+    "en": [
+      "aitchbone (meat)",
+      "round",
+      "hip"
+    ],
+    "senseUid": "7797b701-176a-4f88-b955-0cc1d1bdf421",
+    "wordId": "1925970",
+    "pt": "['picanha (corte de carne)', 'alcatra', 'quadril']"
+  },
+  {
+    "kana": "インコーナー",
+    "en": [
+      "inside corner (baseball, racetrack, etc.)"
+    ],
+    "senseUid": "97629a5b-4a54-4929-b4f6-ee708f8ffea6",
+    "wordId": "1925980",
+    "pt": "['canto interno (beisebol, pista de corrida, etc.)']"
+  },
+  {
+    "kana": "インストルメントパネル",
+    "en": [
+      "instrument panel"
+    ],
+    "senseUid": "107265c4-8c0c-4221-8792-6248d2e9645f",
+    "wordId": "1925990",
+    "pt": "['painel de instrumentos']"
+  },
+  {
+    "kana": "インターステートハイウエー",
+    "en": [
+      "interstate highway"
+    ],
+    "senseUid": "f0094e46-7f71-497e-99e0-902b5aea8ad8",
+    "wordId": "1926000",
+    "pt": "{\n  \"a\": [\"rodovia interestadual\"]\n"
+  },
+  {
+    "kana": "インドライオン",
+    "en": [
+      "Asiatic lion (Panthera leo persica)",
+      "Indian lion",
+      "Persian lion",
+      "Eurasian lion"
+    ],
+    "senseUid": "c337cdb8-6fe8-4da0-94e3-770d8380ebb6",
+    "wordId": "1926010",
+    "pt": "{\n  \"a\": [\n    \"Leão-asiático (Panthera leo persica)\",\n    \"Leão-indiano\",\n    \"Leão-persa\",\n    \"Leão-eurasiático\"\n  ]\n"
+  },
+  {
+    "kana": "インフォマーシャル",
+    "en": [
+      "infomercial"
+    ],
+    "senseUid": "93bfe92a-89bc-410f-aa56-cba57e950beb",
+    "wordId": "1926020",
+    "pt": "['infomercial']"
+  },
+  {
+    "kana": "ウェイティング",
+    "en": [
+      "tactic of avoiding hitting the ball (e.g. to tire out the pitcher)"
+    ],
+    "senseUid": "e75e49e1-1aff-43ec-9f6c-c5620d4b35f3",
+    "wordId": "1926030",
+    "pt": "{\n  \"a\": [\n    \"tática de evitar rebater a bola (por exemplo, para cansar o arremessador)\"\n  ]\n"
+  },
+  {
+    "kana": "ウエストバッグ",
+    "en": [
+      "waist bag",
+      "belt bag",
+      "fanny pack",
+      "bum bag"
+    ],
+    "senseUid": "a8a474db-accb-4572-a341-d3be667cad59",
+    "wordId": "1926040",
+    "pt": "['pochete', 'bolsa de cintura', 'bolsa de quadril', 'bolsa de cinto']"
+  },
+  {
+    "kana": "ウェイティング",
+    "en": [
+      "waiting",
+      "holding back",
+      "refraining"
+    ],
+    "senseUid": "443a401d-8466-4a45-b072-744d73245e09",
+    "wordId": "1926030",
+    "pt": "{\n  \"a\": [\n    \"espera\",\n    \"contenção\",\n    \"abstenção\"\n  ]\n"
+  },
+  {
+    "kana": "エアサイクルシステム",
+    "en": [
+      "air circulating system"
+    ],
+    "senseUid": "4e073281-ce24-4de8-8f55-8c13b827229c",
+    "wordId": "1926060",
+    "pt": "['sistema de circulação de ar']"
+  },
+  {
+    "kana": "ウレタンゴム",
+    "en": [
+      "polyurethane rubber"
+    ],
+    "senseUid": "ad66bebd-f716-4690-8417-e0c3f995160f",
+    "wordId": "1926050",
+    "pt": "['borracha de uretano']"
+  },
+  {
+    "kana": "エアマット",
+    "en": [
+      "air mattress",
+      "airbed"
+    ],
+    "senseUid": "d782b575-3991-424a-a2a5-87ea203d22ed",
+    "wordId": "1926070",
+    "pt": "['colchão de ar', 'colchão inflável']"
+  },
+  {
+    "kana": "エコマーク",
+    "en": [
+      "ecological mark"
+    ],
+    "senseUid": "b14eb30e-b7f7-4bc9-aa93-8461e35c59ee",
+    "wordId": "1926080",
+    "pt": "['Selo ecológico']"
+  },
+  {
+    "kana": "エスパニョールソース",
+    "en": [
+      "espagnole sauce"
+    ],
+    "senseUid": "87232299-2c9b-4e22-9020-e629fb9053a6",
+    "wordId": "1926090",
+    "pt": "{\n  \"a\": [\"molho espanhol\"]\n"
+  },
+  {
+    "kana": "エンタイトルツーベース",
+    "en": [
+      "ground-rule double"
+    ],
+    "senseUid": "38cc6848-31e2-495b-8c9d-bc3d0e6f4597",
+    "wordId": "1926110",
+    "pt": "['dupla automática']"
+  },
+  {
+    "kana": "エトピリカ",
+    "en": [
+      "tufted puffin (Fratercula cirrhata)",
+      "crested puffin"
+    ],
+    "senseUid": "b5586bad-e58f-4651-9ec5-f64a83b8edd2",
+    "wordId": "1926100",
+    "pt": "{\n  \"a\": [\"puffin-de-penacho\", \"puffin-de-crista\"]\n"
+  },
+  {
+    "kana": "オートバイレース",
+    "en": [
+      "motorcycle race"
+    ],
+    "senseUid": "02a9fa94-86db-474d-8982-ac0e87a45ff9",
+    "wordId": "1926120",
+    "pt": "['corrida de motocicleta']"
+  },
+  {
+    "kana": "オガライト",
+    "en": [
+      "wood briquet"
+    ],
+    "senseUid": "609b8ece-efa9-4626-9244-5dfe25b3e64b",
+    "wordId": "1926130",
+    "pt": "{\n  \"a\": [\"briquete de madeira\"]\n"
+  },
+  {
+    "kana": "オフブロードウェー",
+    "en": [
+      "off Broadway"
+    ],
+    "senseUid": "d6a0d77c-8ebb-464b-9e0b-dc4612993567",
+    "wordId": "1926140",
+    "pt": "['fora da Broadway']"
+  },
+  {
+    "kana": "オフショルダーネックライン",
+    "en": [
+      "off-the-shoulder neckline"
+    ],
+    "senseUid": "31ea9823-b646-4f86-a3a3-0c27d190b838",
+    "wordId": "1926150",
+    "pt": "['decote ombro a ombro']"
+  },
+  {
+    "kana": "オブリーク",
+    "en": [
+      "oblique line"
+    ],
+    "senseUid": "f5228e07-2749-4f17-81c6-033a7864e869",
+    "wordId": "1926160",
+    "pt": "{\n  \"a\": [\n    \"linha oblíqua\"\n  ]\n"
+  },
+  {
+    "kana": "オランデーズソース",
+    "en": [
+      "hollandaise sauce"
+    ],
+    "senseUid": "7350b5ae-ccdc-4733-a283-76defb962082",
+    "wordId": "1926170",
+    "pt": "['molho holandês']"
+  },
+  {
+    "kana": "オンエアランプ",
+    "en": [
+      "on the air lamp"
+    ],
+    "senseUid": "dceb71ac-7d47-40a2-8975-9951e4e73be8",
+    "wordId": "1926180",
+    "pt": "['lâmpada de transmissão']"
+  },
+  {
+    "kana": "カーブミラー",
+    "en": [
+      "convex traffic mirror at a road curve"
+    ],
+    "senseUid": "e0d44ff4-f429-4aec-baf2-f42e0c889205",
+    "wordId": "1926200",
+    "pt": "['espelho convexo de trânsito em curva de estrada']"
+  },
+  {
+    "kana": "カスタムコミュニケーション",
+    "en": [
+      "customized communication",
+      "customised communication"
+    ],
+    "senseUid": "9bad52f5-4228-43dd-bb69-58aba16b456e",
+    "wordId": "1926210",
+    "pt": "['comunicação personalizada', 'comunicação customizada']"
+  },
+  {
+    "kana": "カリガラス",
+    "en": [
+      "Kaliglas",
+      "potash glass"
+    ],
+    "senseUid": "fadd22cc-1465-4add-9bf3-4a34c9a104d0",
+    "wordId": "1926220",
+    "pt": "{\n  \"a\": [\n    \"Kaliglas\",\n    \"vidro de potassa\"\n  ]\n"
+  },
+  {
+    "kana": "カラートタン",
+    "en": [
+      "colored galvanized steel sheet (coloured)"
+    ],
+    "senseUid": "b5c835e1-0445-4e3a-b259-ab93e4c94628",
+    "wordId": "1926230",
+    "pt": "['chapa de aço galvanizado colorido']"
+  },
+  {
+    "kana": "ガソリンカー",
+    "en": [
+      "gasoline railcar"
+    ],
+    "senseUid": "64dca6cb-c343-44ca-a74f-040f8d193fec",
+    "wordId": "1926240",
+    "pt": "['carro ferroviário a gasolina']"
+  },
+  {
+    "kana": "ガラスウール",
+    "en": [
+      "glass wool"
+    ],
+    "senseUid": "3e47b2aa-2f7f-4d50-a82a-0eddabe89764",
+    "wordId": "1926250",
+    "pt": "{\n  \"a\": [\"lã de vidro\"]\n"
+  }
+]

@@ -1,0 +1,931 @@
+[
+  {
+    "kana": "しけんけっか",
+    "en": [
+      "examination results",
+      "test result",
+      "test outcome"
+    ],
+    "senseUid": "cda029df-8a54-4aa7-bf98-2f465376dbbd",
+    "wordId": "2359550",
+    "pt": "['resultado do exame', 'resultado da prova', 'resultado do teste']"
+  },
+  {
+    "kana": "しけんこうてい",
+    "en": [
+      "test process",
+      "test stage",
+      "test period"
+    ],
+    "senseUid": "172815e9-3cdc-4b95-a659-9a8716574614",
+    "wordId": "2359560",
+    "pt": "['processo de prova', 'etapa de prova', 'período de prova']"
+  },
+  {
+    "kana": "しけんこうもく",
+    "en": [
+      "test case"
+    ],
+    "senseUid": "2ae49cbe-c735-451d-86eb-45110fa143ba",
+    "wordId": "2359570",
+    "pt": "['matéria de prova']"
+  },
+  {
+    "kana": "しけんこうもくあやまり",
+    "en": [
+      "test case error"
+    ],
+    "senseUid": "6b63e46c-c644-4407-94a1-77d45ba683e3",
+    "wordId": "2359580",
+    "pt": "{\n  \"a\": [\"Erro de disciplina de prova\"]\n"
+  },
+  {
+    "kana": "しけんこうもくめい",
+    "en": [
+      "test item name"
+    ],
+    "senseUid": "2e284d16-06ee-4a8f-a56a-76ef5c3006c1",
+    "wordId": "2359590",
+    "pt": "['nome do item de teste']"
+  },
+  {
+    "kana": "しけんじしょう",
+    "en": [
+      "test event"
+    ],
+    "senseUid": "09abd6be-d2f8-45af-9491-3f486abdb931",
+    "wordId": "2359600",
+    "pt": "['evento de teste']"
+  },
+  {
+    "kana": "しけんじつげんしゃ",
+    "en": [
+      "test realizer"
+    ],
+    "senseUid": "0d4d58b9-68c9-408f-8783-9c920a4bb484",
+    "wordId": "2359610",
+    "pt": "{\n  \"a\": [\"realizador de prova\"]\n"
+  },
+  {
+    "kana": "しけんじょうけん",
+    "en": [
+      "test conditions",
+      "test environment"
+    ],
+    "senseUid": "7edd0f64-aaa7-4acd-8013-5ad16afc752b",
+    "wordId": "2359630",
+    "pt": "{\n  \"a\": [\"condições de prova\", \"condições de exame\", \"ambiente de teste\"]\n"
+  },
+  {
+    "kana": "しけんたい",
+    "en": [
+      "test piece",
+      "test object",
+      "specimen"
+    ],
+    "senseUid": "e77037b8-899d-4606-a68e-8908e8b586ad",
+    "wordId": "2359640",
+    "pt": "['peça de teste', 'objeto de teste', 'amostra']"
+  },
+  {
+    "kana": "しけんたいしょう",
+    "en": [
+      "implementation under test",
+      "IUT"
+    ],
+    "senseUid": "dd8a9808-607c-46d3-a168-f6cafe763826",
+    "wordId": "2359650",
+    "pt": "{\n  \"a\": [\n    \"implementação sob teste\",\n    \"IUT\"\n  ]\n"
+  },
+  {
+    "kana": "しけんたいしょうシステム",
+    "en": [
+      "system under test",
+      "SUT"
+    ],
+    "senseUid": "fff3f7f3-4864-46e9-9782-2890f2b08f01",
+    "wordId": "2359660",
+    "pt": "['sistema sob teste', 'SUT']"
+  },
+  {
+    "kana": "しけんたんまつ",
+    "en": [
+      "test terminal"
+    ],
+    "senseUid": "4239068c-4110-4c7e-8245-f499c7e00d15",
+    "wordId": "2359670",
+    "pt": "['terminal de teste']"
+  },
+  {
+    "kana": "しけんもくてき",
+    "en": [
+      "test purpose"
+    ],
+    "senseUid": "307e5b0c-bea7-4e3a-bbf3-ab3c28f84572",
+    "wordId": "2359680",
+    "pt": "['propósito do teste']"
+  },
+  {
+    "kana": "しさくかんきょう",
+    "en": [
+      "test environment"
+    ],
+    "senseUid": "c97f9ec3-4eea-4348-8888-dc36cfac0304",
+    "wordId": "2359700",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"しさくかんきょう\",\n      \"gloss\": [\"ambiente de teste\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "しげんわりふり",
+    "en": [
+      "resource allocation"
+    ],
+    "senseUid": "b462f39c-e1a0-45d0-82e4-3b31e64eb2c6",
+    "wordId": "2359720",
+    "pt": "{\n  \"a\": [\n    \"alocação de recursos\"\n  ]\n"
+  },
+  {
+    "kana": "しげんかんり",
+    "en": [
+      "resource management"
+    ],
+    "senseUid": "59f4ccad-96fc-4672-a6b0-2708a9dc375e",
+    "wordId": "2359730",
+    "pt": "{\n  \"a\": [\"gestão de recursos\"]\n"
+  },
+  {
+    "kana": "しげんきょうゆう",
+    "en": [
+      "resource sharing"
+    ],
+    "senseUid": "12592d86-9e5e-40dc-903f-00d6f69c05f2",
+    "wordId": "2359740",
+    "pt": "{\n  \"a\": [\n    \"compartilhamento de recursos\"\n  ]\n"
+  },
+  {
+    "kana": "しげんぶんぱい",
+    "en": [
+      "resource sharing"
+    ],
+    "senseUid": "9617d160-f08b-4ae6-9317-284b3d0f74d3",
+    "wordId": "2359750",
+    "pt": "['compartilhamento de recursos']"
+  },
+  {
+    "kana": "しげんぶんしょ",
+    "en": [
+      "resource document"
+    ],
+    "senseUid": "0bf758d4-96bf-4644-bae8-055a8b03d9b7",
+    "wordId": "2359760",
+    "pt": "{\n  \"a\": [\"documento de referência\"]\n"
+  },
+  {
+    "kana": "しざいしょようりょうけいかく",
+    "en": [
+      "MRP",
+      "Material Requirement Planning"
+    ],
+    "senseUid": "d373ed5d-936b-4a86-a1a5-25857a78ceea",
+    "wordId": "2359770",
+    "pt": "['Planejamento das Necessidades de Materiais']"
+  },
+  {
+    "kana": "めすコネクタ",
+    "en": [
+      "female connector"
+    ],
+    "senseUid": "a6702c18-f005-4baf-86f2-7ef94a949336",
+    "wordId": "2359780",
+    "pt": "['conector fêmea']"
+  },
+  {
+    "kana": "じごうジャーナルか",
+    "en": [
+      "after-look journalizing"
+    ],
+    "senseUid": "b5f0b08d-fb3b-428c-a0c3-62317f2acf7e",
+    "wordId": "2359790",
+    "pt": "{\n  \"a\": [\n    \"Jornalização de retrospectiva\"\n  ]\n"
+  },
+  {
+    "kana": "じごじょうけん",
+    "en": [
+      "postcondition"
+    ],
+    "senseUid": "009cd769-ddc0-4031-ba9e-44fcace67337",
+    "wordId": "2359800",
+    "pt": "{\n  \"a\": [\"pós-condição\"]\n"
+  },
+  {
+    "kana": "じごほしゅ",
+    "en": [
+      "corrective maintenance"
+    ],
+    "senseUid": "0cf4e6a3-efc3-47c0-9a67-8c766e3ea439",
+    "wordId": "2359820",
+    "pt": "{\n  \"a\": [\"manutenção corretiva\"]\n"
+  },
+  {
+    "kana": "じごほぜん",
+    "en": [
+      "corrective maintenance"
+    ],
+    "senseUid": "b87e65cc-4a62-422a-982f-4ccf1aadcfc6",
+    "wordId": "2359830",
+    "pt": "['manutenção corretiva']"
+  },
+  {
+    "kana": "じじつじょうのひょうじゅん",
+    "en": [
+      "de facto standard"
+    ],
+    "senseUid": "f068b52e-afb7-452d-8074-d6bb8fa7ddef",
+    "wordId": "2359840",
+    "pt": "['padrão de fato']"
+  },
+  {
+    "kana": "じじつじょうひょうじゅん",
+    "en": [
+      "de facto standard"
+    ],
+    "senseUid": "a3c3a1b2-18b6-47e5-bc68-dc90d36dd799",
+    "wordId": "2359850",
+    "pt": "['padrão de fato']"
+  },
+  {
+    "kana": "じしょうまちぎょうれつ",
+    "en": [
+      "event queue"
+    ],
+    "senseUid": "53d3e1a2-2242-4bbd-8850-aac46f99dc79",
+    "wordId": "2359870",
+    "pt": "{\n  \"a\": [\"fila de eventos\"]\n"
+  },
+  {
+    "kana": "じしょうとうえい",
+    "en": [
+      "event projection"
+    ],
+    "senseUid": "45b54573-4dad-4c4b-a9d5-a0362ca0236f",
+    "wordId": "2359880",
+    "pt": "{\n  \"a\": [\n    \"projeção de evento\"\n  ]\n"
+  },
+  {
+    "kana": "じしょうほうこく",
+    "en": [
+      "event report"
+    ],
+    "senseUid": "d0182243-b29f-4ced-a07b-8bd766556498",
+    "wordId": "2359890",
+    "pt": "{\n  \"a\": [\n    \"relato de evento\"\n  ]\n"
+  },
+  {
+    "kana": "じぜんきろくばいたい",
+    "en": [
+      "recorded (data) medium"
+    ],
+    "senseUid": "808f6de6-24dd-4fdb-b6de-7c79c24af3e2",
+    "wordId": "2359910",
+    "pt": "['meio de registro prévio']"
+  },
+  {
+    "kana": "じぜんじょうけん",
+    "en": [
+      "precondition"
+    ],
+    "senseUid": "82131742-4902-46b2-ac71-72fc7b009c6c",
+    "wordId": "2359920",
+    "pt": "['condição prévia', 'pré-requisito', 'pré-condição']"
+  },
+  {
+    "kana": "じむかんりデータしょり",
+    "en": [
+      "administrative data processing"
+    ],
+    "senseUid": "b345ae14-f987-404f-86bb-cea100085b8a",
+    "wordId": "2359930",
+    "pt": "{\n  \"a\": [\"processamento de dados administrativos\"]\n"
+  },
+  {
+    "kana": "じむきかいか",
+    "en": [
+      "office automation",
+      "OA"
+    ],
+    "senseUid": "d47065b0-04e6-45ef-8cd6-18ec2b8614a2",
+    "wordId": "2359940",
+    "pt": "{\n  \"a\": [\n    \"automação de escritório\",\n    \"OA\"\n  ]\n"
+  },
+  {
+    "kana": "じむぶんしょようげんご",
+    "en": [
+      "Office Document Language"
+    ],
+    "senseUid": "56e029c1-d83b-4467-b589-c39cf2fc409c",
+    "wordId": "2359950",
+    "pt": "{\n  \"a\": [\"Linguagem de Documentos de Escritório\"]\n"
+  },
+  {
+    "kana": "じむよう",
+    "en": [
+      "business use",
+      "office use"
+    ],
+    "senseUid": "85cebe82-cb98-4f89-90a4-78b4b98499f3",
+    "wordId": "2359960",
+    "pt": "['uso comercial', 'uso para escritório']"
+  },
+  {
+    "kana": "じさげ",
+    "en": [
+      "indentation"
+    ],
+    "senseUid": "b50f080e-ce9a-4dee-851b-18604675289e",
+    "wordId": "2359970",
+    "pt": "['recuo']"
+  },
+  {
+    "kana": "じくかいせき",
+    "en": [
+      "lexical analysis"
+    ],
+    "senseUid": "8e0e703d-fc6a-4890-b700-ba7f6489693b",
+    "wordId": "2359990",
+    "pt": "['análise lexical']"
+  },
+  {
+    "kana": "じくのこうぞう",
+    "en": [
+      "lexical structure"
+    ],
+    "senseUid": "215a611c-a505-467c-aac8-2da9f9ff8dff",
+    "wordId": "2359980",
+    "pt": "['estrutura do eixo']"
+  },
+  {
+    "kana": "じくたんい",
+    "en": [
+      "lexical unit",
+      "lexical token"
+    ],
+    "senseUid": "961a435e-2951-4fcf-8c10-de918969c50c",
+    "wordId": "2360000",
+    "pt": "{\n  \"a\": [\"unidade lexical\", \"token lexical\"]\n"
+  },
+  {
+    "kana": "じおくりてん",
+    "en": [
+      "escapement point"
+    ],
+    "senseUid": "d63f406c-599e-4a19-8c8c-9a07e7ac97b8",
+    "wordId": "2360010",
+    "pt": "['ponto de escape']"
+  },
+  {
+    "kana": "じほうこう",
+    "en": [
+      "character writing direction"
+    ],
+    "senseUid": "bd238333-cef1-42ff-84f3-dbc7c2312fa0",
+    "wordId": "2360020",
+    "pt": "{\n  \"a\": [\"direção de escrita dos caracteres\"]\n"
+  },
+  {
+    "kana": "じるいじょうけん",
+    "en": [
+      "class condition"
+    ],
+    "senseUid": "3ac00422-26dc-498a-836c-206095951dbe",
+    "wordId": "2360030",
+    "pt": "{\n  \"a\": [\n    \"condição de classe\"\n  ]\n"
+  },
+  {
+    "kana": "じるいめい",
+    "en": [
+      "class name"
+    ],
+    "senseUid": "245d00d2-0d62-4624-8d32-5cd6b73d5337",
+    "wordId": "2360040",
+    "pt": "{\n  \"a\": [\"nome de classe\"]\n"
+  },
+  {
+    "kana": "じぞくかのうセルレート",
+    "en": [
+      "sustainable cell rate"
+    ],
+    "senseUid": "314e7654-ce29-4a31-9667-89017ab47b55",
+    "wordId": "2360050",
+    "pt": "['taxa celular sustentável']"
+  },
+  {
+    "kana": "じかんきざみ",
+    "en": [
+      "clock tick"
+    ],
+    "senseUid": "628554c2-5bbb-4b28-b006-b3e7ca5f659b",
+    "wordId": "2360070",
+    "pt": "{\n  \"a\": [\n    \"tic-tac do relógio\"\n  ]\n"
+  },
+  {
+    "kana": "じかんたじゅう",
+    "en": [
+      "TDD",
+      "time division duplex"
+    ],
+    "senseUid": "e7b11e83-c7cc-45ef-ac14-333d982aea40",
+    "wordId": "2360080",
+    "pt": "['duplex por divisão de tempo']"
+  },
+  {
+    "kana": "じかんぶんかつたげんせつぞくほうしき",
+    "en": [
+      "TDMA",
+      "time division multiple access"
+    ],
+    "senseUid": "b17afda9-2a15-414f-8e17-44007f2b7d7a",
+    "wordId": "2360100",
+    "pt": "{\n  \"a\": [\n    \"Acesso múltiplo por divisão de tempo\"\n  ]\n"
+  },
+  {
+    "kana": "じかんへんかんけいすう",
+    "en": [
+      "time scale (factor)"
+    ],
+    "senseUid": "036d1ad6-203e-4fc6-93fd-035a6fc20b39",
+    "wordId": "2360110",
+    "pt": "{\n  \"a\": [\"fator de escala temporal\"]\n"
+  },
+  {
+    "kana": "じけいれつぶんせき",
+    "en": [
+      "time series analysis"
+    ],
+    "senseUid": "531f72d5-3072-4616-8e7f-3f2d920fd377",
+    "wordId": "2360120",
+    "pt": "{\n  \"a\": [\"análise de séries temporais\"]\n"
+  },
+  {
+    "kana": "じぶんかつ",
+    "en": [
+      "time-sharing"
+    ],
+    "senseUid": "c4d39f12-db6d-4f5d-8928-869413cfb130",
+    "wordId": "2360130",
+    "pt": "{\n  \"a\": [\n    \"divisão de tempo\",\n    \"compartilhamento de tempo\",\n    \"uso alternado de tempo\"\n  ]\n"
+  },
+  {
+    "kana": "じぶんかつ",
+    "en": [
+      "time division (multiplexing, multiple access, etc.)"
+    ],
+    "senseUid": "ecf4a3a1-a98c-4429-b9c0-393fc6f29cae",
+    "wordId": "2360130",
+    "pt": "['divisão de tempo (multiplexação, acesso múltiplo, etc.)']"
+  },
+  {
+    "kana": "じぶんかつシステム",
+    "en": [
+      "time-sharing system"
+    ],
+    "senseUid": "d4367ffa-d25c-4aac-a8c3-eb8eed4e776a",
+    "wordId": "2360140",
+    "pt": "['sistema de tempo compartilhado']"
+  },
+  {
+    "kana": "じぶんかつたげんせつぞく",
+    "en": [
+      "time-division multiple access",
+      "TDMA"
+    ],
+    "senseUid": "65eb478f-0040-4507-b5e3-adec6929e026",
+    "wordId": "2360160",
+    "pt": "{\n  \"a\": [\"acesso múltiplo por divisão de tempo\", \"TDMA\"]\n"
+  },
+  {
+    "kana": "じぶんかつたじゅう",
+    "en": [
+      "time-division multiplexing",
+      "TDM"
+    ],
+    "senseUid": "1a485e14-b3ff-4b8d-8b5f-09697cc837fd",
+    "wordId": "2360170",
+    "pt": "{\n  \"a\": [\"multiplexação por divisão de tempo\"]\n"
+  },
+  {
+    "kana": "じぶんかつたじゅうか",
+    "en": [
+      "time-division multiplexing",
+      "TDM"
+    ],
+    "senseUid": "08cb2f0b-3aca-4a44-a850-6c639b7dcc93",
+    "wordId": "2360180",
+    "pt": "{\n  \"a\": [\"multiplexação por divisão de tempo\"]\n"
+  },
+  {
+    "kana": "つぎホップ",
+    "en": [
+      "next hop"
+    ],
+    "senseUid": "1ad7b4ff-0a96-49ff-8ae6-d909a6e3a55c",
+    "wordId": "2360230",
+    "pt": "{\n  \"a\": [\"próximo salto\"]\n"
+  },
+  {
+    "kana": "じげんすう",
+    "en": [
+      "rank"
+    ],
+    "senseUid": "ce8aa148-8372-4486-b379-df296f455cf1",
+    "wordId": "2360240",
+    "pt": "{\n  \"a\": [\n    \"número de dimensões\"\n  ]\n"
+  },
+  {
+    "kana": "じきインクもじ",
+    "en": [
+      "magnetic ink character"
+    ],
+    "senseUid": "202163ce-83cc-4f46-88ef-be8c54b2cc5a",
+    "wordId": "2360250",
+    "pt": "{\n  \"a\": [\"caractere de tinta magnética\"]\n"
+  },
+  {
+    "kana": "じきインクもじよみとりそうち",
+    "en": [
+      "Magnetic Ink Character Reader",
+      "Magnetic Ink Character Recognition",
+      "MICR"
+    ],
+    "senseUid": "81a097e2-b2e7-4c22-9806-de5a9189d42d",
+    "wordId": "2360260",
+    "pt": "{\n  \"a\": [\n    \"Leitor de Caracteres com Tinta Magnética\",\n    \"Reconhecimento de Caracteres com Tinta Magnética\",\n    \"MICR\"\n  ]\n"
+  },
+  {
+    "kana": "じきインクもじにんしき",
+    "en": [
+      "magnetic ink character recognition",
+      "MICR"
+    ],
+    "senseUid": "0c84abaf-2fa6-4f8d-b9cd-2fd9866beecf",
+    "wordId": "2360280",
+    "pt": "{\n  \"a\": [\n    \"Reconhecimento de caracteres por tinta magnética\"\n  ]\n"
+  },
+  {
+    "kana": "じきカードきおくそうち",
+    "en": [
+      "magnetic card storage"
+    ],
+    "senseUid": "c0a41694-e332-4b27-8275-ec39113a69d0",
+    "wordId": "2360290",
+    "pt": "{\n  \"a\": [\"dispositivo de armazenamento de cartão magnético\"]\n"
+  },
+  {
+    "kana": "じきテープ",
+    "en": [
+      "magnetic tape"
+    ],
+    "senseUid": "f3ca593c-14cc-42a0-b14c-8b99a5aa4f98",
+    "wordId": "2360300",
+    "pt": "{\n  \"a\": [\"fita magnética\"]\n"
+  },
+  {
+    "kana": "じきテープきおくそうち",
+    "en": [
+      "magnetic tape storage"
+    ],
+    "senseUid": "c3efe490-f8ba-46f2-bfd2-a9e16ff6a66c",
+    "wordId": "2360310",
+    "pt": "['unidade de armazenamento em fita magnética']"
+  },
+  {
+    "kana": "じきドラム",
+    "en": [
+      "magnetic drum"
+    ],
+    "senseUid": "8d8d8465-3fb1-4f22-a0c4-d7b5bba4591e",
+    "wordId": "2360320",
+    "pt": "['tambor magnético']"
+  },
+  {
+    "kana": "じきドラムきおくそうち",
+    "en": [
+      "magnetic drum storage"
+    ],
+    "senseUid": "799ecde0-2996-4456-bd5b-7ca379ecf2da",
+    "wordId": "2360330",
+    "pt": "{\n  \"a\": [\"memória de tambor magnético\"]\n"
+  },
+  {
+    "kana": "じきバブルメモリー",
+    "en": [
+      "bubble memory"
+    ],
+    "senseUid": "ff821832-27f3-4c27-b088-cc658c6e9d71",
+    "wordId": "2360340",
+    "pt": "{\n  \"a\": [\"memória bolha\"]\n"
+  },
+  {
+    "kana": "じきバブルきおくそうち",
+    "en": [
+      "bubble memory"
+    ],
+    "senseUid": "96ac8ab0-507a-4529-a667-2f94d1e2ec5d",
+    "wordId": "2360350",
+    "pt": "{\n  \"a\": [\"memória de bolha\"]\n"
+  },
+  {
+    "kana": "じきプリンタ",
+    "en": [
+      "magnetographic printer"
+    ],
+    "senseUid": "578e08eb-0e6e-475e-95e0-81e0f90935ad",
+    "wordId": "2360360",
+    "pt": "{\n  \"a\": [\n    \"impressora magnetográfica\"\n  ]\n"
+  },
+  {
+    "kana": "じきヘッド",
+    "en": [
+      "magnetic head"
+    ],
+    "senseUid": "10cdb80d-914c-40fb-8f00-e159f538cfbc",
+    "wordId": "2360370",
+    "pt": "['cabeça magnética']"
+  },
+  {
+    "kana": "じきいんじそうち",
+    "en": [
+      "magnetographic printer"
+    ],
+    "senseUid": "c41fda3c-e979-4b0d-bbe8-2be778505a67",
+    "wordId": "2360390",
+    "pt": "['impressora magnetográfica']"
+  },
+  {
+    "kana": "じきメディア",
+    "en": [
+      "magnetic media"
+    ],
+    "senseUid": "bdf42ca8-4006-4a2a-b4c3-638742400eb8",
+    "wordId": "2360380",
+    "pt": "{\n  \"a\": [\"mídia magnética\"]\n"
+  },
+  {
+    "kana": "じききおくそうち",
+    "en": [
+      "magnetic storage"
+    ],
+    "senseUid": "fe7c6ec1-7993-4452-a81f-461c1091d25e",
+    "wordId": "2360400",
+    "pt": "{\n  \"a\": [\"armazenamento magnético\"]\n"
+  },
+  {
+    "kana": "じききろく",
+    "en": [
+      "magnetic recording"
+    ],
+    "senseUid": "379f3206-b010-41ad-8209-482fad74fa5c",
+    "wordId": "2360410",
+    "pt": "{\n  \"a\": [\n    \"gravação magnética\"\n  ]\n"
+  },
+  {
+    "kana": "じききろくばいたい",
+    "en": [
+      "magnetic media"
+    ],
+    "senseUid": "7e9b47e4-ad08-4643-b087-e3f0f8d29a0b",
+    "wordId": "2360420",
+    "pt": "{\n  \"a\": [\"meio magnético\"]\n"
+  },
+  {
+    "kana": "じきばいたい",
+    "en": [
+      "magnetic media"
+    ],
+    "senseUid": "63845c46-50e4-46c9-87a7-9858afd5196e",
+    "wordId": "2360430",
+    "pt": "['meio magnético']"
+  },
+  {
+    "kana": "じきもじよみとりそうち",
+    "en": [
+      "Magnetic Character Reader",
+      "MCR"
+    ],
+    "senseUid": "7bb2a70b-121d-4ad6-bb58-915d8e387da5",
+    "wordId": "2360440",
+    "pt": "['Leitor Magnético de Caracteres', 'MCR']"
+  },
+  {
+    "kana": "じきょくかんかく",
+    "en": [
+      "gap width"
+    ],
+    "senseUid": "48f1de61-1e2d-4fb8-a633-99c829b7b673",
+    "wordId": "2360450",
+    "pt": "{\n  \"a\": [\n    \"largura do intervalo\"\n  ]\n"
+  },
+  {
+    "kana": "じかせいソフトウェア",
+    "en": [
+      "home-grown software"
+    ],
+    "senseUid": "9c5d5d57-4f5e-4398-8d33-450b83196eab",
+    "wordId": "2360460",
+    "pt": "['software desenvolvido internamente']"
+  },
+  {
+    "kana": "じこかいとう",
+    "en": [
+      "self-extracting (file)"
+    ],
+    "senseUid": "0674eafc-556f-4787-b0f0-3c034ddd6077",
+    "wordId": "2360470",
+    "pt": "{\n  \"a\": [\"autoextraível (arquivo)\"]\n"
+  },
+  {
+    "kana": "じこかいとうファイル",
+    "en": [
+      "self extract file"
+    ],
+    "senseUid": "fce3b790-6a35-49b3-918e-0ee5ac33814b",
+    "wordId": "2360480",
+    "pt": "['arquivo de autoextração']"
+  },
+  {
+    "kana": "じこきていこうもく",
+    "en": [
+      "self defining term"
+    ],
+    "senseUid": "aaeb5018-6b62-48a4-9112-ebb4f2181de5",
+    "wordId": "2360490",
+    "pt": "['termo auto-definido']"
+  },
+  {
+    "kana": "じこけつごう",
+    "en": [
+      "self-association"
+    ],
+    "senseUid": "51801f52-11f3-4563-97e6-4926adc1c896",
+    "wordId": "2360500",
+    "pt": "['autoassociação']"
+  },
+  {
+    "kana": "じこけんさふごう",
+    "en": [
+      "error-detecting code",
+      "self-checking code"
+    ],
+    "senseUid": "4b476a51-9f71-465c-bcc0-3364be940560",
+    "wordId": "2360510",
+    "pt": "{\n  \"a\": [\n    \"código de autoverificação\",\n    \"código de detecção de erros\"\n  ]\n"
+  },
+  {
+    "kana": "じこしげん",
+    "en": [
+      "local resource"
+    ],
+    "senseUid": "7232b1c2-ffe8-46ac-862b-a62d14721063",
+    "wordId": "2360520",
+    "pt": "['recurso local']"
+  },
+  {
+    "kana": "じこしゅうたんはんべつ",
+    "en": [
+      "self-delimiting"
+    ],
+    "senseUid": "8e1de178-b5e4-4fd4-86d4-edb95adc9bb6",
+    "wordId": "2360530",
+    "pt": "['autodelimitação']"
+  },
+  {
+    "kana": "じこしんだん",
+    "en": [
+      "self-diagnosis",
+      "self-examination"
+    ],
+    "senseUid": "02002aaf-e3dd-4617-adc2-8ff062a4cd16",
+    "wordId": "2360540",
+    "pt": "{\n  \"a\": [\n    \"autoavaliação\",\n    \"autoexame\",\n    \"autodiagnóstico\"\n  ]\n"
+  },
+  {
+    "kana": "じこそうじずけい",
+    "en": [
+      "fractal"
+    ],
+    "senseUid": "402aeda0-4c1e-403d-9110-5f694a779ad9",
+    "wordId": "2360550",
+    "pt": "{\n  \"a\": [\"fractal auto-limpante\", \"fractal de auto-limpeza\", \"fractal que se limpa sozinho\"]\n"
+  },
+  {
+    "kana": "じこてんかいファイル",
+    "en": [
+      "self-expanding file"
+    ],
+    "senseUid": "7a96eed9-681d-4a5a-ab00-983e2f932360",
+    "wordId": "2360560",
+    "pt": "['arquivo de autoexpansão']"
+  },
+  {
+    "kana": "じどうコンフィギュレーション",
+    "en": [
+      "automatic configuration"
+    ],
+    "senseUid": "af9a628f-fdc0-4bb4-8167-125f375cfbae",
+    "wordId": "2360580",
+    "pt": "['configuração automática']"
+  },
+  {
+    "kana": "じどうコンフィグレーション",
+    "en": [
+      "automatic configuration"
+    ],
+    "senseUid": "042044f9-cdd5-49de-937c-96e13cd8d166",
+    "wordId": "2360590",
+    "pt": "['configuração automática']"
+  },
+  {
+    "kana": "じどうシステムほご",
+    "en": [
+      "automatic system protection"
+    ],
+    "senseUid": "637fae41-8c97-4ad4-8e6e-edbfe1cadd77",
+    "wordId": "2360600",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"じどうシステムほご\",\n      \"gloss\": \"proteção automática do sistema\"\n    \n  ]\n"
+  },
+  {
+    "kana": "じどうデータしゅうしゅう",
+    "en": [
+      "Automatic Data Acquisition",
+      "ADA"
+    ],
+    "senseUid": "c0a8d2c5-62dc-4cc7-9676-40193a203f4c",
+    "wordId": "2360610",
+    "pt": "['Aquisição Automática de Dados', 'AAD']"
+  },
+  {
+    "kana": "じどうプログラムツール",
+    "en": [
+      "APT",
+      "Automatically Programmed Tools"
+    ],
+    "senseUid": "78a41bd1-0346-4c59-88f7-8d54bfab8de2",
+    "wordId": "2360620",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"じどうプログラムツール\",\n      \"Gloss\": [\n        \"APT\",\n        \"Ferramentas Programadas Automaticamente\"\n      ]\n    \n  ]\n"
+  },
+  {
+    "kana": "じどうボリュームにんしき",
+    "en": [
+      "AVR",
+      "Automatic Volume Recognition"
+    ],
+    "senseUid": "21718cf6-7102-4b2c-a6fd-45cdb7a3802a",
+    "wordId": "2360630",
+    "pt": "['Reconhecimento Automático de Volume']"
+  },
+  {
+    "kana": "じどうボリュームにんしききのう",
+    "en": [
+      "AVR",
+      "Automatic Volume Recognition"
+    ],
+    "senseUid": "eadbc47b-26e8-4e77-8fd2-4d9e65409bb2",
+    "wordId": "2360640",
+    "pt": "{\n  \"a\": [\n    \"Reconhecimento Automático de Volume\"\n  ]\n"
+  },
+  {
+    "kana": "じどうポスト",
+    "en": [
+      "autopost"
+    ],
+    "senseUid": "7481004f-2a98-4b17-a952-8f04dbef8fca",
+    "wordId": "2360650",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"じどうポスト\",\n      \"gloss\": [\"caixa de correio automática\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "じどうおうとう",
+    "en": [
+      "auto-answer",
+      "automatic answering"
+    ],
+    "senseUid": "48e82b61-3b24-4814-bfb4-a680678c115d",
+    "wordId": "2360660",
+    "pt": "['resposta automática', 'atendimento automático']"
+  },
+  {
+    "kana": "じどうかいそう",
+    "en": [
+      "auto-forward"
+    ],
+    "senseUid": "332b8581-5288-4345-a529-f57f3488b189",
+    "wordId": "2360670",
+    "pt": "['avanço automático']"
+  },
+  {
+    "kana": "じどうかいそうひょうじ",
+    "en": [
+      "auto-forwarded indication"
+    ],
+    "senseUid": "ae905791-d04e-4ee6-8173-437da8c1421b",
+    "wordId": "2360680",
+    "pt": "['indicação de encaminhamento automático']"
+  }
+]

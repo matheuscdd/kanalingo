@@ -1,0 +1,925 @@
+[
+  {
+    "kana": "けいしきろんりがく",
+    "en": [
+      "formal logic"
+    ],
+    "senseUid": "62978db3-e7b2-4110-8b2f-2e646f4ce2e0",
+    "wordId": "2214020",
+    "pt": "{\n  \"a\": [\"lógica formal\"]\n"
+  },
+  {
+    "kana": "たちろんりがく",
+    "en": [
+      "many-valued logic",
+      "multi-valued logic"
+    ],
+    "senseUid": "c483c63e-4434-421b-9b83-cb67154825be",
+    "wordId": "2214030",
+    "pt": "{\n  \"a\": [\"lógica multivalorada\", \"lógica de múltiplos valores\"]\n"
+  },
+  {
+    "kana": "ようそうろんりがく",
+    "en": [
+      "modal logic"
+    ],
+    "senseUid": "75350dd7-5b24-4794-8450-39060c65cf6f",
+    "wordId": "2214040",
+    "pt": "['lógica modal']"
+  },
+  {
+    "kana": "にちろんりがく",
+    "en": [
+      "two-valued logic"
+    ],
+    "senseUid": "309956bb-955f-48eb-813c-769b72d2a7f5",
+    "wordId": "2214050",
+    "pt": "['lógica bivalente']"
+  },
+  {
+    "kana": "べんしょうほうてきろんりがく",
+    "en": [
+      "dialectical logic"
+    ],
+    "senseUid": "786274cb-3cd1-4943-8d72-29a62456be0d",
+    "wordId": "2214060",
+    "pt": "['lógica dialética']"
+  },
+  {
+    "kana": "めいじろんりがく",
+    "en": [
+      "term logic"
+    ],
+    "senseUid": "c53d2393-5314-4abe-a40a-35bc5bc37caa",
+    "wordId": "2214070",
+    "pt": "['"
+  },
+  {
+    "kana": "めいだいろんりがく",
+    "en": [
+      "propositional logic"
+    ],
+    "senseUid": "a55d6eea-4f8e-46b5-8f8a-33cf0925d289",
+    "wordId": "2214080",
+    "pt": "['lógica proposicional']"
+  },
+  {
+    "kana": "めいだいろんり",
+    "en": [
+      "propositional logic",
+      "propositional calculus"
+    ],
+    "senseUid": "26a1e0d0-b049-4df5-b340-6e558647e138",
+    "wordId": "2214090",
+    "pt": "['lógica proposicional', 'cálculo proposicional']"
+  },
+  {
+    "kana": "ひたんちょうろんり",
+    "en": [
+      "non-monotonic logic",
+      "nonmonotonic logic"
+    ],
+    "senseUid": "7b9ac2ef-5d65-4abc-b775-aff4d28bf122",
+    "wordId": "2214100",
+    "pt": "{\n  \"a\": [\"lógica não monotônica\"]\n"
+  },
+  {
+    "kana": "ブールだいすう",
+    "en": [
+      "Boolean algebra"
+    ],
+    "senseUid": "4e7e2a6d-e908-4516-84bb-7ccbedfa1bea",
+    "wordId": "2214110",
+    "pt": "['álgebra booleana']"
+  },
+  {
+    "kana": "ボーアじん",
+    "en": [
+      "Boer"
+    ],
+    "senseUid": "9c88d3b1-1575-4853-8114-0bbf018bd4bf",
+    "wordId": "2214120",
+    "pt": "{\n  \"a\": [\"bôer\"]\n"
+  },
+  {
+    "kana": "ボーアはんけい",
+    "en": [
+      "Bohr radius"
+    ],
+    "senseUid": "93044e0d-21f5-4480-b353-c01f8a4c6106",
+    "wordId": "2214130",
+    "pt": "{\n  \"a\": [\"raio de Bohr\"]\n"
+  },
+  {
+    "kana": "ボーアせんそう",
+    "en": [
+      "(second) Boer War (1899-1902)"
+    ],
+    "senseUid": "fbbe4723-a37d-4f45-bcea-50096a49001f",
+    "wordId": "2214140",
+    "pt": "['Guerra dos Bôeres (segunda) (1899-1902)']"
+  },
+  {
+    "kana": "みなみアフリカせんそう",
+    "en": [
+      "(second) Boer War (1899-1902)"
+    ],
+    "senseUid": "a25c2ddc-1f63-4cd7-a50d-beef91a3b2ba",
+    "wordId": "2214150",
+    "pt": "{\n  \"a\": [\n    \"Guerra do Sul da África (Segunda Guerra dos Bôeres, 1899-1902)\"\n  ]\n"
+  },
+  {
+    "kana": "ノールックパス",
+    "en": [
+      "no-look pass",
+      "blind pass"
+    ],
+    "senseUid": "c7d8e710-5263-4e39-a62b-b112452ffead",
+    "wordId": "2214160",
+    "pt": "['passe sem olhar', 'passe às cegas']"
+  },
+  {
+    "kana": "アメリカどくりつせんそう",
+    "en": [
+      "American War of Independence (1775-1783)",
+      "American Revolution"
+    ],
+    "senseUid": "4643a3d0-c144-46a3-be2a-a37793167274",
+    "wordId": "2214170",
+    "pt": "{\n  \"a\": [\n    \"Guerra de Independência Americana (1775-1783)\",\n    \"Revolução Americana\"\n  ]\n"
+  },
+  {
+    "kana": "アメリカメキシコせんそう",
+    "en": [
+      "Mexican-American War (1846-1848)"
+    ],
+    "senseUid": "9176ef31-1121-42f7-a6d4-b34217d91c79",
+    "wordId": "2214180",
+    "pt": "['Guerra Mexicano-Americana (1846-1848)']"
+  },
+  {
+    "kana": "アローせんそう",
+    "en": [
+      "Arrow War (the second Opium War; 1856-1860)"
+    ],
+    "senseUid": "89942380-0dfc-46f8-96d8-fbd1f277bcf0",
+    "wordId": "2214190",
+    "pt": "['Guerra da Flecha (a Segunda Guerra do Ópio; 1856-1860)']"
+  },
+  {
+    "kana": "イギリスビルマせんそう",
+    "en": [
+      "Anglo-Burmese Wars (1823-1826, 1852-1853, 1885-1887)"
+    ],
+    "senseUid": "72b00cdf-a617-429a-88d9-cbf4402a6740",
+    "wordId": "2214200",
+    "pt": "{\n  \"a\": [\n    \"Guerras Anglo-Birmanesas (1823-1826, 1852-1853, 1885-1887)\"\n  ]\n"
+  },
+  {
+    "kana": "えいめんせんそう",
+    "en": [
+      "Anglo-Burmese Wars (1823-1826, 1852-1853, 1885-1887)"
+    ],
+    "senseUid": "2bb43616-fb87-42c2-8ce7-03b8fb7c7e00",
+    "wordId": "2214210",
+    "pt": "['Guerras Anglo-Birmanesas (1823-1826, 1852-1853, 1885-1887)']"
+  },
+  {
+    "kana": "いとせんそう",
+    "en": [
+      "Italo-Turkish War (1911-1912)"
+    ],
+    "senseUid": "fbd45579-3478-46d6-b242-23e5914b427e",
+    "wordId": "2214220",
+    "pt": "['Guerra Ítalo-Turca (1911-1912)']"
+  },
+  {
+    "kana": "イタリアトルコせんそう",
+    "en": [
+      "Italo-Turkish War (1911-1912)"
+    ],
+    "senseUid": "e7099d8b-c72d-40cb-94d1-172e6267852a",
+    "wordId": "2214230",
+    "pt": "['Guerra Ítalo-Turca (1911-1912)']"
+  },
+  {
+    "kana": "イランイラクせんそう",
+    "en": [
+      "Iran-Iraq War (1980-1988)"
+    ],
+    "senseUid": "224259c7-5060-4fa5-802e-2438655bbbbe",
+    "wordId": "2214240",
+    "pt": "['Guerra Irã-Iraque (1980-1988)']"
+  },
+  {
+    "kana": "インドシナせんそう",
+    "en": [
+      "(first) Indochina War (1946-1954)"
+    ],
+    "senseUid": "f56eb9fa-cd15-459a-ac3b-826fe735d3e8",
+    "wordId": "2214250",
+    "pt": "{\n  \"a\": [\"Guerra da Indochina (primeira, 1946-1954)\"]\n"
+  },
+  {
+    "kana": "うえのせんそう",
+    "en": [
+      "Battle of Ueno (battle of the Boshin war; 1868)"
+    ],
+    "senseUid": "45c8be7d-116e-4873-9145-604a2c03e0a8",
+    "wordId": "2214260",
+    "pt": "['Batalha de Ueno (batalha da Guerra Boshin; 1868)']"
+  },
+  {
+    "kana": "しょうぎたい",
+    "en": [
+      "Shōgitai (group of former Tokugawa retainers opposed to the Meiji government and fought in the battle of Ueno)"
+    ],
+    "senseUid": "338f443e-6cd7-4030-a272-eab949ca639c",
+    "wordId": "2214270",
+    "pt": "['Shōgitai (grupo de antigos samurais do clã Tokugawa que se opuseram ao governo Meiji e lutaram na Batalha de Ueno)']"
+  },
+  {
+    "kana": "えいらんせんそう",
+    "en": [
+      "Anglo-Dutch Wars (1652-1654, 1665-1667, 1672-1674)"
+    ],
+    "senseUid": "5b0dee15-8424-4d1e-97e0-87b2dee0ab82",
+    "wordId": "2214280",
+    "pt": "['Guerras Anglo-Holandesa (1652-1654, 1665-1667, 1672-1674)']"
+  },
+  {
+    "kana": "イギリスオランダせんそう",
+    "en": [
+      "Anglo-Dutch Wars (1652-1654, 1665-1667, 1672-1674)"
+    ],
+    "senseUid": "7de4ad95-cb59-4864-976d-43ecdbe95d7c",
+    "wordId": "2214290",
+    "pt": "['Guerras Anglo-Holandesa (1652-1654, 1665-1667, 1672-1674)']"
+  },
+  {
+    "kana": "オーストリアけいしょうせんそう",
+    "en": [
+      "War of the Austrian Succession (1740-1748)"
+    ],
+    "senseUid": "23b35a67-26ca-4b4d-93fc-b78ff2080f4f",
+    "wordId": "2214300",
+    "pt": "['Guerra de Sucessão Austríaca (1740-1748)']"
+  },
+  {
+    "kana": "クリミアせんそう",
+    "en": [
+      "Crimean War (1853-1856)"
+    ],
+    "senseUid": "810c461a-2715-43ca-8fa4-942b2ce98d7d",
+    "wordId": "2214310",
+    "pt": "['Guerra da Crimeia (1853-1856)']"
+  },
+  {
+    "kana": "さつえいせんそう",
+    "en": [
+      "Anglo-Satsuma War (1863)",
+      "Bombardment of Kagoshima"
+    ],
+    "senseUid": "3a000aff-24cb-45bf-a7ec-4f78fa344698",
+    "wordId": "2214320",
+    "pt": "{\n  \"a\": [\n    \"Guerra Anglo-Satsuma (1863)\",\n    \"Bombardeio de Kagoshima\"\n  ]\n"
+  },
+  {
+    "kana": "シクせんそう",
+    "en": [
+      "Sikh Wars (1845-1846, 1848-1849)"
+    ],
+    "senseUid": "f9ea9ca2-b7c5-44c5-afe3-2fd33067d475",
+    "wordId": "2214330",
+    "pt": "{\n  \"a\": [\n    \"Guerras Sikh (1845-1846, 1848-1849)\"\n  ]\n"
+  },
+  {
+    "kana": "しちねんせんそう",
+    "en": [
+      "Seven Years' War (1756-1763)"
+    ],
+    "senseUid": "de848aa7-11f2-430e-be63-f8b0949fdec3",
+    "wordId": "2214340",
+    "pt": "['Guerra dos Sete Anos (1756-1763)']"
+  },
+  {
+    "kana": "しみんせんそう",
+    "en": [
+      "civil war"
+    ],
+    "senseUid": "f8e8912d-b9eb-4376-b738-8443d0bfbe61",
+    "wordId": "2214350",
+    "pt": "['guerra civil']"
+  },
+  {
+    "kana": "しゅうきょうせんそう",
+    "en": [
+      "religious war"
+    ],
+    "senseUid": "b85b32b6-6421-42a4-ac4e-2b84e94a7bb9",
+    "wordId": "2214360",
+    "pt": "['guerra religiosa']"
+  },
+  {
+    "kana": "じゅうごねんせんそう",
+    "en": [
+      "Asia-Pacific War (starting with the Manchurian Incident in 1931 and ending with the Japanese surrender in 1945)",
+      "Pacific War",
+      "fifteen years' war"
+    ],
+    "senseUid": "f2fbe9d3-1d6f-4b53-bddd-c4724f5e5995",
+    "wordId": "2214370",
+    "pt": "['Guerra Ásia-Pacífico (iniciando com o Incidente da Manchúria em 1931 e terminando com a rendição japonesa em 1945)', 'Guerra do Pacífico', 'Guerra dos Quinze Anos']"
+  },
+  {
+    "kana": "しんふつせんそう",
+    "en": [
+      "Sino-French War (1884-1885)"
+    ],
+    "senseUid": "082a6585-e463-4e32-a9b8-385f462462f2",
+    "wordId": "2214380",
+    "pt": "['Guerra Sino-Francesa (1884-1885)']"
+  },
+  {
+    "kana": "スペインけいしょうせんそう",
+    "en": [
+      "War of the Spanish Succession (1701-1714)"
+    ],
+    "senseUid": "bc2745f3-4095-4f74-9205-af1c67a3f4e0",
+    "wordId": "2214390",
+    "pt": "['Guerra da Sucessão Espanhola (1701-1714)']"
+  },
+  {
+    "kana": "せいげんせんそう",
+    "en": [
+      "limited war"
+    ],
+    "senseUid": "417c8323-453f-41ad-aab8-1cb9e707d81c",
+    "wordId": "2214400",
+    "pt": "{\n  \"a\": [\"guerra limitada\"]\n"
+  },
+  {
+    "kana": "せいなんせんそう",
+    "en": [
+      "Satsuma Rebellion (1877)"
+    ],
+    "senseUid": "7d1dea15-4136-48b1-b7e7-a6e5d90724cc",
+    "wordId": "2214410",
+    "pt": "['Rebelião de Satsuma (1877)']"
+  },
+  {
+    "kana": "だいそこくせんそう",
+    "en": [
+      "Great Patriotic War (Russian name for the war along the eastern front during World War II)"
+    ],
+    "senseUid": "36d3d6db-bd2e-46c0-bfd2-fdf6c0a8db81",
+    "wordId": "2214420",
+    "pt": "['Grande Guerra Patriótica (nome russo para a guerra na frente oriental durante a Segunda Guerra Mundial)']"
+  },
+  {
+    "kana": "そこくせんそう",
+    "en": [
+      "Patriotic War (Russian name for the war with Napoleon in 1812)"
+    ],
+    "senseUid": "55450199-d3c7-4fa6-af54-af16fbb63189",
+    "wordId": "2214430",
+    "pt": "['Guerra Patriótica (nome russo para a guerra contra Napoleão em 1812)']"
+  },
+  {
+    "kana": "たらせんそう",
+    "en": [
+      "Cod Wars (UK-Iceland confrontations over fishing rights; 1958, 1971, 1975)"
+    ],
+    "senseUid": "f3ae5b6e-3255-4d73-b96a-17b2055ed446",
+    "wordId": "2214440",
+    "pt": "['Guerras do Bacalhau (confrontos entre Reino Unido e Islândia por direitos de pesca; 1958, 1971, 1975)']"
+  },
+  {
+    "kana": "ちゅうえつせんそう",
+    "en": [
+      "Sino-Vietnamese War (1979)"
+    ],
+    "senseUid": "7ab3c2e9-dfbd-4c13-b753-1041052397ea",
+    "wordId": "2214450",
+    "pt": "['Guerra Sino-Vietnamita (1979)']"
+  },
+  {
+    "kana": "ちゅうとうせんそう",
+    "en": [
+      "Arab-Israeli Wars (1948, 1956, 1967, 1973)"
+    ],
+    "senseUid": "b29697ca-5aec-4db4-8caf-bfa28ca6b07b",
+    "wordId": "2214460",
+    "pt": "['Guerras Árabe-Israelenses (1948, 1956, 1967, 1973)']"
+  },
+  {
+    "kana": "ドイツのうみんせんそう",
+    "en": [
+      "German Peasants' War (1524-1525)"
+    ],
+    "senseUid": "f4df0975-bbd4-4f03-8094-de0896b7cbe4",
+    "wordId": "2214470",
+    "pt": "['Guerra dos Camponeses Alemães (1524-1525)']"
+  },
+  {
+    "kana": "のうみんせんそう",
+    "en": [
+      "German Peasants' War (1524-1525)"
+    ],
+    "senseUid": "5d3c91ab-3e58-46ef-84b8-2f309ea439dc",
+    "wordId": "2214480",
+    "pt": "['Guerra dos Camponeses Alemães (1524-1525)']"
+  },
+  {
+    "kana": "どくふつせんそう",
+    "en": [
+      "Franco-German War (i.e. the Franco-Prussian War, 1870-1871)"
+    ],
+    "senseUid": "42c8ee53-414e-4a84-88c9-db00a60c1ff4",
+    "wordId": "2214490",
+    "pt": "['Guerra Franco-Alemã (ou seja, a Guerra Franco-Prussiana, 1870-1871)']"
+  },
+  {
+    "kana": "トロイアせんそう",
+    "en": [
+      "Trojan War"
+    ],
+    "senseUid": "64e22239-ad11-4473-927f-58789a6485c3",
+    "wordId": "2214500",
+    "pt": "{\n  \"a\": [\"Guerra de Troia\"]\n"
+  },
+  {
+    "kana": "ポーツマスじょうやく",
+    "en": [
+      "Treaty of Portsmouth (ending the Russo-Japanese War, 1905)"
+    ],
+    "senseUid": "3e153a54-407b-448f-bed4-2ad058ba26e6",
+    "wordId": "2214510",
+    "pt": "['Tratado de Portsmouth (fim da Guerra Russo-Japonesa, 1905)']"
+  },
+  {
+    "kana": "さんごくかんしょう",
+    "en": [
+      "Triple Intervention (diplomatic intervention by Russia, Germany and France over the terms of the Treaty of Shimonoseki)"
+    ],
+    "senseUid": "6c71bf48-eb89-4f98-8294-7546065d3132",
+    "wordId": "2214520",
+    "pt": "['Intervenção Tripla (intervenção diplomática da Rússia, Alemanha e França sobre os termos do Tratado de Shimonoseki)']"
+  },
+  {
+    "kana": "はこだてせんそう",
+    "en": [
+      "Battle of Hakodate (battle of the Boshin War; 1868-1869)"
+    ],
+    "senseUid": "807796bc-f1bc-43d7-9f8e-441611436c99",
+    "wordId": "2214530",
+    "pt": "['Batalha de Hakodate (batalha da Guerra Boshin; 1868-1869)']"
+  },
+  {
+    "kana": "バルカンせんそう",
+    "en": [
+      "Balkan Wars (1912, 1913)"
+    ],
+    "senseUid": "e5c8b58e-27c2-43a3-be7c-53d82d394ca9",
+    "wordId": "2214540",
+    "pt": "['Guerras dos Bálcãs (1912, 1913)']"
+  },
+  {
+    "kana": "ひゃくねんせんそう",
+    "en": [
+      "Hundred Years War (1337-1453)"
+    ],
+    "senseUid": "bb897dd1-c15e-4ce4-aaf8-8223d0817bbc",
+    "wordId": "2214550",
+    "pt": "['Guerra dos Cem Anos (1337-1453)']"
+  },
+  {
+    "kana": "ビルマせんそう",
+    "en": [
+      "Burmese Wars (1823-1826, 1852-1853, 1885-1887)"
+    ],
+    "senseUid": "1bcc5d3d-7a9e-42bf-8b29-f1a0817a3cfb",
+    "wordId": "2214560",
+    "pt": "['Guerras da Birmânia (1823-1826, 1852-1853, 1885-1887)']"
+  },
+  {
+    "kana": "ふおうせんそう",
+    "en": [
+      "Austro-Prussian War (1866)"
+    ],
+    "senseUid": "ebe7cdbb-e55b-43e0-8a11-353edad172fa",
+    "wordId": "2214570",
+    "pt": "['Guerra Austro-Prussiana (1866)']"
+  },
+  {
+    "kana": "フレンチインディアンせんそう",
+    "en": [
+      "French and Indian War (1754-1763)"
+    ],
+    "senseUid": "81630395-e234-47a2-8a73-1662053977ca",
+    "wordId": "2214580",
+    "pt": "['Guerra Franco-Indígena (1754-1763)']"
+  },
+  {
+    "kana": "べいえいせんそう",
+    "en": [
+      "War of 1812"
+    ],
+    "senseUid": "efc1fcef-0afd-4b83-a68d-8640f35e56dc",
+    "wordId": "2214590",
+    "pt": "{\n  \"a\": [\"Guerra de 1812\"]\n"
+  },
+  {
+    "kana": "ぼしんせんそう",
+    "en": [
+      "Boshin War (Japanese civil war between Imperial and shogunate forces; 1868-1869)"
+    ],
+    "senseUid": "a3cc7087-6ba4-40fc-96cc-d2947ee1d4b8",
+    "wordId": "2214600",
+    "pt": "['Guerra Boshin (guerra civil japonesa entre as forças imperiais e do xogunato; 1868-1869)']"
+  },
+  {
+    "kana": "ボタンせんそう",
+    "en": [
+      "push-button war",
+      "war started or ended with the push of a button (e.g. to launch a nuclear missile)"
+    ],
+    "senseUid": "a0d94fe6-6e56-433d-85b9-4d2296d04ecd",
+    "wordId": "2214610",
+    "pt": "['guerra de apertar botão', 'guerra iniciada ou terminada com o apertar de um botão (por exemplo, para lançar um míssil nuclear)']"
+  },
+  {
+    "kana": "ほっぽうせんそう",
+    "en": [
+      "Great Northern War (1700-1721)"
+    ],
+    "senseUid": "26eb3eb5-4cdd-46ec-af75-2baef9f161b1",
+    "wordId": "2214620",
+    "pt": "['Grande Guerra do Norte (1700-1721)']"
+  },
+  {
+    "kana": "ろとせんそう",
+    "en": [
+      "Russo-Turkish War (1877-1878)"
+    ],
+    "senseUid": "f754f096-7c72-41c8-8483-01759b959fac",
+    "wordId": "2214630",
+    "pt": "['Guerra Russo-Turca (1877-1878)']"
+  },
+  {
+    "kana": "ロシアトルコせんそう",
+    "en": [
+      "Russo-Turkish War (1877-1878)"
+    ],
+    "senseUid": "51c37438-6403-4cc4-9f22-3426a91bae22",
+    "wordId": "2214640",
+    "pt": "['Guerra Russo-Turca (1877-1878)']"
+  },
+  {
+    "kana": "サンステファノじょうやく",
+    "en": [
+      "Treaty of San Stefano (ending the Russo-Turkish War, 1878)"
+    ],
+    "senseUid": "2d173fdb-ab75-45eb-9da1-df4a94a7e0a3",
+    "wordId": "2214650",
+    "pt": "{\n  \"a\": [\n    \"Tratado de San Stefano (tratado que encerrou a Guerra Russo-Turca, 1878)\"\n  ]\n"
+  },
+  {
+    "kana": "べいぼくせんそう",
+    "en": [
+      "Mexican-American War (1846-1848)"
+    ],
+    "senseUid": "0cc89fa3-556d-48bc-9405-9394fbbb99d0",
+    "wordId": "2214660",
+    "pt": "['Guerra Mexicano-Americana (1846-1848)']"
+  },
+  {
+    "kana": "フォークランドふんそう",
+    "en": [
+      "Falklands War (1982)"
+    ],
+    "senseUid": "cef113a0-17cb-4bfb-8979-480d666ca5a1",
+    "wordId": "2214670",
+    "pt": "['Guerra das Malvinas (1982)']"
+  },
+  {
+    "kana": "イラクせんそう",
+    "en": [
+      "Iraq War (2003-2011)"
+    ],
+    "senseUid": "413fe8f4-8e9c-4899-8345-e10301daf07e",
+    "wordId": "2214680",
+    "pt": "['Guerra do Iraque (2003-2011)']"
+  },
+  {
+    "kana": "イランコントラじけん",
+    "en": [
+      "Iran-Contra affair (1984-1986)",
+      "Irangate"
+    ],
+    "senseUid": "89a2e97f-55be-455e-bfee-82608d49dbed",
+    "wordId": "2214690",
+    "pt": "{\n  \"a\": [\n    \"Caso Irã-Contras (1984-1986)\",\n    \"Irãgate\"\n  ]\n"
+  },
+  {
+    "kana": "あんぜんほしょうりじかい",
+    "en": [
+      "(UN) Security Council"
+    ],
+    "senseUid": "73208647-e6b5-48c5-8db2-9fdca549c034",
+    "wordId": "2214700",
+    "pt": "{\n  \"a\": [\"Conselho de Segurança (da ONU)\"]\n"
+  },
+  {
+    "kana": "こくれんあんぜんほしょうりじかい",
+    "en": [
+      "UN Security Council"
+    ],
+    "senseUid": "4120de2d-c349-4327-90dd-85ba39da03dc",
+    "wordId": "2214710",
+    "pt": "['Conselho de Segurança da ONU']"
+  },
+  {
+    "kana": "こくれんかいようほうじょうやく",
+    "en": [
+      "UN Convention on the Law of the Sea"
+    ],
+    "senseUid": "bc0dab82-6e33-40c3-af37-9462a1a3f895",
+    "wordId": "2214720",
+    "pt": "['Convenção das Nações Unidas sobre o Direito do Mar']"
+  },
+  {
+    "kana": "こくさいれんごうかいようほうじょうやく",
+    "en": [
+      "United Nations Convention on the Law of the Sea"
+    ],
+    "senseUid": "702b3799-4540-4a1c-8929-491de4857b27",
+    "wordId": "2214730",
+    "pt": "['Convenção das Nações Unidas sobre o Direito do Mar']"
+  },
+  {
+    "kana": "こくれんぐんしゅくとくべつそうかい",
+    "en": [
+      "UN Special Session on Disarmament"
+    ],
+    "senseUid": "ae136413-a2a8-496a-96d7-55ff883f8c61",
+    "wordId": "2214740",
+    "pt": "{\n  \"a\": [\"Sessão Especial das Nações Unidas sobre Desarmamento\"]\n"
+  },
+  {
+    "kana": "こくれんけいざいしゃかいりじかい",
+    "en": [
+      "UN Economic and Social Council"
+    ],
+    "senseUid": "5089f729-9e2a-4677-b019-ec013df8fc92",
+    "wordId": "2214750",
+    "pt": "{\n  \"a\": [\n    \"Conselho Econômico e Social das Nações Unidas\"\n  ]\n"
+  },
+  {
+    "kana": "こくれんこうようご",
+    "en": [
+      "official languages of the UN (Arabic, Chinese, English, French, Russian and Spanish)"
+    ],
+    "senseUid": "a4d1b5e6-2367-456f-a542-0cc9ffd19aea",
+    "wordId": "2214760",
+    "pt": "['línguas oficiais da ONU (árabe, chinês, inglês, francês, russo e espanhol)']"
+  },
+  {
+    "kana": "しんたくとうちりじかい",
+    "en": [
+      "Trusteeship Council"
+    ],
+    "senseUid": "e4ca46a9-10a7-44bd-a997-2d60ceb43014",
+    "wordId": "2214770",
+    "pt": "['Conselho de Tutela']"
+  },
+  {
+    "kana": "こくれんしんたくとうちりじかい",
+    "en": [
+      "UN Trusteeship Council"
+    ],
+    "senseUid": "3da66d6a-0df4-46f7-b804-d48c4a7d6d2d",
+    "wordId": "2214780",
+    "pt": "{\n  \"a\": [\n    \"Conselho de Tutela das Nações Unidas\"\n  ]\n"
+  },
+  {
+    "kana": "こくれんにんげんかんきょうかいぎ",
+    "en": [
+      "United Nations Conference on the Human Environment"
+    ],
+    "senseUid": "15c22d64-dfeb-44cc-9eb6-da5c40d5fbf3",
+    "wordId": "2214790",
+    "pt": "{\n  \"a\": [\"Conferência das Nações Unidas sobre o Meio Ambiente Humano\"]\n"
+  },
+  {
+    "kana": "こくさいれんごうにんげんかんきょうかいぎ",
+    "en": [
+      "United Nations Conference on the Human Environment"
+    ],
+    "senseUid": "fbf6e825-7ccd-4e6d-ad44-8b5ff51b4c13",
+    "wordId": "2214800",
+    "pt": "['Conferência das Nações Unidas sobre o Meio Ambiente Humano']"
+  },
+  {
+    "kana": "こくさいれんごうじむそうちょう",
+    "en": [
+      "United Nations Secretary-General"
+    ],
+    "senseUid": "9276116a-d137-4d97-be1d-536782471d5f",
+    "wordId": "2214810",
+    "pt": "['Secretário-Geral das Nações Unidas']"
+  },
+  {
+    "kana": "はやぐい",
+    "en": [
+      "eating quickly",
+      "speed-eating"
+    ],
+    "senseUid": "2345b068-880f-49d4-92b5-311384fa9690",
+    "wordId": "2214820",
+    "pt": "['comer rapidamente', 'comer depressa']"
+  },
+  {
+    "kana": "すてたものではない",
+    "en": [
+      "not without its worth",
+      "not to be undervalued",
+      "not altogether hopeless"
+    ],
+    "senseUid": "bf5ed4ff-586d-4c6a-9101-8ccfa9c5f449",
+    "wordId": "2214830",
+    "pt": "['não é de se jogar fora', 'não é totalmente sem valor', 'ainda tem seu valor', 'não é algo desprezível', 'não está perdido']"
+  },
+  {
+    "kana": "にちげん",
+    "en": [
+      "fixed or appointed date"
+    ],
+    "senseUid": "bb6fefde-a529-40f2-b7ba-eaaca827c133",
+    "wordId": "2214840",
+    "pt": "['data marcada', 'data fixada', 'data determinada', 'data designada']"
+  },
+  {
+    "kana": "げんかんざい",
+    "en": [
+      "desensitizer"
+    ],
+    "senseUid": "633bbc24-150f-4db4-b87b-ee2234225ee6",
+    "wordId": "2214850",
+    "pt": "['dessensibilizante']"
+  },
+  {
+    "kana": "けいさつりいん",
+    "en": [
+      "police officer"
+    ],
+    "senseUid": "38377c4e-941e-4f8d-a3f0-e4574c565b8e",
+    "wordId": "2214860",
+    "pt": "{\n  \"a\": [\"policial\"]\n"
+  },
+  {
+    "kana": "バーティゴ",
+    "en": [
+      "vertigo"
+    ],
+    "senseUid": "87a46430-35f6-47f9-8605-08312773d85a",
+    "wordId": "2214870",
+    "pt": "['vertigem']"
+  },
+  {
+    "kana": "いいようがない",
+    "en": [
+      "indescribable",
+      "having no way to express"
+    ],
+    "senseUid": "be5cd63d-ff8c-4ede-9807-8ca47ae4833b",
+    "wordId": "2214880",
+    "pt": "['indescritível', 'sem palavras para expressar', 'não há como dizer', 'impossível de descrever']"
+  },
+  {
+    "kana": "すくいようがない",
+    "en": [
+      "beyond saving"
+    ],
+    "senseUid": "72c2e47b-08bd-4d56-b8cc-06041fa88690",
+    "wordId": "2214890",
+    "pt": "['irremediável', 'sem salvação', 'sem esperança', 'incorrigível']"
+  },
+  {
+    "kana": "りんどう",
+    "en": [
+      "chamber (of a revolver)"
+    ],
+    "senseUid": "290ef1f0-cd66-4802-9959-97bb738a4fe2",
+    "wordId": "2214900",
+    "pt": "{\n  \"a\": [\"câmara (de um revólver)\"]\n"
+  },
+  {
+    "kana": "あふれんばかり",
+    "en": [
+      "overflowing",
+      "effusive",
+      "exuberant",
+      "bountiful"
+    ],
+    "senseUid": "fb4befa9-b133-466d-8f36-a934fdbe6e67",
+    "wordId": "2214930",
+    "pt": "['transbordante', 'efusivo', 'exuberante', 'abundante']"
+  },
+  {
+    "kana": "みぶんじこう",
+    "en": [
+      "matters for identification",
+      "documentation"
+    ],
+    "senseUid": "b2875b43-5c8c-4ef7-a0dd-850e23473a96",
+    "wordId": "2214940",
+    "pt": "{\n  \"a\": [\n    \"questões de identificação\",\n    \"informações de identificação\",\n    \"dados pessoais para identificação\",\n    \"informações documentais\"\n  ]\n"
+  },
+  {
+    "kana": "ひつようしょるい",
+    "en": [
+      "necessary documents",
+      "required documents"
+    ],
+    "senseUid": "2b7577c2-d1f4-4395-b813-270569678ac1",
+    "wordId": "2214950",
+    "pt": "['documentos necessários', 'documentos exigidos']"
+  },
+  {
+    "kana": "かたみちこうくうけん",
+    "en": [
+      "one-way airline ticket",
+      "one-way plane ticket"
+    ],
+    "senseUid": "4aef1cb9-3dff-4787-a0c3-447ba504f1f2",
+    "wordId": "2214960",
+    "pt": "['passagem aérea só de ida', 'bilhete de avião só de ida']"
+  },
+  {
+    "kana": "ひしと",
+    "en": [
+      "tightly",
+      "firmly",
+      "fast"
+    ],
+    "senseUid": "150cd3b2-c908-4b4f-8e07-65bded948cc0",
+    "wordId": "2214970",
+    "pt": "['firmemente', 'apertadamente', 'com força']"
+  },
+  {
+    "kana": "ひしと",
+    "en": [
+      "sharply",
+      "keenly"
+    ],
+    "senseUid": "064839fa-028a-4a3c-b7bf-618bd231d919",
+    "wordId": "2214970",
+    "pt": "{\n  \"a\": [\n    \"intensamente\",\n    \"profundamente\",\n    \"agudamente\",\n    \"com força\",\n    \"com intensidade\"\n  ]\n"
+  },
+  {
+    "kana": "しろた",
+    "en": [
+      "snow-covered rice paddy"
+    ],
+    "senseUid": "f61679df-d1c6-4124-8c10-6a6e754f6b53",
+    "wordId": "2214980",
+    "pt": "{\n  \"a\": [\"arrozal coberto de neve\"]\n"
+  },
+  {
+    "kana": "しろた",
+    "en": [
+      "field"
+    ],
+    "senseUid": "bc86896e-52b6-4389-8674-223881264e04",
+    "wordId": "2214980",
+    "pt": "{\n  \"a\": [\"campo\"]\n"
+  },
+  {
+    "kana": "ぐうかんすう",
+    "en": [
+      "even function"
+    ],
+    "senseUid": "d6a477f7-38b9-4c59-a48c-5278ef3ac262",
+    "wordId": "2214990",
+    "pt": "{\n  \"a\": [\n    \"função par\"\n  ]\n"
+  },
+  {
+    "kana": "きかんすう",
+    "en": [
+      "odd function"
+    ],
+    "senseUid": "571c53a1-ae1e-4e3e-ba1d-6da7d4d68b74",
+    "wordId": "2215000",
+    "pt": "{\n  \"a\": [\"função ímpar\"]\n"
+  },
+  {
+    "kana": "りんしょうせいりがく",
+    "en": [
+      "clinical physiology"
+    ],
+    "senseUid": "c8b8efc6-c50f-4a86-bd14-46422243990e",
+    "wordId": "2215010",
+    "pt": "['fisiologia clínica']"
+  }
+]

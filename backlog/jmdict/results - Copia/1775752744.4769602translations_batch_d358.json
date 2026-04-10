@@ -1,0 +1,918 @@
+[
+  {
+    "kana": "カードエッジコネクタ",
+    "en": [
+      "edge connector"
+    ],
+    "senseUid": "3dd14fa0-263b-46cf-b045-6565b8281ea0",
+    "wordId": "2290670",
+    "pt": "['conector de borda de cartão']"
+  },
+  {
+    "kana": "カードケージ",
+    "en": [
+      "card cage"
+    ],
+    "senseUid": "495f168d-1a01-4c8c-b6fc-7553d26eff42",
+    "wordId": "2290680",
+    "pt": "{\n  \"a\": [\"gaiola de placas\"]\n"
+  },
+  {
+    "kana": "カードサービス",
+    "en": [
+      "card services"
+    ],
+    "senseUid": "bec97aa8-2c9b-4fe6-a55c-32169510d3e9",
+    "wordId": "2290700",
+    "pt": "['serviços de cartão']"
+  },
+  {
+    "kana": "カードスタッカ",
+    "en": [
+      "card stacker"
+    ],
+    "senseUid": "d2a1b4fe-a397-42cd-9fc5-fa6047e1cc55",
+    "wordId": "2290710",
+    "pt": "['empilhador de cartas']"
+  },
+  {
+    "kana": "カードスロット",
+    "en": [
+      "card slot"
+    ],
+    "senseUid": "fd18fe3f-687f-4ed1-b165-463e05e64390",
+    "wordId": "2290720",
+    "pt": "['slot de cartão']"
+  },
+  {
+    "kana": "カードデック",
+    "en": [
+      "card deck"
+    ],
+    "senseUid": "47297027-f2c9-4958-88cd-77d4efba223d",
+    "wordId": "2290730",
+    "pt": "{\n  \"a\": [\"baralho de cartas\"]\n"
+  },
+  {
+    "kana": "カードバス",
+    "en": [
+      "CardBus (interface standard)"
+    ],
+    "senseUid": "ad3c8bf3-c8a4-4295-9590-6142215a4611",
+    "wordId": "2290740",
+    "pt": "{\n  \"a\": [\"CardBus (padrão de interface)\"]\n"
+  },
+  {
+    "kana": "カードホッパ",
+    "en": [
+      "card hopper"
+    ],
+    "senseUid": "c5f539bd-5cc0-4af8-be53-794dd73007f1",
+    "wordId": "2290750",
+    "pt": "['alimentador de cartões']"
+  },
+  {
+    "kana": "カードリーダー",
+    "en": [
+      "card reader (device)"
+    ],
+    "senseUid": "80f20433-aa73-4013-bf08-a48d3354400d",
+    "wordId": "2290760",
+    "pt": "['leitor de cartão']"
+  },
+  {
+    "kana": "カードリーダー",
+    "en": [
+      "card reader (diviner)",
+      "cartomancer",
+      "reader"
+    ],
+    "senseUid": "b3ef0f6b-8322-4017-a12d-0b11d66ec908",
+    "wordId": "2290760",
+    "pt": "['leitor de cartas (adivinho)', 'cartomante', 'leitor']"
+  },
+  {
+    "kana": "カードがたデータベース",
+    "en": [
+      "card-type database"
+    ],
+    "senseUid": "c69c5369-6aed-47b2-8d31-1c411088b8a8",
+    "wordId": "2290770",
+    "pt": "{\n  \"a\": [\"banco de dados do tipo cartão\"]\n"
+  },
+  {
+    "kana": "カードせんこうきこう",
+    "en": [
+      "card punch"
+    ],
+    "senseUid": "a603a93b-5b6e-44ff-a03d-453b927baaf4",
+    "wordId": "2290780",
+    "pt": "{\n  \"a\": [\"perfuradora de cartões\"]\n"
+  },
+  {
+    "kana": "カードせんこうそうち",
+    "en": [
+      "card punch"
+    ],
+    "senseUid": "dae203c5-2409-4075-9543-5b8c7fd07216",
+    "wordId": "2290790",
+    "pt": "{\n  \"a\": [\n    \"Perfuradora de cartões\"\n  ]\n"
+  },
+  {
+    "kana": "カードおくりきこう",
+    "en": [
+      "card feed"
+    ],
+    "senseUid": "90f8618a-8b63-4fa8-84b9-ff4483b77434",
+    "wordId": "2290800",
+    "pt": "{\n  \"a\": [\"mecanismo de alimentação de cartão\"]\n"
+  },
+  {
+    "kana": "カードつうろ",
+    "en": [
+      "card path"
+    ],
+    "senseUid": "5eda9314-a163-4d86-8c6a-bf756b43801f",
+    "wordId": "2290810",
+    "pt": "{\n  \"a\": [\"caminho de cartas\"]\n"
+  },
+  {
+    "kana": "カードよみとりそうち",
+    "en": [
+      "card reader"
+    ],
+    "senseUid": "9f8411c9-daba-42f3-95a0-4f116c391d21",
+    "wordId": "2290820",
+    "pt": "['leitor de cartão']"
+  },
+  {
+    "kana": "カードよみとりきこう",
+    "en": [
+      "card reader"
+    ],
+    "senseUid": "9b69253d-d5da-4b8d-9eb4-19aee6fb3227",
+    "wordId": "2290830",
+    "pt": "['mecanismo de leitura de cartão']"
+  },
+  {
+    "kana": "カードぶんるいき",
+    "en": [
+      "card sorter"
+    ],
+    "senseUid": "e4cc8ab0-7ea6-4973-9fb3-9218ab2b1af7",
+    "wordId": "2290850",
+    "pt": "['classificador de cartões']"
+  },
+  {
+    "kana": "カーナビゲーション",
+    "en": [
+      "car navigation system"
+    ],
+    "senseUid": "350c44ed-0c97-467d-866b-46f2339e7496",
+    "wordId": "2290860",
+    "pt": "['sistema de navegação veicular']"
+  },
+  {
+    "kana": "カーニング",
+    "en": [
+      "kerning"
+    ],
+    "senseUid": "0459f007-e794-4da7-8e0c-3645d765dc44",
+    "wordId": "2290870",
+    "pt": "['ajuste de espaçamento entre caracteres']"
+  },
+  {
+    "kana": "カーブフォロア",
+    "en": [
+      "curve follower"
+    ],
+    "senseUid": "950b4fe3-4f46-49d1-847e-4bf6f97e18c1",
+    "wordId": "2290880",
+    "pt": "['seguidor de curva']"
+  },
+  {
+    "kana": "カーボンリボン",
+    "en": [
+      "carbon ribbon"
+    ],
+    "senseUid": "24ef6431-fd3c-4582-97c0-4dc49c76e593",
+    "wordId": "2290890",
+    "pt": "{\n  \"a\": [\"fita de carbono\"]\n"
+  },
+  {
+    "kana": "カーミット",
+    "en": [
+      "Kermit (file transfer and management protocol)"
+    ],
+    "senseUid": "a5fcfdb7-89f4-481b-81f4-c2e40beaad63",
+    "wordId": "2290900",
+    "pt": "['Kermit (protocolo de transferência e gerenciamento de arquivos)']"
+  },
+  {
+    "kana": "カイリックス",
+    "en": [
+      "Kylix"
+    ],
+    "senseUid": "f3efb24e-7500-4589-8dc3-1d16776f10c8",
+    "wordId": "2290910",
+    "pt": "['Kylix']"
+  },
+  {
+    "kana": "カイじじょうけんてい",
+    "en": [
+      "chi-square test",
+      "chi-squared test"
+    ],
+    "senseUid": "abcfe41d-c1e2-410d-ab14-672d0d992b6c",
+    "wordId": "2290920",
+    "pt": "{\n  \"a\": [\"teste do qui-quadrado\"]\n"
+  },
+  {
+    "kana": "カスケーディングスタイルシート",
+    "en": [
+      "cascading style sheets",
+      "CSS"
+    ],
+    "senseUid": "f30586fb-c0eb-4ed6-b08f-e754aa53dbcf",
+    "wordId": "2290930",
+    "pt": "{\n  \"a\": [\n    \"Folhas de Estilo em Cascata\"\n  ]\n"
+  },
+  {
+    "kana": "カスケードメニュー",
+    "en": [
+      "cascading menu"
+    ],
+    "senseUid": "01dca36e-2f7d-4a8d-8ad6-5364f5c9980a",
+    "wordId": "2290940",
+    "pt": "['menu em cascata']"
+  },
+  {
+    "kana": "カスケードしきけたあげ",
+    "en": [
+      "cascaded carry"
+    ],
+    "senseUid": "a64f5da6-d187-4f6e-b149-3283761cef9e",
+    "wordId": "2290950",
+    "pt": "['transporte em cascata']"
+  },
+  {
+    "kana": "カスケードひょうじ",
+    "en": [
+      "cascade"
+    ],
+    "senseUid": "c3d7642b-8842-4547-8a1b-6a6a7a087cd4",
+    "wordId": "2290960",
+    "pt": "['exibição em cascata']"
+  },
+  {
+    "kana": "カスタマーエンジニア",
+    "en": [
+      "customer engineer",
+      "CE"
+    ],
+    "senseUid": "c77dd904-fc17-44da-a2d6-123dd5a4f2c5",
+    "wordId": "2290990",
+    "pt": "['engenheiro de atendimento ao cliente', 'engenheiro de suporte ao cliente', 'engenheiro de campo', 'CE']"
+  },
+  {
+    "kana": "カスタマーサポート",
+    "en": [
+      "customer support"
+    ],
+    "senseUid": "c1a62de1-96ef-42e0-8657-083f24d7c021",
+    "wordId": "2291000",
+    "pt": "['atendimento ao cliente']"
+  },
+  {
+    "kana": "カスタマーマニュアル",
+    "en": [
+      "customer manual"
+    ],
+    "senseUid": "de8a8d84-12a4-4607-8472-9cdb4998f592",
+    "wordId": "2291010",
+    "pt": "['manual do cliente']"
+  },
+  {
+    "kana": "カスタムアイシー",
+    "en": [
+      "custom IC"
+    ],
+    "senseUid": "0d2c6fe6-239a-4ea2-b3da-04537362e218",
+    "wordId": "2291040",
+    "pt": "{\n  \"a\": [\"CI personalizado\"]\n"
+  },
+  {
+    "kana": "カスタムエルエスアイ",
+    "en": [
+      "custom LSI"
+    ],
+    "senseUid": "47812824-c79a-4e04-9296-04f86bd73def",
+    "wordId": "2291050",
+    "pt": "{\n  \"a\": [\"LSI personalizado\"]\n"
+  },
+  {
+    "kana": "カスタムコントロール",
+    "en": [
+      "custom control"
+    ],
+    "senseUid": "fab0226d-2ba7-45ba-b6f0-194a2b833c31",
+    "wordId": "2291070",
+    "pt": "['controle personalizado']"
+  },
+  {
+    "kana": "カスタムアダプタ",
+    "en": [
+      "custom adapter"
+    ],
+    "senseUid": "e8989958-c876-4eed-adec-b3a082c67446",
+    "wordId": "2291060",
+    "pt": "{\n  \"a\": [\"adaptador personalizado\"]\n"
+  },
+  {
+    "kana": "カスタムサブネットマスク",
+    "en": [
+      "custom subnet mask"
+    ],
+    "senseUid": "8e8f7279-57f8-451e-9364-132c23dc65a4",
+    "wordId": "2291080",
+    "pt": "['máscara de sub-rede personalizada']"
+  },
+  {
+    "kana": "カスタムソフトウェア",
+    "en": [
+      "custom software"
+    ],
+    "senseUid": "b3c2abcb-d913-4a83-8cbc-7669678ee2a6",
+    "wordId": "2291090",
+    "pt": "['software personalizado']"
+  },
+  {
+    "kana": "カスタムチップ",
+    "en": [
+      "custom IC",
+      "custom chip",
+      "ASIC"
+    ],
+    "senseUid": "9e5fca9d-5609-488f-9409-5560425956cf",
+    "wordId": "2291110",
+    "pt": "{\n  \"a\": [\n    \"chip personalizado\",\n    \"CI personalizado\",\n    \"ASIC\"\n  ]\n"
+  },
+  {
+    "kana": "カスタムパネルウィンドウ",
+    "en": [
+      "custom panel pane"
+    ],
+    "senseUid": "81e56e0b-086b-41d1-8174-52b3a03e1be6",
+    "wordId": "2291120",
+    "pt": "{\n  \"a\": [\"painel de painel personalizado\"]\n"
+  },
+  {
+    "kana": "カスタムパレット",
+    "en": [
+      "custom palette"
+    ],
+    "senseUid": "e2ffe1ef-cedd-409c-bc18-ba6db40c25d2",
+    "wordId": "2291130",
+    "pt": "['paleta personalizada']"
+  },
+  {
+    "kana": "カスタムプラグイン",
+    "en": [
+      "custom plug-in"
+    ],
+    "senseUid": "b8f2f373-72a8-4896-8d5f-1dc4eae1e776",
+    "wordId": "2291140",
+    "pt": "['plug-in personalizado']"
+  },
+  {
+    "kana": "カスタムプロパティ",
+    "en": [
+      "custom property"
+    ],
+    "senseUid": "ceefee6f-4cab-4308-998b-f2a2cb3d9f2a",
+    "wordId": "2291150",
+    "pt": "['propriedade personalizada']"
+  },
+  {
+    "kana": "カスタムプロファイル",
+    "en": [
+      "custom profile"
+    ],
+    "senseUid": "ed601570-9c0e-4a74-8bab-a6a99befe024",
+    "wordId": "2291170",
+    "pt": "['perfil personalizado']"
+  },
+  {
+    "kana": "カタログスペック",
+    "en": [
+      "catalog spec"
+    ],
+    "senseUid": "ba9bb012-d5a6-4413-8879-853d256bfb5d",
+    "wordId": "2291180",
+    "pt": "{\n  \"a\": [\"especificação de catálogo\"]\n"
+  },
+  {
+    "kana": "カタログセット",
+    "en": [
+      "catalog set"
+    ],
+    "senseUid": "3dd7d90e-57b2-48d9-97e1-85b7afc5a311",
+    "wordId": "2291190",
+    "pt": "['conjunto de catálogos']"
+  },
+  {
+    "kana": "カタログプロパティ",
+    "en": [
+      "catalog property"
+    ],
+    "senseUid": "7e4cb788-8a08-4a68-ac3f-190a8a04fc83",
+    "wordId": "2291210",
+    "pt": "{\n  \"a\": [\"propriedade do catálogo\"]\n"
+  },
+  {
+    "kana": "カットアンドペースト",
+    "en": [
+      "cut and paste"
+    ],
+    "senseUid": "79f4e41a-d415-4e2e-a7e9-89f5b4704288",
+    "wordId": "2291220",
+    "pt": "{\n  \"a\": [\"cortar e colar\"]\n"
+  },
+  {
+    "kana": "カットアウト",
+    "en": [
+      "cutout"
+    ],
+    "senseUid": "1e052ba0-2f42-4402-8cad-e17296399e8b",
+    "wordId": "2291240",
+    "pt": "{\n  \"a\": [\n    \"recorte\"\n  ]\n"
+  },
+  {
+    "kana": "カットオーバー",
+    "en": [
+      "cutover",
+      "cut-over",
+      "starting new (IT) equipment",
+      "transferring from the old to a new (hardware and/or software) system"
+    ],
+    "senseUid": "8b2ea83d-9bd7-412a-ab6b-31f1e5645142",
+    "wordId": "2291270",
+    "pt": "{\n  \"a\": [\n    \"cutover\",\n    \"cut-over\",\n    \"início de operação de novo equipamento (de TI)\",\n    \"transferência do sistema antigo para um novo (hardware e/ou software)\"\n  ]\n"
+  },
+  {
+    "kana": "カットシート",
+    "en": [
+      "cut sheet (paper)"
+    ],
+    "senseUid": "7e0f9a37-3b6d-4091-a28c-558d956a6274",
+    "wordId": "2291290",
+    "pt": "['folha cortada (papel)']"
+  },
+  {
+    "kana": "カットシートフィーダ",
+    "en": [
+      "cut-sheet feeder"
+    ],
+    "senseUid": "ba6dceb8-6780-472f-af21-207297c5f2c0",
+    "wordId": "2291300",
+    "pt": "['alimentador de folhas soltas']"
+  },
+  {
+    "kana": "カットバッファ",
+    "en": [
+      "cut buffer"
+    ],
+    "senseUid": "be87168b-f809-48e8-8384-aa2501e91856",
+    "wordId": "2291310",
+    "pt": "['buffer de corte']"
+  },
+  {
+    "kana": "カットし",
+    "en": [
+      "cut paper"
+    ],
+    "senseUid": "dd9ba3db-5634-4086-82bc-8edb13e3c09b",
+    "wordId": "2291320",
+    "pt": "{\n  \"a\": [\"cortar papel\"]\n"
+  },
+  {
+    "kana": "カテゴライザ",
+    "en": [
+      "categorizer"
+    ],
+    "senseUid": "127702cc-ef7c-4500-961b-905e19da41f9",
+    "wordId": "2291340",
+    "pt": "['categorizador']"
+  },
+  {
+    "kana": "カテゴリプロパティ",
+    "en": [
+      "category property"
+    ],
+    "senseUid": "e9eb508a-fedd-4a6f-adde-c98760f8e1ac",
+    "wordId": "2291360",
+    "pt": "['propriedade de categoria']"
+  },
+  {
+    "kana": "カバーエリア",
+    "en": [
+      "coverage area"
+    ],
+    "senseUid": "dd4ba31c-7766-4cf2-b420-9d798fadb3b4",
+    "wordId": "2291380",
+    "pt": "['área de cobertura']"
+  },
+  {
+    "kana": "カプセルか",
+    "en": [
+      "encapsulation"
+    ],
+    "senseUid": "c99fcd4a-b0e8-4af2-9edb-6580e99f478e",
+    "wordId": "2291390",
+    "pt": "['encapsulamento']"
+  },
+  {
+    "kana": "カムコーダー",
+    "en": [
+      "camcorder"
+    ],
+    "senseUid": "460facad-bffb-4b59-bf17-ada4fde1f179",
+    "wordId": "2291400",
+    "pt": "{\n  \"a\": [\"filmadora\"]\n"
+  },
+  {
+    "kana": "カラーイメージ",
+    "en": [
+      "color image"
+    ],
+    "senseUid": "047fea4d-b98b-4b4e-9606-8e2f9bea0145",
+    "wordId": "2291410",
+    "pt": "{\n  \"a\": [\"imagem de cor\"]\n"
+  },
+  {
+    "kana": "カラーイメージスキャナ",
+    "en": [
+      "graphics scanner"
+    ],
+    "senseUid": "873b5ad1-c8b7-4cf1-951d-061d6b8dbe23",
+    "wordId": "2291420",
+    "pt": "['scanner de imagens coloridas']"
+  },
+  {
+    "kana": "カラーグラフィックス",
+    "en": [
+      "color graphics"
+    ],
+    "senseUid": "b3e39cb0-2d50-4843-b18f-f53d279f8414",
+    "wordId": "2291430",
+    "pt": "['gráficos coloridos']"
+  },
+  {
+    "kana": "カラーコード",
+    "en": [
+      "color code"
+    ],
+    "senseUid": "47c568be-c93f-4886-9f4e-2ae543fa4075",
+    "wordId": "2291440",
+    "pt": "['código de cor']"
+  },
+  {
+    "kana": "カラーセパレーション",
+    "en": [
+      "color separation"
+    ],
+    "senseUid": "c29f9005-bc1f-476e-8718-e309380c08fc",
+    "wordId": "2291450",
+    "pt": "['separação de cores']"
+  },
+  {
+    "kana": "カラーチャート",
+    "en": [
+      "color chart (colour)"
+    ],
+    "senseUid": "00997853-c1a3-4acd-9360-1ee6921cbc01",
+    "wordId": "2291460",
+    "pt": "{\n  \"a\": [\n    \"tabela de cores\"\n  ]\n"
+  },
+  {
+    "kana": "カラーパレット",
+    "en": [
+      "color palette"
+    ],
+    "senseUid": "1d5114b2-8f4e-4b5e-9991-ca5ecd8dd7f8",
+    "wordId": "2291470",
+    "pt": "['paleta de cores']"
+  },
+  {
+    "kana": "カラービット",
+    "en": [
+      "color bits"
+    ],
+    "senseUid": "d37b83f3-9d15-4cbc-996b-ea39c5bb9ed9",
+    "wordId": "2291480",
+    "pt": "['bits de cor']"
+  },
+  {
+    "kana": "カラープリンタ",
+    "en": [
+      "color printer",
+      "colour printer"
+    ],
+    "senseUid": "0598d7d7-b722-414c-b613-b0152bedb602",
+    "wordId": "2291490",
+    "pt": "{\n  \"a\": [\"impressora colorida\"]\n"
+  },
+  {
+    "kana": "カラーマネジメントシステム",
+    "en": [
+      "color management system"
+    ],
+    "senseUid": "2e8deca8-385b-4dfe-b34d-d4cd92cc9082",
+    "wordId": "2291500",
+    "pt": "['sistema de gerenciamento de cores']"
+  },
+  {
+    "kana": "カラールックアップテーブル",
+    "en": [
+      "color look-up table"
+    ],
+    "senseUid": "031d88c8-e303-45f6-8164-4398f9396ddd",
+    "wordId": "2291510",
+    "pt": "{\n  \"a\": [\"tabela de consulta de cores\"]\n"
+  },
+  {
+    "kana": "カラーえきしょう",
+    "en": [
+      "color LCD"
+    ],
+    "senseUid": "fbe411e1-3476-48c1-a027-fb5a75f2c3c0",
+    "wordId": "2291520",
+    "pt": "['tela de cristal líquido colorida']"
+  },
+  {
+    "kana": "カラムチャート",
+    "en": [
+      "column chart"
+    ],
+    "senseUid": "4cda8886-0d99-4f03-b777-0ddb54cc3a82",
+    "wordId": "2291540",
+    "pt": "['gráfico de colunas']"
+  },
+  {
+    "kana": "カリグラフィックひょうじそうち",
+    "en": [
+      "calligraphic display device",
+      "directed beam display device"
+    ],
+    "senseUid": "86acfcb4-ec7a-4d4b-aa17-ffabd276cc53",
+    "wordId": "2291560",
+    "pt": "{\n  \"a\": [\n    \"dispositivo de exibição caligráfica\",\n    \"dispositivo de exibição por feixe direcionado\"\n  ]\n"
+  },
+  {
+    "kana": "カルク",
+    "en": [
+      "spreadsheet"
+    ],
+    "senseUid": "97e3d38a-449c-42f5-83b1-7c3d621afe31",
+    "wordId": "2291580",
+    "pt": "['planilha']"
+  },
+  {
+    "kana": "カルマンフィルター",
+    "en": [
+      "Kalman filter"
+    ],
+    "senseUid": "e2fe21dc-b358-444e-9c73-3225fead41f0",
+    "wordId": "2291590",
+    "pt": "['Filtro de Kalman']"
+  },
+  {
+    "kana": "カレンダープログラム",
+    "en": [
+      "calendar program"
+    ],
+    "senseUid": "22012bc1-9462-4b23-bc43-e1d702efa92d",
+    "wordId": "2291600",
+    "pt": "{\n  \"a\": [\"programa de calendário\"]\n"
+  },
+  {
+    "kana": "カレンダクロック",
+    "en": [
+      "calendar clock"
+    ],
+    "senseUid": "f458deb5-013c-43d8-962c-91e0c7010bf9",
+    "wordId": "2291610",
+    "pt": "{\n  \"a\": [\"relógio-calendário\"]\n"
+  },
+  {
+    "kana": "カレントディレクトリ",
+    "en": [
+      "current directory"
+    ],
+    "senseUid": "6fa9b485-7bc3-407e-b512-63405b3d63fb",
+    "wordId": "2291620",
+    "pt": "{\n  \"a\": [\n    \"diretório atual\"\n  ]\n"
+  },
+  {
+    "kana": "カレントトランザクション",
+    "en": [
+      "current transaction"
+    ],
+    "senseUid": "75ccea79-9bbb-4f50-ba9f-af03deeb4ccd",
+    "wordId": "2291630",
+    "pt": "['transação atual']"
+  },
+  {
+    "kana": "カレントドライブ",
+    "en": [
+      "current drive"
+    ],
+    "senseUid": "9e94a3c2-6a72-4ebc-8d7f-6e3f0dc20d04",
+    "wordId": "2291640",
+    "pt": "{\n  \"a\": [\"condução por corrente\"]\n"
+  },
+  {
+    "kana": "カレントドレイン",
+    "en": [
+      "current drain"
+    ],
+    "senseUid": "b53f3d91-d917-4024-9c67-9a09b4bb979d",
+    "wordId": "2291650",
+    "pt": "['consumo de corrente']"
+  },
+  {
+    "kana": "カレントループ",
+    "en": [
+      "current loop",
+      "current-loop"
+    ],
+    "senseUid": "19fd19f7-0877-4148-a53f-2840e617a4d7",
+    "wordId": "2291660",
+    "pt": "{\n  \"a\": [\"circuito de corrente\", \"laço de corrente\"]\n"
+  },
+  {
+    "kana": "カレントレコード",
+    "en": [
+      "current record"
+    ],
+    "senseUid": "7e3dc823-0454-456e-8b2e-e84bd2f64d0b",
+    "wordId": "2291670",
+    "pt": "['registro atual']"
+  },
+  {
+    "kana": "カントリコード",
+    "en": [
+      "country code"
+    ],
+    "senseUid": "1fc88f28-9541-4c74-ad62-523033eb2cca",
+    "wordId": "2291690",
+    "pt": "['código de país']"
+  },
+  {
+    "kana": "カンファレンシング",
+    "en": [
+      "conferencing"
+    ],
+    "senseUid": "3d4f913b-1d1c-4624-aae7-21936d6fef87",
+    "wordId": "2291700",
+    "pt": "{\n  \"a\": [\"conferência\"]\n"
+  },
+  {
+    "kana": "カンマひょうじ",
+    "en": [
+      "comma format"
+    ],
+    "senseUid": "3e6a11c7-f3d5-4804-b4aa-6cbef0303042",
+    "wordId": "2291710",
+    "pt": "['formato de vírgula']"
+  },
+  {
+    "kana": "ガードバンド",
+    "en": [
+      "guard band"
+    ],
+    "senseUid": "96c7a32e-dabb-4db6-abcf-a20e8c4208b3",
+    "wordId": "2291720",
+    "pt": "['faixa de guarda']"
+  },
+  {
+    "kana": "ガイドピン",
+    "en": [
+      "guide pin"
+    ],
+    "senseUid": "e65b869c-33d2-4e9f-97e7-9b80ef78b74f",
+    "wordId": "2291770",
+    "pt": "['pino-guia']"
+  },
+  {
+    "kana": "ガイドピンネジ",
+    "en": [
+      "guide pin screw"
+    ],
+    "senseUid": "a5683d10-ca1d-4a1a-9e11-2a9601757533",
+    "wordId": "2291780",
+    "pt": "['parafuso do pino-guia']"
+  },
+  {
+    "kana": "ガウスしょうきょ",
+    "en": [
+      "Gaussian elimination"
+    ],
+    "senseUid": "d4aabaa3-b66a-4ef7-8f36-b022c75befe9",
+    "wordId": "2291790",
+    "pt": "{\n  \"a\": [\"Eliminação de Gauss\"]\n"
+  },
+  {
+    "kana": "ガスパネル",
+    "en": [
+      "plasma panel",
+      "gas panel"
+    ],
+    "senseUid": "53b0c477-c4ea-4d1e-8274-a8e94a5b8587",
+    "wordId": "2291800",
+    "pt": "['painel de plasma', 'painel de gás']"
+  },
+  {
+    "kana": "ガスほうでんディスプレイ",
+    "en": [
+      "gas-discharge display"
+    ],
+    "senseUid": "36e6243a-4851-40e4-8336-442ff098fb20",
+    "wordId": "2291810",
+    "pt": "{\n  \"a\": [\"display de descarga de gás\"]\n"
+  },
+  {
+    "kana": "ガベージインガベージアウト",
+    "en": [
+      "garbage in, garbage out"
+    ],
+    "senseUid": "7cb8b656-52c8-497d-bf69-4d6e5ba300c5",
+    "wordId": "2291820",
+    "pt": "['se entra lixo, sai lixo']"
+  },
+  {
+    "kana": "ガベージコレクション",
+    "en": [
+      "garbage collection"
+    ],
+    "senseUid": "23df5f63-ebf2-4b50-9c82-a0ae3b12052d",
+    "wordId": "2291840",
+    "pt": "['coleta de lixo']"
+  },
+  {
+    "kana": "ガリウムひそリン",
+    "en": [
+      "Gallium Arsenide Phosphide",
+      "GaAsP"
+    ],
+    "senseUid": "71edd621-bee3-4169-a507-ec814071e1bb",
+    "wordId": "2291860",
+    "pt": "{\n  \"a\": [\"Arseniato-fosfeto de gálio\"]\n"
+  },
+  {
+    "kana": "ガンマイク",
+    "en": [
+      "gun microphone",
+      "shotgun microphone"
+    ],
+    "senseUid": "d5b1ad59-c81d-4b06-b393-dc805f55bd11",
+    "wordId": "2291870",
+    "pt": "{\n  \"a\": [\"microfone shotgun\", \"microfone direcional\"]\n"
+  },
+  {
+    "kana": "ガンマほせい",
+    "en": [
+      "gamma correction"
+    ],
+    "senseUid": "ec3fc889-a32b-4f03-b097-5db3b6a63aae",
+    "wordId": "2291890",
+    "pt": "['correção gama']"
+  },
+  {
+    "kana": "キーアサイン",
+    "en": [
+      "key assign"
+    ],
+    "senseUid": "7f3d603a-1f74-4ba9-9f87-1db1bfbf7301",
+    "wordId": "2291900",
+    "pt": "{\n  \"a\": [\"atribuição de tecla\"]\n"
+  },
+  {
+    "kana": "キーイン",
+    "en": [
+      "key in"
+    ],
+    "senseUid": "a2b49288-02de-4fe9-920c-b204133f25d5",
+    "wordId": "2291910",
+    "pt": "{\n  \"a\": [\n    \"digitar\",\n    \"inserir (dados)\",\n    \"teclar\"\n  ]\n"
+  },
+  {
+    "kana": "キーエスクロー",
+    "en": [
+      "key escrow"
+    ],
+    "senseUid": "162a860e-c3f6-4ca0-b9ce-338a2b4f7477",
+    "wordId": "2291940",
+    "pt": "['depósito de chave']"
+  }
+]

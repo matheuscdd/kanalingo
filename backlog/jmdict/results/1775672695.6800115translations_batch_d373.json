@@ -1,0 +1,992 @@
+[
+  {
+    "kana": "はっこうしじょう",
+    "en": [
+      "issue market"
+    ],
+    "senseUid": "168e989e-a972-4d87-8d14-9e7a81b7ec56",
+    "wordId": "1679210",
+    "pt": "['mercado primário']"
+  },
+  {
+    "kana": "はっこうたい",
+    "en": [
+      "luminous body"
+    ],
+    "senseUid": "d1869ba8-5471-4083-bad3-597ee3485d6a",
+    "wordId": "1679220",
+    "pt": "['corpo luminoso']"
+  },
+  {
+    "kana": "はっこうどうぶつ",
+    "en": [
+      "luminous animal"
+    ],
+    "senseUid": "c275d71c-d2ef-43dd-b31c-6153143f309f",
+    "wordId": "1679230",
+    "pt": "{\n  \"a\": [\"animal luminoso\"]\n"
+  },
+  {
+    "kana": "はっこうしょくぶつ",
+    "en": [
+      "luminous plant"
+    ],
+    "senseUid": "7b9b63be-3421-4038-b8ba-77edb0e933d8",
+    "wordId": "1679240",
+    "pt": "{\n  \"a\": [\"planta luminosa\"]\n"
+  },
+  {
+    "kana": "はっこうとりょう",
+    "en": [
+      "luminous paint"
+    ],
+    "senseUid": "2e82e6a2-f18b-4373-a19a-9b59df60140b",
+    "wordId": "1679250",
+    "pt": "{\n  \"a\": [\"tinta luminosa\"]\n"
+  },
+  {
+    "kana": "ほっさてき",
+    "en": [
+      "spasmodic",
+      "erratic",
+      "fitful",
+      "sporadic"
+    ],
+    "senseUid": "eb0e44e4-744f-4186-b4db-3427dbe34222",
+    "wordId": "1679260",
+    "pt": "{\n  \"a\": [\n    \"espasmódico\",\n    \"errático\",\n    \"intermitente\",\n    \"esporádico\"\n  ]\n"
+  },
+  {
+    "kana": "はっそう",
+    "en": [
+      "start (of a race)",
+      "first race"
+    ],
+    "senseUid": "ec1d0bb6-f13f-4f95-b924-f1fbc9420e41",
+    "wordId": "1679270",
+    "pt": "['largada', 'primeira corrida']"
+  },
+  {
+    "kana": "はつばいきんし",
+    "en": [
+      "prohibition of sale"
+    ],
+    "senseUid": "e7637bef-60b4-42e2-8e87-410f5ecb3af9",
+    "wordId": "1679280",
+    "pt": "['proibição de venda']"
+  },
+  {
+    "kana": "はっせいほう",
+    "en": [
+      "vocalization",
+      "vocalisation"
+    ],
+    "senseUid": "1e51f5cd-dbd6-4ac5-9426-c954a6f72bdf",
+    "wordId": "1679290",
+    "pt": "{\n  \"a\": [\"emissão vocal\", \"produção vocal\"]\n"
+  },
+  {
+    "kana": "ぜんまいじかけ",
+    "en": [
+      "clockwork (motor, etc.)",
+      "spring action"
+    ],
+    "senseUid": "0682708b-6738-4cd7-a326-d67319376bf7",
+    "wordId": "1679300",
+    "pt": "{\n  \"a\": [\n    \"mecanismo de corda (motor, etc.)\",\n    \"movimento por mola\"\n  ]\n"
+  },
+  {
+    "kana": "はつげんりょく",
+    "en": [
+      "forcefulness of speech",
+      "influential voice"
+    ],
+    "senseUid": "9af4f0f8-0203-4516-8b3a-cb96a2604b4f",
+    "wordId": "1679310",
+    "pt": "['força de expressão', 'voz influente']"
+  },
+  {
+    "kana": "はつげんしゃ",
+    "en": [
+      "speaker"
+    ],
+    "senseUid": "2172f2cf-d618-44c2-bc31-9577a75ca70b",
+    "wordId": "1679320",
+    "pt": "{\n  \"a\": [\"pessoa que fala\", \"quem faz a declaração\", \"orador\", \"interlocutor\"]\n"
+  },
+  {
+    "kana": "はつげんけん",
+    "en": [
+      "right to speak"
+    ],
+    "senseUid": "1d3a3af6-c1e0-45bb-bf87-357c0ec452ce",
+    "wordId": "1679330",
+    "pt": "['direito de falar']"
+  },
+  {
+    "kana": "はついくざかり",
+    "en": [
+      "period of rapid growth"
+    ],
+    "senseUid": "2ff54a8e-ff63-4ee4-b8e1-9e96c0ff4810",
+    "wordId": "1679340",
+    "pt": "['período de crescimento rápido']"
+  },
+  {
+    "kana": "はついくき",
+    "en": [
+      "growth period"
+    ],
+    "senseUid": "8fe1cb6e-cd50-4d41-a68a-1379339b0bbb",
+    "wordId": "1679350",
+    "pt": "['período de crescimento']"
+  },
+  {
+    "kana": "はつめいひん",
+    "en": [
+      "invention"
+    ],
+    "senseUid": "0e9ccdaa-580b-4f59-b013-ad2f1cb1cf45",
+    "wordId": "1679360",
+    "pt": "['invenção']"
+  },
+  {
+    "kana": "はつめいか",
+    "en": [
+      "inventor"
+    ],
+    "senseUid": "b3e3c639-4922-432b-8d9d-bd902e83fa53",
+    "wordId": "1679370",
+    "pt": "['inventor', 'inventora']"
+  },
+  {
+    "kana": "はっしんにん",
+    "en": [
+      "sender of a message"
+    ],
+    "senseUid": "fb5a9b86-35d4-4d40-a90a-5998b05fc079",
+    "wordId": "1679380",
+    "pt": "['remetente']"
+  },
+  {
+    "kana": "はつおんきごう",
+    "en": [
+      "phonetic symbol"
+    ],
+    "senseUid": "c955210c-a155-4214-9b18-ca1c6b2273d4",
+    "wordId": "1679390",
+    "pt": "{\n  \"a\": [\n    {\n      \"Kana\": \"はつおんきごう\",\n      \"Português\": \"símbolo fonético\",\n      \"Gloss\": [\"símbolo fonético\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "はっしゃだい",
+    "en": [
+      "launching pad"
+    ],
+    "senseUid": "c086359d-2d8c-493f-85c4-83ac9e20eb09",
+    "wordId": "1679400",
+    "pt": "['plataforma de lançamento']"
+  },
+  {
+    "kana": "はっしゃやく",
+    "en": [
+      "propellant"
+    ],
+    "senseUid": "cf010f84-0798-4180-8e75-7a33c7e16b1c",
+    "wordId": "1679410",
+    "pt": "{\n  \"a\": [\"propulsor\"]\n"
+  },
+  {
+    "kana": "ほっき",
+    "en": [
+      "originating (something)",
+      "coming up with the idea",
+      "starting (something)",
+      "initiating",
+      "proposing"
+    ],
+    "senseUid": "4f547efd-0b41-44d9-89e4-9bfbbc7eb053",
+    "wordId": "1679420",
+    "pt": "['originar (algo)', 'ter a ideia', 'começar (algo)', 'iniciar', 'propor']"
+  },
+  {
+    "kana": "ほっき",
+    "en": [
+      "spiritual awakening",
+      "resolution"
+    ],
+    "senseUid": "1c73cd20-7466-4abd-8694-8979c2bb4d86",
+    "wordId": "1679420",
+    "pt": "['despertar espiritual', 'determinação']"
+  },
+  {
+    "kana": "はつあん",
+    "en": [
+      "suggestion",
+      "proposition",
+      "proposal",
+      "idea"
+    ],
+    "senseUid": "ec5c7841-ec77-4443-b5bd-295ed3875a05",
+    "wordId": "1679430",
+    "pt": "{\n  \"a\": [\"sugestão\", \"proposição\", \"proposta\", \"ideia\"]\n"
+  },
+  {
+    "kana": "はつあん",
+    "en": [
+      "submission (of a bill)",
+      "motion",
+      "proposal"
+    ],
+    "senseUid": "8cdc3caf-60d3-43b0-b020-4f4bb1174e37",
+    "wordId": "1679430",
+    "pt": "['apresentação (de um projeto de lei)', 'moção', 'proposta']"
+  },
+  {
+    "kana": "はつあんけん",
+    "en": [
+      "right to introduce a bill"
+    ],
+    "senseUid": "52748570-0388-4baf-bb5c-aeacb4c09ee5",
+    "wordId": "1679440",
+    "pt": "{\n  \"a\": [\n    \"direito de apresentar um projeto de lei\"\n  ]\n"
+  },
+  {
+    "kana": "はってんせい",
+    "en": [
+      "possibility",
+      "potential",
+      "expandability"
+    ],
+    "senseUid": "9247451d-73cc-4340-aa28-9646701e4369",
+    "wordId": "1679450",
+    "pt": "['potencial de desenvolvimento', 'possibilidade de expansão', 'capacidade de crescimento']"
+  },
+  {
+    "kana": "はっこう",
+    "en": [
+      "departure (of a ship)",
+      "setting sail"
+    ],
+    "senseUid": "b50a06af-d5ed-4add-84ac-c99dc11dafb4",
+    "wordId": "1679460",
+    "pt": "{\n  \"a\": [\n    \"partida (de um navio)\",\n    \"zarpar\"\n  ]\n"
+  },
+  {
+    "kana": "はつば",
+    "en": [
+      "start (of a horse race)"
+    ],
+    "senseUid": "b9e11812-61bc-4270-a411-5ecadb16450a",
+    "wordId": "1679470",
+    "pt": "['largada (de uma corrida de cavalos)']"
+  },
+  {
+    "kana": "はつどうき",
+    "en": [
+      "engine"
+    ],
+    "senseUid": "05d2e09a-d2ea-4d53-a4f5-d94fe1d5db89",
+    "wordId": "1679480",
+    "pt": "['motor', 'máquina', 'mecanismo de propulsão', 'dispositivo de ativação']"
+  },
+  {
+    "kana": "はつじょうき",
+    "en": [
+      "mating season",
+      "estrus (oestrus)",
+      "estrum",
+      "the rut"
+    ],
+    "senseUid": "dddc0021-24ec-458b-9d39-c2f964d5e132",
+    "wordId": "1679490",
+    "pt": "['época de acasalamento', 'cio', 'estro', 'período de reprodução']"
+  },
+  {
+    "kana": "はったつしんりがく",
+    "en": [
+      "developmental psychology"
+    ],
+    "senseUid": "6c775846-ba45-43f8-9ae0-efcd42ba2c49",
+    "wordId": "1679510",
+    "pt": "['psicologia do desenvolvimento']"
+  },
+  {
+    "kana": "はっきゅう",
+    "en": [
+      "issuance (e.g. of a passport)",
+      "issuing"
+    ],
+    "senseUid": "00038640-0350-42a2-b97a-b4173452e601",
+    "wordId": "1679500",
+    "pt": "{\n  \"a\": [\n    \"emissão (por exemplo, de um passaporte)\",\n    \"expedição\"\n  ]\n"
+  },
+  {
+    "kana": "はっそうほう",
+    "en": [
+      "way of thinking"
+    ],
+    "senseUid": "537a55f9-5bb1-487f-9952-164d04fbb33a",
+    "wordId": "1679520",
+    "pt": "['maneira de pensar']"
+  },
+  {
+    "kana": "はつい",
+    "en": [
+      "idea",
+      "suggestion",
+      "plan"
+    ],
+    "senseUid": "ed6f3ca2-1dce-474c-9c29-5f63b1143be7",
+    "wordId": "1679530",
+    "pt": "['ideia', 'sugestão', 'plano']"
+  },
+  {
+    "kana": "はつわ",
+    "en": [
+      "utterance",
+      "speech"
+    ],
+    "senseUid": "5be56a52-857f-43fb-a6ca-4c4cdca9dbeb",
+    "wordId": "1679540",
+    "pt": "{\n  \"a\": [\n    \"enunciação\",\n    \"declaração\",\n    \"fala\",\n    \"pronunciamento\",\n    \"expressão verbal\"\n  ]\n"
+  },
+  {
+    "kana": "はっこうそ",
+    "en": [
+      "a ferment"
+    ],
+    "senseUid": "2f95b666-d1bc-42dd-9080-b13b2cf3a044",
+    "wordId": "1679550",
+    "pt": "{\n  \"a\": [\"fermento\", \"fermentação\", \"enzima de fermentação\"]\n"
+  },
+  {
+    "kana": "はつでんし",
+    "en": [
+      "armature"
+    ],
+    "senseUid": "0e170e7b-1b74-4456-a1b5-d6f49d4950d1",
+    "wordId": "1679560",
+    "pt": "['armadura']"
+  },
+  {
+    "kana": "はつご",
+    "en": [
+      "speech",
+      "utterance",
+      "starting to speak"
+    ],
+    "senseUid": "7f41cef4-812c-4ebd-b4d3-1899d63a1732",
+    "wordId": "1679570",
+    "pt": "['primeira fala', 'primeira expressão', 'início da fala']"
+  },
+  {
+    "kana": "はつご",
+    "en": [
+      "word used to start a sentence"
+    ],
+    "senseUid": "eb50de7b-1bae-4a11-8475-86a376801b85",
+    "wordId": "1679570",
+    "pt": "['palavra usada para iniciar uma frase']"
+  },
+  {
+    "kana": "はつえき",
+    "en": [
+      "starting (train) station"
+    ],
+    "senseUid": "b6ab206d-13c4-415e-b3ed-d7daa1a6bb8d",
+    "wordId": "1679580",
+    "pt": "['estação inicial']"
+  },
+  {
+    "kana": "はつねつりょう",
+    "en": [
+      "calorific value"
+    ],
+    "senseUid": "e5a83b17-9074-4a67-9118-2e47548bd81b",
+    "wordId": "1679590",
+    "pt": "['valor calorífico']"
+  },
+  {
+    "kana": "ほっとうにん",
+    "en": [
+      "originator",
+      "promoter"
+    ],
+    "senseUid": "de436739-6e78-4d6f-b96e-1da45048c83f",
+    "wordId": "1679600",
+    "pt": "{\n  \"a\": [\n    \"originador\",\n    \"promotor\"\n  ]\n"
+  },
+  {
+    "kana": "はつガンぶっしつ",
+    "en": [
+      "carcinogen",
+      "carcinogenic substance"
+    ],
+    "senseUid": "937da0ab-beb4-4646-aa9c-ddae9eee82b8",
+    "wordId": "1679610",
+    "pt": "{\n  \"a\": [\n    \"substância cancerígena\",\n    \"agente cancerígeno\"\n  ]\n"
+  },
+  {
+    "kana": "はつぎ",
+    "en": [
+      "proposal",
+      "suggestion",
+      "motion",
+      "initiative"
+    ],
+    "senseUid": "2a939543-6756-46d8-9ee1-18c5b279963c",
+    "wordId": "1679620",
+    "pt": "['proposta', 'sugestão', 'moção', 'iniciativa']"
+  },
+  {
+    "kana": "はっかん",
+    "en": [
+      "aeroplane taking off from a warship (airplane)"
+    ],
+    "senseUid": "0852394b-edbe-4748-a28e-8b01516c7b26",
+    "wordId": "1679630",
+    "pt": "{\n  \"a\": [\"avião decolando de um navio de guerra\"]\n"
+  },
+  {
+    "kana": "はいざん",
+    "en": [
+      "abandoned mine"
+    ],
+    "senseUid": "3bac5c28-b666-44bd-8c29-e29ffe69f779",
+    "wordId": "1679640",
+    "pt": "['mina abandonada']"
+  },
+  {
+    "kana": "はいい",
+    "en": [
+      "dethronement"
+    ],
+    "senseUid": "1cd2afc5-920a-460c-b1da-b29dbb22371f",
+    "wordId": "1679660",
+    "pt": "{\n  \"a\": [\"destronamento\"]\n"
+  },
+  {
+    "kana": "はいへい",
+    "en": [
+      "disabled soldier",
+      "crippled soldier"
+    ],
+    "senseUid": "96017e89-082f-4561-8939-b5f26712f2cb",
+    "wordId": "1679670",
+    "pt": "{\n  \"a\": [\n    \"soldado inválido\",\n    \"soldado incapacitado\"\n  ]\n"
+  },
+  {
+    "kana": "はいぶつ",
+    "en": [
+      "waste material",
+      "waste",
+      "useless article",
+      "discarded article",
+      "refuse",
+      "trash",
+      "rubbish"
+    ],
+    "senseUid": "3d2de158-c94a-4b0f-b1af-e57cd7bd2ef3",
+    "wordId": "1679680",
+    "pt": "{\n  \"a\": [\n    \"material de descarte\",\n    \"resíduo\",\n    \"artigo inútil\",\n    \"artigo descartado\",\n    \"refugo\",\n    \"lixo\",\n    \"entulho\"\n  ]\n"
+  },
+  {
+    "kana": "はいぶつりよう",
+    "en": [
+      "utilization of waste materials",
+      "recycling"
+    ],
+    "senseUid": "5356663e-1c35-4c79-83ac-19581ee2e263",
+    "wordId": "1679690",
+    "pt": "{\n  \"a\": [\n    \"aproveitamento de materiais descartados\",\n    \"reciclagem\"\n  ]\n"
+  },
+  {
+    "kana": "はいてい",
+    "en": [
+      "dethroned emperor or king"
+    ],
+    "senseUid": "171ea9d6-ef00-4d58-8a2e-af8249ee078d",
+    "wordId": "1679700",
+    "pt": "['imperador deposto', 'rei deposto']"
+  },
+  {
+    "kana": "はいたい",
+    "en": [
+      "(moral) decay",
+      "(social) decline",
+      "decadence",
+      "corruption",
+      "degeneration",
+      "deterioration"
+    ],
+    "senseUid": "13f4c680-88df-421d-99ad-14579dda3962",
+    "wordId": "1679710",
+    "pt": "['decadência', 'corrupção', 'degeneração', 'deterioração', 'declínio']"
+  },
+  {
+    "kana": "はいたい",
+    "en": [
+      "decline (in prosperity)",
+      "falling into disuse"
+    ],
+    "senseUid": "e9e9962f-1e9e-4787-b0b2-826af7db5d90",
+    "wordId": "1679710",
+    "pt": "{\n  \"a\": [\n    \"declínio (na prosperidade)\",\n    \"cair em desuso\"\n  ]\n"
+  },
+  {
+    "kana": "はいか",
+    "en": [
+      "deserted house",
+      "ruined house"
+    ],
+    "senseUid": "7dcaa67a-894e-4a49-b2dd-3d69a5fdd4a0",
+    "wordId": "1679720",
+    "pt": "{\n  \"a\": [\n    \"casa abandonada\",\n    \"casa em ruínas\"\n  ]\n"
+  },
+  {
+    "kana": "はいか",
+    "en": [
+      "abolishing one's own family line in order to join another (under pre-1947 Japanese law)",
+      "extinct family"
+    ],
+    "senseUid": "8ddef602-8960-4d62-9dd3-cae8afb35c43",
+    "wordId": "1679720",
+    "pt": "['abolir a própria linhagem familiar para ingressar em outra (segundo a lei japonesa anterior a 1947)', 'família extinta']"
+  },
+  {
+    "kana": "はいこう",
+    "en": [
+      "closing of a school",
+      "closed school"
+    ],
+    "senseUid": "1a9107aa-342b-470b-bfd5-79ffcd5d9508",
+    "wordId": "1679730",
+    "pt": "{\n  \"a\": [\n    \"fechamento de uma escola\",\n    \"escola fechada\"\n  ]\n"
+  },
+  {
+    "kana": "はいしつじょうけん",
+    "en": [
+      "disability clause"
+    ],
+    "senseUid": "c59f9e6b-60db-48e5-a8f1-7941be4acff4",
+    "wordId": "1679740",
+    "pt": "['cláusula de exclusão']"
+  },
+  {
+    "kana": "はいじょ",
+    "en": [
+      "disinheritance"
+    ],
+    "senseUid": "2af079ba-7e40-418b-a6d8-31e2e5dad324",
+    "wordId": "1679750",
+    "pt": "['deserdação']"
+  },
+  {
+    "kana": "はいせん",
+    "en": [
+      "scrapped vessel",
+      "decommissioned ship",
+      "hulk"
+    ],
+    "senseUid": "e59edd86-bc5d-43ed-9a63-6b798bc56057",
+    "wordId": "1679760",
+    "pt": "{\n  \"a\": [\n    \"navio descomissionado\",\n    \"navio sucateado\",\n    \"casco (de navio fora de serviço)\"\n  ]\n"
+  },
+  {
+    "kana": "はいめつ",
+    "en": [
+      "decay",
+      "ruination"
+    ],
+    "senseUid": "bbbefda1-0448-4d56-8d70-52a8f1306b57",
+    "wordId": "1679770",
+    "pt": "{\n  \"a\": [\n    \"decadência\",\n    \"ruína\"\n  ]\n"
+  },
+  {
+    "kana": "はいえん",
+    "en": [
+      "neglected garden",
+      "abandoned garden"
+    ],
+    "senseUid": "503fbc23-a271-4f70-9778-d1c12efd67cf",
+    "wordId": "1679780",
+    "pt": "['jardim negligenciado', 'jardim abandonado']"
+  },
+  {
+    "kana": "はいえん",
+    "en": [
+      "closing down (of a zoo, kindergarten, etc.)"
+    ],
+    "senseUid": "2fca1c8c-3172-470a-bcd4-8d5dcd3c3d01",
+    "wordId": "1679780",
+    "pt": "{\n  \"a\": [\n    \"fechamento (de um zoológico, jardim de infância, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "はいせん",
+    "en": [
+      "abandoned railway line",
+      "closed railway line",
+      "discontinued line"
+    ],
+    "senseUid": "60e726b0-bd28-4a15-ae60-ed8709e56a58",
+    "wordId": "1679790",
+    "pt": "['linha férrea abandonada', 'linha férrea desativada', 'linha descontinuada']"
+  },
+  {
+    "kana": "はいかん",
+    "en": [
+      "decommissioned warship"
+    ],
+    "senseUid": "25ca19ba-4932-42bc-8906-b3f10a0f2f19",
+    "wordId": "1679810",
+    "pt": "{\n  \"a\": [\"navio de guerra descomissionado\"]\n"
+  },
+  {
+    "kana": "はねもの",
+    "en": [
+      "rejected goods"
+    ],
+    "senseUid": "02eda775-32f0-4d5f-847c-79c5d95432e8",
+    "wordId": "1679830",
+    "pt": "['produtos rejeitados']"
+  },
+  {
+    "kana": "はねつるべ",
+    "en": [
+      "water bucket suspended from a weighted rod"
+    ],
+    "senseUid": "217457bc-86ec-4a99-9fb2-4216bea1a53f",
+    "wordId": "1679850",
+    "pt": "['balde de água suspenso por uma haste com peso']"
+  },
+  {
+    "kana": "はつらつ",
+    "en": [
+      "lively",
+      "vigorous",
+      "sprightly",
+      "animated",
+      "vivid"
+    ],
+    "senseUid": "429f80ab-e430-47c3-b9cd-bc486e4ac20b",
+    "wordId": "1679860",
+    "pt": "['vivo', 'vigoroso', 'animado', 'cheio de energia', 'vivaz']"
+  },
+  {
+    "kana": "へいそく",
+    "en": [
+      "offerings of rope, paper, etc. hung on trees in Shinto shrines"
+    ],
+    "senseUid": "95e60db9-5f39-4162-a857-4a7f3b9d796d",
+    "wordId": "1679870",
+    "pt": "{\n  \"a\": [\n    \"Ofertas de corda, papel, etc., penduradas em árvores nos santuários xintoístas\"\n  ]\n"
+  },
+  {
+    "kana": "へいそん",
+    "en": [
+      "poor village",
+      "our own (little or poor) village"
+    ],
+    "senseUid": "9fa7a656-9458-41aa-b467-fad24cb09ad9",
+    "wordId": "1679880",
+    "pt": "{\n  \"a\": [\n    \"aldeia pobre\",\n    \"nossa própria aldeia (pequena ou pobre)\"\n  ]\n"
+  },
+  {
+    "kana": "へいふう",
+    "en": [
+      "evil or corrupt or abusive practice"
+    ],
+    "senseUid": "8d569887-3f32-480e-b7cf-851b0341c5c7",
+    "wordId": "1679890",
+    "pt": "['prática maligna', 'prática corrupta', 'prática abusiva']"
+  },
+  {
+    "kana": "べっけん",
+    "en": [
+      "glance",
+      "glimpse",
+      "cursory view"
+    ],
+    "senseUid": "3236ec58-011d-4eb3-9018-eeaab6f2c99b",
+    "wordId": "1679900",
+    "pt": "['olhar de relance', 'vislumbre', 'olhada rápida']"
+  },
+  {
+    "kana": "ぬけあがる",
+    "en": [
+      "to be balding in the front",
+      "to have a receding hairline"
+    ],
+    "senseUid": "283dde86-dbcb-4f17-8adf-71e22f711ed0",
+    "wordId": "1679910",
+    "pt": "['ficar calvo na frente', 'ter entradas']"
+  },
+  {
+    "kana": "ぬきて",
+    "en": [
+      "overarm stroke (type of traditional Japanese swimming style)"
+    ],
+    "senseUid": "4ea97ced-b56c-4323-a326-411dba512e83",
+    "wordId": "1679920",
+    "pt": "{\n  \"a\": [\"braçada por cima do braço (tipo de estilo tradicional de natação japonesa)\"]\n"
+  },
+  {
+    "kana": "ぬきさる",
+    "en": [
+      "to pass",
+      "to overtake",
+      "to leave behind"
+    ],
+    "senseUid": "4d6a0d41-d573-499d-8333-b59ea19269b4",
+    "wordId": "1679930",
+    "pt": "{\n  \"a\": [\n    \"ultrapassar\",\n    \"deixar para trás\",\n    \"passar adiante\"\n  ]\n"
+  },
+  {
+    "kana": "ぬきさる",
+    "en": [
+      "to pull out",
+      "to extract",
+      "to remove",
+      "to take away"
+    ],
+    "senseUid": "ca05015c-f052-451c-88f4-6c2811e265d6",
+    "wordId": "1679930",
+    "pt": "['arrancar', 'extrair', 'remover', 'levar embora']"
+  },
+  {
+    "kana": "ぬきうちかいさん",
+    "en": [
+      "sudden dissolution of a legislature"
+    ],
+    "senseUid": "3a4aedc0-0eef-4103-98cd-4e43b9a3afb1",
+    "wordId": "1679940",
+    "pt": "['dissolução repentina da legislatura']"
+  },
+  {
+    "kana": "ぬけめない",
+    "en": [
+      "shrewd",
+      "astute",
+      "cunning",
+      "alert"
+    ],
+    "senseUid": "cfbce1fe-8738-4ad2-9868-ca0a8a3e5075",
+    "wordId": "1679950",
+    "pt": "['perspicaz', 'astuto', 'sagaz', 'atento']"
+  },
+  {
+    "kana": "ぬきあわせる",
+    "en": [
+      "to draw swords and face off"
+    ],
+    "senseUid": "df0f0021-a0e6-423c-a47a-4a7840bd7591",
+    "wordId": "1679960",
+    "pt": "{\n  \"a\": [\"cruzar espadas e se enfrentar\"]\n"
+  },
+  {
+    "kana": "ぬきいと",
+    "en": [
+      "drawn thread"
+    ],
+    "senseUid": "edc950d0-c68c-41a3-bcd7-160ed74e8654",
+    "wordId": "1679970",
+    "pt": "{\n  \"a\": [\"fio retirado\", \"fio puxado\"]\n"
+  },
+  {
+    "kana": "ぬけさく",
+    "en": [
+      "fool",
+      "dimwit",
+      "blockhead"
+    ],
+    "senseUid": "2c142d21-6160-4533-8da2-cb8fc15155bd",
+    "wordId": "1679980",
+    "pt": "['pateta', 'tolo', 'cabeça-oca']"
+  },
+  {
+    "kana": "ぬきあしで",
+    "en": [
+      "stealthily"
+    ],
+    "senseUid": "7859da42-3111-430c-9a22-3f32e45bccbe",
+    "wordId": "1679990",
+    "pt": "['de mansinho']"
+  },
+  {
+    "kana": "ぬきあしさしあし",
+    "en": [
+      "stealthy footsteps",
+      "walking on tiptoe"
+    ],
+    "senseUid": "ec3f99e8-3b37-494b-9a87-784da6adb582",
+    "wordId": "1680000",
+    "pt": "['passos furtivos', 'andar na ponta dos pés']"
+  },
+  {
+    "kana": "ぬけまいり",
+    "en": [
+      "pilgrimage to the Ise Grand Shrine without a travel permit or permission from one's parents or relatives (Edo period)"
+    ],
+    "senseUid": "a161fd2d-0326-460d-b935-b4d2d89e69bc",
+    "wordId": "1680010",
+    "pt": "['peregrinação ao Grande Santuário de Ise sem permissão de viagem ou sem autorização dos pais ou parentes (período Edo)']"
+  },
+  {
+    "kana": "ぬきはなす",
+    "en": [
+      "to unsheathe one's sword"
+    ],
+    "senseUid": "3c889c66-4364-445e-8192-c4d07216e317",
+    "wordId": "1680020",
+    "pt": "['desembainhar a espada']"
+  },
+  {
+    "kana": "ばっけん",
+    "en": [
+      "drawing one's sword"
+    ],
+    "senseUid": "d9c4d962-87d4-4d9b-9d8a-582a198b6e97",
+    "wordId": "1680030",
+    "pt": "['sacar a espada']"
+  },
+  {
+    "kana": "ぬきさし",
+    "en": [
+      "addition and deletion"
+    ],
+    "senseUid": "3ada0167-11e9-44fc-931f-e8d93224ad00",
+    "wordId": "1680040",
+    "pt": "['inclusão e exclusão']"
+  },
+  {
+    "kana": "ぬきさし",
+    "en": [
+      "taking out and putting in",
+      "plugging and unplugging"
+    ],
+    "senseUid": "b5bb11c9-7e9e-4c19-9847-89ad1b1fd519",
+    "wordId": "1680040",
+    "pt": "['tirar e colocar', 'inserir e remover']"
+  },
+  {
+    "kana": "ぬきさし",
+    "en": [
+      "making do",
+      "getting by",
+      "managing"
+    ],
+    "senseUid": "8bd17553-af62-41dc-a6a6-a7df2ff99aa8",
+    "wordId": "1680040",
+    "pt": "['se virar', 'dar um jeito', 'se virar com o que tem']"
+  },
+  {
+    "kana": "ぬきさしならぬ",
+    "en": [
+      "sticky (situation)",
+      "finding oneself trapped"
+    ],
+    "senseUid": "840d12f4-d58b-45fc-89fd-d5f28beef0c8",
+    "wordId": "1680050",
+    "pt": "['situação sem saída', 'enrascada', 'encrenca da qual não se pode escapar']"
+  },
+  {
+    "kana": "ぬきに",
+    "en": [
+      "pilfered goods"
+    ],
+    "senseUid": "857f7f81-bf9a-479b-8b53-e6427ce7cb6f",
+    "wordId": "1680060",
+    "pt": "{\n  \"a\": [\n    \"sem considerar\",\n    \"deixando de lado\",\n    \"sem envolver\",\n    \"excluindo\"\n  ]\n"
+  },
+  {
+    "kana": "ぬきがき",
+    "en": [
+      "extract",
+      "excerpt"
+    ],
+    "senseUid": "7d99ff65-df48-4331-bf07-11b53c30b334",
+    "wordId": "1680070",
+    "pt": "['extrato', 'trecho']"
+  },
+  {
+    "kana": "ぬけかわる",
+    "en": [
+      "to fall out and be replaced",
+      "to shed",
+      "to moult (molt)"
+    ],
+    "senseUid": "f875366d-1023-4cc9-9b81-23c5a8e6e946",
+    "wordId": "1680080",
+    "pt": "{\n  \"a\": [\n    \"cair e ser substituído\",\n    \"trocar (de pele, penas, etc.)\",\n    \"mudar (de pele, penas, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "ぬけうら",
+    "en": [
+      "byway",
+      "bypass"
+    ],
+    "senseUid": "3ea1fe09-abe3-4821-9a36-94c35cb525c3",
+    "wordId": "1680090",
+    "pt": "{\n  \"a\": [\"caminho secundário\", \"desvio\"]\n"
+  },
+  {
+    "kana": "ぬきよみ",
+    "en": [
+      "skimming a text"
+    ],
+    "senseUid": "1baca4ac-0fdb-4937-9b63-55e1d8c90319",
+    "wordId": "1680100",
+    "pt": "{\n  \"a\": [\n    \"leitura superficial\",\n    \"passar os olhos por um texto\",\n    \"ler rapidamente para captar o geral\"\n  ]\n"
+  },
+  {
+    "kana": "ぬけがけ",
+    "en": [
+      "stealing a march on",
+      "getting a head start",
+      "secretly acting before others"
+    ],
+    "senseUid": "62b023bb-d9ab-4a60-9797-c0b32a6622bf",
+    "wordId": "1680110",
+    "pt": "['sair na frente', 'agir antes dos outros em segredo', 'levar vantagem escondido']"
+  },
+  {
+    "kana": "ぬけがけ",
+    "en": [
+      "solo raid on an enemy's camp (for glory)"
+    ],
+    "senseUid": "34380183-d5a8-408f-8ae8-98b069047dc9",
+    "wordId": "1680110",
+    "pt": "['ação individual para ganhar vantagem', 'agir sozinho para obter glória', 'tomar iniciativa sozinho para se destacar']"
+  },
+  {
+    "kana": "ばつびょう",
+    "en": [
+      "weighing anchor",
+      "setting sail"
+    ],
+    "senseUid": "202a6de4-1ebc-4e2b-9271-c398e8af2f83",
+    "wordId": "1680120",
+    "pt": "['zarpar', 'partida (de navio)', 'levantar âncora']"
+  },
+  {
+    "kana": "ぬからぬかお",
+    "en": [
+      "shrewd face",
+      "knowing look"
+    ],
+    "senseUid": "084ccbf6-7f10-49ae-94ee-a4660a1c9722",
+    "wordId": "1680130",
+    "pt": "{\n  \"a\": [\"cara astuta\", \"olhar perspicaz\"]\n"
+  },
+  {
+    "kana": "ばつぶん",
+    "en": [
+      "afterword",
+      "epilogue",
+      "postscript"
+    ],
+    "senseUid": "640737e5-e7a1-4fab-aa97-d39dbbf9b228",
+    "wordId": "1680140",
+    "pt": "['pós-escrito', 'epílogo', 'posfácio']"
+  }
+]

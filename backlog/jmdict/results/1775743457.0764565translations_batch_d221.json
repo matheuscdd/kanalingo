@@ -1,0 +1,984 @@
+[
+  {
+    "kana": "ごふん",
+    "en": [
+      "artists' chalk",
+      "white pigment",
+      "powdered calcium carbonate"
+    ],
+    "senseUid": "4b1c15e8-d813-4ea8-8831-d878a7626d5e",
+    "wordId": "2158590",
+    "pt": "{\n  \"a\": [\n    \"giz de artista\",\n    \"pigmento branco\",\n    \"carbonato de cálcio em pó\"\n  ]\n"
+  },
+  {
+    "kana": "きんいつりょうきん",
+    "en": [
+      "uniform fee",
+      "flat fee"
+    ],
+    "senseUid": "8ca89562-0514-45b3-b474-6d7ceec557f5",
+    "wordId": "2158620",
+    "pt": "{\n  \"a\": [\n    \"taxa uniforme\",\n    \"taxa fixa\"\n  ]\n"
+  },
+  {
+    "kana": "やくざもの",
+    "en": [
+      "professional gambler",
+      "gangster",
+      "gang member"
+    ],
+    "senseUid": "59748d05-7e15-446e-b7c8-770134bd3ca3",
+    "wordId": "2158630",
+    "pt": "['gângster', 'membro da máfia', 'jogador profissional']"
+  },
+  {
+    "kana": "やくざもの",
+    "en": [
+      "good-for-nothing",
+      "ne'er-do-well",
+      "hoodlum",
+      "ruffian"
+    ],
+    "senseUid": "43bb9b56-f4a2-4cfd-8d90-d03e3ae365d6",
+    "wordId": "2158630",
+    "pt": "['vagabundo', 'desocupado', 'bandido', 'valentão']"
+  },
+  {
+    "kana": "けんさてすうりょう",
+    "en": [
+      "inspection fee"
+    ],
+    "senseUid": "02903b89-ef55-42dd-81b1-158d0d5f6f45",
+    "wordId": "2158640",
+    "pt": "['taxa de inspeção']"
+  },
+  {
+    "kana": "けんさしょうめいしょ",
+    "en": [
+      "inspection certificate",
+      "test certificate"
+    ],
+    "senseUid": "4c0aa418-b0c5-4581-8afd-26c7c2ef8eee",
+    "wordId": "2158650",
+    "pt": "{\n  \"a\": [\n    \"certificado de inspeção\",\n    \"certificado de teste\"\n  ]\n"
+  },
+  {
+    "kana": "こくせきほう",
+    "en": [
+      "Nationality Act"
+    ],
+    "senseUid": "2d3aebce-1a15-465a-aa4c-4bb57faf1d70",
+    "wordId": "2158670",
+    "pt": "['Lei da Nacionalidade']"
+  },
+  {
+    "kana": "にんきょうだんたい",
+    "en": [
+      "yakuza group",
+      "chivalrous organization"
+    ],
+    "senseUid": "15397f66-7de7-4b77-b95a-4487cec3d519",
+    "wordId": "2158660",
+    "pt": "{\n  \"a\": [\n    \"organização cavalheiresca\",\n    \"grupo yakuza\"\n  ]\n"
+  },
+  {
+    "kana": "こんいんとどけしょ",
+    "en": [
+      "marriage registration"
+    ],
+    "senseUid": "53c7d254-7d57-43d2-8355-3eb1c1858abe",
+    "wordId": "2158680",
+    "pt": "['registro de casamento']"
+  },
+  {
+    "kana": "ふとつごう",
+    "en": [
+      "discordance",
+      "discrepancy (e.g. statistical)",
+      "conflict",
+      "incongruity",
+      "inconsistency",
+      "mismatch"
+    ],
+    "senseUid": "c3db263a-3571-4950-8188-7352df1eedcf",
+    "wordId": "2158690",
+    "pt": "{\n  \"a\": [\n    \"discordância\",\n    \"discrepância (por exemplo, estatística)\",\n    \"conflito\",\n    \"incongruência\",\n    \"inconsistência\",\n    \"descompasso\"\n  ]\n"
+  },
+  {
+    "kana": "こんいんてつづき",
+    "en": [
+      "marriage procedures",
+      "procedure of marriage"
+    ],
+    "senseUid": "d4bab847-b9ca-4f88-aaf7-7af32963324c",
+    "wordId": "2158700",
+    "pt": "['procedimentos de casamento', 'procedimento de casamento']"
+  },
+  {
+    "kana": "こんいんようけんぐびしょうめいしょ",
+    "en": [
+      "certificate of legal capacity to contract marriage",
+      "certification of one's legal capacity to be married"
+    ],
+    "senseUid": "11f36214-f9a9-42b2-aca2-0ded70207114",
+    "wordId": "2158710",
+    "pt": "['certificado de capacidade legal para contrair casamento', 'certificação da capacidade legal para se casar']"
+  },
+  {
+    "kana": "とうけいじょう",
+    "en": [
+      "statistical"
+    ],
+    "senseUid": "beb29a9e-1c9c-44a8-ac2d-5cc9fdabbfc2",
+    "wordId": "2158730",
+    "pt": "['estatístico']"
+  },
+  {
+    "kana": "りんじゅうのとこ",
+    "en": [
+      "deathbed"
+    ],
+    "senseUid": "cd247226-207e-4a48-a9a7-8b9b87ce147f",
+    "wordId": "2158740",
+    "pt": "['leito de morte']"
+  },
+  {
+    "kana": "けいさつきどうたい",
+    "en": [
+      "riot police",
+      "riot squad"
+    ],
+    "senseUid": "12f48177-0269-471c-8f47-f886dc428e2a",
+    "wordId": "2158750",
+    "pt": "['tropa de choque', 'unidade de choque']"
+  },
+  {
+    "kana": "おおしもふりえだしゃく",
+    "en": [
+      "peppered moth (Biston betularia)"
+    ],
+    "senseUid": "8c135d7c-0119-4c46-8ac4-b9346050bbf2",
+    "wordId": "2158760",
+    "pt": "['mariposa-pimentada (Biston betularia)']"
+  },
+  {
+    "kana": "えだしゃくとり",
+    "en": [
+      "geometer moth caterpillar",
+      "geometrid caterpillar (of subfamily Ennominae)"
+    ],
+    "senseUid": "8fbc015d-3e66-4f96-989d-47533b9fbffe",
+    "wordId": "2158770",
+    "pt": "['lagarta-medidora', 'lagarta-geômetra (da subfamília Ennominae)']"
+  },
+  {
+    "kana": "しゃくが",
+    "en": [
+      "geometer moth",
+      "geometrid"
+    ],
+    "senseUid": "6a7c90cb-371d-4a75-a618-6d6d6708d94d",
+    "wordId": "2158780",
+    "pt": "['mariposa-medidora', 'geométrido']"
+  },
+  {
+    "kana": "ボリシェヴィズム",
+    "en": [
+      "Bolshevism"
+    ],
+    "senseUid": "06f207af-2ab5-4a52-b640-181c612cec81",
+    "wordId": "2158790",
+    "pt": "['Bolchevismo']"
+  },
+  {
+    "kana": "はくえいぐん",
+    "en": [
+      "White Army (any of the armies that opposed the Bolsheviks during the Russian Revolution)"
+    ],
+    "senseUid": "04056be8-9e8e-4c4d-82fc-ad07d0020200",
+    "wordId": "2158800",
+    "pt": "['Exército Branco (qualquer um dos exércitos que se opuseram aos bolcheviques durante a Revolução Russa)']"
+  },
+  {
+    "kana": "はくぐん",
+    "en": [
+      "White Army (any of the armies that opposed the Bolsheviks during the Russian Revolution)"
+    ],
+    "senseUid": "204548ce-792c-4895-84d0-007f04866749",
+    "wordId": "2158810",
+    "pt": "['Exército Branco (qualquer um dos exércitos que se opuseram aos bolcheviques durante a Revolução Russa)']"
+  },
+  {
+    "kana": "えだしゃく",
+    "en": [
+      "geometer moth",
+      "geometrid (of the Ennominae subfamily)"
+    ],
+    "senseUid": "2d2ff96f-1c57-456a-a1f5-466f8934f925",
+    "wordId": "2158820",
+    "pt": "{\n  \"a\": [\n    \"mariposa-medidora\",\n    \"geômetra (da subfamília Ennominae)\"\n  ]\n"
+  },
+  {
+    "kana": "エム・エヌ・ピー",
+    "en": [
+      "mobile number portability",
+      "MNP"
+    ],
+    "senseUid": "f385bd31-22eb-42c8-8d0d-390f9ac7a294",
+    "wordId": "2158830",
+    "pt": "{\n  \"a\": [\n    \"portabilidade numérica móvel\",\n    \"MNP\"\n  ]\n"
+  },
+  {
+    "kana": "おとこはどきょうおんなはあいきょう",
+    "en": [
+      "men should be brave, women should be affable"
+    ],
+    "senseUid": "aac640fa-b85c-4b44-b1ad-9fb7c73ec127",
+    "wordId": "2158840",
+    "pt": "['Os homens devem ser corajosos, as mulheres devem ser afáveis']"
+  },
+  {
+    "kana": "ちきゅうし",
+    "en": [
+      "prefecture-level city (of China)"
+    ],
+    "senseUid": "4ceb1787-4edb-4f81-b404-923348957af6",
+    "wordId": "2158850",
+    "pt": "['cidade em nível de prefeitura (da China)']"
+  },
+  {
+    "kana": "けんきゅうし",
+    "en": [
+      "county-level city (of China)"
+    ],
+    "senseUid": "0ebf124c-2be3-4dbb-91dc-de0239ff1b6a",
+    "wordId": "2158860",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"けんきゅうし\",\n      \"portugues\": \"cidade de nível de condado (da China)\",\n      \"notas\": \"No contexto japonês, けんきゅうし refere-se a uma cidade chinesa que possui status administrativo equivalente ao de um condado.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "むぐら",
+    "en": [
+      "creepers",
+      "trailing plants"
+    ],
+    "senseUid": "7e8a11c3-e06c-4099-8f5e-f6685428503b",
+    "wordId": "2158870",
+    "pt": "['trepadeiras', 'plantas rasteiras']"
+  },
+  {
+    "kana": "ふけんせい",
+    "en": [
+      "prefectural system (as existed from 1890-1947)"
+    ],
+    "senseUid": "3d7a6a59-7d0b-4fcb-9365-4b553848cb88",
+    "wordId": "2158880",
+    "pt": "{\n  \"a\": [\n    \"sistema prefeitural (como existiu de 1890 a 1947)\"\n  ]\n"
+  },
+  {
+    "kana": "ちほうじちほう",
+    "en": [
+      "Local Autonomy Act"
+    ],
+    "senseUid": "0ebc75df-b479-45b1-bfb5-970901f9cda8",
+    "wordId": "2158890",
+    "pt": "{\n  \"a\": [\"Lei de Autonomia Local\"]\n"
+  },
+  {
+    "kana": "どう",
+    "en": [
+      "road",
+      "path",
+      "street",
+      "route"
+    ],
+    "senseUid": "b683580f-af8c-4c52-b701-823ceca30a6f",
+    "wordId": "2158900",
+    "pt": "{\n  \"a\": [\"caminho\", \"estrada\", \"via\", \"rota\"]\n"
+  },
+  {
+    "kana": "どう",
+    "en": [
+      "way",
+      "set of practices",
+      "rules for conducting oneself"
+    ],
+    "senseUid": "d1274113-7785-4f9c-9c49-dd33d97919ce",
+    "wordId": "2158900",
+    "pt": "['caminho', 'conjunto de práticas', 'regras de conduta']"
+  },
+  {
+    "kana": "どう",
+    "en": [
+      "moral education"
+    ],
+    "senseUid": "4255cd91-969f-48c7-8f84-1c4941f695a2",
+    "wordId": "2158900",
+    "pt": "{\n  \"a\": [\"educação moral\"]\n"
+  },
+  {
+    "kana": "どう",
+    "en": [
+      "Buddhist teachings"
+    ],
+    "senseUid": "54f7bb73-aed9-4259-9549-c6a9cf66ce28",
+    "wordId": "2158900",
+    "pt": "{\n  \"a\": [\"ensinamentos budistas\"]\n"
+  },
+  {
+    "kana": "どう",
+    "en": [
+      "Taoism"
+    ],
+    "senseUid": "76117174-caa5-4b9a-b384-7644824291fc",
+    "wordId": "2158900",
+    "pt": "{\n  \""
+  },
+  {
+    "kana": "どう",
+    "en": [
+      "administrative region of Japan (Hokkaido)"
+    ],
+    "senseUid": "54a19397-417b-4db7-9df3-baa8b5f3ad87",
+    "wordId": "2158900",
+    "pt": "{\n  \"a\": [\n    \"região administrativa do Japão (Hokkaido)\"\n  ]\n"
+  },
+  {
+    "kana": "どう",
+    "en": [
+      "administrative region of Japan (Tokaido, Tosando, etc.)"
+    ],
+    "senseUid": "1339f265-de38-4db9-86fc-e6e99ddbfbd7",
+    "wordId": "2158900",
+    "pt": "{\n  \"a\": [\n    \"província (região administrativa do Japão, como Tokaido, Tosando, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "どう",
+    "en": [
+      "province (administrative region of Korea)"
+    ],
+    "senseUid": "99228f86-b8eb-4a61-a545-4c22bf96ef3f",
+    "wordId": "2158900",
+    "pt": "['província']"
+  },
+  {
+    "kana": "どう",
+    "en": [
+      "circuit (administrative region of China)"
+    ],
+    "senseUid": "94a49b6a-8ccb-457b-9dd0-796a84cb9c1c",
+    "wordId": "2158900",
+    "pt": "{\n  \"a\": [\n    \"circuito (região administrativa da China)\",\n    \"província (divisão administrativa histórica)\",\n    \"distrito (no contexto de antigas divisões japonesas ou chinesas)\"\n  ]\n"
+  },
+  {
+    "kana": "どう",
+    "en": [
+      "province (Tang-era administrative region of China)"
+    ],
+    "senseUid": "dbaf6186-b0e3-4f96-8e8d-547b1a2e00ba",
+    "wordId": "2158900",
+    "pt": "{\n  \"a\": [\"província (região administrativa da era Tang na China)\"]\n"
+  },
+  {
+    "kana": "こういきぎょうせい",
+    "en": [
+      "broader-based local government"
+    ],
+    "senseUid": "b08ac0a9-7968-4209-88f0-7554e3c9b603",
+    "wordId": "2158910",
+    "pt": "['administração local de âmbito mais amplo']"
+  },
+  {
+    "kana": "おろそかにする",
+    "en": [
+      "to neglect",
+      "to ignore",
+      "to disregard",
+      "to make light of"
+    ],
+    "senseUid": "edb615d3-abcf-49bc-ba80-528a1cbd308e",
+    "wordId": "2158920",
+    "pt": "['negligenciar', 'ignorar', 'desconsiderar', 'menosprezar']"
+  },
+  {
+    "kana": "じょしていしんたい",
+    "en": [
+      "women's volunteer corps",
+      "groups of young female workers organized on Japanese territory during WWII"
+    ],
+    "senseUid": "3106cf68-d140-4ca3-84f8-f9095cfed692",
+    "wordId": "2158940",
+    "pt": "{\n  \"a\": [\n    \"corpo voluntário feminino\",\n    \"grupos de jovens trabalhadoras organizados em território japonês durante a Segunda Guerra Mundial\"\n  ]\n"
+  },
+  {
+    "kana": "よう",
+    "en": [
+      "well",
+      "properly",
+      "skillfully"
+    ],
+    "senseUid": "671aae2e-2bc2-4468-9e1c-bd1c62162f0f",
+    "wordId": "2158950",
+    "pt": "['bem', 'adequadamente', 'habilidosamente']"
+  },
+  {
+    "kana": "よう",
+    "en": [
+      "often"
+    ],
+    "senseUid": "5f20291c-dba4-49b0-97eb-01f5153c8371",
+    "wordId": "2158950",
+    "pt": "['de modo que', 'como', 'parecido com', 'do jeito de', 'à maneira de']"
+  },
+  {
+    "kana": "よう",
+    "en": [
+      "how (could you)",
+      "why (would you)"
+    ],
+    "senseUid": "cfb4b3c9-43d8-4b4b-b225-951eb0b519ab",
+    "wordId": "2158950",
+    "pt": "['como (você pôde)', 'por que (você faria)']"
+  },
+  {
+    "kana": "わかんない",
+    "en": [
+      "not understanding",
+      "not knowing"
+    ],
+    "senseUid": "671c372c-287f-4173-8832-32cc48a068b9",
+    "wordId": "2158960",
+    "pt": "['não sei', 'não entendi', 'não faço ideia', 'sei lá']"
+  },
+  {
+    "kana": "カミツキガメ",
+    "en": [
+      "snapping turtle (Chelydra serpentina)"
+    ],
+    "senseUid": "b38ad182-4ac5-4899-ab8b-f616edfa4074",
+    "wordId": "2158970",
+    "pt": "{\n  \"a\": [\"cágado-mordedor\", \"tartaruga-mordedora (Chelydra serpentina)\"]\n"
+  },
+  {
+    "kana": "ハリファックスだいばくはつ",
+    "en": [
+      "Halifax Explosion (December 6, 1917)"
+    ],
+    "senseUid": "dbb3de91-5054-4546-9f75-fe4d739e7489",
+    "wordId": "2158980",
+    "pt": "{\n  \"a\": [\"Explosão de Halifax (6 de dezembro de 1917)\"]\n"
+  },
+  {
+    "kana": "いいとこ",
+    "en": [
+      "good thing",
+      "strong point"
+    ],
+    "senseUid": "e32df94a-64cd-4ad3-b026-8f4240f72951",
+    "wordId": "2158990",
+    "pt": "['ponto forte', 'qualidade', 'característica positiva', 'algo bom']"
+  },
+  {
+    "kana": "いいとこ",
+    "en": [
+      "good family",
+      "prestigious school"
+    ],
+    "senseUid": "58d25149-19aa-48d2-a86c-1e7066ccf0c1",
+    "wordId": "2158990",
+    "pt": "{\n  \"a\": [\n    \"boa família\",\n    \"escola prestigiada\"\n  ]\n"
+  },
+  {
+    "kana": "いいとこ",
+    "en": [
+      "the right moment"
+    ],
+    "senseUid": "c0dc4c79-dc1b-4000-8841-865c7e71fcf1",
+    "wordId": "2158990",
+    "pt": "['momento certo']"
+  },
+  {
+    "kana": "いいとこ",
+    "en": [
+      "utter",
+      "extreme"
+    ],
+    "senseUid": "644deb5b-3dab-42fb-bafe-9f0ef1b2862a",
+    "wordId": "2158990",
+    "pt": "{\n  \"a\": [\"ponto máximo\", \"ápice\", \"clímax\", \"melhor parte\", \"momento crucial\"]\n"
+  },
+  {
+    "kana": "いいとこ",
+    "en": [
+      "at (the) best",
+      "at most"
+    ],
+    "senseUid": "1002420e-ac59-4c60-8b9d-dc8f83be09ff",
+    "wordId": "2158990",
+    "pt": "['no máximo', 'na melhor das hipóteses']"
+  },
+  {
+    "kana": "いいとこどり",
+    "en": [
+      "focusing on only the good points or strong points",
+      "incorporating the benefits (while ignoring the drawbacks)",
+      "picking the best of both (everything)",
+      "cherry-picking (e.g. information)"
+    ],
+    "senseUid": "48be4b0b-a21e-41cb-a29f-e3a52355408c",
+    "wordId": "2159000",
+    "pt": "['focar apenas nos pontos positivos ou fortes', 'incorporar os benefícios (ignorando as desvantagens)', 'escolher o melhor de ambos (ou de tudo)', 'seleção tendenciosa (por exemplo, de informações)']"
+  },
+  {
+    "kana": "セカンドライフ",
+    "en": [
+      "new life (esp. after retirement)",
+      "postretirement life"
+    ],
+    "senseUid": "e2158fae-e300-43e9-9f30-619987bcb71a",
+    "wordId": "2159010",
+    "pt": "['nova vida (especialmente após a aposentadoria)', 'vida pós-aposentadoria']"
+  },
+  {
+    "kana": "すりあわせ",
+    "en": [
+      "comparing and adjusting",
+      "reconciling",
+      "knocking into shape",
+      "bouncing of ideas, opinions, etc. off each other to obtain a fine-tuned integrated whole"
+    ],
+    "senseUid": "d58aa341-0a2c-45ff-a0c4-196824d1ba61",
+    "wordId": "2159020",
+    "pt": "['comparar e ajustar', 'conciliar', 'moldar (ajustar até a forma ideal)', 'troca de ideias ou opiniões para obter um todo integrado e refinado']"
+  },
+  {
+    "kana": "すりあわせ",
+    "en": [
+      "lapping",
+      "precision surface finishing",
+      "mating by rubbing together"
+    ],
+    "senseUid": "2f213877-4888-4457-a819-0dc22ea23b62",
+    "wordId": "2159020",
+    "pt": "['ajuste fino', 'acabamento de superfície de precisão', 'encaixe por fricção']"
+  },
+  {
+    "kana": "すりあわせ",
+    "en": [
+      "margination"
+    ],
+    "senseUid": "79a7941c-ea65-4b4c-a947-9b8ac85e918c",
+    "wordId": "2159020",
+    "pt": "{\n  \"a\": [\n    \"ajuste mútuo\",\n    \"alinhamento de expectativas\",\n    \"negociação de interesses\",\n    \"harmonização de pontos de vista\"\n  ]\n"
+  },
+  {
+    "kana": "はしごをはずされる",
+    "en": [
+      "to be left lonely at the top",
+      "to be left high and dry by one's friends",
+      "to be abandoned by one's supporters",
+      "to have the rug pulled from under one",
+      "to have the ladder pulled out from under one"
+    ],
+    "senseUid": "c7487379-7f59-46aa-b53b-b8dbd4266799",
+    "wordId": "2159030",
+    "pt": "[\n    'ficar sozinho no topo',\n    'ser deixado na mão pelos amigos',\n    'ser abandonado pelos apoiadores',\n    'ter o tapete puxado debaixo dos pés',\n    'ter a escada puxada debaixo dos pés'\n]"
+  },
+  {
+    "kana": "いちげんきゃく",
+    "en": [
+      "customer one has never met before",
+      "first-time customer"
+    ],
+    "senseUid": "813bb2a4-a9fe-492b-81ee-1e78ac33f8fa",
+    "wordId": "2159040",
+    "pt": "{\n  \"a\": [\n    \"cliente que nunca foi visto antes\",\n    \"cliente de primeira vez\"\n  ]\n"
+  },
+  {
+    "kana": "たいけんにゅうたい",
+    "en": [
+      "boot camp for new recruits (conducted by Japan's Self-Defence Force)"
+    ],
+    "senseUid": "a23fc093-0266-443d-b338-54234d9176e0",
+    "wordId": "2159050",
+    "pt": "['campo de treinamento para novos recrutas (realizado pela Força de Autodefesa do Japão)']"
+  },
+  {
+    "kana": "いちげんさん",
+    "en": [
+      "first-time customer (of an inn or a restaurant)",
+      "chance customer",
+      "customer without an introduction from a regular customer"
+    ],
+    "senseUid": "b43a132a-3437-4a44-8d7b-15f401cc1616",
+    "wordId": "2159060",
+    "pt": "['cliente de primeira vez (em uma pousada ou restaurante)', 'cliente ocasional', 'cliente sem indicação de um cliente regular']"
+  },
+  {
+    "kana": "いちげんのきゃく",
+    "en": [
+      "first-time customer (of an inn or a restaurant)",
+      "chance customer",
+      "customer without an introduction from a regular customer"
+    ],
+    "senseUid": "e6d4211d-7e6e-4415-9a97-c3bd9eb6c538",
+    "wordId": "2159070",
+    "pt": "['cliente de primeira vez (em uma pousada ou restaurante)', 'cliente ocasional', 'cliente sem indicação de um cliente regular']"
+  },
+  {
+    "kana": "よびえきしょうこうくんれんかてい",
+    "en": [
+      "Reserve Officers' Training Corps (US)",
+      "ROTC"
+    ],
+    "senseUid": "47e89d9e-a276-4921-abb3-e77c30688bac",
+    "wordId": "2159080",
+    "pt": "{\n  \"a\": [\n    \"Curso de treinamento para oficiais da reserva\"\n  ]\n"
+  },
+  {
+    "kana": "つじつまがあう",
+    "en": [
+      "to be consistent",
+      "to be coherent"
+    ],
+    "senseUid": "def5e77f-05d3-42bd-b1f3-cfd7f2cf82ce",
+    "wordId": "2159090",
+    "pt": "['fazer sentido', 'ser coerente', 'ser consistente']"
+  },
+  {
+    "kana": "か",
+    "en": [
+      "under (influence, control, conditions, etc. of)",
+      "during (war, occupation, etc.)"
+    ],
+    "senseUid": "4e2144f7-a95e-411f-89d1-4e56dfbfed07",
+    "wordId": "2159100",
+    "pt": "{\n  \"a\": [\n    \"sob (influência, controle, condições, etc. de)\",\n    \"durante (guerra, ocupação, etc.)\"\n  ]\n"
+  },
+  {
+    "kana": "こうせいろうどうしょう",
+    "en": [
+      "Minister of Health, Labour and Welfare"
+    ],
+    "senseUid": "0f86e344-a8b2-41d1-9fc6-b205e503b9c7",
+    "wordId": "2159120",
+    "pt": "{\n  \"a\": [\"Ministério da Saúde, Trabalho e Bem-Estar\"]\n"
+  },
+  {
+    "kana": "とうせんとうかく",
+    "en": [
+      "candidates (in an election) who have won or are projected to be elected"
+    ],
+    "senseUid": "b51a7dc9-dfed-4ed9-8f49-69feb4cb3350",
+    "wordId": "2159130",
+    "pt": "['candidatos eleitos ou projetados para serem eleitos (em uma eleição)']"
+  },
+  {
+    "kana": "しかくがない",
+    "en": [
+      "unqualified",
+      "without qualifications"
+    ],
+    "senseUid": "04e35f65-aa5d-4766-b1e8-caae31f77bf4",
+    "wordId": "2159140",
+    "pt": "['sem qualificação', 'não qualificado', 'sem credencial', 'não habilitado']"
+  },
+  {
+    "kana": "はしょく",
+    "en": [
+      "wave erosion"
+    ],
+    "senseUid": "db59405c-680d-46e7-9cf4-d6c6b07dccfb",
+    "wordId": "2159150",
+    "pt": "{\n  \"a\": [\"erosão marinha\"]\n"
+  },
+  {
+    "kana": "はりあな",
+    "en": [
+      "pinhole"
+    ],
+    "senseUid": "359706c6-ba76-4d52-88cf-494ab2a8b48e",
+    "wordId": "2159160",
+    "pt": "['buraco de agulha']"
+  },
+  {
+    "kana": "はりあなしゃしんき",
+    "en": [
+      "pinhole camera"
+    ],
+    "senseUid": "b1ef7839-6db9-4442-8dfc-457d09934357",
+    "wordId": "2159170",
+    "pt": "['câmera pinhole']"
+  },
+  {
+    "kana": "きがまわる",
+    "en": [
+      "to be attentive to small details"
+    ],
+    "senseUid": "ac9ddbc6-38a9-4cf1-9f31-821b3f97aaff",
+    "wordId": "2159180",
+    "pt": "['ser atento aos pequenos detalhes', 'prestar atenção aos mínimos detalhes', 'notar pequenas coisas']"
+  },
+  {
+    "kana": "きがまわる",
+    "en": [
+      "to be attentive to others (or others' concerns)"
+    ],
+    "senseUid": "631f9236-3c1a-42d0-b10c-73aa47feb172",
+    "wordId": "2159180",
+    "pt": "['ser atencioso com os outros', 'preocupar-se com as necessidades dos outros', 'perceber as preocupações alheias']"
+  },
+  {
+    "kana": "きがまわる",
+    "en": [
+      "to have one's mind turn groundlessly to something negative"
+    ],
+    "senseUid": "ac02c193-95cb-4194-9817-4514aa82ccba",
+    "wordId": "2159180",
+    "pt": "['preocupar-se desnecessariamente com algo negativo', 'deixar a mente se voltar sem motivo para pensamentos negativos']"
+  },
+  {
+    "kana": "はたらきとおす",
+    "en": [
+      "to work straight through without stopping"
+    ],
+    "senseUid": "991ffc48-9e45-4b86-bad1-9328a0e45ced",
+    "wordId": "2159190",
+    "pt": "['trabalhar sem parar até o fim']"
+  },
+  {
+    "kana": "てがこむ",
+    "en": [
+      "to be intricate",
+      "to be elaborate",
+      "to be complicated",
+      "to be complex"
+    ],
+    "senseUid": "8625eb44-c30c-4557-b43d-9aa68851c01f",
+    "wordId": "2159200",
+    "pt": "['ser elaborado', 'ser intricado', 'ser complicado', 'ser complexo']"
+  },
+  {
+    "kana": "ポッドキャスト",
+    "en": [
+      "podcast"
+    ],
+    "senseUid": "4f161c63-49cd-4c21-b411-212ba2edd462",
+    "wordId": "2159230",
+    "pt": "{\n  \"a\": [\"podcast\"]\n"
+  },
+  {
+    "kana": "えんがちょきった",
+    "en": [
+      "go away, germs!",
+      "no cooties on me!"
+    ],
+    "senseUid": "76253d09-c72d-4e4d-bd30-ec4a378c2363",
+    "wordId": "2159220",
+    "pt": "{\n  \"a\": [\n    \"Sai, micróbio!\",\n    \"Sem germes em mim!\"\n  ]\n"
+  },
+  {
+    "kana": "ポッドキャスティング",
+    "en": [
+      "podcasting"
+    ],
+    "senseUid": "b9b73a2f-98b7-40c3-82f4-b604240d4b09",
+    "wordId": "2159240",
+    "pt": "['podcasting']"
+  },
+  {
+    "kana": "ウェブログ",
+    "en": [
+      "weblog",
+      "blog"
+    ],
+    "senseUid": "c21b255a-a91e-4654-941d-4beb4c9aae44",
+    "wordId": "2159250",
+    "pt": "{\n  \"a\": [\n    \"weblog\",\n    \"blog\",\n    \"diário online\",\n    \"blogue\"\n  ]\n"
+  },
+  {
+    "kana": "ウェブカム",
+    "en": [
+      "webcam"
+    ],
+    "senseUid": "46115cdb-04c1-48ea-b9d0-fdc3bdc4d271",
+    "wordId": "2159260",
+    "pt": "['webcam']"
+  },
+  {
+    "kana": "ウェブページ",
+    "en": [
+      "web page",
+      "webpage"
+    ],
+    "senseUid": "e2444ff3-3bf5-4f6b-8a90-103289d8215f",
+    "wordId": "2159270",
+    "pt": "['página da web', 'página web']"
+  },
+  {
+    "kana": "ウェブマスター",
+    "en": [
+      "webmaster"
+    ],
+    "senseUid": "c86ca6ca-6f70-4f76-82f7-aa2a2c923caa",
+    "wordId": "2159280",
+    "pt": "['webmaster']"
+  },
+  {
+    "kana": "ディー・ブイ・ディー",
+    "en": [
+      "digital versatile disc",
+      "DVD"
+    ],
+    "senseUid": "8860b1f9-945f-4205-93b6-c1bf91c1df87",
+    "wordId": "2159290",
+    "pt": "{\n  \"a\": [\"disco digital versátil\", \"DVD\"]\n"
+  },
+  {
+    "kana": "フラッシュメモリ",
+    "en": [
+      "flash memory"
+    ],
+    "senseUid": "afaaa92c-f76a-45ce-a7d6-4a128ee1b135",
+    "wordId": "2159300",
+    "pt": "['memória flash']"
+  },
+  {
+    "kana": "トラックボール",
+    "en": [
+      "trackball"
+    ],
+    "senseUid": "752c6d93-0798-4377-82c0-aef9203dcb13",
+    "wordId": "2159310",
+    "pt": "['bola de controle']"
+  },
+  {
+    "kana": "エル・シー・ディー",
+    "en": [
+      "liquid crystal display",
+      "LCD"
+    ],
+    "senseUid": "77a9fd4d-0c1e-487f-afac-8d4ee247a1be",
+    "wordId": "2159320",
+    "pt": "{\n  \"a\": [\"tela de cristal líquido\", \"LCD\"]\n"
+  },
+  {
+    "kana": "シー・アール・ティー",
+    "en": [
+      "cathode-ray tube",
+      "CRT"
+    ],
+    "senseUid": "bb6298de-9f39-4d0d-994d-295226bdb7f1",
+    "wordId": "2159330",
+    "pt": "['tubo de raios catódicos', 'CRT']"
+  },
+  {
+    "kana": "タッチパッド",
+    "en": [
+      "touchpad",
+      "trackpad"
+    ],
+    "senseUid": "aa5557d3-fcf9-4d8b-a784-de6c783c3987",
+    "wordId": "2159340",
+    "pt": "['touchpad', 'trackpad', 'painel sensível ao toque', 'superfície tátil']"
+  },
+  {
+    "kana": "タブレットピーシー",
+    "en": [
+      "tablet personal computer (tablet PC)"
+    ],
+    "senseUid": "343c4c96-1029-49b7-bee2-b2b97ac7343d",
+    "wordId": "2159350",
+    "pt": "['computador pessoal tipo tablet (tablet PC)']"
+  },
+  {
+    "kana": "ピー・ディー・エー",
+    "en": [
+      "personal digital assistant",
+      "PDA"
+    ],
+    "senseUid": "723b8d81-8039-4518-8aee-43449170c3d2",
+    "wordId": "2159360",
+    "pt": "{\n  \"a\": [\"assistente pessoal digital\", \"PDA\"]\n"
+  },
+  {
+    "kana": "けいたいじょうほうたんまつ",
+    "en": [
+      "personal digital assistant",
+      "PDA"
+    ],
+    "senseUid": "fae6bcfd-2cb4-4c76-a642-4c018f978e75",
+    "wordId": "2159370",
+    "pt": "['assistente digital pessoal', 'PDA']"
+  },
+  {
+    "kana": "きほんソフト",
+    "en": [
+      "operating system",
+      "OS"
+    ],
+    "senseUid": "c5c0dd7a-7f10-4706-9e5f-288b03693714",
+    "wordId": "2159380",
+    "pt": "{\n  \"a\": [\"sistema operacional\", \"SO\"]\n"
+  },
+  {
+    "kana": "オー・エス",
+    "en": [
+      "operating system",
+      "OS"
+    ],
+    "senseUid": "f48a9ccd-f84c-4519-90b8-278ce98bbec1",
+    "wordId": "2159390",
+    "pt": "{\n  \"a\": [\"sistema operacional\", \"OS\"]\n"
+  },
+  {
+    "kana": "イメージスキャナー",
+    "en": [
+      "image scanner"
+    ],
+    "senseUid": "23f92e1b-4ed8-43f2-8f6b-43fd314ddf0c",
+    "wordId": "2159410",
+    "pt": "['scanner de imagem']"
+  },
+  {
+    "kana": "むせんラン",
+    "en": [
+      "wireless local area network",
+      "wireless LAN",
+      "WLAN"
+    ],
+    "senseUid": "c28b6b3b-fe05-4729-a0ea-b79e636e7b06",
+    "wordId": "2159420",
+    "pt": "['rede local sem fio', 'LAN sem fio', 'WLAN']"
+  },
+  {
+    "kana": "ユー・エス・ビー",
+    "en": [
+      "USB",
+      "universal serial bus"
+    ],
+    "senseUid": "adf9a132-4a9d-4d72-9b79-5ddc5b0f040f",
+    "wordId": "2159430",
+    "pt": "{\n  \"a\": [\"USB\", \"barramento serial universal\"]\n"
+  },
+  {
+    "kana": "ユー・エス・ビー",
+    "en": [
+      "USB flash drive",
+      "USB memory stick"
+    ],
+    "senseUid": "adcacebe-6535-4c6c-b1da-008a799f21f9",
+    "wordId": "2159430",
+    "pt": "{\n  \"a\": [\"pen drive\", \"memória USB\"]\n"
+  },
+  {
+    "kana": "ユーエスビーメモリー",
+    "en": [
+      "USB flash drive",
+      "USB memory stick",
+      "thumb drive"
+    ],
+    "senseUid": "7e1ba211-f9df-4bb7-9296-67851f4df5b3",
+    "wordId": "2159440",
+    "pt": "['pen drive', 'memória USB', 'pendrive']"
+  }
+]

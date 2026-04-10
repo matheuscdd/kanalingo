@@ -1,0 +1,938 @@
+[
+  {
+    "kana": "かそうそうちざひょうりょういき",
+    "en": [
+      "virtual device coordinate domain"
+    ],
+    "senseUid": "666e853e-84d0-447d-8933-fe66cdde7950",
+    "wordId": "2344080",
+    "pt": "['domínio de coordenadas de dispositivo virtual']"
+  },
+  {
+    "kana": "かそうてき",
+    "en": [
+      "virtual"
+    ],
+    "senseUid": "bbc4d82a-532a-484c-ac60-029696d9ef7a",
+    "wordId": "2344090",
+    "pt": "['virtual', 'imaginário', 'hipotético']"
+  },
+  {
+    "kana": "かそうてきこうかんきょく",
+    "en": [
+      "virtual (switching) office"
+    ],
+    "senseUid": "53445808-0464-4913-b42a-f2c0891eedbf",
+    "wordId": "2344100",
+    "pt": "{\n  \"a\": [\"escritório virtual de comutação\"]\n"
+  },
+  {
+    "kana": "かそうもじしゅうごう",
+    "en": [
+      "virtual character set"
+    ],
+    "senseUid": "351becba-27aa-4309-a9ef-54818646b7ab",
+    "wordId": "2344110",
+    "pt": "['conjunto de caracteres virtuais']"
+  },
+  {
+    "kana": "かそうへいいきもう",
+    "en": [
+      "VPN",
+      "Virtual Private Network"
+    ],
+    "senseUid": "af4a6d50-934a-48e9-a684-6fe1fa1c8eaa",
+    "wordId": "2344120",
+    "pt": "{\n  \"a\": [\"Rede Privada Virtual\"]\n"
+  },
+  {
+    "kana": "かりはいれつ",
+    "en": [
+      "dummy array"
+    ],
+    "senseUid": "589b77e7-fc67-4c3d-9bd8-27c9898b41a9",
+    "wordId": "2344130",
+    "pt": "['arranjo fictício']"
+  },
+  {
+    "kana": "くわわったこりょう",
+    "en": [
+      "offered load"
+    ],
+    "senseUid": "ddccba75-b540-4d53-978b-399723d8165d",
+    "wordId": "2344160",
+    "pt": "{\n  \"a\": [\"carga oferecida\"]\n"
+  },
+  {
+    "kana": "かげんさようそ",
+    "en": [
+      "adding operator"
+    ],
+    "senseUid": "329fcc38-fe61-4366-ad47-243202e6beff",
+    "wordId": "2344180",
+    "pt": "{\n  \"a\": [\"operador de adição\"]\n"
+  },
+  {
+    "kana": "かげんえんざんし",
+    "en": [
+      "adding operator"
+    ],
+    "senseUid": "26ea6af1-7d5a-4348-9a4c-b3821e1060cd",
+    "wordId": "2344170",
+    "pt": "['operador de adição']"
+  },
+  {
+    "kana": "かげんさんき",
+    "en": [
+      "adder-subtracter"
+    ],
+    "senseUid": "4fc95067-6d23-438d-a755-c354a2f350f7",
+    "wordId": "2344190",
+    "pt": "{\n  \"a\": [\"somador-subtrator\"]\n"
+  },
+  {
+    "kana": "かげんさんじかん",
+    "en": [
+      "add-subtract time"
+    ],
+    "senseUid": "eb0e1f50-fd07-4bcd-ac6f-0e4ae93f0c09",
+    "wordId": "2344200",
+    "pt": "{\n  \"a\": [\n    \"tempo de soma e subtração\"\n  ]\n"
+  },
+  {
+    "kana": "かこうデータ",
+    "en": [
+      "processed data",
+      "raw data"
+    ],
+    "senseUid": "7810cf56-d4e4-41a7-baa4-11b7f8464601",
+    "wordId": "2344210",
+    "pt": "['dados processados', 'dados brutos']"
+  },
+  {
+    "kana": "かさんせきぶんき",
+    "en": [
+      "summing integrator"
+    ],
+    "senseUid": "f8d294e6-4590-417b-a409-e1a4b0b12179",
+    "wordId": "2344230",
+    "pt": "['integrador somador']"
+  },
+  {
+    "kana": "かそくじかん",
+    "en": [
+      "acceleration time"
+    ],
+    "senseUid": "314eb742-dad8-4435-a477-a0bc379dfa4c",
+    "wordId": "2344240",
+    "pt": "['tempo de aceleração']"
+  },
+  {
+    "kana": "かにゅうしゃデータ",
+    "en": [
+      "subscriber data"
+    ],
+    "senseUid": "42299270-374a-46fb-96b4-6ae20658ba92",
+    "wordId": "2344260",
+    "pt": "['dados de assinante']"
+  },
+  {
+    "kana": "かにゅうしゃアドレス",
+    "en": [
+      "subscriber address"
+    ],
+    "senseUid": "72bf61b6-27f2-4131-ac13-c9b744a0894d",
+    "wordId": "2344250",
+    "pt": "['endereço do assinante']"
+  },
+  {
+    "kana": "かにゅうしゃせんこうかんき",
+    "en": [
+      "local switch",
+      "LS"
+    ],
+    "senseUid": "a465bc6f-5787-4503-bb20-1882dd64ccc4",
+    "wordId": "2344280",
+    "pt": "{\n  \"a\": [\"período de seleção de novos membros\"]\n"
+  },
+  {
+    "kana": "かにゅうしゃかいせん",
+    "en": [
+      "subscriber line"
+    ],
+    "senseUid": "955c66b6-c0b2-4b90-8529-df52d6eb58cd",
+    "wordId": "2344270",
+    "pt": "['linha de assinante']"
+  },
+  {
+    "kana": "かにゅうしゃたくないそうち",
+    "en": [
+      "customer premises equipment",
+      "CPE"
+    ],
+    "senseUid": "b10aed05-091f-4c24-9a52-8071f1a60227",
+    "wordId": "2344290",
+    "pt": "['equipamento nas instalações do cliente']"
+  },
+  {
+    "kana": "かにゅうしゃばんごう",
+    "en": [
+      "subscriber number"
+    ],
+    "senseUid": "d39fb3d9-9c80-4267-9c32-5d7a624e7cc3",
+    "wordId": "2344300",
+    "pt": "{\n  \"a\": [\n    \"número de assinante\"\n  ]\n"
+  },
+  {
+    "kana": "かほうせいはくしょくガウスざつおん",
+    "en": [
+      "AWGN",
+      "additive white gaussian noise"
+    ],
+    "senseUid": "045e2bba-a67e-4d6c-b119-e27eb0a5f084",
+    "wordId": "2344310",
+    "pt": "{\n  \"a\": [\n    \"Ruído gaussiano branco aditivo\"\n  ]\n"
+  },
+  {
+    "kana": "かぎゃくカウンタ",
+    "en": [
+      "counter",
+      "reversible counter"
+    ],
+    "senseUid": "bff6926b-6c67-4217-8b99-ee9f695f24ec",
+    "wordId": "2344320",
+    "pt": "{\n  \"a\": [\n    \"contador reversível\",\n    \"contador bidirecional\"\n  ]\n"
+  },
+  {
+    "kana": "かぎゃくあっしゅく",
+    "en": [
+      "lossless compression"
+    ],
+    "senseUid": "63eae74d-a84d-4dff-a554-f4d28ecdd01a",
+    "wordId": "2344330",
+    "pt": "['compressão sem perdas']"
+  },
+  {
+    "kana": "かしかじゅんじょ",
+    "en": [
+      "imaging order"
+    ],
+    "senseUid": "71a67ad2-697d-4e81-855d-b26093e1f40f",
+    "wordId": "2344350",
+    "pt": "{\n  \"a\": [\"ordem de visualização\"]\n"
+  },
+  {
+    "kana": "かぎゃくけいすうき",
+    "en": [
+      "reversible counter"
+    ],
+    "senseUid": "b28e06ab-47f7-4ebc-87f7-7e56c33a78bb",
+    "wordId": "2344340",
+    "pt": "{\n  \"a\": [\n    \"contador reversível\"\n  ]\n"
+  },
+  {
+    "kana": "かしかしょり",
+    "en": [
+      "imaging process"
+    ],
+    "senseUid": "79fa50a0-85e5-40bf-b5b1-c1aca6da05f4",
+    "wordId": "2344360",
+    "pt": "{\n  \"a\": [\n    \"processo de formação de imagem\"\n  ]\n"
+  },
+  {
+    "kana": "かはんがた",
+    "en": [
+      "portable"
+    ],
+    "senseUid": "5623e4d3-c2a5-4f8e-96fb-64bbb1049831",
+    "wordId": "2344380",
+    "pt": "{\n  \"a\": [\"portátil\"]\n"
+  },
+  {
+    "kana": "かちょうしゅうはすう",
+    "en": [
+      "AF",
+      "Audio Frequency"
+    ],
+    "senseUid": "34403e3b-8a62-4a13-8156-c3b3ebff5fe5",
+    "wordId": "2344370",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かちょうしゅうはすう\",\n      \"gloss\": [\"Frequência de áudio\", \"Frequência audível\"],\n      \"explicação\": \"Refere-se à faixa de frequências sonoras que podem ser percebidas pelo ouvido humano, geralmente entre 20 Hz e 20 kHz.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "かへんビットレート",
+    "en": [
+      "variable bit rate",
+      "VBR"
+    ],
+    "senseUid": "9f2b4ce5-42d2-4390-a48a-5abb07bfa189",
+    "wordId": "2344390",
+    "pt": "{\n  \"a\": [\"taxa de bits variável\", \"VBR\"]\n"
+  },
+  {
+    "kana": "かへんかんすうはっせいき",
+    "en": [
+      "variable function generator"
+    ],
+    "senseUid": "edfdfb40-3dbc-499f-a7dc-1be40b2e318e",
+    "wordId": "2344400",
+    "pt": "{\n  \"a\": [\"gerador de função variável\"]\n"
+  },
+  {
+    "kana": "かへんじおくり",
+    "en": [
+      "variable spacing"
+    ],
+    "senseUid": "99a836b6-39cb-483a-8c52-d8bf58ff61e7",
+    "wordId": "2344410",
+    "pt": "{\n  \"a\": [\"espaçamento variável\"]\n"
+  },
+  {
+    "kana": "かへんしょうすうてんひょうじほう",
+    "en": [
+      "variable-point representation system"
+    ],
+    "senseUid": "38c537c5-9e6b-4479-b35f-b3d9d679f082",
+    "wordId": "2344420",
+    "pt": "{\n  \"a\": [\"sistema de representação em ponto flutuante\"]\n"
+  },
+  {
+    "kana": "かへんちょうレコード",
+    "en": [
+      "variable length record"
+    ],
+    "senseUid": "ed8726e5-05cd-4f12-895f-c88529a73ddc",
+    "wordId": "2344430",
+    "pt": "{\n  \"a\": [\"registro de comprimento variável\"]\n"
+  },
+  {
+    "kana": "かへんはんぷくデータこうもく",
+    "en": [
+      "variable occurrence data item"
+    ],
+    "senseUid": "77a526d3-f35b-4077-ab39-dfad0b4e077c",
+    "wordId": "2344440",
+    "pt": "{\n  \"a\": [\"item de dados de ocorrência variável\"]\n"
+  },
+  {
+    "kana": "かへんぶ",
+    "en": [
+      "variant part"
+    ],
+    "senseUid": "e2632897-d28f-49f0-a4a5-ea902bed6255",
+    "wordId": "2344450",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かへんぶ\",\n      \"português\": \"parte variante\",\n      \"notas\": \"Em japonês, かへんぶ (variant part) refere-se a uma parte de algo que pode mudar ou variar, frequentemente usado em contextos técnicos ou acadêmicos.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "かようじかん",
+    "en": [
+      "available time"
+    ],
+    "senseUid": "2f6d5fd0-5b32-43b5-9c4a-1201736cde26",
+    "wordId": "2344470",
+    "pt": "['tempo disponível']"
+  },
+  {
+    "kana": "かようりつ",
+    "en": [
+      "availability ratio"
+    ],
+    "senseUid": "6a00fc32-0837-4b04-9128-9eabe3994afc",
+    "wordId": "2344490",
+    "pt": "{\n  \"a\": [\n    \"taxa de disponibilidade\"\n  ]\n"
+  },
+  {
+    "kana": "かがくぎじゅつけいさん",
+    "en": [
+      "scientific computing"
+    ],
+    "senseUid": "8529f9eb-5c21-4c0d-bc30-1c27ad125baf",
+    "wordId": "2344500",
+    "pt": "{\n  \"a\": [\"computação científica\"]\n"
+  },
+  {
+    "kana": "かがくてききすうほう",
+    "en": [
+      "scientific notation"
+    ],
+    "senseUid": "372a6e3a-d64d-496a-b1a9-48cdb0f6ed85",
+    "wordId": "2344510",
+    "pt": "{\n  \"a\": [\n    \"notação científica\"\n  ]\n"
+  },
+  {
+    "kana": "かどうちゅう",
+    "en": [
+      "working",
+      "in operation",
+      "running",
+      "active"
+    ],
+    "senseUid": "2d95ac7c-28f7-4929-8385-bea96313951f",
+    "wordId": "2344520",
+    "pt": "{\n  \"a\": [\n    \"em funcionamento\",\n    \"em operação\",\n    \"em execução\",\n    \"ativo\"\n  ]\n"
+  },
+  {
+    "kana": "かきんデータ",
+    "en": [
+      "billing data"
+    ],
+    "senseUid": "6fd9db8f-a01f-4e72-9187-21e0589ab5eb",
+    "wordId": "2344530",
+    "pt": "{\n  \"a\": [\"dados pagos\"]\n"
+  },
+  {
+    "kana": "かきんレコード",
+    "en": [
+      "billing record"
+    ],
+    "senseUid": "47ba9339-9376-46d8-b6ae-8dedc24f67ed",
+    "wordId": "2344540",
+    "pt": "{\n  \"a\": [\"registro de cobrança\"]\n"
+  },
+  {
+    "kana": "かきんきのう",
+    "en": [
+      "billing function"
+    ],
+    "senseUid": "a084fa76-5b96-4cda-bf08-3b01a85ccd4e",
+    "wordId": "2344550",
+    "pt": "['função de cobrança']"
+  },
+  {
+    "kana": "かきんじょうほう",
+    "en": [
+      "billing information",
+      "accounting information"
+    ],
+    "senseUid": "c0a9b800-d202-4f0b-a338-f8b37943a00d",
+    "wordId": "2344560",
+    "pt": "{\n  \"a\": [\n    \"informações de faturamento\",\n    \"informações contábeis\"\n  ]\n"
+  },
+  {
+    "kana": "かきんせい",
+    "en": [
+      "fee-based system",
+      "billing system"
+    ],
+    "senseUid": "e60c2c4e-d3ab-4545-af6d-e6f5bd5da381",
+    "wordId": "2344580",
+    "pt": "{\n  \"a\": [\n    \"sistema de cobrança\",\n    \"sistema pago\",\n    \"sistema baseado em taxas\"\n  ]\n"
+  },
+  {
+    "kana": "かきんどうさゆうこうきかん",
+    "en": [
+      "accounting regime"
+    ],
+    "senseUid": "1d0dcdf6-ac15-4dc3-80ac-e79ce2167be3",
+    "wordId": "2344600",
+    "pt": "{\n  \"a\": [\"período de vigência do regime contábil\"]\n"
+  },
+  {
+    "kana": "かじょうきせい",
+    "en": [
+      "overregulation"
+    ],
+    "senseUid": "1e673017-ee8b-4815-adbe-8b3c0f38a3bf",
+    "wordId": "2344610",
+    "pt": "['regulação excessiva']"
+  },
+  {
+    "kana": "かふか",
+    "en": [
+      "overload"
+    ],
+    "senseUid": "d7296dd9-6830-4ac2-b157-e3f3d0ba6edb",
+    "wordId": "2344620",
+    "pt": "{\n  \"a\": [\"sobrecarga\"]\n"
+  },
+  {
+    "kana": "がそかんかく",
+    "en": [
+      "pel spacing"
+    ],
+    "senseUid": "d7bf7a7a-9009-481f-8ca0-ba7258671b17",
+    "wordId": "2344630",
+    "pt": "['espaçamento entre peles']"
+  },
+  {
+    "kana": "がそしんこうほうこう",
+    "en": [
+      "pel path"
+    ],
+    "senseUid": "12ae2dde-f896-4d46-8e1d-a012f2c9e962",
+    "wordId": "2344640",
+    "pt": "{\n  \"a\": [\"caminho do pelo\"]\n"
+  },
+  {
+    "kana": "がそはいれつ",
+    "en": [
+      "pel array"
+    ],
+    "senseUid": "aae51c2d-6ebd-473e-942d-89654b9e29ab",
+    "wordId": "2344650",
+    "pt": "{\n  \"a\": [\"matriz de conchas\"]\n"
+  },
+  {
+    "kana": "がぞうデータ",
+    "en": [
+      "image data",
+      "graphics data",
+      "digital image"
+    ],
+    "senseUid": "41051ab7-9248-4ba8-ab6c-66f07f6ebda5",
+    "wordId": "2344660",
+    "pt": "['dados de imagem', 'dados gráficos', 'imagem digital']"
+  },
+  {
+    "kana": "がぞうパターンにんしき",
+    "en": [
+      "pictorial pattern recognition"
+    ],
+    "senseUid": "5352f509-2420-449d-932a-900a73a6aad1",
+    "wordId": "2344670",
+    "pt": "['reconhecimento de padrões pictóricos']"
+  },
+  {
+    "kana": "がぞうファイル",
+    "en": [
+      "graphics file"
+    ],
+    "senseUid": "31b692e3-c65e-42b4-8433-b55dcdb1a637",
+    "wordId": "2344680",
+    "pt": "['arquivo de imagem']"
+  },
+  {
+    "kana": "がぞうあっしゅく",
+    "en": [
+      "image compression"
+    ],
+    "senseUid": "88666671-d182-45a7-aeea-565e3c59f800",
+    "wordId": "2344690",
+    "pt": "['compressão de imagem']"
+  },
+  {
+    "kana": "がぞうあっしゅくぎじゅつ",
+    "en": [
+      "image compression technology"
+    ],
+    "senseUid": "d43e7fa4-8b2b-4cb0-9b15-376106acc5b6",
+    "wordId": "2344700",
+    "pt": "['tecnologia de compressão de imagem']"
+  },
+  {
+    "kana": "がぞうしりょう",
+    "en": [
+      "image data",
+      "documents incorporating images"
+    ],
+    "senseUid": "59fb60a7-8f83-4138-aae7-5e3513265a18",
+    "wordId": "2344710",
+    "pt": "{\n  \"a\": [\n    \"dados de imagem\",\n    \"documentos com imagens\"\n  ]\n"
+  },
+  {
+    "kana": "がぞうようそ",
+    "en": [
+      "picture element",
+      "pel"
+    ],
+    "senseUid": "d0a3e9eb-d0a3-406f-aef2-e9fef34cd3dd",
+    "wordId": "2344730",
+    "pt": "{\n  \"a\": [\n    \"elemento de imagem\",\n    \"pel\"\n  ]\n"
+  },
+  {
+    "kana": "がぞうじょうほう",
+    "en": [
+      "image information",
+      "image data"
+    ],
+    "senseUid": "f3790611-5609-4bed-a379-4558f29cd2a9",
+    "wordId": "2344720",
+    "pt": "{\n  \"a\": [\n    \"informação da imagem\",\n    \"dados da imagem\"\n  ]\n"
+  },
+  {
+    "kana": "がぞうれっか",
+    "en": [
+      "image, video degradation"
+    ],
+    "senseUid": "cb256871-9cb8-4c71-b716-2b829f73e86c",
+    "wordId": "2344740",
+    "pt": "['degradação de imagem, degradação de vídeo']"
+  },
+  {
+    "kana": "がめんサイズ",
+    "en": [
+      "screen size"
+    ],
+    "senseUid": "47149f29-c28e-418d-8ffc-3c7b9574ad82",
+    "wordId": "2344750",
+    "pt": "['tamanho da tela']"
+  },
+  {
+    "kana": "がめんとりこみ",
+    "en": [
+      "screen capture"
+    ],
+    "senseUid": "0d664c16-b65e-4e15-9c4d-b5ddb5231646",
+    "wordId": "2344760",
+    "pt": "['captura de tela']"
+  },
+  {
+    "kana": "がめんぶんかつ",
+    "en": [
+      "screen separation"
+    ],
+    "senseUid": "7763a23d-0f16-4a4b-8e06-fa5220853d0d",
+    "wordId": "2344790",
+    "pt": "['divisão de tela']"
+  },
+  {
+    "kana": "がめんじょう",
+    "en": [
+      "on-screen"
+    ],
+    "senseUid": "58818c2d-edb7-41ec-b56c-1682fe8325df",
+    "wordId": "2344770",
+    "pt": "['na tela']"
+  },
+  {
+    "kana": "かいけいしょり",
+    "en": [
+      "accounting",
+      "(the) accounting process",
+      "account processing"
+    ],
+    "senseUid": "4fb4e7e2-4fbb-449a-80af-340d3415cba1",
+    "wordId": "2344810",
+    "pt": "['processamento contábil', 'processamento de contas', 'processo de contabilidade']"
+  },
+  {
+    "kana": "かいわけいげんご",
+    "en": [
+      "conversational language"
+    ],
+    "senseUid": "c8062b92-040c-44de-ad26-bfefabce7920",
+    "wordId": "2344830",
+    "pt": "{\n  \"a\": [\"linguagem coloquial\"]\n"
+  },
+  {
+    "kana": "かいぎしりょう",
+    "en": [
+      "records",
+      "transactions"
+    ],
+    "senseUid": "815cfe7e-4684-44c7-80c0-5fb83e2cc806",
+    "wordId": "2344800",
+    "pt": "['atos da reunião', 'registro de transações']"
+  },
+  {
+    "kana": "かいわがたしょり",
+    "en": [
+      "conversational processing"
+    ],
+    "senseUid": "beac6e0e-136e-4f5f-be0b-13a9317e892f",
+    "wordId": "2344840",
+    "pt": "['processamento conversacional']"
+  },
+  {
+    "kana": "かいわがた",
+    "en": [
+      "conversational mode",
+      "interactive mode"
+    ],
+    "senseUid": "993f7128-47ac-4c62-900c-c2fcd9d32409",
+    "wordId": "2344850",
+    "pt": "{\n  \"a\": [\n    \"modo conversacional\",\n    \"modo interativo\"\n  ]\n"
+  },
+  {
+    "kana": "かいしゃくがたげんご",
+    "en": [
+      "interpreted language"
+    ],
+    "senseUid": "4003eeeb-f5d9-4e25-b23d-3f555f1ae8b5",
+    "wordId": "2344860",
+    "pt": "{\n  \"a\": [\"linguagem interpretada\"]\n"
+  },
+  {
+    "kana": "かいしゃくじっこう",
+    "en": [
+      "interpretation"
+    ],
+    "senseUid": "9baae223-c412-453e-bc23-e5c4fbe2f615",
+    "wordId": "2344880",
+    "pt": "{\n  \"a\": [\n    \"interpretação (no sentido de explicar ou dar sentido a algo, especialmente em contextos tradicionais japoneses, como artes marciais ou cerimônias, onde かいしゃく pode significar interpretar ou executar um papel específico)\"\n  ]\n"
+  },
+  {
+    "kana": "かいしゃくじっこうプログラム",
+    "en": [
+      "interpreter",
+      "interpretive program"
+    ],
+    "senseUid": "a87c2219-226e-4767-8e8f-f3a54ee6a36f",
+    "wordId": "2344890",
+    "pt": "['programa de execução interpretativa', 'programa interpretador']"
+  },
+  {
+    "kana": "かいどくキー",
+    "en": [
+      "decryption key"
+    ],
+    "senseUid": "ebaa5c10-0cf1-4c84-96eb-655e7128fe84",
+    "wordId": "2344900",
+    "pt": "{\n  \"a\": [\"chave de decodificação\"]\n"
+  },
+  {
+    "kana": "まわりこみ",
+    "en": [
+      "wraparound"
+    ],
+    "senseUid": "30298a27-c122-404a-b8fa-d1505b509e60",
+    "wordId": "2344930",
+    "pt": "['contorno', 'dar a volta', 'envolver', 'circundar', 'passar por trás']"
+  },
+  {
+    "kana": "かいほうようきゅう",
+    "en": [
+      "release request"
+    ],
+    "senseUid": "1c3c42f9-a096-4e9d-8976-3c9de07ddb8a",
+    "wordId": "2344920",
+    "pt": "{\n  \"a\": [\n    \"solicitação de liberação\"\n  ]\n"
+  },
+  {
+    "kana": "かいきテスト",
+    "en": [
+      "regression test"
+    ],
+    "senseUid": "3e5492df-96b7-4432-9e80-54fd0ae02a37",
+    "wordId": "2344940",
+    "pt": "['teste de regressão']"
+  },
+  {
+    "kana": "かいせんインタフェース",
+    "en": [
+      "line interface"
+    ],
+    "senseUid": "391d0d96-b9c0-4115-a16d-543d673c7c45",
+    "wordId": "2344960",
+    "pt": "{\n  \"a\": [\n    \"interface de linha\"\n  ]\n"
+  },
+  {
+    "kana": "かいせんインタフェースモジュール",
+    "en": [
+      "line interface module"
+    ],
+    "senseUid": "750ee6a9-46d8-4a3e-ab6f-91360916b4fe",
+    "wordId": "2344970",
+    "pt": "{\n  \"a\": [\"módulo de interface de linha\"]\n"
+  },
+  {
+    "kana": "かいせんリセール",
+    "en": [
+      "communications line resale"
+    ],
+    "senseUid": "0ecea53c-a636-4b55-bf5e-d7463a02138e",
+    "wordId": "2344980",
+    "pt": "['revenda de linha de comunicação']"
+  },
+  {
+    "kana": "かいせんレート",
+    "en": [
+      "line rate"
+    ],
+    "senseUid": "040c256a-ec8c-434f-9b20-5eb4bea207e7",
+    "wordId": "2344990",
+    "pt": "['taxa de linha']"
+  },
+  {
+    "kana": "かいせんぎょうしゃ",
+    "en": [
+      "telecommunications carrier",
+      "PTT"
+    ],
+    "senseUid": "2228fba2-311e-43d6-a5f2-b8c506f28fb9",
+    "wordId": "2345000",
+    "pt": "{\n  \"a\": [\n    \"operadora de telecomunicações\",\n    \"empresa de telecomunicações\",\n    \"transportadora de telecomunicações\",\n    \"PTT (Administração Postal, Telégrafos e Telefones)\"\n  ]\n"
+  },
+  {
+    "kana": "かいせんぐん",
+    "en": [
+      "trunk group"
+    ],
+    "senseUid": "119d7b62-624e-4241-b015-a3635f9ed26a",
+    "wordId": "2345010",
+    "pt": "{\n  \"a\": [\"grupo troncal\"]\n"
+  },
+  {
+    "kana": "かいせんしゅべつ",
+    "en": [
+      "line type",
+      "line classification"
+    ],
+    "senseUid": "2258802c-93e3-4f50-9e90-e4f09484733d",
+    "wordId": "2345020",
+    "pt": "{\n  \"a\": [\"tipo de linha\", \"classificação de linha\"]\n"
+  },
+  {
+    "kana": "かいせんしゅうたん",
+    "en": [
+      "line termination"
+    ],
+    "senseUid": "c164b707-9b43-42b4-b0f9-4ae827ee2f12",
+    "wordId": "2345030",
+    "pt": "{\n  \"a\": [\"finalização de linha\"]\n"
+  },
+  {
+    "kana": "かいせんしゅうたんそうち",
+    "en": [
+      "DCE",
+      "Data Circuit Termination Equipment",
+      "Digital Service Unit",
+      "line terminating equipment",
+      "DSU",
+      "LTE"
+    ],
+    "senseUid": "43501c1e-ecb4-4799-b3d8-ff4f9981113c",
+    "wordId": "2345040",
+    "pt": "{\n  \"a\": [\n    \"Equipamento de terminação de circuito de dados\",\n    \"Unidade de serviço digital\",\n    \"Equipamento de terminação de linha\"\n  ]\n"
+  },
+  {
+    "kana": "かいせんせつだん",
+    "en": [
+      "hang-up",
+      "HUP (signal)"
+    ],
+    "senseUid": "e44761b8-f122-4ec3-b6d0-76c9348558e9",
+    "wordId": "2345060",
+    "pt": "{\n  \"a\": [\n    \"desconexão\",\n    \"interrupção de linha\",\n    \"corte de conexão\"\n  ]\n"
+  },
+  {
+    "kana": "かいせんきりかえ",
+    "en": [
+      "line switching"
+    ],
+    "senseUid": "89bb6450-6264-4414-9e95-efdab14760ee",
+    "wordId": "2345050",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"かいせんきりかえ\",\n      \"gloss\": [\"comutação de linha\", \"mudança de linha\", \"alternância de linha\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "かいせんそうだつ",
+    "en": [
+      "contention"
+    ],
+    "senseUid": "94911dfb-2c13-4456-ac10-1110a6f8fd73",
+    "wordId": "2345070",
+    "pt": "{\n  \"a\": [\"disputa\", \"competição\", \"contenda\", \"luta por controle\"]\n"
+  },
+  {
+    "kana": "かいせんそくど",
+    "en": [
+      "line speed"
+    ],
+    "senseUid": "242d38b8-cb56-407f-bab7-6810bc7c7069",
+    "wordId": "2345080",
+    "pt": "['velocidade da linha']"
+  },
+  {
+    "kana": "かいせんたいいき",
+    "en": [
+      "line bandwidth"
+    ],
+    "senseUid": "4d5ee7d5-a336-499b-bfa2-f932f86a9db9",
+    "wordId": "2345090",
+    "pt": "{\n  \"a\": [\"largura de banda da linha\"]\n"
+  },
+  {
+    "kana": "かいせんついせき",
+    "en": [
+      "line trace"
+    ],
+    "senseUid": "14d2a925-80f6-4d7f-8e08-6ebb2708d5d5",
+    "wordId": "2345100",
+    "pt": "{\n  \"a\": [\"rastreamento de linha\"]\n"
+  },
+  {
+    "kana": "かいせんもう",
+    "en": [
+      "line network",
+      "trunk network"
+    ],
+    "senseUid": "5bd129e4-5a42-45a7-a223-91ab2ca6b0fe",
+    "wordId": "2345120",
+    "pt": "{\n  \"a\": [\"rede troncal\", \"rede de linhas\"]\n"
+  },
+  {
+    "kana": "かいせんひよう",
+    "en": [
+      "line cost"
+    ],
+    "senseUid": "b9342dbd-4304-4a90-88e2-d441fee5372c",
+    "wordId": "2345110",
+    "pt": "{\n  \"a\": [\"custo da linha\"]\n"
+  },
+  {
+    "kana": "かいせんようりょう",
+    "en": [
+      "line capacity",
+      "circuit capacity"
+    ],
+    "senseUid": "f6cf5bbe-8a5e-459d-a912-05fd19e22493",
+    "wordId": "2345130",
+    "pt": "{\n  \"a\": [\"capacidade de linha\", \"capacidade de circuito\"]\n"
+  },
+  {
+    "kana": "かいせんりようこうりつ",
+    "en": [
+      "line utilization rate"
+    ],
+    "senseUid": "45ac2a2b-2af0-466e-931d-93bf14234f0d",
+    "wordId": "2345140",
+    "pt": "{\n  \"a\": [\"taxa de utilização da linha\"]\n"
+  },
+  {
+    "kana": "かいそうアイピーメッセージひょうじ",
+    "en": [
+      "forwarded IP-message indication"
+    ],
+    "senseUid": "b3acc954-905b-4662-9925-a4e291fd6e61",
+    "wordId": "2345150",
+    "pt": "{\n  \"a\": [\"indicação de mensagem IP encaminhada\"]\n"
+  },
+  {
+    "kana": "かいそうさきじゅうしょようきゅう",
+    "en": [
+      "request for forwarding address",
+      "PD PR"
+    ],
+    "senseUid": "c1846cdd-2fc3-4e08-bbd9-08d873d502bd",
+    "wordId": "2345160",
+    "pt": "{\n  \"a\": [\n    \"Solicitação de endereço de encaminhamento\"\n  ]\n"
+  },
+  {
+    "kana": "かいてんいちかんち",
+    "en": [
+      "rotational position sensing",
+      "RPS"
+    ],
+    "senseUid": "d39ce7db-ff41-4dc8-878e-a1fe2f457a51",
+    "wordId": "2345180",
+    "pt": "{\n  \"a\": [\n    \"detecção de posição rotacional\",\n    \"sensor de posição rotacional\"\n  ]\n"
+  },
+  {
+    "kana": "かいそうようきゅう",
+    "en": [
+      "forwarding-request"
+    ],
+    "senseUid": "dd49ce1f-9579-44f0-bf25-e2dd51b3da24",
+    "wordId": "2345170",
+    "pt": "{\n  \"a\": [\n    \"solicitação de encaminhamento\"\n  ]\n"
+  },
+  {
+    "kana": "かいてんいちけんしゅつ",
+    "en": [
+      "rotational position sensing",
+      "RPS"
+    ],
+    "senseUid": "1310d4e8-c209-4fbb-9a8a-1ec46a6335d5",
+    "wordId": "2345190",
+    "pt": "{\n  \"a\": [\n    \"detecção de posição rotacional\"\n  ]\n"
+  }
+]

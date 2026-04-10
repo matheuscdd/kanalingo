@@ -1,0 +1,918 @@
+[
+  {
+    "kana": "ログインシェル",
+    "en": [
+      "login shell"
+    ],
+    "senseUid": "79ab313a-6005-4e20-bd07-4b719ac46d1e",
+    "wordId": "2339470",
+    "pt": "['shell de login']"
+  },
+  {
+    "kana": "ログインスクリプト",
+    "en": [
+      "login script"
+    ],
+    "senseUid": "40fbfc6a-87d0-4944-b6ae-d2be9833ba65",
+    "wordId": "2339480",
+    "pt": "['script de login']"
+  },
+  {
+    "kana": "ログインちゅう",
+    "en": [
+      "logged in"
+    ],
+    "senseUid": "044c5e02-4c4c-41f3-b999-50b0b93a65aa",
+    "wordId": "2339490",
+    "pt": "['conectado']"
+  },
+  {
+    "kana": "ログインめい",
+    "en": [
+      "login name"
+    ],
+    "senseUid": "2b3a926d-ec27-46ab-a409-dc6b2bea20ee",
+    "wordId": "2339500",
+    "pt": "['nome de usuário']"
+  },
+  {
+    "kana": "ログオンスクリプト",
+    "en": [
+      "logon script"
+    ],
+    "senseUid": "b877dd52-ac12-4767-9100-b5a67635f239",
+    "wordId": "2339520",
+    "pt": "['script de logon']"
+  },
+  {
+    "kana": "ログオンプロンプト",
+    "en": [
+      "logon prompt"
+    ],
+    "senseUid": "bdc7710f-69d7-4e87-beca-916b440f3de5",
+    "wordId": "2339530",
+    "pt": "{\n  \"a\": [\"prompt de logon\"]\n"
+  },
+  {
+    "kana": "ログバックアップ",
+    "en": [
+      "log backup"
+    ],
+    "senseUid": "9a30371a-1ca0-404b-81a8-163ff1407224",
+    "wordId": "2339540",
+    "pt": "['backup de log']"
+  },
+  {
+    "kana": "ロジックボード",
+    "en": [
+      "logic board"
+    ],
+    "senseUid": "7bb4a786-1303-48ba-8ea3-f45e9bbac367",
+    "wordId": "2339560",
+    "pt": "['placa lógica']"
+  },
+  {
+    "kana": "ロジックかいろ",
+    "en": [
+      "logic circuit"
+    ],
+    "senseUid": "511241ad-4e4d-405e-b717-8347ce8ab04c",
+    "wordId": "2339570",
+    "pt": "['circuito lógico']"
+  },
+  {
+    "kana": "ロジックばくだん",
+    "en": [
+      "logic bomb"
+    ],
+    "senseUid": "9d7773b0-9e4c-431c-b948-a5fd67e18e78",
+    "wordId": "2339580",
+    "pt": "['bomba lógica']"
+  },
+  {
+    "kana": "ロストクラスタ",
+    "en": [
+      "lost cluster"
+    ],
+    "senseUid": "4febe8db-f11a-4b48-af38-c3022abafdad",
+    "wordId": "2339590",
+    "pt": "{\n  \"a\": [\"cluster perdido\"]\n"
+  },
+  {
+    "kana": "ロスレスあっしゅく",
+    "en": [
+      "lossless compression"
+    ],
+    "senseUid": "5f6d55f0-0ce2-4a4a-85b3-83d6fe0ef7cf",
+    "wordId": "2339600",
+    "pt": "['compressão sem perdas']"
+  },
+  {
+    "kana": "ロックアウトきのう",
+    "en": [
+      "lock-out facility"
+    ],
+    "senseUid": "de0914ad-5f23-4df8-97a8-8d44e56ce833",
+    "wordId": "2339620",
+    "pt": "['função de bloqueio']"
+  },
+  {
+    "kana": "ロッシーあっしゅく",
+    "en": [
+      "lossy compression"
+    ],
+    "senseUid": "19cf187e-51d6-4663-9b02-4533e97ee9f4",
+    "wordId": "2339630",
+    "pt": "['compressão com perdas']"
+  },
+  {
+    "kana": "ロボットアーム",
+    "en": [
+      "robotic arm",
+      "manipulator"
+    ],
+    "senseUid": "1820c1a2-2e15-4bff-840c-6ced3e7c9dc4",
+    "wordId": "2339650",
+    "pt": "['braço robótico', 'manipulador']"
+  },
+  {
+    "kana": "ロングファイルネーム",
+    "en": [
+      "long file name"
+    ],
+    "senseUid": "b8f5e8da-f476-4a08-a5be-9df7a0ebdb26",
+    "wordId": "2339670",
+    "pt": "['nome de arquivo longo']"
+  },
+  {
+    "kana": "ワーキングセット",
+    "en": [
+      "working set"
+    ],
+    "senseUid": "73a23620-7ca5-4961-85c4-ab5e69a926ec",
+    "wordId": "2339680",
+    "pt": "['conjunto de trabalho']"
+  },
+  {
+    "kana": "ワーキングディレクトリ",
+    "en": [
+      "working directory"
+    ],
+    "senseUid": "67f93d22-db4e-4f23-be88-d69c036d21a7",
+    "wordId": "2339690",
+    "pt": "{\n  \"a\": [\"diretório de trabalho\"]\n"
+  },
+  {
+    "kana": "ワーキングドキュメント",
+    "en": [
+      "working document"
+    ],
+    "senseUid": "37affdc1-2bd6-4768-87cf-5d6754974b38",
+    "wordId": "2339700",
+    "pt": "{\n  \"a\": [\"documento de trabalho\"]\n"
+  },
+  {
+    "kana": "ワークエリア",
+    "en": [
+      "work area"
+    ],
+    "senseUid": "86e65161-7c71-4cdc-94a3-d3ec3ec9047c",
+    "wordId": "2339710",
+    "pt": "['área de trabalho']"
+  },
+  {
+    "kana": "ワークグループ",
+    "en": [
+      "workgroup"
+    ],
+    "senseUid": "3ad43c67-93d9-43ca-8eaa-705e6c9cc61f",
+    "wordId": "2339720",
+    "pt": "['grupo de trabalho']"
+  },
+  {
+    "kana": "ワークグループネットワーク",
+    "en": [
+      "workgroup network"
+    ],
+    "senseUid": "f3818ab1-74ba-480c-8b69-a8e9ed37cff0",
+    "wordId": "2339730",
+    "pt": "['rede de grupo de trabalho']"
+  },
+  {
+    "kana": "ワークス",
+    "en": [
+      "works"
+    ],
+    "senseUid": "db171293-aae7-4832-ac9d-2d6f32bb3dd4",
+    "wordId": "2339740",
+    "pt": "['obras']"
+  },
+  {
+    "kana": "ワークステーションウィンドウ",
+    "en": [
+      "workstation window"
+    ],
+    "senseUid": "22159d6b-4b2b-4bc1-b615-c2ff5b4bd74c",
+    "wordId": "2339750",
+    "pt": "['janela da estação de trabalho']"
+  },
+  {
+    "kana": "ワークステーションビューポート",
+    "en": [
+      "workstation viewport"
+    ],
+    "senseUid": "17011da1-1e72-4316-a990-f6e2a4ad3603",
+    "wordId": "2339760",
+    "pt": "{\n  \"a\": [\"viewport da estação de trabalho\"]\n"
+  },
+  {
+    "kana": "ワークステーションいぞんセグメントきおくいき",
+    "en": [
+      "workstation dependent segment storage",
+      "WDSS"
+    ],
+    "senseUid": "5d820a80-0af9-4a85-8360-3a42481a604d",
+    "wordId": "2339770",
+    "pt": "{\n  \"a\": [\n    \"armazenamento de segmento dependente de estação de trabalho\"\n  ]\n"
+  },
+  {
+    "kana": "ワークステーションきじゅつひょう",
+    "en": [
+      "workstation description table"
+    ],
+    "senseUid": "c7333493-fcc4-4449-9407-9f1b316cacc8",
+    "wordId": "2339780",
+    "pt": "{\n  \"a\": [\n    \"Tabela de descrição da estação de trabalho\"\n  ]\n"
+  },
+  {
+    "kana": "ワークステーションけいしき",
+    "en": [
+      "workstation type"
+    ],
+    "senseUid": "a23f9b43-64d4-4376-a7ef-997051f9782c",
+    "wordId": "2339790",
+    "pt": "{\n  \"a\": [\"tipo de estação de trabalho\"]\n"
+  },
+  {
+    "kana": "ワークステーションこうげん",
+    "en": [
+      "workstation light source"
+    ],
+    "senseUid": "b65c50c5-4a80-4bf1-9d68-3dc7be34a9af",
+    "wordId": "2339800",
+    "pt": "{\n  \"a\": [\"fonte de luz da estação de trabalho\"]\n"
+  },
+  {
+    "kana": "ワークステーションしきべつし",
+    "en": [
+      "workstation identifier"
+    ],
+    "senseUid": "b458630c-99e8-483d-b279-539e144f7526",
+    "wordId": "2339810",
+    "pt": "{\n  \"a\": [\"identificador de estação de trabalho\"]\n"
+  },
+  {
+    "kana": "ワークステーションしゅべつ",
+    "en": [
+      "workstation category"
+    ],
+    "senseUid": "7ffd18c2-d14c-4f97-b45f-3938db3ecbc5",
+    "wordId": "2339820",
+    "pt": "['categoria de estação de trabalho']"
+  },
+  {
+    "kana": "ワークステーションじょうたいリスト",
+    "en": [
+      "workstation state list"
+    ],
+    "senseUid": "0dbac2a9-7344-42eb-a543-f7f31b96d396",
+    "wordId": "2339830",
+    "pt": "{\n  \"a\": [\"Lista de estados da estação de trabalho\"]\n"
+  },
+  {
+    "kana": "ワークステーションどくりつセグメントきおくいき",
+    "en": [
+      "workstation independent segment storage",
+      "WISS"
+    ],
+    "senseUid": "a52b7406-c526-488c-953e-8f932e8000f0",
+    "wordId": "2339840",
+    "pt": "{\n  \"a\": [\n    \"armazenamento de segmento independente de estação de trabalho\"\n  ]\n"
+  },
+  {
+    "kana": "ワークステーションへんかん",
+    "en": [
+      "workstation transformation"
+    ],
+    "senseUid": "85271b59-d9af-4689-b62a-5213c7252aad",
+    "wordId": "2339850",
+    "pt": "{\n  \"a\": [\"Transformação da estação de trabalho\"]\n"
+  },
+  {
+    "kana": "ワークスペース",
+    "en": [
+      "workspace"
+    ],
+    "senseUid": "caa56a3a-9908-4f72-8648-79ecd802bcb4",
+    "wordId": "2339860",
+    "pt": "['espaço de trabalho']"
+  },
+  {
+    "kana": "ワークフロー",
+    "en": [
+      "workflow",
+      "business flow",
+      "operation flow"
+    ],
+    "senseUid": "c3c138c0-54c8-45c0-8d20-10875744b39c",
+    "wordId": "2339880",
+    "pt": "['fluxo de trabalho', 'fluxo de negócios', 'fluxo operacional']"
+  },
+  {
+    "kana": "ワークかんきょう",
+    "en": [
+      "work environment"
+    ],
+    "senseUid": "fc8c5042-0b3f-439a-9df2-32e0ca980f1e",
+    "wordId": "2339890",
+    "pt": "['ambiente de trabalho']"
+  },
+  {
+    "kana": "ワードきょうかい",
+    "en": [
+      "word boundary"
+    ],
+    "senseUid": "876b3a5b-3096-47de-9532-7ff32379dfae",
+    "wordId": "2339900",
+    "pt": "{\n  \"a\": [\"fronteira de palavra\"]\n"
+  },
+  {
+    "kana": "ワードプロセッシング",
+    "en": [
+      "word processing"
+    ],
+    "senseUid": "73611568-1142-4305-bc0b-214de08c3e5f",
+    "wordId": "2339950",
+    "pt": "{\n  \"a\": [\"processamento de texto\"]\n"
+  },
+  {
+    "kana": "ワードラップ",
+    "en": [
+      "word wrap"
+    ],
+    "senseUid": "f31648bd-f279-4a0e-8b68-16b95a0fdfbd",
+    "wordId": "2339960",
+    "pt": "['quebra automática de linha']"
+  },
+  {
+    "kana": "ワープロつうしん",
+    "en": [
+      "word processor communication"
+    ],
+    "senseUid": "7327edee-51f5-478c-8f27-1521a9de2b23",
+    "wordId": "2339990",
+    "pt": "['comunicação por processador de texto']"
+  },
+  {
+    "kana": "ワードすう",
+    "en": [
+      "word count"
+    ],
+    "senseUid": "b1f03e14-18fd-4df5-ade0-94d5d6e6dc72",
+    "wordId": "2339970",
+    "pt": "['contagem de palavras']"
+  },
+  {
+    "kana": "ワールドざひょう",
+    "en": [
+      "world coordinate"
+    ],
+    "senseUid": "93d5c7f8-2cb4-47e1-b987-a21aeb27bc1d",
+    "wordId": "2340000",
+    "pt": "{\n  \"a\": [\"coordenada mundial\"]\n"
+  },
+  {
+    "kana": "ワールドざひょうけい",
+    "en": [
+      "world coordinate system"
+    ],
+    "senseUid": "399cee61-fc22-44e6-aa20-7b9b674c78b4",
+    "wordId": "2340010",
+    "pt": "['sistema de coordenadas mundiais']"
+  },
+  {
+    "kana": "ワイ・ツー・ケー",
+    "en": [
+      "Y2K (bug)",
+      "year 2000 problem"
+    ],
+    "senseUid": "484bd6ea-a8b1-4603-84a5-1e975220aa85",
+    "wordId": "2340030",
+    "pt": "{\n  \"a\": [\n    \"Y2K (bug)\", \n    \"problema do ano 2000\"\n  ]\n"
+  },
+  {
+    "kana": "ワイ・ツー・ケー",
+    "en": [
+      "the year 2000",
+      "the 2000s"
+    ],
+    "senseUid": "0bb90695-c04e-4cf6-8d1b-913d8241bf08",
+    "wordId": "2340030",
+    "pt": "{\n  \"a\": [\"o ano 2000\", \"os anos 2000\"]\n"
+  },
+  {
+    "kana": "ワイドランサービス",
+    "en": [
+      "wide LAN service"
+    ],
+    "senseUid": "4b325248-3b99-4411-91ec-ad34065e2ccb",
+    "wordId": "2340040",
+    "pt": "{\n  \"a\": [\"serviço de LAN ampla\"]\n"
+  },
+  {
+    "kana": "ワイドインターネット",
+    "en": [
+      "WIDE Internet (Japanese backbone network)"
+    ],
+    "senseUid": "38e8df6f-7385-4e0d-b381-5acf4dcc7422",
+    "wordId": "2340050",
+    "pt": "{\n  \"a\": [\"Internet WIDE (rede backbone japonesa)\"]\n"
+  },
+  {
+    "kana": "ワイドエリアネットワーク",
+    "en": [
+      "wide area network",
+      "WAN"
+    ],
+    "senseUid": "d61bd0da-26f0-44ac-af39-bda243567b3b",
+    "wordId": "2340060",
+    "pt": "['rede de longa distância', 'WAN']"
+  },
+  {
+    "kana": "ワイヤースピード",
+    "en": [
+      "wire speed"
+    ],
+    "senseUid": "8e2f719b-1786-4185-af52-f8b235280f28",
+    "wordId": "2340100",
+    "pt": "['velocidade de fio']"
+  },
+  {
+    "kana": "ワイヤードロジック",
+    "en": [
+      "wired logic"
+    ],
+    "senseUid": "2c90d59a-98f0-4483-8161-c70663d9d6e8",
+    "wordId": "2340110",
+    "pt": "['lógica cabeada']"
+  },
+  {
+    "kana": "ワイヤーフレーム",
+    "en": [
+      "wireframe"
+    ],
+    "senseUid": "d8e8c2d6-fe91-488a-80af-f69dc82281c6",
+    "wordId": "2340120",
+    "pt": "{\n  \"a\": [\"wireframe\"]\n"
+  },
+  {
+    "kana": "ワイヤーフレームモデル",
+    "en": [
+      "wireframe model"
+    ],
+    "senseUid": "49269415-b8c0-46a9-9fba-ce5acfc54658",
+    "wordId": "2340130",
+    "pt": "['modelo de estrutura de arame']"
+  },
+  {
+    "kana": "ワイヤフレームひょうげん",
+    "en": [
+      "wire frame representation"
+    ],
+    "senseUid": "fc2c5f14-6d13-4aab-9e1f-b358b09d66ab",
+    "wordId": "2340140",
+    "pt": "{\n  \"a\": [\"representação em estrutura de arame\"]\n"
+  },
+  {
+    "kana": "ワイヤリング",
+    "en": [
+      "wiring"
+    ],
+    "senseUid": "328d245a-5301-497f-af69-7f88c5039662",
+    "wordId": "2340150",
+    "pt": "['fiação']"
+  },
+  {
+    "kana": "ワイヤレスラン",
+    "en": [
+      "wireless LAN"
+    ],
+    "senseUid": "5d12d1f6-cf5c-4ef0-adab-50966c221cc7",
+    "wordId": "2340160",
+    "pt": "['LAN sem fio']"
+  },
+  {
+    "kana": "ワイヤレスネットワーク",
+    "en": [
+      "wireless network"
+    ],
+    "senseUid": "a7ca9d43-9e44-486e-b944-7ff7ebaa97d6",
+    "wordId": "2340170",
+    "pt": "{\n  \"a\": [\"rede sem fio\"]\n"
+  },
+  {
+    "kana": "ワイルドカードもじ",
+    "en": [
+      "wildcard character"
+    ],
+    "senseUid": "6cef29e9-d197-4828-8871-55eb11c23b34",
+    "wordId": "2340180",
+    "pt": "{\n  \"a\": [\"caractere curinga\"]\n"
+  },
+  {
+    "kana": "ワンタイムパスワード",
+    "en": [
+      "one-time password"
+    ],
+    "senseUid": "b068164a-5dc2-4065-ac5b-cca930d78e6c",
+    "wordId": "2340200",
+    "pt": "['senha descartável']"
+  },
+  {
+    "kana": "ワンチップコンピュータ",
+    "en": [
+      "one-chip computer"
+    ],
+    "senseUid": "aa1a1b16-2bff-47b0-a12f-2f7f9c5a76c3",
+    "wordId": "2340210",
+    "pt": "['computador de um chip']"
+  },
+  {
+    "kana": "ワンチップマイクロコンピュータ",
+    "en": [
+      "one-chip microcomputer"
+    ],
+    "senseUid": "d843e1ad-3a5e-477a-8160-4f8a83627293",
+    "wordId": "2340220",
+    "pt": "['microcomputador de um chip']"
+  },
+  {
+    "kana": "ワンツースリー",
+    "en": [
+      "1, 2, 3",
+      "one, two, three"
+    ],
+    "senseUid": "52691df9-2f36-4e0f-97ec-a36c29d05d65",
+    "wordId": "2340230",
+    "pt": "['um, dois, três']"
+  },
+  {
+    "kana": "あっしゅくアーカイバ",
+    "en": [
+      "data compression archiver"
+    ],
+    "senseUid": "fcb80f01-a11b-4f1f-8c03-00d322fc109e",
+    "wordId": "2340260",
+    "pt": "['compactador de arquivos']"
+  },
+  {
+    "kana": "あっしゅくアルゴリズム",
+    "en": [
+      "compression algorithm"
+    ],
+    "senseUid": "3487b0bf-efbf-48a7-a23e-34e291c69f0d",
+    "wordId": "2340270",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"あっしゅくアルゴリズム\",\n      \"gloss\": [\"algoritmo de compressão\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "あっしゅくモード",
+    "en": [
+      "compress mode"
+    ],
+    "senseUid": "aae1efff-4161-4573-b7a7-d58418a5fd8e",
+    "wordId": "2340280",
+    "pt": "['modo de compressão']"
+  },
+  {
+    "kana": "あっしゅくぎじゅつ",
+    "en": [
+      "compression technology"
+    ],
+    "senseUid": "bd220b15-525e-41e3-898d-63ec5854ebb0",
+    "wordId": "2340290",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"あっしゅくぎじゅつ\",\n      \"gloss\": [\"tecnologia de compressão\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "あっしゅくこうか",
+    "en": [
+      "compression efficiency"
+    ],
+    "senseUid": "4f589a19-9480-489f-bd52-ea60152c8c68",
+    "wordId": "2340300",
+    "pt": "['eficiência de compressão']"
+  },
+  {
+    "kana": "あつでん",
+    "en": [
+      "piezoelectric"
+    ],
+    "senseUid": "5c0f580c-6757-489d-acbc-167cd99aa499",
+    "wordId": "2340320",
+    "pt": "['piezoelétrico']"
+  },
+  {
+    "kana": "あっしんき",
+    "en": [
+      "compander",
+      "compandor"
+    ],
+    "senseUid": "132eb1ef-7da8-4e35-9875-272c4d0ab6d2",
+    "wordId": "2340310",
+    "pt": "['compandor']"
+  },
+  {
+    "kana": "あてさきアドレス",
+    "en": [
+      "destination address"
+    ],
+    "senseUid": "151fa3a2-85fb-45f0-bd10-7c91a777a75c",
+    "wordId": "2340330",
+    "pt": "['endereço de destino']"
+  },
+  {
+    "kana": "あんぜんインターロック",
+    "en": [
+      "safety interlock"
+    ],
+    "senseUid": "15ae227c-d340-4b45-bef9-8a6b5b580ede",
+    "wordId": "2340340",
+    "pt": "['intertravamento de segurança']"
+  },
+  {
+    "kana": "あんぜんせっけいようけん",
+    "en": [
+      "safety design requirement"
+    ],
+    "senseUid": "4a6e6229-0ecd-4da1-8d45-25dfff6e345f",
+    "wordId": "2340350",
+    "pt": "['requisito de projeto de segurança']"
+  },
+  {
+    "kana": "あんぜんほごサービス",
+    "en": [
+      "security service"
+    ],
+    "senseUid": "d8503b6a-0753-432a-aaca-591f1a5f23be",
+    "wordId": "2340360",
+    "pt": "{\n  \"a\": [\"serviço de proteção\"]\n"
+  },
+  {
+    "kana": "あんぜんほごラベル",
+    "en": [
+      "security label"
+    ],
+    "senseUid": "5a21cf4e-b924-4dd5-aaf8-bba00b2ae354",
+    "wordId": "2340370",
+    "pt": "['rótulo de proteção de segurança']"
+  },
+  {
+    "kana": "あんぜんほごかんさ",
+    "en": [
+      "security audit"
+    ],
+    "senseUid": "4b833978-cbd2-4ffd-aca4-8c3353fcf545",
+    "wordId": "2340380",
+    "pt": "['auditoria de segurança']"
+  },
+  {
+    "kana": "あんぜんほごかんさしょうせき",
+    "en": [
+      "security audit trail"
+    ],
+    "senseUid": "0df3c617-e621-4b9f-a796-bdf4252ac7dc",
+    "wordId": "2340390",
+    "pt": "{\n  \"a\": [\"registro de trilha de auditoria de segurança\"]\n"
+  },
+  {
+    "kana": "あんぜんほごのうりょく",
+    "en": [
+      "security capabilities"
+    ],
+    "senseUid": "0ae78807-10d8-4178-8619-45b31eb44373",
+    "wordId": "2340400",
+    "pt": "['capacidades de proteção de segurança']"
+  },
+  {
+    "kana": "あんぜんほごつきアクセスかんり",
+    "en": [
+      "secure access management",
+      "MT"
+    ],
+    "senseUid": "77868a43-7ae9-4f9a-9f69-1ec1625f10b8",
+    "wordId": "2340410",
+    "pt": "['gestão segura de acesso']"
+  },
+  {
+    "kana": "あんぜんほごほうしん",
+    "en": [
+      "security policy"
+    ],
+    "senseUid": "fbca6ef4-b2a4-4711-86b3-fbfe60b3bf3c",
+    "wordId": "2340420",
+    "pt": "['política de proteção à segurança']"
+  },
+  {
+    "kana": "あんごうキー",
+    "en": [
+      "encryption key",
+      "cryptographic key"
+    ],
+    "senseUid": "9a1db649-3fcc-47d9-9fef-ebf5336627c4",
+    "wordId": "2340430",
+    "pt": "['chave de criptografia', 'chave criptográfica']"
+  },
+  {
+    "kana": "あんごうシステム",
+    "en": [
+      "cryptographic system",
+      "cryptosystem"
+    ],
+    "senseUid": "161f30e1-2ef9-4a50-899a-3e49c0807188",
+    "wordId": "2340440",
+    "pt": "{\n  \"a\": [\"sistema criptográfico\", \"criptossistema\"]\n"
+  },
+  {
+    "kana": "あんごうメール",
+    "en": [
+      "encrypted mail",
+      "cyphermail"
+    ],
+    "senseUid": "3edd19c6-f9eb-44df-8dd9-05969acbf0b9",
+    "wordId": "2340450",
+    "pt": "{\n  \"a\": [\"correio cifrado\", \"correio criptografado\"]\n"
+  },
+  {
+    "kana": "あんごうかファイルシステム",
+    "en": [
+      "Encrypting File System"
+    ],
+    "senseUid": "f697fec0-2a19-4f95-a080-ccbf4b1777b0",
+    "wordId": "2340460",
+    "pt": "{\n  \"a\": [\"Sistema de Arquivos Criptografado\"]\n"
+  },
+  {
+    "kana": "あんごうかぎじゅつ",
+    "en": [
+      "encryption technology"
+    ],
+    "senseUid": "19f2c8c4-9760-460d-b8de-6610361afb2d",
+    "wordId": "2340470",
+    "pt": "['tecnologia de criptografia']"
+  },
+  {
+    "kana": "あんごうぎじゅつ",
+    "en": [
+      "cryptography",
+      "encryption technology"
+    ],
+    "senseUid": "8316ebf2-4a93-4048-b721-633f868b7475",
+    "wordId": "2340480",
+    "pt": "['tecnologia de criptografia', 'tecnologia de codificação']"
+  },
+  {
+    "kana": "あんごうけんさち",
+    "en": [
+      "cryptographic checkvalue"
+    ],
+    "senseUid": "fae7e7c4-55b5-4a07-95f4-c18bdcc4f467",
+    "wordId": "2340490",
+    "pt": "['valor de verificação criptográfica']"
+  },
+  {
+    "kana": "あんごうどうき",
+    "en": [
+      "cryptographic synchronization"
+    ],
+    "senseUid": "915e3bdf-58cd-4b6a-919e-1e4fb0f5a43f",
+    "wordId": "2340500",
+    "pt": "['sincronização criptográfica']"
+  },
+  {
+    "kana": "あんじせんげん",
+    "en": [
+      "implicit declaration"
+    ],
+    "senseUid": "40be82ab-8d9e-49a0-b120-e378b6a33772",
+    "wordId": "2340510",
+    "pt": "{\n  \"a\": [\"declaração implícita\"]\n"
+  },
+  {
+    "kana": "あんじばんちしてい",
+    "en": [
+      "implied addressing"
+    ],
+    "senseUid": "8354aa2c-89fd-4802-b9b5-e242fabc39d3",
+    "wordId": "2340520",
+    "pt": "['endereçamento implícito']"
+  },
+  {
+    "kana": "あんじひょうげん",
+    "en": [
+      "implied expression"
+    ],
+    "senseUid": "4dd1e98e-1a03-430c-861d-155d618cd69b",
+    "wordId": "2340530",
+    "pt": "{\n  \"a\": [\"expressão implícita\"]\n"
+  },
+  {
+    "kana": "あんしょうフレーズ",
+    "en": [
+      "pass phrase"
+    ],
+    "senseUid": "b29e5db3-6383-4825-a97b-4e15e33d5035",
+    "wordId": "2340540",
+    "pt": "{\n  \"a\": [\"frase secreta\"]\n"
+  },
+  {
+    "kana": "あんもくアドレシング",
+    "en": [
+      "implicit addressing"
+    ],
+    "senseUid": "d8e8cca0-d0ab-4e60-8625-01e67f07a622",
+    "wordId": "2340550",
+    "pt": "['endereçamento implícito']"
+  },
+  {
+    "kana": "あんもくてき",
+    "en": [
+      "implicit"
+    ],
+    "senseUid": "b7ab8a6d-e033-4540-8398-2c39de4371d9",
+    "wordId": "2340570",
+    "pt": "['implícito']"
+  },
+  {
+    "kana": "あんもくアドレスしてい",
+    "en": [
+      "implicit addressing"
+    ],
+    "senseUid": "2820303a-e2a6-44b5-a976-ffef4e1996d3",
+    "wordId": "2340560",
+    "pt": "{\n  \"a\": [\"endereçamento implícito\"]\n"
+  },
+  {
+    "kana": "あんもくてきいんようしよう",
+    "en": [
+      "implicit interface"
+    ],
+    "senseUid": "ca2dc04e-2670-4765-aac2-d9bf7db7c9a1",
+    "wordId": "2340580",
+    "pt": "{\n  \"a\": [\"interface implícita\"]\n"
+  },
+  {
+    "kana": "あんもくはんいふ",
+    "en": [
+      "implicit scope terminator"
+    ],
+    "senseUid": "5125aa54-034a-488a-926c-30e75a125097",
+    "wordId": "2340590",
+    "pt": "{\n  \"a\": [\"finalizador de escopo implícito\"]\n"
+  },
+  {
+    "kana": "あんもくへんかん",
+    "en": [
+      "implicit conversion"
+    ],
+    "senseUid": "5fc1ba3c-4adc-4be7-a2d4-37661e19f7bb",
+    "wordId": "2340600",
+    "pt": "['conversão implícita']"
+  },
+  {
+    "kana": "あんもくれんけつ",
+    "en": [
+      "implicit link (process definition)"
+    ],
+    "senseUid": "02abb6b1-1882-4b27-92a2-26c19cad484d",
+    "wordId": "2340610",
+    "pt": "{\n  \"a\": [\n    \"ligação implícita (definição de processo)\"\n  ]\n"
+  },
+  {
+    "kana": "くらいどりひょうきほう",
+    "en": [
+      "positional (representation) system",
+      "positional notation"
+    ],
+    "senseUid": "2c21ad48-4fbc-409a-b5ca-d6cf17c6516b",
+    "wordId": "2340630",
+    "pt": "{\n  \"a\": [\n    \"sistema de representação posicional\",\n    \"notação posicional\"\n  ]\n"
+  },
+  {
+    "kana": "くらいどりひょうげん",
+    "en": [
+      "positional representation"
+    ],
+    "senseUid": "3aff8c08-d159-49cb-ad1b-ff4e3b86cec9",
+    "wordId": "2340640",
+    "pt": "{\n  \"a\": [\n    \"representação posicional\"\n  ]\n"
+  }
+]

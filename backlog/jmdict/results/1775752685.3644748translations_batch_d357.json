@@ -1,0 +1,914 @@
+[
+  {
+    "kana": "オブジェクトモデルダイアグラム",
+    "en": [
+      "object model diagram"
+    ],
+    "senseUid": "8b5fa365-2814-484a-8f3d-4f12b5049183",
+    "wordId": "2289350",
+    "pt": "{\n  \"a\": [\"diagrama de modelo de objeto\"]\n"
+  },
+  {
+    "kana": "オブジェクトライブラリ",
+    "en": [
+      "object library"
+    ],
+    "senseUid": "6e70b58f-b92a-407f-a654-456768784d66",
+    "wordId": "2289360",
+    "pt": "['biblioteca de objetos']"
+  },
+  {
+    "kana": "オブジェクトきじゅつしがた",
+    "en": [
+      "object descriptor type"
+    ],
+    "senseUid": "16287aec-b290-4398-98db-034a014afceb",
+    "wordId": "2289370",
+    "pt": "{\n  \"a\": [\"tipo de descritor de objeto\"]\n"
+  },
+  {
+    "kana": "オブジェクトぎじゅつ",
+    "en": [
+      "object technology"
+    ],
+    "senseUid": "212724c0-9dda-4e2d-810b-0b6ea749f5e9",
+    "wordId": "2289380",
+    "pt": "['tecnologia de objetos']"
+  },
+  {
+    "kana": "オブジェクトしこうインタフェース",
+    "en": [
+      "object-oriented interface"
+    ],
+    "senseUid": "bbffe3f5-7b30-4da7-9558-5c2bdfb3a634",
+    "wordId": "2289390",
+    "pt": "['interface orientada a objetos']"
+  },
+  {
+    "kana": "オブジェクトしこうグラフィックス",
+    "en": [
+      "object-oriented graphics"
+    ],
+    "senseUid": "f9f7daa1-4bbc-4225-ab6f-3b41a74e41d6",
+    "wordId": "2289400",
+    "pt": "['gráficos orientados a objetos']"
+  },
+  {
+    "kana": "オブジェクトしこうデータベース",
+    "en": [
+      "object-oriented database",
+      "OODB"
+    ],
+    "senseUid": "95eb4cdb-c529-41fc-8726-7aae9e9d705e",
+    "wordId": "2289410",
+    "pt": "{\n  \"a\": [\n    \"banco de dados orientado a objetos\",\n    \"OODB\"\n  ]\n"
+  },
+  {
+    "kana": "オブジェクトしこうプログラミング",
+    "en": [
+      "object-oriented programming"
+    ],
+    "senseUid": "9933c833-8596-4ee5-a75f-0c7f0b7f6d7e",
+    "wordId": "2289420",
+    "pt": "{\n  \"a\": [\n    \"programação orientada a objetos\"\n  ]\n"
+  },
+  {
+    "kana": "オブジェクトしこうがたデータベース",
+    "en": [
+      "object oriented database"
+    ],
+    "senseUid": "0d53b3bf-0e5a-4785-9c99-999e89d4d7de",
+    "wordId": "2289430",
+    "pt": "{\n  \"a\": [\"banco de dados orientado a objetos\"]\n"
+  },
+  {
+    "kana": "オブジェクトしきべつし",
+    "en": [
+      "object identifier"
+    ],
+    "senseUid": "0e744eda-52cd-43ab-b2cc-c1a60c1e4757",
+    "wordId": "2289440",
+    "pt": "{\n  \"a\": [\n    \"identificador de objeto\"\n  ]\n"
+  },
+  {
+    "kana": "オブジェクトしきべつしがた",
+    "en": [
+      "object identifier type"
+    ],
+    "senseUid": "2af571f4-1866-41dd-bd45-4f1d52e1e39a",
+    "wordId": "2289450",
+    "pt": "{\n  \"a\": [\"tipo de identificador de objeto\"]\n"
+  },
+  {
+    "kana": "オブジェクトしゅうしょく",
+    "en": [
+      "object modification"
+    ],
+    "senseUid": "3a15e933-20fd-4bd4-a05b-19ed1838a970",
+    "wordId": "2289460",
+    "pt": "{\n  \"a\": [\"modificação de objeto\"]\n"
+  },
+  {
+    "kana": "オプションキー",
+    "en": [
+      "Option key"
+    ],
+    "senseUid": "f29a3877-8b25-4b80-9cd0-ad3fdb7d3b23",
+    "wordId": "2289480",
+    "pt": "['Tecla Option']"
+  },
+  {
+    "kana": "オプションスイッチ",
+    "en": [
+      "option switch"
+    ],
+    "senseUid": "1b2cd9ee-a110-42dd-88d6-fb474c02dcbf",
+    "wordId": "2289490",
+    "pt": "['chave de opção']"
+  },
+  {
+    "kana": "オプションボタン",
+    "en": [
+      "option button"
+    ],
+    "senseUid": "3b88449e-4034-4f4c-93eb-713f75ccc0e9",
+    "wordId": "2289500",
+    "pt": "['botão de opção']"
+  },
+  {
+    "kana": "オプティカルスキャナ",
+    "en": [
+      "optical scanner"
+    ],
+    "senseUid": "84be476a-d4dd-48c2-b9dc-970d3258a6d8",
+    "wordId": "2289510",
+    "pt": "['scanner óptico']"
+  },
+  {
+    "kana": "オプティカルプリンタ",
+    "en": [
+      "optical printer"
+    ],
+    "senseUid": "e21adb58-e477-4335-b2b5-e5baf63ab222",
+    "wordId": "2289520",
+    "pt": "['impressora óptica']"
+  },
+  {
+    "kana": "オプティカルマウス",
+    "en": [
+      "optical mouse"
+    ],
+    "senseUid": "9c0a3583-6002-4cbf-b119-5863b84fd71f",
+    "wordId": "2289530",
+    "pt": "['mouse óptico']"
+  },
+  {
+    "kana": "オプトメカニカルマウス",
+    "en": [
+      "optomechanical mouse"
+    ],
+    "senseUid": "806d780d-84fc-44a6-bd21-eab6c260dd5c",
+    "wordId": "2289550",
+    "pt": "{\n  \"a\": [\"mouse optomecânico\"]\n"
+  },
+  {
+    "kana": "オペレーションコード",
+    "en": [
+      "operation code",
+      "op-code"
+    ],
+    "senseUid": "e46ea5c4-8a4a-4766-8910-139578c8b694",
+    "wordId": "2289560",
+    "pt": "{\n  \"a\": [\n    \"código de operação\",\n    \"operação-código\",\n    \"op-code\"\n  ]\n"
+  },
+  {
+    "kana": "オペレーションマニュアル",
+    "en": [
+      "operations manual"
+    ],
+    "senseUid": "8cac09cd-717f-4d6b-9fc8-618c8677ef50",
+    "wordId": "2289570",
+    "pt": "['manual de operações']"
+  },
+  {
+    "kana": "オペレーティングかんきょう",
+    "en": [
+      "operating environment"
+    ],
+    "senseUid": "515103af-ddaf-45dd-afd1-6e5af241dc35",
+    "wordId": "2289600",
+    "pt": "{\n  \"a\": [\"ambiente operacional\"]\n"
+  },
+  {
+    "kana": "オルトキー",
+    "en": [
+      "Alt Key"
+    ],
+    "senseUid": "962687de-5dd6-4212-b490-c27e814a595f",
+    "wordId": "2289730",
+    "pt": "['Tecla Alt']"
+  },
+  {
+    "kana": "オンサイトサービス",
+    "en": [
+      "on-site service",
+      "onsite service"
+    ],
+    "senseUid": "b783bf9f-fd6a-4213-b2a4-87a185f13e6c",
+    "wordId": "2289740",
+    "pt": "['serviço no local', 'serviço presencial']"
+  },
+  {
+    "kana": "オンサイトサポート",
+    "en": [
+      "on-site support"
+    ],
+    "senseUid": "c3333854-623a-4773-8701-def15160180d",
+    "wordId": "2289750",
+    "pt": "['suporte presencial']"
+  },
+  {
+    "kana": "オンザフライ",
+    "en": [
+      "on-the-fly",
+      "on the fly"
+    ],
+    "senseUid": "7d6d4c48-0147-4a6a-98f5-8fbf6fdbc925",
+    "wordId": "2289760",
+    "pt": "['dinamicamente', 'em tempo real', 'de forma instantânea', 'no ato']"
+  },
+  {
+    "kana": "オンザフライかきこみ",
+    "en": [
+      "on-the-fly recording"
+    ],
+    "senseUid": "0eee4545-8345-4d9d-95fd-48beb2d1c005",
+    "wordId": "2289770",
+    "pt": "['gravação em tempo real']"
+  },
+  {
+    "kana": "オンスクリーンディスプレイ",
+    "en": [
+      "on-screen display"
+    ],
+    "senseUid": "6eae3bee-7549-40a7-adb3-92f0e4410f18",
+    "wordId": "2289780",
+    "pt": "['exibição na tela']"
+  },
+  {
+    "kana": "オンチップキャッシュ",
+    "en": [
+      "on-chip cache"
+    ],
+    "senseUid": "005c28a8-15ce-480f-a211-78ab0c4b8e36",
+    "wordId": "2289800",
+    "pt": "['cache on-chip']"
+  },
+  {
+    "kana": "オンフック",
+    "en": [
+      "on hook"
+    ],
+    "senseUid": "41591051-7466-4947-babd-48c773571a90",
+    "wordId": "2289820",
+    "pt": "['no gancho']"
+  },
+  {
+    "kana": "オンボード",
+    "en": [
+      "on-board"
+    ],
+    "senseUid": "5e20f991-d0f9-4b0f-91f0-8e1725d5c9c7",
+    "wordId": "2289830",
+    "pt": "['integrado']"
+  },
+  {
+    "kana": "オンボードコンピュータ",
+    "en": [
+      "on-board computer"
+    ],
+    "senseUid": "3281ec18-dd93-4789-8864-85d4d606ae4e",
+    "wordId": "2289840",
+    "pt": "['computador de bordo']"
+  },
+  {
+    "kana": "オンボードデバイス",
+    "en": [
+      "onboard device"
+    ],
+    "senseUid": "a71058f1-bb15-47f4-a2d5-31b0ec087506",
+    "wordId": "2289850",
+    "pt": "['dispositivo integrado']"
+  },
+  {
+    "kana": "オンメモリ",
+    "en": [
+      "on memory"
+    ],
+    "senseUid": "0a15fa6b-ac22-4ed1-b5cd-a1b012434eae",
+    "wordId": "2289860",
+    "pt": "['em memória']"
+  },
+  {
+    "kana": "オンラインイベント",
+    "en": [
+      "online event"
+    ],
+    "senseUid": "dbc7ce82-d325-44b1-9ffc-7e36cbcf4591",
+    "wordId": "2289890",
+    "pt": "['evento online']"
+  },
+  {
+    "kana": "オンラインコンピューター",
+    "en": [
+      "online computer"
+    ],
+    "senseUid": "38f29e3c-819f-4051-9181-ee623d00e481",
+    "wordId": "2289900",
+    "pt": "{\n  \"a\": [\"computador online\"]\n"
+  },
+  {
+    "kana": "オンラインコンピュータシステム",
+    "en": [
+      "online computer system"
+    ],
+    "senseUid": "516a68ba-13cb-4e08-8849-5891661823c6",
+    "wordId": "2289910",
+    "pt": "['sistema de computador online']"
+  },
+  {
+    "kana": "オンラインサービス",
+    "en": [
+      "online service"
+    ],
+    "senseUid": "ded59dfe-a67f-48c3-a3e5-1368be0ff2ca",
+    "wordId": "2289920",
+    "pt": "['serviço online']"
+  },
+  {
+    "kana": "オンラインサインアップ",
+    "en": [
+      "online sign-up",
+      "on-line sign-up"
+    ],
+    "senseUid": "8d7b51f8-18ed-439b-b890-bfbf1d244277",
+    "wordId": "2289930",
+    "pt": "['inscrição online', 'cadastro online']"
+  },
+  {
+    "kana": "オンラインサポートセンター",
+    "en": [
+      "online support center"
+    ],
+    "senseUid": "15813ca9-e271-4724-a1c3-816ee57a20b2",
+    "wordId": "2289940",
+    "pt": "['Centro de Suporte Online']"
+  },
+  {
+    "kana": "オンラインショップ",
+    "en": [
+      "online shop"
+    ],
+    "senseUid": "d5ad9c6e-ba0a-4d68-bce3-4cda8d4e2323",
+    "wordId": "2289970",
+    "pt": "['loja online']"
+  },
+  {
+    "kana": "オンラインストレージ",
+    "en": [
+      "online storage"
+    ],
+    "senseUid": "633d2175-5654-40aa-ac7b-d385c7e5c9c2",
+    "wordId": "2289980",
+    "pt": "['armazenamento online']"
+  },
+  {
+    "kana": "オンラインソフト",
+    "en": [
+      "online software"
+    ],
+    "senseUid": "911f1122-4ad3-4d76-8429-ea5089375082",
+    "wordId": "2289990",
+    "pt": "{\n  \"a\": [\"software online\"]\n"
+  },
+  {
+    "kana": "オンラインソフトウェア",
+    "en": [
+      "online software"
+    ],
+    "senseUid": "dafa8522-739a-434e-a9bf-7b3d02f643fa",
+    "wordId": "2290000",
+    "pt": "['software online']"
+  },
+  {
+    "kana": "オンラインダンプ",
+    "en": [
+      "online dump"
+    ],
+    "senseUid": "9aec826e-aa80-4984-ab32-74a50f2e0da6",
+    "wordId": "2290010",
+    "pt": "['depósito online']"
+  },
+  {
+    "kana": "オンラインテスト",
+    "en": [
+      "online test",
+      "online testing"
+    ],
+    "senseUid": "79a0f5b1-3476-4e18-b915-715c67493d19",
+    "wordId": "2290020",
+    "pt": "['teste online', 'testagem online']"
+  },
+  {
+    "kana": "オンラインテストせいぎょプログラム",
+    "en": [
+      "online test control program"
+    ],
+    "senseUid": "83b48a96-3973-4682-ab50-182d57244125",
+    "wordId": "2290060",
+    "pt": "{\n  \"a\": [\"programa de controle de teste online\"]\n"
+  },
+  {
+    "kana": "オンラインテラーズマシン",
+    "en": [
+      "online teller-machine"
+    ],
+    "senseUid": "13dc3732-c027-4e11-a873-a2e7dc0d3446",
+    "wordId": "2290070",
+    "pt": "['caixa eletrônico online']"
+  },
+  {
+    "kana": "オンラインデータベース",
+    "en": [
+      "online database",
+      "on-line database"
+    ],
+    "senseUid": "720a0e8b-dd8c-4b2e-ad2c-08c6ef11bf25",
+    "wordId": "2290080",
+    "pt": "['banco de dados online', 'banco de dados on-line']"
+  },
+  {
+    "kana": "オンラインデータベースシステム",
+    "en": [
+      "online database system"
+    ],
+    "senseUid": "4132a6d6-108c-4450-acdd-6c3e0afe9ce6",
+    "wordId": "2290090",
+    "pt": "['sistema de banco de dados online']"
+  },
+  {
+    "kana": "オンラインデータしゅうしゅうシステム",
+    "en": [
+      "online data gathering system"
+    ],
+    "senseUid": "0d9abc00-d515-479c-bbfb-04d1baa5eaa4",
+    "wordId": "2290100",
+    "pt": "['sistema de coleta de dados online']"
+  },
+  {
+    "kana": "オンラインデータしょり",
+    "en": [
+      "online data processing"
+    ],
+    "senseUid": "dea58cc8-59b3-4b16-9b5d-50badc1a923b",
+    "wordId": "2290110",
+    "pt": "['processamento de dados online']"
+  },
+  {
+    "kana": "オンラインデータにゅうりょく",
+    "en": [
+      "online data entry"
+    ],
+    "senseUid": "051194e3-dd39-4ca8-a6cc-0f0032328447",
+    "wordId": "2290120",
+    "pt": "{\n  \"a\": [\"entrada de dados online\"]\n"
+  },
+  {
+    "kana": "オンラインディレイドしょりシステム",
+    "en": [
+      "online delayed time system"
+    ],
+    "senseUid": "9187d8cd-dcf1-4040-857b-00709bc270c3",
+    "wordId": "2290130",
+    "pt": "{\n  \"a\": [\"Sistema de Processamento Online Diferido\"]\n"
+  },
+  {
+    "kana": "オンラインデバッギング",
+    "en": [
+      "online debugging"
+    ],
+    "senseUid": "01b5fb5c-a101-468e-bf6f-ba4376a169c9",
+    "wordId": "2290150",
+    "pt": "{\n  \"a\": [\"depuração online\"]\n"
+  },
+  {
+    "kana": "オンラインディレクトリー",
+    "en": [
+      "online directory"
+    ],
+    "senseUid": "d0125cfc-3d02-44d3-bcaf-eb5fe753f117",
+    "wordId": "2290140",
+    "pt": "['diretório online']"
+  },
+  {
+    "kana": "オンライントランザクションしょり",
+    "en": [
+      "online transaction processing",
+      "OLTP"
+    ],
+    "senseUid": "9bcc0396-fbef-4065-9bd8-66acc9b2f594",
+    "wordId": "2290170",
+    "pt": "{\n  \"a\": [\n    \"processamento de transações online\"\n  ]\n"
+  },
+  {
+    "kana": "オンラインデバッグ",
+    "en": [
+      "online debug"
+    ],
+    "senseUid": "763bfec6-4943-4be2-922f-2c1853c93fff",
+    "wordId": "2290160",
+    "pt": "['depuração online']"
+  },
+  {
+    "kana": "オンライントレーディング",
+    "en": [
+      "online trading"
+    ],
+    "senseUid": "90ab34b4-aebe-4f89-8d8e-e59b4ceaf74d",
+    "wordId": "2290180",
+    "pt": "['negociação online']"
+  },
+  {
+    "kana": "オンラインネットワークシステム",
+    "en": [
+      "online network system"
+    ],
+    "senseUid": "ea1a56ce-00e3-4aab-96ae-91e60fcd78ee",
+    "wordId": "2290190",
+    "pt": "['sistema de rede online']"
+  },
+  {
+    "kana": "オンラインバックアップ",
+    "en": [
+      "online backup"
+    ],
+    "senseUid": "2b77cdbc-9739-4b80-9bc6-8649dd89c097",
+    "wordId": "2290200",
+    "pt": "['backup online']"
+  },
+  {
+    "kana": "オンラインバッチしょりシステム",
+    "en": [
+      "online batch processing system"
+    ],
+    "senseUid": "a373a13a-cb39-4479-b6a8-2e355318af20",
+    "wordId": "2290210",
+    "pt": "['sistema de processamento em lote online']"
+  },
+  {
+    "kana": "オンラインバンキングシステム",
+    "en": [
+      "online banking system"
+    ],
+    "senseUid": "0bc1ebe8-b69c-41d7-848d-881c7b44d4a5",
+    "wordId": "2290220",
+    "pt": "['sistema de banco online']"
+  },
+  {
+    "kana": "オンラインパッケージ",
+    "en": [
+      "online package"
+    ],
+    "senseUid": "e0d3b4e4-b978-422c-9caf-36f149b1c3e2",
+    "wordId": "2290240",
+    "pt": "{\n  \"a\": [\"pacote online\"]\n"
+  },
+  {
+    "kana": "オンラインプロジェクトかんり",
+    "en": [
+      "online project management"
+    ],
+    "senseUid": "c9c78fee-2fe7-497c-867d-8d983e6cb5f5",
+    "wordId": "2290260",
+    "pt": "['gestão de projetos online']"
+  },
+  {
+    "kana": "オンラインヘルプ",
+    "en": [
+      "online help"
+    ],
+    "senseUid": "5aedb303-2d29-44fe-b789-0529ce4a1ea6",
+    "wordId": "2290270",
+    "pt": "{\n  \"a\": [\"ajuda online\"]\n"
+  },
+  {
+    "kana": "オンラインボリュームかんり",
+    "en": [
+      "online volume management"
+    ],
+    "senseUid": "7d6781d2-9b08-453c-ad9f-ebc8092e4bf2",
+    "wordId": "2290280",
+    "pt": "['gerenciamento de volume online']"
+  },
+  {
+    "kana": "オンラインマガジン",
+    "en": [
+      "online magazine"
+    ],
+    "senseUid": "1ffe4c72-a159-4155-a950-2fef23305994",
+    "wordId": "2290290",
+    "pt": "{\n  \"a\": [\"revista online\"]\n"
+  },
+  {
+    "kana": "オンラインモニタ",
+    "en": [
+      "online monitor"
+    ],
+    "senseUid": "2f109044-0475-40bf-9f75-0961099e6714",
+    "wordId": "2290320",
+    "pt": "{\n  \"a\": [\"monitor online\"]\n"
+  },
+  {
+    "kana": "オンラインモード",
+    "en": [
+      "online mode"
+    ],
+    "senseUid": "516a882b-5db5-47c5-8061-edc9c5165c09",
+    "wordId": "2290310",
+    "pt": "['modo online']"
+  },
+  {
+    "kana": "オンラインリアルタイム",
+    "en": [
+      "online real time"
+    ],
+    "senseUid": "cc34f9ce-48aa-4558-bcce-5c55d9ad678d",
+    "wordId": "2290330",
+    "pt": "{\n  \"a\": [\"tempo real online\"]\n"
+  },
+  {
+    "kana": "オンラインリアルタイムかんし",
+    "en": [
+      "online real-time surveillance"
+    ],
+    "senseUid": "b7ec9c7f-21ac-4430-9838-dbe3c7b99897",
+    "wordId": "2290340",
+    "pt": "['vigilância online em tempo real']"
+  },
+  {
+    "kana": "オンラインリアルタイムしょり",
+    "en": [
+      "online real-time processing"
+    ],
+    "senseUid": "c6ae04d7-818f-4be9-b71f-42a6e7870bcf",
+    "wordId": "2290350",
+    "pt": "['processamento em tempo real online']"
+  },
+  {
+    "kana": "オンラインリアルタイムしょりシステム",
+    "en": [
+      "online real-time system"
+    ],
+    "senseUid": "f6b7cfd8-6c34-4013-af30-786100e184bf",
+    "wordId": "2290360",
+    "pt": "['sistema de processamento em tempo real online']"
+  },
+  {
+    "kana": "オンラインきかい",
+    "en": [
+      "online machines"
+    ],
+    "senseUid": "55cd64be-5d09-43c3-a493-8d3a57916308",
+    "wordId": "2290380",
+    "pt": "{\n  \"a\": [\"máquinas online\"]\n"
+  },
+  {
+    "kana": "オンラインきき",
+    "en": [
+      "online equipment"
+    ],
+    "senseUid": "ced0250d-ebcf-43ad-904c-d0831d6bf1eb",
+    "wordId": "2290390",
+    "pt": "{\n  \"a\": [\"equipamento online\"]\n"
+  },
+  {
+    "kana": "オンラインきおく",
+    "en": [
+      "online storage"
+    ],
+    "senseUid": "1be19152-11a0-42ce-82ba-e2e1c713be98",
+    "wordId": "2290400",
+    "pt": "['armazenamento online']"
+  },
+  {
+    "kana": "オンラインけいさんしょり",
+    "en": [
+      "online computing"
+    ],
+    "senseUid": "c0bc4c2b-3685-432c-b6a5-465a58667c67",
+    "wordId": "2290420",
+    "pt": "{\n  \"a\": [\"computação online\"]\n"
+  },
+  {
+    "kana": "オンラインけいそくきパッケージ",
+    "en": [
+      "online instrumentation package"
+    ],
+    "senseUid": "88b50350-a9cf-4419-beba-9df8f9cae7bb",
+    "wordId": "2290430",
+    "pt": "['pacote de instrumentação online']"
+  },
+  {
+    "kana": "オンラインけんさきのう",
+    "en": [
+      "online test facility"
+    ],
+    "senseUid": "d0591405-c098-4fc5-ba3c-a50b8d7ccf51",
+    "wordId": "2290440",
+    "pt": "{\n  \"a\": [\"instalação de teste online\"]\n"
+  },
+  {
+    "kana": "オンラインしょり",
+    "en": [
+      "online processing",
+      "online operation"
+    ],
+    "senseUid": "f261eb92-a504-4ffa-9673-148ad0ef924b",
+    "wordId": "2290450",
+    "pt": "['processamento online', 'operação online']"
+  },
+  {
+    "kana": "オンラインしょりかんきょう",
+    "en": [
+      "online processing environment"
+    ],
+    "senseUid": "69ecdf32-c7a1-476f-b731-e9a5b49485c0",
+    "wordId": "2290460",
+    "pt": "{\n  \"a\": [\"Ambiente de processamento online\"]\n"
+  },
+  {
+    "kana": "オンラインじょうほうしょり",
+    "en": [
+      "online information processing"
+    ],
+    "senseUid": "0f4f0878-7705-4675-aa1a-512a71e0c87c",
+    "wordId": "2290470",
+    "pt": "{\n  \"a\": [\"processamento de informações online\"]\n"
+  },
+  {
+    "kana": "オンラインじょうたい",
+    "en": [
+      "online state"
+    ],
+    "senseUid": "0790e81d-06e3-4e88-995c-42f71d026033",
+    "wordId": "2290480",
+    "pt": "['estado online']"
+  },
+  {
+    "kana": "オンラインもうしこみ",
+    "en": [
+      "online sign-up"
+    ],
+    "senseUid": "1c755fc4-c11d-4668-a3dc-46bcddfcb1c2",
+    "wordId": "2290490",
+    "pt": "['inscrição online']"
+  },
+  {
+    "kana": "オンラインしんだん",
+    "en": [
+      "online diagnostics"
+    ],
+    "senseUid": "495c8595-69bc-4ec5-ad0c-6c04337e283c",
+    "wordId": "2290500",
+    "pt": "['diagnóstico online']"
+  },
+  {
+    "kana": "オンラインせいぎょ",
+    "en": [
+      "online control"
+    ],
+    "senseUid": "d68154a0-c21b-43f9-9afa-b785cdd81b72",
+    "wordId": "2290510",
+    "pt": "['controle online']"
+  },
+  {
+    "kana": "オンラインつうしん",
+    "en": [
+      "online communication"
+    ],
+    "senseUid": "5743ae55-47bb-4a1b-b3f0-4feae45a0c78",
+    "wordId": "2290530",
+    "pt": "{\n  \"a\": [\n    \"comunicação online\"\n  ]\n"
+  },
+  {
+    "kana": "オンラインたんまつテスト",
+    "en": [
+      "online terminal test"
+    ],
+    "senseUid": "9fc29ca4-cc62-4682-af6f-b4a48e5685fd",
+    "wordId": "2290520",
+    "pt": "{\n  \"a\": [\"Teste de terminal online\"]\n"
+  },
+  {
+    "kana": "オンラインはいふ",
+    "en": [
+      "online distribution"
+    ],
+    "senseUid": "a687c42d-9272-42a1-8611-aa61ff84d0f2",
+    "wordId": "2290550",
+    "pt": "['distribuição online']"
+  },
+  {
+    "kana": "オンラインばん",
+    "en": [
+      "online version",
+      "online edition"
+    ],
+    "senseUid": "311d5a2b-0fff-4a53-8c27-0f2adf461a14",
+    "wordId": "2290560",
+    "pt": "['versão online', 'edição online']"
+  },
+  {
+    "kana": "オンラインぶんせき",
+    "en": [
+      "online analysis"
+    ],
+    "senseUid": "93d7acb4-de05-4e33-99a6-b3ca1ecaf1d3",
+    "wordId": "2290570",
+    "pt": "{\n  \"a\": [\"análise online\"]\n"
+  },
+  {
+    "kana": "オンラインぶんせきしょり",
+    "en": [
+      "OnLine Analytical Processing",
+      "OLAP"
+    ],
+    "senseUid": "4df641a6-1519-4b5b-a874-e7649fb939e4",
+    "wordId": "2290580",
+    "pt": "['Processamento Analítico Online', 'OLAP']"
+  },
+  {
+    "kana": "オンラインりようしゃ",
+    "en": [
+      "online consumers"
+    ],
+    "senseUid": "3809d8da-25f5-4171-ad95-90aa8238f92c",
+    "wordId": "2290600",
+    "pt": "['usuários online']"
+  },
+  {
+    "kana": "オンラインもんだいかいけつ",
+    "en": [
+      "online problem solving"
+    ],
+    "senseUid": "6dcce17b-37e2-4329-bfa0-d88d995e00a2",
+    "wordId": "2290590",
+    "pt": "['resolução de problemas online']"
+  },
+  {
+    "kana": "カーソルキー",
+    "en": [
+      "cursor keys",
+      "arrow keys"
+    ],
+    "senseUid": "a5bae90b-2d7f-4db1-a97e-f16acaf7bbba",
+    "wordId": "2290610",
+    "pt": "['teclas de seta', 'teclas de cursor']"
+  },
+  {
+    "kana": "カーソルコントロールキー",
+    "en": [
+      "cursor control key"
+    ],
+    "senseUid": "c6b5df7c-af5f-46c6-8534-b4d7bb485fe5",
+    "wordId": "2290620",
+    "pt": "['tecla de controle do cursor']"
+  },
+  {
+    "kana": "カーソルいどうキー",
+    "en": [
+      "cursor control key"
+    ],
+    "senseUid": "f998c817-9b7f-48fb-b955-ee7dbefbc82c",
+    "wordId": "2290630",
+    "pt": "{\n  \"a\": [\"tecla de movimentação do cursor\"]\n"
+  },
+  {
+    "kana": "カートリッジテープドライブ",
+    "en": [
+      "cartridge tape drive"
+    ],
+    "senseUid": "71f3c5de-0226-4f1a-a6bf-c0d358230ca4",
+    "wordId": "2290640",
+    "pt": "['unidade de fita cassete']"
+  },
+  {
+    "kana": "カートリッジフォント",
+    "en": [
+      "cartridge font"
+    ],
+    "senseUid": "0781cea0-60e2-4b52-8eb2-2f2f44970968",
+    "wordId": "2290660",
+    "pt": "['fonte de cartucho']"
+  }
+]

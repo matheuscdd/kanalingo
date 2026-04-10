@@ -1,0 +1,975 @@
+[
+  {
+    "kana": "ねしょうがつ",
+    "en": [
+      "staying at home during the New Year's holiday"
+    ],
+    "senseUid": "7aef72bc-2d9d-409c-87b1-2be8d9d58fa6",
+    "wordId": "1792830",
+    "pt": "['ficar em casa durante o feriado de Ano Novo']"
+  },
+  {
+    "kana": "ねたきりろうじん",
+    "en": [
+      "bedridden senior citizen"
+    ],
+    "senseUid": "08fb4812-1c18-48e9-b3ec-57a245f47d9f",
+    "wordId": "1792850",
+    "pt": "{\n  \"a\": [\"idoso acamado\"]\n"
+  },
+  {
+    "kana": "ねわざ",
+    "en": [
+      "pinning technique (in wrestling or judo)"
+    ],
+    "senseUid": "e1539a0b-a3bf-4ece-ace4-25dde16244da",
+    "wordId": "1792860",
+    "pt": "{\n  \"a\": [\n    \"técnica de imobilização (no judô ou luta livre)\"\n  ]\n"
+  },
+  {
+    "kana": "ねわざ",
+    "en": [
+      "underhanded dealings"
+    ],
+    "senseUid": "68442e3a-b4bd-4802-ab61-a190e6e08cac",
+    "wordId": "1792860",
+    "pt": "['negociações sorrateiras']"
+  },
+  {
+    "kana": "ねとまり",
+    "en": [
+      "staying the night",
+      "lodging (at)"
+    ],
+    "senseUid": "f9b961f4-6a0c-403f-a63b-76c67ef6acf8",
+    "wordId": "1792870",
+    "pt": "['passar a noite', 'hospedagem (em)']"
+  },
+  {
+    "kana": "ねおし",
+    "en": [
+      "pressing clothes, etc. by placing them under the bedding while one sleeps"
+    ],
+    "senseUid": "997f3e2c-fbc2-4525-954c-8680f2ca9fd5",
+    "wordId": "1792880",
+    "pt": "{\n  \"a\": [\n    \"passar roupas, etc., colocando-as debaixo da roupa de cama enquanto se dorme\"\n  ]\n"
+  },
+  {
+    "kana": "しんじょ",
+    "en": [
+      "sleeping place",
+      "bedroom",
+      "bedchamber"
+    ],
+    "senseUid": "59697853-2809-41fa-8350-5afb0be2d591",
+    "wordId": "1792890",
+    "pt": "['lugar de dormir', 'quarto de dormir', 'aposento de dormir']"
+  },
+  {
+    "kana": "ねくび",
+    "en": [
+      "head of a sleeping person"
+    ],
+    "senseUid": "ff71e390-ce0b-4732-acfe-a11d2b7dde6d",
+    "wordId": "1792900",
+    "pt": "{\n  \"a\": [\n    \"pescoço de uma pessoa dormindo\"\n  ]\n"
+  },
+  {
+    "kana": "ねすがた",
+    "en": [
+      "one's figure during sleep"
+    ],
+    "senseUid": "ff745058-3f5c-4940-94b6-6ea7ef0824c1",
+    "wordId": "1792910",
+    "pt": "['figura de alguém enquanto dorme', 'postura ao dormir', 'jeito de dormir']"
+  },
+  {
+    "kana": "ねざけ",
+    "en": [
+      "nightcap",
+      "a drink before sleeping"
+    ],
+    "senseUid": "cc0326e5-4881-4709-aea4-be24e95d5e01",
+    "wordId": "1792920",
+    "pt": "{\n  \"a\": [\n    \"um drinque antes de dormir\",\n    \"bebida antes de dormir\"\n  ]\n"
+  },
+  {
+    "kana": "ねぼけ",
+    "en": [
+      "being still half asleep",
+      "being half awake",
+      "being not yet quite awake"
+    ],
+    "senseUid": "015bbc61-b00e-4e2a-933a-1624159c58a3",
+    "wordId": "1792930",
+    "pt": "['estar meio adormecido', 'estar meio acordado', 'ainda não estar totalmente desperto']"
+  },
+  {
+    "kana": "ねざめ",
+    "en": [
+      "awaken"
+    ],
+    "senseUid": "709c2b2d-826d-4f86-9d24-173da53df7b1",
+    "wordId": "1792940",
+    "pt": "['despertar']"
+  },
+  {
+    "kana": "ねかん",
+    "en": [
+      "coffin",
+      "casket"
+    ],
+    "senseUid": "3952fb87-805f-4680-ba66-4e751fb7b645",
+    "wordId": "1792950",
+    "pt": "{\n  \"a\": [\"caixão\", \"urna funerária\"]\n"
+  },
+  {
+    "kana": "ねいす",
+    "en": [
+      "sofa",
+      "couch",
+      "lounge chair"
+    ],
+    "senseUid": "975093f7-7101-40d2-8219-3701aafdc566",
+    "wordId": "1792960",
+    "pt": "['sofá', 'poltrona', 'cadeira de descanso']"
+  },
+  {
+    "kana": "ねま",
+    "en": [
+      "bedroom"
+    ],
+    "senseUid": "db53844b-0de4-4cd1-8a71-dabdb09c32b0",
+    "wordId": "1792970",
+    "pt": "{\n  \"a\": [\"quarto\"]\n"
+  },
+  {
+    "kana": "しんそうひん",
+    "en": [
+      "bed and bedding"
+    ],
+    "senseUid": "5023574f-b846-4103-a954-840fa0eb9540",
+    "wordId": "1792980",
+    "pt": "['cama e roupa de cama']"
+  },
+  {
+    "kana": "ねぎわ",
+    "en": [
+      "on the verge of sleep",
+      "just after falling asleep"
+    ],
+    "senseUid": "ae753d34-619b-4ea7-9e49-8a3d2aee62ad",
+    "wordId": "1792990",
+    "pt": "{\n  \"a\": [\n    \"no limiar do sono\",\n    \"logo após adormecer\"\n  ]\n"
+  },
+  {
+    "kana": "ねわざし",
+    "en": [
+      "underhanded or Machiavelli-like person"
+    ],
+    "senseUid": "70129ab4-3257-467a-832d-6955b0f5e236",
+    "wordId": "1793010",
+    "pt": "{\n  \"a\": [\n    \"pessoa ardilosa ou maquiavélica\"\n  ]\n"
+  },
+  {
+    "kana": "しんでん",
+    "en": [
+      "main building in a Heian palace"
+    ],
+    "senseUid": "e563eed5-6232-47b8-bee7-e572b37beb82",
+    "wordId": "1793020",
+    "pt": "['edifício principal de um palácio Heian']"
+  },
+  {
+    "kana": "しんでん",
+    "en": [
+      "main residence of an emperor"
+    ],
+    "senseUid": "2f391452-19ce-4985-8971-7e6a6e4a771b",
+    "wordId": "1793020",
+    "pt": "{\n  \"a\": [\n    \"residência principal de um imperador\"\n  ]\n"
+  },
+  {
+    "kana": "しんでんづくり",
+    "en": [
+      "manner of Heian-era palatial architecture"
+    ],
+    "senseUid": "21f41936-e26e-4379-8036-430b189131bf",
+    "wordId": "1793030",
+    "pt": "{\n  \"a\": [\n    \"estilo de arquitetura palaciana da era Heian\"\n  ]\n"
+  },
+  {
+    "kana": "ねタバコ",
+    "en": [
+      "smoking in bed"
+    ],
+    "senseUid": "47b438bc-e2fa-47c2-8067-4f07aeb0b198",
+    "wordId": "1793040",
+    "pt": "['fumar na cama']"
+  },
+  {
+    "kana": "ねわら",
+    "en": [
+      "(stable) litter"
+    ],
+    "senseUid": "93ecfc8c-f3dc-43f7-bfb2-928959b60a70",
+    "wordId": "1793050",
+    "pt": "['cama de palha (de estábulo)', 'cama de forragem']"
+  },
+  {
+    "kana": "ねぐせ",
+    "en": [
+      "bed hair",
+      "hair disarranged during sleep"
+    ],
+    "senseUid": "c356f610-acb2-4897-be7c-02716e4e9d81",
+    "wordId": "1793060",
+    "pt": "['cabelo bagunçado ao acordar', 'cabelo desalinhado pelo sono']"
+  },
+  {
+    "kana": "ねぐせ",
+    "en": [
+      "habit of moving around in one's sleep",
+      "sleeping habit"
+    ],
+    "senseUid": "7ca10daa-54ba-433f-ae3b-6cdfafb20c7a",
+    "wordId": "1793060",
+    "pt": "['cabelo bagunçado ao acordar', 'marca de sono no cabelo']"
+  },
+  {
+    "kana": "せんすいぼかん",
+    "en": [
+      "submarine carrier"
+    ],
+    "senseUid": "ce4b0a4b-b108-49f6-8af9-9849a40b83a1",
+    "wordId": "1793070",
+    "pt": "{\n  \"a\": [\n    \"porta-aviões submarino\"\n  ]\n"
+  },
+  {
+    "kana": "せんすいふく",
+    "en": [
+      "diving suit"
+    ],
+    "senseUid": "53f1d1d2-dbc2-488c-ad7c-fea6f231e479",
+    "wordId": "1793080",
+    "pt": "['roupa de mergulho']"
+  },
+  {
+    "kana": "せんすいびょう",
+    "en": [
+      "decompression sickness",
+      "caisson disease",
+      "the bends"
+    ],
+    "senseUid": "a38f0f4e-3077-4774-bf99-33630ad72aae",
+    "wordId": "1793090",
+    "pt": "['doença descompressiva', 'doença do caixão', 'mal dos mergulhadores']"
+  },
+  {
+    "kana": "せんすいき",
+    "en": [
+      "diving apparatus"
+    ],
+    "senseUid": "cc17cf0e-28e3-4061-abba-695b1ee678a6",
+    "wordId": "1793100",
+    "pt": "{\n  \"a\": [\n    \"aparelho de mergulho\"\n  ]\n"
+  },
+  {
+    "kana": "せんぷくせい",
+    "en": [
+      "latency"
+    ],
+    "senseUid": "4b8e6ae4-f985-4c70-8749-990b531442df",
+    "wordId": "1793110",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"せんぷくせい\",\n      \"português\": \"latência\",\n      \"explicação\": \"No contexto japonês, せんぷくせい (latência) refere-se ao estado ou característica de algo que está oculto, dormente ou não manifesto, especialmente em doenças ou condições que permanecem inativas até serem desencadeadas.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "せんぷくき",
+    "en": [
+      "incubation period"
+    ],
+    "senseUid": "701a992e-a8ad-4dde-b9d1-32f264eb9ad9",
+    "wordId": "1793120",
+    "pt": "['período de incubação']"
+  },
+  {
+    "kana": "せんざいてき",
+    "en": [
+      "latent",
+      "potential"
+    ],
+    "senseUid": "bdd7deae-d569-4bbc-98ab-6ad33cc06a79",
+    "wordId": "1793130",
+    "pt": "{\n  \"a\": [\n    \"latente\",\n    \"potencial\"\n  ]\n"
+  },
+  {
+    "kana": "せんざいいしき",
+    "en": [
+      "subconsciousness",
+      "the subconscious"
+    ],
+    "senseUid": "9002d674-2737-4dd1-b9f9-2c42a0dc7aed",
+    "wordId": "1793140",
+    "pt": "['subconsciência', 'o subconsciente']"
+  },
+  {
+    "kana": "せんざいしつぎょう",
+    "en": [
+      "invisible unemployment"
+    ],
+    "senseUid": "6f98368d-07d3-40c0-9af4-e0ed7a4ec131",
+    "wordId": "1793150",
+    "pt": "{\n  \"a\": [\"desemprego invisível\"]\n"
+  },
+  {
+    "kana": "せんざいしゅけん",
+    "en": [
+      "residual sovereignty"
+    ],
+    "senseUid": "cb408bae-22e9-4331-a2bd-22cad9dd535a",
+    "wordId": "1793160",
+    "pt": "['soberania residual']"
+  },
+  {
+    "kana": "せんかんびょう",
+    "en": [
+      "caisson disease",
+      "the bends"
+    ],
+    "senseUid": "f0b74fda-269b-4ab3-99df-7f25517b9f86",
+    "wordId": "1793180",
+    "pt": "{\n  \"a\": [\n    \"doença do caixão\",\n    \"doença descompressiva\"\n  ]\n"
+  },
+  {
+    "kana": "せんかん",
+    "en": [
+      "caisson"
+    ],
+    "senseUid": "7b88f182-3511-4d7f-bfae-82c86bf9b11b",
+    "wordId": "1793170",
+    "pt": "{\n  \"a\": [\"caixão (estrutura estanque usada em obras de engenharia civil, especialmente para fundações submersas)\"]\n"
+  },
+  {
+    "kana": "せんこうてい",
+    "en": [
+      "midget submarine"
+    ],
+    "senseUid": "888017c4-5f9e-4e1f-8f8b-9ed3ab700c74",
+    "wordId": "1793190",
+    "pt": "['submarino anão']"
+  },
+  {
+    "kana": "せんこうてい",
+    "en": [
+      "submarine"
+    ],
+    "senseUid": "2f814649-8d5f-45c7-b200-dbb09c818913",
+    "wordId": "1793190",
+    "pt": "['submarino']"
+  },
+  {
+    "kana": "せんせいりょく",
+    "en": [
+      "latent energy",
+      "potential"
+    ],
+    "senseUid": "9d23def2-b727-4134-912c-b0bfd9b150ed",
+    "wordId": "1793200",
+    "pt": "['energia latente', 'potencial']"
+  },
+  {
+    "kana": "こころじょうぶ",
+    "en": [
+      "secure",
+      "reassuring"
+    ],
+    "senseUid": "88ffaf57-2cdd-4766-a557-311e786e111d",
+    "wordId": "1793210",
+    "pt": "['seguro', 'tranquilizador']"
+  },
+  {
+    "kana": "しんど",
+    "en": [
+      "subsoil"
+    ],
+    "senseUid": "330563e9-8b96-4644-9002-65a1a4ba870d",
+    "wordId": "1793220",
+    "pt": "['subsolo']"
+  },
+  {
+    "kana": "こころだて",
+    "en": [
+      "disposition"
+    ],
+    "senseUid": "4efd6c08-88d5-4cb0-9218-a171954a065a",
+    "wordId": "1793230",
+    "pt": "['disposição', 'intenção', 'propósito', 'atitude']"
+  },
+  {
+    "kana": "こころまかせ",
+    "en": [
+      "as one pleases"
+    ],
+    "senseUid": "79ea4fb4-b7a5-4e86-b7fc-630c4c633db0",
+    "wordId": "1793240",
+    "pt": "['ao sabor do coração']"
+  },
+  {
+    "kana": "こころやすだて",
+    "en": [
+      "frankness"
+    ],
+    "senseUid": "3e2356f8-6caa-472e-b77c-a4770e6b8d27",
+    "wordId": "1793260",
+    "pt": "['franqueza', 'sinceridade', 'despreocupação', 'tranquilidade de espírito']"
+  },
+  {
+    "kana": "こころあて",
+    "en": [
+      "a guess",
+      "anticipation"
+    ],
+    "senseUid": "7a04a270-659c-4005-a74c-c85a10f021cf",
+    "wordId": "1793270",
+    "pt": "{\n  \"a\": [\n    \"um palpite\",\n    \"antecipação\",\n    \"pressentimento\",\n    \"intuição\",\n    \"sentir de antemão\"\n  ]\n"
+  },
+  {
+    "kana": "しんいん",
+    "en": [
+      "psychogenesis"
+    ],
+    "senseUid": "47ecebc1-025a-47ef-b6a8-7a389832427b",
+    "wordId": "1793280",
+    "pt": "['psicogênese']"
+  },
+  {
+    "kana": "しんいんせいはんのう",
+    "en": [
+      "psychogenic reaction"
+    ],
+    "senseUid": "c116b64f-0908-4d08-9f23-d6d1b09a2034",
+    "wordId": "1793290",
+    "pt": "{\n  \"a\": [\"reação psicogênica\"]\n"
+  },
+  {
+    "kana": "しんいんはんのう",
+    "en": [
+      "psychogenic reaction"
+    ],
+    "senseUid": "35d2d6c9-2123-4aa0-ab78-9933b7fa804e",
+    "wordId": "1793300",
+    "pt": "['reação psicogênica']"
+  },
+  {
+    "kana": "こころづくし",
+    "en": [
+      "kindness",
+      "consideration"
+    ],
+    "senseUid": "66280872-ad92-4756-9866-a862018b582e",
+    "wordId": "1793310",
+    "pt": "['gentileza', 'atenção cuidadosa']"
+  },
+  {
+    "kana": "しんしんしょう",
+    "en": [
+      "psychosomatic illness"
+    ],
+    "senseUid": "0aeb8d96-4b41-420b-8b57-33a9274ce188",
+    "wordId": "1793320",
+    "pt": "['doença psicossomática']"
+  },
+  {
+    "kana": "しんしんしょうがい",
+    "en": [
+      "mental or physical disorder",
+      "mental or physical disability"
+    ],
+    "senseUid": "da666451-a78a-48d1-b6a9-44a5ff70f559",
+    "wordId": "1793330",
+    "pt": "{\n  \"a\": [\n    \"Transtorno ou deficiência mental ou física\"\n  ]\n"
+  },
+  {
+    "kana": "しんがく",
+    "en": [
+      "study of the mind (in neo-Confucianism)"
+    ],
+    "senseUid": "2ea54f27-fc6e-4f4e-bcda-9aa38ce61baa",
+    "wordId": "1793340",
+    "pt": "{\n  \"a\": [\n    \"estudo da mente (no neo-confucionismo)\"\n  ]\n"
+  },
+  {
+    "kana": "しんがく",
+    "en": [
+      "Shingaku",
+      "Edo-period moral philosophy that blended Buddhist, Shinto and Confucian ethical teachings"
+    ],
+    "senseUid": "6d51861e-8933-46ba-82ad-7152715edfee",
+    "wordId": "1793340",
+    "pt": "['Shingaku', 'Filosofia moral do período Edo que combinava ensinamentos éticos do Budismo, Xintoísmo e Confucionismo']"
+  },
+  {
+    "kana": "しんざい",
+    "en": [
+      "heartwood"
+    ],
+    "senseUid": "18f019e5-592a-4e36-ac5f-25c29b19b326",
+    "wordId": "1793350",
+    "pt": "['cerne']"
+  },
+  {
+    "kana": "しんぎ",
+    "en": [
+      "spirit and technique"
+    ],
+    "senseUid": "6b4a10c8-4f8d-4043-acb6-b4f25b4244cb",
+    "wordId": "1793360",
+    "pt": "{\n  \"a\": [\n    \"espírito e técnica\"\n  ]\n"
+  },
+  {
+    "kana": "こころぜわしい",
+    "en": [
+      "restless"
+    ],
+    "senseUid": "be4586c9-1583-4530-8fca-9185f47752d2",
+    "wordId": "1793370",
+    "pt": "['inquieto', 'agitado', 'ansioso']"
+  },
+  {
+    "kana": "しんじ",
+    "en": [
+      "mind"
+    ],
+    "senseUid": "54b698e7-14b7-4b81-b860-b5bd4ce51d86",
+    "wordId": "1793390",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"しんじ\",\n      \"gloss\": [\"mente\", \"coração\", \"espírito\", \"intenção\"]\n    \n  ]\n"
+  },
+  {
+    "kana": "こころぐるしい",
+    "en": [
+      "painful",
+      "being sorry",
+      "feeling sorry"
+    ],
+    "senseUid": "396382a3-bdff-4b85-a228-9e46bba06aeb",
+    "wordId": "1793400",
+    "pt": "['doloroso', 'sentir-se culpado', 'sentir-se pesaroso']"
+  },
+  {
+    "kana": "しんかん",
+    "en": [
+      "heart"
+    ],
+    "senseUid": "61233175-5ec1-4fb7-ab11-bea47e48ef18",
+    "wordId": "1793380",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"しんかん\",\n      \"português\": \"coração\",\n      \"notas\": \"No contexto japonês, しんかん (shinkan) pode se referir ao coração como órgão ou ao centro de algo, dependendo do uso. Aqui, traduzido como 'coração' conforme o gloss fornecido.\"\n    \n  ]\n"
+  },
+  {
+    "kana": "しんてきじょうたい",
+    "en": [
+      "one's mental state"
+    ],
+    "senseUid": "756a64da-5616-4d5b-a0a4-b8b2a61de0f1",
+    "wordId": "1793410",
+    "pt": "{\n  \"a\": [\"estado mental\"]\n"
+  },
+  {
+    "kana": "しんせい",
+    "en": [
+      "mind",
+      "disposition",
+      "nature"
+    ],
+    "senseUid": "047373b2-3bda-47b4-bf0b-c6d3a1c1c54d",
+    "wordId": "1793420",
+    "pt": "['mente', 'disposição', 'natureza']"
+  },
+  {
+    "kana": "こころおくれ",
+    "en": [
+      "diffidence",
+      "timidity"
+    ],
+    "senseUid": "c5948824-8d1d-479b-805b-66b9f5963510",
+    "wordId": "1793430",
+    "pt": "['timidez', 'acanhamento', 'sentimento de inferioridade', 'falta de confiança']"
+  },
+  {
+    "kana": "しんしつ",
+    "en": [
+      "ventricle"
+    ],
+    "senseUid": "81f7be8e-83d7-4446-b44c-6ded02f41d65",
+    "wordId": "1793440",
+    "pt": "['ventrículo']"
+  },
+  {
+    "kana": "こころがら",
+    "en": [
+      "state of mind"
+    ],
+    "senseUid": "3ddee0cb-0130-408f-9bf7-3921af6ab152",
+    "wordId": "1793450",
+    "pt": "['disposição de espírito']"
+  },
+  {
+    "kana": "しんたん",
+    "en": [
+      "heart"
+    ],
+    "senseUid": "f192817c-869a-4ed4-aca5-5a4104a603d9",
+    "wordId": "1793460",
+    "pt": "{\n  \"a\": [\n    {\n      \"kana\": \"しんたん\",\n      \"português\": \"coração (sentido emocional ou espiritual, não apenas o órgão físico)\"\n    \n  ]\n"
+  },
+  {
+    "kana": "しんぱいきのう",
+    "en": [
+      "cardio-pulmonary function"
+    ],
+    "senseUid": "ee3d4f08-9fa6-4077-b1f4-d32f9257489e",
+    "wordId": "1793470",
+    "pt": "{\n  \"a\": [\"função cardiorrespiratória\"]\n"
+  },
+  {
+    "kana": "しんしん",
+    "en": [
+      "mind"
+    ],
+    "senseUid": "594e9154-ea8d-49f8-8857-40f0317d35a6",
+    "wordId": "1793480",
+    "pt": "['mente']"
+  },
+  {
+    "kana": "こころいわい",
+    "en": [
+      "(informal) celebration"
+    ],
+    "senseUid": "6efb4049-d290-48b0-bb94-0df87dce0b54",
+    "wordId": "1793510",
+    "pt": "['comemoração (informal)', 'celebração (informal)', 'festa (informal)']"
+  },
+  {
+    "kana": "しんしんそうしつ",
+    "en": [
+      "insanity",
+      "lack of mental capacity",
+      "(state of) non compos mentis"
+    ],
+    "senseUid": "622d5612-c4c6-4f65-b87f-5b2252ece600",
+    "wordId": "1793490",
+    "pt": "{\n  \"a\": [\n    \"insanidade\",\n    \"falta de capacidade mental\",\n    \"estado de incapacidade mental\"\n  ]\n"
+  },
+  {
+    "kana": "しんおん",
+    "en": [
+      "heart sound",
+      "cardiac sound"
+    ],
+    "senseUid": "5b9fb9a5-c439-4a94-9072-b5f0d561f52d",
+    "wordId": "1793520",
+    "pt": "{\n  \"a\": [\"som cardíaco\", \"batida do coração\"]\n"
+  },
+  {
+    "kana": "こころね",
+    "en": [
+      "innermost feelings",
+      "heart",
+      "motive"
+    ],
+    "senseUid": "b3a2ff8e-2f6e-4b18-8f3c-5f502bdf7ec7",
+    "wordId": "1793530",
+    "pt": "['sentimentos mais profundos', 'coração', 'motivo']"
+  },
+  {
+    "kana": "こころね",
+    "en": [
+      "nature",
+      "disposition",
+      "spirit"
+    ],
+    "senseUid": "13fe794e-6850-4c6e-8149-fc2fdf1ea895",
+    "wordId": "1793530",
+    "pt": "['natureza', 'disposição', 'espírito']"
+  },
+  {
+    "kana": "しんぱいごと",
+    "en": [
+      "worries",
+      "cares",
+      "troubles"
+    ],
+    "senseUid": "6776aea4-5fa3-470d-8219-3884e75b0822",
+    "wordId": "1793540",
+    "pt": "['preocupações', 'cuidados', 'aflições']"
+  },
+  {
+    "kana": "しんぱいしょう",
+    "en": [
+      "nervous temperament",
+      "worrier's disposition"
+    ],
+    "senseUid": "569a81bd-8772-4048-87ab-02fe37391c84",
+    "wordId": "1793550",
+    "pt": "['temperamento nervoso', 'disposição de quem se preocupa', 'tendência a se preocupar', 'natureza ansiosa']"
+  },
+  {
+    "kana": "しんばりぼう",
+    "en": [
+      "bar (e.g. on a door)",
+      "bolt"
+    ],
+    "senseUid": "2a9f3c03-aba9-4d2a-8b73-399b7f9e869c",
+    "wordId": "1793560",
+    "pt": "{\n  \"a\": [\"tranca\", \"ferrolho\", \"barra (por exemplo, em uma porta)\"]\n"
+  },
+  {
+    "kana": "こころぞえ",
+    "en": [
+      "advice",
+      "suggestion"
+    ],
+    "senseUid": "b1d62dab-12a6-47c9-b710-6930507e2c84",
+    "wordId": "1793570",
+    "pt": "{\n  \"a\": [\n    \"conselho\",\n    \"recomendação\"\n  ]\n"
+  },
+  {
+    "kana": "こころえちがい",
+    "en": [
+      "imprudence",
+      "misbehavior",
+      "misbehaviour",
+      "misunderstanding"
+    ],
+    "senseUid": "dcb4f1c6-d97e-4718-ba0d-9fa97d5656b3",
+    "wordId": "1793580",
+    "pt": "['imprudência', 'má conduta', 'má compreensão', 'mal-entendido']"
+  },
+  {
+    "kana": "こころえがたい",
+    "en": [
+      "hard to understand",
+      "hard to accept"
+    ],
+    "senseUid": "226e1845-b2ed-456c-a5c3-2f044755d844",
+    "wordId": "1793590",
+    "pt": "['difícil de compreender', 'difícil de aceitar']"
+  },
+  {
+    "kana": "こころえがお",
+    "en": [
+      "knowing look"
+    ],
+    "senseUid": "cf08f177-a5bf-4d07-9d0d-d5ed0858c9c0",
+    "wordId": "1793600",
+    "pt": "['sorriso compreensivo']"
+  },
+  {
+    "kana": "こころひそかに",
+    "en": [
+      "inwardly",
+      "secretly"
+    ],
+    "senseUid": "839f8ca1-f8b1-4422-be12-db38bb4f0f01",
+    "wordId": "1793610",
+    "pt": "['em segredo', 'no íntimo', 'no coração', 'silenciosamente por dentro']"
+  },
+  {
+    "kana": "しんりしょうせつ",
+    "en": [
+      "psychological novel"
+    ],
+    "senseUid": "6102b82d-d34d-42fb-9092-66c2be9c79f6",
+    "wordId": "1793620",
+    "pt": "['romance psicológico']"
+  },
+  {
+    "kana": "しんりてき",
+    "en": [
+      "psychological",
+      "mental"
+    ],
+    "senseUid": "5cf9cda5-9e23-457d-94dc-3a4a8d712ab8",
+    "wordId": "1793630",
+    "pt": "['psicológico', 'mental']"
+  },
+  {
+    "kana": "しんりせんそう",
+    "en": [
+      "psychological warfare"
+    ],
+    "senseUid": "5c2ef413-d6fc-4288-ba09-1c10304cbe43",
+    "wordId": "1793640",
+    "pt": "{\n  \"a\": [\"guerra psicológica\"]\n"
+  },
+  {
+    "kana": "しんがん",
+    "en": [
+      "the mind's eye"
+    ],
+    "senseUid": "e6dd92b0-de63-4428-a7e9-6a4cdc97f85c",
+    "wordId": "1793650",
+    "pt": "['olho da mente']"
+  },
+  {
+    "kana": "こころうつり",
+    "en": [
+      "change of heart",
+      "fickleness"
+    ],
+    "senseUid": "9c1e6ced-7db9-48ee-af90-291c2e9dd92e",
+    "wordId": "1793660",
+    "pt": "['mudança de coração', 'volubilidade']"
+  },
+  {
+    "kana": "こころぐみ",
+    "en": [
+      "preparation",
+      "anticipation"
+    ],
+    "senseUid": "3f60739a-0044-4a02-b636-2a23e1642be8",
+    "wordId": "1793670",
+    "pt": "{\n  \"a\": [\n    \"preparação de espírito\",\n    \"preparação mental\",\n    \"preparo interior\",\n    \"antecipação emocional\",\n    \"disposição de ânimo\"\n  ]\n"
+  },
+  {
+    "kana": "こころばかり",
+    "en": [
+      "small (token of one's gratitude, etc.)",
+      "little (something by way of thanks)",
+      "mere (trifle)"
+    ],
+    "senseUid": "fcf3a060-0476-4363-9684-8883c2e12d25",
+    "wordId": "1793680",
+    "pt": "['uma pequena demonstração de gratidão', 'um singelo gesto de agradecimento', 'apenas uma lembrança']"
+  },
+  {
+    "kana": "こころもとない",
+    "en": [
+      "uneasy",
+      "unsure",
+      "anxious"
+    ],
+    "senseUid": "13d4a489-9588-4b58-9195-8c9ef3c379a1",
+    "wordId": "1793690",
+    "pt": "['inseguro', 'ansioso', 'apreensivo']"
+  },
+  {
+    "kana": "こころもとない",
+    "en": [
+      "unreliable",
+      "untrustworthy",
+      "erratic",
+      "undependable"
+    ],
+    "senseUid": "ce3f56a2-fce4-445e-b412-8103926ddf91",
+    "wordId": "1793690",
+    "pt": "['inseguro', 'pouco confiável', 'incerto', 'instável']"
+  },
+  {
+    "kana": "こころもとない",
+    "en": [
+      "nervous",
+      "impatient",
+      "irritated from anxiety"
+    ],
+    "senseUid": "5a3e9265-c8f3-41d2-8a7e-b055d081866f",
+    "wordId": "1793690",
+    "pt": "['inseguro', 'ansioso', 'impaciente', 'inquieto pela ansiedade']"
+  },
+  {
+    "kana": "こころもとない",
+    "en": [
+      "unclear",
+      "indistinct",
+      "vague"
+    ],
+    "senseUid": "d263a961-9969-48b9-b312-2cd6fde4aa76",
+    "wordId": "1793690",
+    "pt": "['incerto', 'inseguro', 'desconfortável', 'vago', 'preocupado']"
+  },
+  {
+    "kana": "しんぷく",
+    "en": [
+      "chest and stomach",
+      "one's innermost being"
+    ],
+    "senseUid": "2ab32656-a55b-4f2e-94ff-31f231ac5aef",
+    "wordId": "1793700",
+    "pt": "['peito e estômago', 'o mais íntimo do ser']"
+  },
+  {
+    "kana": "しんい",
+    "en": [
+      "mind"
+    ],
+    "senseUid": "7c9a6f91-9dad-4a79-8aec-a305ab908f53",
+    "wordId": "1793710",
+    "pt": "['mente']"
+  },
+  {
+    "kana": "こころいき",
+    "en": [
+      "spirit",
+      "determination",
+      "pluck",
+      "mettle"
+    ],
+    "senseUid": "90f377b7-a812-4554-9cd1-74bc7de0ca3f",
+    "wordId": "1793720",
+    "pt": "{\n  \"a\": [\n    \"espírito\",\n    \"determinação\",\n    \"coragem\",\n    \"brio\"\n  ]\n"
+  },
+  {
+    "kana": "こころやり",
+    "en": [
+      "thoughtfulness",
+      "diversion",
+      "recreation"
+    ],
+    "senseUid": "1ec131bd-b08c-4afd-9a9d-355a278ec84e",
+    "wordId": "1793730",
+    "pt": "['delicadeza de espírito', 'atenção cuidadosa', 'distração', 'recreação']"
+  },
+  {
+    "kana": "こころしずか",
+    "en": [
+      "calm",
+      "serene",
+      "tranquil",
+      "peaceful"
+    ],
+    "senseUid": "e7a6793d-02e8-47c7-8c43-c729cdcd6fd8",
+    "wordId": "1793750",
+    "pt": "['calmo', 'sereno', 'tranquilo', 'pacífico']"
+  },
+  {
+    "kana": "しんでんけい",
+    "en": [
+      "electrocardiograph",
+      "ECG",
+      "EKG"
+    ],
+    "senseUid": "4c1ad33a-5104-48dd-81b6-a5a681d8eca1",
+    "wordId": "1793740",
+    "pt": "{\n  \"a\": [\n    \"eletrocardiógrafo\",\n    \"ECG\",\n    \"EKG\"\n  ]\n"
+  },
+  {
+    "kana": "こころにくい",
+    "en": [
+      "refined",
+      "admirable",
+      "superb"
+    ],
+    "senseUid": "9fe47c7b-2dfd-4fc9-a120-a47b947c4b8b",
+    "wordId": "1793760",
+    "pt": "['refinado', 'admirável', 'soberbo']"
+  },
+  {
+    "kana": "しんれいがく",
+    "en": [
+      "study of psychic phenomena",
+      "psychics"
+    ],
+    "senseUid": "60a94653-5a2f-4724-9027-29386b614723",
+    "wordId": "1793770",
+    "pt": "['estudo de fenômenos psíquicos', 'médiuns']"
+  }
+]
