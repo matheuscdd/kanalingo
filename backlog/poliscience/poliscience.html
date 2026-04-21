@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Simulador de Carro - Babylon.js</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000; 
+            touch-action: none; 
+        }
+        
+        #gameWrapper {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background-color: #87CEEB;
+            overflow: hidden;
+        }
+
+        @media screen and (orientation: portrait) {
+            #gameWrapper {
+                width: 100vh;
+                height: 100vw;
+                transform: rotate(90deg);
+                transform-origin: top left;
+                left: 100vw; 
+            }
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+        
+        #initScreen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        #btnPlay {
+            padding: 20px 50px;
+            font-size: 2rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,255,0,0.3);
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        #btnPlay:active {
+            transform: scale(0.95);
+            background-color: #3e8e41;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        #speedometer {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #4CAF50;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-shadow: 2px 2px 4px black;
+            z-index: 10;
+            transition: color 0.2s;
+            border-left: 5px solid #4CAF50;
+            pointer-events: none;
+        }
+        #nitroUI {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 250px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-shadow: 1px 1px 2px black;
+            z-index: 10;
+            pointer-events: none;
+        }
+        @media (max-width: 800px), screen and (orientation: portrait) {
+            #nitroUI { top: 20px; bottom: auto; width: 150px; }
+            #speedometer { font-size: 1.5rem; padding: 5px 10px; }
+            #instructions { display: none !important; } 
+        }
+        #nitroBarBg {
+            width: 100%;
+            height: 15px;
+            background: #333;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 8px;
+            border: 1px solid #555;
+        }
+        #nitroBar {
+            width: 100%;
+            height: 100%;
+            background: #00e5ff;
+            box-shadow: 0 0 10px #00e5ff;
+            transition: width 0.1s linear, background-color 0.3s;
+        }
+        #uploadUI {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 8px;
+            text-shadow: 1px 1px 2px black;
+            z-index: 10;
+            display: none;
+        }
+
+        #startScreen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            z-index: 1000;
+            text-align: center;
+        }
+        .loader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #4CAF50;
+            border-radius: 50%;
+            width: 50px; height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        #errorLog {
+            color: #FF6347; font-family: monospace; background: rgba(255,0,0,0.1);
+            padding: 10px; border-radius: 5px; display: none; margin-top: 15px;
+            white-space: pre-wrap; max-width: 80%;
+        }
+
+        #mobileControls {
+            display: none; 
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; 
+            z-index: 500;
+        }
+        #joystickArea {
+            position: absolute;
+            bottom: 30px; left: 30px;
+            width: 140px; height: 140px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            pointer-events: auto; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #joystickKnob {
+            width: 60px; height: 60px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        #actionButtons {
+            position: absolute;
+            bottom: 30px; right: 30px;
+            display: grid;
+            grid-template-columns: 80px 100px;
+            grid-template-rows: 80px 80px;
+            gap: 15px;
+            pointer-events: auto; 
+        }
+        .mob-btn {
+            border: none; border-radius: 50%;
+            font-weight: bold; color: white; font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            user-select: none; -webkit-user-select: none;
+        }
+        .mob-btn:active { transform: scale(0.9); }
+        #btnNitro { background: rgba(0, 229, 255, 0.7); grid-column: 1 / 3; grid-row: 1; border-radius: 15px; height: 60px; align-self: end; }
+        #btnBrake { background: rgba(255, 51, 0, 0.7); grid-column: 1; grid-row: 2; width: 80px; height: 80px; }
+        #btnGas { background: rgba(76, 175, 80, 0.7); grid-column: 2; grid-row: 2; width: 100px; height: 100px; justify-self: center; align-self: center; font-size: 1.3rem;}
+    </style>
+</head>
+<body>
+
+    <div id="gameWrapper">
+        <div id="initScreen">
+            <button id="btnPlay">TOCAR PARA JOGAR</button>
+        </div>
+
+        <canvas id="renderCanvas"></canvas>
+        
+        <div id="speedometer">0 km/h</div>
+
+        <div id="instructions" style="top: 90px; position: absolute; color: white; background: rgba(0,0,0,0.6); padding: 15px; border-radius: 8px;">
+            <h3>Controlos (PC)</h3>
+            <p><b>W</b> / <b>S</b> : Acelerar / Travar</p>
+            <p><b>A</b> / <b>D</b> : Virar Esq / Dir</p>
+            <p><b>SHIFT</b> : Turbo / Nitro</p>
+        </div>
+
+        <div id="nitroUI">
+            <div style="display: flex; justify-content: space-between;">
+                <b>NITRO</b> <span id="nitroText">100%</span>
+            </div>
+            <div id="nitroBarBg"><div id="nitroBar"></div></div>
+        </div>
+
+        <div id="uploadUI">
+            <h3>Trocar Carro</h3>
+            <input type="file" id="inGameFileInput" accept=".glb,.gltf,.obj" style="font-size: 0.9rem; color: white;" />
+        </div>
+
+        <div id="startScreen">
+            <h1>Simulador de Carro</h1>
+            <p>A preparar a pista e a descarregar o modelo 3D...</p>
+            <div class="loader" id="loadingSpinner"></div>
+            <h3 id="statusText">A carregar Motor 3D (Babylon.js)...</h3>
+            <div id="errorLog"></div>
+        </div>
+
+        <div id="mobileControls">
+            <div id="joystickArea">
+                <div id="joystickKnob"></div>
+            </div>
+            <div id="actionButtons">
+                <button id="btnNitro" class="mob-btn">NITRO</button>
+                <button id="btnBrake" class="mob-btn">RÉ</button>
+                <button id="btnGas" class="mob-btn">ACEL.</button>
+            </div>
+        </div>
+    </div> 
+
+    <script>
+        const DEFAULT_MODEL_URL = "https://raw.githubusercontent.com/szklsrz/options/main/Car.glb"; 
+
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 800;
+
+        window.joystickSteering = 0;
+
+        // ==========================================
+        // ARRANQUE A PROVA DE FALHAS E FULLSCREEN
+        // ==========================================
+        const startEngine = () => {
+            const initScr = document.getElementById('initScreen');
+            if(initScr.style.display === 'none') return; 
+            
+            initScr.style.display = 'none';
+            document.getElementById('startScreen').style.display = 'flex'; 
+
+            if (isMobile) {
+                document.getElementById('mobileControls').style.display = 'block';
+                
+                try {
+                    const docElm = document.documentElement;
+                    if (docElm.requestFullscreen) docElm.requestFullscreen();
+                    else if (docElm.mozRequestFullScreen) docElm.mozRequestFullScreen();
+                    else if (docElm.webkitRequestFullScreen) docElm.webkitRequestFullScreen();
+                } catch (err) {
+                    console.log("Fullscreen negado pelo browser, continuando normalmente...", err);
+                }
+            }
+
+            loadBabylonAndStart();
+        };
+
+        const btnPlay = document.getElementById('btnPlay');
+        btnPlay.addEventListener('click', startEngine);
+        btnPlay.addEventListener('touchstart', (e) => {
+            e.preventDefault(); 
+            startEngine();
+        }, { passive: false });
+
+        // ==========================================
+        // LÓGICA DO ANALÓGICO 
+        // ==========================================
+        const joystickArea = document.getElementById('joystickArea');
+        const joystickKnob = document.getElementById('joystickKnob');
+        let joystickActive = false;
+        let joystickStartX = 0;
+        let joystickStartY = 0; 
+        const maxJoystickMove = 40; 
+
+        joystickArea.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (e.targetTouches.length > 0) {
+                joystickActive = true;
+                joystickStartX = e.targetTouches[0].clientX;
+                joystickStartY = e.targetTouches[0].clientY;
+            }
+        }, { passive: false });
+
+        joystickArea.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (!joystickActive || e.targetTouches.length === 0) return;
+            
+            const touch = e.targetTouches[0];
+            const isForcedPortrait = window.innerHeight > window.innerWidth;
+            let deltaX;
+
+            if (isForcedPortrait) {
+                deltaX = touch.clientY - joystickStartY;
+            } else {
+                deltaX = touch.clientX - joystickStartX;
+            }
+            
+            deltaX = Math.max(-maxJoystickMove, Math.min(maxJoystickMove, deltaX));
+            joystickKnob.style.transform = `translateX(${deltaX}px)`;
+            window.joystickSteering = deltaX / maxJoystickMove;
+        }, { passive: false });
+
+        const resetJoystick = (e) => {
+            e.preventDefault();
+            if (e.targetTouches.length === 0) { 
+                joystickActive = false;
+                joystickKnob.style.transform = `translateX(0px)`;
+                window.joystickSteering = 0; 
+            }
+        };
+
+        joystickArea.addEventListener('touchend', resetJoystick, { passive: false });
+        joystickArea.addEventListener('touchcancel', resetJoystick, { passive: false });
+
+        const inputMap = { w: false, a: false, s: false, d: false, shift: false };
+        
+        function bindTouch(btnId, key) {
+            const btn = document.getElementById(btnId);
+            btn.addEventListener('touchstart', (e) => { e.preventDefault(); inputMap[key] = true; }, { passive: false });
+            btn.addEventListener('touchend', (e) => { e.preventDefault(); inputMap[key] = false; }, { passive: false });
+            btn.addEventListener('touchcancel', (e) => { e.preventDefault(); inputMap[key] = false; }, { passive: false }); 
+        }
+        
+        bindTouch('btnGas', 'w');
+        bindTouch('btnBrake', 's');
+        bindTouch('btnNitro', 'shift');
+
+        // ==========================================
+        // CARREGAMENTO DO BABYLON E INÍCIO DO JOGO
+        // ==========================================
+        function loadBabylonAndStart() {
+            const scripts = [
+                "https://cdn.babylonjs.com/babylon.js",
+                "https://cdn.babylonjs.com/materialsLibrary/babylonjs.materials.min.js",
+                "https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"
+            ];
+            
+            let currentScript = 0;
+            
+            function loadNext() {
+                if (currentScript >= scripts.length) {
+                    document.getElementById('statusText').innerText = "A configurar o Mundo 3D...";
+                    initGame();
+                    return;
+                }
+                const script = document.createElement('script');
+                script.src = scripts[currentScript];
+                
+                script.onerror = () => {
+                    document.getElementById('statusText').innerText = "Erro ao carregar o motor 3D. Verifique a internet.";
+                    document.getElementById('statusText').style.color = "#FF6347";
+                };
+
+                script.onload = () => {
+                    currentScript++;
+                    loadNext(); 
+                };
+                document.head.appendChild(script);
+            }
+            
+            loadNext(); 
+        }
+
+        function initGame() {
+            const canvas = document.getElementById("renderCanvas");
+            const engine = new BABYLON.Engine(canvas, true);
+
+            window.addEventListener("keydown", (e) => {
+                if (inputMap[e.key.toLowerCase()] !== undefined) inputMap[e.key.toLowerCase()] = true;
+                if (e.key === "Shift") inputMap["shift"] = true;
+            });
+            window.addEventListener("keyup", (e) => {
+                if (inputMap[e.key.toLowerCase()] !== undefined) inputMap[e.key.toLowerCase()] = false;
+                if (e.key === "Shift") inputMap["shift"] = false;
+            });
+
+            class CarController {
+                constructor(scene) {
+                    this.scene = scene;
+                    
+                    this.speed = 0;
+                    this.maxSpeed = 25;       
+                    this.maxReverseSpeed = -10; 
+                    this.acceleration = 12;   
+                    this.friction = 4;        
+                    this.brakeFriction = 20;  
+                    this.turnSpeed = 0.8;     
+                    
+                    this.currentSteering = 0; 
+                    this.isReady = false; 
+
+                    this.maxNitro = 100;
+                    this.currentNitro = 100;
+                    this.isNitroActive = false;
+                    this.nitroMultiplier = 2.2; 
+
+                    this.speedUI = document.getElementById('speedometer');
+                    this.nitroBar = document.getElementById('nitroBar');
+                    this.nitroText = document.getElementById('nitroText');
+                    
+                    this.createCarMesh();
+                }
+
+                createCarMesh() {
+                    this.root = BABYLON.MeshBuilder.CreateBox("carRootCollider", { width: 1.8, height: 0.8, depth: 4 }, this.scene);
+                    this.root.isVisible = false; 
+                    this.root.position.y = 0.5; 
+
+                    this.root.checkCollisions = true;
+                    this.root.ellipsoid = new BABYLON.Vector3(0.9, 0.4, 2); 
+
+                    this.root.onCollide = (collidedMesh) => {
+                        if (collidedMesh.name.startsWith("obs") || collidedMesh.name.endsWith("Wall")) {
+                            if (Math.abs(this.speed) > 2) {
+                                this.speed = -this.speed * 0.25; 
+                            } else {
+                                this.speed = 0; 
+                            }
+                        }
+                    };
+
+                    this.modelWrapper = new BABYLON.TransformNode("modelWrapper", this.scene);
+                    this.modelWrapper.parent = this.root;
+                    this.modelWrapper.position.y = 0.0; 
+                }
+
+                async loadCustomModelFromUrl(objectUrl, extension) {
+                    try {
+                        const result = await BABYLON.SceneLoader.ImportMeshAsync("", objectUrl, "", this.scene, null, extension);
+                        
+                        if (result.animationGroups) result.animationGroups.forEach(anim => anim.stop());
+
+                        if (this.customMeshes) this.customMeshes.forEach(m => m.dispose());
+                        if (this.carGeometryContainer) this.carGeometryContainer.dispose();
+
+                        this.customMeshes = result.meshes;
+                        
+                        this.carGeometryContainer = new BABYLON.TransformNode("carGeometryContainer", this.scene);
+                        this.carGeometryContainer.parent = this.modelWrapper;
+                        
+                        result.meshes.forEach(m => {
+                            if (!m.parent) m.parent = this.carGeometryContainer;
+                        });
+
+                        this.carGeometryContainer.computeWorldMatrix(true);
+                        result.meshes.forEach(m => m.computeWorldMatrix(true));
+                        
+                        const boundingInfo = this.carGeometryContainer.getHierarchyBoundingVectors();
+                        const size = boundingInfo.max.subtract(boundingInfo.min);
+                        
+                        let maxDimension = Math.max(size.x, size.y, size.z);
+                        if (!isFinite(maxDimension) || maxDimension <= 0) maxDimension = 1;
+                        
+                        const targetSize = 4.0;
+                        const scaleFactor = targetSize / maxDimension;
+                        this.carGeometryContainer.scaling = new BABYLON.Vector3(scaleFactor, scaleFactor, scaleFactor);
+                        
+                        this.carGeometryContainer.computeWorldMatrix(true);
+                        result.meshes.forEach(m => m.computeWorldMatrix(true));
+
+                        const newBoundingInfo = this.carGeometryContainer.getHierarchyBoundingVectors();
+                        
+                        const containerWorldPos = this.carGeometryContainer.getAbsolutePosition();
+                        const localMinY = newBoundingInfo.min.y - containerWorldPos.y;
+                        const localCenterX = (newBoundingInfo.max.x + newBoundingInfo.min.x) / 2 - containerWorldPos.x;
+                        const localCenterZ = (newBoundingInfo.max.z + newBoundingInfo.min.z) / 2 - containerWorldPos.z;
+                        
+                        this.carGeometryContainer.position.x = -localCenterX;
+                        this.carGeometryContainer.position.y = -0.4 - localMinY;
+                        this.carGeometryContainer.position.z = -localCenterZ;
+
+                        this.carGeometryContainer.computeWorldMatrix(true);
+
+                    } catch (error) {
+                        throw new Error("Falha no Babylon ao importar a malha: " + error.message);
+                    }
+                }
+
+                update(deltaTime) {
+                    if (!this.isReady) return;
+
+                    const isTryingNitro = inputMap["shift"];
+                    const nitroAcelera = isTryingNitro && this.currentNitro > 0;
+                    
+                    const isAccelerating = inputMap["w"] || inputMap["ArrowUp"] || nitroAcelera;
+                    const isBraking = inputMap["s"] || inputMap["ArrowDown"];
+                    
+                    let steeringInput = window.joystickSteering; 
+                    if (inputMap["a"] || inputMap["ArrowLeft"]) steeringInput = -1;
+                    if (inputMap["d"] || inputMap["ArrowRight"]) steeringInput = 1;
+
+                    if (isTryingNitro && this.currentNitro > 0 && this.speed > 5 && isAccelerating) {
+                        this.isNitroActive = true;
+                    } else {
+                        this.isNitroActive = false;
+                    }
+                    
+                    let currentMaxSpeed = this.maxSpeed;
+                    let currentAccel = this.acceleration;
+
+                    if (this.isNitroActive) {
+                        this.currentNitro -= 33 * deltaTime;
+                        if (this.currentNitro <= 0) {
+                            this.currentNitro = 0;
+                            this.isNitroActive = false;
+                        }
+                        
+                        currentMaxSpeed = this.maxSpeed * this.nitroMultiplier; 
+                        currentAccel = this.acceleration * 4.5;
+                    } else {
+                        if (!isTryingNitro) {
+                            this.currentNitro += 15 * deltaTime;
+                            if (this.currentNitro > this.maxNitro) this.currentNitro = this.maxNitro;
+                        }
+                    }
+
+                    const nitroPercent = Math.round((this.currentNitro / this.maxNitro) * 100);
+                    this.nitroBar.style.width = `${nitroPercent}%`;
+                    this.nitroText.innerText = `${nitroPercent}%`;
+                    
+                    if (this.isNitroActive) {
+                        this.nitroBar.style.backgroundColor = "#ff3300"; 
+                        this.nitroBar.style.boxShadow = "0 0 15px #ff3300";
+                    } else {
+                        this.nitroBar.style.backgroundColor = "#00e5ff"; 
+                        this.nitroBar.style.boxShadow = "0 0 10px #00e5ff";
+                    }
+
+                    if (isAccelerating) {
+                        this.speed += currentAccel * deltaTime;
+                    } else if (isBraking) {
+                        if (this.speed > 0) {
+                            this.speed -= this.brakeFriction * deltaTime;
+                        } else {
+                            this.speed -= this.acceleration * deltaTime;
+                        }
+                    } else {
+                        if (this.speed > 0) {
+                            this.speed -= this.friction * deltaTime;
+                            if (this.speed < 0) this.speed = 0; 
+                        } else if (this.speed < 0) {
+                            this.speed += this.friction * deltaTime;
+                            if (this.speed > 0) this.speed = 0;
+                        }
+                    }
+
+                    if (this.speed > currentMaxSpeed) {
+                        this.speed -= (this.friction * 6) * deltaTime;
+                        if (this.speed < currentMaxSpeed) {
+                            this.speed = currentMaxSpeed;
+                        }
+                    } else {
+                        this.speed = Math.max(this.maxReverseSpeed, Math.min(currentMaxSpeed, this.speed));
+                    }
+
+                    const isMoving = Math.abs(this.speed) > 0.1; 
+                    let targetSteering = 0; 
+
+                    if (isMoving) {
+                        const directionMult = this.speed > 0 ? 1 : -1;
+                        targetSteering = steeringInput * this.turnSpeed * directionMult;
+                    }
+
+                    this.currentSteering = BABYLON.Scalar.Lerp(this.currentSteering, targetSteering, 5 * deltaTime);
+                    this.root.rotation.y += this.currentSteering * deltaTime;
+
+                    let targetTilt = 0;
+                    if (isMoving) {
+                        targetTilt = -0.08 * steeringInput;
+                    }
+                    
+                    this.modelWrapper.rotation.z = BABYLON.Scalar.Lerp(this.modelWrapper.rotation.z, targetTilt, 5 * deltaTime);
+
+                    const forwardVector = new BABYLON.Vector3(
+                        Math.sin(this.root.rotation.y), 
+                        0, 
+                        Math.cos(this.root.rotation.y)
+                    );
+
+                    const velocityVector = forwardVector.scale(this.speed * deltaTime);
+                    
+                    // CORREÇÃO: Aplicar deltaTime à gravidade para evitar trepidações nas colisões
+                    velocityVector.y = -2.0 * deltaTime; 
+                    
+                    this.root.moveWithCollisions(velocityVector);
+
+                    let kmh = Math.round(Math.abs(this.speed * 6)); 
+                    
+                    if (this.speed >= currentMaxSpeed && isAccelerating) {
+                        kmh = Math.round(currentMaxSpeed * 6) + Math.floor(Math.random() * 10); 
+                    }
+
+                    this.speedUI.innerText = `${kmh} km/h`;
+
+                    if (kmh < 70) {
+                        this.speedUI.style.color = "#4CAF50"; 
+                        this.speedUI.style.borderLeftColor = "#4CAF50";
+                    } else if (kmh < 120) {
+                        this.speedUI.style.color = "#FFD700"; 
+                        this.speedUI.style.borderLeftColor = "#FFD700";
+                    } else {
+                        this.speedUI.style.color = "#FF6347"; 
+                        this.speedUI.style.borderLeftColor = "#FF6347";
+                    }
+                }
+            }
+
+            const createScene = function () {
+                const scene = new BABYLON.Scene(engine);
+                scene.clearColor = new BABYLON.Color4(0.53, 0.81, 0.92, 1); 
+                scene.collisionsEnabled = true;
+
+                const hemiLight = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(0, 1, 0), scene);
+                hemiLight.intensity = 0.7;
+
+                const dirLight = new BABYLON.DirectionalLight("dirLight", new BABYLON.Vector3(-1, -2, -1), scene);
+                dirLight.position = new BABYLON.Vector3(20, 40, 20);
+                dirLight.intensity = 0.6;
+
+                const roadWidth = 25; 
+                const roadLength = 1000; 
+
+                const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: roadWidth, height: roadLength }, scene);
+                const roadMat = new BABYLON.StandardMaterial("roadMat", scene);
+                roadMat.diffuseColor = new BABYLON.Color3(0.15, 0.15, 0.15); 
+                roadMat.specularColor = new BABYLON.Color3(0.1, 0.1, 0.1);
+                ground.material = roadMat;
+                ground.checkCollisions = true; 
+
+                const wallMat = new BABYLON.GridMaterial("wallMat", scene);
+                wallMat.mainColor = new BABYLON.Color3(0.7, 0.7, 0.7);
+                wallMat.lineColor = new BABYLON.Color3(0.8, 0.1, 0.1); 
+                
+                const leftWall = BABYLON.MeshBuilder.CreateBox("leftWall", { width: 1, height: 2.5, depth: roadLength }, scene);
+                leftWall.position = new BABYLON.Vector3(-roadWidth / 2 - 0.5, 1.25, 0);
+                leftWall.material = wallMat;
+                leftWall.checkCollisions = true;
+
+                const rightWall = BABYLON.MeshBuilder.CreateBox("rightWall", { width: 1, height: 2.5, depth: roadLength }, scene);
+                rightWall.position = new BABYLON.Vector3(roadWidth / 2 + 0.5, 1.25, 0);
+                rightWall.material = wallMat;
+                rightWall.checkCollisions = true;
+
+                const lineMat = new BABYLON.StandardMaterial("lineMat", scene);
+                lineMat.diffuseColor = new BABYLON.Color3(1, 1, 1); 
+                lineMat.emissiveColor = new BABYLON.Color3(0.4, 0.4, 0.4);
+
+                const laneOffsets = [-7.5, -2.5, 2.5, 7.5]; 
+                for (let i = 0; i < laneOffsets.length; i++) {
+                    for (let z = -roadLength / 2; z < roadLength / 2; z += 10) {
+                        const line = BABYLON.MeshBuilder.CreatePlane("line", { width: 0.3, height: 4 }, scene);
+                        line.rotation.x = Math.PI / 2; 
+                        line.position = new BABYLON.Vector3(laneOffsets[i], 0.02, z + 2); 
+                        line.material = lineMat;
+                    }
+                }
+
+                const obstacleMat = new BABYLON.StandardMaterial("obsMat", scene);
+                obstacleMat.diffuseColor = new BABYLON.Color3(0.2, 0.8, 0.2);
+                for (let i = 0; i < 40; i++) {
+                    const box = BABYLON.MeshBuilder.CreateBox("obs" + i, { size: 2 }, scene);
+                    box.position.x = (Math.random() - 0.5) * (roadWidth - 4);
+                    box.position.z = (Math.random() - 0.5) * (roadLength - 40);
+                    box.position.y = 1;
+                    box.material = obstacleMat;
+                    box.checkCollisions = true; 
+                }
+
+                const car = new CarController(scene);
+
+                const camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 5, -5), scene);
+                camera.radius = 4.5; 
+                camera.heightOffset = 1.8; 
+                camera.rotationOffset = 180; 
+                camera.cameraAcceleration = 0.1; 
+                
+                // CORREÇÃO: Aumentada a velocidade limite da câmara para impedir trepidações a altas velocidades
+                camera.maxCameraSpeed = 400; 
+                camera.lockedTarget = car.root; 
+
+                const defaultRadius = 4.5;
+                const nitroRadius = 8.5; 
+                const defaultFov = 0.8;
+                const nitroFov = 1.3; 
+
+                scene.onBeforeRenderObservable.add(() => {
+                    let deltaTime = engine.getDeltaTime() / 1000.0;
+                    if (deltaTime > 0.1) deltaTime = 0.1; 
+
+                    car.update(deltaTime);
+
+                    const targetRadius = car.isNitroActive ? nitroRadius : defaultRadius;
+                    const targetFov = car.isNitroActive ? nitroFov : defaultFov;
+                    
+                    const lerpAmount = Math.min(4 * deltaTime, 1.0);
+                    
+                    // CORREÇÃO: A propriedade radius da FollowCamera já suaviza a posição nativamente. 
+                    // Fazer Lerp nela causava uma vibração de "dupla suavização".
+                    camera.radius = targetRadius; 
+                    camera.fov = BABYLON.Scalar.Lerp(camera.fov, targetFov, lerpAmount);
+                });
+
+                return { scene, car };
+            };
+
+            const world = createScene();
+            const scene = world.scene;
+            const car = world.car;
+
+            engine.runRenderLoop(() => {
+                scene.render();
+            });
+
+            window.addEventListener("resize", () => {
+                engine.resize();
+            });
+
+            async function downloadInitialModel() {
+                const statusText = document.getElementById('statusText');
+                const errorLog = document.getElementById('errorLog');
+                const spinner = document.getElementById('loadingSpinner');
+
+                try {
+                    if (!DEFAULT_MODEL_URL || DEFAULT_MODEL_URL.trim() === "") throw new Error("URL não definida.");
+
+                    statusText.innerText = "A descarregar o carro da rede...";
+                    const response = await fetch(DEFAULT_MODEL_URL);
+                    if (!response.ok) throw new Error(`Erro de rede: Código ${response.status}`);
+
+                    const blob = await response.blob();
+                    const objectUrl = URL.createObjectURL(blob);
+
+                    statusText.innerText = "A aplicar texturas e geometria...";
+                    let extension = ".glb"; 
+                    const match = DEFAULT_MODEL_URL.match(/\.(glb|gltf|obj)(?:\?.*)?$/i);
+                    if (match) extension = match[0].split('?')[0].toLowerCase();
+
+                    await car.loadCustomModelFromUrl(objectUrl, extension);
+
+                    car.isReady = true;
+                    document.getElementById('startScreen').style.display = 'none';
+                    if(!isMobile) document.getElementById('uploadUI').style.display = 'block';
+
+                } catch (error) {
+                    console.error(error);
+                    spinner.style.display = "none";
+                    statusText.innerText = "Erro no Link da Internet. A iniciar com carro de substituição...";
+                    statusText.style.color = "#FFD700"; 
+                    
+                    const fallbackBox = BABYLON.MeshBuilder.CreateBox("fallbackCar", { width: 1.8, height: 0.8, depth: 4 }, scene);
+                    const mat = new BABYLON.StandardMaterial("fallbackMat", scene);
+                    mat.diffuseColor = new BABYLON.Color3(0.8, 0.2, 0.2); 
+                    fallbackBox.material = mat;
+                    fallbackBox.parent = car.modelWrapper;
+                    fallbackBox.position.y = 0.4; 
+                    car.customMeshes = [fallbackBox];
+
+                    setTimeout(() => {
+                        car.isReady = true;
+                        document.getElementById('startScreen').style.display = 'none';
+                        if(!isMobile) document.getElementById('uploadUI').style.display = 'block';
+                    }, 3000);
+                }
+            }
+
+            document.getElementById('inGameFileInput').addEventListener('change', async (evt) => {
+                const file = evt.target.files[0];
+                if (!file) return;
+
+                car.isReady = false; 
+                try {
+                    const objectUrl = URL.createObjectURL(file);
+                    const extension = "." + file.name.split('.').pop().toLowerCase();
+                    await car.loadCustomModelFromUrl(objectUrl, extension);
+                } catch (error) { alert("Erro ao trocar o modelo: " + error.message); } 
+                finally { car.isReady = true; evt.target.blur(); }
+            });
+
+            downloadInitialModel();
+        }
+    </script>
+</body>
+</html>

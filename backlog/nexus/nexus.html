@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO Educativo - Flat Design</title>
+    
+    <!-- Phaser 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Nunito é a cara do Duolingo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- ESTILOS - DUOLINGO FLAT DESIGN -->
+    <style>
+        :root {
+            --bg-color: #F0F4F5; /* Cinza super claro/azulado do fundo */
+            --text-dark: #4B4B4B; /* Texto principal escuro */
+            --text-light: #AFB4B9; /* Texto secundário */
+            
+            --primary: #1CB0F6; /* Azul */
+            --primary-shadow: #1899D6;
+            
+            --danger: #FF4B4B; /* Vermelho Erro/Dragão */
+            --danger-shadow: #EA2B2B;
+            
+            --success: #58CC02; /* Verde Acerto */
+            --success-shadow: #58A700;
+            
+            --warning: #FF9600; /* Laranja Fênix */
+            --warning-shadow: #E58700;
+            
+            --purple: #CE82FF; /* Roxo Categoria/Unicórnio */
+            --card-border: #E5E5E5; /* Borda padrão de cartas */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #game-wrapper {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: var(--bg-color);
+        }
+
+        #phaser-game {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* SISTEMA DE NOTIFICAÇÕES (TOASTS) - FLAT DESIGN */
+        #toast-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .toast {
+            background-color: white;
+            color: var(--text-dark);
+            padding: 12px 24px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 800;
+            border: 2px solid var(--card-border);
+            border-bottom: 4px solid var(--card-border);
+            animation: bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast i { font-size: 22px; }
+        .toast.success i { color: var(--success); }
+        .toast.danger i { color: var(--danger); }
+        .toast.warning i { color: var(--warning); }
+        .toast.info i { color: var(--primary); }
+
+        .toast.fadeOut {
+            animation: bounceOut 0.3s ease-in forwards;
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: translateY(-30px) scale(0.8); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes bounceOut {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-20px) scale(0.8); }
+        }
+
+        /* MODAIS - FLAT DESIGN */
+        #category-modal, #game-over-modal {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto;
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #category-modal.visible, #game-over-modal.visible {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            border: 2px solid var(--card-border);
+            border-bottom: 6px solid var(--card-border);
+            max-width: 90%;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: var(--text-dark);
+            font-weight: 900;
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            max-width: 450px;
+        }
+
+        .btn-cat {
+            background-color: var(--primary);
+            border: none;
+            border-bottom: 4px solid var(--primary-shadow);
+            padding: 15px 20px;
+            border-radius: 16px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            color: white;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .btn-cat:hover {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+            margin-bottom: 2px;
+        }
+        
+        .btn-cat:active {
+            transform: translateY(4px);
+            border-bottom-width: 0px;
+            margin-bottom: 4px;
+        }
+
+        .hidden { display: none !important; }
+
+        .preload-font { position: absolute; opacity: 0; pointer-events: none; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+    </style>
+</head>
+<body>
+
+    <span class="preload-font">&#xf021; &#xf05e; &#xf0e2; &#xf067;</span>
+
+    <div id="game-wrapper">
+        <div id="phaser-game"></div>
+        <div class="ui-layer">
+            <div id="toast-container"></div>
+        </div>
+
+        <div id="category-modal" class="hidden">
+            <div class="modal-content">
+                <h2><i class="fas fa-magic" style="color: var(--primary);"></i> ESCOLHA A CATEGORIA</h2>
+                <div class="category-buttons" id="cat-btn-container"></div>
+            </div>
+        </div>
+
+        <div id="game-over-modal" class="hidden">
+            <div class="modal-content">
+                <h2 id="winner-text">FIM DE JOGO!</h2>
+                <button class="btn-cat" style="background-color: var(--success); border-bottom-color: var(--success-shadow); margin-top: 10px; width: 100%;" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> JOGAR NOVAMENTE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const CAT_CONFIG = {
+            ANIMAIS: { icon: '\uf1b0' },
+            FRUTAS:  { icon: '\uf5d1' },
+            CORES:   { icon: '\uf53f' },
+            OBJETOS: { icon: '\uf466' },
+            CORINGA: { icon: '\uf0d0' }
+        };
+
+        const WORDS = {
+            ANIMAIS: ['Cachorro', 'Gato', 'Leão', 'Urso', 'Tigre', 'Zebra', 'Pato', 'Sapo', 'Peixe', 'Lobo'],
+            FRUTAS:  ['Maçã', 'Banana', 'Uva', 'Laranja', 'Melão', 'Limão', 'Manga', 'Kiwi', 'Cereja', 'Amora'],
+            CORES:   ['Azul', 'Verde', 'Vermelho', 'Amarelo', 'Roxo', 'Rosa', 'Preto', 'Branco', 'Cinza', 'Marrom'],
+            OBJETOS: ['Mesa', 'Cadeira', 'Relógio', 'Lápis', 'Livro', 'Copo', 'Prato', 'Chave', 'Mala', 'Cama']
+        };
+
+        const SPECIALS = {
+            CHANGE_CAT: { id: 'CHANGE_CAT', text: 'Trocar', fa: '\uf021' },
+            SKIP:       { id: 'SKIP',       text: 'Pular',  fa: '\uf05e' },
+            REVERSE:    { id: 'REVERSE',    text: 'Inverter',fa: '\uf0e2' },
+            DRAW_TWO:   { id: 'DRAW_TWO',   text: '+2 Cartas',fa: '\uf067' }
+        };
+
+        function showToast(message, icon = 'fa-info-circle', type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fas ${icon}"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('fadeOut');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        class GameScene extends Phaser.Scene {
+            constructor() {
+                super('GameScene');
+                this.deck = [];
+                this.discardPile = [];
+                this.players = [];
+                this.currentPlayerIndex = 0;
+                this.turnDirection = 1;
+                this.activeCategory = null;
+                this.activeCard = null;
+                this.passCount = 0;
+                this.playerScore = 0;
+                this.isDrawDisabled = true;
+                this.gameActive = false;
+                
+                this.discardSprite = null;
+                this.botAvatars = {};
+            }
+
+            // O método preload foi totalmente removido para garantir 100% de inicialização livre de falhas de carregamento/rede.
+
+            create() {
+                this.initGame();
+                this.scale.on('resize', this.handleResize, this);
+            }
+
+            handleResize(gameSize) {
+                const width = gameSize.width;
+                const height = gameSize.height;
+                this.cameras.main.setSize(width, height);
+                // Garantia contra falhas se o resize disparar antes de o UI existir
+                this.repositionUI();
+                this.updateVisuals();
+            }
+
+            initGame() {
+                this.players = [
+                    { id: 0, name: 'Você', isBot: false, hand: [] },
+                    { id: 1, name: 'Dragão', isBot: true, hand: [] },
+                    { id: 2, name: 'Unicórnio', isBot: true, hand: [] },
+                    { id: 3, name: 'Fênix', isBot: true, hand: [] }
+                ];
+                this.playerScore = 0;
+
+                this.generateDeck();
+                this.shuffleDeck();
+                this.dealInitialCards();
+
+                let firstCard = this.deck.pop();
+                while(firstCard.type !== 'NORMAL') {
+                    this.deck.unshift(firstCard);
+                    firstCard = this.deck.pop();
+                }
+                
+                this.discardPile.push(firstCard);
+                this.activeCard = firstCard;
+                this.activeCategory = firstCard.category;
+
+                this.createBoardUI();
+                this.updateVisuals();
+
+                this.gameActive = true;
+                this.startTurn();
+            }
+
+            generateDeck() {
+                this.deck = [];
+                let idCounter = 0;
+                Object.keys(WORDS).forEach(category => {
+                    WORDS[category].forEach(word => {
+                        this.deck.push({ id: idCounter++, type: 'NORMAL', category: category, value: word });
+                    });
+                    for(let i=0; i<2; i++) {
+                        this.deck.push({ id: idCounter++, type: 'SPECIAL', category: category, value: SPECIALS.SKIP.id });
+                        this.deck.push({ id: idCounter++, type: 'SPECIAL', category: category, value: SPECIALS.REVERSE.id });
+                        this.deck.push({ id: idCounter++, type: 'SPECIAL', category: category, value: SPECIALS.DRAW_TWO.id });
+                    }
+                });
+                for(let i=0; i<4; i++) {
+                    this.deck.push({ id: idCounter++, type: 'WILD', category: 'CORINGA', value: SPECIALS.CHANGE_CAT.id });
+                }
+            }
+
+            shuffleDeck() {
+                for (let i = this.deck.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
+                }
+            }
+
+            dealInitialCards() {
+                for (let i = 0; i < 7; i++) {
+                    for (let p = 0; p < this.players.length; p++) {
+                        this.players[p].hand.push(this.drawFromDeck());
+                    }
+                }
+            }
+
+            drawFromDeck() {
+                if (this.deck.length === 0) {
+                    const topCard = this.discardPile.pop();
+                    this.deck = [...this.discardPile];
+                    this.discardPile = [topCard];
+                    this.shuffleDeck();
+                    showToast("Baralho reembaralhado!", "fa-sync", "warning");
+                }
+                return this.deck.pop();
+            }
+
+            updateScoreText() {
+                if (this.scoreText) {
+                    this.scoreText.setText(`Pontos: ${this.playerScore}`);
+                    this.scoreText.setColor(this.playerScore < 0 ? '#FF4B4B' : '#58CC02');
+                }
+            }
+
+            createBoardUI() {
+                // Títulos - Fonte grossa Duolingo style
+                this.activeCategoryTitle = this.add.text(0, 0, 'CATEGORIA', { font: '900 16px Nunito', fill: '#AFB4B9' }).setOrigin(0.5);
+                this.activeCategoryText = this.add.text(0, 0, this.activeCategory, { font: '900 32px Nunito', fill: '#CE82FF' }).setOrigin(0.5);
+                this.turnIndicator = this.add.text(0, 0, '', { font: '800 20px Nunito', fill: '#4B4B4B' }).setOrigin(0.5);
+
+                // Monte Estilo Flat (Várias cartinhas brancas empilhadas)
+                this.monteContainer = this.add.container(0, 0);
+                for(let i=0; i<3; i++) {
+                    const bg = this.add.graphics();
+                    bg.fillStyle(0xFFFFFF, 1);
+                    bg.fillRoundedRect(-40 + (i*2), -55 - (i*3), 80, 110, 12);
+                    bg.lineStyle(2, 0xE5E5E5);
+                    bg.strokeRoundedRect(-40 + (i*2), -55 - (i*3), 80, 110, 12);
+                    this.monteContainer.add(bg);
+                }
+                const monteIcon = this.add.text(4, -6, '\uf0c5', { fontFamily: '"Font Awesome 6 Free"', fontStyle: '900', fontSize: '30px', fill: '#AFB4B9' }).setOrigin(0.5);
+                this.monteContainer.add(monteIcon);
+
+                this.playerHandContainer = this.add.container(0, 0);
+                this.playerHandContainer.setDepth(100); 
+                
+                this.scoreText = this.add.text(0, 0, 'Pontos: 0', { font: '900 24px Nunito', fill: '#58CC02' }).setOrigin(0, 0.5);
+                
+                // Cria os avatares desenhados puramente com formas nativas
+                this.createBotAvatar(1, 'dragon'); 
+                this.createBotAvatar(2, 'unicorn');
+                this.createBotAvatar(3, 'phoenix');
+
+                this.createDrawButton();
+                this.repositionUI();
+            }
+
+            // Desenha os animais usando primitivas do Phaser (Resolve bloqueios de SVG/CSP e funciona sempre)
+            createBotAvatar(botId, type) {
+                const container = this.add.container(0, 0);
+                
+                const bg = this.add.graphics();
+                bg.fillStyle(0xFFFFFF, 1);
+                bg.fillCircle(0, -10, 40);
+                bg.lineStyle(2, 0xE5E5E5);
+                bg.strokeCircle(0, -10, 40);
+                
+                const avatar = this.add.graphics();
+                avatar.y = -10;
+
+                if (type === 'dragon') {
+                    // Dragão (Verde com espinhos)
+                    avatar.fillStyle(0x58CC02, 1); 
+                    avatar.fillRoundedRect(-18, -12, 36, 28, 10);
+                    avatar.fillStyle(0x58A700, 1); 
+                    avatar.fillTriangle(-10, -12, -15, -22, -2, -12); // Espinho 1
+                    avatar.fillTriangle(5, -12, 0, -22, 13, -12); // Espinho 2
+                    avatar.fillStyle(0xFFFFFF, 1);
+                    avatar.fillCircle(8, -2, 6); // Olho
+                    avatar.fillStyle(0x4B4B4B, 1);
+                    avatar.fillCircle(10, -2, 3); // Pupila
+                    avatar.fillStyle(0x58A700, 1);
+                    avatar.fillCircle(12, 8, 2); // Narina
+                } else if (type === 'unicorn') {
+                    // Unicórnio (Branco com crina roxa e chifre dourado)
+                    avatar.fillStyle(0xFFFFFF, 1);
+                    avatar.fillRoundedRect(-15, -15, 30, 32, 12);
+                    avatar.lineStyle(2, 0xE5E5E5);
+                    avatar.strokeRoundedRect(-15, -15, 30, 32, 12);
+                    avatar.fillStyle(0xCE82FF, 1); 
+                    avatar.fillRoundedRect(-18, -15, 12, 20, 6); // Crina
+                    avatar.fillStyle(0xFFC800, 1); 
+                    avatar.fillTriangle(0, -15, -4, -30, 8, -15); // Chifre
+                    avatar.fillStyle(0x4B4B4B, 1);
+                    avatar.fillCircle(6, -2, 3); // Olho
+                } else if (type === 'phoenix') {
+                    // Fênix (Laranja com crista)
+                    avatar.fillStyle(0xFF9600, 1); 
+                    avatar.fillCircle(0, 0, 18);
+                    avatar.fillStyle(0xFF4B4B, 1); 
+                    avatar.fillTriangle(-12, -12, -20, -25, -2, -16); // Crista
+                    avatar.fillStyle(0xFFC800, 1); 
+                    avatar.fillTriangle(14, 0, 24, 4, 14, 8); // Bico
+                    avatar.fillStyle(0xFFFFFF, 1);
+                    avatar.fillCircle(5, -4, 6); // Olho
+                    avatar.fillStyle(0x4B4B4B, 1);
+                    avatar.fillCircle(7, -4, 3); // Pupila
+                }
+                
+                const textBg = this.add.graphics();
+                textBg.fillStyle(0xFFFFFF, 1);
+                textBg.fillRoundedRect(-50, 35, 100, 46, 12); // Aumentado um pouquinho para as cartas caberem melhor
+                textBg.lineStyle(2, 0xE5E5E5);
+                textBg.strokeRoundedRect(-50, 35, 100, 46, 12);
+
+                const nameText = this.add.text(0, 46, this.players[botId].name, { font: '800 14px Nunito', fill: '#4B4B4B' }).setOrigin(0.5);
+                
+                // Em vez de texto, um container para as minicartas
+                const miniCardsContainer = this.add.container(0, 65);
+
+                container.add([bg, avatar, textBg, nameText, miniCardsContainer]);
+                
+                this.botAvatars[botId] = { container, miniCardsContainer };
+            }
+
+            repositionUI() {
+                // Previne falhas se o ecrã redimensionar antes da UI ser gerada
+                if (!this.activeCategoryTitle) return;
+
+                const w = this.scale.width;
+                const h = this.scale.height;
+                const cx = w / 2;
+                const cy = h / 2;
+                const isMobile = w < 600;
+
+                this.activeCategoryTitle.setPosition(cx, cy - (isMobile ? 120 : 100));
+                this.activeCategoryText.setPosition(cx, cy - (isMobile ? 90 : 70));
+                this.turnIndicator.setPosition(cx, cy + (isMobile ? 95 : 85));
+
+                this.monteContainer.setPosition(cx - 55, cy + 5);
+                
+                this.playerHandContainer.setPosition(cx, h - (isMobile ? 70 : 80)); 
+                this.scoreText.setPosition(25, h - (isMobile ? 25 : 30));
+                
+                this.botAvatars[1].container.setPosition(Math.max(65, w * 0.12), isMobile ? cy - 90 : cy);
+                this.botAvatars[2].container.setPosition(cx, Math.max(50, h * 0.12));
+                this.botAvatars[3].container.setPosition(Math.min(w - 65, w * 0.88), isMobile ? cy - 90 : cy);
+
+                this.btnDrawContainer.setPosition(w - (isMobile ? 90 : 110), h - (isMobile ? 35 : 45));
+            }
+
+            createDrawButton() {
+                this.btnDrawContainer = this.add.container(0, 0);
+                this.btnDrawContainer.setDepth(150);
+                
+                const shadow = this.add.graphics();
+                shadow.setName('shadow');
+                
+                const bg = this.add.graphics();
+                bg.setName('bg');
+                
+                const btnContent = this.add.container(0, 0);
+                btnContent.setName('content');
+                const icon = this.add.text(-60, 0, '\uf5fd', { fontFamily: '"Font Awesome 6 Free"', fontStyle: '900', fontSize: '18px', fill: '#fff' }).setOrigin(0.5);
+                const text = this.add.text(15, 0, 'COMPRAR', { fontFamily: 'Nunito', fontWeight: '900', fontSize: '16px', fill: '#fff' }).setOrigin(0.5);
+                btnContent.add([icon, text]);
+
+                this.btnDrawContainer.add([shadow, bg, btnContent]);
+
+                const hitArea = new Phaser.Geom.Rectangle(-90, -25, 180, 50);
+                this.btnDrawContainer.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
+
+                this.btnDrawContainer.on('pointerdown', () => {
+                    if (this.gameActive && this.currentPlayerIndex === 0 && !this.isDrawDisabled) {
+                        bg.y = 4; btnContent.y = 4; // Efeito click 3D (afunda)
+                        this.time.delayedCall(150, () => {
+                            bg.y = 0; btnContent.y = 0;
+                            this.setDrawButtonDisabled(true);
+                            this.humanDrawAction();
+                        });
+                    }
+                });
+
+                this.setDrawButtonDisabled(true);
+            }
+
+            drawButtonBg(primaryColor, shadowColor) {
+                const shadow = this.btnDrawContainer.getByName('shadow');
+                const bg = this.btnDrawContainer.getByName('bg');
+                
+                shadow.clear();
+                shadow.fillStyle(shadowColor, 1);
+                shadow.fillRoundedRect(-90, -21, 180, 50, 16);
+
+                bg.clear();
+                bg.fillStyle(primaryColor, 1);
+                bg.fillRoundedRect(-90, -25, 180, 50, 16);
+            }
+
+            setDrawButtonDisabled(disabled) {
+                this.isDrawDisabled = disabled;
+                this.drawButtonBg(disabled ? 0xE5E5E5 : 0x1CB0F6, disabled ? 0xCECECE : 0x1899D6);
+                const content = this.btnDrawContainer.getByName('content');
+                content.iterate((child) => child.setColor(disabled ? '#AFB4B9' : '#FFFFFF'));
+            }
+
+            updateVisuals() {
+                if (!this.activeCategoryText || !this.playerHandContainer) return;
+
+                this.activeCategoryText.setText(this.activeCategory);
+
+                if (this.discardSprite) this.discardSprite.destroy();
+                const cx = this.scale.width / 2;
+                const cy = this.scale.height / 2;
+                this.discardSprite = this.createVisualCard(this.activeCard, cx + 55, cy);
+                this.add.existing(this.discardSprite);
+
+                // Desenha as minicartas para cada bot dinamicamente
+                for (let botId = 1; botId <= 3; botId++) {
+                    const botData = this.botAvatars[botId];
+                    botData.miniCardsContainer.removeAll(true);
+
+                    const cardCount = this.players[botId].hand.length;
+                    const mWidth = 14;
+                    const mHeight = 20;
+                    // Se eles tiverem muitas cartas, elas se espremem para não sair do quadro
+                    const spacing = Math.min(8, 80 / Math.max(1, cardCount));
+                    const startX = -((cardCount - 1) * spacing) / 2;
+
+                    for (let i = 0; i < cardCount; i++) {
+                        const mCard = this.add.graphics();
+                        mCard.x = startX + (i * spacing);
+                        
+                        // Sombra
+                        mCard.fillStyle(0xE5E5E5, 1);
+                        mCard.fillRoundedRect(-mWidth/2, -mHeight/2 + 2, mWidth, mHeight, 3);
+
+                        // Carta Branca
+                        mCard.fillStyle(0xFFFFFF, 1);
+                        mCard.fillRoundedRect(-mWidth/2, -mHeight/2, mWidth, mHeight, 3);
+                        mCard.lineStyle(1, 0xCECECE);
+                        mCard.strokeRoundedRect(-mWidth/2, -mHeight/2, mWidth, mHeight, 3);
+
+                        botData.miniCardsContainer.add(mCard);
+                    }
+                }
+
+                this.playerHandContainer.removeAll(true);
+                const hand = this.players[0].hand;
+                const cardWidth = 90;
+                const spacing = Math.min(cardWidth + 10, (this.scale.width - 100) / hand.length);
+                const startX = -((hand.length - 1) * spacing) / 2;
+
+                hand.forEach((card, i) => {
+                    const cardVisual = this.createVisualCard(card, startX + (i * spacing), 0, true);
+                    this.playerHandContainer.add(cardVisual);
+
+                    if (this.currentPlayerIndex === 0 && this.gameActive) {
+                        const hitArea = new Phaser.Geom.Rectangle(-40, -55, 80, 110);
+                        cardVisual.setInteractive(hitArea, Phaser.Geom.Rectangle.Contains);
+                        this.input.setDraggable(cardVisual);
+
+                        cardVisual.on('pointerover', () => {
+                            if(!cardVisual.getData('isDragging')) this.tweens.add({ targets: cardVisual, y: -20, duration: 150, ease: 'Back.easeOut' });
+                        });
+                        cardVisual.on('pointerout', () => {
+                            if(!cardVisual.getData('isDragging')) this.tweens.add({ targets: cardVisual, y: 0, duration: 150 });
+                        });
+                        
+                        cardVisual.on('dragstart', () => {
+                            cardVisual.setData('isDragging', true);
+                            cardVisual.setData('originX', cardVisual.x);
+                            cardVisual.setData('originY', 0);
+                            this.playerHandContainer.bringToTop(cardVisual);
+                            this.tweens.add({ targets: cardVisual, scaleX: 1.1, scaleY: 1.1, duration: 100 });
+                        });
+
+                        cardVisual.on('drag', (pointer, dragX, dragY) => {
+                            cardVisual.x = dragX; cardVisual.y = dragY;
+                        });
+
+                        cardVisual.on('dragend', () => {
+                            cardVisual.setData('isDragging', false);
+                            this.tweens.add({ targets: cardVisual, scaleX: 1, scaleY: 1, duration: 100 });
+                            
+                            const matrix = cardVisual.getWorldTransformMatrix();
+                            const dist = Phaser.Math.Distance.Between(matrix.tx, matrix.ty, cx, cy);
+
+                            if (dist < 150) {
+                                if (!this.isValidPlay(card)) {
+                                    this.playerScore -= 10;
+                                    this.updateScoreText();
+                                    showToast("CARTA INCORRETA! -10 PTS", "fa-times-circle", "danger");
+                                    this.cameras.main.shake(200, 0.005); // Efeito de erro Duolingo style
+                                    this.tweens.add({ targets: cardVisual, x: cardVisual.getData('originX'), y: cardVisual.getData('originY'), duration: 400, ease: 'Bounce.easeOut' });
+                                } else {
+                                    this.playerScore += 20;
+                                    this.updateScoreText();
+                                    showToast("MUITO BEM! +20 PTS", "fa-check-circle", "success");
+                                    this.setDrawButtonDisabled(true);
+                                    this.playCard(this.players[0], card);
+                                }
+                            } else {
+                                this.tweens.add({ targets: cardVisual, x: cardVisual.getData('originX'), y: cardVisual.getData('originY'), duration: 400, ease: 'Bounce.easeOut' });
+                            }
+                        });
+                    }
+                });
+
+                const pName = this.players[this.currentPlayerIndex].name;
+                this.turnIndicator.setText(`VEZ DE: ${pName.toUpperCase()}`);
+                this.turnIndicator.setColor(this.currentPlayerIndex === 0 ? '#58CC02' : '#AFB4B9');
+            }
+
+            // Design das cartas tipo Duolingo: Fundo branco, sem cores de categoria e sombras em base
+            createVisualCard(cardData, x, y, isPlayerHand = false) {
+                const container = this.add.container(x, y);
+                const graphics = this.add.graphics();
+                const w = 80, h = 110;
+                
+                // Sombra da carta (profundidade)
+                graphics.fillStyle(0xE5E5E5, 1);
+                graphics.fillRoundedRect(-w/2, -h/2 + 4, w, h, 14);
+
+                // Corpo da carta
+                graphics.fillStyle(0xffffff, 1);
+                graphics.fillRoundedRect(-w/2, -h/2, w, h, 14);
+                graphics.lineStyle(2, 0xE5E5E5);
+                graphics.strokeRoundedRect(-w/2, -h/2, w, h, 14);
+
+                let contentText;
+                if (cardData.type === 'NORMAL') {
+                    contentText = this.add.text(0, 0, cardData.value, {
+                        fontFamily: 'Nunito', fontSize: '15px', fontStyle: '800', fill: '#4B4B4B'
+                    }).setOrigin(0.5);
+                } else {
+                    const sp = SPECIALS[cardData.value];
+                    const spText = sp ? sp.fa : '\uf0d0';
+                    const fSize = cardData.value === 'DRAW_TWO' ? '22px' : '36px';
+                    
+                    contentText = this.add.text(0, 0, spText, {
+                        fontFamily: '"Font Awesome 6 Free"', fontStyle: '900', fontSize: fSize, fill: '#1CB0F6'
+                    }).setOrigin(0.5);
+                    
+                    if(cardData.value === 'DRAW_TWO') {
+                        const numText = this.add.text(0, 24, '+2', {fontFamily: 'Nunito', fontSize: '18px', fontStyle: '900', fill: '#1CB0F6'}).setOrigin(0.5);
+                        container.add(numText);
+                    }
+                }
+
+                container.add(graphics);
+                container.add(contentText);
+                return container;
+            }
+
+            startTurn() {
+                if (!this.gameActive) return;
+                const currentPlayer = this.players[this.currentPlayerIndex];
+                this.updateVisuals();
+
+                if (this.currentPlayerIndex === 0) {
+                    this.setDrawButtonDisabled(false);
+                    showToast("SUA VEZ! ARRASTE A CARTA.", "fa-hand-pointer", "success");
+                } else {
+                    this.setDrawButtonDisabled(true);
+                    this.showBotThinking(currentPlayer);
+                    const thinkTime = Phaser.Math.Between(3000, 5000);
+                    this.time.delayedCall(thinkTime, () => {
+                        this.hideBotThinking();
+                        this.executeBotTurn(currentPlayer);
+                    });
+                }
+            }
+
+            isValidPlay(card) {
+                if (card.type === 'WILD') return true;
+                if (card.category === this.activeCategory) return true;
+                if (card.type === 'SPECIAL' && this.activeCard.type === 'SPECIAL' && card.value === this.activeCard.value) return true;
+                return false;
+            }
+
+            humanDrawAction() {
+                const card = this.drawFromDeck();
+                const player = this.players[0];
+                showToast("VOCÊ COMPROU UMA CARTA.", "fa-layer-group", "warning");
+                
+                if (this.isValidPlay(card)) {
+                    showToast("CARTA JOGADA AUTOMATICAMENTE!", "fa-bolt", "success");
+                    this.playCard(player, card, false); 
+                } else {
+                    player.hand.push(card);
+                    this.passCount++;
+                    this.endTurn();
+                }
+            }
+
+            executeBotTurn(bot) {
+                if (!this.gameActive) return;
+                const validCards = bot.hand.filter(c => this.isValidPlay(c));
+
+                if (validCards.length > 0) {
+                    const cardToPlay = Phaser.Math.RND.pick(validCards);
+                    this.animateBotPlay(bot, cardToPlay, () => this.playCard(bot, cardToPlay));
+                } else {
+                    const drawnCard = this.drawFromDeck();
+                    showToast(`${bot.name.toUpperCase()} COMPROU.`, "fa-info-circle", "warning");
+                    
+                    this.animateBotDraw(bot, () => {
+                        if (this.isValidPlay(drawnCard)) {
+                            this.time.delayedCall(600, () => {
+                                this.animateBotPlay(bot, drawnCard, () => this.playCard(bot, drawnCard, false));
+                            });
+                        } else {
+                            bot.hand.push(drawnCard);
+                            this.passCount++;
+                            this.time.delayedCall(600, () => this.endTurn());
+                        }
+                    });
+                }
+            }
+
+            getBotPosition(botId) {
+                const container = this.botAvatars[botId].container;
+                return { x: container.x, y: container.y };
+            }
+
+            showBotThinking(bot) {
+                const pos = this.getBotPosition(bot.id);
+                this.thinkingIndicator = this.add.container(pos.x, pos.y - 65);
+                
+                // Balão de pensamento flat
+                const bg = this.add.graphics();
+                bg.fillStyle(0xFFFFFF, 1);
+                bg.fillRoundedRect(-55, -20, 110, 40, 20);
+                bg.lineStyle(2, 0xE5E5E5);
+                bg.strokeRoundedRect(-55, -20, 110, 40, 20);
+                
+                // Setinha do balão
+                bg.fillStyle(0xFFFFFF, 1);
+                bg.fillTriangle(-5, 20, 5, 20, 0, 28);
+                
+                const txt = this.add.text(0, 0, 'Pensando...', { font: '800 14px Nunito', fill: '#AFB4B9' }).setOrigin(0.5);
+                
+                // Reticências animadas
+                this.dotCount = 0;
+                this.thinkTimer = this.time.addEvent({
+                    delay: 500, loop: true,
+                    callback: () => {
+                        this.dotCount = (this.dotCount + 1) % 4;
+                        txt.setText('Pensando' + '.'.repeat(this.dotCount));
+                    }
+                });
+
+                this.thinkingIndicator.add([bg, txt]);
+
+                this.thinkingTween = this.tweens.add({
+                    targets: this.thinkingIndicator,
+                    y: pos.y - 70, yoyo: true, repeat: -1, duration: 800, ease: 'Sine.easeInOut'
+                });
+            }
+
+            hideBotThinking() {
+                if (this.thinkingIndicator) {
+                    this.thinkTimer.remove();
+                    this.thinkingTween.stop();
+                    this.thinkingIndicator.destroy();
+                    this.thinkingIndicator = null;
+                }
+            }
+
+            animateBotPlay(bot, cardData, onComplete) {
+                const pos = this.getBotPosition(bot.id);
+                const fakeCard = this.createVisualCard(cardData, pos.x, pos.y);
+                this.add.existing(fakeCard);
+                fakeCard.setScale(0.5);
+
+                this.tweens.add({
+                    targets: fakeCard,
+                    x: this.scale.width / 2 + 55, y: this.scale.height / 2,
+                    scaleX: 1, scaleY: 1,
+                    angle: Phaser.Math.Between(-15, 15),
+                    duration: 500, ease: 'Back.easeOut',
+                    onComplete: () => { fakeCard.destroy(); if (onComplete) onComplete(); }
+                });
+            }
+
+            animateBotDraw(bot, onComplete) {
+                const pos = this.getBotPosition(bot.id);
+                const cx = this.scale.width / 2;
+                const cy = this.scale.height / 2;
+                
+                const fakeCardBack = this.add.graphics({x: cx - 55, y: cy});
+                fakeCardBack.fillStyle(0xFFFFFF, 1);
+                fakeCardBack.fillRoundedRect(-40, -55, 80, 110, 12);
+                fakeCardBack.lineStyle(2, 0xE5E5E5);
+                fakeCardBack.strokeRoundedRect(-40, -55, 80, 110, 12);
+                
+                this.tweens.add({
+                    targets: fakeCardBack,
+                    x: pos.x, y: pos.y,
+                    scaleX: 0.3, scaleY: 0.3, alpha: 0,
+                    duration: 500, ease: 'Cubic.easeOut',
+                    onComplete: () => { fakeCardBack.destroy(); if(onComplete) onComplete(); }
+                });
+            }
+
+            playCard(player, card, removeFromHand = true) {
+                if (removeFromHand) {
+                    const idx = player.hand.findIndex(c => c.id === card.id);
+                    if (idx > -1) player.hand.splice(idx, 1);
+                }
+
+                this.discardPile.push(card);
+                this.activeCard = card;
+                this.passCount = 0;
+                
+                this.updateVisuals();
+
+                if (player.hand.length === 0) {
+                    this.triggerWin(player);
+                    return;
+                }
+
+                if (card.category !== 'CORINGA') this.activeCategory = card.category;
+
+                if (card.type === 'SPECIAL' || card.type === 'WILD') {
+                    this.handleSpecialCard(player, card);
+                } else {
+                    showToast(`${player.name.toUpperCase()} JOGOU.`, "fa-play", "info");
+                    this.endTurn();
+                }
+            }
+
+            handleSpecialCard(player, card) {
+                const effect = card.value;
+
+                if (effect === 'REVERSE') {
+                    this.turnDirection *= -1;
+                    showToast("ORDEM INVERTIDA!", "fa-undo", "info");
+                    this.endTurn();
+                } 
+                else if (effect === 'SKIP') {
+                    showToast("JOGADOR PULADO!", "fa-ban", "danger");
+                    this.currentPlayerIndex = this.getNextPlayerIndex();
+                    this.endTurn();
+                }
+                else if (effect === 'DRAW_TWO') {
+                    const targetIdx = this.getNextPlayerIndex();
+                    const target = this.players[targetIdx];
+                    target.hand.push(this.drawFromDeck());
+                    target.hand.push(this.drawFromDeck());
+                    showToast(`+2 PARA ${target.name.toUpperCase()}!`, "fa-plus", "danger");
+                    this.currentPlayerIndex = targetIdx;
+                    this.endTurn();
+                }
+                else if (effect === 'CHANGE_CAT') {
+                    if (player.isBot) {
+                        const catCounts = { ANIMAIS: 0, FRUTAS: 0, CORES: 0, OBJETOS: 0 };
+                        player.hand.forEach(c => { if(c.category !== 'CORINGA') catCounts[c.category]++; });
+                        
+                        let bestCat = 'ANIMAIS'; let max = -1;
+                        for (let cat in catCounts) { if (catCounts[cat] > max) { max = catCounts[cat]; bestCat = cat; } }
+                        
+                        this.activeCategory = bestCat;
+                        showToast(`MUDOU PARA ${bestCat}`, "fa-magic", "info");
+                        this.endTurn();
+                    } else {
+                        this.showCategoryModal();
+                    }
+                }
+            }
+
+            getNextPlayerIndex() {
+                let next = this.currentPlayerIndex + this.turnDirection;
+                if (next >= this.players.length) next = 0;
+                if (next < 0) next = this.players.length - 1;
+                return next;
+            }
+
+            endTurn() {
+                if (!this.gameActive) return;
+                if (this.passCount >= this.players.length) {
+                    this.triggerLockRule();
+                    return;
+                }
+                this.currentPlayerIndex = this.getNextPlayerIndex();
+                this.startTurn();
+            }
+
+            triggerLockRule() {
+                showToast("SISTEMA DESTRAVANDO...", "fa-exclamation-triangle", "warning");
+                const availableCats = new Set();
+                
+                this.deck.forEach(c => { if(c.category !== 'CORINGA') availableCats.add(c.category); });
+                this.players.forEach(p => p.hand.forEach(c => { if(c.category !== 'CORINGA') availableCats.add(c.category); }));
+
+                const validArray = Array.from(availableCats);
+                this.activeCategory = validArray.length > 0 ? Phaser.Math.RND.pick(validArray) : 'ANIMAIS'; 
+                
+                showToast(`NOVA CATEGORIA: ${this.activeCategory}`, "fa-robot", "info");
+
+                this.passCount = 0;
+                this.updateVisuals();
+                this.time.delayedCall(2000, () => {
+                    this.currentPlayerIndex = this.getNextPlayerIndex();
+                    this.startTurn();
+                });
+            }
+
+            showCategoryModal() {
+                const modal = document.getElementById('category-modal');
+                const container = document.getElementById('cat-btn-container');
+                container.innerHTML = '';
+
+                const availableCats = new Set();
+                this.deck.forEach(c => { if(c.category !== 'CORINGA') availableCats.add(c.category); });
+                this.players.forEach(p => p.hand.forEach(c => { if(c.category !== 'CORINGA') availableCats.add(c.category); }));
+                let validArray = Array.from(availableCats);
+                
+                if(validArray.length === 0) validArray = ['ANIMAIS', 'FRUTAS', 'CORES', 'OBJETOS'];
+
+                validArray.forEach(cat => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-cat';
+                    btn.innerHTML = `<i class="fas ${CAT_CONFIG[cat].icon}"></i> ${cat}`;
+                    btn.onclick = () => {
+                        this.activeCategory = cat;
+                        modal.classList.remove('visible');
+                        setTimeout(() => modal.classList.add('hidden'), 300);
+                        showToast(`MUDOU PARA ${cat}`, "fa-magic", "info");
+                        this.updateVisuals();
+                        this.endTurn();
+                    };
+                    container.appendChild(btn);
+                });
+
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.add('visible'), 10);
+            }
+
+            triggerWin(player) {
+                this.gameActive = false;
+                this.updateVisuals();
+                const modal = document.getElementById('game-over-modal');
+                const title = document.getElementById('winner-text');
+                
+                if (player.isBot) {
+                    title.innerHTML = `<i class="fas fa-sad-cry" style="color:var(--danger)"></i> ${player.name.toUpperCase()} VENCEU!`;
+                } else {
+                    title.innerHTML = `<i class="fas fa-trophy" style="color:var(--warning)"></i> VOCÊ VENCEU!`;
+                }
+
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.add('visible'), 10);
+            }
+        }
+
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'phaser-game',
+            scale: { 
+                mode: Phaser.Scale.RESIZE, 
+                width: '100%', 
+                height: '100%', 
+            },
+            transparent: true,
+            scene: GameScene
+        };
+
+        // INICIALIZAÇÃO CORRIGIDA PARA IMPEDIR TELA BRANCA
+        const initPhaser = () => {
+            setTimeout(() => {
+                new Phaser.Game(config);
+            }, 300);
+        };
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            initPhaser();
+        } else {
+            window.addEventListener('DOMContentLoaded', initPhaser);
+        }
+    </script>
+</body>
+</html>

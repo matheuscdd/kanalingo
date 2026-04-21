@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jogo 3D - Mobile & PC</title>
+    
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    
+    <style>
+        html, body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            touch-action: none;
+        }
+
+        #game-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            position: relative;
+        }
+
+        /* Forçar Horizontal no Telemóvel */
+        @media screen and (orientation: portrait) {
+            #game-container {
+                width: 100vh;
+                height: 100vw;
+                transform: rotate(90deg);
+                transform-origin: bottom left;
+                position: absolute;
+                top: -100vw;
+                left: 0;
+            }
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Joysticks Estilizados */
+        .joystick-zone {
+            position: absolute;
+            bottom: 40px;
+            width: 160px;
+            height: 160px;
+            z-index: 20;
+            user-select: none;
+            display: none;
+        }
+
+        #left-zone { left: 40px; }
+        #right-zone { right: 40px; }
+
+        .joystick-base {
+            width: 130px;
+            height: 130px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            backdrop-filter: blur(2px);
+        }
+
+        .joystick-stick {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            position: absolute;
+            top: 35px;
+            left: 35px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        #crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid black;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        #uiContainer {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-shadow: 2px 2px 4px black;
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <canvas id="renderCanvas"></canvas>
+        <div id="crosshair"></div>
+        <div id="uiContainer">
+            <h2 id="timer-ui">Tempo: 30s</h2>
+            <p>Esquerda: Mover | Direita: Olhar</p>
+        </div>
+
+        <div id="left-zone" class="joystick-zone">
+            <div class="joystick-base"><div id="left-stick" class="joystick-stick"></div></div>
+        </div>
+        <div id="right-zone" class="joystick-zone">
+            <div class="joystick-base"><div id="right-stick" class="joystick-stick"></div></div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("renderCanvas");
+        const engine = new BABYLON.Engine(canvas, true);
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+        if (isTouchDevice) {
+            document.querySelectorAll('.joystick-zone').forEach(el => el.style.display = 'block');
+        }
+
+        const criarCena = function () {
+            const cena = new BABYLON.Scene(engine);
+            cena.gravity = new BABYLON.Vector3(0, -0.3, 0);
+            cena.collisionsEnabled = true;
+
+            const luz = new BABYLON.HemisphericLight("luzAmbiente", new BABYLON.Vector3(0, 1, 0), cena);
+            luz.intensity = 0.4;
+
+            // Câmera
+            const camera = new BABYLON.UniversalCamera("cameraJogador", new BABYLON.Vector3(0, 1.6, 0), cena);
+            camera.attachControl(canvas, true);
+            
+            // IMPORTANTE: Remover inputs táteis padrão para não conflitar com os analógicos
+            if (camera.inputs.attached.touch) {
+                camera.inputs.remove(camera.inputs.attached.touch);
+            }
+
+            camera.minZ = 0.05;
+            camera.ellipsoid = new BABYLON.Vector3(0.6, 0.8, 0.6);
+            camera.applyGravity = true;
+            camera.checkCollisions = true;
+            camera.speed = 0.2;
+            
+            // Teclas PC
+            camera.keysUp = [87]; camera.keysDown = [83];
+            camera.keysLeft = [65]; camera.keysRight = [68];
+
+            // --- Braço do Jogador ---
+            const matBraco = new BABYLON.StandardMaterial("matBraco", cena);
+            matBraco.diffuseColor = new BABYLON.Color3(0.15, 0.3, 0.6);
+            const matMao = new BABYLON.StandardMaterial("matMao", cena);
+            matMao.diffuseColor = new BABYLON.Color3(1, 0.8, 0.1);
+
+            const bracoNode = new BABYLON.TransformNode("bracoNode", cena);
+            bracoNode.parent = camera;
+            bracoNode.position = new BABYLON.Vector3(0.4, -0.4, 0.8);
+
+            const antebraco = BABYLON.MeshBuilder.CreateBox("manga", { width: 0.2, height: 0.2, depth: 0.6 }, cena);
+            antebraco.parent = bracoNode;
+            antebraco.material = matBraco;
+            antebraco.position = new BABYLON.Vector3(0, 0, -0.1);
+
+            const mao = BABYLON.MeshBuilder.CreateBox("mao", { width: 0.16, height: 0.16, depth: 0.2 }, cena);
+            mao.parent = bracoNode;
+            mao.material = matMao;
+            mao.position = new BABYLON.Vector3(0, 0, 0.3);
+
+            // --- Ambiente Lego ---
+            const materialSala = new BABYLON.StandardMaterial("matSala", cena);
+            materialSala.diffuseColor = new BABYLON.Color3(0.25, 0.25, 0.3);
+
+            const baseCubo = BABYLON.MeshBuilder.CreateBox("b", { size: 1 }, cena);
+            const basePino = BABYLON.MeshBuilder.CreateCylinder("p", { height: 0.15, diameter: 0.6 }, cena);
+            basePino.position.y = 0.575;
+            const blocoLego = BABYLON.Mesh.MergeMeshes([baseCubo, basePino], true, true, undefined, false, true);
+            blocoLego.isVisible = false;
+
+            const raioSala = 8;
+            for(let x = -raioSala; x <= raioSala; x++) {
+                for(let z = -raioSala; z <= raioSala; z++) {
+                    let chao = blocoLego.createInstance(`c_${x}_${z}`);
+                    chao.position = new BABYLON.Vector3(x, -0.5, z);
+                    
+                    if (x === -raioSala || x === raioSala || z === -raioSala || z === raioSala) {
+                        for(let y = 1; y <= 3; y++) {
+                            // Espaço para portas
+                            if (!((z === raioSala || z === -raioSala) && x >= -1 && x <= 0) &&
+                                !((x === raioSala || x === -raioSala) && z >= -1 && z <= 0)) {
+                                let p = blocoLego.createInstance(`p_${x}_${y}_${z}`);
+                                p.position = new BABYLON.Vector3(x, y-0.5, z);
+                                p.checkCollisions = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Chão liso invisível para não tremer
+            const chaoFisico = BABYLON.MeshBuilder.CreateGround("cf", { width: 30, height: 30 }, cena);
+            chaoFisico.position.y = 0.125;
+            chaoFisico.isVisible = false;
+            chaoFisico.checkCollisions = true;
+
+            // --- Porta Medieval e Monstros ---
+            const matMonstro = new BABYLON.StandardMaterial("matM", cena);
+            matMonstro.diffuseColor = new BABYLON.Color3(0.1, 0.15, 0.1);
+            const matOlho = new BABYLON.StandardMaterial("matO", cena);
+            matOlho.emissiveColor = new BABYLON.Color3(1, 0, 0);
+
+            const monstros = [];
+            const criarMonstro = (x, z) => {
+                const root = BABYLON.MeshBuilder.CreateBox("mr", { size: 0.8 }, cena);
+                root.position = new BABYLON.Vector3(x, 0.8, z);
+                root.isVisible = false;
+                root.checkCollisions = true;
+
+                const corpo = BABYLON.MeshBuilder.CreateBox("mc", { width: 0.7, height: 1, depth: 0.5 }, cena);
+                corpo.parent = root;
+                corpo.material = matMonstro;
+                corpo.position.y = 0;
+
+                const cabeca = BABYLON.MeshBuilder.CreateBox("mca", { size: 0.5 }, cena);
+                cabeca.parent = corpo;
+                cabeca.position.y = 0.8;
+                cabeca.material = matMonstro;
+
+                const o1 = BABYLON.MeshBuilder.CreateBox("o", { size: 0.1 }, cena);
+                o1.parent = cabeca; o1.position = new BABYLON.Vector3(-0.15, 0.1, 0.26); o1.material = matOlho;
+                const o2 = BABYLON.MeshBuilder.CreateBox("o", { size: 0.1 }, cena);
+                o2.parent = cabeca; o2.position = new BABYLON.Vector3(0.15, 0.1, 0.26); o2.material = matOlho;
+
+                monstros.push({ root, corpo, vel: 0.02, offset: Math.random() * 10 });
+            };
+
+            // Setup da Porta Medieval
+            const portaM = BABYLON.MeshBuilder.CreateBox("pm", { width: 2, height: 3, depth: 0.5 }, cena);
+            portaM.position = new BABYLON.Vector3(-0.5, 1.5, raioSala);
+            portaM.checkCollisions = true;
+            const matPm = new BABYLON.StandardMaterial("mpm", cena);
+            matPm.diffuseColor = new BABYLON.Color3(0.3, 0.2, 0.1);
+            portaM.material = matPm;
+
+            // --- Lógica Joysticks ---
+            const joy = { left: { x: 0, y: 0, id: -1 }, right: { x: 0, y: 0, id: -1 } };
+
+            const handleJoy = (zoneId, stickId, type) => {
+                const zone = document.getElementById(zoneId);
+                const stick = document.getElementById(stickId);
+                
+                zone.addEventListener("touchstart", (e) => {
+                    e.preventDefault();
+                    const touch = e.changedTouches[0];
+                    joy[type].id = touch.identifier;
+                }, { passive: false });
+
+                zone.addEventListener("touchmove", (e) => {
+                    e.preventDefault();
+                    const touch = Array.from(e.touches).find(t => t.identifier === joy[type].id);
+                    if (!touch) return;
+
+                    const rect = zone.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    
+                    let dx = touch.clientX - centerX;
+                    let dy = touch.clientY - centerY;
+                    const dist = Math.min(Math.sqrt(dx*dx + dy*dy), 50);
+                    const angle = Math.atan2(dy, dx);
+
+                    joy[type].x = (Math.cos(angle) * dist) / 50;
+                    joy[type].y = (Math.sin(angle) * dist) / 50;
+                    stick.style.transform = `translate(${joy[type].x * 50}px, ${joy[type].y * 50}px)`;
+                }, { passive: false });
+
+                zone.addEventListener("touchend", (e) => {
+                    joy[type].x = 0; joy[type].y = 0; joy[type].id = -1;
+                    stick.style.transform = "translate(0,0)";
+                });
+            };
+
+            handleJoy("left-zone", "left-stick", "left");
+            handleJoy("right-zone", "right-stick", "right");
+
+            // --- Ciclo de Jogo ---
+            let tempo = 30;
+            let portaAtiva = true;
+
+            cena.onBeforeRenderObservable.add(() => {
+                const dt = engine.getDeltaTime();
+                
+                // Movimento (Esquerda)
+                if (Math.abs(joy.left.x) > 0.1 || Math.abs(joy.left.y) > 0.1) {
+                    const speed = 0.1;
+                    const forward = camera.getDirection(BABYLON.Vector3.Forward());
+                    const right = camera.getDirection(BABYLON.Vector3.Right());
+                    forward.y = 0; right.y = 0;
+                    forward.normalize(); right.normalize();
+
+                    const move = forward.scale(-joy.left.y * speed).add(right.scale(joy.left.x * speed));
+                    camera.cameraDirection.addInPlace(move);
+                }
+
+                // Rotação (Direita) - CORREÇÃO DE SENSIBILIDADE E LIMITES
+                if (Math.abs(joy.right.x) > 0.05 || Math.abs(joy.right.y) > 0.05) {
+                    // Sensibilidade ajustada para ser mais responsiva mas controlada
+                    const sensH = 0.04;
+                    const sensV = 0.03;
+
+                    // Yaw (Esquerda/Direita)
+                    camera.rotation.y += joy.right.x * sensH;
+
+                    // Pitch (Cima/Baixo) com limitador (Clamp) para não girar 360 graus verticalmente
+                    camera.rotation.x += joy.right.y * sensV;
+                    const limit = 1.4; // Aproximadamente 80 graus
+                    if (camera.rotation.x > limit) camera.rotation.x = limit;
+                    if (camera.rotation.x < -limit) camera.rotation.x = -limit;
+                }
+
+                // Timer e Porta
+                if (portaAtiva) {
+                    tempo -= dt / 1000;
+                    document.getElementById("timer-ui").innerText = `Tempo: ${Math.max(0, Math.floor(tempo))}s`;
+                    if (tempo <= 0) {
+                        portaAtiva = false;
+                        portaM.dispose();
+                        criarMonstro(-1, raioSala + 2); criarMonstro(0.5, raioSala + 3);
+                    } else {
+                        portaM.position.x = -0.5 + Math.sin(Date.now() * 0.05) * (0.01 + (30-tempo)*0.003);
+                    }
+                }
+
+                // Monstros
+                monstros.forEach(m => {
+                    let dir = camera.position.subtract(m.root.position);
+                    dir.y = 0;
+                    if (dir.length() > 1.2) {
+                        dir.normalize();
+                        m.root.moveWithCollisions(dir.scale(m.vel));
+                        m.root.rotation.y = Math.atan2(dir.x, dir.z);
+                        m.corpo.position.y = Math.abs(Math.sin(Date.now()*0.005 + m.offset)) * 0.1;
+                    }
+                });
+
+                bracoNode.position.y = -0.4 + Math.sin(Date.now() * 0.002) * 0.015;
+            });
+
+            return cena;
+        };
+
+        const scene = criarCena();
+        engine.runRenderLoop(() => scene.render());
+        window.addEventListener("resize", () => engine.resize());
+    </script>
+</body>
+</html>

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Guerreiro Quiz - BabylonJS Pro</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; font-family: 'VT323', monospace;
+            background-color: #000; touch-action: none;
+        }
+
+        #game-stage {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: #87CEEB; overflow: hidden;
+        }
+
+        @media screen and (orientation: portrait) {
+            #game-stage {
+                width: 100vh; height: 100vw;
+                transform: rotate(90deg); transform-origin: top left;
+                left: 100%;
+            }
+        }
+
+        #game-canvas { display: block; width: 100%; height: 100%; outline: none; }
+
+        #ui-layer {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; pointer-events: none;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+
+        /* HUD Superior */
+        #top-hud { display: flex; justify-content: space-between; padding: 10px; gap: 5px; }
+        .hud-box {
+            background-color: rgba(0, 0, 0, 0.6); border: 2px solid #555; color: white;
+            padding: 5px 12px; font-size: 20px; text-shadow: 1px 1px 0 #000;
+        }
+        #health-bar-bg { width: 60px; height: 10px; background-color: #333; border: 1px solid #000; display: inline-block; vertical-align: middle; }
+        #health-bar-fill { width: 100%; height: 100%; background-color: #55FF55; transition: width 0.3s; }
+
+        /* Controlos Mobile */
+        .joystick-base {
+            position: absolute; width: 100px; height: 100px;
+            background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%; pointer-events: auto; display: none; z-index: 10;
+        }
+        .joystick-knob {
+            position: absolute; top: 50%; left: 50%; width: 40px; height: 40px;
+            background: rgba(255, 255, 255, 0.4); border-radius: 50%;
+            transform: translate(-50%, -50%); pointer-events: none;
+        }
+        .action-btn {
+            position: absolute; display: none; justify-content: center; align-items: center;
+            border-radius: 50%; color: white; pointer-events: auto; user-select: none; z-index: 10; font-weight: bold;
+        }
+        #btn-shoot { bottom: 40px; right: 120px; width: 70px; height: 70px; background: rgba(255, 75, 75, 0.5); border: 3px solid rgba(255, 255, 255, 0.6); font-size: 18px; }
+        #jump-btn { bottom: 120px; right: 40px; width: 60px; height: 60px; background: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.5); font-size: 14px; }
+
+        /* Minimapa e Central */
+        #minimap {
+            position: absolute; top: 60px; right: 10px; width: 100px; height: 100px;
+            background-color: rgba(0, 0, 0, 0.8); border: 2px solid #888; border-radius: 4px; z-index: 5;
+        }
+        #question-container { 
+            align-self: center; margin-bottom: 20px; background-color: rgba(0, 0, 0, 0.7); 
+            border: 2px solid #555; color: #FFFF55; padding: 10px 30px; font-size: 30px; text-align: center; 
+        }
+
+        /* Telas de Overlay */
+        .overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background-color: rgba(0, 0, 0, 0.9); display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; pointer-events: auto; z-index: 100; 
+        }
+        .hidden { display: none !important; }
+        h1 { color: #55FF55; font-size: 50px; margin-bottom: 10px; text-shadow: 3px 3px 0 #000; text-align: center; }
+        .btn { background-color: #58CC02; color: white; border: none; border-bottom: 4px solid #46A302; padding: 15px 40px; font-size: 30px; font-family: 'VT323', monospace; cursor: pointer; border-radius: 8px; pointer-events: auto; }
+        .btn:active { transform: translateY(2px); border-bottom-width: 2px; }
+
+        /* Mira (Crosshair) */
+        #crosshair { position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; transform: translate(-50%, -50%); pointer-events: none; }
+        #crosshair::before, #crosshair::after { content: ''; position: absolute; background: white; opacity: 0.7; }
+        #crosshair::before { top: 9px; left: 0; width: 20px; height: 2px; }
+        #crosshair::after { top: 0; left: 9px; width: 2px; height: 20px; }
+
+        /* Aviso de Munição */
+        #ammo-warning {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -100px);
+            color: #FF4B4B; font-size: 36px; text-shadow: 2px 2px 0 #000;
+            opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 20;
+        }
+    </style>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+</head>
+<body>
+
+    <div id="game-stage">
+        <canvas id="game-canvas"></canvas>
+
+        <div id="ui-layer">
+            <div id="top-hud">
+                <div class="hud-box">P: <span id="score-val">0</span></div>
+                <div class="hud-box">HP: <div id="health-bar-bg"><div id="health-bar-fill"></div></div></div>
+                <div class="hud-box">T: <span id="timer-val">02:00</span></div>
+                <div class="hud-box" id="ammo-box">F: <span id="ammo-val">5/10</span></div>
+            </div>
+
+            <div id="crosshair"></div>
+            <div id="ammo-warning">SEM FLECHAS! Procure no mapa.</div>
+            
+            <div id="joy-move" class="joystick-base" style="bottom: 30px; left: 30px;"><div class="joystick-knob"></div></div>
+            <div id="joy-look" class="joystick-base" style="bottom: 30px; right: 210px;"><div class="joystick-knob"></div></div>
+            <div id="btn-shoot" class="action-btn">TIRO</div>
+            <div id="jump-btn" class="action-btn">PULO</div>
+
+            <canvas id="minimap"></canvas>
+            <div id="question-container"><span id="question-val">Preparar...</span></div>
+        </div>
+
+        <div id="start-screen" class="overlay">
+            <h1>GUERREIRO QUIZ</h1>
+            <p style="color: white; margin-bottom: 30px; text-align: center; font-size: 24px;">Sobreviva e responda às questões!<br>WASD: Andar | Rato: Olhar</p>
+            <button id="start-btn" class="btn">COMEÇAR</button>
+        </div>
+
+        <div id="game-over-screen" class="overlay hidden">
+            <h1 style="color: #FF4B4B;">FIM DE JOGO</h1>
+            <p style="color: white; margin-bottom: 30px; font-size: 28px;">Pontos: <span id="final-score">0</span></p>
+            <button id="restart-btn" class="btn" style="background-color: #FF4B4B; border-bottom-color: #B93030;">RECOMEÇAR</button>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURAÇÃO GLOBAL ---
+        const MAZE_SIZE = 21, CELL_SIZE = 12, WALL_HEIGHT = 10;
+        const playerSpeed = 16, gravity = 45, jumpForce = 18, playerRadius = 1.2, playerHeight = 2.0;
+        const MAX_AMMO = 10;
+        const blockColors = ["1cb0f6", "ff4b4b", "ffc800", "ff9600", "ce82ff", "2b70c9"];
+
+        // Estado do Jogo
+        let engine, scene, camera, isPlaying = false, score = 0, health = 100, ammo = 5, waveTimer = 120;
+        let lastTime = 0, gameTime = 0, playerInvulnTimer = 0;
+        let mazeGrid = [], answerBlocks = [], zombies = [], arrowPacks = [], flyingArrows = [], discoveredGrid = [];
+        let minimapCtx;
+
+        let currentWeapon = 'bow', isDrawingBow = false, bowDrawTimer = 0, isSwingingSword = false, swordSwingTimer = 0;
+        let weaponGroup, bowGroup, swordGroup, bowString, bowArrow;
+        let matZombHead, matZombBody, matZombLegs, woodMat, arrowMat, featherMat;
+        const BOW_DRAW_TIME = 0.8, SWORD_TOTAL_TIME = 0.5;
+
+        let velocityY = 0, isGrounded = true, pitch = 0, yaw = 0;
+        const keys = { w: false, a: false, s: false, d: false };
+        let joyMoveState = { x: 0, y: 0, id: null, base: {x:0, y:0} };
+        let joyLookState = { x: 0, y: 0, id: null, base: {x:0, y:0} };
+        let ui = {};
+
+        // --- FUNÇÕES DE APOIO ---
+        function createTextFaceMaterial(message, colorHex) {
+            let mat = new BABYLON.StandardMaterial("mat_" + message, scene);
+            let dt = new BABYLON.DynamicTexture("dt_" + message, {width: 256, height: 256}, scene, false);
+            let ctx = dt.getContext();
+            ctx.fillStyle = '#' + colorHex; ctx.fillRect(0, 0, 256, 256);
+            ctx.strokeStyle = "rgba(0, 0, 0, 0.2)"; ctx.lineWidth = 10; ctx.strokeRect(5, 5, 246, 246);
+            dt.update();
+            dt.drawText(message, null, null, "bold 120px 'VT323', monospace", "#FFFFFF", null, true, true);
+            mat.diffuseTexture = dt;
+            return mat;
+        }
+
+        function playSound(freq, type = 'sine', duration = 0.15) {
+            try {
+                const actx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = actx.createOscillator(), gain = actx.createGain();
+                osc.type = type; osc.frequency.setValueAtTime(freq, actx.currentTime);
+                gain.gain.setValueAtTime(0.05, actx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, actx.currentTime + duration);
+                osc.connect(gain); gain.connect(actx.destination);
+                osc.start(); osc.stop(actx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        function getTouchPos(touch) {
+            const isP = window.innerHeight > window.innerWidth;
+            if (isP) return { x: touch.clientY, y: window.innerWidth - touch.clientX };
+            return { x: touch.clientX, y: touch.clientY };
+        }
+
+        function checkCollision(x, z) {
+            const hs = Math.floor(MAZE_SIZE / 2);
+            const points = [{x:x+playerRadius, z:z}, {x:x-playerRadius, z:z}, {x:x, z:z+playerRadius}, {x:x, z:z-playerRadius}];
+            for (let p of points) {
+                let c = Math.round(p.x / CELL_SIZE) + hs;
+                let r = Math.round(p.z / CELL_SIZE) + hs;
+                if (r < 0 || r >= MAZE_SIZE || c < 0 || c >= MAZE_SIZE || mazeGrid[r][c] === 1) return true;
+                for (let b of answerBlocks) {
+                    if (Math.abs(p.x - b.position.x) < 2.5 && Math.abs(p.z - b.position.z) < 2.5) return true;
+                }
+            }
+            return false;
+        }
+
+        // --- INICIALIZAÇÃO BABYLON ---
+        function init() {
+            ui = {
+                score: document.getElementById('score-val'), healthFill: document.getElementById('health-bar-fill'),
+                timer: document.getElementById('timer-val'), ammo: document.getElementById('ammo-val'),
+                ammoBox: document.getElementById('ammo-box'), ammoWarning: document.getElementById('ammo-warning'),
+                question: document.getElementById('question-val'), start: document.getElementById('start-screen'),
+                gameOver: document.getElementById('game-over-screen'), minimap: document.getElementById('minimap'),
+                joyMove: document.getElementById('joy-move'), joyLook: document.getElementById('joy-look'),
+                btnShoot: document.getElementById('btn-shoot'), btnJump: document.getElementById('jump-btn'),
+                finalScore: document.getElementById('final-score')
+            };
+            minimapCtx = ui.minimap.getContext('2d');
+
+            const canvas = document.getElementById("game-canvas");
+            engine = new BABYLON.Engine(canvas, true);
+            scene = new BABYLON.Scene(engine);
+            
+            scene.clearColor = BABYLON.Color3.FromHexString("#87CEEB");
+            scene.fogMode = BABYLON.Scene.FOGMODE_LINEAR;
+            scene.fogColor = scene.clearColor;
+            scene.fogStart = 40; scene.fogEnd = 110;
+
+            // Câmara com minZ ajustado para podermos ver o arco muito perto!
+            camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, playerHeight, 0), scene);
+            camera.minZ = 0.05; 
+            
+            const ambient = new BABYLON.HemisphericLight("ambient", new BABYLON.Vector3(0, 1, 0), scene);
+            ambient.intensity = 0.6;
+            const dirLight = new BABYLON.DirectionalLight("dir", new BABYLON.Vector3(-1, -2, -1), scene);
+            dirLight.intensity = 0.5;
+
+            const floor = BABYLON.MeshBuilder.CreateGround("floor", {width: 1000, height: 1000}, scene);
+            const floorMat = new BABYLON.StandardMaterial("floorMat", scene);
+            floorMat.diffuseColor = BABYLON.Color3.FromHexString("#5E8A3F");
+            floor.material = floorMat;
+
+            matZombHead = new BABYLON.StandardMaterial("hz", scene); matZombHead.diffuseColor = BABYLON.Color3.FromHexString("#4C7F4F");
+            matZombBody = new BABYLON.StandardMaterial("bz", scene); matZombBody.diffuseColor = BABYLON.Color3.FromHexString("#00AAAA");
+            matZombLegs = new BABYLON.StandardMaterial("lz", scene); matZombLegs.diffuseColor = BABYLON.Color3.FromHexString("#3B3BAE");
+            
+            woodMat = new BABYLON.StandardMaterial("wood", scene); woodMat.diffuseColor = BABYLON.Color3.FromHexString("#5A3018");
+            arrowMat = new BABYLON.StandardMaterial("arrM", scene); arrowMat.diffuseColor = BABYLON.Color3.FromHexString("#E6D8AD");
+            featherMat = new BABYLON.StandardMaterial("fm", scene); 
+            featherMat.diffuseColor = new BABYLON.Color3(1, 1, 1);
+            featherMat.emissiveColor = new BABYLON.Color3(0.4, 0.4, 0.4);
+
+            createWeapons();
+            setupControls();
+            
+            if ('ontouchstart' in window) {
+                ui.joyMove.style.display = ui.joyLook.style.display = ui.btnShoot.style.display = ui.btnJump.style.display = 'flex';
+            }
+
+            window.addEventListener('resize', () => { engine.resize(); });
+            engine.runRenderLoop(() => {
+                let dt = engine.getDeltaTime() / 1000.0;
+                if (dt > 0.1) dt = 0.1;
+                updateGame(dt);
+                scene.render();
+            });
+        }
+
+        function createWeapons() {
+            weaponGroup = new BABYLON.TransformNode("weapons", scene);
+            weaponGroup.parent = camera;
+            
+            // --- NOVO MODELO DE ARCO VOXEL ---
+            bowGroup = new BABYLON.TransformNode("bow", scene);
+            bowGroup.parent = weaponGroup;
+
+            // Punho Central
+            const handle = BABYLON.MeshBuilder.CreateBox("handle", {width: 0.04, height: 0.25, depth: 0.04}, scene);
+            handle.material = woodMat; handle.parent = bowGroup;
+
+            // Curvatura Superior
+            const top1 = BABYLON.MeshBuilder.CreateBox("top1", {width: 0.035, height: 0.3, depth: 0.04}, scene);
+            top1.material = woodMat; top1.position.copyFromFloats(0, 0.25, 0.05); top1.rotation.x = Math.PI / 8; top1.parent = bowGroup;
+            const top2 = BABYLON.MeshBuilder.CreateBox("top2", {width: 0.025, height: 0.25, depth: 0.03}, scene);
+            top2.material = woodMat; top2.position.copyFromFloats(0, 0.5, 0.15); top2.rotation.x = Math.PI / 4; top2.parent = bowGroup;
+
+            // Curvatura Inferior
+            const bot1 = BABYLON.MeshBuilder.CreateBox("bot1", {width: 0.035, height: 0.3, depth: 0.04}, scene);
+            bot1.material = woodMat; bot1.position.copyFromFloats(0, -0.25, 0.05); bot1.rotation.x = -Math.PI / 8; bot1.parent = bowGroup;
+            const bot2 = BABYLON.MeshBuilder.CreateBox("bot2", {width: 0.025, height: 0.25, depth: 0.03}, scene);
+            bot2.material = woodMat; bot2.position.copyFromFloats(0, -0.5, 0.15); bot2.rotation.x = -Math.PI / 4; bot2.parent = bowGroup;
+
+            // Corda do arco (Fica no Z=0.18 em repouso, ligando as pontas top2 e bot2)
+            const stringMat = new BABYLON.StandardMaterial("strM", scene); stringMat.emissiveColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+            bowString = BABYLON.MeshBuilder.CreateBox("str", {width: 0.01, height: 1.2, depth: 0.01}, scene);
+            bowString.material = stringMat; bowString.position.copyFromFloats(0, 0, 0.18); bowString.parent = bowGroup;
+
+            // Flecha Encaixada
+            bowArrow = new BABYLON.TransformNode("bowArrow", scene);
+            const shaft = BABYLON.MeshBuilder.CreateBox("arrShaft", {width: 0.015, height: 0.015, depth: 0.9}, scene);
+            shaft.material = arrowMat; shaft.position.z = 0.45; shaft.parent = bowArrow;
+            
+            const feather = BABYLON.MeshBuilder.CreateBox("arrFeather", {width: 0.03, height: 0.06, depth: 0.15}, scene);
+            feather.material = featherMat; feather.position.z = 0.05; feather.parent = bowArrow;
+
+            const arrHead = BABYLON.MeshBuilder.CreateBox("arrHead", {width: 0.025, height: 0.025, depth: 0.08}, scene);
+            const hm = new BABYLON.StandardMaterial("hm", scene); hm.diffuseColor = new BABYLON.Color3(0.2,0.2,0.2);
+            arrHead.material = hm; arrHead.position.z = 0.9; arrHead.parent = bowArrow;
+
+            bowArrow.parent = bowGroup;
+            bowArrow.position.copyFromFloats(0, 0, 0.18); 
+            bowArrow.setEnabled(false);
+
+            // Inclinação elegante na mão
+            bowGroup.rotation.y = -Math.PI / 12;
+            bowGroup.rotation.z = Math.PI / 16;
+
+            // --- MODELO ESPADA ---
+            swordGroup = new BABYLON.TransformNode("sword", scene);
+            swordGroup.parent = weaponGroup;
+
+            const bMat = new BABYLON.StandardMaterial("blm", scene); bMat.diffuseColor = BABYLON.Color3.FromHexString("#eeeeee");
+            const blade = BABYLON.MeshBuilder.CreateBox("blade", {width: 0.08, height: 0.8, depth: 0.02}, scene);
+            blade.material = bMat; blade.position.y = 0.5; blade.parent = swordGroup;
+
+            const gMat = new BABYLON.StandardMaterial("glm", scene); gMat.diffuseColor = BABYLON.Color3.FromHexString("#ffcc00");
+            const guard = BABYLON.MeshBuilder.CreateBox("guard", {width: 0.25, height: 0.05, depth: 0.06}, scene);
+            guard.material = gMat; guard.position.y = 0; guard.parent = swordGroup;
+
+            const shandle = BABYLON.MeshBuilder.CreateBox("shandle", {width: 0.04, height: 0.2, depth: 0.04}, scene);
+            shandle.material = woodMat; shandle.position.y = -0.15; shandle.parent = swordGroup;
+
+            swordGroup.position.copyFromFloats(0, 0, 0); 
+            swordGroup.rotation.x = Math.PI / 4; 
+            swordGroup.setEnabled(false);
+            
+            // Posição da câmara em relação à mão
+            weaponGroup.position.copyFromFloats(0.35, -0.3, 0.6); 
+        }
+
+        function setupControls() {
+            document.addEventListener('keydown', e => {
+                const k = e.code;
+                if(k==='KeyW' || k==='ArrowUp') keys.w=true; if(k==='KeyA' || k==='ArrowLeft') keys.a=true; 
+                if(k==='KeyS' || k==='ArrowDown') keys.s=true; if(k==='KeyD' || k==='ArrowRight') keys.d=true;
+                if(k==='Digit1') switchWeapon(1); if(k==='Digit2') switchWeapon(2);
+                if(k==='Space' && isGrounded) jump();
+            });
+            document.addEventListener('keyup', e => {
+                const k = e.code;
+                if(k==='KeyW' || k==='ArrowUp') keys.w=false; if(k==='KeyA' || k==='ArrowLeft') keys.a=false; 
+                if(k==='KeyS' || k==='ArrowDown') keys.s=false; if(k==='KeyD' || k==='ArrowRight') keys.d=false;
+            });
+
+            document.addEventListener('mousemove', e => {
+                if (isPlaying && document.pointerLockElement) {
+                    yaw += e.movementX * 0.002;
+                    pitch = Math.max(-1.4, Math.min(1.4, pitch + e.movementY * 0.002));
+                    camera.rotation.copyFromFloats(pitch, yaw, 0);
+                }
+            });
+
+            document.addEventListener('mousedown', e => {
+                if (!isPlaying) return;
+                if (e.target.closest('.joystick-base') || e.target.closest('.btn') || e.target.id === 'btn-shoot' || e.target.id === 'jump-btn') return;
+
+                const canvas = document.getElementById("game-canvas");
+                if (!document.pointerLockElement && !('ontouchstart' in window)) {
+                    canvas.requestPointerLock();
+                } else {
+                    performAttack();
+                }
+            });
+
+            document.addEventListener('touchstart', e => {
+                if(!isPlaying) return;
+                for(let t of e.changedTouches) {
+                    const pos = getTouchPos(t);
+                    const sw = (window.innerHeight > window.innerWidth) ? window.innerHeight : window.innerWidth;
+
+                    if (t.target === ui.btnShoot) { performAttack(); continue; }
+                    if (t.target === ui.btnJump) { if(isGrounded) jump(); continue; }
+                    if (t.target.closest('.btn')) continue;
+
+                    if (pos.x < sw / 2 && joyMoveState.id === null) {
+                        joyMoveState.id = t.identifier; joyMoveState.base = pos;
+                        ui.joyMove.style.left = (pos.x - 50) + 'px'; ui.joyMove.style.top = (pos.y - 50) + 'px';
+                        ui.joyMove.style.display = 'block';
+                    } else if (pos.x >= sw / 2 && joyLookState.id === null) {
+                        joyLookState.id = t.identifier; joyLookState.base = pos;
+                        ui.joyLook.style.left = (pos.x - 50) + 'px'; ui.joyLook.style.top = (pos.y - 50) + 'px';
+                        ui.joyLook.style.display = 'block';
+                    }
+                }
+            }, {passive: false});
+
+            document.addEventListener('touchmove', e => {
+                if(!isPlaying) return;
+                e.preventDefault();
+                for(let t of e.touches) {
+                    const pos = getTouchPos(t);
+                    if (t.identifier === joyMoveState.id) {
+                        const dx = pos.x - joyMoveState.base.x, dy = pos.y - joyMoveState.base.y;
+                        const dist = Math.min(40, Math.sqrt(dx*dx + dy*dy));
+                        const angle = Math.atan2(dy, dx);
+                        joyMoveState.x = Math.cos(angle) * (dist/40); 
+                        joyMoveState.y = Math.sin(angle) * (dist/40);
+                        ui.joyMove.querySelector('.joystick-knob').style.transform = `translate(calc(-50% + ${Math.cos(angle)*dist}px), calc(-50% + ${Math.sin(angle)*dist}px))`;
+                    } else if (t.identifier === joyLookState.id) {
+                        const dx = pos.x - joyLookState.base.x, dy = pos.y - joyLookState.base.y;
+                        yaw += dx * 0.005; pitch = Math.max(-1.4, Math.min(1.4, pitch + dy * 0.005));
+                        camera.rotation.copyFromFloats(pitch, yaw, 0);
+                        joyLookState.base = pos;
+                    }
+                }
+            }, {passive: false});
+
+            document.addEventListener('touchend', e => {
+                for(let t of e.changedTouches) {
+                    if (t.identifier === joyMoveState.id) { joyMoveState.id = null; joyMoveState.x = joyMoveState.y = 0; ui.joyMove.style.display = 'none'; }
+                    if (t.identifier === joyLookState.id) { joyLookState.id = null; ui.joyLook.style.display = 'none'; }
+                }
+            });
+        }
+
+        function jump() { velocityY = jumpForce; isGrounded = false; playSound(300, 'sine', 0.1); }
+        function switchWeapon(id) { 
+            currentWeapon = id === 1 ? 'sword' : 'bow'; 
+            swordGroup.setEnabled(id === 1); 
+            bowGroup.setEnabled(id === 2); 
+            ui.ammoBox.style.opacity = id === 1 ? '0.4' : '1.0';
+        }
+
+        function performAttack() {
+            if (currentWeapon === 'bow') {
+                if (isDrawingBow || ammo <= 0) {
+                    if (ammo <= 0) {
+                        ui.ammoWarning.style.opacity = 1;
+                        setTimeout(() => ui.ammoWarning.style.opacity = 0, 1000);
+                        playSound(150, 'sawtooth', 0.1);
+                    }
+                    return;
+                }
+                isDrawingBow = true; bowDrawTimer = BOW_DRAW_TIME; 
+                bowArrow.position.z = 0.18; // Reseta na corda
+                bowArrow.setEnabled(true);
+                playSound(200, 'sine', 0.5);
+            } else {
+                if (isSwingingSword) return;
+                isSwingingSword = true; swordSwingTimer = SWORD_TOTAL_TIME; playSound(600, 'sawtooth', 0.1);
+                checkSwordHit(7.0);
+            }
+        }
+
+        function checkSwordHit(range) {
+            let ray = camera.getForwardRay(range);
+            let hit = scene.pickWithRay(ray, (m) => {
+                let root = m; while (root.parent && !root.metadata?.type) root = root.parent;
+                return root.metadata?.type === 'block' || root.metadata?.type === 'zombie' || m.name === "wall";
+            });
+            if (hit.hit && hit.pickedMesh.name !== "wall") resolveHitObject(hit.pickedMesh);
+        }
+
+        function resolveHitObject(mesh) {
+            let obj = mesh; while(obj.parent && !obj.metadata?.type) obj = obj.parent;
+            
+            if (obj.metadata && obj.metadata.type === 'block') {
+                if (obj.metadata.isCorrect) {
+                    score += 10; ui.score.innerText = score;
+                    answerBlocks.forEach(b => b.dispose()); answerBlocks = []; spawnWave();
+                    playSound(800, 'sine', 0.2);
+                } else {
+                    health -= 25; ui.healthFill.style.width = health + '%';
+                    obj.dispose(); answerBlocks.splice(answerBlocks.indexOf(obj), 1);
+                    playSound(150, 'sawtooth', 0.3);
+                    if (health <= 0) gameOver();
+                }
+            } else if (obj.metadata && obj.metadata.type === 'zombie') {
+                obj.metadata.hp--; 
+                if (obj.metadata.hp <= 0) {
+                    obj.dispose(); zombies.splice(zombies.indexOf(obj), 1);
+                    spawnZombie(); score += 5; ui.score.innerText = score;
+                } else {
+                    obj.metadata.damageTimer = 0.2;
+                }
+            }
+        }
+
+        function generateMazeLogic() {
+            const mockedMap = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1],
+                [1,0,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1],
+                [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1],
+                [1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,1],
+                [1,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,1],
+                [1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,0,1],
+                [1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1],
+                [1,0,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1,0,1,0,1],
+                [1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1],
+                [1,1,1,0,1,1,1,0,1,0,0,0,1,0,1,1,1,0,1,1,1],
+                [1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1],
+                [1,0,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1,0,1,0,1],
+                [1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1],
+                [1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,0,1],
+                [1,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,1],
+                [1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,1],
+                [1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1],
+                [1,0,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1],
+                [1,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ];
+            mazeGrid = []; for (let r = 0; r < MAZE_SIZE; r++) mazeGrid[r] = [...mockedMap[r]];
+        }
+
+        function buildMaze3D() {
+            const mats = ["#DDDDDD", "#AAAAAA", "#777777", "#444444"].map((c, i) => {
+                let m = new BABYLON.StandardMaterial("wm" + i, scene); m.diffuseColor = BABYLON.Color3.FromHexString(c); return m;
+            });
+            let hs = Math.floor(MAZE_SIZE/2);
+            for (let r = 0; r < MAZE_SIZE; r++) {
+                for (let c = 0; c < MAZE_SIZE; c++) {
+                    if (mazeGrid[r][c] === 1) {
+                        let w = BABYLON.MeshBuilder.CreateBox("wall", {width: CELL_SIZE, height: WALL_HEIGHT, depth: CELL_SIZE}, scene);
+                        w.material = mats[(c >= hs ? 1 : 0) + (r >= hs ? 2 : 0)];
+                        w.position.copyFromFloats((c - hs) * CELL_SIZE, WALL_HEIGHT/2, (r - hs) * CELL_SIZE);
+                    }
+                }
+            }
+        }
+
+        function spawnWave() {
+            if(!isPlaying) return;
+            waveTimer = 120; const hs = Math.floor(MAZE_SIZE/2); let validCells = [];
+            for(let r=1; r<MAZE_SIZE-1; r++) for(let c=1; c<MAZE_SIZE-1; c++) if (mazeGrid[r][c] === 0 && BABYLON.Vector3.Distance(camera.position, new BABYLON.Vector3((c-hs)*CELL_SIZE, 0, (r-hs)*CELL_SIZE)) > 40) validCells.push({r,c});
+            if(validCells.length === 0) return;
+            const center = validCells[Math.floor(Math.random()*validCells.length)];
+            const a = Math.floor(Math.random()*15)+1, b = Math.floor(Math.random()*10)+1, correct = a + b; ui.question.innerText = `${a} + ${b} = ?`;
+            const opts = [correct]; while(opts.length<4) { let w = correct + Math.floor(Math.random()*10)-5; if(w>=0 && !opts.includes(w)) opts.push(w); }
+            opts.sort(()=>Math.random()-0.5);
+
+            let nbd = [];
+            for(let r=0; r<MAZE_SIZE; r++) for(let c=0; c<MAZE_SIZE; c++) if(mazeGrid[r][c] === 0) nbd.push({wx:(c-hs)*CELL_SIZE, wz:(r-hs)*CELL_SIZE, d:Math.sqrt((c-center.c)**2+(r-center.r)**2)});
+            const chosen = nbd.sort((a,b)=>a.d-b.d).slice(0,12).sort(()=>Math.random()-0.5).slice(0,4);
+
+            chosen.forEach((pos, i) => {
+                const col = blockColors[i];
+                const b = BABYLON.MeshBuilder.CreateBox("ansBlock", {size: 4}, scene);
+                b.material = createTextFaceMaterial(opts[i].toString(), col);
+                b.position.copyFromFloats(pos.wx, 2, pos.wz);
+                b.metadata = {type:'block', isCorrect: opts[i] === correct, colorHex: col};
+                answerBlocks.push(b);
+            });
+        }
+
+        function spawnZombie() {
+            const hs = Math.floor(MAZE_SIZE/2); let valid = [];
+            for(let r=1; r<MAZE_SIZE-1; r++) for(let c=1; c<MAZE_SIZE-1; c++) if(mazeGrid[r][c] === 0 && BABYLON.Vector3.Distance(camera.position, new BABYLON.Vector3((c-hs)*CELL_SIZE, 0, (r-hs)*CELL_SIZE)) > 30) valid.push({c,r});
+            if(valid.length === 0) return;
+            const p = valid[Math.floor(Math.random()*valid.length)];
+            
+            const z = new BABYLON.TransformNode("zombie", scene);
+            const head = BABYLON.MeshBuilder.CreateBox("head", {width:1.1, height:1.1, depth:1.1}, scene); head.material = matZombHead; head.position.y = 3.5; head.parent = z; head.overlayColor = new BABYLON.Color3(1, 0, 0);
+            const body = BABYLON.MeshBuilder.CreateBox("body", {width:1.2, height:1.4, depth:0.6}, scene); body.material = matZombBody; body.position.y = 2.2; body.parent = z; body.overlayColor = new BABYLON.Color3(1, 0, 0);
+            z.position.copyFromFloats((p.c-hs)*CELL_SIZE, 0, (p.r-hs)*CELL_SIZE);
+            z.metadata = {type:'zombie', hp:3, speed: 6+Math.random()*4, offset: Math.random()*Math.PI, damageTimer: 0};
+            zombies.push(z);
+        }
+
+        function spawnArrowPack() {
+            const hs = Math.floor(MAZE_SIZE / 2); let valid = [];
+            for (let r = 1; r < MAZE_SIZE-1; r++) for (let c = 1; c < MAZE_SIZE-1; c++) if (mazeGrid[r][c] === 0 && BABYLON.Vector3.Distance(camera.position, new BABYLON.Vector3((c-hs)*CELL_SIZE, 0, (r-hs)*CELL_SIZE)) > 15) valid.push({wx:(c-hs)*CELL_SIZE, wz:(r-hs)*CELL_SIZE});
+            if (valid.length === 0) return;
+            let pos = valid[Math.floor(Math.random() * valid.length)];
+            
+            const pack = new BABYLON.TransformNode("pack", scene);
+            for(let i=0; i<3; i++) {
+                const arr = BABYLON.MeshBuilder.CreateBox("sft", {width:0.1, height:1.2, depth:0.1}, scene); arr.material = woodMat; arr.position.x = (i-1)*0.25; arr.rotation.z = (i-1)*0.2;
+                const feather = BABYLON.MeshBuilder.CreateBox("fth", {width:0.15, height:0.3, depth:0.15}, scene); feather.material = featherMat; feather.position.y = 0.5; feather.parent = arr;
+                arr.parent = pack;
+            }
+            pack.position.copyFromFloats(pos.wx, 1.0, pos.wz); pack.metadata = { type: 'arrowPack', count: 3 };
+            arrowPacks.push(pack);
+        }
+
+        // --- LOOP PRINCIPAL ---
+
+        function updateGame(dt) {
+            if (!isPlaying) return;
+            gameTime += dt; waveTimer -= dt;
+            if (waveTimer <= 0) return gameOver();
+            ui.timer.innerText = `${Math.floor(waveTimer/60).toString().padStart(2,'0')}:${Math.floor(waveTimer%60).toString().padStart(2,'0')}`;
+
+            if (!isGrounded) {
+                velocityY -= gravity * dt; camera.position.y += velocityY * dt;
+                if (camera.position.y <= playerHeight) { camera.position.y = playerHeight; velocityY = 0; isGrounded = true; }
+            }
+
+            let stickZ = -joyMoveState.y + (keys.w ? 1 : 0) + (keys.s ? -1 : 0);
+            let stickX = joyMoveState.x + (keys.d ? 1 : 0) + (keys.a ? -1 : 0);
+            
+            if (Math.abs(stickX) > 0.05 || Math.abs(stickZ) > 0.05) {
+                const fwdX = Math.sin(yaw), fwdZ = Math.cos(yaw);
+                const rgtX = Math.cos(yaw), rgtZ = -Math.sin(yaw);
+                const dx = (fwdX * stickZ + rgtX * stickX) * playerSpeed * dt;
+                const dz = (fwdZ * stickZ + rgtZ * stickX) * playerSpeed * dt;
+                
+                if (!checkCollision(camera.position.x + dx, camera.position.z)) camera.position.x += dx;
+                if (!checkCollision(camera.position.x, camera.position.z + dz)) camera.position.z += dz;
+            }
+
+            // Animação da Arma e Disparo (A Flecha Recua)
+            if (weaponGroup && currentWeapon === 'bow' && isDrawingBow) {
+                bowDrawTimer -= dt; const p = 1.0 - (bowDrawTimer/BOW_DRAW_TIME);
+                bowString.position.z = 0.18 - p*0.38; // Corda estica de Z=0.18 até -0.2
+                bowArrow.position.z = 0.18 - p*0.38; // Flecha recua junto
+                
+                if(bowDrawTimer <= 0) {
+                    isDrawingBow = false; bowArrow.setEnabled(false); ammo--; ui.ammo.innerText = `${ammo}/10`;
+                    playSound(400, 'triangle'); 
+                    bowString.position.z = 0.18; // Corda ressalta para o sítio
+                    
+                    // Flecha Voadora Completa (haste + pena + ponta)
+                    let fa = new BABYLON.TransformNode("faNode", scene);
+                    
+                    let faShaft = BABYLON.MeshBuilder.CreateBox("faShaft", {width: 0.03, height: 0.03, depth: 0.8}, scene);
+                    faShaft.material = arrowMat; faShaft.parent = fa;
+                    
+                    let faFeather = BABYLON.MeshBuilder.CreateBox("faFeather", {width: 0.05, height: 0.08, depth: 0.15}, scene);
+                    faFeather.material = featherMat; faFeather.position.z = -0.35; faFeather.parent = fa;
+
+                    let faHead = BABYLON.MeshBuilder.CreateBox("faHead", {width: 0.04, height: 0.04, depth: 0.1}, scene);
+                    let hMat = new BABYLON.StandardMaterial("hm2", scene); hMat.diffuseColor = new BABYLON.Color3(0.2,0.2,0.2);
+                    faHead.material = hMat; faHead.position.z = 0.45; faHead.parent = fa;
+                    
+                    let dir = camera.getDirection(BABYLON.Vector3.Forward());
+                    fa.position = camera.position.clone();
+                    fa.position.addInPlace(dir.scale(1.0)); // Aparece à frente da câmara
+                    fa.lookAt(fa.position.add(dir)); 
+                    fa.metadata = { life: 3.0, dir: dir }; 
+                    flyingArrows.push(fa);
+                }
+            } else if (currentWeapon === 'sword' && isSwingingSword) {
+                swordSwingTimer -= dt; const p = 1.0 - (swordSwingTimer/SWORD_TOTAL_TIME);
+                weaponGroup.rotation.x = p < 0.3 ? p*5 : 1.5 - (p-0.3)*2.1;
+                if(swordSwingTimer <= 0) isSwingingSword = false;
+            } else {
+                weaponGroup.position.y = -0.25 + Math.sin(gameTime*4)*0.01; weaponGroup.rotation.set(0,0,0);
+            }
+
+            // Atualiza Flechas Voadoras
+            for(let i = flyingArrows.length - 1; i >= 0; i--) {
+                let fa = flyingArrows[i];
+                let p0 = fa.position.clone();
+                let arrowSpeed = 35; // Lenta para ver, rápida para acertar
+                
+                fa.position.addInPlace(fa.metadata.dir.scale(arrowSpeed * dt)); 
+                fa.metadata.life -= dt;
+                
+                let ray = new BABYLON.Ray(p0, fa.metadata.dir, arrowSpeed * dt);
+                let hit = scene.pickWithRay(ray, (m) => {
+                    let root = m; while(root.parent && !root.metadata?.type) root = root.parent;
+                    return root.metadata?.type === 'block' || root.metadata?.type === 'zombie' || m.name === "wall";
+                });
+
+                if (hit.hit) {
+                    if (hit.pickedMesh.name !== "wall") resolveHitObject(hit.pickedMesh);
+                    fa.dispose(); flyingArrows.splice(i, 1);
+                } else if (fa.metadata.life <= 0) {
+                    fa.dispose(); flyingArrows.splice(i, 1);
+                }
+            }
+
+            // Apanhar Packs de Flechas
+            for (let i = arrowPacks.length - 1; i >= 0; i--) {
+                let pack = arrowPacks[i];
+                let dist = BABYLON.Vector3.Distance(camera.position, pack.position);
+                pack.rotation.y += dt * 2; pack.position.y = 0.8 + Math.sin(gameTime * 3) * 0.2; 
+                if (dist < 2.5) {
+                    if (ammo < MAX_AMMO) {
+                        ammo = Math.min(MAX_AMMO, ammo + pack.metadata.count); ui.ammo.innerText = `${ammo}/${MAX_AMMO}`;
+                        ui.ammoBox.style.color = "#55FF55"; setTimeout(() => ui.ammoBox.style.color = "white", 500);
+                        playSound(400, 'sine', 0.1); pack.dispose(); arrowPacks.splice(i, 1); setTimeout(spawnArrowPack, 5000);
+                    }
+                }
+            }
+
+            // Zumbis
+            zombies.forEach(z => {
+                if (z.metadata.damageTimer > 0) {
+                    z.metadata.damageTimer -= dt; z.getChildMeshes().forEach(m => m.renderOverlay = true);
+                } else z.getChildMeshes().forEach(m => m.renderOverlay = false);
+
+                let dist = BABYLON.Vector3.Distance(camera.position, z.position);
+                if (dist < 2.5 && playerInvulnTimer <= 0) { health -= 10; ui.healthFill.style.width = health + '%'; playerInvulnTimer = 1.0; playSound(100, 'sawtooth'); if (health <= 0) gameOver(); }
+                if (dist > 2) {
+                    const dir = camera.position.subtract(z.position).normalize();
+                    const nx = z.position.x + dir.x * z.metadata.speed * dt, nz = z.position.z + dir.z * z.metadata.speed * dt;
+                    if (!checkCollision(nx, z.position.z)) z.position.x = nx;
+                    if (!checkCollision(z.position.x, nz)) z.position.z = nz;
+                    z.lookAt(new BABYLON.Vector3(camera.position.x, z.position.y, camera.position.z));
+                    z.position.y = Math.abs(Math.sin(gameTime*5 + z.metadata.offset)) * 0.4;
+                }
+            });
+            if (playerInvulnTimer > 0) playerInvulnTimer -= dt;
+
+            updateMinimap();
+        }
+
+        function updateMinimap() {
+            if (!minimapCtx) return;
+            const hs = Math.floor(MAZE_SIZE/2), cs = 100/MAZE_SIZE;
+            const px = Math.round(camera.position.x/CELL_SIZE)+hs, pz = Math.round(camera.position.z/CELL_SIZE)+hs;
+            for(let i=-2; i<=2; i++) for(let j=-2; j<=2; j++) if(px+i>=0 && px+i<MAZE_SIZE && pz+j>=0 && pz+j<MAZE_SIZE) discoveredGrid[pz+j][px+i] = true;
+            minimapCtx.clearRect(0,0,100,100);
+            for(let r=0; r<MAZE_SIZE; r++) for(let c=0; c<MAZE_SIZE; c++) if(discoveredGrid[r][c]) {
+                minimapCtx.fillStyle = mazeGrid[r][c]===1 ? '#333' : '#999'; minimapCtx.fillRect(c*cs, r*cs, cs, cs);
+            }
+            minimapCtx.fillStyle = '#FFD700'; 
+            arrowPacks.forEach(p => {
+                let ax = Math.round(p.position.x/CELL_SIZE)+hs, az = Math.round(p.position.z/CELL_SIZE)+hs;
+                if(discoveredGrid[az] && discoveredGrid[az][ax]) minimapCtx.fillRect(ax*cs + cs*0.25, az*cs + cs*0.25, cs*0.5, cs*0.5);
+            });
+            minimapCtx.fillStyle = 'red'; minimapCtx.fillRect(px*cs, pz*cs, cs, cs);
+        }
+
+        function onWindowResize() {
+            const isP = window.innerHeight > window.innerWidth;
+            const w = isP ? window.innerHeight : window.innerWidth, h = isP ? window.innerWidth : window.innerHeight;
+            if (renderer) renderer.setSize(w, h); 
+            if (camera) { camera.aspect = w/h; camera.updateProjectionMatrix(); }
+        }
+
+        function animate(t) {
+            requestAnimationFrame(animate);
+            const dt = (t - lastTime) / 1000; lastTime = t;
+            if (dt < 0.1) updateGame(dt);
+            if (renderer && scene && camera) renderer.render(scene, camera);
+        }
+
+        function startGame() {
+            score = 0; health = 100; ammo = 10; isPlaying = true;
+            ui.score.innerText = '0'; ui.ammo.innerText = '10/10'; ui.healthFill.style.width = '100%';
+            discoveredGrid = []; for(let r=0; r<MAZE_SIZE; r++) discoveredGrid.push(Array(MAZE_SIZE).fill(false));
+            
+            if (!('ontouchstart' in window)) {
+                const canvas = document.getElementById("game-canvas");
+                if (canvas.requestPointerLock) canvas.requestPointerLock();
+            }
+
+            generateMazeLogic(); buildMaze3D(); spawnWave();
+            ui.start.classList.add('hidden'); ui.gameOver.classList.add('hidden');
+            ui.minimap.style.display = 'block';
+            camera.position.copyFromFloats(0, playerHeight, 0); yaw = 0; pitch = 0;
+            switchWeapon(2); 
+
+            zombies.forEach(z => z.dispose()); zombies = [];
+            arrowPacks.forEach(a => a.dispose()); arrowPacks = [];
+            flyingArrows.forEach(fa => fa.dispose()); flyingArrows = [];
+            
+            for(let i=0; i<3; i++) spawnZombie();
+            for(let i=0; i<4; i++) spawnArrowPack(); 
+        }
+
+        function gameOver() { 
+            isPlaying = false; 
+            ui.gameOver.classList.remove('hidden'); 
+            ui.finalScore.innerText = score; 
+            if(document.exitPointerLock) document.exitPointerLock();
+        }
+
+        document.getElementById('start-btn').addEventListener('click', startGame);
+        document.getElementById('restart-btn').addEventListener('click', startGame);
+        window.onload = init;
+    </script>
+</body>
+</html>

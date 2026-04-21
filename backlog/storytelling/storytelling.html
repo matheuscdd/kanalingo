@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitura Divertida</title>
+    <!-- FontAwesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonte arredondada no estilo Duolingo -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Puro - Estilo Flat Design (Inspirado no Duolingo) */
+        
+        :root {
+            --green: #58CC02;
+            --green-shadow: #58A700;
+            --red: #FF4B4B;
+            --red-shadow: #EA2B2B;
+            --blue: #1CB0F6;
+            --blue-shadow: #1899D6;
+            --yellow: #FFC800;
+            --gray-light: #E5E5E5;
+            --gray-bg: #F7F7F7;
+            --text-dark: #4B4B4B;
+            --text-light: #AFAFAF;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 600px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 601px) {
+            .app-container {
+                height: 90vh;
+                border: 2px solid var(--gray-light);
+                border-radius: 24px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+        }
+
+        /* Telas */
+        .screen {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            padding: 24px;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        /* Tipografia */
+        h1, h2 {
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 2.5rem; color: var(--green); }
+        h2 { font-size: 2rem; }
+        
+        p {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* Botões Estilo Duolingo */
+        .btn {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+        }
+
+        .btn-green {
+            background-color: var(--green);
+            color: var(--white);
+            box-shadow: 0 4px 0 var(--green-shadow);
+        }
+
+        .btn-green:active { box-shadow: 0 0 0 var(--green-shadow); }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--gray-light);
+            box-shadow: 0 4px 0 var(--gray-light);
+        }
+
+        .btn-outline:active { box-shadow: 0 0 0 var(--gray-light); }
+
+        .btn-skip {
+            background-color: transparent;
+            color: var(--text-light);
+            box-shadow: none;
+            font-size: 1rem;
+            text-transform: none;
+        }
+        
+        .btn-skip:hover { color: var(--text-dark); }
+
+        /* Barra de Progresso */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            background-color: var(--gray-light);
+            height: 16px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background-color: var(--green);
+            height: 100%;
+            width: 0%;
+            border-radius: 8px;
+            transition: width 0.4s ease-out;
+            position: relative;
+        }
+        
+        /* Brilho na barra de progresso */
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 8px;
+            right: 8px;
+            height: 4px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 4px;
+        }
+
+        .xp-counter {
+            font-weight: 800;
+            color: var(--yellow);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 1.2rem;
+        }
+
+        /* Área de Leitura */
+        .reading-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .word-display {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            line-height: 1.4;
+        }
+
+        .word-span {
+            padding: 4px 8px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            border-bottom: 4px solid transparent;
+        }
+
+        .word-span.current {
+            background-color: var(--gray-bg);
+            border-bottom-color: var(--gray-light);
+        }
+
+        .word-span.success {
+            color: var(--green);
+            animation: pop 0.3s ease-out;
+        }
+
+        .word-span.skipped {
+            color: var(--red);
+            opacity: 0.6;
+            text-decoration: line-through;
+            text-decoration-thickness: 3px;
+        }
+
+        .word-span.error {
+            color: var(--red) !important;
+            background-color: #ffe5e5;
+            border-bottom-color: var(--red-shadow);
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+
+        /* Feedback do Microfone */
+        .mic-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--blue);
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            position: relative;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 0 var(--blue-shadow);
+        }
+
+        .mic-container.listening::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--blue);
+            opacity: 0.4;
+            animation: pulse 1.5s infinite;
+            z-index: -1;
+        }
+
+        .mic-status-text {
+            color: var(--blue);
+            font-weight: 800;
+            height: 24px; /* Fix height to prevent jumping */
+        }
+        
+        .transcript-display {
+            min-height: 24px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-top: 10px;
+            font-style: italic;
+            text-align: center;
+            width: 100%;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        /* Área de Controles do Jogo */
+        .controls {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        /* Tela de Relatório */
+        .report-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background-color: var(--white);
+            border: 2px solid var(--gray-light);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            width: 45%;
+        }
+
+        .stat-box h3 {
+            font-size: 1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        .stat-box .value {
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        .value.green { color: var(--green); }
+        .value.yellow { color: var(--yellow); }
+
+        .list-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .list-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .list-title.practice { color: var(--red); }
+        .list-title.good { color: var(--green); }
+
+        .word-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .word-chip {
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .word-chip.practice {
+            background-color: #ffe5e5;
+            color: var(--red);
+            border: 2px solid #ffcccc;
+        }
+
+        .word-chip.good {
+            background-color: #e5f9e5;
+            color: var(--green);
+            border: 2px solid #ccf2cc;
+        }
+
+        /* Centralizar botões na base */
+        .bottom-action {
+            margin-top: auto;
+        }
+        
+        .mascot-img {
+            font-size: 5rem;
+            color: var(--green);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app-container" id="app">
+        
+        <!-- TELA INICIAL -->
+        <div id="screen-start" class="screen active">
+            <div class="reading-area">
+                <div class="mascot-img">
+                    <i class="fa-solid fa-owl"></i>
+                </div>
+                <h1>Leitura Divertida</h1>
+                <p>Leia o texto em voz alta. As palavras ficarão verdes conforme você acerta!</p>
+            </div>
+            <div class="bottom-action">
+                <button class="btn btn-green" onclick="startGame()">
+                    Começar a Jogar <i class="fa-solid fa-play"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- TELA DE JOGO -->
+        <div id="screen-game" class="screen">
+            <div class="header">
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="progress-bar"></div>
+                </div>
+                <div class="xp-counter">
+                    <i class="fa-solid fa-bolt"></i> <span id="xp-display">0</span>
+                </div>
+            </div>
+
+            <div class="reading-area">
+                <p style="color: var(--text-light); font-size: 1rem;">Leia o texto:</p>
+                <div class="word-display" id="word-display"></div>
+                
+                <div class="mic-container" id="mic-icon">
+                    <i class="fa-solid fa-microphone"></i>
+                </div>
+                <div class="mic-status-text" id="mic-status">Ouvindo...</div>
+                <div class="transcript-display" id="transcript-display"></div>
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-outline" onclick="skipWord()">
+                    Pular Palavra Atual <i class="fa-solid fa-forward-step"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- TELA DE RELATÓRIO -->
+        <div id="screen-report" class="screen">
+            <h2>Lição Concluída!</h2>
+            
+            <div class="report-stats">
+                <div class="stat-box">
+                    <h3>Total XP</h3>
+                    <div class="value yellow"><i class="fa-solid fa-bolt"></i> <span id="final-xp">0</span></div>
+                </div>
+                <div class="stat-box">
+                    <h3>Acertos</h3>
+                    <div class="value green"><i class="fa-solid fa-bullseye"></i> <span id="final-accuracy">0</span>%</div>
+                </div>
+            </div>
+
+            <div class="list-container">
+                <div id="practice-section" style="display: none;">
+                    <div class="list-title practice">
+                        <i class="fa-solid fa-dumbbell"></i> Palavras para praticar:
+                    </div>
+                    <ul class="word-list" id="practice-list">
+                        <!-- Itens inseridos via JS -->
+                    </ul>
+                </div>
+
+                <div id="good-section" style="display: none;">
+                    <div class="list-title good">
+                        <i class="fa-solid fa-check-circle"></i> Você mandou bem:
+                    </div>
+                    <ul class="word-list" id="good-list">
+                        <!-- Itens inseridos via JS -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bottom-action">
+                <button class="btn btn-green" onclick="resetGame()">
+                    Jogar Novamente <i class="fa-solid fa-rotate-right"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- BASE DE DADOS DE TEXTOS ---
+        const textDatabase = [
+            "O cachorro correu atrás da bola no parque",
+            "A borboleta azul voou pelo lindo jardim",
+            "Eu gosto de comer maçã e banana",
+            "O menino leu um livro muito legal",
+            "O dia está ensolarado e perfeito para brincar",
+            "O pequeno gato bebeu todo o leite da tigela",
+            "Nós vamos viajar para a praia no sábado"
+        ];
+
+        // --- ESTADO DO JOGO ---
+        let currentTexts = [];
+        let currentSentenceIndex = 0;
+        let expectedWords = []; 
+        let currentWordIndex = 0;
+        let xp = 0;
+        let correctWords = [];
+        let practiceWords = [];
+        let totalWordsInGame = 0;
+        let wordsReadGlobally = 0;
+        
+        // --- VARIÁVEIS DE RECONHECIMENTO DE VOZ E TIMER ---
+        let recognition;
+        let isListening = false;
+        let expectingWord = false; 
+        let inactivityTimer = null;
+        const INACTIVITY_LIMIT = 60000; // 60 segundos
+
+        // --- ELEMENTOS DO DOM ---
+        const screens = {
+            start: document.getElementById('screen-start'),
+            game: document.getElementById('screen-game'),
+            report: document.getElementById('screen-report')
+        };
+        
+        const ui = {
+            wordDisplay: document.getElementById('word-display'),
+            progressBar: document.getElementById('progress-bar'),
+            xpDisplay: document.getElementById('xp-display'),
+            micIcon: document.getElementById('mic-icon'),
+            micStatus: document.getElementById('mic-status'),
+            transcriptDisplay: document.getElementById('transcript-display'),
+            finalXp: document.getElementById('final-xp'),
+            finalAccuracy: document.getElementById('final-accuracy'),
+            practiceSection: document.getElementById('practice-section'),
+            practiceList: document.getElementById('practice-list'),
+            goodSection: document.getElementById('good-section'),
+            goodList: document.getElementById('good-list')
+        };
+
+        // --- INICIALIZAÇÃO DO RECONHECIMENTO DE VOZ ---
+        function initSpeechRecognition() {
+            window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!window.SpeechRecognition) {
+                alert("Desculpe, seu navegador não suporta o reconhecimento de voz. Tente usar o Google Chrome.");
+                return false;
+            }
+
+            recognition = new SpeechRecognition();
+            recognition.lang = 'pt-BR';
+            recognition.continuous = true; // MELHORIA: Mantém o microfone sempre aberto durante a leitura
+            recognition.interimResults = true; // Permite ouvir e atualizar em tempo real
+            recognition.maxAlternatives = 1;
+
+            recognition.onstart = () => {
+                isListening = true;
+                ui.micIcon.classList.add('listening');
+                ui.micStatus.innerText = "Pode falar...";
+                ui.micStatus.style.color = "var(--blue)";
+            };
+
+            recognition.onresult = (event) => {
+                // Reseta o timer de inatividade sempre que captar qualquer som/fala
+                resetInactivityTimer();
+
+                if (!expectingWord || currentWordIndex >= expectedWords.length) return;
+
+                let currentTranscript = '';
+                let matchedInThisEvent = false;
+
+                // Vasculha tudo o que foi falado até o momento
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    currentTranscript = event.results[i][0].transcript;
+                    let isFinal = event.results[i].isFinal;
+                    
+                    // Exibe o que o sistema está a ouvir para feedback visual
+                    ui.transcriptDisplay.innerText = `Você disse: "${currentTranscript.trim()}"`;
+                    ui.transcriptDisplay.style.color = "var(--text-light)";
+
+                    let transcriptNormalized = normalizeString(currentTranscript);
+                    let spokenWords = transcriptNormalized.split(/\s+/);
+                    
+                    for (let sWord of spokenWords) {
+                        if (currentWordIndex >= expectedWords.length) break;
+                        
+                        let target = expectedWords[currentWordIndex].normalized;
+                        
+                        // Melhoria na tolerância: bate com a palavra exata, ou contém a palavra (ex: plural)
+                        if (sWord === target || 
+                           (sWord.length >= 3 && target.includes(sWord)) || 
+                           (sWord.length >= 3 && sWord.includes(target))) {
+                            handleWordSuccess();
+                            matchedInThisEvent = true;
+                        }
+                    }
+
+                    // Se a frase capturada foi finalizada (isFinal) e a palavra não foi acertada
+                    if (isFinal && !matchedInThisEvent && transcriptNormalized.trim().length > 0) {
+                        handleWordError();
+                    }
+                }
+            };
+
+            recognition.onerror = (event) => {
+                // Se for 'no-speech' (silêncio) ou 'network' (instabilidade), ignoramos silenciosamente para não poluir o console
+                if (event.error === 'no-speech' || event.error === 'network') {
+                    return; 
+                }
+
+                console.error("Erro no reconhecimento: ", event.error);
+                ui.micIcon.classList.remove('listening');
+                
+                if(event.error === 'not-allowed') {
+                    ui.micStatus.innerText = "Permita o microfone!";
+                    ui.micStatus.style.color = "var(--red)";
+                    ui.transcriptDisplay.innerText = "Acesso ao microfone foi bloqueado.";
+                } else {
+                    ui.micStatus.innerText = "Erro ao ouvir...";
+                }
+            };
+
+            recognition.onend = () => {
+                isListening = false;
+                ui.micIcon.classList.remove('listening');
+                
+                // Se a frase não acabou, reinicia o microfone automaticamente
+                if (expectingWord && screens.game.classList.contains('active')) {
+                    setTimeout(() => {
+                        try {
+                            recognition.start();
+                        } catch(e) {} 
+                    }, 100);
+                }
+            };
+
+            return true;
+        }
+
+        // --- FUNÇÕES UTILITÁRIAS ---
+        function normalizeString(str) {
+            return str.normalize("NFD") 
+                      .replace(/[\u0300-\u036f]/g, "") 
+                      .toLowerCase() 
+                      .replace(/[.,!?]/g, "") 
+                      .trim();
+        }
+
+        function shuffleArray(array) {
+            return [...array].sort(() => Math.random() - 0.5);
+        }
+
+        function switchScreen(screenName) {
+            Object.values(screens).forEach(screen => screen.classList.remove('active'));
+            screens[screenName].classList.add('active');
+        }
+
+        function updateProgress() {
+            if(totalWordsInGame === 0) return;
+            const progress = (wordsReadGlobally / totalWordsInGame) * 100;
+            ui.progressBar.style.width = `${progress}%`;
+            ui.xpDisplay.innerText = xp;
+        }
+
+        // --- CONTROLE DE INATIVIDADE ---
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            if (expectingWord) {
+                inactivityTimer = setTimeout(handleInactivity, INACTIVITY_LIMIT);
+            }
+        }
+
+        function stopInactivityTimer() {
+            clearTimeout(inactivityTimer);
+        }
+
+        function handleInactivity() {
+            expectingWord = false;
+            try { recognition.stop(); } catch(e) {}
+            
+            // Dá o feedback visual
+            ui.micStatus.innerText = "Tempo esgotado (60s inativo).";
+            ui.micStatus.style.color = "var(--red)";
+            ui.transcriptDisplay.innerText = "Voltando ao início...";
+            ui.transcriptDisplay.style.color = "var(--red)";
+            
+            // Aguarda 3 segundos para a pessoa ler o aviso e reseta a leitura
+            setTimeout(() => {
+                resetGame();
+                // Limpa os avisos para a próxima vez que jogar
+                ui.micStatus.innerText = "Ouvindo...";
+                ui.micStatus.style.color = "var(--blue)";
+                ui.transcriptDisplay.innerText = "";
+            }, 3000);
+        }
+
+        // --- LÓGICA DO JOGO ---
+        function startGame() {
+            if (!recognition && !initSpeechRecognition()) return;
+
+            // Seleciona 3 frases aleatórias para jogar
+            currentTexts = shuffleArray(textDatabase).slice(0, 3);
+            currentSentenceIndex = 0;
+            xp = 0;
+            correctWords = [];
+            practiceWords = [];
+            wordsReadGlobally = 0;
+            
+            // Calcula o total de palavras em todas as frases
+            totalWordsInGame = currentTexts.reduce((acc, text) => acc + text.split(' ').length, 0);
+            
+            updateProgress();
+            switchScreen('game');
+            loadNextText();
+        }
+
+        function loadNextText() {
+            if (currentSentenceIndex >= currentTexts.length) {
+                endGame();
+                return;
+            }
+
+            const sentence = currentTexts[currentSentenceIndex];
+            const rawWords = sentence.split(' ');
+            
+            ui.wordDisplay.innerHTML = '';
+            ui.transcriptDisplay.innerText = ''; // Limpa o visor de fala
+            expectedWords = [];
+            currentWordIndex = 0;
+            
+            // Monta os spans na tela palavra por palavra
+            rawWords.forEach((word, index) => {
+                const span = document.createElement('span');
+                span.id = `word-${index}`;
+                span.className = 'word-span';
+                if (index === 0) span.classList.add('current');
+                span.innerText = word;
+                ui.wordDisplay.appendChild(span);
+                
+                expectedWords.push({
+                    original: word.replace(/[.,!?]/g, ""),
+                    normalized: normalizeString(word),
+                    elementId: span.id
+                });
+            });
+
+            expectingWord = true;
+            ui.micStatus.innerText = "Preparando...";
+            ui.micStatus.style.color = "var(--text-light)";
+            
+            resetInactivityTimer(); // Inicia o contador de inatividade
+            
+            setTimeout(() => {
+                try {
+                    if(!isListening) recognition.start();
+                } catch(e) {}
+            }, 500);
+        }
+
+        function handleWordSuccess() {
+            let wordObj = expectedWords[currentWordIndex];
+            let span = document.getElementById(wordObj.elementId);
+            
+            span.classList.remove('current');
+            span.classList.remove('error');
+            span.classList.add('success');
+            
+            xp += 10; 
+            correctWords.push(wordObj.original);
+            ui.xpDisplay.innerText = xp;
+            
+            wordsReadGlobally++;
+            updateProgress();
+            currentWordIndex++;
+            
+            // Vai para a próxima palavra ou encerra a frase
+            if (currentWordIndex < expectedWords.length) {
+                let nextSpan = document.getElementById(expectedWords[currentWordIndex].elementId);
+                nextSpan.classList.add('current');
+                // Garante que o visual volta ao normal se a pessoa estava errando
+                ui.micStatus.innerText = "Ouvindo...";
+                ui.micStatus.style.color = "var(--blue)";
+            } else {
+                handleSentenceComplete();
+            }
+        }
+
+        function handleWordError() {
+            if (currentWordIndex >= expectedWords.length) return;
+            
+            let wordObj = expectedWords[currentWordIndex];
+            let span = document.getElementById(wordObj.elementId);
+            
+            // Reinicia a animação removendo e adicionando a classe (força o reflow)
+            span.classList.remove('error');
+            void span.offsetWidth; 
+            span.classList.add('error');
+            
+            // Feedback na interface
+            ui.micStatus.innerText = "Ops! Tente novamente.";
+            ui.micStatus.style.color = "var(--red)";
+            ui.transcriptDisplay.style.color = "var(--red)";
+            
+            // Remove o visual de erro após 1 segundo, voltando ao estado normal para tentar de novo
+            setTimeout(() => {
+                if (span.classList.contains('error')) {
+                    span.classList.remove('error');
+                    ui.micStatus.innerText = "Pode continuar...";
+                    ui.micStatus.style.color = "var(--text-light)";
+                    ui.transcriptDisplay.style.color = "var(--text-light)";
+                }
+            }, 1000);
+        }
+
+        function skipWord() {
+            if (currentWordIndex >= expectedWords.length) return;
+            
+            resetInactivityTimer(); // Reseta o timer ao interagir com o botão
+            
+            let wordObj = expectedWords[currentWordIndex];
+            let span = document.getElementById(wordObj.elementId);
+            
+            span.classList.remove('current');
+            span.classList.add('skipped');
+            
+            practiceWords.push(wordObj.original);
+            
+            wordsReadGlobally++;
+            updateProgress();
+            currentWordIndex++;
+            
+            if (currentWordIndex < expectedWords.length) {
+                document.getElementById(expectedWords[currentWordIndex].elementId).classList.add('current');
+            } else {
+                handleSentenceComplete();
+            }
+        }
+
+        function handleSentenceComplete() {
+            expectingWord = false;
+            try { recognition.stop(); } catch(e){}
+            
+            ui.micStatus.innerText = "Frase concluída!";
+            ui.micStatus.style.color = "var(--green)";
+            ui.transcriptDisplay.innerText = "Muito bem!";
+            
+            setTimeout(() => {
+                currentSentenceIndex++;
+                loadNextText();
+            }, 1500);
+        }
+
+        function endGame() {
+            expectingWord = false;
+            stopInactivityTimer(); // Para o timer quando o jogo acaba
+            try { recognition.stop(); } catch(e) {}
+            
+            ui.progressBar.style.width = "100%";
+            
+            setTimeout(() => {
+                generateReport();
+                switchScreen('report');
+            }, 500);
+        }
+
+        // --- RELATÓRIO ---
+        function generateReport() {
+            ui.finalXp.innerText = xp;
+            
+            const totalWords = correctWords.length + practiceWords.length;
+            const accuracy = totalWords === 0 ? 0 : Math.round((correctWords.length / totalWords) * 100);
+            ui.finalAccuracy.innerText = accuracy;
+
+            // Remove duplicatas para o relatório
+            const uniquePractice = [...new Set(practiceWords)];
+            const uniqueGood = [...new Set(correctWords)];
+
+            ui.practiceList.innerHTML = '';
+            if (uniquePractice.length > 0) {
+                ui.practiceSection.style.display = 'block';
+                uniquePractice.forEach(word => {
+                    const li = document.createElement('li');
+                    li.className = 'word-chip practice';
+                    li.innerText = word;
+                    ui.practiceList.appendChild(li);
+                });
+            } else {
+                ui.practiceSection.style.display = 'none';
+            }
+
+            ui.goodList.innerHTML = '';
+            if (uniqueGood.length > 0) {
+                ui.goodSection.style.display = 'block';
+                uniqueGood.forEach(word => {
+                    const li = document.createElement('li');
+                    li.className = 'word-chip good';
+                    li.innerText = word;
+                    ui.goodList.appendChild(li);
+                });
+            } else {
+                ui.goodSection.style.display = 'none';
+            }
+        }
+
+        function resetGame() {
+            stopInactivityTimer(); // Garante que o timer parou
+            switchScreen('start');
+        }
+
+        window.onload = () => {
+            if (!(window.SpeechRecognition || window.webkitSpeechRecognition)) {
+                alert("Atenção: O reconhecimento de voz não é suportado por este navegador. Por favor, utilize o Google Chrome, Edge ou Safari atualizado.");
+            }
+        };
+
+    </script>
+</body>
+</html>

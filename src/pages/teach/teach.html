@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Criador de Quiz - Estilo Flat</title>
+
+        <!-- FontAwesome para Ícones -->
+        <link
+            rel="stylesheet"
+            href="../../libs/css/fontawesome-free-7.1.0-web/css/all.min.css"
+        />
+        <link rel="stylesheet" href="./styles/teach.css" />
+
+        <!-- SortableJS para Drag and Drop -->
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+        <script defer src="./scripts/teach.js" type="module"></script>
+    </head>
+    <body>
+        <!-- View da Lista de Quizzes -->
+        <div id="list-view" class="container">
+            <div class="list-header">
+                <h1>Ensinar</h1>
+                <a href="/src/pages/dashboard/dashboard.html">
+                    <button class="btn btn-outline">
+                        <i class="fa-solid fa-arrow-left"></i> Voltar
+                    </button>
+                </a>
+                <button class="btn btn-primary" onclick="createNewQuiz()">
+                    <i class="fa-solid fa-plus"></i> Criar Novo Quiz
+                </button>
+            </div>
+            <div id="quiz-list-container" class="quiz-list">
+                <!-- Quizzes salvos aparecerão aqui -->
+            </div>
+        </div>
+
+        <!-- View do Editor de Quiz -->
+        <div id="editor-view" class="hidden">
+            <div class="container">
+                <h1>Editor de Quiz</h1>
+
+                <div class="quiz-header">
+                    <input
+                        type="text"
+                        id="quiz-title"
+                        placeholder="Digite o título do Quiz"
+                        required
+                    />
+                </div>
+
+                <div id="questions-container">
+                    <!-- As perguntas serão injetadas aqui via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Painel de ações fixo na parte inferior -->
+            <div class="bottom-panel">
+                <button class="btn btn-outline" onclick="showListView()">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar
+                </button>
+                <button class="btn btn-outline" onclick="addQuestion()">
+                    <i class="fa-solid fa-plus"></i> Nova Pergunta
+                </button>
+                <button class="btn btn-success" onclick="saveQuiz()">
+                    <i class="fa-solid fa-floppy-disk"></i> Salvar Quiz
+                </button>
+            </div>
+        </div>
+        <!-- Fim do editor-view -->
+    </body>
+</html>

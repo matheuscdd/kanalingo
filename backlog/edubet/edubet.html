@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduBet - O Jogo do Conhecimento</title>
+    
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Phaser.js -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+
+    <style>
+        /* Variáveis de Cores - Estilo Cassino */
+        :root {
+            --primary: #f1c40f; 
+            --primary-shadow: #f39c12;
+            --success: #2ecc71;
+            --success-shadow: #27ae60;
+            --danger: #e74c3c;
+            --danger-shadow: #c0392b;
+            --warning: #f1c40f;
+            --warning-shadow: #f39c12;
+            
+            --table-green: #1b5e20;
+            --table-green-light: #2e7d32;
+            --wood-edge: #4e342e;
+            --wood-edge-shadow: #3e2723;
+            
+            --bg-app: #121212; 
+            --text-main: #ffffff;
+            --text-dark: #2c3e50;
+            --gray-light: #ecf0f1;
+            --card-border: #bdc3c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Bloqueia interações na UI HTML enquanto o Phaser estiver a arrastar a ficha ou a animar */
+        body.is-dragging #ui-layer .interactive,
+        body.is-animating #ui-layer .interactive {
+            pointer-events: none !important;
+        }
+
+        #game-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 650px;
+            background: radial-gradient(circle at center, var(--table-green-light) 0%, var(--table-green) 100%);
+            border: 16px solid var(--wood-edge);
+            border-radius: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8), inset 0 0 40px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+
+        #game-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 4px solid var(--wood-edge-shadow);
+            border-radius: 22px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Camada do Phaser colocada acima das cartas (z-index: 5) para as fichas renderizarem por cima */
+        #phaser-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: auto; 
+        }
+
+        /* UI Layer sem z-index para permitir que os filhos controlem a sua própria camada em relação ao Canvas */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 25px 40px;
+            pointer-events: none;
+        }
+
+        .interactive {
+            pointer-events: auto;
+        }
+
+        /* Elementos que devem ficar acima do Phaser (Botões, Avatares, Info) */
+        header, .question-area, .btn {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Elementos que devem ficar abaixo do Phaser (Cartas e texto do footer) */
+        .options-grid, .drag-hint {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Indicadores de onde estão os bots */
+        .bot-avatar-indicator {
+            position: absolute;
+            top: 0;
+            font-size: 2rem;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 2px solid;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s;
+        }
+        .bot-bear-pos { left: 160px; border-color: #3498db; }
+        .bot-cat-pos { right: 160px; border-color: #9b59b6; }
+
+        .bot-name { font-size: 1rem; font-weight: 800; color: #fff; }
+
+        .avatar-throw {
+            transform: scale(1.3) translateY(-15px) !important;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6) !important;
+            border-color: #f1c40f !important;
+        }
+
+        .stats-badge {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #fff;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .stats-badge i { color: var(--primary); }
+
+        .round-info {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.3);
+            padding: 6px 15px;
+            border-radius: 15px;
+        }
+
+        .risk-indicator {
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+        .risk-facil { background-color: var(--success); border-bottom: 3px solid var(--success-shadow); }
+        .risk-medio { background-color: var(--warning); border-bottom: 3px solid var(--warning-shadow); }
+        .risk-dificil { background-color: var(--danger); border-bottom: 3px solid var(--danger-shadow); }
+
+        .question-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .avatar {
+            font-size: 4rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .speech-bubble {
+            flex-grow: 1;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            padding: 20px;
+            border-radius: 20px;
+            position: relative;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 12px 15px 12px 0;
+            border-style: solid;
+            border-color: transparent rgba(0, 0, 0, 0.65) transparent transparent;
+        }
+
+        .options-grid {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 15px;
+            flex-grow: 1;
+            padding-bottom: 10px;
+        }
+
+        .option-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f2f6 100%);
+            color: var(--text-dark);
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            flex: 1;
+            max-width: 170px;
+            padding: 20px 10px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; 
+            align-items: center;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.05rem;
+            box-shadow: -3px 8px 15px rgba(0,0,0,0.5);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            outline: 1px solid #dcdde1;
+            outline-offset: -6px;
+        }
+
+        .option-card span {
+            margin-top: 15px;
+            pointer-events: none;
+        }
+
+        .option-card::before, .option-card::after {
+            position: absolute;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            pointer-events: none;
+        }
+        .option-card:nth-child(1)::before { content: '♠'; top: 10px; left: 10px; color: #2c3e50; }
+        .option-card:nth-child(1)::after { content: '♠'; bottom: 10px; right: 10px; color: #2c3e50; transform: rotate(180deg); }
+        .option-card:nth-child(2)::before { content: '♥'; top: 10px; left: 10px; color: #e74c3c; }
+        .option-card:nth-child(2)::after { content: '♥'; bottom: 10px; right: 10px; color: #e74c3c; transform: rotate(180deg); }
+        .option-card:nth-child(3)::before { content: '♣'; top: 10px; left: 10px; color: #2c3e50; }
+        .option-card:nth-child(3)::after { content: '♣'; bottom: 10px; right: 10px; color: #2c3e50; transform: rotate(180deg); }
+        .option-card:nth-child(4)::before { content: '♦'; top: 10px; left: 10px; color: #e74c3c; }
+        .option-card:nth-child(4)::after { content: '♦'; bottom: 10px; right: 10px; color: #e74c3c; transform: rotate(180deg); }
+
+        /* O Hover agora é gerido maioritariamente pelo Phaser (drag-hover) para não haver conflito visual */
+        .option-card.drag-hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0px 15px 30px rgba(241, 196, 15, 0.5);
+            border-color: var(--primary);
+            outline-color: var(--primary);
+            background: #ffffff;
+        }
+
+        .option-card.has-bet {
+            outline-color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: -5px 15px 25px rgba(0,0,0,0.6);
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed rgba(255,255,255,0.2);
+        }
+
+        .drag-hint {
+            flex-grow: 1;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding-bottom: 20px;
+            animation: pulseHint 2s infinite;
+        }
+        
+        @keyframes pulseHint {
+            0%, 100% { opacity: 0.5; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(5px); }
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 20px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+            transition: all 0.1s;
+            box-shadow: 0 6px 0px rgba(0,0,0,0.3);
+        }
+
+        .btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0px rgba(0,0,0,0.3);
+        }
+
+        .btn-clear { background-color: #7f8c8d; box-shadow: 0 6px 0px #5a6667; }
+        .btn-confirm { background-color: var(--success); box-shadow: 0 6px 0px var(--success-shadow); }
+        
+        .btn-confirm:disabled, .btn-clear:disabled {
+            background-color: #95a5a6; box-shadow: 0 6px 0px #7f8c8d;
+            color: #ecf0f1; cursor: not-allowed; transform: none !important;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 20;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f2f6 100%);
+            width: 80%;
+            max-width: 500px;
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 4px solid var(--primary);
+            color: var(--text-dark);
+        }
+
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .modal-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .title-success { color: var(--success-shadow); }
+        .title-error { color: var(--danger-shadow); }
+
+        .modal-winnings {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--warning-shadow);
+            margin-bottom: 15px;
+        }
+
+        .modal-tip {
+            background: #fff8e5;
+            padding: 15px;
+            border-radius: 12px;
+            color: #d35400;
+            font-weight: 800;
+            margin-bottom: 20px;
+            border: 2px dashed #f39c12;
+        }
+
+        .modal-bots {
+            display: flex;
+            justify-content: space-around;
+            background: #ecf0f1;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-weight: 800;
+            border: 1px solid #bdc3c7;
+        }
+
+        .modal-btn {
+            width: 100%;
+            background-color: var(--primary-shadow);
+            box-shadow: 0 6px 0px #d68910;
+            font-size: 1.2rem;
+            padding: 16px;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div id="game-wrapper">
+        <div id="phaser-container"></div>
+
+        <div id="ui-layer" class="hidden">
+            <header>
+                <div class="round-info">Rodada <span id="round-counter">1</span>/10</div>
+                
+                <!-- Indicadores dos Bots -->
+                <div class="bot-avatar-indicator bot-bear-pos" id="avatar-bear">
+                    🐻 <span class="bot-name">Urso</span>
+                </div>
+                <div class="bot-avatar-indicator bot-cat-pos" id="avatar-cat">
+                    🐱 <span class="bot-name">Gato</span>
+                </div>
+
+                <div class="risk-indicator risk-facil" id="risk-badge">Fácil (2x)</div>
+                <div class="stats-badge">
+                    <i class="fas fa-coins"></i> Banca: <span id="total-score">0</span>
+                </div>
+            </header>
+
+            <div class="question-area">
+                <div class="avatar">🤵</div>
+                <div class="speech-bubble" id="question-text">
+                    A carregar a pergunta...
+                </div>
+            </div>
+
+            <div class="options-grid interactive" id="options-container">
+                <!-- Cartas geradas via JS -->
+            </div>
+
+            <footer>
+                <button class="btn btn-clear interactive" id="btn-clear"><i class="fas fa-eraser"></i> Limpar</button>
+                <div class="drag-hint">⬆ Arraste as Fichas ou Clique ⬆</div>
+                <button class="btn btn-confirm interactive" id="btn-confirm" disabled>Confirmar</button>
+            </footer>
+        </div>
+
+        <div class="modal-overlay interactive" id="feedback-modal">
+            <div class="modal-content">
+                <h2 class="modal-title title-success" id="modal-title">Acertou!</h2>
+                <div class="modal-winnings" id="modal-winnings">+ 20 Fichas</div>
+                <div class="modal-tip" id="modal-tip">
+                    <i class="fas fa-lightbulb"></i> A Terra é o terceiro planeta do sistema solar.
+                </div>
+                <div class="modal-bots">
+                    <div id="bot-bear-result">🐻 Urso: +0</div>
+                    <div id="bot-cat-result">🐱 Gato: +5</div>
+                </div>
+                <button class="btn modal-btn" id="btn-next">Próxima Rodada</button>
+            </div>
+        </div>
+
+        <div class="modal-overlay interactive" id="end-modal">
+            <div class="modal-content">
+                <h2 class="modal-title" style="color: var(--warning-shadow)">Fim do Jogo!</h2>
+                <div class="avatar" style="font-size: 5rem; margin: 10px 0;">🎰</div>
+                <div class="modal-winnings" style="font-size: 2rem;">Banca Final: <span id="final-score">0</span> <i class="fas fa-coins"></i></div>
+                <div class="modal-tip" id="final-profile" style="background: #eafaf1; border-color: #2ecc71; color: #27ae60;">
+                    Perfil: Estrategista Equilibrado
+                </div>
+                <button class="btn modal-btn" onclick="location.reload()">Jogar Novamente</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ==================================================================
+           DADOS E LÓGICA DO JOGO
+           ================================================================== */
+        const QUESTION_DATA = [
+            { q: "Qual é o maior planeta do nosso sistema solar?", opts: ["Terra", "Marte", "Júpiter", "Saturno"], ans: 2, diff: "fácil", mult: 2, tip: "Júpiter é um gigante gasoso, contendo mais de duas vezes a massa de todos os outros planetas juntos." },
+            { q: "Qual elemento químico é essencial para a respiração humana e tem o símbolo 'O'?", opts: ["Ouro", "Oxigénio", "Ósmio", "Oganessónio"], ans: 1, diff: "fácil", mult: 2, tip: "O oxigénio compõe cerca de 21% da atmosfera terrestre." },
+            { q: "Quem pintou a famosa obra 'Mona Lisa'?", opts: ["Van Gogh", "Picasso", "Leonardo da Vinci", "Michelangelo"], ans: 2, diff: "médio", mult: 2.5, tip: "Além de pintor, ele foi um grande cientista e inventor do Renascimento." },
+            { q: "Qual é o resultado da raiz quadrada de 144?", opts: ["10", "12", "14", "16"], ans: 1, diff: "médio", mult: 2.5, tip: "Basta multiplicar 12 por ele mesmo (12 x 12 = 144)." },
+            { q: "Em que ano a missão Apollo 11 levou o homem à Lua pela primeira vez?", opts: ["1965", "1969", "1971", "1975"], ans: 1, diff: "difícil", mult: 3, tip: "Ocorreu no dia 20 de julho de 1969, um marco histórico na corrida espacial." },
+            { q: "Qual é o país mais extenso do mundo em área territorial?", opts: ["Canadá", "China", "Estados Unidos", "Rússia"], ans: 3, diff: "fácil", mult: 2, tip: "A Rússia é tão grande que abrange dois continentes: Europa e Ásia." },
+            { q: "Qual é a fórmula química da água?", opts: ["CO2", "H2O", "O2", "NaCl"], ans: 1, diff: "fácil", mult: 2, tip: "A molécula é composta por dois átomos de hidrogénio e um de oxigénio." },
+            { q: "Quantos continentes existem no modelo geográfico mais ensinado tradicionalmente?", opts: ["4", "5", "6", "7"], ans: 2, diff: "médio", mult: 2.5, tip: "América, Europa, Ásia, África, Oceânia e Antártida." },
+            { q: "Qual é a velocidade aproximada da luz no vácuo?", opts: ["300.000 km/s", "150.000 km/s", "1.000.000 km/s", "500.000 km/s"], ans: 0, diff: "difícil", mult: 3, tip: "É a velocidade mais rápida possível conhecida no universo (299.792 km/s)." },
+            { q: "Quem escreveu o clássico literário 'Dom Quixote'?", opts: ["Machado de Assis", "Miguel de Cervantes", "William Shakespeare", "Dante Alighieri"], ans: 1, diff: "difícil", mult: 3, tip: "Cervantes é considerado um dos maiores autores da literatura espanhola." }
+        ];
+
+        const GameState = {
+            round: 0,
+            maxRounds: 10,
+            totalScore: 0,
+            coinsToBet: 10,
+            playerBets: [0, 0, 0, 0],
+            botBearBets: [0, 0, 0, 0],
+            botCatBets: [0, 0, 0, 0],
+            currentQuestion: null,
+            totalOptionsBetOn: 0,
+            totalRoundsPlayed: 0
+        };
+
+        const UI = {
+            init: function() {
+                this.uiLayer = document.getElementById('ui-layer');
+                this.roundCounter = document.getElementById('round-counter');
+                this.riskBadge = document.getElementById('risk-badge');
+                this.totalScore = document.getElementById('total-score');
+                this.questionText = document.getElementById('question-text');
+                this.optionsContainer = document.getElementById('options-container');
+                this.btnConfirm = document.getElementById('btn-confirm');
+                this.btnClear = document.getElementById('btn-clear');
+                this.feedbackModal = document.getElementById('feedback-modal');
+                this.endModal = document.getElementById('end-modal');
+
+                this.btnClear.onclick = () => resetPlayerBets();
+                this.btnConfirm.onclick = () => handleConfirmClick();
+                document.getElementById('btn-next').onclick = () => nextRound();
+
+                this.uiLayer.classList.remove('hidden');
+            },
+
+            renderQuestion: function(qData) {
+                this.questionText.innerHTML = qData.q;
+                
+                this.riskBadge.className = 'risk-indicator';
+                if(qData.diff === 'fácil') {
+                    this.riskBadge.classList.add('risk-facil');
+                    this.riskBadge.innerText = `Fácil (${qData.mult}x)`;
+                } else if(qData.diff === 'médio') {
+                    this.riskBadge.classList.add('risk-medio');
+                    this.riskBadge.innerText = `Médio (${qData.mult}x)`;
+                } else {
+                    this.riskBadge.classList.add('risk-dificil');
+                    this.riskBadge.innerText = `Difícil (${qData.mult}x)`;
+                }
+
+                this.optionsContainer.innerHTML = '';
+                qData.opts.forEach((optText, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'option-card';
+                    card.id = `card-${index}`; 
+                    card.innerHTML = `<span>${optText}</span>`;
+                    
+                    // Fallback (o Phaser lida com o clique primário agora, já que está por cima)
+                    card.onclick = () => {
+                        if(GameState.coinsToBet > 0 && !document.body.classList.contains('is-animating')) {
+                            window.dispatchEvent(new CustomEvent('playerClickedCard', { detail: { index: index } }));
+                        }
+                    };
+                    this.optionsContainer.appendChild(card);
+                });
+            },
+
+            updateBetDisplay: function() {
+                let hasBets = false;
+                GameState.playerBets.forEach((bet, index) => {
+                    const card = document.getElementById(`card-${index}`);
+                    if(bet > 0) {
+                        card.classList.add('has-bet');
+                        hasBets = true;
+                    } else {
+                        card.classList.remove('has-bet');
+                    }
+                });
+                this.btnConfirm.disabled = !hasBets;
+                window.dispatchEvent(new CustomEvent('syncPhaserChips', { detail: { coins: GameState.coinsToBet } }));
+            },
+
+            updateScore: function() {
+                this.totalScore.innerText = GameState.totalScore.toFixed(0);
+                this.totalScore.parentElement.style.transform = 'scale(1.2)';
+                setTimeout(() => this.totalScore.parentElement.style.transform = 'scale(1)', 200);
+            },
+
+            showFeedback: function(isCorrect, winnings, tip, bearWin, catWin, playStyleText) {
+                const title = document.getElementById('modal-title');
+                const winText = document.getElementById('modal-winnings');
+                
+                if (winnings > 0) {
+                    title.innerText = isCorrect ? 'Vitória!' : 'Lucro!';
+                    title.className = 'modal-title title-success';
+                    winText.innerText = `+ ${winnings.toFixed(1)} Fichas`;
+                    winText.style.color = 'var(--success-shadow)';
+                } else {
+                    title.innerText = 'Bust!';
+                    title.className = 'modal-title title-error';
+                    winText.innerText = `0 Fichas`;
+                    winText.style.color = 'var(--danger-shadow)';
+                }
+
+                if (playStyleText) winText.innerHTML += `<br><span style="font-size:1rem; color:var(--primary-shadow);">${playStyleText}</span>`;
+
+                document.getElementById('modal-tip').innerHTML = `<i class="fas fa-lightbulb"></i> ${tip}`;
+                document.getElementById('bot-bear-result').innerText = `🐻 Urso: ${bearWin > 0 ? '+'+bearWin.toFixed(1) : '0'}`;
+                document.getElementById('bot-cat-result').innerText = `🐱 Gato: ${catWin > 0 ? '+'+catWin.toFixed(1) : '0'}`;
+
+                this.feedbackModal.classList.add('active');
+            },
+
+            hideFeedback: function() {
+                this.feedbackModal.classList.remove('active');
+            }
+        };
+
+        /* ==================================================================
+           LÓGICA CORE
+           ================================================================== */
+        function startRound() {
+            GameState.coinsToBet = 10;
+            GameState.playerBets = [0, 0, 0, 0];
+            GameState.botBearBets = [0, 0, 0, 0];
+            GameState.botCatBets = [0, 0, 0, 0];
+            GameState.currentQuestion = QUESTION_DATA[GameState.round];
+            
+            UI.roundCounter.innerText = GameState.round + 1;
+            simulateBots();
+            UI.renderQuestion(GameState.currentQuestion);
+            UI.updateBetDisplay();
+            
+            UI.btnConfirm.disabled = true;
+            UI.btnClear.disabled = false;
+        }
+
+        function placeBet(optionIndex) {
+            if (GameState.coinsToBet > 0) {
+                GameState.coinsToBet--;
+                GameState.playerBets[optionIndex]++;
+                UI.updateBetDisplay();
+            }
+        }
+
+        function resetPlayerBets() {
+            GameState.coinsToBet = 10;
+            GameState.playerBets = [0, 0, 0, 0];
+            UI.updateBetDisplay();
+            window.dispatchEvent(new CustomEvent('clearPlayerChips'));
+        }
+
+        function simulateBots() {
+            const correctAns = GameState.currentQuestion.ans;
+            
+            // Urso (Agressivo): Aposta tudo
+            let bearChoice = correctAns;
+            if (Math.random() > 0.6) {
+                do { bearChoice = Math.floor(Math.random() * 4); } while(bearChoice === correctAns);
+            }
+            GameState.botBearBets[bearChoice] = 10;
+
+            // Gato (Conservador): Divide
+            let catOptions = [0,1,2,3].sort(() => Math.random() - 0.5);
+            if (Math.random() <= 0.8 && !catOptions.slice(0,3).includes(correctAns)) {
+                catOptions[3] = catOptions[0]; catOptions[0] = correctAns;
+            }
+            GameState.botCatBets[catOptions[0]] = 4;
+            GameState.botCatBets[catOptions[1]] = 3;
+            GameState.botCatBets[catOptions[2]] = 3;
+        }
+
+        function handleConfirmClick() {
+            UI.btnConfirm.disabled = true;
+            UI.btnClear.disabled = true;
+            document.body.classList.add('is-animating');
+
+            // 1. Inicia animação das apostas dos Bots
+            window.dispatchEvent(new CustomEvent('animateBotBets', { 
+                detail: { bear: GameState.botBearBets, cat: GameState.botCatBets } 
+            }));
+        }
+
+        // 2. Quando a animação dos bots termina, inicia a animação de resolução do tabuleiro
+        window.addEventListener('botAnimationsDone', () => {
+            setTimeout(() => {
+                window.dispatchEvent(new CustomEvent('resolveBoardAnimation', {
+                    detail: { ans: GameState.currentQuestion.ans }
+                }));
+            }, 800);
+        });
+
+        // 3. Quando as fichas perdedoras são removidas e as vencedoras recolhidas
+        window.addEventListener('boardResolved', calculateAndShowResults);
+
+        function calculateWinnings(bets, isBot = false) {
+            const q = GameState.currentQuestion;
+            let optionsBetOn = 0, correctBet = 0;
+            for(let i=0; i<4; i++) {
+                if(bets[i] > 0) {
+                    optionsBetOn++;
+                    if(i === q.ans) correctBet = bets[i];
+                }
+            }
+            if(correctBet === 0) return { win: 0, optionsUsed: optionsBetOn };
+
+            let finalMultiplier = q.mult / optionsBetOn;
+            let winnings = correctBet * finalMultiplier;
+            if (!isBot && correctBet === 10 && optionsBetOn === 1) winnings += 5; 
+            return { win: winnings, optionsUsed: optionsBetOn };
+        }
+
+        function calculateAndShowResults() {
+            const playerRes = calculateWinnings(GameState.playerBets, false);
+            const bearRes = calculateWinnings(GameState.botBearBets, true);
+            const catRes = calculateWinnings(GameState.botCatBets, true);
+
+            GameState.totalScore += playerRes.win;
+            GameState.totalOptionsBetOn += playerRes.optionsUsed;
+            GameState.totalRoundsPlayed++;
+            
+            UI.updateScore();
+            document.body.classList.remove('is-animating');
+
+            let playStyleMsg = "";
+            if(playerRes.optionsUsed === 1 && GameState.playerBets[GameState.currentQuestion.ans] === 10) {
+                playStyleMsg = "🎰 All-in Perfeito! Bónus aplicado.";
+            } else if (playerRes.optionsUsed >= 3) {
+                playStyleMsg = "🛡️ Jogou seguro (Multiplicador reduzido).";
+            }
+
+            if(playerRes.win > 0) window.dispatchEvent(new CustomEvent('playerWon'));
+
+            UI.showFeedback(playerRes.win > 0, playerRes.win, GameState.currentQuestion.tip, bearRes.win, catRes.win, playStyleMsg);
+        }
+
+        function nextRound() {
+            UI.hideFeedback();
+            window.dispatchEvent(new CustomEvent('clearAllChips'));
+            GameState.round++;
+            if(GameState.round >= GameState.maxRounds) {
+                UI.showEndGame();
+            } else {
+                startRound();
+            }
+        }
+
+
+        /* ==================================================================
+           PHASER 3 (Motor Gráfico - Gestão Visual e Animações)
+           ================================================================== */
+        class BootScene extends Phaser.Scene {
+            constructor() { super('BootScene'); }
+            create() {
+                const g = this.make.graphics({x:0, y:0, add:false});
+                g.fillStyle(0xffffff, 1);
+                g.fillRect(0, 0, 8, 16);
+                g.generateTexture('confetti', 8, 16);
+
+                const g2 = this.make.graphics({x:0, y:0, add:false});
+                
+                // Sombra inferior para criar um efeito 3D/espessura na ficha
+                g2.fillStyle(0x000000, 0.4);
+                g2.fillCircle(26, 30, 26);
+                
+                g2.fillStyle(0xffffff, 1);
+                g2.fillCircle(26, 26, 26);
+                g2.lineStyle(4, 0xdddddd, 1);
+                g2.strokeCircle(26, 26, 22);
+                for(let i=0; i<8; i++){
+                    let angle = (i * Math.PI) / 4;
+                    g2.fillStyle(0xdddddd, 1);
+                    g2.fillCircle(26 + Math.cos(angle)*19, 26 + Math.sin(angle)*19, 4);
+                }
+                g2.generateTexture('casino-chip', 52, 58); // Altura estendida para a sombra 3D
+
+                this.scene.start('GameScene');
+            }
+        }
+
+        class GameScene extends Phaser.Scene {
+            constructor() { super('GameScene'); }
+            
+            create() {
+                const symbols = ['♠', '♥', '♣', '♦', '7', 'J', 'Q', 'K', 'A'];
+                for(let i=0; i<20; i++) {
+                    let x = Phaser.Math.Between(0, 900);
+                    let y = Phaser.Math.Between(0, 650);
+                    let txt = this.add.text(x, y, Phaser.Math.RND.pick(symbols), {
+                        fontSize: Phaser.Math.Between(24, 50) + 'px', color: '#4caf50', fontFamily: 'Arial'
+                    }).setAlpha(0.15);
+                    this.tweens.add({
+                        targets: txt, y: y - Phaser.Math.Between(60, 200), x: x + Phaser.Math.Between(-40, 40), alpha: 0,
+                        duration: Phaser.Math.Between(12000, 25000), repeat: -1,
+                        onRepeat: () => { txt.y = 700; txt.x = Phaser.Math.Between(0, 900); txt.setAlpha(0.15); }
+                    });
+                }
+
+                this.confettiEmitter = this.add.particles(450, 325, 'confetti', {
+                    speed: { min: 200, max: 700 }, angle: { min: 240, max: 300 }, gravityY: 800,
+                    scale: { start: 1, end: 0 }, lifespan: 2000, quantity: 60,
+                    tint: [ 0xf1c40f, 0x2ecc71, 0xe74c3c, 0x3498db ], emitting: false
+                });
+
+                this.COLOR_PLAYER = 0xe74c3c; 
+                this.COLOR_BEAR = 0x3498db;   
+                this.COLOR_CAT = 0x9b59b6;    
+
+                this.stackX = 450;
+                this.stackY = 585;
+
+                this.add.circle(this.stackX, this.stackY + 5, 28, 0x000000, 0.4);
+
+                this.chipStack = this.add.image(this.stackX, this.stackY, 'casino-chip').setTint(this.COLOR_PLAYER).setInteractive({ cursor: 'pointer' });
+                this.input.setDraggable(this.chipStack);
+                
+                this.chipCountText = this.add.text(this.stackX + 25, this.stackY - 15, 'x10', {
+                    fontSize: '22px', fontStyle: 'bold', color: '#f1c40f', stroke: '#000000', strokeThickness: 4
+                }).setOrigin(0, 0.5);
+
+                this.dragClone = null;
+                this.placedChipsGroup = this.add.group();
+
+                // Interação com o HTML através do Phaser (Canvas agora está por cima)
+                this.input.on('pointermove', (pointer) => {
+                    if (this.dragClone) return;
+                    const hoveredIndex = this.getHoveredCardIndex(pointer.x, pointer.y);
+                    for(let i=0; i<4; i++) {
+                        const card = document.getElementById(`card-${i}`);
+                        if(card) {
+                            if(i === hoveredIndex) card.classList.add('drag-hover');
+                            else card.classList.remove('drag-hover');
+                        }
+                    }
+                });
+
+                this.input.on('pointerdown', (pointer, gameObjects) => {
+                    if (gameObjects.length > 0 && gameObjects[0] === this.chipStack) return;
+
+                    const clickedIndex = this.getHoveredCardIndex(pointer.x, pointer.y);
+                    if (clickedIndex !== -1 && GameState.coinsToBet > 0 && !document.body.classList.contains('is-animating')) {
+                        
+                        // Limpa o hover ao clicar para evitar que fique preso em mobile
+                        for(let i=0; i<4; i++) {
+                            const card = document.getElementById(`card-${i}`);
+                            if(card) card.classList.remove('drag-hover');
+                        }
+                        
+                        // Efeito visual na carta
+                        const card = document.getElementById(`card-${clickedIndex}`);
+                        if(card) {
+                            card.style.transform = 'translateY(2px)';
+                            setTimeout(() => card.style.transform = '', 100);
+                        }
+
+                        window.dispatchEvent(new CustomEvent('playerClickedCard', { detail: { index: clickedIndex } }));
+                    }
+                });
+
+                this.input.on('gameout', () => {
+                    for(let i=0; i<4; i++) {
+                        const card = document.getElementById(`card-${i}`);
+                        if(card) card.classList.remove('drag-hover');
+                    }
+                });
+
+                // Lógica de Drag
+                this.input.on('dragstart', (pointer, gameObject) => {
+                    if (gameObject !== this.chipStack || GameState.coinsToBet <= 0) return;
+                    document.body.classList.add('is-dragging');
+                    this.dragClone = this.add.image(pointer.x, pointer.y, 'casino-chip').setTint(this.COLOR_PLAYER).setDepth(100);
+                    this.dragClone.setInteractive();
+                    this.chipStack.setAlpha(0.7);
+                });
+
+                this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+                    if(this.dragClone) {
+                        this.dragClone.x = dragX;
+                        this.dragClone.y = dragY;
+                        const hoveredIndex = this.getHoveredCardIndex(pointer.x, pointer.y);
+                        for(let i=0; i<4; i++) {
+                            const card = document.getElementById(`card-${i}`);
+                            if(card) {
+                                if(i === hoveredIndex) card.classList.add('drag-hover');
+                                else card.classList.remove('drag-hover');
+                            }
+                        }
+                    }
+                });
+
+                this.input.on('dragend', (pointer, gameObject) => {
+                    if (gameObject === this.chipStack) this.chipStack.setAlpha(1);
+                    if (!this.dragClone) return;
+                    document.body.classList.remove('is-dragging');
+
+                    for(let i=0; i<4; i++) {
+                        let card = document.getElementById(`card-${i}`);
+                        if(card) card.classList.remove('drag-hover');
+                    }
+
+                    const droppedCard = this.getHoveredCardIndex(pointer.x, pointer.y);
+
+                    if (droppedCard !== -1 && GameState.coinsToBet > 0) {
+                        placeBet(droppedCard);
+                        let chipIndex = GameState.playerBets[droppedCard] - 1;
+                        let targetPos = this.calculateChipPosition(droppedCard, chipIndex, 'player');
+                        
+                        this.dragClone.setData('cardIndex', droppedCard);
+                        this.dragClone.setData('owner', 'player');
+                        this.dragClone.setDepth(targetPos.depth);
+
+                        this.tweens.add({
+                            targets: this.dragClone, x: targetPos.x, y: targetPos.y, scale: 0.55,
+                            duration: 200, ease: 'Quad.easeOut',
+                            onComplete: () => {
+                                this.placedChipsGroup.add(this.dragClone);
+                                this.dragClone = null;
+                            }
+                        });
+                    } else {
+                        this.tweens.add({
+                            targets: this.dragClone, x: this.stackX, y: this.stackY,
+                            duration: 300, ease: 'Back.easeOut',
+                            onComplete: () => {
+                                if(this.dragClone) this.dragClone.destroy();
+                                this.dragClone = null;
+                            }
+                        });
+                    }
+                });
+
+                window.addEventListener('playerWon', () => this.fireConfetti());
+                window.addEventListener('syncPhaserChips', (e) => this.updatePhaserChips(e.detail.coins));
+                window.addEventListener('playerClickedCard', (e) => this.handlePlayerClickPlace(e.detail.index));
+                window.addEventListener('clearPlayerChips', () => this.clearChipsByOwner('player'));
+                window.addEventListener('clearAllChips', () => this.placedChipsGroup.clear(true, true));
+                window.addEventListener('animateBotBets', (e) => this.animateBotBets(e.detail.bear, e.detail.cat));
+                window.addEventListener('resolveBoardAnimation', (e) => this.animateBoardResolution(e.detail.ans));
+
+                UI.init();
+                startRound();
+            }
+
+            getHoveredCardIndex(px, py) {
+                const gameWrapper = document.getElementById('game-wrapper');
+                if(!gameWrapper) return -1;
+                const gwRect = gameWrapper.getBoundingClientRect();
+
+                for(let i=0; i<4; i++) {
+                    const card = document.getElementById(`card-${i}`);
+                    if(!card) continue;
+                    const rect = card.getBoundingClientRect();
+                    const localLeft = rect.left - gwRect.left;
+                    const localRight = rect.right - gwRect.left;
+                    const localTop = rect.top - gwRect.top;
+                    const localBottom = rect.bottom - gwRect.top;
+
+                    if (px >= localLeft && px <= localRight && py >= localTop && py <= localBottom) return i;
+                }
+                return -1;
+            }
+
+            getCardCenter(cardIndex) {
+                const card = document.getElementById(`card-${cardIndex}`);
+                const gw = document.getElementById('game-wrapper');
+                const cRect = card.getBoundingClientRect();
+                const gwRect = gw.getBoundingClientRect();
+                return {
+                    x: cRect.left - gwRect.left + (cRect.width / 2),
+                    y: cRect.top - gwRect.top + (cRect.height / 2) + 15
+                };
+            }
+
+            calculateChipPosition(cardIndex, chipIndex, owner) {
+                let base = this.getCardCenter(cardIndex);
+                let offsetX = 0;
+                let offsetY = 15;
+                
+                if(owner === 'bear') offsetX = -35;
+                else if(owner === 'cat') offsetX = 35;
+
+                let stackZ = chipIndex % 5;
+                let stackX = Math.floor(chipIndex / 5) * 12; 
+                let depthOffset = (owner === 'bear') ? 0 : (owner === 'player') ? 20 : 40;
+                
+                return {
+                    x: base.x + offsetX + stackX,
+                    y: base.y + offsetY - (stackZ * 6),
+                    depth: 50 + depthOffset + chipIndex // Garante empilhamento visual correto
+                };
+            }
+
+            handlePlayerClickPlace(cardIndex) {
+                placeBet(cardIndex);
+                let chipIndex = GameState.playerBets[cardIndex] - 1;
+                let targetPos = this.calculateChipPosition(cardIndex, chipIndex, 'player');
+                
+                let chip = this.add.image(this.stackX, this.stackY, 'casino-chip').setTint(this.COLOR_PLAYER).setScale(1).setDepth(targetPos.depth);
+                chip.setData('cardIndex', cardIndex);
+                chip.setData('owner', 'player');
+                
+                let midX = (this.stackX + targetPos.x) / 2;
+                let midY = Math.min(this.stackY, targetPos.y) - 60; // Arco do arremesso
+
+                this.tweens.chain({
+                    targets: chip,
+                    tweens: [
+                        { x: midX, y: midY, scale: 0.7, duration: 150, ease: 'Sine.easeOut' },
+                        { x: targetPos.x, y: targetPos.y, scale: 0.55, duration: 150, ease: 'Sine.easeIn' }
+                    ],
+                    onComplete: () => this.placedChipsGroup.add(chip)
+                });
+            }
+
+            clearChipsByOwner(ownerTag) {
+                const chipsToDestroy = [];
+                this.placedChipsGroup.children.iterate((chip) => {
+                    if(chip.getData('owner') === ownerTag) chipsToDestroy.push(chip);
+                });
+                chipsToDestroy.forEach(chip => chip.destroy());
+            }
+
+            animateBotBets(bearBets, catBets) {
+                let delay = 0;
+                let totalAnimations = 0;
+                let completedAnimations = 0;
+
+                const checkDone = () => {
+                    completedAnimations++;
+                    if(completedAnimations === totalAnimations) {
+                        window.dispatchEvent(new CustomEvent('botAnimationsDone'));
+                    }
+                };
+
+                for(let i=0; i<4; i++) totalAnimations += bearBets[i] + catBets[i];
+                if(totalAnimations === 0) { checkDone(); return; }
+
+                const bearStart = { x: 200, y: 50 };
+                const catStart = { x: 700, y: 50 };
+
+                const avatarBear = document.getElementById('avatar-bear');
+                const avatarCat = document.getElementById('avatar-cat');
+
+                // Animação de pulo nos avatares quando começam a atirar
+                if (bearBets.some(b => b > 0) && avatarBear) {
+                    avatarBear.classList.add('avatar-throw');
+                    setTimeout(() => avatarBear.classList.remove('avatar-throw'), 300);
+                }
+                if (catBets.some(b => b > 0) && avatarCat) {
+                    avatarCat.classList.add('avatar-throw');
+                    setTimeout(() => avatarCat.classList.remove('avatar-throw'), 300);
+                }
+
+                for(let cardIdx=0; cardIdx<4; cardIdx++) {
+                    for(let i=0; i<bearBets[cardIdx]; i++) {
+                        let pos = this.calculateChipPosition(cardIdx, i, 'bear');
+                        let chip = this.add.image(bearStart.x, bearStart.y, 'casino-chip').setTint(this.COLOR_BEAR).setScale(0.55).setDepth(pos.depth);
+                        chip.setData('cardIndex', cardIdx);
+                        chip.setData('owner', 'bear');
+                        this.placedChipsGroup.add(chip);
+                        
+                        let midX = (bearStart.x + pos.x) / 2;
+                        let midY = Math.min(bearStart.y, pos.y) - 80; // Trajetória parabólica
+
+                        this.tweens.chain({
+                            targets: chip,
+                            tweens: [
+                                { x: midX, y: midY, scale: 0.75, duration: 250, ease: 'Sine.easeOut' },
+                                { x: pos.x, y: pos.y, scale: 0.55, duration: 250, ease: 'Sine.easeIn' }
+                            ],
+                            delay: delay,
+                            onComplete: checkDone
+                        });
+                        delay += 60;
+                    }
+                }
+                
+                for(let cardIdx=0; cardIdx<4; cardIdx++) {
+                    for(let i=0; i<catBets[cardIdx]; i++) {
+                        let pos = this.calculateChipPosition(cardIdx, i, 'cat');
+                        let chip = this.add.image(catStart.x, catStart.y, 'casino-chip').setTint(this.COLOR_CAT).setScale(0.55).setDepth(pos.depth);
+                        chip.setData('cardIndex', cardIdx);
+                        chip.setData('owner', 'cat');
+                        this.placedChipsGroup.add(chip);
+
+                        let midX = (catStart.x + pos.x) / 2;
+                        let midY = Math.min(catStart.y, pos.y) - 80; // Trajetória parabólica
+
+                        this.tweens.chain({
+                            targets: chip,
+                            tweens: [
+                                { x: midX, y: midY, scale: 0.75, duration: 250, ease: 'Sine.easeOut' },
+                                { x: pos.x, y: pos.y, scale: 0.55, duration: 250, ease: 'Sine.easeIn' }
+                            ],
+                            delay: delay,
+                            onComplete: checkDone
+                        });
+                        delay += 60;
+                    }
+                }
+            }
+
+            animateBoardResolution(correctIndex) {
+                let animationsPending = this.placedChipsGroup.getChildren().length;
+                if(animationsPending === 0) {
+                    window.dispatchEvent(new CustomEvent('boardResolved'));
+                    return;
+                }
+
+                this.placedChipsGroup.children.iterate((chip) => {
+                    let cIdx = chip.getData('cardIndex');
+                    let owner = chip.getData('owner');
+
+                    if(cIdx !== correctIndex) {
+                        this.tweens.add({
+                            targets: chip, scale: 0, alpha: 0, y: chip.y - 30,
+                            duration: 500, ease: 'Quad.easeIn',
+                            onComplete: () => {
+                                chip.destroy();
+                                animationsPending--;
+                                if(animationsPending === 0) window.dispatchEvent(new CustomEvent('boardResolved'));
+                            }
+                        });
+                    } else {
+                        let target = { x: this.stackX, y: this.stackY }; 
+                        if(owner === 'bear') target = { x: 200, y: -50 };
+                        else if(owner === 'cat') target = { x: 700, y: -50 };
+
+                        this.tweens.add({
+                            targets: chip, x: target.x, y: target.y, scale: 1, alpha: 0,
+                            duration: 600, delay: 300, ease: 'Back.easeIn',
+                            onComplete: () => {
+                                chip.destroy();
+                                animationsPending--;
+                                if(animationsPending === 0) window.dispatchEvent(new CustomEvent('boardResolved'));
+                            }
+                        });
+                    }
+                });
+            }
+
+            updatePhaserChips(count) {
+                this.chipCountText.setText('x' + count);
+                if (count <= 0) {
+                    this.chipStack.setTint(0x555555);
+                    this.chipCountText.setTint(0x555555);
+                } else {
+                    this.chipStack.setTint(this.COLOR_PLAYER);
+                    this.chipCountText.clearTint();
+                }
+            }
+
+            fireConfetti() {
+                this.confettiEmitter.explode(120, 450, 650);
+            }
+        }
+
+        const config = {
+            type: Phaser.AUTO, width: 900, height: 650,
+            parent: 'phaser-container', transparent: true,
+            scene: [BootScene, GameScene]
+        };
+
+        const game = new Phaser.Game(config);
+
+    </script>
+</body>
+</html>

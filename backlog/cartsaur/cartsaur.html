@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dino Carga - Matter.js Physics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+    <!-- Importar o Phaser 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    <style>
+        :root {
+            --green-primary: #58cc02;
+            --green-shadow: #58a700;
+            --red-primary: #ff4b4b;
+            --red-shadow: #ea1515;
+            --blue-primary: #1cb0f6;
+            --blue-shadow: #1899d6;
+            --yellow-primary: #ffc800;
+            --yellow-shadow: #e5b400;
+            --text-dark: #4b4b4b;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            font-family: 'Nunito', sans-serif;
+            touch-action: none;
+        }
+
+        body {
+            background-color: #3d8c28;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #game-container {
+            position: absolute;
+            top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1;
+        }
+
+        #hud {
+            position: fixed; top: 0; left: 0; width: 100vw;
+            padding: 15px 25px; display: flex; justify-content: space-between;
+            align-items: center; z-index: 100; pointer-events: none;
+        }
+
+        h1 {
+            color: var(--white); text-shadow: 0 4px 0 #3d8c28;
+            font-size: 32px; font-weight: 900; letter-spacing: 1px;
+            -webkit-text-stroke: 1px #3d8c28;
+        }
+
+        .score-board {
+            background: var(--white); padding: 10px 25px; border-radius: 20px;
+            color: var(--yellow-primary); font-weight: 900; font-size: 24px;
+            border: 3px solid #e5e5e5; box-shadow: 0 5px 0 #e5e5e5;
+            pointer-events: auto;
+        }
+
+        #action-btn-container {
+            position: fixed; bottom: 30px; right: 30px; z-index: 100; display: none;
+        }
+
+        .btn-action {
+            font-size: 24px; font-weight: 900; padding: 20px 50px;
+            border: none; border-radius: 20px; cursor: pointer;
+            text-transform: uppercase; transition: transform 0.1s;
+            pointer-events: auto; color: white;
+        }
+        .btn-ready { background-color: var(--green-primary); border-bottom: 8px solid var(--green-shadow); }
+        .btn-ready:active { transform: translateY(8px); border-bottom-width: 0; }
+        .btn-drop { background-color: var(--red-primary); border-bottom: 8px solid var(--red-shadow); }
+        .btn-drop:active { transform: translateY(8px); border-bottom-width: 0; }
+
+        #joystick-zone {
+            position: fixed; bottom: 30px; left: 30px; width: 150px; height: 150px;
+            background: rgba(255,255,255,0.2); border: 4px solid rgba(255,255,255,0.4);
+            border-radius: 50%; z-index: 100; display: none; pointer-events: auto;
+        }
+        #joystick-knob {
+            position: absolute; top: 50%; left: 50%; width: 60px; height: 60px;
+            background: var(--white); border-radius: 50%;
+            transform: translate(-50%, -50%); box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+        @media (pointer: coarse) { #joystick-zone { display: block; } .controls-hint { display: none; } }
+
+        .controls-hint {
+            position: fixed; bottom: 20px; left: 20px; color: white;
+            font-weight: 800; font-size: 16px; text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+            z-index: 100; pointer-events: none;
+        }
+
+        #feedback-modal {
+            position: fixed; bottom: -100%; left: 0; width: 100%; padding: 30px 20px;
+            display: flex; flex-direction: column; align-items: center;
+            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 200; border-top-left-radius: 30px; border-top-right-radius: 30px;
+        }
+        #feedback-modal.show { bottom: 0; }
+        #feedback-modal.correct { background-color: #d7ffb8; border-top: 5px solid var(--green-primary); }
+        #feedback-modal.wrong { background-color: #ffdfe0; border-top: 5px solid var(--red-primary); }
+
+        .feedback-content { max-width: 800px; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .feedback-text h2 { font-size: 26px; font-weight: 900; margin-bottom: 5px; }
+        .correct .feedback-text h2 { color: var(--green-shadow); }
+        .wrong .feedback-text h2 { color: var(--red-shadow); }
+        .feedback-text p { font-size: 18px; color: var(--text-dark); font-weight: 800; }
+
+        .btn-next {
+            font-size: 18px; padding: 15px 40px; border-radius: 15px; color: white;
+            border: none; cursor: pointer; font-weight: 900; text-transform: uppercase;
+        }
+        .correct .btn-next { background-color: var(--green-primary); border-bottom: 5px solid var(--green-shadow); }
+        .wrong .btn-next { background-color: var(--red-primary); border-bottom: 5px solid var(--red-shadow); }
+        .btn-next:active { transform: translateY(5px); border-bottom-width: 0; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 22px; } .score-board { font-size: 18px; padding: 5px 15px; }
+            #joystick-zone { width: 120px; height: 120px; bottom: 10px; left: 10px; }
+            #joystick-knob { width: 50px; height: 50px; }
+            #action-btn-container { bottom: 20px; right: 10px; }
+            .btn-action { padding: 15px 30px; font-size: 20px; }
+            .feedback-content { flex-direction: column; text-align: center; gap: 15px; } .btn-next { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container"></div>
+
+    <div id="hud">
+        <h1>Dino Carga</h1>
+        <div class="score-board">⭐ <span id="score">0</span></div>
+    </div>
+
+    <div id="joystick-zone"><div id="joystick-knob"></div></div>
+    <div class="controls-hint">Use WASD ou Setas para dirigir. <br>Aperte espaço para soltar a carga.</div>
+    <div id="action-btn-container"><button id="action-btn" class="btn-action btn-drop">Soltar</button></div>
+
+    <div id="feedback-modal">
+        <div class="feedback-content">
+            <div class="feedback-text">
+                <h2 id="feedback-title">Correto!</h2>
+                <p id="feedback-message">Você conectou a carreta certa.</p>
+            </div>
+            <button id="btn-next-round" class="btn-next">Continuar</button>
+        </div>
+    </div>
+
+    <script>
+        // --- BASE DE DADOS EDUCATIVA VISUAL ---
+        const dinoDatabase = [
+            { word: "T-Rex", category: "Carnívoro", type: "theropod", color: 0x58cc02, features: [], msg: "O T-Rex era um temido predador que caçava outros dinossauros. Ele é Carnívoro!" },
+            { word: "Triceratops", category: "Herbívoro", type: "quadruped", color: 0x1cb0f6, features: ['frill', 'horns'], msg: "O Triceratops usava seu bico para comer plantas e raízes. Ele é Herbívoro!" },
+            { word: "Oviraptor", category: "Onívoro", type: "theropod", color: 0xff9600, features: ['crest'], msg: "O Oviraptor comia plantas, pequenos animais e ovos. Ele é Onívoro!" },
+            { word: "Velociraptor", category: "Carnívoro", type: "theropod", color: 0xce82ff, features: [], msg: "Caçavam em bando para abater grandes presas. São Carnívoros!" },
+            { word: "Braquiossauro", category: "Herbívoro", type: "sauropod", color: 0xffc800, features: [], msg: "Seu pescoço gigante servia para comer folhas no topo das árvores. Herbívoro!" },
+            { word: "Espinossauro", category: "Carnívoro", type: "theropod", color: 0xff4b4b, features: ['sail'], msg: "Passava muito tempo na água caçando grandes peixes. É Carnívoro!" },
+            { word: "Gallimimus", category: "Onívoro", type: "theropod", color: 0x2ecc71, features: [], msg: "Corria muito rápido e comia insetos, sementes e folhas. É Onívoro!" },
+            { word: "Estegossauro", category: "Herbívoro", type: "quadruped", color: 0xe67e22, features: ['plates'], msg: "Só comia plantas baixinhas, que mastigava lentamente. É Herbívoro!" },
+            { word: "Allossauro", category: "Carnívoro", type: "theropod", color: 0x34495e, features: [], msg: "Um forte caçador do período Jurássico que comia carne. Carnívoro!" },
+            { word: "Diplodoco", category: "Herbívoro", type: "sauropod", color: 0x1abc9c, features: [], msg: "Gigante pacífico que passava o dia comendo toneladas de folhas. Herbívoro!" },
+            { word: "Troodonte", category: "Onívoro", type: "theropod", color: 0x9b59b6, features: [], msg: "Dinossauro muito inteligente que comia lagartos, mamíferos e sementes. Onívoro!" },
+            { word: "Anquilossauro", category: "Herbívoro", type: "quadruped", color: 0xd35400, features: ['club'], msg: "Uma verdadeira fortaleza ambulante que se alimentava apenas de plantas. Herbívoro!" }
+        ];
+
+        const WORLD_W = 6000;
+        const WORLD_H = 4000;
+        const MAX_SPEED = 14; 
+        const ZOOM = 0.45;
+
+        let score = 0;
+        let joyDX = 0;
+        let joyDY = 0;
+        
+        // --- LÓGICA DO JOYSTICK DOM ---
+        const joystickZone = document.getElementById('joystick-zone');
+        const joystickKnob = document.getElementById('joystick-knob');
+        let joyActive = false; let joyRect = null;
+
+        joystickZone.addEventListener('touchstart', (e) => {
+            joyActive = true; joyRect = joystickZone.getBoundingClientRect(); handleJoystick(e.touches[0]);
+        }, {passive: false});
+
+        joystickZone.addEventListener('touchmove', (e) => {
+            if(!joyActive) return; e.preventDefault(); handleJoystick(e.touches[0]);
+        }, {passive: false});
+
+        joystickZone.addEventListener('touchend', () => {
+            joyActive = false; joyDX = 0; joyDY = 0; joystickKnob.style.transform = `translate(-50%, -50%)`;
+        });
+
+        function handleJoystick(touch) {
+            const centerX = joyRect.left + joyRect.width / 2;
+            const centerY = joyRect.top + joyRect.height / 2;
+            let dx = touch.clientX - centerX; let dy = touch.clientY - centerY;
+            const maxRadius = joyRect.width / 2; const dist = Math.sqrt(dx*dx + dy*dy);
+            
+            if (dist > maxRadius) { dx = (dx / dist) * maxRadius; dy = (dy / dist) * maxRadius; }
+            joystickKnob.style.left = `calc(50% + ${dx}px)`; joystickKnob.style.top = `calc(50% + ${dy}px)`;
+            joystickKnob.style.transform = `translate(-50%, -50%)`;
+            joyDX = dx / maxRadius; joyDY = dy / maxRadius;
+        }
+
+        // --- CENA PRINCIPAL PHASER ---
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super('MainScene');
+                this.trailers = [];
+                this.targetTrucks = [];
+                this.attachedTrailer = null;
+                this.hoveredTruck = null;
+                this.gameActive = true;
+                this.hitchConstraint = null;
+            }
+
+            create() {
+                // 1. Configurar Mundo Físico Matter
+                this.matter.world.setBounds(0, 0, WORLD_W, WORLD_H); 
+
+                // Fundo de Grama
+                const bgGraphics = this.make.graphics({x: 0, y: 0, add: false});
+                bgGraphics.fillStyle(0x78C850, 1); bgGraphics.fillRect(0, 0, 60, 60);
+                bgGraphics.fillStyle(0x5A9E38, 1); bgGraphics.fillCircle(30, 30, 5);
+                bgGraphics.generateTexture('bgPattern', 60, 60);
+                this.add.tileSprite(0, 0, WORLD_W, WORLD_H, 'bgPattern').setOrigin(0, 0);
+
+                // 2. Caminhões Alvo
+                const truckData = [
+                    { id: 'Carnívoro', x: 400, y: 600 },
+                    { id: 'Onívoro', x: 400, y: 2000 },
+                    { id: 'Herbívoro', x: 400, y: 3400 }
+                ];
+
+                truckData.forEach(data => {
+                    const truckContainer = this.add.container(data.x, data.y);
+                    const cab = this.add.graphics();
+                    cab.fillStyle(0x1cb0f6, 1); cab.fillRoundedRect(-110, -80, 220, 160, { tl: 30, tr: 10, bl: 30, br: 10 });
+                    cab.lineStyle(6, 0x1899d6, 1); cab.strokeRoundedRect(-110, -80, 220, 160, { tl: 30, tr: 10, bl: 30, br: 10 });
+                    cab.fillStyle(0x333333, 1); cab.fillRect(110, -8, 30, 16);
+                    cab.fillStyle(0x80d8ff, 1); cab.fillRoundedRect(-90, -50, 30, 100, 6);
+                    
+                    const titleBg = this.add.graphics();
+                    titleBg.fillStyle(0xffffff, 1); titleBg.fillRoundedRect(-100, -140, 200, 40, 12);
+                    titleBg.lineStyle(5, 0xe5e5e5, 1); titleBg.beginPath(); titleBg.moveTo(-90, -100); titleBg.lineTo(90, -100); titleBg.strokePath();
+
+                    const titleText = this.add.text(0, -120, `Caminhão ${data.id}`, { fontFamily: 'Nunito', fontSize: '22px', fontWeight: '900', color: '#4b4b4b' }).setOrigin(0.5);
+
+                    const highlight = this.add.graphics();
+                    highlight.lineStyle(12, 0xffc800, 0.6); highlight.strokeRoundedRect(-116, -86, 232, 172, { tl: 30, tr: 10, bl: 30, br: 10 });
+                    highlight.setVisible(false);
+
+                    truckContainer.add([cab, titleBg, titleText, highlight]);
+
+                    this.targetTrucks.push({ id: data.id, container: truckContainer, highlight: highlight, x: data.x, y: data.y, stored: 0 });
+                });
+
+                // 3. Criar Player (Tratorzinho Azul)
+                this.playerContainer = this.add.container(3000, 2000);
+                this.playerContainer.setSize(90, 80); 
+                const pGraphics = this.add.graphics();
+                pGraphics.fillStyle(0x222222, 1);
+                pGraphics.fillRoundedRect(-33, -54, 18, 22, 6); pGraphics.fillRoundedRect(-33, 32, 18, 22, 6);
+                pGraphics.fillRoundedRect(17, -56, 24, 26, 6); pGraphics.fillRoundedRect(17, 30, 24, 26, 6);
+                pGraphics.fillStyle(0x1cb0f6, 1); pGraphics.fillRoundedRect(-45, -40, 90, 80, 16);
+                pGraphics.lineStyle(5, 0x1899d6, 1); pGraphics.strokeRoundedRect(-45, -40, 90, 80, 16);
+                pGraphics.fillStyle(0xffffff, 1); pGraphics.fillRoundedRect(45, -28, 10, 16, 4); pGraphics.fillRoundedRect(45, 12, 10, 16, 4);
+                
+                this.playerContainer.add(pGraphics);
+                
+                this.matter.add.gameObject(this.playerContainer, {
+                    shape: { type: 'rectangle', width: 90, height: 80 },
+                    frictionAir: 0.8, 
+                    density: 0.1
+                });
+                this.playerContainer.setFixedRotation(); 
+                this.playerContainer.setRotation(-Math.PI / 2); 
+                this.playerContainer.setMass(100);
+
+                // 4. Configurar Câmera
+                this.cameras.main.setBounds(0, 0, WORLD_W, WORLD_H);
+                this.cameras.main.startFollow(this.playerContainer, true, 0.1, 0.1);
+                this.cameras.main.setZoom(ZOOM);
+
+                // 5. Controles
+                this.cursors = this.input.keyboard.createCursorKeys();
+                this.keys = this.input.keyboard.addKeys('W,A,S,D,SPACE');
+
+                // 6. Criar Carretas Físicas
+                this.spawnTrailers(15);
+
+                // 7. Ligar Interface
+                document.getElementById('action-btn').onclick = () => this.handleActionBtn();
+                document.getElementById('btn-next-round').onclick = () => this.nextRound();
+                this.keys.SPACE.on('down', () => {
+                    if (document.getElementById('action-btn-container').style.display === 'block') this.handleActionBtn();
+                });
+            }
+
+            // Desenha Dinossauros Dinâmicos na Visão Top-Down!
+            createDinoGraphics(data) {
+                const g = this.add.graphics();
+                const color = data.color;
+                const type = data.type;
+                const features = data.features || [];
+
+                g.setScale(1.7);
+                // Move o dinossauro para a parte de TRÁS do reboque (Lado Esquerdo, X negativo)
+                g.setPosition(-200, -20); 
+
+                // Sombra projetada no chão (Visão Top-Down)
+                g.fillStyle(0x000000, 0.2);
+                g.fillEllipse(5, 5, 160, 90);
+
+                g.fillStyle(color, 1);
+
+                if (type === 'theropod') {
+                    // Pernas (Abertas para os lados na visão de cima)
+                    g.fillRoundedRect(-20, -40, 35, 25, 10);
+                    g.fillRoundedRect(-20, 15, 35, 25, 10);
+                    // Cauda
+                    g.fillTriangle(-40, -15, -40, 15, -100, 0);
+                    // Bracinhos curtos
+                    g.fillRoundedRect(35, -25, 20, 10, 5);
+                    g.fillRoundedRect(35, 15, 20, 10, 5);
+                    // Corpo oval
+                    g.fillEllipse(0, 0, 100, 50);
+                    // Cabeça (Olhando para a direita)
+                    g.fillEllipse(55, 0, 45, 30);
+                    // Olhos (Um de cada lado)
+                    g.fillStyle(0xffffff, 1); g.fillCircle(65, -10, 4); g.fillCircle(65, 10, 4);
+                    g.fillStyle(0x000000, 1); g.fillCircle(67, -10, 2); g.fillCircle(67, 10, 2);
+                    g.fillStyle(color, 1);
+                } else if (type === 'sauropod') {
+                    // Pernas grossas nos 4 cantos
+                    g.fillRoundedRect(-35, -45, 30, 30, 10); 
+                    g.fillRoundedRect(-35, 15, 30, 30, 10);  
+                    g.fillRoundedRect(30, -45, 30, 30, 10);  
+                    g.fillRoundedRect(30, 15, 30, 30, 10);   
+                    // Cauda Longa e fina
+                    g.fillTriangle(-45, -10, -45, 10, -130, 0);
+                    // Pescoço Longo
+                    g.fillRoundedRect(40, -12, 70, 24, 8);
+                    // Corpo Gigante
+                    g.fillEllipse(0, 0, 110, 70);
+                    // Cabeça pequena na ponta do pescoço
+                    g.fillEllipse(110, 0, 30, 22);
+                    // Olhos
+                    g.fillStyle(0xffffff, 1); g.fillCircle(115, -7, 3); g.fillCircle(115, 7, 3);
+                    g.fillStyle(0x000000, 1); g.fillCircle(117, -7, 1.5); g.fillCircle(117, 7, 1.5);
+                    g.fillStyle(color, 1);
+                } else if (type === 'quadruped') {
+                    // Pernas
+                    g.fillRoundedRect(-40, -50, 30, 30, 10); 
+                    g.fillRoundedRect(-40, 20, 30, 30, 10);  
+                    g.fillRoundedRect(30, -50, 30, 30, 10);  
+                    g.fillRoundedRect(30, 20, 30, 30, 10);   
+                    // Cauda Curta e grossa
+                    g.fillTriangle(-50, -20, -50, 20, -100, 0);
+                    // Corpo Tanque
+                    g.fillEllipse(0, 0, 120, 80);
+                    // Cabeça Maciça
+                    g.fillEllipse(60, 0, 55, 45);
+                    // Olhos
+                    g.fillStyle(0xffffff, 1); g.fillCircle(70, -15, 4); g.fillCircle(70, 15, 4);
+                    g.fillStyle(0x000000, 1); g.fillCircle(73, -15, 2); g.fillCircle(73, 15, 2);
+                    g.fillStyle(color, 1);
+                }
+
+                // --- DETALHES VISUAIS (Features na Visão Top-Down) ---
+                if (features.includes('plates')) {
+                    g.fillStyle(0xff9600, 1); 
+                    for(let i=0; i<6; i++) {
+                        let px = -35 + (i*18);
+                        g.fillTriangle(px - 10, 0, px, -8, px + 10, 0);
+                        g.fillTriangle(px - 10, 0, px, 8, px + 10, 0);
+                    }
+                }
+                if (features.includes('sail')) {
+                    g.fillStyle(0x1cb0f6, 1); 
+                    g.fillEllipse(-5, 0, 80, 12);
+                }
+                if (features.includes('club')) {
+                    g.fillStyle(0x7f8c8d, 1); 
+                    g.fillCircle(-100, 0, 15);
+                }
+                if (features.includes('frill')) {
+                    g.fillStyle(color, 1); 
+                    g.fillEllipse(45, 0, 30, 90); 
+                    g.fillStyle(0xffffff, 0.3); 
+                    g.fillCircle(40, -30, 8); g.fillCircle(40, 30, 8);
+                    g.fillStyle(color, 1);
+                    g.fillEllipse(65, 0, 45, 35);
+                    g.fillStyle(0xffffff, 1); g.fillCircle(75, -12, 4); g.fillCircle(75, 12, 4);
+                    g.fillStyle(0x000000, 1); g.fillCircle(78, -12, 2); g.fillCircle(78, 12, 2);
+                }
+                if (features.includes('horns')) {
+                    g.fillStyle(0xffffff, 1); 
+                    g.fillTriangle(65, -15, 75, -5, 95, -30); 
+                    g.fillTriangle(65, 15, 75, 5, 95, 30);    
+                    g.fillTriangle(80, -5, 80, 5, 100, 0);    
+                }
+                if (features.includes('crest')) {
+                    g.fillStyle(0xff4b4b, 1); 
+                    g.fillEllipse(55, 0, 25, 8);
+                }
+
+                return g;
+            }
+
+            spawnTrailers(amount) {
+                for (let i = 0; i < amount; i++) {
+                    const randomDino = dinoDatabase[Math.floor(Math.random() * dinoDatabase.length)];
+                    let tX, tY, hasOverlap;
+                    let attempts = 0;
+                    
+                    do {
+                        hasOverlap = false;
+                        tX = 1500 + Math.random() * (WORLD_W - 2400); // Margem atualizada para carretas maiores
+                        tY = 400 + Math.random() * (WORLD_H - 800);
+
+                        for (let t of this.trailers) {
+                            if (!t.delivered) {
+                                const dx = Math.abs(tX - t.container.x);
+                                const dy = Math.abs(tY - t.container.y);
+                                if (dx < 850 && dy < 400) { hasOverlap = true; break; }
+                            }
+                        }
+                        attempts++; if (attempts > 500) break;
+                    } while (hasOverlap);
+
+                    if (hasOverlap) continue;
+
+                    const trailerContainer = this.add.container(tX, tY);
+                    trailerContainer.setSize(800, 320); // Carreta ampliada!
+                    trailerContainer.setDepth(5);
+
+                    // --- NOVA PARTE: Adicionar as Rodinhas ---
+                    const wheels = this.add.graphics();
+                    wheels.fillStyle(0x222222, 1);
+                    // 3 eixos na parte traseira da carreta
+                    [-340, -250, -160].forEach(wx => {
+                        wheels.fillRoundedRect(wx, -175, 70, 30, 8); // Roda superior (sai ligeiramente para fora)
+                        wheels.fillRoundedRect(wx, 145, 70, 30, 8);  // Roda inferior (sai ligeiramente para fora)
+                    });
+
+                    // 1. Fundo da Carreta Comprida
+                    const bg = this.add.graphics();
+                    bg.fillStyle(0xffc800, 1); bg.fillRoundedRect(-400, -160, 800, 320, 16);
+                    bg.lineStyle(8, 0xe5b400, 1); bg.strokeRoundedRect(-400, -160, 800, 320, 16);
+                    
+                    // 2. O Desenho Mágico do Dinossauro (Criado na parte de trás da carreta)
+                    const dinoGraphics = this.createDinoGraphics(randomDino);
+                    
+                    // 3. O Container de Texto (Movido para a FRENTE da carreta: +200)
+                    const textContainer = this.add.container(200, 0);
+                    const nameBg = this.add.graphics();
+                    nameBg.fillStyle(0xffffff, 0.9); nameBg.fillRoundedRect(-180, -50, 360, 100, 16);
+                    nameBg.lineStyle(4, 0xffffff, 1); nameBg.strokeRoundedRect(-180, -50, 360, 100, 16);
+                    
+                    const nameText = this.add.text(0, 0, randomDino.word, { 
+                        fontFamily: 'Nunito', fontSize: '48px', fontWeight: '900', color: '#4b4b4b' 
+                    }).setOrigin(0.5);
+
+                    textContainer.add([nameBg, nameText]);
+                    
+                    // Juntando tudo (as rodas são adicionadas primeiro para ficarem por baixo do fundo)
+                    trailerContainer.add([wheels, bg, dinoGraphics, textContainer]);
+
+                    // Adiciona Carreta ao Matter.js 
+                    this.matter.add.gameObject(trailerContainer, {
+                        shape: { type: 'rectangle', width: 800, height: 320 },
+                        isStatic: true, 
+                        frictionAir: 0.1,
+                        density: 0.05
+                    });
+                    trailerContainer.setFixedRotation(); 
+
+                    this.trailers.push({
+                        container: trailerContainer, bgGraphics: bg, textContainer: textContainer,
+                        nameText: nameText, nameBg: nameBg, data: randomDino, delivered: false
+                    });
+                }
+            }
+
+            attachTrailer(trailer) {
+                this.attachedTrailer = trailer;
+                
+                trailer.container.setStatic(false);
+                trailer.container.setMass(1); 
+                trailer.container.setFixedRotation();
+                
+                const safeGroup = this.matter.world.nextGroup(true);
+                this.playerContainer.setCollisionGroup(safeGroup);
+                trailer.container.setCollisionGroup(safeGroup);
+
+                // Engate ajustado para o novo tamanho gigante da carreta
+                this.hitchConstraint = this.matter.add.constraint(
+                    this.playerContainer, 
+                    trailer.container, 
+                    480, 0.1, { damping: 0.1 } 
+                );
+            }
+
+            detachTrailer(pushback = true) {
+                if (!this.attachedTrailer) return;
+                
+                if (this.hitchConstraint) {
+                    this.matter.world.remove(this.hitchConstraint);
+                    this.hitchConstraint = null;
+                }
+
+                this.attachedTrailer.container.setStatic(true);
+                this.attachedTrailer.container.setVelocity(0, 0);
+                
+                this.playerContainer.setCollisionGroup(0);
+                this.attachedTrailer.container.setCollisionGroup(0);
+                
+                if (pushback) {
+                    const pushVx = -Math.cos(this.playerContainer.rotation) * 15;
+                    const pushVy = -Math.sin(this.playerContainer.rotation) * 15;
+                    this.playerContainer.setVelocity(pushVx, pushVy);
+                }
+
+                this.attachedTrailer = null;
+            }
+
+            update() {
+                if (!this.gameActive) {
+                    this.playerContainer.setVelocity(0, 0);
+                    return;
+                }
+
+                let moveX = 0, moveY = 0;
+                if (this.cursors.up.isDown || this.keys.W.isDown) moveY -= 1;
+                if (this.cursors.down.isDown || this.keys.S.isDown) moveY += 1;
+                if (this.cursors.left.isDown || this.keys.A.isDown) moveX -= 1;
+                if (this.cursors.right.isDown || this.keys.D.isDown) moveX += 1;
+
+                if (moveX === 0 && moveY === 0) {
+                    moveX = joyDX; moveY = joyDY;
+                } else {
+                    const dist = Math.sqrt(moveX*moveX + moveY*moveY);
+                    moveX /= dist; moveY /= dist;
+                }
+
+                if (moveX !== 0 || moveY !== 0) {
+                    this.playerContainer.setVelocity(moveX * MAX_SPEED, moveY * MAX_SPEED);
+                    
+                    let targetRot;
+                    if (this.attachedTrailer) {
+                        let dx = this.playerContainer.x - this.attachedTrailer.container.x;
+                        let dy = this.playerContainer.y - this.attachedTrailer.container.y;
+                        let dot = (moveX * dx) + (moveY * dy);
+                        targetRot = (dot < 0) ? Math.atan2(-moveY, -moveX) : Math.atan2(moveY, moveX);
+                    } else {
+                        targetRot = Math.atan2(moveY, moveX);
+                    }
+                    this.playerContainer.setRotation(targetRot);
+                } else {
+                    this.playerContainer.setVelocity(0, 0); 
+                }
+
+                if (!this.attachedTrailer) {
+                    for (let t of this.trailers) {
+                        if (!t.delivered) {
+                            const dx = this.playerContainer.x - t.container.x;
+                            const dy = this.playerContainer.y - t.container.y;
+                            const dist = Math.sqrt(dx*dx + dy*dy);
+                            
+                            // Detecção de colisão baseada na nova distância do engate
+                            if (dist < 480) { 
+                                this.attachTrailer(t);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (this.attachedTrailer) {
+                    const hitchDist = 480;
+                    let dx = this.playerContainer.x - this.attachedTrailer.container.x;
+                    let dy = this.playerContainer.y - this.attachedTrailer.container.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+
+                    if (dist > 0) {
+                        this.attachedTrailer.container.setRotation(Math.atan2(dy, dx));
+                    }
+
+                    if (dist > hitchDist + 30) { 
+                        this.playerContainer.setVelocity(
+                            this.playerContainer.body.velocity.x * 0.1,
+                            this.playerContainer.body.velocity.y * 0.1
+                        );
+                    }
+                }
+
+                // Efeito Visual: Apenas o NOME vira, o dinossauro desenhado continua fixo na direção correta
+                this.trailers.forEach(t => {
+                    t.textContainer.setRotation(-t.container.rotation);
+                });
+
+                this.hoveredTruck = null;
+                this.targetTrucks.forEach(t => {
+                    t.highlight.setVisible(false);
+                    
+                    // Cálculo de posição para caminhões gigantes (Cabine + Engate + Carretas Compridas)
+                    const nextDropX = t.x + 550 + (t.stored * 840);
+                    const nextDropY = t.y;
+                    
+                    const distToDrop = Math.sqrt(Math.pow(this.playerContainer.x - nextDropX, 2) + Math.pow(this.playerContainer.y - nextDropY, 2));
+                    const distToCab = Math.sqrt(Math.pow(this.playerContainer.x - t.x, 2) + Math.pow(this.playerContainer.y - t.y, 2));
+
+                    if (distToDrop < 550 || distToCab < 550) {
+                        this.hoveredTruck = t;
+                        t.highlight.setVisible(true);
+                    }
+                });
+
+                this.updateUI();
+            }
+
+            updateUI() {
+                const actionBtnContainer = document.getElementById('action-btn-container');
+                const actionBtn = document.getElementById('action-btn');
+
+                if (this.attachedTrailer) {
+                    actionBtnContainer.style.display = 'block';
+                    if (this.hoveredTruck) {
+                        actionBtn.textContent = 'Pronto!';
+                        actionBtn.className = 'btn-action btn-ready';
+                    } else {
+                        actionBtn.textContent = 'Soltar';
+                        actionBtn.className = 'btn-action btn-drop';
+                    }
+                } else {
+                    actionBtnContainer.style.display = 'none';
+                }
+            }
+
+            handleActionBtn() {
+                if (!this.attachedTrailer) return;
+                const actionBtn = document.getElementById('action-btn');
+
+                if (actionBtn.textContent === 'Soltar') {
+                    this.detachTrailer(true); 
+                } else if (actionBtn.textContent === 'Pronto!' && this.hoveredTruck) {
+                    this.gameActive = false;
+                    
+                    if (this.attachedTrailer.data.category === this.hoveredTruck.id) {
+                        score += 10; document.getElementById('score').textContent = score;
+                        
+                        const trailerToPark = this.attachedTrailer;
+                        
+                        this.detachTrailer(false); 
+                        trailerToPark.delivered = true;
+                        
+                        trailerToPark.bgGraphics.clear();
+                        trailerToPark.bgGraphics.fillStyle(0x58cc02, 1); trailerToPark.bgGraphics.fillRoundedRect(-400, -160, 800, 320, 16);
+                        trailerToPark.bgGraphics.lineStyle(8, 0x58a700, 1); trailerToPark.bgGraphics.strokeRoundedRect(-400, -160, 800, 320, 16);
+                        
+                        trailerToPark.nameBg.clear();
+                        trailerToPark.nameBg.fillStyle(0x000000, 0.2); trailerToPark.nameBg.fillRoundedRect(-180, -50, 360, 100, 16);
+                        trailerToPark.nameText.setColor('#ffffff');
+                        
+                        trailerToPark.container.setDepth(2);
+                        
+                        const targetX = this.hoveredTruck.x + 550 + (this.hoveredTruck.stored * 840);
+                        const targetY = this.hoveredTruck.y;
+                        
+                        trailerToPark.container.setPosition(targetX, targetY);
+                        trailerToPark.container.setRotation(0);
+                        trailerToPark.textContainer.setRotation(0);
+                        
+                        this.hoveredTruck.stored++;
+
+                        this.showFeedback(true, "Excelente!", "Você engatou a carga corretamente.");
+
+                        const remaining = this.trailers.filter(t => !t.delivered).length;
+                        if (remaining === 0) setTimeout(() => this.spawnTrailers(15), 1000);
+
+                    } else {
+                        this.showFeedback(false, "Ops, caminhão errado!", this.attachedTrailer.data.msg);
+                        this.detachTrailer(true); 
+                    }
+                }
+            }
+
+            showFeedback(isWin, title, message) {
+                const modal = document.getElementById('feedback-modal');
+                modal.className = isWin ? 'correct' : 'wrong';
+                document.getElementById('feedback-title').textContent = title;
+                document.getElementById('feedback-message').textContent = message;
+                setTimeout(() => modal.classList.add('show'), 100);
+            }
+
+            nextRound() {
+                document.getElementById('feedback-modal').classList.remove('show');
+                this.gameActive = true;
+                Object.values(this.cursors).forEach(c => c.reset());
+                Object.values(this.keys).forEach(k => k.reset());
+                joyDX = 0; joyDY = 0;
+            }
+        }
+
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: window.innerWidth,
+            height: window.innerHeight,
+            backgroundColor: '#78C850',
+            physics: { default: 'matter', matter: { gravity: { y: 0, x: 0 }, debug: false } },
+            scale: { mode: Phaser.Scale.RESIZE, autoCenter: Phaser.Scale.CENTER_BOTH },
+            scene: MainScene
+        };
+
+        const game = new Phaser.Game(config);
+    </script>
+</body>
+</html>

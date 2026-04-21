@@ -1,0 +1,66 @@
+Aqui vai uma seleção bem organizada de **construções históricas famosas do mundo e do Brasil**, com destaque para as mais icônicas 👇
+
+---
+
+# 🌍 Construções históricas mais famosas do mundo
+
+### 🏛️ Antiguidade
+
+* Pelourinho
+* Grande Pirâmide de Gizé
+* Castelo de Neuschwanstein
+* Catedral de Notre-Dame
+* Machu Picchu
+* Taj Mahal
+* Angkor Wat
+* Colosso de Rodes
+* Biblioteca de Alexandria
+* Jardins Suspensos da Babilônia
+* Basílica de Santa Sofia
+* Foguete espacial
+
+Plano que eu seguiria, em ordem de retorno:
+
+Medir antes de mexer. Coloque um overlay simples com fps, frame time, tempo de raycast, tempo de canPlace e canPlacePrefab e contagem de hitboxes. Os pontos mais suspeitos já estão em gemini-last.html:1202, gemini-last.html:1228, gemini-last.html:999 e gemini-last.html:1516. Sem isso você pode perder tempo otimizando material quando o gargalo real está no CPU da interação.
+
+Fazer os quick wins baratos. Em gemini-last.html:1185 e gemini-last.html:1186 você cria materiais novos toda vez que atualiza o ghost, embora já existam materiais reutilizáveis em gemini-last.html:636. No loop de animação em gemini-last.html:1516, eu também reduziria criação de objetos temporários e limitaria o pointermove para rodar no máximo uma vez por frame.
+
+Atacar o maior gargalo: um hitbox por bloco. Hoje cada bloco colocado gera um mesh invisível em gemini-last.html:1056, e depois cada movimento faz raycast contra essa lista em gemini-last.html:1202 e gemini-last.html:1228. Para um mundo voxel, isso é caro demais. Eu trocaria isso por ray stepping no voxelGrid, ou no mínimo por picking por chunk. Esse é o passo com maior chance de mudar o desempenho de verdade.
+
+Chunkear o mundo. O render já está bem encaminhado com instancing em gemini-last.html:786, mas a estrutura da cena ainda está global demais. Separar o mundo em chunks 16x16 ou 32x32 melhora picking, rebuild parcial, culling, highlight e também prepara save e load por região. Eu manteria instancing, mas por chunk e por tipo de peça, não por cena inteira.
+
+Reescrever a validação de prefab. A função em gemini-last.html:999 monta uma lista de voxels ocupados e depois faz busca linear para validar suporte, o que escala mal. Eu pré-computaria para cada prefab e rotação: voxels ocupados, células de apoio e bounding box. No hover, você só translada isso e consulta o voxelGrid.
+
+Parar de montar grupo temporário para bloco comum. Hoje gemini-last.html:836 e gemini-last.html:1056 criam grupo, atualizam matrixWorld e depois extraem partes para instancing. Para peças não animadas, eu cachearia a lista de partes locais por tipo e rotação e escreveria as matrizes direto no instanced mesh.
+
+Baratear o highlight. O destaque atual percorre estruturas e regrava cores em instâncias em gemini-last.html:705 e gemini-last.html:729. Eu manteria mapas auxiliares como blockById e groupToBlockIds e, se necessário, faria highlight com overlay temporário em vez de recolorir muita instância em hover contínuo.
+
+Criar um perfil mobile agressivo. O renderer está com pixel ratio até 2 em gemini-last.html:578, e isso costuma ser caro em celular. Eu colocaria teto de 1 ou 1.25 no mobile, resolução dinâmica baseada em frame time e manteria sombras desligadas por padrão como já acontece em gemini-last.html:583.
+
+Só depois refinar material e luz. A troca de modo em gemini-last.html:661 já está correta em conceito. Eu não gastaria tempo tentando extrair mais de PBR ou sombra antes de resolver picking e chunking, porque hoje isso parece secundário.
+
+Se a meta continuar sendo 60 mil peças com studs, considerar LOD. Para longe, usar blocos sem studs ou uma malha mesclada por chunk; para perto, manter studs completos. Isso reduz triângulos e custo visual sem sacrificar a leitura perto da câmera.
+
+O que eu esperaria de ganho:
+
+Quick wins devem reduzir garbage collection e travadinhas, mas não vão resolver o teto de escala.
+Trocar o picking por voxel ray stepping ou chunk picking é o que mais tende a destravar a interação em mapas densos.
+Chunking deve reduzir custo de CPU, melhorar organização e abrir espaço para culling e save inteligente.
+Ajuste de pixel ratio deve dar ganho relevante em mobile quase imediatamente.
+Se eu fosse priorizar para começar amanhã, faria assim:
+
+Instrumentação e benchmark em 5 mil, 20 mil e 60 mil blocos.
+
+Reuso de materiais e objetos temporários.
+
+Remoção do hitbox por bloco com picking via voxelGrid.
+
+Chunking.
+
+Cache de prefab por rotação.
+
+Perfil mobile e LOD simples.
+
+Posso transformar isso em backlog técnico com esforço, risco e critério de aceite.
+
+Posso te dizer exatamente quais funções eu reescreveria primeiro nesse arquivo e em que ordem.

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Puzzle Animal Edu</title>
+    <!-- Importando interact.js no lugar do Phaser -->
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap');
+
+        :root {
+            --bg-color: #f7f9fa;
+            --primary: #58cc02;
+            --primary-hover: #46a302;
+            --secondary: #1cb0f6;
+            --text-dark: #4b4b4b;
+            --text-light: #afafaf;
+            --error: #ff4b4b;
+            --card-bg: #ffffff;
+            --locked-main: #cccccc;
+            --locked-alt: #a0a0a0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        /* Área do HUD / Desafios */
+        .hud-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .instructions {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            background: #f0fdf4;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #bbf7d0;
+        }
+
+        #challenge-box {
+            background: #fff;
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 0 #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        #challenge-box.hidden { display: none; }
+        #challenge-title { color: var(--secondary); margin-bottom: 10px; }
+        #challenge-desc { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; }
+
+        input[type="text"] {
+            width: 100%; padding: 12px; font-size: 1.2rem;
+            border: 2px solid #e5e7eb; border-radius: 10px;
+            margin-bottom: 15px; outline: none; transition: border-color 0.2s;
+        }
+        input[type="text"]:focus { border-color: var(--secondary); }
+
+        button {
+            width: 100%; padding: 15px; font-size: 1.2rem; font-weight: 700;
+            color: white; background: var(--primary); border: none;
+            border-radius: 12px; cursor: pointer; box-shadow: 0 4px 0 var(--primary-hover);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        button:active { transform: translateY(4px); box-shadow: 0 0 0 var(--primary-hover); }
+
+        button.listen-btn { background: var(--secondary); box-shadow: 0 4px 0 #1899d6; margin-bottom: 15px; }
+        button.listen-btn:active { box-shadow: 0 0 0 #1899d6; }
+
+        .hidden { display: none !important; }
+
+        #feedback { margin-top: 15px; font-weight: 700; font-size: 1.1rem; }
+        .feedback-correct { color: var(--primary); }
+        .feedback-error { color: var(--error); }
+
+        /* =========================================
+           Área do Jogo Responsiva (HTML/CSS Puro)
+           ========================================= */
+        .game-area {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            min-width: 0;
+        }
+
+        /* Wrapper Responsivo - Controla a altura e adapta o scale */
+        .game-wrapper {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        /* Container do Tabuleiro (Tamanho Fixo Lógico: 600x850) */
+        #game-board-container {
+            width: 600px;
+            height: 850px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            position: absolute;
+            top: 0; left: 0;
+            transform-origin: top left;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        #board-grid {
+            position: absolute;
+            left: 150px; /* Posição X Centralizada (600 - 300) / 2 */
+            top: 520px;  /* Posição Y no fundo da tela */
+            width: 300px; /* 6 cols * 50px */
+            height: 300px; /* 6 rows * 50px */
+            background: #ffffff;
+            border: 2px solid #afafaf;
+            display: grid;
+            grid-template-columns: repeat(6, 50px);
+            grid-template-rows: repeat(6, 50px);
+            box-sizing: content-box; 
+        }
+
+        .board-cell {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #e5e7eb;
+            box-sizing: border-box;
+        }
+
+        /* Peças */
+        .piece {
+            position: absolute;
+            top: 0; left: 0;
+            cursor: pointer;
+            touch-action: none;
+            user-select: none;
+            z-index: 10;
+        }
+
+        .animating {
+            transition: transform 0.3s ease;
+        }
+
+        .block {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--locked-main);
+            box-shadow: 0 5px 0 var(--locked-alt);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .piece.unlocked .block {
+            background: var(--piece-main);
+            box-shadow: 0 5px 0 var(--piece-alt);
+        }
+
+        .piece.dragging { z-index: 100; transform-origin: center; transform: scale(1.05); }
+
+        /* Elementos Decorativos */
+        .detail { position: absolute; pointer-events: none; }
+        
+        .eye {
+            width: 16px; height: 16px; background: #fff; border-radius: 50%;
+            top: 15px; left: 15px; box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+        }
+        .eye::after {
+            content: ''; position: absolute; width: 8px; height: 8px;
+            background: #000; border-radius: 50%; top: 4px; left: 4px;
+        }
+        .eye.right { left: 25px; }
+
+        .shell {
+            background: rgba(0,0,0,0.15); width: 34px; height: 34px;
+            border-radius: 8px; top: 8px; left: 8px;
+        }
+
+        .spot {
+            background: rgba(200, 100, 0, 0.4); border-radius: 6px;
+        }
+        .spot.s1 { width: 14px; height: 14px; top: 10px; left: 10px; }
+        .spot.s2 { width: 10px; height: 10px; top: 25px; left: 25px; }
+
+        .stripe {
+            background: rgba(0,0,0,0.15); width: 8px; height: 50px;
+            border-radius: 4px; top: 0;
+        }
+        .stripe.st1 { left: 10px; }
+        .stripe.st2 { left: 30px; }
+
+        .claw {
+            width: 0; height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 25px solid rgba(0,0,0,0.15);
+            top: 10px; left: 10px;
+        }
+
+        .fin {
+            width: 0; height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 25px solid rgba(0,0,0,0.15);
+            top: 10px; left: 10px; transform: rotate(45deg);
+        }
+
+        .ear {
+            background: rgba(0,0,0,0.15); width: 20px; height: 25px;
+            border-radius: 10px; top: 5px; left: 15px;
+        }
+
+        #btn-solution {
+            background: #ffc800; box-shadow: 0 4px 0 #e5b400; max-width: 300px;
+            margin-top: 10px;
+        }
+        #btn-solution:active { box-shadow: 0 0 0 #e5b400; }
+
+        /* Mensagem de Vitória */
+        #win-message {
+            position: absolute;
+            top: 670px; /* Centralizado no grid que começa em 520 e tem altura 300 */
+            left: 300px; /* Centralizado horizontalmente no canvas 600px */
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 4rem; font-weight: 800; color: var(--primary);
+            text-shadow: 0 5px 0 var(--primary-hover), 2px 2px 0 #fff, -2px -2px 0 #fff;
+            z-index: 200; pointer-events: none;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #win-message.show { transform: translate(-50%, -50%) scale(1); }
+
+        /* Adaptações Mobile */
+        @media (max-width: 900px) {
+            body { padding: 10px; }
+            .container { flex-direction: column; padding: 15px; gap: 15px; }
+            .hud-area { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HUD e Sistema Educacional -->
+        <div class="hud-area">
+            <h1>Puzzle Animal</h1>
+            <div class="instructions">
+                <p>Clique na silhueta de um animal bloqueado para iniciar um desafio. Acerte para liberar a peça e arraste-a para o tabuleiro!</p>
+            </div>
+
+            <div id="challenge-box" class="hidden">
+                <h2 id="challenge-title">Desafio de Inglês</h2>
+                <p id="challenge-desc"></p>
+                
+                <button id="btn-listen" class="listen-btn hidden">🔊 Ouvir Palavra</button>
+                
+                <input type="text" id="challenge-input" placeholder="Digite aqui..." autocomplete="off">
+                <button id="btn-submit">Verificar</button>
+                <p id="feedback"></p>
+            </div>
+        </div>
+
+        <!-- Área de Jogo DOM Responsiva -->
+        <div class="game-area">
+            <div id="game-wrapper" class="game-wrapper">
+                <div id="game-board-container">
+                    <!-- O Grid de Fundo -->
+                    <div id="board-grid"></div>
+                    <!-- Mensagem de Vitória -->
+                    <div id="win-message">🎉 PARABÉNS! 🎉</div>
+                </div>
+            </div>
+            <button id="btn-solution">Mostrar Solução Automática</button>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // SISTEMA RESPONSIVO (ESCALA)
+        // ==========================================
+        let windowGameScale = 1;
+
+        function resizeGame() {
+            const wrapper = document.getElementById('game-wrapper');
+            const container = document.getElementById('game-board-container');
+            if (!wrapper || !container) return;
+
+            let width = wrapper.clientWidth;
+            if (width === 0) return;
+
+            // Escala proporcional ao tamanho original lógico de 600px de largura
+            let scale = width / 600;
+            if (scale > 1) scale = 1; // Limita o zoom máximo
+
+            windowGameScale = scale;
+            
+            // Aplica a escala no CSS
+            container.style.transform = `scale(${scale})`;
+            
+            // Ajusta a altura do wrapper pai para não quebrar o flexbox da página
+            wrapper.style.height = `${850 * scale}px`;
+        }
+
+        window.addEventListener('resize', resizeGame);
+        window.addEventListener('DOMContentLoaded', resizeGame);
+
+
+        // ==========================================
+        // 1. BANCO DE DESAFIOS
+        // ==========================================
+        const vocabulary = [
+            { pt: 'cachorro', en: 'dog' }, { pt: 'gato', en: 'cat' },
+            { pt: 'pássaro', en: 'bird' }, { pt: 'peixe', en: 'fish' },
+            { pt: 'tartaruga', en: 'turtle' }, { pt: 'maçã', en: 'apple' },
+            { pt: 'água', en: 'water' }, { pt: 'sol', en: 'sun' },
+            { pt: 'lua', en: 'moon' }, { pt: 'livro', en: 'book' }
+        ];
+
+        // ==========================================
+        // 2. CONFIGURAÇÕES GERAIS E GRID (Coordenadas Lógicas)
+        // ==========================================
+        const CELL_SIZE = 50;
+        const BOARD_COLS = 6;
+        const BOARD_ROWS = 6;
+        const BOARD_X = 150; 
+        const BOARD_Y = 520; 
+        
+        let boardGridState = Array(BOARD_ROWS).fill(null).map(() => Array(BOARD_COLS).fill(null));
+
+        const PIECES_CONFIG = [
+            {
+                id: 0, name: 'Tartaruga', color: '#58cc02', altColor: '#46a302',
+                startX: 40, startY: 30, target: { r: 0, c: 0 },
+                blocks: [
+                    {r:0, c:0, details:['shell']}, {r:0, c:1, details:['shell']}, {r:0, c:2, details:['shell']},
+                    {r:1, c:0, details:['eye']}, {r:1, c:1}, {r:1, c:2}
+                ]
+            },
+            {
+                id: 1, name: 'Girafa', color: '#ffc800', altColor: '#e5b400',
+                startX: 230, startY: 30, target: { r: 0, c: 3 },
+                blocks: [
+                    {r:0, c:0, details:['eye right', 'ear']}, {r:0, c:1}, {r:0, c:2},
+                    {r:1, c:0, details:['spot s1', 'spot s2']}, {r:2, c:0, details:['spot s1', 'spot s2']}, {r:3, c:0}
+                ]
+            },
+            {
+                id: 2, name: 'Cachorro', color: '#ce82ff', altColor: '#b565e5',
+                startX: 440, startY: 30, target: { r: 1, c: 4 },
+                blocks: [
+                    {r:0, c:0, details:['ear']}, {r:0, c:1, details:['eye']},
+                    {r:1, c:1}, {r:2, c:1}, {r:3, c:1}, {r:4, c:1}
+                ]
+            },
+            {
+                id: 3, name: 'Caranguejo', color: '#ff4b4b', altColor: '#e53939',
+                startX: 40, startY: 200, target: { r: 2, c: 0 },
+                blocks: [
+                    {r:0, c:0}, {r:0, c:1}, {r:0, c:2, details:['claw']},
+                    {r:1, c:0, details:['eye right']},
+                    {r:2, c:0}, {r:2, c:1, details:['claw']}
+                ]
+            },
+            {
+                id: 4, name: 'Peixe', color: '#1cb0f6', altColor: '#1899d6',
+                startX: 230, startY: 270, target: { r: 3, c: 0 },
+                blocks: [
+                    {r:0, c:1, details:['fin']}, {r:0, c:2},
+                    {r:1, c:2},
+                    {r:2, c:0, details:['eye']}, {r:2, c:1}, {r:2, c:2, details:['fin']}
+                ]
+            },
+            {
+                id: 5, name: 'Camaleão', color: '#ff9600', altColor: '#e58600',
+                startX: 440, startY: 300, target: { r: 2, c: 3 },
+                blocks: [
+                    {r:0, c:1, details:['stripe st1', 'stripe st2']},
+                    {r:1, c:1, details:['stripe st1', 'stripe st2']},
+                    {r:2, c:0, details:['stripe st1', 'stripe st2']}, {r:2, c:1, details:['stripe st1', 'stripe st2']},
+                    {r:3, c:0, details:['eye']}, {r:3, c:1}
+                ]
+            }
+        ];
+
+        // ==========================================
+        // 3. INICIALIZAÇÃO DA UI E DOM
+        // ==========================================
+        const gameContainer = document.getElementById('game-board-container');
+        const boardGridElement = document.getElementById('board-grid');
+        const piecesElements = [];
+
+        // Desenhar células no tabuleiro
+        for(let i = 0; i < 36; i++) {
+            let cell = document.createElement('div');
+            cell.className = 'board-cell';
+            boardGridElement.appendChild(cell);
+        }
+
+        // Criar as peças e blocos
+        PIECES_CONFIG.forEach(config => {
+            const pieceEl = document.createElement('div');
+            pieceEl.className = 'piece locked animating';
+            pieceEl.id = `piece-${config.id}`;
+            pieceEl.dataset.id = config.id;
+            
+            pieceEl.style.setProperty('--piece-main', config.color);
+            pieceEl.style.setProperty('--piece-alt', config.altColor);
+
+            setPieceTransform(pieceEl, config.startX, config.startY);
+
+            config.blocks.forEach(b => {
+                const blockEl = document.createElement('div');
+                blockEl.className = 'block';
+                blockEl.style.left = `${b.c * CELL_SIZE}px`;
+                blockEl.style.top = `${b.r * CELL_SIZE}px`;
+
+                if (b.details) {
+                    b.details.forEach(det => {
+                        const detEl = document.createElement('div');
+                        detEl.className = `detail ${det}`;
+                        blockEl.appendChild(detEl);
+                    });
+                }
+                pieceEl.appendChild(blockEl);
+            });
+
+            pieceEl.addEventListener('pointerdown', (e) => {
+                if (pieceEl.classList.contains('locked') && activePiece !== pieceEl) {
+                    activePiece = pieceEl;
+                    generateChallenge();
+                }
+            });
+
+            gameContainer.appendChild(pieceEl);
+            piecesElements.push({ el: pieceEl, config: config });
+        });
+
+        function setPieceTransform(el, x, y) {
+            el.style.transform = `translate(${x}px, ${y}px)`;
+            el.dataset.x = x;
+            el.dataset.y = y;
+        }
+
+        // ==========================================
+        // 4. SISTEMA DE DESAFIOS
+        // ==========================================
+        let activePiece = null;
+        let currentChallenge = null;
+
+        const challengeBox = document.getElementById('challenge-box');
+        const challengeDesc = document.getElementById('challenge-desc');
+        const challengeInput = document.getElementById('challenge-input');
+        const btnSubmit = document.getElementById('btn-submit');
+        const btnListen = document.getElementById('btn-listen');
+        const feedback = document.getElementById('feedback');
+
+        function generateChallenge() {
+            const word = vocabulary[Math.floor(Math.random() * vocabulary.length)];
+            const types = ['translate-en', 'translate-pt', 'listen'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            
+            let desc = '', answer = '';
+            btnListen.classList.add('hidden');
+
+            if (type === 'translate-en') {
+                desc = `Traduza para o INGLÊS: <strong>${word.pt}</strong>`; answer = word.en;
+            } else if (type === 'translate-pt') {
+                desc = `Traduza para o PORTUGUÊS: <strong>${word.en}</strong>`; answer = word.pt;
+            } else {
+                desc = `Ouça o áudio e digite em inglês:`; answer = word.en;
+                btnListen.classList.remove('hidden');
+                btnListen.onclick = () => {
+                    const msg = new SpeechSynthesisUtterance(word.en);
+                    msg.lang = 'en-US'; window.speechSynthesis.speak(msg);
+                };
+            }
+
+            currentChallenge = { answer: answer.toLowerCase() };
+            challengeDesc.innerHTML = desc;
+            challengeInput.value = '';
+            feedback.innerHTML = '';
+            challengeBox.classList.remove('hidden');
+            
+            // Força a tela descer pro desafio caso no mobile a div esteja longe
+            if(window.innerWidth <= 900) challengeBox.scrollIntoView({behavior: "smooth", block: "center"});
+            challengeInput.focus();
+        }
+
+        btnSubmit.addEventListener('click', checkAnswer);
+        challengeInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkAnswer(); });
+
+        function checkAnswer() {
+            if (!currentChallenge || !activePiece) return;
+            const inputVal = challengeInput.value.trim().toLowerCase();
+            
+            if (inputVal === currentChallenge.answer) {
+                feedback.innerHTML = '✨ Correto! Peça liberada!';
+                feedback.className = 'feedback-correct';
+                unlockPiece(activePiece);
+                
+                if(window.innerWidth <= 900) {
+                     document.getElementById('game-wrapper').scrollIntoView({behavior: "smooth"});
+                }
+
+                setTimeout(() => {
+                    challengeBox.classList.add('hidden');
+                    activePiece = null;
+                }, 1500);
+            } else {
+                feedback.innerHTML = '❌ Incorreto. Tente novamente!';
+                feedback.className = 'feedback-error';
+            }
+        }
+
+        function unlockPiece(pieceEl) {
+            pieceEl.classList.remove('locked');
+            pieceEl.classList.add('unlocked');
+            
+            pieceEl.style.transition = 'transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            const curX = parseFloat(pieceEl.dataset.x);
+            const curY = parseFloat(pieceEl.dataset.y);
+            pieceEl.style.transform = `translate(${curX}px, ${curY - 20}px)`;
+            
+            setTimeout(() => {
+                pieceEl.style.transform = `translate(${curX}px, ${curY}px)`;
+                setTimeout(() => { pieceEl.style.transition = ''; }, 150); 
+            }, 150);
+        }
+
+        // ==========================================
+        // 5. DRAG AND DROP COM INTERACT.JS E LÓGICA DE GRID
+        // ==========================================
+        
+        interact('.piece:not(.locked)').draggable({
+            listeners: {
+                start(event) {
+                    const pieceEl = event.target;
+                    pieceEl.classList.remove('animating'); 
+                    pieceEl.style.zIndex = '100'; 
+                    
+                    if (pieceEl.dataset.inGrid === 'true') {
+                        removePieceFromGrid(pieceEl);
+                    }
+                },
+                move(event) {
+                    const pieceEl = event.target;
+                    
+                    // DIVISÃO CRÍTICA: Ajusta o movimento de arrasto pela escala do CSS
+                    const dx = event.dx / windowGameScale;
+                    const dy = event.dy / windowGameScale;
+                    
+                    const x = (parseFloat(pieceEl.dataset.x) || 0) + dx;
+                    const y = (parseFloat(pieceEl.dataset.y) || 0) + dy;
+                    
+                    setPieceTransform(pieceEl, x, y);
+                },
+                end(event) {
+                    const pieceEl = event.target;
+                    pieceEl.style.zIndex = '10';
+                    pieceEl.classList.add('animating');
+
+                    snapToGrid(pieceEl);
+                }
+            }
+        });
+
+        function snapToGrid(pieceEl) {
+            const config = PIECES_CONFIG.find(p => p.id == pieceEl.dataset.id);
+            const x = parseFloat(pieceEl.dataset.x);
+            const y = parseFloat(pieceEl.dataset.y);
+
+            const relativeX = x - BOARD_X;
+            const relativeY = y - BOARD_Y;
+            
+            const col = Math.round(relativeX / CELL_SIZE);
+            const row = Math.round(relativeY / CELL_SIZE);
+
+            if (canPlacePiece(config, row, col)) {
+                const snapX = BOARD_X + col * CELL_SIZE;
+                const snapY = BOARD_Y + row * CELL_SIZE;
+                setPieceTransform(pieceEl, snapX, snapY);
+                placePieceOnGrid(pieceEl, config, row, col);
+                checkWinCondition();
+            } else {
+                setPieceTransform(pieceEl, config.startX, config.startY);
+            }
+        }
+
+        function canPlacePiece(config, r, c) {
+            for (let block of config.blocks) {
+                let br = r + block.r;
+                let bc = c + block.c;
+
+                if (br < 0 || br >= BOARD_ROWS || bc < 0 || bc >= BOARD_COLS) return false;
+                if (boardGridState[br][bc] !== null) return false;
+            }
+            return true;
+        }
+
+        function placePieceOnGrid(pieceEl, config, r, c) {
+            pieceEl.dataset.inGrid = 'true';
+            pieceEl.dataset.gridRow = r;
+            pieceEl.dataset.gridCol = c;
+
+            for (let block of config.blocks) {
+                boardGridState[r + block.r][c + block.c] = config.id;
+            }
+        }
+
+        function removePieceFromGrid(pieceEl) {
+            pieceEl.dataset.inGrid = 'false';
+            const r = parseInt(pieceEl.dataset.gridRow);
+            const c = parseInt(pieceEl.dataset.gridCol);
+            const config = PIECES_CONFIG.find(p => p.id == pieceEl.dataset.id);
+
+            for (let block of config.blocks) {
+                boardGridState[r + block.r][c + block.c] = null;
+            }
+        }
+
+        function checkWinCondition() {
+            for(let r=0; r<BOARD_ROWS; r++) {
+                for(let c=0; c<BOARD_COLS; c++) {
+                    if(boardGridState[r][c] === null) return false;
+                }
+            }
+            document.getElementById('win-message').classList.add('show');
+        }
+
+        // ==========================================
+        // 6. SOLUÇÃO AUTOMÁTICA
+        // ==========================================
+        document.getElementById('btn-solution').addEventListener('click', () => {
+            boardGridState = Array(BOARD_ROWS).fill(null).map(() => Array(BOARD_COLS).fill(null));
+            document.getElementById('win-message').classList.remove('show');
+
+            piecesElements.forEach(item => {
+                const { el, config } = item;
+                
+                if (el.classList.contains('locked')) {
+                    el.classList.remove('locked');
+                    el.classList.add('unlocked');
+                }
+
+                el.classList.add('animating');
+                const targetX = BOARD_X + config.target.c * CELL_SIZE;
+                const targetY = BOARD_Y + config.target.r * CELL_SIZE;
+                
+                setPieceTransform(el, targetX, targetY);
+
+                setTimeout(() => {
+                    placePieceOnGrid(el, config, config.target.r, config.target.c);
+                    checkWinCondition();
+                }, 350);
+            });
+            
+            // Rola a tela no mobile para mostrar a solução no tabuleiro
+            if(window.innerWidth <= 900) {
+                 document.getElementById('game-wrapper').scrollIntoView({behavior: "smooth", block: "end"});
+            }
+        });
+
+        // Chamada Inicial
+        resizeGame();
+    </script>
+</body>
+</html>

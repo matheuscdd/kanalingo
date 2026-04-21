@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiro Matemático Babylon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="./css/global.css">
+</head>
+<body>
+    <div class="app-shell">
+        <canvas id="render-canvas" aria-label="Jogo 3D de tiro matemático"></canvas>
+
+        <div id="app-overlay" class="app-overlay">
+            <header class="top-actions">
+                <button id="home-button" class="icon-button hidden" type="button" aria-label="Voltar para a seleção">
+                    <i class="fa-solid fa-house"></i>
+                </button>
+                <button id="pause-button" class="icon-button hidden" type="button" aria-label="Pausar jogo">
+                    <i class="fa-solid fa-pause"></i>
+                </button>
+            </header>
+
+            <section id="selection-screen" class="screen-panel screen-panel--visible" aria-labelledby="selection-title">
+                <div class="screen-panel__inner">
+                    <p class="eyebrow">Babylon Unified Build</p>
+                    <h1 id="selection-title">Escolha a experiência</h1>
+                    <p class="lead">
+                        Uma base única, mesma arma e mesma mecânica de tiro. O que muda é o cenário e a forma de apresentar as alternativas.
+                    </p>
+                    <div id="selection-cards" class="selection-grid"></div>
+                </div>
+            </section>
+
+            <section id="pause-screen" class="screen-panel hidden" aria-labelledby="pause-title">
+                <div class="screen-panel__inner screen-panel__inner--narrow">
+                    <p class="eyebrow">Jogo pausado</p>
+                    <h2 id="pause-title">Escolha o próximo passo</h2>
+                    <div class="stack-actions">
+                        <button id="resume-button" class="primary-button" type="button">Continuar</button>
+                        <button id="change-mode-button" class="secondary-button" type="button">Trocar de experiência</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="result-screen" class="screen-panel hidden" aria-labelledby="result-title">
+                <div class="screen-panel__inner screen-panel__inner--narrow">
+                    <p class="eyebrow">Rodada concluída</p>
+                    <h2 id="result-title">Tempo esgotado</h2>
+                    <p id="result-summary" class="lead lead--compact"></p>
+                    <div class="stack-actions">
+                        <button id="replay-button" class="primary-button" type="button">Jogar novamente</button>
+                        <button id="result-mode-button" class="secondary-button" type="button">Voltar à seleção</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hud" class="hud hidden" aria-live="polite">
+                <div class="hud__panel">
+                    <span class="hud__label">Modo</span>
+                    <strong id="hud-mode">-</strong>
+                </div>
+                <div class="hud__panel hud__panel--rule">
+                    <span class="hud__label">Regra</span>
+                    <strong id="hud-rule">Carregando...</strong>
+                </div>
+                <div class="hud__panel">
+                    <span class="hud__label">Pontos</span>
+                    <strong id="hud-score">0</strong>
+                </div>
+                <div class="hud__panel">
+                    <span class="hud__label">Tempo</span>
+                    <strong id="hud-timer">60</strong>
+                </div>
+            </section>
+
+            <div id="flash-overlay" class="flash-overlay hidden" aria-hidden="true"></div>
+            <div id="zoom-overlay" class="zoom-overlay hidden" aria-hidden="true">
+                <div class="zoom-overlay__cross"></div>
+            </div>
+            <div id="crosshair" class="crosshair hidden" aria-hidden="true"></div>
+            <div id="feedback-pill" class="feedback-pill hidden" aria-live="assertive"></div>
+
+            <section id="mobile-controls" class="mobile-controls hidden" aria-label="Controles mobile">
+                <div id="mobile-look-zone" class="mobile-look-zone">
+                    <div id="mobile-look-stick" class="mobile-look-stick"></div>
+                </div>
+
+                <div class="mobile-actions">
+                    <button id="mobile-zoom-button" class="mobile-button mobile-button--secondary" type="button" aria-label="Ativar zoom">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </button>
+                    <button id="mobile-shoot-button" class="mobile-button mobile-button--primary" type="button" aria-label="Atirar">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="./js/core/scene-registry.js"></script>
+    <script src="./js/systems/audio-system.js"></script>
+    <script src="./js/systems/rules-engine.js"></script>
+    <script src="./js/systems/weapon-system.js"></script>
+    <script src="./js/systems/target-system.js"></script>
+    <script src="./js/systems/input-system.js"></script>
+    <script src="./js/scenes/create-experience-scene.js"></script>
+    <script src="./js/scenes/fair-scene.js"></script>
+    <script src="./js/scenes/edublock-scene.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

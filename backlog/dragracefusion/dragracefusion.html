@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduRacing - Corrida do Conhecimento</title>
+
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Phaser 3 via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"></script>
+
+    <style>
+        /* CSS Puro - Estilo Flat / Duolingo */
+        :root {
+            --bg-color: #1cb0f6;
+            --panel-bg: #ffffff;
+            --text-dark: #4b4b4b;
+            --correct: #58cc02;
+            --wrong: #ff4b4b;
+            --ui-shadow: 0 4px 0 #e5e5e5;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* Container principal para manter alinhamento Canvas/UI */
+        #game-wrapper {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            background: #84d8ff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Camada de UI sobre o Canvas */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Deixa os cliques passarem para o Phaser */
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        /* Painel da Pergunta */
+        .header-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .stats-box {
+            background: var(--panel-bg);
+            padding: 10px 20px;
+            border-radius: 15px;
+            color: var(--text-dark);
+            font-size: 20px;
+            box-shadow: var(--ui-shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-box i {
+            color: #ff9600;
+        }
+
+        .question-box {
+            background: var(--panel-bg);
+            padding: 15px 40px;
+            border-radius: 20px;
+            font-size: 36px;
+            color: var(--text-dark);
+            box-shadow: var(--ui-shadow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid #e5e5e5;
+        }
+
+        .question-box i {
+            color: var(--bg-color);
+        }
+
+        /* Barra de Tempo */
+        .timer-container {
+            width: 100%;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .timer-fill {
+            height: 100%;
+            width: 100%;
+            background: var(--correct);
+            border-radius: 10px;
+            transition: width 0.1s linear, background-color 0.3s;
+        }
+
+        .timer-fill.danger {
+            background: var(--wrong);
+        }
+
+        /* Telas de Fim de Jogo */
+        .overlay-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto; /* Permite clique nos botões */
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s;
+            visibility: hidden;
+        }
+
+        .overlay-screen.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .overlay-content {
+            background: var(--panel-bg);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 10px 0 rgba(0,0,0,0.2);
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); }
+            100% { transform: scale(1); }
+        }
+
+        .overlay-content h1 {
+            margin: 0 0 20px 0;
+            color: var(--text-dark);
+            font-size: 40px;
+        }
+
+        .btn-restart {
+            background: #1cb0f6;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            font-family: inherit;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #1899d6;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn-restart:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 #1899d6;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-wrapper">
+        <!-- O Phaser injetará o Canvas aqui -->
+        
+        <!-- Camada de Interface em HTML/CSS -->
+        <div id="ui-layer">
+            <div class="header-panel">
+                <div class="stats-box">
+                    <i class="fa-solid fa-fire"></i>
+                    <span id="combo-text">Combo: 0</span>
+                </div>
+                
+                <div class="question-box">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span id="question-text">2 + 2 = ?</span>
+                </div>
+                
+                <div class="stats-box">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span id="speed-text">Vel: 60km/h</span>
+                </div>
+            </div>
+            
+            <div class="timer-container">
+                <div class="timer-fill" id="timer-bar"></div>
+            </div>
+        </div>
+
+        <!-- Tela de Fim -->
+        <div id="game-over" class="overlay-screen">
+            <div class="overlay-content">
+                <h1 id="end-title"><i class="fa-solid fa-trophy" style="color:#ffc800;"></i> Você Venceu!</h1>
+                <p style="font-size: 20px; color: #777; margin-bottom: 30px;" id="end-desc">O adversário comeu poeira!</p>
+                <button class="btn-restart" onclick="restartGame()"><i class="fa-solid fa-rotate-right"></i> Jogar Novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- SINTETIZADOR DE ÁUDIO (Web Audio API) ---
+        // Usado para criar sons procedurais já que não temos assets
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            const now = audioCtx.currentTime;
+            
+            if (type === 'success') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.exponentialRampToValueAtTime(800, now + 0.1);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'error') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(150, now);
+                osc.frequency.exponentialRampToValueAtTime(100, now + 0.3);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'shift') {
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(300, now);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                osc.start(now);
+                osc.stop(now + 0.1);
+            }
+        }
+
+        // --- ESTADO GLOBAL E DOM ---
+        let currentAnswer = 0;
+        let combo = 0;
+        let questionTimeTotal = 5000; // 5 segundos
+        let timeLeft = questionTimeTotal;
+        let isGameOver = false;
+        let gameScene = null;
+
+        const uiQuestion = document.getElementById('question-text');
+        const uiCombo = document.getElementById('combo-text');
+        const uiSpeed = document.getElementById('speed-text');
+        const uiTimer = document.getElementById('timer-bar');
+        const uiGameOver = document.getElementById('game-over');
+        const uiEndTitle = document.getElementById('end-title');
+        const uiEndDesc = document.getElementById('end-desc');
+
+        // --- LÓGICA DE PERGUNTAS ---
+        function generateQuestion(difficulty) {
+            let num1, num2, op, result;
+            let ops = ['+', '-'];
+            if (difficulty > 2) ops.push('*');
+
+            op = ops[Math.floor(Math.random() * ops.length)];
+
+            if (op === '+') {
+                num1 = Math.floor(Math.random() * (10 * difficulty)) + 1;
+                num2 = Math.floor(Math.random() * (10 * difficulty)) + 1;
+                result = num1 + num2;
+            } else if (op === '-') {
+                num1 = Math.floor(Math.random() * (10 * difficulty)) + 5;
+                num2 = Math.floor(Math.random() * num1) + 1; // Garante positivo
+                result = num1 - num2;
+            } else {
+                num1 = Math.floor(Math.random() * 9) + 2;
+                num2 = Math.floor(Math.random() * 5 * difficulty) + 1;
+                result = num1 * num2;
+            }
+
+            uiQuestion.innerText = `${num1} ${op} ${num2} = ?`;
+            currentAnswer = result;
+
+            // Gera respostas falsas próximas à correta
+            let answers = [result];
+            while(answers.length < 6) {
+                let offset = Math.floor(Math.random() * 10) - 5;
+                if (offset === 0) offset = 1;
+                let fake = result + offset;
+                if (!answers.includes(fake) && fake >= 0) {
+                    answers.push(fake);
+                }
+            }
+            
+            // Embaralha o array
+            return answers.sort(() => Math.random() - 0.5);
+        }
+
+        // --- PHASER SCENE PRINCIPAL ---
+        class RaceScene extends Phaser.Scene {
+            constructor() {
+                super('RaceScene');
+            }
+
+            create() {
+                gameScene = this;
+                this.baseSpeed = 5;
+                this.playerSpeed = 5;
+                this.enemySpeed = 4.5; // Inimigo é um pouco mais lento inicialmente
+                this.distanceTraveled = 0;
+                this.goalDistance = 5000;
+                this.difficulty = 1;
+
+                // 1. FUNDO E PISTA (Céu, Grama, Asfalto)
+                this.add.rectangle(400, 100, 800, 200, 0x84d8ff); // Céu
+                this.add.rectangle(400, 220, 800, 80, 0x58cc02);  // Grama Fundo
+                
+                // Asfalto
+                this.road = this.add.rectangle(400, 310, 800, 100, 0x555555);
+                
+                // Linhas da pista
+                this.lines = [];
+                for(let i=0; i<6; i++) {
+                    let line = this.add.rectangle(i * 160, 310, 80, 10, 0xffffff);
+                    this.lines.push(line);
+                }
+
+                this.add.rectangle(400, 390, 800, 60, 0x58cc02); // Grama Frente
+
+                // 2. CARROS (Desenhados com Graphics para não usar imagens externas)
+                // Inimigo (Vermelho)
+                this.enemyCar = this.add.container(200, 290);
+                let enemyBody = this.add.graphics();
+                enemyBody.fillStyle(0xff4b4b, 1);
+                enemyBody.fillRoundedRect(-40, -15, 80, 30, 8);
+                enemyBody.fillStyle(0x333333, 1); // Rodas
+                enemyBody.fillCircle(-25, 15, 8);
+                enemyBody.fillCircle(25, 15, 8);
+                enemyBody.fillStyle(0x99e5ff, 1); // Janela
+                enemyBody.fillRoundedRect(-10, -10, 30, 15, 4);
+                this.enemyCar.add(enemyBody);
+
+                // Jogador (Azul Duolingo)
+                this.playerCar = this.add.container(200, 330);
+                let playerBody = this.add.graphics();
+                playerBody.fillStyle(0x1cb0f6, 1);
+                playerBody.fillRoundedRect(-40, -15, 80, 30, 8);
+                playerBody.fillStyle(0x333333, 1); // Rodas
+                playerBody.fillCircle(-25, 15, 8);
+                playerBody.fillCircle(25, 15, 8);
+                playerBody.fillStyle(0x99e5ff, 1); // Janela
+                playerBody.fillRoundedRect(-10, -10, 30, 15, 4);
+                this.playerCar.add(playerBody);
+
+                // Efeito de fumaça (Partículas simples)
+                this.createSmokeEffect();
+
+                // 3. SISTEMA DE MARCHAS (Câmbio)
+                this.setupGearbox();
+                this.startNewTurn();
+            }
+
+            createSmokeEffect() {
+                // Simples círculos que diminuem e somem
+                this.time.addEvent({
+                    delay: 100,
+                    loop: true,
+                    callback: () => {
+                        if(isGameOver) return;
+                        
+                        let createSmoke = (car, yOffset) => {
+                            let smoke = this.add.circle(car.x - 45, car.y + yOffset, 5, 0xffffff, 0.6);
+                            this.tweens.add({
+                                targets: smoke,
+                                x: smoke.x - 30 - Math.random() * 20,
+                                y: smoke.y - 10 + Math.random() * 20,
+                                alpha: 0,
+                                scale: 2,
+                                duration: 500,
+                                onComplete: () => smoke.destroy()
+                            });
+                        }
+                        
+                        if(this.playerSpeed > 2) createSmoke(this.playerCar, 5);
+                        if(this.enemySpeed > 2) createSmoke(this.enemyCar, -5);
+                    }
+                });
+            }
+
+            setupGearbox() {
+                const gbY = 480;
+                
+                // Fundo do câmbio
+                let bg = this.add.graphics();
+                bg.fillStyle(0xdddddd, 1);
+                bg.fillRoundedRect(150, 400, 500, 180, 20);
+                bg.lineStyle(4, 0xaaaaaa);
+                bg.strokeRoundedRect(150, 400, 500, 180, 20);
+
+                // Posições (Layout H)
+                this.gearPos = [
+                    { id: 1, x: 250, y: 440 }, { id: 2, x: 250, y: 540 },
+                    { id: 3, x: 400, y: 440 }, { id: 4, x: 400, y: 540 },
+                    { id: 5, x: 550, y: 440 }, { id: 6, x: 550, y: 540 }
+                ];
+                this.neutralPos = { x: 400, y: 490 };
+
+                // Desenha os eixos (linhas pretas)
+                bg.lineStyle(8, 0x555555);
+                bg.beginPath();
+                bg.moveTo(250, 440); bg.lineTo(250, 540); // Eixo 1-2
+                bg.moveTo(400, 440); bg.lineTo(400, 540); // Eixo 3-4
+                bg.moveTo(550, 440); bg.lineTo(550, 540); // Eixo 5-6
+                bg.moveTo(250, 490); bg.lineTo(550, 490); // Eixo Neutro
+                bg.strokePath();
+
+                // Slots visuais e textos numéricos
+                this.gearSlots = [];
+                this.gearTexts = [];
+
+                this.gearPos.forEach(pos => {
+                    let slot = this.add.circle(pos.x, pos.y, 25, 0xffffff).setStrokeStyle(3, 0xaaaaaa);
+                    let txt = this.add.text(pos.x, pos.y, "", {
+                        fontFamily: 'Nunito', fontSize: '20px', color: '#4b4b4b', fontStyle: 'bold'
+                    }).setOrigin(0.5);
+                    
+                    this.gearSlots.push(slot);
+                    this.gearTexts.push(txt);
+                });
+
+                // A Alavanca (Knob)
+                this.leverGroup = this.add.container(this.neutralPos.x, this.neutralPos.y);
+                
+                // Sombra do knob
+                let shadow = this.add.circle(5, 5, 30, 0x000000, 0.3);
+                // Knob principal
+                this.knob = this.add.circle(0, 0, 30, 0x4b4b4b);
+                this.knob.setStrokeStyle(4, 0x333333);
+                // Detalhe brilhante
+                let shine = this.add.ellipse(-10, -10, 15, 10, 0xffffff, 0.3).setAngle(-45);
+                
+                this.leverGroup.add([shadow, this.knob, shine]);
+                
+                // Tamanho para interação
+                this.leverGroup.setSize(60, 60);
+                this.leverGroup.setInteractive({ cursor: 'grab' });
+                this.input.setDraggable(this.leverGroup);
+
+                // Lógica de Drag
+                this.input.on('dragstart', (pointer, gameObject) => {
+                    if(isGameOver) return;
+                    gameObject.list[1].setFillStyle(0x666666); // Muda cor ao segurar
+                    playSound('shift');
+                });
+
+                this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+                    if(isGameOver) return;
+                    // Limita movimento dentro do quadro do câmbio
+                    gameObject.x = Phaser.Math.Clamp(dragX, 200, 600);
+                    gameObject.y = Phaser.Math.Clamp(dragY, 410, 570);
+                });
+
+                this.input.on('dragend', (pointer, gameObject) => {
+                    if(isGameOver) return;
+                    gameObject.list[1].setFillStyle(0x4b4b4b);
+                    
+                    // Encontra o slot mais próximo
+                    let closest = null;
+                    let minDist = 50; // Distância máxima para "encaixar"
+
+                    this.gearPos.forEach((pos, index) => {
+                        let dist = Phaser.Math.Distance.Between(gameObject.x, gameObject.y, pos.x, pos.y);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            closest = index;
+                        }
+                    });
+
+                    if (closest !== null) {
+                        // Encaixou em uma marcha!
+                        gameObject.x = this.gearPos[closest].x;
+                        gameObject.y = this.gearPos[closest].y;
+                        
+                        let answeredValue = parseInt(this.gearTexts[closest].text);
+                        this.handleAnswer(answeredValue);
+                    } else {
+                        // Soltou fora, volta pro neutro
+                        this.resetLever();
+                    }
+                });
+            }
+
+            resetLever() {
+                this.tweens.add({
+                    targets: this.leverGroup,
+                    x: this.neutralPos.x,
+                    y: this.neutralPos.y,
+                    duration: 150,
+                    ease: 'Power2'
+                });
+            }
+
+            startNewTurn() {
+                if(isGameOver) return;
+                
+                // Reseta tempo
+                timeLeft = questionTimeTotal;
+                
+                // Atualiza dificuldade com base no progresso
+                this.difficulty = Math.floor(this.distanceTraveled / 1000) + 1;
+                
+                // Gera a nova pergunta e as respostas
+                let answers = generateQuestion(this.difficulty);
+                
+                // Preenche as marchas visualmente
+                this.gearTexts.forEach((txt, i) => {
+                    if(answers[i] !== undefined) {
+                        txt.setText(answers[i].toString());
+                        this.gearSlots[i].setAlpha(1);
+                    } else {
+                        txt.setText("");
+                        this.gearSlots[i].setAlpha(0.3); // Esconde marchas não usadas
+                    }
+                });
+
+                this.resetLever();
+            }
+
+            handleAnswer(value) {
+                if (value === currentAnswer) {
+                    // ACERTOU
+                    playSound('success');
+                    combo++;
+                    uiCombo.innerHTML = `Combo: ${combo}`;
+                    uiCombo.style.color = 'var(--correct)';
+                    setTimeout(() => uiCombo.style.color = 'var(--text-dark)', 500);
+
+                    // Boost de velocidade
+                    this.playerSpeed += 1.5 + (combo * 0.2);
+                    
+                    // Efeito visual no player
+                    this.tweens.add({
+                        targets: this.playerCar,
+                        x: this.playerCar.x + 20,
+                        yoyo: true,
+                        duration: 100
+                    });
+
+                } else {
+                    // ERROU
+                    playSound('error');
+                    this.registerMistake();
+                }
+
+                // Próxima rodada
+                this.startNewTurn();
+            }
+
+            registerMistake() {
+                combo = 0;
+                uiCombo.innerHTML = `Combo: 0`;
+                uiCombo.style.color = 'var(--wrong)';
+                setTimeout(() => uiCombo.style.color = 'var(--text-dark)', 500);
+
+                // Punição de velocidade
+                this.playerSpeed = Math.max(2, this.playerSpeed - 3);
+                
+                // Inimigo avança
+                this.enemySpeed += 1;
+
+                // Efeito visual (tremer carro)
+                this.tweens.add({
+                    targets: this.playerCar,
+                    x: this.playerCar.x - 10,
+                    yoyo: true,
+                    repeat: 2,
+                    duration: 50
+                });
+            }
+
+            update(time, delta) {
+                if (isGameOver) return;
+
+                // 1. Atualização do Temporizador
+                timeLeft -= delta;
+                let timePercentage = Math.max(0, (timeLeft / questionTimeTotal) * 100);
+                uiTimer.style.width = timePercentage + '%';
+                
+                if(timePercentage < 30) uiTimer.classList.add('danger');
+                else uiTimer.classList.remove('danger');
+
+                if (timeLeft <= 0) {
+                    playSound('error');
+                    this.registerMistake();
+                    this.startNewTurn();
+                }
+
+                // 2. Movimentação do Mundo (Pista) baseada na velocidade do player
+                let scrollSpeed = this.playerSpeed;
+                this.lines.forEach(line => {
+                    line.x -= scrollSpeed;
+                    if (line.x < -40) line.x += 800;
+                });
+
+                // 3. Fricção e "Rubber-banding" (Normalização de velocidades)
+                this.playerSpeed = Phaser.Math.Linear(this.playerSpeed, this.baseSpeed, 0.005);
+                
+                // Inimigo tenta manter uma velocidade próxima, mas acelera se ficar muito pra trás
+                let enemyTargetSpeed = this.baseSpeed + (this.distanceTraveled / 1000) * 0.5; 
+                this.enemySpeed = Phaser.Math.Linear(this.enemySpeed, enemyTargetSpeed, 0.005);
+
+                // 4. Posição Relativa dos Carros
+                // O player fica fixo visualmente no X=200, o inimigo move relativamente
+                let speedDiff = this.enemySpeed - this.playerSpeed;
+                this.enemyCar.x += speedDiff;
+
+                // Mantém inimigo visível para não estragar a diversão (falso rubber band)
+                if(this.enemyCar.x < 50) this.enemySpeed += 0.1;
+                
+                // 5. Atualização da UI
+                uiSpeed.innerHTML = `Vel: ${Math.floor(this.playerSpeed * 10)}km/h`;
+                
+                // Progresso global
+                this.distanceTraveled += this.playerSpeed;
+
+                // 6. Condições de Vitória/Derrota
+                if (this.distanceTraveled >= this.goalDistance) {
+                    this.endGame(true);
+                } else if (this.enemyCar.x > 800) {
+                    this.endGame(false); // Inimigo ultrapassou e saiu da tela
+                }
+            }
+
+            endGame(playerWon) {
+                isGameOver = true;
+                this.playerSpeed = 0;
+                this.enemySpeed = 0;
+
+                uiGameOver.classList.add('active');
+                
+                if(playerWon) {
+                    uiEndTitle.innerHTML = `<i class="fa-solid fa-trophy" style="color:#ffc800;"></i> Você Venceu!`;
+                    uiEndDesc.innerText = "Você respondeu rápido e venceu a corrida!";
+                    playSound('success'); // Duplo som de vitória
+                    setTimeout(() => playSound('success'), 200);
+                } else {
+                    uiEndTitle.innerHTML = `<i class="fa-solid fa-face-frown" style="color:#ff4b4b;"></i> Derrota...`;
+                    uiEndDesc.innerText = "O adversário deixou você para trás. Estude mais!";
+                    playSound('error');
+                    setTimeout(() => playSound('error'), 300);
+                }
+            }
+        }
+
+        // --- INICIALIZAÇÃO DO PHASER ---
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-wrapper', // Injeta o canvas na div wrapper
+            width: 800,
+            height: 600,
+            backgroundColor: '#000000', // Coberto pelos gráficos da cena
+            scene: RaceScene
+        };
+
+        const game = new Phaser.Game(config);
+
+        // --- FUNÇÃO GLOBAL (HTML Button) ---
+        function restartGame() {
+            uiGameOver.classList.remove('active');
+            isGameOver = false;
+            combo = 0;
+            uiCombo.innerHTML = `Combo: 0`;
+            uiCombo.style.color = 'var(--text-dark)';
+            
+            // Reinicia a cena do Phaser
+            game.scene.stop('RaceScene');
+            game.scene.start('RaceScene');
+        }
+
+        // Garante que o Audio Context ative no primeiro clique (política de navegadores)
+        document.body.addEventListener('click', () => {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+        }, { once: true });
+
+    </script>
+</body>
+</html>

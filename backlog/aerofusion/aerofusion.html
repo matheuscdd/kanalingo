@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Voo do Saber - Bico para Direita</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --viewport-height: 100dvh;
+            --safe-top: max(env(safe-area-inset-top, 0px), 12px);
+            --safe-right: max(env(safe-area-inset-right, 0px), 12px);
+            --safe-bottom: max(env(safe-area-inset-bottom, 0px), 12px);
+            --safe-left: max(env(safe-area-inset-left, 0px), 12px);
+            --hud-gap: clamp(10px, 2vw, 24px);
+            --question-width: min(78vw, 520px);
+            --control-size: 82px;
+            --control-bottom-offset: calc(var(--safe-bottom) + 18px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; user-select: none; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            min-height: var(--viewport-height);
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100dvw;
+            width: 100vw;
+            height: var(--viewport-height);
+            min-height: var(--viewport-height);
+            background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+            overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        /* Feedback Visual */
+        .flash-red { animation: flashRed 0.4s ease-in-out; }
+        .flash-green { animation: flashGreen 0.4s ease-in-out; }
+        @keyframes flashRed { 0%, 100% { background: inherit; } 50% { background: #ff4d4d; } }
+        @keyframes flashGreen { 0%, 100% { background: inherit; } 50% { background: #4dff88; } }
+
+        /* Interface (UI) */
+        #ui-layer {
+            position: absolute;
+            top: var(--safe-top);
+            left: var(--safe-left);
+            right: var(--safe-right);
+            display: flex;
+            justify-content: space-between;
+            gap: var(--hud-gap);
+            z-index: 60;
+            pointer-events: none;
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #question-box {
+            position: absolute;
+            top: calc(var(--safe-top) + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: bold;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            z-index: 55;
+            text-align: center;
+            border: 3px solid #2980b9;
+            width: var(--question-width);
+            max-width: calc(100vw - (var(--safe-left) + var(--safe-right) + 16px));
+            min-width: min(280px, calc(100vw - 32px));
+        }
+
+        /* Botões de Comando (Mobile/Touch) */
+        #mobile-controls {
+            position: absolute;
+            bottom: var(--control-bottom-offset);
+            left: 0;
+            width: 100%;
+            padding: 0 max(20px, var(--safe-right)) 0 max(20px, var(--safe-left));
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 70;
+            pointer-events: none;
+        }
+
+        body.touch-layout #mobile-controls.active {
+            display: flex;
+        }
+
+        .control-btn {
+            pointer-events: auto;
+            width: var(--control-size);
+            height: var(--control-size);
+            background: rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #11324a;
+            font-size: clamp(24px, 3vw, 30px);
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .control-btn:active {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0.9);
+        }
+
+        /* Avião */
+        #player {
+            position: absolute;
+            left: 80px;
+            top: 50%;
+            font-size: clamp(36px, 5vw, 45px);
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.4));
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(56px, 8vw, 64px);
+            height: clamp(56px, 8vw, 64px);
+            transform: translateY(-50%);
+            color: rgb(255, 212, 59);
+        }
+
+        #player i {
+            display: inline-block;
+            transition: transform 0.12s linear;
+        }
+
+        /* Nuvens */
+        .option-cloud {
+            position: absolute;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            color: #333;
+            min-width: clamp(96px, 12vw, 132px);
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+        }
+
+        .option-cloud::before {
+            content: "\f0c2";
+            font-family: "Font Awesome 6 Free", sans-serif;
+            font-weight: 900;
+            position: absolute;
+            font-size: 100px;
+            color: rgba(255, 255, 255, 0.98);
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            z-index: 100;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hidden { display: none !important; }
+
+        button.start-btn {
+            padding: 15px 50px;
+            font-size: 1.4rem;
+            border: none;
+            border-radius: 50px;
+            background: #27ae60;
+            color: #0b2414;
+            cursor: pointer;
+            margin-top: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        button.start-btn:hover { transform: scale(1.1); background: #2ecc71; }
+
+        .smoke {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 35;
+        }
+
+        @media (hover: hover) and (pointer: fine) and (min-width: 1025px) {
+            body {
+                touch-action: auto;
+            }
+
+            #game-container {
+                border-width: 6px;
+            }
+
+            #mobile-controls {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 1024px), (pointer: coarse) {
+            :root {
+                --question-width: min(86vw, 520px);
+            }
+
+            #question-box {
+                border-radius: 26px;
+            }
+        }
+
+        @media (max-width: 900px) and (orientation: portrait) {
+            :root {
+                --control-size: 74px;
+                --hud-gap: 10px;
+                --question-width: min(90vw, 460px);
+            }
+
+            #ui-layer {
+                top: calc(var(--safe-top) + 4px);
+            }
+
+            .stats {
+                padding: 7px 12px;
+            }
+
+            #question-box {
+                top: calc(var(--safe-top) + 52px);
+                padding: 11px 18px;
+            }
+
+            button.start-btn {
+                width: min(82vw, 340px);
+            }
+        }
+
+        @media (max-width: 1180px) and (orientation: landscape) {
+            :root {
+                --control-size: 62px;
+                --control-bottom-offset: calc(var(--safe-bottom) + 10px);
+                --question-width: min(62vw, 460px);
+            }
+
+            #ui-layer {
+                top: calc(var(--safe-top) + 2px);
+            }
+
+            .stats {
+                padding: 6px 12px;
+                font-size: 0.95rem;
+            }
+
+            #question-box {
+                top: calc(var(--safe-top) + 2px);
+                padding: 9px 18px;
+                min-width: 220px;
+            }
+
+            .overlay h1 {
+                font-size: clamp(2rem, 5vw, 3rem) !important;
+            }
+
+            .overlay h2 {
+                font-size: clamp(2rem, 4.6vw, 2.8rem) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="ui-layer">
+        <div class="stats"><i class="fa-solid fa-star" style="color:#f1c40f"></i> <span id="score">0</span></div>
+        <div class="stats"><i class="fa-solid fa-heart" style="color:#e74c3c"></i> <span id="lives">3</span></div>
+    </div>
+
+    <div id="question-box" class="hidden"></div>
+    
+    <div id="player" class="hidden">
+        <i class="fa-solid fa-plane" id="plane-icon"></i>
+    </div>
+
+    <div id="elements-container"></div>
+
+    <!-- Botões de Controle -->
+    <div id="mobile-controls" class="hidden">
+        <div id="btn-down" class="control-btn"><i class="fa-solid fa-chevron-down"></i></div>
+        <div id="btn-up" class="control-btn"><i class="fa-solid fa-chevron-up"></i></div>
+    </div>
+
+    <div id="start-menu" class="overlay">
+        <h1 style="font-size: 3.5rem; color: #f1c40f; margin-bottom: 5px;">VOO DO SABER</h1>
+        <p style="letter-spacing: 2px; margin-bottom: 20px;">CONTROLES POR BOTÕES</p>
+        <p>As nuvens agora mantêm distância!<br>Esquerda: <b>BAIXO</b> | Direita: <b>CIMA</b></p>
+        <button class="start-btn" onclick="initGame()">DECOLAR</button>
+    </div>
+
+    <div id="game-over" class="overlay hidden">
+        <h2 id="death-reason" style="font-size: 2.8rem; color:#e74c3c">FIM DE VOO</h2>
+        <p id="correct-info" style="margin: 15px 0; font-size: 1.3rem;"></p>
+        <p>Pontuação: <span id="final-score" style="font-size: 2.2rem; color: #f1c40f;">0</span></p>
+        <button class="start-btn" onclick="location.reload()">RECOMECAR</button>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        { q: "9 x 6 = ?", opts: ["45", "54", "63"], ans: "54" },
+        { q: "Capital de França?", opts: ["Lyon", "Paris", "Nice"], ans: "Paris" },
+        { q: "Planeta Vermelho?", opts: ["Marte", "Vénus", "Terra"], ans: "Marte" },
+        { q: "7 + 8 + 5 = ?", opts: ["18", "20", "22"], ans: "20" },
+        { q: "É um mamífero?", opts: ["Tubarão", "Baleia", "Pipa"], ans: "Baleia" },
+        { q: "Cor da Esmeralda?", opts: ["Azul", "Verde", "Vermelho"], ans: "Verde" },
+        { q: "Satélite da Terra?", opts: ["Lua", "Sol", "Marte"], ans: "Lua" }
+    ];
+
+    let score = 0, lives = 3, isRunning = false;
+    let targetY = 250, currentY = 250;
+    let gameSpeed = 2.8; 
+    
+    let currentQ = null;
+    let activeClouds = [];
+    let lastSpawnTime = 0;
+    let spawnInterval = 3000;
+
+    const player = document.getElementById('player');
+    const planeIcon = document.getElementById('plane-icon');
+    const container = document.getElementById('game-container');
+    const elements = document.getElementById('elements-container');
+    const controls = document.getElementById('mobile-controls');
+    const questionBox = document.getElementById('question-box');
+    const root = document.documentElement;
+    const scoreEl = document.getElementById('score');
+    const livesEl = document.getElementById('lives');
+    const startMenu = document.getElementById('start-menu');
+    const gameOver = document.getElementById('game-over');
+    const deathReason = document.getElementById('death-reason');
+    const correctInfo = document.getElementById('correct-info');
+    const finalScore = document.getElementById('final-score');
+
+    const layoutState = {
+        showTouchControls: false,
+        topBoundary: 72,
+        bottomBoundary: 72,
+        cloudTop: 110,
+        cloudBottom: 120,
+        playerOffsetLeft: 80
+    };
+
+    // Estado dos controles
+    let keys = {};
+    let isPressingUp = false;
+    let isPressingDown = false;
+
+    // Teclado
+    globalThis.onkeydown = (e) => keys[e.code] = true;
+    globalThis.onkeyup = (e) => keys[e.code] = false;
+
+    // Botões On-Screen
+    const setupButton = (id, action) => {
+        const btn = document.getElementById(id);
+        const start = (e) => { e.preventDefault(); action(true); };
+        const end = (e) => { e.preventDefault(); action(false); };
+        
+        btn.addEventListener('touchstart', start);
+        btn.addEventListener('touchend', end);
+        btn.addEventListener('mousedown', start);
+        btn.addEventListener('mouseup', end);
+        btn.addEventListener('mouseleave', end);
+    };
+
+    setupButton('btn-up', (val) => isPressingUp = val);
+    setupButton('btn-down', (val) => isPressingDown = val);
+
+    function getViewportSize() {
+        const viewport = globalThis.visualViewport;
+        return {
+            width: viewport ? viewport.width : globalThis.innerWidth,
+            height: viewport ? viewport.height : globalThis.innerHeight
+        };
+    }
+
+    function shouldUseTouchLayout() {
+        const { width, height } = getViewportSize();
+        const largestSide = Math.max(width, height);
+        const hasTouch = globalThis.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+        return hasTouch && largestSide <= 1366;
+    }
+
+    function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+    }
+
+    function updateControlsVisibility() {
+        if (layoutState.showTouchControls && isRunning) {
+            controls.classList.add('active');
+            controls.classList.remove('hidden');
+            return;
+        }
+
+        controls.classList.remove('active');
+        controls.classList.add('hidden');
+    }
+
+    function updateLayout() {
+        const viewport = getViewportSize();
+        const isLandscape = viewport.width > viewport.height;
+        const showTouchControls = shouldUseTouchLayout();
+
+        root.style.setProperty('--viewport-height', `${viewport.height}px`);
+        layoutState.showTouchControls = showTouchControls;
+        document.body.classList.toggle('touch-layout', showTouchControls);
+
+        const isCompactPortrait = viewport.width <= 900 && !isLandscape;
+        const topBoundary = isCompactPortrait ? 118 : 76;
+        const cloudTop = isCompactPortrait ? 150 : 94;
+        let bottomSpacing = 72;
+        let cloudBottom = 56;
+
+        if (showTouchControls) {
+            bottomSpacing = isLandscape ? 92 : 128;
+            cloudBottom = isLandscape ? 96 : 138;
+        }
+
+        const playerOffsetLeft = clamp(viewport.width * (showTouchControls ? 0.16 : 0.11), 54, 140);
+
+        layoutState.topBoundary = topBoundary;
+        layoutState.bottomBoundary = bottomSpacing;
+        layoutState.cloudTop = cloudTop;
+        layoutState.cloudBottom = cloudBottom;
+        layoutState.playerOffsetLeft = playerOffsetLeft;
+
+        player.style.left = `${playerOffsetLeft}px`;
+        targetY = clamp(targetY, topBoundary, container.offsetHeight - bottomSpacing);
+        currentY = clamp(currentY, topBoundary, container.offsetHeight - bottomSpacing);
+        player.style.top = `${currentY}px`;
+
+        updateControlsVisibility();
+    }
+
+    globalThis.addEventListener('resize', updateLayout);
+    globalThis.addEventListener('orientationchange', () => setTimeout(updateLayout, 120));
+    if (globalThis.visualViewport) {
+        globalThis.visualViewport.addEventListener('resize', updateLayout);
+    }
+
+    updateLayout();
+
+    function initGame() {
+        startMenu.classList.add('hidden');
+        questionBox.classList.remove('hidden');
+        player.classList.remove('hidden');
+        updateLayout();
+        isRunning = true;
+        updateControlsVisibility();
+        nextQuestion();
+        requestAnimationFrame(gameLoop);
+    }
+
+    function nextQuestion() {
+        currentQ = questions[Math.floor(Math.random() * questions.length)];
+        questionBox.innerText = currentQ.q;
+        activeClouds.forEach(c => c.el.remove());
+        activeClouds = [];
+        spawnClouds();
+    }
+
+    function spawnClouds() {
+        const rect = container.getBoundingClientRect();
+        let shuffledOpts = [...currentQ.opts].sort(() => Math.random() - 0.5);
+        const cloudTopBoundary = layoutState.cloudTop;
+        const cloudBottomBoundary = rect.height - layoutState.cloudBottom;
+        const availableHeight = Math.max(180, cloudBottomBoundary - cloudTopBoundary);
+        const laneHeight = Math.max(64, availableHeight / shuffledOpts.length);
+
+        shuffledOpts.forEach((text, i) => {
+            const div = document.createElement('div');
+            div.className = 'option-cloud';
+            div.innerText = text;
+            
+            const randomScale = 0.6 + (Math.random() * 0.4);
+            const laneStart = cloudTopBoundary + (laneHeight * i);
+            const yPadding = Math.min(24, laneHeight * 0.2);
+            const yMin = laneStart + yPadding;
+            const yMax = Math.min(cloudBottomBoundary - yPadding, laneStart + laneHeight - yPadding);
+            const y = clamp(yMin + (Math.random() * Math.max(8, yMax - yMin)), cloudTopBoundary + 24, cloudBottomBoundary - 24);
+            
+            let startPosX = -200 - (i * Math.max(180, rect.width * 0.2)) - (Math.random() * Math.max(180, rect.width * 0.18)); 
+
+            div.style.top = y + 'px';
+            div.style.transform = `translateY(-50%) scale(${randomScale})`;
+            div.style.right = startPosX + 'px';
+            
+            elements.appendChild(div);
+            
+            activeClouds.push({
+                el: div,
+                text: text,
+                x: startPosX,
+                speedMod: 0.8 + (Math.random() * 0.3)
+            });
+        });
+        lastSpawnTime = Date.now();
+    }
+
+    function createSmoke() {
+        const smoke = document.createElement('div');
+        smoke.className = 'smoke';
+        smoke.style.left = (player.offsetLeft - 15) + 'px';
+        smoke.style.top = (currentY + (Math.random() * 14 - 7)) + 'px';
+        elements.appendChild(smoke);
+
+        let opacity = 0.7;
+        let size = 10;
+        let x = player.offsetLeft - 15;
+
+        const anim = setInterval(() => {
+            opacity -= 0.03;
+            size += 0.5;
+            x -= 2;
+            smoke.style.opacity = opacity;
+            smoke.style.width = size + 'px';
+            smoke.style.height = size + 'px';
+            smoke.style.left = x + 'px';
+            if(opacity <= 0) {
+                clearInterval(anim);
+                smoke.remove();
+            }
+        }, 30);
+    }
+
+    function updatePlayerPosition() {
+        const step = 4;
+
+        if ((keys['ArrowUp'] || isPressingUp) && targetY > layoutState.topBoundary) {
+            targetY -= step;
+        }
+
+        if ((keys['ArrowDown'] || isPressingDown) && targetY < container.offsetHeight - layoutState.bottomBoundary) {
+            targetY += step;
+        }
+
+        targetY = clamp(targetY, layoutState.topBoundary, container.offsetHeight - layoutState.bottomBoundary);
+
+        const diff = targetY - currentY;
+        currentY += diff * 0.12;
+        currentY = clamp(currentY, layoutState.topBoundary, container.offsetHeight - layoutState.bottomBoundary);
+        player.style.top = currentY + 'px';
+
+        const tilt = clamp(diff * 0.4, -25, 25);
+        planeIcon.style.transform = `rotate(${tilt}deg)`;
+        return diff;
+    }
+
+    function handleCloudCollision(cloud, index) {
+        if (cloud.text === currentQ.ans) {
+            handleSuccess();
+            return true;
+        }
+
+        handleError();
+        cloud.el.remove();
+        activeClouds.splice(index, 1);
+        return false;
+    }
+
+    function updateClouds(playerRect) {
+        for (let i = activeClouds.length - 1; i >= 0; i--) {
+            const cloud = activeClouds[i];
+            cloud.x += gameSpeed * cloud.speedMod;
+            cloud.el.style.right = cloud.x + 'px';
+
+            const cloudRect = cloud.el.getBoundingClientRect();
+            const isColliding = playerRect.right > cloudRect.left + 5 &&
+                playerRect.left < cloudRect.right - 5 &&
+                playerRect.bottom > cloudRect.top + 5 &&
+                playerRect.top < cloudRect.bottom - 5;
+
+            if (isColliding) {
+                return handleCloudCollision(cloud, i);
+            }
+
+            if (cloudRect.right < -250) {
+                cloud.el.remove();
+                activeClouds.splice(i, 1);
+            }
+        }
+
+        return false;
+    }
+
+    function maybeSpawnClouds(correctCaptured) {
+        if (correctCaptured || !isRunning) {
+            return;
+        }
+
+        if (activeClouds.length < 2 || (Date.now() - lastSpawnTime > spawnInterval)) {
+            spawnClouds();
+        }
+    }
+
+    function updateHud() {
+        scoreEl.innerText = score;
+        livesEl.innerText = lives;
+    }
+
+    function gameLoop() {
+        if(!isRunning) return;
+
+        updatePlayerPosition();
+
+        if(Math.random() > 0.9) createSmoke();
+
+        const pRect = player.getBoundingClientRect();
+        const correctCaptured = updateClouds(pRect);
+
+        maybeSpawnClouds(correctCaptured);
+        updateHud();
+        requestAnimationFrame(gameLoop);
+    }
+
+    function handleSuccess() {
+        score += 10;
+        gameSpeed += 0.08;
+        container.classList.add('flash-green');
+        setTimeout(() => container.classList.remove('flash-green'), 400);
+        nextQuestion();
+    }
+
+    function handleError() {
+        lives--;
+        container.classList.add('flash-red');
+        setTimeout(() => container.classList.remove('flash-red'), 400);
+        
+        if(lives <= 0) {
+            isRunning = false;
+            updateControlsVisibility();
+            gameOver.classList.remove('hidden');
+            deathReason.innerText = "FIM DE VOO";
+            correctInfo.innerText = "A resposta era: " + currentQ.ans;
+            finalScore.innerText = score;
+        }
+    }
+</script>
+</body>
+</html>

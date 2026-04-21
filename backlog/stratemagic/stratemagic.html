@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protótipo RTS - A Masmorra Arcaica</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            font-family: 'Nunito', 'Segoe UI', Arial, sans-serif;
+        }
+        #game-container {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+</head>
+<body>
+
+    <div id="game-container"></div>
+
+    <script>
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super({ key: 'MainScene' });
+                
+                // Estados base do jogo
+                this.woodCount = 0;
+                this.workerSelected = false;
+                this.workerTarget = null;
+                this.choppingTimer = null;
+                this.gameOver = false;
+                this.cursorVisible = true;
+
+                // Estados de controle de UI
+                this.isBookOpen = false;
+                this.isWitchOpen = false;
+                this.isDungeonOpen = false;
+
+                // --- DADOS DO SISTEMA DE PERGUNTAS NO MAPA (CAMINHOS) ---
+                this.hasPlayerCommitted = false;
+                this.questionData = {
+                    question: "Qual estrutura de dados usa o princípio LIFO (Last In, First Out)?",
+                    paths: [
+                        { id: 'A', text: "Fila (Queue)", isCorrect: false, x: 200 },
+                        { id: 'B', text: "Pilha (Stack)", isCorrect: true, x: 600 }
+                    ],
+                    commitY: 250
+                };
+
+                // --- DADOS DO GRIMÓRIO (FILL THE BLANK) ---
+                this.currentInput = "";
+                this.errorCount = 0;
+                this.grimoireData = { 
+                    answer: "Júpiter", 
+                    text: "O maior planeta do sistema solar é ______.", 
+                    fullText: "O maior planeta do sistema solar é Júpiter." 
+                };
+
+                // --- DADOS DA CASA DA BRUXA (SORTING) ---
+                this.witchErrorCount = 0;
+                this.witchSortingData = { 
+                    instruction: "Organize da MAIS FRIA para a MAIS QUENTE", 
+                    items: [
+                        { id: 1, label: "10°C", color: 0x4FC3F7 }, 
+                        { id: 2, label: "25°C", color: 0x81C784 }, 
+                        { id: 3, label: "50°C", color: 0xFFB74D }, 
+                        { id: 4, label: "90°C", color: 0xE57373 }
+                    ], 
+                    correctOrder: [1, 2, 3, 4] 
+                };
+
+                // --- DADOS DA MASMORRA (ASSOCIATION) ---
+                this.dungeonHp = 100;
+                this.dungeonErrors = 0;
+                this.selectedLeft = null;
+                this.completedPairs = [];
+                this.dungeonData = {
+                    instruction: "Associe o País à sua Capital",
+                    left: [
+                        { id: 1, text: "Brasil" },
+                        { id: 2, text: "França" },
+                        { id: 3, text: "Japão" },
+                        { id: 4, text: "Egito" }
+                    ],
+                    right: [
+                        { id: 3, text: "Tóquio" },
+                        { id: 1, text: "Brasília" },
+                        { id: 4, text: "Cairo" },
+                        { id: 2, text: "Paris" }
+                    ],
+                    correctPairs: { 1: 1, 2: 2, 3: 3, 4: 4 }
+                };
+            }
+
+            preload() {
+                this.generateTextures();
+            }
+
+            create() {
+                // Configurações do mundo físico
+                this.physics.world.setBounds(0, 0, 1600, 1200);
+                this.add.tileSprite(800, 600, 1600, 1200, 'grass').setDepth(-10);
+                this.drawMapPaths();
+
+                // Grupos de entidades
+                this.trees = this.physics.add.group({ immovable: true });
+                this.stumps = this.physics.add.group({ immovable: true });
+                this.enemies = this.physics.add.group();
+
+                // Inicialização do mundo
+                this.renderQuestionSystem();
+                this.createTreeAt(200, 100); 
+                this.createTreeAt(600, 100); 
+                this.createWorker(400, 500);
+
+                // Configuração das Interfaces e Eventos
+                this.setupUI();
+                this.setupGrimoire();
+                this.setupWitchHouse();
+                this.setupDungeon();
+
+                // Colisões
+                this.physics.add.collider(this.worker, this.trees);
+                this.physics.add.collider(this.enemies, this.trees);
+                this.physics.add.collider(this.enemies, this.enemies);
+
+                // Inputs
+                this.setupInputs();
+                this.createParticleEmitters();
+                
+                // Câmera e WASD
+                this.cameras.main.setBounds(0, 0, 1600, 1200);
+                this.wasd = this.input.keyboard.addKeys({
+                    up: Phaser.Input.Keyboard.KeyCodes.W, down: Phaser.Input.Keyboard.KeyCodes.S,
+                    left: Phaser.Input.Keyboard.KeyCodes.A, right: Phaser.Input.Keyboard.KeyCodes.D
+                });
+
+                // Listeners de Teclado
+                this.input.keyboard.on('keydown', (event) => this.handleTyping(event));
+                this.time.addEvent({
+                    delay: 500,
+                    callback: () => { this.cursorVisible = !this.cursorVisible; this.updateInputDisplay(); },
+                    loop: true
+                });
+
+                // Áudio Context
+                try {
+                    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (e) { console.warn("Áudio não suportado"); }
+            }
+
+            update() {
+                if (this.gameOver) return;
+
+                // Pausa lógica de movimento se houver modal aberto
+                if (this.isBookOpen || this.isWitchOpen || this.isDungeonOpen) {
+                    if (this.worker.body) this.worker.body.stop();
+                    if (this.isDungeonOpen) this.drawDungeonConnections();
+                    return;
+                }
+
+                // Y-Sorting
+                this.children.list.forEach(child => {
+                    if (child.active && child.getData('ySort')) child.setDepth(child.y);
+                });
+
+                if (this.worker.active) {
+                    if (this.workerSelected) {
+                        this.selectionIndicator.x = this.worker.x;
+                        this.selectionIndicator.y = this.worker.y;
+                    }
+                    this.drawHealthBar();
+                    this.handleQuestionLogic();
+                }
+
+                this.handleWorkerMovement();
+                this.handleEnemies();
+                this.handleCameraMovement();
+            }
+
+            // --- SISTEMAS DE UI E EVENTOS ---
+
+            setupUI() {
+                this.uiWood = this.add.text(20, 20, 'Madeira: 0', { fontSize: '24px', fill: '#fff', fontWeight: '900', stroke: '#000', strokeThickness: 4 }).setDepth(1000).setScrollFactor(0);
+                this.uiHealth = this.add.text(20, 55, 'HP: 100/100', { fontSize: '20px', fill: '#FF4B4B', fontWeight: '900', stroke: '#000', strokeThickness: 4 }).setDepth(1000).setScrollFactor(0);
+                this.healthBar = this.add.graphics().setDepth(1000).setScrollFactor(0);
+
+                this.selectionIndicator = this.add.graphics();
+                this.selectionIndicator.lineStyle(3, 0xFFE000, 1);
+                this.selectionIndicator.strokeCircle(0, 0, 18);
+                this.selectionIndicator.setVisible(false);
+
+                const btnX = 730;
+                // Botão Grimório
+                const bgG = this.add.sprite(btnX, 530, 'btn_ui').setInteractive({ useHandCursor: true }).setScrollFactor(0).setDepth(1000);
+                this.add.text(btnX, 530, '📖', { fontSize: '32px' }).setOrigin(0.5).setScrollFactor(0).setDepth(1001);
+                bgG.on('pointerdown', () => this.openGrimoire());
+
+                // Botão Bruxa
+                const bgW = this.add.sprite(btnX, 455, 'btn_ui_purple').setInteractive({ useHandCursor: true }).setScrollFactor(0).setDepth(1000);
+                this.add.text(btnX, 455, '🧪', { fontSize: '32px' }).setOrigin(0.5).setScrollFactor(0).setDepth(1001);
+                bgW.on('pointerdown', () => this.openWitchEvent());
+
+                // Botão Masmorra
+                const bgD = this.add.sprite(btnX, 380, 'btn_ui_dark').setInteractive({ useHandCursor: true }).setScrollFactor(0).setDepth(1000);
+                this.add.text(btnX, 380, '⚔️', { fontSize: '32px' }).setOrigin(0.5).setScrollFactor(0).setDepth(1001);
+                bgD.on('pointerdown', () => this.openDungeonEvent());
+            }
+
+            setupGrimoire() {
+                this.bookContainer = this.add.container(400, 300).setDepth(2000).setScrollFactor(0).setVisible(false);
+                this.bookOverlay = this.add.graphics().fillStyle(0x000000, 0.75).fillRect(-400, -300, 800, 600);
+                
+                // NOVO SISTEMA: Apenas a Capa e a Página Unificada (sem metades separadas)
+                this.bookPivot = this.add.container(0, 0);
+                
+                this.bookCover = this.add.sprite(0, 0, 'tex_cover').setOrigin(0.5);
+                this.bookBg = this.add.sprite(0, 0, 'book_open').setOrigin(0.5).setVisible(false);
+
+                this.bookPivot.add([this.bookCover, this.bookBg]);
+                
+                this.wizard = this.add.sprite(-330, 80, 'wizard').setScale(0);
+
+                this.bookContent = this.add.container(0, 0).setVisible(false);
+                
+                // CONTEÚDO CENTRALIZADO (Páginas juntas em um único fluxo)
+                this.bookTitle = this.add.text(0, -180, 'GRIMÓRIO ARCANO', { 
+                    fontSize: '28px', fill: '#4E342E', fontWeight: '900' 
+                }).setOrigin(0.5);
+
+                this.bookQuestion = this.add.text(0, -80, this.grimoireData.text, { 
+                    fontSize: '26px', fill: '#3E2723', fontWeight: 'bold', align: 'center', wordWrap: { width: 600 } 
+                }).setOrigin(0.5);
+
+                this.bookInputLabel = this.add.text(0, 30, 'Responda digitando:', { 
+                    fontSize: '18px', fill: '#8D6E63', fontWeight: 'bold' 
+                }).setOrigin(0.5);
+
+                this.bookInputDisplay = this.add.text(0, 90, '', { 
+                    fontSize: '32px', fill: '#1CB0F6', fontWeight: '900', backgroundColor: '#EFEBE9', padding: {x: 20, y: 10} 
+                }).setOrigin(0.5);
+
+                this.bookHintDisplay = this.add.text(0, 160, '', { 
+                    fontSize: '18px', fill: '#FF4B4B', fontWeight: 'bold', align: 'center', wordWrap: { width: 500 }
+                }).setOrigin(0.5);
+
+                const closeBtn = this.add.text(320, -210, '✕', { 
+                    fontSize: '24px', fill: '#ffffff', backgroundColor: '#FF4B4B', padding: {x: 12, y: 8} 
+                }).setOrigin(0.5).setInteractive({ useHandCursor: true }).on('pointerdown', () => this.closeGrimoire());
+
+                this.bookContent.add([this.bookTitle, this.bookQuestion, this.bookInputLabel, this.bookInputDisplay, this.bookHintDisplay, closeBtn]);
+                this.bookContainer.add([this.bookOverlay, this.bookPivot, this.bookBg, this.wizard, this.bookContent]);
+            }
+
+            setupWitchHouse() {
+                this.witchContainer = this.add.container(400, 300).setDepth(2000).setScrollFactor(0).setVisible(false);
+                const overlay = this.add.graphics().fillStyle(0x000000, 0.85).fillRect(-400, -300, 800, 600);
+                
+                // Painel de Fundo da Bruxa (Ecrã Inteiro)
+                const panel = this.add.sprite(0, 0, 'witch_panel').setScale(0);
+                this.witchPanelSprite = panel;
+
+                const shelf = this.add.sprite(0, 100, 'shelf').setScale(0);
+                this.witchSprite = this.add.sprite(-300, -200, 'witch').setScale(0);
+                
+                this.witchInstruction = this.add.text(0, -200, this.witchSortingData.instruction, { 
+                    fontSize: '28px', fill: '#ffffff', fontFamily: 'Arial', fontWeight: '900', align: 'center', wordWrap: { width: 600 }, stroke: '#4A148C', strokeThickness: 6 
+                }).setOrigin(0.5);
+
+                this.potionSprites = [];
+                this.potionSlots = [-250, -80, 80, 250];
+                
+                let shuffledItems = Phaser.Utils.Array.Shuffle([...this.witchSortingData.items]);
+
+                shuffledItems.forEach((item, index) => {
+                    const container = this.add.container(this.potionSlots[index], 50);
+                    
+                    const liquid = this.add.sprite(0, 0, 'potion_liquid').setTint(item.color);
+                    const glass = this.add.sprite(0, 0, 'potion_glass').setInteractive({ draggable: true, useHandCursor: true });
+                    const details = this.add.sprite(0, 0, 'potion_details');
+                    const label = this.add.text(0, 55, item.label, { fontSize: '18px', fill: '#fff', fontWeight: '900', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5);
+                    
+                    container.add([liquid, glass, details, label]);
+                    container.setData('itemId', item.id);
+                    container.setData('originalX', this.potionSlots[index]);
+                    this.potionSprites.push(container);
+                    this.setupPotionDrag(container);
+                });
+
+                this.btnConfirmWitch = this.add.text(0, 220, 'CONFERIR POÇÕES', { 
+                    fontSize: '24px', fill: '#ffffff', backgroundColor: '#58CC02', padding: {x: 30, y: 15}, fontWeight: '900', stroke: '#000', strokeThickness: 2 
+                }).setOrigin(0.5).setInteractive({ useHandCursor: true }).on('pointerdown', () => this.validateSorting());
+                
+                const closeBtn = this.add.text(350, -250, '✕', { 
+                    fontSize: '24px', fill: '#ffffff', backgroundColor: '#FF4B4B', padding: {x: 12, y: 8}, fontWeight: 'bold' 
+                }).setOrigin(0.5).setInteractive({ useHandCursor: true }).on('pointerdown', () => this.closeWitchEvent());
+                
+                this.witchContainer.add([overlay, panel, shelf, this.witchSprite, this.witchInstruction, ...this.potionSprites, this.btnConfirmWitch, closeBtn]);
+                this.shelfSprite = shelf;
+            }
+
+            setupDungeon() {
+                this.dungeonContainer = this.add.container(400, 300).setDepth(2000).setScrollFactor(0).setVisible(false);
+                this.dungeonOverlay = this.add.graphics().fillStyle(0x000000, 0.85).fillRect(-400, -300, 800, 600);
+                
+                // Dividimos a parede em duas portas
+                this.dungeonDoorLeft = this.add.sprite(-150, 0, 'dungeon_door_left').setScale(0);
+                this.dungeonDoorRight = this.add.sprite(150, 0, 'dungeon_door_right').setScale(0);
+                
+                this.explorerSprite = this.add.sprite(-320, 120, 'explorer').setScale(0);
+
+                this.dungeonHealthBg = this.add.graphics().fillStyle(0x333333).fillRoundedRect(-150, -250, 300, 20, 10);
+                this.dungeonHealthFill = this.add.graphics();
+                this.dungeonInstruction = this.add.text(0, -210, this.dungeonData.instruction, { fontSize: '22px', fill: '#E0E0E0', fontWeight: '900', align: 'center', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5);
+
+                this.leftNodes = [];
+                this.rightNodes = [];
+                this.connectionGraphics = this.add.graphics();
+
+                const startY = -120;
+                const spacingY = 70;
+
+                this.dungeonData.left.forEach((item, i) => {
+                    const node = this.createDungeonNode(-220, startY + (i * spacingY), item, true);
+                    this.leftNodes.push(node);
+                });
+
+                this.dungeonData.right.forEach((item, i) => {
+                    const node = this.createDungeonNode(220, startY + (i * spacingY), item, false);
+                    this.rightNodes.push(node);
+                });
+
+                this.closeDungeonBtn = this.add.text(320, -260, '✕', { fontSize: '24px', fill: '#fff', backgroundColor: '#8B0000', padding: {x: 8, y: 4} }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+                this.closeDungeonBtn.on('pointerdown', () => this.closeDungeonEvent());
+                
+                // ORDEM DE RENDERIZAÇÃO CORRIGIDA: 
+                // 1. Fundo, portas e UI base
+                this.dungeonContainer.add([this.dungeonOverlay, this.dungeonDoorLeft, this.dungeonDoorRight, this.explorerSprite, this.dungeonHealthBg, this.dungeonHealthFill, this.dungeonInstruction, this.connectionGraphics]);
+                // 2. Colunas de palavras por cima do fundo
+                this.leftNodes.forEach(n => this.dungeonContainer.add(n));
+                this.rightNodes.forEach(n => this.dungeonContainer.add(n));
+                // 3. Botão de fechar por cima de tudo
+                this.dungeonContainer.add(this.closeDungeonBtn);
+            }
+
+            // --- LÓGICA DE EVENTOS ---
+
+            openGrimoire() {
+                if (this.isBookOpen || this.isWitchOpen || this.isDungeonOpen || this.gameOver) return;
+                this.isBookOpen = true;
+                this.bookContainer.setVisible(true);
+                
+                // Prepara a animação: Tudo perfeitamente no centro (X = 0)
+                this.bookPivot.setX(0).setScale(0).setVisible(true);
+                this.bookCover.setVisible(true);
+                this.bookCover.scaleX = 1;
+                this.bookCover.setX(0); 
+                this.bookBg.setVisible(false);
+                this.bookBg.scaleX = 0; // Preparado para expandir do centro
+
+                this.bookContent.setVisible(false).setAlpha(0).setScale(1);
+                this.wizard.setScale(0).setX(-360);
+
+                this.currentInput = "";
+                this.errorCount = 0;
+                this.bookInputDisplay.setVisible(true).clearTint();
+                this.bookQuestion.setText(this.grimoireData.text).clearTint();
+                this.updateInputDisplay();
+                this.bookHintDisplay.setText("");
+
+                this.playMagicSound();
+
+                // PASSO 1: O livro fechado surge no centro
+                this.tweens.add({
+                    targets: this.bookPivot,
+                    scale: 1,
+                    duration: 400,
+                    ease: 'Back.easeOut',
+                    onComplete: () => {
+                        
+                        // PASSO 2: A Capa gira sobre si mesma no centro (Card Flip)
+                        this.tweens.add({
+                            targets: this.bookCover,
+                            scaleX: 0,
+                            duration: 300,
+                            ease: 'Cubic.easeIn',
+                            onComplete: () => {
+                                // Esconde a capa e mostra a página unificada (achatada)
+                                this.bookCover.setVisible(false);
+                                this.bookBg.setVisible(true);
+
+                                // PASSO 3: A página única expande magicamente a partir do centro
+                                this.tweens.add({
+                                    targets: this.bookBg,
+                                    scaleX: 1,
+                                    duration: 350,
+                                    ease: 'Back.easeOut',
+                                    onComplete: () => {
+                                        // PASSO 4: Mostra os textos e o feiticeiro
+                                        this.bookContent.setVisible(true);
+                                        this.tweens.add({ targets: this.bookContent, alpha: 1, duration: 300 });
+                                        this.tweens.add({ targets: this.wizard, scale: 0.8, x: -360, duration: 500, ease: 'Back.easeOut' });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+
+            closeGrimoire() {
+                this.tweens.add({ 
+                    targets: this.bookContainer, 
+                    alpha: 0, 
+                    duration: 300, 
+                    onComplete: () => { 
+                        this.bookContainer.setVisible(false).setAlpha(1); 
+                        this.isBookOpen = false; 
+                    } 
+                });
+            }
+
+            openWitchEvent() {
+                if (this.isWitchOpen || this.isBookOpen || this.isDungeonOpen || this.gameOver) return;
+                this.isWitchOpen = true;
+                this.witchContainer.setVisible(true).setAlpha(0);
+                this.tweens.add({ targets: this.witchContainer, alpha: 1, duration: 300 });
+                this.tweens.add({ targets: [this.witchPanelSprite, this.shelfSprite], scale: 1, duration: 500, ease: 'Back.easeOut' });
+                this.tweens.add({ targets: this.witchSprite, scale: 1, duration: 600, ease: 'Bounce.easeOut', delay: 100 });
+                this.playMagicSound();
+            }
+
+            closeWitchEvent() {
+                this.tweens.add({ targets: this.witchContainer, alpha: 0, duration: 300, onComplete: () => { this.witchContainer.setVisible(false); this.isWitchOpen = false; } });
+            }
+
+            resetDungeonState() {
+                this.completedPairs = [];
+                this.dungeonErrors = 0;
+                this.dungeonHp = 100;
+                this.updateDungeonHealth();
+                this.dungeonInstruction.setText(this.dungeonData.instruction);
+                this.explorerSprite.clearTint();
+                
+                this.leftNodes.forEach(n => { n.setData('solved', false); n.getAt(0).clearTint(); n.setAlpha(1); });
+                this.rightNodes.forEach(n => { n.setData('solved', false); n.getAt(0).clearTint(); n.setAlpha(1); });
+                
+                this.connectionGraphics.clear().setAlpha(1);
+                this.dungeonDoorLeft.setX(-150).setScale(0).setAlpha(1);
+                this.dungeonDoorRight.setX(150).setScale(0).setAlpha(1);
+                this.dungeonOverlay.setAlpha(1);
+                
+                this.explorerSprite.setAlpha(1).setScale(0);
+                this.dungeonHealthBg.setAlpha(1);
+                this.dungeonHealthFill.setAlpha(1);
+                this.dungeonInstruction.setAlpha(1);
+                if (this.closeDungeonBtn) this.closeDungeonBtn.setAlpha(1);
+                this.dungeonContainer.setAlpha(1);
+            }
+
+            openDungeonEvent() {
+                if (this.isDungeonOpen || this.isBookOpen || this.isWitchOpen || this.gameOver) return;
+                this.isDungeonOpen = true;
+                this.dungeonContainer.setVisible(true).setAlpha(0);
+                this.resetDungeonState();
+                
+                this.tweens.add({ targets: this.dungeonContainer, alpha: 1, duration: 400 });
+                this.tweens.add({ targets: [this.dungeonDoorLeft, this.dungeonDoorRight], scale: 1, duration: 600, ease: 'Back.easeOut' });
+                this.tweens.add({ targets: this.explorerSprite, scale: 0.8, duration: 800, ease: 'Bounce.easeOut' });
+                this.playMagicSound();
+            }
+
+            closeDungeonEvent() {
+                this.tweens.add({ targets: this.dungeonContainer, alpha: 0, duration: 300, onComplete: () => { 
+                    this.dungeonContainer.setVisible(false); 
+                    this.isDungeonOpen = false; 
+                    this.resetDungeonState();
+                }});
+            }
+
+            // --- AUXILIARES DO JOGO ---
+
+            renderQuestionSystem() {
+                if (!this.questionData || !this.questionData.question) return;
+                this.add.text(400, 420, this.questionData.question, { 
+                    fontSize: '24px', fill: '#ffffff', fontWeight: 'bold', align: 'center', 
+                    wordWrap: { width: 380 }, stroke: '#000', strokeThickness: 5 
+                }).setOrigin(0.5).setDepth(-3);
+                
+                this.pathLabels = [];
+                this.questionData.paths.forEach(p => {
+                    const l = this.add.text(p.x, 320, `Caminho ${p.id}:\n${p.text}`, { 
+                        fontSize: '20px', fill: '#FFD700', fontWeight: '900', align: 'center', 
+                        backgroundColor: '#00000066', padding: {x: 12, y: 12}, stroke: '#000', strokeThickness: 4 
+                    }).setOrigin(0.5).setAlpha(0).setDepth(2);
+                    this.pathLabels.push({ label: l, data: p });
+                });
+            }
+
+            handleQuestionLogic() {
+                if (this.hasPlayerCommitted) return;
+                this.pathLabels.forEach(obj => {
+                    const dist = Phaser.Math.Distance.Between(this.worker.x, this.worker.y, obj.data.x, 320);
+                    obj.label.setAlpha(Phaser.Math.Clamp(1 - (dist - 200) / 150, 0, 1));
+                });
+                if (this.worker.y < 250) {
+                    const chosen = (this.worker.x < 400) ? this.questionData.paths[0] : this.questionData.paths[1];
+                    this.commitChoice(chosen);
+                }
+            }
+
+            commitChoice(path) {
+                this.hasPlayerCommitted = true;
+                this.cameras.main.shake(200, 0.005);
+                this.pathLabels.forEach(obj => {
+                    if (obj.data === path) { 
+                        this.tweens.add({ targets: obj.label, alpha: 1, y: 220, duration: 500 }); 
+                        obj.label.setTint(path.isCorrect ? 0x58CC02 : 0xFF4B4B); 
+                    } else {
+                        obj.label.setAlpha(0);
+                    }
+                });
+                if (!path.isCorrect) this.time.delayedCall(2000, () => this.spawnEnemiesNearPlayer(2));
+            }
+
+            createDungeonNode(x, y, item, isLeft) {
+                const container = this.add.container(x, y);
+                const bg = this.add.sprite(0, 0, 'dungeon_node').setInteractive({ useHandCursor: true });
+                const text = this.add.text(0, 0, item.text, { fontSize: '18px', fill: '#fff', fontWeight: 'bold' }).setOrigin(0.5);
+                container.add([bg, text]);
+                container.setData('id', item.id);
+                container.setData('isLeft', isLeft);
+                bg.on('pointerdown', () => this.handleNodeClick(container));
+                return container;
+            }
+
+            handleNodeClick(node) {
+                if (node.getData('solved')) return;
+                if (node.getData('isLeft')) {
+                    if (this.selectedLeft) this.selectedLeft.getAt(0).clearTint();
+                    this.selectedLeft = node;
+                    node.getAt(0).setTint(0x00ff00);
+                } else {
+                    if (!this.selectedLeft) return;
+                    this.validateAssociation(this.selectedLeft, node);
+                }
+            }
+
+            validateAssociation(leftNode, rightNode) {
+                if (this.dungeonData.correctPairs[leftNode.getData('id')] === rightNode.getData('id')) {
+                    this.playSuccessSound();
+                    leftNode.setData('solved', true); rightNode.setData('solved', true);
+                    this.completedPairs.push({ l: leftNode, r: rightNode });
+                    this.selectedLeft = null;
+                    if (this.completedPairs.length === this.dungeonData.left.length) this.finishDungeon();
+                } else {
+                    this.dungeonHp -= 15;
+                    this.cameras.main.shake(200, 0.01);
+                    this.playErrorSound();
+                    this.selectedLeft = null;
+                    leftNode.getAt(0).clearTint();
+                    this.updateDungeonHealth();
+                    if (this.dungeonHp <= 0) this.failDungeon();
+                }
+            }
+
+            drawDungeonConnections() {
+                this.connectionGraphics.clear();
+                this.connectionGraphics.lineStyle(4, 0x58CC02, 0.6);
+                this.completedPairs.forEach(p => {
+                    this.connectionGraphics.beginPath().moveTo(p.l.x, p.l.y).lineTo(p.r.x, p.r.y).strokePath();
+                });
+                if (this.selectedLeft) {
+                    this.connectionGraphics.lineStyle(2, 0xFFFF00, 0.4);
+                    this.connectionGraphics.beginPath().moveTo(this.selectedLeft.x, this.selectedLeft.y).lineTo(this.input.x - 400, this.input.y - 300).strokePath();
+                }
+            }
+
+            updateDungeonHealth() {
+                this.dungeonHealthFill.clear();
+                const percent = Math.max(0, this.dungeonHp / 100);
+                this.dungeonHealthFill.fillStyle(percent > 0.4 ? 0x58CC02 : 0xFF4B4B).fillRoundedRect(-148, -248, 296 * percent, 16, 8);
+            }
+
+            finishDungeon() { 
+                this.woodCount += 250; 
+                this.uiWood.setText(`Madeira: ${this.woodCount}`); 
+                this.playSuccessSound();
+
+                const uiElements = [this.explorerSprite, this.dungeonHealthBg, this.dungeonHealthFill, this.dungeonInstruction, this.connectionGraphics, this.closeDungeonBtn];
+                this.leftNodes.forEach(n => uiElements.push(n));
+                this.rightNodes.forEach(n => uiElements.push(n));
+
+                this.tweens.add({
+                    targets: uiElements,
+                    alpha: 0,
+                    duration: 400,
+                    onComplete: () => {
+                        this.cameras.main.shake(400, 0.01);
+                        this.synthSound(100, 800, 'sawtooth'); 
+                        
+                        this.tweens.add({ targets: this.dungeonDoorLeft, x: -450, duration: 1200, ease: 'Power2' });
+                        this.tweens.add({ targets: this.dungeonDoorRight, x: 450, duration: 1200, ease: 'Power2' });
+
+                        this.tweens.add({
+                            targets: this.dungeonOverlay,
+                            alpha: 0,
+                            duration: 800,
+                            delay: 400,
+                            onComplete: () => {
+                                this.dungeonContainer.setVisible(false);
+                                this.isDungeonOpen = false;
+                                this.resetDungeonState();
+                            }
+                        });
+                    }
+                });
+            }
+
+            failDungeon() { 
+                this.dungeonInstruction.setText("O EXPLORADOR NÃO RESISTIU...");
+                this.explorerSprite.setTint(0x333333);
+                this.time.delayedCall(1500, () => this.closeDungeonEvent()); 
+            }
+
+            setupPotionDrag(p) {
+                const glass = p.getAt(1);
+                this.input.setDraggable(glass);
+                
+                glass.on('dragstart', (pointer) => { 
+                    if(p.getData('locked')) return; 
+                    this.witchContainer.bringToTop(p); 
+                    p.setScale(1.1); 
+                    
+                    p.setData('dragOffsetX', p.x - (pointer.x - 400));
+                    p.setData('dragOffsetY', p.y - (pointer.y - 300));
+                });
+                
+                glass.on('drag', (pointer) => { 
+                    if(p.getData('locked')) return; 
+                    
+                    p.x = (pointer.x - 400) + p.getData('dragOffsetX'); 
+                    p.y = (pointer.y - 300) + p.getData('dragOffsetY'); 
+                });
+                
+                glass.on('dragend', () => { 
+                    if(p.getData('locked')) return; 
+                    p.setScale(1); 
+                    this.resolvePotionDrop(p); 
+                });
+            }
+
+            resolvePotionDrop(dp) {
+                let closest = 0, minD = 9999;
+                this.potionSlots.forEach((s, i) => { const d = Math.abs(dp.x - s); if(d < minD) { minD = d; closest = i; } });
+                const tX = this.potionSlots[closest];
+                const oP = this.potionSprites.find(p => p !== dp && p.x === tX);
+                if(oP) { const oX = dp.getData('originalX'); this.tweens.add({ targets: oP, x: oX, duration: 200 }); oP.setData('originalX', oX); }
+                this.tweens.add({ targets: dp, x: tX, y: 50, duration: 200, ease: 'Back.easeOut' }); dp.setData('originalX', tX);
+            }
+
+            validateSorting() {
+                const order = this.potionSlots.map(s => { const p = this.potionSprites.find(ps => ps.x === s); return p ? p.getData('itemId') : null; });
+                
+                if(JSON.stringify(order) === JSON.stringify(this.witchSortingData.correctOrder)) { 
+                    this.playSuccessSound();
+                    this.showFloatingText(400, 200, "ORDEM PERFEITA!", 0x58CC02, 32);
+                    this.woodCount += 100; 
+                    this.uiWood.setText(`Madeira: ${this.woodCount}`); 
+                    
+                    this.potionSprites.forEach(p => {
+                        this.tweens.add({ targets: p, y: p.y - 20, yoyo: true, repeat: 3, duration: 150 });
+                        
+                        const liquid = p.getAt(0);
+                        this.tweens.add({ targets: liquid, alpha: 0.5, yoyo: true, repeat: 5, duration: 100 });
+
+                        const potionColor = liquid.tintTopLeft;
+                        const bubbleEmitter = this.add.particles(400 + p.x, 300 + p.y - 40, 'particle_bubble', {
+                            speed: { min: 40, max: 120 },
+                            angle: { min: 250, max: 290 },
+                            scale: { start: 1, end: 0 },
+                            tint: potionColor,
+                            lifespan: 1200,
+                            gravityY: -100,
+                            frequency: 40,
+                            duration: 1200 
+                        }).setDepth(2005).setScrollFactor(0);
+
+                        this.time.delayedCall(2500, () => bubbleEmitter.destroy());
+                    });
+                    
+                    this.time.delayedCall(2500, () => this.closeWitchEvent()); 
+                }
+                else { 
+                    this.witchErrorCount++;
+                    this.cameras.main.shake(200, 0.005); 
+                    this.playErrorSound(); 
+                    
+                    this.potionSprites.forEach(p => {
+                        this.tweens.add({ targets: p, x: p.x + 8, yoyo: true, repeat: 3, duration: 40 });
+                        
+                        const liquid = p.getAt(0);
+                        const originalColor = liquid.tintTopLeft;
+                        
+                        liquid.setTint(0x333333);
+                        this.time.delayedCall(400, () => liquid.setTint(originalColor));
+
+                        const smokeEmitter = this.add.particles(400 + p.x, 300 + p.y, 'particle_bubble', {
+                            speed: { min: 20, max: 80 },
+                            angle: { min: 0, max: 360 },
+                            scale: { start: 1.2, end: 0 },
+                            tint: 0x4A148C,
+                            alpha: { start: 0.8, end: 0 },
+                            lifespan: 800,
+                            frequency: 15,
+                            duration: 200
+                        }).setDepth(2005).setScrollFactor(0);
+
+                        this.time.delayedCall(1000, () => smokeEmitter.destroy());
+                    });
+                    
+                    this.applyWitchHints();
+                }
+            }
+
+            applyWitchHints() {
+                if (this.witchErrorCount >= 3) {
+                    this.potionSlots.forEach((s, i) => {
+                        const p = this.potionSprites.find(ps => ps.x === s);
+                        if (p && p.getData('itemId') === this.witchSortingData.correctOrder[i]) {
+                            if (!p.getData('locked')) {
+                                p.setData('locked', true);
+                                p.setAlpha(0.6); 
+                                this.showFloatingText(400, 400, "Poção Fixada!", 0xFFD700);
+                            }
+                        }
+                    });
+                }
+            }
+
+            handleTyping(e) {
+                if (!this.isBookOpen) return;
+                if (e.keyCode === 8) this.currentInput = this.currentInput.slice(0, -1);
+                else if (e.keyCode === 13) this.validateGrimoire();
+                else if (e.key.length === 1 && /[a-zA-Z0-9 ]/.test(e.key)) this.currentInput += e.key;
+                this.updateInputDisplay();
+            }
+
+            updateInputDisplay() {
+                if (!this.isBookOpen) return;
+                this.bookInputDisplay.setText(this.currentInput.toUpperCase() + (this.cursorVisible ? "_" : " "));
+            }
+
+            validateGrimoire() {
+                if (this.currentInput.trim().toLowerCase() === this.grimoireData.answer.toLowerCase()) {
+                    this.bookQuestion.setText(this.grimoireData.fullText).setTint(0x58CC02);
+                    this.woodCount += 50; this.uiWood.setText(`Madeira: ${this.woodCount}`);
+                    this.time.delayedCall(2000, () => this.closeGrimoire());
+                } else {
+                    this.cameras.main.shake(150, 0.005); this.bookInputDisplay.setTint(0xFF4B4B);
+                    this.time.delayedCall(500, () => this.bookInputDisplay.clearTint());
+                }
+            }
+
+            handleCameraMovement() {
+                const camSpeed = 10;
+                if (this.wasd.left.isDown) this.cameras.main.scrollX -= camSpeed;
+                else if (this.wasd.right.isDown) this.cameras.main.scrollX += camSpeed;
+                if (this.wasd.up.isDown) this.cameras.main.scrollY -= camSpeed;
+                else if (this.wasd.down.isDown) this.cameras.main.scrollY += camSpeed;
+            }
+
+            handleWorkerMovement() {
+                if (!this.workerTarget || this.worker.state === 'IDLE' || this.worker.state === 'CHOPPING') return;
+                const d = Phaser.Math.Distance.Between(this.worker.x, this.worker.y, this.workerTarget.x, this.workerTarget.y);
+                if (this.worker.state === 'MOVING' && d < 5) { 
+                    this.worker.body.reset(this.workerTarget.x, this.workerTarget.y); 
+                    this.worker.state = 'IDLE'; 
+                    this.worker.anims.stop(); 
+                    this.worker.setTexture('worker_idle'); 
+                }
+                else if (this.worker.state === 'MOVING_TO_TREE' && d < 50) { 
+                    this.worker.body.stop(); 
+                    this.startChopping(this.workerTarget); 
+                }
+            }
+
+            handleEnemies() {
+                this.enemies.getChildren().forEach(e => {
+                    if (!e.active) return;
+                    const d = Phaser.Math.Distance.Between(e.x, e.y, this.worker.x, this.worker.y);
+                    if (d <= 40) { 
+                        e.body.stop(); 
+                        if (this.time.now - (e.lastAttack || 0) > 1000) { this.takeDamage(15, e); e.lastAttack = this.time.now; } 
+                    }
+                    else if (d <= 400) { 
+                        this.physics.moveToObject(e, this.worker, 80); 
+                        e.play('goblin_walk', true); 
+                    }
+                    else { 
+                        e.body.stop(); 
+                        e.anims.stop(); 
+                        e.setTexture('goblin_idle'); 
+                    }
+                });
+            }
+
+            takeDamage(amount, attacker) {
+                if (this.worker.state === 'DEAD' || this.gameOver) return;
+                this.worker.hp -= amount; this.uiHealth.setText(`HP: ${this.worker.hp}/100`); this.worker.setTint(0xffaaaa);
+                this.time.delayedCall(150, () => this.worker.clearTint());
+                if (this.worker.hp <= 0) this.triggerGameOver();
+            }
+
+            drawHealthBar() {
+                this.healthBar.clear(); if (this.worker.state === 'DEAD') return;
+                const hpP = this.worker.hp / 100;
+                this.healthBar.fillStyle(0x333333, 1).fillRoundedRect(this.worker.x - 20, this.worker.y - 35, 40, 8, 4);
+                this.healthBar.fillStyle(hpP < 0.3 ? 0xFF4B4B : 0x58CC02, 1).fillRoundedRect(this.worker.x - 19, this.worker.y - 34, Math.max(2, 38 * hpP), 6, 3);
+            }
+
+            triggerGameOver() { this.gameOver = true; this.worker.state = 'DEAD'; this.scene.restart(); }
+
+            setupInputs() {
+                this.input.on('gameobjectdown', (pointer, gO) => { 
+                    if (this.gameOver || this.isBookOpen || this.isWitchOpen || this.isDungeonOpen) return;
+                    if (gO === this.worker) this.selectWorker(); 
+                    else if (gO.getData('type') === 'tree' && this.workerSelected) this.commandToChop(gO); 
+                });
+                this.input.on('pointerdown', (p, cO) => { 
+                    if (this.gameOver || this.isBookOpen || this.isWitchOpen || this.isDungeonOpen || cO.length > 0) return;
+                    if (this.workerSelected) this.commandToMove(p.worldX, p.worldY); 
+                });
+            }
+
+            selectWorker() { this.workerSelected = true; this.selectionIndicator.setVisible(true); }
+
+            commandToMove(x, y) { if (this.worker.state === 'CHOPPING') this.cancelChopping(); this.worker.state = 'MOVING'; this.workerTarget = { x: x, y: y }; this.physics.moveTo(this.worker, x, y, 120); this.worker.play('worker_walk', true); }
+            commandToChop(tree) { if (this.worker.state === 'CHOPPING') this.cancelChopping(); this.worker.state = 'MOVING_TO_TREE'; this.workerTarget = tree; this.physics.moveToObject(this.worker, tree, 120); this.worker.play('worker_walk', true); }
+            startChopping(tree) { 
+                this.worker.state = 'CHOPPING'; 
+                this.worker.anims.stop(); 
+                this.worker.setTexture('worker_idle'); 
+                this.tweens.add({ targets: this.worker, y: this.worker.y - 8, yoyo: true, repeat: -1, duration: 150 }); 
+                this.choppingTimer = this.time.delayedCall(2000, () => this.finishChopping(tree)); 
+            }
+            cancelChopping() { if (this.choppingTimer) { this.choppingTimer.remove(); this.choppingTimer = null; } this.tweens.killTweensOf(this.worker); }
+            finishChopping(tree) { 
+                this.cancelChopping(); 
+                this.worker.state = 'IDLE'; 
+                this.worker.anims.stop(); 
+                this.worker.setTexture('worker_idle'); 
+                this.leafEmitter.explode(15, tree.x, tree.y - 20); 
+                this.stumps.create(tree.x, tree.y, 'stump').setOrigin(0.5, 0.8).setData('ySort', true); 
+                tree.destroy(); 
+                this.woodCount += 1; 
+                this.uiWood.setText(`Madeira: ${this.woodCount}`); 
+            }
+
+            // --- GERAÇÃO DE TEXTURAS ---
+
+            generateTextures() {
+                const g = this.make.graphics({x: 0, y: 0, add: false});
+                g.fillStyle(0x1CB0F6).fillRoundedRect(0, 0, 64, 64, 16).generateTexture('btn_ui', 64, 64).clear();
+                g.fillStyle(0x9C27B0).fillRoundedRect(0, 0, 64, 64, 16).generateTexture('btn_ui_purple', 64, 64).clear();
+                g.fillStyle(0x424242).fillRoundedRect(0, 0, 64, 64, 16).generateTexture('btn_ui_dark', 64, 64).clear();
+                
+                // TEXTURAS DAS PORTAS DA MASMORRA
+                // Porta Esquerda
+                g.fillStyle(0x212121).fillRoundedRect(0, 0, 300, 500, 20); g.fillRect(280, 0, 20, 500);
+                g.lineStyle(4, 0x000000, 0.8).strokeRect(2, 2, 296, 496);
+                g.fillStyle(0x424242).fillRect(50, 50, 80, 40).fillRect(150, 400, 100, 50);
+                g.fillStyle(0x000000).fillRect(290, 0, 10, 500); // Sombra do encontro
+                g.generateTexture('dungeon_door_left', 300, 500).clear();
+
+                // Porta Direita
+                g.fillStyle(0x212121).fillRoundedRect(0, 0, 300, 500, 20); g.fillRect(0, 0, 20, 500);
+                g.lineStyle(4, 0x000000, 0.8).strokeRect(2, 2, 296, 496);
+                g.fillStyle(0x424242).fillRect(100, 150, 80, 40).fillRect(50, 350, 100, 50);
+                g.fillStyle(0x111111).fillRect(0, 0, 5, 500); // Sombra do encontro
+                g.generateTexture('dungeon_door_right', 300, 500).clear();
+                
+                g.fillStyle(0x3E2723).fillRoundedRect(0, 0, 180, 50, 10).generateTexture('dungeon_node', 180, 50).clear();
+                this.drawSphere(g, 0x9E9E9E, 30, 0); g.generateTexture('explorer', 100, 100).clear();
+                
+                // NOVAS TEXTURAS DO GRIMÓRIO (Maiores, ocupando mais o ecrã)
+                g.fillStyle(0x3E2723).fillRoundedRect(0, 0, 360, 500, 20);
+                g.fillStyle(0x5D4037).fillRoundedRect(10, 10, 340, 480, 16);
+                g.fillStyle(0xFFD700).fillCircle(180, 250, 45); g.fillStyle(0x5D4037).fillCircle(180, 250, 35); g.fillStyle(0xFFD700).fillCircle(180, 250, 15);
+                g.generateTexture('tex_cover', 360, 500).clear();
+
+                // LIVRO UNIFICADO (720x500 para ocupar quase todo o ecrã de 800x600)
+                g.fillStyle(0x3E2723).fillRoundedRect(0, 0, 720, 500, 28); 
+                g.fillStyle(0x5D4037).fillRoundedRect(10, 10, 700, 480, 24); 
+                g.fillStyle(0xD7CCC8).fillRoundedRect(20, 20, 680, 460, 20); 
+                g.fillStyle(0xFFF9C4).fillRoundedRect(25, 25, 670, 450, 18); 
+                
+                g.fillStyle(0xFF4B4B).fillRect(460, 25, 24, 70); 
+                g.fillStyle(0xFFD700); g.fillCircle(50, 50, 8); g.fillCircle(670, 50, 8); g.fillCircle(50, 450, 8); g.fillCircle(670, 450, 8); 
+                g.generateTexture('book_open', 720, 500).clear();
+                
+                // --- NOVAS TEXTURAS CASA DA BRUXA ---
+                // Painel Modal (Ecrã Inteiro)
+                g.fillStyle(0x2A1B38, 1).fillRect(0, 0, 800, 600);
+                g.lineStyle(8, 0x4A148C, 1).strokeRect(4, 4, 792, 592);
+                g.generateTexture('witch_panel', 800, 600).clear();
+
+                // Prateleira atualizada
+                g.fillStyle(0x5D4037).fillRect(0, 0, 800, 20);
+                g.fillStyle(0x3E2723).fillRect(0, 20, 800, 10);
+                g.generateTexture('shelf', 800, 30).clear();
+
+                // Poções realistas (Vidro, Líquido e Detalhes)
+                g.fillStyle(0xffffff, 0.15).fillRoundedRect(22, 10, 16, 30, 4).fillCircle(30, 50, 26);
+                g.fillStyle(0x000000, 0.3).fillEllipse(30, 80, 40, 10); // Sombra
+                g.generateTexture('potion_glass', 60, 90).clear();
+
+                g.fillStyle(0xffffff, 1).fillRoundedRect(24, 25, 12, 15, 2).fillCircle(30, 50, 22);
+                g.generateTexture('potion_liquid', 60, 90).clear();
+
+                g.fillStyle(0x8D6E63, 1).fillRoundedRect(23, 2, 14, 12, 2); // Rolha
+                g.fillStyle(0xffffff, 0.4).fillEllipse(20, 40, 6, 15); // Reflexo do vidro
+                g.generateTexture('potion_details', 60, 90).clear();
+
+                this.drawSphere(g, 0x9C27B0, 30, 0); g.generateTexture('wizard', 100, 100).clear();
+                this.drawSphere(g, 0x4CAF50, 30, 0); g.generateTexture('witch', 100, 100).clear();
+                g.fillStyle(0x58CC02).fillRect(0, 0, 64, 64).generateTexture('grass', 64, 64).clear();
+                
+                // WORKER = SOLDADO PIXEL ART ANIMADO
+                this.drawSoldier(g, 0, 0); g.generateTexture('worker_idle', 32, 32).clear();
+                this.drawSoldier(g, -2, 1); g.generateTexture('worker_walk1', 32, 32).clear();
+                this.drawSoldier(g, -2, 2); g.generateTexture('worker_walk2', 32, 32).clear();
+                
+                this.drawSphere(g, 0xFF4B4B, 12, 0); g.generateTexture('goblin_idle', 32, 32).clear();
+                this.drawSphere(g, 0xFF4B4B, 12, -2); g.generateTexture('goblin_walk1', 32, 32).clear();
+                this.drawSphere(g, 0xFF4B4B, 12, 2); g.generateTexture('goblin_walk2', 32, 32).clear();
+                
+                g.fillStyle(0x58CC02).fillCircle(4, 4, 4).generateTexture('particle_leaf', 8, 8).clear();
+                g.fillStyle(0x795548).fillCircle(4, 4, 4).generateTexture('particle_wood', 8, 8).clear();
+                
+                // Nova textura da bolha para a poção mágica
+                g.fillStyle(0xffffff, 0.7).fillCircle(6, 6, 6).fillStyle(0xffffff, 1).fillCircle(4, 4, 2).generateTexture('particle_bubble', 12, 12).clear();
+            }
+
+            drawSoldier(g, bob, frame) {
+                // Sombra
+                g.fillStyle(0x000000, 0.2);
+                g.fillEllipse(16, 30, 20, 8);
+
+                // Pés
+                g.fillStyle(0x212121, 1);
+                let leftFootY = 28 + (frame === 1 ? -4 : 0);
+                let rightFootY = 28 + (frame === 2 ? -4 : 0);
+                g.fillCircle(12, leftFootY, 4);
+                g.fillCircle(20, rightFootY, 4);
+
+                // Espada (mão esquerda, fica atrás do corpo)
+                g.fillStyle(0x9E9E9E, 1); // lâmina
+                g.fillRect(6, 14 + bob, 2, 12);
+                g.fillStyle(0x4E342E, 1); // guarda e cabo
+                g.fillRect(4, 20 + bob, 6, 2);
+
+                // Corpo / Armadura
+                g.fillStyle(0x757575, 1); 
+                g.fillRoundedRect(10, 16 + bob, 12, 10, 3);
+                
+                // Cinto
+                g.fillStyle(0x3E2723, 1);
+                g.fillRect(10, 22 + bob, 12, 3);
+                g.fillStyle(0xFFD700, 1);
+                g.fillRect(14, 22 + bob, 4, 3);
+
+                // Cabeça e Face
+                g.fillStyle(0xFFCCBC, 1);
+                g.fillCircle(16, 12 + bob, 7);
+
+                // Olhos
+                g.fillStyle(0x000000, 1);
+                g.fillRect(13, 11 + bob, 2, 2);
+                g.fillRect(17, 11 + bob, 2, 2);
+
+                // Capacete
+                g.fillStyle(0x616161, 1);
+                g.beginPath();
+                g.arc(16, 11 + bob, 7.5, Math.PI, 0); // cúpula
+                g.fill();
+                g.fillRect(8, 10 + bob, 16, 2); // aba principal
+                g.fillRect(15, 10 + bob, 2, 5); // protetor nasal
+
+                // Pluma vermelha majestosa
+                g.fillStyle(0xE53935, 1);
+                g.fillRect(14, 2 + bob, 4, 4);
+                g.fillTriangle(16, 0 + bob, 12, 4 + bob, 20, 4 + bob);
+            }
+
+            drawSphere(g, color, size, bob) { g.fillStyle(0x000000, 0.2); g.fillEllipse(size+4, size*1.8, size * 1.5, size * 0.5); g.fillStyle(color, 1); g.fillCircle(size+4, size + bob, size); g.fillStyle(0xffffff, 0.3); g.fillCircle(size, size*0.7 + bob, size * 0.4); }
+            createTreeAt(x, y) { const t = this.trees.create(x, y, 'tree').setOrigin(0.5, 0.8).setInteractive().setData('type', 'tree').setData('ySort', true); t.body.setCircle(16).setOffset(8, 28); }
+            
+            createWorker(x, y) { 
+                this.worker = this.physics.add.sprite(x, y, 'worker_idle').setOrigin(0.5, 0.8).setInteractive().setData('ySort', true); 
+                this.worker.hp = 100; 
+                this.worker.body.setCircle(12).setOffset(4, 4); 
+                if (!this.anims.exists('worker_walk')) {
+                    this.anims.create({ key: 'worker_walk', frames: [{ key: 'worker_walk1' }, { key: 'worker_walk2' }], frameRate: 8, repeat: -1 }); 
+                }
+            }
+            
+            createParticleEmitters() { this.leafEmitter = this.add.particles(0, 0, 'particle_leaf', { speed: 100, scale: { start: 1, end: 0 }, lifespan: 800, emitting: false }); this.woodEmitter = this.add.particles(0, 0, 'particle_wood', { speed: 80, scale: { start: 1, end: 0 }, lifespan: 600, emitting: false }); }
+            drawMapPaths() { const g = this.add.graphics().setDepth(-5); g.fillStyle(0xE5D0B5, 1).fillRoundedRect(250, 350, 300, 180, 24); g.fillRect(150, 250, 150, 150); g.fillRect(500, 250, 150, 150); g.fillStyle(0xD4B895, 1).fillRoundedRect(150, 80, 100, 200, 16).fillRoundedRect(550, 80, 100, 200, 16); g.lineStyle(6, 0xFF4B4B, 0.8).beginPath().moveTo(150, 250).lineTo(250, 250).moveTo(550, 250).lineTo(650, 250).strokePath(); }
+            showFloatingText(x, y, message, color, size = 20) { const t = this.add.text(x, y, message, { fontSize: `${size}px`, fill: `#${color.toString(16)}`, fontWeight: '900', stroke: '#000', strokeThickness: 4 }).setOrigin(0.5).setDepth(3000).setScrollFactor(0); this.tweens.add({ targets: t, y: y - 50, alpha: 0, duration: 2500, onComplete: () => t.destroy() }); }
+            playMagicSound() { this.synthSound(600, 200, 'triangle'); }
+            playSuccessSound() { this.synthSound(800, 400, 'sine'); }
+            playErrorSound() { this.synthSound(200, 300, 'square'); }
+            synthSound(f, d, t) { try { if(this.audioCtx && this.audioCtx.state === 'suspended') this.audioCtx.resume(); if(!this.audioCtx) return; const o = this.audioCtx.createOscillator(); const g = this.audioCtx.createGain(); o.type = t; o.frequency.setValueAtTime(f, this.audioCtx.currentTime); g.gain.setValueAtTime(0.1, this.audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + d/1000); o.connect(g); g.connect(this.audioCtx.destination); o.start(); o.stop(this.audioCtx.currentTime + d/1000); } catch(e) {} }
+            
+            spawnEnemiesNearPlayer(count) { 
+                if (!this.anims.exists('goblin_walk')) {
+                    this.anims.create({ key: 'goblin_walk', frames: [{ key: 'goblin_walk1' }, { key: 'goblin_walk2' }], frameRate: 8, repeat: -1 }); 
+                }
+                for (let i = 0; i < count; i++) { 
+                    const e = this.enemies.create(this.worker.x + Phaser.Math.Between(-100, 100), this.worker.y + 100, 'goblin_idle').setOrigin(0.5, 0.8); 
+                    e.setData('ySort', true); e.body.setCircle(12); e.speed = 80; 
+                } 
+            }
+        }
+
+        const config = { type: Phaser.AUTO, width: 800, height: 600, parent: 'game-container', pixelArt: false, antialias: true, physics: { default: 'arcade', arcade: { debug: false } }, scene: MainScene };
+        const game = new Phaser.Game(config);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EduShooter - Exploração no Castelo</title>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Varela Round para o estilo Duolingo -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&family=Varela+Round&display=swap" rel="stylesheet">
+    <!-- Phaser 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+
+    <style>
+        :root {
+            /* Paleta Flat Design (Estilo Duolingo) */
+            --green: #58cc02;
+            --green-dark: #58a700;
+            --blue: #1cb0f6;
+            --blue-dark: #1899d6;
+            --red: #ff4b4b;
+            --red-dark: #ea2b2b;
+            --orange: #ff9600;
+            --orange-dark: #e58700;
+            --purple: #ce82ff;
+            --purple-dark: #a561cc;
+            --bg-color: #1a1a1a;
+            --text-main: #4b4b4b;
+            --text-light: #afafaf;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            font-family: 'Nunito', 'Varela Round', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #game-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Interface de Usuário (Sobreposta ao Jogo) */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none; /* Deixa os cliques passarem para o Phaser */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        /* Top Bar: Vida, Pontuação, Combo */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .stats-panel {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 20px;
+            border: 2px solid #e5e5e5;
+            border-bottom: 6px solid #e5e5e5;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .hp-box {
+            color: var(--red);
+            font-size: 24px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .score-box {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--orange);
+        }
+
+        .combo-box {
+            background: var(--orange);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 20px;
+            border-bottom: 4px solid var(--orange-dark);
+            transition: transform 0.1s;
+        }
+
+        .combo-bar-container {
+            width: 100px;
+            height: 10px;
+            background: #e5e5e5;
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .combo-bar {
+            height: 100%;
+            width: 100%;
+            background: var(--orange);
+            transition: width 0.1s linear;
+        }
+
+        /* Weapon Bar (Bottom) */
+        .weapon-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .weapon-slot {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-bottom: 6px solid #e5e5e5;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            color: var(--text-light);
+            position: relative;
+            transition: all 0.1s;
+            opacity: 0.5;
+        }
+
+        .weapon-slot .key-hint {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-bottom: 4px solid #e5e5e5;
+            color: var(--text-main);
+            width: 30px;
+            height: 30px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .weapon-slot.active {
+            opacity: 1;
+            transform: translateY(4px);
+            border-bottom-width: 2px;
+        }
+
+        /* Cores Dinâmicas das Armas baseadas nas Categorias */
+        .weapon-slot[data-id="animais"].active { border-color: var(--orange); color: var(--orange); }
+        .weapon-slot[data-id="animais"].active .key-hint { color: var(--orange); border-color: var(--orange); }
+        
+        .weapon-slot[data-id="frutas"].active { border-color: var(--red); color: var(--red); }
+        .weapon-slot[data-id="frutas"].active .key-hint { color: var(--red); border-color: var(--red); }
+        
+        .weapon-slot[data-id="verbos"].active { border-color: var(--blue); color: var(--blue); }
+        .weapon-slot[data-id="verbos"].active .key-hint { color: var(--blue); border-color: var(--blue); }
+        
+        .weapon-slot[data-id="numeros"].active { border-color: var(--purple); color: var(--purple); }
+        .weapon-slot[data-id="numeros"].active .key-hint { color: var(--purple); border-color: var(--purple); }
+
+        .weapon-slot.locked {
+            filter: grayscale(100%);
+            opacity: 0.3;
+        }
+
+        /* Panic Mode Effect */
+        #panic-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 100px rgba(255, 75, 75, 0);
+            transition: box-shadow 0.5s;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        #panic-overlay.active {
+            box-shadow: inset 0 0 150px rgba(255, 75, 75, 0.6);
+            animation: pulse-panic 1s infinite alternate;
+        }
+
+        @keyframes pulse-panic {
+            0% { box-shadow: inset 0 0 80px rgba(255, 75, 75, 0.4); }
+            100% { box-shadow: inset 0 0 150px rgba(255, 75, 75, 0.7); }
+        }
+
+        /* Menus Modais */
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 400px;
+            border-bottom: 10px solid #e5e5e5;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-box h1 {
+            color: var(--red);
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .modal-box p {
+            color: var(--text-main);
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 22px;
+            font-weight: 900;
+            border-radius: 20px;
+            border-bottom: 6px solid var(--green-dark);
+            cursor: pointer;
+            transition: all 0.1s;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .btn:active {
+            transform: translateY(6px);
+            border-bottom-width: 0px;
+            margin-bottom: 6px;
+        }
+
+        .hidden { display: none !important; }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .floating-text {
+            position: absolute;
+            font-weight: bold;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 50;
+            text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
+            animation: floatUp 1s forwards ease-out;
+        }
+
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Camada de Efeitos Visuais -->
+    <div id="panic-overlay"></div>
+
+    <!-- UI do Jogo (HTML/CSS Overlay) -->
+    <div id="ui-layer">
+        <div class="top-bar">
+            <div class="stats-panel">
+                <div class="hp-box" id="ui-hp">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="score-box">
+                    <i class="fa-solid fa-star"></i> <span id="ui-score">0</span>
+                </div>
+                <div>
+                    <div class="combo-box" id="ui-combo-text">x1 Combo</div>
+                    <div class="combo-bar-container">
+                        <div class="combo-bar" id="ui-combo-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="weapon-bar" id="ui-weapons">
+            <!-- Gerado via JS baseado no JSON -->
+        </div>
+    </div>
+
+    <!-- Tela de Início / Game Over -->
+    <div id="menu-overlay" class="modal-overlay">
+        <div class="modal-box">
+            <i class="fa-solid fa-chess-rook" style="font-size: 60px; color: var(--green); margin-bottom: 15px;"></i>
+            <h1 id="menu-title">EduShooter</h1>
+            <p id="menu-desc">Explore o castelo e lute com a arma certa!<br><br>WASD para mover<br>Setas ou Espaço para atirar<br>Scroll/1-4 troca arma.</p>
+            <p id="menu-score" class="hidden" style="font-weight: bold; color: var(--orange); font-size: 24px;"></p>
+            <button class="btn" id="btn-start">Explorar Castelo</button>
+        </div>
+    </div>
+
+    <div id="game-container"></div>
+
+    <script>
+        /**
+         * DADOS E CONFIGURAÇÃO (ARQUITETURA)
+         */
+        const CATEGORIES = [
+            { id: 'animais', name: 'Animais', color: 0xff9600, cssColor: 'var(--orange)', icon: 'fa-paw', tex: 'tex_animais', key: 1, type: 'ranged' },
+            { id: 'frutas', name: 'Frutas', color: 0xff4b4b, cssColor: 'var(--red)', icon: 'fa-apple-whole', tex: 'tex_frutas', key: 2, type: 'melee' },
+            { id: 'verbos', name: 'Verbos', color: 0x1cb0f6, cssColor: 'var(--blue)', icon: 'fa-bomb', tex: 'tex_verbos', key: 3, type: 'bomb' },
+            { id: 'numeros', name: 'Números', color: 0xce82ff, cssColor: 'var(--purple)', icon: 'fa-hashtag', tex: 'tex_numeros', key: 4, type: 'spear' }
+        ];
+
+        // Mapa do Castelo (W = Parede, . = Chão)
+        const CASTLE_MAP = [
+            "WWWWWWWWWWWWWWWWWWWWWWWWW",
+            "W...........W...........W",
+            "W.WWWWWWWWW.W.WWWWWWWWW.W",
+            "W.W.......W.W.W.......W.W",
+            "W.W.WWWWW.W.W.W.WWWWW.W.W",
+            "W.W.W...W.W...W.W...W.W.W",
+            "W...W.W.W.WWWWW.W.W.W...W",
+            "WWWWW.W.W.......W.W.WWWWW",
+            "W.....W.WWWWWWWWW.W.....W",
+            "W.WWWWW...........WWWWW.W",
+            "W.W...WWWWWWWWWWWWW...W.W",
+            "W.W.W...............W.W.W",
+            "W...W.WWWW.....WWWW.W...W",
+            "WWWWW.W...........W.WWWWW",
+            "W...W.WWWW.....WWWW.W...W",
+            "W.W.W...............W.W.W",
+            "W.W...WWWWWWWWWWWWW...W.W",
+            "W.WWWWW...........WWWWW.W",
+            "W.....W.WWWWWWWWW.W.....W",
+            "WWWWW.W.W.......W.W.WWWWW",
+            "W...W.W.W.WWWWW.W.W.W...W",
+            "W.W.W...W.W...W.W...W.W.W",
+            "W.W.WWWWW.W.W.W.WWWWW.W.W",
+            "W.W.......W.W.W.......W.W",
+            "W.WWWWWWWWW.W.WWWWWWWWW.W",
+            "W...........W...........W",
+            "WWWWWWWWWWWWWWWWWWWWWWWWW"
+        ];
+        const TILE_SIZE = 60;
+
+        // Estado Global da UI
+        const GameState = {
+            score: 0,
+            hp: 3,
+            combo: 1,
+            comboTimer: 0,
+            maxComboTime: 3000, 
+            activeWeaponIndex: 0,
+            unlockedCategories: 4,
+            isPanic: false
+        };
+
+        // UI DOM Elements
+        const DOM = {
+            hp: document.getElementById('ui-hp'),
+            score: document.getElementById('ui-score'),
+            comboText: document.getElementById('ui-combo-text'),
+            comboBar: document.getElementById('ui-combo-bar'),
+            weapons: document.getElementById('ui-weapons'),
+            panicOverlay: document.getElementById('panic-overlay'),
+            menu: document.getElementById('menu-overlay'),
+            btnStart: document.getElementById('btn-start'),
+            menuTitle: document.getElementById('menu-title'),
+            menuDesc: document.getElementById('menu-desc'),
+            menuScore: document.getElementById('menu-score')
+        };
+
+        function initWeaponsUI() {
+            DOM.weapons.innerHTML = '';
+            CATEGORIES.forEach((cat, index) => {
+                const slot = document.createElement('div');
+                slot.className = `weapon-slot ${index === 0 ? 'active' : ''} ${index >= GameState.unlockedCategories ? 'locked' : ''}`;
+                slot.setAttribute('data-id', cat.id);
+                slot.innerHTML = `
+                    <div class="key-hint">${cat.key}</div>
+                    <i class="fa-solid ${cat.icon}"></i>
+                `;
+                DOM.weapons.appendChild(slot);
+            });
+        }
+
+        function updateWeaponsUI() {
+            const slots = DOM.weapons.children;
+            for(let i=0; i < slots.length; i++) {
+                slots[i].classList.remove('active');
+                if (i < GameState.unlockedCategories) {
+                    slots[i].classList.remove('locked');
+                }
+                if (i === GameState.activeWeaponIndex) {
+                    slots[i].classList.add('active');
+                }
+            }
+        }
+
+        function updateStatsUI() {
+            DOM.score.innerText = GameState.score;
+            let hpHTML = '';
+            for(let i=0; i<3; i++) {
+                if (i < GameState.hp) hpHTML += '<i class="fa-solid fa-heart"></i> ';
+                else hpHTML += '<i class="fa-solid fa-heart-crack" style="color:#e5e5e5"></i> ';
+            }
+            DOM.hp.innerHTML = hpHTML;
+
+            DOM.comboText.innerText = `x${GameState.combo} Combo`;
+            if (GameState.combo > 1) {
+                DOM.comboText.style.transform = 'scale(1.1)';
+                setTimeout(() => DOM.comboText.style.transform = 'scale(1)', 100);
+            }
+        }
+
+        function spawnFloatingText(x, y, text, color, scene) {
+            // Conversão de Coordenadas do Mundo (Phaser) para a Tela (HTML DOM)
+            const worldPoint = new Phaser.Math.Vector2(x, y);
+            const screenPoint = scene.cameras.main.getWorldPoint(x, y); 
+            // O HTML overlay funciona baseado na tela do browser
+            const el = document.createElement('div');
+            el.className = 'floating-text';
+            el.innerText = text;
+            el.style.color = color;
+            
+            // Calculo da posição real na tela baseada no pan e zoom da camera
+            const screenX = (x - scene.cameras.main.worldView.x) * scene.cameras.main.zoom;
+            const screenY = (y - scene.cameras.main.worldView.y) * scene.cameras.main.zoom;
+
+            el.style.left = screenX + 'px';
+            el.style.top = screenY + 'px';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 1000);
+        }
+
+        /**
+         * PHASER GAME LOGIC
+         */
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super('MainScene');
+            }
+
+            preload() {
+                let g = this.make.graphics({x:0, y:0, add:false});
+                
+                // Texturas do Mapa
+                // Chão
+                g.clear();
+                g.fillStyle(0x3e3e3e, 1);
+                g.fillRect(0, 0, TILE_SIZE, TILE_SIZE);
+                g.fillStyle(0x4a4a4a, 1);
+                for(let i=0; i<15; i++) {
+                    g.fillRect(Phaser.Math.Between(0, TILE_SIZE), Phaser.Math.Between(0, TILE_SIZE), 4, 4);
+                }
+                g.generateTexture('tex_floor', TILE_SIZE, TILE_SIZE);
+
+                // Parede
+                g.clear();
+                g.fillStyle(0x555555, 1);
+                g.fillRect(0, 0, TILE_SIZE, TILE_SIZE);
+                g.lineStyle(2, 0x333333, 1);
+                g.strokeRect(0, 0, TILE_SIZE, TILE_SIZE);
+                g.strokeRect(0, TILE_SIZE/2, TILE_SIZE, TILE_SIZE/2);
+                g.strokeLineShape(new Phaser.Geom.Line(TILE_SIZE/2, 0, TILE_SIZE/2, TILE_SIZE/2));
+                g.generateTexture('tex_wall', TILE_SIZE, TILE_SIZE);
+
+                // Player (Herói RPG Clássico)
+                g.clear();
+                g.fillStyle(0x000000, 0.2); g.fillEllipse(20, 35, 24, 8); // Sombra
+                g.fillStyle(0xffd2b1, 1); // Pele
+                g.fillCircle(20, 16, 10); // Cabeça
+                g.fillStyle(0x34495e, 1); // Cabelo
+                g.beginPath(); g.moveTo(8, 16); g.lineTo(20, 2); g.lineTo(32, 16); g.fillPath(); // Cabelo
+                g.fillStyle(0x58cc02, 1); // Capa/Roupa (Verde)
+                g.fillRoundedRect(12, 22, 16, 12, 4); // Corpo
+                g.fillStyle(0x000000, 1); // Olhos
+                g.fillCircle(24, 16, 2); 
+                g.fillCircle(18, 16, 2);
+                g.generateTexture('playerTex', 40, 40);
+
+                // TEXTURAS DOS INIMIGOS (Monstrinhos RPG)
+                // 1. Animais (Fera / Lobinho)
+                g.clear();
+                g.fillStyle(0x000000, 0.2); g.fillEllipse(20, 35, 24, 8); // Sombra
+                g.fillStyle(0xff9600, 1);
+                g.fillRoundedRect(8, 14, 24, 18, 6); // Corpo
+                g.fillTriangle(8, 16, 4, 6, 14, 12); // Orelha esq
+                g.fillTriangle(32, 16, 36, 6, 26, 12); // Orelha dir
+                g.fillStyle(0xffffff, 1);
+                g.fillCircle(14, 20, 3); // Olho
+                g.fillCircle(26, 20, 3); // Olho
+                g.fillStyle(0x000000, 1);
+                g.fillCircle(14, 20, 1.5);
+                g.fillCircle(26, 20, 1.5);
+                g.fillRect(18, 24, 4, 3); // Focinho
+                g.generateTexture('tex_animais', 40, 40);
+
+                // 2. Frutas (Monstro Cogumelo)
+                g.clear();
+                g.fillStyle(0x000000, 0.2); g.fillEllipse(20, 35, 20, 8); // Sombra
+                g.fillStyle(0xffcf9e, 1); // Tronco bege
+                g.fillRoundedRect(14, 20, 12, 14, 4);
+                g.fillStyle(0xff4b4b, 1); // Chapéu
+                g.beginPath(); g.arc(20, 20, 16, Math.PI, 0); g.fillPath();
+                g.fillStyle(0xffffff, 1); // Pintas
+                g.fillCircle(12, 14, 3);
+                g.fillCircle(20, 10, 4);
+                g.fillCircle(28, 14, 3);
+                g.fillStyle(0x000000, 1); // Olhinhos bravos
+                g.fillRect(16, 24, 3, 3);
+                g.fillRect(22, 24, 3, 3);
+                g.generateTexture('tex_frutas', 40, 40);
+
+                // 3. Verbos (Slime / Fantasma)
+                g.clear();
+                g.fillStyle(0x000000, 0.2); g.fillEllipse(20, 35, 24, 8); // Sombra
+                g.fillStyle(0x1cb0f6, 1);
+                g.beginPath(); g.arc(20, 20, 14, Math.PI, 0); g.fillPath(); // Cabeça
+                g.fillRect(6, 20, 28, 12); // Corpo
+                g.fillCircle(10, 32, 4); g.fillCircle(20, 32, 4); g.fillCircle(30, 32, 4); // Ondas
+                g.fillStyle(0xffffff, 1); // Olhos
+                g.fillCircle(14, 20, 4);
+                g.fillCircle(26, 20, 4);
+                g.fillStyle(0x000000, 1);
+                g.fillCircle(14, 20, 2);
+                g.fillCircle(26, 20, 2);
+                g.generateTexture('tex_verbos', 40, 40);
+
+                // 4. Números (Ciclope de Pedra / Golem)
+                g.clear();
+                g.fillStyle(0x000000, 0.2); g.fillEllipse(20, 35, 28, 8); // Sombra
+                g.fillStyle(0xce82ff, 1); // Roxo
+                g.fillRoundedRect(6, 10, 28, 24, 6); // Corpo
+                g.fillStyle(0xa561cc, 1); // Braços
+                g.fillCircle(4, 22, 6);
+                g.fillCircle(36, 22, 6);
+                g.fillStyle(0xffffff, 1); // Olho
+                g.fillCircle(20, 20, 8);
+                g.fillStyle(0x000000, 1);
+                g.fillCircle(20, 20, 4); // Pupila
+                g.generateTexture('tex_numeros', 40, 40);
+
+                // Textura do Projétil
+                g.clear();
+                g.fillStyle(0xffffff, 1);
+                g.fillCircle(8, 8, 8);
+                g.generateTexture('bulletTex', 16, 16);
+                
+                // Textura da Espada (Ataque Melee)
+                g.clear();
+                g.fillStyle(0x654321, 1); // Cabo
+                g.fillRect(0, 6, 12, 8);
+                g.fillStyle(0x888888, 1); // Guarda
+                g.fillRect(10, 0, 4, 20);
+                g.fillStyle(0xdddddd, 1); // Lâmina
+                g.fillRect(14, 4, 35, 12);
+                g.beginPath(); // Ponta
+                g.moveTo(49, 4); g.lineTo(55, 10); g.lineTo(49, 16); g.fillPath();
+                g.generateTexture('swordTex', 55, 20);
+
+                // Textura da Lança (Média Distância)
+                g.clear();
+                g.fillStyle(0x654321, 1); // Cabo
+                g.fillRect(0, 4, 30, 4);
+                g.fillStyle(0xdddddd, 1); // Ponta
+                g.beginPath(); 
+                g.moveTo(30, 2); g.lineTo(40, 6); g.lineTo(30, 10); g.fillPath();
+                g.generateTexture('spearTex', 40, 12);
+
+                // Textura da Bomba (Bomb)
+                g.clear();
+                g.fillStyle(0xffffff, 1); // Corpo branco para pegar a cor do Tint
+                g.fillCircle(16, 20, 10);
+                g.fillStyle(0x777777, 1); // Base do pavio
+                g.fillRect(12, 8, 8, 4);
+                g.lineStyle(2, 0xffa500, 1); // Pavio
+                g.beginPath(); g.moveTo(16, 8); g.lineTo(22, 2); g.strokePath();
+                g.generateTexture('bombTex', 32, 32);
+
+                // Textura do Fogo (Explosão em Cruz)
+                g.clear();
+                g.fillStyle(0xffffff, 0.9); // Fogo base
+                g.fillRect(0, 0, TILE_SIZE, TILE_SIZE);
+                g.fillStyle(0xffffff, 0.6); // Fogo interno
+                g.fillRect(10, 10, TILE_SIZE - 20, TILE_SIZE - 20);
+                g.generateTexture('fireTex', TILE_SIZE, TILE_SIZE);
+            }
+
+            create() {
+                this.cameras.main.setBackgroundColor('#1a1a1a');
+
+                // Grupos de Física
+                this.walls = this.physics.add.staticGroup();
+                this.enemies = this.physics.add.group();
+                this.bullets = this.physics.add.group();
+                this.meleeAttacks = this.physics.add.group();
+
+                // Construir o Mapa do Castelo
+                const mapW = CASTLE_MAP[0].length * TILE_SIZE;
+                const mapH = CASTLE_MAP.length * TILE_SIZE;
+
+                for (let r = 0; r < CASTLE_MAP.length; r++) {
+                    for (let c = 0; c < CASTLE_MAP[r].length; c++) {
+                        let x = c * TILE_SIZE + TILE_SIZE/2;
+                        let y = r * TILE_SIZE + TILE_SIZE/2;
+                        
+                        if (CASTLE_MAP[r][c] === 'W') {
+                            let wall = this.walls.create(x, y, 'tex_wall');
+                            wall.body.setSize(TILE_SIZE, TILE_SIZE);
+                        } else {
+                            this.add.image(x, y, 'tex_floor').setDepth(-1);
+                        }
+                    }
+                }
+
+                // Configurar o Mundo e Câmera
+                this.physics.world.setBounds(0, 0, mapW, mapH);
+                this.cameras.main.setBounds(0, 0, mapW, mapH);
+
+                // Player
+                this.player = this.physics.add.sprite(mapW / 2, mapH / 2, 'playerTex');
+                this.player.setCollideWorldBounds(true);
+                this.player.body.setCircle(15, 5, 10);
+                this.playerSpeed = 220;
+                this.facingDir = 'right'; 
+                this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
+
+                // Inputs
+                this.cursors = this.input.keyboard.addKeys({
+                    up: Phaser.Input.Keyboard.KeyCodes.W,
+                    down: Phaser.Input.Keyboard.KeyCodes.S,
+                    left: Phaser.Input.Keyboard.KeyCodes.A,
+                    right: Phaser.Input.Keyboard.KeyCodes.D,
+                    shootUp: Phaser.Input.Keyboard.KeyCodes.UP,
+                    shootDown: Phaser.Input.Keyboard.KeyCodes.DOWN,
+                    shootLeft: Phaser.Input.Keyboard.KeyCodes.LEFT,
+                    shootRight: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+                    space: Phaser.Input.Keyboard.KeyCodes.SPACE
+                });
+
+                // Troca de Armas
+                this.input.keyboard.on('keydown-ONE', () => this.switchWeapon(0));
+                this.input.keyboard.on('keydown-TWO', () => this.switchWeapon(1));
+                this.input.keyboard.on('keydown-THREE', () => this.switchWeapon(2));
+                this.input.keyboard.on('keydown-FOUR', () => this.switchWeapon(3));
+                this.input.on('wheel', (pointer, gameObjects, deltaX, deltaY, deltaZ) => {
+                    if (deltaY > 0) this.switchWeapon(GameState.activeWeaponIndex + 1);
+                    else this.switchWeapon(GameState.activeWeaponIndex - 1);
+                });
+
+                // Colisões do Castelo
+                this.physics.add.collider(this.player, this.walls);
+                this.physics.add.collider(this.enemies, this.walls);
+                this.physics.add.collider(this.enemies, this.enemies); 
+                
+                // Tiros destroem ao bater nas paredes do castelo
+                this.physics.add.collider(this.bullets, this.walls, (bullet) => { bullet.destroy(); });
+
+                // Colisões de Combate
+                this.physics.add.overlap(this.bullets, this.enemies, this.hitEnemy, null, this);
+                this.physics.add.overlap(this.meleeAttacks, this.enemies, this.hitEnemyMelee, null, this);
+                this.physics.add.overlap(this.player, this.enemies, this.enemyHitPlayer, null, this);
+
+                // Popular o castelo com inimigos iniciais
+                this.targetEnemyCount = 30;
+                for(let i=0; i<this.targetEnemyCount; i++) {
+                    this.spawnEnemy();
+                }
+
+                // Timer para repor inimigos (Exploração contínua)
+                this.spawnTimer = this.time.addEvent({
+                    delay: 3000,
+                    callback: () => {
+                        if (this.enemies.getChildren().length < this.targetEnemyCount) {
+                            this.spawnEnemy();
+                        }
+                    },
+                    callbackScope: this,
+                    loop: true
+                });
+
+                this.lastFired = 0;
+            }
+
+            update(time, delta) {
+                if (GameState.hp <= 0) return;
+
+                this.handleMovement();
+                this.handleShooting();
+                this.updateEnemies(delta);
+                this.updateCombo(delta);
+                this.checkPanicMode();
+            }
+
+            handleMovement() {
+                let vx = 0;
+                let vy = 0;
+                
+                // Se o jogador estiver atirando (setas ou espaço), não sobrescrevemos a direção visual
+                let isShooting = this.cursors.shootLeft.isDown || this.cursors.shootRight.isDown || this.cursors.shootUp.isDown || this.cursors.shootDown.isDown || this.cursors.space.isDown;
+
+                if (this.cursors.left.isDown) {
+                    vx = -1;
+                    if (!isShooting) { this.facingDir = 'left'; this.player.setFlipX(true); }
+                } else if (this.cursors.right.isDown) {
+                    vx = 1;
+                    if (!isShooting) { this.facingDir = 'right'; this.player.setFlipX(false); }
+                } 
+                
+                if (this.cursors.up.isDown) {
+                    vy = -1;
+                    if (!isShooting && vx === 0) { this.facingDir = 'up'; }
+                } else if (this.cursors.down.isDown) {
+                    vy = 1;
+                    if (!isShooting && vx === 0) { this.facingDir = 'down'; }
+                }
+
+                this.player.setVelocity(vx * this.playerSpeed, vy * this.playerSpeed);
+
+                // Bounce de caminhada
+                if (vx !== 0 || vy !== 0) {
+                    this.player.setScale(1, 1 + Math.sin(this.time.now / 80) * 0.1);
+                } else {
+                    this.player.setScale(1, 1);
+                }
+            }
+
+            switchWeapon(index) {
+                if (index < 0) index = GameState.unlockedCategories - 1;
+                if (index >= GameState.unlockedCategories) index = 0;
+                
+                GameState.activeWeaponIndex = index;
+                updateWeaponsUI();
+            }
+
+            handleShooting() {
+                if (this.cursors.shootUp.isDown) {
+                    this.shoot('up');
+                } else if (this.cursors.shootDown.isDown) {
+                    this.shoot('down');
+                } else if (this.cursors.shootLeft.isDown) {
+                    this.shoot('left');
+                } else if (this.cursors.shootRight.isDown) {
+                    this.shoot('right');
+                } else if (this.cursors.space.isDown) {
+                    this.shoot(this.facingDir); // Atira na direção atual que o player está olhando
+                }
+            }
+
+            shoot(dir) {
+                if (this.time.now - this.lastFired < 250) return; 
+                this.lastFired = this.time.now;
+
+                // Vira o personagem para a direção do tiro
+                this.facingDir = dir;
+                if (dir === 'left') this.player.setFlipX(true);
+                else if (dir === 'right') this.player.setFlipX(false);
+
+                const category = CATEGORIES[GameState.activeWeaponIndex];
+                
+                let angle = 0;
+                if (dir === 'right') angle = 0;
+                else if (dir === 'down') angle = Math.PI / 2;
+                else if (dir === 'left') angle = Math.PI;
+                else if (dir === 'up') angle = -Math.PI / 2;
+                
+                if (category.type === 'melee') {
+                    let sword = this.meleeAttacks.create(this.player.x, this.player.y, 'swordTex');
+                    sword.categoryData = category;
+                    sword.setTint(category.color);
+                    sword.setOrigin(0, 0.5); 
+                    sword.body.setSize(55, 40);
+                    sword.body.setOffset(0, -10);
+
+                    let startAngle = angle - Math.PI / 2.5;
+                    let endAngle = angle + Math.PI / 2.5;
+                    sword.rotation = startAngle;
+
+                    this.tweens.add({
+                        targets: sword,
+                        rotation: endAngle,
+                        duration: 150,
+                        ease: 'Power2',
+                        onUpdate: () => {
+                            sword.x = this.player.x;
+                            sword.y = this.player.y;
+                        },
+                        onComplete: () => sword.destroy()
+                    });
+
+                    this.player.body.velocity.x += Math.cos(angle) * 150;
+                    this.player.body.velocity.y += Math.sin(angle) * 150;
+
+                } else if (category.type === 'spear') {
+                    let spear = this.bullets.create(this.player.x, this.player.y, 'spearTex');
+                    spear.setTint(category.color);
+                    spear.categoryData = category;
+                    spear.rotation = angle;
+                    
+                    // Ajustar a hitbox com base na direção para evitar colisões com as paredes laterais
+                    if (this.facingDir === 'up' || this.facingDir === 'down') {
+                        spear.body.setSize(12, 40);
+                        spear.body.setOffset(14, -14); // Centraliza a hitbox vertical na textura
+                    } else {
+                        spear.body.setSize(40, 12);
+                        spear.body.setOffset(0, 0);
+                    }
+                    
+                    this.physics.velocityFromRotation(angle, 550, spear.body.velocity);
+
+                    this.time.delayedCall(380, () => {
+                        if (spear.active) spear.destroy();
+                    });
+
+                    this.player.x -= Math.cos(angle) * 8;
+                    this.player.y -= Math.sin(angle) * 8;
+
+                } else if (category.type === 'bomb') {
+                    // Ataque Bomba (Estilo Bomberman)
+                    // Pega a posição central do Tile atual do jogador no grid
+                    let col = Math.floor(this.player.x / TILE_SIZE);
+                    let row = Math.floor(this.player.y / TILE_SIZE);
+                    let bombX = col * TILE_SIZE + TILE_SIZE/2;
+                    let bombY = row * TILE_SIZE + TILE_SIZE/2;
+                    
+                    let bombSprite = this.add.sprite(bombX, bombY, 'bombTex').setTint(category.color);
+                    
+                    // Animação do pavio / pulso da bomba (espera antes de explodir)
+                    this.tweens.add({
+                        targets: bombSprite,
+                        scale: 1.3,
+                        duration: 300,
+                        yoyo: true,
+                        repeat: 2, // 3 ciclos totais de pulso = ~1.8 segundos
+                        onComplete: () => {
+                            bombSprite.destroy();
+                            this.createCrossExplosion(bombX, bombY, category);
+                        }
+                    });
+
+                } else {
+                    let bullet = this.bullets.create(this.player.x, this.player.y, 'bulletTex');
+                    bullet.setTint(category.color);
+                    bullet.categoryData = category;
+                    bullet.body.setCircle(8);
+                    this.physics.velocityFromRotation(angle, 600, bullet.body.velocity);
+
+                    this.time.delayedCall(2000, () => {
+                        if (bullet.active) bullet.destroy();
+                    });
+
+                    this.player.x -= Math.cos(angle) * 5;
+                    this.player.y -= Math.sin(angle) * 5;
+                }
+            }
+
+            // Algoritmo de Pathfinding (BFS) para os inimigos acharem o caminho no labirinto
+            findPath(startR, startC, targetR, targetC) {
+                if (CASTLE_MAP[targetR] === undefined || CASTLE_MAP[targetR][targetC] === 'W') return []; 
+
+                let queue = [{r: startR, c: startC, path: []}];
+                let head = 0;
+                let visited = new Set();
+                visited.add(`${startR},${startC}`);
+
+                let dirs = [[0,1], [1,0], [0,-1], [-1,0]];
+
+                while (head < queue.length) {
+                    let current = queue[head++];
+
+                    // Se chegou no destino
+                    if (current.r === targetR && current.c === targetC) {
+                        return current.path;
+                    }
+
+                    for (let d of dirs) {
+                        let nr = current.r + d[0];
+                        let nc = current.c + d[1];
+
+                        // Checar limites do mapa e se é parede
+                        if (nr >= 0 && nr < CASTLE_MAP.length && nc >= 0 && nc < CASTLE_MAP[0].length) {
+                            if (CASTLE_MAP[nr][nc] !== 'W' && !visited.has(`${nr},${nc}`)) {
+                                visited.add(`${nr},${nc}`);
+                                queue.push({
+                                    r: nr,
+                                    c: nc,
+                                    path: [...current.path, {r: nr, c: nc}]
+                                });
+                            }
+                        }
+                    }
+                }
+                return []; // Nenhum caminho encontrado
+            }
+
+            spawnEnemy() {
+                let spawned = false;
+                let attempts = 0;
+                
+                // Tenta achar um lugar no chão livre longe do player
+                while (!spawned && attempts < 50) {
+                    let r = Phaser.Math.Between(1, CASTLE_MAP.length - 2);
+                    let c = Phaser.Math.Between(1, CASTLE_MAP[0].length - 2);
+                    
+                    if (CASTLE_MAP[r][c] === '.') {
+                        let x = c * TILE_SIZE + TILE_SIZE/2;
+                        let y = r * TILE_SIZE + TILE_SIZE/2;
+                        
+                        // Garante que não spawna na cara do jogador
+                        if (Phaser.Math.Distance.Between(this.player.x, this.player.y, x, y) > 400) {
+                            
+                            const randomCatIndex = Phaser.Math.Between(0, GameState.unlockedCategories - 1);
+                            const category = CATEGORIES[randomCatIndex];
+
+                            let container = this.add.container(x, y);
+                            let sprite = this.add.sprite(0, 0, category.tex).setTint(category.color);
+                            
+                            let label = this.add.text(0, -30, category.name, { 
+                                fontSize: '12px', fontFamily: 'Nunito', color: '#4b4b4b',
+                                backgroundColor: '#ffffff', padding: {x: 4, y: 2}
+                            }).setOrigin(0.5);
+                            label.setStroke('#e5e5e5', 2);
+
+                            // Cone de Visão (FOV) corrigido
+                            let fov = this.add.graphics();
+                            fov.setName('fov');
+                            container.add([fov, sprite, label]); 
+                            
+                            container.categoryData = category;
+                            
+                            // IA Setup
+                            container.aiState = 'patrol';
+                            container.patrolTimer = 0;
+                            container.facingAngle = 0;
+                            container.aiPath = [];
+                            container.pathUpdateTimer = Phaser.Math.Between(0, 300); // Distribuir carga de CPU
+                            
+                            this.updateFOVGraphic(container);
+
+                            this.physics.world.enable(container);
+                            container.body.setCircle(15, -15, -15);
+                            container.body.setBounce(0.2); // Leve repulsão nas paredes
+                            
+                            this.enemies.add(container);
+                            spawned = true;
+                        }
+                    }
+                    attempts++;
+                }
+            }
+
+            updateFOVGraphic(enemy) {
+                let fov = enemy.getByName('fov');
+                if (!fov) return;
+                
+                fov.clear();
+                let color = enemy.aiState === 'chase' ? 0xff4b4b : 0xfffb00;
+                let alpha = enemy.aiState === 'chase' ? 0.3 : 0.15;
+                fov.fillStyle(color, alpha);
+                // Desenha o cone. Padrão: 90 graus (PI/2), raio 250
+                fov.slice(0, 0, 250, Phaser.Math.DegToRad(-45), Phaser.Math.DegToRad(45), false);
+                fov.fillPath();
+                fov.rotation = enemy.facingAngle;
+            }
+
+            updateEnemies(delta) {
+                let chasingCount = 0;
+
+                this.enemies.getChildren().forEach(enemy => {
+                    if (!enemy.active || !enemy.body) return;
+                    
+                    let dx = this.player.x - enemy.x;
+                    let dy = this.player.y - enemy.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    let sprite = enemy.list[1]; 
+                    
+                    if (enemy.aiState === 'patrol') {
+                        // Verifica Visão
+                        let angleToPlayer = Math.atan2(dy, dx);
+                        let angleDiff = Phaser.Math.Angle.ShortestBetween(Phaser.Math.RadToDeg(enemy.facingAngle), Phaser.Math.RadToDeg(angleToPlayer));
+                        
+                        // Se Player está dentro de 250px e dentro do cone de 90 graus (-45 a +45)
+                        if (dist < 250 && Math.abs(angleDiff) < 45) {
+                            enemy.aiState = 'chase';
+                            enemy.pathUpdateTimer = 0; // Força recalcular rota ao iniciar caçada
+                            this.updateFOVGraphic(enemy);
+                            spawnFloatingText(enemy.x, enemy.y - 40, "!", '#ff4b4b', this);
+                        } else {
+                            // Comportamento de Patrulha Simples
+                            enemy.patrolTimer -= delta;
+                            if (enemy.patrolTimer <= 0) {
+                                enemy.patrolTimer = Phaser.Math.Between(1500, 4000);
+                                let dirs = [0, Math.PI/2, Math.PI, -Math.PI/2];
+                                enemy.facingAngle = dirs[Phaser.Math.Between(0, 3)];
+                                this.updateFOVGraphic(enemy);
+                            }
+                            
+                            enemy.body.velocity.x = Math.cos(enemy.facingAngle) * 40;
+                            enemy.body.velocity.y = Math.sin(enemy.facingAngle) * 40;
+                            sprite.setFlipX(Math.cos(enemy.facingAngle) < 0);
+                        }
+                    } 
+                    
+                    if (enemy.aiState === 'chase') {
+                        chasingCount++;
+                        
+                        if (dist > 500) {
+                            // Se o player fugir para bem longe, desiste
+                            enemy.aiState = 'patrol';
+                            enemy.patrolTimer = 0;
+                            this.updateFOVGraphic(enemy);
+                            spawnFloatingText(enemy.x, enemy.y - 40, "?", '#afafaf', this);
+                        } else {
+                            // Caça com Pathfinding (Desviar de Paredes)
+                            enemy.pathUpdateTimer -= delta;
+                            
+                            // Recalcular rota a cada 300ms
+                            if (enemy.pathUpdateTimer <= 0) {
+                                enemy.pathUpdateTimer = 300;
+                                
+                                let startC = Math.floor(enemy.x / TILE_SIZE);
+                                let startR = Math.floor(enemy.y / TILE_SIZE);
+                                let targetC = Math.floor(this.player.x / TILE_SIZE);
+                                let targetR = Math.floor(this.player.y / TILE_SIZE);
+                                
+                                enemy.aiPath = this.findPath(startR, startC, targetR, targetC);
+                            }
+
+                            let speed = 130;
+
+                            // Se houver um caminho válido para seguir
+                            if (enemy.aiPath && enemy.aiPath.length > 0) {
+                                let nextNode = enemy.aiPath[0];
+                                let targetX = nextNode.c * TILE_SIZE + TILE_SIZE/2;
+                                let targetY = nextNode.r * TILE_SIZE + TILE_SIZE/2;
+                                
+                                let pxDist = Phaser.Math.Distance.Between(enemy.x, enemy.y, targetX, targetY);
+
+                                // Se chegou perto do waypoint, passa para o próximo da lista
+                                if (pxDist < 5) {
+                                    enemy.aiPath.shift();
+                                } else {
+                                    // Move na direção do Waypoint (quadrado livre mais próximo)
+                                    let angleToWaypoint = Phaser.Math.Angle.Between(enemy.x, enemy.y, targetX, targetY);
+                                    enemy.body.velocity.x = Math.cos(angleToWaypoint) * speed;
+                                    enemy.body.velocity.y = Math.sin(angleToWaypoint) * speed;
+
+                                    // Ajusta visualmente para qual lado olhar baseando na direção geral
+                                    let adx = targetX - enemy.x;
+                                    let ady = targetY - enemy.y;
+                                    if (Math.abs(adx) > Math.abs(ady)) {
+                                        enemy.facingAngle = adx > 0 ? 0 : Math.PI;
+                                        sprite.setFlipX(adx < 0);
+                                    } else {
+                                        enemy.facingAngle = ady > 0 ? Math.PI/2 : -Math.PI/2;
+                                    }
+                                }
+                            } else {
+                                // Se não tem rota (player está colado nele ou no mesmo bloco)
+                                if (dist > 5) {
+                                    let angleToPlayer = Math.atan2(dy, dx);
+                                    enemy.body.velocity.x = Math.cos(angleToPlayer) * speed;
+                                    enemy.body.velocity.y = Math.sin(angleToPlayer) * speed;
+                                } else {
+                                    enemy.body.velocity.x = 0;
+                                    enemy.body.velocity.y = 0;
+                                }
+                            }
+                            this.updateFOVGraphic(enemy);
+                        }
+                    }
+
+                    // Animação de caminhada
+                    if (enemy.body.velocity.x !== 0 || enemy.body.velocity.y !== 0) {
+                        sprite.setScale(1, 1 + Math.sin(this.time.now / 80) * 0.15);
+                    }
+                });
+
+                // Controlar Modo Pânico (Se houver muitos inimigos agressivados)
+                GameState.activeChasers = chasingCount;
+            }
+
+            createCrossExplosion(x, y, category) {
+                this.cameras.main.shake(150, 0.015);
+                
+                const bombCol = Math.floor(x / TILE_SIZE);
+                const bombRow = Math.floor(y / TILE_SIZE);
+                const range = 3; // O alcance da explosão em blocos (Tiles)
+
+                let validTiles = [{r: bombRow, c: bombCol}]; // O próprio bloco da bomba explode
+
+                // Checa nas 4 direções se tem parede bloqueando o fogo
+                const dirs = [[0,1], [0,-1], [1,0], [-1,0]];
+                for (let d of dirs) {
+                    for (let i = 1; i <= range; i++) {
+                        let r = bombRow + d[0] * i;
+                        let c = bombCol + d[1] * i;
+                        
+                        // Bloqueia a explosão instantaneamente se encontrar uma parede (W)
+                        if (CASTLE_MAP[r] && CASTLE_MAP[r][c] === 'W') {
+                            break; 
+                        }
+                        validTiles.push({r, c});
+                    }
+                }
+
+                // Renderiza a chama e aplica o dano nos blocos de fogo válidos
+                validTiles.forEach(tile => {
+                    let ex = tile.c * TILE_SIZE + TILE_SIZE/2;
+                    let ey = tile.r * TILE_SIZE + TILE_SIZE/2;
+                    
+                    let fire = this.add.sprite(ex, ey, 'fireTex').setTint(category.color);
+                    this.tweens.add({
+                        targets: fire,
+                        alpha: 0,
+                        duration: 400,
+                        onComplete: () => fire.destroy()
+                    });
+
+                    // Aplica acerto nos inimigos que estiverem pisando no fogo
+                    this.enemies.getChildren().forEach(enemy => {
+                        if (enemy.active && enemy.body) {
+                            let dist = Phaser.Math.Distance.Between(ex, ey, enemy.x, enemy.y);
+                            if (dist <= TILE_SIZE/2 + 10) { 
+                                if (category.id === enemy.categoryData.id) {
+                                    this.processCorrectHit(enemy);
+                                } else {
+                                    // Impede penalidade dupla super-rápida no mesmo hit
+                                    if (!enemy.lastHitTime || this.time.now - enemy.lastHitTime > 500) {
+                                        enemy.lastHitTime = this.time.now;
+                                        this.processWrongHit(enemy);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+            }
+
+            processCorrectHit(enemy) {
+                const ex = enemy.x;
+                const ey = enemy.y;
+                
+                if (enemy.body) enemy.body.enable = false; 
+                enemy.destroy();
+                
+                this.cameras.main.shake(50, 0.005);
+                
+                GameState.combo++;
+                GameState.comboTimer = GameState.maxComboTime;
+                
+                const points = 10 * GameState.combo;
+                GameState.score += points;
+                updateStatsUI();
+                
+                spawnFloatingText(ex, ey, `+${points}`, '#58cc02', this);
+            }
+
+            processWrongHit(enemy) {
+                this.applyPenalty();
+                let angle = Phaser.Math.Angle.Between(this.player.x, this.player.y, enemy.x, enemy.y);
+                if (enemy.body) {
+                    enemy.body.velocity.x += Math.cos(angle) * 300;
+                    enemy.body.velocity.y += Math.sin(angle) * 300;
+                    
+                    // Se foi atacado com arma errada e não tinha visto o jogador, agora ele vê!
+                    if (enemy.aiState === 'patrol') {
+                        enemy.aiState = 'chase';
+                        enemy.pathUpdateTimer = 0;
+                        this.updateFOVGraphic(enemy);
+                    }
+                }
+                spawnFloatingText(enemy.x, enemy.y, "ERROU!", '#ff4b4b', this);
+            }
+
+            hitEnemy(bullet, enemy) {
+                if (!bullet.active || !enemy.active || !enemy.body) return;
+                const isCorrect = bullet.categoryData.id === enemy.categoryData.id;
+                
+                if (bullet.body) bullet.body.enable = false;
+                bullet.destroy();
+
+                if (isCorrect) this.processCorrectHit(enemy);
+                else this.processWrongHit(enemy);
+            }
+
+            hitEnemyMelee(sword, enemy) {
+                if (!sword.active || !enemy.active || !enemy.body) return;
+                if (enemy.lastHitTime && this.time.now - enemy.lastHitTime < 500) return;
+
+                if (sword.categoryData.id === enemy.categoryData.id) {
+                    this.processCorrectHit(enemy);
+                } else {
+                    enemy.lastHitTime = this.time.now;
+                    this.processWrongHit(enemy);
+                }
+            }
+
+            enemyHitPlayer(player, enemy) {
+                if (!enemy.active || !enemy.body) return;
+                if (enemy.body) enemy.body.enable = false;
+                enemy.destroy();
+                this.applyPenalty(true);
+            }
+
+            applyPenalty(takeDamage = false) {
+                GameState.combo = 1;
+                GameState.comboTimer = 0;
+                
+                if (takeDamage) {
+                    GameState.hp--;
+                    spawnFloatingText(this.player.x, this.player.y - 40, "-1 Vida", '#ff4b4b', this);
+                } else {
+                    spawnFloatingText(this.player.x, this.player.y - 40, "Combo Perdido", '#ff9600', this);
+                }
+
+                this.cameras.main.shake(200, 0.02);
+                this.cameras.main.flash(200, 255, 75, 75);
+                updateStatsUI();
+
+                if (GameState.hp <= 0) this.gameOver();
+            }
+
+            updateCombo(delta) {
+                if (GameState.combo > 1) {
+                    GameState.comboTimer -= delta;
+                    const percentage = Math.max(0, (GameState.comboTimer / GameState.maxComboTime) * 100);
+                    DOM.comboBar.style.width = percentage + '%';
+
+                    if (GameState.comboTimer <= 0) {
+                        GameState.combo = 1;
+                        updateStatsUI();
+                        DOM.comboBar.style.width = '0%';
+                        spawnFloatingText(this.player.x, this.player.y - 40, "Tempo Esgotado", '#afafaf', this);
+                    }
+                } else {
+                    DOM.comboBar.style.width = '0%';
+                }
+            }
+
+            checkPanicMode() {
+                // Modo pânico ativa se houver 5 ou mais inimigos CAÇANDO ativamente o jogador
+                if (GameState.activeChasers >= 5 && !GameState.isPanic) {
+                    GameState.isPanic = true;
+                    DOM.panicOverlay.classList.add('active');
+                    this.cameras.main.zoomTo(1.05, 500);
+                } else if (GameState.activeChasers < 4 && GameState.isPanic) {
+                    GameState.isPanic = false;
+                    DOM.panicOverlay.classList.remove('active');
+                    this.cameras.main.zoomTo(1, 500);
+                }
+            }
+
+            gameOver() {
+                this.physics.pause();
+                this.scene.pause();
+                
+                DOM.menuTitle.innerText = "Fim de Jogo!";
+                DOM.menuDesc.innerText = "Você ficou sem vidas. Cuidado na exploração!";
+                DOM.menuScore.innerText = `Pontuação Final: ${GameState.score}`;
+                DOM.menuScore.classList.remove('hidden');
+                DOM.btnStart.innerText = "Explorar Novamente";
+                DOM.menu.classList.remove('hidden');
+            }
+        }
+
+        // Inicialização
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: window.innerWidth,
+            height: window.innerHeight,
+            transparent: true,
+            physics: {
+                default: 'arcade',
+                arcade: { gravity: { y: 0 }, debug: false }
+            },
+            scene: [MainScene]
+        };
+
+        let game;
+
+        window.addEventListener('resize', () => {
+            if(game) game.scale.resize(window.innerWidth, window.innerHeight);
+        });
+
+        DOM.btnStart.addEventListener('click', () => {
+            DOM.menu.classList.add('hidden');
+            
+            GameState.score = 0;
+            GameState.hp = 3;
+            GameState.combo = 1;
+            GameState.comboTimer = 0;
+            GameState.unlockedCategories = 4;
+            GameState.activeWeaponIndex = 0;
+            GameState.isPanic = false;
+            GameState.activeChasers = 0;
+            
+            updateStatsUI();
+            initWeaponsUI();
+            updateWeaponsUI();
+
+            if (!game) {
+                game = new Phaser.Game(config);
+            } else {
+                game.scene.stop('MainScene');
+                game.scene.start('MainScene');
+            }
+        });
+    </script>
+</body>
+</html>

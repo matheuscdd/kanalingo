@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EduRoyale - Aprenda Jogando</title>
+    
+    <!-- FontAwesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Nunito para estilo Duolingo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Phaser 3 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"></script>
+
+    <style>
+        /* === RESET & BASE === */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: #202F36; /* Fundo escuro em volta do mobile */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #3c3c3c;
+        }
+
+        /* === CONTAINER DO JOGO === */
+        #game-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 100vh;
+            max-height: 600px;
+            background-color: #78C800; /* Grama base */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 16px;
+        }
+
+        /* Onde o Phaser vai renderizar */
+        #phaser-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* === CAMADA DE INTERFACE (UI LAYER) === */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none; /* Deixa os cliques passarem para botões específicos */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* === PERGUNTA (TOPO) === */
+        #question-container {
+            pointer-events: auto;
+            background-color: #1CB0F6;
+            color: white;
+            margin: 16px;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.4rem;
+            box-shadow: 0 6px 0 #1899D6;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        #question-container i {
+            font-size: 1.8rem;
+            color: #FFDE00;
+        }
+
+        /* === CARTAS DE RESPOSTA (BASE) === */
+        #cards-area {
+            pointer-events: auto;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%);
+        }
+
+        .card {
+            flex: 1;
+            background-color: white;
+            border: 2px solid #E5E5E5;
+            border-radius: 16px;
+            padding: 16px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #E5E5E5;
+            transition: all 0.1s ease;
+            max-width: 180px;
+        }
+
+        .card:active {
+            transform: translateY(6px);
+            box-shadow: 0 0px 0 #E5E5E5;
+        }
+
+        .card .icon-wrapper {
+            background-color: #F7F7F7;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 1.5rem;
+            color: #AFB6BA;
+            border: 2px solid #E5E5E5;
+        }
+
+        .card .answer-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: center;
+            color: #4B4B4B;
+        }
+
+        /* Efeitos visuais para feedback */
+        .card.correct-click {
+            border-color: #58CC02;
+            background-color: #D7FFB8;
+            box-shadow: 0 6px 0 #58A700;
+        }
+        .card.correct-click .icon-wrapper {
+            color: #58CC02;
+            border-color: #58CC02;
+        }
+
+        .card.wrong-click {
+            border-color: #FF4B4B;
+            background-color: #FFD8D8;
+            box-shadow: 0 6px 0 #EA2B2B;
+        }
+        .card.wrong-click .icon-wrapper {
+            color: #FF4B4B;
+            border-color: #FF4B4B;
+        }
+
+        /* === TELAS DE FIM DE JOGO === */
+        #game-over-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            z-index: 10;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #game-over-screen h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #FF4B4B;
+        }
+
+        #game-over-screen.victory h1 {
+            color: #58CC02;
+        }
+
+        .duo-btn {
+            background-color: #58CC02;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 16px;
+            box-shadow: 0 6px 0 #58A700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.1s;
+        }
+
+        .duo-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 0 #58A700;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            #question-container { font-size: 1.1rem; padding: 12px; margin: 10px; }
+            .card .answer-text { font-size: 0.9rem; }
+            .card .icon-wrapper { width: 40px; height: 40px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-wrapper">
+        <!-- O Canvas do Phaser será injetado aqui -->
+        <div id="phaser-container"></div>
+
+        <!-- Interface de Usuário HTML (Sobreposta) -->
+        <div id="ui-layer">
+            <div id="question-container">
+                <i class="fas fa-brain"></i>
+                <span id="question-text">Carregando pergunta...</span>
+            </div>
+
+            <div id="cards-area">
+                <!-- Cartas serão geradas via JS -->
+            </div>
+        </div>
+
+        <!-- Tela de Fim de Jogo -->
+        <div id="game-over-screen">
+            <h1 id="end-title">Fim de Jogo!</h1>
+            <p id="end-desc" style="font-size: 1.2rem; font-weight: 700; color: #777; margin-bottom: 30px;">A base foi destruída.</p>
+            <button class="duo-btn" onclick="location.reload()">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================================================
+           1. BANCO DE DADOS EDUCATIVO
+           ========================================================================== */
+        const questionsDB = [
+            {
+                q: "Qual é o maior planeta do nosso sistema solar?",
+                answers: [
+                    { text: "Júpiter", correct: true, icon: "fa-earth-americas" },
+                    { text: "Marte", correct: false, icon: "fa-meteor" },
+                    { text: "Terra", correct: false, icon: "fa-globe" }
+                ]
+            },
+            {
+                q: "Quanto é 8 x 7?",
+                answers: [
+                    { text: "56", correct: true, icon: "fa-check" },
+                    { text: "48", correct: false, icon: "fa-xmark" },
+                    { text: "64", correct: false, icon: "fa-xmark" }
+                ]
+            },
+            {
+                q: "Quem pintou a Mona Lisa?",
+                answers: [
+                    { text: "Leonardo da Vinci", correct: true, icon: "fa-palette" },
+                    { text: "Van Gogh", correct: false, icon: "fa-paint-brush" },
+                    { text: "Picasso", correct: false, icon: "fa-image" }
+                ]
+            },
+            {
+                q: "Qual o elemento químico representado por 'O'?",
+                answers: [
+                    { text: "Oxigênio", correct: true, icon: "fa-wind" },
+                    { text: "Ouro", correct: false, icon: "fa-coins" },
+                    { text: "Osmio", correct: false, icon: "fa-atom" }
+                ]
+            },
+            {
+                q: "Qual a capital do Brasil?",
+                answers: [
+                    { text: "Brasília", correct: true, icon: "fa-monument" },
+                    { text: "Rio de Janeiro", correct: false, icon: "fa-umbrella-beach" },
+                    { text: "São Paulo", correct: false, icon: "fa-city" }
+                ]
+            },
+            {
+                q: "Qual organela é a 'fábrica de energia' da célula?",
+                answers: [
+                    { text: "Mitocôndria", correct: true, icon: "fa-bolt" },
+                    { text: "Núcleo", correct: false, icon: "fa-circle-dot" },
+                    { text: "Ribossomo", correct: false, icon: "fa-bacterium" }
+                ]
+            }
+        ];
+
+        let currentQuestionIdx = 0;
+
+        /* ==========================================================================
+           2. LÓGICA DA INTERFACE DE USUÁRIO (HTML/DOM)
+           ========================================================================== */
+        const questionTextEl = document.getElementById('question-text');
+        const cardsAreaEl = document.getElementById('cards-area');
+
+        // Embaralhar array (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function loadNextQuestion() {
+            if (currentQuestionIdx >= questionsDB.length) {
+                // Reinicia as perguntas se acabarem
+                currentQuestionIdx = 0;
+                shuffleArray(questionsDB);
+            }
+
+            const qData = questionsDB[currentQuestionIdx];
+            questionTextEl.textContent = qData.q;
+            
+            // Animação de entrada
+            document.getElementById('question-container').style.animation = 'none';
+            setTimeout(() => document.getElementById('question-container').style.animation = 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)', 10);
+
+            // Clonar e embaralhar respostas
+            let answers = [...qData.answers];
+            shuffleArray(answers);
+
+            cardsAreaEl.innerHTML = ''; // Limpar cartas antigas
+
+            answers.forEach(ans => {
+                const btn = document.createElement('div');
+                btn.className = 'card';
+                btn.innerHTML = `
+                    <div class="icon-wrapper">
+                        <i class="fas ${ans.icon}"></i>
+                    </div>
+                    <div class="answer-text">${ans.text}</div>
+                `;
+
+                btn.onclick = () => handleAnswerClick(btn, ans.correct);
+                cardsAreaEl.appendChild(btn);
+            });
+
+            currentQuestionIdx++;
+        }
+
+        // Variável global para a cena do Phaser
+        let gameScene = null; 
+
+        function handleAnswerClick(cardElement, isCorrect) {
+            // Desabilita cliques rápidos
+            const allCards = document.querySelectorAll('.card');
+            allCards.forEach(c => c.style.pointerEvents = 'none');
+
+            if (isCorrect) {
+                cardElement.classList.add('correct-click');
+                cardElement.querySelector('.icon-wrapper').innerHTML = '<i class="fas fa-check"></i>';
+                if(gameScene) gameScene.spawnUnit('player_strong');
+            } else {
+                cardElement.classList.add('wrong-click');
+                cardElement.querySelector('.icon-wrapper').innerHTML = '<i class="fas fa-xmark"></i>';
+                if(gameScene) gameScene.spawnUnit('player_weak');
+            }
+
+            // Aguarda um momento e carrega a próxima
+            setTimeout(() => {
+                loadNextQuestion();
+            }, 800);
+        }
+
+        function showGameOver(isVictory) {
+            document.getElementById('ui-layer').style.display = 'none';
+            const screen = document.getElementById('game-over-screen');
+            screen.style.display = 'flex';
+            
+            if(isVictory) {
+                screen.classList.add('victory');
+                document.getElementById('end-title').textContent = "Vitória!";
+                document.getElementById('end-desc').textContent = "Você provou sua inteligência e destruiu a base inimiga!";
+            } else {
+                document.getElementById('end-title').textContent = "Derrota!";
+                document.getElementById('end-desc').textContent = "Estude mais! Respostas erradas geram tropas fracas.";
+            }
+        }
+
+        // Inicializar a primeira pergunta assim que embaralhar
+        shuffleArray(questionsDB);
+        loadNextQuestion();
+
+
+        /* ==========================================================================
+           3. MOTOR DO JOGO (PHASER 3)
+           ========================================================================== */
+        
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super('MainScene');
+                this.units = [];
+                this.gameOver = false;
+            }
+
+            preload() {
+                // Em vez de carregar imagens externas, vamos desenhar os sprites via código
+                // para garantir que funcione perfeitamente em um único arquivo sem erros de CORS.
+                this.createTextures();
+            }
+
+            createTextures() {
+                let graphics = this.add.graphics();
+
+                // --- REI ALIADO (Desenhado separadamente) ---
+                graphics.fillStyle(0xE74C3C, 1); // Capa vermelha majestosa
+                graphics.fillRoundedRect(10, 50, 60, 70, 10); // +20px para esconder atrás do muro
+                graphics.fillStyle(0x2980B9, 1); // Túnica azul escuro
+                graphics.fillRoundedRect(20, 50, 40, 70, 8);
+                graphics.fillStyle(0xF1C40F, 1); // Cinto dourado
+                graphics.fillRect(20, 85, 40, 8);
+                graphics.fillStyle(0xECF0F1, 1); // Barba branca
+                graphics.fillRoundedRect(26, 35, 28, 30, 14);
+                graphics.fillStyle(0xFFD1A6, 1); // Rosto
+                graphics.fillCircle(40, 40, 14);
+                graphics.fillStyle(0xECF0F1, 1); // Bigode branco
+                graphics.fillRoundedRect(28, 45, 24, 8, 4);
+                graphics.fillStyle(0x202F36, 1); // Olhos fofos
+                graphics.fillCircle(34, 36, 3);
+                graphics.fillCircle(46, 36, 3);
+                graphics.fillStyle(0xF1C40F, 1); // Coroa Dourada Maior
+                graphics.fillRect(26, 20, 28, 12);
+                graphics.fillRect(24, 14, 6, 8);
+                graphics.fillRect(37, 12, 6, 10);
+                graphics.fillRect(50, 14, 6, 8);
+                graphics.generateTexture('king_player', 80, 120);
+                graphics.clear();
+
+                // --- TORRE ALIADA (Apenas a estrutura) ---
+                graphics.fillStyle(0x1CB0F6, 1); // Corpo
+                graphics.fillRect(0, 20, 80, 100);
+                // Ameias (ficarão na frente do rei)
+                graphics.fillRect(0, 0, 20, 20); 
+                graphics.fillRect(30, 0, 20, 20); 
+                graphics.fillRect(60, 0, 20, 20); 
+                graphics.fillStyle(0x1899D6, 1);
+                graphics.fillRect(0, 110, 80, 10); // Sombra
+                graphics.fillStyle(0x202F36, 1); // Porta
+                graphics.beginPath();
+                graphics.arc(40, 90, 15, Math.PI, 0);
+                graphics.fillPath();
+                graphics.fillRect(25, 90, 30, 30);
+                graphics.generateTexture('tower_player', 80, 120);
+                graphics.clear();
+
+                // --- REI INIMIGO (Desenhado separadamente) ---
+                graphics.fillStyle(0x8E44AD, 1); // Capa roxa larga
+                graphics.fillRoundedRect(10, 50, 60, 70, 10);
+                graphics.fillStyle(0x2C3E50, 1); // Armadura negra
+                graphics.fillRoundedRect(20, 50, 40, 70, 8);
+                graphics.fillStyle(0xC0392B, 1); // Ombreiras
+                graphics.fillCircle(20, 60, 10);
+                graphics.fillCircle(60, 60, 10);
+                graphics.fillStyle(0xFFD1A6, 1); // Rosto
+                graphics.fillCircle(40, 40, 14);
+                graphics.fillStyle(0xE74C3C, 1); // Olhos vermelhos
+                graphics.fillRect(31, 35, 6, 4);
+                graphics.fillRect(43, 35, 6, 4);
+                graphics.fillStyle(0x202F36, 1); // Sobrancelhas super zangadas
+                graphics.fillTriangle(28, 31, 40, 37, 28, 37);
+                graphics.fillTriangle(52, 31, 40, 37, 52, 37);
+                graphics.fillStyle(0x202F36, 1); // Sorriso maligno
+                graphics.fillRect(36, 46, 8, 3);
+                graphics.fillStyle(0x95A5A6, 1); // Coroa de Ferro Afiada
+                graphics.fillRect(26, 20, 28, 12);
+                graphics.fillTriangle(24, 20, 30, 8, 32, 20);
+                graphics.fillTriangle(34, 20, 40, 4, 46, 20);
+                graphics.fillTriangle(48, 20, 50, 8, 56, 20);
+                graphics.fillStyle(0xE74C3C, 1); // Joia maligna na coroa
+                graphics.fillCircle(40, 26, 4);
+                graphics.generateTexture('king_enemy', 80, 120);
+                graphics.clear();
+
+                // --- TORRE INIMIGA (Apenas a estrutura) ---
+                graphics.fillStyle(0xFF4B4B, 1);
+                graphics.fillRect(0, 20, 80, 100);
+                graphics.fillRect(0, 0, 20, 20); 
+                graphics.fillRect(30, 0, 20, 20); 
+                graphics.fillRect(60, 0, 20, 20); 
+                graphics.fillStyle(0xEA2B2B, 1);
+                graphics.fillRect(0, 110, 80, 10);
+                graphics.fillStyle(0x2A0808, 1);
+                graphics.beginPath();
+                graphics.arc(40, 90, 15, Math.PI, 0);
+                graphics.fillPath();
+                graphics.fillRect(25, 90, 30, 30);
+                graphics.generateTexture('tower_enemy', 80, 120);
+                graphics.clear();
+
+                // 3. Unidade Forte (Cavaleiro de Elite Aliado)
+                graphics.fillStyle(0x58CC02, 1); // Túnica verde
+                graphics.fillRoundedRect(25, 35, 30, 25, 5);
+                graphics.fillStyle(0xBDC3C7, 1); // Elmo Prateado Fechado
+                graphics.beginPath();
+                graphics.arc(40, 25, 17, Math.PI, 0);
+                graphics.fillPath();
+                graphics.fillRect(23, 25, 34, 12);
+                graphics.fillStyle(0x2C3E50, 1); // Fenda do elmo em cruz
+                graphics.fillRect(38, 15, 4, 18);
+                graphics.fillRect(32, 22, 16, 4);
+                graphics.fillStyle(0x1CB0F6, 1); // Escudo azul aliado nas costas
+                graphics.fillRoundedRect(20, 35, 15, 25, 4);
+                graphics.fillStyle(0xF1C40F, 1); // Guarda da Espada (Dourada)
+                graphics.fillRect(50, 43, 6, 12);
+                graphics.fillStyle(0xECF0F1, 1); // Lâmina da Espada apontando à direita
+                graphics.fillRect(56, 47, 20, 4);
+                graphics.fillTriangle(76, 47, 80, 49, 76, 51); // Ponta da espada
+                graphics.generateTexture('unit_strong', 80, 70);
+                graphics.clear();
+
+                // 4. Unidade Fraca (Recruta Camponês)
+                graphics.fillStyle(0xA67C52, 1); // Túnica de couro simples
+                graphics.fillRoundedRect(20, 35, 20, 20, 4);
+                graphics.fillStyle(0xFFD1A6, 1); // Rosto
+                graphics.fillRect(22, 28, 16, 10);
+                graphics.fillStyle(0x202F36, 1); // Olhos tortos
+                graphics.fillRect(24, 30, 3, 3);
+                graphics.fillRect(32, 33, 3, 3);
+                graphics.fillStyle(0x95A5A6, 1); // Elmo de balde (grande demais)
+                graphics.fillRect(18, 10, 24, 18);
+                graphics.fillRect(16, 28, 28, 4); // Borda do balde
+                graphics.fillStyle(0x8B4513, 1); // Pedaço de pau / Porrete
+                graphics.fillRect(35, 45, 18, 4);
+                graphics.generateTexture('unit_weak', 60, 60);
+                graphics.clear();
+
+                // 5. Inimigo Padrão (Cavaleiro das Trevas)
+                graphics.fillStyle(0x2C3E50, 1); // Armadura Negra
+                graphics.fillRoundedRect(25, 35, 30, 25, 5);
+                graphics.fillStyle(0x1A252F, 1); // Elmo Negro
+                graphics.beginPath();
+                graphics.arc(40, 25, 17, Math.PI, 0);
+                graphics.fillPath();
+                graphics.fillRect(23, 25, 34, 12);
+                graphics.fillStyle(0xC0392B, 1); // Chifres ameaçadores
+                graphics.fillTriangle(23, 25, 15, 8, 28, 20); // Esquerdo
+                graphics.fillTriangle(57, 25, 65, 8, 52, 20); // Direito
+                graphics.fillStyle(0xE74C3C, 1); // Viseira / Olho de mau (focado à esquerda)
+                graphics.fillRect(26, 28, 12, 4);
+                graphics.fillStyle(0xC0392B, 1); // Escudo Vermelho nas costas
+                graphics.fillRoundedRect(45, 35, 15, 25, 4);
+                graphics.fillStyle(0x7F8C8D, 1); // Cabo da lança negra
+                graphics.fillRect(10, 47, 20, 4); // Aponta para a esquerda
+                graphics.fillStyle(0xE74C3C, 1); // Ponta da lança vermelha
+                graphics.fillTriangle(10, 45, 0, 49, 10, 53);
+                graphics.generateTexture('unit_enemy', 80, 70);
+                graphics.clear();
+            }
+
+            create() {
+                gameScene = this; // Exporta a referência para o DOM
+
+                // Fundo do jogo (estrada)
+                const path = this.add.rectangle(400, 400, 800, 140, 0xE5E5E5);
+                const pathBorderTop = this.add.rectangle(400, 330, 800, 10, 0xCECECE);
+                const pathBorderBot = this.add.rectangle(400, 470, 800, 10, 0xCECECE);
+
+                // Criar Torres
+                this.playerTower = this.createTower(80, 350, 'tower_player', 'player', 500);
+                this.enemyTower = this.createTower(720, 350, 'tower_enemy', 'enemy', 500);
+
+                // Timer para o inimigo spawnar tropas automaticamente (a cada 3.5 segundos)
+                this.time.addEvent({
+                    delay: 3500,
+                    callback: () => {
+                        if (!this.gameOver) this.spawnUnit('enemy_standard');
+                    },
+                    loop: true
+                });
+
+                // Spawna um inimigo no início para pressionar o jogador
+                this.time.delayedCall(1000, () => this.spawnUnit('enemy_standard'));
+            }
+
+            createTower(x, y, texture, team, maxHp) {
+                // Instancia o Rei PRIMEIRO para ele ser renderizado atrás do castelo
+                let king = this.add.sprite(x, y - 80, `king_${team}`);
+                king.setOrigin(0.5, 1);
+                king.baseY = king.y; // Guarda o Y inicial para animação de pulo
+                
+                let tower = this.add.sprite(x, y, texture);
+                tower.setOrigin(0.5, 1); // Ancorar pela base
+                tower.team = team;
+                tower.maxHp = maxHp;
+                tower.hp = maxHp;
+                tower.isTower = true;
+                tower.kingSprite = king; // Conecta o rei à lógica da torre
+
+                // Barra de Vida
+                let hpBarBg = this.add.rectangle(x, y - 220, 80, 12, 0x000000);
+                let hpBar = this.add.rectangle(x - 40, y - 220, 80, 12, team === 'player' ? 0x1CB0F6 : 0xFF4B4B);
+                hpBar.setOrigin(0, 0.5);
+                tower.hpBar = hpBar;
+
+                this.units.push(tower);
+                return tower;
+            }
+
+            spawnUnit(type) {
+                if (this.gameOver) return;
+
+                let config = {};
+                let x, y, texture;
+
+                // Posições baseadas no caminho horizontal (y central = 400)
+                // Usamos uma leve variação no Y para eles não ficarem em fila indiana perfeita
+                const yOffset = Phaser.Math.Between(-20, 20);
+
+                if (type === 'player_strong') {
+                    config = { hp: 150, dmg: 35, speed: 60, range: 40, atkRate: 1000, team: 'player' };
+                    texture = 'unit_strong';
+                    x = this.playerTower.x + 50;
+                    y = 400 + yOffset;
+                } else if (type === 'player_weak') {
+                    config = { hp: 20, dmg: 5, speed: 40, range: 30, atkRate: 1500, team: 'player' };
+                    texture = 'unit_weak';
+                    x = this.playerTower.x + 50;
+                    y = 400 + yOffset;
+                } else if (type === 'enemy_standard') {
+                    config = { hp: 60, dmg: 15, speed: 50, range: 40, atkRate: 1200, team: 'enemy' };
+                    texture = 'unit_enemy';
+                    x = this.enemyTower.x - 50;
+                    y = 400 + yOffset;
+                }
+
+                let unit = this.add.sprite(x, y, texture);
+                unit.setOrigin(0.5, 1);
+                
+                // Atributos
+                unit.maxHp = config.hp;
+                unit.hp = config.hp;
+                unit.dmg = config.dmg;
+                unit.speed = config.speed;
+                unit.range = config.range;
+                unit.atkRate = config.atkRate;
+                unit.team = config.team;
+                
+                // Controle de Estado
+                unit.state = 'moving';
+                unit.lastAtkTime = 0;
+                unit.target = null;
+                unit.isTower = false;
+
+                // UI Barra de vida da unidade
+                unit.hpBar = this.add.rectangle(x, y - unit.displayHeight - 10, unit.displayWidth, 6, 0x58CC02);
+                
+                this.units.push(unit);
+                
+                // Animação de spawn
+                unit.setScale(0);
+                this.tweens.add({
+                    targets: unit,
+                    scaleX: 1,
+                    scaleY: 1,
+                    duration: 300,
+                    ease: 'Back.out'
+                });
+            }
+
+            update(time, delta) {
+                if (this.gameOver) return;
+
+                // Limpar unidades mortas da lista
+                this.units = this.units.filter(u => u.active);
+
+                // Lógica de Inteligência Artificial para cada unidade
+                for (let i = 0; i < this.units.length; i++) {
+                    let u = this.units[i];
+                    if (u.isTower) continue; // Torres não andam
+
+                    // Encontrar inimigo mais próximo
+                    let closestEnemy = null;
+                    let minDist = Infinity;
+
+                    for (let j = 0; j < this.units.length; j++) {
+                        let other = this.units[j];
+                        if (u.team !== other.team && other.hp > 0) {
+                            let dist = Phaser.Math.Distance.Between(u.x, u.y, other.x, other.y);
+                            if (dist < minDist) {
+                                minDist = dist;
+                                closestEnemy = other;
+                            }
+                        }
+                    }
+
+                    u.target = closestEnemy;
+
+                    // Máquina de Estados
+                    if (u.target) {
+                        if (minDist <= u.range + (u.target.displayWidth / 2)) {
+                            // Está no alcance -> ATACAR
+                            u.state = 'attacking';
+                            if (time > u.lastAtkTime + u.atkRate) {
+                                this.performAttack(u, u.target, time);
+                            }
+                        } else {
+                            // Fora do alcance -> ANDAR
+                            u.state = 'moving';
+                            let dir = (u.target.x > u.x) ? 1 : -1;
+                            u.x += dir * (u.speed * delta / 1000);
+                            
+                            // Animação simples de caminhar (wobble)
+                            u.angle = Math.sin(time / 100) * 10;
+                        }
+                    } else {
+                        // Sem alvos (ganhou o jogo)
+                        u.state = 'idle';
+                        u.angle = 0;
+                    }
+
+                    // Atualizar posição da barra de vida
+                    if (u.hpBar) {
+                        u.hpBar.x = u.x;
+                        u.hpBar.y = u.y - u.displayHeight - 10;
+                    }
+                    
+                    // Profundidade (Depth sorting para simular 2.5D)
+                    u.setDepth(u.y);
+                }
+            }
+
+            performAttack(attacker, target, time) {
+                attacker.lastAtkTime = time;
+
+                // Animação de ataque (pulinho pra frente)
+                let dir = (target.x > attacker.x) ? 1 : -1;
+                this.tweens.add({
+                    targets: attacker,
+                    x: attacker.x + (dir * 10),
+                    yoyo: true,
+                    duration: 100
+                });
+
+                // Dar dano
+                target.hp -= attacker.dmg;
+                this.showDamageText(target.x, target.y - target.displayHeight, attacker.dmg);
+                this.updateHealthBar(target);
+
+                // Anima o Rei se o alvo atacado for uma torre
+                if (target.isTower && target.kingSprite) {
+                    this.animateKingHit(target.kingSprite);
+                }
+
+                // Checar morte
+                if (target.hp <= 0) {
+                    this.killUnit(target);
+                }
+            }
+
+            animateKingHit(king) {
+                // Impede que as animações entrem em conflito se for atacado muito rápido
+                if (this.tweens.isTweening(king)) return;
+
+                king.setTint(0xFF4B4B); // Fica vermelho de dor/raiva
+                
+                this.tweens.add({
+                    targets: king,
+                    y: king.baseY - 15, // Pula de susto para trás das ameias
+                    duration: 150,
+                    yoyo: true,
+                    ease: 'Quad.easeOut',
+                    onComplete: () => {
+                        king.clearTint();
+                    }
+                });
+            }
+
+            updateHealthBar(unit) {
+                if (!unit.hpBar || !unit.active) return;
+                
+                let pct = Math.max(0, unit.hp / unit.maxHp);
+                
+                if (unit.isTower) {
+                    unit.hpBar.width = 80 * pct;
+                    if (pct < 0.3) unit.hpBar.fillColor = 0xFF4B4B; // Fica vermelho no fim
+                } else {
+                    unit.hpBar.width = unit.displayWidth * pct;
+                    unit.hpBar.fillColor = pct > 0.5 ? 0x58CC02 : (pct > 0.2 ? 0xFFDE00 : 0xFF4B4B);
+                }
+            }
+
+            showDamageText(x, y, amount) {
+                let text = this.add.text(x, y, `-${amount}`, {
+                    fontFamily: 'Nunito',
+                    fontSize: '20px',
+                    fontWeight: '900',
+                    color: '#FF4B4B',
+                    stroke: '#FFFFFF',
+                    strokeThickness: 4
+                });
+                text.setOrigin(0.5);
+                text.setDepth(1000);
+
+                this.tweens.add({
+                    targets: text,
+                    y: y - 40,
+                    alpha: 0,
+                    duration: 800,
+                    onComplete: () => text.destroy()
+                });
+            }
+
+            killUnit(unit) {
+                if (!unit.active) return;
+                unit.active = false;
+                unit.hp = 0;
+
+                if (unit.hpBar) {
+                    unit.hpBar.destroy();
+                }
+
+                // Se a torre morrer, o rei também some com ela
+                if (unit.isTower && unit.kingSprite) {
+                    this.tweens.add({
+                        targets: unit.kingSprite,
+                        scaleX: 0,
+                        scaleY: 0,
+                        alpha: 0,
+                        duration: 300,
+                        onComplete: () => unit.kingSprite.destroy()
+                    });
+                }
+
+                // Animação de morte
+                this.tweens.add({
+                    targets: unit,
+                    scaleX: 0,
+                    scaleY: 0,
+                    alpha: 0,
+                    duration: 300,
+                    onComplete: () => unit.destroy()
+                });
+
+                // Se for torre, o jogo acaba
+                if (unit.isTower) {
+                    this.gameOver = true;
+                    setTimeout(() => {
+                        showGameOver(unit.team === 'enemy');
+                    }, 1000);
+                }
+            }
+        }
+
+        /* ==========================================================================
+           4. INICIALIZAÇÃO DO PHASER
+           ========================================================================== */
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'phaser-container',
+            width: 800,
+            height: 600,
+            transparent: true,
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+            scene: MainScene
+        };
+
+        const game = new Phaser.Game(config);
+
+    </script>
+</body>
+</html>

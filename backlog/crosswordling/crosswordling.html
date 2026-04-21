@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DuoCross - Palavras Cruzadas Gamificadas</title>
+    
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Cores Estilo Duolingo */
+            --primary: #58cc02;
+            --primary-shadow: #58a700;
+            --secondary: #1cb0f6;
+            --secondary-shadow: #1899d6;
+            --danger: #ff4b4b;
+            --danger-shadow: #ea2b2b;
+            --warning: #ffc800;
+            --text-dark: #4b4b4b;
+            --text-light: #afafaf;
+            --bg-color: #ffffff;
+            --grid-bg: #f7f7f7;
+            --border-color: #e5e5e5;
+            --cell-active: #ddf4ff;
+            --cell-active-border: #1cb0f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            user-select: none; /* Previne seleção acidental */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Evita scroll indesejado no mobile */
+        }
+
+        /* Container Principal do App */
+        #app {
+            width: 100%;
+            max-width: 600px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            position: relative;
+        }
+
+        /* Header / Topbar */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 15px;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--danger);
+        }
+
+        .stat.xp { color: var(--warning); }
+        .stat i { margin-right: 5px; font-size: 1.3rem; }
+
+        .progress-container {
+            flex-grow: 1;
+            height: 16px;
+            background-color: var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            border-radius: 8px;
+            transition: width 0.4s ease-out;
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 10px;
+            right: 10px;
+            height: 4px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
+
+        /* Área Principal de Jogo */
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 20px;
+            overflow-y: auto;
+        }
+
+        /* Container da Dica */
+        #clue-container {
+            width: 100%;
+            background: var(--grid-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #clue-direction {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        #clue-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        /* O Tabuleiro de Palavras Cruzadas */
+        #crossword-board {
+            display: grid;
+            gap: 4px;
+            margin-bottom: 20px;
+            background: var(--border-color);
+            padding: 4px;
+            border-radius: 12px;
+        }
+
+        .cell {
+            width: 45px;
+            height: 45px;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .cell.active-cell {
+            background-color: white;
+            border: 2px solid var(--border-color);
+        }
+
+        .cell input {
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            background-color: white;
+            text-transform: uppercase;
+            outline: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 0 var(--border-color);
+            cursor: pointer;
+            padding-bottom: 4px; /* Compensate for shadow */
+        }
+
+        .cell input:focus {
+            border-color: var(--secondary);
+            background-color: var(--cell-active);
+            box-shadow: 0 4px 0 var(--secondary-shadow);
+            color: var(--secondary);
+        }
+
+        /* Highlights da palavra atual */
+        .cell.highlight input {
+            background-color: var(--cell-active);
+            border-color: var(--secondary);
+        }
+
+        /* Estados de Resposta */
+        .cell.correct input {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 0 var(--primary-shadow);
+            pointer-events: none;
+            animation: pop 0.3s ease;
+        }
+
+        .cell.incorrect input {
+            background-color: var(--danger);
+            border-color: var(--danger);
+            color: white;
+            box-shadow: 0 4px 0 var(--danger-shadow);
+            animation: shake 0.4s ease;
+        }
+
+        /* Numeração das dicas na célula */
+        .cell-number {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: var(--text-light);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Footer / Botão de Ação */
+        footer {
+            padding: 20px;
+            border-top: 2px solid var(--border-color);
+            background: white;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.1s;
+            outline: none;
+        }
+
+        .btn-check {
+            background-color: var(--primary);
+            color: white;
+            border-bottom: 4px solid var(--primary-shadow);
+        }
+
+        .btn-check:active {
+            border-bottom-width: 0px;
+            transform: translateY(4px);
+            margin-bottom: 4px;
+        }
+
+        .btn-check:disabled {
+            background-color: var(--border-color);
+            color: var(--text-light);
+            border-bottom-color: #d1d1d1;
+            cursor: not-allowed;
+        }
+
+        /* Modais */
+        .modal-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 100;
+        }
+
+        .modal {
+            background: white;
+            width: 100%;
+            padding: 30px 20px;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            text-align: center;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .modal h2 { margin-bottom: 10px; font-size: 1.8rem; }
+        .modal p { margin-bottom: 20px; color: var(--text-light); font-weight: 700; }
+        
+        .modal.success h2 { color: var(--warning); }
+        .modal.gameover h2 { color: var(--danger); }
+
+        /* Animações */
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        /* Responsividade */
+        @media (max-height: 700px) {
+            .cell { width: 38px; height: 38px; }
+            .cell input { font-size: 1.2rem; }
+            #clue-container { padding: 10px; min-height: 60px; margin-bottom: 10px; }
+            #clue-text { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <header>
+            <div class="stat"><i class="fas fa-heart"></i> <span id="hearts-display">3</span></div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="stat xp"><i class="fas fa-bolt"></i> <span id="xp-display">0</span></div>
+        </header>
+
+        <main>
+            <div id="clue-container">
+                <div id="clue-direction">Selecione</div>
+                <div id="clue-text">Toque em uma célula no tabuleiro</div>
+            </div>
+
+            <div id="crossword-board">
+                <!-- Grid gerado via JS -->
+            </div>
+        </main>
+
+        <footer>
+            <button class="btn btn-check" id="check-btn">Verificar</button>
+        </footer>
+
+        <!-- Modal de Sucesso -->
+        <div class="modal-overlay" id="success-modal">
+            <div class="modal success">
+                <h2><i class="fas fa-star"></i> Incrível!</h2>
+                <p>Você completou o desafio de hoje.</p>
+                <button class="btn btn-check" style="background:var(--secondary); border-color:var(--secondary-shadow)" onclick="location.reload()">Jogar Novamente</button>
+            </div>
+        </div>
+
+        <!-- Modal Game Over -->
+        <div class="modal-overlay" id="gameover-modal">
+            <div class="modal gameover">
+                <h2><i class="fas fa-heart-crack"></i> Poxa...</h2>
+                <p>Você ficou sem vidas.</p>
+                <button class="btn btn-check" style="background:var(--danger); border-color:var(--danger-shadow)" onclick="location.reload()">Tentar de Novo</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DADOS DO NÍVEL ---
+        // Coordenadas: X (coluna), Y (linha) - 0 indexado
+        const levelData = {
+            width: 6,
+            height: 7,
+            words: [
+                { id: '1a', dir: 'across', x: 0, y: 0, answer: 'HTML', clue: 'Linguagem base da web', num: 1 },
+                { id: '1d', dir: 'down',   x: 0, y: 0, answer: 'HTTP', clue: 'Protocolo de internet', num: 1 },
+                { id: '2a', dir: 'across', x: 0, y: 3, answer: 'PIXEL',clue: 'Ponto luminoso na tela', num: 2 },
+                { id: '3d', dir: 'down',   x: 4, y: 3, answer: 'LINK', clue: 'Conecta páginas web', num: 3 },
+                { id: '4a', dir: 'across', x: 2, y: 6, answer: 'BACK', clue: 'Parte do servidor (Backend)', num: 4 }
+            ]
+        };
+
+        // --- ESTADO DO JOGO ---
+        const state = {
+            hearts: 3,
+            xp: 0,
+            grid: [], // Matriz representando o tabuleiro 
+            inputs: {}, // Referência aos elementos DOM dos inputs: inputs['x,y'] = element
+            activeCell: null, // {x, y}
+            activeDirection: 'across',
+            totalLetters: 0,
+            correctLetters: 0
+        };
+
+        // --- ELEMENTOS DOM ---
+        const boardEl = document.getElementById('crossword-board');
+        const clueDirEl = document.getElementById('clue-direction');
+        const clueTextEl = document.getElementById('clue-text');
+        const checkBtn = document.getElementById('check-btn');
+        const heartsDisplay = document.getElementById('hearts-display');
+        const xpDisplay = document.getElementById('xp-display');
+        const progressBar = document.getElementById('progress-bar');
+
+        // --- INICIALIZAÇÃO ---
+        function initGame() {
+            buildLogicGrid();
+            renderBoard();
+            calculateTotalLetters();
+            setupEventListeners();
+            updateStatsUI();
+        }
+
+        // Constrói a representação lógica da grade baseada nas palavras
+        function buildLogicGrid() {
+            // Inicializa matriz vazia
+            for (let y = 0; y < levelData.height; y++) {
+                state.grid[y] = [];
+                for (let x = 0; x < levelData.width; x++) {
+                    state.grid[y][x] = null;
+                }
+            }
+
+            // Preenche com as palavras
+            levelData.words.forEach(word => {
+                let currX = word.x;
+                let currY = word.y;
+
+                for (let i = 0; i < word.answer.length; i++) {
+                    if (!state.grid[currY][currX]) {
+                        state.grid[currY][currX] = { 
+                            correctChar: word.answer[i], 
+                            words: [], 
+                            num: i === 0 ? word.num : null // Apenas a primeira letra tem o número
+                        };
+                    }
+                    state.grid[currY][currX].words.push({ id: word.id, dir: word.dir, index: i });
+
+                    if (word.dir === 'across') currX++;
+                    else currY++;
+                }
+            });
+        }
+
+        function calculateTotalLetters() {
+            let count = 0;
+            for (let y = 0; y < levelData.height; y++) {
+                for (let x = 0; x < levelData.width; x++) {
+                    if (state.grid[y][x]) count++;
+                }
+            }
+            state.totalLetters = count;
+        }
+
+        // Renderiza o HTML do tabuleiro
+        function renderBoard() {
+            boardEl.style.gridTemplateColumns = `repeat(${levelData.width}, 1fr)`;
+            boardEl.style.gridTemplateRows = `repeat(${levelData.height}, 1fr)`;
+
+            for (let y = 0; y < levelData.height; y++) {
+                for (let x = 0; x < levelData.width; x++) {
+                    const cellData = state.grid[y][x];
+                    const cellDiv = document.createElement('div');
+                    cellDiv.className = 'cell';
+
+                    if (cellData) {
+                        cellDiv.classList.add('active-cell');
+                        
+                        if (cellData.num) {
+                            const numSpan = document.createElement('span');
+                            numSpan.className = 'cell-number';
+                            numSpan.innerText = cellData.num;
+                            cellDiv.appendChild(numSpan);
+                        }
+
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.maxLength = 1;
+                        input.dataset.x = x;
+                        input.dataset.y = y;
+                        input.autocomplete = "off"; // Desativa sugestões do teclado
+                        
+                        cellDiv.appendChild(input);
+                        state.inputs[`${x},${y}`] = input;
+                    }
+                    boardEl.appendChild(cellDiv);
+                }
+            }
+        }
+
+        // --- LÓGICA DE INTERAÇÃO ---
+        function setupEventListeners() {
+            // Eventos nos inputs
+            Object.values(state.inputs).forEach(input => {
+                input.addEventListener('focus', handleFocus);
+                input.addEventListener('click', handleClick);
+                input.addEventListener('input', handleInput);
+                input.addEventListener('keydown', handleKeydown);
+            });
+
+            // Botão verificar
+            checkBtn.addEventListener('click', checkAnswers);
+        }
+
+        function handleFocus(e) {
+            const x = parseInt(e.target.dataset.x);
+            const y = parseInt(e.target.dataset.y);
+            state.activeCell = { x, y };
+            updateHighlightAndClue();
+        }
+
+        function handleClick(e) {
+            const x = parseInt(e.target.dataset.x);
+            const y = parseInt(e.target.dataset.y);
+            const cellData = state.grid[y][x];
+
+            // Se a célula pertence a 2 palavras, alterna a direção ao clicar na mesma célula
+            if (state.activeCell && state.activeCell.x === x && state.activeCell.y === y) {
+                if (cellData.words.length > 1) {
+                    state.activeDirection = state.activeDirection === 'across' ? 'down' : 'across';
+                    updateHighlightAndClue();
+                }
+            } else {
+                // Ao entrar numa nova célula, tenta manter a direção atual se possível, senão pega a primeira
+                const hasCurrentDir = cellData.words.some(w => w.dir === state.activeDirection);
+                if (!hasCurrentDir) {
+                    state.activeDirection = cellData.words[0].dir;
+                }
+                state.activeCell = { x, y };
+                updateHighlightAndClue();
+            }
+        }
+
+        function handleInput(e) {
+            const input = e.target;
+            // Apenas letras
+            input.value = input.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+            
+            // Remove estado de erro ao digitar novamente
+            input.parentElement.classList.remove('incorrect');
+
+            if (input.value) {
+                moveToNextCell(1);
+            }
+        }
+
+        function handleKeydown(e) {
+            if (e.key === 'Backspace' && !e.target.value) {
+                // Se apertar backspace numa célula vazia, volta
+                e.preventDefault();
+                moveToNextCell(-1);
+            } else if (e.key === 'ArrowRight') {
+                state.activeDirection = 'across';
+                moveToNextCell(1);
+            } else if (e.key === 'ArrowLeft') {
+                state.activeDirection = 'across';
+                moveToNextCell(-1);
+            } else if (e.key === 'ArrowDown') {
+                state.activeDirection = 'down';
+                moveToNextCell(1);
+            } else if (e.key === 'ArrowUp') {
+                state.activeDirection = 'down';
+                moveToNextCell(-1);
+            }
+        }
+
+        // --- NAVEGAÇÃO E VISUAL ---
+        function updateHighlightAndClue() {
+            // Remove highlights anteriores
+            Object.values(state.inputs).forEach(inp => inp.parentElement.classList.remove('highlight'));
+
+            if (!state.activeCell) return;
+
+            const {x, y} = state.activeCell;
+            const cellData = state.grid[y][x];
+            
+            // Encontra a palavra ativa
+            let activeWordRef = cellData.words.find(w => w.dir === state.activeDirection) || cellData.words[0];
+            state.activeDirection = activeWordRef.dir; // Garante consistência
+            
+            const activeWordData = levelData.words.find(w => w.id === activeWordRef.id);
+
+            // Atualiza Dica UI
+            clueDirEl.innerText = activeWordData.dir === 'across' ? 'Horizontal' : 'Vertical';
+            clueTextEl.innerText = activeWordData.clue;
+
+            // Aplica highlight nas células da palavra ativa
+            let currX = activeWordData.x;
+            let currY = activeWordData.y;
+            for (let i = 0; i < activeWordData.answer.length; i++) {
+                const input = state.inputs[`${currX},${currY}`];
+                if (input) {
+                    input.parentElement.classList.add('highlight');
+                }
+                if (activeWordData.dir === 'across') currX++;
+                else currY++;
+            }
+        }
+
+        function moveToNextCell(step) {
+            if (!state.activeCell) return;
+            const {x, y} = state.activeCell;
+            let nextX = x;
+            let nextY = y;
+
+            if (state.activeDirection === 'across') {
+                nextX += step;
+            } else {
+                nextY += step;
+            }
+
+            const nextInput = state.inputs[`${nextX},${nextY}`];
+            
+            // Verifica se a próxima célula existe e pertence à mesma palavra (não pula buracos pretos do meio)
+            if (nextInput && !nextInput.parentElement.classList.contains('correct')) {
+                // Checagem extra: só navega se a próxima célula faz parte da mesma palavra ativa
+                const nextCellData = state.grid[nextY][nextX];
+                if (nextCellData.words.some(w => w.dir === state.activeDirection)) {
+                    nextInput.focus();
+                }
+            }
+        }
+
+        // --- GAMIFICAÇÃO E VALIDAÇÃO ---
+        function checkAnswers() {
+            let hasErrors = false;
+            let newCorrects = 0;
+            let cellsChecked = false;
+
+            // Verifica todas as células preenchidas não travadas
+            Object.keys(state.inputs).forEach(key => {
+                const input = state.inputs[key];
+                const cellDiv = input.parentElement;
+                
+                // Pula as que já estão corretas
+                if (cellDiv.classList.contains('correct')) return;
+
+                const val = input.value.toUpperCase();
+                if (val) {
+                    cellsChecked = true;
+                    const [x, y] = key.split(',').map(Number);
+                    const correctChar = state.grid[y][x].correctChar;
+
+                    if (val === correctChar) {
+                        // Acertou
+                        cellDiv.classList.remove('incorrect');
+                        cellDiv.classList.add('correct');
+                        input.readOnly = true;
+                        newCorrects++;
+                    } else {
+                        // Errou
+                        hasErrors = true;
+                        cellDiv.classList.remove('incorrect'); // Reset animação
+                        void cellDiv.offsetWidth; // Trigger reflow
+                        cellDiv.classList.add('incorrect');
+                    }
+                }
+            });
+
+            if (!cellsChecked) return;
+
+            if (hasErrors) {
+                // Se teve algum erro, perde vida
+                state.hearts--;
+                updateStatsUI();
+                if (state.hearts <= 0) {
+                    setTimeout(() => showModal('gameover-modal'), 500);
+                }
+            }
+
+            if (newCorrects > 0) {
+                // Ganha XP por letra certa
+                state.xp += (newCorrects * 10);
+                state.correctLetters += newCorrects;
+                updateStatsUI();
+
+                // Verifica se ganhou
+                if (state.correctLetters === state.totalLetters) {
+                    setTimeout(() => showModal('success-modal'), 500);
+                }
+            }
+        }
+
+        function updateStatsUI() {
+            heartsDisplay.innerText = state.hearts;
+            xpDisplay.innerText = state.xp;
+            
+            // Cor do coração
+            const heartIcon = heartsDisplay.previousElementSibling;
+            heartIcon.style.color = state.hearts > 0 ? 'var(--danger)' : 'var(--border-color)';
+
+            // Progresso
+            const percentage = (state.correctLetters / state.totalLetters) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+
+        function showModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        // Inicia o jogo ao carregar
+        window.onload = initGame;
+
+    </script>
+</body>
+</html>

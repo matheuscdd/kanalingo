@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de Ordenação</title>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Varela Round lembra a fonte do Duolingo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+    <!-- SortableJS para Drag and Drop -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+    <style>
+        /* Variáveis de cores estilo Duolingo */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #4b4b4b;
+            --text-light: #afafaf;
+            --green: #58cc02;
+            --green-shadow: #58a700;
+            --red: #ff4b4b;
+            --red-shadow: #ea2b2b;
+            --blue: #1cb0f6;
+            --gray-bg: #f7f7f7;
+            --gray-border: #e5e5e5;
+            --card-bg: #ffffff;
+            --card-border: #e5e5e5;
+            --card-shadow: #d9d9d9;
+        }
+
+        /* Resets básicos */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar: Progresso e Vidas */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 10%;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .close-btn {
+            color: var(--text-light);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: var(--text-color);
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            margin: 0 20px;
+            height: 16px;
+            background-color: var(--gray-border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%; /* Inicia em 0 */
+            background-color: var(--green);
+            border-radius: 10px;
+            transition: width 0.5s ease-out;
+            position: relative;
+        }
+
+        /* Efeito de brilho na barra de progresso */
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 10px;
+            right: 10px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .hearts {
+            color: var(--red);
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Área de Conteúdo Principal */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px 10%;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Varela Round', sans-serif;
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
+
+        /* Estilo dos Cards Ordenáveis */
+        .sortable-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            list-style: none;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            cursor: grab;
+            box-shadow: 0 4px 0 var(--card-shadow);
+            transition: transform 0.1s, box-shadow 0.1s;
+            user-select: none;
+        }
+
+        .card:active {
+            cursor: grabbing;
+        }
+
+        .card .drag-handle {
+            color: var(--text-light);
+            font-size: 20px;
+            cursor: grab;
+            margin-top: 2px;
+        }
+
+        .card .card-content {
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+
+        /* --- MODO HORIZONTAL --- */
+        .sortable-list.horizontal {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .sortable-list.horizontal .card {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: calc(33.333% - 15px); /* Adapta 3 por linha no desktop */
+            min-width: 140px;
+            max-width: 220px;
+            padding: 15px 10px;
+        }
+
+        .sortable-list.horizontal .card .drag-handle {
+            margin-top: 0;
+            margin-bottom: 10px;
+            transform: rotate(90deg); /* Pegador na horizontal fica mais intuitivo */
+        }
+        /* ----------------------- */
+
+        /* Classes geradas pelo SortableJS */
+        .sortable-ghost {
+            opacity: 0.4;
+            background-color: var(--gray-bg);
+            border-style: dashed;
+        }
+
+        .sortable-drag {
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            cursor: grabbing !important;
+        }
+
+        /* Classe para o elemento clonado seguindo o mouse (forceFallback) */
+        .sortable-fallback {
+            opacity: 1 !important;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+            cursor: grabbing !important;
+            z-index: 9999 !important;
+            /* Remove a transição de CSS para que o card grude instantaneamente no mouse sem delay */
+            transition: none !important; 
+            pointer-events: none !important; /* Garante que o cursor não se confunda ao passar por outros elementos */
+        }
+
+        /* Footer com botão de checagem */
+        .bottom-bar {
+            padding: 30px 10%;
+            border-top: 2px solid var(--gray-border);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: var(--bg-color);
+            transition: background-color 0.3s;
+        }
+
+        /* Botão estilo Duolingo */
+        .btn {
+            font-family: 'Nunito', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 15px 40px;
+            border-radius: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.1s;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn-check {
+            background-color: var(--green);
+            color: white;
+            border-bottom: 4px solid var(--green-shadow);
+        }
+
+        .btn-check:hover {
+            background-color: #61df02;
+        }
+
+        .btn-check:active {
+            transform: translateY(4px);
+            border-bottom-width: 0;
+            margin-top: 4px;
+        }
+
+        .btn-check:disabled {
+            background-color: var(--gray-border);
+            border-bottom: 4px solid var(--card-shadow);
+            color: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+            margin-top: 0;
+        }
+
+        /* Estados de Feedback (Certo/Errado) */
+        .feedback-message {
+            display: none;
+            flex-grow: 1;
+            font-size: 24px;
+            font-family: 'Varela Round', sans-serif;
+            font-weight: bold;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bottom-bar.correct {
+            background-color: #d7ffb8;
+            border-top-color: #d7ffb8;
+        }
+        .bottom-bar.correct .feedback-message {
+            display: flex;
+            color: var(--green-shadow);
+        }
+        .bottom-bar.correct .btn {
+            background-color: var(--green);
+            border-bottom: 4px solid var(--green-shadow);
+        }
+
+        .bottom-bar.wrong {
+            background-color: #ffdfe0;
+            border-top-color: #ffdfe0;
+        }
+        .bottom-bar.wrong .feedback-message {
+            display: flex;
+            color: var(--red-shadow);
+        }
+        .bottom-bar.wrong .btn {
+            background-color: var(--red);
+            border-bottom: 4px solid var(--red-shadow);
+        }
+
+        /* Animação de erro (Tremer) */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        .shake-animation {
+            animation: shake 0.5s;
+        }
+
+        /* Overlay Fim de Jogo */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .modal-content h2 {
+            font-family: 'Varela Round', sans-serif;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        .modal-content i {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        .modal-content .win-icon { color: var(--green); }
+        .modal-content .lose-icon { color: var(--red); }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            .bottom-bar {
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+            }
+            .btn {
+                max-width: 100%;
+            }
+            .feedback-message {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="top-bar">
+        <i class="fa-solid fa-xmark close-btn" onclick="location.reload()"></i>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="hearts">
+            <i class="fa-solid fa-heart"></i>
+            <span id="hearts-count">3</span>
+        </div>
+    </div>
+
+    <!-- Conteúdo Central -->
+    <div class="main-content">
+        <h1>Arraste os cards para organizar a História da Computação em ordem cronológica:</h1>
+        
+        <!-- Botão para testar os modos de texto -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button id="toggle-mode-btn" class="btn" style="background-color: var(--blue); border-bottom-color: #1899d6; font-size: 14px; padding: 10px 20px; color: white;">Testar Textos Curtos</button>
+        </div>
+
+        <ul class="sortable-list" id="sortable-list">
+            <!-- Os cards estão embaralhados intencionalmente -->
+            <li class="card" data-order="3">
+                <i class="fa-solid fa-grip-vertical drag-handle"></i>
+                <div class="card-content">A invenção do transistor em 1947 revolucionou a tecnologia, substituindo as enormes e quentes válvulas de vidro. Isso permitiu que os computadores se tornassem menores, mais rápidos, mais confiáveis e muito mais eficientes no consumo de energia nas décadas seguintes, pavimentando o caminho para o futuro.</div>
+            </li>
+            <li class="card" data-order="1">
+                <i class="fa-solid fa-grip-vertical drag-handle"></i>
+                <div class="card-content">No século 19, Charles Babbage idealizou a Máquina Analítica, o primeiro conceito de um computador mecânico de uso geral. Ada Lovelace escreveu o primeiro algoritmo para ela, prevendo brilhantemente que a máquina poderia manipular símbolos e criar arte, não apenas processar números puros.</div>
+            </li>
+            <li class="card" data-order="5">
+                <i class="fa-solid fa-grip-vertical drag-handle"></i>
+                <div class="card-content">A partir dos anos 1990, a internet conectou computadores globalmente, mudando para sempre a comunicação. Hoje, os smartphones colocam computadores extremamente poderosos em nossos bolsos, enquanto a computação em nuvem e a Inteligência Artificial estão moldando o nosso futuro de forma cada vez mais acelerada.</div>
+            </li>
+            <li class="card" data-order="2">
+                <i class="fa-solid fa-grip-vertical drag-handle"></i>
+                <div class="card-content">Na década de 1940, o ENIAC foi construído como o primeiro computador eletrônico digital de grande escala do mundo. Ele ocupava o espaço de uma sala inteira, usava milhares de válvulas a vácuo e era programado fisicamente através de cabos e interruptores para realizar complexos cálculos de artilharia na guerra.</div>
+            </li>
+            <li class="card" data-order="4">
+                <i class="fa-solid fa-grip-vertical drag-handle"></i>
+                <div class="card-content">Nos anos 1970 e 1980, a invenção dos microprocessadores levou à criação dos primeiros computadores pessoais (PCs). Empresas visionárias como Apple e IBM popularizaram essas máquinas, colocando o poder de processamento de dados nas mesas de casas e escritórios de pessoas comuns em todo o mundo.</div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Footer / Área de Controle -->
+    <div class="bottom-bar" id="bottom-bar">
+        <div class="feedback-message" id="feedback-message">
+            <i class="fa-solid fa-circle-check" id="feedback-icon"></i>
+            <span id="feedback-text">Excelente!</span>
+        </div>
+        <button class="btn btn-check" id="action-btn">Verificar</button>
+    </div>
+
+    <!-- Modal de Fim de Jogo -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <i class="fa-solid fa-trophy win-icon" id="modal-icon"></i>
+            <h2 id="modal-title">Lição Concluída!</h2>
+            <p id="modal-desc">Você organizou a história corretamente!</p>
+            <br>
+            <button class="btn btn-check" onclick="location.reload()" style="width: 100%;">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        // Lógica Principal JavaScript (Vanilla)
+        document.addEventListener('DOMContentLoaded', () => {
+            const listElement = document.getElementById('sortable-list');
+            const actionBtn = document.getElementById('action-btn');
+            const bottomBar = document.getElementById('bottom-bar');
+            const feedbackMessage = document.getElementById('feedback-message');
+            const feedbackIcon = document.getElementById('feedback-icon');
+            const feedbackText = document.getElementById('feedback-text');
+            const heartsCount = document.getElementById('hearts-count');
+            const progressBar = document.getElementById('progress-bar');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const modalIcon = document.getElementById('modal-icon');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDesc = document.getElementById('modal-desc');
+            const toggleModeBtn = document.getElementById('toggle-mode-btn');
+
+            let vidas = 3;
+            let estadoAtual = 'checking'; // 'checking' ou 'continue'
+            let sortableInstance;
+
+            // Função que avalia e aplica o layout correto
+            function avaliarLayout() {
+                const cards = listElement.querySelectorAll('.card');
+                const MAX_CHARS = 150; // Limite de caracteres para ser considerado "pequeno"
+                const MAX_CARDS = 6;   // Máximo de cards permitidos no modo horizontal
+
+                let todosPequenos = true;
+
+                if (cards.length > MAX_CARDS) {
+                    todosPequenos = false;
+                } else {
+                    cards.forEach(card => {
+                        const texto = card.querySelector('.card-content').innerText.trim();
+                        if (texto.length > MAX_CHARS) {
+                            todosPequenos = false;
+                        }
+                    });
+                }
+
+                if (todosPequenos) {
+                    listElement.classList.add('horizontal');
+                } else {
+                    listElement.classList.remove('horizontal');
+                }
+            }
+
+            // Inicializa a biblioteca SortableJS
+            sortableInstance = new Sortable(listElement, {
+                animation: 150,
+                ghostClass: 'sortable-ghost',
+                dragClass: 'sortable-drag',
+                forceFallback: true, // Força o elemento a seguir o mouse perfeitamente
+                fallbackClass: 'sortable-fallback', // Estilos do elemento flutuante
+                fallbackOnBody: true // Evita que o card seja cortado por outros elementos
+            });
+
+            // Função para verificar a ordem
+            function checarOrdem() {
+                const cards = listElement.querySelectorAll('.card');
+                let ordemCorreta = true;
+
+                // Percorre os cards e verifica o data-order
+                cards.forEach((card, index) => {
+                    // O data-order vai de 1 a 5. O index vai de 0 a 4.
+                    if (parseInt(card.getAttribute('data-order')) !== (index + 1)) {
+                        ordemCorreta = false;
+                    }
+                });
+
+                if (ordemCorreta) {
+                    lidarAcerto();
+                } else {
+                    lidarErro();
+                }
+            }
+
+            function lidarAcerto() {
+                // Altera UI para estado de Sucesso
+                bottomBar.classList.add('correct');
+                feedbackIcon.className = 'fa-solid fa-circle-check';
+                feedbackText.innerText = 'Excelente! A ordem está perfeita.';
+                actionBtn.innerText = 'Continuar';
+                actionBtn.style.color = 'var(--green)';
+                actionBtn.style.backgroundColor = '#ffffff';
+                progressBar.style.width = '100%';
+                
+                // Desabilita arrastar
+                sortableInstance.option('disabled', true);
+                estadoAtual = 'continue';
+            }
+
+            function lidarErro() {
+                vidas--;
+                heartsCount.innerText = vidas;
+
+                // Animação de erro na lista
+                listElement.classList.remove('shake-animation');
+                void listElement.offsetWidth; // Trigger reflow para reiniciar a animação
+                listElement.classList.add('shake-animation');
+
+                // Altera UI para estado de Erro
+                bottomBar.classList.add('wrong');
+                feedbackIcon.className = 'fa-solid fa-circle-xmark';
+                feedbackText.innerText = 'Ordem incorreta. Tente novamente!';
+                actionBtn.innerText = 'Entendi';
+                actionBtn.style.color = 'var(--red)';
+                actionBtn.style.backgroundColor = '#ffffff';
+
+                if (vidas === 0) {
+                    mostrarModalFinal(false);
+                } else {
+                    estadoAtual = 'continue';
+                }
+            }
+
+            function resetarBarraInferior() {
+                bottomBar.className = 'bottom-bar';
+                actionBtn.innerText = 'Verificar';
+                actionBtn.style.color = 'white';
+                actionBtn.style.backgroundColor = 'var(--green)';
+                estadoAtual = 'checking';
+            }
+
+            function mostrarModalFinal(vitoria) {
+                if (vitoria) {
+                    modalIcon.className = 'fa-solid fa-trophy win-icon';
+                    modalTitle.innerText = 'Lição Concluída!';
+                    modalTitle.style.color = 'var(--green)';
+                    modalDesc.innerText = 'Você organizou a história corretamente e completou o exercício.';
+                } else {
+                    modalIcon.className = 'fa-solid fa-heart-crack lose-icon';
+                    modalTitle.innerText = 'Sem Vidas!';
+                    modalTitle.style.color = 'var(--red)';
+                    modalDesc.innerText = 'Você esgotou suas vidas. Tente a lição novamente.';
+                }
+                modalOverlay.classList.add('active');
+            }
+
+            // Listener do botão principal
+            actionBtn.addEventListener('click', () => {
+                if (estadoAtual === 'checking') {
+                    checarOrdem();
+                } else if (estadoAtual === 'continue') {
+                    if (vidas > 0 && progressBar.style.width !== '100%') {
+                        // Se errou e ainda tem vida, reseta a barra para tentar de novo
+                        resetarBarraInferior();
+                    } else if (progressBar.style.width === '100%') {
+                        // Se acertou, mostra modal de vitória
+                        mostrarModalFinal(true);
+                    }
+                }
+            });
+
+            // --- Lógica para testar textos Curtos vs Longos ---
+            const textosLongos = {
+                3: "A invenção do transistor em 1947 revolucionou a tecnologia, substituindo as enormes e quentes válvulas de vidro. Isso permitiu que os computadores se tornassem menores, mais rápidos, mais confiáveis e muito mais eficientes no consumo de energia nas décadas seguintes, pavimentando o caminho para o futuro.",
+                1: "No século 19, Charles Babbage idealizou a Máquina Analítica, o primeiro conceito de um computador mecânico de uso geral. Ada Lovelace escreveu o primeiro algoritmo para ela, prevendo brilhantemente que a máquina poderia manipular símbolos e criar arte, não apenas processar números puros.",
+                5: "A partir dos anos 1990, a internet conectou computadores globalmente, mudando para sempre a comunicação. Hoje, os smartphones colocam computadores extremamente poderosos em nossos bolsos, enquanto a computação em nuvem e a Inteligência Artificial estão moldando o nosso futuro de forma cada vez mais acelerada.",
+                2: "Na década de 1940, o ENIAC foi construído como o primeiro computador eletrônico digital de grande escala do mundo. Ele ocupava o espaço de uma sala inteira, usava milhares de válvulas a vácuo e era programado fisicamente através de cabos e interruptores para realizar complexos cálculos de artilharia na guerra.",
+                4: "Nos anos 1970 e 1980, a invenção dos microprocessadores levou à criação dos primeiros computadores pessoais (PCs). Empresas visionárias como Apple e IBM popularizaram essas máquinas, colocando o poder de processamento de dados nas mesas de casas e escritórios de pessoas comuns em todo o mundo."
+            };
+
+            const textosCurtos = {
+                3: "Invenção do Transistor (1947)",
+                1: "Máquina Analítica e Ada (Séc 19)",
+                5: "Era da Internet (Anos 90+)",
+                2: "Criação do ENIAC (1940s)",
+                4: "Revolução dos PCs (1970s)"
+            };
+
+            let modoCurto = false;
+
+            toggleModeBtn.addEventListener('click', () => {
+                modoCurto = !modoCurto;
+                const cards = listElement.querySelectorAll('.card');
+                
+                cards.forEach(card => {
+                    const order = card.getAttribute('data-order');
+                    const contentDiv = card.querySelector('.card-content');
+                    contentDiv.innerText = modoCurto ? textosCurtos[order] : textosLongos[order];
+                });
+
+                toggleModeBtn.innerText = modoCurto ? "Testar Textos Longos" : "Testar Textos Curtos";
+                avaliarLayout(); // Reavalia se o layout deve ser vertical ou horizontal
+            });
+
+            // Executa a avaliação do layout na primeira carga da página
+            avaliarLayout();
+        });
+    </script>
+</body>
+</html>

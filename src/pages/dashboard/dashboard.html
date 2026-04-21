@@ -59,6 +59,12 @@
                     </span>
                     <span class="text-nav">Estudar</span>
                 </button>
+                <button class="btn-nav active" id="toggle-teach">
+                    <span class="icon-nav">
+                        <i class="fa-solid fa-apple-whole fa-2xl"></i>
+                    </span>
+                    <span class="text-nav">Ensinar</span>
+                </button>
                 <button class="btn-nav" id="toggle-alphabet">
                     <span class="icon-nav">
                         <svg
@@ -97,8 +103,6 @@
                 </button>
                 <button class="btn-nav">
                     <span class="icon-nav">
-                        
-                       
                         <i class="fa-solid fa-shapes fa-xl"></i>
                     </span>
                     <span class="text-nav">Vocabulário</span>
@@ -133,7 +137,7 @@
                                 </g>
                             </g>
                         </svg>
-                         <!-- <svg
+                        <!-- <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
                             class="fa-custom-icon fa-2xl"
@@ -176,11 +180,15 @@
                 <div class="total-score">
                     <div>
                         <span id="total-score-course">0</span>
-                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star fa-2xs"></i>
                     </div>
                     <div>
                         <span id="total-score-free">0</span>
-                        <i class="fa-solid fa-diamond"></i>
+                        <i class="fa-solid fa-diamond fa-2xs"></i>
+                    </div>
+                    <div>
+                        <span>0</span>
+                        <i class="fa-solid fa-circle fa-2xs"></i>
                     </div>
                 </div>
             </nav>
@@ -257,6 +265,18 @@
                                     ></span>
                                     <span class="tab-name">Palavras</span>
                                 </button>
+                                <button
+                                    class="tab-btn"
+                                    data-target="prototypes"
+                                    data-color="gray"
+                                >
+                                    <span class="tab-icon kana-font">
+                                        <i
+                                            class="fa-solid fa-compass-drafting"
+                                        ></i>
+                                    </span>
+                                    <span class="tab-name">Protótipos</span>
+                                </button>
                             </nav>
 
                             <!-- Área de Conteúdo -->
@@ -269,10 +289,6 @@
                                         data-words="1"
                                         class="method-card hidden"
                                         data-screen="typing"
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
                                     >
                                         <span class="method-char kana-font">
                                             <i class="fa-solid fa-keyboard"></i>
@@ -324,239 +340,85 @@
                                             >Traduzir</span
                                         >
                                     </div>
-                                    <div
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i
-                                                class="fa-solid fa-align-left"
-                                            ></i>
-                                        </span>
-                                        <span class="method-label">Ler</span>
-                                    </div>
-                                    <div
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i
-                                                class="fa-solid fa-layer-group"
-                                            ></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Cartões</span
+                                    <a href="/backlog/reading/reading.html">
+                                        <div
+                                            class="method-card hidden"
+                                            data-prototypes="1"
                                         >
-                                    </div>
-                                    <div
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-clone"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Combinar</span
-                                        >
-                                    </div>
-
-                                    <div
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                version="1.2"
-                                                viewBox="0 0 787 526"
-                                                class="fa-custom-icon fa-xl"
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-align-left"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Ler</span
                                             >
-                                                <g id="icons">
-                                                    <g
-                                                        id="ui-gambling-website-lined-icnos-casinoshunter"
-                                                    >
-                                                        <g id="1">
-                                                            <path
-                                                                id="casino-cards"
-                                                                fill-rule="evenodd"
-                                                                class="s0"
-                                                                d="m585.48 64.59l163.33 43.76c25.47 6.82 40.88 32.56 35.53 58.37l-0.68 2.87-84.35 314.78c-6.91 25.79-32.47 41.54-57.96 36.29l-2.84-0.68-202.16-54.17 67.44 0.02c43.93 0 79.76-35.12 81.61-79.14l0.08-3.59v-42.4l52.75-32.95 2.73-1.77c7.97-5.6 13.77-13.88 16.32-23.41 2.86-10.65 1.42-21.98-4-31.5-5.41-9.52-14.37-16.45-24.88-19.27-8.57-2.3-12.49-3.35-20.65-0.06l7.75 3.24-17.44-2.46-2.15-2.59c-3-3.34-6.52-6.16-10.42-8.34zm-386.18 0.16v157.18c-3.66 2.13-6.98 4.83-9.83 8l-2.14 2.6-1.57 2.21c-8.91-4.46-19.14-5.52-28.77-2.94-10.52 2.82-19.47 9.75-24.88 19.27-5.42 9.52-6.86 20.85-4.01 31.5 2.56 9.53 8.36 17.81 16.33 23.41l2.73 1.77 52.14 32.59 0.02 42.76c0 44.49 34.67 80.77 78.14 82.65l3.55 0.08 68.01-0.02-202.15 54.18c-26.41 7.07-53.63-8.87-60.79-35.62l-84.35-314.78c-7.16-26.74 8.44-54.16 34.85-61.24zm311.88-57.75c27.75 0 50.24 22.49 50.24 50.24v326.53c0 27.74-22.49 50.23-50.24 50.23h-226.06c-27.74 0-50.23-22.49-50.23-50.23v-326.53c0-27.75 22.49-50.24 50.23-50.24zm-12.55 351.65h-25.12c-6.94 0-12.56 5.62-12.56 12.56 0 6.36 4.72 11.61 10.85 12.44l1.71 0.12h25.12c6.93 0 12.55-5.63 12.55-12.56 0-6.94-5.62-12.56-12.55-12.56zm139.86-163.17c4.17 1.12 32.1 45.21 34.25 49 2.15 3.78 31.13 74.02 30 78.25-0.78 2.9-14.36 7.16-16.5 9.25l-24.5-0.25-17.5 9.5h-58.75l-0.02-81.52 0.02-43.1c3.07 2.89 21.17-11.81 25.25-12.88l105.25 31.5-114.77 27.33 8.31-4.86 1.92-0.97c3.3-1.39 23.56-62.18 27.04-61.25zm-464.57 61.25l1.92 0.97-54.73 37.29 14-83.63c4.78 2.05 61.01 13.48 64.5 9.75l-0.37 119.75-47-4.5-29.75-31.25c-3.04-2.26-2.75-29.12 29.52-28.95 4.38 0.03-9.55 8.86-7.4 5.08 2.16-3.78 14.69-24.11 18.86-25.23 3.48-0.93 7.15-0.67 10.45 0.72zm-33.87 22.64l24.56 34.99-24.08-33.39zm505.27 0l-0.48 1.6-0.18 0.52zm-501.66-23.34l-0.41 0.66 0.18-0.31zm498.04 0l0.24 0.35 0.17 0.3zm-556.28-108.86l-23.91 6.41c-6.61 1.77-10.51 8.62-8.72 15.31 1.65 6.13 7.5 9.99 13.55 9.23l1.65-0.33 23.91-6.41c6.61-1.76 10.51-8.62 8.71-15.31-1.79-6.68-8.59-10.67-15.19-8.9zm599.35 8.9c-1.65 6.13 1.5 12.4 7.12 14.77l1.59 0.54 23.91 6.41 1.65 0.33c6.05 0.76 11.91-3.1 13.55-9.23 1.64-6.13-1.5-12.4-7.12-14.77l-1.59-0.54-23.91-6.41c-6.61-1.77-13.41 2.22-15.2 8.9zm-361.96-98.83h-25.12c-6.94 0-12.56 5.62-12.56 12.56 0 6.36 4.73 11.61 10.86 12.44l1.7 0.12h25.12c6.93 0 12.56-5.63 12.56-12.56 0-6.94-5.63-12.56-12.56-12.56z"
-                                                            />
-                                                            <path
-                                                                id="Layer 1"
-                                                                class="s1"
-                                                                d="m586 173l1 250 112 7 38-243zm-389 272l1-300-161 50 80 252-7 6z"
-                                                                color="currentColor"
-                                                            />
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                        <span class="method-label"
-                                            >Memória</span
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/flashcarding/flashcarding.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
                                         >
-                                    </div>
-                                    <div
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i
-                                                class="fa-solid fa-list-check"
-                                            ></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Escolha</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i
-                                                class="fa-solid fa-gavel fa-flip-horizontal"
-                                            ></i>
-                                        </span>
-                                        <span class="method-label">Bater</span>
-                                    </div>
-                                    <div
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-ghost"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Come-Come</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-ghost"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Labirinto</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-dungeon"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Escapar</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-meteor"></i>
-                                        </span>
-                                        <span class="method-label">Meteoros</span>
-                                    </div>
-                                    <div
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <svg
-                                                class="fa-custom-icon"
-                                                style="transform: scale(1.2)"
-                                                viewBox="0 0 24 24"
-                                                aria-hidden="true"
-                                                focusable="false"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-layer-group"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Cartões</span
                                             >
-                                                <path
-                                                    fill="currentColor"
-                                                    fill-rule="evenodd"
-                                                    clip-rule="evenodd"
-                                                    d="M2.29289 2.29289C2.68342 1.90237 3.31658 1.90237 3.70711 2.29289L6.5 5.08579L9.29289 2.29289C9.68342 1.90237 10.3166 1.90237 10.7071 2.29289C11.0976 2.68342 11.0976 3.31658 10.7071 3.70711L7.91421 6.5L10.7071 9.29289C11.0976 9.68342 11.0976 10.3166 10.7071 10.7071C10.3166 11.0976 9.68342 11.0976 9.29289 10.7071L6.5 7.91421L3.70711 10.7071C3.31658 11.0976 2.68342 11.0976 2.29289 10.7071C1.90237 10.3166 1.90237 9.68342 2.29289 9.29289L5.08579 6.5L2.29289 3.70711C1.90237 3.31658 1.90237 2.68342 2.29289 2.29289ZM17.5 4C16.1193 4 15 5.11929 15 6.5C15 7.88071 16.1193 9 17.5 9C18.8807 9 20 7.88071 20 6.5C20 5.11929 18.8807 4 17.5 4ZM13 6.5C13 4.01472 15.0147 2 17.5 2C19.9853 2 22 4.01472 22 6.5C22 8.98528 19.9853 11 17.5 11C15.0147 11 13 8.98528 13 6.5ZM6.5 15C5.11929 15 4 16.1193 4 17.5C4 18.8807 5.11929 20 6.5 20C7.88071 20 9 18.8807 9 17.5C9 16.1193 7.88071 15 6.5 15ZM2 17.5C2 15.0147 4.01472 13 6.5 13C8.98528 13 11 15.0147 11 17.5C11 19.9853 8.98528 22 6.5 22C4.01472 22 2 19.9853 2 17.5ZM13.2929 13.2929C13.6834 12.9024 14.3166 12.9024 14.7071 13.2929L17.5 16.0858L20.2929 13.2929C20.6834 12.9024 21.3166 12.9024 21.7071 13.2929C22.0976 13.6834 22.0976 14.3166 21.7071 14.7071L18.9142 17.5L21.7071 20.2929C22.0976 20.6834 22.0976 21.3166 21.7071 21.7071C21.3166 22.0976 20.6834 22.0976 20.2929 21.7071L17.5 18.9142L14.7071 21.7071C14.3166 22.0976 13.6834 22.0976 13.2929 21.7071C12.9024 21.3166 12.9024 20.6834 13.2929 20.2929L16.0858 17.5L13.2929 14.7071C12.9024 14.3166 12.9024 13.6834 13.2929 13.2929Z"
-                                                />
-                                            </svg>
-                                        </span>
-                                        <span class="method-label">Velha</span>
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                version="1.2"
-                                                viewBox="0 0 563 560"
-                                                class="fa-custom-icon"
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/matching/matching.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-clone"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Combinar</span
                                             >
-                                                <path
-                                                    d="M532 5 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
-                                                />
-
-                                                <path
-                                                    d="M232 305 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
-                                                />
-
-                                                <path
-                                                    d="M532 305 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
-                                                />
-                                            </svg>
-                                        </span>
-                                        <span class="method-label"
-                                            >Cruzadinhas</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/categorizing/categorizing.html"
                                     >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-tags"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Categorizar</span
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
                                         >
-                                    </div>
+                                            <span class="method-char kana-font">
+                                                <i class="fa-solid fa-tags"></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Categorizar</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/ordering/ordering.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-arrow-down-1-9"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Ordenar</span
+                                            >
+                                        </div>
+                                    </a>
                                     <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
@@ -583,7 +445,7 @@
                                         >
                                     </div>
                                     <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
@@ -613,7 +475,7 @@
                                         >
                                     </div>
                                     <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
@@ -643,7 +505,7 @@
                                         >
                                     </div>
                                     <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
@@ -656,7 +518,7 @@
                                         >
                                     </div>
                                     <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
@@ -704,7 +566,7 @@
                                         >
                                     </div>
                                     <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
@@ -715,7 +577,7 @@
                                         <span class="method-label">Verbos</span>
                                     </div>
                                     <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
@@ -728,7 +590,7 @@
                                         >
                                     </div>
                                     <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
@@ -740,196 +602,127 @@
                                             >Expressões</span
                                         >
                                     </div>
-                                    <div
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
+                                    <a
+                                        href="/backlog/crosswordling/crosswordling.html"
                                     >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-feather"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Visual&nbsp;Novels</span
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
                                         >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-film"></i>
-                                        </span>
-                                        <span class="method-label">Vídeos</span>
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-car-side"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Dirigir</span
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.0"
+                                                    preserveAspectRatio="xMidYMid meet"
+                                                    viewBox="86.13 81.38 1087.74 1095.49"
+                                                >
+                                                    <g
+                                                        transform="translate(0.000000,1254.000000) scale(0.100000,-0.100000)"
+                                                        fill="currentColor"
+                                                        stroke="none"
+                                                    >
+                                                        <path
+                                                            d="M2207 11719 c-491 -52 -953 -377 -1184 -832 -59 -115 -101 -235 -135 -382 l-23 -100 -3 -4100 c-2 -2975 0 -4126 8 -4195 45 -380 238 -734 539 -984 186 -155 398 -261 651 -324 l105 -27 4070 -3 c2877 -2 4098 0 4165 8 327 37 645 194 885 436 265 267 415 583 445 941 8 91 10 1303 8 4173 -3 3867 -4 4049 -21 4140 -26 133 -88 314 -147 428 -75 145 -169 268 -304 400 -221 215 -446 337 -746 405 l-95 21 -4070 2 c-2238 1 -4105 -2 -4148 -7z m3711 -2976 l2 -2043 -2055 0 -2055 0 2 1833 3 1832 24 60 c35 88 104 188 164 236 67 54 177 106 247 118 32 5 826 8 1860 7 l1805 -1 3 -2042z m2 -4918 l0 -2025 -1842 2 -1843 3 -67 27 c-134 54 -226 133 -293 253 -70 125 -65 -21 -67 1968 l-3 1797 2058 0 2057 0 0 -2025z m4865 230 c0 -1689 -1 -1794 -18 -1855 -38 -140 -154 -279 -284 -341 -129 -61 -34 -59 -1955 -59 l-1758 0 0 2025 0 2025 2008 -2 2007 -3 0 -1790z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Cruzadinhas</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/podcasts/podcasts.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
                                         >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        class="method-card hidden method-disabled"
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-radio"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Podcasts</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/musicalizing/musicalizing.html"
                                     >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-horse"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Cavalgar</span
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
                                         >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-chess-rook"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Defender</span
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-music"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Músicas</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/stories/stories.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
                                         >
-                                    </div>
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-book-bookmark"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Histórias</span
+                                            >
+                                        </div>
+                                    </a>
                                     <div
-                                        data-words="1"
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-chess-rook"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Slime</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-bomb"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Desviar</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-crosshairs"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Atirar</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        data-hiragana="1"
-                                        data-katakana="1"
-                                        data-kanas="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-plane-up"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Pilotar</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
                                             <i
-                                                class="fa-solid fa-arrow-down-1-9"
+                                                class="fa-solid fa-square-caret-down"
                                             ></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Ordenar</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-radio"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Podcasts</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-music"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Músicas</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i
-                                                class="fa-solid fa-book-bookmark"
-                                            ></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Histórias</span
-                                        >
-                                    </div>
-                                    <div
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-square-caret-down"></i>
                                         </span>
                                         <span class="method-label"
                                             >Dropdowns</span
                                         >
                                     </div>
-                                    <div
-                                        data-words="1"
-                                        class="method-card hidden method-disabled"
-                                    >
-                                        <span class="method-char kana-font">
-                                            <i class="fa-solid fa-comments"></i>
-                                        </span>
-                                        <span class="method-label"
-                                            >Conversar</span
+                                    <a href="/backlog/chating/chating.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
                                         >
-                                    </div>
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-comments"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Conversar</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/watching/watching.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i class="fa-solid fa-film"></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Vídeos</span
+                                            >
+                                        </div>
+                                    </a>
                                     <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
@@ -939,19 +732,1218 @@
                                         </span>
                                         <span class="method-label">Falar</span>
                                     </div>
+                                    <a
+                                        href="/backlog/storytelling/storytelling.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon"
+                                                    viewBox="0 0 24 24"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        fill="none"
+                                                        d="M0 0h24v24H0z"
+                                                    />
+                                                    <path
+                                                        fill="currentColor"
+                                                        stroke="currentColor"
+                                                        stroke-width="0.6"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        d="M1 22a8 8 0 1 1 16 0H1zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm9.246-9.816A9.97 9.97 0 0 1 19 7a9.97 9.97 0 0 1-.754 3.816l-1.677-1.22A7.99 7.99 0 0 0 17 7a7.99 7.99 0 0 0-.43-2.596l1.676-1.22zm3.302-2.4A13.942 13.942 0 0 1 23 7c0 2.233-.523 4.344-1.452 6.216l-1.645-1.196A11.955 11.955 0 0 0 21 7c0-1.792-.393-3.493-1.097-5.02L21.548.784z"
+                                                    />
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Contar</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/calling/calling.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-phone-flip"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Chamadas</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/choising/choising.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-list-check"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Múltipla Escolha</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/courtium/courtium.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-scale-balanced"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Tribulógica</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/shepherdium/shepherdium.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon fa-xl"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.0"
+                                                    preserveAspectRatio="xMidYMid meet"
+                                                    viewBox="130.96 117.03 890.83 679.47"
+                                                >
+                                                    <g
+                                                        transform="translate(0.000000,912.000000) scale(0.100000,-0.100000)"
+                                                        fill="currentColor"
+                                                        stroke="none"
+                                                    >
+                                                        <path
+                                                            d="M7858 7935 c-155 -43 -297 -155 -364 -287 -26 -51 -39 -56 -82 -34 -47 23 -160 39 -236 33 -281 -24 -498 -246 -514 -524 -2 -51 -9 -93 -14 -93 -5 0 -21 12 -36 26 -58 55 -147 108 -239 141 -62 23 -318 26 -373 4 -19 -7 -44 -16 -55 -21 -50 -19 -83 -36 -126 -66 l-47 -32 -63 70 c-127 142 -292 218 -473 218 -46 0 -96 -4 -112 -9 -16 -5 -49 -15 -74 -22 -25 -7 -67 -26 -93 -41 -26 -15 -51 -28 -55 -28 -18 0 -152 -134 -177 -175 -28 -49 -28 -49 -85 -4 -48 37 -135 84 -196 106 -72 26 -305 26 -389 -1 -164 -53 -300 -172 -366 -321 -11 -25 -22 -45 -25 -45 -2 0 -28 13 -57 30 -79 44 -162 69 -257 76 -83 6 -212 -7 -248 -25 -9 -5 -37 -17 -62 -27 -76 -32 -194 -126 -243 -196 -63 -88 -91 -153 -120 -278 l-13 -55 -65 -6 c-136 -14 -247 -60 -355 -148 -53 -42 -75 -67 -139 -155 l-20 -28 -53 17 c-96 32 -196 7 -278 -67 -37 -34 -58 -71 -79 -140 -12 -42 -13 -43 -66 -51 -153 -22 -252 -132 -253 -282 -1 -75 13 -120 51 -173 l24 -33 -45 -50 c-125 -139 -92 -358 66 -449 29 -16 63 -30 76 -30 20 0 22 -5 22 -57 0 -118 47 -208 140 -271 54 -36 57 -37 151 -36 l97 0 6 -50 c15 -129 84 -264 188 -368 l78 -78 -15 -63 c-33 -145 -31 -224 13 -361 34 -110 118 -228 207 -292 22 -16 42 -32 45 -35 3 -3 19 -13 36 -22 119 -61 253 -85 371 -67 43 6 88 12 101 13 l23 2 -1 -815 c0 -863 0 -862 46 -937 32 -51 98 -114 149 -141 45 -24 61 -26 150 -26 82 0 109 4 147 22 91 43 153 116 182 212 14 47 16 136 16 696 l0 643 43 12 c116 31 246 89 267 119 3 4 15 12 26 18 23 12 29 7 64 -61 8 -15 51 -63 96 -106 58 -57 102 -89 155 -114 112 -53 151 -61 284 -60 96 0 132 4 179 22 96 35 187 90 258 159 l68 65 62 -65 c68 -71 154 -124 259 -160 85 -29 275 -31 358 -4 118 40 209 98 291 188 l56 59 69 -40 c66 -39 152 -72 222 -86 l33 -6 2 -642 3 -642 25 -49 c32 -63 91 -120 160 -154 49 -24 66 -27 155 -27 92 1 105 3 155 30 72 40 117 86 149 154 l26 56 3 848 c2 600 6 847 13 847 6 0 39 -7 73 -17 94 -25 264 -22 345 6 102 35 144 58 215 117 102 84 167 185 207 321 22 75 28 258 10 292 -13 23 -6 29 69 60 173 72 315 242 365 436 19 73 19 220 1 298 -19 76 -68 179 -117 244 l-40 53 26 87 c16 57 25 112 25 159 0 126 -42 281 -105 387 -19 32 -35 61 -35 64 0 15 -161 188 -213 227 -31 24 -38 26 -56 14 -12 -7 -21 -16 -21 -20 0 -10 -137 -120 -202 -161 -142 -90 -270 -143 -414 -171 -134 -26 -247 -18 -341 26 -59 28 -141 112 -170 175 -61 133 -32 386 71 617 56 125 74 157 142 262 90 137 119 164 181 164 36 0 50 -6 74 -29 43 -44 41 -102 -6 -164 -19 -25 -35 -50 -35 -56 0 -5 -4 -11 -8 -13 -18 -7 -93 -146 -145 -268 -36 -83 -68 -220 -73 -305 -5 -79 -3 -94 15 -122 32 -51 73 -67 168 -65 209 4 429 117 641 331 131 131 106 129 249 23 101 -76 248 -221 312 -309 133 -184 192 -365 194 -596 l1 -128 560 3 c511 3 565 5 611 22 78 28 94 36 183 94 239 156 352 459 277 746 -61 232 -341 593 -661 851 -108 87 -215 167 -261 196 -28 17 -28 27 -3 107 59 188 -7 409 -165 549 -152 136 -361 171 -559 94 -27 -11 -31 -9 -60 26 -85 103 -155 153 -281 203 -82 32 -256 40 -347 15z m1115 -1378 c124 -52 177 -195 116 -312 -53 -101 -161 -146 -267 -111 -119 40 -178 162 -140 290 15 49 82 118 130 133 47 16 123 15 161 0z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Pastorfusão</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/tictactoing/tictactoing.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon"
+                                                    style="
+                                                        transform: scale(1.2);
+                                                    "
+                                                    viewBox="0 0 24 24"
+                                                    aria-hidden="true"
+                                                    focusable="false"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        fill="currentColor"
+                                                        fill-rule="evenodd"
+                                                        clip-rule="evenodd"
+                                                        d="M2.29289 2.29289C2.68342 1.90237 3.31658 1.90237 3.70711 2.29289L6.5 5.08579L9.29289 2.29289C9.68342 1.90237 10.3166 1.90237 10.7071 2.29289C11.0976 2.68342 11.0976 3.31658 10.7071 3.70711L7.91421 6.5L10.7071 9.29289C11.0976 9.68342 11.0976 10.3166 10.7071 10.7071C10.3166 11.0976 9.68342 11.0976 9.29289 10.7071L6.5 7.91421L3.70711 10.7071C3.31658 11.0976 2.68342 11.0976 2.29289 10.7071C1.90237 10.3166 1.90237 9.68342 2.29289 9.29289L5.08579 6.5L2.29289 3.70711C1.90237 3.31658 1.90237 2.68342 2.29289 2.29289ZM17.5 4C16.1193 4 15 5.11929 15 6.5C15 7.88071 16.1193 9 17.5 9C18.8807 9 20 7.88071 20 6.5C20 5.11929 18.8807 4 17.5 4ZM13 6.5C13 4.01472 15.0147 2 17.5 2C19.9853 2 22 4.01472 22 6.5C22 8.98528 19.9853 11 17.5 11C15.0147 11 13 8.98528 13 6.5ZM6.5 15C5.11929 15 4 16.1193 4 17.5C4 18.8807 5.11929 20 6.5 20C7.88071 20 9 18.8807 9 17.5C9 16.1193 7.88071 15 6.5 15ZM2 17.5C2 15.0147 4.01472 13 6.5 13C8.98528 13 11 15.0147 11 17.5C11 19.9853 8.98528 22 6.5 22C4.01472 22 2 19.9853 2 17.5ZM13.2929 13.2929C13.6834 12.9024 14.3166 12.9024 14.7071 13.2929L17.5 16.0858L20.2929 13.2929C20.6834 12.9024 21.3166 12.9024 21.7071 13.2929C22.0976 13.6834 22.0976 14.3166 21.7071 14.7071L18.9142 17.5L21.7071 20.2929C22.0976 20.6834 22.0976 21.3166 21.7071 21.7071C21.3166 22.0976 20.6834 22.0976 20.2929 21.7071L17.5 18.9142L14.7071 21.7071C14.3166 22.0976 13.6834 22.0976 13.2929 21.7071C12.9024 21.3166 12.9024 20.6834 13.2929 20.2929L16.0858 17.5L13.2929 14.7071C12.9024 14.3166 12.9024 13.6834 13.2929 13.2929Z"
+                                                    />
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Velha</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/memorizing/memorizing.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.2"
+                                                    viewBox="0 0 787 526"
+                                                    class="fa-custom-icon fa-xl"
+                                                >
+                                                    <g id="icons">
+                                                        <g
+                                                            id="ui-gambling-website-lined-icnos-casinoshunter"
+                                                        >
+                                                            <g id="1">
+                                                                <path
+                                                                    id="casino-cards"
+                                                                    fill-rule="evenodd"
+                                                                    class="s0"
+                                                                    d="m585.48 64.59l163.33 43.76c25.47 6.82 40.88 32.56 35.53 58.37l-0.68 2.87-84.35 314.78c-6.91 25.79-32.47 41.54-57.96 36.29l-2.84-0.68-202.16-54.17 67.44 0.02c43.93 0 79.76-35.12 81.61-79.14l0.08-3.59v-42.4l52.75-32.95 2.73-1.77c7.97-5.6 13.77-13.88 16.32-23.41 2.86-10.65 1.42-21.98-4-31.5-5.41-9.52-14.37-16.45-24.88-19.27-8.57-2.3-12.49-3.35-20.65-0.06l7.75 3.24-17.44-2.46-2.15-2.59c-3-3.34-6.52-6.16-10.42-8.34zm-386.18 0.16v157.18c-3.66 2.13-6.98 4.83-9.83 8l-2.14 2.6-1.57 2.21c-8.91-4.46-19.14-5.52-28.77-2.94-10.52 2.82-19.47 9.75-24.88 19.27-5.42 9.52-6.86 20.85-4.01 31.5 2.56 9.53 8.36 17.81 16.33 23.41l2.73 1.77 52.14 32.59 0.02 42.76c0 44.49 34.67 80.77 78.14 82.65l3.55 0.08 68.01-0.02-202.15 54.18c-26.41 7.07-53.63-8.87-60.79-35.62l-84.35-314.78c-7.16-26.74 8.44-54.16 34.85-61.24zm311.88-57.75c27.75 0 50.24 22.49 50.24 50.24v326.53c0 27.74-22.49 50.23-50.24 50.23h-226.06c-27.74 0-50.23-22.49-50.23-50.23v-326.53c0-27.75 22.49-50.24 50.23-50.24zm-12.55 351.65h-25.12c-6.94 0-12.56 5.62-12.56 12.56 0 6.36 4.72 11.61 10.85 12.44l1.71 0.12h25.12c6.93 0 12.55-5.63 12.55-12.56 0-6.94-5.62-12.56-12.55-12.56zm139.86-163.17c4.17 1.12 32.1 45.21 34.25 49 2.15 3.78 31.13 74.02 30 78.25-0.78 2.9-14.36 7.16-16.5 9.25l-24.5-0.25-17.5 9.5h-58.75l-0.02-81.52 0.02-43.1c3.07 2.89 21.17-11.81 25.25-12.88l105.25 31.5-114.77 27.33 8.31-4.86 1.92-0.97c3.3-1.39 23.56-62.18 27.04-61.25zm-464.57 61.25l1.92 0.97-54.73 37.29 14-83.63c4.78 2.05 61.01 13.48 64.5 9.75l-0.37 119.75-47-4.5-29.75-31.25c-3.04-2.26-2.75-29.12 29.52-28.95 4.38 0.03-9.55 8.86-7.4 5.08 2.16-3.78 14.69-24.11 18.86-25.23 3.48-0.93 7.15-0.67 10.45 0.72zm-33.87 22.64l24.56 34.99-24.08-33.39zm505.27 0l-0.48 1.6-0.18 0.52zm-501.66-23.34l-0.41 0.66 0.18-0.31zm498.04 0l0.24 0.35 0.17 0.3zm-556.28-108.86l-23.91 6.41c-6.61 1.77-10.51 8.62-8.72 15.31 1.65 6.13 7.5 9.99 13.55 9.23l1.65-0.33 23.91-6.41c6.61-1.76 10.51-8.62 8.71-15.31-1.79-6.68-8.59-10.67-15.19-8.9zm599.35 8.9c-1.65 6.13 1.5 12.4 7.12 14.77l1.59 0.54 23.91 6.41 1.65 0.33c6.05 0.76 11.91-3.1 13.55-9.23 1.64-6.13-1.5-12.4-7.12-14.77l-1.59-0.54-23.91-6.41c-6.61-1.77-13.41 2.22-15.2 8.9zm-361.96-98.83h-25.12c-6.94 0-12.56 5.62-12.56 12.56 0 6.36 4.73 11.61 10.86 12.44l1.7 0.12h25.12c6.93 0 12.56-5.63 12.56-12.56 0-6.94-5.63-12.56-12.56-12.56z"
+                                                                />
+                                                                <path
+                                                                    id="Layer 1"
+                                                                    class="s1"
+                                                                    d="m586 173l1 250 112 7 38-243zm-389 272l1-300-161 50 80 252-7 6z"
+                                                                    color="currentColor"
+                                                                />
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Memória</span
+                                            >
+                                        </div>
+                                    </a>
                                     <div
-                                        data-words="1"
+                                        data-prototypes="1"
                                         class="method-card hidden method-disabled"
                                     >
                                         <span class="method-char kana-font">
-                                            <i
-                                                class="fa-solid fa-phone-flip"
-                                            ></i>
+                                            <i class="fa-solid fa-ghost"></i>
                                         </span>
                                         <span class="method-label"
-                                            >Chamadas</span
+                                            >Comensino</span
                                         >
                                     </div>
+                                    <a href="/backlog/knowtank/knowtank.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    fill="currentColor"
+                                                    class="fa-custom-icon"
+                                                    version="1.1"
+                                                    id="Layer_1"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    viewBox="0 0 511.999 511.999"
+                                                    xml:space="preserve"
+                                                >
+                                                    <g
+                                                        id="SVGRepo_bgCarrier"
+                                                        stroke-width="0"
+                                                    ></g>
+                                                    <g
+                                                        id="SVGRepo_tracerCarrier"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></g>
+                                                    <g id="SVGRepo_iconCarrier">
+                                                        <g
+                                                            stroke="currentColor"
+                                                            stroke-width="16"
+                                                            stroke-linejoin="round"
+                                                            stroke-linecap="round"
+                                                        >
+                                                            <g>
+                                                                <path
+                                                                    d="M371.835,178.142c-0.831-7.704-2.92-15.032-6.044-21.792l121.016-50.127l-21.737-52.474l-129.239,53.533 c-15,-2-25,2-33.889,8.149h-71.877c-36.202,0-66.091,27.505-69.893,62.713H45.325v47.125h410.053v-0.001 l-26.674-47.125H371.835z"
+                                                                ></path>
+                                                            </g>
+                                                            <g>
+                                                                <path
+                                                                    d="M511.999,256.821H34.586v0L0,301.342l45.548,58.63c2.936,41.821,37.874,74.956,80.427,74.956 c26.57,0,50.172-12.92,64.874-32.801c14.703,19.88,38.305,32.801,64.873,32.801c26.57,0,50.172-12.92,64.874-32.801 c14.703,19.88,38.305,32.801,64.873,32.801c44.471,0,80.651-36.179,80.651-80.651c0-10.833-2.161-21.166-6.05-30.612 L511.999,256.821z M125.976,383.525c-16.128,0-29.249-13.121-29.249-29.249s13.121-29.248,29.249-29.248 c16.128,0,29.249,13.12,29.249,29.248S142.103,383.525,125.976,383.525z M255.724,383.525c-16.128,0-29.248-13.121-29.248-29.249 s13.12-29.248,29.248-29.248c16.128,0,29.248,13.12,29.248,29.248S271.851,383.525,255.724,383.525z M385.472,383.525 c-16.128,0-29.249-13.121-29.249-29.249s13.121-29.248,29.249-29.248s29.249,13.12,29.249,29.248S401.599,383.525,385.472,383.525 z"
+                                                                ></path>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >ConheciTanque</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/writemagma/writemagma.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.1"
+                                                    id="volcano"
+                                                    fill="currentColor"
+                                                    viewBox="2 1 11 12"
+                                                >
+                                                    <g stroke-width="0"></g>
+                                                    <g
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></g>
+                                                    <g>
+                                                        <path
+                                                            id="path6447"
+                                                            d="M8.4844,1.0002	c-0.1464,0.005-0.2835,0.0731-0.375,0.1875L6.4492,3.2619L4.8438,1.7385C4.4079,1.3374,3.7599,1.893,4.0899,2.385l1.666,2.4004	C5.9472,5.061,6.3503,5.0737,6.5586,4.8108C6.7249,4.6009,7,4.133,7.5,4.133s0.7929,0.4907,0.9414,0.6777	c0.175,0.2204,0.4973,0.2531,0.7129,0.0723l1.668-1.4004c0.4408-0.3741,0.0006-1.0735-0.5273-0.8379L9,3.2268V1.5002	C9.0002,1.2179,8.7666,0.9915,8.4844,1.0002L8.4844,1.0002z M5,6.0002L2.0762,11.924C1.9993,12.0009,2,12.155,2,12.3088	c0,0.5385,0.3837,0.6914,0.6914,0.6914h9.6172c0.3846,0,0.6914-0.153,0.6914-0.6914c0-0.1538,0.0008-0.2309-0.0762-0.3848L10,6.0002	c-0.5,0-1,0.5-1,1v0.5c0,0.277-0.223,0.5-0.5,0.5S8,7.7772,8,7.5002v-0.5c0-0.2761-0.2238-0.5-0.5-0.5S7,6.7241,7,7.0002v2	c0,0.277-0.223,0.5-0.5,0.5S6,9.2772,6,9.0002v-2C6,6.5002,5.5,6.0002,5,6.0002z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Escralava</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/astrofusion/astrofusion.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-user-astronaut"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Astrofusão</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/marmotlibrary/marmotlibrary.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon fa-xl"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.0"
+                                                    preserveAspectRatio="xMidYMid meet"
+                                                    viewBox="112 199.27 896.39 563.73"
+                                                >
+                                                    <g
+                                                        transform="translate(0.000000,912.000000) scale(0.100000,-0.100000)"
+                                                        fill="currentColor"
+                                                        stroke="none"
+                                                    >
+                                                        <path
+                                                            d="M8300 7115 c-58 -7 -139 -21 -180 -30 -41 -9 -90 -19 -107 -22 -36 -6 -42 -23 -17 -44 19 -16 44 -63 44 -84 0 -21 -54 -75 -74 -75 -9 0 -45 26 -79 58 -35 33 -85 72 -113 88 -45 27 -57 29 -144 29 -109 0 -148 -15 -212 -82 -65 -68 -83 -116 -83 -218 0 -78 4 -97 27 -141 15 -28 44 -66 64 -84 41 -35 132 -80 165 -80 29 0 90 -28 105 -48 23 -30 17 -69 -15 -91 -36 -26 -62 -26 -159 0 -95 25 -160 60 -227 120 -52 48 -109 145 -121 207 -4 17 -11 32 -16 32 -25 0 -190 -145 -314 -276 -77 -81 -166 -165 -199 -189 -73 -51 -166 -88 -263 -105 -73 -13 -177 -7 -357 20 -91 14 -364 38 -517 46 -207 10 -486 -15 -723 -66 -72 -15 -203 -55 -250 -75 -16 -7 -57 -23 -90 -35 -128 -49 -322 -158 -452 -256 -372 -278 -595 -611 -743 -1109 -22 -76 -55 -276 -69 -420 -21 -219 -68 -391 -151 -560 -117 -236 -281 -408 -527 -554 -232 -136 -465 -208 -730 -226 -57 -4 -103 -12 -103 -17 0 -5 9 -22 19 -37 35 -49 33 -51 -65 -54 -97 -4 -199 -32 -256 -70 -45 -31 -46 -50 -4 -65 65 -24 63 -35 -20 -77 -47 -24 -90 -55 -115 -83 -48 -55 -109 -174 -109 -213 l0 -29 79 0 c44 0 82 -4 85 -9 3 -4 -20 -34 -51 -65 -52 -52 -55 -58 -44 -80 15 -28 65 -57 140 -81 41 -13 73 -16 133 -12 43 3 78 2 78 -1 0 -4 -16 -25 -35 -46 -19 -22 -35 -42 -35 -45 0 -4 15 -13 32 -21 24 -11 68 -15 158 -15 110 0 135 3 210 28 47 15 103 39 125 52 62 38 85 49 91 42 3 -3 -2 -31 -11 -62 -9 -32 -14 -60 -10 -63 12 -13 118 19 207 61 296 143 653 473 853 790 17 26 36 47 43 47 9 0 12 -109 12 -514 l0 -514 32 -62 c37 -70 91 -116 154 -130 21 -5 265 -10 541 -10 l501 0 30 25 c38 32 47 72 32 138 -43 181 -178 287 -365 287 -93 0 -100 7 -85 92 23 133 32 167 45 178 7 6 39 15 72 20 32 5 83 19 113 31 30 11 64 23 75 27 73 21 230 127 324 216 167 161 282 373 326 603 19 95 21 365 4 470 -10 63 -10 76 5 98 33 50 103 38 128 -23 20 -52 47 -176 59 -271 17 -148 -4 -382 -46 -502 -9 -23 -13 -44 -11 -46 9 -9 196 -23 396 -29 229 -7 386 1 688 37 95 12 175 20 177 18 2 -2 53 -152 114 -334 61 -181 142 -422 181 -535 39 -113 77 -230 86 -260 30 -113 72 -178 137 -213 42 -22 46 -22 460 -22 l419 0 25 29 c23 27 25 36 21 95 -6 75 -40 148 -98 209 -68 72 -121 98 -228 112 -34 4 -69 14 -77 20 -13 11 -15 85 -13 537 l3 525 63 24 c183 69 387 198 531 337 255 247 365 412 502 752 4 11 22 65 40 120 59 184 137 367 191 447 10 14 18 30 18 36 0 5 -68 12 -157 15 -180 7 -267 25 -419 87 -148 60 -292 162 -406 285 -101 110 -194 327 -205 479 -8 111 9 215 39 238 31 23 69 23 96 -2 19 -18 22 -31 22 -103 0 -151 38 -281 116 -402 175 -270 517 -426 863 -395 140 12 251 55 372 142 102 73 140 87 239 88 174 1 285 45 395 155 55 54 82 93 122 170 28 55 58 124 68 153 11 33 34 71 66 106 54 60 94 138 114 224 15 65 13 72 -21 72 -41 0 -117 45 -181 108 -69 67 -92 118 -74 164 17 46 51 59 161 65 55 3 100 8 100 11 0 10 -70 99 -102 128 -180 168 -615 426 -859 510 -229 79 -552 111 -799 79z m598 -454 c66 -34 112 -104 112 -171 0 -37 -29 -97 -62 -126 -123 -112 -309 -34 -308 130 1 135 142 227 258 167z m872 -1015 c0 -8 -15 -49 -33 -93 -40 -93 -64 -104 -114 -53 -29 30 -62 104 -50 116 5 5 156 40 185 43 6 1 12 -5 12 -13z"
+                                                        ></path>
+                                                        <path
+                                                            d="M8210 3294 c-141 -143 -346 -295 -504 -374 -40 -20 -71 -42 -75 -55 -4 -11 -6 -49 -5 -85 1 -36 3 -194 3 -351 l1 -286 78 -38 c92 -46 222 -169 265 -253 54 -104 83 -226 72 -308 l-6 -54 303 0 c282 0 305 1 335 19 55 34 55 129 -3 242 -50 100 -157 172 -280 190 -37 5 -73 14 -81 20 -10 9 -13 147 -15 715 l-3 705 -85 -87z"
+                                                        ></path>
+                                                        <path
+                                                            d="M4973 2558 c-59 -89 -188 -225 -293 -308 -81 -63 -89 -72 -80 -93 5 -12 28 -83 50 -157 117 -381 121 -392 170 -441 70 -70 71 -70 583 -67 l449 3 25 30 c24 27 25 35 20 100 -13 167 -143 293 -329 316 -39 5 -77 14 -85 21 -12 10 -14 62 -11 320 2 250 0 309 -10 313 -8 3 -17 3 -21 1 -8 -5 -289 10 -376 19 l-50 6 -42 -63z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Marmoteca</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/spacechoice/spacechoice.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-rocket"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Navescolher</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/spacegory/spacegory.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon fa-lg"
+                                                    fill="currentColor"
+                                                    version="1.1"
+                                                    id="Capa_1"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    viewBox="0 0 575.447 575.447"
+                                                    xml:space="preserve"
+                                                >
+                                                    <g stroke-width="0"></g>
+                                                    <g
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></g>
+                                                    <g>
+                                                        <g>
+                                                            <g>
+                                                                <path
+                                                                    d="M84.069,344.59c7.188,8.523,53.008,44.805,209.627,44.805c156.62,0,201.495-43.977,207.928-54.019 c0-55.782-53.084-155.755-181.556-166.778l-0.934-48.857c21.568-7.082,37.051-27.371,36.596-51.263 c-0.572-29.28-24.778-52.611-54.112-52.074c-29.315,0.572-52.628,24.791-52.068,54.129c0.455,23.915,16.728,43.597,38.587,49.827 l0.765,39.713c-0.099,0.012-0.123,2.878-0.076,7.748C151.078,171.681,81.442,275.222,84.069,344.59z"
+                                                                ></path>
+                                                                <path
+                                                                    d="M575.447,339.848c0-33.699-32.648-59.763-82.241-77.851c9.82,16.611,16.558,33.361,20.307,48.903 c16.885,9.832,26.063,20.004,26.063,28.947c0,29.462-98.111,72.27-251.858,72.27c-153.746,0-251.846-42.808-251.846-72.27 c0-11.069,13.849-24.008,39.282-35.871c5.021-15.799,12.804-31.925,23.29-47.433C39.901,274.685,0,302.598,0,339.848 c0,35.371,35.931,62.333,89.657,80.49l-41.577,113h37.857l38.226-103.121c43.07,10.451,93.376,16.325,144.306,17.527v111.307 h35.872V447.803c55.862-1.133,111.096-7.904,157.01-20.154L497.982,533h37.611l-40.088-116.129 C543.803,398.807,575.447,373.036,575.447,339.848z"
+                                                                ></path>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Navegoria</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/dragracefusion/dragracefusion.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-car-side"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Arrancafusão</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/fiting/fiting.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.2"
+                                                    viewBox="0 0 563 560"
+                                                    class="fa-custom-icon"
+                                                >
+                                                    <path
+                                                        d="M532 5 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
+                                                    />
+
+                                                    <path
+                                                        d="M232 305 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
+                                                    />
+
+                                                    <path
+                                                        d="M532 305 h-200c-3.3 0-6.5 0.6-9.6 1.9-3 1.3-5.8 3.1-8.1 5.4-2.3 2.3-4.1 5.1-5.4 8.1-1.3 3.1-1.9 6.3-1.9 9.6v200c0 3.3 0.6 6.5 1.9 9.6 1.3 3 3.1 5.8 5.4 8.1 2.3 2.3 5.1 4.1 8.1 5.4 3.1 1.3 6.3 1.9 9.6 1.9h200c3.3 0 6.5-0.6 9.6-1.9 3-1.3 5.8-3.1 8.1-5.4 2.3-2.3 4.1-5.1 5.4-8.1 1.3-3.1 1.9-6.3 1.9-9.6v-200c0-3.3-0.6-6.5-1.9-9.6-1.3-3-3.1-5.8-5.4-8.1-2.3-2.3-5.1-4.1-8.1-5.4-3.1-1.3-6.3-1.9-9.6-1.9z"
+                                                    />
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Encaixamente</span
+                                            >
+                                        </div>
+                                    </a>
+
+                                    <div
+                                        data-prototypes="1"
+                                        class="method-card hidden method-disabled"
+                                    >
+                                        <span class="method-char kana-font">
+                                            <i class="fa-solid fa-feather"></i>
+                                        </span>
+                                        <span class="method-label"
+                                            >Visual&nbsp;Novels</span
+                                        >
+                                    </div>
+                                    <a href="/backlog/towering/towering.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-chess-rook"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >ConheciTorre</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/acidium/acidium.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-skull"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Acidoteca</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/froging/froging.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i class="fa-solid fa-frog"></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Sapoência</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/orderlogic/orderlogic.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon fa-xl"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.0"
+                                                    preserveAspectRatio="xMidYMid meet"
+                                                    viewBox="192.24 72.07 1685.11 1873.66"
+                                                >
+                                                    <g
+                                                        transform="translate(0.000000,2048.000000) scale(0.100000,-0.100000)"
+                                                        fill="currentColor"
+                                                        stroke="none"
+                                                    >
+                                                        <path
+                                                            d="M2480 19745 c-156 -32 -312 -140 -437 -302 -41 -53 -91 -189 -109 -295 -14 -84 -15 -113 -5 -190 35 -270 171 -467 400 -579 109 -53 211 -73 348 -65 l102 6 143 -162 c79 -88 159 -180 179 -203 19 -23 69 -80 110 -125 41 -46 99 -111 129 -145 30 -34 114 -128 185 -211 72 -82 153 -174 181 -204 28 -30 84 -93 124 -140 85 -99 398 -455 485 -550 33 -36 112 -127 175 -200 63 -74 160 -184 215 -246 55 -61 143 -160 195 -220 52 -60 117 -132 144 -161 49 -53 49 -53 30 -74 -10 -12 -48 -44 -84 -72 -36 -28 -93 -76 -126 -106 -34 -31 -106 -95 -160 -143 -55 -47 -167 -146 -250 -220 -82 -73 -219 -194 -304 -268 -84 -74 -174 -153 -199 -176 -48 -43 -85 -75 -308 -269 -211 -184 -314 -290 -348 -360 -27 -54 -30 -70 -30 -160 0 -158 21 -198 236 -457 152 -182 234 -259 324 -303 70 -34 89 -39 150 -40 59 0 82 6 143 34 48 23 87 49 110 76 57 64 191 276 325 510 39 67 154 242 302 458 74 109 186 250 387 488 202 240 282 320 306 305 6 -4 14 -28 17 -54 10 -81 45 -265 56 -300 6 -18 23 -108 39 -200 54 -317 71 -407 96 -517 14 -60 34 -154 44 -207 27 -144 26 -141 68 -135 41 5 150 30 227 52 73 21 212 53 270 61 55 7 159 29 340 69 180 41 458 93 615 116 36 5 82 14 104 20 21 6 77 17 125 24 47 8 158 26 246 40 145 24 687 91 924 115 52 6 96 12 99 15 5 5 -25 39 -184 211 -56 60 -204 219 -328 354 -125 135 -271 292 -324 349 -152 163 -269 231 -527 306 -49 14 -164 50 -255 80 -91 30 -196 64 -235 75 -76 23 -549 174 -604 193 -19 7 -36 17 -38 23 -2 5 15 23 38 39 22 17 71 52 107 79 37 27 117 80 177 119 61 38 123 79 140 90 29 21 176 106 265 154 24 14 56 33 70 43 14 10 52 31 85 48 33 16 152 76 265 133 202 102 285 142 445 214 263 119 310 149 369 235 61 89 84 179 66 264 -14 67 -89 185 -197 310 -312 359 -404 421 -583 396 -70 -10 -184 -75 -286 -162 -316 -271 -407 -350 -534 -461 -80 -71 -192 -170 -249 -220 -58 -51 -137 -121 -176 -157 -39 -36 -86 -78 -105 -94 -19 -16 -58 -50 -86 -75 -27 -25 -84 -76 -125 -112 -41 -36 -112 -99 -157 -140 -196 -173 -180 -162 -200 -147 -19 13 -149 157 -413 458 -150 171 -464 525 -563 635 -34 39 -87 99 -117 135 -29 36 -99 115 -154 175 -55 61 -125 139 -155 175 -30 36 -82 94 -115 130 -33 36 -98 110 -145 164 -47 55 -116 133 -155 175 -38 43 -108 121 -155 175 -47 55 -116 134 -155 177 -38 43 -96 107 -127 142 l-58 64 12 59 c15 78 15 268 -1 324 -13 47 -20 63 -68 170 -54 118 -221 271 -361 331 -110 48 -302 62 -442 34z"
+                                                        ></path>
+                                                        <path
+                                                            d="M17908 19750 c-85 -15 -145 -40 -245 -105 -113 -73 -194 -165 -264 -299 -65 -125 -84 -284 -54 -442 17 -90 28 -68 -114 -226 -101 -112 -117 -130 -341 -384 -96 -109 -204 -231 -240 -270 -36 -39 -108 -120 -160 -179 -52 -60 -120 -136 -150 -169 -30 -34 -98 -111 -151 -171 -53 -61 -184 -209 -290 -329 -271 -307 -351 -399 -672 -770 -98 -113 -182 -206 -186 -206 -4 0 -45 35 -92 78 -47 42 -141 127 -209 187 -68 61 -169 151 -224 200 -123 110 -365 326 -505 449 -57 50 -132 116 -166 146 -338 301 -522 448 -625 500 -59 30 -73 33 -148 33 -69 -1 -92 -5 -132 -26 -107 -56 -188 -133 -422 -407 -139 -163 -173 -237 -166 -365 3 -67 10 -90 38 -144 55 -103 134 -156 410 -275 289 -125 700 -336 950 -486 235 -141 573 -365 608 -403 l23 -24 -58 -21 c-32 -11 -69 -24 -83 -27 -30 -7 -406 -127 -710 -227 -118 -38 -260 -83 -315 -98 -124 -35 -246 -86 -311 -130 -57 -39 -196 -178 -390 -392 -77 -83 -246 -268 -376 -410 -131 -142 -238 -263 -238 -268 0 -6 31 -10 73 -10 39 -1 106 -5 147 -10 41 -6 134 -14 205 -19 72 -6 162 -14 200 -20 39 -5 120 -15 180 -21 192 -19 484 -58 615 -81 30 -5 98 -16 150 -24 52 -8 167 -27 255 -44 88 -16 183 -33 210 -36 28 -4 67 -11 89 -17 21 -5 62 -13 90 -18 61 -11 323 -63 421 -85 39 -9 113 -24 165 -35 52 -10 114 -24 138 -31 25 -7 47 -8 51 -3 10 10 51 216 81 404 11 69 40 224 66 345 25 121 60 303 78 404 18 108 36 186 43 188 14 5 180 -164 282 -287 189 -227 275 -335 348 -436 120 -165 285 -410 330 -489 22 -38 79 -133 126 -210 198 -324 226 -356 347 -414 63 -30 85 -35 145 -36 63 0 78 4 145 40 81 43 109 69 242 221 47 54 115 131 150 171 116 132 158 219 166 349 9 164 -39 243 -274 446 -335 290 -436 378 -903 793 -112 99 -242 213 -290 254 -47 40 -138 120 -201 176 -63 57 -126 112 -140 123 l-24 20 65 68 c82 87 263 290 489 549 95 110 194 223 219 250 26 28 84 95 131 150 47 54 112 129 145 166 33 36 96 108 140 159 44 51 105 120 136 154 30 34 71 80 90 102 70 84 385 441 448 509 36 39 102 113 146 164 44 52 112 129 150 171 39 42 88 99 111 126 l41 48 119 -3 c148 -3 221 12 345 74 72 37 108 63 173 128 72 72 90 97 139 197 31 63 62 138 68 165 18 74 16 279 -3 340 -27 86 -93 218 -137 272 -92 117 -246 217 -387 253 -81 21 -233 25 -326 10z"
+                                                        ></path>
+                                                        <path
+                                                            d="M9965 13404 c-412 -11 -1102 -52 -1385 -84 -47 -5 -112 -12 -145 -15 -64 -6 -366 -46 -530 -70 -55 -8 -140 -19 -190 -25 -217 -26 -458 -69 -929 -165 -492 -100 -688 -183 -861 -366 -170 -180 -233 -377 -221 -689 9 -210 33 -530 56 -730 10 -91 30 -266 45 -390 46 -410 56 -483 91 -695 77 -471 120 -697 184 -975 22 -96 54 -237 70 -313 17 -76 51 -213 76 -305 26 -92 60 -216 76 -277 35 -134 159 -529 238 -760 205 -599 477 -1234 708 -1655 254 -463 295 -533 519 -873 228 -344 530 -734 820 -1054 142 -157 484 -497 608 -603 54 -47 124 -107 155 -135 31 -27 105 -89 166 -136 420 -330 623 -441 889 -485 85 -15 114 -16 195 -5 188 23 299 66 496 190 490 307 1188 953 1652 1530 226 281 314 398 440 586 48 72 97 144 108 160 53 74 226 346 237 372 6 15 42 80 78 143 204 353 489 925 562 1125 14 39 44 113 67 165 108 248 340 908 415 1180 19 69 48 170 66 225 52 166 193 730 249 1001 96 456 131 642 160 844 17 118 35 238 40 265 18 94 85 632 104 840 50 535 63 978 32 1105 -54 225 -213 419 -437 535 -172 89 -312 125 -964 250 -104 20 -211 40 -236 45 -62 12 -298 47 -379 55 -36 4 -83 11 -105 15 -58 13 -488 66 -722 89 -585 60 -1055 82 -1773 85 -333 2 -659 2 -725 0z m1025 -694 c1134 -31 2183 -148 3075 -345 298 -65 458 -133 494 -210 43 -91 15 -694 -65 -1380 -19 -165 -41 -340 -49 -390 -8 -49 -19 -124 -25 -165 -77 -499 -264 -1397 -341 -1637 l-11 -33 -1804 0 -1804 0 0 2085 0 2085 83 0 c45 0 246 -5 447 -10z m-540 -6790 c0 -1446 -3 -2630 -7 -2630 -3 0 -47 22 -97 49 -246 131 -558 364 -832 621 -553 519 -1070 1179 -1456 1858 -184 323 -235 421 -346 653 -148 313 -213 463 -335 784 -107 281 -214 605 -287 865 -27 96 -62 220 -78 275 -16 55 -32 112 -36 128 l-6 27 1740 0 1740 0 0 -2630z"
+                                                        ></path>
+                                                        <path
+                                                            d="M5864 7244 c-21 -26 -70 -82 -109 -125 -38 -42 -108 -120 -155 -174 -47 -53 -112 -127 -145 -164 -33 -37 -100 -114 -150 -171 -49 -57 -117 -134 -150 -170 -33 -37 -121 -136 -195 -220 -74 -84 -144 -163 -155 -175 -11 -12 -45 -50 -75 -86 -30 -35 -82 -94 -115 -130 -33 -36 -80 -88 -105 -115 -24 -27 -69 -78 -99 -114 -30 -36 -101 -115 -157 -176 -56 -60 -122 -133 -146 -161 -24 -28 -99 -114 -168 -190 -69 -77 -186 -209 -260 -293 -74 -85 -157 -179 -185 -210 -27 -31 -93 -105 -145 -165 -101 -115 -194 -218 -270 -300 -71 -78 -216 -248 -315 -372 -215 -268 -378 -591 -475 -938 -12 -44 -31 -109 -41 -145 -61 -221 -158 -945 -159 -1190 0 -195 75 -331 219 -398 49 -23 72 -27 179 -30 190 -6 372 26 836 148 429 113 831 297 1129 518 160 119 288 253 851 897 82 93 177 201 210 239 34 38 86 97 116 131 30 34 93 106 140 160 47 54 112 128 145 165 33 37 99 111 146 166 132 152 525 598 609 692 41 46 92 105 113 130 21 25 71 82 112 126 185 203 233 258 245 281 14 27 6 44 -95 200 -131 202 -321 542 -443 790 -253 516 -395 826 -462 1014 -21 58 -49 131 -63 161 -13 30 -55 136 -91 235 -37 98 -71 186 -75 193 -6 11 -18 2 -47 -34z"
+                                                        ></path>
+                                                        <path
+                                                            d="M15008 7014 c-8 -16 -34 -81 -58 -144 -23 -63 -56 -144 -72 -180 -16 -36 -56 -126 -88 -200 -85 -196 -184 -406 -306 -645 -59 -115 -122 -239 -139 -275 -18 -36 -67 -123 -108 -195 -42 -71 -115 -199 -164 -282 -96 -166 -266 -439 -326 -521 -20 -29 -37 -57 -37 -62 0 -5 31 -43 68 -82 63 -67 256 -285 465 -528 45 -52 109 -124 142 -160 105 -117 279 -312 356 -400 40 -47 130 -148 199 -225 69 -77 137 -153 151 -170 15 -16 95 -107 178 -201 83 -95 166 -190 184 -212 17 -22 66 -78 107 -124 41 -46 140 -158 220 -248 276 -313 389 -413 674 -594 266 -169 612 -308 1028 -411 429 -107 687 -148 790 -127 103 20 163 50 218 106 71 72 87 100 110 191 25 99 25 190 0 396 -81 662 -131 921 -233 1224 -77 231 -100 283 -184 434 -85 151 -175 276 -313 436 -211 245 -279 322 -381 436 -57 64 -156 176 -219 249 -63 73 -120 138 -125 144 -6 6 -48 54 -94 106 -46 52 -129 146 -185 208 -56 62 -123 139 -151 171 -27 32 -104 118 -170 191 -66 72 -136 151 -155 174 -19 22 -89 102 -155 176 -66 74 -147 167 -180 205 -33 38 -116 133 -185 211 -69 78 -163 186 -210 240 -47 54 -103 116 -125 138 -22 21 -65 69 -95 107 -49 61 -267 309 -376 428 l-42 45 -14 -30z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Ordemógica</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/knowarlord/knowarlord.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon fa-xl"
+                                                    fill="currentColor"
+                                                    viewBox="-2 -4 24 24"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    preserveAspectRatio="xMinYMin"
+                                                    class="jam jam-crown-f"
+                                                >
+                                                    <g stroke-width="0"></g>
+                                                    <g
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></g>
+                                                    <g>
+                                                        <path
+                                                            d="M2.049 1.802L5.854 5.15 9.244.976a1 1 0 0 1 1.565.017l3.235 4.156 3.928-3.396a1 1 0 0 1 1.643.9L18.115 13H1.922L.399 2.7a1 1 0 0 1 1.65-.898zM2 14h16v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >SabeRei</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/nexus/nexus.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    fill="currentColor"
+                                                    class="fa-custom-icon fa-lg"
+                                                    viewBox="0 0 24 24"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <g stroke-width="0"></g>
+                                                    <g
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></g>
+                                                    <g>
+                                                        <path
+                                                            d="M17,4a2,2,0,0,0-2-2H4A2,2,0,0,0,2,4V20a2,2,0,0,0,2,2H15a2,2,0,0,0,2-2ZM5.5,7a1,1,0,1,1,1-1A1,1,0,0,1,5.5,7Zm4,7c-1,1-3,2-3-1s3-4,3-4,3,1,3,4S10.5,15,9.5,14Zm4,5a1,1,0,1,1,1-1A1,1,0,0,1,13.5,19Z"
+                                                        ></path>
+                                                        <path
+                                                            d="M20,3H19V20a2,2,0,0,1-2,2h3a2,2,0,0,0,2-2V5A2,2,0,0,0,20,3Z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Nexar</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/arqueofusion/arqueofusion.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon fa-lg"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.0"
+                                                    preserveAspectRatio="xMidYMid meet"
+                                                    viewBox="332.05 224.38 1624.83 1433.37"
+                                                >
+                                                    <g
+                                                        transform="translate(0.000000,1842.000000) scale(0.100000,-0.100000)"
+                                                        fill="currentColor"
+                                                        stroke="none"
+                                                    >
+                                                        <path
+                                                            d="M5435 16170 c-370 -33 -862 -122 -1270 -231 -185 -50 -303 -117 -416 -236 -115 -120 -164 -224 -228 -478 -99 -398 -164 -794 -191 -1170 -58 -808 152 -1641 572 -2268 215 -321 185 -291 2173 -2202 300 -288 335 -313 508 -357 137 -35 300 -12 448 62 87 45 142 97 494 475 440 473 659 705 665 705 8 0 126 -113 1310 -1245 606 -580 654 -625 665 -625 4 0 149 138 322 308 173 169 380 370 460 447 l146 140 -209 200 c-115 109 -382 366 -594 570 -212 204 -568 546 -793 760 -224 214 -406 392 -405 396 3 7 151 165 822 874 223 235 266 286 303 359 47 93 64 158 70 261 6 125 -11 206 -69 319 -51 99 -121 171 -763 782 -242 230 -545 520 -674 644 -825 794 -876 839 -1094 984 -417 277 -840 430 -1413 512 -129 18 -684 27 -839 14z"
+                                                        ></path>
+                                                        <path
+                                                            d="M10360 16034 c-230 -13 -526 -39 -629 -54 -175 -25 -312 -165 -342 -349 -26 -167 62 -341 209 -413 l67 -33 430 -6 c495 -8 698 -24 1090 -90 889 -149 1774 -491 2585 -997 254 -159 597 -405 815 -586 203 -169 495 -428 495 -440 0 -6 -81 -92 -181 -191 -260 -260 -317 -355 -327 -550 -5 -119 18 -222 73 -320 44 -79 195 -244 496 -540 257 -253 300 -286 431 -332 93 -34 248 -38 343 -9 148 44 225 99 479 340 76 72 142 133 148 135 13 5 38 -20 222 -219 377 -409 593 -681 855 -1075 752 -1131 1132 -2247 1266 -3712 17 -187 35 -255 84 -327 66 -96 180 -166 269 -166 78 0 197 80 263 176 63 91 62 90 67 539 4 434 -6 710 -39 1068 -62 678 -178 1291 -378 1995 -34 117 -61 214 -61 217 0 3 23 5 50 5 28 0 50 4 50 8 0 4 -29 82 -64 172 -233 603 -523 1161 -897 1726 -176 266 -265 389 -427 592 -67 84 -122 156 -122 159 0 3 45 52 99 108 175 180 233 302 234 490 1 120 -18 199 -74 306 -35 67 -75 112 -353 396 -338 344 -386 383 -518 427 -61 21 -96 26 -173 26 -206 0 -317 -54 -557 -272 l-87 -79 -153 123 c-439 355 -1001 709 -1498 946 -759 361 -1731 644 -2580 751 -536 68 -1127 88 -1660 55z"
+                                                        ></path>
+                                                        <path
+                                                            d="M14019 11603 c-387 -371 -1503 -1446 -1964 -1893 -442 -429 -1215 -1177 -1984 -1922 l-254 -245 -32 18 c-74 44 -146 62 -255 62 -121 1 -199 -21 -288 -79 -29 -19 -205 -182 -390 -362 -185 -180 -650 -631 -1032 -1002 -382 -372 -915 -889 -1185 -1150 -655 -633 -765 -744 -797 -806 -77 -145 -78 -327 -2 -483 33 -66 99 -136 638 -679 368 -370 384 -385 461 -422 131 -64 282 -71 416 -21 108 41 23 -37 1214 1121 879 854 1556 1512 1867 1814 164 159 315 311 337 340 119 156 149 330 86 503 -14 39 -25 75 -25 81 0 5 204 207 453 448 248 240 688 667 977 948 971 944 1193 1160 1740 1691 971 945 1190 1159 1190 1166 0 3 -28 32 -62 65 -413 388 -805 786 -891 905 -23 32 -45 59 -48 59 -3 0 -79 -71 -170 -157z"
+                                                        ></path>
+                                                        <path
+                                                            d="M12698 7602 c-112 -109 -315 -305 -453 -436 -137 -131 -251 -242 -253 -246 -3 -7 315 -317 718 -700 124 -117 433 -411 687 -653 l462 -439 -18 -37 c-53 -103 -119 -333 -147 -511 -23 -145 -23 -438 0 -585 56 -362 190 -683 397 -957 95 -125 212 -241 691 -687 395 -367 445 -410 520 -449 112 -58 208 -72 323 -49 103 21 205 73 277 139 31 29 378 404 771 833 392 429 859 938 1037 1130 177 193 337 373 356 400 51 77 77 157 82 261 5 111 -9 183 -53 272 -47 92 -87 136 -314 341 -108 98 -306 278 -441 401 -135 123 -272 246 -305 273 -213 179 -574 347 -870 406 -449 90 -920 34 -1316 -155 -64 -31 -123 -54 -131 -52 -9 1 -226 204 -484 449 -614 583 -1315 1243 -1325 1247 -4 2 -99 -86 -211 -196z m3296 -2231 c209 -55 362 -143 535 -306 64 -61 198 -186 299 -279 l183 -169 -24 -26 c-13 -14 -152 -165 -308 -336 -296 -322 -840 -918 -1039 -1138 -63 -70 -119 -127 -125 -126 -22 1 -612 557 -663 624 -253 336 -298 775 -117 1150 98 203 195 317 364 430 147 98 295 158 465 191 102 19 328 11 430 -15z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Arqueofusão</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/pingufusion/pingufusion.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon fa-lg"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.0"
+                                                    preserveAspectRatio="xMidYMid meet"
+                                                    viewBox="671.29 212.12 971.59 1428.07"
+                                                >
+                                                    <g
+                                                        transform="translate(0.000000,1824.000000) scale(0.100000,-0.100000)"
+                                                        fill="currentColor"
+                                                        stroke="none"
+                                                    >
+                                                        <path
+                                                            d="M11962 16109 c-46 -4 -109 -16 -140 -27 -31 -11 -93 -23 -136 -26 -43 -4 -97 -14 -120 -22 -23 -9 -75 -24 -116 -34 -41 -9 -92 -25 -112 -34 -21 -9 -45 -16 -55 -16 -10 0 -45 -14 -78 -30 -33 -17 -67 -30 -76 -30 -9 0 -27 -8 -40 -19 -13 -10 -41 -24 -61 -30 -21 -7 -41 -17 -44 -23 -3 -5 -25 -18 -48 -29 -47 -21 -47 -21 -179 -109 -55 -36 -106 -69 -116 -75 -54 -33 -256 -198 -322 -264 -42 -43 -114 -121 -184 -202 -82 -93 -265 -348 -265 -367 0 -5 -7 -15 -16 -22 -8 -8 -22 -27 -29 -44 -8 -17 -19 -38 -24 -46 -9 -15 -40 -82 -81 -175 -12 -27 -33 -72 -45 -100 -13 -27 -28 -68 -34 -90 -6 -22 -17 -49 -25 -61 -8 -11 -20 -49 -26 -84 -6 -35 -18 -76 -26 -91 -7 -15 -18 -60 -24 -101 -6 -40 -20 -113 -30 -163 -33 -154 -49 -514 -50 -1122 0 -491 1 -553 16 -567 14 -15 258 -16 2655 -16 l2639 0 25 38 c14 21 34 67 44 103 11 35 26 82 35 104 8 22 15 49 16 60 0 11 11 54 24 95 40 125 67 258 82 395 28 260 35 279 104 294 28 6 61 17 73 25 12 7 49 19 82 26 33 7 65 16 70 20 6 5 33 14 60 21 28 6 64 19 80 27 17 8 55 23 85 33 101 33 175 60 216 80 22 10 49 19 60 19 10 0 42 11 69 24 28 12 68 26 89 30 21 4 55 16 75 27 20 10 45 19 56 19 11 0 43 11 70 25 28 13 55 25 62 25 22 0 119 98 145 147 30 55 43 132 34 196 -8 54 -69 147 -116 179 -48 33 -123 68 -143 68 -10 0 -50 11 -89 25 -39 14 -83 25 -97 25 -14 0 -44 9 -67 19 -23 10 -65 22 -95 26 -30 4 -69 13 -87 21 -18 7 -57 16 -85 20 -29 4 -85 17 -125 30 -40 13 -82 24 -93 24 -11 0 -41 9 -67 20 -26 11 -75 24 -109 29 -34 5 -74 16 -90 24 -15 8 -59 20 -97 26 -38 7 -84 18 -101 25 -18 8 -56 17 -86 21 -107 13 -148 39 -171 109 -6 17 -15 36 -20 43 -5 7 -17 27 -27 45 -46 88 -122 207 -168 263 -159 197 -210 255 -301 345 -111 109 -236 222 -256 229 -6 2 -37 23 -70 45 -115 80 -168 116 -171 116 -2 0 -30 17 -62 38 -32 21 -71 46 -88 54 -16 8 -65 34 -109 57 -43 22 -84 41 -91 41 -7 0 -32 11 -56 23 -24 13 -69 30 -99 37 -30 7 -60 17 -66 21 -6 5 -47 18 -90 29 -44 11 -94 26 -111 35 -17 8 -73 19 -124 24 -52 5 -110 16 -130 25 -74 31 -492 46 -707 25z m1303 -1491 c96 -24 146 -52 213 -118 59 -58 103 -133 126 -219 20 -72 25 -213 9 -233 -6 -7 -16 -33 -23 -58 -20 -79 -109 -187 -204 -248 -56 -36 -171 -72 -231 -72 -70 0 -212 42 -265 78 -96 65 -172 160 -197 247 -39 138 -39 186 -1 310 50 158 158 263 323 313 114 35 115 35 250 0z"
+                                                        ></path>
+                                                        <path
+                                                            d="M9375 11393 c-15 -16 -35 -44 -46 -63 -11 -19 -35 -60 -54 -90 -18 -30 -55 -92 -82 -138 -26 -46 -57 -98 -68 -117 -11 -18 -42 -73 -68 -122 -26 -48 -52 -95 -57 -103 -11 -17 -84 -166 -170 -345 -100 -210 -120 -254 -120 -261 0 -4 -11 -30 -24 -58 -13 -28 -36 -80 -51 -116 -15 -36 -36 -83 -46 -106 -11 -23 -19 -49 -19 -58 0 -9 -8 -33 -19 -54 -10 -20 -22 -53 -26 -72 -4 -19 -16 -51 -26 -70 -11 -19 -19 -42 -19 -51 0 -10 -11 -41 -25 -71 -14 -29 -25 -62 -25 -72 0 -10 -8 -37 -19 -60 -28 -63 -51 -134 -67 -205 -8 -35 -21 -75 -28 -90 -8 -14 -17 -51 -21 -81 -4 -30 -11 -63 -16 -72 -6 -10 -14 -44 -20 -75 -6 -32 -18 -80 -28 -108 -11 -27 -24 -83 -30 -124 -6 -40 -16 -82 -22 -93 -6 -11 -19 -72 -30 -136 -11 -64 -26 -142 -34 -172 -8 -30 -19 -103 -24 -162 -6 -59 -17 -137 -26 -173 -8 -36 -24 -154 -35 -263 -11 -108 -27 -251 -35 -317 -8 -66 -22 -237 -30 -379 -9 -142 -17 -262 -19 -265 -2 -3 -9 -125 -16 -271 -6 -146 -17 -303 -25 -350 -7 -47 -17 -119 -20 -160 -4 -41 -11 -91 -16 -110 -5 -20 -14 -71 -20 -115 -6 -44 -16 -91 -23 -105 -7 -14 -16 -45 -20 -70 -4 -25 -15 -67 -25 -95 -10 -27 -30 -88 -45 -135 -34 -108 -73 -214 -96 -265 -38 -82 -142 -291 -163 -327 -12 -20 -50 -85 -85 -145 -63 -108 -78 -131 -149 -231 -67 -94 -328 -412 -403 -492 -28 -30 -60 -72 -70 -92 -11 -20 -24 -39 -29 -42 -5 -3 -15 -44 -22 -91 -15 -103 -3 -175 42 -247 42 -65 120 -135 187 -166 l57 -27 1363 -1 c1125 0 1365 -3 1372 -14 14 -22 -3 -48 -48 -72 -23 -13 -74 -59 -112 -103 -124 -141 -187 -310 -177 -471 10 -162 23 -206 95 -319 73 -113 176 -206 290 -262 l57 -28 1340 0 c1251 0 1342 1 1370 17 47 27 78 59 110 113 26 44 30 59 30 130 0 152 -94 411 -194 535 -20 25 -45 58 -55 73 -31 49 -131 142 -203 187 -37 23 -79 51 -93 60 -14 9 -37 21 -50 25 -14 4 -32 13 -40 20 -8 7 -34 18 -58 25 -46 12 -70 44 -58 76 6 16 30 17 325 11 181 -3 351 -1 393 4 40 5 126 16 190 24 65 9 142 24 170 34 29 11 69 22 88 26 41 8 230 70 277 91 17 8 37 14 45 14 8 0 71 28 139 63 389 199 722 463 967 768 69 86 192 255 192 264 0 2 16 30 36 61 20 31 57 98 83 148 26 50 52 100 58 111 6 11 22 47 36 80 13 33 32 78 42 100 25 57 73 208 90 279 7 34 27 117 44 186 17 68 35 158 40 200 6 45 10 958 10 2305 1 1940 -1 2251 -14 2390 -9 88 -22 187 -31 220 -8 33 -26 107 -39 165 -44 195 -57 245 -81 308 -13 34 -24 67 -24 73 0 10 -19 53 -92 209 -46 100 -70 143 -86 163 -14 16 -156 17 -2708 17 l-2693 0 -26 -27z m4710 -623 c60 -10 159 -47 199 -75 45 -31 124 -115 162 -171 54 -80 73 -135 84 -235 14 -134 13 -4383 -1 -4560 -6 -74 -19 -165 -29 -204 -10 -38 -21 -88 -25 -110 -4 -22 -11 -45 -17 -52 -5 -7 -16 -38 -23 -70 -18 -77 -41 -147 -71 -208 -13 -28 -24 -58 -24 -67 0 -9 -5 -20 -11 -24 -6 -3 -19 -23 -28 -43 -9 -20 -25 -49 -35 -66 -11 -16 -29 -46 -41 -65 -22 -35 -86 -132 -115 -174 -98 -141 -361 -411 -449 -460 -9 -5 -36 -26 -61 -46 -44 -36 -185 -130 -195 -130 -3 0 -36 -17 -73 -38 -38 -22 -88 -46 -113 -55 -24 -8 -75 -27 -114 -42 -38 -14 -104 -34 -145 -45 -41 -10 -88 -24 -104 -30 -17 -6 -107 -22 -201 -35 -160 -22 -203 -24 -715 -26 -532 -2 -547 -2 -613 19 -204 64 -347 216 -391 414 -14 64 -18 139 -19 420 l-3 343 -28 -2 c-15 -1 -51 -17 -79 -36 -47 -30 -102 -58 -277 -140 -102 -48 -225 -94 -269 -102 -24 -4 -58 -13 -75 -20 -17 -7 -56 -16 -86 -20 -30 -3 -91 -13 -135 -20 -148 -26 -444 -48 -554 -41 -143 8 -145 11 -137 141 4 55 16 136 26 180 21 94 37 213 46 345 3 52 12 122 20 155 20 88 31 163 49 325 9 80 23 174 30 210 7 36 19 124 25 196 6 72 18 160 26 195 8 35 23 143 34 240 11 97 26 201 34 232 8 31 20 109 26 174 6 65 20 156 31 203 11 47 26 149 34 227 8 78 23 193 34 255 11 62 23 145 26 183 4 39 13 99 21 135 8 36 20 117 28 180 25 208 57 425 66 448 11 26 35 29 45 5 5 -10 7 -798 6 -1750 -3 -1611 -2 -1733 14 -1739 9 -4 42 1 73 9 31 9 93 25 137 36 167 40 357 129 608 286 208 130 459 381 659 661 96 134 208 349 278 534 17 47 40 105 51 130 10 25 24 67 29 94 6 26 17 60 24 75 8 14 17 49 21 76 4 28 15 86 25 130 10 44 21 118 25 165 3 47 15 118 26 158 13 48 24 149 34 293 8 121 17 224 21 230 3 6 10 184 14 397 7 303 13 418 29 532 12 80 25 159 30 175 5 17 16 63 26 103 9 40 23 85 31 100 7 15 14 35 14 45 0 20 35 104 112 265 95 201 246 403 459 612 132 130 136 133 287 232 141 93 198 128 207 128 4 0 49 20 99 44 94 46 292 116 326 116 11 0 59 9 107 21 130 31 342 45 438 29z"
+                                                        ></path>
+                                                        <path
+                                                            d="M13960 3029 c-41 -21 -82 -40 -90 -43 -8 -3 -26 -12 -40 -20 -14 -9 -41 -22 -60 -31 -19 -8 -42 -19 -50 -24 -30 -19 -149 -71 -162 -71 -7 0 -29 -8 -48 -19 -19 -10 -55 -22 -80 -26 -24 -4 -60 -15 -80 -25 -19 -10 -57 -21 -85 -25 -27 -4 -66 -15 -86 -26 -21 -10 -56 -21 -78 -25 -23 -4 -44 -10 -47 -15 -3 -5 2 -26 11 -46 9 -21 27 -63 40 -93 13 -30 27 -75 31 -100 4 -25 17 -81 31 -125 33 -110 35 -294 4 -373 -24 -59 -27 -102 -8 -102 224 -6 1482 3 1516 11 56 13 125 67 153 122 56 110 28 295 -79 527 -77 167 -213 313 -412 442 -68 44 -151 86 -182 93 -19 4 -44 13 -56 21 -33 21 -60 16 -143 -27z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Pingufusão</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/poliscience/poliscience.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon fa-lg"
+                                                    version="1.1"
+                                                    id="_x32_"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    viewBox="0 0 512 512"
+                                                    xml:space="preserve"
+                                                    fill="currentColor"
+                                                >
+                                                    <g stroke-width="0"></g>
+                                                    <g
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></g>
+                                                    <g>
+                                                        <style type="text/css">
+                                                            .st0 {
+                                                                fill: currentColor;
+                                                            }
+                                                        </style>
+                                                        <g>
+                                                            <path
+                                                                class="st0"
+                                                                d="M34.313,234.156c2.297-5.031,6.688-13.313,14.422-27.813c3.547-6.688,7.516-14.063,11.578-21.625H24.734 C11.063,184.719,0,195.766,0,209.438c0,13.641,11.063,24.719,24.734,24.719H34.313z"
+                                                            ></path>
+                                                            <path
+                                                                class="st0"
+                                                                d="M487.281,184.719h-35.594c4.063,7.563,8.031,14.938,11.563,21.625c7.75,14.5,12.125,22.781,14.438,27.813 h9.594c13.641,0,24.719-11.078,24.719-24.719C512,195.766,500.922,184.719,487.281,184.719z"
+                                                            ></path>
+                                                            <path
+                                                                class="st0"
+                                                                d="M39.391,448.438c0,18.406,14.938,33.313,33.328,33.313c18.406,0,33.313-14.906,33.313-33.313v-31.531H39.391 V448.438z"
+                                                            ></path>
+                                                            <path
+                                                                class="st0"
+                                                                d="M405.938,448.438c0,18.406,14.922,33.313,33.328,33.313s33.344-14.906,33.344-33.313v-31.531h-66.672V448.438z "
+                                                            ></path>
+                                                            <path
+                                                                class="st0"
+                                                                d="M467.875,240.344c1.672,0.5-61.719-115.813-64.734-122.094c-8-16.672-27.766-26.719-47.047-26.719 c-22.281,0-84.344,0-84.344,0s-93.578,0-115.859,0c-19.297,0-39.031,10.047-47.063,26.719 c-3.016,6.281-66.391,122.594-64.703,122.094c0,0-20.5,20.438-22.063,22.094c-8.641,9.25-8,17.281-8,25.313c0,0,0,75.281,0,92.563 c0,17.25,3.078,26.719,23.438,26.719h437c20.375,0,23.438-9.469,23.438-26.719c0-17.281,0-92.563,0-92.563 c0-8.031,0.625-16.063-8.031-25.313C488.406,260.781,467.875,240.344,467.875,240.344z M96.563,204.672 c0,0,40.703-73.328,43.094-78.109c4.125-8.203,15.828-14.125,27.828-14.125h177.031c12,0,23.688,5.922,27.797,14.125 c2.422,4.781,43.125,78.109,43.125,78.109c3.75,6.734,0.438,19.297-10.656,19.297H107.203 C96.094,223.969,92.813,211.406,96.563,204.672z M153.734,360.406c-2.766,3.438-7.078,5.297-11.484,4.969L73,360.281 c-6.047-0.438-11.063-4.859-12.234-10.813l-4.625-23.094c-0.828-4.188,0.344-8.5,3.203-11.688c2.844-3.156,7.016-4.781,11.25-4.406 l67.422,6.219c5.5,0.516,10.141,4.344,11.703,9.625l6.469,22C157.422,352.375,156.516,356.953,153.734,360.406z M312.781,377.828 c0,2.734-2.219,4.953-4.938,4.953H204.188c-2.75,0-4.969-2.219-4.969-4.953v-45.672c0-2.719,2.219-4.906,4.969-4.906h103.656 c2.719,0,4.938,2.188,4.938,4.906V377.828z M455.859,326.375l-4.609,23.094c-1.188,5.953-6.203,10.375-12.25,10.813l-69.25,5.094 c-4.406,0.328-8.719-1.531-11.484-4.969c-2.781-3.453-3.688-8.031-2.453-12.281l6.469-22c1.563-5.281,6.188-9.109,11.703-9.625 l67.422-6.219c4.234-0.375,8.406,1.25,11.25,4.406C455.5,317.875,456.688,322.188,455.859,326.375z"
+                                                            ></path>
+                                                            <path
+                                                                class="st0"
+                                                                d="M139.234,79.844h74.891V30.25h-44.391c-12.406,0-23.609,7.406-28.438,18.844l-8.75,20.656 c-0.953,2.25-0.703,4.813,0.641,6.844S136.797,79.844,139.234,79.844z"
+                                                            ></path>
+                                                            <path
+                                                                class="st0"
+                                                                d="M373.313,76.594c1.344-2.031,1.563-4.594,0.625-6.844l-8.75-20.656c-4.828-11.438-16.031-18.844-28.438-18.844 h-44.406v49.594h74.906C369.672,79.844,371.953,78.625,373.313,76.594z"
+                                                            ></path>
+                                                            <rect
+                                                                x="225.563"
+                                                                y="30.25"
+                                                                class="st0"
+                                                                width="55.344"
+                                                                height="49.594"
+                                                            ></rect>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Policiência</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/apocalogic/apocalogic.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    fill="currentColor"
+                                                    class="fa-custom-icon"
+                                                    version="1.1"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    viewBox="0 0 512.002 512.002"
+                                                    xml:space="preserve"
+                                                >
+                                                    <g stroke-width="0"></g>
+                                                    <g
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></g>
+                                                    <g>
+                                                        <g>
+                                                            <g>
+                                                                <path
+                                                                    d="M488.697,1.371l-82.13,34.813c-6.181,2.62-10.2,8.685-10.2,15.4v40.391l-242.21,242.21l-61.17-20.388 c-6.007-2.01-12.639-0.452-17.116,4.041L4.901,388.81c-8.776,8.775-5.253,23.775,6.535,27.696l63.04,21.017l21.017,63.04 c3.891,11.696,18.849,15.383,27.696,6.534l70.972-70.972c4.482-4.482,6.045-11.103,4.04-17.116l-20.388-61.17l242.21-242.21h40.39 c6.715,0,12.781-4.019,15.4-10.2l34.813-82.13C516.5,9.451,502.456-4.481,488.697,1.371z"
+                                                                ></path>
+                                                            </g>
+                                                        </g>
+                                                        <g>
+                                                            <g>
+                                                                <path
+                                                                    d="M272.478,168.552l70.988-70.987C223.279,12.112,70.923,6.406,6.391,59.497c-2.525,2.073-4.568,5.006-5.516,8.418 C-0.794,73.888,1,79.861,4.932,83.945c0.078,0.081,0.129,0.18,0.209,0.26l175.842,175.842l23.656-23.654L51.336,83.088 C115.555,80.25,209.605,122.913,272.478,168.552z"
+                                                                ></path>
+                                                            </g>
+                                                        </g>
+                                                        <g>
+                                                            <g>
+                                                                <path
+                                                                    d="M453.005,505.065c63.124-84.197,31.34-238.212-38.57-336.533l-70.989,70.987c45.649,62.879,88.337,156.948,85.475,221.155 L275.606,307.359l-23.656,23.654c1.71,1.71,174.366,174.39,176.104,176.057c6.289,6.047,15.679,4.692,11.566,4.692 C450.554,511.763,456.839,499.95,453.005,505.065z"
+                                                                ></path>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Apocalógica</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/cartsaur/cartsaur.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon"
+                                                    style="
+                                                        height: 60px;
+                                                        width: 80px;
+                                                    "
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.0"
+                                                    preserveAspectRatio="xMidYMid meet"
+                                                    viewBox="141.4 237.01 1979.6 1414.99"
+                                                >
+                                                    <g
+                                                        transform="translate(0.000000,1824.000000) scale(0.100000,-0.100000)"
+                                                        fill="currentColor"
+                                                        stroke="none"
+                                                    >
+                                                        <path
+                                                            d="M16059 15847 c-54 -29 -84 -86 -155 -292 -26 -77 -52 -145 -58 -151 -6 -7 -117 -24 -246 -38 -328 -37 -399 -56 -462 -123 -55 -58 -59 -104 -33 -386 8 -93 13 -172 10 -177 -3 -5 -56 -39 -118 -76 -168 -101 -307 -197 -349 -240 -45 -48 -58 -80 -58 -148 0 -53 11 -80 123 -288 l36 -68 -15 -47 c-16 -52 -113 -437 -164 -653 -66 -277 -192 -555 -307 -680 -78 -85 -175 -157 -279 -209 -146 -73 -221 -85 -679 -110 -318 -18 -641 -74 -875 -151 -281 -94 -629 -256 -902 -423 -266 -161 -504 -239 -863 -282 -717 -85 -1034 -215 -1685 -690 -369 -270 -577 -403 -843 -540 -215 -111 -424 -208 -597 -277 -654 -262 -1169 -391 -1810 -454 -251 -25 -741 -25 -1105 0 -324 23 -797 26 -980 8 -633 -65 -1133 -230 -1661 -549 -297 -180 -538 -380 -564 -470 -23 -77 22 -133 108 -133 21 0 112 18 201 40 346 85 587 119 896 127 407 10 776 -33 1200 -142 237 -61 481 -143 836 -283 684 -270 919 -353 1262 -447 372 -102 626 -150 1174 -220 192 -24 403 -56 469 -70 352 -75 681 -212 1023 -426 51 -33 95 -59 96 -59 2 0 -25 55 -60 123 -236 453 -374 1064 -335 1486 12 129 24 169 62 195 53 37 147 5 166 -56 6 -18 13 -103 16 -188 10 -258 49 -474 132 -731 125 -388 270 -667 560 -1077 l153 -217 -52 -44 c-109 -93 -265 -260 -325 -349 -97 -141 -154 -271 -211 -477 -104 -378 -202 -555 -434 -786 -135 -135 -175 -195 -202 -311 -17 -71 -19 -232 -5 -323 5 -33 29 -186 54 -340 73 -455 153 -1057 186 -1395 14 -143 38 -229 88 -306 49 -75 109 -128 192 -168 l65 -31 1222 -3 1223 -2 21 21 c19 19 21 29 15 77 -9 78 -60 225 -109 315 -74 134 -170 232 -310 315 -142 84 -266 117 -507 137 -174 14 -306 42 -383 81 -144 73 -261 207 -321 365 -28 75 -77 286 -102 444 -21 134 -24 339 -5 415 24 100 79 196 160 282 91 97 165 155 476 373 603 423 886 668 1107 958 160 210 326 546 416 842 117 382 171 726 179 1143 8 369 -19 697 -82 1019 -39 199 -33 243 37 279 43 23 103 13 139 -22 19 -19 38 -54 53 -104 57 -182 123 -537 146 -795 25 -275 9 -744 -36 -1030 -31 -197 -102 -500 -143 -608 -10 -25 -9 -27 17 -27 45 0 273 38 391 64 596 135 1263 468 1906 951 82 62 175 136 205 163 l55 50 -45 11 c-130 34 -314 98 -384 134 -94 49 -212 160 -265 250 -104 178 -169 577 -159 989 5 199 8 219 51 265 45 50 141 33 170 -30 9 -20 17 -83 21 -168 11 -244 60 -597 107 -784 39 -151 102 -230 235 -292 101 -46 249 -84 639 -162 l330 -66 8 -65 c4 -36 22 -105 39 -155 42 -121 42 -183 -1 -290 -62 -158 -51 -202 51 -193 29 2 71 13 93 23 89 42 195 188 226 309 6 25 15 46 20 46 18 0 59 -69 79 -135 39 -125 45 -138 72 -158 23 -18 30 -18 57 -7 92 38 143 343 84 496 -55 142 -251 371 -393 459 -166 102 -432 229 -759 361 -74 30 -137 56 -139 59 -2 2 15 50 38 107 122 297 173 532 172 793 -1 83 3 162 9 176 23 59 115 78 168 33 42 -35 59 -98 67 -247 10 -202 -12 -374 -78 -610 -18 -62 -27 -112 -22 -116 5 -5 59 -30 119 -56 61 -26 145 -65 189 -87 43 -22 84 -37 91 -34 23 8 145 169 249 326 189 286 249 404 385 768 50 133 110 280 133 324 91 176 217 314 406 449 290 205 358 266 472 416 73 98 112 169 218 393 50 105 126 198 225 276 42 32 76 62 76 65 1 3 -52 13 -116 23 -259 38 -401 77 -558 151 -300 143 -566 400 -719 694 -131 253 -193 489 -151 571 43 83 201 78 232 -6 6 -16 27 -80 47 -143 111 -344 373 -668 663 -819 101 -52 260 -106 383 -128 103 -19 311 -23 805 -14 282 5 344 -1 545 -54 229 -61 902 -225 970 -237 97 -17 278 -17 355 0 242 53 463 245 604 528 33 66 41 136 20 175 -12 23 -66 48 -103 48 -22 0 -25 5 -31 48 -12 95 -37 217 -51 244 -19 37 -62 68 -93 68 -36 0 -84 -32 -108 -71 -12 -19 -38 -81 -59 -138 -21 -57 -44 -106 -52 -109 -17 -6 -180 17 -187 27 -2 5 -9 63 -14 130 -15 179 -52 242 -142 245 -58 1 -87 -28 -154 -154 -33 -62 -67 -118 -77 -123 -19 -12 -64 0 -148 41 l-55 27 -6 135 c-7 153 -21 197 -74 230 -68 42 -129 19 -186 -72 -45 -73 -69 -98 -93 -98 -25 0 -199 129 -316 234 -121 110 -248 191 -343 221 -112 36 -212 41 -417 20 -377 -38 -495 4 -825 294 -82 73 -177 153 -210 178 -125 95 -290 155 -467 168 -102 8 -131 25 -149 85 -26 86 14 149 104 161 65 9 235 -5 319 -26 113 -28 291 -125 423 -229 241 -191 301 -235 370 -269 98 -49 146 -60 260 -59 117 1 181 16 373 91 72 28 158 58 189 66 122 32 322 9 448 -51 63 -29 67 -39 85 -188 13 -108 27 -143 69 -179 74 -62 160 -19 220 112 17 38 38 74 45 80 10 9 34 4 99 -19 47 -18 91 -37 97 -44 5 -8 17 -68 24 -134 8 -66 22 -137 32 -158 22 -47 67 -74 123 -74 39 0 49 5 86 44 27 27 54 72 75 122 18 43 38 94 46 112 12 30 16 32 71 34 75 3 134 0 140 -6 3 -3 14 -57 24 -121 11 -64 28 -134 39 -156 37 -71 114 -98 181 -63 48 24 84 93 124 239 21 74 43 142 49 150 6 8 49 24 95 36 101 26 105 23 115 -76 10 -100 41 -189 76 -219 87 -73 198 -17 245 123 8 26 27 106 40 177 17 86 31 133 41 141 10 7 40 20 68 29 107 35 136 77 136 196 0 135 -74 546 -131 733 -48 158 -98 251 -180 339 -117 126 -245 214 -469 325 -320 158 -464 198 -936 261 -349 46 -610 89 -745 124 -183 46 -225 69 -593 320 -182 124 -325 182 -472 193 -120 9 -203 -14 -385 -103 -140 -68 -158 -74 -215 -74 -37 0 -95 10 -145 25 -162 49 -465 124 -578 145 -157 27 -245 27 -302 -3z m1981 -793 c121 -66 173 -230 111 -351 -48 -94 -165 -161 -262 -150 -140 17 -238 127 -239 268 0 203 211 330 390 233z m2432 -531 c56 -31 143 -119 181 -184 64 -110 50 -229 -28 -229 -9 0 -55 37 -103 83 -48 45 -120 101 -160 125 -98 58 -123 112 -86 183 32 63 106 71 196 22z"
+                                                        ></path>
+                                                        <path
+                                                            d="M16236 9063 c-109 -244 -265 -527 -399 -717 -38 -55 -71 -105 -73 -111 -6 -15 111 -77 186 -99 112 -34 239 -46 477 -46 151 0 241 -4 257 -11 46 -21 126 -202 126 -286 0 -23 -13 -82 -30 -130 -40 -115 -40 -147 3 -173 22 -14 41 -18 62 -14 86 17 196 122 252 239 28 60 38 73 49 64 16 -13 46 -93 64 -166 16 -71 43 -103 84 -103 64 0 105 85 127 264 22 172 -18 294 -148 456 -77 95 -157 164 -237 203 -30 15 -139 52 -243 83 -292 86 -460 143 -489 166 l-26 21 7 234 c4 128 5 233 3 233 -3 0 -26 -48 -52 -107z"
+                                                        ></path>
+                                                        <path
+                                                            d="M14170 6778 c-339 -237 -790 -485 -1122 -617 -286 -114 -550 -192 -813 -241 l-121 -22 -36 -57 c-101 -155 -147 -312 -198 -671 -32 -221 -74 -368 -148 -515 -35 -70 -50 -95 -174 -276 -84 -123 -109 -189 -115 -305 -9 -154 7 -205 176 -538 81 -160 179 -361 218 -446 39 -85 114 -247 166 -360 103 -225 165 -377 222 -545 20 -60 53 -141 73 -180 48 -91 138 -183 222 -225 119 -60 104 -59 1353 -60 1124 0 1137 0 1157 20 24 24 24 30 4 128 -47 230 -175 425 -360 548 -171 114 -304 154 -594 178 -224 18 -314 40 -445 106 -187 94 -298 209 -476 495 -107 171 -235 419 -269 524 -35 105 -46 209 -32 293 29 168 113 284 493 673 413 423 536 564 666 758 177 265 282 561 314 890 13 137 9 521 -6 536 -7 7 -59 -24 -155 -91z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Carretossauro</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/citybuilder/citybuilder.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    version="1.1"
+                                                    id="Icons"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    viewBox="0 0 32 32"
+                                                    xml:space="preserve"
+                                                    fill="currentColor"
+                                                    class="fa-custom-icon"
+                                                >
+                                                    <g stroke-width="0"></g>
+                                                    <g
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></g>
+                                                    <g>
+                                                        <style type="text/css">
+                                                            .st0 {
+                                                                fill: none;
+                                                                stroke: currentColor;
+                                                                stroke-width: 2;
+                                                                stroke-linecap: round;
+                                                                stroke-linejoin: round;
+                                                                stroke-miterlimit: 10;
+                                                            }
+                                                        </style>
+                                                        <g>
+                                                            <path
+                                                                d="M24,32H6c-1.1,0-2-0.9-2-2v-5c0-1.1,0.9-2,2-2h18c1.1,0,2,0.9,2,2v5C26,31.1,25.1,32,24,32z"
+                                                            ></path>
+                                                        </g>
+                                                        <g>
+                                                            <path
+                                                                d="M10,25H6c-0.6,0-1-0.4-1-1v-2c0-1.1,0.9-2,2-2h2c1.1,0,2,0.9,2,2v2C11,24.6,10.6,25,10,25z"
+                                                            ></path>
+                                                        </g>
+                                                        <g>
+                                                            <path
+                                                                d="M26,22H15c-1.1,0-2-0.9-2-2v-5c0-1.1,0.9-2,2-2h11c1.1,0,2,0.9,2,2v5C28,21.1,27.1,22,26,22z"
+                                                            ></path>
+                                                        </g>
+                                                        <g>
+                                                            <path
+                                                                d="M26,15h-4c-0.6,0-1-0.4-1-1v-2c0-1.1,0.9-2,2-2h2c1.1,0,2,0.9,2,2v2C27,14.6,26.6,15,26,15z"
+                                                            ></path>
+                                                        </g>
+                                                        <g>
+                                                            <path
+                                                                d="M18,12H7c-1.1,0-2-0.9-2-2V5c0-1.1,0.9-2,2-2h11c1.1,0,2,0.9,2,2v5C20,11.1,19.1,12,18,12z"
+                                                            ></path>
+                                                        </g>
+                                                        <g>
+                                                            <path
+                                                                d="M11,5H7C6.4,5,6,4.6,6,4V2c0-1.1,0.9-2,2-2h2c1.1,0,2,0.9,2,2v2C12,4.6,11.6,5,11,5z"
+                                                            ></path>
+                                                        </g>
+                                                        <g>
+                                                            <path
+                                                                d="M18,5h-4c-0.6,0-1-0.4-1-1V2c0-1.1,0.9-2,2-2h2c1.1,0,2,0.9,2,2v2C19,4.6,18.6,5,18,5z"
+                                                            ></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >KanaCity</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/puzzing/puzzing.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-puzzle-piece"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Quebramente</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/targetfusion/targetfusion.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-crosshairs"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Alvofusão</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/castlelogic/castlelogic.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-brands fa-fort-awesome"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Castelógica</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/magicspeak/magicspeak.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-wand-sparkles"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Magifala</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/darksound/darksound.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-cloud-moon"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Escurisom</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/stratemagic/stratemagic.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-hat-wizard"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Estratimagia</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/edubet/edubet.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-coins"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >EduBet</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a href="/backlog/towersaur/towersaur.html">
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    class="fa-custom-icon fa-lg"
+                                                    version="1.1"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    viewBox="0 0 512 512"
+                                                    xml:space="preserve"
+                                                    fill="currentColor"
+                                                    stroke="none"
+                                                >
+                                                    <style type="text/css">
+                                                        .st0 {
+                                                            fill: currentColor;
+                                                            stroke: none;
+                                                        }
+                                                    </style>
+                                                    <g>
+                                                        <path
+                                                            class="st0"
+                                                            d="M241.182,278.612c0.476,0.76,0.992,1.488,1.852,2.247c0.435,0.374,0.972,0.759,1.67,1.073 c0.688,0.314,1.559,0.537,2.47,0.526c1.315,0.01,2.551-0.476,3.36-1.042c0.779-0.527,1.275-1.094,1.67-1.589 c0.709-0.951,1.094-1.782,1.457-2.652c0.608-1.498,1.083-3.108,1.59-4.949c0.759-2.733,1.549-5.911,2.54-9.231 c0.152-0.507,0.334-1.013,0.496-1.539c-7.156-1.133-14.98-2.105-23.512-2.823c0.617,4.048,1.791,8.897,3.866,14.443 C239.502,275.383,240.251,277.104,241.182,278.612z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M205.068,276.699c0.607,0.79,1.296,1.569,2.307,2.288c0.516,0.365,1.113,0.709,1.832,0.972 c0.718,0.263,1.559,0.425,2.419,0.425c1.406,0,2.774-0.486,3.724-1.094c0.911-0.586,1.529-1.224,2.025-1.831 c0.89-1.144,1.396-2.196,1.872-3.3c0.79-1.912,1.376-3.998,1.984-6.356c0.78-3.006,1.548-6.427,2.419-9.949 c-8.148-0.456-16.852-0.709-26.205-0.709c-0.081,0-0.162-0.01-0.253-0.01c0.982,4.018,2.47,8.635,4.727,13.817 C202.952,273.288,203.883,275.099,205.068,276.699z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M230.615,306.032c-0.638,0.79-1.013,1.559-1.315,2.308c-0.304,0.759-0.517,1.518-0.689,2.318 c-0.84,3.755-1.154,7.591-1.214,11.165c-0.031,2.135,0.03,4.17,0.141,6.032c7.247-2.692,14.434-5.526,21.449-8.432 c-1.306-2.632-2.612-5.263-3.897-7.571c-1.002-1.791-1.964-3.39-3.118-4.807c-0.587-0.709-1.215-1.397-2.105-2.075 c-0.456-0.334-0.982-0.668-1.65-0.941c-0.668-0.284-1.488-0.496-2.43-0.507c-1.184-0.04-2.5,0.344-3.462,0.962 C231.596,304.939,231.04,305.486,230.615,306.032z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M23.635,222.426c0.86,7.278,2.379,15.385,5.193,22.936c0.85,2.247,1.689,4.048,2.935,5.668 c0.637,0.799,1.396,1.578,2.439,2.226c1.032,0.658,2.43,1.134,3.846,1.113c1.346,0,2.581-0.404,3.512-0.92 c0.901-0.497,1.579-1.064,2.156-1.65c1.073-1.113,1.842-2.268,2.56-3.532c1.255-2.217,2.329-4.768,3.421-7.642 c1.631-4.302,3.25-9.262,4.96-14.181c0.314-0.901,0.628-1.782,0.952-2.672c-11.083-4.768-22.115-9.959-32.976-15.557 C22.734,212.082,22.997,217.021,23.635,222.426z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M193.65,318.097c-0.668,0.85-1.073,1.66-1.406,2.479c-0.314,0.82-0.558,1.671-0.76,2.561 c-0.962,4.292-1.315,8.705-1.387,12.814c-0.02,1.539,0.01,2.996,0.051,4.434c2.419-0.719,4.859-1.458,7.318-2.228 c5.212-1.619,10.506-3.37,15.83-5.202c-1.417-2.865-2.834-5.709-4.231-8.198c-1.154-2.055-2.258-3.878-3.543-5.466 c-0.648-0.79-1.336-1.538-2.298-2.267c-0.476-0.344-1.032-0.698-1.731-0.992c-0.688-0.284-1.548-0.507-2.51-0.526 c-1.224-0.04-2.56,0.354-3.552,0.992C194.672,316.974,194.096,317.541,193.65,318.097z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M165.168,275.667c0.606,0.628,1.305,1.235,2.216,1.741c0.911,0.506,2.115,0.931,3.492,0.931 c1.286,0.01,2.582-0.415,3.523-1.012c0.901-0.557,1.528-1.204,2.004-1.822c0.902-1.154,1.376-2.247,1.802-3.36 c0.708-1.944,1.173-4.029,1.629-6.376c0.526-2.814,0.992-5.952,1.498-9.171c-8.664-0.567-17.55-1.569-26.66-3.016 c1.285,4.838,3.501,10.911,7.328,17.652C163.021,273.005,163.962,274.411,165.168,275.667z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M69.537,229.532c0.142,1.933,0.344,4.068,0.608,6.356c0.921,7.612,2.611,16.762,6.032,25.142 c0.871,2.116,1.721,3.806,2.936,5.365c0.618,0.769,1.356,1.538,2.399,2.207c1.032,0.648,2.469,1.184,3.998,1.174 c1.387,0,2.682-0.425,3.634-0.983c0.901-0.516,1.569-1.123,2.105-1.7c1.012-1.104,1.65-2.196,2.236-3.351 c1.013-1.993,1.833-4.231,2.652-6.721c1.225-3.725,2.419-8.016,3.715-12.298c0.395-1.327,0.82-2.663,1.245-3.958 c-1.113-0.353-2.226-0.688-3.34-1.052C88.424,236.698,78.98,233.267,69.537,229.532z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M66.632,316.893c-1.194-0.021-2.298,0.304-3.167,0.739c-1.327,0.648-2.258,1.517-3.128,2.46 c-0.86,0.961-1.65,2.064-2.46,3.35c-4.868,7.844-8.107,16.832-10.284,24.312c1.65,0.304,3.411,0.628,5.293,0.952 c6.63,1.134,15.375,2.409,25.801,3.432c-0.293-1.731-0.556-3.513-0.81-5.314c-0.87-6.266-1.548-12.693-2.54-17.856 c-0.516-2.611-1.063-4.878-1.994-6.964c-0.486-1.052-1.064-2.084-2.085-3.107c-0.506-0.506-1.154-1.002-1.954-1.387 C68.515,317.146,67.564,316.902,66.632,316.893z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M119.559,277.387c0.627,0.709,1.356,1.397,2.348,1.974c0.982,0.576,2.298,1.012,3.684,1.002 c1.376,0,2.682-0.436,3.634-1.013c0.911-0.546,1.578-1.174,2.116-1.782c0.992-1.154,1.619-2.307,2.206-3.543 c0.992-2.126,1.761-4.534,2.54-7.226c1.143-4.029,2.237-8.665,3.401-13.25c0.223-0.88,0.465-1.74,0.698-2.6 c-9.95-2.045-20.122-4.556-30.497-7.582c0.172,2.521,0.456,5.375,0.922,8.462c0.971,6.386,2.692,13.675,5.921,20.629 C117.444,274.402,118.324,275.97,119.559,277.387z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M152.333,325.699c-0.668,1.012-1.164,2.075-1.63,3.269c-2.206,5.739-3.42,11.862-4.159,17.369 c-0.212,1.6-0.365,3.118-0.496,4.586c2.399-0.416,4.838-0.851,7.329-1.346c6.204-1.215,12.682-2.693,19.383-4.403 c-1.327-4.12-2.652-8.26-4.008-11.812c-0.962-2.51-1.913-4.716-3.107-6.66c-0.618-0.962-1.276-1.894-2.288-2.794 c-0.506-0.445-1.113-0.901-1.902-1.265c-0.77-0.375-1.741-0.638-2.784-0.658c-1.225-0.03-2.47,0.323-3.401,0.871 C153.831,323.664,152.99,324.697,152.333,325.699z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M105.975,328.301c-0.79,0.971-1.417,2.044-2.035,3.258c-3.593,7.228-5.718,15.224-7.045,21.934 c4.818,0.253,9.859,0.435,15.122,0.516c0.658,0,1.266,0.01,1.873,0.01c4.11,0,8.492-0.212,13.118-0.597 c-1.447-5.709-2.874-11.681-4.484-16.59c-0.881-2.632-1.761-4.949-2.976-7.015c-0.628-1.032-1.326-2.024-2.409-2.976 c-0.537-0.466-1.185-0.931-1.994-1.285c-0.8-0.354-1.771-0.608-2.774-0.618c-1.174-0.02-2.328,0.284-3.26,0.739 C107.706,326.377,106.765,327.328,105.975,328.301z"
+                                                        ></path>
+                                                        <path
+                                                            class="st0"
+                                                            d="M512,247.619c-0.009-29.667-6.336-59.85-19.524-85.904c-6.6-13.026-14.93-25.022-25.062-35.325 c-10.132-10.314-22.086-18.928-35.831-25.162c-19.556-8.888-36.732-11.62-51.642-11.6c-11.012,0-20.78,1.457-29.374,2.854 c-8.583,1.406-16.012,2.712-22.278,2.693c-3.634,0-6.852-0.416-9.838-1.376c-2.986-0.962-5.79-2.46-8.695-4.91 c-3.592-3.046-7.52-5.223-11.599-6.578c-4.089-1.367-8.3-1.924-12.521-1.924c-7.622,0.01-15.314,1.752-23.3,3.978 c-7.996,2.247-16.307,5.031-25.062,7.449c-4.362,1.195-8.938,1.741-13.776,1.741c-7.47,0-15.558-1.306-24.161-3.381 c-12.916-3.086-26.944-7.854-41.874-11.922c-14.94-4.05-30.82-7.399-47.532-7.41c-12.278,0-25.002,1.842-37.937,6.508 c-7.622,2.744-15.638,6.346-23.462,11.356c-11.741,7.512-23.037,18.291-31.691,33.848c-8.685,15.556-14.738,35.78-16.569,62.178 L0,188.619l3.381,1.963c30.092,17.42,63.078,32.451,96.298,43.18c33.21,10.709,66.652,17.106,97.736,17.115 c66.53-0.009,102.908,12.399,122.332,24.14c6.114,3.685,10.558,7.308,13.786,10.507c14.029-3.452,29.829-6.073,45.892-6.083 c14.14,0,28.483,2.035,41.884,7.368c13.402,5.335,25.841,14.019,36.014,27.137l-4.94,3.846 c-9.494-12.227-20.922-20.183-33.392-25.164c-12.47-4.979-26.013-6.922-39.566-6.922c-15.556-0.01-31.063,2.591-44.86,6.012 c-19.88,6.346-40.295,13.796-56.601,21.64c-20.052,9.657-48.756,21.449-78.636,30.771c-14.93,4.676-30.163,8.725-44.739,11.59 c-14.575,2.874-28.482,4.565-40.699,4.565c-0.628,0-1.265-0.021-1.913-0.021h-0.051c-25.203-0.384-45.821-2.935-60.092-5.384 c-7.136-1.225-12.683-2.43-16.418-3.3c-1.873-0.444-3.29-0.809-4.221-1.062c-0.476-0.122-0.82-0.213-1.042-0.283l-0.253-0.072 l-0.051-0.009v-0.01l-8.249-2.43l0.223,8.604c0.02,0.304,0.324,12.956,4.423,27.754c2.066,7.399,5.072,15.364,9.646,22.632 c4.565,7.247,10.8,13.867,19.252,17.966c8.705,4.22,19.981,6.862,32.784,8.614c12.784,1.74,27.065,2.49,41.448,2.49 c24.627,0,49.496-2.206,67.583-5.79c6.225-1.234,12.359-1.741,18.514-1.741c14.929-0.02,30,3.077,45.972,6.326 c15.963,3.229,32.825,6.589,51.257,6.589c16.144,0,33.462-2.611,52.138-10.051c18.512-7.368,38.341-19.424,59.941-38.099 c16.741-8.653,31.296-16.276,42.359-23.512c5.608-3.685,10.335-7.268,14.069-11.023c1.862-1.892,3.482-3.836,4.798-5.921 c1.306-2.075,2.328-4.312,2.865-6.731c0.395-1.792,0.546-3.655,0.546-5.779c0-0.851-0.04-1.752-0.091-2.672 C504.398,312.045,511.98,280.12,512,247.619z M86.643,124.974c-10.436,10.425-2.196,15.992-12.52,21.903 c-7.308,4.171-16.692,0-15.649-9.392c0.769-6.954,14.606-23.989,29.212-29.212C105.743,101.825,96.562,115.034,86.643,124.974z M291.79,163.031c-11.478,24.091-44.748,32.128-92.948,6.883c-12.855-6.741-26.388-25.243-8.037-33.28 c18.361-8.037,48.2,0,68.858-5.739C280.312,125.155,303.269,138.922,291.79,163.031z M350.568,177.121 c-11.508,3.948-16.69,16.7-25.031,12.531c-8.351-4.18,12.51-38.604,18.776-45.912c6.255-7.298,19.818-13.564,31.298-8.341 C387.077,140.612,390.215,163.557,350.568,177.121z M452.798,201.119c-20.861,5.213-15.648,14.606-21.904,28.169 c-6.255,13.563-9.382,19.818-26.084,8.34c-13.086-8.999-28.159-21.904-13.553-37.551c14.606-15.649,36.51-36.52,51.116-34.424 C456.978,167.738,473.669,195.907,452.798,201.119z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Torressauro</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/aerofusion/aerofusion.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    fill="currentColor"
+                                                    class="fa-custom-icon fa-lg"
+                                                    version="1.1"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    viewBox="0 0 32 32"
+                                                    xml:space="preserve"
+                                                >
+                                                    <g stroke-width="0"></g>
+                                                    <g
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></g>
+                                                    <g>
+                                                        <path
+                                                            d="M30.8,14.2C30.1,13.4,29,13,28,13H8.5L4.8,8.4C4.6,8.1,4.3,8,4,8H1C0.7,8,0.4,8.1,0.2,8.4C0,8.6,0,9,0,9.3l3,11 C3.2,20.7,3.6,21,4,21h6.4l-3.3,6.6c-0.2,0.3-0.1,0.7,0,1C7.3,28.8,7.7,29,8,29h4c0.3,0,0.6-0.1,0.7-0.3l6.9-7.7H28 c1.1,0,2.1-0.4,2.8-1.2c0.8-0.8,1.2-1.8,1.2-2.8S31.6,14.9,30.8,14.2z"
+                                                        ></path>
+                                                        <path
+                                                            d="M10.4,11h8.5l-5.1-5.7C13.6,5.1,13.3,5,13,5H9C8.7,5,8.3,5.2,8.1,5.5C8,5.8,8,6.1,8.1,6.4L10.4,11z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Aerofusão</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/soccerlogic/soccerlogic.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <i
+                                                    class="fa-solid fa-futbol"
+                                                ></i>
+                                            </span>
+                                            <span class="method-label"
+                                                >Futelógica</span
+                                            >
+                                        </div>
+                                    </a>
+                                    <a
+                                        href="/backlog/horselogic/horselogic.html"
+                                    >
+                                        <div
+                                            data-prototypes="1"
+                                            class="method-card hidden"
+                                        >
+                                            <span class="method-char kana-font">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    style="
+                                                        height: 45px;
+                                                        width: 100px;
+                                                    "
+                                                    class="fa-custom-icon"
+                                                    version="1.0"
+                                                    preserveAspectRatio="xMidYMid meet"
+                                                    viewBox="244.28 31.67 2566.48 1589.8"
+                                                >
+                                                    <g
+                                                        transform="translate(150, 1850) scale(0.12, -0.12)"
+                                                        fill="currentColor"
+                                                        stroke="none"
+                                                    >
+                                                        <path
+                                                            d="M18279 15160 c-9 -5 -25 -31 -35 -57 -17 -43 -19 -76 -18 -343 0 -288 1 -297 27 -394 29 -107 80 -218 128 -279 21 -26 26 -38 17 -41 -7 -2 -71 -18 -143 -36 -144 -36 -414 -129 -604 -209 -182 -77 -364 -170 -729 -375 -584 -327 -922 -553 -1317 -882 -105 -87 -171 -144 -426 -370 -133 -118 -563 -468 -729 -593 -171 -129 -445 -288 -760 -443 -237 -115 -623 -276 -753 -314 -543 -156 -1252 -192 -1932 -98 -240 33 -660 116 -1005 199 -450 107 -636 135 -972 142 -417 9 -688 -28 -1041 -143 -462 -151 -820 -373 -1154 -715 -192 -197 -332 -396 -453 -644 -227 -465 -305 -904 -279 -1570 15 -398 3 -540 -66 -731 -128 -359 -408 -573 -865 -662 -58 -12 -166 -33 -240 -47 -183 -35 -260 -72 -360 -174 -89 -89 -134 -155 -260 -386 -317 -577 -665 -1000 -980 -1192 -228 -139 -286 -187 -329 -271 -11 -22 -32 -86 -46 -143 -37 -149 -79 -205 -163 -216 -32 -4 -53 3 -134 45 -160 84 -235 98 -347 63 -82 -25 -150 -78 -219 -170 -96 -127 -218 -385 -277 -587 -33 -109 -45 -279 -25 -349 15 -55 62 -99 122 -116 62 -17 310 -5 425 20 236 52 390 122 707 325 65 42 211 123 325 181 349 177 412 235 701 645 218 309 397 527 605 736 174 176 327 283 520 367 266 116 504 165 1075 222 626 62 994 146 1392 318 542 234 1047 666 1359 1163 126 199 263 493 318 681 34 114 99 162 185 133 72 -23 102 -95 81 -187 -39 -165 -172 -479 -272 -646 -19 -32 -33 -61 -29 -64 3 -3 64 -21 134 -38 260 -66 534 -158 1112 -375 352 -132 526 -193 770 -266 933 -283 1866 -380 2734 -284 99 11 184 20 190 20 38 1 35 19 -21 116 -67 117 -223 454 -258 559 -45 134 -25 209 65 236 92 28 153 -16 187 -134 52 -175 202 -484 329 -675 42 -62 112 -150 157 -196 140 -142 252 -205 512 -287 183 -59 264 -92 633 -263 147 -68 357 -160 467 -205 110 -45 238 -100 285 -122 149 -70 406 -235 617 -395 147 -112 139 -107 331 -179 234 -86 327 -145 500 -318 208 -206 354 -394 572 -738 193 -303 256 -355 465 -384 61 -9 126 -20 147 -25 58 -16 130 -71 163 -124 l30 -50 0 -165 c0 -161 1 -168 28 -225 81 -173 223 -250 487 -263 264 -13 533 44 678 144 57 39 82 75 82 121 0 42 -86 210 -177 347 -136 202 -283 344 -519 498 -131 86 -260 220 -382 398 -51 75 -112 154 -135 176 -41 39 -268 199 -423 298 -179 113 -649 625 -739 805 -15 30 -42 75 -59 100 -18 25 -40 62 -49 83 -68 150 -327 389 -644 593 -48 31 -124 84 -168 118 -196 152 -517 403 -710 556 -115 92 -260 203 -321 247 l-111 79 49 55 c289 320 451 614 542 978 47 186 65 320 86 621 14 195 49 400 95 558 144 495 591 1364 880 1712 124 149 234 269 338 370 56 54 97 101 97 112 0 16 37 57 121 134 9 8 23 14 32 14 10 0 17 5 17 11 0 18 -40 69 -55 69 -31 0 -76 98 -149 324 -41 127 -77 244 -81 260 -3 16 -17 43 -30 58 -64 75 -50 207 25 238 32 13 91 8 135 -12 30 -13 65 -82 65 -127 0 -60 21 -176 40 -222 18 -42 120 -208 199 -322 18 -26 83 -99 144 -161 98 -99 123 -118 197 -153 182 -87 310 -113 560 -113 215 0 328 -22 515 -100 77 -32 154 -62 170 -66 51 -12 258 -116 304 -154 71 -56 133 -122 176 -184 60 -88 178 -201 240 -231 99 -49 339 -45 505 9 209 68 313 120 399 203 36 34 67 63 69 63 5 0 67 73 91 108 80 118 137 423 111 602 -6 41 -21 98 -35 125 -28 57 -130 212 -155 235 -9 8 -47 52 -86 96 -38 45 -150 168 -249 275 -400 428 -632 700 -1024 1198 -295 375 -611 619 -974 755 -100 37 -261 79 -354 91 -57 7 -67 15 -77 60 -26 108 -134 265 -290 420 -173 172 -506 488 -535 507 -28 20 -67 23 -92 8z m1862 -2068 c100 -52 142 -159 109 -276 -46 -167 -266 -221 -390 -97 -92 93 -95 228 -8 327 69 79 190 98 289 46z"
+                                                        ></path>
+                                                        <path
+                                                            d="M19202 15159 c-27 -10 -87 -131 -102 -206 -6 -27 -13 -59 -16 -73 -6 -30 14 -59 124 -179 86 -94 134 -161 162 -226 10 -24 29 -50 42 -59 13 -8 69 -24 125 -35 56 -12 143 -35 194 -51 50 -17 94 -28 97 -25 3 2 -3 34 -13 70 -19 73 -73 183 -127 265 -74 110 -379 495 -406 512 -30 20 -46 21 -80 7z"
+                                                        ></path>
+                                                        <path
+                                                            d="M17065 14794 c-137 -17 -270 -48 -540 -127 -327 -95 -566 -135 -742 -122 -97 7 -243 -2 -243 -15 0 -4 27 -22 60 -39 33 -16 116 -64 185 -105 169 -102 340 -161 543 -187 50 -6 92 -15 92 -18 0 -9 -151 -57 -220 -70 -57 -11 -119 -17 -253 -26 -107 -7 -397 29 -560 70 -178 45 -454 158 -517 211 -8 7 -27 16 -42 19 -36 9 -36 -3 1 -95 77 -189 235 -377 420 -499 l94 -62 -89 8 c-223 20 -479 -5 -654 -65 -178 -60 -322 -133 -650 -327 -320 -189 -486 -249 -720 -262 -105 -6 -245 13 -293 39 -79 42 56 -98 163 -170 88 -58 184 -102 288 -129 86 -23 117 -26 267 -26 154 -1 184 2 320 31 160 34 295 53 295 42 0 -10 -513 -303 -601 -344 -147 -68 -327 -113 -623 -156 -134 -20 -161 -21 -275 -11 -116 11 -330 48 -375 67 -16 6 -18 4 -12 -12 29 -78 135 -210 246 -309 164 -144 318 -225 533 -280 l107 -28 -52 -30 c-190 -109 -470 -182 -743 -196 l-130 -6 90 -68 c190 -144 441 -239 700 -267 76 -8 83 -7 145 22 36 16 137 61 225 100 471 205 766 405 1416 959 521 446 866 714 1289 1002 389 267 1350 755 1707 868 40 12 84 32 97 43 25 21 25 21 12 86 -8 36 -16 89 -19 118 -3 29 -10 59 -15 65 -12 17 -35 125 -28 136 4 5 2 12 -4 16 -15 9 -2 25 21 25 31 0 22 17 -18 33 -66 26 -144 45 -288 72 -178 34 -430 42 -610 19z"
+                                                        ></path>
+                                                        <path
+                                                            d="M5395 10924 c-16 -2 -73 -9 -125 -15 -209 -23 -461 -97 -716 -209 -207 -90 -434 -233 -727 -455 -503 -382 -696 -512 -937 -635 -705 -357 -1355 -392 -2068 -111 l-53 21 6 -22 c19 -61 121 -260 181 -350 104 -159 179 -253 304 -382 278 -286 562 -444 931 -518 150 -29 427 -32 594 -4 291 48 593 159 848 313 32 19 60 33 63 30 9 -9 -111 -151 -186 -220 -234 -216 -534 -375 -880 -464 -35 -9 -34 -10 31 -21 119 -21 331 -34 453 -27 312 17 581 90 859 233 377 193 691 484 1047 972 220 300 357 461 493 581 230 202 506 336 729 356 l68 6 69 92 c145 194 264 322 434 471 l58 51 -77 32 c-428 180 -804 267 -1189 275 -99 3 -193 3 -210 0z"
+                                                        ></path>
+                                                        <path
+                                                            d="M17039 7493 c-72 -200 -176 -406 -292 -580 -48 -73 -87 -134 -87 -136 0 -17 717 -571 770 -596 30 -14 72 -16 285 -13 384 4 451 -10 858 -177 201 -82 325 -169 531 -370 169 -166 266 -280 404 -476 125 -177 251 -309 332 -349 37 -17 86 -30 145 -37 199 -23 280 -63 329 -160 22 -45 26 -66 26 -138 1 -213 69 -354 205 -423 117 -60 347 -95 545 -85 197 11 349 44 475 102 92 43 130 82 128 135 -3 56 -63 173 -160 310 -165 234 -294 360 -533 523 -160 109 -252 197 -382 367 -145 188 -177 215 -447 370 -353 201 -558 379 -829 720 -261 328 -331 396 -502 484 -117 61 -291 119 -451 151 -242 48 -401 94 -865 250 -252 85 -462 155 -466 155 -5 0 -13 -12 -19 -27z"
+                                                        ></path>
+                                                        <path
+                                                            d="M9108 6677 c-82 -106 -267 -313 -356 -398 -331 -319 -748 -578 -1189 -740 -347 -128 -695 -200 -1228 -254 -325 -33 -547 -64 -562 -78 -6 -7 -73 -156 -148 -332 -167 -391 -289 -622 -438 -830 -86 -120 -144 -181 -268 -281 -131 -106 -179 -156 -214 -225 -22 -43 -29 -72 -55 -238 -12 -81 -37 -130 -79 -158 -45 -30 -86 -29 -174 6 -193 77 -320 59 -433 -60 -116 -125 -202 -328 -265 -629 -28 -139 -30 -309 -4 -399 33 -115 97 -153 233 -136 90 11 270 59 373 100 207 81 343 173 589 395 80 72 199 168 265 212 163 111 229 162 299 233 67 68 154 194 208 305 20 41 88 181 152 310 134 276 205 404 322 583 236 360 439 554 741 705 194 98 414 162 833 242 344 66 524 115 740 202 426 172 752 390 1091 728 86 85 190 198 231 250 79 99 188 255 188 269 0 9 -488 168 -665 216 -71 19 -135 37 -142 40 -7 2 -27 -15 -45 -38z"
+                                                        ></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <span class="method-label"
+                                                >Cavalógica</span
+                                            >
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EduSpace Shooter</title>
+    <!-- Importando Phaser 3 via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    <style>
+        /* Reset e configuração de ecrã inteiro sem barra de rolagem */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            overflow: hidden;
+            touch-action: none; /* Impede zoom e scroll nativo do browser */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: block;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container"></div>
+
+    <script>
+        // =====================================================================
+        // BANCO DE DADOS DE PERGUNTAS
+        // =====================================================================
+        const QUESTION_DATA = [
+            { question: "Quanto é 7 x 8?", answers: ["54", "56", "62", "48"], correct: "56" },
+            { question: "Qual é a capital do Brasil?", answers: ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"], correct: "Brasília" },
+            { question: "O antónimo de 'Claro' é?", answers: ["Luminoso", "Brilhante", "Escuro", "Transparente"], correct: "Escuro" },
+            { question: "Quanto é 15 + 27?", answers: ["42", "32", "45", "37"], correct: "42" },
+            { question: "Qual o maior planeta do nosso sistema solar?", answers: ["Terra", "Marte", "Júpiter", "Saturno"], correct: "Júpiter" },
+            { question: "Complete o provérbio:\n'Água mole, pedra dura...'", answers: ["tanto bate até que fura", "nunca se mistura", "é a vida que perdura", "quebra a dentadura"], correct: "tanto bate até que fura" }
+        ];
+
+        // =====================================================================
+        // SISTEMA DE ÁUDIO SINTETIZADO
+        // =====================================================================
+        let audioCtx = null;
+        
+        const playSound = (type) => {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            if (type === 'shoot') {
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+            } else if (type === 'explosion') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(100, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'error') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(50, audioCtx.currentTime + 0.4);
+                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.4);
+            }
+        };
+
+        // =====================================================================
+        // CLASSES DO JOGO
+        // =====================================================================
+
+        class Player extends Phaser.Physics.Arcade.Sprite {
+            constructor(scene, x, y) {
+                super(scene, x, y, 'ship');
+                scene.add.existing(this);
+                scene.physics.add.existing(this);
+                
+                this.setCollideWorldBounds(true);
+                this.setDepth(10);
+                this.body.setSize(20, 20);
+                this.body.setOffset(10, 15);
+                
+                this.speed = 300;
+                this.lastShot = 0;
+                this.hp = 3;
+                this.isInvulnerable = false;
+            }
+
+            move(vector) {
+                if (this.hp <= 0) return;
+                this.setVelocity(vector.x * this.speed, vector.y * this.speed);
+                this.setAngle(vector.x * 15);
+            }
+
+            shoot() {
+                if (this.hp <= 0) return;
+                const time = this.scene.time.now;
+                if (time > this.lastShot + 300) {
+                    const bullet = new Bullet(this.scene, this.x, this.y - 20);
+                    this.scene.bullets.add(bullet);
+                    playSound('shoot');
+                    this.lastShot = time;
+                }
+            }
+            
+            takeDamage() {
+                if (this.isInvulnerable || this.hp <= 0) return false;
+
+                this.hp--;
+                playSound('error');
+                this.isInvulnerable = true;
+                
+                this.scene.tweens.add({
+                    targets: this,
+                    tint: 0xff0000,
+                    duration: 100,
+                    yoyo: true,
+                    repeat: 3,
+                    onComplete: () => { 
+                        this.clearTint();
+                        this.isInvulnerable = false;
+                    }
+                });
+
+                if (this.hp <= 0) {
+                    this.scene.gameOver();
+                }
+
+                return true;
+            }
+        }
+
+        class Bullet extends Phaser.Physics.Arcade.Sprite {
+            constructor(scene, x, y) {
+                super(scene, x, y, 'bullet');
+                scene.add.existing(this);
+                scene.physics.add.existing(this);
+                this.setVelocityY(-600);
+            }
+            update() {
+                if (this.y < -50) this.destroy();
+            }
+        }
+
+        class EnemyProjectile extends Phaser.Physics.Arcade.Sprite {
+            constructor(scene, x, y, target) {
+                super(scene, x, y, 'enemyProj');
+                scene.add.existing(this);
+                scene.physics.add.existing(this);
+                
+                this.scene.physics.moveToObject(this, target, 250);
+                
+                scene.tweens.add({
+                    targets: this,
+                    angle: 360,
+                    duration: 1000,
+                    repeat: -1
+                });
+            }
+            update() {
+                if (this.y > this.scene.scale.height + 50 || this.x < -50 || this.x > this.scene.scale.width + 50) {
+                    this.destroy();
+                }
+            }
+        }
+
+        class Meteor extends Phaser.GameObjects.Container {
+            constructor(scene, x, y, text, isCorrect, speedMult) {
+                super(scene, x, y);
+                this.isCorrect = isCorrect;
+                this.scene = scene;
+
+                const textStyle = { 
+                    fontFamily: 'Arial', 
+                    fontSize: '18px', 
+                    fill: '#ffffff', 
+                    align: 'center', 
+                    wordWrap: { width: 120 },
+                    stroke: '#000000',
+                    strokeThickness: 3
+                };
+                
+                const txtObj = scene.add.text(0, 0, text, textStyle).setOrigin(0.5);
+                const textBounds = txtObj.getBounds();
+                
+                let radius = Math.max(textBounds.width, textBounds.height) / 2 + 20;
+                
+                if (radius < 40) radius = 40;
+                if (radius > 90) {
+                    radius = 90;
+                    txtObj.setFontSize(14);
+                    txtObj.setWordWrapWidth(140);
+                }
+
+                const rock = scene.add.sprite(0, 0, 'meteorBase');
+                rock.setScale((radius * 2) / 100);
+                
+                scene.tweens.add({
+                    targets: rock,
+                    angle: Math.random() > 0.5 ? 360 : -360,
+                    duration: 10000 + Math.random() * 5000,
+                    repeat: -1
+                });
+
+                this.add(rock);
+                this.add(txtObj);
+
+                scene.add.existing(this);
+                scene.physics.add.existing(this);
+
+                this.body.setCircle(radius);
+                this.body.setOffset(-radius, -radius);
+                this.body.setVelocityY((50 + Math.random() * 30) * speedMult);
+                
+                // Adiciona quique (bounce) e resistência horizontal (drag) para colisões mais naturais
+                this.body.setBounce(0.5);
+                this.body.setDragX(30); 
+            }
+
+            update() {
+                if (this.y > this.scene.scale.height + 150) {
+                    this.y = -150;
+                    // Reposiciona o X para evitar que caia sempre na mesma linha
+                    this.x = Phaser.Math.Between(80, this.scene.scale.width - 80);
+                    // Reseta a velocidade lateral caso ele tenha batido antes de voltar ao topo
+                    this.body.setVelocityX(0);
+                }
+                
+                // Se um meteoro for empurrado muito para fora da tela, ele surge do lado oposto (Efeito Pac-Man)
+                if (this.x < -150) this.x = this.scene.scale.width + 150;
+                if (this.x > this.scene.scale.width + 150) this.x = -150;
+            }
+        }
+
+        // =====================================================================
+        // CENA PRINCIPAL
+        // =====================================================================
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super('MainScene');
+            }
+
+            preload() {
+                // Geração processual de texturas
+                const gfxShip = this.make.graphics({x: 0, y: 0, add: false});
+                gfxShip.fillStyle(0x00aaff);
+                gfxShip.lineStyle(2, 0xffffff);
+                gfxShip.beginPath();
+                gfxShip.moveTo(20, 0);
+                gfxShip.lineTo(40, 40);
+                gfxShip.lineTo(20, 30);
+                gfxShip.lineTo(0, 40);
+                gfxShip.closePath();
+                gfxShip.fillPath();
+                gfxShip.strokePath();
+                gfxShip.fillStyle(0xffaa00);
+                gfxShip.fillTriangle(15, 30, 25, 30, 20, 45);
+                gfxShip.generateTexture('ship', 40, 50);
+
+                const gfxMeteor = this.make.graphics({x: 0, y: 0, add: false});
+                gfxMeteor.fillStyle(0x665555);
+                gfxMeteor.lineStyle(3, 0x443333);
+                gfxMeteor.beginPath();
+                const radius = 48;
+                for (let a = 0; a < Math.PI * 2; a += 0.5) {
+                    let r = radius - (Math.random() * 10);
+                    let x = 50 + Math.cos(a) * r;
+                    let y = 50 + Math.sin(a) * r;
+                    if (a === 0) gfxMeteor.moveTo(x, y);
+                    else gfxMeteor.lineTo(x, y);
+                }
+                gfxMeteor.closePath();
+                gfxMeteor.fillPath();
+                gfxMeteor.strokePath();
+                gfxMeteor.fillStyle(0x443333, 0.5);
+                gfxMeteor.fillCircle(30, 30, 8);
+                gfxMeteor.fillCircle(70, 60, 12);
+                gfxMeteor.generateTexture('meteorBase', 100, 100);
+
+                const gfxBullet = this.make.graphics({x: 0, y: 0, add: false});
+                gfxBullet.fillStyle(0x00ff00);
+                gfxBullet.fillRoundedRect(0, 0, 6, 20, 3);
+                gfxBullet.generateTexture('bullet', 6, 20);
+
+                const gfxProj = this.make.graphics({x: 0, y: 0, add: false});
+                gfxProj.fillStyle(0xff3300);
+                gfxProj.fillTriangle(0, 0, 15, 0, 7.5, 20);
+                gfxProj.generateTexture('enemyProj', 15, 20);
+
+                const gfxPart = this.make.graphics({x: 0, y: 0, add: false});
+                gfxPart.fillStyle(0xffffff);
+                gfxPart.fillCircle(4, 4, 4);
+                gfxPart.generateTexture('particle', 8, 8);
+            }
+
+            create() {
+                const width = this.scale.width;
+                const height = this.scale.height;
+
+                this.stars = this.add.group();
+                for (let i = 0; i < 100; i++) {
+                    let star = this.add.rectangle(
+                        Phaser.Math.Between(0, width),
+                        Phaser.Math.Between(0, height),
+                        Phaser.Math.Between(1, 3),
+                        Phaser.Math.Between(1, 3),
+                        0xffffff, Math.random()
+                    );
+                    this.stars.add(star);
+                }
+
+                // Usamos add.group simples para que os objetos controlem as suas próprias físicas
+                this.bullets = this.add.group();
+                this.meteors = this.add.group();
+                this.enemyProjectiles = this.add.group();
+
+                this.player = new Player(this, width / 2, height - 120);
+
+                this.score = 0;
+                this.difficultyMult = 1;
+                this.currentQuestion = null;
+                this.isTransitioning = false;
+
+                this.createUI();
+                this.createVirtualControls();
+
+                this.physics.add.overlap(this.bullets, this.meteors, this.handleBulletMeteor, null, this);
+                this.physics.add.overlap(this.player, this.enemyProjectiles, this.handlePlayerHit, null, this);
+                this.physics.add.overlap(this.player, this.meteors, this.handlePlayerMeteorHit, null, this);
+                
+                // Adiciona colisão física entre os próprios meteoros para não se sobreporem
+                this.physics.add.collider(this.meteors, this.meteors);
+
+                this.loadNextQuestion();
+
+                // Lógica fundamental para o ecrã ser responsivo e reajustar-se em tempo real
+                this.scale.on('resize', this.handleResize, this);
+            }
+
+            handleResize(gameSize) {
+                const width = gameSize.width;
+                const height = gameSize.height;
+
+                // Atualizar câmara e mundo físico
+                this.cameras.main.setViewport(0, 0, width, height);
+                this.physics.world.setBounds(0, 0, width, height);
+
+                // Reposicionar HUD
+                this.hudBg.setSize(width, 60);
+                this.hudBg.setPosition(width / 2, 30);
+                
+                this.questionText.setPosition(width / 2, 30);
+                this.questionText.setStyle({ wordWrap: { width: width - 150 } });
+                
+                this.updateHPUI(); // Re-desenhar corações na nova posição
+
+                // Reposicionar Controles (mantendo a margem de 80px)
+                this.joyZone.setSize(width / 2, height);
+                this.fireZone.setSize(width / 2, height);
+                this.fireZone.setPosition(width / 2, 0);
+
+                this.joyBaseX = 80;
+                this.joyBaseY = height - 80;
+                
+                if (!this.isDragging) {
+                    this.joyBase.setPosition(this.joyBaseX, this.joyBaseY);
+                    this.joyThumb.setPosition(this.joyBaseX, this.joyBaseY);
+                }
+
+                this.fireBtn.setPosition(width - 80, height - 80);
+                this.fireBtnText.setPosition(width - 80, height - 80);
+
+                // Garantir que a nave não fica presa fora do ecrã após rodar o telemóvel
+                if (this.player.y > height) this.player.y = height - 80;
+                if (this.player.x > width) this.player.x = width / 2;
+            }
+
+            createUI() {
+                const width = this.scale.width;
+                this.hudBg = this.add.rectangle(width / 2, 30, width, 60, 0x000000, 0.7).setDepth(20);
+                
+                this.questionText = this.add.text(width / 2, 30, '', {
+                    fontFamily: 'Arial', fontSize: '20px', fill: '#ffff00', fontStyle: 'bold', align: 'center',
+                    wordWrap: { width: width - 150 }
+                }).setOrigin(0.5).setDepth(21);
+
+                this.scoreText = this.add.text(20, 30, 'Placar: 0', {
+                    fontFamily: 'Arial', fontSize: '18px', fill: '#fff'
+                }).setOrigin(0, 0.5).setDepth(21);
+
+                this.hpGroup = this.add.group();
+                this.updateHPUI();
+            }
+
+            updateHPUI() {
+                this.hpGroup.clear(true, true);
+                const width = this.scale.width;
+                for (let i = 0; i < this.player.hp; i++) {
+                    let heart = this.add.text(width - 30 - (i * 25), 30, '❤️', { fontSize: '20px' }).setOrigin(0.5).setDepth(21);
+                    this.hpGroup.add(heart);
+                }
+            }
+
+            createVirtualControls() {
+                const width = this.scale.width;
+                const height = this.scale.height;
+
+                // Zona Joystick
+                this.joyZone = this.add.zone(0, 0, width / 2, height).setOrigin(0).setInteractive().setDepth(15);
+                
+                this.joyBaseX = 80;
+                this.joyBaseY = height - 80;
+
+                this.joyBase = this.add.circle(this.joyBaseX, this.joyBaseY, 50, 0xffffff, 0.2).setDepth(16);
+                this.joyThumb = this.add.circle(this.joyBaseX, this.joyBaseY, 25, 0xffffff, 0.5).setDepth(16);
+                
+                this.joystickVector = new Phaser.Math.Vector2(0, 0);
+                this.isDragging = false;
+
+                const updateJoystick = (pointer) => {
+                    let dx = pointer.x - this.joyBaseX;
+                    let dy = pointer.y - this.joyBaseY;
+                    let angle = Math.atan2(dy, dx);
+                    let dist = Math.min(Math.hypot(dx, dy), 50); 
+                    
+                    this.joyThumb.setPosition(
+                        this.joyBaseX + Math.cos(angle) * dist,
+                        this.joyBaseY + Math.sin(angle) * dist
+                    );
+                    
+                    this.joystickVector.set(dx, dy).normalize();
+                };
+
+                this.joyZone.on('pointerdown', (pointer) => {
+                    this.isDragging = true;
+                    updateJoystick(pointer);
+                });
+
+                this.joyZone.on('pointermove', (pointer) => {
+                    if (!this.isDragging) return;
+                    updateJoystick(pointer);
+                });
+
+                const resetJoy = () => {
+                    this.isDragging = false;
+                    this.joyThumb.setPosition(this.joyBaseX, this.joyBaseY);
+                    this.joystickVector.set(0, 0);
+                    this.player.setVelocity(0, 0);
+                    this.player.setAngle(0);
+                };
+
+                this.joyZone.on('pointerup', resetJoy);
+                this.joyZone.on('pointerout', resetJoy);
+
+                // Zona de Tiro
+                this.fireZone = this.add.zone(width / 2, 0, width / 2, height).setOrigin(0).setInteractive().setDepth(15);
+                
+                const btnRadius = 45;
+                this.fireBtn = this.add.circle(width - 80, height - 80, btnRadius, 0xff0000, 0.5).setDepth(16);
+                this.fireBtnText = this.add.text(this.fireBtn.x, this.fireBtn.y, 'ATIRAR', { fontSize: '16px', fill: '#fff', fontStyle: 'bold' }).setOrigin(0.5).setDepth(17);
+
+                this.fireZone.on('pointerdown', () => {
+                    this.fireBtn.setAlpha(0.8);
+                    this.player.shoot();
+                });
+                
+                this.fireZone.on('pointerup', () => { this.fireBtn.setAlpha(0.5); });
+                this.fireZone.on('pointerout', () => { this.fireBtn.setAlpha(0.5); });
+            }
+
+            loadNextQuestion() {
+                this.isTransitioning = false;
+                this.meteors.clear(true, true);
+                this.enemyProjectiles.clear(true, true);
+                
+                this.currentQuestion = QUESTION_DATA[Phaser.Math.Between(0, QUESTION_DATA.length - 1)];
+                this.questionText.setText(this.currentQuestion.question);
+
+                let answers = [...this.currentQuestion.answers];
+                Phaser.Utils.Array.Shuffle(answers);
+
+                const numAnswers = answers.length;
+                const spacing = this.scale.width / (numAnswers + 1);
+                
+                // Se o ecrã for muito estreito (telemóvel na vertical), desfasar a altura para evitar sobreposição
+                const isNarrowScreen = this.scale.width < 600;
+
+                for (let i = 0; i < numAnswers; i++) {
+                    let ans = answers[i];
+                    let isCorrect = (ans === this.currentQuestion.correct);
+                    let xPos = spacing * (i + 1);
+                    let yPos = -100 - Phaser.Math.Between(0, 100);
+                    
+                    if (isNarrowScreen) {
+                        yPos -= (i % 2) * 120; // Meteoros intercalados em altura
+                    }
+                    
+                    let meteor = new Meteor(this, xPos, yPos, ans, isCorrect, this.difficultyMult);
+                    this.meteors.add(meteor);
+                }
+            }
+
+            createExplosion(x, y, color) {
+                playSound('explosion');
+                const emitter = this.add.particles(0, 0, 'particle', {
+                    x: x, y: y,
+                    speed: { min: 50, max: 200 },
+                    angle: { min: 0, max: 360 },
+                    scale: { start: 1, end: 0 },
+                    tint: color,
+                    blendMode: 'ADD',
+                    lifespan: 600,
+                    quantity: 20
+                });
+                emitter.explode();
+            }
+
+            handleBulletMeteor(bullet, meteor) {
+                if (this.isTransitioning) return;
+                bullet.destroy();
+
+                if (meteor.isCorrect) {
+                    this.isTransitioning = true;
+                    this.score += 10;
+                    this.scoreText.setText('Placar: ' + this.score);
+                    this.difficultyMult += 0.1;
+
+                    this.meteors.getChildren().forEach(m => {
+                        this.createExplosion(m.x, m.y, 0x00ff00);
+                    });
+                    this.meteors.clear(true, true);
+
+                    this.questionText.setText("CORRETO!");
+                    this.questionText.setColor('#00ff00');
+                    
+                    this.time.delayedCall(1500, () => {
+                        this.questionText.setColor('#ffff00');
+                        this.loadNextQuestion();
+                    });
+
+                } else {
+                    this.createExplosion(meteor.x, meteor.y, 0xff0000);
+                    
+                    for (let i = 0; i < 3; i++) {
+                        let proj = new EnemyProjectile(this, meteor.x, meteor.y, this.player);
+                        this.enemyProjectiles.add(proj);
+                    }
+                    
+                    meteor.destroy();
+                }
+            }
+
+            handlePlayerHit(player, projectile) {
+                projectile.destroy();
+                if (player.takeDamage()) {
+                    this.createExplosion(player.x, player.y, 0xffaa00);
+                    this.updateHPUI();
+                    this.cameras.main.shake(200, 0.02);
+                }
+            }
+
+            handlePlayerMeteorHit(player, meteor) {
+                if (this.isTransitioning) return;
+                
+                if (player.takeDamage()) {
+                    this.createExplosion(player.x, player.y, 0xffaa00);
+                    this.updateHPUI();
+                    this.cameras.main.shake(200, 0.02);
+                }
+                
+                meteor.y = -150;
+                meteor.x = Phaser.Math.Between(80, this.scale.width - 80);
+            }
+
+            gameOver() {
+                this.physics.pause();
+                this.player.setTint(0xff0000);
+                this.isTransitioning = true;
+                this.isDragging = false;
+                
+                const gvText = this.add.text(this.scale.width / 2, this.scale.height / 2 - 50, 'GAME OVER', {
+                    fontFamily: 'Arial', fontSize: '50px', fill: '#ff0000', fontStyle: 'bold', stroke: '#000', strokeThickness: 6
+                }).setOrigin(0.5).setDepth(30);
+
+                const restartBtn = this.add.text(this.scale.width / 2, this.scale.height / 2 + 30, 'Tocar para Recomeçar', {
+                    fontFamily: 'Arial', fontSize: '24px', fill: '#fff', backgroundColor: '#333', padding: { x: 20, y: 10 }
+                }).setOrigin(0.5).setInteractive().setDepth(30);
+
+                restartBtn.on('pointerdown', () => {
+                    this.scene.restart();
+                });
+            }
+
+            update(time, delta) {
+                this.stars.getChildren().forEach(star => {
+                    star.y += (100 / star.width) * (delta / 1000);
+                    if (star.y > this.scale.height) {
+                        star.y = 0;
+                        star.x = Phaser.Math.Between(0, this.scale.width);
+                    }
+                });
+
+                if (this.isDragging) {
+                    this.player.move(this.joystickVector);
+                } else {
+                    this.player.setVelocity(0, 0);
+                    this.player.setAngle(0);
+                }
+
+                this.bullets.getChildren().forEach(b => b.update());
+                this.meteors.getChildren().forEach(m => m.update());
+                this.enemyProjectiles.getChildren().forEach(e => e.update());
+            }
+        }
+
+        // =====================================================================
+        // CONFIGURAÇÃO PHASER COM RESIZE DINÂMICO
+        // =====================================================================
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: window.innerWidth,    // Pega o tamanho real do ecrã inicial
+            height: window.innerHeight,
+            scale: {
+                mode: Phaser.Scale.RESIZE, // Adapta-se fluidamente e preenche espaços em branco
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 0 },
+                    debug: false
+                }
+            },
+            scene: MainScene,
+            backgroundColor: '#00001a'
+        };
+
+        const game = new Phaser.Game(config);
+
+        const unlockAudio = () => {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+        };
+
+        document.body.addEventListener('touchstart', unlockAudio, { once: true });
+        document.body.addEventListener('click', unlockAudio, { once: true });
+
+    </script>
+</body>
+</html>

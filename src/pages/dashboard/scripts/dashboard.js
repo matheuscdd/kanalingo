@@ -24,6 +24,7 @@ const catalogScreen = document.getElementById("catalog-screen");
 const categoriesScreen = document.getElementById("categories-screen");
 const methodsScreen = document.getElementById("methods-screen");
 const btnLearn = document.getElementById("toggle-learn");
+const btnTeach = document.getElementById("toggle-teach");
 const btnAlphabet = document.getElementById("toggle-alphabet");
 const btnCategories = document.getElementById("toggle-categories");
 const allScreens = Array.from(document.querySelectorAll(".screen"));
@@ -41,6 +42,8 @@ function init() {
 
     showScreen(screens.methods);
 
+    btnTeach.onclick = () =>
+        (globalThis.location.href = "/src/pages/teach/teach.html");
     btnLogout.onclick = logout;
     btnLearn.onclick = () => showScreen("methods");
     btnAlphabet.onclick = () => showScreen("catalog");

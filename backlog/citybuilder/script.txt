@@ -1,0 +1,1587 @@
+// --- FUNÇÃO DE DICA (UI) ---
+function showHint(msg) {
+    const hint = document.getElementById("hint-msg");
+    if (hint) {
+        hint.innerText = msg;
+        hint.classList.add("visible");
+        setTimeout(() => hint.classList.remove("visible"), 3000);
+    }
+}
+
+// --- CONFIGURAÇÕES MEGA MAPA ---
+const GRID_SIZE_LARGE = 200;
+let CURRENT_GRID_SIZE = GRID_SIZE_LARGE;
+const MAX_HEIGHT = 100;
+const MAX_BLOCKS = 60000;
+const STUD_RADIUS = 0.25;
+const STUD_HEIGHT = 0.2;
+
+const BLOCKS = {
+    "1x1": { sx: 1, sy: 1, sz: 1, topStuds: true },
+    "2x2": { sx: 2, sy: 1, sz: 2, topStuds: true },
+    "2x4": { sx: 2, sy: 1, sz: 4, topStuds: true },
+    "Tile 2x2": { sx: 2, sy: 1, sz: 2, topStuds: false, customGeo: "tile" },
+    "Roof 1x2": { sx: 1, sy: 1, sz: 2, topStuds: false, customGeo: "roof" },
+    Window: { sx: 1, sy: 2, sz: 2, topStuds: true, customGeo: "window" },
+    Pillar: { sx: 1, sy: 3, sz: 1, topStuds: true },
+    Rotor: { sx: 1, sy: 1, sz: 1, topStuds: false, customGeo: "rotor", animated: true },
+};
+
+const COLORS = {
+    "#e3000b": 0xe3000b,
+    "#0055bf": 0x0055bf,
+    "#f2cd37": 0xf2cd37,
+    "#237841": 0x237841,
+    "#f4f4f4": 0xf4f4f4,
+    "#111111": 0x222222,
+};
+
+const PREFABS = {
+    ColosseuReal: {
+        dx: 22,
+        dy: 10,
+        dz: 22,
+        blocks: (function () {
+            const b = [];
+            const center = 11;
+            const ivory = "#f4f4f4";
+            const sand = "#f2cd37";
+            for (let x = 7; x <= 15; x += 2) {
+                for (let z = 7; z <= 15; z += 2) {
+                    b.push({ type: "Tile 2x2", color: sand, rot: 0, lx: x, ly: 0, lz: z });
+                }
+            }
+            for (let i = 0; i < 24; i++) {
+                const angle = (i / 24) * Math.PI * 2;
+                const lx = Math.round(center + Math.cos(angle) * 6 - 1);
+                const lz = Math.round(center + Math.sin(angle) * 6 - 1);
+                b.push({ type: "Roof 1x2", color: ivory, rot: Math.floor(i / 6), lx, ly: 1, lz });
+            }
+            for (let layer = 0; layer < 3; layer++) {
+                const ly = layer * 3 + 1;
+                for (let i = 0; i < 32; i++) {
+                    const angle = (i / 32) * Math.PI * 2;
+                    const lx = Math.round(center + Math.cos(angle) * 9 - 1);
+                    const lz = Math.round(center + Math.sin(angle) * 9 - 1);
+                    b.push({ type: "Window", color: ivory, rot: Math.floor(i / 8) % 2, lx, ly: ly, lz });
+                    if (i % 2 === 0) {
+                        const px = Math.round(center + Math.cos(angle + 0.1) * 10 - 1);
+                        const pz = Math.round(center + Math.sin(angle + 0.1) * 10 - 1);
+                        b.push({ type: "Pillar", color: ivory, rot: 0, lx: px, ly: ly, lz: pz });
+                    }
+                }
+            }
+            for (let i = 0; i < 40; i++) {
+                const angle = (i / 40) * Math.PI * 2;
+                const lx = Math.round(center + Math.cos(angle) * 9.5 - 1);
+                const lz = Math.round(center + Math.sin(angle) * 9.5 - 1);
+                b.push({ type: "1x1", color: ivory, rot: 0, lx, ly: 9, lz });
+            }
+            return b;
+        })(),
+    },
+    Muralha: {
+        dx: 16,
+        dy: 10,
+        dz: 6,
+        blocks: (function () {
+            const b = [];
+            for (let x = 0; x < 16; x += 2) {
+                for (let y = 0; y < 4; y++) {
+                    b.push({ type: "2x4", color: "#f4f4f4", rot: 1, lx: x, ly: y, lz: 1 });
+                }
+            }
+            for (let x = 0; x < 16; x += 2) {
+                b.push({ type: "Tile 2x2", color: "#111111", rot: 0, lx: x, ly: 4, lz: 2 });
+                if (x % 4 === 0) {
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: x, ly: 4, lz: 1 });
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: x, ly: 4, lz: 4 });
+                }
+            }
+            for (let y = 4; y < 8; y++) {
+                b.push({ type: "2x4", color: "#f4f4f4", rot: 1, lx: 6, ly: y, lz: 1 });
+                b.push({ type: "2x4", color: "#f4f4f4", rot: 1, lx: 8, ly: y, lz: 1 });
+            }
+            for (let x = 6; x <= 8; x += 2) {
+                b.push({ type: "Tile 2x2", color: "#111111", rot: 0, lx: x, ly: 8, lz: 2 });
+                b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: x, ly: 8, lz: 1 });
+                b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: x, ly: 8, lz: 4 });
+            }
+            return b;
+        })(),
+    },
+    FabricaMega: {
+        dx: 12,
+        dy: 16,
+        dz: 8,
+        blocks: [
+            ...[0, 2, 4, 6, 8, 10].flatMap((x) =>
+                [0, 4].map((z) => ({ type: "2x4", color: "#111111", rot: 0, lx: x, ly: 0, lz: z })),
+            ),
+            ...[6, 8, 10].flatMap((x) =>
+                [0, 4].map((z) => ({ type: "2x4", color: "#f4f4f4", rot: 0, lx: x, ly: 3, lz: z })),
+            ),
+            { type: "Rotor", color: "#111111", rot: 0, lx: 1, ly: 1, lz: 0 },
+            { type: "Rotor", color: "#111111", rot: 0, lx: 4, ly: 1, lz: 0 },
+            ...[10, 13].flatMap((ly) => [{ type: "Pillar", color: "#111111", rot: 0, lx: 1, ly: ly, lz: 2 }]),
+        ],
+    },
+    Predio: {
+        dx: 12,
+        dy: 32,
+        dz: 12,
+        blocks: (function () {
+            const b = [];
+            for (let f = 0; f < 9; f++) {
+                let w = 12,
+                    offset = 0;
+                if (f > 3) {
+                    w = 10;
+                    offset = 1;
+                }
+                if (f > 6) {
+                    w = 8;
+                    offset = 2;
+                }
+                let ySlab = f * 3;
+                let yWin = f * 3 + 1;
+                for (let x = 0; x < w; x += 2) {
+                    for (let z = 0; z < w; z += 4) {
+                        if (z + 4 <= w)
+                            b.push({
+                                type: "2x4",
+                                color: "#f4f4f4",
+                                rot: 0,
+                                lx: offset + x,
+                                ly: ySlab,
+                                lz: offset + z,
+                            });
+                        else
+                            b.push({
+                                type: "2x2",
+                                color: "#f4f4f4",
+                                rot: 0,
+                                lx: offset + x,
+                                ly: ySlab,
+                                lz: offset + z,
+                            });
+                    }
+                }
+                for (let i = 0; i < w; i += 2) {
+                    b.push({ type: "Window", color: "#0055bf", rot: 1, lx: offset + i, ly: yWin, lz: offset });
+                    b.push({ type: "Window", color: "#0055bf", rot: 1, lx: offset + i, ly: yWin, lz: offset + w - 1 });
+                    if (i > 0 && i < w - 2) {
+                        b.push({ type: "Window", color: "#0055bf", rot: 0, lx: offset, ly: yWin, lz: offset + i });
+                        b.push({
+                            type: "Window",
+                            color: "#0055bf",
+                            rot: 0,
+                            lx: offset + w - 1,
+                            ly: yWin,
+                            lz: offset + i,
+                        });
+                    }
+                }
+            }
+            b.push({ type: "Pillar", color: "#111111", rot: 0, lx: 5, ly: 27, lz: 5 });
+            b.push({ type: "Pillar", color: "#111111", rot: 0, lx: 5, ly: 30, lz: 5 });
+            return b;
+        })(),
+    },
+    Palacio: {
+        dx: 16,
+        dy: 12,
+        dz: 12,
+        blocks: (function () {
+            const b = [];
+            const ivory = "#f4f4f4";
+            const gold = "#f2cd37";
+            for (let x = 2; x < 14; x += 2) b.push({ type: "2x4", color: ivory, rot: 1, lx: x, ly: 0, lz: 1 });
+            for (let x = 2; x < 14; x += 2) b.push({ type: "2x4", color: ivory, rot: 1, lx: x, ly: 1, lz: 3 });
+            for (let x = 0; x < 16; x += 2) {
+                for (let z = 5; z < 11; z += 2) {
+                    b.push({ type: "2x2", color: ivory, rot: 0, lx: x, ly: 2, lz: z });
+                }
+            }
+            for (let x = 1; x < 15; x += 2) {
+                b.push({ type: "Pillar", color: ivory, rot: 0, lx: x, ly: 3, lz: 5 });
+                b.push({ type: "Pillar", color: ivory, rot: 0, lx: x, ly: 6, lz: 5 });
+            }
+            for (let y = 3; y < 9; y++) {
+                for (let x = 0; x < 16; x += 2) {
+                    b.push({ type: "2x2", color: ivory, rot: 0, lx: x, ly: y, lz: 9 });
+                }
+            }
+            for (let x = 0; x < 16; x += 2) {
+                b.push({ type: "2x4", color: ivory, rot: 1, lx: x, ly: 9, lz: 4 });
+                b.push({ type: "2x4", color: ivory, rot: 1, lx: x, ly: 9, lz: 6 });
+                b.push({ type: "2x4", color: ivory, rot: 1, lx: x, ly: 9, lz: 8 });
+            }
+            b.push({ type: "2x4", color: gold, rot: 1, lx: 6, ly: 10, lz: 6 });
+            b.push({ type: "2x4", color: gold, rot: 1, lx: 8, ly: 10, lz: 6 });
+            b.push({ type: "2x2", color: gold, rot: 0, lx: 7, ly: 11, lz: 7 });
+            return b;
+        })(),
+    },
+    Mansao: {
+        dx: 24,
+        dy: 10,
+        dz: 16,
+        blocks: (function () {
+            const b = [];
+            for (let x = 0; x < 24; x += 2) {
+                for (let z = 0; z < 16; z += 4) {
+                    b.push({ type: "2x4", color: "#237841", rot: 0, lx: x, ly: 0, lz: z });
+                }
+            }
+            for (let x = 8; x < 16; x += 2) {
+                for (let z = 1; z < 5; z += 2) {
+                    b.push({ type: "Tile 2x2", color: "#0055bf", rot: 0, lx: x, ly: 1, lz: z });
+                }
+            }
+            for (let y = 1; y <= 4; y++) {
+                for (let x = 4; x < 20; x++) {
+                    if (x > 9 && x < 14 && y < 3) continue;
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: x, ly: y, lz: 8 });
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: x, ly: y, lz: 14 });
+                }
+                for (let z = 9; z < 14; z++) {
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: 4, ly: y, lz: z });
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: 19, ly: y, lz: z });
+                }
+            }
+            b.push({ type: "Pillar", color: "#f4f4f4", rot: 0, lx: 9, ly: 1, lz: 6 });
+            b.push({ type: "Pillar", color: "#f4f4f4", rot: 0, lx: 14, ly: 1, lz: 6 });
+            for (let x = 2; x < 22; x += 2) {
+                for (let z = 7; z < 16; z += 4) {
+                    b.push({ type: "2x4", color: "#111111", rot: 0, lx: x, ly: 5, lz: z });
+                }
+            }
+            b.push({ type: "2x4", color: "#111111", rot: 1, lx: 9, ly: 4, lz: 5 });
+            b.push({ type: "2x4", color: "#111111", rot: 1, lx: 13, ly: 4, lz: 5 });
+            return b;
+        })(),
+    },
+    Casa: {
+        dx: 12,
+        dy: 10,
+        dz: 12,
+        blocks: (function () {
+            const b = [];
+            for (let x = 1; x < 11; x += 2) {
+                for (let z = 1; z < 11; z += 4) {
+                    if (z + 4 <= 11) b.push({ type: "2x4", color: "#f4f4f4", rot: 0, lx: x, ly: 0, lz: z });
+                    else b.push({ type: "2x2", color: "#f4f4f4", rot: 0, lx: x, ly: 0, lz: z });
+                }
+            }
+            for (let y = 1; y <= 3; y++) {
+                for (let x = 1; x < 11; x++) {
+                    if (y === 2 && x > 4 && x < 7) continue;
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: x, ly: y, lz: 1 });
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: x, ly: y, lz: 10 });
+                }
+                for (let z = 2; z < 10; z++) {
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: 1, ly: y, lz: z });
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: 10, ly: y, lz: z });
+                }
+            }
+            b.push({ type: "Window", color: "#aaddff", rot: 1, lx: 5, ly: 1, lz: 1 });
+            for (let step = 0; step < 4; step++) {
+                let y = 4 + step;
+                for (let x = 1; x < 11; x += 2) {
+                    b.push({ type: "Roof 1x2", color: "#e3000b", rot: 0, lx: x, ly: y, lz: 1 + step });
+                    b.push({ type: "Roof 1x2", color: "#e3000b", rot: 2, lx: x, ly: y, lz: 9 - step });
+                }
+                for (let z = 2 + step; z <= 8 - step; z++) {
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: 1, ly: y, lz: z });
+                    b.push({ type: "1x1", color: "#f4f4f4", rot: 0, lx: 10, ly: y, lz: z });
+                }
+            }
+            for (let x = 1; x < 11; x += 2) b.push({ type: "Tile 2x2", color: "#e3000b", rot: 0, lx: x, ly: 8, lz: 4 });
+            b.push({ type: "Pillar", color: "#e3000b", rot: 0, lx: 8, ly: 4, lz: 3 });
+            b.push({ type: "1x1", color: "#e3000b", rot: 0, lx: 8, ly: 7, lz: 3 });
+            return b;
+        })(),
+    },
+    Arvore: {
+        dx: 10,
+        dy: 14,
+        dz: 10,
+        blocks: (function () {
+            const b = [];
+            for (let y = 0; y < 8; y++) b.push({ type: "2x2", color: "#111111", rot: 0, lx: 4, ly: y, lz: 4 });
+            b.push({ type: "1x1", color: "#111111", rot: 0, lx: 3, ly: 0, lz: 4 });
+            b.push({ type: "1x1", color: "#111111", rot: 0, lx: 6, ly: 0, lz: 5 });
+            b.push({ type: "1x1", color: "#111111", rot: 0, lx: 4, ly: 0, lz: 3 });
+            b.push({ type: "1x1", color: "#111111", rot: 0, lx: 5, ly: 0, lz: 6 });
+            const cx = 5,
+                cy = 9,
+                cz = 5;
+            for (let x = 0; x < 10; x += 2) {
+                for (let y = 4; y < 13; y++) {
+                    for (let z = 0; z < 10; z += 2) {
+                        const dist = Math.sqrt(Math.pow(x - cx, 2) + Math.pow((y - cy) * 1.5, 2) + Math.pow(z - cz, 2));
+                        if (dist < 4.8) b.push({ type: "2x2", color: "#237841", rot: 0, lx: x, ly: y, lz: z });
+                    }
+                }
+            }
+            return b;
+        })(),
+    },
+    Eolica: {
+        dx: 7,
+        dy: 20,
+        dz: 7,
+        blocks: (function () {
+            const b = [];
+            b.push({ type: "2x4", color: "#f4f4f4", rot: 1, lx: 2, ly: 0, lz: 1 });
+            b.push({ type: "2x4", color: "#f4f4f4", rot: 1, lx: 4, ly: 0, lz: 1 });
+            for (let y = 1; y < 18; y += 3) b.push({ type: "Pillar", color: "#f4f4f4", rot: 0, lx: 3, ly: y, lz: 3 });
+            b.push({ type: "2x2", color: "#f4f4f4", rot: 0, lx: 3, ly: 18, lz: 2 });
+            b.push({ type: "Rotor", color: "#111111", rot: 0, lx: 3, ly: 18, lz: 4 });
+            return b;
+        })(),
+    },
+};
+
+// --- ESTADO GERAL ---
+let currentType = "1x1";
+let currentColor = "#e3000b";
+let currentRot = 0;
+let isDeleteMode = false;
+let isDeleteGroupMode = false;
+
+let hoveredGroupId = null;
+let hoveredBlockId = null;
+
+const keys = {};
+let lastTime = performance.now();
+
+const voxelGrid = new Map();
+let hitboxes = [];
+let blocksCount = 0;
+let animatedBlocks = [];
+
+// --- ESTADO: MODO CONSTRUÇÃO ---
+let isTopDownView = false;
+let cameraAngleIndex = 1;
+const CAM_RADIUS = 110;
+const CAM_HEIGHT = 110;
+let targetCamOffset = new THREE.Vector3();
+let visualCamOffset = new THREE.Vector3();
+let cameraTarget = new THREE.Vector3(0, 0, 0);
+let visualTarget = new THREE.Vector3(0, 0, 0);
+let currentCX = 0,
+    currentCY = 0,
+    currentCZ = 0;
+let rollOver;
+
+// --- ESTADO: MODO 1ª PESSOA ---
+let isFirstPerson = false;
+let fpYaw = 0;
+let fpPitch = 0;
+let playerPos = new THREE.Vector3(0, 5, 0);
+let playerVel = new THREE.Vector3(0, 0, 0);
+let isGrounded = false;
+let isDraggingView = false;
+let lastTouch = { x: 0, y: 0 };
+
+// --- SETUP THREE.JS ---
+const container = document.getElementById("canvas-container");
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xe8ecf1);
+
+const aspect = window.innerWidth / window.innerHeight;
+const viewSize = 120;
+
+const orthoCamera = new THREE.OrthographicCamera(-viewSize * aspect, viewSize * aspect, viewSize, -viewSize, 1, 2500);
+updateCameraTarget();
+visualCamOffset.copy(targetCamOffset);
+orthoCamera.position.copy(cameraTarget).add(visualCamOffset);
+orthoCamera.lookAt(cameraTarget);
+
+const fpCamera = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
+fpCamera.rotation.order = "YXZ";
+
+let activeCamera = orthoCamera;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.shadowMap.autoUpdate = false; // Desligado por default para manter performance
+container.appendChild(renderer.domElement);
+
+// --- GRID E CHÃO ---
+const mainGrid = new THREE.GridHelper(GRID_SIZE_LARGE, 20, 0x8a959e, 0xadb5bd);
+mainGrid.position.y = 0.01;
+scene.add(mainGrid);
+
+const subGrid = new THREE.GridHelper(GRID_SIZE_LARGE, GRID_SIZE_LARGE, 0xd0d8e0, 0xdfe4ea);
+subGrid.position.y = 0.005;
+scene.add(subGrid);
+
+// --- MATERIAIS E LUZES ---
+const groundMats = {
+    basic: new THREE.MeshBasicMaterial({ color: 0xe8ecf1 }),
+    standard: new THREE.MeshStandardMaterial({ color: 0xe8ecf1, roughness: 1.0, metalness: 0.0 }),
+    physical: new THREE.MeshPhysicalMaterial({ color: 0xe8ecf1, roughness: 1.0 }),
+    phong: new THREE.MeshPhongMaterial({ color: 0xe8ecf1 }),
+    toon: new THREE.MeshToonMaterial({ color: 0xe8ecf1 }),
+};
+
+const materials = {
+    basic: {
+        solid: new THREE.MeshBasicMaterial({ color: 0xffffff, vertexColors: true }),
+        glass: new THREE.MeshBasicMaterial({ color: 0xaaddff, transparent: true, opacity: 0.6, vertexColors: true }),
+    },
+    standard: {
+        solid: new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: 0.7, metalness: 0.1 }),
+        glass: new THREE.MeshStandardMaterial({
+            color: 0xaaddff,
+            transparent: true,
+            opacity: 0.6,
+            vertexColors: true,
+            roughness: 0.1,
+            metalness: 0.2,
+        }),
+    },
+    physical: {
+        solid: new THREE.MeshPhysicalMaterial({
+            color: 0xffffff,
+            vertexColors: true,
+            roughness: 0.4,
+            metalness: 0.1,
+            clearcoat: 0.2,
+        }),
+        glass: new THREE.MeshPhysicalMaterial({
+            color: 0xaaddff,
+            transparent: true,
+            opacity: 0.6,
+            vertexColors: true,
+            transmission: 0.8,
+            roughness: 0.1,
+            ior: 1.5,
+        }),
+    },
+    phong: {
+        solid: new THREE.MeshPhongMaterial({ color: 0xffffff, vertexColors: true, shininess: 60 }),
+        glass: new THREE.MeshPhongMaterial({
+            color: 0xaaddff,
+            transparent: true,
+            opacity: 0.6,
+            vertexColors: true,
+            shininess: 90,
+        }),
+    },
+    toon: {
+        solid: new THREE.MeshToonMaterial({ color: 0xffffff, vertexColors: true }),
+        glass: new THREE.MeshToonMaterial({ color: 0xaaddff, transparent: true, opacity: 0.6, vertexColors: true }),
+    },
+};
+
+let currentRenderMode = "basic";
+let matSolid = materials[currentRenderMode].solid;
+let matGlass = materials[currentRenderMode].glass;
+
+const ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(GRID_SIZE_LARGE, GRID_SIZE_LARGE).rotateX(-Math.PI / 2),
+    groundMats[currentRenderMode],
+);
+ground.receiveShadow = true;
+scene.add(ground);
+hitboxes.push(ground);
+
+const matGhostValid = new THREE.MeshBasicMaterial({
+    color: 0x2ecc71,
+    opacity: 0.6,
+    transparent: true,
+    vertexColors: true,
+});
+const matGhostInvalid = new THREE.MeshBasicMaterial({
+    color: 0xe74c3c,
+    opacity: 0.6,
+    transparent: true,
+    vertexColors: true,
+});
+
+// Luzes
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+ambientLight.visible = false;
+scene.add(ambientLight);
+
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+dirLight.position.set(100, 200, 100);
+dirLight.castShadow = false;
+dirLight.shadow.mapSize.width = 2048;
+dirLight.shadow.mapSize.height = 2048;
+const d = 120;
+dirLight.shadow.camera.left = -d;
+dirLight.shadow.camera.right = d;
+dirLight.shadow.camera.top = d;
+dirLight.shadow.camera.bottom = -d;
+dirLight.shadow.camera.near = 0.5;
+dirLight.shadow.camera.far = 500;
+dirLight.shadow.bias = -0.0005;
+dirLight.visible = false;
+scene.add(dirLight);
+
+// Controlador de Mudança de Modo
+document.getElementById("render-mode").addEventListener("change", (e) => {
+    const mode = e.target.value;
+    currentRenderMode = mode;
+    const isLit = mode !== "basic";
+
+    ambientLight.visible = isLit;
+    dirLight.visible = isLit;
+    dirLight.castShadow = isLit;
+    renderer.shadowMap.autoUpdate = isLit;
+    if (isLit) renderer.shadowMap.needsUpdate = true;
+
+    ground.material = groundMats[mode];
+    matSolid = materials[mode].solid;
+    matGlass = materials[mode].glass;
+
+    for (const key in imGroups) {
+        const grp = imGroups[key];
+        grp.mesh.material = grp.isGlass ? matGlass : matSolid;
+        grp.mesh.material.needsUpdate = true;
+    }
+
+    animatedBlocks.forEach((ab) => {
+        const hitbox = hitboxes.find((h) => h.userData.blockRef && h.userData.blockRef.id === ab.id);
+        if (hitbox) {
+            const block = hitbox.userData.blockRef;
+            if (block.live) {
+                block.live.traverse((c) => {
+                    if (c.isMesh && !c.userData.isHitbox) {
+                        const newMat = c.userData.isGlass ? matGlass.clone() : matSolid.clone();
+                        newMat.color.set(block.color);
+                        c.material = newMat;
+                    }
+                });
+            }
+        }
+    });
+});
+
+// --- DESTAQUE VISUAL (APAGAR) ---
+function setBlockHighlight(blockId, isHighlight) {
+    if (!blockId) return;
+    const blockNode = hitboxes.find((h) => h.userData && h.userData.blockRef && h.userData.blockRef.id === blockId);
+    if (!blockNode) return;
+    const block = blockNode.userData.blockRef;
+    const colorHex = isHighlight ? 0xff0000 : new THREE.Color(block.color).getHex();
+
+    if (block.def.animated && block.live) {
+        block.live.traverse((c) => {
+            if (c.isMesh && !c.userData.isHitbox) c.material.color.setHex(colorHex);
+        });
+    } else {
+        for (const key in imGroups) {
+            const grp = imGroups[key];
+            if (grp.blockMap.has(blockId)) {
+                const indices = grp.blockMap.get(blockId);
+                for (let idx of indices) {
+                    grp.mesh.setColorAt(idx, new THREE.Color(colorHex));
+                }
+                grp.mesh.instanceColor.needsUpdate = true;
+            }
+        }
+    }
+}
+
+function setGroupHighlight(gId, isHighlight) {
+    if (!gId) return;
+    const blocksInGroup = hitboxes
+        .slice(1)
+        .map((h) => h.userData.blockRef)
+        .filter((b) => b && b.groupId === gId);
+    blocksInGroup.forEach((block) => {
+        const colorHex = isHighlight ? 0xff0000 : new THREE.Color(block.color).getHex();
+        if (block.def.animated && block.live) {
+            block.live.traverse((c) => {
+                if (c.isMesh && !c.userData.isHitbox) c.material.color.setHex(colorHex);
+            });
+        } else {
+            for (const key in imGroups) {
+                const grp = imGroups[key];
+                if (grp.blockMap.has(block.id)) {
+                    const indices = grp.blockMap.get(block.id);
+                    for (let idx of indices) {
+                        grp.mesh.setColorAt(idx, new THREE.Color(colorHex));
+                    }
+                    grp.mesh.instanceColor.needsUpdate = true;
+                }
+            }
+        }
+    });
+}
+
+function clearHighlights() {
+    if (hoveredGroupId) {
+        setGroupHighlight(hoveredGroupId, false);
+        hoveredGroupId = null;
+    }
+    if (hoveredBlockId) {
+        setBlockHighlight(hoveredBlockId, false);
+        hoveredBlockId = null;
+    }
+}
+
+// --- FAKE SHADING ---
+function applyFakeShading(geo) {
+    let nGeo = geo.index ? geo.toNonIndexed() : geo;
+    nGeo.computeVertexNormals();
+    const count = nGeo.attributes.position.count;
+    const colors = new Float32Array(count * 3);
+    const normals = nGeo.attributes.normal.array;
+    for (let i = 0; i < count; i++) {
+        const ny = normals[i * 3 + 1];
+        const nx = normals[i * 3];
+        const nz = normals[i * 3 + 2];
+        let shade = 0.75;
+        if (ny > 0.5) shade = 1.0;
+        else if (ny < -0.5) shade = 0.45;
+        else if (Math.abs(nz) > Math.abs(nx)) shade = 0.88;
+        else shade = 0.68;
+        colors[i * 3] = shade;
+        colors[i * 3 + 1] = shade;
+        colors[i * 3 + 2] = shade;
+    }
+    nGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+    return nGeo;
+}
+
+const GEO_CACHE = {};
+function getGeo(key, creatorFn) {
+    if (!GEO_CACHE[key]) GEO_CACHE[key] = applyFakeShading(creatorFn());
+    return GEO_CACHE[key];
+}
+
+const imGroups = {};
+function addInstance(geoKey, geometry, material, blockId, matrixWorld, colorHex, isGlass = false) {
+    if (!imGroups[geoKey]) {
+        const max = 120000;
+        const mesh = new THREE.InstancedMesh(geometry, material, max);
+        mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+        mesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(max * 3), 3);
+        mesh.instanceColor.setUsage(THREE.DynamicDrawUsage);
+        mesh.count = 0;
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        scene.add(mesh);
+        imGroups[geoKey] = { mesh, blockMap: new Map(), indexToBlock: new Map(), isGlass };
+    }
+    const grp = imGroups[geoKey];
+    const idx = grp.mesh.count;
+    grp.mesh.setMatrixAt(idx, matrixWorld);
+    grp.mesh.setColorAt(idx, new THREE.Color(colorHex));
+    if (!grp.blockMap.has(blockId)) grp.blockMap.set(blockId, []);
+    grp.blockMap.get(blockId).push(idx);
+    grp.indexToBlock.set(idx, blockId);
+    grp.mesh.count++;
+    grp.mesh.instanceMatrix.needsUpdate = true;
+    grp.mesh.instanceColor.needsUpdate = true;
+}
+
+function removeInstances(blockId) {
+    for (const key in imGroups) {
+        const grp = imGroups[key];
+        if (!grp.blockMap.has(blockId)) continue;
+        const indices = grp.blockMap.get(blockId).sort((a, b) => b - a);
+        for (let idx of indices) {
+            const lastIdx = grp.mesh.count - 1;
+            if (idx !== lastIdx) {
+                const mat = new THREE.Matrix4();
+                grp.mesh.getMatrixAt(lastIdx, mat);
+                grp.mesh.setMatrixAt(idx, mat);
+                const col = new THREE.Color();
+                grp.mesh.getColorAt(lastIdx, col);
+                grp.mesh.setColorAt(idx, col);
+                const lastBlockId = grp.indexToBlock.get(lastIdx);
+                grp.indexToBlock.set(idx, lastBlockId);
+                const lastBlockIndices = grp.blockMap.get(lastBlockId);
+                lastBlockIndices[lastBlockIndices.indexOf(lastIdx)] = idx;
+            }
+            grp.indexToBlock.delete(lastIdx);
+            grp.mesh.count--;
+        }
+        grp.blockMap.delete(blockId);
+        grp.mesh.instanceMatrix.needsUpdate = true;
+        grp.mesh.instanceColor.needsUpdate = true;
+    }
+}
+
+function createBlockGroup(type, colorHex, rot, isGhost = false) {
+    const isPrefab = type.startsWith("Prefab_");
+    if (isPrefab) {
+        const pid = type.split("_")[1];
+        const p = PREFABS[pid];
+        const group = new THREE.Group();
+        p.blocks.forEach((b) => {
+            const bDef = BLOCKS[b.type];
+            if (!bDef) return;
+            const g = createBlockGroup(b.type, b.color, b.rot, isGhost);
+            const bDx = b.rot % 2 !== 0 ? bDef.sz : bDef.sx;
+            const bDz = b.rot % 2 !== 0 ? bDef.sx : bDef.sz;
+            g.position.set(b.lx + bDx / 2 - p.dx / 2, b.ly, b.lz + bDz / 2 - p.dz / 2);
+            group.add(g);
+        });
+        const hbGeo = new THREE.BoxGeometry(p.dx, p.dy, p.dz).translate(0, p.dy / 2, 0);
+        const hitbox = new THREE.Mesh(hbGeo, new THREE.MeshBasicMaterial({ visible: false }));
+        hitbox.userData.isHitbox = true;
+        group.add(hitbox);
+        group.userData.hitbox = hitbox;
+        group.rotation.y = -rot * (Math.PI / 2);
+        return group;
+    }
+
+    const def = BLOCKS[type];
+    const group = new THREE.Group();
+    const baseMat = isGhost ? matGhostValid : matSolid;
+    const sx = def.sx,
+        sy = def.sy,
+        sz = def.sz;
+
+    function addPart(geoKey, geo, mat, isGlassPart = false) {
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.userData = { geoKey, geo, isGlass: isGlassPart };
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        group.add(mesh);
+    }
+
+    if (def.customGeo === "roof") {
+        const rGeo = getGeo("roof_1_1_2", () => {
+            const shape = new THREE.Shape();
+            shape.moveTo(0, 0);
+            shape.lineTo(0, sy);
+            shape.lineTo(sz, 0);
+            shape.lineTo(0, 0);
+            const g = new THREE.ExtrudeGeometry(shape, { depth: sx, bevelEnabled: false });
+            g.rotateY(-Math.PI / 2);
+            g.computeBoundingBox();
+            const center = g.boundingBox.getCenter(new THREE.Vector3());
+            g.translate(-center.x, -g.boundingBox.min.y, -center.z);
+            return g;
+        });
+        addPart("roof_1_1_2", rGeo, baseMat);
+    } else if (def.customGeo === "window") {
+        const key = `win_${sx}_${sy}_${sz}`;
+        const fGeo = getGeo(key, () => new THREE.BoxGeometry(sx, sy, sz).translate(0, sy / 2, 0));
+        addPart(key, fGeo, isGhost ? baseMat : matGlass, true);
+    } else if (def.customGeo === "rotor") {
+        const hubGeo = getGeo("hub", () => new THREE.CylinderGeometry(0.2, 0.2, 0.4, 8).rotateX(Math.PI / 2));
+        const hub = new THREE.Mesh(hubGeo, baseMat);
+        hub.position.y = 0.5;
+        group.add(hub);
+        const pivot = new THREE.Group();
+        pivot.position.y = 0.5;
+        pivot.userData.isRotor = true;
+        group.add(pivot);
+        const bladeGeo = getGeo("blade", () => new THREE.BoxGeometry(0.6, 2.8, 0.15).translate(0, 1.8, 0));
+        for (let i = 0; i < 3; i++) {
+            const b = new THREE.Mesh(bladeGeo, baseMat);
+            b.rotation.z = (i * Math.PI * 2) / 3;
+            pivot.add(b);
+        }
+    } else {
+        const visualY = def.customGeo === "tile" ? 0.3 : sy;
+        const bKey = `box_${sx}_${visualY}_${sz}`;
+        const bGeo = getGeo(bKey, () => new THREE.BoxGeometry(sx, visualY, sz).translate(0, visualY / 2, 0));
+        addPart(bKey, bGeo, baseMat);
+    }
+
+    if (def.topStuds) {
+        const visualY = def.customGeo === "tile" ? 0.3 : sy;
+        const studGeo = getGeo("stud", () =>
+            new THREE.CylinderGeometry(STUD_RADIUS, STUD_RADIUS, STUD_HEIGHT, 8).translate(
+                0,
+                visualY + STUD_HEIGHT / 2,
+                0,
+            ),
+        );
+        for (let x = 0; x < sx; x++) {
+            for (let z = 0; z < sz; z++) {
+                const stud = new THREE.Mesh(studGeo, baseMat);
+                stud.position.set(x - sx / 2 + 0.5, 0, z - sz / 2 + 0.5);
+                stud.userData = { geoKey: "stud", geo: studGeo };
+                group.add(stud);
+            }
+        }
+    }
+
+    const hbGeo = new THREE.BoxGeometry(sx, sy, sz).translate(0, sy / 2, 0);
+    const hitbox = new THREE.Mesh(hbGeo, new THREE.MeshBasicMaterial({ visible: false }));
+    hitbox.userData.isHitbox = true;
+    group.add(hitbox);
+    group.userData.hitbox = hitbox;
+    group.rotation.y = -rot * (Math.PI / 2);
+    return group;
+}
+
+// --- LÓGICA DE GRID ---
+function getGridKey(x, y, z) {
+    return `${x},${y},${z}`;
+}
+
+function getPrefabBlockWorldBounds(cx, cy, cz, prefab, block, pRot) {
+    const bDef = BLOCKS[block.type];
+    if (!bDef) return null;
+    const bDx = block.rot % 2 !== 0 ? bDef.sz : bDef.sx;
+    const bDz = block.rot % 2 !== 0 ? bDef.sx : bDef.sz;
+
+    const rel_x = block.lx + bDx / 2 - prefab.dx / 2;
+    const rel_z = block.lz + bDz / 2 - prefab.dz / 2;
+
+    let rot_x = rel_x,
+        rot_z = rel_z;
+    if (pRot === 1) {
+        rot_x = -rel_z;
+        rot_z = rel_x;
+    } else if (pRot === 2) {
+        rot_x = -rel_x;
+        rot_z = -rel_z;
+    } else if (pRot === 3) {
+        rot_x = rel_z;
+        rot_z = -rel_x;
+    }
+
+    const pDx_rotated = pRot % 2 !== 0 ? prefab.dz : prefab.dx;
+    const pDz_rotated = pRot % 2 !== 0 ? prefab.dx : prefab.dz;
+
+    const world_center_x = cx + pDx_rotated / 2 + rot_x;
+    const world_center_z = cz + pDz_rotated / 2 + rot_z;
+
+    const finalRot = (block.rot + pRot) % 4;
+    const finalDx = finalRot % 2 !== 0 ? bDef.sz : bDef.sx;
+    const finalDz = finalRot % 2 !== 0 ? bDef.sx : bDef.sz;
+
+    const block_cx = Math.round(world_center_x - finalDx / 2);
+    const block_cy = Math.round(cy + block.ly);
+    const block_cz = Math.round(world_center_z - finalDz / 2);
+
+    return {
+        cx: block_cx,
+        cy: block_cy,
+        cz: block_cz,
+        dx: finalDx,
+        dy: bDef.sy,
+        dz: finalDz,
+        rot: finalRot,
+    };
+}
+
+function canPlace(cx, cy, cz, type, rot) {
+    if (cy < 0 || cy >= MAX_HEIGHT) return false;
+    if (type.startsWith("Prefab_")) return canPlacePrefab(cx, cy, cz, type.split("_")[1], rot);
+    const def = BLOCKS[type];
+    if (!def) return false;
+    const dx = rot % 2 !== 0 ? def.sz : def.sx;
+    const dz = rot % 2 !== 0 ? def.sx : def.sz;
+    const half = CURRENT_GRID_SIZE / 2;
+    let supported = false;
+    for (let x = 0; x < dx; x++) {
+        for (let y = 0; y < def.sy; y++) {
+            for (let z = 0; z < dz; z++) {
+                const wx = cx + x;
+                const wy = cy + y;
+                const wz = cz + z;
+                if (wx < -half || wx >= half || wz < -half || wz >= half) return false;
+                if (voxelGrid.has(getGridKey(wx, wy, wz))) return false;
+                if (y === 0) {
+                    if (wy === 0) supported = true;
+                    else {
+                        const below = voxelGrid.get(getGridKey(wx, wy - 1, wz));
+                        if (below && below.def.topStuds) supported = true;
+                    }
+                }
+            }
+        }
+    }
+    return supported;
+}
+
+function canPlacePrefab(cx, cy, cz, pid, pRot) {
+    const prefab = PREFABS[pid];
+    if (!prefab) return false;
+    const half = CURRENT_GRID_SIZE / 2;
+    if (cy < 0 || cy + prefab.dy > MAX_HEIGHT) return false;
+
+    const occupied = [];
+    for (let b of prefab.blocks) {
+        const bounds = getPrefabBlockWorldBounds(cx, cy, cz, prefab, b, pRot);
+        if (!bounds) continue;
+
+        for (let x = 0; x < bounds.dx; x++) {
+            for (let y = 0; y < bounds.dy; y++) {
+                for (let z = 0; z < bounds.dz; z++) {
+                    occupied.push({ x: bounds.cx + x, y: bounds.cy + y, z: bounds.cz + z });
+                }
+            }
+        }
+    }
+
+    let supported = false;
+    for (let v of occupied) {
+        if (v.x < -half || v.x >= half || v.z < -half || v.z >= half || v.y >= MAX_HEIGHT || v.y < 0) return false;
+        if (voxelGrid.has(getGridKey(v.x, v.y, v.z))) return false;
+        if (v.y === 0) supported = true;
+        else if (!occupied.some((ov) => ov.x === v.x && ov.y === v.y - 1 && ov.z === v.z)) {
+            const below = voxelGrid.get(getGridKey(v.x, v.y - 1, v.z));
+            if (below && below.def.topStuds) supported = true;
+        }
+    }
+    return supported;
+}
+
+function calculatePlacementOrigin(intersect, dx, dz) {
+    const p = intersect.point.clone().add(intersect.face.normal.clone().multiplyScalar(0.1));
+    let cx = Math.floor(p.x);
+    let cy = Math.floor(p.y);
+    let cz = Math.floor(p.z);
+    if (Math.abs(intersect.face.normal.y) > 0.5) {
+        cx -= Math.floor(dx / 2);
+        cz -= Math.floor(dz / 2);
+    } else if (Math.abs(intersect.face.normal.x) > 0.5) {
+        cz -= Math.floor(dz / 2);
+        if (intersect.face.normal.x < -0.5) cx -= dx - 1;
+    } else if (Math.abs(intersect.face.normal.z) > 0.5) {
+        cx -= Math.floor(dx / 2);
+        if (intersect.face.normal.z < -0.5) cz -= dz - 1;
+    }
+    return { cx, cy, cz };
+}
+
+// --- GESTÃO DE BLOCOS ---
+function updateStats() {
+    const counter = document.getElementById("block-counter");
+    counter.innerText = `${blocksCount.toLocaleString("pt-BR")} / 60.000`;
+    if (blocksCount >= MAX_BLOCKS) counter.classList.add("full");
+    else counter.classList.remove("full");
+}
+
+function placeBlock(cx, cy, cz, type, color, rot, skipStats = false, groupId = null) {
+    if (blocksCount >= MAX_BLOCKS) return;
+    const def = BLOCKS[type];
+    if (!def) return;
+    const dx = rot % 2 !== 0 ? def.sz : def.sx;
+    const dz = rot % 2 !== 0 ? def.sx : def.sz;
+    const blockId = Date.now() + Math.random();
+    const actualGroupId = groupId || blockId;
+    const blockData = { id: blockId, groupId: actualGroupId, def, cx, cy, cz, dx, dz, type, color, rot };
+    const temp = createBlockGroup(type, color, rot, false);
+    temp.position.set(cx + dx / 2, cy, cz + dz / 2);
+    temp.updateMatrixWorld(true);
+    let hitboxMesh = null;
+    if (def.animated) {
+        const live = temp.clone();
+        live.traverse((c) => {
+            if (c.userData && c.userData.isHitbox) {
+                hitboxMesh = c;
+                hitboxMesh.userData.blockRef = blockData;
+                hitboxes.push(hitboxMesh);
+            } else if (c.isMesh) {
+                const newMat = c.userData.isGlass ? matGlass.clone() : matSolid.clone();
+                newMat.color.set(color);
+                c.material = newMat;
+                c.castShadow = true;
+                c.receiveShadow = true;
+            }
+        });
+        scene.add(live);
+        blockData.live = live;
+        let piv = null;
+        live.traverse((c) => {
+            if (c.userData.isRotor) piv = c;
+        });
+        if (piv) animatedBlocks.push({ id: blockId, pivot: piv });
+    } else {
+        temp.children.forEach((c) => {
+            if (c.userData.isHitbox) {
+                hitboxMesh = c.clone();
+                hitboxMesh.position.copy(temp.position);
+                hitboxMesh.rotation.copy(temp.rotation);
+                hitboxMesh.updateMatrixWorld(true);
+                hitboxMesh.userData.blockRef = blockData;
+                scene.add(hitboxMesh);
+                hitboxes.push(hitboxMesh);
+            } else {
+                addInstance(
+                    c.userData.geoKey,
+                    c.userData.geo,
+                    c.userData.isGlass ? matGlass : matSolid,
+                    blockId,
+                    c.matrixWorld.clone(),
+                    color,
+                    c.userData.isGlass,
+                );
+            }
+        });
+    }
+    for (let x = 0; x < dx; x++) {
+        for (let y = 0; y < def.sy; y++) {
+            for (let z = 0; z < dz; z++) voxelGrid.set(getGridKey(cx + x, cy + y, cz + z), blockData);
+        }
+    }
+    blockData.hitbox = hitboxMesh;
+    blocksCount++;
+    if (!skipStats) updateStats();
+}
+
+function placePrefab(cx, cy, cz, pid, pRot) {
+    const prefab = PREFABS[pid];
+    if (!prefab) return;
+
+    const groupId = Date.now() + Math.random();
+
+    prefab.blocks.forEach((b) => {
+        const bounds = getPrefabBlockWorldBounds(cx, cy, cz, prefab, b, pRot);
+        if (bounds) placeBlock(bounds.cx, bounds.cy, bounds.cz, b.type, b.color, bounds.rot, true, groupId);
+    });
+
+    updateStats();
+}
+
+function removeBlock(data) {
+    if (!data) return;
+    if (data.def.animated) {
+        scene.remove(data.live);
+        animatedBlocks = animatedBlocks.filter((a) => a.id !== data.id);
+    } else removeInstances(data.id);
+    scene.remove(data.hitbox);
+    hitboxes.splice(hitboxes.indexOf(data.hitbox), 1);
+    for (let x = 0; x < data.dx; x++) {
+        for (let y = 0; y < data.def.sy; y++) {
+            for (let z = 0; z < data.dz; z++) voxelGrid.delete(getGridKey(data.cx + x, data.cy + y, data.cz + z));
+        }
+    }
+    blocksCount--;
+    updateStats();
+}
+
+function clearAll() {
+    clearHighlights();
+    const blocks = [...new Set(hitboxes.slice(1).map((h) => h.userData.blockRef))];
+    blocks.forEach((b) => removeBlock(b));
+    updateStats();
+}
+
+// --- SISTEMA DE FÍSICA PARA 1ª PESSOA ---
+function checkFPCollision(pos) {
+    const r = 0.25;
+    const h = 1.8;
+    const minX = Math.floor(pos.x - r);
+    const maxX = Math.floor(pos.x + r);
+    const minY = Math.floor(pos.y);
+    const maxY = Math.floor(pos.y + h);
+    const minZ = Math.floor(pos.z - r);
+    const maxZ = Math.floor(pos.z + r);
+
+    for (let x = minX; x <= maxX; x++) {
+        for (let y = minY; y <= maxY; y++) {
+            for (let z = minZ; z <= maxZ; z++) {
+                if (y < 0) return true;
+                if (voxelGrid.has(getGridKey(x, y, z))) return true;
+            }
+        }
+    }
+    return false;
+}
+
+// --- INPUTS & VISUAL DO GRID ---
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+function updateRollOver() {
+    if (isFirstPerson) return;
+    if (rollOver) scene.remove(rollOver);
+    rollOver = createBlockGroup(currentType, currentColor, currentRot, true);
+    scene.add(rollOver);
+    updateRollOverVisual();
+}
+updateRollOver();
+
+function updateRollOverVisual() {
+    if (!rollOver || isFirstPerson) return;
+    let dx = 1,
+        dz = 1;
+    if (currentType.startsWith("Prefab_")) {
+        const p = PREFABS[currentType.split("_")[1]];
+        dx = currentRot % 2 !== 0 ? p.dz : p.dx;
+        dz = currentRot % 2 !== 0 ? p.dx : p.dz;
+    } else {
+        const def = BLOCKS[currentType];
+        dx = currentRot % 2 !== 0 ? def.sz : def.sx;
+        dz = currentRot % 2 !== 0 ? def.sx : def.sz;
+    }
+    rollOver.position.set(currentCX + dx / 2, currentCY, currentCZ + dz / 2);
+
+    const isValid = canPlace(currentCX, currentCY, currentCZ, currentType, currentRot);
+    const matValid = new THREE.MeshBasicMaterial({
+        color: 0x2ecc71,
+        opacity: 0.6,
+        transparent: true,
+        vertexColors: true,
+    });
+    const matInvalid = new THREE.MeshBasicMaterial({
+        color: 0xe74c3c,
+        opacity: 0.6,
+        transparent: true,
+        vertexColors: true,
+    });
+
+    rollOver.traverse((c) => {
+        if (c.isMesh && !c.userData.isHitbox) c.material = isValid ? matValid : matInvalid;
+    });
+    rollOver.visible = !isDeleteMode && !isDeleteGroupMode;
+}
+
+function handleMove(e) {
+    if (isFirstPerson || e.target !== renderer.domElement) return;
+    const pos = e.changedTouches ? e.changedTouches[0] : e;
+    mouse.x = (pos.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(pos.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, orthoCamera);
+
+    if (isDeleteMode || isDeleteGroupMode) {
+        const hits = raycaster.intersectObjects(hitboxes.slice(1), false);
+        if (hits.length > 0) {
+            const targetBlock = hits[0].object.userData.blockRef;
+            if (isDeleteGroupMode) {
+                if (hoveredBlockId) {
+                    setBlockHighlight(hoveredBlockId, false);
+                    hoveredBlockId = null;
+                }
+                if (hoveredGroupId !== targetBlock.groupId) {
+                    setGroupHighlight(hoveredGroupId, false);
+                    hoveredGroupId = targetBlock.groupId;
+                    setGroupHighlight(hoveredGroupId, true);
+                }
+            } else {
+                if (hoveredGroupId) {
+                    setGroupHighlight(hoveredGroupId, false);
+                    hoveredGroupId = null;
+                }
+                if (hoveredBlockId !== targetBlock.id) {
+                    setBlockHighlight(hoveredBlockId, false);
+                    hoveredBlockId = targetBlock.id;
+                    setBlockHighlight(hoveredBlockId, true);
+                }
+            }
+        } else {
+            clearHighlights();
+        }
+        return;
+    } else {
+        clearHighlights();
+    }
+
+    const hits = raycaster.intersectObjects(hitboxes, false);
+    if (hits.length > 0 && !isDeleteMode && !isDeleteGroupMode) {
+        let dx = 1,
+            dz = 1;
+        if (currentType.startsWith("Prefab_")) {
+            const p = PREFABS[currentType.split("_")[1]];
+            dx = currentRot % 2 !== 0 ? p.dz : p.dx;
+            dz = currentRot % 2 !== 0 ? p.dx : p.dz;
+        } else {
+            const def = BLOCKS[currentType];
+            dx = currentRot % 2 !== 0 ? def.sz : def.sx;
+            dz = currentRot % 2 !== 0 ? def.sx : def.sz;
+        }
+        const origin = calculatePlacementOrigin(hits[0], dx, dz);
+        currentCX = origin.cx;
+        currentCY = origin.cy;
+        currentCZ = origin.cz;
+        updateRollOverVisual();
+    }
+}
+
+function executePlacement() {
+    if (isFirstPerson) return;
+    if (isDeleteMode || isDeleteGroupMode) {
+        clearHighlights(); // Limpa as cores vermelhas antes de apagar a referência do objeto
+        const targetVoxel = voxelGrid.get(getGridKey(currentCX, currentCY, currentCZ));
+        if (targetVoxel) {
+            if (isDeleteGroupMode) {
+                const gId = targetVoxel.groupId;
+                const blocksToRemove = hitboxes
+                    .slice(1)
+                    .map((h) => h.userData.blockRef)
+                    .filter((b) => b && b.groupId === gId);
+                blocksToRemove.forEach((b) => removeBlock(b));
+            } else {
+                removeBlock(targetVoxel);
+            }
+        }
+        return;
+    }
+    const isPrefab = currentType.startsWith("Prefab_");
+    const pid = isPrefab ? currentType.split("_")[1] : null;
+    if (isPrefab) {
+        if (canPlacePrefab(currentCX, currentCY, currentCZ, pid, currentRot))
+            placePrefab(currentCX, currentCY, currentCZ, pid, currentRot);
+    } else {
+        if (canPlace(currentCX, currentCY, currentCZ, currentType, currentRot))
+            placeBlock(currentCX, currentCY, currentCZ, currentType, currentColor, currentRot);
+    }
+}
+
+function handleTap(e) {
+    if (isFirstPerson || e.target !== renderer.domElement) return;
+    handleMove(e);
+    if (isDeleteMode || isDeleteGroupMode) {
+        raycaster.setFromCamera(mouse, orthoCamera);
+        const hits = raycaster.intersectObjects(hitboxes.slice(1), false);
+        if (hits.length > 0) {
+            const targetBlock = hits[0].object.userData.blockRef;
+            if (targetBlock) {
+                clearHighlights(); // Limpa as cores antes de apagar
+                if (isDeleteGroupMode) {
+                    const gId = targetBlock.groupId;
+                    const blocksToRemove = hitboxes
+                        .slice(1)
+                        .map((h) => h.userData.blockRef)
+                        .filter((b) => b && b.groupId === gId);
+                    blocksToRemove.forEach((b) => removeBlock(b));
+                } else {
+                    removeBlock(targetBlock);
+                }
+            }
+        }
+    } else {
+        executePlacement();
+    }
+}
+
+// --- CONTROLOS (TECLADO E RATO) ---
+window.addEventListener("keydown", (e) => {
+    keys[e.code] = true;
+    if (isFirstPerson) return;
+
+    if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.code)) {
+        e.preventDefault();
+        const forward = new THREE.Vector3();
+        orthoCamera.getWorldDirection(forward);
+        forward.y = 0;
+        forward.normalize();
+        const right = new THREE.Vector3();
+        right.crossVectors(forward, orthoCamera.up).normalize();
+
+        let dir = new THREE.Vector3();
+        if (e.code === "ArrowUp") dir.copy(forward);
+        if (e.code === "ArrowDown") dir.copy(forward).negate();
+        if (e.code === "ArrowLeft") dir.copy(right).negate();
+        if (e.code === "ArrowRight") dir.copy(right);
+
+        if (Math.abs(dir.x) > Math.abs(dir.z)) currentCX += Math.sign(dir.x);
+        else currentCZ += Math.sign(dir.z);
+
+        // Se estiver no modo de apagar, force o update do raycast via rato, ou não faça nada com as setas
+        if (!isDeleteMode && !isDeleteGroupMode) {
+            updateRollOverVisual();
+        }
+    }
+    if (e.code === "Enter") {
+        e.preventDefault();
+        executePlacement();
+    }
+});
+
+window.addEventListener("keyup", (e) => (keys[e.code] = false));
+
+window.addEventListener(
+    "wheel",
+    (e) => {
+        if (isFirstPerson) return;
+        const zoomAmount = orthoCamera.zoom * 0.1;
+        if (e.deltaY > 0) orthoCamera.zoom = Math.max(0.1, orthoCamera.zoom - zoomAmount);
+        else orthoCamera.zoom = Math.min(50, orthoCamera.zoom + zoomAmount);
+        orthoCamera.updateProjectionMatrix();
+    },
+    { passive: false },
+);
+
+window.addEventListener("pointermove", handleMove);
+window.addEventListener("pointerdown", handleTap);
+
+// --- POINTER LOCK (Olhar em 1ª Pessoa) ---
+container.addEventListener("click", () => {
+    if (isFirstPerson) document.body.requestPointerLock();
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!isFirstPerson || document.pointerLockElement !== document.body) return;
+    fpYaw -= e.movementX * 0.002;
+    fpPitch -= e.movementY * 0.002;
+    fpPitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, fpPitch));
+    fpCamera.rotation.set(fpPitch, fpYaw, 0);
+});
+
+// Sair do Modo de 1ª Pessoa ao pressionar ESC (O browser tira o pointer lock)
+document.addEventListener("pointerlockchange", () => {
+    if (document.pointerLockElement !== document.body && isFirstPerson) {
+        document.getElementById("btn-fp").click();
+    }
+});
+
+// --- TOUCH (Olhar em 1ª Pessoa no Mobile) ---
+container.addEventListener("touchstart", (e) => {
+    if (!isFirstPerson) return;
+    isDraggingView = true;
+    lastTouch.x = e.touches[0].clientX;
+    lastTouch.y = e.touches[0].clientY;
+});
+
+container.addEventListener("touchmove", (e) => {
+    if (!isFirstPerson || !isDraggingView) return;
+    const touch = e.touches[0];
+    fpYaw -= (touch.clientX - lastTouch.x) * 0.005;
+    fpPitch -= (touch.clientY - lastTouch.y) * 0.005;
+    fpPitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, fpPitch));
+    fpCamera.rotation.set(fpPitch, fpYaw, 0);
+    lastTouch.x = touch.clientX;
+    lastTouch.y = touch.clientY;
+});
+
+container.addEventListener("touchend", () => (isDraggingView = false));
+
+// --- SISTEMA DE CÂMARAS E BOTÕES ---
+function updateCameraTarget() {
+    if (isTopDownView) {
+        targetCamOffset.set(0, CAM_HEIGHT * 1.5, 0.1);
+    } else {
+        const angle = (cameraAngleIndex * Math.PI) / 2 + Math.PI / 4;
+        targetCamOffset.set(Math.cos(angle) * CAM_RADIUS, CAM_HEIGHT, Math.sin(angle) * CAM_RADIUS);
+    }
+}
+
+document.getElementById("btn-fp").onclick = (e) => {
+    isFirstPerson = !isFirstPerson;
+    const btn = e.currentTarget;
+    btn.classList.toggle("active", isFirstPerson);
+    btn.blur();
+
+    if (isFirstPerson) {
+        clearHighlights(); // Limpa as luzes de destruição ao entrar
+        activeCamera = fpCamera;
+        document.getElementById("bottom-bar").style.display = "none";
+        document.getElementById("left-bar").style.display = "none";
+        document.getElementById("btn-iso").style.display = "none";
+        document.getElementById("btn-top").style.display = "none";
+        document.getElementById("btn-cam").style.display = "none";
+        document.getElementById("btn-rotate").style.display = "none";
+        document.getElementById("btn-delete").style.display = "none";
+        document.getElementById("btn-delete-group").style.display = "none";
+        document.getElementById("btn-expand").style.display = "none";
+
+        document.getElementById("crosshair").style.display = "block";
+
+        const cx = Math.floor(cameraTarget.x);
+        const cz = Math.floor(cameraTarget.z);
+        let startY = 0;
+        for (let y = MAX_HEIGHT; y >= 0; y--) {
+            if (voxelGrid.has(getGridKey(cx, y, cz))) {
+                startY = y + 1;
+                break;
+            }
+        }
+        playerPos.set(cameraTarget.x, startY, cameraTarget.z);
+        playerVel.set(0, 0, 0);
+        if (rollOver) rollOver.visible = false;
+
+        document.body.requestPointerLock();
+        showHint("Exploração: WASD | Shift (Voar) | Espaço (Subir)");
+    } else {
+        activeCamera = orthoCamera;
+        document.getElementById("bottom-bar").style.display = "flex";
+        document.getElementById("left-bar").style.display = "flex";
+        document.getElementById("btn-iso").style.display = "flex";
+        document.getElementById("btn-top").style.display = "flex";
+        document.getElementById("btn-cam").style.display = "flex";
+        document.getElementById("btn-rotate").style.display = "flex";
+        document.getElementById("btn-delete").style.display = "flex";
+        document.getElementById("btn-delete-group").style.display = "flex";
+        document.getElementById("btn-expand").style.display = "flex";
+
+        document.getElementById("crosshair").style.display = "none";
+
+        cameraTarget.set(playerPos.x, 0, playerPos.z);
+        updateRollOverVisual();
+        if (document.pointerLockElement) document.exitPointerLock();
+        showHint("Modo de Construção");
+    }
+    onResize();
+};
+
+document.getElementById("btn-iso").onclick = () => {
+    isTopDownView = false;
+    document.getElementById("btn-iso").classList.add("active");
+    document.getElementById("btn-top").classList.remove("active");
+    updateCameraTarget();
+};
+
+document.getElementById("btn-top").onclick = () => {
+    isTopDownView = true;
+    document.getElementById("btn-top").classList.add("active");
+    document.getElementById("btn-iso").classList.remove("active");
+    updateCameraTarget();
+};
+
+document.getElementById("btn-cam").onclick = () => {
+    if (!isTopDownView) {
+        cameraAngleIndex++;
+        updateCameraTarget();
+    }
+};
+
+document.getElementById("btn-rotate").onclick = () => {
+    currentRot = (currentRot + 1) % 4;
+    updateRollOver();
+};
+
+document.getElementById("btn-delete").onclick = (e) => {
+    clearHighlights();
+    isDeleteMode = !isDeleteMode;
+    isDeleteGroupMode = false;
+    e.target.classList.toggle("active", isDeleteMode);
+    document.getElementById("btn-delete-group").classList.remove("active");
+    updateRollOverVisual();
+};
+
+document.getElementById("btn-delete-group").onclick = (e) => {
+    clearHighlights();
+    isDeleteGroupMode = !isDeleteGroupMode;
+    isDeleteMode = false;
+    e.target.classList.toggle("active", isDeleteGroupMode);
+    document.getElementById("btn-delete").classList.remove("active");
+    updateRollOverVisual();
+    showHint(isDeleteGroupMode ? "Modo Ativo: Apagar Estrutura Completa" : "Modo de Construção");
+};
+
+document.getElementById("btn-expand").onclick = () => cameraTarget.set(0, 0, 0);
+
+document.querySelectorAll(".color-btn").forEach(
+    (b) =>
+        (b.onclick = (e) => {
+            document.querySelectorAll(".color-btn").forEach((x) => x.classList.remove("active"));
+            e.target.classList.add("active");
+            currentColor = e.target.dataset.color;
+            updateRollOver();
+        }),
+);
+
+document.querySelectorAll(".block-btn").forEach(
+    (b) =>
+        (b.onclick = (e) => {
+            document.querySelectorAll(".block-btn").forEach((x) => x.classList.remove("active"));
+            e.target.classList.add("active");
+            currentType = e.target.dataset.type;
+            updateRollOver();
+            if (currentType.startsWith("Prefab_")) document.getElementById("btn-top").click();
+        }),
+);
+
+window.addEventListener("resize", onResize);
+function onResize() {
+    const aspect = window.innerWidth / window.innerHeight;
+    orthoCamera.left = -viewSize * aspect;
+    orthoCamera.right = viewSize * aspect;
+    orthoCamera.top = viewSize;
+    orthoCamera.bottom = -viewSize;
+    orthoCamera.updateProjectionMatrix();
+
+    fpCamera.aspect = aspect;
+    fpCamera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+// --- MOTOR DE ANIMAÇÃO E FÍSICAS ---
+function animate() {
+    requestAnimationFrame(animate);
+    const time = performance.now();
+    const delta = Math.min((time - lastTime) / 1000, 0.1);
+    lastTime = time;
+
+    if (isFirstPerson) {
+        const isFlying = keys["ShiftLeft"] || keys["ShiftRight"];
+        const moveSpeed = isFlying ? 20 : 6;
+        const dir = new THREE.Vector3();
+
+        if (keys["KeyW"]) dir.z -= 1;
+        if (keys["KeyS"]) dir.z += 1;
+        if (keys["KeyA"]) dir.x -= 1;
+        if (keys["KeyD"]) dir.x += 1;
+        if (dir.lengthSq() > 0) dir.normalize();
+
+        dir.applyEuler(new THREE.Euler(0, fpYaw, 0));
+        const vel = dir.multiplyScalar(moveSpeed * delta);
+
+        playerPos.x += vel.x;
+        if (checkFPCollision(playerPos)) playerPos.x -= vel.x;
+
+        playerPos.z += vel.z;
+        if (checkFPCollision(playerPos)) playerPos.z -= vel.z;
+
+        if (isFlying) {
+            playerVel.y = 0;
+            if (keys["Space"]) playerVel.y = 12;
+        } else {
+            playerVel.y -= 25 * delta;
+            if (isGrounded && keys["Space"]) {
+                playerVel.y = 10;
+            }
+        }
+
+        playerPos.y += playerVel.y * delta;
+        if (checkFPCollision(playerPos)) {
+            playerPos.y -= playerVel.y * delta;
+            if (playerVel.y < 0 && !isFlying) isGrounded = true;
+            playerVel.y = 0;
+        } else {
+            if (!isFlying) isGrounded = false;
+        }
+
+        playerPos.x = Math.max(-100, Math.min(100, playerPos.x));
+        playerPos.z = Math.max(-100, Math.min(100, playerPos.z));
+        playerPos.y = Math.max(0, playerPos.y);
+
+        fpCamera.position.copy(playerPos);
+        fpCamera.position.y += 1.6;
+    } else {
+        const forward = new THREE.Vector3();
+        orthoCamera.getWorldDirection(forward);
+        forward.y = 0;
+        forward.normalize();
+        const right = new THREE.Vector3();
+        right.crossVectors(forward, orthoCamera.up).normalize();
+
+        const moveSpeed = 1.5 / orthoCamera.zoom;
+        if (keys["KeyW"]) cameraTarget.addScaledVector(forward, moveSpeed);
+        if (keys["KeyS"]) cameraTarget.addScaledVector(forward, -moveSpeed);
+        if (keys["KeyA"]) cameraTarget.addScaledVector(right, -moveSpeed);
+        if (keys["KeyD"]) cameraTarget.addScaledVector(right, moveSpeed);
+
+        cameraTarget.x = Math.max(-100, Math.min(100, cameraTarget.x));
+        cameraTarget.z = Math.max(-100, Math.min(100, cameraTarget.z));
+
+        visualTarget.lerp(cameraTarget, 0.15);
+        visualCamOffset.lerp(targetCamOffset, 0.1);
+        orthoCamera.position.copy(visualTarget).add(visualCamOffset);
+        orthoCamera.lookAt(visualTarget);
+    }
+
+    if (rollOver && rollOver.visible) {
+        rollOver.traverse((c) => {
+            if (c.userData.isRotor) c.rotation.z -= 0.1;
+        });
+    }
+    animatedBlocks.forEach((a) => (a.pivot.rotation.z -= 0.1));
+    renderer.render(scene, activeCamera);
+}
+animate();
+updateStats();

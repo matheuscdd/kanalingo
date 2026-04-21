@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tribunal do Saber</title>
+    
+    <!-- Phaser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Nunito for Duolingo flat style) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Puro - Estilos globais e reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a2e;
+            overflow: hidden;
+            color: #3c3c3c;
+        }
+
+        /* Container principal */
+        #app {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            max-width: 600px; /* Limite para não ficar gigante no desktop */
+            margin: 0 auto;
+            background-color: #f0f4f8;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        /* Phaser Canvas Container */
+        #game-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Camada de UI Overlay */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none; /* Deixa os cliques passarem para o Phaser, exceto nos botões */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* HUD - Topo */
+        #hud {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px;
+            pointer-events: auto;
+        }
+
+        #progress-container {
+            flex: 1;
+            height: 16px;
+            background-color: #e5e5e5;
+            border-radius: 10px;
+            margin: 0 15px;
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #58cc02;
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #hearts {
+            display: flex;
+            gap: 5px;
+            font-size: 24px;
+            color: #ff4b4b;
+        }
+
+        #case-counter {
+            font-weight: 800;
+            font-size: 18px;
+            color: #afafaf;
+        }
+
+        /* Áreas de Decisão (Zonas Base) */
+        #zones {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 10px 40px 10px;
+            pointer-events: none;
+        }
+
+        .zone {
+            width: 45%;
+            height: 150px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: white;
+            opacity: 0.3;
+            transform: scale(0.95);
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 0 rgba(0,0,0,0.1);
+        }
+
+        .zone i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        #zone-left {
+            background-color: #ff4b4b; /* Vermelho */
+        }
+
+        #zone-right {
+            background-color: #58cc02; /* Verde */
+        }
+
+        /* Flash Screen (Feedback Visual) */
+        #flash-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .flash-green { background-color: rgba(88, 204, 2, 0.4); }
+        .flash-red { background-color: rgba(255, 75, 75, 0.4); }
+
+        /* Card de Explicação (Modal) */
+        #modal-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4); /* Fundo mais transparente para vermos a consequência */
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            pointer-events: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #modal-content {
+            background: white;
+            width: 100%;
+            border-radius: 24px 24px 0 0;
+            padding: 30px 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #modal-overlay.active #modal-content {
+            transform: translateY(0);
+        }
+
+        #modal-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        #modal-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        #modal-text {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        /* Estilo Botão Duolingo */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn-green {
+            background-color: #58cc02;
+            color: white;
+            box-shadow: 0 5px 0 #58a700;
+        }
+        .btn-green:active {
+            transform: translateY(5px);
+            box-shadow: 0 0px 0 #58a700;
+        }
+
+        .btn-red {
+            background-color: #ff4b4b;
+            color: white;
+            box-shadow: 0 5px 0 #ea2b2b;
+        }
+        .btn-red:active {
+            transform: translateY(5px);
+            box-shadow: 0 0px 0 #ea2b2b;
+        }
+
+        .btn-blue {
+            background-color: #1cb0f6;
+            color: white;
+            box-shadow: 0 5px 0 #1899d6;
+        }
+        .btn-blue:active {
+            transform: translateY(5px);
+            box-shadow: 0 0px 0 #1899d6;
+        }
+
+        /* Telas de Início e Fim */
+        .fullscreen-screen {
+            position: absolute;
+            inset: 0;
+            background-color: #1cb0f6;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .title-large {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 0 rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .instruction-card {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .instruction-card i {
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- Telas do Jogo -->
+        
+        <!-- Tela Inicial -->
+        <div id="start-screen" class="fullscreen-screen">
+            <i class="fa-solid fa-scale-balanced" style="font-size: 5rem; margin-bottom: 20px;"></i>
+            <h1 class="title-large">Tribunal<br>do Saber</h1>
+            <p class="subtitle">Você é o juiz. Analise os fatos!</p>
+            
+            <div class="instruction-card">
+                <div><i class="fa-solid fa-hand-pointer"></i> Arraste o réu:</div>
+                <div><strong style="color:#a5f36e;">DIREITA</strong> para <strong>ABSOLVER</strong> (Verdadeiro)</div>
+                <div><strong style="color:#ff9e9e;">ESQUERDA</strong> para <strong>CONDENAR</strong> (Falso)</div>
+            </div>
+
+            <button class="btn btn-green" id="btn-start">Jogar Agora</button>
+        </div>
+
+        <!-- Tela de Fim de Jogo -->
+        <div id="end-screen" class="fullscreen-screen hidden">
+            <div id="end-icon" style="font-size: 5rem; margin-bottom: 20px;"></div>
+            <h1 id="end-title" class="title-large">Fim de Jogo</h1>
+            <p id="end-subtitle" class="subtitle"></p>
+            <button class="btn btn-blue" id="btn-restart">Jogar Novamente</button>
+        </div>
+
+        <!-- Jogo Principal -->
+        <div id="game-container"></div>
+        
+        <div id="flash-overlay"></div>
+
+        <div id="ui-layer">
+            <div id="hud">
+                <div id="case-counter">1/5</div>
+                <div id="progress-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <div id="hearts">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+            </div>
+
+            <div id="zones">
+                <div id="zone-left" class="zone">
+                    <i class="fa-solid fa-gavel"></i>
+                    <span>CONDENAR<br>(FALSO)</span>
+                </div>
+                <div id="zone-right" class="zone">
+                    <i class="fa-solid fa-check"></i>
+                    <span>ABSOLVER<br>(VERDADE)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Feedback -->
+        <div id="modal-overlay">
+            <div id="modal-content">
+                <div id="modal-icon"></div>
+                <h2 id="modal-title">Resultado</h2>
+                <p id="modal-text">Explicação vai aqui.</p>
+                <button class="btn" id="btn-next">Próximo Caso</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Lógica do Jogo -->
+    <script>
+        /**
+         * DADOS DO JOGO (Lista de Casos/Afirmações)
+         */
+        const allCases = [
+            { text: "A Terra tem o formato de um plano perfeitamente liso.", isTrue: false, explanation: "A Terra tem formato geoide (esférica e levemente achatada nos polos)." },
+            { text: "A água ferve a 100°C ao nível do mar.", isTrue: true, explanation: "Esta é a temperatura padrão estabelecida para o ponto de ebulição da água." },
+            { text: "Os morcegos são aves cegas.", isTrue: false, explanation: "Morcegos são mamíferos e enxergam bem, embora usem a ecolocalização no escuro." },
+            { text: "O Sol é uma estrela.", isTrue: true, explanation: "O Sol é uma estrela anã amarela, a principal fonte de energia do nosso sistema." },
+            { text: "O Brasil foi oficialmente descoberto em 1500.", isTrue: true, explanation: "A esquadra de Pedro Álvares Cabral chegou ao Brasil em 22 de abril de 1500." },
+            { text: "Antibióticos são eficazes contra viroses.", isTrue: false, explanation: "Antibióticos matam apenas bactérias. Eles não funcionam contra vírus." },
+            { text: "A Lua possui luz própria.", isTrue: false, explanation: "A Lua é um satélite natural que apenas reflete a luz que recebe do Sol." },
+            { text: "A Grande Muralha da China é visível do espaço a olho nu.", isTrue: false, explanation: "Isso é um mito. A muralha não é larga o suficiente para ser vista do espaço sem instrumentos." }
+        ];
+
+        let casesQueue = [];
+        let currentCaseIndex = 0;
+        let lives = 3;
+        const maxLives = 3;
+
+        /**
+         * ÁUDIO (Web Audio API Synthesizer - sem dependências externas)
+         */
+        let audioCtx;
+        
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playTone(freq, type, duration, vol = 0.1) {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        function playHammer() {
+            playTone(150, 'square', 0.1, 0.2); 
+            setTimeout(() => playTone(100, 'sine', 0.3, 0.3), 30);
+        }
+
+        // Síntese de áudio simulando aplausos ou vaias (ruído filtrado)
+        function playCrowdNoise(isCheer) {
+            if (!audioCtx) return;
+            const bufferSize = audioCtx.sampleRate * 1.5; // 1.5 segundos
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1; // Ruído branco
+            }
+            
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+            
+            const filter = audioCtx.createBiquadFilter();
+            if (isCheer) {
+                filter.type = 'bandpass';
+                filter.frequency.value = 1200; // Frequência aguda para aplausos
+                filter.Q.value = 0.5;
+            } else {
+                filter.type = 'lowpass';
+                filter.frequency.value = 400; // Frequência grave e abafada para vaia
+            }
+
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0, audioCtx.currentTime);
+            // Volume suave para entrar e sair
+            gain.gain.linearRampToValueAtTime(isCheer ? 0.15 : 0.25, audioCtx.currentTime + 0.2); 
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.5); 
+            
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            noise.start();
+        }
+
+        function playSuccess() {
+            playTone(440, 'sine', 0.1, 0.1); 
+            setTimeout(() => playTone(660, 'sine', 0.2, 0.15), 100);
+            playCrowdNoise(true); // Toca comemoração
+        }
+
+        function playFail() {
+            playTone(300, 'sawtooth', 0.2, 0.1); 
+            setTimeout(() => playTone(200, 'sawtooth', 0.3, 0.15), 150);
+            playCrowdNoise(false); // Toca vaia
+        }
+
+        /**
+         * INTEGRAÇÃO DOM (UI)
+         */
+        const elements = {
+            startScreen: document.getElementById('start-screen'),
+            endScreen: document.getElementById('end-screen'),
+            btnStart: document.getElementById('btn-start'),
+            btnRestart: document.getElementById('btn-restart'),
+            btnNext: document.getElementById('btn-next'),
+            
+            progressBar: document.getElementById('progress-bar'),
+            heartsContainer: document.getElementById('hearts'),
+            caseCounter: document.getElementById('case-counter'),
+            
+            zones: document.getElementById('zones'), // Captura o container das zonas
+            zoneLeft: document.getElementById('zone-left'),
+            zoneRight: document.getElementById('zone-right'),
+            flashOverlay: document.getElementById('flash-overlay'),
+            
+            modalOverlay: document.getElementById('modal-overlay'),
+            modalIcon: document.getElementById('modal-icon'),
+            modalTitle: document.getElementById('modal-title'),
+            modalText: document.getElementById('modal-text'),
+            
+            endIcon: document.getElementById('end-icon'),
+            endTitle: document.getElementById('end-title'),
+            endSubtitle: document.getElementById('end-subtitle'),
+        };
+
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function updateHUD() {
+            // Progresso
+            const progress = (currentCaseIndex / casesQueue.length) * 100;
+            elements.progressBar.style.width = `${progress}%`;
+            elements.caseCounter.innerText = `${currentCaseIndex + 1}/${casesQueue.length}`;
+
+            // Vidas
+            elements.heartsContainer.innerHTML = '';
+            for (let i = 0; i < maxLives; i++) {
+                if (i < lives) {
+                    elements.heartsContainer.innerHTML += '<i class="fa-solid fa-heart"></i>';
+                } else {
+                    elements.heartsContainer.innerHTML += '<i class="fa-solid fa-heart" style="color: #e5e5e5"></i>';
+                }
+            }
+        }
+
+        function updateZoneVisuals(leftIntensity, rightIntensity) {
+            // Intensidade de 0 a 1 baseada no arrasto
+            elements.zoneLeft.style.opacity = 0.3 + (leftIntensity * 0.7);
+            elements.zoneLeft.style.transform = `scale(${0.95 + (leftIntensity * 0.1)})`;
+            
+            elements.zoneRight.style.opacity = 0.3 + (rightIntensity * 0.7);
+            elements.zoneRight.style.transform = `scale(${0.95 + (rightIntensity * 0.1)})`;
+        }
+
+        function triggerFlash(type) {
+            elements.flashOverlay.className = type === 'success' ? 'flash-green' : 'flash-red';
+            elements.flashOverlay.style.opacity = '1';
+            setTimeout(() => {
+                elements.flashOverlay.style.opacity = '0';
+            }, 300);
+        }
+
+        function showModal(isCorrect, explanation) {
+            elements.modalOverlay.classList.add('active');
+            
+            if (isCorrect) {
+                elements.modalIcon.innerHTML = '<i class="fa-solid fa-circle-check" style="color: #58cc02;"></i>';
+                elements.modalTitle.innerText = "Decisão Correta!";
+                elements.modalTitle.style.color = "#58cc02";
+                elements.btnNext.className = "btn btn-green";
+            } else {
+                elements.modalIcon.innerHTML = '<i class="fa-solid fa-circle-xmark" style="color: #ff4b4b;"></i>';
+                elements.modalTitle.innerText = "Decisão Errada!";
+                elements.modalTitle.style.color = "#ff4b4b";
+                elements.btnNext.className = "btn btn-red";
+            }
+            
+            elements.modalText.innerText = explanation;
+        }
+
+        function hideModal() {
+            elements.modalOverlay.classList.remove('active');
+        }
+
+        function showEndScreen(win) {
+            elements.endScreen.classList.remove('hidden');
+            if (win) {
+                elements.endScreen.style.backgroundColor = '#58cc02';
+                elements.endIcon.innerHTML = '<i class="fa-solid fa-trophy"></i>';
+                elements.endTitle.innerText = "Sessão Encerrada!";
+                elements.endSubtitle.innerText = "Você foi um excelente juiz e concluiu todos os casos!";
+            } else {
+                elements.endScreen.style.backgroundColor = '#ff4b4b';
+                elements.endIcon.innerHTML = '<i class="fa-solid fa-face-frown"></i>';
+                elements.endTitle.innerText = "Afastado!";
+                elements.endSubtitle.innerText = "Você cometeu muitos erros e perdeu suas vidas.";
+            }
+        }
+
+        /**
+         * LÓGICA DO PHASER (Motor do Jogo)
+         */
+        let game;
+        
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super({ key: 'MainScene' });
+            }
+
+            create() {
+                const cx = this.cameras.main.centerX;
+                const cy = this.cameras.main.centerY;
+                const h = this.cameras.main.height;
+                const w = this.cameras.main.width;
+
+                // 1. Parede de Fundo e Piso
+                this.add.rectangle(cx, cy, w, h, 0xdfe6e9); // Parede
+                this.add.rectangle(cx, h - 200, w, 400, 0xbdc3c7).setAlpha(0.4); // Piso
+
+                // 2. Brasão / Símbolo da Justiça (Centralizado no alto)
+                const crestY = cy - 300;
+                this.add.circle(cx, crestY, 80, 0xf1c40f); // Ouro
+                this.add.circle(cx, crestY, 70, 0xf39c12); // Ouro escuro
+                this.add.text(cx, crestY, '⚖️', { fontSize: '70px' }).setOrigin(0.5);
+
+                // 3. Galeria (Público)
+                const galleryWidth = w * 0.8;
+                this.add.rectangle(cx, cy - 80, galleryWidth, 180, 0x2d3436); // Fundo escuro da galeria
+
+                this.audienceGroup = [];
+                this.audienceFaces = []; // Nova lista para os rostos
+                const shirtColors = [0x55efc4, 0x81ecec, 0x74b9ff, 0xa29bfe, 0xff7675, 0xfdcb6e, 0xe17055];
+                const skinColors = [0xffd166, 0xffbcb2, 0xe2a87c, 0x8d5524, 0xc68642];
+                
+                // Função auxiliar para desenhar pessoas
+                const createPerson = (px, py, scale) => {
+                    const person = this.add.container(px, py);
+                    person.baseX = px; // Salva posições iniciais para reset de animação
+                    person.baseY = py;
+
+                    const sColor = skinColors[Math.floor(Math.random() * skinColors.length)];
+                    const cColor = shirtColors[Math.floor(Math.random() * shirtColors.length)];
+                    
+                    const pBody = this.add.circle(0, 30, 35 * scale, cColor);
+                    const pHead = this.add.circle(0, 0, 25 * scale, sColor);
+                    
+                    // Rosto interativo em texto
+                    const pFace = this.add.text(0, -4 * scale, '•_•', { 
+                        fontSize: Math.floor(20 * scale) + 'px', 
+                        color: '#2d3436', 
+                        fontStyle: 'bold' 
+                    }).setOrigin(0.5);
+                    
+                    person.add([pBody, pHead, pFace]);
+                    this.audienceGroup.push(person);
+                    this.audienceFaces.push(pFace);
+                };
+
+                // Fileira de trás (menores)
+                for(let i = 0; i < 7; i++) {
+                    createPerson(cx - (galleryWidth/2) + 60 + (i * 75), cy - 130, 0.8);
+                }
+                // Fileira da frente (maiores)
+                for(let i = 0; i < 8; i++) {
+                    createPerson(cx - (galleryWidth/2) + 30 + (i * 75), cy - 70, 1);
+                }
+
+                // Função para animação padrão de respiração (será reutilizada)
+                this.startAudienceBreathing = () => {
+                    if (!this.tweens) return;
+                    this.tweens.killTweensOf(this.audienceGroup);
+                    // Reseta posição e rotação de todos
+                    this.audienceGroup.forEach(p => { p.x = p.baseX; p.y = p.baseY; p.angle = 0; });
+                    
+                    this.tweens.add({
+                        targets: this.audienceGroup,
+                        y: '+=4',
+                        duration: 1500,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: 'Sine.easeInOut',
+                        delay: () => Math.random() * 1000
+                    });
+                };
+                
+                // Iniciar respiração do público
+                this.startAudienceBreathing();
+
+                // Mureta da Galeria
+                this.add.rectangle(cx, cy + 10, galleryWidth + 20, 40, 0xa0522d); // Marrom mais quente
+                this.add.rectangle(cx, cy + 30, galleryWidth + 20, 10, 0x800000).setAlpha(0.3); // Sombra mureta
+
+                // 4. Colunas Laterais (Arquitetura)
+                // Esquerda
+                this.add.rectangle(w * 0.08, cy, w * 0.16, h, 0xecf0f1); 
+                this.add.rectangle(w * 0.08, cy, w * 0.12, h, 0xbdc3c7).setAlpha(0.2);
+                this.add.rectangle(w * 0.08, cy - 300, w * 0.18, 40, 0xbdc3c7); // Capitel
+                this.add.rectangle(w * 0.08, h - 300, w * 0.18, 40, 0xbdc3c7); // Base
+                // Direita
+                this.add.rectangle(w * 0.92, cy, w * 0.16, h, 0xecf0f1);
+                this.add.rectangle(w * 0.92, cy, w * 0.12, h, 0xbdc3c7).setAlpha(0.2);
+                this.add.rectangle(w * 0.92, cy - 300, w * 0.18, 40, 0xbdc3c7); // Capitel
+                this.add.rectangle(w * 0.92, h - 300, w * 0.18, 40, 0xbdc3c7); // Base
+
+                // --- CONTAINER DO RÉU ---
+                this.defendant = this.add.container(cx, h + 500); // Começa fora da tela
+
+                // Sombra do réu no chão
+                const shadow = this.add.ellipse(0, 160, 140, 30, 0x000000).setAlpha(0.15);
+
+                // Corpo
+                const body = this.add.rectangle(0, 80, 140, 160, 0x1cb0f6).setOrigin(0.5);
+                const neck = this.add.rectangle(0, -10, 40, 30, 0xffd166);
+                
+                // Cabeça
+                const head = this.add.circle(0, -60, 70, 0xffd166);
+                const hair = this.add.graphics();
+                hair.fillStyle(0x4a4e69, 1);
+                hair.fillCircle(0, -80, 75);
+                hair.fillRect(-75, -80, 150, 40);
+
+                // Rosto (Texto)
+                this.face = this.add.text(0, -60, '•_•', { fontSize: '45px', color: '#000', fontStyle: 'bold' }).setOrigin(0.5);
+
+                // Balão de Afirmação
+                this.balloon = this.add.container(0, -260);
+                const bubble = this.add.graphics();
+                bubble.fillStyle(0xffffff, 1);
+                bubble.fillRoundedRect(-180, -100, 360, 180, 20); // Retângulo arredondado
+                bubble.lineStyle(4, 0xe5e5e5);
+                bubble.strokeRoundedRect(-180, -100, 360, 180, 20);
+                // Rabinho do balão
+                bubble.fillTriangle(-20, 80, 20, 80, 0, 120);
+                bubble.strokeTriangle(-20, 80, 20, 80, 0, 120);
+                // Cobre a linha interna do triângulo
+                bubble.fillRect(-18, 76, 36, 10);
+                
+                this.balloon.add(bubble);
+
+                this.statementText = this.add.text(0, -10, '', {
+                    fontSize: '24px', 
+                    color: '#3c3c3c', 
+                    align: 'center', 
+                    wordWrap: { width: 320 },
+                    fontFamily: 'Nunito'
+                }).setOrigin(0.5);
+                this.balloon.add(this.statementText);
+
+                // Agrupar Réu (incluindo sombra)
+                this.defendant.add([shadow, neck, body, head, hair, this.face, this.balloon]);
+                
+                // Área de interação
+                this.defendant.setSize(240, 400);
+
+                // --- BALCÃO DO JUIZ (PRIMEIRO PLANO) ---
+                // Desenhado DEPOIS do réu para que o réu deslize por trás da mesa, dando profundidade
+                const deskTopY = h - 180;
+                this.add.rectangle(cx, deskTopY + 10, w, 40, 0x000000).setAlpha(0.15); // Sombra da mesa
+                this.add.rectangle(cx, h - 60, w, 280, 0x5c3a21); // Frente da mesa
+                this.add.rectangle(cx, deskTopY, w + 40, 60, 0x8b5a2b); // Topo da mesa
+                this.add.rectangle(cx, deskTopY + 20, w + 40, 15, 0x3e2312); // Friso de madeira
+
+                // Martelo de Juiz na mesa
+                this.add.rectangle(w - 130, deskTopY - 5, 80, 12, 0x3e2312).setAngle(-25); // Cabo
+                this.add.rectangle(w - 165, deskTopY - 20, 25, 50, 0x3e2312).setAngle(-25); // Cabeça
+                this.add.rectangle(w - 165, deskTopY - 20, 27, 8, 0xd4af37).setAngle(-25); // Detalhe ouro
+                
+                // --- LAYER DE CONSEQUÊNCIA (Fica por cima de tudo no Phaser) ---
+                this.consequenceLayer = this.add.container(0, 0);
+                this.consequenceLayer.setDepth(100);
+                this.consequenceLayer.setAlpha(0);
+                this.consequenceLayer.setVisible(false);
+
+                // Fundo Liberdade
+                this.freeBg = this.add.rectangle(cx, cy, w, h, 0x87CEEB); // Céu
+                this.freeGrass = this.add.rectangle(cx, h - 150, w, 300, 0x7CFC00); // Grama
+                this.freeSun = this.add.circle(w - 80, 120, 60, 0xFFD700); // Sol
+                
+                // Fundo Cadeia
+                this.jailBg = this.add.rectangle(cx, cy, w, h, 0x4a4a4a); // Parede fria
+                this.jailWall = this.add.rectangle(cx, h - 150, w, 300, 0x2d2d2d); // Chão
+
+                // Réu da Consequência (Cópia para o novo cenário)
+                this.consDefendant = this.add.container(cx, cy + 50);
+                const consBody = this.add.rectangle(0, 80, 140, 160, 0x1cb0f6).setOrigin(0.5);
+                const consNeck = this.add.rectangle(0, -10, 40, 30, 0xffd166);
+                const consHead = this.add.circle(0, -60, 70, 0xffd166);
+                const consHair = this.add.graphics();
+                consHair.fillStyle(0x4a4e69, 1);
+                consHair.fillCircle(0, -80, 75);
+                consHair.fillRect(-75, -80, 150, 40);
+                this.consFace = this.add.text(0, -60, '•_•', { fontSize: '45px', color: '#000', fontStyle: 'bold' }).setOrigin(0.5);
+                this.consDefendant.add([consNeck, consBody, consHead, consHair, this.consFace]);
+
+                // Grades da Cadeia (Ficam por cima do réu)
+                this.jailBars = [];
+                for(let i = 0; i < 7; i++) {
+                    const bar = this.add.rectangle(w * 0.05 + (i * w * 0.15), cy, 25, h, 0x111111);
+                    this.jailBars.push(bar);
+                }
+
+                // Adiciona tudo ao container de consequência
+                this.consequenceLayer.add([
+                    this.freeBg, this.freeSun, this.freeGrass,
+                    this.jailBg, this.jailWall,
+                    this.consDefendant,
+                    ...this.jailBars
+                ]);
+
+                // Lógica de Arrasto
+                this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+                    gameObject.x = dragX;
+                    
+                    // Rotação leve baseada no distanciamento do centro
+                    const offset = dragX - cx;
+                    gameObject.rotation = offset * 0.0005;
+
+                    // Atualizar UI das zonas
+                    const progressLeft = Math.max(0, Math.min(1, -offset / 150));
+                    const progressRight = Math.max(0, Math.min(1, offset / 150));
+                    
+                    updateZoneVisuals(progressLeft, progressRight);
+                });
+
+                this.input.on('dragend', (pointer, gameObject) => {
+                    const offset = gameObject.x - cx;
+                    const threshold = 120;
+
+                    if (offset < -threshold) {
+                        this.processDecision(false); // Esquerda = Condenar (Falso)
+                    } else if (offset > threshold) {
+                        this.processDecision(true);  // Direita = Absolver (Verdadeiro)
+                    } else {
+                        // Soltou no meio, volta para o centro
+                        this.tweens.add({
+                            targets: gameObject,
+                            x: cx,
+                            rotation: 0,
+                            duration: 300,
+                            ease: 'Back.out'
+                        });
+                        updateZoneVisuals(0, 0);
+                    }
+                });
+
+                // Iniciar primeiro caso
+                this.loadNextCase();
+            }
+
+            loadNextCase() {
+                if (currentCaseIndex >= casesQueue.length) {
+                    showEndScreen(true);
+                    return;
+                }
+                if (lives <= 0) {
+                    showEndScreen(false);
+                    return;
+                }
+
+                const currentData = casesQueue[currentCaseIndex];
+                this.statementText.setText(currentData.text);
+                
+                // Resetar Réu
+                this.face.setText('•_•');
+                this.defendant.x = this.cameras.main.centerX;
+                this.defendant.y = this.cameras.main.height + 500;
+                this.defendant.rotation = 0;
+                this.defendant.scale = 1;
+                
+                elements.zones.style.opacity = '1'; // Restaura a opacidade dos botões de arrasto
+                updateHUD();
+                updateZoneVisuals(0, 0);
+
+                // Resetar público para estado neutro
+                this.audienceFaces.forEach(f => f.setText('•_•'));
+                if (this.startAudienceBreathing) this.startAudienceBreathing();
+
+                // Animar entrada
+                this.tweens.add({
+                    targets: this.defendant,
+                    y: this.cameras.main.centerY + 50,
+                    duration: 600,
+                    ease: 'Back.out',
+                    onComplete: () => {
+                        this.defendant.setInteractive({ draggable: true });
+                        this.input.setDraggable(this.defendant);
+                    }
+                });
+            }
+
+            processDecision(playerChoice) {
+                // Desabilitar arraste
+                this.input.setDraggable(this.defendant, false);
+                updateZoneVisuals(0, 0);
+                playHammer();
+
+                const currentData = casesQueue[currentCaseIndex];
+                
+                // Se ele arrastou pra direita (Verdadeiro) e a afirmação é verdadeira -> Acertou
+                // Se ele arrastou pra esquerda (Falso) e a afirmação é falsa -> Acertou
+                const isCorrect = (playerChoice === currentData.isTrue);
+
+                if (isCorrect) {
+                    // Feedback Positivo
+                    playSuccess();
+                    this.face.setText('^‿^');
+                    triggerFlash('success');
+
+                    // Público comemora
+                    this.audienceFaces.forEach(f => f.setText('^‿^'));
+                    this.tweens.killTweensOf(this.audienceGroup);
+                    this.audienceGroup.forEach(p => { p.x = p.baseX; p.y = p.baseY; p.angle = 0; });
+                    this.tweens.add({
+                        targets: this.audienceGroup,
+                        y: '-=15', // Pulos para cima
+                        duration: 250,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: 'Quad.easeOut',
+                        delay: () => Math.random() * 200
+                    });
+                    
+                    this.tweens.add({
+                        targets: this.defendant,
+                        scale: 1.1,
+                        y: this.defendant.y - 30,
+                        duration: 200,
+                        yoyo: true
+                    });
+
+                } else {
+                    // Feedback Negativo
+                    playFail();
+                    lives--;
+                    this.face.setText('T_T');
+                    triggerFlash('error');
+                    updateHUD(); // Atualizar corações
+
+                    // Público vaia / reprova
+                    this.audienceFaces.forEach(f => f.setText('>_<'));
+                    this.tweens.killTweensOf(this.audienceGroup);
+                    this.audienceGroup.forEach(p => { p.x = p.baseX; p.y = p.baseY; p.angle = 0; });
+                    this.tweens.add({
+                        targets: this.audienceGroup,
+                        angle: { from: -4, to: 4 }, // Balanço de reprovação
+                        y: '+=3',
+                        duration: 90,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: 'Sine.easeInOut',
+                        delay: () => Math.random() * 80
+                    });
+                    
+                    this.cameras.main.shake(300, 0.015);
+                }
+
+                // --- LÓGICA DA CENA DE CONSEQUÊNCIA ---
+                const action = playerChoice === false ? 'condemn' : 'absolve';
+                
+                if (action === 'condemn') {
+                    // Prepara cena da CADEIA
+                    this.freeBg.setVisible(false);
+                    this.freeGrass.setVisible(false);
+                    this.freeSun.setVisible(false);
+                    this.jailBg.setVisible(true);
+                    this.jailWall.setVisible(true);
+                    this.jailBars.forEach(b => b.setVisible(true));
+                    
+                    if (isCorrect) {
+                        this.consFace.setText('>:)'); // Sorriso maléfico (culpado preso)
+                    } else {
+                        this.consFace.setText('T_T'); // Triste (inocente preso injustamente)
+                    }
+                } else {
+                    // Prepara cena da LIBERDADE
+                    this.freeBg.setVisible(true);
+                    this.freeGrass.setVisible(true);
+                    this.freeSun.setVisible(true);
+                    this.jailBg.setVisible(false);
+                    this.jailWall.setVisible(false);
+                    this.jailBars.forEach(b => b.setVisible(false));
+
+                    if (isCorrect) {
+                        this.consFace.setText('^‿^'); // Feliz (inocente livre)
+                    } else {
+                        this.consFace.setText('>:)'); // Sorriso maléfico (culpado livre e impune)
+                    }
+                }
+
+                // Mostrar cena de Consequência e em seguida o Modal
+                setTimeout(() => {
+                    elements.zones.style.opacity = '0'; // Esconde botões de julgar para focar na cena
+                    
+                    this.consequenceLayer.setVisible(true);
+                    this.tweens.add({
+                        targets: this.consequenceLayer,
+                        alpha: 1,
+                        duration: 300,
+                        onComplete: () => {
+                            // Chama o modal text com a explicação após a cena aparecer
+                            showModal(isCorrect, currentData.explanation);
+                        }
+                    });
+                }, 1000); // Espera 1s para o jogador ver as reações do tribunal primeiro
+            }
+
+            animateOutAndNext() {
+                // Esconde a camada de consequência suavemente
+                this.tweens.add({
+                    targets: this.consequenceLayer,
+                    alpha: 0,
+                    duration: 300,
+                    onComplete: () => {
+                        this.consequenceLayer.setVisible(false);
+                    }
+                });
+
+                // Anima o réu principal saindo (acontece simultaneamente)
+                this.tweens.add({
+                    targets: this.defendant,
+                    y: this.cameras.main.height + 500,
+                    duration: 400,
+                    ease: 'Back.in',
+                    onComplete: () => {
+                        currentCaseIndex++;
+                        this.loadNextCase();
+                    }
+                });
+            }
+        }
+
+        /**
+         * CONTROLE DE FLUXO E EVENTOS
+         */
+        
+        function startGame() {
+            initAudio();
+            elements.startScreen.classList.add('hidden');
+            elements.endScreen.classList.add('hidden');
+            
+            // Setup do jogo
+            casesQueue = shuffle([...allCases]).slice(0, 5); // Pega 5 casos aleatórios
+            currentCaseIndex = 0;
+            lives = maxLives;
+            
+            updateHUD();
+
+            if (!game) {
+                const config = {
+                    type: Phaser.AUTO,
+                    parent: 'game-container',
+                    scale: {
+                        mode: Phaser.Scale.FIT,
+                        autoCenter: Phaser.Scale.CENTER_BOTH,
+                        width: 720,
+                        height: 1280
+                    },
+                    backgroundColor: '#f0f4f8',
+                    scene: MainScene
+                };
+                game = new Phaser.Game(config);
+            } else {
+                // Reiniciar cena
+                game.scene.scenes[0].scene.restart();
+            }
+        }
+
+        // Listeners de Botões
+        elements.btnStart.addEventListener('click', startGame);
+        elements.btnRestart.addEventListener('click', startGame);
+        
+        elements.btnNext.addEventListener('click', () => {
+            hideModal();
+            // Avisar cena para animar saída e carregar próximo
+            if (game && game.scene.scenes[0]) {
+                game.scene.scenes[0].animateOutAndNext();
+            }
+        });
+
+    </script>
+</body>
+</html>

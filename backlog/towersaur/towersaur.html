@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dino Sort Defense</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #131F24;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            touch-action: none;
+            font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        #game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        canvas {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+
+    <script>
+        // --- Configurações e Dados do Jogo ---
+        const GAME_WIDTH = 600;
+        const GAME_HEIGHT = 800;
+        
+        // As pistas agora são horizontais, usando a altura (descontando o painel superior)
+        const PLAY_AREA_Y = 100;
+        const PLAY_AREA_HEIGHT = GAME_HEIGHT - PLAY_AREA_Y;
+        const LANE_HEIGHT = PLAY_AREA_HEIGHT / 3;
+        const LANE_CENTERS = [
+            PLAY_AREA_Y + LANE_HEIGHT * 0.5, 
+            PLAY_AREA_Y + LANE_HEIGHT * 1.5, 
+            PLAY_AREA_Y + LANE_HEIGHT * 2.5
+        ];
+
+        const CATEGORIES = {
+            "Animais 🐾": { 
+                words: ["Cachorro", "Gato", "Leão", "Urso", "Pássaro", "Peixe", "Tigre", "Sapo"], 
+                color: 0xFF9600, shadow: 0xCC7800, texture: 'dino_spiky', skelTexture: 'dino_spiky_skel', textOffset: {x: -10, y: 2}
+            },
+            "Cores 🎨": { 
+                words: ["Vermelho", "Azul", "Verde", "Amarelo", "Rosa", "Roxo", "Branco", "Preto"], 
+                color: 0xCE82FF, shadow: 0xA568CC, texture: 'dino_longneck', skelTexture: 'dino_longneck_skel', textOffset: {x: -5, y: 12}
+            },
+            "Frutas 🍎": { 
+                words: ["Maçã", "Banana", "Laranja", "Uva", "Manga", "Pêssego", "Ameixa", "Kiwi"], 
+                color: 0xFF4B4B, shadow: 0xCC3C3C, texture: 'dino_horned', skelTexture: 'dino_horned_skel', textOffset: {x: -5, y: 10}
+            }
+        };
+
+        const CATEGORY_KEYS = Object.keys(CATEGORIES);
+
+        // --- Classes Personalizadas ---
+
+        class Dinosaur extends Phaser.GameObjects.Container {
+            constructor(scene, x, y, laneIndex, categoryName, word, maxHp) {
+                super(scene, x, y);
+                this.laneIndex = laneIndex;
+                this.categoryName = categoryName;
+                this.word = word;
+                this.hp = maxHp;
+                this.maxHp = maxHp;
+                
+                const catData = CATEGORIES[categoryName];
+
+                // Corpo do dinossauro de perfil
+                this.dinoSprite = scene.add.sprite(0, 0, catData.texture);
+                this.dinoSprite.setTint(catData.color);
+                
+                // Texto com a palavra, ajustado dependendo do formato do dinossauro
+                let fontSize = word.length > 6 ? '16px' : '20px';
+                this.text = scene.add.text(catData.textOffset.x, catData.textOffset.y, word, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: fontSize,
+                    color: '#FFFFFF',
+                    fontStyle: 'bold',
+                    stroke: '#000000',
+                    strokeThickness: 4
+                }).setOrigin(0.5);
+
+                // Recipiente para as bolinhas de vida (HP) por baixo do dinossauro
+                this.hpContainer = scene.add.container(0, 75);
+                this.hpDots = [];
+                this.drawHp();
+
+                this.add([this.dinoSprite, this.text, this.hpContainer]);
+                scene.add.existing(this);
+            }
+
+            drawHp() {
+                this.hpContainer.removeAll(true);
+                this.hpDots = [];
+                const spacing = 12;
+                const startX = -((this.maxHp - 1) * spacing) / 2;
+
+                for (let i = 0; i < this.maxHp; i++) {
+                    let dot = this.scene.add.circle(startX + i * spacing, 0, 4, i < this.hp ? 0xFFFFFF : 0x000000);
+                    dot.setAlpha(i < this.hp ? 1 : 0.3);
+                    this.hpDots.push(dot);
+                    this.hpContainer.add(dot);
+                }
+            }
+
+            takeDamage() {
+                this.hp--;
+                this.drawHp();
+                
+                // Animação de tomar dano
+                this.scene.tweens.add({
+                    targets: this.dinoSprite,
+                    scaleX: 1.1,
+                    scaleY: 0.9,
+                    duration: 50,
+                    yoyo: true
+                });
+            }
+        }
+
+        class Tower extends Phaser.GameObjects.Container {
+            constructor(scene, x, y, laneIndex) {
+                super(scene, x, y);
+                this.laneIndex = laneIndex;
+                this.nextFireTime = 0;
+                
+                // Sombra da base
+                this.shadow = scene.add.circle(0, 10, 35, 0x168CD5);
+                // Base
+                this.base = scene.add.circle(0, 0, 35, 0x1CB0F6);
+                // Canhão (agora na horizontal, apontando para a direita)
+                this.cannon = scene.add.graphics();
+                this.cannon.fillStyle(0xFFFFFF, 1);
+                this.cannon.fillRoundedRect(0, -10, 40, 20, 10);
+                
+                this.add([this.shadow, this.base, this.cannon]);
+                scene.add.existing(this);
+
+                this.setScale(0);
+                scene.tweens.add({
+                    targets: this,
+                    scale: 1,
+                    duration: 300,
+                    ease: 'Back.out'
+                });
+            }
+
+            fireAnimation() {
+                this.scene.tweens.add({
+                    targets: this.cannon,
+                    x: 10, // Recuo visual (empurra pra frente e volta)
+                    duration: 50,
+                    yoyo: true
+                });
+            }
+        }
+
+        // --- Cena Principal ---
+
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super({ key: 'MainScene' });
+            }
+
+            preload() {
+                this.generateTextures();
+            }
+
+            generateTextures() {
+                // Dino 1: Com espinhos (Animais) - Perfil Esquerdo
+                let g1 = this.make.graphics({x: 0, y: 0, add: false});
+                g1.fillStyle(0xFFFFFF, 1);
+                g1.fillTriangle(90, 80, 90, 100, 140, 90); // Rabo
+                g1.fillRoundedRect(50, 100, 15, 30, 5); // Perna Frente
+                g1.fillRoundedRect(85, 100, 15, 30, 5); // Perna Trás
+                g1.fillRoundedRect(40, 60, 65, 45, 20); // Corpo
+                g1.fillRoundedRect(15, 65, 35, 30, 10); // Cabeça
+                g1.fillTriangle(50, 60, 60, 60, 55, 45); // Espinho 1
+                g1.fillTriangle(65, 60, 75, 60, 70, 45); // Espinho 2
+                g1.fillTriangle(80, 65, 90, 65, 85, 50); // Espinho 3
+                g1.fillTriangle(95, 70, 105, 70, 100, 55); // Espinho 4
+                g1.fillStyle(0x000000, 0.7); g1.fillCircle(25, 75, 3); // Olho
+                g1.fillStyle(0xFF0000, 0.3); g1.fillCircle(32, 82, 4); // Bochecha
+                g1.generateTexture('dino_spiky', 160, 160);
+
+                // Dino 2: Pescoço longo (Cores) - Perfil Esquerdo
+                let g2 = this.make.graphics({x: 0, y: 0, add: false});
+                g2.fillStyle(0xFFFFFF, 1);
+                g2.fillTriangle(90, 85, 90, 105, 140, 95); // Rabo
+                g2.fillRoundedRect(55, 110, 15, 25, 5); // Perna Frente
+                g2.fillRoundedRect(85, 110, 15, 25, 5); // Perna Trás
+                g2.fillRoundedRect(45, 70, 60, 45, 20); // Corpo
+                g2.fillRoundedRect(35, 30, 20, 60, 10); // Pescoço
+                g2.fillCircle(45, 30, 15); // Cabeça
+                g2.fillStyle(0x000000, 0.7); g2.fillCircle(40, 25, 3); // Olho
+                g2.fillStyle(0xFF0000, 0.3); g2.fillCircle(47, 32, 4); // Bochecha
+                g2.generateTexture('dino_longneck', 160, 160);
+
+                // Dino 3: Com chifres e escudo (Frutas) - Perfil Esquerdo
+                let g3 = this.make.graphics({x: 0, y: 0, add: false});
+                g3.fillStyle(0xFFFFFF, 1);
+                g3.fillTriangle(95, 80, 95, 105, 140, 95); // Rabo
+                g3.fillRoundedRect(55, 110, 18, 25, 5); // Perna Frente
+                g3.fillRoundedRect(85, 110, 18, 25, 5); // Perna Trás
+                g3.fillRoundedRect(45, 65, 65, 50, 20); // Corpo
+                g3.fillRoundedRect(35, 45, 20, 50, 10); // Escudo
+                g3.fillRoundedRect(15, 70, 35, 35, 10); // Cabeça
+                g3.fillTriangle(20, 75, 20, 85, 5, 80); // Chifre Nariz
+                g3.fillTriangle(25, 70, 35, 70, 15, 55); // Chifre Topo
+                g3.fillStyle(0x000000, 0.7); g3.fillCircle(25, 80, 3); // Olho
+                g3.fillStyle(0xFF0000, 0.3); g3.fillCircle(32, 88, 4); // Bochecha
+                g3.generateTexture('dino_horned', 160, 160);
+
+                // --- Esqueletos ---
+                // Esqueleto Dino 1 (Animais)
+                let s1 = this.make.graphics({x: 0, y: 0, add: false});
+                s1.fillStyle(0xE0E0E0, 1);
+                s1.fillRoundedRect(15, 65, 30, 25, 5); // Crânio
+                s1.fillStyle(0x000000, 1); s1.fillCircle(25, 75, 4); // Olho fundo
+                s1.fillStyle(0xE0E0E0, 1);
+                s1.fillRect(45, 75, 60, 6); // Coluna
+                s1.fillRect(55, 75, 4, 25); s1.fillRect(65, 75, 4, 25); s1.fillRect(75, 75, 4, 25); s1.fillRect(85, 75, 4, 25); // Costelas
+                s1.fillRect(105, 78, 10, 4); s1.fillRect(120, 81, 8, 4); s1.fillRect(132, 85, 6, 3); // Rabo
+                s1.fillRect(55, 100, 6, 25); s1.fillRect(85, 100, 6, 25); // Pernas
+                s1.fillTriangle(50, 75, 60, 75, 55, 55); s1.fillTriangle(65, 75, 75, 75, 70, 55); s1.fillTriangle(80, 75, 90, 75, 85, 60); s1.fillTriangle(95, 75, 105, 75, 100, 65); // Espinhos
+                s1.generateTexture('dino_spiky_skel', 160, 160);
+
+                // Esqueleto Dino 2 (Cores)
+                let s2 = this.make.graphics({x: 0, y: 0, add: false});
+                s2.fillStyle(0xE0E0E0, 1);
+                s2.fillCircle(45, 30, 12); // Crânio
+                s2.fillStyle(0x000000, 1); s2.fillCircle(40, 25, 4); // Olho
+                s2.fillStyle(0xE0E0E0, 1);
+                s2.fillRect(42, 40, 6, 40); // Pescoço
+                s2.fillRect(38, 50, 14, 4); s2.fillRect(38, 60, 14, 4); s2.fillRect(38, 70, 14, 4); // Ossos pescoço
+                s2.fillRect(45, 80, 50, 6); // Coluna
+                s2.fillRect(55, 80, 4, 30); s2.fillRect(65, 80, 4, 30); s2.fillRect(75, 80, 4, 30); s2.fillRect(85, 80, 4, 30); // Costelas
+                s2.fillRect(95, 82, 10, 4); s2.fillRect(110, 85, 10, 4); s2.fillRect(125, 88, 8, 4); // Rabo
+                s2.fillRect(60, 110, 6, 25); s2.fillRect(85, 110, 6, 25); // Pernas
+                s2.generateTexture('dino_longneck_skel', 160, 160);
+
+                // Esqueleto Dino 3 (Frutas)
+                let s3 = this.make.graphics({x: 0, y: 0, add: false});
+                s3.fillStyle(0xE0E0E0, 1);
+                s3.fillRoundedRect(35, 45, 20, 50, 10); // Escudo osso
+                s3.fillStyle(0x000000, 1); s3.fillCircle(45, 55, 6); s3.fillCircle(45, 80, 6); // Buracos no escudo
+                s3.fillStyle(0xE0E0E0, 1);
+                s3.fillRoundedRect(15, 70, 25, 25, 5); // Crânio
+                s3.fillStyle(0x000000, 1); s3.fillCircle(25, 80, 4); // Olho
+                s3.fillStyle(0xE0E0E0, 1);
+                s3.fillTriangle(20, 70, 25, 70, 15, 55); s3.fillTriangle(15, 75, 15, 80, 5, 75); // Chifres
+                s3.fillRect(55, 75, 50, 6); // Coluna
+                s3.fillRect(60, 75, 4, 35); s3.fillRect(70, 75, 4, 35); s3.fillRect(80, 75, 4, 35); s3.fillRect(90, 75, 4, 35); // Costelas
+                s3.fillRect(105, 80, 10, 4); s3.fillRect(120, 85, 10, 4); s3.fillRect(135, 90, 8, 4); // Rabo
+                s3.fillRect(60, 110, 6, 25); s3.fillRect(90, 110, 6, 25); // Pernas
+                s3.generateTexture('dino_horned_skel', 160, 160);
+
+                // Textura do Tiro (Projétil - Agora Horizontal)
+                let bg = this.make.graphics({x: 0, y: 0, add: false});
+                bg.fillStyle(0xFFE000, 1);
+                bg.fillRoundedRect(0, 0, 30, 12, 6);
+                bg.generateTexture('bullet', 30, 12);
+            }
+
+            create() {
+                this.isPlaying = false;
+                this.score = 0;
+                this.lives = 5;
+                this.combo = 0;
+                this.targetCategory = CATEGORY_KEYS[0];
+                
+                this.baseDinoSpeed = 80;
+                this.spawnDelay = 2000;
+                this.fireRate = 400;
+
+                this.dinos = [];
+                this.dyingDinos = []; // Array novo para gerenciar animações de morte sem colidir
+                this.bullets = [];
+                this.towers = [null, null, null];
+                this.towerCooldowns = [0, 0, 0];
+
+                this.createEnvironment();
+                this.createUI();
+                this.setupInput();
+
+                this.showStartScreen();
+            }
+
+            createEnvironment() {
+                this.cameras.main.setBackgroundColor('#F7F7F8');
+
+                let g = this.add.graphics();
+                g.lineStyle(4, 0xE5E5E5, 1);
+                g.beginPath();
+                // Linhas dividindo as faixas horizontais
+                g.moveTo(0, PLAY_AREA_Y + LANE_HEIGHT);
+                g.lineTo(GAME_WIDTH, PLAY_AREA_Y + LANE_HEIGHT);
+                g.moveTo(0, PLAY_AREA_Y + LANE_HEIGHT * 2);
+                g.lineTo(GAME_WIDTH, PLAY_AREA_Y + LANE_HEIGHT * 2);
+                g.strokePath();
+
+                // Indicadores visuais para colocar torres do lado esquerdo
+                for (let i = 0; i < 3; i++) {
+                    this.add.circle(60, LANE_CENTERS[i], 40, 0xE5E5E5, 0.5);
+                }
+            }
+
+            createUI() {
+                let topBar = this.add.graphics();
+                topBar.fillStyle(0xFFFFFF, 1);
+                topBar.fillRect(0, 0, GAME_WIDTH, 100);
+                topBar.lineStyle(2, 0xE5E5E5, 1);
+                topBar.beginPath();
+                topBar.moveTo(0, 100);
+                topBar.lineTo(GAME_WIDTH, 100);
+                topBar.strokePath();
+
+                this.targetBg = this.add.graphics();
+                this.updateTargetUI(this.targetCategory);
+
+                this.scoreText = this.add.text(GAME_WIDTH - 20, 45, '⭐ 0', {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '28px', color: '#FFC800', fontStyle: 'bold'
+                }).setOrigin(1, 0.5);
+
+                this.livesText = this.add.text(20, 45, '❤️ ' + this.lives, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '28px', color: '#FF4B4B', fontStyle: 'bold'
+                }).setOrigin(0, 0.5);
+
+                this.overlay = this.add.container(0, 0).setDepth(100);
+            }
+
+            updateTargetUI(category) {
+                if(this.targetText) this.targetText.destroy();
+                this.targetBg.clear();
+                
+                const catData = CATEGORIES[category];
+                
+                this.targetBg.fillStyle(catData.color, 1);
+                this.targetBg.fillRoundedRect(GAME_WIDTH/2 - 120, 20, 240, 50, 25);
+                this.targetBg.fillStyle(catData.shadow, 1);
+                this.targetBg.fillRoundedRect(GAME_WIDTH/2 - 120, 65, 240, 5, {tl: 0, tr: 0, bl: 25, br: 25});
+
+                this.targetText = this.add.text(GAME_WIDTH/2, 45, category, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '24px', color: '#FFFFFF', fontStyle: 'bold'
+                }).setOrigin(0.5);
+            }
+
+            setupInput() {
+                this.input.on('pointerdown', (pointer) => {
+                    if (!this.isPlaying) return;
+                    if (pointer.worldY < PLAY_AREA_Y) return;
+
+                    // Calcula a faixa horizontal baseada no clique Y
+                    let lane = Math.floor((pointer.worldY - PLAY_AREA_Y) / LANE_HEIGHT);
+                    if (lane < 0 || lane > 2) return;
+
+                    this.handleTowerInteraction(lane);
+                });
+            }
+
+            handleTowerInteraction(lane) {
+                const now = this.time.now;
+                if (now < this.towerCooldowns[lane]) {
+                    this.cameras.main.shake(100, 0.005);
+                    return;
+                }
+
+                if (this.towers[lane]) {
+                    this.removeTower(lane);
+                    this.towerCooldowns[lane] = now + 500;
+                } else {
+                    let active = this.towers.filter(t => t !== null).length;
+                    if (active < 2) {
+                        this.placeTower(lane);
+                    } else {
+                        this.towers.forEach(t => {
+                            if (t) {
+                                this.tweens.add({
+                                    targets: t, x: t.x + 5, duration: 50, yoyo: true, repeat: 2
+                                });
+                            }
+                        });
+                    }
+                }
+            }
+
+            placeTower(lane) {
+                let x = 60; // Torres fixas na esquerda
+                let y = LANE_CENTERS[lane];
+                let tower = new Tower(this, x, y, lane);
+                this.towers[lane] = tower;
+            }
+
+            removeTower(lane) {
+                let tower = this.towers[lane];
+                this.tweens.add({
+                    targets: tower,
+                    scale: 0,
+                    duration: 200,
+                    ease: 'Back.in',
+                    onComplete: () => {
+                        tower.destroy();
+                    }
+                });
+                this.towers[lane] = null;
+            }
+
+            startGame() {
+                this.overlay.removeAll(true);
+                this.isPlaying = true;
+                this.score = 0;
+                this.lives = 5;
+                this.baseDinoSpeed = 80;
+                this.spawnDelay = 2000;
+                this.combo = 0;
+                this.updateUI();
+
+                this.dinos.forEach(d => d.destroy());
+                this.dyingDinos.forEach(d => d.destroy());
+                this.bullets.forEach(b => b.destroy());
+                this.dinos = [];
+                this.dyingDinos = [];
+                this.bullets = [];
+                for(let i=0; i<3; i++) if(this.towers[i]) this.removeTower(i);
+
+                this.setupTimers();
+            }
+
+            setupTimers() {
+                if (this.spawnTimer) this.spawnTimer.remove();
+                if (this.diffTimer) this.diffTimer.remove();
+                if (this.catTimer) this.catTimer.remove();
+
+                this.spawnTimer = this.time.addEvent({
+                    delay: this.spawnDelay, callback: this.spawnDino,
+                    callbackScope: this, loop: true
+                });
+
+                this.diffTimer = this.time.addEvent({
+                    delay: 10000, callback: this.increaseDifficulty,
+                    callbackScope: this, loop: true
+                });
+
+                this.catTimer = this.time.addEvent({
+                    delay: 15000, callback: this.switchCategory,
+                    callbackScope: this, loop: true
+                });
+            }
+
+            switchCategory() {
+                let oldCat = this.targetCategory;
+                let newCat = oldCat;
+                while (newCat === oldCat) {
+                    newCat = Phaser.Utils.Array.GetRandom(CATEGORY_KEYS);
+                }
+                this.targetCategory = newCat;
+                this.updateTargetUI(this.targetCategory);
+
+                this.tweens.add({
+                    targets: [this.targetBg, this.targetText],
+                    scaleX: 1.2, scaleY: 1.2,
+                    duration: 150, yoyo: true
+                });
+            }
+
+            increaseDifficulty() {
+                this.baseDinoSpeed += 10;
+                if (this.spawnDelay > 700) {
+                    this.spawnDelay -= 100;
+                    this.spawnTimer.delay = this.spawnDelay;
+                }
+            }
+
+            spawnDino() {
+                if (!this.isPlaying) return;
+
+                let lane = Phaser.Math.Between(0, 2);
+                let cat = Phaser.Utils.Array.GetRandom(CATEGORY_KEYS);
+                let word = Phaser.Utils.Array.GetRandom(CATEGORIES[cat].words);
+                
+                let r = Math.random();
+                let hp = 1;
+                if (r > 0.8) hp = 5;
+                else if (r > 0.4) hp = 3;
+
+                // Dinossauros nascem do lado direito, andando para a esquerda
+                let d = new Dinosaur(this, GAME_WIDTH + 80, LANE_CENTERS[lane], lane, cat, word, hp);
+                this.dinos.push(d);
+            }
+
+            fireBullet(tower) {
+                tower.fireAnimation();
+                // Tiro sai da frente do canhão
+                let b = this.add.sprite(tower.x + 30, tower.y, 'bullet');
+                b.laneIndex = tower.laneIndex;
+                this.bullets.push(b);
+            }
+
+            update(time, delta) {
+                if (!this.isPlaying) return;
+                let dt = delta / 1000;
+
+                this.towers.forEach(t => {
+                    if (t && time > t.nextFireTime) {
+                        // Confere se há alvo na frente da torre (X maior que a torre)
+                        let target = this.dinos.find(d => d.laneIndex === t.laneIndex && d.x > t.x);
+                        if (target) {
+                            this.fireBullet(t);
+                            t.nextFireTime = time + this.fireRate;
+                        }
+                    }
+                });
+
+                for (let i = this.bullets.length - 1; i >= 0; i--) {
+                    let b = this.bullets[i];
+                    b.x += 600 * dt; // Tiro move-se para a direita
+                    
+                    if (b.x > GAME_WIDTH + 50) {
+                        b.destroy();
+                        this.bullets.splice(i, 1);
+                    }
+                }
+
+                for (let i = this.dinos.length - 1; i >= 0; i--) {
+                    let d = this.dinos[i];
+                    d.x -= this.baseDinoSpeed * dt; // Dinossauro move-se para a esquerda
+
+                    // Se passou pela zona das torres (fim da linha)
+                    if (d.x < 60) {
+                        if (d.categoryName === this.targetCategory) {
+                            this.loseLife("Deixou passar!");
+                        }
+                        d.destroy();
+                        this.dinos.splice(i, 1);
+                    }
+                }
+
+                // Colisões Horizontais
+                for (let i = this.bullets.length - 1; i >= 0; i--) {
+                    let b = this.bullets[i];
+                    let hit = false;
+
+                    for (let j = this.dinos.length - 1; j >= 0; j--) {
+                        let d = this.dinos[j];
+                        
+                        if (b.laneIndex === d.laneIndex) {
+                            // Verifica distância no eixo X
+                            if (Math.abs(b.x - d.x) < 50) {
+                                hit = true;
+                                this.handleHit(d, j);
+                                break;
+                            }
+                        }
+                    }
+
+                    if (hit) {
+                        b.destroy();
+                        this.bullets.splice(i, 1);
+                    }
+                }
+            }
+
+            handleHit(dino, index) {
+                dino.takeDamage();
+
+                if (dino.categoryName === this.targetCategory) {
+                    if (dino.hp <= 0) {
+                        this.score += 10;
+                        this.combo++;
+                        this.showFloatingText(dino.x, dino.y, "+10", "#58CC02");
+                        this.createParticles(dino.x, dino.y, CATEGORIES[dino.categoryName].color);
+                        
+                        this.dinos.splice(index, 1);
+                        this.dyingDinos.push(dino);
+                        this.playDeathSequence(dino);
+                    }
+                } else {
+                    this.score = Math.max(0, this.score - 5);
+                    this.combo = 0;
+                    this.cameras.main.flash(100, 255, 0, 0, 0.3);
+                    
+                    if (dino.hp <= 0) {
+                        this.loseLife("Alvo Errado!");
+                        this.dinos.splice(index, 1);
+                        this.dyingDinos.push(dino);
+                        this.playDeathSequence(dino);
+                    } else {
+                        this.showFloatingText(dino.x, dino.y, "-5", "#FF4B4B");
+                    }
+                }
+                
+                this.updateUI();
+            }
+
+            playDeathSequence(dino) {
+                // Para a animação de dano normal e faz piscar para indicar golpe fatal
+                this.tweens.killTweensOf(dino.dinoSprite);
+                this.tweens.add({
+                    targets: dino.dinoSprite,
+                    alpha: 0.3,
+                    yoyo: true,
+                    repeat: -1,
+                    duration: 150
+                });
+
+                // 1) Espera 1 segundo para transformar em esqueleto
+                this.time.delayedCall(1000, () => {
+                    this.tweens.killTweensOf(dino.dinoSprite);
+                    dino.dinoSprite.setAlpha(1);
+                    dino.dinoSprite.clearTint();
+                    dino.dinoSprite.setTexture(CATEGORIES[dino.categoryName].skelTexture);
+                    
+                    if (dino.text) dino.text.destroy();
+                    if (dino.hpContainer) dino.hpContainer.destroy();
+
+                    // Animação de tremor no esqueleto
+                    this.tweens.add({
+                        targets: dino.dinoSprite,
+                        x: dino.dinoSprite.x + 3,
+                        yoyo: true,
+                        repeat: 10,
+                        duration: 60
+                    });
+
+                    // 2) Após vibrar, vira pó e é destruído
+                    this.time.delayedCall(800, () => {
+                        this.createDustParticles(dino.x, dino.y);
+                        
+                        // Remover dos dyingDinos e destruir
+                        let idx = this.dyingDinos.indexOf(dino);
+                        if(idx > -1) this.dyingDinos.splice(idx, 1);
+                        dino.destroy();
+                    });
+                });
+            }
+
+            createDustParticles(x, y) {
+                for(let i=0; i<15; i++) {
+                    let p = this.add.circle(x, y, Phaser.Math.Between(3, 8), 0xCCCCCC).setDepth(40);
+                    this.tweens.add({
+                        targets: p,
+                        x: x + Phaser.Math.Between(-80, 80),
+                        y: y + Phaser.Math.Between(-80, 80),
+                        alpha: 0,
+                        scale: 0,
+                        duration: Phaser.Math.Between(600, 1200),
+                        ease: 'Power2',
+                        onComplete: () => p.destroy()
+                    });
+                }
+            }
+
+            loseLife(reason) {
+                this.lives--;
+                this.combo = 0;
+                this.cameras.main.shake(200, 0.01);
+                this.updateUI();
+
+                this.showFloatingText(GAME_WIDTH/2, GAME_HEIGHT/2, reason, "#FF4B4B", 40);
+
+                if (this.lives <= 0) {
+                    this.gameOver();
+                }
+            }
+
+            showFloatingText(x, y, text, color, size=24) {
+                let t = this.add.text(x, y, text, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: size+'px', color: color, fontStyle: 'bold',
+                    stroke: '#FFFFFF', strokeThickness: 4
+                }).setOrigin(0.5).setDepth(50);
+
+                this.tweens.add({
+                    targets: t, y: y - 50, alpha: 0,
+                    duration: 800, ease: 'Power1',
+                    onComplete: () => t.destroy()
+                });
+            }
+
+            createParticles(x, y, color) {
+                for(let i=0; i<6; i++) {
+                    let p = this.add.circle(x, y, Phaser.Math.Between(4, 8), color).setDepth(40);
+                    this.tweens.add({
+                        targets: p,
+                        x: x + Phaser.Math.Between(-50, 50),
+                        y: y + Phaser.Math.Between(-50, 50),
+                        alpha: 0, scale: 0, duration: 500,
+                        onComplete: () => p.destroy()
+                    });
+                }
+            }
+
+            updateUI() {
+                this.scoreText.setText('⭐ ' + this.score);
+                this.livesText.setText('❤️ ' + this.lives);
+            }
+
+            showStartScreen() {
+                this.isPlaying = false;
+                
+                let bg = this.add.graphics();
+                bg.fillStyle(0x000000, 0.7);
+                bg.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+                let title = this.add.text(GAME_WIDTH/2, 200, 'DINO SORT', {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '60px', color: '#58CC02', fontStyle: 'bold',
+                    stroke: '#FFFFFF', strokeThickness: 8
+                }).setOrigin(0.5);
+
+                let sub = this.add.text(GAME_WIDTH/2, 280, 'Atire nos dinossauros da categoria correta!\nDeixe os outros passarem.\nMáximo de 2 torres. Toque nas pistas horizontais.', {
+                    fontFamily: 'Nunito, sans-serif',
+                    fontSize: '20px', color: '#FFFFFF', align: 'center', lineHeight: 1.5
+                }).setOrigin(0.5);
+
+                let btn = this.createButton(GAME_WIDTH/2, 450, 'JOGAR', 0x1CB0F6, 0x168CD5, () => {
+                    this.startGame();
+                });
+
+                this.overlay.add([bg, title, sub, btn.shadow, btn.body, btn.text]);
+            }
+
+            gameOver() {
+                this.isPlaying = false;
+                if(this.spawnTimer) this.spawnTimer.remove();
+                if(this.diffTimer) this.diffTimer.remove();
+                if(this.catTimer) this.catTimer.remove();
+
+                let bg = this.add.graphics();
+                bg.fillStyle(0x000000, 0.8);
+                bg.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+                let title = this.add.text(GAME_WIDTH/2, 250, 'FIM DE JOGO', {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '50px', color: '#FF4B4B', fontStyle: 'bold',
+                    stroke: '#FFFFFF', strokeThickness: 8
+                }).setOrigin(0.5);
+
+                let scoreText = this.add.text(GAME_WIDTH/2, 350, 'Pontos: ⭐ ' + this.score, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '32px', color: '#FFC800', fontStyle: 'bold'
+                }).setOrigin(0.5);
+
+                let btn = this.createButton(GAME_WIDTH/2, 500, 'TENTAR NOVAMENTE', 0x58CC02, 0x46A302, () => {
+                    this.startGame();
+                });
+
+                this.overlay.add([bg, title, scoreText, btn.shadow, btn.body, btn.text]);
+            }
+
+            createButton(x, y, label, color, shadowColor, callback) {
+                let shadow = this.add.graphics();
+                shadow.fillStyle(shadowColor, 1);
+                shadow.fillRoundedRect(x - 120, y - 30 + 5, 240, 60, 20);
+
+                let body = this.add.graphics();
+                body.fillStyle(color, 1);
+                body.fillRoundedRect(x - 120, y - 30, 240, 60, 20);
+                body.setInteractive(new Phaser.Geom.Rectangle(x - 120, y - 30, 240, 65), Phaser.Geom.Rectangle.Contains);
+
+                let text = this.add.text(x, y, label, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '22px', color: '#FFFFFF', fontStyle: 'bold'
+                }).setOrigin(0.5);
+
+                body.on('pointerdown', () => {
+                    body.y += 5; text.y += 5;
+                });
+                body.on('pointerup', () => {
+                    body.y -= 5; text.y -= 5;
+                    callback();
+                });
+                body.on('pointerout', () => {
+                    if(body.y > 0) { body.y -= 5; text.y -= 5; }
+                });
+
+                return {shadow, body, text};
+            }
+        }
+
+        const config = {
+            type: Phaser.AUTO,
+            width: GAME_WIDTH,
+            height: GAME_HEIGHT,
+            parent: 'game-container',
+            transparent: true,
+            scene: MainScene,
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            }
+        };
+
+        const game = new Phaser.Game(config);
+    </script>
+</body>
+</html>

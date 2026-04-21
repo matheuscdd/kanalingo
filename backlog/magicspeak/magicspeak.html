@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corredor Escuro LEGO</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Babylon.js -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+            display: block;
+        }
+
+        /* Mira simples no centro da tela */
+        #crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Instruções na tela */
+        #instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Courier New', Courier, monospace;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            pointer-events: none;
+            border: 1px solid #333;
+            z-index: 10;
+        }
+
+        /* Botão para ativar microfone */
+        #mic-btn {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            background-color: #0055bf; /* Azul LEGO */
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 4px solid white;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 20;
+            transition: transform 0.1s, background-color 0.2s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        #mic-btn:hover {
+            background-color: #00852b; /* Verde ao passar o mouse */
+        }
+        
+        #mic-btn:active {
+            transform: translate(-50%, -50%) translateY(4px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+        }
+
+        /* --- NOVO: HUD de Palavras (Speech Gameplay) --- */
+        #wordHud {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            border: 4px solid #f6d70c; /* Amarelo LEGO default */
+            border-radius: 12px;
+            padding: 15px 40px;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            pointer-events: none;
+            z-index: 15;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: none; /* Só mostra após ligar microfone */
+            min-width: 300px;
+        }
+
+        #wordHud i {
+            color: #aaa;
+            margin-right: 15px;
+            font-size: 2.5rem;
+        }
+
+        .hud-success {
+            border-color: #00ff00 !important;
+            color: #00ff00 !important;
+            text-shadow: 0 0 20px #00ff00 !important;
+            transform: translateX(-50%) scale(1.1) !important;
+        }
+
+        .hud-error {
+            border-color: #ff0000 !important;
+            color: #ff0000 !important;
+            text-shadow: 0 0 20px #ff0000 !important;
+            transform: translateX(-50%) scale(0.9) !important;
+        }
+
+        /* --- Ecrã de Fim de Jogo --- */
+        #game-over-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            color: #da291c; /* Vermelho LEGO */
+            display: none; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', Courier, monospace;
+            z-index: 50;
+        }
+
+        #game-over-screen h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px red;
+        }
+
+        #game-over-screen p {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .restart-btn {
+            padding: 15px 30px;
+            background-color: #f6d70c; 
+            color: black;
+            font-family: inherit;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b39b00;
+        }
+        .restart-btn:active {
+            transform: translateY(5px);
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-over-screen">
+        <h1>Foste Apanhado!</h1>
+        <p>A escuridão consumiu-te.</p>
+        <button class="restart-btn" onclick="location.reload()">Tentar Novamente</button>
+    </div>
+
+    <button id="mic-btn" onclick="initGame()">1. CLIQUE AQUI PARA LIGAR O MICROFONE</button>
+
+    <div id="crosshair"></div>
+    
+    <div id="instructions">
+        <strong>CONTROLES:</strong><br>
+        2. Clique no ecrã para focar a visão<br>
+        Rato: Olhar em redor<br>
+        W A S D: Mover-se
+    </div>
+
+    <!-- NOVO: HUD de Palavras -->
+    <div id="wordHud">
+        <i class="fa fa-microphone"></i>
+        <span id="currentWord">...</span>
+    </div>
+
+    <canvas id="renderCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("renderCanvas");
+        const engine = new BABYLON.Engine(canvas, true);
+        
+        let scene, camera, flashlight, tip, matTip; 
+        let gameState = 'playing';
+
+        // Variáveis do Monstro e Áudio
+        let monsterGrp;
+        let monsterVisual; 
+        let monsterBodyMeshes = [];
+        let monsterEyes = [];
+        let monsterTimeAcc = 0;
+        let droneOsc, droneGain, audioCtxGlobal;
+
+        // --- Variáveis de Sistema de Palavras ---
+        const magicWords = ["Fogo", "Luz", "Energia", "Raio", "Estrela", "Magia", "Choque", "Impacto"];
+        let targetWord = "";
+        let speechRec;
+
+        // Alvos de cor para a transição suave (Lerp)
+        let targetTipColor = new BABYLON.Color3(1.0, 0.9, 0.4);
+        let targetFlashColor = new BABYLON.Color3(1.0, 0.9, 0.6);
+        let targetFlashIntensity = 2.5;
+
+        // Listas para gerir os objetos mágicos manualmente (à prova de bugs)
+        let activeBolts = [];
+        let activeSparks = [];
+        let activeSmokes = []; // Partículas de fumo
+        let activeChargeParticles = []; // Partículas de carregamento (Voz)
+        let isCharging = false; // Estado de carregamento da magia
+        let targetThunderFlashIntensity = 0;
+
+        // Variáveis para o som de carregamento
+        let chargeOsc = null;
+        let chargeGain = null;
+        let isChargeSoundPlaying = false;
+
+        // Elementos da UI
+        const wordHud = document.getElementById('wordHud');
+        const currentWordSpan = document.getElementById('currentWord');
+
+        // --- SISTEMA DE FALA (Speech Recognition API) ---
+        async function initGame() {
+            // Verifica compatibilidade da Speech API
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("Erro: O seu navegador não suporta a Web Speech API. Por favor, use o Google Chrome, Edge ou Safari (atualizado).");
+                return;
+            }
+
+            try {
+                // Instancia e configura a captura de voz contínua
+                speechRec = new SpeechRecognition();
+                speechRec.lang = "pt-BR"; // Define o idioma de reconhecimento
+                speechRec.continuous = true;
+                speechRec.interimResults = true; // Ativado para detetar a voz em tempo real
+
+                // Evento: Quando o jogador fala algo
+                speechRec.onresult = function(event) {
+                    if (gameState !== 'playing') return;
+                    
+                    let interimTranscript = '';
+                    let finalTranscript = '';
+                    
+                    for (let i = event.resultIndex; i < event.results.length; ++i) {
+                        if (event.results[i].isFinal) {
+                            finalTranscript += event.results[i][0].transcript;
+                        } else {
+                            interimTranscript += event.results[i][0].transcript;
+                        }
+                    }
+
+                    // Se a API está a captar voz neste exato momento (ainda a falar)
+                    if (interimTranscript.length > 0) {
+                        if (!isCharging) {
+                            isCharging = true;
+                            startChargeSound(); // Inicia o zumbido mágico
+                        }
+                    }
+                    
+                    // Quando o jogador faz uma pausa e a API fecha a frase
+                    if (finalTranscript.length > 0) {
+                        isCharging = false; // Pára de gerar energia
+                        stopChargeSound(); // Pára o zumbido mágico
+                        
+                        const spoken = finalTranscript.trim().toLowerCase();
+                        console.log("🗣️ Capturado: ", spoken);
+                        checkWord(spoken);
+                    }
+                };
+
+                // Evento: Reinicia se o microfone desligar sozinho (comum na API)
+                speechRec.onend = function() {
+                    isCharging = false; // Prevenção visual
+                    stopChargeSound(); // Prevenção sonora
+                    if (gameState === 'playing') {
+                        try { speechRec.start(); } catch(e){}
+                    }
+                };
+
+                speechRec.start();
+
+                // Inicializa contexto de áudio global para geradores de som
+                audioCtxGlobal = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Força o navegador a desbloquear o áudio (política de autoplay)
+                if (audioCtxGlobal.state === 'suspended') {
+                    audioCtxGlobal.resume();
+                }
+                
+                document.getElementById('mic-btn').style.display = 'none'; // Esconde botão
+                wordHud.style.display = 'block'; // Mostra HUD da palavra
+                
+                initMonsterDrone();
+                setNewWord(); // Puxa a primeira palavra
+
+            } catch (err) {
+                console.error("Erro ao iniciar Speech Recognition: ", err);
+                alert("Foi negada a permissão de microfone ou ocorreu um erro.");
+            }
+        }
+
+        // Seleciona palavra aleatória e mostra no ecrã
+        function setNewWord() {
+            targetWord = magicWords[Math.floor(Math.random() * magicWords.length)];
+            currentWordSpan.innerText = targetWord;
+        }
+
+        // Avalia se o jogador acertou a palavra mágica
+        function checkWord(spokenStr) {
+            // Remove pontuação que a API possa colocar
+            const cleanSpoken = spokenStr.replace(/[.,!?]/g, "").trim();
+            const cleanTarget = targetWord.toLowerCase();
+
+            // Usamos .includes() porque a API pode captar "O raio" ou "Raio"
+            if (cleanSpoken.includes(cleanTarget)) {
+                onCorrectWord();
+            } else {
+                onWrongWord();
+            }
+        }
+
+        // --- SUCESSO ---
+        function onCorrectWord() {
+            // Feedback Visual na HUD (Pisca Verde)
+            wordHud.classList.add('hud-success');
+            setTimeout(() => wordHud.classList.remove('hud-success'), 300);
+
+            // Dispara poder letal
+            shootRay();
+            
+            // Avança o combate trocando a palavra
+            setNewWord();
+        }
+
+        // --- FALHA ---
+        function onWrongWord() {
+            // Feedback Visual na HUD (Pisca Vermelho)
+            wordHud.classList.add('hud-error');
+            setTimeout(() => wordHud.classList.remove('hud-error'), 300);
+
+            // Tremor de câmara para feedback de erro
+            tremorCamera(0.2);
+
+            // Som seco de falha
+            playPuffSound();
+
+            // Cria nuvem de fumo na ponta da varinha
+            createSmokePuff();
+        }
+
+        function tremorCamera(intensity) {
+            camera.position.x += (Math.random() - 0.5) * intensity;
+            camera.position.y += (Math.random() - 0.5) * intensity;
+        }
+
+        function initMonsterDrone() {
+            if (!audioCtxGlobal) return;
+            droneOsc = audioCtxGlobal.createOscillator();
+            droneGain = audioCtxGlobal.createGain();
+            
+            droneOsc.type = 'sine';
+            droneOsc.frequency.value = 40; 
+            
+            droneGain.gain.value = 0; 
+            
+            droneOsc.connect(droneGain);
+            droneGain.connect(audioCtxGlobal.destination);
+            droneOsc.start();
+        }
+
+        function createScene() {
+            scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color4(0.01, 0.01, 0.01, 1);
+            
+            scene.gravity = new BABYLON.Vector3(0, -0.15, 0);
+            scene.collisionsEnabled = true;
+
+            const ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
+            ambientLight.intensity = 0.05;
+
+            const gl = new BABYLON.GlowLayer("glow", scene, {
+                blurKernelSize: 16
+            });
+            gl.intensity = 1.5; 
+
+            // MATERIAIS PARTILHADOS
+            window.boltCoreMat = new BABYLON.StandardMaterial("coreMat", scene);
+            window.boltCoreMat.emissiveColor = new BABYLON.Color3(1, 1, 1);
+            window.boltCoreMat.disableLighting = true;
+
+            window.boltAuraMat = new BABYLON.StandardMaterial("auraMat", scene);
+            window.boltAuraMat.emissiveColor = new BABYLON.Color3(0.1, 0.5, 1.0);
+            window.boltAuraMat.disableLighting = true;
+
+            window.sparkMatShared = new BABYLON.StandardMaterial("sparkMatShared", scene);
+            window.sparkMatShared.emissiveColor = new BABYLON.Color3(0.8, 0.9, 1.0);
+            window.sparkMatShared.disableLighting = true;
+            window.sparkMatShared.alpha = 0.8;
+
+            window.smokeMatShared = new BABYLON.StandardMaterial("smokeMat", scene);
+            window.smokeMatShared.diffuseColor = new BABYLON.Color3(0.1, 0.1, 0.1); // Cinza escuro
+            window.smokeMatShared.emissiveColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+            window.smokeMatShared.alpha = 0.6; // Translúcido
+
+            window.thunderFlashLight = new BABYLON.PointLight("thunderFlash", new BABYLON.Vector3(0,0,0), scene);
+            window.thunderFlashLight.diffuse = new BABYLON.Color3(0.5, 0.8, 1);
+            window.thunderFlashLight.intensity = 0;
+
+            createPlayer();
+            buildLegoCorridor();
+            createMonster(); 
+
+            return scene;
+        }
+
+        function createPlayer() {
+            camera = new BABYLON.UniversalCamera("camera1", new BABYLON.Vector3(0, 2, 0), scene);
+            camera.minZ = 0.01; 
+            camera.setTarget(new BABYLON.Vector3(0, 2, 10));
+            camera.attachControl(canvas, true);
+            
+            camera.keysUp.push(87);    // W
+            camera.keysDown.push(83);  // S
+            camera.keysLeft.push(65);  // A
+            camera.keysRight.push(68); // D
+            
+            camera.applyGravity = true;
+            camera.checkCollisions = true;
+            camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
+            camera.speed = 0.4;
+            camera.inertia = 0.8;
+
+            const matWand = new BABYLON.StandardMaterial("matWand", scene);
+            matWand.diffuseColor = new BABYLON.Color3(0.4, 0.2, 0.05);
+            matWand.specularColor = new BABYLON.Color3(0.02, 0.02, 0.02);
+
+            const wandPath = [
+                new BABYLON.Vector3(0, 0, 0),
+                new BABYLON.Vector3(0, 0, 0.2),
+                new BABYLON.Vector3(0.04, 0.03, 0.4),
+                new BABYLON.Vector3(0.01, 0.08, 0.6),
+                new BABYLON.Vector3(0.07, 0.05, 0.8),
+                new BABYLON.Vector3(0.1, 0.1, 1.0)
+            ];
+
+            const radiusFunction = (i, distance) => [0.06, 0.06, 0.045, 0.035, 0.025, 0.01][i];
+
+            const wand = BABYLON.MeshBuilder.CreateTube("wand", {
+                path: wandPath,
+                radiusFunction: radiusFunction,
+                tessellation: 5,
+                cap: BABYLON.Mesh.CAP_ALL
+            }, scene);
+            
+            wand.parent = camera;
+            wand.position = new BABYLON.Vector3(0.4, -0.4, 0.8);
+            wand.material = matWand;
+
+            const knot1 = BABYLON.MeshBuilder.CreateBox("knot1", {size: 0.07}, scene);
+            knot1.parent = wand;
+            knot1.position = wandPath[2];
+            knot1.rotation = new BABYLON.Vector3(Math.random(), Math.random(), Math.random());
+            knot1.material = matWand;
+
+            const knot2 = BABYLON.MeshBuilder.CreateBox("knot2", {size: 0.05}, scene);
+            knot2.parent = wand;
+            knot2.position = wandPath[4];
+            knot2.rotation = new BABYLON.Vector3(Math.random(), Math.random(), Math.random());
+            knot2.material = matWand;
+            
+            matTip = new BABYLON.StandardMaterial("matTip", scene);
+            matTip.emissiveColor = new BABYLON.Color3(1.0, 0.9, 0.4);
+            matTip.disableLighting = true;
+
+            tip = BABYLON.MeshBuilder.CreatePolyhedron("tip", {type: 1, size: 0.03}, scene);
+            tip.parent = wand;
+            tip.position = wandPath[5];
+            tip.material = matTip;
+
+            flashlight = new BABYLON.SpotLight("flashlight", 
+                wandPath[5],
+                new BABYLON.Vector3(-0.05, 0.02, 1),
+                Math.PI / 2.2,
+                20.0,
+                scene
+            );
+            flashlight.parent = wand;
+            flashlight.diffuse = new BABYLON.Color3(1.0, 0.9, 0.6); 
+            flashlight.intensity = 2.5;
+            flashlight.range = 80;
+        }
+
+        function createLegoBlock(name, options, scene, hexColor, posX, posY, posZ) {
+            const block = BABYLON.MeshBuilder.CreateBox(name, options, scene);
+            block.position.set(posX, posY, posZ);
+            
+            const mat = new BABYLON.StandardMaterial("mat_" + name, scene);
+            mat.diffuseColor = BABYLON.Color3.FromHexString(hexColor);
+            mat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+            mat.maxSimultaneousLights = 8; 
+            block.material = mat;
+            
+            block.checkCollisions = true;
+            block.enableEdgesRendering();
+            block.edgesWidth = 3.0;
+            block.edgesColor = new BABYLON.Color4(0, 0, 0, 1);
+            
+            return block;
+        }
+
+        function buildLegoCorridor() {
+            const corridorLength = 150;
+            const corridorWidth = 8;
+            const corridorHeight = 6;
+
+            for(let i = 0; i < corridorLength; i += 10) {
+                createLegoBlock("floor_" + i, {width: corridorWidth, height: 1, depth: 10}, scene, "#333333", 0, 0, i + 5);
+            }
+
+            createLegoBlock("ceiling", {width: corridorWidth, height: 1, depth: corridorLength}, scene, "#1a1a1a", 0, corridorHeight + 0.5, corridorLength / 2);
+
+            const colors = ["#444444", "#555555", "#3a3a3a"];
+            for (let z = 0; z < corridorLength; z += 5) {
+                let colorL = colors[Math.floor(Math.random() * colors.length)];
+                createLegoBlock("wallL_" + z, {width: 1, height: corridorHeight, depth: 5}, scene, colorL, -corridorWidth/2 - 0.5, corridorHeight/2, z + 2.5);
+                
+                let colorR = colors[Math.floor(Math.random() * colors.length)];
+                createLegoBlock("wallR_" + z, {width: 1, height: corridorHeight, depth: 5}, scene, colorR, corridorWidth/2 + 0.5, corridorHeight/2, z + 2.5);
+            }
+
+            createLegoBlock("endWall", {width: corridorWidth, height: corridorHeight, depth: 1}, scene, "#222222", 0, corridorHeight/2, corridorLength);
+            createLegoBlock("startWall", {width: corridorWidth, height: corridorHeight, depth: 1}, scene, "#222222", 0, corridorHeight/2, -5);
+        }
+
+        function createMonster() {
+            monsterGrp = new BABYLON.Mesh("monsterNode", scene);
+            monsterGrp.position = new BABYLON.Vector3(0, 0, 130);
+            
+            monsterGrp.checkCollisions = true;
+            monsterGrp.ellipsoid = new BABYLON.Vector3(1.0, 1.5, 1.0); 
+            monsterGrp.ellipsoidOffset = new BABYLON.Vector3(0, 1.5, 0); 
+
+            monsterVisual = new BABYLON.TransformNode("monsterVisual", scene);
+            monsterVisual.parent = monsterGrp;
+
+            const bodyMat = new BABYLON.StandardMaterial("m_bodyMat", scene);
+            bodyMat.diffuseColor = new BABYLON.Color3(0.02, 0.02, 0.02);
+            bodyMat.specularColor = new BABYLON.Color3(0.2, 0.2, 0.2); 
+            bodyMat.maxSimultaneousLights = 8;
+            
+            const eyeMat = new BABYLON.StandardMaterial("m_eyeMat", scene);
+            eyeMat.emissiveColor = new BABYLON.Color3(1.0, 0.0, 0.0); 
+            eyeMat.disableLighting = true;
+
+            function addMonsterPart(name, sizeObj, pos, isEye = false) {
+                const part = BABYLON.MeshBuilder.CreateBox("m_" + name, sizeObj, scene);
+                part.parent = monsterVisual; 
+                part.position = pos;
+                part.material = isEye ? eyeMat : bodyMat;
+                
+                if (!isEye) {
+                    part.enableEdgesRendering();
+                    part.edgesWidth = 3.0;
+                    part.edgesColor = new BABYLON.Color4(0, 0, 0, 1);
+                    part.visibility = 0;
+                    monsterBodyMeshes.push(part);
+                } else {
+                    part.alwaysSelectAsActiveMesh = true; 
+                    part.renderingGroupId = 1; 
+                    part.enableEdgesRendering();
+                    part.edgesWidth = 4.0;
+                    part.edgesColor = new BABYLON.Color4(0, 0, 0, 1);
+                    monsterEyes.push(part);
+                }
+                return part;
+            }
+
+            addMonsterPart("torso", {width: 1.5, height: 2.0, depth: 1.0}, new BABYLON.Vector3(0, 1.0, 0));
+            addMonsterPart("head", {width: 1.0, height: 1.0, depth: 1.0}, new BABYLON.Vector3(0, 2.5, 0));
+            addMonsterPart("armL", {width: 0.5, height: 1.5, depth: 0.5}, new BABYLON.Vector3(-1.1, 1.2, 0.3));
+            addMonsterPart("armR", {width: 0.5, height: 1.5, depth: 0.5}, new BABYLON.Vector3(1.1, 1.2, 0.3));
+            
+            addMonsterPart("eyeL", {width: 0.25, height: 0.25, depth: 0.05}, new BABYLON.Vector3(-0.25, 2.7, -0.52), true);
+            addMonsterPart("eyeR", {width: 0.25, height: 0.25, depth: 0.05}, new BABYLON.Vector3(0.25, 2.7, -0.52), true);
+
+            function addStud(name, pos) {
+                const stud = BABYLON.MeshBuilder.CreateCylinder("stud_" + name, {diameter: 0.25, height: 0.1, tessellation: 12}, scene);
+                stud.parent = monsterVisual;
+                stud.position = pos;
+                stud.material = bodyMat;
+                stud.enableEdgesRendering();
+                stud.edgesWidth = 2.0;
+                stud.edgesColor = new BABYLON.Color4(0, 0, 0, 1);
+                stud.visibility = 0; 
+                monsterBodyMeshes.push(stud);
+            }
+
+            addStud("head_1", new BABYLON.Vector3(-0.25, 3.05, 0.25));
+            addStud("head_2", new BABYLON.Vector3(0.25, 3.05, 0.25));
+            addStud("head_3", new BABYLON.Vector3(-0.25, 3.05, -0.25));
+            addStud("head_4", new BABYLON.Vector3(0.25, 3.05, -0.25));
+
+            addStud("shoulder_L", new BABYLON.Vector3(-1.1, 2.0, 0.3));
+            addStud("shoulder_R", new BABYLON.Vector3(1.1, 2.0, 0.3));
+        }
+
+        function updateMonster(dt) {
+            if (!monsterGrp || gameState !== 'playing') return;
+
+            monsterTimeAcc += dt * 0.005;
+
+            let distToPlayer = BABYLON.Vector3.Distance(camera.position, monsterGrp.position);
+
+            let dir = camera.position.subtract(monsterGrp.position);
+            dir.y = 0; 
+            dir.normalize();
+
+            let speed = 0.002 + (100 / Math.max(distToPlayer, 1)) * 0.0001; 
+            
+            let velocity = dir.scale(speed * dt);
+            velocity.y = -0.15; 
+            monsterGrp.moveWithCollisions(velocity);
+
+            monsterGrp.lookAt(new BABYLON.Vector3(camera.position.x, monsterGrp.position.y, camera.position.z));
+
+            monsterVisual.position.y = Math.abs(Math.sin(monsterTimeAcc)) * 0.4;
+            monsterVisual.rotation.z = Math.sin(monsterTimeAcc * 0.5) * 0.05;
+
+            updateMonsterVisualState(distToPlayer);
+
+            if (droneGain && droneOsc) {
+                let vol = 1.0 - Math.min(distToPlayer / 100, 1.0);
+                droneGain.gain.setTargetAtTime(vol * 0.5, audioCtxGlobal.currentTime, 0.1);
+                droneOsc.frequency.setTargetAtTime(40 + (vol * 40), audioCtxGlobal.currentTime, 0.1);
+            }
+
+            if (distToPlayer < 3.5) {
+                triggerGameOver();
+            }
+        }
+
+        function updateMonsterVisualState(dist) {
+            let targetVisibility = 0;
+            if (dist < 80) {
+                targetVisibility = 1.0 - ((dist - 20) / 60); 
+                targetVisibility = Math.max(0, Math.min(targetVisibility, 1.0)); 
+            }
+
+            for (let i = 0; i < monsterBodyMeshes.length; i++) {
+                monsterBodyMeshes[i].visibility = targetVisibility;
+            }
+
+            let scale = 1.0;
+            if (dist < 30) scale = 1.0 + (30 - dist) * 0.015;
+            monsterVisual.scaling.set(scale, scale, scale); 
+        }
+
+        function triggerGameOver() {
+            gameState = 'gameover';
+            document.exitPointerLock = document.exitPointerLock || document.mozExitPointerLock;
+            document.exitPointerLock();
+
+            if (droneGain) droneGain.gain.value = 0;
+            
+            if (audioCtxGlobal) {
+                const osc = audioCtxGlobal.createOscillator();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(100, audioCtxGlobal.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, audioCtxGlobal.currentTime + 0.3);
+                osc.connect(audioCtxGlobal.destination);
+                osc.start();
+                osc.stop(audioCtxGlobal.currentTime + 0.5);
+            }
+
+            // Desliga mic para não disparar quando morto
+            if(speechRec) {
+                speechRec.onend = null; 
+                try { speechRec.stop(); } catch(e){}
+            }
+            
+            stopChargeSound(); // Garante que o som de carga não fica preso no Game Over
+
+            document.getElementById('game-over-screen').style.display = 'flex';
+        }
+
+        function shootRay() {
+            if (gameState !== 'playing') return; 
+            
+            playThunderSound(); 
+
+            targetTipColor = new BABYLON.Color3(0.5, 0.9, 1.0); 
+            targetFlashColor = new BABYLON.Color3(0.2, 0.5, 1.0); 
+            targetFlashIntensity = 15.0; 
+
+            matTip.emissiveColor = targetTipColor.clone();
+            flashlight.diffuse = targetFlashColor.clone();
+            flashlight.intensity = targetFlashIntensity;
+
+            if (window.returnFlashlightTimer) clearTimeout(window.returnFlashlightTimer);
+            window.returnFlashlightTimer = setTimeout(() => {
+                targetTipColor = new BABYLON.Color3(1.0, 0.9, 0.4);
+                targetFlashColor = new BABYLON.Color3(1.0, 0.9, 0.6);
+                targetFlashIntensity = 2.5;
+            }, 300);
+
+            const origin = camera.globalPosition;
+            const forward = camera.getTarget().subtract(camera.globalPosition).normalize();
+            const ray = new BABYLON.Ray(origin, forward, 150);
+            const hit = scene.pickWithRay(ray);
+
+            if (hit.hit && hit.pickedMesh && hit.pickedMesh.name.startsWith("m_")) {
+                let pushBack = forward.scale(15);
+                pushBack.y = -0.1; 
+                monsterGrp.moveWithCollisions(pushBack); 
+                
+                monsterVisual.scaling.set(0.8, 1.5, 0.8);
+                
+                if (audioCtxGlobal) {
+                    const osc = audioCtxGlobal.createOscillator();
+                    osc.type = 'square';
+                    osc.frequency.value = 150;
+                    osc.connect(audioCtxGlobal.destination);
+                    osc.start();
+                    osc.stop(audioCtxGlobal.currentTime + 0.2);
+                }
+            }
+
+            const startPoint = tip.getAbsolutePosition();
+            const endPoint = hit.hit ? hit.pickedPoint : origin.add(forward.scale(150));
+            const hitNormal = hit.hit ? hit.getNormal(true, true) : forward.scale(-1);
+
+            function drawBolt(start, end, maxJitter, segments, thickness, isCore) {
+                const path = [start];
+                for (let i = 1; i < segments; i++) {
+                    const frac = i / segments;
+                    const env = Math.sin(frac * Math.PI);
+                    const jitter = new BABYLON.Vector3(
+                        (Math.random() - 0.5) * maxJitter * env,
+                        (Math.random() - 0.5) * maxJitter * env,
+                        (Math.random() - 0.5) * maxJitter * env
+                    );
+                    path.push(BABYLON.Vector3.Lerp(start, end, frac).add(jitter));
+                }
+                path.push(end);
+
+                const bolt = BABYLON.MeshBuilder.CreateTube("bolt", {
+                    path: path,
+                    radius: thickness,
+                    tessellation: 3, 
+                    cap: BABYLON.Mesh.CAP_ALL
+                }, scene);
+
+                bolt.material = isCore ? window.boltCoreMat : window.boltAuraMat;
+                
+                activeBolts.push({ mesh: bolt, life: 1.0 });
+                return path;
+            }
+
+            const mainPath = drawBolt(startPoint, endPoint, 1.5, 20, 0.02, true);
+            drawBolt(startPoint, endPoint, 2.0, 20, 0.06, false);
+
+            for (let i = 0; i < 4; i++) {
+                const startIdx = Math.floor(Math.random() * (mainPath.length - 4)) + 1;
+                const startPt = mainPath[startIdx];
+                const randomOffset = new BABYLON.Vector3((Math.random()-0.5)*6, (Math.random()-0.5)*6, (Math.random()-0.5)*6);
+                const endPt = startPt.add(forward.scale(4)).add(randomOffset);
+                drawBolt(startPt, endPt, 1.0, 10, 0.015, false);
+            }
+
+            if (hit.hit) {
+                window.thunderFlashLight.position = endPoint.add(hitNormal.scale(1));
+                window.thunderFlashLight.intensity = 8;
+                targetThunderFlashIntensity = 0; 
+
+                let t1 = new BABYLON.Vector3(1, 0, 0);
+                if (Math.abs(hitNormal.x) > 0.9) t1 = new BABYLON.Vector3(0, 1, 0);
+                const tangent = BABYLON.Vector3.Cross(hitNormal, t1).normalize();
+                const bitangent = BABYLON.Vector3.Cross(hitNormal, tangent).normalize();
+
+                for (let i = 0; i < 7; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const radius = 2 + Math.random() * 5; 
+                    const spreadDir = tangent.scale(Math.cos(angle)).add(bitangent.scale(Math.sin(angle)));
+                    
+                    const spreadStart = endPoint.add(hitNormal.scale(0.1));
+                    const spreadEnd = spreadStart.add(spreadDir.scale(radius));
+                    
+                    drawBolt(spreadStart, spreadEnd, 0.6, 8, 0.015, false);
+                }
+
+                createSpark(endPoint);
+            }
+        }
+
+        function createSpark(position) {
+            const sparkCore = BABYLON.MeshBuilder.CreateSphere("sparkCore", {diameter: 1.5, segments: 8}, scene);
+            sparkCore.position = position;
+            sparkCore.material = window.sparkMatShared;
+            activeSparks.push({ mesh: sparkCore, life: 1.0 });
+        }
+
+        // --- Função para Spawnar fumaça de Erro ---
+        function createSmokePuff() {
+            // Cria um aglomerado maior de fumaça redonda e suave
+            const numParticles = 12;
+            for (let i = 0; i < numParticles; i++) {
+                // Usa esferas suaves (alta resolução) em vez de poliedros low-poly
+                const baseSize = 0.2 + Math.random() * 0.3;
+                const smoke = BABYLON.MeshBuilder.CreateSphere("smoke", {diameter: baseSize, segments: 16}, scene);
+                
+                // Spawn na ponta da varinha formando uma nuvem expandida
+                smoke.position = tip.getAbsolutePosition().clone();
+                smoke.position.x += (Math.random() - 0.5) * 0.4;
+                smoke.position.y += (Math.random() - 0.5) * 0.4;
+                smoke.position.z += (Math.random() - 0.5) * 0.4;
+
+                // Rotação inicial aleatória
+                smoke.rotation = new BABYLON.Vector3(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+
+                smoke.material = window.smokeMatShared;
+                
+                // Velocidade: flutua lentamente para a frente, para cima e espalha para os lados
+                const forward = camera.getTarget().subtract(camera.globalPosition).normalize();
+                const randomSpread = new BABYLON.Vector3((Math.random() - 0.5) * 0.03, 0.01 + Math.random() * 0.02, (Math.random() - 0.5) * 0.03);
+                const velocity = forward.scale(0.01 + Math.random() * 0.02).add(randomSpread);
+
+                // Velocidade de rotação individual
+                const rotVel = new BABYLON.Vector3((Math.random() - 0.5) * 0.05, (Math.random() - 0.5) * 0.05, (Math.random() - 0.5) * 0.05);
+
+                // Variação na vida das partículas para sumirem em momentos diferentes
+                const life = 1.0 + Math.random() * 0.5;
+
+                activeSmokes.push({ mesh: smoke, life: life, maxLife: life, vel: velocity, rot: rotVel });
+            }
+        }
+
+        // --- Função para gerar energia a acumular na varinha ---
+        function createChargeParticle() {
+            // Pequenos cristais de energia flutuantes
+            const particle = BABYLON.MeshBuilder.CreatePolyhedron("chargePart", {type: 1, size: 0.01 + Math.random() * 0.02}, scene);
+            const targetPos = tip.getAbsolutePosition();
+            
+            // Nascem ao redor da varinha (raio de 1.0 a 2.0 metros)
+            const randomDir = new BABYLON.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
+            particle.position = targetPos.add(randomDir.scale(1.0 + Math.random() * 1.0));
+            
+            // Reutiliza o material azul brilhante translúcido já existente
+            particle.material = window.sparkMatShared; 
+            
+            activeChargeParticles.push({ mesh: particle });
+        }
+
+        function playThunderSound() {
+            if(!audioCtxGlobal) return;
+            const t = audioCtxGlobal.currentTime;
+            
+            // 1. ZAP Mágico (Agudo e elétrico, caindo rapidamente)
+            const zapOsc = audioCtxGlobal.createOscillator();
+            const zapGain = audioCtxGlobal.createGain();
+            zapOsc.type = 'sawtooth'; 
+            zapOsc.frequency.setValueAtTime(1500, t);
+            zapOsc.frequency.exponentialRampToValueAtTime(100, t + 0.3);
+            zapGain.gain.setValueAtTime(0.6, t);
+            zapGain.gain.exponentialRampToValueAtTime(0.01, t + 0.3);
+            zapOsc.connect(zapGain);
+            zapGain.connect(audioCtxGlobal.destination);
+            zapOsc.start(t);
+            zapOsc.stop(t + 0.3);
+
+            // 2. Estrondo do Trovão (Grave e forte)
+            const rumbleOsc = audioCtxGlobal.createOscillator();
+            const rumbleGain = audioCtxGlobal.createGain();
+            rumbleOsc.type = 'square'; 
+            rumbleOsc.frequency.setValueAtTime(80, t);
+            rumbleOsc.frequency.exponentialRampToValueAtTime(10, t + 1.2);
+            rumbleGain.gain.setValueAtTime(0.8, t);
+            rumbleGain.gain.exponentialRampToValueAtTime(0.01, t + 1.2);
+            rumbleOsc.connect(rumbleGain);
+            rumbleGain.connect(audioCtxGlobal.destination);
+            rumbleOsc.start(t);
+            rumbleOsc.stop(t + 1.5);
+
+            // 3. Estalo / Ruído de Eletricidade (Ruído Branco)
+            const bufferSize = audioCtxGlobal.sampleRate * 1.0;
+            const buffer = audioCtxGlobal.createBuffer(1, bufferSize, audioCtxGlobal.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1; 
+            }
+            const noise = audioCtxGlobal.createBufferSource();
+            noise.buffer = buffer;
+            const noiseFilter = audioCtxGlobal.createBiquadFilter();
+            noiseFilter.type = 'lowpass';
+            noiseFilter.frequency.setValueAtTime(3000, t); 
+            noiseFilter.frequency.exponentialRampToValueAtTime(100, t + 0.8); 
+            const noiseGain = audioCtxGlobal.createGain();
+            noiseGain.gain.setValueAtTime(1.0, t);
+            noiseGain.gain.exponentialRampToValueAtTime(0.01, t + 1.0);
+            
+            noise.connect(noiseFilter);
+            noiseFilter.connect(noiseGain);
+            noiseGain.connect(audioCtxGlobal.destination);
+            noise.start(t);
+        }
+
+        // --- Som de falha mágica ---
+        function playPuffSound() {
+            if(!audioCtxGlobal) return;
+            const t = audioCtxGlobal.currentTime;
+            
+            // 1. Som de Erro / "Buzzer" (Grave e dissonante)
+            const buzzOsc = audioCtxGlobal.createOscillator();
+            const buzzGain = audioCtxGlobal.createGain();
+            buzzOsc.type = 'sawtooth';
+            buzzOsc.frequency.setValueAtTime(150, t);
+            buzzOsc.frequency.linearRampToValueAtTime(100, t + 0.4);
+            buzzGain.gain.setValueAtTime(0.4, t);
+            buzzGain.gain.linearRampToValueAtTime(0.01, t + 0.4);
+            buzzOsc.connect(buzzGain);
+            buzzGain.connect(audioCtxGlobal.destination);
+            buzzOsc.start(t);
+            buzzOsc.stop(t + 0.4);
+
+            // 2. Chiado de Vapor / Fumaça saindo (Ruído Branco com filtro Highpass)
+            const bufferSize = audioCtxGlobal.sampleRate * 0.5;
+            const buffer = audioCtxGlobal.createBuffer(1, bufferSize, audioCtxGlobal.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1; 
+            }
+            const noise = audioCtxGlobal.createBufferSource();
+            noise.buffer = buffer;
+            
+            const noiseFilter = audioCtxGlobal.createBiquadFilter();
+            noiseFilter.type = 'bandpass';
+            noiseFilter.frequency.setValueAtTime(1500, t); 
+            noiseFilter.frequency.linearRampToValueAtTime(500, t + 0.5);
+            
+            const noiseGain = audioCtxGlobal.createGain();
+            noiseGain.gain.setValueAtTime(0.8, t);
+            noiseGain.gain.exponentialRampToValueAtTime(0.01, t + 0.5);
+            
+            noise.connect(noiseFilter);
+            noiseFilter.connect(noiseGain);
+            noiseGain.connect(audioCtxGlobal.destination);
+            noise.start(t);
+        }
+
+        // --- Som de Carregamento de Energia (Crescente) ---
+        function startChargeSound() {
+            if (!audioCtxGlobal || isChargeSoundPlaying) return;
+            isChargeSoundPlaying = true;
+
+            const t = audioCtxGlobal.currentTime;
+            chargeOsc = audioCtxGlobal.createOscillator();
+            chargeGain = audioCtxGlobal.createGain();
+
+            // Onda triangular dá um tom sci-fi/mágico vibrante
+            chargeOsc.type = 'triangle'; 
+            chargeOsc.frequency.setValueAtTime(200, t);
+            chargeOsc.frequency.exponentialRampToValueAtTime(1000, t + 3.0); // Tom sobe agressivamente durante 3 segundos
+
+            chargeGain.gain.setValueAtTime(0, t);
+            chargeGain.gain.linearRampToValueAtTime(0.2, t + 0.5); // Fade in suave no início
+
+            chargeOsc.connect(chargeGain);
+            chargeGain.connect(audioCtxGlobal.destination);
+
+            chargeOsc.start(t);
+        }
+
+        function stopChargeSound() {
+            if (!audioCtxGlobal || !isChargeSoundPlaying || !chargeOsc || !chargeGain) return;
+            isChargeSoundPlaying = false;
+
+            const t = audioCtxGlobal.currentTime;
+            
+            // Cancela aumentos e faz um fade out rápido para não "estalar" o áudio
+            chargeGain.gain.cancelScheduledValues(t);
+            chargeGain.gain.setValueAtTime(chargeGain.gain.value, t);
+            chargeGain.gain.exponentialRampToValueAtTime(0.001, t + 0.1); 
+
+            chargeOsc.stop(t + 0.1);
+            chargeOsc = null;
+            chargeGain = null;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            scene = createScene();
+            
+            engine.runRenderLoop(() => {
+                if (gameState !== 'playing') {
+                    scene.render(); 
+                    return; 
+                }
+
+                const dt = engine.getDeltaTime();
+
+                updateMonster(dt);
+                
+                // 1. Apaga os arcos elétricos suavemente e destrói o modelo
+                for (let i = activeBolts.length - 1; i >= 0; i--) {
+                    let b = activeBolts[i];
+                    b.life -= dt * 0.003; 
+                    if (b.life <= 0) {
+                        b.mesh.dispose();
+                        activeBolts.splice(i, 1);
+                    } else {
+                        b.mesh.visibility = b.life;
+                    }
+                }
+
+                // 2. Expande e apaga a faísca de impacto
+                for (let i = activeSparks.length - 1; i >= 0; i--) {
+                    let s = activeSparks[i];
+                    s.life -= dt * 0.003;
+                    if (s.life <= 0) {
+                        s.mesh.dispose();
+                        activeSparks.splice(i, 1);
+                    } else {
+                        s.mesh.visibility = s.life;
+                        let scale = 0.1 + (1.0 - s.life) * 2.4; 
+                        s.mesh.scaling.set(scale, scale, scale);
+                    }
+                }
+
+                // 3. --- Anima as partículas de Fumo de erro mágico ---
+                for (let i = activeSmokes.length - 1; i >= 0; i--) {
+                    let sm = activeSmokes[i];
+                    sm.life -= dt * 0.0005; // Fumo desaparece MUITO mais lentamente
+                    if (sm.life <= 0) {
+                        sm.mesh.dispose();
+                        activeSmokes.splice(i, 1);
+                    } else {
+                        // Sobe e espalha lentamente
+                        sm.mesh.position.addInPlace(sm.vel);
+                        sm.vel.x *= 0.99; // Drag horizontal mais natural
+                        sm.vel.z *= 0.99;
+                        
+                        // Rotaciona a fumaça para dar um efeito tridimensional de expansão
+                        sm.mesh.rotation.addInPlace(sm.rot);
+                        
+                        // Fica maior lentamente
+                        sm.mesh.scaling.addInPlace(new BABYLON.Vector3(0.008, 0.008, 0.008));
+                        
+                        // Fade out baseando-se na vida original para transição perfeita
+                        sm.mesh.visibility = sm.life / sm.maxLife;
+                    }
+                }
+
+                // --- Anima as partículas de Carregamento (Tensão da Voz) ---
+                if (isCharging && Math.random() > 0.4) {
+                    // Enquanto o jogador fala, surgem constantemente fagulhas a ser sugadas
+                    createChargeParticle();
+                }
+
+                const wandPos = tip.getAbsolutePosition();
+                for (let i = activeChargeParticles.length - 1; i >= 0; i--) {
+                    let p = activeChargeParticles[i];
+                    let dir = wandPos.subtract(p.mesh.position);
+                    let dist = dir.length();
+                    
+                    if (dist < 0.1) {
+                        // Partícula alcançou a ponta e foi "absorvida"
+                        p.mesh.dispose();
+                        activeChargeParticles.splice(i, 1);
+                    } else {
+                        // Viajam rapidamente em direção ao centro magnético (varinha)
+                        let speed = 0.015 * dt;
+                        p.mesh.position.addInPlace(dir.normalize().scale(Math.min(speed, dist)));
+                    }
+                }
+
+                // 4. Reduz a luz ambiente do trovão rapidamente
+                if (window.thunderFlashLight) {
+                    window.thunderFlashLight.intensity += (targetThunderFlashIntensity - window.thunderFlashLight.intensity) * 0.1;
+                }
+
+                // 5. Interpolação super suave das cores da varinha
+                if (matTip && flashlight) {
+                    matTip.emissiveColor = BABYLON.Color3.Lerp(matTip.emissiveColor, targetTipColor, 0.1);
+                    flashlight.diffuse = BABYLON.Color3.Lerp(flashlight.diffuse, targetFlashColor, 0.1);
+                    flashlight.intensity += (targetFlashIntensity - flashlight.intensity) * 0.1;
+                }
+
+                scene.render();
+            });
+
+            window.addEventListener("resize", () => {
+                engine.resize();
+            });
+
+            // NOVO: Cooldown para o Pointer Lock para prevenir SecurityError
+            let lastLockTime = 0;
+            canvas.addEventListener("click", () => {
+                // Impede que tente travar o rato se o jogo já tiver acabado
+                if (gameState !== 'playing') return; 
+
+                // Adiciona um cooldown de 1.5s para evitar o erro de requisição muito rápida ou spam de cliques
+                if (!document.pointerLockElement && Date.now() - lastLockTime > 1500) {
+                    canvas.requestPointerLock = canvas.requestPointerLock || canvas.msRequestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
+                    if (canvas.requestPointerLock) {
+                        try {
+                            const promise = canvas.requestPointerLock();
+                            // Alguns navegadores retornam uma promise que podemos verificar para evitar erros no console
+                            if (promise) {
+                                promise.catch(e => console.log("Aguarde antes de focar a câmara novamente.", e));
+                            }
+                        } catch (e) {
+                            console.log("Erro de pointer lock evitado.", e);
+                        }
+                        lastLockTime = Date.now();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

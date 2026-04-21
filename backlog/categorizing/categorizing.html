@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoMatch - Categorias Dinâmicas</title>
+    <!-- Importando Fonte Nunito (Estilo Duolingo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- Importando FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Importando Interact.js para Drag & Drop com Física -->
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #46a302;
+            --duo-blue: #1cb0f6;
+            --duo-blue-dark: #1899d6;
+            --duo-red: #ff4b4b;
+            --duo-purple: #ce82ff;
+            --duo-orange: #ff9600;
+            --duo-gray: #e5e5e5;
+            --duo-gray-dark: #cecece;
+            --text-color: #4b4b4b;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none; /* Previne seleção de texto ao arrastar */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f7f7f7;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- Header & Stats --- */
+        header {
+            padding: 15px 20px;
+            background: white;
+            border-bottom: 2px solid var(--duo-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .stat-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            max-width: 400px;
+            height: 16px;
+            background-color: var(--duo-gray);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--duo-green);
+            transition: width 0.3s ease;
+        }
+
+        .timer { color: var(--duo-blue); }
+        .score { color: #ffc800; }
+
+        /* --- Game Area --- */
+        #game-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 30px;
+            overflow-y: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            touch-action: none;
+        }
+
+        /* --- Containers --- */
+        #categories-container {
+            /* Grid dinâmico: se ajusta automaticamente à quantidade de categorias */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            width: 100%;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed var(--duo-gray);
+        }
+
+        #items-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            position: relative;
+        }
+
+        /* --- Categorias (Dropzones) --- */
+        .category-box {
+            background-color: #ffffff;
+            border: 3px dashed var(--duo-gray-dark);
+            border-radius: 16px;
+            padding: 20px 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .category-box i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--duo-gray-dark);
+        }
+
+        .category-box span {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-color);
+        }
+
+        /* Estados do InteractJS para Categorias */
+        .drop-target {
+            background-color: #f0faff;
+            border-color: var(--duo-blue);
+            border-style: solid;
+        }
+
+        /* --- Cards (Draggables) --- */
+        .card {
+            background: var(--card-bg);
+            border: 2px solid var(--duo-gray);
+            border-bottom: 5px solid var(--duo-gray);
+            border-radius: 16px;
+            padding: 15px 25px;
+            text-align: center;
+            cursor: grab;
+            position: relative;
+            touch-action: none;
+            display: inline-block;
+            min-width: 120px;
+        }
+
+        .card:active {
+            cursor: grabbing;
+        }
+
+        .is-dragging {
+            z-index: 1000 !important;
+            opacity: 0.9;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border-color: var(--duo-blue);
+            cursor: grabbing;
+        }
+
+        .can-drop {
+            border-color: var(--duo-blue);
+        }
+
+        .card-main-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-color);
+            pointer-events: none;
+        }
+
+        .card-sub-text {
+            font-size: 0.85rem;
+            color: #afafaf;
+            margin-top: 2px;
+            pointer-events: none;
+        }
+
+        /* Estados Visuais do Card */
+        .card.selected {
+            background-color: #ddf4ff;
+            border-color: var(--duo-blue);
+            border-bottom-color: var(--duo-blue-dark);
+            color: var(--duo-blue);
+        }
+
+        .card.matched {
+            pointer-events: none;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s, scale 0.3s;
+        }
+        
+        .card.matched.hidden {
+             opacity: 0;
+             transform: scale(0.5); /* Efeito de ser "sugado" pela categoria */
+        }
+
+        .card.wrong {
+            animation: shake 0.5s;
+            background-color: #ffdfe0;
+            border-color: var(--duo-red);
+            border-bottom-color: #d33131;
+            color: var(--duo-red);
+        }
+        
+        .category-box.wrong {
+            animation: shake 0.5s;
+            background-color: #ffdfe0;
+            border-color: var(--duo-red);
+        }
+
+        /* --- Animations --- */
+        @keyframes shake {
+            0% { transform: translateX(0) rotate(0); }
+            25% { transform: translateX(-5px) rotate(-2deg); }
+            50% { transform: translateX(5px) rotate(2deg); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0) rotate(0); }
+        }
+
+        /* --- Overlay / Modal --- */
+        #overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal h2 { margin-top: 0; color: var(--duo-green); font-size: 2rem; }
+        .modal p { font-size: 1.2rem; margin-bottom: 30px; }
+
+        .btn {
+            background-color: var(--duo-blue);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 12px;
+            border-bottom: 5px solid var(--duo-blue-dark);
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.1s;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            border-bottom-width: 0px;
+            margin-top: 4px;
+        }
+        
+        .btn-restart {
+             background-color: var(--duo-green);
+             border-bottom-color: var(--duo-green-dark);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            #game-area { padding: 10px; gap: 15px; }
+            #categories-container {
+                grid-template-columns: repeat(2, 1fr); /* Em telas muito pequenas, forçar 2 colunas */
+                gap: 10px;
+            }
+            .category-box { min-height: 90px; padding: 10px; }
+            .category-box i { font-size: 1.5rem; }
+            .category-box span { font-size: 0.9rem; }
+            .card { padding: 10px 15px; min-width: 100px; }
+            .card-main-text { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="stat-container" style="cursor: pointer;" onclick="toggleMute()">
+            <i class="fa-solid fa-volume-high" id="sound-icon" style="color: var(--duo-blue);"></i>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="stat-container timer">
+            <i class="fa-regular fa-clock"></i>
+            <span id="time-display">00:00</span>
+        </div>
+        <div class="stat-container score">
+            <i class="fa-solid fa-gem"></i>
+            <span id="score-display">0</span>
+        </div>
+    </header>
+
+    <div id="game-area">
+        <!-- Contêiner dinâmico para as categorias (Alvos) -->
+        <div id="categories-container"></div>
+        
+        <!-- Contêiner para os itens que serão arrastados -->
+        <div id="items-container"></div>
+    </div>
+
+    <!-- Modal de Game Over / Sucesso -->
+    <div id="overlay">
+        <div class="modal">
+            <h2 id="modal-title">Nível Concluído!</h2>
+            <div id="modal-content">
+                <p>Você categorizou todas as palavras.</p>
+                <div style="display: flex; justify-content: space-around; margin-bottom: 20px;">
+                    <div>
+                        <i class="fa-regular fa-clock" style="color:var(--duo-gray-dark)"></i>
+                        <br><strong id="final-time">00:00</strong>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-gem" style="color: #ffc800"></i>
+                        <br><strong id="final-score">0</strong>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-restart" onclick="initGame()">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // DADOS DO JOGO (Configure as categorias aqui)
+        // ==========================================
+        
+        // 1. Defina as categorias dinâmicas
+        const gameCategories = [
+            { id: "animais", name: "Animais", icon: "fa-dog", color: "var(--duo-orange)" },
+            { id: "natureza", name: "Natureza", icon: "fa-leaf", color: "var(--duo-green)" },
+            { id: "verbos", name: "Ações", icon: "fa-person-running", color: "var(--duo-blue)" },
+            { id: "lugares", name: "Lugares", icon: "fa-house", color: "var(--duo-purple)" }
+            // Você pode adicionar 10 ou mais categorias aqui, o front-end se ajustará automaticamente!
+        ];
+
+        // 2. Defina os itens vinculando-os ao ID da categoria
+        const gameItems = [
+            { id: 1, text: "猫", subtext: "Neko", categoryId: "animais" },
+            { id: 2, text: "犬", subtext: "Inu", categoryId: "animais" },
+            { id: 3, text: "鳥", subtext: "Tori", categoryId: "animais" },
+            { id: 4, text: "水", subtext: "Mizu", categoryId: "natureza" },
+            { id: 5, text: "火", subtext: "Hi", categoryId: "natureza" },
+            { id: 6, text: "月", subtext: "Tsuki", categoryId: "natureza" },
+            { id: 7, text: "食べる", subtext: "Taberu", categoryId: "verbos" },
+            { id: 8, text: "飲む", subtext: "Nomu", categoryId: "verbos" },
+            { id: 9, text: "学校", subtext: "Gakkou", categoryId: "lugares" },
+            { id: 10, text: "病院", subtext: "Byouin", categoryId: "lugares" }
+        ];
+
+        // ==========================================
+        // ESTADO DO JOGO
+        // ==========================================
+        let score = 0;
+        let timeElapsed = 0;
+        let timerInterval;
+        let itemsCategorized = 0;
+        let totalItems = 0; 
+        let soundEnabled = true;
+        let selectedItemId = null; 
+
+        // Elementos DOM
+        const categoriesContainer = document.getElementById('categories-container');
+        const itemsContainer = document.getElementById('items-container');
+        const scoreDisplay = document.getElementById('score-display');
+        const timeDisplay = document.getElementById('time-display');
+        const progressBar = document.getElementById('progress-bar');
+        const overlay = document.getElementById('overlay');
+        
+        // --- Inicialização ---
+        function initGame() {
+            score = 0;
+            timeElapsed = 0;
+            itemsCategorized = 0;
+            scoreDisplay.innerText = "0";
+            timeDisplay.innerText = "00:00";
+            progressBar.style.width = "0%";
+            overlay.style.display = 'none';
+            selectedItemId = null;
+
+            // Embaralha itens para o jogo (usar todos neste caso, mas você pode limitar via slice)
+            const shuffledItems = [...gameItems].sort(() => 0.5 - Math.random());
+            totalItems = shuffledItems.length;
+
+            renderCategories();
+            renderItems(shuffledItems);
+            setupInteract();
+
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeElapsed++;
+                const min = Math.floor(timeElapsed / 60).toString().padStart(2, '0');
+                const sec = (timeElapsed % 60).toString().padStart(2, '0');
+                timeDisplay.innerText = `${min}:${sec}`;
+            }, 1000);
+        }
+
+        // Renderiza blocos de Categoria
+        function renderCategories() {
+            categoriesContainer.innerHTML = '';
+            gameCategories.forEach(cat => {
+                const div = document.createElement('div');
+                div.className = 'category-box dropzone'; // Dropzone para interact.js
+                div.dataset.categoryId = cat.id;
+                
+                div.innerHTML = `
+                    <i class="fa-solid ${cat.icon}" style="color: ${cat.color || 'var(--duo-gray-dark)'}"></i>
+                    <span>${cat.name}</span>
+                `;
+                
+                // Suporte ao clique para jogar sem arrastar (híbrido)
+                div.addEventListener('click', handleCategoryClick);
+                categoriesContainer.appendChild(div);
+            });
+        }
+
+        // Renderiza os Cards das Palavras
+        function renderItems(items) {
+            itemsContainer.innerHTML = '';
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'card draggable'; // Draggable para interact.js
+                div.dataset.id = item.id;
+                div.dataset.categoryId = item.categoryId;
+                
+                div.style.transform = 'translate(0px, 0px)';
+                div.setAttribute('data-x', 0);
+                div.setAttribute('data-y', 0);
+
+                div.innerHTML = `
+                    <div class="card-main-text">${item.text}</div>
+                    <div class="card-sub-text">${item.subtext}</div>
+                `;
+                
+                div.addEventListener('click', handleItemClick);
+                itemsContainer.appendChild(div);
+            });
+        }
+
+        // --- Configuração Interact.js ---
+        function setupInteract() {
+            interact('.draggable').unset();
+            interact('.dropzone').unset();
+
+            // Configurar Draggables (Itens)
+            interact('.draggable').draggable({
+                inertia: true,
+                modifiers: [
+                    interact.modifiers.restrictRect({
+                        restriction: '#game-area',
+                        endOnly: true
+                    })
+                ],
+                autoScroll: true,
+                listeners: {
+                    start(event) {
+                        const target = event.target;
+                        target.classList.add('is-dragging');
+                        target.style.transition = 'none';
+                        highlightSelectedItem(target);
+                    },
+                    move: dragMoveListener,
+                    end(event) {
+                        const target = event.target;
+                        target.classList.remove('is-dragging');
+                        
+                        // "Snap Back" se não soltou em uma categoria válida
+                        if (!target.dataset.dropped) {
+                            revertPosition(target);
+                        }
+                        target.dataset.dropped = ''; // limpa
+                    }
+                }
+            });
+
+            // Configurar Dropzones (Categorias)
+            interact('.dropzone').dropzone({
+                accept: '.draggable',
+                overlap: 0.40, // 40% sobreposto aciona
+                
+                ondragenter: function (event) {
+                    event.target.classList.add('drop-target');
+                    event.relatedTarget.classList.add('can-drop');
+                },
+                ondragleave: function (event) {
+                    event.target.classList.remove('drop-target');
+                    event.relatedTarget.classList.remove('can-drop');
+                },
+                ondrop: function (event) {
+                    const itemCard = event.relatedTarget;
+                    const categoryBox = event.target;
+                    
+                    itemCard.dataset.dropped = 'true';
+                    categoryBox.classList.remove('drop-target');
+                    itemCard.classList.remove('can-drop');
+
+                    checkMatchLogic(itemCard, categoryBox);
+                }
+            });
+        }
+
+        function dragMoveListener (event) {
+            var target = event.target;
+            var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+            var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+            target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        }
+
+        function revertPosition(element) {
+            element.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            element.style.transform = 'translate(0px, 0px)';
+            element.setAttribute('data-x', 0);
+            element.setAttribute('data-y', 0);
+            
+            setTimeout(() => { element.style.transition = ''; }, 400);
+        }
+
+        // --- Lógica Híbrida (Cliques) ---
+
+        function handleItemClick(e) {
+            const card = e.currentTarget;
+            if (card.classList.contains('matched')) return;
+
+            // Desmarca se clicou no mesmo
+            if (selectedItemId === card.dataset.id && card.classList.contains('selected')) {
+                card.classList.remove('selected');
+                selectedItemId = null;
+                return;
+            }
+
+            highlightSelectedItem(card);
+        }
+
+        function handleCategoryClick(e) {
+            const categoryBox = e.currentTarget;
+            
+            if (selectedItemId) {
+                const itemCard = document.querySelector(`.draggable[data-id="${selectedItemId}"]`);
+                if(itemCard && !itemCard.classList.contains('matched')) {
+                    checkMatchLogic(itemCard, categoryBox);
+                }
+            } else {
+                // Se o usuário clicou na categoria sem selecionar item, avisa do erro agitando
+                shakeElement(categoryBox);
+            }
+        }
+
+        function highlightSelectedItem(card) {
+            document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedItemId = card.dataset.id;
+        }
+
+        // --- Validação da Categoria ---
+
+        function checkMatchLogic(itemCard, categoryBox) {
+            // VERIFICA SE A CATEGORIA DO ITEM BATE COM A CATEGORIA DA CAIXA
+            const itemCategoryId = itemCard.dataset.categoryId;
+            const targetCategoryId = categoryBox.dataset.categoryId;
+
+            if (itemCategoryId === targetCategoryId) {
+                handleSuccess(itemCard, categoryBox);
+            } else {
+                handleError(itemCard, categoryBox);
+            }
+            
+            selectedItemId = null;
+            itemCard.classList.remove('selected');
+        }
+
+        function handleSuccess(itemCard, categoryBox) {
+            // Animação para puxar o item para o centro da caixa da categoria
+            const itemRect = itemCard.getBoundingClientRect();
+            const catRect = categoryBox.getBoundingClientRect();
+
+            const currentX = parseFloat(itemCard.getAttribute('data-x')) || 0;
+            const currentY = parseFloat(itemCard.getAttribute('data-y')) || 0;
+
+            const deltaX = (catRect.left + catRect.width/2) - (itemRect.left + itemRect.width/2);
+            const deltaY = (catRect.top + catRect.height/2) - (itemRect.top + itemRect.height/2);
+            
+            const finalX = currentX + deltaX;
+            const finalY = currentY + deltaY;
+
+            itemCard.style.transition = 'transform 0.3s ease-out';
+            itemCard.style.transform = `translate(${finalX}px, ${finalY}px)`;
+            
+            interact(itemCard).draggable(false);
+            itemCard.classList.add('matched');
+
+            // Feedback na caixa
+            categoryBox.style.transform = 'scale(1.05)';
+            setTimeout(() => categoryBox.style.transform = 'scale(1)', 200);
+
+            setTimeout(() => {
+                itemCard.classList.add('hidden'); // Some a carta
+                
+                score += 10;
+                itemsCategorized++;
+                updateStats();
+
+                if (itemsCategorized === totalItems) {
+                    setTimeout(endGame, 500);
+                }
+            }, 300);
+        }
+
+        function handleError(itemCard, categoryBox) {
+            if (score > 0) score -= 2;
+            updateStats();
+
+            itemCard.classList.add('wrong');
+            categoryBox.classList.add('wrong');
+            shakeElement(itemCard);
+            shakeElement(categoryBox);
+
+            revertPosition(itemCard);
+
+            setTimeout(() => {
+                itemCard.classList.remove('wrong');
+                categoryBox.classList.remove('wrong');
+            }, 500);
+        }
+
+        function shakeElement(el) {
+            if(!el) return;
+            el.style.animation = 'none';
+            el.offsetHeight; 
+            el.style.animation = 'shake 0.4s';
+        }
+
+        function updateStats() {
+            scoreDisplay.innerText = score;
+            const percentage = (itemsCategorized / totalItems) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+
+        function endGame() {
+            clearInterval(timerInterval);
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('final-time').innerText = timeDisplay.innerText;
+            
+            const title = document.getElementById('modal-title');
+            if (score === totalItems * 10) {
+                title.innerText = "Perfeito! 🌟";
+                title.style.color = "#ffc800";
+            } else {
+                title.innerText = "Bom Trabalho!";
+                title.style.color = "var(--duo-green)";
+            }
+
+            overlay.style.display = 'flex';
+        }
+
+        function toggleMute() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            if(soundEnabled) {
+                icon.className = "fa-solid fa-volume-high";
+                icon.style.color = "var(--duo-blue)";
+            } else {
+                icon.className = "fa-solid fa-volume-xmark";
+                icon.style.color = "var(--duo-gray-dark)";
+            }
+        }
+
+        window.onload = initGame; 
+
+    </script>
+</body>
+</html>

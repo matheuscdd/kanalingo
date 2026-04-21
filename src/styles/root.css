@@ -312,3 +312,8 @@ body.onloading {
 .kana-font {
     font-family: "MPlus", sans-serif !important;
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}

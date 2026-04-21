@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Mobile LEGO-Style Builder - Exploração em 1ª Pessoa</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://i.postimg.cc/nhDqHDhn/piece-(1).png" rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+    <div id="crosshair"></div>
+
+    <div id="top-bar" class="ui-panel">
+        <span id="block-counter" class="stats">0 / 60.000</span>
+        <select id="render-mode" style="margin-left: 8px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; font-weight: 600; outline: none; background: white; cursor: pointer;">
+            <option value="basic">Padrão (Leve)</option>
+            <option value="standard">Padrão 3D (Sombras)</option>
+            <option value="physical">Fotorrealista (Física)</option>
+            <option value="phong">Plástico Brilhante</option>
+            <option value="toon">Cartoon (Cel Shading)</option>
+        </select>
+        <button id="btn-save">Salvar JSON</button>
+        <button id="btn-save-city">Salvar Cidade JSON</button>
+        <button id="btn-export-prefabs-zip">Exportar Prefabs (ZIP)</button>
+        <button id="btn-clear" style="color: var(--danger);">Limpar</button>
+        <button class="panel-toggle" data-panel-id="top-bar" title="Minimizar">▢</button>
+    </div>
+
+    <div id="perf-panel" class="ui-panel">
+        <div class="perf-header">
+            <span>Benchmark</span>
+            <div class="perf-header-actions">
+                <button id="btn-perf-toggle" class="perf-mini-btn" type="button">Ocultar</button>
+            </div>
+        </div>
+        <div id="perf-body">
+            <div class="perf-grid">
+                <span>FPS</span>
+                <strong id="perf-fps">--</strong>
+                <span>Frame</span>
+                <strong id="perf-frame">--</strong>
+                <span>CPU(main)</span>
+                <strong id="perf-cpu">--</strong>
+                <span>Raycast</span>
+                <strong id="perf-raycast">--</strong>
+                <span>canPlace</span>
+                <strong id="perf-can-place">--</strong>
+                <span>canPrefab</span>
+                <strong id="perf-can-prefab">--</strong>
+                <span>Hover</span>
+                <strong id="perf-hover">--</strong>
+                <span>Highlight</span>
+                <strong id="perf-highlight">--</strong>
+                <span>Hitboxes</span>
+                <strong id="perf-hitboxes">0</strong>
+                <span>Chunks</span>
+                <strong id="perf-chunks">0</strong>
+                <span>Render</span>
+                <strong id="perf-quality">--</strong>
+                <span>Memória</span>
+                <strong id="perf-memory">--</strong>
+                <span>Long tasks</span>
+                <strong id="perf-longtasks">--</strong>
+            </div>
+            <div class="perf-controls">
+                <select id="benchmark-scenario">
+                    <option value="dense">Denso 1x1</option>
+                    <option value="prefab">Prefabs Mistos</option>
+                </select>
+                <select id="benchmark-auto-target">
+                    <option value="5000">Auto FP 5k</option>
+                    <option value="20000" selected>Auto FP 20k</option>
+                    <option value="60000">Auto FP 60k</option>
+                </select>
+                <button type="button" data-benchmark-target="5000">5k</button>
+                <button type="button" data-benchmark-target="20000">20k</button>
+                <button type="button" data-benchmark-target="60000">60k</button>
+                <button id="btn-benchmark-auto" type="button">Auto FP</button>
+                <button id="btn-benchmark-cancel" type="button">Cancelar</button>
+            </div>
+            <div id="perf-status">Pronto para medir.</div>
+            <div id="perf-report" class="perf-report empty">Relatório Auto FP aguardando execução.</div>
+        </div>
+    </div>
+
+    <div id="json-panel" class="ui-panel">
+        <button class="panel-toggle" data-panel-id="json-panel" title="Minimizar">▢</button>
+        <div class="json-panel-header">
+            <strong>Estrutura JSON</strong>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <div class="json-panel-header-actions">
+                    <button id="btn-json-create-structure" type="button">Criar Estrutura</button>
+                    <button id="btn-json-import" type="button">Carregar JSON</button>
+                </div>
+            </div>
+        </div>
+        <textarea id="json-structure-input" spellcheck="false" placeholder='Cole um JSON de estrutura com "blocks" ou "recipe", ou um JSON de cidade com "placements".'></textarea>
+        <div class="json-panel-actions">
+            <button id="btn-json-open-file" type="button">Abrir .json</button>
+            <button id="btn-json-download" type="button">Baixar .json</button>
+            <button id="btn-json-clear" type="button">Limpar texto</button>
+        </div>
+        <input id="json-file-input" type="file" accept=".json,application/json" hidden>
+        <div class="json-panel-note">Suporta estrutura (`recipe`/`blocks`) e cidade (`placements`). O botao Criar Estrutura captura o quadrado interno da plataforma.</div>
+    </div>
+
+    <div id="left-bar" class="ui-panel">
+        <button class="panel-toggle" data-panel-id="left-bar" title="Minimizar">▢</button>
+                <button class="color-btn" data-color="#c74e24" style="background: #c74e24;"></button>
+        <button class="color-btn" data-color="#8b5a2b" style="background: #8b5a2b;"></button>
+        <button class="color-btn active" data-color="#e3000b" style="background: #e3000b;"></button>
+        <button class="color-btn" data-color="#0055bf" style="background: #0055bf;"></button>
+        <button class="color-btn" data-color="#f2cd37" style="background: #f2cd37;"></button>
+        <button class="color-btn" data-color="#237841" style="background: #237841;"></button>
+        <button class="color-btn" data-color="#f4f4f4" style="background: #f4f4f4; border: 1px solid #ccc;"></button>
+        <button class="color-btn" data-color="#111111" style="background: #222222;"></button>
+    </div>
+
+    <div id="right-bar" class="ui-panel">
+        <button class="panel-toggle" data-panel-id="right-bar" title="Minimizar">▢</button>
+        <button id="btn-fp" class="icon-btn" title="Modo 1ª Pessoa">🚶</button>
+        <div style="width:100%; height:1px; background:#ddd; margin:4px 0;"></div>
+        <button id="btn-iso" class="icon-btn active" title="Visão Isométrica">3D</button>
+        <button id="btn-top" class="icon-btn" title="Visão de Cima">2D</button>
+        <button id="btn-cam" class="icon-btn" title="Girar Câmera">📹</button>
+        <button id="btn-rotate" class="icon-btn" title="Girar Peça">↻</button>
+        <button id="btn-delete" class="icon-btn" title="Apagar Bloco">🗑️</button>
+        <button id="btn-delete-group" class="icon-btn" title="Apagar Estrutura">💣</button>
+        <button id="btn-expand" class="icon-btn active" title="Focar Origem">📍</button>
+    </div>
+
+    <div id="bottom-bar" class="ui-panel">
+        <button class="panel-toggle" data-panel-id="bottom-bar" title="Minimizar">▢</button>
+                <button class="block-btn" data-type="Prefab_HogwartsBaseCliff">🏔️ Hogwarts 1 Base</button>
+        <button class="block-btn" data-type="Prefab_HogwartsBridgeGate">🌉 Hogwarts 2 Ponte</button>
+        <button class="block-btn" data-type="Prefab_HogwartsGreatHall">🏰 Hogwarts 3 Salão</button>
+        <button class="block-btn" data-type="Prefab_HogwartsWestWing">🪄 Hogwarts 4 Ala Oeste</button>
+        <button class="block-btn" data-type="Prefab_HogwartsEastWing">✨ Hogwarts 5 Ala Leste</button>
+        <button class="block-btn" data-type="Prefab_HogwartsTowerClusterCourtyard">🗼 Hogwarts 6 Torres</button>
+    <button class="block-btn" data-type="Prefab_ModernHouseWithPool">🏡 Casa Moderna c/ Piscina</button>
+     <button class="block-btn" data-type="Prefab_ModernBeachVilla">🏖️ Vila Moderna Praia</button>
+                <button class="block-btn" data-type="Prefab_Panteao">🏛️ Panteão (Roma)</button>
+        <button class="block-btn" data-type="Prefab_TorreDeLondres">🏰 Torre de Londres</button>
+        <button class="block-btn" data-type="Prefab_BigBen">🕰️ Big Ben (Londres)</button>
+        <button class="block-btn" data-type="Prefab_PalacioWestminster">🏛️ Palácio de Westminster</button>
+        <button class="block-btn" data-type="Prefab_BasilicaSaoPedro">⛪ Basílica de São Pedro</button>
+        <button class="block-btn" data-type="Prefab_ParthenonGrego">🏛️ Partenon Grego</button>
+        <button class="block-btn" data-type="Prefab_CasaBranca">🏛️ Casa Branca</button>
+        <button class="block-btn" data-type="Prefab_EstatuaLiberdade">🗽 Estátua da Liberdade</button>
+        <button class="block-btn" data-type="Prefab_FushimiInariTaisha">⛩️ Santuário Fushimi Inari-taisha (Kyoto)</button>
+        <button class="block-btn" data-type="Prefab_ColosseuReal">🏟️ Coliseu Real</button>
+        <button class="block-btn" data-type="Prefab_Muralha">🧱 Muralha</button>
+        <button class="block-btn" data-type="Prefab_FabricaMega">🏭 Complexo</button>
+            <button class="block-btn" data-type="Prefab_Eolica">💨 Usina Eólica</button>
+        <button class="block-btn" data-type="Prefab_Predio">🏢 Prédio</button>
+        <button class="block-btn" data-type="Prefab_Mansao">🏰 Mansão</button>
+        <button class="block-btn" data-type="Prefab_MansaoClassica">🏛️ Mansão Clássica</button>
+        <button class="block-btn" data-type="Prefab_CasaDeCampo">🏡 Casa de Campo</button>
+        <button class="block-btn" data-type="Prefab_VilaDeLuxo">🏝️ Vila de Luxo</button>
+        <button class="block-btn" data-type="Prefab_Chale">🏡 Chalé</button>
+        <button class="block-btn" data-type="Prefab_SobradoCompacto">🏘️ Sobrado Compacto</button>
+        <button class="block-btn" data-type="Prefab_SobradoComGaragem">🚗 Sobrado c/ Garagem</button>
+        <button class="block-btn" data-type="Prefab_CasaComVaranda">🏡 Casa c/ Varanda</button>
+        <button class="block-btn" data-type="Prefab_CasaEmL">🔷 Casa em L</button>
+        <button class="block-btn" data-type="Prefab_Casa">🏠 Casa</button>
+        <button class="block-btn" data-type="Prefab_CasaGeminada">🏘️ Casa Geminada</button>
+        <button class="block-btn" data-type="Prefab_VilaComPatio">🏡 Vila c/ Pátio (shell)</button>
+        <button class="block-btn" data-type="Prefab_Arvore">🌳 Árvore</button>
+        <button class="block-btn" data-type="Prefab_TorreEiffel">🗼 Torre Eiffel</button>
+        <button class="block-btn" data-type="Prefab_TokyoSkytree">📡 Tokyo Skytree (Tóquio)</button>
+        <button class="block-btn" data-type="Prefab_CristoRedentor">⛪ Cristo Redentor</button>
+        <button class="block-btn" data-type="Prefab_TemploJapones">⛩️ Templo Japonês</button>
+        <button class="block-btn" data-type="Prefab_TemploHoryuji">🏯 Templo Horyu-ji (Nara)</button>
+        <button class="block-btn" data-type="Prefab_MiniTeaHouse">🍵 Mini Tea House</button>
+        <button class="block-btn" data-type="Prefab_RiversideMinka">🏡 Riverside Minka</button>
+        <button class="block-btn" data-type="Prefab_MerchantHouse">🏪 Merchant House</button>
+        <button class="block-btn" data-type="Prefab_ToriiRowShrineBase">⛩️ Torii Row Base</button>
+        <button class="block-btn" data-type="Prefab_ToriiRowShrineDetails">⛩️ Torii Row Details</button>
+        <button class="block-btn" data-type="Prefab_TempleHallStructure">🏯 Temple Hall</button>
+        <button class="block-btn" data-type="Prefab_TempleHallRoof">🏯 Temple Roof</button>
+        <button class="block-btn" data-type="Prefab_ThreeTierPagodaStructure">🛕 3-Tier Pagoda</button>
+        <button class="block-btn" data-type="Prefab_ThreeTierPagodaRoofs">🛕 Pagoda Roofs</button>
+        <button class="block-btn" data-type="Prefab_MiniHimejiKeep">🏰 Mini Himeji Keep</button>
+        <button class="block-btn" data-type="Prefab_VilasHistoricasShirakawago">🏘️ Vilas Históricas de Shirakawa-go</button>
+        <button class="block-btn" data-type="Prefab_MonteFuji">🗻 Monte Fuji</button>
+        <button class="block-btn" data-type="Prefab_EsfingeEgito">🗿 Esfinge do Egito</button>
+        <button class="block-btn" data-type="Prefab_CasteloHimeji">🏰 Castelo Himeji (Himeji)</button>
+        <button class="block-btn" data-type="Prefab_ExercitoTerracota">🗿 Exército Terracota</button>
+        <button class="block-btn active" data-type="1x1">1x1</button>
+        <button class="block-btn" data-type="2x2">2x2</button>
+        <button class="block-btn" data-type="2x4">2x4</button>
+        <button class="block-btn" data-type="Tile 2x2">Tile 2x2</button>
+        <button class="block-btn" data-type="Roof 1x2">Telhado</button>
+        <button class="block-btn" data-type="Window">Janela</button>
+        <button class="block-btn" data-type="Pillar">Pilar</button>
+    </div>
+
+    <div id="builder-tools-panel" class="ui-panel">
+        <button class="panel-toggle" data-panel-id="builder-tools-panel" title="Minimizar">&#9634;</button>
+        <div class="builder-tools-header">
+            <strong>Ferramentas</strong>
+            <div class="builder-tools-history-actions">
+                <button id="btn-tool-undo" type="button" title="Desfazer">↶</button>
+                <button id="btn-tool-redo" type="button" title="Refazer">↷</button>
+            </div>
+        </div>
+
+        <div class="builder-tools-grid">
+            <button type="button" data-build-tool="place" class="builder-tool-btn active">Bloco</button>
+            <button type="button" data-build-tool="area" class="builder-tool-btn">Área</button>
+            <button type="button" data-build-tool="floor" class="builder-tool-btn">Chão</button>
+            <button type="button" data-build-tool="wall" class="builder-tool-btn">Parede</button>
+            <button type="button" data-build-tool="select" class="builder-tool-btn">Seleção</button>
+            <button type="button" data-build-tool="shape" class="builder-tool-btn">Forma 3D</button>
+            <button id="btn-tool-copy" type="button">Copiar</button>
+            <button id="btn-tool-paste" type="button">Colar</button>
+        </div>
+
+        <div class="builder-tools-dimensions">
+            <label>
+                L
+                <input id="tool-width" type="number" min="1" max="64" value="6">
+            </label>
+            <label>
+                P
+                <input id="tool-depth" type="number" min="1" max="64" value="6">
+            </label>
+            <label>
+                H
+                <input id="tool-height" type="number" min="1" max="64" value="4">
+            </label>
+        </div>
+
+        <div class="builder-tools-shape-row">
+            <select id="tool-shape-select">
+                <option value="square_pyramid">square_pyramid</option>
+                <option value="hexagonal_pyramid">hexagonal_pyramid</option>
+                <option value="cuboid" selected>cuboid</option>
+                <option value="cylinder">cylinder</option>
+                <option value="ring">ring</option>
+                <option value="hexagonal_prism">hexagonal_prism</option>
+                <option value="sphere">sphere</option>
+                <option value="truncated_cone">truncated_cone</option>
+                <option value="dodecahedron">dodecahedron</option>
+                <option value="octahedron">octahedron</option>
+                <option value="cone">cone</option>
+                <option value="pentagrammic_prism">pentagrammic_prism</option>
+                <option value="buckyball">buckyball</option>
+                <option value="cube">cube</option>
+                <option value="triangular_prism">triangular_prism</option>
+                <option value="torus">torus</option>
+                <option value="icosahedron">icosahedron</option>
+                <option value="half_sphere">half_sphere</option>
+            </select>
+        </div>
+
+        <div class="builder-tools-shape-row builder-tools-secondary-row">
+            <button id="btn-tool-shape-direction" type="button">Direção: +Y</button>
+            <button id="btn-tool-clear-selection" type="button">Limpar seleção</button>
+        </div>
+
+        <div id="builder-tools-status" class="builder-tools-status">Ferramenta: bloco</div>
+    </div>
+
+    <div class="hint" id="hint-msg">WASD: Mover | Setas: Mover Peça | Enter: Colocar</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

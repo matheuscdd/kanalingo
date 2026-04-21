@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardião das Palavras - Stealth Espacial</title>
+    
+    <!-- Bibliotecas Externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Puro - Estilo Flat Design (Duolingo Style) */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap');
+
+        :root {
+            --bg-color: #05090c;
+            --primary-green: #58cc02;
+            --primary-green-shadow: #58a700;
+            --danger-red: #ff4b4b;
+            --danger-red-shadow: #ea2b2b;
+            --ally-blue: #1cb0f6;
+            --npc-yellow: #ffc800;
+            --ui-bg: #ffffff;
+            --text-dark: #4b4b4b;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            font-family: 'Nunito', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #game-wrapper {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 4px solid #1a2630;
+        }
+
+        /* Interface Sobreposta ao Canvas */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Permite clicar no canvas através da UI */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .top-bar {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: auto;
+        }
+
+        /* Barra de Moral (Vida) */
+        .moral-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--ui-bg);
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 0 #e5e5e5;
+        }
+
+        .heart-icon {
+            color: var(--danger-red);
+            font-size: 24px;
+        }
+
+        .moral-bar-bg {
+            width: 150px;
+            height: 16px;
+            background: #e5e5e5;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .moral-bar-fill {
+            height: 100%;
+            width: 100%;
+            background: var(--primary-green);
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        /* Pontuação */
+        .score-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--ui-bg);
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 0 #e5e5e5;
+            color: var(--npc-yellow);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        /* Telas de Overlay (Game Over / Início) */
+        .overlay-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 9, 12, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto;
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+
+        .modal-box {
+            background: var(--ui-bg);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 8px 0 #e5e5e5;
+            max-width: 400px;
+        }
+
+        .modal-box h1 {
+            margin: 0 0 10px 0;
+            color: var(--text-dark);
+            font-size: 32px;
+        }
+
+        .modal-box p {
+            color: #777;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            border-radius: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 var(--primary-green-shadow);
+            transition: transform 0.1s, box-shadow 0.1s;
+            text-transform: uppercase;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 var(--primary-green-shadow);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Instruções inferiores */
+        .controls-info {
+            text-align: center;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            background: rgba(0,0,0,0.5);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-wrapper">
+        <div id="phaser-container"></div>
+
+        <div id="ui-layer">
+            <div class="top-bar">
+                <div class="moral-container">
+                    <i class="fas fa-heart heart-icon" id="heart-pulse"></i>
+                    <div class="moral-bar-bg">
+                        <div class="moral-bar-fill" id="moral-fill"></div>
+                    </div>
+                </div>
+                <div class="score-container">
+                    <i class="fas fa-star"></i>
+                    <span id="score-text">0</span>
+                </div>
+            </div>
+            
+            <div class="controls-info">
+                WASD / Setas para mover | ESPAÇO para eliminar
+            </div>
+        </div>
+
+        <div id="start-screen" class="overlay-screen">
+            <div class="modal-box">
+                <h1>Guardião Espacial</h1>
+                <p>
+                    <i class="fas fa-check-circle" style="color:#1cb0f6;"></i> Proteja as palavras Corretas.<br>
+                    <i class="fas fa-times-circle" style="color:#ff4b4b;"></i> Elimine as palavras Erradas.<br>
+                    <i class="fas fa-eye" style="color:#ffc800;"></i> <b>NÃO SEJA VISTO</b> pelos NPCs!<br>
+                    Navegue pelas salas da nave. Se a moral chegar a zero, você será ejetado.
+                </p>
+                <button class="btn" onclick="startGame()">Jogar Agora</button>
+            </div>
+        </div>
+
+        <div id="game-over-screen" class="overlay-screen hidden">
+            <div class="modal-box">
+                <h1 id="go-title" style="color: var(--danger-red);">Ejetado!</h1>
+                <p id="go-desc">Sua moral acabou ou todas as palavras corretas foram destruídas.</p>
+                <h2 style="color: var(--npc-yellow); margin-bottom: 20px;">Score: <span id="final-score">0</span></h2>
+                <button class="btn" onclick="restartGame()">Tentar Novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PALAVRAS_CORRETAS = ["Exceção", "Ansioso", "Companhia", "Privilégio", "Caminho", "Súbito", "Ideia"];
+        const PALAVRAS_ERRADAS = ["Excessão", "Ancioso", "Compania", "Previlégio", "Caminho (com x)", "Súbito (com ss)", "Idéia"];
+        
+        let gameState = {
+            moral: 100,
+            score: 0,
+            isPlaying: false
+        };
+
+        let game;
+
+        function updateUI() {
+            const fill = document.getElementById('moral-fill');
+            fill.style.width = `${Math.max(0, gameState.moral)}%`;
+            
+            if (gameState.moral > 60) fill.style.backgroundColor = 'var(--primary-green)';
+            else if (gameState.moral > 30) fill.style.backgroundColor = 'var(--npc-yellow)';
+            else fill.style.backgroundColor = 'var(--danger-red)';
+
+            document.getElementById('score-text').innerText = gameState.score;
+        }
+
+        function triggerGameOver(reason) {
+            gameState.isPlaying = false;
+            if(game) game.scene.pause('MainScene');
+            
+            document.getElementById('game-over-screen').classList.remove('hidden');
+            document.getElementById('final-score').innerText = gameState.score;
+            document.getElementById('go-desc').innerText = reason;
+            
+            if(gameState.moral > 0) {
+                document.getElementById('go-title').innerText = "Falha na Missão!";
+                document.getElementById('go-title').style.color = 'var(--ally-blue)';
+            } else {
+                document.getElementById('go-title').innerText = "Ejetado!";
+                document.getElementById('go-title').style.color = 'var(--danger-red)';
+            }
+        }
+
+        function startGame() {
+            document.getElementById('start-screen').classList.add('hidden');
+            gameState.moral = 100;
+            gameState.score = 0;
+            gameState.isPlaying = true;
+            updateUI();
+            
+            if (!game) {
+                initPhaser();
+            } else {
+                game.scene.resume('MainScene');
+            }
+        }
+
+        function restartGame() {
+            document.getElementById('game-over-screen').classList.add('hidden');
+            gameState.moral = 100;
+            gameState.score = 0;
+            gameState.isPlaying = true;
+            updateUI();
+            
+            game.scene.stop('MainScene');
+            game.scene.start('MainScene');
+        }
+
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super('MainScene');
+            }
+
+            preload() {
+                this.mapWalls = [
+                    {x: 0, y: 0, w: 1600, h: 40},
+                    {x: 0, y: 1160, w: 1600, h: 40},
+                    {x: 0, y: 0, w: 40, h: 1200},
+                    {x: 1560, y: 0, w: 40, h: 1200},
+                    {x: 450, y: 40, w: 80, h: 350},
+                    {x: 1070, y: 40, w: 80, h: 350},
+                    {x: 40, y: 550, w: 300, h: 80},
+                    {x: 1260, y: 550, w: 300, h: 80},
+                    {x: 450, y: 810, w: 80, h: 350},
+                    {x: 1070, y: 810, w: 80, h: 350},
+                    {x: 680, y: 480, w: 240, h: 240}
+                ];
+
+                // FUNÇÃO PARA GERAR ASTRONAUTAS (Spritesheet Manual)
+                const makeAstronautFrames = (name, color, shadowColor) => {
+                    for (let frame = 0; frame < 3; frame++) {
+                        let g = this.make.graphics({ x: 0, y: 0, add: false });
+                        g.lineStyle(3, 0x111b21, 1);
+
+                        // Mochila
+                        g.fillStyle(shadowColor, 1);
+                        g.fillRoundedRect(4, 15, 12, 20, 4);
+                        g.strokeRoundedRect(4, 15, 12, 20, 4);
+
+                        // Pernas (Animação baseada no frame)
+                        g.fillStyle(color, 1);
+                        if (frame === 0) { // Parado
+                            g.fillRoundedRect(12, 30, 10, 16, 4); g.strokeRoundedRect(12, 30, 10, 16, 4);
+                            g.fillRoundedRect(24, 30, 10, 16, 4); g.strokeRoundedRect(24, 30, 10, 16, 4);
+                        } else if (frame === 1) { // Perna esquerda sobe
+                            g.fillRoundedRect(10, 30, 12, 12, 4); g.strokeRoundedRect(10, 30, 12, 12, 4);
+                            g.fillRoundedRect(24, 30, 10, 16, 4); g.strokeRoundedRect(24, 30, 10, 16, 4);
+                        } else if (frame === 2) { // Perna direita sobe
+                            g.fillRoundedRect(12, 30, 10, 16, 4); g.strokeRoundedRect(12, 30, 10, 16, 4);
+                            g.fillRoundedRect(26, 30, 12, 12, 4); g.strokeRoundedRect(26, 30, 12, 12, 4);
+                        }
+
+                        // Corpo
+                        g.fillStyle(color, 1);
+                        g.fillRoundedRect(10, 5, 26, 32, 12);
+                        g.strokeRoundedRect(10, 5, 26, 32, 12);
+
+                        // Visor (Borda escura para dar profundidade)
+                        g.fillStyle(0x4b616b, 1);
+                        g.fillRoundedRect(18, 12, 18, 14, 7);
+                        g.strokeRoundedRect(18, 12, 18, 14, 7);
+                        
+                        // Visor (Cor principal do vidro)
+                        g.fillStyle(0x9bd1e5, 1);
+                        g.fillRoundedRect(20, 14, 14, 10, 5);
+                        
+                        // Brilho do visor
+                        g.fillStyle(0xffffff, 0.8);
+                        g.fillRoundedRect(26, 16, 6, 3, 1.5);
+
+                        // Tamanho do frame = 42x50
+                        g.generateTexture(`${name}_${frame}`, 42, 50);
+                    }
+
+                    // Criação da Animação
+                    this.anims.create({
+                        key: `${name}_walk`,
+                        frames: [
+                            { key: `${name}_1` },
+                            { key: `${name}_0` },
+                            { key: `${name}_2` },
+                            { key: `${name}_0` }
+                        ],
+                        frameRate: 12,
+                        repeat: -1
+                    });
+
+                    this.anims.create({
+                        key: `${name}_idle`,
+                        frames: [{ key: `${name}_0` }],
+                        frameRate: 1
+                    });
+                };
+
+                // Gerando os 4 tipos de personagens
+                makeAstronautFrames('player', 0x58cc02, 0x3d9e00); // Verde
+                makeAstronautFrames('npc', 0xffc800, 0xc79d00);    // Amarelo
+                makeAstronautFrames('ally', 0x1cb0f6, 0x148bc2);   // Azul
+                makeAstronautFrames('enemy', 0xff4b4b, 0xc23434);  // Vermelho
+                
+                // Construção do Mapa
+                let bg = this.make.graphics({add: false});
+                
+                bg.fillStyle(0x05090c, 1); 
+                bg.fillRect(0, 0, 1600, 1200);
+                for(let i=0; i<400; i++) {
+                    bg.fillStyle(0xffffff, Phaser.Math.FloatBetween(0.1, 0.8));
+                    bg.fillCircle(Phaser.Math.Between(0, 1600), Phaser.Math.Between(0, 1200), Phaser.Math.FloatBetween(1, 2.5));
+                }
+
+                bg.fillStyle(0x3a4a5a, 1);
+                bg.fillRoundedRect(30, 30, 1540, 1140, 30);
+                
+                bg.fillStyle(0x324050, 1); bg.fillRect(40, 40, 410, 510);
+                bg.fillStyle(0x2a2035, 1); bg.fillRect(1150, 40, 410, 510);
+                bg.fillStyle(0x352020, 1); bg.fillRect(40, 630, 410, 530);
+                bg.fillStyle(0x203530, 1); bg.fillRect(1150, 630, 410, 530);
+
+                bg.lineStyle(2, 0x111b21, 0.4);
+                for(let x = 40; x < 1560; x += 80) { bg.moveTo(x, 40); bg.lineTo(x, 1160); bg.strokePath(); }
+                for(let y = 40; y < 1160; y += 80) { bg.moveTo(40, y); bg.lineTo(1560, y); bg.strokePath(); }
+
+                bg.lineStyle(10, 0xffc800, 0.8);
+                bg.strokeRect(660, 460, 280, 280);
+                bg.fillStyle(0x111b21, 0.8);
+                for(let i = 0; i < 280; i += 40) {
+                    bg.fillRect(660 + i, 455, 20, 10);
+                    bg.fillRect(660 + i, 735, 20, 10);
+                    bg.fillRect(655, 460 + i, 10, 20);
+                    bg.fillRect(935, 460 + i, 10, 20);
+                }
+
+                this.mapWalls.forEach(w => {
+                    bg.fillStyle(0x000000, 0.6); bg.fillRect(w.x + 8, w.y + 8, w.w, w.h);
+                    bg.fillStyle(0x1a2630, 1); bg.fillRect(w.x, w.y, w.w, w.h);
+                    bg.fillStyle(0x4a5b6c, 1); bg.fillRect(w.x, w.y, w.w, 10);
+                    bg.fillStyle(0x0a1015, 1); bg.fillRect(w.x, w.y + w.h - 10, w.w, 10);
+                });
+
+                bg.fillStyle(0x4a5b6c, 1); bg.fillCircle(240, 250, 70);
+                bg.fillStyle(0x1cb0f6, 0.4); bg.fillCircle(240, 250, 50);
+                
+                bg.fillStyle(0x111b21, 1); bg.fillRect(1300, 100, 200, 80);
+                bg.fillStyle(0x58cc02, 0.8); bg.fillRect(1310, 110, 80, 60); 
+                bg.fillStyle(0x1cb0f6, 0.8); bg.fillRect(1410, 110, 80, 60); 
+                
+                bg.fillStyle(0xffffff, 0.2);
+                bg.fillRect(1320, 850, 60, 180);
+                bg.fillRect(1260, 910, 180, 60);
+
+                bg.generateTexture('ship_bg', 1600, 1200);
+            }
+
+            create() {
+                this.physics.world.setBounds(0, 0, 1600, 1200);
+                this.add.image(800, 600, 'ship_bg');
+
+                this.wallsGroup = this.physics.add.staticGroup();
+                this.mapWalls.forEach(w => {
+                    let zone = this.add.zone(w.x + w.w/2, w.y + w.h/2, w.w, w.h);
+                    this.physics.add.existing(zone, true);
+                    this.wallsGroup.add(zone);
+                });
+
+                this.allies = this.physics.add.group();
+                this.enemies = this.physics.add.group();
+                this.npcs = this.physics.add.group();
+                this.texts = [];
+
+                // Jogador
+                this.player = this.physics.add.sprite(240, 450, 'player_0');
+                this.player.charType = 'player';
+                this.player.setCollideWorldBounds(true);
+                // Hitbox aumentada e melhor centralizada para evitar que atravessem (Raio 18)
+                this.player.body.setCircle(18, 3, 14);
+                
+                this.cameras.main.setBounds(0, 0, 1600, 1200);
+                this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+                this.cameras.main.setBackgroundColor('#05090c');
+
+                this.cursors = this.input.keyboard.createCursorKeys();
+                this.keys = this.input.keyboard.addKeys('W,A,S,D,SPACE');
+
+                for(let i=0; i<6; i++) this.spawnEntity('ally');
+                for(let i=0; i<4; i++) this.spawnEntity('enemy');
+                for(let i=0; i<4; i++) this.spawnNPC();
+
+                this.time.addEvent({ delay: 6000, callback: () => this.spawnEntity('enemy'), loop: true });
+                this.time.addEvent({ delay: 8000, callback: () => this.spawnEntity('ally'), loop: true });
+
+                this.physics.add.collider(this.player, this.wallsGroup);
+                this.physics.add.collider(this.allies, this.wallsGroup);
+                this.physics.add.collider(this.enemies, this.wallsGroup);
+                this.physics.add.collider(this.npcs, this.wallsGroup);
+
+                this.physics.add.collider(this.allies, this.allies);
+                this.physics.add.collider(this.enemies, this.enemies);
+                this.physics.add.collider(this.npcs, this.npcs);
+                this.physics.add.collider(this.allies, this.player);
+                this.physics.add.collider(this.enemies, this.player);
+                this.physics.add.collider(this.npcs, this.player);
+                this.physics.add.collider(this.allies, this.enemies);
+                this.physics.add.collider(this.allies, this.npcs);
+                this.physics.add.collider(this.enemies, this.npcs);
+            }
+
+            update(time, delta) {
+                if (!gameState.isPlaying) return;
+
+                this.handlePlayerMovement();
+                this.updateAnimation(this.player);
+                
+                this.handlePlayerAction();
+                this.updateEntities(delta);
+                this.updateTexts();
+                this.checkWinLossConditions();
+            }
+
+            // Gerenciador Universal de Animação
+            updateAnimation(sprite) {
+                if (!sprite || !sprite.active) return;
+                
+                let isMoving = Math.abs(sprite.body.velocity.x) > 5 || Math.abs(sprite.body.velocity.y) > 5;
+                
+                if (isMoving) {
+                    sprite.anims.play(sprite.charType + '_walk', true);
+                    // Espelha o sprite baseado na direção. A mochila fica sempre para trás.
+                    if (sprite.body.velocity.x < -5) sprite.setFlipX(true);
+                    else if (sprite.body.velocity.x > 5) sprite.setFlipX(false);
+                } else {
+                    sprite.anims.play(sprite.charType + '_idle', true);
+                }
+            }
+
+            handlePlayerMovement() {
+                const speed = 250;
+                let vx = 0;
+                let vy = 0;
+
+                if (this.cursors.left.isDown || this.keys.A.isDown) vx = -speed;
+                else if (this.cursors.right.isDown || this.keys.D.isDown) vx = speed;
+
+                if (this.cursors.up.isDown || this.keys.W.isDown) vy = -speed;
+                else if (this.cursors.down.isDown || this.keys.S.isDown) vy = speed;
+
+                if (vx !== 0 && vy !== 0) {
+                    vx *= 0.7071;
+                    vy *= 0.7071;
+                }
+
+                this.player.setVelocity(vx, vy);
+            }
+
+            handlePlayerAction() {
+                if (Phaser.Input.Keyboard.JustDown(this.keys.SPACE)) {
+                    let nearest = null;
+                    let minDist = 80;
+
+                    [...this.allies.getChildren(), ...this.enemies.getChildren()].forEach(entity => {
+                        let dist = Phaser.Math.Distance.BetweenPoints(this.player, entity);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            nearest = entity;
+                        }
+                    });
+
+                    if (nearest) {
+                        this.eliminateEntity(nearest);
+                        this.checkStealthDetection();
+                    } else {
+                        this.showFloatingText(this.player.x, this.player.y - 30, "Nada por perto", '#ffffff');
+                    }
+                }
+            }
+
+            eliminateEntity(entity) {
+                const isEnemy = entity.charType === 'enemy';
+                
+                this.tweens.add({
+                    targets: entity,
+                    scale: 0,
+                    duration: 200,
+                    onComplete: () => {
+                        entity.label.destroy();
+                        if(entity.attackBar) entity.attackBar.clear();
+                        entity.destroy();
+                    }
+                });
+
+                if (isEnemy) {
+                    gameState.score += 100;
+                    gameState.moral = Math.min(100, gameState.moral + 5);
+                    this.showFloatingText(entity.x, entity.y, "+100 Acerto!", '#58cc02');
+                } else {
+                    gameState.moral -= 30;
+                    this.showFloatingText(entity.x, entity.y, "-30 Palavra Certa!", '#ff4b4b');
+                    this.cameras.main.shake(200, 0.01);
+                }
+                
+                updateUI();
+            }
+
+            checkStealthDetection() {
+                let detected = false;
+                const visionRadius = 250;
+
+                this.npcs.getChildren().forEach(npc => {
+                    let dist = Phaser.Math.Distance.BetweenPoints(this.player, npc);
+                    if (dist < visionRadius) {
+                        detected = true;
+                        this.showFloatingText(npc.x, npc.y - 50, "!!", '#ff4b4b', 30);
+                        npc.setVelocity(0,0);
+                        this.time.delayedCall(1000, () => this.setRandomNPCVelocity(npc));
+                    }
+                });
+
+                if (detected) {
+                    gameState.moral -= 40;
+                    this.showFloatingText(this.player.x, this.player.y - 60, "ALGUÉM VIU!", '#ff4b4b');
+                    this.cameras.main.shake(300, 0.02);
+                    updateUI();
+                }
+            }
+
+            updateEntities(delta) {
+                this.npcs.getChildren().forEach(npc => {
+                    this.updateAnimation(npc);
+
+                    if (Math.abs(npc.body.velocity.x) < 5 && Math.abs(npc.body.velocity.y) < 5) {
+                        if (!npc.stuckTimer) npc.stuckTimer = 0;
+                        npc.stuckTimer += delta;
+                        if (npc.stuckTimer > 500) {
+                            this.setRandomNPCVelocity(npc);
+                            npc.stuckTimer = 0;
+                        }
+                    } else {
+                        npc.stuckTimer = 0;
+                    }
+                    npc.visionGfx.setPosition(npc.x, npc.y);
+                });
+
+                this.enemies.getChildren().forEach(enemy => {
+                    this.updateAnimation(enemy);
+
+                    let nearestAlly = this.findNearest(enemy, this.allies.getChildren());
+                    
+                    if (nearestAlly) {
+                        let dist = Phaser.Math.Distance.BetweenPoints(enemy, nearestAlly);
+                        
+                        if (dist > 60) {
+                            // Sistema melhorado de "Anti-Trava"
+                            if (enemy.escapeTimer > 0) {
+                                enemy.escapeTimer -= delta; // Continua deslizando
+                            } else {
+                                this.physics.moveToObject(enemy, nearestAlly, 80);
+
+                                // Se a velocidade cair muito, significa que bateu/ficou preso
+                                if (Math.abs(enemy.body.velocity.x) < 15 && Math.abs(enemy.body.velocity.y) < 15) {
+                                    if (!enemy.stuckTimer) enemy.stuckTimer = 0;
+                                    enemy.stuckTimer += delta;
+                                    if (enemy.stuckTimer > 500) {
+                                        enemy.setVelocity(Phaser.Math.Between(-120, 120), Phaser.Math.Between(-120, 120));
+                                        enemy.escapeTimer = 600; // Desliza aleatoriamente por 600ms antes de voltar a seguir
+                                        enemy.stuckTimer = 0;
+                                    }
+                                } else {
+                                    enemy.stuckTimer = 0;
+                                }
+                            }
+                            
+                            enemy.attackTimer = 0;
+                            if(enemy.attackBar) enemy.attackBar.clear();
+
+                        } else {
+                            enemy.setVelocity(0, 0);
+                            enemy.attackTimer += delta;
+                            
+                            if(!enemy.attackBar) enemy.attackBar = this.add.graphics();
+                            enemy.attackBar.clear();
+                            enemy.attackBar.fillStyle(0xff4b4b, 1);
+                            enemy.attackBar.fillRect(enemy.x - 20, enemy.y + 30, 40 * (enemy.attackTimer / 3000), 5);
+
+                            if (enemy.attackTimer >= 3000) {
+                                this.showFloatingText(nearestAlly.x, nearestAlly.y, "Corrompida!", '#ff4b4b');
+                                gameState.moral -= 10;
+                                nearestAlly.label.destroy();
+                                nearestAlly.destroy();
+                                enemy.attackTimer = 0;
+                                enemy.attackBar.clear();
+                                updateUI();
+                            }
+                        }
+                    } else {
+                        if (Phaser.Math.Between(0, 100) > 98) {
+                            enemy.setVelocity(Phaser.Math.Between(-50, 50), Phaser.Math.Between(-50, 50));
+                        }
+                    }
+                });
+
+                this.allies.getChildren().forEach(ally => {
+                    this.updateAnimation(ally);
+
+                    if (Phaser.Math.Between(0, 100) > 98) {
+                        ally.setVelocity(Phaser.Math.Between(-40, 40), Phaser.Math.Between(-40, 40));
+                    }
+                });
+            }
+
+            findNearest(source, targets) {
+                let nearest = null;
+                let minDist = Infinity;
+                targets.forEach(target => {
+                    let dist = Phaser.Math.Distance.BetweenPoints(source, target);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        nearest = target;
+                    }
+                });
+                return nearest;
+            }
+
+            setRandomNPCVelocity(npc) {
+                npc.setVelocity(Phaser.Math.Between(-90, 90), Phaser.Math.Between(-90, 90));
+                this.time.delayedCall(Phaser.Math.Between(2000, 4000), () => {
+                    if (npc.active) this.setRandomNPCVelocity(npc);
+                });
+            }
+
+            getValidSpawnPoint(minDist = 120) {
+                let valid = false;
+                let attempts = 0;
+                let x = 800, y = 600;
+
+                while(!valid && attempts < 100) {
+                    x = Phaser.Math.Between(80, 1520);
+                    y = Phaser.Math.Between(80, 1120);
+                    valid = true;
+
+                    for (let w of this.mapWalls) {
+                        if (x > w.x - 30 && x < w.x + w.w + 30 &&
+                            y > w.y - 30 && y < w.y + w.h + 30) {
+                            valid = false;
+                            break;
+                        }
+                    }
+
+                    if (valid) {
+                        let allGroups = [];
+                        if (this.allies) allGroups.push(...this.allies.getChildren());
+                        if (this.enemies) allGroups.push(...this.enemies.getChildren());
+                        if (this.npcs) allGroups.push(...this.npcs.getChildren());
+                        if (this.player) allGroups.push(this.player);
+
+                        for (let entity of allGroups) {
+                            if (Phaser.Math.Distance.BetweenPoints({x, y}, entity) < minDist) {
+                                valid = false;
+                                break;
+                            }
+                        }
+                    }
+                    attempts++;
+                }
+                return { x, y };
+            }
+
+            spawnEntity(type) {
+                let pos = this.getValidSpawnPoint(120);
+                
+                let wordList = type === 'ally' ? PALAVRAS_CORRETAS : PALAVRAS_ERRADAS;
+                let word = Phaser.Utils.Array.GetRandom(wordList);
+                
+                let sprite = this.physics.add.sprite(pos.x, pos.y, `${type}_0`);
+                sprite.charType = type;
+                sprite.setCollideWorldBounds(true);
+                // Reduzir o Bounce para não "quicarem" através dos outros
+                sprite.setBounce(0.1);
+
+                // Hitbox aumentada e melhor centralizada
+                sprite.body.setCircle(18, 3, 14);
+                
+                let textColor = type === 'ally' ? '#1cb0f6' : '#ff4b4b';
+                let label = this.add.text(pos.x, pos.y - 45, word, {
+                    fontFamily: 'Nunito',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    color: textColor,
+                    stroke: '#111b21',
+                    strokeThickness: 4
+                }).setOrigin(0.5);
+
+                sprite.label = label;
+                sprite.attackTimer = 0;
+
+                if (type === 'ally') this.allies.add(sprite);
+                else this.enemies.add(sprite);
+
+                this.texts.push({ sprite: sprite, label: label });
+
+                sprite.setScale(0);
+                this.tweens.add({ targets: sprite, scale: 1, duration: 300, ease: 'Back.out' });
+            }
+
+            spawnNPC() {
+                let pos = this.getValidSpawnPoint(180);
+                
+                let npc = this.physics.add.sprite(pos.x, pos.y, 'npc_0');
+                npc.charType = 'npc';
+                npc.setCollideWorldBounds(true);
+                // Reduzir o Bounce
+                npc.setBounce(0.1);
+                // Hitbox aumentada
+                npc.body.setCircle(18, 3, 14);
+                
+                let vision = this.add.graphics();
+                vision.fillStyle(0xffc800, 0.05);
+                vision.fillCircle(0, 0, 250);
+                npc.visionGfx = vision;
+
+                this.npcs.add(npc);
+                this.setRandomNPCVelocity(npc);
+            }
+
+            updateTexts() {
+                this.texts = this.texts.filter(item => {
+                    if (item.sprite.active) {
+                        item.label.setPosition(item.sprite.x, item.sprite.y - 45);
+                        return true;
+                    }
+                    return false;
+                });
+            }
+
+            showFloatingText(x, y, message, color, size = 20) {
+                let txt = this.add.text(x, y, message, {
+                    fontFamily: 'Nunito',
+                    fontSize: `${size}px`,
+                    fontWeight: 'bold',
+                    color: color,
+                    stroke: '#111b21',
+                    strokeThickness: 5
+                }).setOrigin(0.5);
+
+                this.tweens.add({
+                    targets: txt,
+                    y: y - 50,
+                    alpha: 0,
+                    duration: 1500,
+                    ease: 'Power2',
+                    onComplete: () => txt.destroy()
+                });
+            }
+
+            checkWinLossConditions() {
+                if (gameState.moral <= 0) {
+                    triggerGameOver("Sua moral chegou a zero. A tripulação percebeu sua farsa e te ejetou!");
+                } else if (this.allies.getLength() === 0) {
+                    triggerGameOver("Todas as palavras corretas foram corrompidas. O conhecimento foi perdido!");
+                }
+            }
+        }
+
+        function initPhaser() {
+            const config = {
+                type: Phaser.AUTO,
+                width: 800,
+                height: 600,
+                parent: 'phaser-container',
+                transparent: true,
+                physics: {
+                    default: 'arcade',
+                    arcade: {
+                        gravity: { y: 0 },
+                        debug: false
+                    }
+                },
+                scene: [MainScene]
+            };
+
+            game = new Phaser.Game(config);
+        }
+    </script>
+</body>
+</html>

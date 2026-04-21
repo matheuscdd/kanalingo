@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu Invaders</title>
+    
+    <!-- Phaser 3 Framework -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    
+    <!-- Font Awesome for UI Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts for Retro Pixel Style -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050510;
+            --neon-green: #00ffcc;
+            --neon-red: #ff0055;
+            --neon-yellow: #ffee00;
+            --text-color: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Press Start 2P', cursive;
+            overflow: hidden;
+            color: var(--text-color);
+        }
+
+        #game-wrapper {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+            border: 2px solid #333;
+        }
+
+        /* UI Overlays */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Let clicks pass through to canvas when UI is hidden */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .screen {
+            background: rgba(5, 5, 16, 0.9);
+            padding: 40px;
+            border: 4px solid var(--neon-green);
+            border-radius: 8px;
+            text-align: center;
+            pointer-events: auto; /* Enable clicks on the active screen */
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.4);
+            max-width: 80%;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 24px;
+            line-height: 1.5;
+            color: var(--neon-green);
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        h1.red-title {
+            color: var(--neon-red);
+            border-color: var(--neon-red);
+        }
+
+        h1.yellow-title {
+            color: var(--neon-yellow);
+        }
+
+        p {
+            font-size: 12px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        button {
+            background-color: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            padding: 15px 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
+        button i {
+            margin-right: 8px;
+        }
+
+        /* Specific screen styles */
+        #game-over-screen { border-color: var(--neon-red); }
+        #game-over-screen button { color: var(--neon-red); border-color: var(--neon-red); }
+        #game-over-screen button:hover { background-color: var(--neon-red); color: #fff; box-shadow: 0 0 15px var(--neon-red); }
+
+        #victory-screen { border-color: var(--neon-yellow); }
+        #victory-screen button { color: var(--neon-yellow); border-color: var(--neon-yellow); }
+        #victory-screen button:hover { background-color: var(--neon-yellow); color: #000; box-shadow: 0 0 15px var(--neon-yellow); }
+
+        /* HUD */
+        #hud {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 5;
+            text-shadow: 2px 2px 0px #000;
+        }
+        
+        #question-display {
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            color: var(--neon-yellow);
+            pointer-events: none;
+            z-index: 5;
+            text-shadow: 2px 2px 0px #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-wrapper">
+        <!-- Heads Up Display -->
+        <div id="hud" class="hidden">
+            <div id="score-text">SCORE: 0</div>
+            <div id="level-text">LEVEL: 1/3</div>
+        </div>
+        <div id="question-display" class="hidden"></div>
+
+        <!-- Phaser Canvas Container -->
+        <div id="phaser-game"></div>
+
+        <!-- HTML UI Overlays -->
+        <div id="ui-layer">
+            
+            <!-- Start Screen -->
+            <div id="start-screen" class="screen">
+                <h1>EDU INVADERS</h1>
+                <p style="color: #ccc;">A retro space shooter.</p>
+                <p>
+                    <span style="color: var(--neon-red)">SHOOT</span> the <span style="color: var(--neon-red)">INCORRECT</span> answers.<br><br>
+                    Keep the <span style="color: var(--neon-green)">CORRECT</span> answer alive!
+                </p>
+                <p style="font-size: 10px; color: #888;">Controls: Arrow Keys to move, SPACE to shoot.</p>
+                <button onclick="startGame()"><i class="fas fa-play"></i> Start Mission</button>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div id="game-over-screen" class="screen hidden">
+                <h1 class="red-title">MISSION FAILED</h1>
+                <p id="game-over-msg">You destroyed the right answer!</p>
+                <button onclick="restartGame()"><i class="fas fa-redo"></i> Try Again</button>
+            </div>
+
+            <!-- Round Clear Screen -->
+            <div id="round-clear-screen" class="screen hidden">
+                <h1>WAVE CLEARED!</h1>
+                <p>Correct answer protected.</p>
+                <button onclick="nextRound()"><i class="fas fa-forward"></i> Next Wave</button>
+            </div>
+
+            <!-- Victory Screen -->
+            <div id="victory-screen" class="screen hidden">
+                <h1 class="yellow-title">GALAXY SAVED!</h1>
+                <p>You have mastered all questions!</p>
+                <p id="final-score">Final Score: 0</p>
+                <button onclick="restartGame()"><i class="fas fa-star"></i> Play Again</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- Web Audio API Synthesizer (No external assets needed) ---
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx;
+
+        function initAudio() {
+            if (!audioCtx) audioCtx = new AudioContext();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+        }
+
+        function playShootSound() {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime); // low volume
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        function playExplosionSound() {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(100, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(10, audioCtx.currentTime + 0.3);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+
+        function playErrorSound() {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(100, audioCtx.currentTime + 0.15);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.5);
+        }
+
+        // --- Game Data ---
+        const questionsData = [
+            {
+                q: "Which number is prime?",
+                correct: "7",
+                incorrect: ["4", "6", "8", "9"]
+            },
+            {
+                q: "What is the capital of France?",
+                correct: "Paris",
+                incorrect: ["London", "Berlin", "Madrid", "Rome"]
+            },
+            {
+                q: "5 + 7 = ?",
+                correct: "12",
+                incorrect: ["10", "11", "13", "14"]
+            }
+        ];
+
+        // --- Global State ---
+        let gameInstance;
+        let currentLevel = 0;
+        let score = 0;
+        let isGameActive = false;
+
+        // --- Phaser Game Scene ---
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super('MainScene');
+                this.lastFired = 0;
+                this.enemyDirection = 1;
+                this.enemySpeed = 40;
+                this.enemyDropDistance = 30;
+                this.enemyYOffset = 0;
+            }
+
+            preload() {
+                // Generate simple pixel art textures using Phaser Graphics
+                const g = this.add.graphics();
+
+                // Player Ship (Green Triangle/Arrow)
+                g.fillStyle(0x00ffcc, 1);
+                g.moveTo(16, 0);
+                g.lineTo(32, 32);
+                g.lineTo(16, 24);
+                g.lineTo(0, 32);
+                g.closePath();
+                g.fillPath();
+                g.generateTexture('ship', 32, 32);
+                g.clear();
+
+                // Enemy Invader (Purple pixel block)
+                g.fillStyle(0xff0055, 1);
+                g.fillRect(4, 0, 24, 8);
+                g.fillRect(0, 8, 32, 16);
+                g.fillRect(4, 24, 8, 8);
+                g.fillRect(20, 24, 8, 8);
+                g.generateTexture('enemy', 32, 32);
+                g.clear();
+
+                // Bullet
+                g.fillStyle(0xffee00, 1);
+                g.fillRect(0, 0, 4, 16);
+                g.generateTexture('bullet', 4, 16);
+                g.clear();
+
+                // Background Star (tiny dot)
+                g.fillStyle(0xffffff, 0.8);
+                g.fillRect(0, 0, 2, 2);
+                g.generateTexture('star', 2, 2);
+                g.destroy();
+            }
+
+            create() {
+                // Starfield background
+                this.stars = this.add.group();
+                for (let i = 0; i < 100; i++) {
+                    let star = this.add.image(Phaser.Math.Between(0, 800), Phaser.Math.Between(0, 600), 'star');
+                    star.alpha = Phaser.Math.FloatBetween(0.2, 1);
+                    this.stars.add(star);
+                }
+
+                // Player setup
+                this.player = this.physics.add.sprite(400, 540, 'ship');
+                this.player.setCollideWorldBounds(true);
+
+                // Groups
+                this.bullets = this.physics.add.group();
+                this.enemies = this.physics.add.group();
+                
+                // Array to hold the text labels so we can sync them to enemy positions
+                this.enemyLabels = [];
+
+                // Input setup
+                this.cursors = this.input.keyboard.createCursorKeys();
+
+                // Collisions
+                this.physics.add.overlap(this.bullets, this.enemies, this.hitEnemy, null, this);
+                this.physics.add.overlap(this.player, this.enemies, this.enemyHitPlayer, null, this);
+
+                // Start Level if game is active
+                if (isGameActive) {
+                    this.startLevel();
+                }
+            }
+
+            startLevel() {
+                this.enemies.clear(true, true);
+                this.bullets.clear(true, true);
+                this.enemyLabels.forEach(label => label.destroy());
+                this.enemyLabels = [];
+                
+                this.enemyDirection = 1;
+                // Increase speed slightly each level
+                this.enemySpeed = 40 + (currentLevel * 10); 
+                
+                const qData = questionsData[currentLevel];
+                document.getElementById('question-display').innerText = qData.q;
+                
+                // Prepare answers array
+                let answers = [{ text: qData.correct, isCorrect: true }];
+                qData.incorrect.forEach(inc => {
+                    answers.push({ text: inc, isCorrect: false });
+                });
+
+                // Shuffle answers
+                Phaser.Utils.Array.Shuffle(answers);
+
+                // Spawn enemies
+                const startX = 100;
+                const startY = 100;
+                const spacingX = 600 / (answers.length - 1);
+
+                answers.forEach((ans, index) => {
+                    let xPos = startX + (index * spacingX);
+                    let enemy = this.enemies.create(xPos, startY, 'enemy');
+                    
+                    // Attach data to the sprite
+                    enemy.setData('isCorrect', ans.isCorrect);
+
+                    // Create text label above enemy
+                    let textObj = this.add.text(xPos, startY - 25, ans.text, {
+                        fontFamily: '"Press Start 2P"',
+                        fontSize: '12px',
+                        color: '#ffffff',
+                        align: 'center'
+                    }).setOrigin(0.5);
+
+                    enemy.setData('textObj', textObj);
+                    this.enemyLabels.push(textObj);
+                });
+            }
+
+            update(time, delta) {
+                if (!isGameActive) return;
+
+                // Scroll stars
+                this.stars.getChildren().forEach(star => {
+                    star.y += 0.5;
+                    if (star.y > 600) star.y = 0;
+                });
+
+                // Player Movement
+                if (this.cursors.left.isDown) {
+                    this.player.setVelocityX(-300);
+                } else if (this.cursors.right.isDown) {
+                    this.player.setVelocityX(300);
+                } else {
+                    this.player.setVelocityX(0);
+                }
+
+                // Player Shooting
+                if (this.cursors.space.isDown && time > this.lastFired) {
+                    let bullet = this.bullets.create(this.player.x, this.player.y - 20, 'bullet');
+                    bullet.setVelocityY(-400);
+                    this.lastFired = time + 400; // Cooldown
+                    playShootSound();
+                }
+
+                // Destroy out of bounds bullets
+                this.bullets.getChildren().forEach(bullet => {
+                    if (bullet.y < 0) {
+                        bullet.destroy();
+                    }
+                });
+
+                // Enemy Movement Logic
+                let moveDown = false;
+                let activeEnemies = this.enemies.getChildren();
+
+                activeEnemies.forEach(enemy => {
+                    // Sync text position
+                    let txt = enemy.getData('textObj');
+                    if (txt) {
+                        txt.setPosition(enemy.x, enemy.y - 25);
+                    }
+
+                    // Check boundaries
+                    if (enemy.x > 750 || enemy.x < 50) {
+                        moveDown = true;
+                    }
+                });
+
+                if (moveDown) {
+                    this.enemyDirection *= -1;
+                    activeEnemies.forEach(enemy => {
+                        enemy.y += this.enemyDropDistance;
+                        // Nudge slightly to prevent getting stuck on edge
+                        enemy.x += this.enemyDirection * 5; 
+                    });
+                } else {
+                    activeEnemies.forEach(enemy => {
+                        enemy.x += (this.enemySpeed * this.enemyDirection * delta) / 1000;
+                    });
+                }
+
+                // Check if enemies reached the bottom
+                activeEnemies.forEach(enemy => {
+                    if (enemy.y > this.player.y - 20) {
+                        this.triggerGameOver("The invaders reached you!");
+                    }
+                });
+            }
+
+            hitEnemy(bullet, enemy) {
+                bullet.destroy();
+                
+                const isCorrect = enemy.getData('isCorrect');
+                const textObj = enemy.getData('textObj');
+                
+                // Create explosion effect using Phaser 3.60+ API
+                const emitter = this.add.particles(enemy.x, enemy.y, 'star', {
+                    speed: { min: -100, max: 100 },
+                    angle: { min: 0, max: 360 },
+                    scale: { start: 1, end: 0 },
+                    lifespan: 500,
+                    tint: isCorrect ? 0x00ffcc : 0xff0055,
+                    emitting: false
+                });
+
+                emitter.explode(10);
+
+                // Clean up the emitter instance after the particles finish their lifespan
+                this.time.delayedCall(1000, () => { emitter.destroy(); });
+
+                // Cleanup visual objects
+                textObj.destroy();
+                enemy.destroy();
+
+                if (isCorrect) {
+                    // Game Over: Player shot the correct answer
+                    playErrorSound();
+                    this.triggerGameOver("You destroyed the CORRECT answer!");
+                } else {
+                    // Success: Player shot incorrect answer
+                    playExplosionSound();
+                    updateScore(100);
+                    this.checkWinCondition();
+                }
+            }
+
+            enemyHitPlayer(player, enemy) {
+                playErrorSound();
+                this.triggerGameOver("Ship destroyed by collision!");
+            }
+
+            checkWinCondition() {
+                const remainingEnemies = this.enemies.getChildren();
+                
+                // If only 1 enemy is left, and it's the correct one, the player wins the round
+                if (remainingEnemies.length === 1 && remainingEnemies[0].getData('isCorrect')) {
+                    isGameActive = false;
+                    
+                    // Stop enemies from moving
+                    this.enemies.setVelocityX(0);
+                    
+                    setTimeout(() => {
+                        showScreen('round-clear-screen');
+                    }, 1000);
+                }
+            }
+
+            triggerGameOver(reason) {
+                isGameActive = false;
+                this.physics.pause();
+                this.player.setTint(0xff0000);
+                document.getElementById('game-over-msg').innerText = reason;
+                showScreen('game-over-screen');
+            }
+        }
+
+        // --- Phaser Configuration ---
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            parent: 'phaser-game',
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 0 },
+                    debug: false
+                }
+            },
+            scene: MainScene
+        };
+
+        // --- UI & Game Flow Functions ---
+
+        function initGame() {
+            gameInstance = new Phaser.Game(config);
+        }
+
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+            
+            // Show requested screen
+            if (screenId) {
+                document.getElementById('ui-layer').classList.remove('hidden');
+                document.getElementById(screenId).classList.remove('hidden');
+            } else {
+                // If no screenId, hide the whole UI layer
+                document.getElementById('ui-layer').classList.add('hidden');
+            }
+        }
+
+        function updateScore(points) {
+            score += points;
+            document.getElementById('score-text').innerText = `SCORE: ${score}`;
+        }
+
+        function updateLevelText() {
+            document.getElementById('level-text').innerText = `LEVEL: ${currentLevel + 1}/${questionsData.length}`;
+        }
+
+        function startGame() {
+            initAudio(); // Requires user interaction first
+            score = 0;
+            currentLevel = 0;
+            isGameActive = true;
+            
+            updateScore(0);
+            updateLevelText();
+            
+            document.getElementById('hud').classList.remove('hidden');
+            document.getElementById('question-display').classList.remove('hidden');
+            
+            showScreen(null); // Hide UI layer
+
+            if (!gameInstance) {
+                initGame();
+            } else {
+                let scene = gameInstance.scene.keys.MainScene;
+                scene.scene.restart();
+                // We need to wait for scene to restart before starting level logic
+                scene.events.once('create', () => {
+                    scene.startLevel();
+                });
+            }
+        }
+
+        function nextRound() {
+            currentLevel++;
+            if (currentLevel >= questionsData.length) {
+                // Victory
+                document.getElementById('final-score').innerText = `Final Score: ${score + 500}`; // Bonus points for finishing
+                document.getElementById('hud').classList.add('hidden');
+                document.getElementById('question-display').classList.add('hidden');
+                showScreen('victory-screen');
+            } else {
+                // Next Level
+                isGameActive = true;
+                updateLevelText();
+                showScreen(null);
+                gameInstance.scene.keys.MainScene.startLevel();
+            }
+        }
+
+        function restartGame() {
+            startGame();
+        }
+
+        // Wait for page to load completely to ensure fonts load
+        window.onload = () => {
+            // Display initial start screen
+            showScreen('start-screen');
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Soccer Arcade</title>
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    
+    <style>
+        /* =========================================
+           CSS PURO - ESTILO GAMIFICADO (FUTEBOL)
+           ========================================= */
+        :root {
+            --bg-color: #1cb0f6;
+            --field-green: #58cc02;
+            --field-dark: #46a302;
+            --white: #ffffff;
+            --text-dark: #3c3c3c;
+            --danger: #ff4b4b;
+            --warning: #ffc800;
+            --stadium-blue: #003366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            color: var(--text-dark);
+        }
+
+        .game-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 32px;
+            box-shadow: 0 12px 0 rgba(0,0,0,0.1);
+            width: 95%;
+            max-width: 1040px;
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            padding: 15px 30px;
+            border-radius: 16px;
+            border-bottom: 5px solid #e5e5e5;
+        }
+
+        .score-board {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--stadium-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #phaser-container {
+            width: 100%;
+            aspect-ratio: 1000 / 550;
+            height: auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 0 var(--field-dark);
+            border: 6px solid var(--white);
+            position: relative;
+        }
+
+        /* Força o Canvas a preencher o container responsivo */
+        #phaser-container canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Modal Temático: VAR */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 20, 40, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            width: 90%;
+            max-width: 650px;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            border: 8px solid #333;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+                text-align: center;
+            }
+            .score-board { font-size: 20px; }
+            .level-board { font-size: 14px; }
+            .modal-question { font-size: 18px; margin-bottom: 20px; }
+            .btn-option { font-size: 14px; padding: 15px; }
+            .options-grid { gap: 10px; }
+            .game-wrapper { padding: 10px; }
+        }
+
+        .modal-content::before {
+            content: 'VAR - REVISÃO EM ANDAMENTO';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--danger);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 10px;
+            font-weight: 900;
+            font-size: 14px;
+            letter-spacing: 2px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0.7; } }
+
+        .penalty-card {
+            width: 60px;
+            height: 90px;
+            background: var(--danger);
+            margin: 0 auto 20px;
+            border-radius: 8px;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: white;
+            font-size: 40px;
+            transform: rotate(-10deg);
+        }
+
+        .modal-question {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #00ffcc;
+            text-shadow: 0 0 10px rgba(0,255,204,0.3);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-option {
+            background: #2a2a2a;
+            border: 3px solid #444;
+            border-radius: 16px;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 800;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-option:hover {
+            background: #333;
+            border-color: #00ffcc;
+            transform: scale(1.02);
+        }
+
+        #toast {
+            position: fixed;
+            top: 20px;
+            background: var(--field-green);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 20px;
+            transform: translateY(-100px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 2000;
+        }
+
+        #toast.show { transform: translateY(0); }
+        #toast.error { background: var(--danger); }
+    </style>
+</head>
+<body>
+
+    <div id="toast">GOLAÇO! ⚽</div>
+
+    <div class="game-wrapper">
+        <header>
+            <div class="score-board"> 🏆 PLACAR: <span id="ui-score">0</span> </div>
+            <div class="level-board"> Mova-se com WASD | Chute com ESPAÇO </div>
+        </header>
+
+        <div id="phaser-container"></div>
+    </div>
+
+    <!-- Modal de VAR -->
+    <div class="modal-overlay" id="penalty-modal">
+        <div class="modal-content">
+            <div class="penalty-card" id="penalty-card-visual">!</div>
+            <p class="modal-question" id="penalty-question">DECISÃO DO VAR EM ANÁLISE...</p>
+            <div class="options-grid" id="penalty-options"></div>
+        </div>
+    </div>
+
+    <script>
+        const mainQuestions = [
+            { 
+                q: "Qual é a capital da França?", 
+                options: [
+                    "Paris é a capital e a cidade mais populosa da França, bem como a capital da região administrativa de Île-de-France. Paris é um dos principais centros de economia, cultura, arte, moda e gastronomia da Europa e do mundo. Com uma arquitetura deslumbrante que inclui a Torre Eiffel e o Museu do Louvre, a cidade atrai milhões de turistas todos os anos em busca de beleza inigualável, cimentando o seu lugar como a famosa 'Cidade das Luzes'. É o destino romântico por excelência para casais do mundo todo que procuram cultura.", 
+                    "Roma é a capital da Itália e a cidade mais populosa do país. Situada na porção centro-ocidental da península itálica, é atravessada pelo histórico rio Tibre. A sua história abrange mais de dois mil e quinhentos anos. Roma foi o centro do grandioso Império Romano, que dominou a Europa e o Norte de África durante séculos. A cidade é mundialmente famosa por seus monumentos históricos incrivelmente preservados, como o Coliseu e o Panteão. É um museu a céu aberto fascinante."
+                ], correct: 0 
+            },
+            { 
+                q: "A Terra orbita qual corpo celeste?", 
+                options: [
+                    "A Lua é o único satélite natural da Terra e o quinto maior de todo o Sistema Solar. Acredita-se que a Lua tenha se formado há cerca de 4,51 bilhões de anos, não muito tempo após a própria Terra. A explicação científica mais aceita é que ela se formou a partir dos detritos que sobraram de um impacto colossal entre a Terra e um antigo corpo rochoso. A Lua influencia diretamente as nossas marés e possui uma rotação sincronizada com a Terra, mostrando sempre a mesma face para nós em todas as noites do ano.", 
+                    "O Sol é a estrela central do nosso Sistema Solar. Todos os outros corpos celestes do sistema, como planetas e asteroides, giram ao seu redor devido à sua imensa atração gravitacional. Responsável por aproximadamente 99,86% da massa de todo o Sistema Solar, o Sol é a fonte primária para toda a vida no nosso planeta. A sua luz demora aproximadamente 8 minutos e 20 segundos para chegar até nós, viajando pelo vácuo do espaço a velocidades astronómicas e mantendo o planeta aquecido."
+                ], correct: 1 
+            }
+        ];
+
+        const penaltyQuestions = [
+            { q: "Quem detém o recorde de mais Bolas de Ouro?", options: ["Messi", "Cristiano Ronaldo", "Pelé", "Zidane"], correct: 0 },
+            { q: "Qual país venceu a primeira Copa do Mundo em 1930?", options: ["Brasil", "Uruguai", "Itália", "Argentina"], correct: 1 },
+            { q: "Quantos minutos dura uma partida oficial sem acréscimos?", options: ["45", "90", "100", "80"], correct: 1 }
+        ];
+
+        let gameScore = 0;
+        let currentMainQuestion = null;
+
+        const uiScore = document.getElementById('ui-score');
+        const modal = document.getElementById('penalty-modal');
+        const penaltyQuestionText = document.getElementById('penalty-question');
+        const penaltyOptionsContainer = document.getElementById('penalty-options');
+        const penaltyCardVisual = document.getElementById('penalty-card-visual');
+        const toast = document.getElementById('toast');
+
+        function showToast(message, isError = false) {
+            toast.textContent = message;
+            toast.className = isError ? 'error show' : 'show';
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        function updateScore(points) {
+            gameScore += points;
+            if (gameScore < 0) gameScore = 0;
+            uiScore.textContent = gameScore;
+        }
+
+        function loadMainQuestion() {
+            currentMainQuestion = mainQuestions[Math.floor(Math.random() * mainQuestions.length)];
+            if (window.gameScene) window.gameScene.updateGoalTexts(currentMainQuestion.options[0], currentMainQuestion.options[1]);
+        }
+
+        function triggerPenaltyModal(type) {
+            if (window.gameScene) window.gameScene.scene.pause();
+            if (type === "FORA") {
+                penaltyCardVisual.style.background = "#ffc800"; 
+                penaltyCardVisual.textContent = "⚠";
+            } else {
+                penaltyCardVisual.style.background = "#ff4b4b"; 
+                penaltyCardVisual.textContent = "🟥";
+            }
+            const q = penaltyQuestions[Math.floor(Math.random() * penaltyQuestions.length)];
+            penaltyQuestionText.textContent = q.q;
+            penaltyOptionsContainer.innerHTML = '';
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-option';
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    modal.classList.remove('active');
+                    if (index === q.correct) showToast("DECISÃO REVERTIDA!");
+                    else { showToast("PENALIDADE CONFIRMADA!", true); updateScore(-1); }
+                    if (window.gameScene) { window.gameScene.resetPositions(); window.gameScene.scene.resume(); }
+                };
+                penaltyOptionsContainer.appendChild(btn);
+            });
+            modal.classList.add('active');
+        }
+
+        loadMainQuestion();
+
+        const FIELD_W = 3000;
+        const FIELD_H = 1500;
+        const AREA_W = 850;   // Área de texto grande
+        const GOAL_PHYS_W = 100; // Gol físico dentro da área
+        const GOAL_PHYS_H = 300;
+
+        class GameScene extends Phaser.Scene {
+            constructor() { super('GameScene'); }
+
+            preload() {
+                let g = this.make.graphics({x: 0, y: 0, add: false});
+                // Player
+                g.lineStyle(2, 0x004080).fillStyle(0x1cb0f6).fillCircle(20, 20, 18).strokeCircle(20, 20, 18);
+                g.generateTexture('playerChar', 40, 40); g.clear();
+                // Ball
+                g.lineStyle(2, 0x000000).fillStyle(0xffffff).fillCircle(16, 16, 14).strokeCircle(16, 16, 14);
+                g.fillStyle(0x000000); g.beginPath();
+                for (let i = 0; i < 5; i++) {
+                    let a = -Math.PI/2 + (i*2*Math.PI)/5;
+                    g.lineTo(16 + Math.cos(a)*6, 16 + Math.sin(a)*6);
+                }
+                g.closePath(); g.fill();
+                g.generateTexture('ball', 32, 32); g.clear();
+                // Bot
+                g.lineStyle(2, 0x8b0000).fillStyle(0xff4b4b).fillCircle(18, 18, 16).strokeCircle(18, 18, 16);
+                g.generateTexture('bot', 36, 36); g.clear();
+                // GK
+                g.lineStyle(2, 0xb86000).fillStyle(0xff9800).fillRect(0, 0, 30, 80).strokeRect(0, 0, 30, 80);
+                g.generateTexture('gk', 30, 80); g.clear();
+            }
+
+            create() {
+                window.gameScene = this;
+                this.isProcessingFoul = false;
+                this.difficulty = 1;
+                this.lastPasser = null;
+
+                this.physics.world.setBounds(0, 0, FIELD_W, FIELD_H);
+                this.cameras.main.setBounds(0, 0, FIELD_W, FIELD_H);
+                this.drawField();
+
+                // Gols físicos (as traves)
+                this.goalLeft = this.add.zone(50, FIELD_H / 2, 100, GOAL_PHYS_H); 
+                this.physics.add.existing(this.goalLeft, true);
+                this.goalRight = this.add.zone(FIELD_W - 50, FIELD_H / 2, 100, GOAL_PHYS_H); 
+                this.physics.add.existing(this.goalRight, true);
+
+                // Estilo do texto das alternativas
+                const tStyle = { 
+                    fontFamily: 'Nunito', fontSize: '20px', color: '#ffffff', fontStyle: 'bold', 
+                    stroke: '#004d00', strokeThickness: 5, wordWrap: { width: AREA_W - 150 }, 
+                    align: 'center' 
+                };
+                
+                // Texto nas áreas laterais
+                this.textGoalLeft = this.add.text(AREA_W / 2, FIELD_H / 2, currentMainQuestion.options[0], tStyle).setOrigin(0.5);
+                this.textGoalRight = this.add.text(FIELD_W - (AREA_W / 2), FIELD_H / 2, currentMainQuestion.options[1], tStyle).setOrigin(0.5);
+
+                this.ball = this.physics.add.sprite(FIELD_W / 2, FIELD_H / 2, 'ball').setCircle(14).setCollideWorldBounds(true).setBounce(0.7).setDrag(500).setMass(0.4);
+                this.ball.body.onWorldBounds = true;
+
+                this.player = this.physics.add.sprite(FIELD_W / 2 - 250, FIELD_H / 2, 'playerChar').setCircle(18).setCollideWorldBounds(true).setBounce(0.1).setDrag(1800).setMass(3);
+                this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+
+                this.gks = this.physics.add.group();
+                // Goleiros agora patrulham dentro da área, bem perto da linha do gol (160)
+                this.gkLeft = this.gks.create(160, FIELD_H / 2, 'gk').setImmovable(true).setMass(10);
+                this.gkLeft.side = 'left'; this.gkLeft.baseX = 160;
+                this.gkRight = this.gks.create(FIELD_W - 160, FIELD_H / 2, 'gk').setImmovable(true).setMass(10);
+                this.gkRight.side = 'right'; this.gkRight.baseX = FIELD_W - 160;
+
+                this.bots = this.physics.add.group();
+                const bPos = [
+                    {x: AREA_W + 500, y: FIELD_H/3}, {x: AREA_W + 500, y: (FIELD_H/3)*2},
+                    {x: FIELD_W/2, y: FIELD_H/4}, {x: FIELD_W/2, y: (FIELD_H/4)*3},
+                    {x: FIELD_W - AREA_W - 500, y: FIELD_H/3}, {x: FIELD_W - AREA_W - 500, y: (FIELD_H/3)*2}
+                ];
+                bPos.forEach(p => {
+                    let b = this.bots.create(p.x, p.y, 'bot').setCircle(16).setBounce(0.6).setMass(1.2).setDrag(500);
+                    b.baseX = p.x; b.baseY = p.y; b.passCooldown = 0;
+                });
+
+                this.cursors = this.input.keyboard.createCursorKeys();
+                this.wasd = this.input.keyboard.addKeys({up: 'W', down: 'S', left: 'A', right: 'D', space: 'SPACE'});
+
+                this.lastTouchedBy = 'player';
+                this.globalPassCooldown = 0;
+
+                this.physics.add.collider(this.player, this.ball, () => this.lastTouchedBy = 'player');
+                this.physics.add.collider(this.player, this.bots);
+                this.physics.add.collider(this.player, this.gks);
+                this.physics.add.collider(this.bots, this.bots);
+                this.physics.add.collider(this.bots, this.gks);
+                
+                this.physics.add.collider(this.ball, this.bots, this.handleBotBobinho, null, this);
+                this.physics.add.collider(this.ball, this.gks, this.handleGkKick, null, this);
+
+                // Colisão de bot com traves (área do gol), para evitar que bots entrem fisicamente dentro das redes
+                let bL = this.add.rectangle(50, FIELD_H/2, 100, GOAL_PHYS_H).setAlpha(0);
+                let bR = this.add.rectangle(FIELD_W - 50, FIELD_H/2, 100, GOAL_PHYS_H).setAlpha(0);
+                this.physics.add.existing(bL, true); this.physics.add.existing(bR, true);
+                this.physics.add.collider(this.bots, bL); this.physics.add.collider(this.bots, bR);
+
+                this.physics.add.overlap(this.ball, this.goalLeft, () => this.handleGoal(0), null, this);
+                this.physics.add.overlap(this.ball, this.goalRight, () => this.handleGoal(1), null, this);
+
+                this.physics.world.on('worldbounds', body => {
+                    if (body.gameObject === this.ball) {
+                        // Se for golo (bateu no fundo do golo), ignoramos o bounce aqui
+                        if (Math.abs(this.ball.y - FIELD_H/2) < GOAL_PHYS_H/2) {
+                            if (this.ball.x < 30 || this.ball.x > FIELD_W - 30) return;
+                        }
+
+                        if (this.lastTouchedBy === 'player') triggerPenaltyModal("FORA");
+                        else showToast("A BOLA REBATEU NA GRADE!");
+                    }
+                });
+
+                this.resetPositions();
+            }
+
+            drawField() {
+                let g = this.add.graphics();
+                // Gramado principal
+                g.fillStyle(0x58cc02).fillRect(0, 0, FIELD_W, FIELD_H);
+                
+                // Grandes áreas laterais (onde fica a pergunta)
+                g.fillStyle(0x46a302, 0.7);
+                g.fillRect(0, 0, AREA_W, FIELD_H);
+                g.fillRect(FIELD_W - AREA_W, 0, AREA_W, FIELD_H);
+
+                // Marcações brancas
+                g.lineStyle(8, 0xffffff, 0.8).strokeRect(10, 10, FIELD_W - 20, FIELD_H - 20);
+                g.beginPath().moveTo(FIELD_W/2, 10).lineTo(FIELD_W/2, FIELD_H - 10).strokePath();
+                g.strokeCircle(FIELD_W/2, FIELD_H/2, 250);
+                
+                // LINHAS BRANCAS SEPARANDO A ÁREA
+                g.beginPath().moveTo(AREA_W, 10).lineTo(AREA_W, FIELD_H - 10).strokePath();
+                g.beginPath().moveTo(FIELD_W - AREA_W, 10).lineTo(FIELD_W - AREA_W, FIELD_H - 10).strokePath();
+                
+                // Desenho das Traves (Gols)
+                g.lineStyle(12, 0xffffff, 1);
+                // Esquerda
+                g.strokeRect(-20, FIELD_H/2 - GOAL_PHYS_H/2, 120, GOAL_PHYS_H);
+                // Direita
+                g.strokeRect(FIELD_W - 100, FIELD_H/2 - GOAL_PHYS_H/2, 120, GOAL_PHYS_H);
+
+                // Redes (efeito visual)
+                g.lineStyle(2, 0xffffff, 0.3);
+                for(let i=0; i<GOAL_PHYS_H; i+=20) {
+                    g.beginPath().moveTo(0, FIELD_H/2 - GOAL_PHYS_H/2 + i).lineTo(100, FIELD_H/2 - GOAL_PHYS_H/2 + i).strokePath();
+                    g.beginPath().moveTo(FIELD_W - 100, FIELD_H/2 - GOAL_PHYS_H/2 + i).lineTo(FIELD_W, FIELD_H/2 - GOAL_PHYS_H/2 + i).strokePath();
+                }
+            }
+
+            updateGoalTexts(a, b) { 
+                if(this.textGoalLeft) { this.textGoalLeft.setText(a); this.textGoalRight.setText(b); }
+            }
+
+            update(time, delta) {
+                if (this.isProcessingFoul) return;
+                if (this.globalPassCooldown > 0) this.globalPassCooldown -= delta;
+
+                let speed = 450;
+                this.player.setVelocity(0);
+                if (this.cursors.left.isDown || this.wasd.left.isDown) this.player.setVelocityX(-speed);
+                else if (this.cursors.right.isDown || this.wasd.right.isDown) this.player.setVelocityX(speed);
+                if (this.cursors.up.isDown || this.wasd.up.isDown) this.player.setVelocityY(-speed);
+                else if (this.cursors.down.isDown || this.wasd.down.isDown) this.player.setVelocityY(speed);
+
+                // Goleiros patrulham e entram na área (podem ir até o fundo da rede para defender)
+                this.gks.getChildren().forEach(gk => {
+                    // Considera que a bola ameaça o gol se cruzar a linha dos 1000px de cada lado
+                    let ballInArea = (gk.side === 'left' && this.ball.x < AREA_W + 200) || (gk.side === 'right' && this.ball.x > FIELD_W - AREA_W - 200);
+                    
+                    if (ballInArea && this.ball.y > 50 && this.ball.y < FIELD_H - 50) {
+                        // Goleiro pode entrar até a linha do gol (coordenada 80) para realizar grandes defesas!
+                        let targetX = Phaser.Math.Clamp(this.ball.x, 80, FIELD_W - 80);
+                        this.physics.moveTo(gk, targetX, this.ball.y, 300);
+                    } else {
+                        // Lógica de retorno para a posição base
+                        if (Math.abs(gk.x - gk.baseX) > 10) {
+                            this.physics.moveTo(gk, gk.baseX, gk.y, 220);
+                        } else {
+                            gk.setVelocityX(0); 
+                            gk.x = gk.baseX;
+                            
+                            // Patrulha na área do gol
+                            if (gk.y < FIELD_H/2 - 250) gk.vDir = 1; else if (gk.y > FIELD_H/2 + 250) gk.vDir = -1;
+                            
+                            // Prevenção de travamento da inércia
+                            if (gk.body.velocity.y === 0) gk.vDir = gk.y < FIELD_H/2 ? 1 : -1;
+                            
+                            gk.setVelocityY((gk.vDir || 1) * 250);
+                        }
+                    }
+                });
+
+                // Bots
+                let hunter = null; let minDist = Infinity;
+                this.bots.getChildren().forEach(b => {
+                    if (b.passCooldown > 0) b.passCooldown -= delta;
+                    let d = Phaser.Math.Distance.Between(b.x, b.y, this.ball.x, this.ball.y);
+                    if (d < minDist) { minDist = d; hunter = b; }
+                });
+
+                this.bots.getChildren().forEach(b => {
+                    if (b === hunter) {
+                        let safeX = Phaser.Math.Clamp(this.ball.x, AREA_W + 150, FIELD_W - AREA_W - 150);
+                        this.physics.moveTo(b, safeX, this.ball.y, 250 + this.difficulty * 10);
+                    } else {
+                        let distToBase = Phaser.Math.Distance.Between(b.x, b.y, b.baseX, b.baseY);
+                        if (distToBase > 60) this.physics.moveTo(b, b.baseX, b.baseY, 180);
+                        else b.setVelocity(0);
+                    }
+                });
+
+                if (Phaser.Input.Keyboard.JustDown(this.wasd.space) || Phaser.Input.Keyboard.JustDown(this.cursors.space)) {
+                    if (Phaser.Math.Distance.Between(this.player.x, this.player.y, this.ball.x, this.ball.y) < 85) {
+                        this.physics.velocityFromRotation(Phaser.Math.Angle.Between(this.player.x, this.player.y, this.ball.x, this.ball.y), 1400, this.ball.body.velocity);
+                        this.lastTouchedBy = 'player';
+                    }
+                }
+            }
+
+            handleBotBobinho(ball, bot) {
+                if (this.isProcessingFoul) return;
+                this.lastTouchedBy = 'bot';
+                if (bot.passCooldown > 0 || this.globalPassCooldown > 0) { ball.body.velocity.scale(0.85); return; }
+
+                ball.setVelocity(0);
+                let tms = this.bots.getChildren().filter(b => b !== bot && b !== this.lastPasser);
+                if (tms.length === 0) tms = this.bots.getChildren().filter(b => b !== bot);
+                tms.sort((a, b) => Phaser.Math.Distance.Between(b.x, b.y, this.player.x, this.player.y) - Phaser.Math.Distance.Between(a.x, a.y, this.player.x, this.player.y));
+
+                let target = tms[0];
+                this.lastPasser = bot;
+                bot.passCooldown = 1200;
+                this.globalPassCooldown = 350;
+
+                let tx = target.x;
+                if (bot.x < AREA_W + 400) tx = Math.max(target.x, FIELD_W/2 - 200);
+                else if (bot.x > FIELD_W - AREA_W - 400) tx = Math.min(target.x, FIELD_W/2 + 200);
+
+                let angle = Phaser.Math.Angle.Between(bot.x, bot.y, Phaser.Math.Clamp(tx, AREA_W+200, FIELD_W-AREA_W-200), Phaser.Math.Clamp(target.y, 200, FIELD_H-200));
+                this.physics.velocityFromRotation(angle, 700 + this.difficulty * 20, ball.body.velocity);
+                this.physics.velocityFromRotation(angle + Math.PI, 300, bot.body.velocity);
+            }
+
+            handleGkKick(ball, gk) {
+                this.lastTouchedBy = 'bot';
+
+                // LÓGICA DE COSTAS: Se a bola bateu nas costas do goleiro (mais fundo no gol que ele)
+                // Reposicionamos a bola instantaneamente para a frente do corpo dele.
+                // Isso evita que a bola atravesse o goleiro ou entre contra a própria rede ao chutar pra frente!
+                if (gk.side === 'left' && ball.x <= gk.x) {
+                    ball.x = gk.x + 25;
+                } else if (gk.side === 'right' && ball.x >= gk.x) {
+                    ball.x = gk.x - 25;
+                }
+
+                // O Goleiro chuta SEMPRE de volta para o centro do campo (Pra frente)
+                let angle = Phaser.Math.Angle.Between(gk.x, gk.y, FIELD_W/2, FIELD_H/2);
+                
+                // Adiciona uma dispersão mínima vertical para os chutes não serem perfeitamente retos
+                angle += Phaser.Math.FloatBetween(-0.1, 0.1);
+
+                this.physics.velocityFromRotation(angle, 950, ball.body.velocity);
+            }
+
+            handleGoal(idx) {
+                if (this.isProcessingFoul) return;
+
+                // REGRA: Gol só vale se o JOGADOR foi o último a tocar
+                if (this.lastTouchedBy === 'bot') {
+                    let pushAngle = (idx === 0) ? 0 : Math.PI; 
+                    this.physics.velocityFromRotation(pushAngle, 1100, this.ball.body.velocity);
+                    showToast("BOT NÃO PODE MARCAR!");
+                    return;
+                }
+
+                this.isProcessingFoul = true;
+                if (idx === currentMainQuestion.correct) { 
+                    showToast("GOLAÇO! ⚽ +1"); updateScore(1); 
+                    this.difficulty += 0.3; loadMainQuestion(); 
+                } else { 
+                    showToast("ERROU O ALVO! ❌ -1", true); updateScore(-1); 
+                }
+                this.time.delayedCall(800, () => { this.resetPositions(); this.isProcessingFoul = false; });
+            }
+
+            resetPositions() {
+                this.lastPasser = null;
+                this.ball.setPosition(FIELD_W/2, FIELD_H/2).setVelocity(0);
+                this.player.setPosition(FIELD_W/2 - 250, FIELD_H/2).setVelocity(0);
+                this.bots.getChildren().forEach(b => { b.setPosition(b.baseX, b.baseY).setVelocity(0); b.passCooldown = 0; });
+                this.gkLeft.setPosition(160, FIELD_H/2); this.gkLeft.vDir = 1;
+                this.gkRight.setPosition(FIELD_W - 160, FIELD_H/2); this.gkRight.vDir = -1;
+                this.isProcessingFoul = false;
+            }
+        }
+
+        new Phaser.Game({ 
+            type: Phaser.AUTO, 
+            backgroundColor: '#58cc02', 
+            scale: {
+                mode: Phaser.Scale.FIT,
+                parent: 'phaser-container',
+                autoCenter: Phaser.Scale.CENTER_BOTH,
+                width: 1000,
+                height: 550
+            },
+            physics: { default: 'arcade', arcade: { debug: false } }, 
+            scene: GameScene 
+        });
+    </script>
+</body>
+</html>

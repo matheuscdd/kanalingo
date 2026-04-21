@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinguim Gelado - Plataforma Base</title>
+    <!-- Importando o Phaser 3 via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    
+    <!-- CSS Separado logicamente, mantendo o design limpo -->
+    <style>
+        :root {
+            --bg-page: #1a252c;
+            --accent: #58cc02; /* Verde Duolingo só para detalhes da página */
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--bg-page);
+            font-family: 'Nunito', 'Segoe UI', sans-serif;
+            color: white;
+        }
+
+        .header {
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        p {
+            margin: 4px 0 0 0;
+            color: #afbac4;
+            font-size: 14px;
+        }
+
+        /* Container do jogo com bordas arredondadas (Estilo Flat/Duolingo) */
+        #game-container {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            border: 4px solid #ffffff;
+            background-color: #d4e6f1; /* Cor de fundo de carregamento */
+            
+            width: 95vw;
+            max-width: 800px;
+            height: calc(100vh - 120px);
+            max-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Pinguim Gelado 🐧</h1>
+        <p>Use <b>WASD</b>/<b>SETAS</b> | <b>ESPAÇO</b> pula | <b>X e Z</b> escala | Responda e Fuja!</p>
+    </div>
+
+    <div id="game-container"></div>
+
+    <script>
+        // ==========================================
+        // CENA 1: BOOT SCENE (Carregamento e Assets)
+        // ==========================================
+        class BootScene extends Phaser.Scene {
+            constructor() {
+                super('BootScene');
+            }
+
+            create() {
+                // 1. Textura do Pinguim (Estilo fofo)
+                const pGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+                pGraphics.fillStyle(0x1c2833); pGraphics.fillRoundedRect(4, 0, 32, 44, 12);
+                pGraphics.fillStyle(0xffffff); pGraphics.fillRoundedRect(10, 12, 24, 30, 10);
+                pGraphics.fillStyle(0xffa500); pGraphics.fillRoundedRect(26, 14, 14, 8, 3);
+                pGraphics.fillStyle(0x000000); pGraphics.fillCircle(24, 10, 3);
+                pGraphics.fillStyle(0xffa500); pGraphics.fillRoundedRect(12, 40, 16, 6, 2);
+                pGraphics.generateTexture('penguin', 40, 48);
+
+                // Textura da Pinguim Feminino (com laço rosa)
+                const fpGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+                fpGraphics.fillStyle(0x1c2833); fpGraphics.fillRoundedRect(4, 0, 32, 44, 12);
+                fpGraphics.fillStyle(0xffffff); fpGraphics.fillRoundedRect(10, 12, 24, 30, 10);
+                fpGraphics.fillStyle(0xffa500); fpGraphics.fillRoundedRect(26, 14, 14, 8, 3);
+                fpGraphics.fillStyle(0x000000); fpGraphics.fillCircle(24, 10, 3);
+                fpGraphics.fillStyle(0xffa500); fpGraphics.fillRoundedRect(12, 40, 16, 6, 2);
+                fpGraphics.fillStyle(0xff69b4); // Laço Rosa
+                fpGraphics.fillTriangle(14, 8, 8, 2, 8, 14); 
+                fpGraphics.fillTriangle(14, 8, 20, 2, 20, 14); 
+                fpGraphics.fillCircle(14, 8, 3); 
+                fpGraphics.generateTexture('female_penguin', 40, 48);
+
+                // Textura do Coração
+                const heartGraphics = this.make.graphics({x: 0, y: 0, add: false});
+                heartGraphics.fillStyle(0xe74c3c);
+                heartGraphics.fillCircle(8, 8, 8);
+                heartGraphics.fillCircle(24, 8, 8);
+                heartGraphics.fillTriangle(0, 11, 32, 11, 16, 28);
+                heartGraphics.generateTexture('heart', 32, 32);
+
+                // Textura do Buraco no Gelo
+                const holeGraphics = this.make.graphics({x: 0, y: 0, add: false});
+                holeGraphics.fillStyle(0x154360, 0.9); 
+                holeGraphics.fillEllipse(30, 10, 30, 10);
+                holeGraphics.generateTexture('hole', 60, 20);
+
+                // 2. Textura da Plataforma Principal (Chão)
+                const platGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+                platGraphics.fillStyle(0x85c1e9); 
+                platGraphics.fillRect(0, 0, 800, 64);
+                platGraphics.fillStyle(0xffffff); 
+                platGraphics.fillRect(0, 0, 800, 16);
+                platGraphics.generateTexture('ground', 800, 64);
+
+                // 3. Textura de Plataforma Flutuante
+                const floatGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+                floatGraphics.fillStyle(0x85c1e9); 
+                floatGraphics.fillRoundedRect(0, 0, 150, 24, 8);
+                floatGraphics.fillStyle(0xffffff); 
+                floatGraphics.fillRoundedRect(0, 0, 150, 10, 5);
+                floatGraphics.generateTexture('platform', 150, 24);
+
+                // Textura da Ponte (Madeira/Gelo)
+                const bridgeGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+                bridgeGraphics.fillStyle(0xcd853f); 
+                bridgeGraphics.fillRect(0, 0, 250, 16); 
+                bridgeGraphics.fillStyle(0xffffff); 
+                bridgeGraphics.fillRect(0, 0, 250, 6);
+                bridgeGraphics.generateTexture('bridge', 250, 16);
+
+                // Texturas da Estátua de Pinguim (5 Partes)
+                const sBase = this.make.graphics({x:0, y:0, add: false});
+                sBase.fillStyle(0x85c1e9, 0.9); sBase.fillRect(0,0,80,140);
+                sBase.fillStyle(0xffffff, 0.3); sBase.fillRect(5,5,70,10);
+                sBase.fillStyle(0x5dade2, 0.9); sBase.fillEllipse(20,130,40,20); sBase.fillEllipse(60,130,40,20);
+                sBase.generateTexture('statue_p_base', 80, 140);
+
+                const sB1 = this.make.graphics({x:0, y:0, add: false});
+                sB1.fillStyle(0x85c1e9, 0.9); sB1.fillRect(0,0,80,80);
+                sB1.fillStyle(0xffffff, 0.3); sB1.fillRect(5,5,70,10); 
+                sB1.fillEllipse(60,40,50,80);
+                sB1.generateTexture('statue_p_b1', 80, 80);
+
+                const sB2 = this.make.graphics({x:0, y:0, add: false});
+                sB2.fillStyle(0x85c1e9, 0.9); sB2.fillRect(0,0,80,80);
+                sB2.fillStyle(0xffffff, 0.3); sB2.fillRect(5,5,70,10); 
+                sB2.fillEllipse(60,40,40,80);
+                sB2.fillStyle(0x3498db, 0.8); sB2.fillEllipse(30,40,20,60); 
+                sB2.generateTexture('statue_p_b2', 80, 80);
+
+                const sB3 = this.make.graphics({x:0, y:0, add: false});
+                sB3.fillStyle(0x85c1e9, 0.9); sB3.fillRect(0,0,80,80);
+                sB3.fillStyle(0xffffff, 0.3); sB3.fillRect(5,5,70,10);
+                sB3.fillStyle(0x5dade2, 0.9); sB3.fillTriangle(30,30, 0,40, 30,50); 
+                sB3.generateTexture('statue_p_b3', 80, 80);
+
+                const sTop = this.make.graphics({x:0, y:0, add: false});
+                sTop.fillStyle(0x85c1e9, 0.9); sTop.fillCircle(40,40,40); sTop.fillRect(0,40,80,40);
+                sTop.fillStyle(0xffffff, 0.4); sTop.fillCircle(30,30,8); 
+                sTop.generateTexture('statue_p_top', 80, 80);
+
+                // Textura do Balão de Fala
+                const bubbleGraphics = this.make.graphics({x:0, y:0, add: false});
+                bubbleGraphics.fillStyle(0xffffff, 1);
+                bubbleGraphics.fillRoundedRect(0, 0, 140, 60, 12);
+                bubbleGraphics.fillTriangle(70, 60, 80, 60, 75, 75); 
+                bubbleGraphics.generateTexture('bubble', 140, 80);
+
+                // Textura da Caverna (Fundo escuro gigante)
+                const caveGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+                caveGraphics.fillStyle(0x1b2631); 
+                caveGraphics.fillRect(0, 0, 4000, 600); 
+                caveGraphics.generateTexture('cave_bg', 4000, 600);
+
+                // Textura das Estalactites
+                const stalacGraphics = this.make.graphics({x:0, y:0, add:false});
+                stalacGraphics.fillStyle(0xd4e6f1, 0.9); 
+                stalacGraphics.fillTriangle(0, 0, 60, 0, 30, 90);
+                stalacGraphics.fillStyle(0xffffff, 0.6); 
+                stalacGraphics.fillTriangle(15, 0, 45, 0, 30, 60); 
+                stalacGraphics.generateTexture('stalactite', 60, 90);
+
+                // Textura da Parede de Escalada
+                const climbGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+                climbGraphics.fillStyle(0x3498db, 0.6); 
+                climbGraphics.fillRect(0, 0, 40, 400);
+                climbGraphics.fillStyle(0xffffff, 0.6); 
+                for(let i=10; i<400; i+=25) { climbGraphics.fillCircle(10 + Math.random()*20, i, 3 + Math.random()*2); }
+                climbGraphics.generateTexture('ice_wall', 40, 400);
+
+                // 4. Textura das Paredes de Gelo
+                const wallGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+                wallGraphics.fillStyle(0x5dade2); 
+                wallGraphics.fillRect(0, 0, 32, 600);
+                wallGraphics.fillStyle(0xffffff); 
+                wallGraphics.fillRect(6, 0, 8, 600); 
+                wallGraphics.generateTexture('wall', 32, 600);
+
+                // 5. Floco de Neve
+                const snowGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+                snowGraphics.fillStyle(0xffffff, 0.8);
+                snowGraphics.fillCircle(4, 4, 4);
+                snowGraphics.generateTexture('snowflake', 8, 8);
+
+                // 6. Textura do Urso Polar
+                const bearGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+                bearGraphics.fillStyle(0xfdfefe); bearGraphics.fillRoundedRect(0, 0, 48, 56, 16);
+                bearGraphics.fillStyle(0xbdc3c7); bearGraphics.fillCircle(10, 10, 8);
+                bearGraphics.fillStyle(0x000000); bearGraphics.fillCircle(40, 24, 6);
+                bearGraphics.fillStyle(0x000000); bearGraphics.fillCircle(32, 16, 4);
+                bearGraphics.generateTexture('bear', 48, 56);
+
+                // Iniciar a cena do jogo e a UI
+                this.scene.start('GameScene');
+                this.scene.launch('UIScene');
+            }
+        }
+
+        // ==========================================
+        // CENA 2: GAME SCENE (Mundo, Física, Player)
+        // ==========================================
+        class GameScene extends Phaser.Scene {
+            constructor() {
+                super('GameScene');
+            }
+
+            create() {
+                const worldWidth = 8150;
+                const worldHeight = 600;
+
+                this.physics.world.setBounds(0, 0, worldWidth, worldHeight);
+                this.cameras.main.setBounds(0, 0, worldWidth, worldHeight);
+                this.cameras.main.setBackgroundColor('#d4e6f1');
+                
+                this.add.image(4350, 300, 'cave_bg').setOrigin(0, 0.5);
+
+                const particles = this.add.particles(0, 0, 'snowflake', {
+                    x: { min: 0, max: worldWidth }, y: -10, lifespan: 6000,
+                    speedY: { min: 50, max: 100 }, speedX: { min: -20, max: 20 },
+                    scale: { min: 0.2, max: 1 }, alpha: { start: 0.7, end: 0 },
+                    quantity: 12, blendMode: 'NORMAL'
+                });
+
+                // --- CRIAÇÃO DO MAPA E GRUPOS ---
+                this.platforms = this.physics.add.staticGroup();
+                this.climbables = this.physics.add.staticGroup(); 
+                this.statueGroup = this.physics.add.staticGroup(); 
+
+                // 1. INÍCIO E ESTÁTUA
+                this.platforms.create(400, 568, 'ground');
+                this.platforms.create(1000, 568, 'ground'); 
+                this.platforms.create(16, 300, 'wall'); 
+
+                this.platforms.create(950, 420, 'platform');
+                this.platforms.create(1150, 300, 'platform');
+                this.platforms.create(900, 180, 'platform');
+
+                // Estátua de Gelo (Fosso vai de 1400 até 1870)
+                let sx = 1900;
+                let base = this.statueGroup.create(sx, 498, 'statue_p_base');
+                let b1 = this.statueGroup.create(sx, 388, 'statue_p_b1');
+                let b2 = this.statueGroup.create(sx, 308, 'statue_p_b2');
+                let b3 = this.statueGroup.create(sx, 228, 'statue_p_b3');
+                let top = this.statueGroup.create(sx, 148, 'statue_p_top');
+                this.statueParts = [base, b1, b2, b3, top]; 
+
+                this.invisibleStatueWall = this.statueGroup.create(sx, -100, 'wall');
+                this.invisibleStatueWall.setVisible(false);
+                this.invisibleStatueWall.body.setSize(32, 500); 
+
+                // 2. RETORNO DO CHÃO E PLATAFORMAS
+                this.platforms.create(2270, 568, 'ground'); 
+                this.platforms.create(2000, 450, 'platform');
+                this.platforms.create(2200, 350, 'platform');
+
+                // 3. SUBIDA / ESCALADA
+                this.platforms.create(2750, 450, 'wall'); 
+                this.climbables.create(2714, 350, 'ice_wall'); 
+                this.platforms.create(2700, 150, 'platform');
+                this.platforms.create(2800, 150, 'platform');
+                this.climbables.create(2786, 350, 'ice_wall'); 
+                this.platforms.create(3150, 568, 'ground'); 
+
+                // 4. PONTE PRINCIPAL
+                this.platforms.create(3350, 568, 'ground');
+
+                // 5. CAVERNA COM ESTALACTITES
+                for(let i = 4550; i <= 8150; i += 400) {
+                    this.platforms.create(i, 568, 'ground');
+                    this.platforms.create(i, 32, 'ground'); 
+                }
+                this.platforms.create(8134, 300, 'wall'); 
+
+                // --- CRIAÇÃO DO PLAYER ---
+                this.player = this.physics.add.sprite(250, 100, 'penguin');
+                this.player.setDepth(10); 
+                this.player.setCollideWorldBounds(true); 
+                this.player.body.setGravityY(300); 
+                this.player.body.setSize(24, 40); 
+                this.player.body.setOffset(8, 8);
+
+                // --- CRIAÇÃO DO URSO ---
+                this.bear = this.physics.add.sprite(60, 100, 'bear');
+                this.bear.setDepth(10);
+                this.bear.setCollideWorldBounds(true);
+                this.bear.body.setGravityY(300);
+
+                // --- VARIÁVEIS DE ESTADO ---
+                this.isGameOver = false;
+                this.bearActive = false;
+                this.player.isClimbing = false;
+                this.bear.isClimbing = false;
+                this.typedWord = ''; 
+
+                this.statueProgress = 0;
+                this.statueWords = ['frio', 'gelo', 'neve', 'pedra', 'duro', 'muro', 'fogo', 'luz', 'urso'];
+                this.currentStatueWord = Phaser.Utils.Array.GetRandom(this.statueWords);
+                this.inStatueZone = false;
+
+                this.bridgeProgress = 0;
+                this.maxBridgeSegments = 5;
+                this.bridgeWords = ['gelo', 'neve', 'coragem', 'fugir', 'frio', 'ponte', 'salto', 'urso', 'rapido', 'pinguim'];
+                this.currentBridgeWord = Phaser.Utils.Array.GetRandom(this.bridgeWords);
+                this.inBridgeZone = false;
+                this.romanceTriggered = false;
+
+                this.npcHole = this.add.image(4800, 536, 'hole').setDepth(8);
+                this.npc = this.physics.add.sprite(4650, 500, 'female_penguin');
+                this.npc.setFlipX(true);
+                this.npc.body.setAllowGravity(true);
+                this.npc.setDepth(10);
+                
+                this.bubble = this.add.image(4650, 420, 'bubble').setDepth(15);
+                this.bridgeWordText = this.add.text(4650, 410, this.currentBridgeWord, {
+                    fontFamily: 'Nunito', fontSize: '24px', color: '#1a252c', fontStyle: 'bold'
+                }).setOrigin(0.5).setDepth(16);
+
+                // SISTEMA DA CAVERNA
+                this.caveProgress = 0;
+                this.maxCaveRounds = 10;
+                this.inCaveZone = false;
+                this.caveRoundActive = false;
+                this.caveTimer = 0;
+                this.currentStalactites = []; 
+                this.caveWords = ['frio', 'gelo', 'neve', 'pulo', 'correr', 'cair', 'medo', 'fuga', 'urso'];
+
+                this.setupSpeechRecognition();
+
+                this.input.keyboard.on('keydown', (event) => {
+                    if (this.isGameOver) return;
+                    const isTypingZone = (this.inStatueZone && this.statueProgress < 5) || 
+                                         (this.inBridgeZone && this.bridgeProgress < this.maxBridgeSegments);
+
+                    if (!isTypingZone) return;
+
+                    if (event.keyCode === 8 && this.typedWord.length > 0) { 
+                        this.typedWord = this.typedWord.slice(0, -1);
+                    } else if (event.keyCode === 13) { 
+                        if (this.inStatueZone) this.validateStatueWord(this.typedWord === this.currentStatueWord);
+                        else if (this.inBridgeZone) this.validateBridgeWord();
+                    } else if (event.key.length === 1 && event.key.match(/[a-zçáéíóúâêôãõ]/i)) {
+                        this.typedWord += event.key.toLowerCase();
+                    }
+                    this.events.emit('update_typing', this.typedWord);
+                });
+
+                this.events.on('repeat_voice', () => {
+                    if (this.isGameOver) return;
+                    if (this.inStatueZone && this.statueProgress < 5) {
+                        this.playVoice(this.currentStatueWord, 0.5); 
+                        this.events.emit('pulse_target_word'); 
+                    } else if (this.inBridgeZone && this.bridgeProgress < this.maxBridgeSegments) {
+                        this.playVoice(this.currentBridgeWord, 1.5); 
+                        this.tweens.add({ targets: [this.bubble, this.bridgeWordText], scale: 1.15, duration: 100, yoyo: true });
+                    }
+                });
+
+                this.time.delayedCall(4000, () => {
+                    this.bearActive = true;
+                    this.cameras.main.shake(200, 0.005);
+                });
+
+                this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+                this.cameras.main.setFollowOffset(0, 50);
+
+                this.physics.add.collider(this.player, this.platforms);
+                this.physics.add.collider(this.bear, this.platforms);
+                this.physics.add.collider(this.npc, this.platforms);
+                this.physics.add.collider(this.player, this.statueGroup);
+                this.physics.add.collider(this.bear, this.statueGroup);
+                this.physics.add.overlap(this.player, this.bear, this.triggerGameOver, null, this);
+
+                this.platforms.children.iterate((plat) => {
+                    if (plat.texture.key === 'platform' || plat.texture.key === 'bridge') {
+                        plat.body.checkCollision.down = false;  
+                        plat.body.checkCollision.left = false;  
+                        plat.body.checkCollision.right = false; 
+                    }
+                });
+
+                this.cursors = this.input.keyboard.createCursorKeys();
+                this.wasd = this.input.keyboard.addKeys({
+                    up: Phaser.Input.Keyboard.KeyCodes.W, down: Phaser.Input.Keyboard.KeyCodes.S,
+                    left: Phaser.Input.Keyboard.KeyCodes.A, right: Phaser.Input.Keyboard.KeyCodes.D
+                });
+                this.climbKeys = this.input.keyboard.addKeys({
+                    x: Phaser.Input.Keyboard.KeyCodes.X, z: Phaser.Input.Keyboard.KeyCodes.Z
+                });
+            }
+
+            update(time, delta) {
+                if (this.isGameOver) return;
+
+                const speed = 250; 
+                const jumpForce = -700;
+                const bearJumpForce = -480; 
+                const onGround = this.player.body.touching.down || this.player.body.blocked.down;
+
+                this.player.canClimb = this.physics.overlap(this.player, this.climbables);
+                this.bear.canClimb = this.physics.overlap(this.bear, this.climbables);
+
+                const justPressedJump = Phaser.Input.Keyboard.JustDown(this.cursors.space);
+                const pressedX = Phaser.Input.Keyboard.JustDown(this.climbKeys.x);
+                const pressedZ = Phaser.Input.Keyboard.JustDown(this.climbKeys.z);
+                const holdingGrip = this.climbKeys.x.isDown || this.climbKeys.z.isDown;
+
+                if (this.player.canClimb && holdingGrip) {
+                    this.player.isClimbing = true;
+                    this.player.body.setAllowGravity(false);
+                    this.player.setVelocityY(40); 
+                    
+                    if (pressedX && this.lastClimbKey !== 'X') { this.player.y -= 25; this.lastClimbKey = 'X'; } 
+                    else if (pressedZ && this.lastClimbKey !== 'Z') { this.player.y -= 25; this.lastClimbKey = 'Z'; }
+                } else {
+                    this.player.isClimbing = false;
+                    this.lastClimbKey = null;
+                }
+
+                if (this.player.isClimbing) {
+                    if (justPressedJump) {
+                        this.player.isClimbing = false;
+                        this.lastClimbKey = null;
+                        this.player.setVelocityY(jumpForce);
+                    }
+                } else {
+                    this.player.body.setAllowGravity(true);
+                    if (justPressedJump && onGround) this.player.setVelocityY(jumpForce);
+                }
+
+                const wasInBridgeZone = this.inBridgeZone;
+                this.inBridgeZone = (this.player.x > 3150 && this.player.x < 4550 && this.bridgeProgress < this.maxBridgeSegments);
+
+                const wasInStatueZone = this.inStatueZone;
+                this.inStatueZone = (this.player.x > 1100 && this.player.x < 1400 && this.statueProgress < 5);
+
+                const wasInCaveZone = this.inCaveZone;
+                this.inCaveZone = (this.player.x > 4850 && this.player.x < 8150 && this.caveProgress < this.maxCaveRounds);
+
+                const isAnyTypingZone = this.inBridgeZone || this.inStatueZone;
+
+                if (this.inStatueZone && !wasInStatueZone) {
+                    this.events.emit('show_voice_ui', this.currentStatueWord); 
+                    this.playVoice(this.currentStatueWord, 0.5); 
+                    this.startListening(); 
+                } else if (!this.inStatueZone && wasInStatueZone && !this.inBridgeZone) {
+                    this.events.emit('hide_typing_ui');
+                    this.typedWord = '';
+                    this.stopListening(); 
+                }
+
+                if (this.inBridgeZone && !wasInBridgeZone) {
+                    this.events.emit('show_typing_ui'); 
+                    this.playVoice(this.currentBridgeWord, 1.5); 
+                } else if (!this.inBridgeZone && wasInBridgeZone && !this.inStatueZone) {
+                    this.events.emit('hide_typing_ui');
+                    this.typedWord = ''; 
+                }
+
+                if (this.inCaveZone && !this.caveRoundActive) {
+                    this.startCaveRound();
+                } else if (!this.inCaveZone && wasInCaveZone) {
+                    this.events.emit('hide_typing_ui');
+                }
+
+                if (this.bridgeProgress >= this.maxBridgeSegments && !this.romanceTriggered && this.player.x >= 4580) {
+                    this.triggerNPCEvent();
+                }
+
+                let moveLeft = this.cursors.left.isDown || (!isAnyTypingZone && this.wasd.left.isDown);
+                let moveRight = this.cursors.right.isDown || (!isAnyTypingZone && this.wasd.right.isDown);
+
+                if (!this.player.isClimbing) {
+                    if (moveLeft) {
+                        this.player.setVelocityX(-speed);
+                        this.player.setFlipX(true); 
+                        if (onGround) this.player.setAngle(-10);
+                    } 
+                    else if (moveRight) {
+                        this.player.setVelocityX(speed);
+                        this.player.setFlipX(false); 
+                        if (onGround) this.player.setAngle(10);
+                    } 
+                    else {
+                        this.player.setVelocityX(0);
+                        this.player.setAngle(0);
+                    }
+                } else {
+                    this.player.setVelocityX(0);
+                    this.player.setAngle(0);
+                }
+
+                if (!onGround && !this.player.isClimbing) {
+                    this.player.setAngle(0); 
+                    this.wasInAir = true;
+                } else if (this.wasInAir && onGround) {
+                    this.wasInAir = false;
+                }
+
+                if (this.player.y > 650) {
+                    this.player.setPosition(100, 100);
+                    this.player.setVelocity(0, 0);
+                    this.cameras.main.flash(500, 255, 0, 0); 
+                }
+
+                if (this.bear.y > 650) {
+                    this.bear.setPosition(this.player.x - 300, 100);
+                    this.bear.setVelocity(0, 0);
+                }
+
+                // TEMPORIZADOR E LÓGICA DA CAVERNA
+                if (this.caveRoundActive && this.caveTimer > 0) {
+                    this.caveTimer -= delta / 1000;
+                    this.events.emit('update_cave_timer', Math.ceil(this.caveTimer));
+
+                    if (this.caveTimer <= 0) {
+                        this.cameras.main.shake(100, 0.005);
+                        
+                        // Determinar se o jogador está na posição correta
+                        let correctStalactite = this.currentStalactites.find(s => s.isCorrect);
+                        let playerSafe = Math.abs(this.player.x - correctStalactite.sprite.x) < 50;
+
+                        this.currentStalactites.forEach(item => {
+                            if (!item.isCorrect) {
+                                // ERRADAS: Caem rápido
+                                item.sprite.body.setAllowGravity(true);
+                                item.sprite.body.setGravityY(2500);
+                                item.falling = true;
+                            } else {
+                                // CORRETA: Fica parada e brilha
+                                item.sprite.setTint(0x58cc02); // Verde
+                                item.text.setColor('#58cc02');
+                            }
+                        });
+
+                        // Se o tempo acabou e ele não estava na certa, morre ao ser atingido
+                        // O hit kill acontece na lógica de colisão abaixo
+                    }
+                }
+
+                // Lógica de colisão na caverna
+                if (this.caveRoundActive && this.caveTimer <= 0) {
+                    let allFallingDone = true;
+                    this.currentStalactites.forEach(item => {
+                        if (item.falling) {
+                            item.text.y = item.sprite.y - 50;
+                            allFallingDone = false;
+
+                            // HIT KILL
+                            if (this.physics.overlap(this.player, item.sprite)) {
+                                this.triggerGameOver();
+                            }
+
+                            if (item.sprite.y >= 515) { 
+                                item.falling = false;
+                                item.sprite.destroy();
+                                item.text.destroy();
+                                this.cameras.main.shake(100, 0.008);
+                            }
+                        }
+                    });
+
+                    // Finaliza rodada após as erradas desaparecerem
+                    if (allFallingDone && !this.isGameOver) {
+                        this.time.delayedCall(800, () => {
+                            if (!this.caveRoundActive) return;
+                            
+                            // Verifica se o player sobreviveu (se ele está na certa agora)
+                            let correctStalactite = this.currentStalactites.find(s => s.isCorrect);
+                            if (Math.abs(this.player.x - correctStalactite.sprite.x) < 60) {
+                                // Sucesso!
+                                this.currentStalactites.forEach(s => { 
+                                    if(s.sprite.active) s.sprite.destroy(); 
+                                    if(s.text.active) s.text.destroy(); 
+                                });
+                                this.caveRoundActive = false;
+                                this.caveProgress++;
+                                if (this.caveProgress < this.maxCaveRounds) this.startCaveRound();
+                                else {
+                                    this.events.emit('hide_typing_ui');
+                                    this.cameras.main.flash(500, 255, 255, 255);
+                                }
+                            } else {
+                                // Se o urso não pegou ele, mas ele não está na zona segura, 
+                                // as pedras que caíram deveriam ter matado ele, mas por segurança:
+                                // this.triggerGameOver(); 
+                            }
+                        });
+                    }
+                }
+
+                // IA DO URSO
+                if (this.bearActive) {
+                    const bearSpeed = this.inCaveZone ? 85 : 200; 
+                    
+                    let bearWantsToClimb = false;
+                    if (this.bear.canClimb && Math.abs(this.player.y - this.bear.y) > 40) {
+                        bearWantsToClimb = true;
+                    }
+
+                    if (bearWantsToClimb) {
+                        this.bear.isClimbing = true;
+                        this.bear.body.setAllowGravity(false);
+                        this.bear.setVelocityX(0); 
+                        this.bear.setAngle(0);
+                        if (this.player.y < this.bear.y) this.bear.setVelocityY(-100); 
+                        else this.bear.setVelocityY(180); 
+                    } else {
+                        this.bear.isClimbing = false;
+                        this.bear.body.setAllowGravity(true);
+
+                        if (this.bear.x < this.player.x - 20) {
+                            this.bear.setVelocityX(bearSpeed);
+                            this.bear.setFlipX(false);
+                            if (this.bear.body.touching.down || this.bear.body.blocked.down) {
+                                this.bear.setAngle(Math.sin(this.time.now / 100) * 10);
+                            }
+                        } else if (this.bear.x > this.player.x + 20) {
+                            this.bear.setVelocityX(-bearSpeed);
+                            this.bear.setFlipX(true);
+                            if (this.bear.body.touching.down || this.bear.body.blocked.down) {
+                                this.bear.setAngle(Math.sin(this.time.now / 100) * 10);
+                            }
+                        } else {
+                            this.bear.setVelocityX(0);
+                            this.bear.setAngle(0);
+                        }
+
+                        const bearOnGround = this.bear.body.touching.down || this.bear.body.blocked.down;
+                        if (bearOnGround) {
+                            if (this.bear.body.blocked.right || this.bear.body.blocked.left) {
+                                this.bear.setVelocityY(bearJumpForce);
+                            } 
+                            else if (this.player.y < this.bear.y - 50 && Math.abs(this.player.x - this.bear.x) < 150) {
+                                if (Math.random() < 0.05) this.bear.setVelocityY(bearJumpForce);
+                            }
+                        }
+                    }
+                }
+            }
+
+            startCaveRound() {
+                if (this.caveProgress >= this.maxCaveRounds) return;
+                this.caveRoundActive = true;
+                this.caveTimer = 2.5; 
+                const shuffledWords = Phaser.Utils.Array.Shuffle([...this.caveWords]);
+                const targetWord = shuffledWords[0];
+                const roundWords = Phaser.Utils.Array.Shuffle([shuffledWords[0], shuffledWords[1], shuffledWords[2]]);
+                this.events.emit('show_cave_ui', targetWord);
+                this.playVoice(targetWord, 0.8);
+                const startX = 5050 + (this.caveProgress * 300);
+                const positions = [startX, startX + 100, startX + 200];
+                this.currentStalactites = [];
+                for (let i = 0; i < 3; i++) {
+                    let st = this.physics.add.sprite(positions[i], 80, 'stalactite');
+                    st.body.setAllowGravity(false);
+                    let isCorrect = (roundWords[i] === targetWord);
+                    let txt = this.add.text(positions[i], 30, roundWords[i].toUpperCase(), {
+                        fontFamily: 'Nunito', fontSize: '18px', color: '#ffffff', fontStyle: 'bold', stroke: '#1a252c', strokeThickness: 4
+                    }).setOrigin(0.5);
+                    this.currentStalactites.push({ sprite: st, text: txt, isCorrect: isCorrect, falling: false });
+                }
+            }
+
+            playVoice(word, pitch) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'pt-BR'; utterance.pitch = pitch; utterance.rate = 1.1;     
+                window.speechSynthesis.speak(utterance);
+            }
+
+            setupSpeechRecognition() {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) return;
+                this.recognition = new SpeechRecognition();
+                this.recognition.lang = 'pt-BR';
+                this.recognition.continuous = false; 
+                this.recognition.interimResults = false;
+                this.isListening = false;
+                this.recognition.onstart = () => { this.isListening = true; };
+                this.recognition.onerror = () => { this.isListening = false; };
+                this.recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript.toLowerCase().trim().replace(/[.,!?]/g, '');
+                    this.events.emit('update_typing', `"${transcript}"`);
+                    if (this.inStatueZone && this.statueProgress < 5) {
+                        const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                        const isCorrect = normalize(transcript) === normalize(this.currentStatueWord);
+                        this.time.delayedCall(500, () => { this.validateStatueWord(isCorrect); });
+                    }
+                };
+                this.recognition.onend = () => {
+                    this.isListening = false;
+                    if (this.inStatueZone && this.statueProgress < 5 && !this.isGameOver) {
+                        this.time.delayedCall(100, () => { this.startListening(); });
+                    }
+                };
+            }
+
+            startListening() { if (this.recognition && !this.isListening) { try { this.isListening = true; this.recognition.start(); } catch (e) { this.isListening = false; } } }
+            stopListening() { if (this.recognition && this.isListening) { try { this.recognition.stop(); } catch (e) {} finally { this.isListening = false; } } }
+
+            validateStatueWord(isCorrect) {
+                if (isCorrect) {
+                    this.typedWord = ''; this.events.emit('update_typing', this.typedWord);
+                    this.destroyStatuePart();
+                    this.cameras.main.flash(150, 100, 255, 100); 
+                } else {
+                    this.typedWord = ''; this.events.emit('update_typing', this.typedWord);
+                    this.cameras.main.shake(150, 0.01); this.cameras.main.flash(150, 255, 0, 0); 
+                    this.currentStatueWord = Phaser.Utils.Array.GetRandom(this.statueWords);
+                    this.events.emit('update_target_word', this.currentStatueWord); 
+                    this.playVoice(this.currentStatueWord, 0.5);
+                }
+            }
+
+            destroyStatuePart() {
+                if (this.statueProgress < 4) {
+                    let part = this.statueParts.pop(); 
+                    const targetXs = [1440, 1520, 1600, 1680];
+                    const targetX = targetXs[this.statueProgress];
+                    this.statueProgress++;
+                    part.body.enable = false; 
+                    this.tweens.add({ targets: part, x: targetX, duration: 500, ease: 'Linear' });
+                    this.tweens.add({
+                        targets: part, y: 576, angle: -360, duration: 500, ease: 'Quad.easeIn',
+                        onComplete: () => {
+                            this.cameras.main.shake(100, 0.01);
+                            part.angle = 0;
+                            part.body.enable = true;
+                            this.statueGroup.remove(part);
+                            this.platforms.add(part);
+                            part.refreshBody();
+                            part.body.checkCollision.down = false;
+                            part.body.checkCollision.left = false;
+                            part.body.checkCollision.right = false;
+                        }
+                    });
+                    this.currentStatueWord = Phaser.Utils.Array.GetRandom(this.statueWords);
+                    this.events.emit('update_target_word', this.currentStatueWord);
+                    this.playVoice(this.currentStatueWord, 0.5);
+                } else {
+                    this.statueProgress++;
+                    this.events.emit('hide_typing_ui');
+                    this.stopListening();
+                    let base = this.statueParts[0];
+                    base.body.enable = false;
+                    if(this.invisibleStatueWall) this.invisibleStatueWall.destroy(); 
+                    this.tweens.add({
+                        targets: base, angle: { from: -5, to: 5 }, duration: 100, yoyo: true, repeat: 4, 
+                        onComplete: () => {
+                            this.tweens.add({
+                                targets: base, angle: -90, x: 1790, y: 576, duration: 600, ease: 'Bounce.easeOut',
+                                onComplete: () => {
+                                    this.cameras.main.shake(300, 0.02); 
+                                    base.body.enable = true;
+                                    this.statueGroup.remove(base);
+                                    this.platforms.add(base);
+                                    base.refreshBody();
+                                    base.body.checkCollision.down = false;
+                                    base.body.checkCollision.left = false;
+                                    base.body.checkCollision.right = false;
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+
+            validateBridgeWord() {
+                if (this.typedWord === this.currentBridgeWord) {
+                    this.typedWord = ''; this.events.emit('update_typing', this.typedWord);
+                    this.buildBridgeSegment();
+                    this.cameras.main.flash(200, 100, 255, 100); 
+                    this.tweens.add({ targets: this.npc, y: this.npc.y - 30, duration: 150, yoyo: true });
+                } else {
+                    this.typedWord = ''; this.events.emit('update_typing', this.typedWord);
+                    this.cameras.main.shake(200, 0.01); this.cameras.main.flash(200, 255, 0, 0); 
+                    this.currentBridgeWord = Phaser.Utils.Array.GetRandom(this.bridgeWords);
+                    this.bridgeWordText.setText(this.currentBridgeWord);
+                    this.playVoice(this.currentBridgeWord, 1.5); 
+                }
+            }
+
+            buildBridgeSegment() {
+                if (this.bridgeProgress >= this.maxBridgeSegments) return;
+                const startX = 3470; const gapSize = 240; const segX = startX + (this.bridgeProgress * gapSize);
+                const segment = this.platforms.create(segX, 568, 'bridge');
+                segment.setScale(0.1); 
+                segment.body.checkCollision.down = false; segment.body.checkCollision.left = false; segment.body.checkCollision.right = false;
+                this.tweens.add({ targets: segment, scaleX: 1.1, scaleY: 1, duration: 400, ease: 'Back.easeOut' });
+                this.bridgeProgress++;
+                if (this.bridgeProgress < this.maxBridgeSegments) {
+                    this.currentBridgeWord = Phaser.Utils.Array.GetRandom(this.bridgeWords);
+                    this.bridgeWordText.setText(this.currentBridgeWord);
+                    this.playVoice(this.currentBridgeWord, 1.5); 
+                } else {
+                    this.bubble.setVisible(false); this.bridgeWordText.setVisible(false);
+                    this.events.emit('hide_typing_ui');
+                }
+            }
+
+            triggerGameOver() {
+                if (this.isGameOver) return;
+                this.isGameOver = true;
+                this.physics.pause();
+                this.player.setTint(0xff0000); this.player.setAngle(90); 
+                const cam = this.cameras.main;
+                this.add.text(cam.scrollX + cam.width / 2, cam.scrollY + cam.height / 2, 'VOCÊ FOI PEGO!', {
+                    fontFamily: 'Nunito, Arial, sans-serif', fontSize: '48px', color: '#ff0000', fontStyle: 'bold', stroke: '#ffffff', strokeThickness: 8
+                }).setOrigin(0.5);
+                this.time.delayedCall(2000, () => { this.scene.restart(); });
+            }
+
+            triggerNPCEvent() {
+                this.romanceTriggered = true;
+                const heart = this.add.image(this.npc.x, this.npc.y - 40, 'heart').setDepth(20);
+                this.tweens.add({ targets: heart, y: heart.y - 60, alpha: 0, duration: 1200, ease: 'Sine.easeOut' });
+                this.tweens.add({
+                    targets: this.npc, y: this.npc.y - 40, duration: 200, yoyo: true,
+                    onComplete: () => {
+                        this.npc.setFlipX(false); 
+                        this.tweens.add({
+                            targets: this.npc, x: this.npcHole.x, duration: 400,
+                            onComplete: () => { this.tweens.add({ targets: this.npc, scaleX: 0, scaleY: 0, alpha: 0, duration: 200 }); }
+                        });
+                    }
+                });
+            }
+        }
+
+        // ==========================================
+        // CENA 3: UI SCENE (Interface de Usuário)
+        // ==========================================
+        class UIScene extends Phaser.Scene {
+            constructor() {
+                super('UIScene');
+            }
+
+            create() {
+                this.add.text(48, 16, 'Nível 1: O Desfiladeiro de Gelo', {
+                    fontFamily: 'Nunito, Arial, sans-serif', fontSize: '18px', color: '#1a252c', fontStyle: 'bold'
+                });
+
+                this.typingContainer = this.add.container(400, 500).setVisible(false);
+                const bg = this.add.rectangle(0, 0, 300, 60, 0xffffff, 0.9).setStrokeStyle(4, 0x5dade2);
+                bg.setInteractive(); 
+                this.instructionText = this.add.text(0, -50, 'DIGITE A PALAVRA E APERTE ENTER', {
+                    fontFamily: 'Nunito', fontSize: '14px', color: '#1a252c', fontStyle: 'bold'
+                }).setOrigin(0.5);
+                this.targetWordDisplay = this.add.text(0, -90, '', {
+                    fontFamily: 'Nunito', fontSize: '36px', color: '#3498db', fontStyle: 'bold', stroke: '#ffffff', strokeThickness: 6
+                }).setOrigin(0.5);
+                this.inputTextDisplay = this.add.text(0, 0, '', {
+                    fontFamily: 'Nunito', fontSize: '28px', color: '#e74c3c', fontStyle: 'bold'
+                }).setOrigin(0.5);
+                this.caveTimerDisplay = this.add.text(0, 40, '', {
+                    fontFamily: 'Nunito', fontSize: '24px', color: '#c0392b', fontStyle: 'bold'
+                }).setOrigin(0.5).setVisible(false);
+
+                const gameScene = this.scene.get('GameScene');
+                const repeatBtnBg = this.add.rectangle(0, 50, 120, 32, 0x3498db, 1).setStrokeStyle(2, 0xffffff);
+                repeatBtnBg.setInteractive({ useHandCursor: true }); 
+                const repeatBtnText = this.add.text(0, 50, '🔊 Repetir', {
+                    fontFamily: 'Nunito', fontSize: '14px', color: '#ffffff', fontStyle: 'bold'
+                }).setOrigin(0.5);
+
+                repeatBtnBg.on('pointerdown', () => { gameScene.events.emit('repeat_voice'); });
+                this.typingContainer.add([bg, this.inputTextDisplay, repeatBtnBg, repeatBtnText, this.instructionText, this.targetWordDisplay, this.caveTimerDisplay]);
+                
+                gameScene.events.on('show_typing_ui', () => {
+                    this.instructionText.setText('DIGITE A PALAVRA E APERTE ENTER');
+                    this.instructionText.setColor('#1a252c');
+                    this.targetWordDisplay.setVisible(false); this.caveTimerDisplay.setVisible(false);
+                    this.typingContainer.setVisible(true); this.inputTextDisplay.setText('');
+                    repeatBtnBg.setVisible(true); repeatBtnText.setVisible(true);
+                });
+
+                gameScene.events.on('show_voice_ui', (targetWord) => {
+                    this.instructionText.setText('🎤 FALE A PALAVRA NO MICROFONE');
+                    this.instructionText.setColor('#d35400');
+                    this.targetWordDisplay.setText(targetWord.toUpperCase());
+                    this.targetWordDisplay.setVisible(true); this.caveTimerDisplay.setVisible(false);
+                    this.typingContainer.setVisible(true); this.inputTextDisplay.setText('Ouvindo...');
+                    repeatBtnBg.setVisible(true); repeatBtnText.setVisible(true);
+                });
+
+                gameScene.events.on('show_cave_ui', (targetWord) => {
+                    this.instructionText.setText('⬇️ FIQUE DEBAIXO DA PALAVRA CERTA:');
+                    this.instructionText.setColor('#27ae60'); 
+                    this.targetWordDisplay.setText(targetWord.toUpperCase());
+                    this.targetWordDisplay.setVisible(true);
+                    this.typingContainer.setVisible(true); this.caveTimerDisplay.setVisible(true);
+                    this.inputTextDisplay.setText('');
+                    repeatBtnBg.setVisible(false); repeatBtnText.setVisible(false);
+                });
+
+                gameScene.events.on('update_cave_timer', (timeLeft) => {
+                    this.caveTimerDisplay.setText(`⏱️ 00:0${timeLeft}`);
+                });
+
+                gameScene.events.on('update_target_word', (word) => { this.targetWordDisplay.setText(word.toUpperCase()); });
+                gameScene.events.on('pulse_target_word', () => { this.tweens.add({ targets: this.targetWordDisplay, scale: 1.2, duration: 100, yoyo: true }); });
+                gameScene.events.on('hide_typing_ui', () => { this.typingContainer.setVisible(false); });
+                gameScene.events.on('update_typing', (typedWord) => { this.inputTextDisplay.setText(typedWord.toUpperCase()); });
+            }
+        }
+
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            pixelArt: false,
+            scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH, width: 800, height: 600 },
+            physics: { default: 'arcade', arcade: { gravity: { y: 600 }, debug: false } },
+            scene: [BootScene, GameScene, UIScene]
+        };
+
+        const game = new Phaser.Game(config);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duo Defense</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #58a700;
+            --duo-green-light: #d7ffb8;
+            --duo-red: #ea2b2b;
+            --duo-red-dark: #c32020;
+            --duo-red-light: #ffdfe0;
+            --duo-blue: #1cb0f6;
+            --duo-blue-dark: #1899d6;
+            --duo-gray-bg: #f7f7f7;
+            --duo-gray-border: #e5e5e5;
+            --duo-text: #4b4b4b;
+            --duo-white: #ffffff;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--duo-gray-bg);
+            color: var(--duo-text);
+            display: flex;
+            justify-content: stretch;
+            align-items: stretch;
+            width: 100vw;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow: hidden;
+            touch-action: manipulation; /* Melhora o toque no celular */
+        }
+
+        #game-container {
+            position: relative;
+            width: 100vw;
+            width: 100dvw;
+            height: 100vh;
+            height: 100dvh;
+            background-color: #a5ed6c; /* Cor da grama */
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* UI Overlays */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(16px, 3vmin, 32px);
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .panel {
+                background: var(--duo-white);
+                border: 2px solid var(--duo-gray-border);
+                border-radius: 24px;
+            padding: clamp(20px, 4vmin, 40px);
+                text-align: center;
+            max-width: min(600px, calc(100vw - 48px));
+            width: min(90vw, 600px);
+                box-shadow: 0 8px 0 var(--duo-gray-border);
+                position: relative;
+            }
+
+            /* Prancheta (Clipboard) para Quiz */
+            #quiz-screen {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 15;
+                display: none;
+            }
+            #quiz-screen .panel {
+                background: linear-gradient(180deg, #f7f7f7 0%, #fff 80%);
+                border-radius: 18px 18px 24px 24px;
+                box-shadow: 0 6px 0 var(--duo-gray-border), 0 16px 24px rgba(0,0,0,0.08);
+                border: 3px solid #a5a5a5;
+                padding-top: clamp(32px, 5vmin, 40px);
+                width: min(420px, calc(100vw - 32px));
+                max-width: calc(100vw - 32px);
+                position: absolute;
+                top: clamp(12px, 3vh, 30px);
+                left: 50%;
+                transform: translateX(-50%);
+                pointer-events: auto;
+                max-height: min(58dvh, 460px);
+                overflow-y: auto;
+                scrollbar-width: none;
+            }
+            #quiz-screen .panel::-webkit-scrollbar {
+                display: none;
+            }
+            #quiz-screen .clipboard-top {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 120px;
+                height: 60px;
+                background: #e5e5e5;
+                border-radius: 0 0 32px 32px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+                z-index: 2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #quiz-screen .clipboard-clip {
+                position: absolute;
+                top: 12px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 24px;
+                background: #bdbdbd;
+                border-radius: 12px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+                z-index: 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #quiz-screen .clipboard-clip:before {
+                content: '';
+                display: block;
+                width: 16px;
+                height: 8px;
+                background: #a5a5a5;
+                border-radius: 4px;
+                margin-top: 8px;
+            }
+
+        h1 {
+            color: var(--duo-green);
+            font-weight: 900;
+            font-size: clamp(2rem, 4.8vmin, 3rem);
+            margin-top: 0;
+            margin-bottom: clamp(12px, 2vmin, 20px);
+        }
+
+        h2 {
+            color: var(--duo-text);
+            font-weight: 800;
+            font-size: clamp(1.15rem, 3vmin, 1.8rem);
+            margin-bottom: clamp(14px, 3vmin, 30px);
+        }
+
+        .question-text {
+            font-size: clamp(1.1rem, 2.8vmin, 1.5rem);
+            font-weight: 800;
+            margin-bottom: clamp(14px, 3vmin, 30px);
+            color: var(--duo-text);
+        }
+
+        .quiz-warning {
+            margin: -8px 0 clamp(12px, 2.4vmin, 20px);
+            font-size: clamp(0.9rem, 2vmin, 1rem);
+            font-weight: 800;
+            color: var(--duo-red-dark);
+        }
+
+        /* Botões Estilo Duolingo */
+        .duo-btn {
+            background-color: var(--duo-white);
+            border: 2px solid var(--duo-gray-border);
+            border-bottom-width: 4px;
+            border-radius: 16px;
+            color: var(--duo-text);
+            font-weight: 800;
+            font-size: clamp(1rem, 2.1vmin, 1.2rem);
+            padding: clamp(10px, 2vmin, 15px) clamp(12px, 2.2vmin, 20px);
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .duo-btn:active {
+            border-bottom-width: 2px;
+            transform: translateY(2px);
+        }
+
+        .duo-btn.primary {
+            background-color: var(--duo-green);
+            border-color: var(--duo-green-dark);
+            color: var(--duo-white);
+        }
+
+        .duo-btn.danger {
+            background-color: var(--duo-red);
+            border-color: var(--duo-red-dark);
+            color: var(--duo-white);
+        }
+
+        .duo-btn.blue {
+            background-color: var(--duo-blue);
+            border-color: var(--duo-blue-dark);
+            color: var(--duo-white);
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(10px, 1.8vmin, 15px);
+            align-items: stretch;
+        }
+
+        /* HUD Superior */
+        .hud {
+            position: absolute;
+            top: clamp(10px, 2.4vmin, 20px);
+            left: clamp(10px, 2.4vmin, 20px);
+            right: clamp(10px, 2.4vmin, 20px);
+            display: flex;
+            justify-content: space-between;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .hud-box {
+            background: var(--duo-white);
+            border: 2px solid var(--duo-gray-border);
+            border-bottom-width: 4px;
+            border-radius: 16px;
+            padding: clamp(6px, 1.4vmin, 10px) clamp(10px, 2.2vmin, 20px);
+            font-weight: 800;
+            font-size: clamp(0.95rem, 1.9vmin, 1.2rem);
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 1.4vmin, 10px);
+        }
+
+        .health-text { color: var(--duo-red); }
+        .wave-text { color: var(--duo-blue); }
+        .wall-text {
+            color: #8a5a2b;
+            display: none;
+        }
+
+        /* Animação de Feedback */
+        #feedback-message {
+            position: absolute;
+            bottom: clamp(18px, 4vmin, 40px);
+            left: 50%;
+            transform: translateX(-50%);
+            padding: clamp(10px, 2vmin, 15px) clamp(16px, 3vmin, 30px);
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: clamp(1rem, 2.5vmin, 1.5rem);
+            color: white;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            width: min(calc(100vw - 32px), 460px);
+            text-align: center;
+        }
+        
+        .feedback-correct { background-color: var(--duo-green); border-bottom: 4px solid var(--duo-green-dark); }
+        .feedback-wrong { background-color: var(--duo-red); border-bottom: 4px solid var(--duo-red-dark); }
+
+        /* Ajustes de Responsividade para Celulares */
+        @media (max-width: 768px) {
+            #quiz-screen .panel {
+                width: min(86vw, 360px);
+                top: 12px;
+                padding: 28px 14px 16px;
+                max-height: min(50dvh, 360px);
+                border-width: 2px;
+            }
+            #quiz-screen .clipboard-top {
+                width: 96px;
+                height: 48px;
+            }
+            #quiz-screen .clipboard-clip {
+                top: 10px;
+                width: 34px;
+                height: 20px;
+            }
+            .panel {
+                width: min(94vw, 420px);
+                border-radius: 20px;
+                box-shadow: 0 6px 0 var(--duo-gray-border);
+            }
+            .hud {
+                top: max(10px, env(safe-area-inset-top));
+                left: 10px;
+                right: 10px;
+            }
+            .hud-box {
+                border-radius: 14px;
+            }
+            #feedback-message {
+                bottom: max(12px, env(safe-area-inset-bottom));
+            }
+            .options-grid { gap: 8px; }
+            .duo-btn span:first-child { font-size: 1.8rem !important; } /* Diminui o ícone do animal um pouco */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <div class="hud">
+            <div class="hud-box health-text"><i class="fa-solid fa-heart"></i> <span id="health-display">1</span></div>
+            <div class="hud-box wave-text"><i class="fa-solid fa-flag"></i> Ondas: <span id="wave-display">1/5</span></div>
+            <div class="hud-box wall-text" id="wall-status"><i class="fa-solid fa-shield"></i> Muro: <span id="wall-display">20s</span></div>
+        </div>
+
+        <canvas id="gameCanvas" width="960" height="720"></canvas>
+
+        <!-- Menu Inicial -->
+        <div id="start-screen" class="overlay active">
+            <div class="panel">
+                <h1>Duo Defense</h1>
+                <h2>Aprenda e defenda a base!</h2>
+                <p style="margin-bottom: 30px; font-weight: 700;">Responda corretamente para construir torres fortes. Respostas erradas geram torres fracas. <br><strong style="color: var(--duo-red);">Se UM inimigo passar, é Game Over!</strong></p>
+                <button class="duo-btn primary" onclick="startGame()">
+                    <i class="fa-solid fa-play"></i> Jogar Agora
+                </button>
+            </div>
+        </div>
+
+        <!-- Tela de Quiz -->
+        <div id="quiz-screen">
+            <div class="panel">
+                <div class="clipboard-top"></div>
+                <div class="clipboard-clip"></div>
+                <h2>Próxima Torre!</h2>
+                <div class="quiz-warning">Responda rápido: os inimigos continuam avançando.</div>
+                <div id="question-text" class="question-text">Pergunta aqui?</div>
+                <div class="options-grid" id="options-container">
+                    <!-- Opções geradas por JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Game Over -->
+        <div id="game-over-screen" class="overlay">
+            <div class="panel">
+                <h1 style="color: var(--duo-red);">Fim de Jogo!</h1>
+                <h2>Os inimigos invadiram a base.</h2>
+                <button class="duo-btn danger" onclick="location.reload()">
+                    <i class="fa-solid fa-rotate-right"></i> Tentar Novamente
+                </button>
+            </div>
+        </div>
+
+        <!-- Tela de Vitória -->
+        <div id="victory-screen" class="overlay">
+            <div class="panel">
+                <h1>Excelente!</h1>
+                <h2>Você defendeu a base e aprendeu muito!</h2>
+                <button class="duo-btn primary" onclick="location.reload()">
+                    <i class="fa-solid fa-star"></i> Jogar Novamente
+                </button>
+            </div>
+        </div>
+
+        <!-- Mensagem de feedback ao responder -->
+        <div id="feedback-message">Correto!</div>
+    </div>
+
+    <script>
+        const gameContainer = document.getElementById('game-container');
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const BASE_LAYOUT = Object.freeze({
+            logicalWidth: 960,
+            logicalHeight: 720,
+            gridColumns: 13,
+            gridSizeMin: 56,
+            gridSizeMax: 104
+        });
+
+        const layout = {
+            logicalWidth: BASE_LAYOUT.logicalWidth,
+            logicalHeight: BASE_LAYOUT.logicalHeight,
+            gridSize: 72,
+            towerRadius: 24,
+            towerBaseOffsetY: 18,
+            towerBaseRadiusX: 30,
+            towerBaseRadiusY: 12,
+            towerIconSize: 28,
+            towerSleepIconSize: 16,
+            towerRangeStrong: 240,
+            towerRangeWeak: 144,
+            pathOuterWidth: 66,
+            pathInnerWidth: 48,
+            towerPathPadding: 20,
+            projectileStrongRadius: 7,
+            projectileWeakRadius: 5,
+            projectileStrongSpeed: 8,
+            projectileWeakSpeed: 4,
+            playableMarginX: 96,
+            playableMarginY: 96,
+            enemyRadius: 16,
+            enemyShadowOffsetY: 12,
+            enemyEyeOffsetX: 5,
+            enemyEyeOffsetY: 3,
+            enemyEyeRadius: 4,
+            enemyPupilRadius: 1.5,
+            enemyHpBarWidth: 30,
+            enemyHpBarHeight: 6,
+            enemyHpBarOffsetY: 25,
+            enemyBaseSpeed: 1.2,
+            enemyWaveSpeedBonus: 0.15
+        };
+
+        let placementState = null;
+        let scheduledLayoutFrame = null;
+
+        applyGameLayout({ preserveState: false });
+
+        // Configurações do Jogo
+        let gameHealth = 1;
+        let currentWave = 0;
+        let gameState = 'START'; // START, PLAYING, GAMEOVER, VICTORY
+        let quizActive = false;
+        
+        let pathPoints = [];
+
+
+        let towerSpots = [];
+
+
+        // Quizzes (Inglês Básico)
+        let quizzes = [];
+        const waveConfigs = [1, 3, 5, 7, 9];
+        let enemies = [];
+        let towers = [];
+        let projectiles = [];
+        let enemiesSpawned = 0;
+        let waveTimer = 0;
+        const wallDurationFrames = 20 * 60;
+        let wallActive = false;
+        let wallTimer = 0;
+        let lastWallSecondShown = null;
+
+        function clampNumber(value, min, max) {
+            return Math.min(Math.max(value, min), max);
+        }
+
+        function getTowerSpotRadius() {
+            return layout.towerRadius;
+        }
+
+        function getMinimumTowerSpacing() {
+            return layout.gridSize;
+        }
+
+        function getGameWidth() {
+            return layout.logicalWidth;
+        }
+
+        function getGameHeight() {
+            return layout.logicalHeight;
+        }
+
+        function createResponsiveMetrics(width, height) {
+            const minDim = Math.min(width, height);
+            const gridSize = clampNumber(Math.round(width / BASE_LAYOUT.gridColumns), BASE_LAYOUT.gridSizeMin, BASE_LAYOUT.gridSizeMax);
+
+            return {
+                logicalWidth: width,
+                logicalHeight: height,
+                gridSize,
+                towerRadius: clampNumber(Math.round(minDim * 0.033), 18, 36),
+                towerBaseOffsetY: clampNumber(Math.round(minDim * 0.025), 14, 24),
+                towerBaseRadiusX: clampNumber(Math.round(minDim * 0.042), 22, 42),
+                towerBaseRadiusY: clampNumber(Math.round(minDim * 0.017), 9, 18),
+                towerIconSize: clampNumber(Math.round(minDim * 0.039), 22, 38),
+                towerSleepIconSize: clampNumber(Math.round(minDim * 0.022), 12, 22),
+                towerRangeStrong: clampNumber(Math.round(minDim * 0.33), 170, 340),
+                towerRangeWeak: clampNumber(Math.round(minDim * 0.2), 110, 220),
+                pathOuterWidth: clampNumber(Math.round(minDim * 0.092), 48, 96),
+                pathInnerWidth: clampNumber(Math.round(minDim * 0.067), 34, 72),
+                towerPathPadding: clampNumber(Math.round(minDim * 0.028), 14, 30),
+                projectileStrongRadius: clampNumber(Math.round(minDim * 0.01), 5, 10),
+                projectileWeakRadius: clampNumber(Math.round(minDim * 0.007), 4, 8),
+                projectileStrongSpeed: clampNumber(minDim * 0.011, 5.5, 10),
+                projectileWeakSpeed: clampNumber(minDim * 0.0055, 3, 5.5),
+                playableMarginX: clampNumber(Math.round(width * 0.1), 72, Math.max(88, Math.round(width * 0.18))),
+                playableMarginY: clampNumber(Math.round(height * 0.13), 64, Math.max(80, Math.round(height * 0.2))),
+                enemyRadius: clampNumber(Math.round(minDim * 0.022), 12, 24),
+                enemyShadowOffsetY: clampNumber(Math.round(minDim * 0.017), 8, 18),
+                enemyEyeOffsetX: clampNumber(Math.round(minDim * 0.007), 4, 7),
+                enemyEyeOffsetY: clampNumber(Math.round(minDim * 0.004), 2, 5),
+                enemyEyeRadius: clampNumber(Math.round(minDim * 0.0055), 3, 6),
+                enemyPupilRadius: clampNumber(minDim * 0.002, 1.2, 2.4),
+                enemyHpBarWidth: clampNumber(Math.round(minDim * 0.042), 22, 38),
+                enemyHpBarHeight: clampNumber(Math.round(minDim * 0.008), 4, 8),
+                enemyHpBarOffsetY: clampNumber(Math.round(minDim * 0.035), 18, 30),
+                enemyBaseSpeed: clampNumber(minDim * 0.0017, 0.9, 1.8),
+                enemyWaveSpeedBonus: clampNumber(minDim * 0.00021, 0.12, 0.24)
+            };
+        }
+
+        function getEnemySpeed(waveNumber) {
+            return layout.enemyBaseSpeed + waveNumber * layout.enemyWaveSpeedBonus;
+        }
+
+        function getWallTimeLeftSeconds() {
+            return Math.max(0, Math.ceil(wallTimer / 60));
+        }
+
+        function updateWallDisplay() {
+            const wallStatus = document.getElementById('wall-status');
+            const wallDisplay = document.getElementById('wall-display');
+
+            if (!wallStatus || !wallDisplay) {
+                return;
+            }
+
+            if (wallActive) {
+                wallStatus.style.display = 'flex';
+                wallDisplay.innerText = `${getWallTimeLeftSeconds()}s`;
+            } else {
+                wallStatus.style.display = 'none';
+            }
+        }
+
+        function resetWallState() {
+            wallActive = false;
+            wallTimer = 0;
+            lastWallSecondShown = null;
+            updateWallDisplay();
+        }
+
+        function activateWaveWall(waveNumber) {
+            if (waveNumber === 1) {
+                wallActive = true;
+                wallTimer = wallDurationFrames;
+                lastWallSecondShown = getWallTimeLeftSeconds();
+                updateWallDisplay();
+                return;
+            }
+
+            resetWallState();
+        }
+
+        function isWallBlockingWave() {
+            return wallActive && currentWave === 1;
+        }
+
+        function getWallBlockPoint() {
+            const startPoint = pathPoints[0];
+            const nextPoint = pathPoints[1];
+
+            if (!startPoint || !nextPoint) {
+                return null;
+            }
+
+            const dx = nextPoint.x - startPoint.x;
+            const dy = nextPoint.y - startPoint.y;
+            const segmentLength = Math.hypot(dx, dy);
+
+            if (segmentLength === 0) {
+                return { x: startPoint.x, y: startPoint.y };
+            }
+
+            const distanceFromStart = Math.min(segmentLength * 0.55, layout.gridSize * 2.2);
+            const ratio = distanceFromStart / segmentLength;
+
+            return {
+                x: startPoint.x + dx * ratio,
+                y: startPoint.y + dy * ratio
+            };
+        }
+
+        function updateWallState() {
+            if (!isWallBlockingWave()) {
+                return;
+            }
+
+            wallTimer = Math.max(0, wallTimer - 1);
+
+            const currentSecondShown = getWallTimeLeftSeconds();
+            if (currentSecondShown !== lastWallSecondShown) {
+                lastWallSecondShown = currentSecondShown;
+                updateWallDisplay();
+            }
+
+            if (wallTimer === 0) {
+                wallActive = false;
+                updateWallDisplay();
+            }
+        }
+
+        function scaleCanvasPoint(point, scaleX, scaleY, alignToGrid = false) {
+            const scaledPoint = {
+                x: point.x * scaleX,
+                y: point.y * scaleY
+            };
+
+            if (alignToGrid) {
+                return alignPointToGrid(scaledPoint);
+            }
+
+            return {
+                x: clampNumber(scaledPoint.x, 0, getGameWidth()),
+                y: clampNumber(scaledPoint.y, 0, getGameHeight())
+            };
+        }
+
+        function resizeGameState(previousWidth, previousHeight) {
+            if (!previousWidth || !previousHeight) {
+                return;
+            }
+
+            const scaleX = getGameWidth() / previousWidth;
+            const scaleY = getGameHeight() / previousHeight;
+
+            if (pathPoints.length > 0) {
+                pathPoints = pathPoints.map((point, index) => {
+                    const scaledY = snapToGrid(point.y * scaleY, getGameHeight());
+
+                    if (index === 0) {
+                        return { x: -layout.pathOuterWidth, y: scaledY };
+                    }
+
+                    if (index === pathPoints.length - 1) {
+                        return { x: getGameWidth() + layout.pathOuterWidth, y: scaledY };
+                    }
+
+                    return alignPointToGrid({ x: point.x * scaleX, y: point.y * scaleY });
+                });
+            }
+
+            if (towerSpots.length > 0) {
+                towerSpots = towerSpots.map(spot => scaleCanvasPoint(spot, scaleX, scaleY, true));
+            }
+
+            towers.forEach(tower => {
+                const point = scaleCanvasPoint(tower, scaleX, scaleY, true);
+                tower.x = point.x;
+                tower.y = point.y;
+                tower.range = getTowerRange(tower.isStrong);
+            });
+
+            enemies.forEach(enemy => {
+                const point = scaleCanvasPoint(enemy, scaleX, scaleY);
+                enemy.x = point.x;
+                enemy.y = point.y;
+                enemy.radius = layout.enemyRadius;
+                enemy.speed = getEnemySpeed(currentWave);
+            });
+
+            projectiles.forEach(projectile => {
+                const point = scaleCanvasPoint(projectile, scaleX, scaleY);
+                projectile.x = point.x;
+                projectile.y = point.y;
+                projectile.speed = projectile.isStrong ? layout.projectileStrongSpeed : layout.projectileWeakSpeed;
+            });
+
+            if (placementState?.active) {
+                const point = scaleCanvasPoint({ x: placementState.mouseX, y: placementState.mouseY }, scaleX, scaleY, true);
+                placementState.mouseX = point.x;
+                placementState.mouseY = point.y;
+                placementState.range = getTowerRange(placementState.isStrong);
+            }
+        }
+
+        function applyGameLayout({ preserveState = true } = {}) {
+            const containerWidth = Math.max(320, Math.round(gameContainer.clientWidth || window.innerWidth));
+            const containerHeight = Math.max(480, Math.round(gameContainer.clientHeight || window.innerHeight));
+            const previousWidth = layout.logicalWidth;
+            const previousHeight = layout.logicalHeight;
+
+            Object.assign(layout, createResponsiveMetrics(containerWidth, containerHeight));
+            canvas.width = layout.logicalWidth;
+            canvas.height = layout.logicalHeight;
+
+            if (preserveState && (previousWidth !== layout.logicalWidth || previousHeight !== layout.logicalHeight)) {
+                resizeGameState(previousWidth, previousHeight);
+            }
+        }
+
+        function scheduleResponsiveLayout() {
+            if (scheduledLayoutFrame !== null) {
+                return;
+            }
+
+            scheduledLayoutFrame = requestAnimationFrame(() => {
+                scheduledLayoutFrame = null;
+                applyGameLayout();
+            });
+        }
+
+        function getTowerRange(isStrong) {
+            return isStrong ? layout.towerRangeStrong : layout.towerRangeWeak;
+        }
+
+        function getTowerAccentColor(isStrong) {
+            return isStrong ? '#58cc02' : '#a5a5a5';
+        }
+
+        function snapToGrid(value, maxValue) {
+            const halfCell = layout.gridSize / 2;
+            const snapped = Math.floor(value / layout.gridSize) * layout.gridSize + halfCell;
+            return Math.max(halfCell, Math.min(maxValue - halfCell, snapped));
+        }
+
+        function alignPointToGrid(point) {
+            return {
+                x: snapToGrid(point.x, getGameWidth()),
+                y: snapToGrid(point.y, getGameHeight())
+            };
+        }
+
+        function getCanvasPoint(event) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: Math.round((event.clientX - rect.left) * (canvas.width / rect.width)),
+                y: Math.round((event.clientY - rect.top) * (canvas.height / rect.height))
+            };
+        }
+
+        function getPlayableBounds() {
+            return {
+                minX: layout.playableMarginX,
+                maxX: getGameWidth() - layout.playableMarginX,
+                minY: layout.playableMarginY,
+                maxY: getGameHeight() - layout.playableMarginY
+            };
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function getRandomGridCenter(minPixel, maxPixel, excludedValue = null) {
+            const halfCell = layout.gridSize / 2;
+            const minIndex = Math.ceil((minPixel - halfCell) / layout.gridSize);
+            const maxIndex = Math.floor((maxPixel - halfCell) / layout.gridSize);
+
+            if (minIndex > maxIndex) {
+                return halfCell;
+            }
+
+            for (let attempt = 0; attempt < 20; attempt++) {
+                const value = getRandomInt(minIndex, maxIndex) * layout.gridSize + halfCell;
+                if (value !== excludedValue) {
+                    return value;
+                }
+            }
+
+            return minIndex * layout.gridSize + halfCell;
+        }
+
+        function shuffleArray(items) {
+            for (let index = items.length - 1; index > 0; index--) {
+                const swapIndex = Math.floor(Math.random() * (index + 1));
+                [items[index], items[swapIndex]] = [items[swapIndex], items[index]];
+            }
+
+            return items;
+        }
+
+        function drawGridOverlay() {
+            ctx.save();
+            ctx.globalAlpha = 0.18;
+            ctx.strokeStyle = '#888';
+            ctx.lineWidth = 1;
+
+            for (let x = 0; x <= getGameWidth(); x += layout.gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, getGameHeight());
+                ctx.stroke();
+            }
+
+            for (let y = 0; y <= getGameHeight(); y += layout.gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(getGameWidth(), y);
+                ctx.stroke();
+            }
+
+            ctx.restore();
+        }
+
+        function drawBlockedCellsOverlay() {
+            if (!placementState?.active) {
+                return;
+            }
+
+            for (let gx = 0; gx < getGameWidth(); gx += layout.gridSize) {
+                for (let gy = 0; gy < getGameHeight(); gy += layout.gridSize) {
+                    const center = { x: gx + layout.gridSize / 2, y: gy + layout.gridSize / 2 };
+
+                    if (!isPointOutsidePath(center, pathPoints)) {
+                        ctx.save();
+                        ctx.globalAlpha = 0.18;
+                        ctx.fillStyle = '#ea2b2b';
+                        ctx.fillRect(gx, gy, layout.gridSize, layout.gridSize);
+                        ctx.restore();
+                    }
+                }
+            }
+        }
+
+        function drawTowerSprite(x, y, isStrong, icon, alpha = 1) {
+            ctx.save();
+            ctx.globalAlpha = alpha;
+
+            ctx.fillStyle = '#e5e5e5';
+            ctx.beginPath();
+            ctx.ellipse(x, y + layout.towerBaseOffsetY, layout.towerBaseRadiusX, layout.towerBaseRadiusY, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(x, y, layout.towerRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = getTowerAccentColor(isStrong);
+            ctx.stroke();
+
+            ctx.font = `${layout.towerIconSize}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            if (!isStrong) {
+                ctx.filter = 'grayscale(100%) opacity(60%)';
+            }
+
+            ctx.fillText(icon || '🦉', x, y + 2);
+            ctx.filter = 'none';
+
+            if (!isStrong) {
+                ctx.font = `${layout.towerSleepIconSize}px Arial`;
+                ctx.fillText('💤', x + layout.towerRadius - 2, y - layout.towerRadius / 2);
+            }
+
+            ctx.restore();
+        }
+
+        function startPlacement(isStrong, icon) {
+            placementState = {
+                active: true,
+                isStrong,
+                icon,
+                range: getTowerRange(isStrong),
+                mouseX: snapToGrid(getGameWidth() / 2, getGameWidth()),
+                mouseY: snapToGrid(getGameHeight() / 2, getGameHeight())
+            };
+        }
+
+        function clearActiveRoundFlow() {
+            quizActive = false;
+            placementState = null;
+            showScreen(null);
+        }
+
+        function startWave(waveNumber) {
+            const qData = quizzes[waveNumber - 1];
+
+            if (!qData) {
+                gameState = 'VICTORY';
+                clearActiveRoundFlow();
+                showScreen('victory-screen');
+                return;
+            }
+
+            currentWave = waveNumber;
+            enemiesSpawned = 0;
+            waveTimer = 0;
+            activateWaveWall(waveNumber);
+            updateHUD();
+            startQuiz();
+        }
+
+        function finishPlacement(x, y) {
+            if (gameState !== 'PLAYING' || !placementState?.active) {
+                return;
+            }
+
+            towers.push(new Tower(x, y, placementState.isStrong, placementState.icon));
+            placementState = null;
+        }
+
+        function showPlacementError(message) {
+            const fb = document.getElementById('feedback-message');
+            fb.className = 'feedback-wrong';
+            fb.innerHTML = `<i class="fa-solid fa-xmark"></i> ${message}`;
+            fb.style.opacity = '1';
+            setTimeout(() => { fb.style.opacity = '0'; }, 1500);
+        }
+
+        function handleCanvasPointerMove(event) {
+            if (!placementState?.active) {
+                return;
+            }
+
+            const alignedPoint = alignPointToGrid(getCanvasPoint(event));
+            placementState.mouseX = alignedPoint.x;
+            placementState.mouseY = alignedPoint.y;
+        }
+
+        function handleCanvasPlacement(event) {
+            if (gameState !== 'PLAYING' || !placementState?.active) {
+                return;
+            }
+
+            const { x, y } = alignPointToGrid(getCanvasPoint(event));
+
+            if (!isPointOutsidePath({ x, y }, pathPoints)) {
+                showPlacementError('Não pode colocar no caminho!');
+                return;
+            }
+
+            const occupied = towers.some(tower => tower.x === x && tower.y === y);
+            if (occupied) {
+                showPlacementError('Já existe uma torre aqui!');
+                return;
+            }
+
+            finishPlacement(x, y);
+        }
+
+        function drawPlacementPreview() {
+            if (!placementState?.active) {
+                return;
+            }
+
+            const { mouseX, mouseY, isStrong, icon, range } = placementState;
+
+            drawBlockedCellsOverlay();
+
+            ctx.save();
+            ctx.globalAlpha = 0.25;
+            ctx.beginPath();
+            ctx.arc(mouseX, mouseY, range, 0, Math.PI * 2);
+            ctx.fillStyle = getTowerAccentColor(isStrong);
+            ctx.fill();
+            ctx.restore();
+
+            drawTowerSprite(mouseX, mouseY, isStrong, icon, 0.9);
+        }
+
+        canvas.addEventListener('pointermove', handleCanvasPointerMove);
+        canvas.addEventListener('pointerdown', handleCanvasPlacement);
+
+        // Banco de perguntas para geração procedural
+        const questionBank = [
+            { q: 'Como se diz "Maçã" em inglês?', options: ['Apple', 'Dog', 'Car', 'Blue'], ans: 0 },
+            { q: 'Traduza "The cat is black"', options: ['O cachorro é branco', 'O gato é preto', 'O pássaro voa', 'A casa é grande'], ans: 1 },
+            { q: 'Complete: "I _____ a student."', options: ['is', 'are', 'am', 'be'], ans: 2 },
+            { q: 'O que significa "Good morning"?', options: ['Boa noite', 'Boa tarde', 'Adeus', 'Bom dia'], ans: 3 },
+            { q: 'Como se diz "Água"?', options: ['Water', 'Fire', 'Earth', 'Air'], ans: 0 },
+            { q: 'Como se diz "Cachorro" em inglês?', options: ['Dog', 'Cat', 'Bird', 'Fish'], ans: 0 },
+            { q: 'Traduza "Blue"', options: ['Azul', 'Verde', 'Amarelo', 'Vermelho'], ans: 0 },
+            { q: 'Complete: "She _____ happy."', options: ['is', 'are', 'am', 'be'], ans: 0 },
+            { q: 'O que significa "Good night"?', options: ['Boa noite', 'Bom dia', 'Boa tarde', 'Adeus'], ans: 0 },
+            { q: 'Como se diz "Casa"?', options: ['House', 'Car', 'Tree', 'Book'], ans: 0 }
+        ];
+
+        // Função para gerar quizzes proceduralmente
+        function generateQuizzes(numFases) {
+            // Copia e embaralha o banco de perguntas
+            const shuffled = questionBank.slice().sort(() => Math.random() - 0.5);
+            // Seleciona as primeiras numFases perguntas
+            return shuffled.slice(0, numFases);
+        }
+
+        // Configuração das Ondas (Inimigos por onda)
+        function getSegments(path) {
+            const segments = [];
+
+            for (let i = 0; i < path.length - 1; i++) {
+                segments.push({ start: path[i], end: path[i + 1], index: i });
+            }
+
+            return segments;
+        }
+
+        function rangesOverlap(minA, maxA, minB, maxB) {
+            return Math.max(minA, minB) < Math.min(maxA, maxB);
+        }
+
+        function isVerticalSegment(segment) {
+            return segment.start.x === segment.end.x;
+        }
+
+        function hasParallelOverlap(first, second, isVertical) {
+            if (isVertical) {
+                return first.start.x === second.start.x && rangesOverlap(
+                    Math.min(first.start.y, first.end.y),
+                    Math.max(first.start.y, first.end.y),
+                    Math.min(second.start.y, second.end.y),
+                    Math.max(second.start.y, second.end.y)
+                );
+            }
+
+            return first.start.y === second.start.y && rangesOverlap(
+                Math.min(first.start.x, first.end.x),
+                Math.max(first.start.x, first.end.x),
+                Math.min(second.start.x, second.end.x),
+                Math.max(second.start.x, second.end.x)
+            );
+        }
+
+        function hasPerpendicularIntersection(first, second, firstVertical) {
+            const vertical = firstVertical ? first : second;
+            const horizontal = firstVertical ? second : first;
+            const withinX = vertical.start.x > Math.min(horizontal.start.x, horizontal.end.x) && vertical.start.x < Math.max(horizontal.start.x, horizontal.end.x);
+            const withinY = horizontal.start.y > Math.min(vertical.start.y, vertical.end.y) && horizontal.start.y < Math.max(vertical.start.y, vertical.end.y);
+
+            return withinX && withinY;
+        }
+
+        function segmentsIntersect(first, second) {
+            const firstVertical = isVerticalSegment(first);
+            const secondVertical = isVerticalSegment(second);
+
+            if (firstVertical === secondVertical) {
+                return hasParallelOverlap(first, second, firstVertical);
+            }
+
+            return hasPerpendicularIntersection(first, second, firstVertical);
+        }
+
+        function isPathSelfIntersecting(path) {
+            const segments = getSegments(path);
+
+            for (let i = 0; i < segments.length; i++) {
+                for (let j = i + 1; j < segments.length; j++) {
+                    if (Math.abs(i - j) <= 1) {
+                        continue;
+                    }
+
+                    if (segmentsIntersect(segments[i], segments[j])) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        function distanceToSegment(point, start, end) {
+            const dx = end.x - start.x;
+            const dy = end.y - start.y;
+
+            if (dx === 0 && dy === 0) {
+                return Math.hypot(point.x - start.x, point.y - start.y);
+            }
+
+            const projection = ((point.x - start.x) * dx + (point.y - start.y) * dy) / (dx * dx + dy * dy);
+            const clamped = Math.max(0, Math.min(1, projection));
+            const closestX = start.x + clamped * dx;
+            const closestY = start.y + clamped * dy;
+            return Math.hypot(point.x - closestX, point.y - closestY);
+        }
+
+        function isPointOutsidePath(point, path) {
+            const requiredDistance = layout.pathOuterWidth / 2 + getTowerSpotRadius() + layout.towerPathPadding;
+
+            for (let i = 0; i < path.length - 1; i++) {
+                const dist = distanceToSegment(point, path[i], path[i + 1]);
+                if (dist < requiredDistance) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function generatePathPoints() {
+            const bounds = getPlayableBounds();
+
+            for (let attempt = 0; attempt < 150; attempt++) {
+                const start = {
+                    x: -layout.pathOuterWidth,
+                    y: getRandomGridCenter(bounds.minY, bounds.maxY)
+                };
+                const points = [start];
+                let lastX = start.x;
+                let lastY = start.y;
+
+                for (let i = 0; i < 4; i++) {
+                    let x;
+                    let y;
+
+                    if (i % 2 === 0) {
+                        x = getRandomGridCenter(bounds.minX, bounds.maxX, lastX);
+                        y = lastY;
+                    } else {
+                        x = lastX;
+                        y = getRandomGridCenter(bounds.minY, bounds.maxY, lastY);
+                    }
+
+                    points.push({ x, y });
+                    lastX = x;
+                    lastY = y;
+                }
+
+                points.push({ x: getGameWidth() + layout.pathOuterWidth, y: lastY });
+
+                if (!isPathSelfIntersecting(points) && !hasBacktracking(points)) {
+                    return points;
+                }
+            }
+
+            const fallbackYTop = snapToGrid(getGameHeight() * 0.3, getGameHeight());
+            const fallbackYBottom = snapToGrid(getGameHeight() * 0.62, getGameHeight());
+            const fallbackXLeft = snapToGrid(getGameWidth() * 0.22, getGameWidth());
+            const fallbackXRight = snapToGrid(getGameWidth() * 0.64, getGameWidth());
+
+            return [
+                { x: -layout.pathOuterWidth, y: fallbackYTop },
+                { x: fallbackXLeft, y: fallbackYTop },
+                { x: fallbackXLeft, y: fallbackYBottom },
+                { x: fallbackXRight, y: fallbackYBottom },
+                { x: fallbackXRight, y: snapToGrid(getGameHeight() * 0.35, getGameHeight()) },
+                { x: getGameWidth() + layout.pathOuterWidth, y: snapToGrid(getGameHeight() * 0.35, getGameHeight()) }
+            ];
+        }
+
+        function hasBacktracking(path) {
+            // Verifica se há segmentos consecutivos colados (vai e volta)
+            for (let i = 1; i < path.length - 1; i++) {
+                const prev = path[i - 1];
+                const next = path[i + 1];
+                if ((prev.x === next.x && prev.y === next.y)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function generateTowerSpots(numSpots, path) {
+            const bounds = getPlayableBounds();
+            const candidates = [];
+            const minimumTowerSpacing = getMinimumTowerSpacing();
+
+            for (let y = layout.gridSize / 2; y < getGameHeight(); y += layout.gridSize) {
+                for (let x = layout.gridSize / 2; x < getGameWidth(); x += layout.gridSize) {
+                    const insidePlayableArea = x >= bounds.minX && x <= bounds.maxX && y >= bounds.minY && y <= bounds.maxY;
+                    const candidate = { x, y };
+
+                    if (insidePlayableArea && isPointOutsidePath(candidate, path)) {
+                        candidates.push(candidate);
+                    }
+                }
+            }
+
+            shuffleArray(candidates);
+
+            const spots = [];
+            for (const candidate of candidates) {
+                const farFromSpots = spots.every(spot => Math.hypot(spot.x - candidate.x, spot.y - candidate.y) >= minimumTowerSpacing);
+                if (farFromSpots) {
+                    spots.push(candidate);
+                }
+
+                if (spots.length >= numSpots) {
+                    break;
+                }
+            }
+
+            return spots;
+        }
+
+        class Enemy {
+            pathIndex = 0;
+
+            constructor() {
+                this.x = pathPoints[0]?.x ?? -layout.pathOuterWidth;
+                this.y = pathPoints[0]?.y ?? getGameHeight() / 2;
+                this.radius = layout.enemyRadius;
+                this.speed = getEnemySpeed(currentWave);
+                this.maxHp = 70 + currentWave * 20;
+                this.hp = this.maxHp;
+            }
+
+            update() {
+                const wallPoint = getWallBlockPoint();
+                const blockedByWall = isWallBlockingWave() && this.pathIndex === 0 && wallPoint;
+                const nextPoint = blockedByWall ? wallPoint : pathPoints[this.pathIndex + 1];
+
+                if (!nextPoint) {
+                    this.hp = 0;
+                    gameHealth -= 1;
+                    updateHUD();
+                    return;
+                }
+
+                const dx = nextPoint.x - this.x;
+                const dy = nextPoint.y - this.y;
+                const dist = Math.hypot(dx, dy);
+
+                if (dist <= this.speed) {
+                    this.x = nextPoint.x;
+                    this.y = nextPoint.y;
+
+                    if (blockedByWall) {
+                        return;
+                    }
+
+                    this.pathIndex += 1;
+
+                    if (this.pathIndex >= pathPoints.length - 1) {
+                        this.hp = 0;
+                        gameHealth -= 1;
+                        updateHUD();
+                    }
+                    return;
+                }
+
+                this.x += (dx / dist) * this.speed;
+                this.y += (dy / dist) * this.speed;
+            }
+
+            draw() {
+                ctx.fillStyle = 'rgba(0,0,0,0.2)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y + layout.enemyShadowOffsetY, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ea2b2b';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(this.x - layout.enemyEyeOffsetX, this.y - layout.enemyEyeOffsetY, layout.enemyEyeRadius, 0, Math.PI * 2);
+                ctx.arc(this.x + layout.enemyEyeOffsetX, this.y - layout.enemyEyeOffsetY, layout.enemyEyeRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'black';
+                ctx.beginPath();
+                ctx.arc(this.x - layout.enemyEyeOffsetX, this.y - layout.enemyEyeOffsetY, layout.enemyPupilRadius, 0, Math.PI * 2);
+                ctx.arc(this.x + layout.enemyEyeOffsetX, this.y - layout.enemyEyeOffsetY, layout.enemyPupilRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                const hpPercent = this.hp / this.maxHp;
+                ctx.fillStyle = '#ffdfe0';
+                ctx.fillRect(this.x - layout.enemyHpBarWidth / 2, this.y - layout.enemyHpBarOffsetY, layout.enemyHpBarWidth, layout.enemyHpBarHeight);
+                ctx.fillStyle = '#58cc02';
+                ctx.fillRect(this.x - layout.enemyHpBarWidth / 2, this.y - layout.enemyHpBarOffsetY, layout.enemyHpBarWidth * hpPercent, layout.enemyHpBarHeight);
+            }
+        }
+        
+
+        class Tower {
+            constructor(x, y, isStrong, icon) {
+                this.x = x;
+                this.y = y;
+                this.isStrong = isStrong;
+                this.icon = icon || '🦉';
+                this.range = getTowerRange(isStrong);
+                this.cooldown = 0;
+            }
+
+            getEffectiveDamage() {
+                // Se houver pelo menos uma torre fraca, todas causam dano baixo
+                const anyWeak = towers.some(t => !t.isStrong);
+
+                if (anyWeak) {
+                    return 10;
+                }
+
+                return this.isStrong ? 50 : 10;
+            }
+
+            getEffectiveFireRate() {
+                // Mantém fireRate individual
+                return this.isStrong ? 30 : 90;
+            }
+
+            update() {
+                if (this.cooldown > 0) this.cooldown--;
+
+                if (this.cooldown === 0) {
+                    // Encontrar alvo mais próximo dentro do alcance
+                    let target = null;
+                    let minDist = this.range;
+
+                    for (let enemy of enemies) {
+                        const dist = Math.hypot(enemy.x - this.x, enemy.y - this.y);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            target = enemy;
+                        }
+                    }
+
+                    if (target) {
+                        this.shoot(target);
+                        this.cooldown = this.getEffectiveFireRate();
+                    }
+                }
+            }
+
+            shoot(target) {
+                projectiles.push(new Projectile(this.x, this.y - layout.towerRadius * 0.75, target, this.getEffectiveDamage(), this.isStrong));
+            }
+
+            draw() {
+                drawTowerSprite(this.x, this.y, this.isStrong, this.icon);
+            }
+        }
+
+        class Projectile {
+            constructor(x, y, target, damage, isStrong) {
+                this.x = x;
+                this.y = y;
+                this.target = target;
+                this.damage = damage;
+                this.speed = isStrong ? layout.projectileStrongSpeed : layout.projectileWeakSpeed;
+                this.isStrong = isStrong;
+            }
+
+            update() {
+                if (this.target.hp <= 0) {
+                    this.hit = true;
+                    return;
+                }
+
+                const dx = this.target.x - this.x;
+                const dy = this.target.y - this.y;
+                const dist = Math.hypot(dx, dy);
+
+                if (dist < this.speed + this.target.radius) {
+                    this.target.hp -= this.damage;
+                    this.hit = true;
+                } else {
+                    this.x += (dx / dist) * this.speed;
+                    this.y += (dy / dist) * this.speed;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = this.isStrong ? '#58cc02' : '#a5a5a5';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.isStrong ? layout.projectileStrongRadius : layout.projectileWeakRadius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Funções de Controle e Renderização
+        function showScreen(id) {
+            document.querySelectorAll('.overlay').forEach(el => el.classList.remove('active'));
+            // Só mostra a prancheta se id === 'quiz-screen'
+            const quizScreen = document.getElementById('quiz-screen');
+            if (id === 'quiz-screen') {
+                quizScreen.style.display = 'block';
+            } else {
+                quizScreen.style.display = 'none';
+            }
+            if (id && id !== 'quiz-screen') document.getElementById(id).classList.add('active');
+        }
+
+        function startGame() {
+            gameHealth = 1;
+            currentWave = 0;
+            gameState = 'PLAYING';
+            quizActive = false;
+            enemies = [];
+            towers = [];
+            projectiles = [];
+            enemiesSpawned = 0;
+            waveTimer = 0;
+            resetWallState();
+            clearActiveRoundFlow();
+            pathPoints = generatePathPoints();
+            towerSpots = generateTowerSpots(5, pathPoints);
+            quizzes = generateQuizzes(5);
+            updateHUD();
+            startWave(1);
+        }
+
+        function startQuiz() {
+            if (gameState !== 'PLAYING') {
+                return;
+            }
+
+            const qData = quizzes[currentWave - 1];
+
+            if (!qData) {
+                startWave(currentWave + 1);
+                return;
+            }
+            
+            quizActive = true;
+            
+            document.getElementById('question-text').innerText = qData.q;
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            const towerIcons = ['🦊', '🐻', '🐼', '🐯']; // Animais para representar cada alternativa
+            
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'duo-btn';
+                btn.style.flexDirection = 'column'; // Organiza o ícone em cima do texto
+                btn.innerHTML = `<span style="font-size: 2.2rem; margin-bottom: 5px;">${towerIcons[idx]}</span> <span>${opt}</span>`;
+                btn.onclick = () => checkAnswer(idx, qData.ans, towerIcons[idx]);
+                optionsContainer.appendChild(btn);
+            });
+
+            showScreen('quiz-screen');
+        }
+
+        function checkAnswer(selected, correct, selectedIcon) {
+            if (!quizActive || gameState !== 'PLAYING') {
+                return;
+            }
+
+            const isCorrect = (selected === correct);
+            quizActive = false;
+            showScreen(null);
+            showFeedback(isCorrect);
+            startPlacement(isCorrect, selectedIcon || '🦉');
+        }
+
+        function showFeedback(isCorrect) {
+            const fb = document.getElementById('feedback-message');
+            fb.className = isCorrect ? 'feedback-correct' : 'feedback-wrong';
+            fb.innerHTML = isCorrect ? '<i class="fa-solid fa-check"></i> Perfeito! Torre Forte.' : '<i class="fa-solid fa-xmark"></i> Incorreto. Torre Fraca.';
+            fb.style.opacity = '1';
+            
+            setTimeout(() => {
+                fb.style.opacity = '0';
+            }, 2000);
+        }
+
+        function updateHUD() {
+            document.getElementById('health-display').innerText = Math.max(0, gameHealth);
+            document.getElementById('wave-display').innerText = `${Math.min(currentWave, 5)}/5`;
+            updateWallDisplay();
+            
+            if (gameHealth <= 0 && gameState !== 'GAMEOVER') {
+                gameState = 'GAMEOVER';
+                clearActiveRoundFlow();
+                showScreen('game-over-screen');
+            }
+        }
+
+        function drawWall() {
+                if (!isWallBlockingWave()) {
+                    return;
+                }
+
+                const wallPoint = getWallBlockPoint();
+                if (!wallPoint) {
+                    return;
+                }
+
+                // Detecta se algum inimigo está encostado no muro
+                let shaking = false;
+                for (const enemy of enemies) {
+                    if (enemy.pathIndex === 0 && isWallBlockingWave()) {
+                        const dist = Math.hypot(enemy.x - wallPoint.x, enemy.y - wallPoint.y);
+                        if (dist < layout.enemyRadius * 1.2) {
+                            shaking = true;
+                            break;
+                        }
+                    }
+                }
+
+                // Calcula deslocamento de tremor
+                let shakeX = 0, shakeY = 0;
+                if (shaking) {
+                    const now = performance.now();
+                    // Tremor intermitente: só treme em pulsos de 200ms a cada 600ms
+                    const pulsePeriod = 600; // ms
+                    const pulseDuration = 200; // ms
+                    const inPulse = (now % pulsePeriod) < pulseDuration;
+                    if (inPulse) {
+                        // Tremor mais suave
+                        shakeX = Math.sin(now * 0.045) * 2.2;
+                        shakeY = Math.cos(now * 0.065) * 1.5;
+                    }
+                }
+
+                const wallWidth = Math.max(layout.gridSize * 0.8, layout.pathInnerWidth * 0.7);
+                const wallHeight = Math.max(layout.gridSize * 1.1, layout.pathOuterWidth * 1.15);
+                const progress = wallTimer / wallDurationFrames;
+                const crackOffset = (1 - progress) * wallWidth * 0.18;
+                const timeLeftText = `${getWallTimeLeftSeconds()}s`;
+
+                ctx.save();
+                ctx.translate(wallPoint.x + shakeX, wallPoint.y + shakeY);
+
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.14)';
+                ctx.beginPath();
+                ctx.ellipse(0, wallHeight * 0.33, wallWidth * 0.62, wallHeight * 0.22, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#c48a53';
+                ctx.strokeStyle = '#8a5a2b';
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                ctx.roundRect(-wallWidth / 2, -wallHeight / 2, wallWidth, wallHeight, 12);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.strokeStyle = '#f2d1a0';
+                ctx.lineWidth = 5;
+                ctx.beginPath();
+                ctx.moveTo(-wallWidth * 0.22, -wallHeight / 2);
+                ctx.lineTo(-wallWidth * 0.22, wallHeight / 2);
+                ctx.moveTo(wallWidth * 0.22, -wallHeight / 2);
+                ctx.lineTo(wallWidth * 0.22, wallHeight / 2);
+                ctx.stroke();
+
+                if (crackOffset > 0) {
+                    ctx.strokeStyle = '#6d4120';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(0, -wallHeight * 0.34);
+                    ctx.lineTo(-crackOffset, -wallHeight * 0.1);
+                    ctx.lineTo(crackOffset * 0.5, wallHeight * 0.08);
+                    ctx.lineTo(-crackOffset * 0.75, wallHeight * 0.34);
+                    ctx.stroke();
+                }
+
+                ctx.fillStyle = '#5a3418';
+                ctx.font = `${Math.max(14, Math.round(layout.gridSize * 0.24))}px Nunito`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                ctx.fillText('Muro', 0, -wallHeight / 2 - 14);
+
+                ctx.font = `${Math.max(16, Math.round(layout.gridSize * 0.28))}px Nunito`;
+                ctx.textBaseline = 'top';
+                ctx.fillText(timeLeftText, 0, wallHeight / 2 + 8);
+                ctx.restore();
+        }
+
+        function drawPath() {
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+
+            // Verifica se pathPoints está válido
+            if (!Array.isArray(pathPoints) || pathPoints.length < 2 || !pathPoints.every(p => p && typeof p.x === 'number' && typeof p.y === 'number')) {
+                return;
+            }
+
+            // Borda do caminho (Terra escura)
+            ctx.beginPath();
+            ctx.moveTo(pathPoints[0].x, pathPoints[0].y);
+            for (let i = 1; i < pathPoints.length; i++) {
+                ctx.lineTo(pathPoints[i].x, pathPoints[i].y);
+            }
+            ctx.lineWidth = layout.pathOuterWidth;
+            ctx.strokeStyle = '#dfc19c';
+            ctx.stroke();
+
+            // Caminho interno (Terra clara)
+            ctx.beginPath();
+            ctx.moveTo(pathPoints[0].x, pathPoints[0].y);
+            for (let i = 1; i < pathPoints.length; i++) {
+                ctx.lineTo(pathPoints[i].x, pathPoints[i].y);
+            }
+            ctx.lineWidth = layout.pathInnerWidth;
+            ctx.strokeStyle = '#f4dfc3';
+            ctx.stroke();
+        }
+
+        function updateAndDrawEnemies() {
+            for (let i = enemies.length - 1; i >= 0; i--) {
+                enemies[i].update();
+
+                if (enemies[i].hp <= 0) {
+                    enemies.splice(i, 1);
+                } else {
+                    enemies[i].draw();
+                }
+            }
+        }
+
+        function updateAndDrawTowers() {
+            towers.forEach(tower => {
+                tower.update();
+                tower.draw();
+            });
+        }
+
+        function updateAndDrawProjectiles() {
+            for (let i = projectiles.length - 1; i >= 0; i--) {
+                projectiles[i].update();
+
+                if (projectiles[i].hit) {
+                    projectiles.splice(i, 1);
+                } else {
+                    projectiles[i].draw();
+                }
+            }
+        }
+
+        function advanceWaveIfNeeded(waveTotalEnemies) {
+            if (isWallBlockingWave()) {
+                return;
+            }
+
+            if (enemiesSpawned !== waveTotalEnemies || enemies.length !== 0) {
+                return;
+            }
+
+            if (quizActive || placementState?.active) {
+                return;
+            }
+
+            if (currentWave < quizzes.length) {
+                startWave(currentWave + 1);
+                return;
+            }
+
+            gameState = 'VICTORY';
+            clearActiveRoundFlow();
+            showScreen('victory-screen');
+        }
+
+        function runPlayingState() {
+            waveTimer++;
+            const waveTotalEnemies = waveConfigs[currentWave - 1];
+
+            if (enemiesSpawned < waveTotalEnemies && waveTimer % 120 === 0) {
+                enemies.push(new Enemy());
+                enemiesSpawned++;
+            }
+
+            updateWallState();
+            drawWall();
+            updateAndDrawEnemies();
+            updateAndDrawTowers();
+            updateAndDrawProjectiles();
+            advanceWaveIfNeeded(waveTotalEnemies);
+        }
+
+        function gameLoop() {
+            // Limpa o Canvas (Grama verde)
+            ctx.clearRect(0, 0, getGameWidth(), getGameHeight());
+
+            drawGridOverlay();
+
+            // Desenhar Cenário
+            drawPath();
+
+            if (gameState === 'PLAYING') {
+                runPlayingState();
+            } else {
+                // Fora da partida ativa, manter apenas o tabuleiro estático
+                towers.forEach(t => t.draw());
+            }
+
+            drawPlacementPreview();
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Iniciar Loop
+        globalThis.addEventListener('resize', scheduleResponsiveLayout);
+        globalThis.addEventListener('orientationchange', scheduleResponsiveLayout);
+
+        requestAnimationFrame(gameLoop);
+    </script>        
+</body>
+</html>

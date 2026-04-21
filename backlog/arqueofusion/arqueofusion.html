@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Escavação Arqueológica</title>
+    
+    <!-- Importando a fonte Nunito para o visual estilo Duolingo -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Importando o Phaser 3 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"></script>
+
+    <!-- Estilização CSS Separada -->
+    <style>
+        :root {
+            --bg-color: #FDF1D6; /* Areia clara */
+            --shadow-color: #EAD2A1;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            touch-action: none; /* Previne scroll acidental no mobile */
+        }
+
+        #game-wrapper {
+            position: relative;
+            width: 95vw;
+            max-width: 800px;
+            aspect-ratio: 4 / 3;
+            box-shadow: 0 8px 0 var(--shadow-color), 0 15px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            background-color: #D38C3B; /* Terracota / Borda externa */
+            padding: 6px; /* Cria uma borda grossa em volta do canvas */
+            box-sizing: border-box;
+        }
+
+        #game-container {
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #F4D068; /* Cor de areia base */
+            width: 100%;
+            height: 100%;
+        }
+
+        canvas {
+            display: block;
+            border-radius: 12px;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Instruções flutuantes fora do canvas (UI extra para desktop) */
+        #instructions {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #777;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        @media (max-width: 850px) {
+            #game-wrapper {
+                padding: 4px;
+                border-radius: 16px;
+            }
+            #instructions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-wrapper">
+        <div id="game-container"></div>
+        <div id="instructions">Use as SETAS/WASD para mover. Escave com Z/X e pegue com ESPAÇO!</div>
+    </div>
+
+    <script>
+        // --- CONFIGURAÇÕES DE DADOS ---
+        const CATEGORIAS = [
+            { id: 'joia', nome: 'Joias', cor: 0x1CB0F6, sombra: 0x1899D6 }, // Azul Lápis-lazúli
+            { id: 'funerario', nome: 'Funerário', cor: 0x935B3B, sombra: 0x72452B }, // Terracota
+            { id: 'escrita', nome: 'Escritos', cor: 0xFF9600, sombra: 0xCC7800 }, // Laranja
+            { id: 'divino', nome: 'Divino', cor: 0xCE82FF, sombra: 0xA559D6 } // Roxo
+        ];
+
+        const ITENS_FASE = [
+            { id: 'item1', nome: 'Escaravelho', categoria: 'joia' },
+            { id: 'item2', nome: 'Vaso Canópico', categoria: 'funerario' },
+            { id: 'item3', nome: 'Papiro Antigo', categoria: 'escrita' },
+            { id: 'item4', nome: 'Estátua de Anúbis', categoria: 'divino' }
+        ];
+
+        const ITENS_EXTRA = [
+            { nome: 'Fóssil de Dino', x: 700, y: 800, isExtra: true, icon: 'icon_fossil' },
+            { nome: 'Vaso Grego', x: 1800, y: 700, isExtra: true, icon: 'icon_vase' },
+            { nome: 'Moeda Antiga', x: 1200, y: 1300, isExtra: true, icon: 'icon_coin' },
+            { nome: 'Amuleto', x: 1600, y: 300, isExtra: true, icon: 'icon_amulet' }
+        ];
+
+        // Paleta de Cores Globais
+        const PALETA = {
+            verde: 0x58CC02, // Mantido para sucesso
+            verdeEscuro: 0x46A302,
+            vermelho: 0xFF4B4B, // Mantido para erro
+            vermelhoEscuro: 0xEA2B2B,
+            areia: 0xF4D068,
+            areiaEscura: 0xD8B244,
+            terracota: 0xD38C3B,
+            terracotaEscura: 0xBA7125,
+            amarelo: 0xFFC800,
+            branco: 0xFFFFFF,
+            texto: 0x3C3C3C
+        };
+
+        // --- CENA PRINCIPAL DO JOGO ---
+        class MainGame extends Phaser.Scene {
+            constructor() {
+                super({ key: 'MainGame' });
+            }
+
+            create() {
+                this.cameras.main.setBackgroundColor('#F4D068'); // Fundo Areia
+
+                // Expandindo o mundo do jogo
+                const mapWidth = 2400;
+                const mapHeight = 1600;
+                this.physics.world.setBounds(0, 0, mapWidth, mapHeight);
+                this.cameras.main.setBounds(0, 0, mapWidth, mapHeight);
+
+                // Criar elementos decorativos (dunas) para preencher o deserto gigante
+                for (let i = 0; i < 35; i++) {
+                    let rx = Phaser.Math.Between(100, mapWidth - 100);
+                    let ry = Phaser.Math.Between(100, mapHeight - 100);
+                    let rw = Phaser.Math.Between(150, 400);
+                    let rh = Phaser.Math.Between(60, 150);
+                    
+                    let duna = this.add.graphics();
+                    duna.fillStyle(PALETA.areiaEscura, 0.15); // Dunas sutis de fundo
+                    duna.fillEllipse(rx, ry, rw, rh);
+                }
+
+                // Variáveis de Estado
+                this.isDigging = false;
+                this.currentSpot = null;
+                this.digProgress = 0;
+                this.lastKeyDug = null;
+                this.score = 0;
+                this.itemsCategorized = 0;
+                this.totalItems = ITENS_FASE.length;
+                this.carryingItem = null;
+                this.isCategorizing = false;
+
+                // Controles (Adicionado o ESPAÇO)
+                this.cursors = this.input.keyboard.createCursorKeys();
+                this.wasd = this.input.keyboard.addKeys({
+                    up: Phaser.Input.Keyboard.KeyCodes.W,
+                    down: Phaser.Input.Keyboard.KeyCodes.S,
+                    left: Phaser.Input.Keyboard.KeyCodes.A,
+                    right: Phaser.Input.Keyboard.KeyCodes.D,
+                    z: Phaser.Input.Keyboard.KeyCodes.Z,
+                    x: Phaser.Input.Keyboard.KeyCodes.X,
+                    space: Phaser.Input.Keyboard.KeyCodes.SPACE
+                });
+
+                // Criação dos Gráficos (Assets Procedurais)
+                this.generateAssets();
+
+                // Grupos de Física adicionais (Itens e Categorias)
+                this.itemsGroup = this.physics.add.group();
+                this.extraItemsGroup = this.physics.add.group(); // Novo grupo para os itens bônus no chão
+                this.categoryZonesGroup = this.physics.add.group();
+                this.extraSpotsGroup = this.physics.add.group();
+
+                // Setup do Mundo
+                this.createCategoriesUI();
+                this.createDiggingSpots();
+                this.createExtraSpots();
+                this.createPlayer();
+                this.createProgressBar();
+
+                // Física e Colisões
+                this.physics.add.overlap(this.player, this.spotsGroup, this.handleOverlapSpot, null, this);
+                this.physics.add.overlap(this.player, this.extraSpotsGroup, this.handleOverlapSpot, null, this);
+                this.physics.add.overlap(this.player, this.categoryZonesGroup, this.tryCategorizeItem, null, this);
+                // A coleta dos itens soltos agora é tratada no update() via proximidade, não mais por overlap automático.
+
+                // Eventos de Drag & Drop
+                this.input.on('dragstart', this.onDragStart, this);
+                this.input.on('drag', this.onDrag, this);
+                this.input.on('dragend', this.onDragEnd, this);
+
+                // UI de escavação e UI de coleta
+                this.setupDiggingUI();
+                this.setupActionPrompt();
+                
+                // Emissor de partículas global
+                this.particles = this.add.particles(0, 0, 'particle_star', {
+                    emitting: false,
+                    speed: { min: 50, max: 150 },
+                    scale: { start: 1, end: 0 },
+                    lifespan: 800,
+                    gravityY: 200,
+                    quantity: 15
+                });
+
+                // Faz a câmera seguir o jogador com suavidade
+                this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+            }
+
+            update() {
+                if (this.isDigging) {
+                    this.handleDiggingInput();
+                } else {
+                    this.handlePlayerMovement();
+                }
+
+                // Verifica itens próximos para exibir o prompt e permitir coleta
+                this.checkProximityForPickup();
+
+                // Lógica do item seguir o player automaticamente
+                if (this.carryingItem) {
+                    let targetX = this.player.x;
+                    let targetY = this.player.y - 60;
+                    this.carryingItem.x = Phaser.Math.Linear(this.carryingItem.x, targetX, 0.4);
+                    this.carryingItem.y = Phaser.Math.Linear(this.carryingItem.y, targetY, 0.4);
+                    this.carryingItem.setScale(0.6); // Encolhe enquanto carrega
+                }
+            }
+
+            // Verifica se o jogador está perto de um item para mostrar o botão de ESPAÇO
+            checkProximityForPickup() {
+                let closestItem = null;
+                let minDist = 75; // Distância mínima para poder pegar
+
+                // Verifica itens principais
+                if (!this.carryingItem) {
+                    this.itemsGroup.getChildren().forEach(item => {
+                        if (!item.isCategorized) {
+                            let dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, item.x, item.y);
+                            if (dist < minDist) { closestItem = item; minDist = dist; }
+                        }
+                    });
+                }
+
+                // Verifica itens extras no chão
+                this.extraItemsGroup.getChildren().forEach(item => {
+                    let dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, item.x, item.y);
+                    if (dist < minDist) { closestItem = item; minDist = dist; }
+                });
+
+                if (closestItem && !this.isDigging) {
+                    this.actionPrompt.setPosition(closestItem.x, closestItem.y - 50).setVisible(true);
+                    
+                    if (Phaser.Input.Keyboard.JustDown(this.wasd.space) || Phaser.Input.Keyboard.JustDown(this.cursors.space)) {
+                        if (closestItem.itemData.isExtra) {
+                            this.collectExtraItem(closestItem);
+                        } else {
+                            this.collectItem(closestItem);
+                        }
+                    }
+                } else {
+                    this.actionPrompt.setVisible(false);
+                }
+            }
+
+            // --- GERAÇÃO DE ASSETS ---
+            generateAssets() {
+                let g = this.make.graphics({x: 0, y: 0, add: false});
+
+                // Partícula (Estrela/Confete)
+                g.fillStyle(PALETA.amarelo);
+                g.fillCircle(5, 5, 5);
+                g.generateTexture('particle_star', 10, 10);
+                g.clear();
+
+                // Partícula de Terra (Agora Areia)
+                g.fillStyle(PALETA.areiaEscura);
+                g.fillRect(0, 0, 8, 8);
+                g.generateTexture('particle_dirt', 8, 8);
+                g.clear();
+
+                // Picareta
+                g.fillStyle(0x5A341A); // Cabo marrom
+                g.fillRect(0, 10, 32, 6);
+                g.fillStyle(0xAAAAAA); // Cabeça de metal
+                g.fillTriangle(24, 0, 32, 13, 24, 26);
+                g.fillTriangle(8, 0, 0, 13, 8, 26);
+                g.generateTexture('pickaxe', 32, 32);
+                g.clear();
+
+                // --- Ícones dos Itens Extras ---
+                
+                // 1. Fóssil (Osso desenhado)
+                g.fillStyle(0xFFFFFF);
+                g.fillCircle(10, 10, 6); g.fillCircle(10, 20, 6); // Extremidades esq
+                g.fillRect(10, 11, 20, 8); // Meio do osso
+                g.fillCircle(30, 10, 6); g.fillCircle(30, 20, 6); // Extremidades dir
+                g.generateTexture('icon_fossil', 40, 30);
+                g.clear();
+
+                // 2. Vaso Grego
+                g.fillStyle(0x935B3B); // Terracota
+                g.fillEllipse(20, 25, 25, 35); // Corpo
+                g.fillRect(12, 0, 16, 10); // Pescoço
+                g.fillRect(8, 0, 24, 4); // Borda superior
+                g.fillStyle(0x000000, 0.2); // Detalhe escuro
+                g.fillRect(12, 20, 16, 5);
+                g.generateTexture('icon_vase', 40, 45);
+                g.clear();
+
+                // 3. Moeda Antiga
+                g.fillStyle(0xFFC800); // Ouro brilhante
+                g.fillCircle(20, 20, 18);
+                g.fillStyle(0xDAA520); // Ouro escuro (relevo)
+                g.fillCircle(20, 20, 13);
+                g.fillStyle(0xFFC800); 
+                g.fillRect(17, 12, 6, 16); // Desenho do meio (pilar)
+                g.generateTexture('icon_coin', 40, 40);
+                g.clear();
+
+                // 4. Amuleto Perdido
+                g.fillStyle(0x1CB0F6); // Joia azul
+                g.fillEllipse(20, 25, 15, 20);
+                g.lineStyle(4, 0xFFC800); // Ouro em volta
+                g.strokeEllipse(20, 25, 15, 20);
+                g.fillStyle(0xFFC800); // Argola em cima
+                g.fillCircle(20, 5, 5);
+                g.generateTexture('icon_amulet', 40, 50);
+                g.clear();
+            }
+
+            // --- CRIAÇÃO DO MUNDO E UI ---
+            createCategoriesUI() {
+                this.categoryZones = [];
+                
+                // Novas posições espalhadas pelos cantos do mapa gigante
+                const categoryPositions = [
+                    { x: 400, y: 300 },   // Canto superior esquerdo
+                    { x: 2000, y: 350 },  // Canto superior direito
+                    { x: 500, y: 1300 },  // Canto inferior esquerdo
+                    { x: 1900, y: 1200 }  // Canto inferior direito
+                ];
+
+                CATEGORIAS.forEach((cat, index) => {
+                    let x = categoryPositions[index].x;
+                    let y = categoryPositions[index].y;
+                    let width = 150;
+                    let height = 75;
+
+                    // Caixa da Categoria (Baú - Sombra Fixa)
+                    let bgShadow = this.add.graphics();
+                    bgShadow.fillStyle(0x5A341A, 1); // Marrom escuro (sombra/base)
+                    bgShadow.fillRoundedRect(x - width/2, y - height/2 + 10, width, height, 12);
+
+                    // Parte móvel (Baú em si)
+                    let bg = this.add.graphics();
+                    
+                    // Corpo do baú
+                    bg.fillStyle(0x935B3B, 1); // Terracota principal
+                    bg.fillRoundedRect(x - width/2, y - height/2, width, height, 12);
+                    
+                    // Detalhe de base (sombreado interno do baú)
+                    bg.fillStyle(0x72452B, 1);
+                    bg.fillRoundedRect(x - width/2, y + height/2 - 15, width, 15, {tl: 0, tr: 0, bl: 12, br: 12});
+
+                    // Tampa do baú (Arredondada no topo e um pouco mais larga)
+                    bg.fillStyle(0xBA7125, 1); // Terracota mais claro
+                    bg.fillRoundedRect(x - width/2 - 4, y - height/2 - 12, width + 8, 35, 16);
+
+                    // Faixas de Ouro do baú (Estilo Egípcio)
+                    bg.fillStyle(PALETA.amarelo, 1);
+                    bg.fillRect(x - width/4 - 10, y - height/2 - 12, 20, height + 12);
+                    bg.fillRect(x + width/4 - 10, y - height/2 - 12, 20, height + 12);
+
+                    // Joia Central (Usa as cores da categoria para guiar o jogador)
+                    bg.fillStyle(cat.sombra, 1);
+                    bg.fillCircle(x, y + 10, 20); // Anel externo
+                    bg.fillStyle(cat.cor, 1);
+                    bg.fillCircle(x, y + 10, 14); // Joia interna
+                    // Brilho da joia
+                    bg.fillStyle(PALETA.branco, 0.6);
+                    bg.fillCircle(x - 5, y + 5, 4);
+
+                    // Placa escura para o Texto (na tampa)
+                    bg.fillStyle(0x000000, 0.3);
+                    bg.fillRoundedRect(x - width/2 + 25, y - height/2 - 2, width - 50, 20, 6);
+
+                    // Texto da Categoria
+                    let text = this.add.text(x, y - height/2 + 8, cat.nome, {
+                        fontFamily: 'Nunito', fontSize: '15px', fontWeight: '900', fill: '#FFF'
+                    }).setOrigin(0.5);
+
+                    // Zona de Drop invisível e Física
+                    let zone = this.add.zone(x, y, width, height + 20).setRectangleDropZone(width, height + 20);
+                    this.physics.add.existing(zone);
+                    zone.body.setSize(width, height + 20);
+                    zone.categoryData = cat;
+                    zone.bg = bg; // Referência para animações
+                    zone.text = text; // Referência para animar o texto junto
+
+                    this.categoryZones.push(zone);
+                    this.categoryZonesGroup.add(zone); // Adiciona ao grupo de sobreposição
+                });
+            }
+
+            createDiggingSpots() {
+                this.spotsGroup = this.physics.add.group();
+                
+                // Posições dos locais de escavação espalhados pelo deserto
+                const posicoes = [
+                    {x: 1500, y: 600}, 
+                    {x: 800, y: 500},
+                    {x: 2100, y: 900}, 
+                    {x: 900, y: 1200}
+                ];
+
+                posicoes.forEach((pos, i) => {
+                    // Desenha o monte de areia
+                    let g = this.add.graphics();
+                    g.fillStyle(PALETA.areiaEscura, 1);
+                    g.fillEllipse(pos.x, pos.y + 10, 80, 40);
+                    g.fillStyle(PALETA.areia, 1);
+                    g.fillEllipse(pos.x, pos.y, 80, 40);
+                    
+                    // Detalhes da areia
+                    g.fillStyle(PALETA.areiaEscura, 0.5);
+                    g.fillCircle(pos.x - 15, pos.y - 5, 4);
+                    g.fillCircle(pos.x + 20, pos.y + 5, 3);
+                    g.fillCircle(pos.x, pos.y + 8, 5);
+
+                    // Zona de colisão
+                    let spot = this.add.zone(pos.x, pos.y, 80, 60);
+                    this.physics.add.existing(spot);
+                    spot.body.setImmovable(true);
+                    
+                    spot.itemData = ITENS_FASE[i]; // Associa um item a este buraco
+                    spot.isDug = false;
+                    spot.graphics = g;
+                    this.spotsGroup.add(spot);
+                });
+            }
+
+            createExtraSpots() {
+                ITENS_EXTRA.forEach((item) => {
+                    // Desenha o monte de areia (um pouco menor para diferenciar sutilmente)
+                    let g = this.add.graphics();
+                    g.fillStyle(PALETA.areiaEscura, 1);
+                    g.fillEllipse(item.x, item.y + 5, 60, 30);
+                    g.fillStyle(PALETA.areia, 1);
+                    g.fillEllipse(item.x, item.y, 60, 30);
+                    
+                    // Detalhes extras
+                    g.fillStyle(PALETA.areiaEscura, 0.5);
+                    g.fillCircle(item.x - 10, item.y - 2, 3);
+                    g.fillCircle(item.x + 15, item.y + 3, 2);
+
+                    // Zona de colisão
+                    let spot = this.add.zone(item.x, item.y, 60, 45);
+                    this.physics.add.existing(spot);
+                    spot.body.setImmovable(true);
+                    
+                    spot.itemData = item; 
+                    spot.isDug = false;
+                    spot.graphics = g;
+                    this.extraSpotsGroup.add(spot);
+                });
+            }
+
+            createPlayer() {
+                // Criar container do player no centro do novo mapa gigante
+                this.playerContainer = this.add.container(1200, 800);
+                this.playerContainer.setSize(50, 50);
+                this.physics.add.existing(this.playerContainer);
+                this.player = this.playerContainer; // Alias para lógica
+                this.player.body.setCollideWorldBounds(true);
+                this.player.body.setSize(40, 40);
+
+                // Desenho do Player (Estilo Cartoon Flat com Roupa)
+                let g = this.add.graphics();
+                
+                // Sombra do Corpo
+                g.fillStyle(0xDDDDDD, 1);
+                g.fillRoundedRect(-25, -15, 50, 50, 20);
+                
+                // Calça (Terracota)
+                g.fillStyle(PALETA.terracota, 1);
+                g.fillRoundedRect(-25, 10, 50, 15, {tl:0, tr:0, bl:20, br:20});
+                
+                // Camisa (Areia mais clara)
+                g.fillStyle(0xECE5CE, 1);
+                g.fillRoundedRect(-25, -15, 50, 25, {tl:20, tr:20, bl:0, br:0});
+                
+                // Cinto (Marrom)
+                g.fillStyle(0x5A341A, 1);
+                g.fillRect(-25, 5, 50, 5);
+
+                // Rosto
+                g.fillStyle(0xFFDBAC, 1); // Cor de pele
+                g.fillRoundedRect(-20, -35, 40, 30, 10);
+
+                // Olhos
+                g.fillStyle(0x000000, 1);
+                g.fillCircle(-8, -25, 4); // Olho Esq
+                g.fillCircle(8, -25, 4);  // Olho Dir
+                
+                // Sorriso
+                g.lineStyle(3, 0x000000);
+                g.beginPath();
+                g.arc(0, -15, 8, 0, Math.PI, false);
+                g.strokePath();
+
+                // Chapéu de Explorador
+                g.fillStyle(PALETA.terracotaEscura, 1); // Aba do chapéu
+                g.fillEllipse(0, -40, 50, 15);
+                g.fillStyle(PALETA.terracota, 1); // Topo do chapéu
+                g.fillRoundedRect(-18, -55, 36, 22, 8);
+                g.fillStyle(PALETA.terracotaEscura, 1); // Faixa do chapéu
+                g.fillRect(-18, -42, 36, 5);
+
+
+                this.playerGraphic = g;
+                this.playerContainer.add(g);
+
+                // Picareta (inicialmente invisível)
+                this.pickaxe = this.add.sprite(30, -10, 'pickaxe');
+                this.pickaxe.setOrigin(0.5, 1);
+                this.pickaxe.setVisible(false);
+                this.playerContainer.add(this.pickaxe);
+
+                // Animação de idle (respiração)
+                this.tweens.add({
+                    targets: this.playerGraphic,
+                    y: 2,
+                    duration: 1000,
+                    yoyo: true,
+                    repeat: -1,
+                    ease: 'Sine.easeInOut'
+                });
+            }
+
+            createProgressBar() {
+                // Barra de progresso geral da fase (Rodapé) - Fixa na tela (ScrollFactor 0)
+                this.add.text(400, 550, 'Progresso da Fase', {
+                    fontFamily: 'Nunito', fontSize: '18px', fontWeight: '800', fill: '#3C3C3C'
+                }).setOrigin(0.5).setScrollFactor(0).setDepth(1000);
+
+                this.add.graphics().fillStyle(0x000000, 0.2).fillRoundedRect(200, 565, 400, 20, 10).setScrollFactor(0).setDepth(1000);
+                this.levelProgressBar = this.add.graphics().setScrollFactor(0).setDepth(1000);
+                this.updateLevelProgress();
+            }
+
+            updateLevelProgress() {
+                this.levelProgressBar.clear();
+                let percentage = this.itemsCategorized / this.totalItems;
+                if(percentage > 0) {
+                    this.levelProgressBar.fillStyle(PALETA.amarelo, 1);
+                    this.levelProgressBar.fillRoundedRect(200, 565, 400 * percentage, 20, 10);
+                }
+            }
+
+            setupActionPrompt() {
+                this.actionPrompt = this.add.container(0, 0);
+                this.actionPrompt.setVisible(false);
+                this.actionPrompt.setDepth(150);
+
+                let bg = this.add.graphics();
+                bg.fillStyle(0x000000, 0.7);
+                bg.fillRoundedRect(-60, -15, 120, 30, 8);
+                
+                let text = this.add.text(0, 0, 'ESPAÇO p/ pegar', {
+                    fontFamily: 'Nunito', fontSize: '12px', fontWeight: 'bold', fill: '#FFF'
+                }).setOrigin(0.5);
+
+                this.actionPrompt.add([bg, text]);
+            }
+
+            setupDiggingUI() {
+                this.digContainer = this.add.container(0, 0);
+                this.digContainer.setVisible(false);
+                this.digContainer.setDepth(100);
+
+                // Fundo do tooltip
+                let bg = this.add.graphics();
+                bg.fillStyle(PALETA.branco, 1);
+                bg.fillRoundedRect(-70, -60, 140, 50, 12);
+                
+                // Triângulo do balão
+                bg.fillTriangle(-10, -10, 10, -10, 0, 0);
+
+                this.digText = this.add.text(0, -45, 'Aperte Z e X', {
+                    fontFamily: 'Nunito', fontSize: '16px', fontWeight: '800', fill: '#FF4B4B'
+                }).setOrigin(0.5);
+
+                // Barra de progresso de escavação
+                this.digBarBg = this.add.graphics();
+                this.digBarBg.fillStyle(0xE5E5E5, 1);
+                this.digBarBg.fillRoundedRect(-60, -25, 120, 10, 5);
+
+                this.digBarFill = this.add.graphics();
+
+                this.digContainer.add([bg, this.digText, this.digBarBg, this.digBarFill]);
+            }
+
+            // --- LÓGICA DE MOVIMENTO E INTERAÇÃO ---
+            handlePlayerMovement() {
+                const speed = 250;
+                let velocityX = 0;
+                let velocityY = 0;
+
+                if (this.cursors.left.isDown || this.wasd.left.isDown) velocityX = -speed;
+                else if (this.cursors.right.isDown || this.wasd.right.isDown) velocityX = speed;
+
+                if (this.cursors.up.isDown || this.wasd.up.isDown) velocityY = -speed;
+                else if (this.cursors.down.isDown || this.wasd.down.isDown) velocityY = speed;
+
+                this.player.body.setVelocity(velocityX, velocityY);
+
+                // Efeito de andar (inclinação)
+                if (velocityX !== 0 || velocityY !== 0) {
+                    this.playerGraphic.angle = Math.sin(this.time.now / 100) * 10;
+                    
+                    // Vira o personagem na direção do movimento
+                    let dir = velocityX < 0 ? -1 : (velocityX > 0 ? 1 : this.playerGraphic.scaleX);
+                    this.playerGraphic.scaleX = dir;
+                } else {
+                    this.playerGraphic.angle = 0;
+                }
+            }
+
+            handleOverlapSpot(player, spot) {
+                if (spot.isDug || this.isDigging) return;
+
+                // Mostra o prompt de escavação
+                this.digContainer.setPosition(spot.x, spot.y - 30);
+                this.digContainer.setVisible(true);
+
+                // Se o jogador pressionar Z ou X perto do buraco, inicia escavação
+                if (Phaser.Input.Keyboard.JustDown(this.wasd.z) || Phaser.Input.Keyboard.JustDown(this.wasd.x)) {
+                    this.startDigging(spot);
+                }
+            }
+
+            startDigging(spot) {
+                this.isDigging = true;
+                this.currentSpot = spot;
+                this.digProgress = 0;
+                this.lastKeyDug = null;
+                this.player.body.setVelocity(0, 0); // Para o jogador
+                
+                // Feedback visual de início
+                this.digText.setText('Z e X rápido!');
+                this.digText.setColor('#1CB0F6');
+                this.updateDigProgressBar();
+                
+                // Centraliza jogador no buraco
+                this.tweens.add({
+                    targets: this.player,
+                    x: spot.x,
+                    y: spot.y + 20,
+                    duration: 200
+                });
+            }
+
+            handleDiggingInput() {
+                // Permite cancelar a escavação movendo-se
+                if (this.cursors.left.isDown || this.cursors.right.isDown || this.cursors.up.isDown || this.cursors.down.isDown ||
+                    this.wasd.left.isDown || this.wasd.right.isDown || this.wasd.up.isDown || this.wasd.down.isDown) {
+                    this.cancelDigging();
+                    return;
+                }
+
+                let progressChanged = false;
+                let dug = false;
+
+                if (Phaser.Input.Keyboard.JustDown(this.wasd.z)) {
+                    if (this.lastKeyDug !== 'Z') {
+                        this.digProgress += 15;
+                        this.lastKeyDug = 'Z';
+                        dug = true;
+                    } else {
+                        this.digProgress = Math.max(0, this.digProgress - 10);
+                        this.shakeDigUI();
+                    }
+                    progressChanged = true;
+                }
+
+                if (Phaser.Input.Keyboard.JustDown(this.wasd.x)) {
+                    if (this.lastKeyDug !== 'X') {
+                        this.digProgress += 15;
+                        this.lastKeyDug = 'X';
+                        dug = true;
+                    } else {
+                        this.digProgress = Math.max(0, this.digProgress - 10);
+                        this.shakeDigUI();
+                    }
+                    progressChanged = true;
+                }
+
+                if (dug) {
+                    this.spawnDirtParticle();
+                    this.animatePickaxe();
+                }
+
+                // Decaimento natural do progresso para exigir velocidade
+                if (this.digProgress > 0 && !progressChanged) {
+                    this.digProgress -= 0.1;
+                }
+
+                if (progressChanged) this.updateDigProgressBar();
+
+                if (this.digProgress >= 100) {
+                    this.finishDigging();
+                }
+            }
+
+            updateDigProgressBar() {
+                this.digBarFill.clear();
+                this.digBarFill.fillStyle(PALETA.verde, 1);
+                let width = (this.digProgress / 100) * 120;
+                if(width > 0) {
+                    this.digBarFill.fillRoundedRect(-60, -25, width, 10, 5);
+                }
+            }
+
+            animatePickaxe() {
+                if (!this.pickaxe.visible) {
+                    this.pickaxe.setVisible(true);
+                }
+                
+                // Animação de batida da picareta
+                this.tweens.add({
+                    targets: this.pickaxe,
+                    angle: -45,
+                    duration: 100,
+                    yoyo: true,
+                    onComplete: () => {
+                        this.pickaxe.angle = 0;
+                    }
+                });
+            }
+
+            shakeDigUI() {
+                this.tweens.add({
+                    targets: this.digContainer,
+                    x: this.digContainer.x + 5,
+                    yoyo: true,
+                    repeat: 2,
+                    duration: 50
+                });
+                this.digText.setColor('#FF4B4B');
+            }
+
+            spawnDirtParticle() {
+                let x = this.currentSpot.x + Phaser.Math.Between(-20, 20);
+                let y = this.currentSpot.y + 10;
+                let particle = this.add.sprite(x, y, 'particle_dirt');
+                
+                this.tweens.add({
+                    targets: particle,
+                    y: y - Phaser.Math.Between(20, 50),
+                    x: x + Phaser.Math.Between(-30, 30),
+                    alpha: 0,
+                    angle: Phaser.Math.Between(-180, 180),
+                    duration: 500,
+                    ease: 'Quad.easeOut',
+                    onComplete: () => particle.destroy()
+                });
+            }
+
+            cancelDigging() {
+                this.isDigging = false;
+                this.currentSpot = null;
+                this.digContainer.setVisible(false);
+                this.pickaxe.setVisible(false);
+            }
+
+            finishDigging() {
+                let spot = this.currentSpot;
+                spot.isDug = true;
+                this.isDigging = false;
+                this.digContainer.setVisible(false);
+                this.pickaxe.setVisible(false);
+
+                // Altera o visual do buraco para escavado
+                spot.graphics.clear();
+                spot.graphics.fillStyle(PALETA.areiaEscura, 1);
+                spot.graphics.fillEllipse(spot.x, spot.y + 5, spot.width, spot.height * 0.5); // Usa o tamanho real do buraco
+                spot.graphics.fillStyle(0x000000, 0.2); // buraco profundo
+                spot.graphics.fillEllipse(spot.x, spot.y + 5, spot.width * 0.75, spot.height * 0.3);
+
+                // Revelar o Item ou Item Extra na terra (agora ficam esperando o jogador)
+                if (spot.itemData.isExtra) {
+                    this.spawnExtraItem(spot.x, spot.y, spot.itemData);
+                } else {
+                    this.spawnItem(spot.x, spot.y, spot.itemData);
+                }
+            }
+
+            spawnExtraItem(x, y, data) {
+                let container = this.add.container(x, y);
+                container.setDepth(50);
+                
+                let width = 220;
+                let height = 50;
+                
+                // Fundo do banner de recompensa
+                let bgShadow = this.add.graphics();
+                bgShadow.fillStyle(0xDAA520, 1);
+                bgShadow.fillRoundedRect(-width/2, -height/2 + 4, width, height, 16);
+
+                let bg = this.add.graphics();
+                bg.fillStyle(PALETA.amarelo, 1);
+                bg.fillRoundedRect(-width/2, -height/2, width, height, 16);
+                bg.lineStyle(3, 0xFFFFFF); // Borda branca
+                bg.strokeRoundedRect(-width/2, -height/2, width, height, 16);
+
+                // O Ícone desenhado gerado nos assets
+                let icone = this.add.sprite(-width/2 + 30, 0, data.icon);
+                icone.setScale(0.8);
+
+                // O texto
+                let text = this.add.text(-width/2 + 60, 0, '🌟 ' + data.nome, {
+                    fontFamily: 'Nunito', fontSize: '16px', fontWeight: '900', fill: '#5A341A' // Texto marrom
+                }).setOrigin(0, 0.5);
+
+                container.add([bgShadow, bg, icone, text]);
+                container.itemData = data;
+
+                // Adiciona física para proximidade
+                this.physics.add.existing(container);
+                container.body.setSize(width, height);
+                this.extraItemsGroup.add(container);
+
+                // Partículas festivas na saída
+                this.particles.emitParticleAt(x, y);
+
+                // Pula e fica no chão esperando
+                container.setScale(0);
+                this.tweens.add({
+                    targets: container,
+                    scale: 1,
+                    y: y - 25,
+                    ease: 'Back.out',
+                    duration: 500
+                });
+            }
+
+            collectExtraItem(item) {
+                this.extraItemsGroup.remove(item);
+                
+                this.actionPrompt.setVisible(false);
+                this.particles.emitParticleAt(item.x, item.y);
+
+                // Animação de celebração subindo antes de sumir
+                this.tweens.add({
+                    targets: item,
+                    y: item.y - 120,
+                    alpha: 0,
+                    duration: 2500,
+                    ease: 'Power2',
+                    onComplete: () => item.destroy()
+                });
+            }
+
+            // --- LÓGICA DE ITENS E DRAG & DROP ---
+            spawnItem(x, y, data) {
+                let container = this.add.container(x, y);
+                container.setDepth(50);
+                
+                // Criação visual do Item (Estilo Card Duolingo)
+                let width = 140;
+                let height = 40;
+                
+                let bgShadow = this.add.graphics();
+                bgShadow.fillStyle(0xD5D5D5, 1);
+                bgShadow.fillRoundedRect(-width/2, -height/2 + 4, width, height, 12);
+                
+                let bg = this.add.graphics();
+                bg.fillStyle(PALETA.branco, 1);
+                bg.fillRoundedRect(-width/2, -height/2, width, height, 12);
+
+                let text = this.add.text(0, 0, data.nome, {
+                    fontFamily: 'Nunito', fontSize: '14px', fontWeight: '800', fill: '#3C3C3C'
+                }).setOrigin(0.5);
+
+                container.add([bgShadow, bg, text]);
+                
+                // Armazena dados no objeto para referência posterior
+                container.itemData = data;
+                container.bgGraphics = bg; // Para colorir no feedback
+                container.bgShadowGraphics = bgShadow;
+                container.width = width;
+                container.height = height;
+                container.startX = x; // Guarda a posição de origem
+                container.startY = y;
+                container.isCategorized = false;
+                container.isDragged = false;
+
+                // Adiciona física para identificar a proximidade no update()
+                this.physics.add.existing(container);
+                container.body.setSize(width, height);
+                this.itemsGroup.add(container);
+
+                // Animação de Pulo do buraco, sentando no chão
+                container.setScale(0);
+                this.tweens.add({
+                    targets: container,
+                    scale: 1,
+                    y: y - 25,
+                    ease: 'Back.out',
+                    duration: 500
+                });
+
+                // Setup de Drag & Drop (permanece como opção secundária)
+                container.setSize(width, height);
+                container.setInteractive({ useHandCursor: true });
+                this.input.setDraggable(container);
+            }
+
+            // --- MÉTODOS DE COLETA AUTOMÁTICA ---
+            collectItem(item) {
+                if (this.carryingItem || this.isCategorizing || item.isCategorized || item.isDragged) return;
+                
+                this.carryingItem = item;
+                this.actionPrompt.setVisible(false);
+                
+                // Feedback visual de que pegou o item
+                this.tweens.add({
+                    targets: item,
+                    scale: 0.6,
+                    duration: 150
+                });
+            }
+
+            tryCategorizeItem(player, zone) {
+                if (!this.carryingItem || this.isCategorizing) return;
+                
+                let item = this.carryingItem;
+                this.isCategorizing = true;
+                this.carryingItem = null; // Desvincula do player instantaneamente
+                
+                if (item.itemData.categoria === zone.categoryData.id) {
+                    this.handleCorrectCategorization(item, zone);
+                } else {
+                    this.handleWrongCategorization(item);
+                }
+                
+                // Cooldown para não pegar de volta instantaneamente caso erre
+                this.time.delayedCall(1000, () => {
+                    this.isCategorizing = false;
+                });
+            }
+
+            onDragStart(pointer, gameObject) {
+                this.children.bringToTop(gameObject);
+                gameObject.startX = gameObject.x;
+                gameObject.startY = gameObject.y;
+                gameObject.isDragged = true; // Pausa interações de física automáticas
+                
+                if (this.carryingItem === gameObject) {
+                    this.carryingItem = null;
+                }
+                
+                // Feedback visual de drag
+                this.tweens.add({
+                    targets: gameObject,
+                    scale: 1.1,
+                    duration: 100
+                });
+            }
+
+            onDrag(pointer, gameObject, dragX, dragY) {
+                gameObject.x = dragX;
+                gameObject.y = dragY;
+            }
+
+            onDragEnd(pointer, gameObject) {
+                // Remove feedback de drag
+                this.tweens.add({ targets: gameObject, scale: 1, duration: 100 });
+                gameObject.isDragged = false;
+
+                let droppedOnCategory = false;
+
+                // Verifica interseção com as zonas de categoria
+                let itemBounds = gameObject.getBounds();
+                for (let zone of this.categoryZones) {
+                    let zoneBounds = zone.getBounds();
+                    
+                    if (Phaser.Geom.Intersects.RectangleToRectangle(itemBounds, zoneBounds)) {
+                        droppedOnCategory = true;
+                        
+                        // Validação
+                        if (gameObject.itemData.categoria === zone.categoryData.id) {
+                            this.handleCorrectCategorization(gameObject, zone);
+                        } else {
+                            this.handleWrongCategorization(gameObject);
+                        }
+                        break;
+                    }
+                }
+
+                // Se não soltou em nenhuma zona, volta pro chão suavemente
+                if (!droppedOnCategory) {
+                    this.tweens.add({
+                        targets: gameObject,
+                        x: gameObject.startX,
+                        y: gameObject.startY,
+                        ease: 'Power2',
+                        duration: 300
+                    });
+                }
+            }
+
+            handleCorrectCategorization(item, zone) {
+                item.isCategorized = true;
+
+                // Som visual (Feedback Positivo)
+                item.bgGraphics.clear();
+                item.bgGraphics.fillStyle(PALETA.verde, 1);
+                item.bgGraphics.fillRoundedRect(-item.width/2, -item.height/2, item.width, item.height, 12);
+                
+                item.bgShadowGraphics.clear();
+                item.bgShadowGraphics.fillStyle(PALETA.verdeEscuro, 1);
+                item.bgShadowGraphics.fillRoundedRect(-item.width/2, -item.height/2 + 4, item.width, item.height, 12);
+
+                item.list[2].setColor('#FFF'); // Texto branco
+
+                // Partículas na categoria
+                this.particles.emitParticleAt(zone.x, zone.y);
+
+                // Animação da zona (Pulo do Baú e do Texto juntos)
+                this.tweens.add({
+                    targets: [zone.bg, zone.text],
+                    y: '-=10',
+                    yoyo: true,
+                    duration: 150
+                });
+
+                // Remove interatividade e faz o item sumir na categoria
+                item.disableInteractive();
+                this.tweens.add({
+                    targets: item,
+                    x: zone.x,
+                    y: zone.y,
+                    scale: 0,
+                    alpha: 0,
+                    ease: 'Back.in',
+                    duration: 400,
+                    onComplete: () => {
+                        item.destroy();
+                        this.updateGameProgress();
+                    }
+                });
+            }
+
+            handleWrongCategorization(item) {
+                // Feedback Negativo Visual
+                item.bgGraphics.clear();
+                item.bgGraphics.fillStyle(PALETA.vermelho, 1);
+                item.bgGraphics.fillRoundedRect(-item.width/2, -item.height/2, item.width, item.height, 12);
+                
+                item.bgShadowGraphics.clear();
+                item.bgShadowGraphics.fillStyle(PALETA.vermelhoEscuro, 1);
+                item.bgShadowGraphics.fillRoundedRect(-item.width/2, -item.height/2 + 4, item.width, item.height, 12);
+                
+                item.list[2].setColor('#FFF');
+
+                // Dica flutuante
+                let hint = this.add.text(item.x, item.y - 40, 'Categoria Errada!', {
+                    fontFamily: 'Nunito', fontSize: '16px', fontWeight: 'bold', fill: '#FF4B4B',
+                    stroke: '#FFF', strokeThickness: 3
+                }).setOrigin(0.5);
+
+                this.tweens.add({
+                    targets: hint,
+                    y: hint.y - 30,
+                    alpha: 0,
+                    duration: 1500,
+                    onComplete: () => hint.destroy()
+                });
+
+                // Shake e Volta pro chão
+                this.tweens.add({
+                    targets: item,
+                    x: { value: item.x + 10, yoyo: true, repeat: 3, duration: 50 },
+                    onComplete: () => {
+                        this.tweens.add({
+                            targets: item,
+                            x: item.startX,
+                            y: item.startY,
+                            scale: 1, // Volta ao tamanho original
+                            ease: 'Power2',
+                            duration: 300,
+                            onComplete: () => {
+                                // Restaura cor original
+                                item.bgGraphics.clear();
+                                item.bgGraphics.fillStyle(PALETA.branco, 1);
+                                item.bgGraphics.fillRoundedRect(-item.width/2, -item.height/2, item.width, item.height, 12);
+                                
+                                item.bgShadowGraphics.clear();
+                                item.bgShadowGraphics.fillStyle(0xD5D5D5, 1);
+                                item.bgShadowGraphics.fillRoundedRect(-item.width/2, -item.height/2 + 4, item.width, item.height, 12);
+                                
+                                item.list[2].setColor('#3C3C3C');
+                            }
+                        });
+                    }
+                });
+            }
+
+            updateGameProgress() {
+                this.itemsCategorized++;
+                this.updateLevelProgress();
+
+                if (this.itemsCategorized >= this.totalItems) {
+                    this.showVictoryScreen();
+                }
+            }
+
+            showVictoryScreen() {
+                // Tela escura translúcida (fixa na câmera usando ScrollFactor 0)
+                let overlay = this.add.graphics();
+                overlay.fillStyle(0x000000, 0.6);
+                overlay.fillRect(0, 0, 800, 600);
+                overlay.setDepth(2000).setScrollFactor(0);
+
+                let modal = this.add.container(400, 300);
+                modal.setDepth(2001).setScrollFactor(0);
+                modal.setScale(0);
+
+                // Fundo do Modal
+                let bgModalShadow = this.add.graphics();
+                bgModalShadow.fillStyle(0xD5D5D5, 1);
+                bgModalShadow.fillRoundedRect(-150, -100 + 8, 300, 200, 24);
+
+                let bgModal = this.add.graphics();
+                bgModal.fillStyle(PALETA.branco, 1);
+                bgModal.fillRoundedRect(-150, -100, 300, 200, 24);
+
+                let titulo = this.add.text(0, -40, 'Fase Concluída!', {
+                    fontFamily: 'Nunito', fontSize: '28px', fontWeight: '900', fill: '#D38C3B'
+                }).setOrigin(0.5);
+
+                let subtitulo = this.add.text(0, 0, 'Você organizou todos os itens.', {
+                    fontFamily: 'Nunito', fontSize: '16px', fontWeight: '700', fill: '#777'
+                }).setOrigin(0.5);
+
+                // Botão Continuar
+                let btnW = 180;
+                let btnH = 50;
+                let btnY = 50;
+
+                let btnShadow = this.add.graphics();
+                btnShadow.fillStyle(PALETA.terracotaEscura, 1);
+                btnShadow.fillRoundedRect(-btnW/2, btnY - btnH/2 + 6, btnW, btnH, 16);
+
+                let btn = this.add.graphics();
+                btn.fillStyle(PALETA.terracota, 1);
+                btn.fillRoundedRect(-btnW/2, btnY - btnH/2, btnW, btnH, 16);
+
+                let btnText = this.add.text(0, btnY, 'JOGAR NOVAMENTE', {
+                    fontFamily: 'Nunito', fontSize: '16px', fontWeight: '900', fill: '#FFF'
+                }).setOrigin(0.5);
+
+                // Interatividade do Botão
+                let btnZone = this.add.zone(0, btnY, btnW, btnH).setInteractive({ useHandCursor: true });
+                
+                btnZone.on('pointerdown', () => {
+                    btn.y += 6; // Efeito de clique afundando
+                    btnText.y += 6;
+                });
+
+                btnZone.on('pointerup', () => {
+                    this.scene.restart(); // Reinicia o jogo
+                });
+
+                modal.add([bgModalShadow, bgModal, titulo, subtitulo, btnShadow, btn, btnText, btnZone]);
+
+                // Animação de entrada do Modal
+                this.tweens.add({
+                    targets: modal,
+                    scale: 1,
+                    ease: 'Back.out',
+                    duration: 600
+                });
+
+                // Chuva de confetes de vitória (fixa na tela)
+                let emitter = this.add.particles(0, 0, 'particle_star', {
+                    x: { min: 0, max: 800 },
+                    y: -20,
+                    lifespan: 3000,
+                    speedY: { min: 100, max: 300 },
+                    speedX: { min: -50, max: 50 },
+                    scale: { start: 1, end: 0 },
+                    quantity: 2,
+                    tint: [ PALETA.verde, PALETA.amarelo, PALETA.vermelho, 0x1CB0F6 ]
+                });
+                emitter.setDepth(2002).setScrollFactor(0);
+            }
+        }
+
+        // --- INICIALIZAÇÃO DO PHASER ---
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            parent: 'game-container',
+            transparent: true,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 0 },
+                    debug: false
+                }
+            },
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+            scene: [MainGame]
+        };
+
+        const game = new Phaser.Game(config);
+
+        // Ajuste automático de tela para mobile-first feel
+        window.addEventListener('resize', () => {
+            game.scale.refresh();
+        });
+    </script>
+</body>
+</html>

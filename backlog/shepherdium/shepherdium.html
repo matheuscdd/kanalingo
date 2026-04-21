@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport bloqueado para evitar zoom e scroll, essencial para jogos mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Voxel 3D - Mobile Camera Controller</title>
+    
+    <!-- Importação do Babylon.js -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <!-- NOVO: Importação do Babylon GUI para desenhar os textos flutuantes -->
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+    
+    <style>
+        /* Reset básico e prevenção de comportamentos nativos de touch (como arrastar página ou menus de contexto) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; background-color: #111; overflow: hidden; touch-action: none; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+        
+        /* O Wrapper que sofrerá o efeito de rotação forçada caso o aparelho esteja na vertical */
+        #game-wrapper {
+            position: absolute;
+            background: #000;
+            overflow: hidden;
+            /* Transição suave se o utilizador rodar o ecrã fisicamente */
+            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            display: block;
+        }
+
+        /* * HACK DE ORIENTAÇÃO (Forçar Landscape) 
+         * Se a altura for maior que a largura (Telemóvel na vertical), rodamos o contentor em 90 graus.
+         */
+        @media screen and (max-aspect-ratio: 1/1) {
+            #game-wrapper {
+                width: 100vh;
+                height: 100vw;
+                transform: rotate(90deg) translateY(-100vw);
+                transform-origin: top left;
+                top: 0; left: 0;
+            }
+        }
+        @media screen and (min-aspect-ratio: 1/1) {
+            #game-wrapper {
+                width: 100vw;
+                height: 100vh;
+                transform: none;
+                top: 0; left: 0;
+            }
+        }
+
+        /* UI de Joystick Dinâmico (Surgem no toque) */
+        .joystick-base {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%); /* Centra na coordenada de toque */
+            pointer-events: none;
+            display: none;
+            z-index: 10;
+        }
+        .joystick-knob {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Ecrã de Início */
+        #start-screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            z-index: 100;
+        }
+        #start-btn {
+            padding: 15px 40px; font-size: 24px; font-weight: bold;
+            background: #27ae60; color: white; border: none; border-radius: 8px;
+            cursor: pointer; box-shadow: 0 4px 0 #2ecc71; margin-top: 20px;
+        }
+        #start-btn:active { transform: translateY(4px); box-shadow: none; }
+        .instructions { margin-top: 30px; font-size: 14px; text-align: center; color: #ccc; max-width: 80%; }
+    </style>
+</head>
+<body>
+
+    <div id="game-wrapper">
+        <canvas id="renderCanvas"></canvas>
+        
+        <!-- Elementos visuais dos Analógicos -->
+        <div id="joy-left-base" class="joystick-base"><div id="joy-left-knob" class="joystick-knob"></div></div>
+        <div id="joy-right-base" class="joystick-base"><div id="joy-right-knob" class="joystick-knob"></div></div>
+    </div>
+
+    <div id="start-screen">
+        <h1>Voxel Adventure</h1>
+        <button id="start-btn">INICIAR JOGO</button>
+        <div class="instructions">
+            <p>⌨️ PC: Teclas WASD p/ Mover | Rato p/ Rodar Câmara</p>
+            <p>📱 Telemóvel: Metade Esquerda p/ Mover | Direita p/ Rodar</p>
+            <p>(Clica no ecrã para capturar o cursor no PC)</p>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * CONFIGURAÇÕES GERAIS DO JOGO
+         */
+        const CONFIG = {
+            camera: {
+                baseDistance: 8,       
+                minDistance: 1.5,      
+                maxDistance: 12,       
+                heightOffset: 1.8,     
+                smoothSpeed: 0.12,     
+                rotSpeedX: 0.05,       
+                rotSpeedY: 0.03,
+                mouseSensitivity: 0.003, // NOVO: Sensibilidade do Rato (PC)       
+                minPitch: -0.1,        
+                maxPitch: 1.2          
+            },
+            player: {
+                speed: 6.0,            
+                turnSpeed: 0.15        
+            },
+            joystick: {
+                maxRadius: 60          
+            },
+            sheep: {
+                count: 15,             
+                walkSpeed: 1.5,        
+                turnSpeed: 0.1         
+            },
+            werewolf: {
+                walkSpeed: 2.5,
+                turnSpeed: 0.12
+            }
+        };
+
+        /**
+         * GESTOR DE INPUT (Analógicos Virtuais Dinâmicos)
+         */
+        class InputManager {
+            constructor() {
+                this.left = { active: false, id: null, origin: { x: 0, y: 0 }, vector: { x: 0, y: 0 } };
+                this.right = { active: false, id: null, origin: { x: 0, y: 0 }, vector: { x: 0, y: 0 } };
+
+                // NOVO: Variáveis para suportar Teclado e Rato (PC)
+                this.keys = { up: false, down: false, left: false, right: false };
+                this.mouseDelta = { x: 0, y: 0 };
+                this.isPointerLocked = false;
+
+                this.domLeftBase = document.getElementById('joy-left-base');
+                this.domLeftKnob = document.getElementById('joy-left-knob');
+                this.domRightBase = document.getElementById('joy-right-base');
+                this.domRightKnob = document.getElementById('joy-right-knob');
+
+                this.setupEvents();
+                this.setupKeyboardAndMouse(); // Inicia controlos de PC
+            }
+
+            getLogicalCoord(clientX, clientY) {
+                const isPortrait = window.innerHeight > window.innerWidth;
+                if (isPortrait) {
+                    return { x: clientY, y: window.innerWidth - clientX, w: window.innerHeight, h: window.innerWidth };
+                } else {
+                    return { x: clientX, y: clientY, w: window.innerWidth, h: window.innerHeight };
+                }
+            }
+
+            setupEvents() {
+                const wrapper = document.getElementById('game-wrapper');
+                
+                wrapper.addEventListener('touchstart', (e) => {
+                    for (let i = 0; i < e.changedTouches.length; i++) {
+                        this.handleStart(e.changedTouches[i].identifier, e.changedTouches[i].clientX, e.changedTouches[i].clientY);
+                    }
+                });
+                wrapper.addEventListener('touchmove', (e) => {
+                    for (let i = 0; i < e.changedTouches.length; i++) {
+                        this.handleMove(e.changedTouches[i].identifier, e.changedTouches[i].clientX, e.changedTouches[i].clientY);
+                    }
+                });
+                const endFunc = (e) => {
+                    for (let i = 0; i < e.changedTouches.length; i++) {
+                        this.handleEnd(e.changedTouches[i].identifier);
+                    }
+                };
+                wrapper.addEventListener('touchend', endFunc);
+                wrapper.addEventListener('touchcancel', endFunc);
+
+                wrapper.addEventListener('mousedown', (e) => {
+                    if (this.isPointerLocked) return; // Ignora o joystick virtual de rato se o cursor estiver bloqueado
+                    this.handleStart('mouse', e.clientX, e.clientY);
+                });
+                window.addEventListener('mousemove', (e) => {
+                    if (this.isPointerLocked) return; 
+                    this.handleMove('mouse', e.clientX, e.clientY);
+                });
+                window.addEventListener('mouseup', (e) => {
+                    if (this.isPointerLocked) return;
+                    this.handleEnd('mouse');
+                });
+            }
+
+            // NOVO: Adiciona a escuta do teclado (WASD / Setas) e a captura do rato
+            setupKeyboardAndMouse() {
+                window.addEventListener('keydown', (e) => this.handleKey(e, true));
+                window.addEventListener('keyup', (e) => this.handleKey(e, false));
+
+                document.addEventListener('pointerlockchange', () => {
+                    this.isPointerLocked = !!document.pointerLockElement;
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (this.isPointerLocked) {
+                        this.mouseDelta.x += e.movementX;
+                        this.mouseDelta.y += e.movementY;
+                    }
+                });
+
+                // Clicar na tela solicita o bloqueio do cursor
+                document.getElementById('renderCanvas').addEventListener('click', () => {
+                    if (!this.isPointerLocked) {
+                        document.getElementById('renderCanvas').requestPointerLock();
+                    }
+                });
+            }
+
+            handleKey(e, isDown) {
+                const key = e.key.toLowerCase();
+                if (key === 'w' || key === 'arrowup') this.keys.up = isDown;
+                if (key === 's' || key === 'arrowdown') this.keys.down = isDown;
+                if (key === 'a' || key === 'arrowleft') this.keys.left = isDown;
+                if (key === 'd' || key === 'arrowright') this.keys.right = isDown;
+            }
+
+            // Combina o Joystick Virtual Esquerdo e o Teclado WASD
+            getMovementVector() {
+                let x = this.left.vector.x;
+                let y = this.left.vector.y;
+
+                if (this.keys.up) y += 1;
+                if (this.keys.down) y -= 1;
+                if (this.keys.left) x -= 1;
+                if (this.keys.right) x += 1;
+
+                // Normaliza para não mover mais depressa na diagonal
+                let dist = Math.sqrt(x*x + y*y);
+                if (dist > 1) { 
+                    x /= dist; 
+                    y /= dist; 
+                }
+
+                return { x, y };
+            }
+
+            // Combina o Joystick Virtual Direito (contínuo) com o Rato do PC (deltas)
+            getCameraInput() {
+                let joyX = this.right.vector.x;
+                let joyY = this.right.vector.y;
+                
+                let mouseX = this.mouseDelta.x;
+                let mouseY = this.mouseDelta.y;
+
+                // Restaura o delta do rato para o próximo frame
+                this.mouseDelta.x = 0;
+                this.mouseDelta.y = 0;
+
+                return { joyX, joyY, mouseX, mouseY };
+            }
+
+            handleStart(id, cx, cy) {
+                const pos = this.getLogicalCoord(cx, cy);
+                const isLeftHalf = pos.x < pos.w / 2;
+
+                if (isLeftHalf && !this.left.active) {
+                    this.left.active = true;
+                    this.left.id = id;
+                    this.left.origin = { x: pos.x, y: pos.y };
+                    this.updateVisuals(this.domLeftBase, this.domLeftKnob, this.left.origin, 0, 0, true);
+                } else if (!isLeftHalf && !this.right.active) {
+                    this.right.active = true;
+                    this.right.id = id;
+                    this.right.origin = { x: pos.x, y: pos.y };
+                    this.updateVisuals(this.domRightBase, this.domRightKnob, this.right.origin, 0, 0, true);
+                }
+            }
+
+            handleMove(id, cx, cy) {
+                const pos = this.getLogicalCoord(cx, cy);
+
+                if (this.left.active && this.left.id === id) {
+                    this.processJoystick(this.left, pos, this.domLeftBase, this.domLeftKnob);
+                } else if (this.right.active && this.right.id === id) {
+                    this.processJoystick(this.right, pos, this.domRightBase, this.domRightKnob);
+                }
+            }
+
+            handleEnd(id) {
+                if (this.left.active && this.left.id === id) {
+                    this.left.active = false;
+                    this.left.vector = { x: 0, y: 0 };
+                    this.domLeftBase.style.display = 'none';
+                }
+                if (this.right.active && this.right.id === id) {
+                    this.right.active = false;
+                    this.right.vector = { x: 0, y: 0 };
+                    this.domRightBase.style.display = 'none';
+                }
+            }
+
+            processJoystick(joyState, pos, baseDom, knobDom) {
+                let dx = pos.x - joyState.origin.x;
+                let dy = pos.y - joyState.origin.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance > CONFIG.joystick.maxRadius) {
+                    dx = (dx / distance) * CONFIG.joystick.maxRadius;
+                    dy = (dy / distance) * CONFIG.joystick.maxRadius;
+                }
+
+                joyState.vector.x = dx / CONFIG.joystick.maxRadius;
+                joyState.vector.y = -(dy / CONFIG.joystick.maxRadius); 
+
+                this.updateVisuals(baseDom, knobDom, joyState.origin, dx, dy, true);
+            }
+
+            updateVisuals(baseDom, knobDom, origin, dx, dy, show) {
+                if (show) {
+                    baseDom.style.display = 'block';
+                    baseDom.style.left = origin.x + 'px';
+                    baseDom.style.top = origin.y + 'px';
+                    knobDom.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+                }
+            }
+        }
+
+        /**
+         * CLASSE DO JOGADOR
+         */
+        class VoxelPlayer {
+            constructor(scene, materials) {
+                this.scene = scene;
+                this.walkAnimTime = 0;
+                this.materials = materials;
+                
+                // Hitbox Física
+                this.mesh = BABYLON.MeshBuilder.CreateBox("playerHitbox", {width: 0.6, height: 1.8, depth: 0.6}, scene);
+                this.mesh.bakeTransformIntoVertices(BABYLON.Matrix.Translation(0, 0.9, 0));
+                this.mesh.isVisible = false; 
+                
+                this.mesh.position = new BABYLON.Vector3(0, 2, 0); 
+                this.mesh.rotationQuaternion = BABYLON.Quaternion.Identity(); 
+                this.mesh.checkCollisions = true; 
+
+                this.mesh.ellipsoid = new BABYLON.Vector3(0.4, 0.9, 0.4);
+                this.mesh.ellipsoidOffset = new BABYLON.Vector3(0, 0.9, 0);
+                
+                this.buildVoxelBody();
+            }
+
+            buildVoxelBody() {
+                this.torso = BABYLON.MeshBuilder.CreateBox("torso", {width: 0.6, height: 0.7, depth: 0.3}, this.scene);
+                this.torso.material = this.materials.playerShirt;
+                this.torso.position.y = 1.0;
+                this.torso.parent = this.mesh;
+
+                this.head = BABYLON.MeshBuilder.CreateBox("head", {size: 0.5}, this.scene);
+                this.head.material = this.materials.playerSkin;
+                this.head.position.y = 0.6; 
+                this.head.parent = this.torso;
+
+                const createLimb = (name, mat, w, h, d, px, py) => {
+                    let limb = BABYLON.MeshBuilder.CreateBox(name, {width: w, height: h, depth: d}, this.scene);
+                    limb.material = mat;
+                    // Desloca a geometria para baixo: a origem local (0,0,0) passa a ser o topo do membro
+                    limb.bakeTransformIntoVertices(BABYLON.Matrix.Translation(0, -h/2, 0));
+                    limb.position = new BABYLON.Vector3(px, py, 0);
+                    limb.parent = this.mesh;
+                    return limb;
+                };
+
+                // Braços alinhados com o topo do torso (1.3) e Pernas nas ancas (0.7). 
+                // A perna mede 0.7, logo a sola tocará EXATAMENTE no 0.0 (chão).
+                this.armL = createLimb("armL", this.materials.playerSkin, 0.2, 0.7, 0.2, -0.45, 1.3);
+                this.armR = createLimb("armR", this.materials.playerSkin, 0.2, 0.7, 0.2,  0.45, 1.3);
+                this.legL = createLimb("legL", this.materials.playerPants, 0.25, 0.7, 0.25, -0.15, 0.7);
+                this.legR = createLimb("legR", this.materials.playerPants, 0.25, 0.7, 0.25,  0.15, 0.7);
+
+                // ==========================================
+                // VARA DE PASTOR DO JOGADOR
+                // Acoplada à mão direita (armR)
+                // ==========================================
+                this.crookPivot = new BABYLON.TransformNode("playerCrookPivot", this.scene);
+                this.crookPivot.parent = this.armR;
+                // O braço do jogador mede 0.7, então a mão está perto de -0.6
+                this.crookPivot.position = new BABYLON.Vector3(0, -0.6, 0.25);
+                this.crookPivot.rotation.x = Math.PI / 4; 
+                
+                // Escala ligeiramente menor para combinar com o tamanho do jogador
+                this.crookPivot.scaling = new BABYLON.Vector3(0.8, 0.8, 0.8);
+
+                // Haste principal
+                this.crookStick = BABYLON.MeshBuilder.CreateBox("pCrookStick", {width: 0.1, height: 2.6, depth: 0.1}, this.scene);
+                this.crookStick.material = this.materials.crookWood;
+                this.crookStick.position.y = 0.5;
+                this.crookStick.parent = this.crookPivot;
+
+                // Gancho topo
+                this.crookHookTop = BABYLON.MeshBuilder.CreateBox("pCrookHookTop", {width: 0.1, height: 0.1, depth: 0.4}, this.scene);
+                this.crookHookTop.material = this.materials.crookWood;
+                this.crookHookTop.position = new BABYLON.Vector3(0, 1.8, 0.15);
+                this.crookHookTop.parent = this.crookPivot;
+
+                // Gancho ponta
+                this.crookHookDrop = BABYLON.MeshBuilder.CreateBox("pCrookHookDrop", {width: 0.1, height: 0.3, depth: 0.1}, this.scene);
+                this.crookHookDrop.material = this.materials.crookWood;
+                this.crookHookDrop.position = new BABYLON.Vector3(0, 1.6, 0.3);
+                this.crookHookDrop.parent = this.crookPivot;
+            }
+
+            addShadows(shadowGenerator) {
+                shadowGenerator.addShadowCaster(this.torso);
+                shadowGenerator.addShadowCaster(this.head);
+                shadowGenerator.addShadowCaster(this.armL);
+                shadowGenerator.addShadowCaster(this.armR);
+                shadowGenerator.addShadowCaster(this.legL);
+                shadowGenerator.addShadowCaster(this.legR);
+                
+                // Sombras da vara do jogador
+                shadowGenerator.addShadowCaster(this.crookStick);
+                shadowGenerator.addShadowCaster(this.crookHookTop);
+                shadowGenerator.addShadowCaster(this.crookHookDrop);
+            }
+
+            update(dt, inputVector, cameraYaw) {
+                const isMoving = inputVector.x !== 0 || inputVector.y !== 0;
+
+                if (isMoving) {
+                    const camForward = new BABYLON.Vector3(-Math.sin(cameraYaw), 0, -Math.cos(cameraYaw));
+                    const camRight = new BABYLON.Vector3(-Math.cos(cameraYaw), 0, Math.sin(cameraYaw));
+                    
+                    let moveDir = camForward.scale(inputVector.y).add(camRight.scale(inputVector.x));
+                    
+                    if (moveDir.length() > 1) moveDir.normalize();
+
+                    const velocity = moveDir.scale(CONFIG.player.speed * (dt / 1000));
+                    velocity.y = -0.15; 
+                    
+                    this.mesh.moveWithCollisions(velocity);
+
+                    const targetAngle = Math.atan2(moveDir.x, moveDir.z);
+                    const currentQuat = this.mesh.rotationQuaternion || BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, 0);
+                    const targetQuat = BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, targetAngle);
+                    this.mesh.rotationQuaternion = BABYLON.Quaternion.Slerp(currentQuat, targetQuat, CONFIG.player.turnSpeed);
+
+                    this.walkAnimTime += dt * 0.015;
+                    const swing = Math.sin(this.walkAnimTime) * 0.8;
+                    this.legL.rotation.x = swing;
+                    this.legR.rotation.x = -swing;
+                    this.armL.rotation.x = -swing;
+                    this.armR.rotation.x = swing;
+                } else {
+                    this.legL.rotation.x = BABYLON.Scalar.Lerp(this.legL.rotation.x, 0, 0.1);
+                    this.legR.rotation.x = BABYLON.Scalar.Lerp(this.legR.rotation.x, 0, 0.1);
+                    this.armL.rotation.x = BABYLON.Scalar.Lerp(this.armL.rotation.x, 0, 0.1);
+                    
+                    // O braço direito repousa ligeiramente levantado para segurar a vara
+                    this.armR.rotation.x = BABYLON.Scalar.Lerp(this.armR.rotation.x, 0.1, 0.1);
+                }
+                
+                return isMoving; 
+            }
+        }
+
+        /**
+         * CLASSE DO LOBISOMEM (Werewolf com vara de pastor)
+         * Um NPC alto e imponente que patrulha as ovelhas.
+         */
+         class VoxelWerewolf {
+            constructor(scene, shadowGenerator, materials, position) {
+                this.scene = scene;
+                this.shadowGenerator = shadowGenerator;
+                this.materials = materials;
+                this.walkAnimTime = Math.random() * 10;
+                
+                this.state = "IDLE"; 
+                this.stateTimer = Math.random() * 3000 + 1000;
+                this.targetAngle = Math.random() * Math.PI * 2;
+                
+                // Hitbox mais alta para o lobisomem
+                this.mesh = BABYLON.MeshBuilder.CreateBox("werewolfHitbox", {width: 0.8, height: 2.3, depth: 0.8}, scene);
+                this.mesh.bakeTransformIntoVertices(BABYLON.Matrix.Translation(0, 1.15, 0)); // Pivô nos pés
+                this.mesh.isVisible = false; 
+                
+                this.mesh.position = position;
+                this.mesh.rotationQuaternion = BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, this.targetAngle);
+                this.mesh.checkCollisions = true; 
+                
+                // Configuração de Grupo de Colisão para evitar que o lobisomem fique preso aos próprios braços
+                this.mesh.collisionGroup = 1;
+                this.mesh.collisionMask = 1;
+                
+                this.mesh.ellipsoid = new BABYLON.Vector3(0.5, 1.15, 0.5);
+                this.mesh.ellipsoidOffset = new BABYLON.Vector3(0, 1.15, 0);
+
+                this.buildModel();
+            }
+
+            buildModel() {
+                // Tronco (Costas largas)
+                this.torso = BABYLON.MeshBuilder.CreateBox("wwTorso", {width: 0.8, height: 0.9, depth: 0.5}, this.scene);
+                this.torso.material = this.materials.werewolfFur;
+                this.torso.position.y = 1.3;
+                this.torso.parent = this.mesh;
+                this.shadowGenerator.addShadowCaster(this.torso);
+
+                // Cabeça
+                this.head = BABYLON.MeshBuilder.CreateBox("wwHead", {width: 0.6, height: 0.6, depth: 0.6}, this.scene);
+                this.head.material = this.materials.werewolfFur;
+                this.head.position.y = 0.75; 
+                this.head.parent = this.torso;
+                this.shadowGenerator.addShadowCaster(this.head);
+
+                // Focinho (Snout)
+                this.snout = BABYLON.MeshBuilder.CreateBox("wwSnout", {width: 0.4, height: 0.3, depth: 0.4}, this.scene);
+                this.snout.material = this.materials.werewolfSnout;
+                this.snout.position = new BABYLON.Vector3(0, -0.1, 0.5); 
+                this.snout.parent = this.head;
+                this.shadowGenerator.addShadowCaster(this.snout);
+
+                const createLimb = (name, mat, w, h, d, px, py) => {
+                    let limb = BABYLON.MeshBuilder.CreateBox(name, {width: w, height: h, depth: d}, this.scene);
+                    limb.material = mat;
+                    limb.bakeTransformIntoVertices(BABYLON.Matrix.Translation(0, -h/2, 0));
+                    limb.position = new BABYLON.Vector3(px, py, 0);
+                    limb.parent = this.mesh;
+                    this.shadowGenerator.addShadowCaster(limb);
+                    return limb;
+                };
+
+                // Braços longos nos ombros (1.7) e pernas altas (0.9). O fundo da perna fica no 0.0.
+                this.armL = createLimb("wwArmL", this.materials.werewolfFur, 0.3, 1.1, 0.3, -0.6, 1.7);
+                this.armL.checkCollisions = true; // Colisão ativada
+                this.armL.collisionGroup = 2;     // Grupo isolado
+
+                this.armR = createLimb("wwArmR", this.materials.werewolfFur, 0.3, 1.1, 0.3,  0.6, 1.7);
+                this.armR.checkCollisions = true; // Colisão ativada
+                this.armR.collisionGroup = 2;     // Grupo isolado
+                
+                // Pernas
+                this.legL = createLimb("wwLegL", this.materials.werewolfFur, 0.3, 0.9, 0.3, -0.2, 0.9);
+                this.legR = createLimb("wwLegR", this.materials.werewolfFur, 0.3, 0.9, 0.3,  0.2, 0.9);
+
+                // ==========================================
+                // VARA DE PASTOR (Shepherd's Crook)
+                // Acoplada à mão direita (armR)
+                // ==========================================
+                this.crookPivot = new BABYLON.TransformNode("crookPivot", this.scene);
+                this.crookPivot.parent = this.armR;
+                // Como a origem do braço (0,0,0) é agora o ombro e ele mede 1.1, a mão está em -1.1.
+                this.crookPivot.position = new BABYLON.Vector3(0, -1.0, 0.3);
+                // Roda ligeiramente para apontar para a frente
+                this.crookPivot.rotation.x = Math.PI / 4; 
+
+                // Haste principal da vara
+                this.crookStick = BABYLON.MeshBuilder.CreateBox("crookStick", {width: 0.1, height: 2.6, depth: 0.1}, this.scene);
+                this.crookStick.material = this.materials.crookWood;
+                this.crookStick.position.y = 0.5; // Levanta o cajado para que a base toque no chão
+                this.crookStick.parent = this.crookPivot;
+                this.crookStick.checkCollisions = true; // Colisão ativada
+                this.crookStick.collisionGroup = 2;
+                this.shadowGenerator.addShadowCaster(this.crookStick);
+
+                // Gancho da vara (topo)
+                this.crookHookTop = BABYLON.MeshBuilder.CreateBox("crookHookTop", {width: 0.1, height: 0.1, depth: 0.4}, this.scene);
+                this.crookHookTop.material = this.materials.crookWood;
+                this.crookHookTop.position = new BABYLON.Vector3(0, 1.8, 0.15);
+                this.crookHookTop.parent = this.crookPivot;
+                this.crookHookTop.checkCollisions = true; // Colisão ativada
+                this.crookHookTop.collisionGroup = 2;
+                this.shadowGenerator.addShadowCaster(this.crookHookTop);
+
+                this.crookHookDrop = BABYLON.MeshBuilder.CreateBox("crookHookDrop", {width: 0.1, height: 0.3, depth: 0.1}, this.scene);
+                this.crookHookDrop.material = this.materials.crookWood;
+                this.crookHookDrop.position = new BABYLON.Vector3(0, 1.6, 0.3);
+                this.crookHookDrop.parent = this.crookPivot;
+                this.crookHookDrop.checkCollisions = true; // Colisão ativada
+                this.crookHookDrop.collisionGroup = 2;
+                this.shadowGenerator.addShadowCaster(this.crookHookDrop);
+            }
+
+            update(dt) {
+                this.stateTimer -= dt;
+
+                if (this.stateTimer <= 0) {
+                    if (this.state === "IDLE") {
+                        this.state = "WALKING";
+                        this.stateTimer = Math.random() * 4000 + 2000;
+                        this.targetAngle += (Math.random() - 0.5) * Math.PI * 1.5;
+                    } else {
+                        this.state = "IDLE";
+                        this.stateTimer = Math.random() * 3000 + 1000;
+                    }
+                }
+
+                if (this.state === "WALKING") {
+                    const currentQuat = this.mesh.rotationQuaternion;
+                    const targetQuat = BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, this.targetAngle);
+                    this.mesh.rotationQuaternion = BABYLON.Quaternion.Slerp(currentQuat, targetQuat, CONFIG.werewolf.turnSpeed);
+
+                    let forward = new BABYLON.Vector3(0, 0, 1);
+                    let direction = new BABYLON.Vector3();
+                    this.mesh.computeWorldMatrix(true);
+                    BABYLON.Vector3.TransformNormalToRef(forward, this.mesh.getWorldMatrix(), direction);
+                    direction.normalize();
+
+                    const velocity = direction.scale(CONFIG.werewolf.walkSpeed * (dt / 1000));
+                    velocity.y = -0.2; 
+                    
+                    const prevPos = this.mesh.position.clone();
+                    this.mesh.moveWithCollisions(velocity);
+
+                    // Evita ficar encravado na parede
+                    if (BABYLON.Vector3.Distance(prevPos, this.mesh.position) < 0.005) {
+                        this.state = "IDLE";
+                        this.stateTimer = 500;
+                        this.targetAngle += Math.PI; 
+                    }
+
+                    // Animação dos passos lentos e pesados do lobisomem
+                    this.walkAnimTime += dt * 0.01;
+                    const swing = Math.sin(this.walkAnimTime) * 0.6;
+                    this.legL.rotation.x = swing;
+                    this.legR.rotation.x = -swing;
+                    this.armL.rotation.x = -swing; 
+                    this.armR.rotation.x = swing;
+                } else {
+                    this.mesh.moveWithCollisions(new BABYLON.Vector3(0, -0.2, 0));
+                    
+                    this.legL.rotation.x = BABYLON.Scalar.Lerp(this.legL.rotation.x, 0, 0.1);
+                    this.legR.rotation.x = BABYLON.Scalar.Lerp(this.legR.rotation.x, 0, 0.1);
+                    this.armL.rotation.x = BABYLON.Scalar.Lerp(this.armL.rotation.x, 0, 0.1);
+                    // O braço direito (que segura a vara) pode relaxar numa posição predefinida
+                    this.armR.rotation.x = BABYLON.Scalar.Lerp(this.armR.rotation.x, 0.1, 0.1);
+
+                    // Pequeno movimento de respiração pesada
+                    this.torso.rotation.x = Math.sin(Date.now() * 0.002) * 0.05;
+                }
+            }
+        }
+
+
+        /**
+         * CLASSE DO SISTEMA DE OVELHAS (Voxel Sheep)
+         */
+        class VoxelSheep {
+            constructor(scene, shadowGenerator, materials, position) {
+                this.scene = scene;
+                this.shadowGenerator = shadowGenerator;
+                this.materials = materials;
+                this.walkAnimTime = Math.random() * 10; 
+                
+                this.state = "IDLE"; 
+                this.stateTimer = Math.random() * 3000 + 1000;
+                this.targetAngle = Math.random() * Math.PI * 2;
+                
+                const types = ["white", "black", "spotted", "white", "white"]; 
+                this.type = types[Math.floor(Math.random() * types.length)];
+                
+                // CORREÇÃO: Removemos o offset no eixo Z. A Hitbox fica no centro (0,0,0).
+                this.mesh = BABYLON.MeshBuilder.CreateBox("sheepHitbox", {width: 0.8, height: 1.0, depth: 1.6}, scene);
+                this.mesh.bakeTransformIntoVertices(BABYLON.Matrix.Translation(0, 0.5, 0)); 
+                this.mesh.isVisible = false; 
+                
+                this.mesh.position = position;
+                this.mesh.rotationQuaternion = BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, this.targetAngle);
+                this.mesh.checkCollisions = true; 
+                
+                // CORREÇÃO: O elipsoide TEM de ser um círculo perfeito (0.75 em X e Z) 
+                // pois no Babylon.js o elipsoide de colisão NUNCA roda.
+                this.mesh.ellipsoid = new BABYLON.Vector3(0.75, 0.45, 0.75);
+                this.mesh.ellipsoidOffset = new BABYLON.Vector3(0, 0.45, 0);
+
+                this.buildModel();
+            }
+
+            buildModel() {
+                let mainMat = this.materials.sheepWhite;
+                if (this.type === "black") mainMat = this.materials.sheepBlack;
+
+                let scale = 0.85 + Math.random() * 0.3;
+                this.mesh.scaling = new BABYLON.Vector3(scale, scale, scale);
+
+                this.body = BABYLON.MeshBuilder.CreateBox("sheepBody", {width: 0.8, height: 0.6, depth: 1.2}, this.scene);
+                this.body.position.y = 0.55;
+                // CORREÇÃO: Recuamos o corpo para trás para centrar a geometria com a Hitbox
+                this.body.position.z = -0.2; 
+                this.body.material = mainMat;
+                this.body.parent = this.mesh;
+                this.shadowGenerator.addShadowCaster(this.body);
+
+                this.head = BABYLON.MeshBuilder.CreateBox("sheepHead", {width: 0.5, height: 0.5, depth: 0.5}, this.scene);
+                // CORREÇÃO: Cabeça recuada (era 0.7, agora 0.5)
+                this.head.position = new BABYLON.Vector3(0, 0.8, 0.5);
+                this.head.material = (this.type === "white" || this.type === "spotted") ? this.materials.sheepSkin : this.materials.sheepBlack;
+                this.head.parent = this.mesh;
+                this.shadowGenerator.addShadowCaster(this.head);
+
+                const createLeg = (name, px, pz) => {
+                    let leg = BABYLON.MeshBuilder.CreateBox(name, {width: 0.15, height: 0.4, depth: 0.15}, this.scene);
+                    leg.material = this.materials.sheepSkin; 
+                    leg.bakeTransformIntoVertices(BABYLON.Matrix.Translation(0, -0.2, 0)); 
+                    leg.position = new BABYLON.Vector3(px, 0.4, pz); 
+                    leg.parent = this.mesh;
+                    this.shadowGenerator.addShadowCaster(leg);
+                    return leg;
+                };
+
+                // CORREÇÃO: Todas as patas recuadas em 0.2 no eixo Z
+                this.legFL = createLeg("legFL", -0.25, 0.2);
+                this.legFR = createLeg("legFR",  0.25, 0.2);
+                this.legBL = createLeg("legBL", -0.25, -0.6);
+                this.legBR = createLeg("legBR",  0.25, -0.6);
+
+                if (this.type === "spotted") {
+                    this.addSpot(this.materials.sheepBlack, 0.41, 0, 0);       
+                    this.addSpot(this.materials.sheepBlack, -0.41, 0.1, -0.2); 
+                    this.addSpot(this.materials.sheepBlack, 0, 0.31, 0.2);     
+                }
+            }
+
+            addSpot(mat, px, py, pz) {
+                let spot = BABYLON.MeshBuilder.CreateBox("spot", {width: 0.25, height: 0.25, depth: 0.25}, this.scene);
+                if (Math.abs(px) > 0) spot.scaling.x = 0.1;
+                else if (Math.abs(py) > 0) spot.scaling.y = 0.1;
+
+                spot.position = new BABYLON.Vector3(px, py, pz);
+                spot.material = mat;
+                spot.parent = this.body; 
+            }
+
+            update(dt) {
+                this.stateTimer -= dt;
+
+                if (this.stateTimer <= 0) {
+                    if (this.state === "IDLE") {
+                        this.state = "WALKING";
+                        this.stateTimer = Math.random() * 4000 + 2000; 
+                        this.targetAngle += (Math.random() - 0.5) * Math.PI * 1.5; 
+                    } else {
+                        this.state = "IDLE";
+                        this.stateTimer = Math.random() * 3000 + 1000; 
+                    }
+                }
+
+                if (this.state === "WALKING") {
+                    const currentQuat = this.mesh.rotationQuaternion;
+                    const targetQuat = BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, this.targetAngle);
+                    this.mesh.rotationQuaternion = BABYLON.Quaternion.Slerp(currentQuat, targetQuat, CONFIG.sheep.turnSpeed);
+
+                    let forward = new BABYLON.Vector3(0, 0, 1);
+                    let direction = new BABYLON.Vector3();
+                    this.mesh.computeWorldMatrix(true);
+                    BABYLON.Vector3.TransformNormalToRef(forward, this.mesh.getWorldMatrix(), direction);
+                    direction.normalize();
+
+                    const velocity = direction.scale(CONFIG.sheep.walkSpeed * (dt / 1000));
+                    velocity.y = -0.15; 
+                    
+                    const prevPos = this.mesh.position.clone();
+                    this.mesh.moveWithCollisions(velocity);
+
+                    if (BABYLON.Vector3.Distance(prevPos, this.mesh.position) < 0.005) {
+                        this.state = "IDLE";
+                        this.stateTimer = 500; 
+                        this.targetAngle += Math.PI; 
+                    }
+
+                    this.walkAnimTime += dt * 0.01;
+                    const swing = Math.sin(this.walkAnimTime) * 0.5;
+                    this.legFL.rotation.x = swing;
+                    this.legBR.rotation.x = swing;
+                    this.legFR.rotation.x = -swing;
+                    this.legBL.rotation.x = -swing;
+                } else {
+                    this.mesh.moveWithCollisions(new BABYLON.Vector3(0, -0.15, 0));
+                    
+                    this.legFL.rotation.x = BABYLON.Scalar.Lerp(this.legFL.rotation.x, 0, 0.1);
+                    this.legFR.rotation.x = BABYLON.Scalar.Lerp(this.legFR.rotation.x, 0, 0.1);
+                    this.legBL.rotation.x = BABYLON.Scalar.Lerp(this.legBL.rotation.x, 0, 0.1);
+                    this.legBR.rotation.x = BABYLON.Scalar.Lerp(this.legBR.rotation.x, 0, 0.1);
+
+                    this.head.rotation.x = Math.sin(Date.now() * 0.002) * 0.1;
+                }
+            }
+        }
+
+        /**
+         * CLASSE DA CÂMARA (Terceira Pessoa)
+         */
+        class ThirdPersonCamera {
+            constructor(scene, targetNode) {
+                this.scene = scene;
+                this.target = targetNode;
+                
+                this.camera = new BABYLON.UniversalCamera("cam", new BABYLON.Vector3(0, 5, -10), scene);
+                this.camera.minZ = 0.1; 
+                
+                this.yaw = Math.PI / 4;   
+                this.pitch = 0.3;         
+                this.currentDistance = CONFIG.camera.baseDistance;
+                this.targetDistance = CONFIG.camera.baseDistance;
+
+                this.cameraPivot = targetNode.position.clone();
+                this.cameraPivot.y += CONFIG.camera.heightOffset;
+            }
+
+            update(dt, camInput, isPlayerMoving) {
+                // Rotação Analógica do Telemóvel
+                this.yaw += camInput.joyX * CONFIG.camera.rotSpeedX;
+                this.pitch -= camInput.joyY * CONFIG.camera.rotSpeedY; 
+                
+                // Rotação do Rato (PC)
+                this.yaw += camInput.mouseX * CONFIG.camera.mouseSensitivity;
+                this.pitch += camInput.mouseY * CONFIG.camera.mouseSensitivity;
+
+                this.pitch = Math.max(CONFIG.camera.minPitch, Math.min(CONFIG.camera.maxPitch, this.pitch));
+
+                let desiredBaseDist = isPlayerMoving ? CONFIG.camera.baseDistance + 1.5 : CONFIG.camera.baseDistance;
+                this.targetDistance = BABYLON.Scalar.Lerp(this.targetDistance, desiredBaseDist, 0.05);
+
+                const idealPivot = this.target.position.clone();
+                idealPivot.y += CONFIG.camera.heightOffset;
+                
+                this.cameraPivot = BABYLON.Vector3.Lerp(this.cameraPivot, idealPivot, CONFIG.camera.smoothSpeed);
+
+                const offsetX = this.targetDistance * Math.cos(this.pitch) * Math.sin(this.yaw);
+                const offsetZ = this.targetDistance * Math.cos(this.pitch) * Math.cos(this.yaw);
+                const offsetY = this.targetDistance * Math.sin(this.pitch);
+                let idealCamPos = this.cameraPivot.add(new BABYLON.Vector3(offsetX, offsetY, offsetZ));
+
+                let rayDirection = idealCamPos.subtract(this.cameraPivot).normalize();
+                let ray = new BABYLON.Ray(this.cameraPivot, rayDirection, this.targetDistance);
+                
+                let hit = this.scene.pickWithRay(ray, (mesh) => mesh.isObstacle);
+
+                let actualDistance = this.targetDistance;
+                if (hit && hit.hit) {
+                    actualDistance = hit.distance - 0.4;
+                    if (actualDistance < 0.2) actualDistance = 0.2;
+                }
+
+                if (actualDistance < this.currentDistance) {
+                    this.currentDistance = actualDistance; 
+                } else {
+                    this.currentDistance = BABYLON.Scalar.Lerp(this.currentDistance, actualDistance, 0.1); 
+                }
+
+                const finalOffsetX = this.currentDistance * Math.cos(this.pitch) * Math.sin(this.yaw);
+                const finalOffsetZ = this.currentDistance * Math.cos(this.pitch) * Math.cos(this.yaw);
+                const finalOffsetY = this.currentDistance * Math.sin(this.pitch);
+                let finalCamPos = this.cameraPivot.add(new BABYLON.Vector3(finalOffsetX, finalOffsetY, finalOffsetZ));
+
+                this.camera.position = finalCamPos;
+                this.camera.setTarget(this.cameraPivot);
+            }
+        }
+
+        /**
+         * CONSTRUÇÃO DO AMBIENTE E MATERIAIS
+         */
+        function createEnvironment(scene) {
+            const hemiLight = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(0, 1, 0), scene);
+            hemiLight.intensity = 0.6;
+            hemiLight.groundColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+
+            const dirLight = new BABYLON.DirectionalLight("dirLight", new BABYLON.Vector3(-1, -2, -1), scene);
+            dirLight.position = new BABYLON.Vector3(20, 40, 20);
+            dirLight.intensity = 0.8;
+
+            const shadowGenerator = new BABYLON.ShadowGenerator(1024, dirLight);
+            shadowGenerator.useBlurExponentialShadowMap = true;
+            shadowGenerator.blurKernel = 32;
+
+            const materials = {
+                ground: new BABYLON.StandardMaterial("matGround", scene),
+                wall: new BABYLON.StandardMaterial("matWall", scene),
+                wood: new BABYLON.StandardMaterial("matWood", scene),
+                leaves: new BABYLON.StandardMaterial("matLeaves", scene),
+                
+                // Ovelhas
+                sheepWhite: new BABYLON.StandardMaterial("matSWhite", scene),
+                sheepBlack: new BABYLON.StandardMaterial("matSBlack", scene),
+                sheepSkin: new BABYLON.StandardMaterial("matSSkin", scene),
+                
+                // Jogador
+                playerSkin: new BABYLON.StandardMaterial("matPSkin", scene),
+                playerShirt: new BABYLON.StandardMaterial("matPShirt", scene),
+                playerPants: new BABYLON.StandardMaterial("matPPants", scene),
+
+                // Lobisomem
+                werewolfFur: new BABYLON.StandardMaterial("matWWFur", scene),
+                werewolfSnout: new BABYLON.StandardMaterial("matWWSnout", scene),
+                crookWood: new BABYLON.StandardMaterial("matCrookWood", scene),
+
+                // NOVO: Material de madeira escura para as cercas dos Currais
+                fenceWood: new BABYLON.StandardMaterial("matFence", scene)
+            };
+
+            materials.ground.diffuseColor = new BABYLON.Color3(0.3, 0.6, 0.3); 
+            materials.wall.diffuseColor = new BABYLON.Color3(0.6, 0.6, 0.6); 
+            materials.wood.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.1);
+            materials.leaves.diffuseColor = new BABYLON.Color3(0.2, 0.8, 0.2);
+            
+            materials.sheepWhite.diffuseColor = new BABYLON.Color3(0.95, 0.95, 0.95);
+            materials.sheepBlack.diffuseColor = new BABYLON.Color3(0.15, 0.15, 0.15);
+            materials.sheepSkin.diffuseColor = new BABYLON.Color3(0.8, 0.6, 0.5);
+
+            materials.playerSkin.diffuseColor = new BABYLON.Color3(1, 0.8, 0.6);
+            materials.playerShirt.diffuseColor = new BABYLON.Color3(0.1, 0.5, 0.8);
+            materials.playerPants.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+
+            materials.werewolfFur.diffuseColor = new BABYLON.Color3(0.25, 0.2, 0.2); // Pêlo escuro/acastanhado
+            materials.werewolfSnout.diffuseColor = new BABYLON.Color3(0.1, 0.08, 0.08); // Focinho quase preto
+            materials.crookWood.diffuseColor = new BABYLON.Color3(0.6, 0.4, 0.2); // Madeira clara para a vara
+            materials.fenceWood.diffuseColor = new BABYLON.Color3(0.45, 0.3, 0.15); // Madeira média para os currais
+
+            const ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 100, height: 100}, scene);
+            ground.material = materials.ground;
+            ground.receiveShadows = true;
+            ground.checkCollisions = true;  
+            ground.isObstacle = true;       
+
+            // CORREÇÃO: Permitir material customizado (customMat) para suportar cercas de madeira
+            const createObstacle = (name, w, h, d, px, pz, customMat = null) => {
+                let box = BABYLON.MeshBuilder.CreateBox(name, {width: w, height: h, depth: d}, scene);
+                box.position = new BABYLON.Vector3(px, h/2, pz);
+                box.material = customMat || materials.wall;
+                box.checkCollisions = true;
+                box.isObstacle = true;
+                shadowGenerator.addShadowCaster(box);
+                return box;
+            };
+
+            createObstacle("wall1", 20, 5, 2, 0, 10);
+            createObstacle("wall2", 20, 5, 2, 0, -10);
+            createObstacle("wall3", 2, 8, 10, -8, 0); 
+            createObstacle("wall4", 10, 4, 10, 15, 15); 
+
+            const createTree = (px, pz) => {
+                let trunk = BABYLON.MeshBuilder.CreateBox("trunk", {width: 0.8, height: 3, depth: 0.8}, scene);
+                trunk.position = new BABYLON.Vector3(px, 1.5, pz);
+                trunk.material = materials.wood;
+                trunk.checkCollisions = true;
+                trunk.isObstacle = true;
+                shadowGenerator.addShadowCaster(trunk);
+
+                let leaves = BABYLON.MeshBuilder.CreateBox("leaves", {width: 3, height: 3, depth: 3}, scene);
+                leaves.position = new BABYLON.Vector3(px, 4.5, pz);
+                leaves.material = materials.leaves;
+                leaves.checkCollisions = true;
+                leaves.isObstacle = true;
+                shadowGenerator.addShadowCaster(leaves);
+            };
+
+            createTree(10, -5);
+            createTree(-12, -15);
+            createTree(-15, 12);
+            createTree(18, -12);
+            // CORREÇÃO: Desviámos ligeiramente esta árvore para dar espaço ao Curral Sudoeste
+            createTree(-18, -18);
+            createTree(25, -5);
+
+            // ==========================================
+            // SISTEMA DE CURRAIS (PENS) E TEXTOS
+            // ==========================================
+            const createCurral = (px, pz, textStr) => {
+                // 1. Cercas de colisão (Quadrado 10x10) com entrada a oeste
+                createObstacle(`c_${px}_n`, 10, 1.5, 0.4, px, pz + 5, materials.fenceWood);
+                createObstacle(`c_${px}_s`, 10, 1.5, 0.4, px, pz - 5, materials.fenceWood);
+                createObstacle(`c_${px}_e`, 0.4, 1.5, 10, px + 5, pz, materials.fenceWood);
+                createObstacle(`c_${px}_w1`, 0.4, 1.5, 3, px - 5, pz + 3.5, materials.fenceWood);
+                createObstacle(`c_${px}_w2`, 0.4, 1.5, 3, px - 5, pz - 3.5, materials.fenceWood);
+
+                // 2. Plano 3D para suportar a UI que levita
+                // CORREÇÃO: Aumentámos a largura (18) e altura (8) do plano para caber letras maiores
+                let textPlane = BABYLON.MeshBuilder.CreatePlane(`textPlane_${px}_${pz}`, {width: 18, height: 8}, scene);
+                textPlane.position = new BABYLON.Vector3(px, 7, pz); // Levantámos um pouco mais (de 6 para 7)
+                textPlane.billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL; // Gira permanentemente para a câmara
+
+                // 3. Renderização Dinâmica 2D via GUI
+                // CORREÇÃO: Forçamos uma resolução HD de 1800x800 (proporcional a 18x8) para a fonte não perder nitidez nem distorcer
+                let advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(textPlane, 1800, 800);
+                
+                let rect = new BABYLON.GUI.Rectangle();
+                rect.width = 1;
+                rect.height = 1;
+                rect.cornerRadius = 30;
+                rect.color = "#FFD700"; // Borda dourada
+                rect.thickness = 8;
+                rect.background = "rgba(0, 0, 0, 0.85)"; // Fundo ligeiramente mais escuro para maior contraste
+                advancedTexture.addControl(rect);
+
+                let textBlock = new BABYLON.GUI.TextBlock();
+                textBlock.text = textStr;
+                textBlock.color = "white";
+                // CORREÇÃO: Fonte massiva, a negrito e com sombra para máxima legibilidade
+                textBlock.fontSize = 68; 
+                textBlock.fontWeight = "bold";
+                textBlock.fontFamily = "sans-serif";
+                textBlock.textWrapping = BABYLON.GUI.TextWrapping.WordWrap;
+                textBlock.paddingTop = "25px";
+                textBlock.paddingBottom = "25px";
+                textBlock.paddingLeft = "40px";
+                textBlock.paddingRight = "40px";
+                
+                // Sombra projetada no texto
+                textBlock.shadowColor = "black";
+                textBlock.shadowBlur = 5;
+                textBlock.shadowOffsetX = 3;
+                textBlock.shadowOffsetY = 3;
+                
+                rect.addControl(textBlock);
+            };
+
+            // Todos os textos abaixo têm exatos 200 caracteres de comprimento!
+            const t1 = "Este curral de madeira foi construído pelas antigas gerações de pastores para proteger os rebanhos das criaturas noturnas. Mantenha os portões bem fechados ao anoitecer para evitar perdas terríveis.";
+            const t2 = "As ovelhas brancas e malhadas encontram refúgio neste espaçoso curral. O solo macio e a sombra das árvores próximas garantem tranquilidade aos animais, mesmo quando o lobisomem uiva sob a lua cheia!";
+            const t3 = "Dizem que este curral foi erguido num antigo terreno sagrado. As ovelhas que descansam aqui produzem a lã mais macia e resistente da região. Contudo, os ventos noturnos trazem sons assustadores hoje.";
+            const t4 = "O último curral da nossa quinta necessita de reparações urgentes. A madeira está desgastada pelo tempo e pelas garras das feras. Ajudem a proteger as ovelhas mais jovens antes que o sol se esconda.";
+
+            // Disposição dos 4 currais nas pontas do cenário
+            createCurral(25, 25, t1);    // Nordeste
+            createCurral(-25, 25, t2);   // Noroeste
+            createCurral(-25, -25, t3);  // Sudoeste
+            createCurral(25, -25, t4);   // Sudeste
+
+            return { shadowGen: shadowGenerator, materials: materials };
+        }
+
+        /**
+         * INICIALIZAÇÃO PRINCIPAL
+         */
+        function initGame() {
+            const canvas = document.getElementById("renderCanvas");
+            const engine = new BABYLON.Engine(canvas, true);
+
+            const scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color4(0.4, 0.7, 0.9, 1); 
+            scene.collisionsEnabled = true;
+
+            const inputManager = new InputManager();
+            const envData = createEnvironment(scene);
+            const shadowGen = envData.shadowGen;
+            const mat = envData.materials;
+
+            // Jogador
+            const player = new VoxelPlayer(scene, mat);
+            player.addShadows(shadowGen);
+            const cameraController = new ThirdPersonCamera(scene, player.mesh);
+
+            // ==========================================
+            // SPAWN DO LOBISOMEM (Werewolf)
+            // ==========================================
+            // Colocamo-lo inicialmente ao lado das árvores (-5, 2, -5)
+            const werewolf = new VoxelWerewolf(scene, shadowGen, mat, new BABYLON.Vector3(-5, 2, -5));
+
+            // ==========================================
+            // SPAWN DAS OVELHAS (Voxel Sheep)
+            // ==========================================
+            const sheeps = [];
+            for(let i = 0; i < CONFIG.sheep.count; i++) {
+                let randomX = (Math.random() - 0.5) * 40;
+                let randomZ = (Math.random() - 0.5) * 40;
+                
+                if (Math.abs(randomX) < 3) randomX += 5;
+                
+                let startPos = new BABYLON.Vector3(randomX, 2, randomZ);
+                sheeps.push(new VoxelSheep(scene, shadowGen, mat, startPos));
+            }
+
+            // Loop de Renderização
+            engine.runRenderLoop(() => {
+                const dt = engine.getDeltaTime();
+
+                // Recupera os Inputs processados para PC e Mobile simultaneamente
+                const moveInput = inputManager.getMovementVector();
+                const camInput = inputManager.getCameraInput();
+
+                const isMoving = player.update(dt, moveInput, cameraController.yaw);
+                cameraController.update(dt, camInput, isMoving);
+
+                // Atualiza o Lobisomem
+                werewolf.update(dt);
+
+                // Atualiza as Ovelhas
+                for(let i = 0; i < sheeps.length; i++) {
+                    sheeps[i].update(dt);
+                }
+
+                scene.render();
+            });
+
+            window.addEventListener("resize", () => {
+                engine.resize();
+            });
+        }
+
+        document.getElementById('start-btn').addEventListener('click', () => {
+            document.getElementById('start-screen').style.display = 'none';
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) elem.requestFullscreen().catch(()=>{});
+            else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen().catch(()=>{});
+            
+            // Tenta bloquear o ponteiro do rato de imediato no PC
+            const canvas = document.getElementById("renderCanvas");
+            if (canvas.requestPointerLock) {
+                canvas.requestPointerLock();
+            }
+
+            try {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock("landscape").catch(() => console.log("Orientation lock fallback"));
+                }
+            } catch(e) {}
+            initGame();
+        });
+
+    </script>
+</body>
+</html>

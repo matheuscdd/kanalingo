@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Duo Sort Defense</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #131F24; /* Dark outer background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            touch-action: none; /* Prevent scroll on touch devices */
+            font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        #game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        canvas {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+
+    <script>
+        // --- Game Configuration & Data ---
+        const GAME_WIDTH = 600;
+        const GAME_HEIGHT = 800;
+        const LANE_WIDTH = GAME_WIDTH / 3;
+        const LANE_CENTERS = [LANE_WIDTH * 0.5, LANE_WIDTH * 1.5, LANE_WIDTH * 2.5];
+
+        const CATEGORIES = {
+            "Animals 🐾": { 
+                words: ["Dog", "Cat", "Lion", "Bear", "Bird", "Fish", "Tiger", "Frog"], 
+                color: 0xFF9600, shadow: 0xCC7800 
+            },
+            "Colors 🎨": { 
+                words: ["Red", "Blue", "Green", "Yellow", "Pink", "Purple", "White", "Black"], 
+                color: 0xCE82FF, shadow: 0xA568CC 
+            },
+            "Fruits 🍎": { 
+                words: ["Apple", "Banana", "Orange", "Grape", "Mango", "Peach", "Plum", "Kiwi"], 
+                color: 0xFF4B4B, shadow: 0xCC3C3C 
+            }
+        };
+
+        const CATEGORY_KEYS = Object.keys(CATEGORIES);
+
+        // --- Custom Classes ---
+
+        class Dinosaur extends Phaser.GameObjects.Container {
+            constructor(scene, x, y, laneIndex, categoryName, word, maxHp) {
+                super(scene, x, y);
+                this.laneIndex = laneIndex;
+                this.categoryName = categoryName;
+                this.word = word;
+                this.hp = maxHp;
+                this.maxHp = maxHp;
+                
+                const catData = CATEGORIES[categoryName];
+
+                // Background card (Duolingo style flat design)
+                this.card = scene.add.sprite(0, 0, 'card_base');
+                this.card.setTint(catData.color);
+                
+                // Text rendering (Letter by Letter para podermos pintar de verde)
+                this.wordContainer = scene.add.container(0, -10);
+                this.letters = [];
+                let totalWidth = 0;
+                
+                for(let i = 0; i < word.length; i++) {
+                    let t = scene.add.text(0, 0, word[i], {
+                        fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                        fontSize: '24px',
+                        color: '#FFFFFF',
+                        fontStyle: 'bold'
+                    }).setOrigin(0, 0.5);
+                    this.letters.push(t);
+                    this.wordContainer.add(t);
+                    totalWidth += t.width;
+                }
+                
+                // Centralizar as letras no card
+                let currX = -totalWidth / 2;
+                for(let i = 0; i < this.letters.length; i++) {
+                    this.letters[i].x = currX;
+                    currX += this.letters[i].width;
+                }
+
+                // HP Indicator container
+                this.hpContainer = scene.add.container(0, 20);
+                this.hpDots = [];
+                this.drawHp();
+
+                this.add([this.card, this.wordContainer, this.hpContainer]);
+                
+                // Esconder HP se estiver no modo de digitação
+                if (scene.gameMode === 'typing') {
+                    this.hpContainer.setVisible(false);
+                }
+
+                scene.add.existing(this);
+            }
+
+            drawHp() {
+                this.hpContainer.removeAll(true);
+                this.hpDots = [];
+                const spacing = 12;
+                const startX = -((this.maxHp - 1) * spacing) / 2;
+
+                for (let i = 0; i < this.maxHp; i++) {
+                    let dot = this.scene.add.circle(startX + i * spacing, 0, 4, i < this.hp ? 0xFFFFFF : 0x000000);
+                    dot.setAlpha(i < this.hp ? 1 : 0.3);
+                    this.hpDots.push(dot);
+                    this.hpContainer.add(dot);
+                }
+            }
+
+            takeDamage() {
+                this.hp--;
+                this.drawHp();
+                
+                this.scene.tweens.add({
+                    targets: this, scaleX: 1.1, scaleY: 0.9, duration: 50, yoyo: true
+                });
+            }
+
+            updateTyped(typedStr) {
+                for(let i = 0; i < this.letters.length; i++) {
+                    if (i < typedStr.length) {
+                        this.letters[i].setColor('#58CC02'); // Verde (Duolingo)
+                    } else {
+                        this.letters[i].setColor('#FFFFFF'); // Branco
+                    }
+                }
+                
+                // Animação de "Pop" na última letra digitada
+                if (typedStr.length > 0 && typedStr.length <= this.letters.length) {
+                    let lastLetter = this.letters[typedStr.length - 1];
+                    this.scene.tweens.add({
+                        targets: lastLetter, scaleX: 1.4, scaleY: 1.4, duration: 100, yoyo: true
+                    });
+                }
+            }
+        }
+
+        class Tower extends Phaser.GameObjects.Container {
+            constructor(scene, x, y, laneIndex) {
+                super(scene, x, y);
+                this.laneIndex = laneIndex;
+                this.nextFireTime = 0;
+                
+                this.shadow = scene.add.circle(0, 10, 35, 0x168CD5);
+                this.base = scene.add.circle(0, 0, 35, 0x1CB0F6);
+                this.cannon = scene.add.graphics();
+                this.cannon.fillStyle(0xFFFFFF, 1);
+                this.cannon.fillRoundedRect(-10, -40, 20, 40, 10);
+                
+                this.add([this.shadow, this.base, this.cannon]);
+                scene.add.existing(this);
+
+                this.setScale(0);
+                scene.tweens.add({
+                    targets: this, scale: 1, duration: 300, ease: 'Back.out'
+                });
+            }
+
+            fireAnimation() {
+                this.scene.tweens.add({
+                    targets: this.cannon, y: 10, duration: 50, yoyo: true
+                });
+            }
+        }
+
+        // --- Main Scene ---
+
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super({ key: 'MainScene' });
+            }
+
+            preload() {
+                this.generateTextures();
+            }
+
+            generateTextures() {
+                let g = this.make.graphics({x: 0, y: 0, add: false});
+                g.fillStyle(0xFFFFFF, 1);
+                g.fillRoundedRect(0, 0, 140, 80, 16);
+                g.fillStyle(0x000000, 0.15); 
+                g.fillRoundedRect(0, 70, 140, 10, {tl: 0, tr: 0, bl: 16, br: 16});
+                g.generateTexture('card_base', 140, 80);
+
+                let bg = this.make.graphics({x: 0, y: 0, add: false});
+                bg.fillStyle(0xFFE000, 1);
+                bg.fillRoundedRect(0, 0, 12, 30, 6);
+                bg.generateTexture('bullet', 12, 30);
+            }
+
+            create() {
+                this.gameMode = 'tower'; // 'tower' ou 'typing'
+                this.isPlaying = false;
+                this.score = 0;
+                this.lives = 5;
+                this.combo = 0;
+                this.targetCategory = CATEGORY_KEYS[0];
+                
+                this.baseDinoSpeed = 80;
+                this.spawnDelay = 2000;
+                this.fireRate = 400; 
+
+                this.dinos = [];
+                this.bullets = [];
+                this.towers = [null, null, null];
+                this.towerCooldowns = [0, 0, 0];
+                
+                this.currentTarget = null;
+                this.typedWord = '';
+
+                this.createEnvironment();
+                this.createUI();
+                this.setupInput();
+
+                this.showStartScreen();
+            }
+
+            createEnvironment() {
+                this.cameras.main.setBackgroundColor('#F7F7F8');
+
+                let g = this.add.graphics();
+                g.lineStyle(4, 0xE5E5E5, 1);
+                g.beginPath();
+                g.moveTo(LANE_WIDTH, 100);
+                g.lineTo(LANE_WIDTH, GAME_HEIGHT);
+                g.moveTo(LANE_WIDTH * 2, 100);
+                g.lineTo(LANE_WIDTH * 2, GAME_HEIGHT);
+                g.strokePath();
+
+                this.laneIndicators = [];
+                const teclas = ['A', 'S', 'D'];
+                for (let i = 0; i < 3; i++) {
+                    let circle = this.add.circle(LANE_CENTERS[i], GAME_HEIGHT - 60, 40, 0xE5E5E5, 0.5);
+                    let text = this.add.text(LANE_CENTERS[i], GAME_HEIGHT - 60, teclas[i], {
+                        fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                        fontSize: '24px', color: '#A0A0A0', fontStyle: 'bold'
+                    }).setOrigin(0.5);
+                    this.laneIndicators.push(circle, text);
+                }
+            }
+
+            createUI() {
+                let topBar = this.add.graphics();
+                topBar.fillStyle(0xFFFFFF, 1);
+                topBar.fillRect(0, 0, GAME_WIDTH, 90);
+                topBar.lineStyle(2, 0xE5E5E5, 1);
+                topBar.beginPath();
+                topBar.moveTo(0, 90);
+                topBar.lineTo(GAME_WIDTH, 90);
+                topBar.strokePath();
+
+                this.targetBg = this.add.graphics();
+                this.updateTargetUI(this.targetCategory);
+
+                this.scoreText = this.add.text(GAME_WIDTH - 20, 45, '⭐ 0', {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '28px', color: '#FFC800', fontStyle: 'bold'
+                }).setOrigin(1, 0.5);
+
+                this.livesText = this.add.text(20, 45, '❤️ ' + this.lives, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '28px', color: '#FF4B4B', fontStyle: 'bold'
+                }).setOrigin(0, 0.5);
+
+                this.overlay = this.add.container(0, 0).setDepth(100);
+            }
+
+            updateTargetUI(category) {
+                if(this.targetText) this.targetText.destroy();
+                this.targetBg.clear();
+                
+                const catData = CATEGORIES[category];
+                
+                this.targetBg.fillStyle(catData.color, 1);
+                this.targetBg.fillRoundedRect(GAME_WIDTH/2 - 120, 20, 240, 50, 25);
+                this.targetBg.fillStyle(catData.shadow, 1);
+                this.targetBg.fillRoundedRect(GAME_WIDTH/2 - 120, 65, 240, 5, {tl: 0, tr: 0, bl: 25, br: 25});
+
+                this.targetText = this.add.text(GAME_WIDTH/2, 45, category, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '24px', color: '#FFFFFF', fontStyle: 'bold'
+                }).setOrigin(0.5);
+            }
+
+            setupInput() {
+                // Interação Mouse/Toque
+                this.input.on('pointerdown', (pointer) => {
+                    if (!this.isPlaying || this.gameMode !== 'tower') return;
+                    if (pointer.worldY < 100) return;
+
+                    let lane = Math.floor(pointer.worldX / LANE_WIDTH);
+                    if (lane < 0 || lane > 2) return;
+
+                    this.handleTowerInteraction(lane);
+                });
+
+                // Entrada do Teclado (Torres e Digitação)
+                this.input.keyboard.on('keydown', (event) => {
+                    if (!this.isPlaying) return;
+
+                    if (this.gameMode === 'tower') {
+                        let key = event.key.toUpperCase();
+                        if (key === 'A') this.handleKeyDown(0);
+                        if (key === 'S') this.handleKeyDown(1);
+                        if (key === 'D') this.handleKeyDown(2);
+                    } 
+                    else if (this.gameMode === 'typing') {
+                        // Letras A-Z
+                        if (event.keyCode >= 65 && event.keyCode <= 90) {
+                            this.handleTyping(event.key.toLowerCase());
+                        } 
+                        // Cancelar seleção com Backspace ou Esc
+                        else if (event.key === 'Backspace' || event.key === 'Escape') {
+                            if (this.currentTarget) {
+                                this.currentTarget.updateTyped('');
+                                this.currentTarget = null;
+                                this.typedWord = '';
+                                this.cameras.main.shake(50, 0.002);
+                            }
+                        }
+                    }
+                });
+
+                // Soltar tecla (Modo Torre)
+                this.input.keyboard.on('keyup', (event) => {
+                    if (!this.isPlaying || this.gameMode !== 'tower') return;
+                    let key = event.key.toUpperCase();
+                    if (key === 'A') this.handleKeyUp(0);
+                    if (key === 'S') this.handleKeyUp(1);
+                    if (key === 'D') this.handleKeyUp(2);
+                });
+            }
+
+            // Lógica Central de Digitação
+            handleTyping(key) {
+                if (!this.currentTarget) {
+                    // Buscar alvos válidos (da categoria correta que começam com a letra digitada)
+                    let validTargets = this.dinos.filter(d => 
+                        d.categoryName === this.targetCategory && 
+                        d.word.toLowerCase().startsWith(key)
+                    );
+                    
+                    if (validTargets.length > 0) {
+                        // Priorizar o que estiver mais baixo na tela (mais perto do fim)
+                        validTargets.sort((a, b) => b.y - a.y);
+                        this.currentTarget = validTargets[0];
+                        this.typedWord = key;
+                        this.currentTarget.updateTyped(this.typedWord);
+                    } else {
+                        // Letra errada / Não há alvos válidos para essa letra
+                        this.cameras.main.shake(100, 0.005);
+                    }
+                } else {
+                    // Já temos um alvo fixado, conferir a próxima letra
+                    let expectedLetter = this.currentTarget.word[this.typedWord.length].toLowerCase();
+                    
+                    if (key === expectedLetter) {
+                        this.typedWord += key;
+                        this.currentTarget.updateTyped(this.typedWord);
+
+                        // Palavra finalizada com sucesso!
+                        if (this.typedWord.length === this.currentTarget.word.length) {
+                            this.score += 15; // Mais pontos por digitar
+                            this.combo++;
+                            
+                            // Feedbacks positivos aleatórios em Português
+                            const feedbacks = ["PERFEITO!", "MUITO BEM!", "EXCELENTE!", "ISSO AÍ!"];
+                            let msg = Phaser.Utils.Array.GetRandom(feedbacks);
+                            
+                            this.showFloatingText(this.currentTarget.x, this.currentTarget.y, msg, "#58CC02", 28);
+                            this.createParticles(this.currentTarget.x, this.currentTarget.y, CATEGORIES[this.currentTarget.categoryName].color);
+                            
+                            // Destruir alvo
+                            let idx = this.dinos.indexOf(this.currentTarget);
+                            if (idx !== -1) this.dinos.splice(idx, 1);
+                            this.currentTarget.destroy();
+                            
+                            this.currentTarget = null;
+                            this.typedWord = '';
+                            this.updateUI();
+                        }
+                    } else {
+                        // Digitou a letra errada da palavra fixada!
+                        this.cameras.main.shake(100, 0.005);
+                        this.cameras.main.flash(100, 255, 0, 0, 0.2); // Pisca em vermelho
+                        this.currentTarget.updateTyped(''); // Reseta o visual verde
+                        this.currentTarget = null;
+                        this.typedWord = '';
+                        this.combo = 0;
+                    }
+                }
+            }
+
+            // Lógica das Torres
+            handleKeyDown(lane) {
+                if (this.towers[lane]) return; 
+                let active = this.towers.filter(t => t !== null).length;
+                if (active < 2) {
+                    this.placeTower(lane);
+                } else {
+                    this.towers.forEach(t => {
+                        if (t) this.tweens.add({ targets: t, x: t.x + 5, duration: 50, yoyo: true, repeat: 2 });
+                    });
+                }
+            }
+
+            handleKeyUp(lane) {
+                if (this.towers[lane]) this.removeTower(lane);
+            }
+
+            handleTowerInteraction(lane) {
+                const now = this.time.now;
+                if (now < this.towerCooldowns[lane]) {
+                    this.cameras.main.shake(100, 0.005);
+                    return;
+                }
+                if (this.towers[lane]) {
+                    this.removeTower(lane);
+                    this.towerCooldowns[lane] = now + 500;
+                } else {
+                    let active = this.towers.filter(t => t !== null).length;
+                    if (active < 2) {
+                        this.placeTower(lane);
+                    } else {
+                        this.towers.forEach(t => {
+                            if (t) this.tweens.add({ targets: t, x: t.x + 5, duration: 50, yoyo: true, repeat: 2 });
+                        });
+                    }
+                }
+            }
+
+            placeTower(lane) {
+                let x = LANE_CENTERS[lane];
+                let y = GAME_HEIGHT - 60;
+                let tower = new Tower(this, x, y, lane);
+                this.towers[lane] = tower;
+            }
+
+            removeTower(lane) {
+                let tower = this.towers[lane];
+                this.tweens.add({
+                    targets: tower, scale: 0, duration: 200, ease: 'Back.in', onComplete: () => tower.destroy()
+                });
+                this.towers[lane] = null;
+            }
+
+            startGame(mode) {
+                this.gameMode = mode;
+                this.overlay.removeAll(true);
+                this.isPlaying = true;
+                this.score = 0;
+                this.lives = 5;
+                this.baseDinoSpeed = 80;
+                this.spawnDelay = 2000;
+                this.combo = 0;
+                
+                this.currentTarget = null;
+                this.typedWord = '';
+
+                this.updateUI();
+
+                // Mostrar indicadores de lane (A,S,D) apenas no modo de torres
+                let isTower = (this.gameMode === 'tower');
+                this.laneIndicators.forEach(obj => obj.setVisible(isTower));
+
+                this.dinos.forEach(d => d.destroy());
+                this.bullets.forEach(b => b.destroy());
+                this.dinos = [];
+                this.bullets = [];
+                for(let i=0; i<3; i++) if(this.towers[i]) this.removeTower(i);
+
+                this.setupTimers();
+            }
+
+            setupTimers() {
+                if (this.spawnTimer) this.spawnTimer.remove();
+                if (this.diffTimer) this.diffTimer.remove();
+                if (this.catTimer) this.catTimer.remove();
+
+                this.spawnTimer = this.time.addEvent({
+                    delay: this.spawnDelay, callback: this.spawnDino, callbackScope: this, loop: true
+                });
+
+                this.diffTimer = this.time.addEvent({
+                    delay: 10000, callback: this.increaseDifficulty, callbackScope: this, loop: true
+                });
+
+                this.catTimer = this.time.addEvent({
+                    delay: 15000, callback: this.switchCategory, callbackScope: this, loop: true
+                });
+            }
+
+            switchCategory() {
+                let oldCat = this.targetCategory;
+                let newCat = oldCat;
+                while (newCat === oldCat) {
+                    newCat = Phaser.Utils.Array.GetRandom(CATEGORY_KEYS);
+                }
+                this.targetCategory = newCat;
+                this.updateTargetUI(this.targetCategory);
+
+                // No modo de digitação, se a categoria mudou e não condiz mais com o alvo ativo, resetar
+                if (this.gameMode === 'typing' && this.currentTarget) {
+                    if (this.currentTarget.categoryName !== this.targetCategory) {
+                        this.currentTarget.updateTyped('');
+                        this.currentTarget = null;
+                        this.typedWord = '';
+                    }
+                }
+
+                this.tweens.add({
+                    targets: [this.targetBg, this.targetText], scaleX: 1.2, scaleY: 1.2, duration: 150, yoyo: true
+                });
+            }
+
+            increaseDifficulty() {
+                this.baseDinoSpeed += 10;
+                if (this.spawnDelay > 700) {
+                    this.spawnDelay -= 100;
+                    this.spawnTimer.delay = this.spawnDelay;
+                }
+            }
+
+            spawnDino() {
+                if (!this.isPlaying) return;
+
+                let lane = Phaser.Math.Between(0, 2);
+                let cat = Phaser.Utils.Array.GetRandom(CATEGORY_KEYS);
+                let word = Phaser.Utils.Array.GetRandom(CATEGORIES[cat].words);
+                
+                let r = Math.random();
+                let hp = 1;
+                if (r > 0.8) hp = 5;
+                else if (r > 0.4) hp = 3;
+
+                let d = new Dinosaur(this, LANE_CENTERS[lane], 100, lane, cat, word, hp);
+                this.dinos.push(d);
+            }
+
+            fireBullet(tower) {
+                tower.fireAnimation();
+                let b = this.add.sprite(tower.x, tower.y - 30, 'bullet');
+                b.laneIndex = tower.laneIndex;
+                this.bullets.push(b);
+            }
+
+            update(time, delta) {
+                if (!this.isPlaying) return;
+                let dt = delta / 1000;
+
+                // Dinâmica exclusiva do Modo Torres
+                if (this.gameMode === 'tower') {
+                    this.towers.forEach(t => {
+                        if (t && time > t.nextFireTime) {
+                            let target = this.dinos.find(d => d.laneIndex === t.laneIndex && d.y < t.y);
+                            if (target) {
+                                this.fireBullet(t);
+                                t.nextFireTime = time + this.fireRate;
+                            }
+                        }
+                    });
+
+                    for (let i = this.bullets.length - 1; i >= 0; i--) {
+                        let b = this.bullets[i];
+                        b.y -= 600 * dt; 
+                        if (b.y < 100) {
+                            b.destroy();
+                            this.bullets.splice(i, 1);
+                        }
+                    }
+
+                    // Colisões de Tiros
+                    for (let i = this.bullets.length - 1; i >= 0; i--) {
+                        let b = this.bullets[i];
+                        let hit = false;
+                        for (let j = this.dinos.length - 1; j >= 0; j--) {
+                            let d = this.dinos[j];
+                            if (b.laneIndex === d.laneIndex && Math.abs(b.y - d.y) < 40) {
+                                hit = true;
+                                this.handleHit(d, j);
+                                break;
+                            }
+                        }
+                        if (hit) {
+                            b.destroy();
+                            this.bullets.splice(i, 1);
+                        }
+                    }
+                }
+
+                // Movimentação das Palavras/Dinos
+                for (let i = this.dinos.length - 1; i >= 0; i--) {
+                    let d = this.dinos[i];
+                    d.y += this.baseDinoSpeed * dt;
+
+                    if (d.y > GAME_HEIGHT) {
+                        if (d.categoryName === this.targetCategory) {
+                            this.loseLife("Deixou passar!");
+                        }
+                        
+                        // Limpar o alvo de digitação se ele passou da tela
+                        if (this.gameMode === 'typing' && this.currentTarget === d) {
+                            this.currentTarget = null;
+                            this.typedWord = '';
+                        }
+
+                        d.destroy();
+                        this.dinos.splice(i, 1);
+                    }
+                }
+            }
+
+            handleHit(dino, index) {
+                dino.takeDamage();
+
+                if (dino.categoryName === this.targetCategory) {
+                    if (dino.hp <= 0) {
+                        this.score += 10;
+                        this.combo++;
+                        this.showFloatingText(dino.x, dino.y, "+10", "#58CC02");
+                        this.createParticles(dino.x, dino.y, CATEGORIES[dino.categoryName].color);
+                        dino.destroy();
+                        this.dinos.splice(index, 1);
+                    }
+                } else {
+                    this.score = Math.max(0, this.score - 5);
+                    this.combo = 0;
+                    this.cameras.main.flash(100, 255, 0, 0, 0.3);
+                    
+                    if (dino.hp <= 0) {
+                        this.loseLife("Alvo errado!");
+                        dino.destroy();
+                        this.dinos.splice(index, 1);
+                    } else {
+                        this.showFloatingText(dino.x, dino.y, "-5", "#FF4B4B");
+                    }
+                }
+                
+                this.updateUI();
+            }
+
+            loseLife(reason) {
+                this.lives--;
+                this.combo = 0;
+                this.cameras.main.shake(200, 0.01);
+                this.updateUI();
+
+                this.showFloatingText(GAME_WIDTH/2, GAME_HEIGHT/2, reason, "#FF4B4B", 40);
+
+                if (this.lives <= 0) {
+                    this.gameOver();
+                }
+            }
+
+            showFloatingText(x, y, text, color, size=24) {
+                let t = this.add.text(x, y, text, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: size+'px', color: color, fontStyle: 'bold',
+                    stroke: '#FFFFFF', strokeThickness: 4
+                }).setOrigin(0.5).setDepth(50);
+
+                this.tweens.add({
+                    targets: t, y: y - 50, alpha: 0, duration: 800, ease: 'Power1', onComplete: () => t.destroy()
+                });
+            }
+
+            createParticles(x, y, color) {
+                for(let i=0; i<6; i++) {
+                    let p = this.add.circle(x, y, Phaser.Math.Between(4, 8), color).setDepth(40);
+                    this.tweens.add({
+                        targets: p, x: x + Phaser.Math.Between(-50, 50), y: y + Phaser.Math.Between(-50, 50),
+                        alpha: 0, scale: 0, duration: 500, onComplete: () => p.destroy()
+                    });
+                }
+            }
+
+            updateUI() {
+                this.scoreText.setText('⭐ ' + this.score);
+                this.livesText.setText('❤️ ' + this.lives);
+            }
+
+            showStartScreen() {
+                this.isPlaying = false;
+                
+                let bg = this.add.graphics();
+                bg.fillStyle(0x000000, 0.85);
+                bg.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+                let title = this.add.text(GAME_WIDTH/2, 200, 'DUO SORT', {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '60px', color: '#58CC02', fontStyle: 'bold',
+                    stroke: '#FFFFFF', strokeThickness: 8
+                }).setOrigin(0.5);
+
+                let sub = this.add.text(GAME_WIDTH/2, 290, 'Aprenda brincando!\nEscolha o seu modo de jogo.', {
+                    fontFamily: 'Nunito, sans-serif',
+                    fontSize: '20px', color: '#FFFFFF', align: 'center', lineHeight: 1.5
+                }).setOrigin(0.5);
+
+                let btnTorres = this.createButton(GAME_WIDTH/2, 420, 'MODO TORRES', 0x1CB0F6, 0x168CD5, () => {
+                    this.startGame('tower');
+                });
+
+                let btnDigitar = this.createButton(GAME_WIDTH/2, 510, 'MODO DIGITAÇÃO', 0xCE82FF, 0xA568CC, () => {
+                    this.startGame('typing');
+                });
+
+                this.overlay.add([bg, title, sub, btnTorres.shadow, btnTorres.body, btnTorres.text, btnDigitar.shadow, btnDigitar.body, btnDigitar.text]);
+            }
+
+            gameOver() {
+                this.isPlaying = false;
+                if(this.spawnTimer) this.spawnTimer.remove();
+                if(this.diffTimer) this.diffTimer.remove();
+                if(this.catTimer) this.catTimer.remove();
+
+                let bg = this.add.graphics();
+                bg.fillStyle(0x000000, 0.85);
+                bg.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+                let title = this.add.text(GAME_WIDTH/2, 250, 'FIM DE JOGO', {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '60px', color: '#FF4B4B', fontStyle: 'bold',
+                    stroke: '#FFFFFF', strokeThickness: 8
+                }).setOrigin(0.5);
+
+                let scoreText = this.add.text(GAME_WIDTH/2, 350, 'Pontuação: ⭐ ' + this.score, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '32px', color: '#FFC800', fontStyle: 'bold'
+                }).setOrigin(0.5);
+
+                let btn = this.createButton(GAME_WIDTH/2, 500, 'VOLTAR AO MENU', 0x58CC02, 0x46A302, () => {
+                    this.showStartScreen();
+                });
+
+                this.overlay.add([bg, title, scoreText, btn.shadow, btn.body, btn.text]);
+            }
+
+            createButton(x, y, label, color, shadowColor, callback) {
+                let shadow = this.add.graphics();
+                shadow.fillStyle(shadowColor, 1);
+                shadow.fillRoundedRect(x - 120, y - 30 + 5, 240, 60, 20);
+
+                let body = this.add.graphics();
+                body.fillStyle(color, 1);
+                body.fillRoundedRect(x - 120, y - 30, 240, 60, 20);
+                body.setInteractive(new Phaser.Geom.Rectangle(x - 120, y - 30, 240, 65), Phaser.Geom.Rectangle.Contains);
+
+                let text = this.add.text(x, y, label, {
+                    fontFamily: 'Arial Rounded MT Bold, sans-serif',
+                    fontSize: '24px', color: '#FFFFFF', fontStyle: 'bold'
+                }).setOrigin(0.5);
+
+                body.on('pointerdown', () => { body.y += 5; text.y += 5; });
+                body.on('pointerup', () => { body.y -= 5; text.y -= 5; callback(); });
+                body.on('pointerout', () => { if(body.y > 0) { body.y -= 5; text.y -= 5; } });
+
+                return {shadow, body, text};
+            }
+        }
+
+        const config = {
+            type: Phaser.AUTO,
+            width: GAME_WIDTH,
+            height: GAME_HEIGHT,
+            parent: 'game-container',
+            transparent: true,
+            scene: MainScene,
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            }
+        };
+
+        const game = new Phaser.Game(config);
+    </script>
+</body>
+</html>

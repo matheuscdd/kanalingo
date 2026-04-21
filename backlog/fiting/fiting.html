@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoTetris - Aprenda Jogando!</title>
+    <!-- Importando fonte arredondada semelhante ao Duolingo -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <!-- Importando Phaser 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-dark: #58a700;
+            --duo-red: #ff4b4b;
+            --duo-red-dark: #ea2b2b;
+            --duo-blue: #1cb0f6;
+            --duo-blue-dark: #1899d6;
+            --duo-yellow: #ffc800;
+            --duo-gray: #e5e5e5;
+            --duo-text: #4b4b4b;
+            --duo-bg: #ffffff;
+            --duo-app-bg: #f7f9fa;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--duo-app-bg);
+            font-family: 'Nunito', sans-serif;
+            color: var(--duo-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #start-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .main-container {
+            display: flex;
+            gap: 20px;
+            background: var(--duo-bg);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 2px solid var(--duo-gray);
+        }
+
+        /* HUD Styles */
+        .hud {
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        h1 {
+            color: var(--duo-green);
+            margin: 0;
+            font-weight: 900;
+            font-size: 2.5rem;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .score-box {
+            background: var(--duo-app-bg);
+            border: 2px solid var(--duo-gray);
+            border-radius: 12px;
+            padding: 10px 15px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .challenge-card {
+            background: var(--duo-bg);
+            border: 2px solid var(--duo-gray);
+            border-radius: 16px;
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .challenge-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .badge-listen { background: #e0f6ff; color: var(--duo-blue); }
+        .badge-translate { background: #fff0b3; color: #cc9900; }
+        .badge-read { background: #ffe5e5; color: var(--duo-red); }
+        .badge-speak { background: #e5f9e5; color: var(--duo-green); }
+
+        #ch-prompt {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            border: 2px solid var(--duo-gray);
+            border-radius: 12px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--duo-blue);
+        }
+
+        .btn {
+            appearance: none;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.1s, box-shadow 0.1s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-green {
+            background-color: var(--duo-green);
+            color: white;
+            box-shadow: 0 4px 0 var(--duo-green-dark);
+        }
+        .btn-green:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 var(--duo-green-dark);
+        }
+
+        .btn-blue {
+            background-color: var(--duo-blue);
+            color: white;
+            box-shadow: 0 4px 0 var(--duo-blue-dark);
+        }
+        .btn-blue:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 var(--duo-blue-dark);
+        }
+
+        #feedback-box {
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 800;
+            text-align: center;
+            display: none;
+        }
+        .feedback-correct {
+            background-color: #d7ffb8;
+            color: var(--duo-green-dark);
+            border: 2px solid var(--duo-green);
+        }
+        .feedback-wrong {
+            background-color: #ffdfe0;
+            color: var(--duo-red-dark);
+            border: 2px solid var(--duo-red);
+        }
+
+        /* Container do Phaser */
+        #game-container {
+            width: 300px;
+            height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 4px solid var(--duo-gray);
+            background-color: #2c3e50;
+        }
+
+        .instructions {
+            font-size: 0.9rem;
+            color: #777;
+            text-align: center;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tela Inicial para interagir com o DOM e liberar a Web Audio API -->
+    <div id="start-overlay">
+        <h1 style="font-size: 4rem; margin-bottom: 20px;">DuoTetris</h1>
+        <p style="font-size: 1.2rem; font-weight: 700; color: #777; max-width: 400px; margin-bottom: 30px;">
+            Aprenda inglês enquanto joga!<br><br>
+            As peças caem lentamente enquanto estão <b>congeladas</b>. Responda ao desafio de linguagem para descongelá-las e ganhar o controle.
+        </p>
+        <button class="btn btn-green" style="max-width: 250px; font-size: 1.5rem;" onclick="startGame()">Jogar Agora</button>
+    </div>
+
+    <!-- UI Principal -->
+    <div class="main-container">
+        <!-- HUD HTML -->
+        <div class="hud">
+            <h1>DuoTetris</h1>
+            
+            <div class="score-box">
+                <span>Pontos</span>
+                <span id="score-display">0</span>
+            </div>
+
+            <div class="challenge-card">
+                <div id="ch-badge" class="challenge-badge badge-translate">Carregando...</div>
+                <div id="ch-prompt">Aguarde a peça...</div>
+
+                <button id="btn-listen" class="btn btn-blue" style="display: none;">🔊 Ouvir</button>
+                <button id="btn-speak" class="btn btn-blue" style="display: none;">🎤 Falar</button>
+                
+                <input type="text" id="ch-input" placeholder="Digite a resposta..." autocomplete="off">
+                
+                <button id="btn-submit" class="btn btn-green">Verificar</button>
+
+                <div id="feedback-box">Correto!</div>
+            </div>
+
+            <div class="instructions">
+                Setas: Mover ⬅️ ➡️<br>
+                Seta Cima: Rotacionar 🔄<br>
+                Seta Baixo: Cair rápido ⬇️<br>
+                <i>(Movimentos normais apenas após descongelar a peça)</i>
+            </div>
+        </div>
+
+        <!-- Canvas do Jogo -->
+        <div id="game-container"></div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. DADOS EDUCACIONAIS E CONFIGURAÇÕES
+        // ==========================================
+        const wordBank = [
+            { en: "apple", pt: "maçã" }, { en: "cat", pt: "gato" },
+            { en: "dog", pt: "cachorro" }, { en: "house", pt: "casa" },
+            { en: "book", pt: "livro" }, { en: "water", pt: "água" },
+            { en: "sun", pt: "sol" }, { en: "moon", pt: "lua" },
+            { en: "tree", pt: "árvore" }, { en: "car", pt: "carro" },
+            { en: "bird", pt: "pássaro" }, { en: "friend", pt: "amigo" },
+            { en: "time", pt: "tempo" }, { en: "food", pt: "comida" }
+        ];
+
+        // Definição dos Tetrominós
+        const SHAPES = {
+            I: { shape: [[1,1,1,1]], color: 0xff7bcf, type: 'I' }, // Rosa
+            O: { shape: [[1,1],[1,1]], color: 0xffc800, type: 'O' }, // Yellow
+            T: { shape: [[0,1,0],[1,1,1]], color: 0xce82ff, type: 'T' }, // Purple
+            S: { shape: [[0,1,1],[1,1,0]], color: 0x58cc02, type: 'S' }, // Green
+            Z: { shape: [[1,1,0],[0,1,1]], color: 0xff4b4b, type: 'Z' }, // Red
+            J: { shape: [[1,0,0],[1,1,1]], color: 0xafafaf, type: 'J' }, // Prata/Cinza
+            L: { shape: [[0,0,1],[1,1,1]], color: 0xff9600, type: 'L' }  // Orange
+        };
+        const SHAPE_KEYS = Object.keys(SHAPES);
+
+        // ==========================================
+        // 2. SISTEMA DE ÁUDIO SINTÉTICO (Web Audio API)
+        // ==========================================
+        function playSound(type) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+            const ctx = new AudioContext();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            if (type === 'correct') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.5, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.3);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(300, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.2);
+                gain.gain.setValueAtTime(0.5, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.3);
+            } else if (type === 'lock') {
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(100, ctx.currentTime);
+                gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.1);
+            }
+        }
+
+        // ==========================================
+        // 3. GERENCIADOR DE DESAFIOS (Integração DOM)
+        // ==========================================
+        class ChallengeManager {
+            constructor(scene) {
+                this.scene = scene;
+                
+                // Elementos do DOM
+                this.elBadge = document.getElementById('ch-badge');
+                this.elPrompt = document.getElementById('ch-prompt');
+                this.elInput = document.getElementById('ch-input');
+                this.btnSubmit = document.getElementById('btn-submit');
+                this.btnListen = document.getElementById('btn-listen');
+                this.btnSpeak = document.getElementById('btn-speak');
+                this.elFeedback = document.getElementById('feedback-box');
+                
+                this.currentWord = null;
+                this.currentType = null;
+                this.expectedAnswer = "";
+
+                // Event Listeners
+                this.btnSubmit.addEventListener('click', () => this.checkAnswer());
+                this.elInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.checkAnswer();
+                });
+                this.btnListen.addEventListener('click', () => this.playWordAudio());
+                this.btnSpeak.addEventListener('mousedown', () => this.startSpeechRecognition());
+            }
+
+            generate(shapeObj) {
+                // Sorteia uma palavra
+                this.currentWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+                
+                // Mapeia o tipo da peça para um tipo de desafio
+                // I -> Escuta, O -> Tradução, L/J -> Leitura, T -> Fala, S/Z -> Tradução
+                let type = 'translate';
+                if (shapeObj.type === 'I') type = 'listen';
+                else if (shapeObj.type === 'O' || shapeObj.type === 'S' || shapeObj.type === 'Z') type = 'translate';
+                else if (shapeObj.type === 'L' || shapeObj.type === 'J') type = 'read';
+                else if (shapeObj.type === 'T') type = 'speak';
+
+                this.currentType = type;
+                this.setupUI();
+            }
+
+            setupUI() {
+                this.elInput.value = "";
+                this.elInput.disabled = false;
+                this.btnSubmit.style.display = 'block';
+                this.btnListen.style.display = 'none';
+                this.btnSpeak.style.display = 'none';
+                this.elInput.style.display = 'block';
+                this.hideFeedback();
+
+                switch(this.currentType) {
+                    case 'listen':
+                        this.elBadge.className = 'challenge-badge badge-listen';
+                        this.elBadge.innerText = 'Escuta';
+                        this.elPrompt.innerText = 'Ouça e digite em inglês';
+                        this.expectedAnswer = this.currentWord.en;
+                        this.btnListen.style.display = 'block';
+                        this.playWordAudio(); // Toca automaticamente uma vez
+                        break;
+                    
+                    case 'translate':
+                        this.elBadge.className = 'challenge-badge badge-translate';
+                        this.elBadge.innerText = 'Tradução';
+                        // 50% de chance PT->EN ou EN->PT
+                        if (Math.random() > 0.5) {
+                            this.elPrompt.innerText = `Traduza: "${this.currentWord.pt}"`;
+                            this.expectedAnswer = this.currentWord.en;
+                        } else {
+                            this.elPrompt.innerText = `Traduza: "${this.currentWord.en}"`;
+                            this.expectedAnswer = this.currentWord.pt;
+                        }
+                        break;
+
+                    case 'read':
+                        this.elBadge.className = 'challenge-badge badge-read';
+                        this.elBadge.innerText = 'Leitura';
+                        this.elPrompt.innerText = `Digite: "${this.currentWord.en}"`;
+                        this.expectedAnswer = this.currentWord.en;
+                        break;
+
+                    case 'speak':
+                        this.elBadge.className = 'challenge-badge badge-speak';
+                        this.elBadge.innerText = 'Fala';
+                        this.elPrompt.innerText = `Fale: "${this.currentWord.en}"`;
+                        this.expectedAnswer = this.currentWord.en;
+                        
+                        // Verifica suporte a voz
+                        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                        if (SpeechRecognition) {
+                            this.btnSpeak.style.display = 'block';
+                            this.elInput.style.display = 'none';
+                            this.btnSubmit.style.display = 'none';
+                        } else {
+                            // Fallback para digitação
+                            this.elPrompt.innerText = `Sem mic. Digite: "${this.currentWord.en}"`;
+                        }
+                        break;
+                }
+                
+                // Foca no input se ele estiver visível
+                if (this.elInput.style.display !== 'none') {
+                    this.elInput.focus();
+                }
+            }
+
+            playWordAudio() {
+                const synth = window.speechSynthesis;
+                const utterance = new SpeechSynthesisUtterance(this.currentWord.en);
+                utterance.lang = 'en-US';
+                synth.speak(utterance);
+            }
+
+            startSpeechRecognition() {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) return;
+
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.interimResults = false;
+                
+                this.btnSpeak.innerText = "🎙️ Ouvindo...";
+                this.btnSpeak.style.backgroundColor = "var(--duo-red)";
+
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript.toLowerCase().trim();
+                    this.processAnswer(transcript);
+                };
+
+                recognition.onspeechend = () => {
+                    recognition.stop();
+                    this.btnSpeak.innerText = "🎤 Falar";
+                    this.btnSpeak.style.backgroundColor = "var(--duo-blue)";
+                };
+
+                recognition.onerror = () => {
+                    this.showFeedback(false, "Erro no mic. Tente novamente.");
+                    this.btnSpeak.innerText = "🎤 Falar";
+                    this.btnSpeak.style.backgroundColor = "var(--duo-blue)";
+                };
+
+                recognition.start();
+            }
+
+            checkAnswer() {
+                const answer = this.elInput.value.toLowerCase().trim();
+                this.processAnswer(answer);
+            }
+
+            processAnswer(answer) {
+                // Ignora se for vazio e não for desafio de fala (onde a API já lida)
+                if (answer === "" && this.currentType !== 'speak') return;
+
+                // Remove pontuações simples da resposta para tolerância
+                const cleanAnswer = answer.replace(/[.,!?]/g, '');
+                
+                if (cleanAnswer === this.expectedAnswer.toLowerCase()) {
+                    playSound('correct');
+                    this.showFeedback(true, "Correto!");
+                    this.scene.unfreezePiece(); // Informa o Phaser!
+                    this.scene.addScore(10);
+                    this.elInput.disabled = true;
+                    this.btnSubmit.style.display = 'none';
+                    // Tira o foco para permitir jogar Tetris com setas
+                    this.elInput.blur();
+                } else {
+                    playSound('wrong');
+                    this.showFeedback(false, `Incorreto! Era: ${this.expectedAnswer}`);
+                    this.elInput.value = "";
+                    if(this.elInput.style.display !== 'none') this.elInput.focus();
+                }
+            }
+
+            showFeedback(isCorrect, message) {
+                this.elFeedback.style.display = 'block';
+                this.elFeedback.innerText = message;
+                this.elFeedback.className = isCorrect ? 'feedback-correct' : 'feedback-wrong';
+                
+                if(!isCorrect) {
+                    setTimeout(() => this.hideFeedback(), 2000);
+                }
+            }
+
+            hideFeedback() {
+                this.elFeedback.style.display = 'none';
+            }
+            
+            failCurrent() {
+                this.elInput.disabled = true;
+                this.btnSubmit.style.display = 'none';
+                this.elBadge.innerText = 'Tempo Esgotado';
+                this.elPrompt.innerText = 'Peça travada!';
+                this.hideFeedback();
+            }
+        }
+
+        // ==========================================
+        // 4. LÓGICA DO TETRIS (Phaser 3 Scene)
+        // ==========================================
+        class GameScene extends Phaser.Scene {
+            constructor() {
+                super('GameScene');
+                this.COLS = 10;
+                this.ROWS = 20;
+                this.BLOCK_SIZE = 30;
+                
+                // Variáveis de estado
+                this.board = [];
+                this.currentPiece = null;
+                this.dropTimer = 0;
+                this.dropInterval = 2000; // Começa lento (congelado)
+                this.isFrozen = true;
+                this.score = 0;
+            }
+
+            create() {
+                // Inicializa grid vazio
+                this.board = Array(this.ROWS).fill().map(() => Array(this.COLS).fill(0));
+                
+                // Graphics do Phaser para desenhar os blocos
+                this.graphics = this.add.graphics();
+
+                // Integração com o DOM
+                window.challengeManager = new ChallengeManager(this);
+
+                // Setup de Input
+                this.setupInputs();
+
+                // Spawna a primeira peça
+                this.spawnPiece();
+            }
+
+            setupInputs() {
+                // Checa se o usuário está digitando para não mover a peça sem querer
+                const isTyping = () => document.activeElement.tagName === 'INPUT';
+
+                this.input.keyboard.on('keydown-LEFT', () => {
+                    if(!isTyping() && !this.isFrozen) this.movePiece(-1, 0);
+                });
+                this.input.keyboard.on('keydown-RIGHT', () => {
+                    if(!isTyping() && !this.isFrozen) this.movePiece(1, 0);
+                });
+                this.input.keyboard.on('keydown-DOWN', () => {
+                    if(!isTyping() && !this.isFrozen) {
+                        this.movePiece(0, 1);
+                        this.dropTimer = 0; // Reseta timer de gravidade
+                    }
+                });
+                this.input.keyboard.on('keydown-UP', () => {
+                    if(!isTyping() && !this.isFrozen) this.rotatePiece();
+                });
+            }
+
+            update(time, delta) {
+                // Lógica de gravidade do Tetris
+                this.dropTimer += delta;
+                if (this.dropTimer >= this.dropInterval) {
+                    this.dropTimer = 0;
+                    if (!this.movePiece(0, 1)) {
+                        this.lockPiece();
+                    }
+                }
+                this.draw();
+            }
+
+            spawnPiece() {
+                const shapeKey = SHAPE_KEYS[Math.floor(Math.random() * SHAPE_KEYS.length)];
+                const shapeData = SHAPES[shapeKey];
+
+                this.currentPiece = {
+                    shape: shapeData.shape,
+                    color: shapeData.color,
+                    type: shapeData.type,
+                    x: Math.floor(this.COLS / 2) - Math.floor(shapeData.shape[0].length / 2),
+                    y: 0
+                };
+
+                // Estado Congelado Inicial
+                this.isFrozen = true;
+                this.dropInterval = 2000; // Cai bem lento
+
+                // Gera o desafio para esta peça
+                window.challengeManager.generate(this.currentPiece);
+
+                // Game Over se nascer colidindo
+                if (this.checkCollision(this.currentPiece.x, this.currentPiece.y, this.currentPiece.shape)) {
+                    this.gameOver();
+                }
+            }
+
+            unfreezePiece() {
+                this.isFrozen = false;
+                this.dropInterval = 800; // Velocidade normal
+            }
+
+            movePiece(dx, dy) {
+                if (!this.currentPiece) return false;
+                
+                if (!this.checkCollision(this.currentPiece.x + dx, this.currentPiece.y + dy, this.currentPiece.shape)) {
+                    this.currentPiece.x += dx;
+                    this.currentPiece.y += dy;
+                    return true;
+                }
+                return false;
+            }
+
+            rotatePiece() {
+                if (!this.currentPiece) return;
+                
+                const shape = this.currentPiece.shape;
+                // Transposição + Reverse (Rotacionar 90 graus)
+                const newShape = shape[0].map((val, index) => shape.map(row => row[index]).reverse());
+
+                // Wall kick simples
+                let newX = this.currentPiece.x;
+                if (this.checkCollision(newX, this.currentPiece.y, newShape)) {
+                    if (!this.checkCollision(newX - 1, this.currentPiece.y, newShape)) newX -= 1;
+                    else if (!this.checkCollision(newX + 1, this.currentPiece.y, newShape)) newX += 1;
+                    else return; // Não dá pra rotacionar
+                }
+
+                this.currentPiece.shape = newShape;
+                this.currentPiece.x = newX;
+            }
+
+            checkCollision(x, y, shape) {
+                for (let r = 0; r < shape.length; r++) {
+                    for (let c = 0; c < shape[r].length; c++) {
+                        if (shape[r][c]) {
+                            let boardX = x + c;
+                            let boardY = y + r;
+                            
+                            // Saiu das paredes laterais ou fundo
+                            if (boardX < 0 || boardX >= this.COLS || boardY >= this.ROWS) return true;
+                            // Colidiu com blocos fixos
+                            if (boardY >= 0 && this.board[boardY][boardX]) return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            lockPiece() {
+                playSound('lock');
+                
+                // Se a peça trancou enquanto estava congelada, o desafio falha
+                if (this.isFrozen) {
+                    window.challengeManager.failCurrent();
+                }
+
+                // Transfere a peça pro board
+                for (let r = 0; r < this.currentPiece.shape.length; r++) {
+                    for (let c = 0; c < this.currentPiece.shape[r].length; c++) {
+                        if (this.currentPiece.shape[r][c]) {
+                            let boardY = this.currentPiece.y + r;
+                            let boardX = this.currentPiece.x + c;
+                            if (boardY >= 0) {
+                                this.board[boardY][boardX] = this.currentPiece.color;
+                            }
+                        }
+                    }
+                }
+
+                this.currentPiece = null;
+                this.clearLines();
+                this.spawnPiece();
+            }
+
+            clearLines() {
+                let linesCleared = 0;
+                for (let r = this.ROWS - 1; r >= 0; r--) {
+                    let isFull = true;
+                    for (let c = 0; c < this.COLS; c++) {
+                        if (!this.board[r][c]) {
+                            isFull = false;
+                            break;
+                        }
+                    }
+
+                    if (isFull) {
+                        // Remove a linha e insere uma vazia no topo
+                        this.board.splice(r, 1);
+                        this.board.unshift(Array(this.COLS).fill(0));
+                        linesCleared++;
+                        r++; // Reavalia a mesma linha
+                    }
+                }
+
+                if (linesCleared > 0) {
+                    playSound('correct');
+                    this.addScore(linesCleared * 100);
+                }
+            }
+
+            addScore(pts) {
+                this.score += pts;
+                document.getElementById('score-display').innerText = this.score;
+            }
+
+            gameOver() {
+                this.scene.pause();
+                alert(`Game Over! Pontuação Final: ${this.score}`);
+                // Reset básico (em um jogo completo, teríamos uma cena de menu)
+                this.board = Array(this.ROWS).fill().map(() => Array(this.COLS).fill(0));
+                this.score = 0;
+                document.getElementById('score-display').innerText = '0';
+                this.scene.restart();
+            }
+
+            draw() {
+                this.graphics.clear();
+
+                // Desenha Background do Grid
+                this.graphics.fillStyle(0x2c3e50, 1);
+                this.graphics.fillRect(0, 0, this.COLS * this.BLOCK_SIZE, this.ROWS * this.BLOCK_SIZE);
+
+                // Desenha Grid Lines
+                this.graphics.lineStyle(1, 0x34495e, 0.5);
+                for(let r=0; r<=this.ROWS; r++) {
+                    this.graphics.moveTo(0, r * this.BLOCK_SIZE);
+                    this.graphics.lineTo(this.COLS * this.BLOCK_SIZE, r * this.BLOCK_SIZE);
+                }
+                for(let c=0; c<=this.COLS; c++) {
+                    this.graphics.moveTo(c * this.BLOCK_SIZE, 0);
+                    this.graphics.lineTo(c * this.BLOCK_SIZE, this.ROWS * this.BLOCK_SIZE);
+                }
+
+                // Função auxiliar para desenhar um bloco estilo "Duolingo flat"
+                const drawBlock = (x, y, color, isFrozen = false) => {
+                    const px = x * this.BLOCK_SIZE;
+                    const py = y * this.BLOCK_SIZE;
+                    const size = this.BLOCK_SIZE;
+                    const radius = 6; // Raio de arredondamento dos cantos
+                    
+                    // Ajusta alpha se estiver congelado (efeito de gelo)
+                    const alpha = isFrozen ? 0.7 : 1.0;
+                    
+                    this.graphics.fillStyle(color, alpha);
+                    this.graphics.fillRoundedRect(px + 1, py + 1, size - 2, size - 2, radius);
+                };
+
+                // Desenha o Board
+                for (let r = 0; r < this.ROWS; r++) {
+                    for (let c = 0; c < this.COLS; c++) {
+                        if (this.board[r][c]) {
+                            drawBlock(c, r, this.board[r][c]);
+                        }
+                    }
+                }
+
+                // Desenha a Peça Atual
+                if (this.currentPiece) {
+                    for (let r = 0; r < this.currentPiece.shape.length; r++) {
+                        for (let c = 0; c < this.currentPiece.shape[r].length; c++) {
+                            if (this.currentPiece.shape[r][c]) {
+                                // Se congelada, a cor visual é azul (0x1cb0f6). Se livre, cor natural.
+                                const displayColor = this.isFrozen ? 0x1cb0f6 : this.currentPiece.color;
+                                drawBlock(
+                                    this.currentPiece.x + c, 
+                                    this.currentPiece.y + r, 
+                                    displayColor, 
+                                    this.isFrozen
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // ==========================================
+        // 5. INICIALIZAÇÃO DO JOGO
+        // ==========================================
+        function startGame() {
+            // Remove a tela inicial
+            document.getElementById('start-overlay').style.display = 'none';
+
+            // Pequeno truque para desbloquear Web Audio e Web Speech no iOS/Chrome
+            const SpeechSynthesis = window.speechSynthesis;
+            if(SpeechSynthesis) {
+                let u = new SpeechSynthesisUtterance("");
+                u.volume = 0;
+                SpeechSynthesis.speak(u);
+            }
+            playSound('lock'); // Toca som mudo/baixo para ativar AudioContext
+
+            // Inicializa Phaser
+            const config = {
+                type: Phaser.AUTO,
+                parent: 'game-container',
+                width: 300,
+                height: 600,
+                backgroundColor: '#2c3e50',
+                scene: GameScene,
+                // Desativa captura padrão de todas as teclas para permitir digitar no input
+                input: {
+                    keyboard: {
+                        target: window
+                    }
+                }
+            };
+
+            new Phaser.Game(config);
+        }
+    </script>
+</body>
+</html>

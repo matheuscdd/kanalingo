@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cavaleiro Mobile V4 - Fuga da Lava</title>
+    
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Phaser 3 via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.80.1/phaser.min.js"></script>
+
+    <style>
+        /* RESET E CONFIGURAÇÕES GERAIS */
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #08080c; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        /* CONTAINER DO JOGO */
+        #game-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: calc(100vh * (9/16)); 
+            max-height: 100vh;
+            background-color: #1a1a24; 
+            box-shadow: 0 0 30px rgba(255, 75, 75, 0.2);
+            overflow: hidden;
+        }
+
+        /* --- RESPONSIVIDADE DESKTOP --- */
+        @media (min-width: 768px) {
+            #game-wrapper {
+                max-width: 1200px; /* Remove a limitação do formato de celular (9/16) */
+                width: 90vw;       /* Permite formato widescreen (paisagem) */
+                height: 85vh;
+                border-radius: 16px;
+                border: 8px solid #0f0f15;
+                box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(255, 75, 75, 0.15);
+            }
+
+            /* Esconde os botões e analógico virtuais no Desktop */
+            #ui-layer {
+                display: none !important;
+            }
+        }
+        /* ------------------------------ */
+
+        #phaser-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #phaser-container canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* CAMADA DE INTERFACE (UI) */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; 
+            z-index: 10;
+        }
+
+        /* ANALÓGICO E PULO */
+        #joystick-base {
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+            width: 120px;
+            height: 120px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            pointer-events: auto;
+            touch-action: none;
+        }
+
+        #joystick-stick {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.05s linear;
+        }
+
+        #jump-button {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            width: 90px;
+            height: 90px;
+            background: #ffffff;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 8px 0 #888888;
+            color: #2a2a35;
+            font-size: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+        }
+
+        #jump-button.pressed {
+            transform: translateY(8px);
+            box-shadow: 0 0 0 #e5e5e5;
+        }
+
+        /* HUD DO PUZZLE */
+        #puzzle-hud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(20, 20, 28, 0.95);
+            z-index: 20;
+            display: none; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto;
+        }
+
+        .puzzle-box {
+            background: #2a2a35;
+            width: 85%;
+            max-width: 400px;
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 4px solid #3f3f50;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .puzzle-title {
+            color: #afb8c6;
+            font-size: 16px;
+            font-family: sans-serif;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        #target-word {
+            color: #58cc02; 
+            font-size: 36px;
+            font-family: sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 0 rgba(0,0,0,0.2);
+        }
+
+        #puzzle-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            color: #ffffff;
+            background: #15151e;
+            border: 2px solid #56566d;
+            border-radius: 12px;
+            outline: none;
+            font-family: sans-serif;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }
+
+        #puzzle-input:focus {
+            border-color: #1cb0f6;
+        }
+
+        #puzzle-submit {
+            width: 100%;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: #1cb0f6;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 0 #1899d6;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        #puzzle-submit:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 0 #1899d6;
+        }
+
+        /* TELA DE GAME OVER */
+        #game-over-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 0, 0, 0.9);
+            z-index: 30;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto;
+        }
+
+        #game-over-screen h1 {
+            color: #ff4b4b;
+            font-family: sans-serif;
+            font-size: 42px;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            text-shadow: 0 4px 0 #8b0000;
+        }
+
+        #game-over-screen p {
+            color: #afb8c6;
+            font-family: sans-serif;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        #btn-restart {
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: #58cc02;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 0 #46a302;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        #btn-restart:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 0 #46a302;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-wrapper">
+        <div id="phaser-container"></div>
+        
+        <div id="ui-layer">
+            <div id="joystick-base">
+                <div id="joystick-stick"></div>
+            </div>
+            <button id="jump-button">
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
+        </div>
+
+        <!-- HUD PUZZLE -->
+        <div id="puzzle-hud">
+            <div class="puzzle-box">
+                <div class="puzzle-title"><i class="fa-solid fa-fire"></i> Fuja da Lava!</div>
+                <div id="target-word">PALAVRA</div>
+                <input type="text" id="puzzle-input" placeholder="Digite..." autocomplete="off" autocorrect="off" spellcheck="false">
+                <button id="puzzle-submit">CONJURAR</button>
+            </div>
+        </div>
+
+        <!-- GAME OVER SCREEN -->
+        <div id="game-over-screen">
+            <h1><i class="fa-solid fa-skull"></i> Derretido!</h1>
+            <p>A lava alcançou você.</p>
+            <button id="btn-restart" onclick="restartGame()">TENTAR NOVAMENTE</button>
+        </div>
+    </div>
+
+    <script>
+        // --- ESTADO GLOBAL ---
+        const gameState = {
+            isPuzzleActive: false,
+            isGameOver: false,
+            activeTotem: null
+        };
+
+        const inputState = { left: false, right: false, jump: false };
+
+        // --- CONTROLES MOBILE ---
+        const joystickBase = document.getElementById('joystick-base');
+        const joystickStick = document.getElementById('joystick-stick');
+        let stickTouchId = null;
+        let stickStartX = 0;
+        const maxStickTravel = 35;
+
+        joystickBase.addEventListener('touchstart', (e) => {
+            if(gameState.isPuzzleActive || gameState.isGameOver) return;
+            e.preventDefault();
+            if (stickTouchId !== null) return;
+            const touch = e.changedTouches[0];
+            stickTouchId = touch.identifier;
+            stickStartX = touch.clientX;
+        }, { passive: false });
+
+        joystickBase.addEventListener('touchmove', (e) => {
+            if(gameState.isPuzzleActive || gameState.isGameOver) return;
+            e.preventDefault();
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const touch = e.changedTouches[i];
+                if (touch.identifier === stickTouchId) {
+                    const deltaX = touch.clientX - stickStartX;
+                    const clampedX = Math.max(-maxStickTravel, Math.min(maxStickTravel, deltaX));
+                    joystickStick.style.transform = `translateX(${clampedX}px)`;
+                    inputState.left = deltaX < -10;
+                    inputState.right = deltaX > 10;
+                }
+            }
+        }, { passive: false });
+
+        const resetJoystick = (e) => {
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const touch = e.changedTouches[i];
+                if (touch.identifier === stickTouchId || gameState.isPuzzleActive || gameState.isGameOver) {
+                    stickTouchId = null;
+                    joystickStick.style.transform = `translateX(0px)`;
+                    inputState.left = false;
+                    inputState.right = false;
+                }
+            }
+        };
+
+        joystickBase.addEventListener('touchend', resetJoystick);
+        joystickBase.addEventListener('touchcancel', resetJoystick);
+
+        const jumpBtn = document.getElementById('jump-button');
+        jumpBtn.addEventListener('touchstart', (e) => {
+            if(gameState.isPuzzleActive || gameState.isGameOver) return;
+            e.preventDefault();
+            inputState.jump = true;
+            jumpBtn.classList.add('pressed');
+        }, { passive: false });
+
+        const resetJump = (e) => {
+            e.preventDefault();
+            inputState.jump = false;
+            jumpBtn.classList.remove('pressed');
+        };
+        jumpBtn.addEventListener('touchend', resetJump);
+        jumpBtn.addEventListener('touchcancel', resetJump);
+
+        // Função de Restart (Global para o botão)
+        function restartGame() {
+            document.getElementById('game-over-screen').style.display = 'none';
+            gameState.isGameOver = false;
+            gameState.isPuzzleActive = false;
+            inputState.left = false; inputState.right = false; inputState.jump = false;
+            game.scene.scenes[0].scene.restart();
+        }
+
+        // --- LÓGICA DO JOGO (PHASER) ---
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super('MainScene');
+            }
+
+            preload() {
+                // Cavaleiro
+                let graphicsKnight = this.make.graphics({ x: 0, y: 0, add: false });
+                graphicsKnight.fillStyle(0xff4b4b); graphicsKnight.fillRoundedRect(20, 0, 20, 20, 5);
+                graphicsKnight.fillStyle(0xc7cfd9); graphicsKnight.fillRoundedRect(5, 15, 50, 40, 10);
+                graphicsKnight.fillStyle(0x4b4b4b); graphicsKnight.fillRect(35, 30, 20, 10);
+                graphicsKnight.fillStyle(0xafb8c6); graphicsKnight.fillRoundedRect(10, 35, 40, 45, 8);
+                graphicsKnight.generateTexture('knight', 60, 80);
+
+                // Chão de Pedra
+                let graphicsGround = this.make.graphics({ x: 0, y: 0, add: false });
+                graphicsGround.fillStyle(0x2a2a35); graphicsGround.fillRect(0, 20, 128, 128);
+                graphicsGround.fillStyle(0x3f3f50); graphicsGround.fillRect(0, 0, 128, 20);
+                graphicsGround.fillStyle(0x56566d); graphicsGround.fillRect(0, 0, 128, 8);
+                graphicsGround.lineStyle(4, 0x1a1a24);
+                graphicsGround.strokeRect(0, 20, 64, 54); graphicsGround.strokeRect(64, 20, 64, 54); graphicsGround.strokeRect(32, 74, 64, 54);
+                graphicsGround.generateTexture('ground', 128, 128);
+
+                // (A textura estática da lava foi removida, pois agora ela será renderizada matematicamente em tempo real)
+
+                // Totem
+                let graphicsTotem = this.make.graphics({ x: 0, y: 0, add: false });
+                graphicsTotem.fillStyle(0x15151e); graphicsTotem.fillRoundedRect(0, 0, 60, 120, 10);
+                graphicsTotem.lineStyle(4, 0x3f3f50); graphicsTotem.strokeRoundedRect(0, 0, 60, 120, 10);
+                graphicsTotem.fillStyle(0x00e5ff); 
+                graphicsTotem.fillRect(20, 20, 20, 20); graphicsTotem.fillRect(25, 45, 10, 30);
+                graphicsTotem.generateTexture('totem', 60, 120);
+
+                // Bloco
+                let graphicsBlock = this.make.graphics({ x: 0, y: 0, add: false });
+                graphicsBlock.fillStyle(0x4b4b5e); graphicsBlock.fillRoundedRect(0, 0, 90, 90, 8);
+                graphicsBlock.lineStyle(4, 0x1cb0f6); graphicsBlock.strokeRoundedRect(0, 0, 90, 90, 8);
+                graphicsBlock.fillStyle(0x1cb0f6); graphicsBlock.fillRect(35, 35, 20, 20); 
+                graphicsBlock.generateTexture('block', 90, 90);
+
+                // Destroços (Debris)
+                let graphicsDebris = this.make.graphics({ x: 0, y: 0, add: false });
+                graphicsDebris.fillStyle(0x4b4b5e); graphicsDebris.fillRect(0, 0, 15, 15);
+                graphicsDebris.generateTexture('debris', 15, 15);
+
+                // Bandeira de Fim de Nível (Safe Zone)
+                let graphicsFlag = this.make.graphics({ x: 0, y: 0, add: false });
+                graphicsFlag.fillStyle(0x58cc02); graphicsFlag.fillRoundedRect(0, 0, 80, 50, 5); 
+                graphicsFlag.fillStyle(0xafb8c6); graphicsFlag.fillRect(0, 0, 8, 150); 
+                graphicsFlag.generateTexture('flag', 80, 150);
+
+                // Parallax Background
+                let graphicsWall = this.make.graphics({ x: 0, y: 0, add: false });
+                graphicsWall.fillStyle(0x15151e); graphicsWall.fillRect(0, 0, 256, 256);
+                graphicsWall.lineStyle(2, 0x101015); graphicsWall.strokeRect(0, 0, 128, 128); graphicsWall.strokeRect(128, 128, 128, 128);
+                graphicsWall.generateTexture('bg_wall', 256, 256);
+            }
+
+            create() {
+                const width = this.cameras.main.width;
+                const height = this.cameras.main.height;
+                const worldWidth = 3200;
+                const worldHeight = 4500; // Expandido o limite do mundo para a câmera ter espaço infinito de descida no PC
+
+                this.physics.world.setBounds(0, 0, worldWidth, worldHeight);
+                this.bgWall = this.add.tileSprite(0, 0, width, height, 'bg_wall').setOrigin(0, 0).setScrollFactor(0);
+
+                // --- RESPONSIVIDADE: Atualiza o parallax do fundo quando a janela esticar ---
+                this.scale.on('resize', (gameSize) => {
+                    this.bgWall.setSize(gameSize.width, gameSize.height);
+                });
+
+                this.platforms = this.physics.add.staticGroup();
+                this.totems = this.physics.add.staticGroup();
+
+                // --- LEVEL DESIGN: ESCADARIA DIAGONAL ---
+                const steps = [
+                    { startX: -128, endX: 800, y: 2800, totemX: 550, dropX: 740, word: "FOGO" },
+                    { startX: 800, endX: 1600, y: 2480, totemX: 1350, dropX: 1540, word: "PEDRA" },
+                    { startX: 1600, endX: 2400, y: 2160, totemX: 2150, dropX: 2340, word: "FUGA" },
+                    { startX: 2400, endX: 3200, y: 1840, totemX: null, dropX: null, word: null } 
+                ];
+
+                steps.forEach((step, index) => {
+                    for (let x = step.startX; x < step.endX; x += 128) {
+                        this.platforms.create(x, step.y, 'ground').setOrigin(0, 0).refreshBody();
+                    }
+                    if (index > 0) {
+                        let prevY = steps[index-1].y;
+                        for (let wy = step.y + 128; wy <= prevY; wy += 128) {
+                            this.platforms.create(step.startX, wy, 'ground').setOrigin(0, 0).refreshBody();
+                        }
+                    } else {
+                        // Preenche a base sólida abaixo do primeiro andar para o cenário não parecer flutuante na tela expandida do PC
+                        for (let wy = step.y + 128; wy <= worldHeight; wy += 128) {
+                            for (let x = step.startX; x < step.endX; x += 128) {
+                                this.platforms.create(x, wy, 'ground').setOrigin(0, 0).refreshBody();
+                            }
+                        }
+                    }
+                    if (step.totemX) {
+                        let t = this.totems.create(step.totemX, step.y - 60, 'totem');
+                        t.targetWord = step.word;
+                        t.dropX = step.dropX;
+                        t.isSolved = false;
+                        t.isOnCooldown = false;
+                        this.add.rectangle(step.dropX - 5, step.y, 100, 10, 0x1cb0f6, 0.3).setOrigin(0.5, 1);
+                    }
+                });
+
+                this.add.sprite(2800, steps[3].y - 75, 'flag');
+
+                // --- JOGADOR ---
+                this.player = this.physics.add.sprite(150, steps[0].y - 200, 'knight');
+                this.player.setBounce(0);
+                this.player.setCollideWorldBounds(true);
+                
+                // --- BLOCOS DINÂMICOS ---
+                this.blocksGroup = this.physics.add.group();
+
+                // =========================================================
+                // LAVA DINÂMICA (Renderização Fluída Matemática)
+                // =========================================================
+                this.lavaBaseY = 3600; // Lava começa mais no fundo para compensar o abismo extra
+
+                // 1. Objeto Graphics que vai desenhar o líquido frame a frame
+                this.lavaGraphics = this.add.graphics();
+                this.lavaGraphics.setDepth(5); // Fica na frente das plataformas, criando a sensação de inundação
+                
+                // 2. Hitbox Invísivel da Morte (Sobe reto e com colisão precisa)
+                this.lavaHitbox = this.add.rectangle(0, this.lavaBaseY + 10, worldWidth, 3000).setOrigin(0, 0); // Aumentada a altura da hitbox para cobrir tudo abaixo
+                this.physics.add.existing(this.lavaHitbox);
+                this.lavaHitbox.body.allowGravity = false;
+                this.lavaHitbox.body.setImmovable(true);
+
+                // --- COLISÕES E OVERLAPS ---
+                this.physics.add.collider(this.player, this.platforms);
+                this.physics.add.collider(this.player, this.blocksGroup);
+                this.physics.add.collider(this.blocksGroup, this.platforms, this.handleBlockHitGround, null, this);
+                
+                this.physics.add.overlap(this.player, this.totems, this.triggerPuzzle, null, this);
+                // Checa morte usando a hitbox invisível reta
+                this.physics.add.overlap(this.player, this.lavaHitbox, this.handleGameOver, null, this);
+
+                // --- CÂMERA ---
+                this.cameras.main.setBounds(0, 0, worldWidth, worldHeight);
+                // Removido o offset vertical para que o personagem fique exatamente no centro da tela
+                this.cameras.main.startFollow(this.player, true, 0.08, 0.08); 
+
+                // --- INPUT FALLBACK (DESKTOP) ---
+                this.cursors = this.input.keyboard.createCursorKeys();
+                this.keys = this.input.keyboard.addKeys('W,A,S,D,SPACE');
+
+                this.setupPuzzleUI();
+            }
+
+            setupPuzzleUI() {
+                const submitBtn = document.getElementById('puzzle-submit');
+                const inputField = document.getElementById('puzzle-input');
+
+                submitBtn.onclick = null;
+                submitBtn.onclick = () => {
+                    this.validatePuzzle(inputField.value);
+                };
+
+                inputField.onkeypress = null;
+                inputField.onkeypress = (e) => {
+                    if (e.key === 'Enter') {
+                        inputField.blur(); 
+                        this.validatePuzzle(inputField.value);
+                    }
+                };
+            }
+
+            triggerPuzzle(player, totem) {
+                if (gameState.isPuzzleActive || totem.isSolved || totem.isOnCooldown || !player.body.touching.down) return;
+
+                gameState.isPuzzleActive = true;
+                gameState.activeTotem = totem;
+                
+                player.setVelocity(0, 0);
+                inputState.left = false; inputState.right = false; inputState.jump = false;
+
+                const hud = document.getElementById('puzzle-hud');
+                const targetWordDisplay = document.getElementById('target-word');
+                const inputField = document.getElementById('puzzle-input');
+                
+                targetWordDisplay.innerText = totem.targetWord;
+                hud.style.display = 'flex';
+                inputField.value = '';
+                
+                setTimeout(() => inputField.focus(), 100); 
+            }
+
+            validatePuzzle(typedText) {
+                if(!gameState.isPuzzleActive) return;
+
+                const hud = document.getElementById('puzzle-hud');
+                const inputField = document.getElementById('puzzle-input');
+                hud.style.display = 'none';
+                inputField.blur(); 
+                
+                const totem = gameState.activeTotem;
+                const isCorrect = (typedText.trim().toUpperCase() === totem.targetWord);
+                
+                this.spawnFallingBlock(isCorrect, totem);
+                
+                gameState.isPuzzleActive = false;
+                gameState.activeTotem = null;
+
+                if(isCorrect) {
+                    totem.isSolved = true;
+                    totem.setTint(0x56566d); 
+                } else {
+                    totem.isOnCooldown = true;
+                    totem.setTint(0xff4b4b); 
+                    setTimeout(() => { 
+                        totem.isOnCooldown = false; 
+                        totem.clearTint();
+                    }, 2000);
+                }
+            }
+
+            spawnFallingBlock(isCorrect, totem) {
+                const spawnX = totem.dropX; 
+                const spawnY = this.cameras.main.scrollY - 200;
+
+                const block = this.blocksGroup.create(spawnX, spawnY, 'block');
+                block.setBounce(0);
+                block.isCorrect = isCorrect;
+                block.hasProcessedGround = false;
+            }
+
+            handleBlockHitGround(block, platform) {
+                if (block.hasProcessedGround) return;
+                block.hasProcessedGround = true;
+
+                if (block.isCorrect) {
+                    block.setImmovable(true);
+                    block.body.allowGravity = false;
+                    block.setVelocity(0, 0);
+                    block.setTint(0x58cc02); 
+                    
+                    block.body.checkCollision.up = true;
+                    block.body.checkCollision.down = false;
+                    block.body.checkCollision.left = true;
+                    block.body.checkCollision.right = true;
+
+                    this.cameras.main.shake(150, 0.005); 
+                } else {
+                    this.cameras.main.shake(250, 0.015);
+                    this.createBreakParticles(block.x, block.y);
+                    block.destroy();
+                }
+            }
+
+            createBreakParticles(x, y) {
+                for(let i=0; i<8; i++) {
+                    let p = this.physics.add.sprite(x, y, 'debris');
+                    p.setTint(0xff4b4b); 
+                    p.setVelocity(Phaser.Math.Between(-400, 400), Phaser.Math.Between(-500, -100));
+                    p.setAngularVelocity(Phaser.Math.Between(-400, 400));
+                    
+                    this.tweens.add({ targets: p, alpha: 0, duration: 800, onComplete: () => p.destroy() });
+                }
+            }
+
+            handleGameOver(player, lavaHitbox) {
+                if (gameState.isGameOver) return;
+                gameState.isGameOver = true;
+                
+                if(gameState.isPuzzleActive) {
+                    document.getElementById('puzzle-hud').style.display = 'none';
+                    document.getElementById('puzzle-input').blur();
+                    gameState.isPuzzleActive = false;
+                }
+
+                this.physics.pause();
+                player.setTint(0x111111); 
+                this.cameras.main.shake(300, 0.02);
+
+                setTimeout(() => {
+                    document.getElementById('game-over-screen').style.display = 'flex';
+                }, 500);
+            }
+
+            update(time, delta) {
+                if (gameState.isGameOver) return;
+
+                // =========================================================
+                // SISTEMA DE FLUIDO REALISTA (Ondas Matemáticas)
+                // =========================================================
+                const lavaSpeed = 0.15; // Bem lento
+                this.lavaBaseY -= lavaSpeed;
+                
+                // 1. Atualiza Hitbox de morte
+                this.lavaHitbox.y = this.lavaBaseY; 
+                
+                // 2. Renderiza as ondas em tempo real
+                this.lavaGraphics.clear();
+                const worldWidth = 3200;
+                const segments = 80; // Resolução da onda
+                const step = worldWidth / segments;
+
+                // Camada 1: Onda Traseira (Lava escura/profunda)
+                this.lavaGraphics.fillStyle(0xa61c1c, 1);
+                this.lavaGraphics.beginPath();
+                this.lavaGraphics.moveTo(0, this.lavaBaseY + 2000);
+                for (let i = 0; i <= segments; i++) {
+                    let x = i * step;
+                    // Duas ondas combinadas para criar um balanço caótico e orgânico
+                    let y = this.lavaBaseY - 10 + 
+                            Math.sin(time * 0.0015 + x * 0.004) * 15 + 
+                            Math.sin(time * 0.003 + x * 0.01) * 8;
+                    this.lavaGraphics.lineTo(x, y);
+                }
+                this.lavaGraphics.lineTo(worldWidth, this.lavaBaseY + 2000);
+                this.lavaGraphics.closePath();
+                this.lavaGraphics.fill();
+
+                // Camada 2: Onda Frontal (Lava clara e fervente)
+                this.lavaGraphics.fillStyle(0xff4b4b, 1);
+                this.lavaGraphics.beginPath();
+                this.lavaGraphics.moveTo(0, this.lavaBaseY + 2000);
+                for (let i = 0; i <= segments; i++) {
+                    let x = i * step;
+                    let y = this.lavaBaseY + 
+                            Math.sin(time * 0.002 + x * 0.005 + 2) * 12 + 
+                            Math.sin(time * 0.004 + x * 0.015) * 6;
+                    this.lavaGraphics.lineTo(x, y);
+                }
+                this.lavaGraphics.lineTo(worldWidth, this.lavaBaseY + 2000);
+                this.lavaGraphics.closePath();
+                this.lavaGraphics.fill();
+
+                // Camada 3: Linha de destaque/brilho no topo do líquido
+                this.lavaGraphics.lineStyle(4, 0xffd100, 0.9);
+                this.lavaGraphics.beginPath();
+                for (let i = 0; i <= segments; i++) {
+                    let x = i * step;
+                    let y = this.lavaBaseY + 
+                            Math.sin(time * 0.002 + x * 0.005 + 2) * 12 + 
+                            Math.sin(time * 0.004 + x * 0.015) * 6;
+                    if (i === 0) this.lavaGraphics.moveTo(x, y);
+                    else this.lavaGraphics.lineTo(x, y);
+                }
+                this.lavaGraphics.stroke();
+
+                // 3. Sistema de Bolhas Subindo (Fervura visual)
+                if (Math.random() < 0.15) { // Chance de nascer uma bolha a cada frame
+                    let camX = this.cameras.main.scrollX;
+                    let camW = this.cameras.main.width;
+                    
+                    // Só spawna bolhas perto da visão do jogador para economizar performance
+                    let spawnX = camX + Math.random() * camW;
+                    let spawnY = this.lavaBaseY + Math.random() * 15;
+
+                    let bubble = this.add.circle(spawnX, spawnY, Math.random() * 4 + 2, 0xff9600);
+                    bubble.setDepth(6); // Acima da lava
+                    
+                    this.tweens.add({
+                        targets: bubble,
+                        y: spawnY - 40 - Math.random() * 40,
+                        x: spawnX + (Math.random() - 0.5) * 30, // Faz a bolha ziguezaguear
+                        alpha: 0,
+                        scale: 1.5,
+                        duration: 1000 + Math.random() * 1000,
+                        onComplete: () => bubble.destroy()
+                    });
+                }
+
+                // Parallax do fundo
+                this.bgWall.tilePositionX = this.cameras.main.scrollX * 0.15;
+                this.bgWall.tilePositionY = this.cameras.main.scrollY * 0.15;
+
+                if (gameState.isPuzzleActive) return;
+
+                const speed = 400;
+
+                // Movimentação
+                if (inputState.left || this.cursors.left.isDown || this.keys.A.isDown) {
+                    this.player.setVelocityX(-speed);
+                    this.player.setFlipX(true); 
+                } 
+                else if (inputState.right || this.cursors.right.isDown || this.keys.D.isDown) {
+                    this.player.setVelocityX(speed);
+                    this.player.setFlipX(false); 
+                } 
+                else {
+                    this.player.setVelocityX(0);
+                }
+
+                // Pulo
+                const isJumpingInput = inputState.jump || this.cursors.up.isDown || this.keys.W.isDown || this.keys.SPACE.isDown;
+                if (isJumpingInput && this.player.body.touching.down) {
+                    this.player.setVelocityY(-1000);
+                    inputState.jump = false; 
+                }
+            }
+        }
+
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'phaser-container',
+            transparent: true, 
+            render: { roundPixels: true, antialias: true },
+            fps: { target: 60, smoothStep: true },
+            scale: {
+                mode: Phaser.Scale.RESIZE, // Faz o jogo expandir dinamicamente para ocupar o wrapper expandido
+                width: '100%',
+                height: '100%',
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            },
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 2000 }, 
+                    fixedStep: false,
+                    debug: false 
+                }
+            },
+            scene: [MainScene]
+        };
+
+        const game = new Phaser.Game(config);
+    </script>
+</body>
+</html>

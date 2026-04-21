@@ -286,6 +286,7 @@ function updateTab(tab) {
         green: "var(--duo-green)",
         purple: "var(--beetle)",
         yellow: "var(--duo-yellow)",
+        gray: "var(--wolf)",
         red: "var(--duo-red)",
     });
     root.style.setProperty("--active-theme", colors[tab.dataset.color]);
