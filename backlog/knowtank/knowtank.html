@@ -657,161 +657,248 @@
 
     // --- FUNÇÕES DE GERAÇÃO E COLISÃO ---
 
-    function checkRectOverlap(x, y, w, h, obj, pad) {
-        return (x < obj.x + obj.w + pad && x + w > obj.x - pad && y < obj.y + obj.h + pad && y + h > obj.y - pad);
+    function rect(x, y, w, h) {
+        return { x, y, w, h };
     }
 
-    function generateProceduralBushes() {
-        bushes = [];
-        const numBushes = 20 + Math.floor(Math.random() * 15); 
-        const margin = 50;
-        for (let i = 0; i < numBushes; i++) {
-            let w = 150 + Math.random() * 200; let h = 150 + Math.random() * 200;
-            let x, y, valid = false, attempts = 0;
-            while (!valid && attempts < 50) {
-                x = margin + Math.random() * (arenaWidth - w - margin * 2);
-                y = margin + Math.random() * (arenaHeight - h - margin * 2);
-                let overlapsOtherBush = bushes.some(b => checkRectOverlap(x, y, w, h, b, 20));
-                if (!overlapsOtherBush) valid = true;
-                attempts++;
-            }
-            if (valid) bushes.push({x, y, w, h});
-        }
+    function point(x, y, extra = {}) {
+        return { x, y, ...extra };
     }
 
-    function generateProceduralObstacles() {
-        obstacles = [];
-        const numObstacles = 25 + Math.floor(Math.random() * 10); 
-        const margin = 100;
-        const spawnPoints = [{x: arenaWidth / 2, y: arenaHeight / 2}];
-
-        for (let i = 0; i < numObstacles; i++) {
-            let w = 80 + Math.random() * 150; let h = 80 + Math.random() * 150;
-            let x, y, valid = false, attempts = 0;
-            while (!valid && attempts < 50) {
-                x = margin + Math.random() * (arenaWidth - w - margin * 2);
-                y = margin + Math.random() * (arenaHeight - h - margin * 2);
-                let obsCX = x + w / 2; let obsCY = y + h / 2;
-                let distToCenter = Math.hypot(obsCX - arenaWidth / 2, obsCY - arenaHeight / 2);
-                let distToPlayer = player ? Math.hypot(obsCX - player.x, obsCY - player.y) : Infinity;
-                let tooCloseToSpawn = spawnPoints.some(p => Math.hypot(obsCX - p.x, obsCY - p.y) < 200);
-                let overlapsOtherObstacle = obstacles.some(obs => checkRectOverlap(x, y, w, h, obs, 50));
-
-                if (distToCenter > 300 && distToPlayer > 200 && !tooCloseToSpawn && !overlapsOtherObstacle) valid = true;
-                attempts++;
-            }
-            if (valid) obstacles.push({x, y, w, h});
-        }
+    function cloneRectList(items) {
+        return items.map(item => ({ ...item }));
     }
 
-    function generateProceduralBreakables() {
-        breakableBlocks = [];
-        const numBlocks = 15 + Math.floor(Math.random() * 10); 
-        const margin = 80;
-        const spawnPoints = [{x: arenaWidth / 2, y: arenaHeight / 2}];
-
-        for (let i = 0; i < numBlocks; i++) {
-            let w = 60 + Math.random() * 40; let h = 60 + Math.random() * 40;
-            let x, y, valid = false, attempts = 0;
-            while (!valid && attempts < 50) {
-                x = margin + Math.random() * (arenaWidth - w - margin * 2);
-                y = margin + Math.random() * (arenaHeight - h - margin * 2);
-                let obsCX = x + w / 2, obsCY = y + h / 2;
-                let distToCenter = Math.hypot(obsCX - arenaWidth / 2, obsCY - arenaHeight / 2);
-                let distToPlayer = player ? Math.hypot(obsCX - player.x, obsCY - player.y) : Infinity;
-                let tooCloseToSpawn = spawnPoints.some(p => Math.hypot(obsCX - p.x, obsCY - p.y) < 200);
-                
-                let overlapsObstacles = obstacles.some(obs => checkRectOverlap(x, y, w, h, obs, 30));
-                let overlapsBreakables = breakableBlocks.some(b => checkRectOverlap(x, y, w, h, b, 20));
-                let overlapsBushes = bushes.some(b => checkRectOverlap(x, y, w, h, b, 10));
-
-                if (distToCenter > 300 && distToPlayer > 200 && !tooCloseToSpawn && 
-                    !overlapsObstacles && !overlapsBreakables && !overlapsBushes) valid = true;
-                attempts++;
-            }
-            if (valid) breakableBlocks.push({x, y, w, h, hp: 100, maxHp: 100});
-        }
+    function cloneBreakableList(items) {
+        return items.map(item => {
+            const maxHp = item.maxHp ?? 100;
+            return { x: item.x, y: item.y, w: item.w, h: item.h, hp: maxHp, maxHp };
+        });
     }
 
-    function generateProceduralMines() {
-        mines = [];
-        const numMines = 15 + Math.floor(Math.random() * 10);
-        const margin = 100;
-        const spawnPoints = [{x: arenaWidth / 2, y: arenaHeight / 2}];
-
-        for (let i = 0; i < numMines; i++) {
-            let x, y, valid = false, attempts = 0;
-            while (!valid && attempts < 50) {
-                x = margin + Math.random() * (arenaWidth - margin * 2);
-                y = margin + Math.random() * (arenaHeight - margin * 2);
-                let distToCenter = Math.hypot(x - arenaWidth / 2, y - arenaHeight / 2);
-                let distToPlayer = player ? Math.hypot(x - player.x, y - player.y) : Infinity;
-                let tooCloseToSpawn = spawnPoints.some(p => Math.hypot(x - p.x, y - p.y) < 200);
-
-                let overlapsObstacles = obstacles.some(obs => checkRectOverlap(x-15, y-15, 30, 30, obs, 10));
-                let overlapsBreakables = breakableBlocks.some(b => checkRectOverlap(x-15, y-15, 30, 30, b, 10));
-
-                if (distToCenter > 300 && distToPlayer > 200 && !tooCloseToSpawn &&
-                    !overlapsObstacles && !overlapsBreakables) valid = true;
-                attempts++;
-            }
-            if (valid) mines.push(new Mine(x, y));
+    const fixedWaveMaps = [
+        {
+            bushes: [
+                rect(180, 180, 360, 220), rect(2660, 180, 360, 220),
+                rect(180, 2800, 360, 220), rect(2660, 2800, 360, 220),
+                rect(760, 620, 240, 180), rect(2200, 620, 240, 180),
+                rect(760, 2400, 240, 180), rect(2200, 2400, 240, 180),
+                rect(1360, 320, 480, 160), rect(1360, 2720, 480, 160)
+            ],
+            obstacles: [
+                rect(1320, 1040, 560, 120), rect(1320, 2040, 560, 120),
+                rect(1040, 1320, 120, 560), rect(2040, 1320, 120, 560),
+                rect(780, 980, 180, 180), rect(2240, 980, 180, 180),
+                rect(780, 2040, 180, 180), rect(2240, 2040, 180, 180)
+            ],
+            breakableBlocks: [
+                rect(1450, 860, 100, 100), rect(1650, 860, 100, 100),
+                rect(1450, 2240, 100, 100), rect(1650, 2240, 100, 100),
+                rect(860, 1450, 100, 100), rect(860, 1650, 100, 100),
+                rect(2240, 1450, 100, 100), rect(2240, 1650, 100, 100),
+                rect(520, 880, 90, 90), rect(2590, 880, 90, 90),
+                rect(520, 2230, 90, 90), rect(2590, 2230, 90, 90)
+            ],
+            mines: [
+                point(1100, 1100), point(2100, 1100), point(1100, 2100), point(2100, 2100),
+                point(1600, 760), point(1600, 2440)
+            ],
+            spikes: [
+                point(1600, 1000), point(1600, 2200), point(1000, 1600), point(2200, 1600),
+                point(1280, 1280), point(1920, 1280), point(1280, 1920), point(1920, 1920)
+            ],
+            lavas: [
+                point(700, 1600, { radius: 60 }), point(2500, 1600, { radius: 60 }),
+                point(1600, 700, { radius: 70 }), point(1600, 2500, { radius: 70 })
+            ]
+        },
+        {
+            bushes: [
+                rect(180, 560, 300, 200), rect(2720, 560, 300, 200),
+                rect(180, 2440, 300, 200), rect(2720, 2440, 300, 200),
+                rect(620, 1400, 260, 260), rect(2320, 1400, 260, 260),
+                rect(1400, 620, 260, 260), rect(1400, 2320, 260, 260),
+                rect(980, 280, 320, 180), rect(1900, 2740, 320, 180)
+            ],
+            obstacles: [
+                rect(780, 780, 180, 900), rect(2240, 1520, 180, 900),
+                rect(780, 2240, 900, 180), rect(1520, 780, 900, 180),
+                rect(1260, 1260, 120, 120), rect(1820, 1260, 120, 120),
+                rect(1260, 1820, 120, 120), rect(1820, 1820, 120, 120)
+            ],
+            breakableBlocks: [
+                rect(1040, 1040, 90, 90), rect(1180, 1180, 90, 90), rect(1320, 1320, 90, 90),
+                rect(1790, 1790, 90, 90), rect(1930, 1930, 90, 90), rect(2070, 2070, 90, 90),
+                rect(2070, 1040, 90, 90), rect(1930, 1180, 90, 90), rect(1790, 1320, 90, 90),
+                rect(1040, 2070, 90, 90), rect(1180, 1930, 90, 90), rect(1320, 1790, 90, 90)
+            ],
+            mines: [
+                point(900, 1600), point(2300, 1600), point(1600, 900), point(1600, 2300),
+                point(1180, 2500), point(2020, 700)
+            ],
+            spikes: [
+                point(1280, 1600), point(1920, 1600), point(1600, 1280), point(1600, 1920),
+                point(700, 1200), point(2500, 2000), point(700, 2000), point(2500, 1200)
+            ],
+            lavas: [
+                point(540, 540, { radius: 70 }), point(2660, 540, { radius: 70 }),
+                point(540, 2660, { radius: 70 }), point(2660, 2660, { radius: 70 })
+            ]
+        },
+        {
+            bushes: [
+                rect(260, 1180, 300, 220), rect(2640, 1180, 300, 220),
+                rect(520, 420, 260, 180), rect(2420, 420, 260, 180),
+                rect(520, 2600, 260, 180), rect(2420, 2600, 260, 180),
+                rect(1260, 300, 280, 160), rect(1660, 2740, 280, 160),
+                rect(1260, 2740, 280, 160), rect(1660, 300, 280, 160)
+            ],
+            obstacles: [
+                rect(680, 760, 140, 760), rect(1320, 760, 140, 560),
+                rect(1960, 760, 140, 760), rect(2380, 1400, 140, 780),
+                rect(1100, 1940, 560, 140), rect(1660, 1180, 560, 140),
+                rect(820, 2480, 760, 140), rect(1780, 520, 760, 140)
+            ],
+            breakableBlocks: [
+                rect(900, 1640, 90, 90), rect(1040, 1640, 90, 90), rect(1180, 1640, 90, 90),
+                rect(1930, 1460, 90, 90), rect(2070, 1460, 90, 90), rect(2210, 1460, 90, 90),
+                rect(1460, 1040, 90, 90), rect(1600, 1040, 90, 90), rect(1740, 1040, 90, 90),
+                rect(1460, 2140, 90, 90), rect(1600, 2140, 90, 90), rect(1740, 2140, 90, 90)
+            ],
+            mines: [
+                point(940, 940), point(2260, 940), point(940, 2260), point(2260, 2260),
+                point(1380, 2440), point(1820, 760)
+            ],
+            spikes: [
+                point(1600, 860), point(1600, 2340), point(860, 1600), point(2340, 1600),
+                point(1180, 1460), point(2020, 1740), point(1320, 2300), point(1880, 900)
+            ],
+            lavas: [
+                point(760, 1760, { radius: 80 }), point(2440, 1440, { radius: 80 }),
+                point(1260, 2520, { radius: 60 }), point(1940, 680, { radius: 60 })
+            ]
+        },
+        {
+            bushes: [
+                rect(220, 860, 280, 180), rect(2700, 860, 280, 180),
+                rect(220, 2160, 280, 180), rect(2700, 2160, 280, 180),
+                rect(860, 220, 180, 280), rect(2160, 220, 180, 280),
+                rect(860, 2700, 180, 280), rect(2160, 2700, 180, 280),
+                rect(1360, 1360, 200, 120), rect(1640, 1720, 200, 120)
+            ],
+            obstacles: [
+                rect(360, 960, 980, 140), rect(1860, 960, 980, 140),
+                rect(360, 2100, 980, 140), rect(1860, 2100, 980, 140),
+                rect(960, 360, 140, 980), rect(2100, 360, 140, 980),
+                rect(960, 1860, 140, 980), rect(2100, 1860, 140, 980)
+            ],
+            breakableBlocks: [
+                rect(1420, 940, 90, 90), rect(1690, 940, 90, 90),
+                rect(1420, 2170, 90, 90), rect(1690, 2170, 90, 90),
+                rect(940, 1420, 90, 90), rect(940, 1690, 90, 90),
+                rect(2170, 1420, 90, 90), rect(2170, 1690, 90, 90),
+                rect(700, 700, 90, 90), rect(2410, 700, 90, 90),
+                rect(700, 2410, 90, 90), rect(2410, 2410, 90, 90)
+            ],
+            mines: [
+                point(1460, 720), point(1740, 720), point(1460, 2480), point(1740, 2480),
+                point(720, 1460), point(2480, 1740)
+            ],
+            spikes: [
+                point(1600, 1180), point(1600, 2020), point(1180, 1600), point(2020, 1600),
+                point(640, 1600), point(2560, 1600), point(1600, 640), point(1600, 2560)
+            ],
+            lavas: [
+                point(1240, 1240, { radius: 65 }), point(1960, 1240, { radius: 65 }),
+                point(1240, 1960, { radius: 65 }), point(1960, 1960, { radius: 65 })
+            ]
+        },
+        {
+            bushes: [
+                rect(320, 320, 260, 180), rect(2620, 320, 260, 180),
+                rect(320, 2700, 260, 180), rect(2620, 2700, 260, 180),
+                rect(840, 1380, 180, 260), rect(2180, 1380, 180, 260),
+                rect(1380, 840, 260, 180), rect(1380, 2180, 260, 180),
+                rect(760, 760, 220, 160), rect(2220, 2220, 220, 160)
+            ],
+            obstacles: [
+                rect(1240, 920, 720, 120), rect(1240, 2160, 720, 120),
+                rect(920, 1240, 120, 720), rect(2160, 1240, 120, 720),
+                rect(1180, 1180, 140, 140), rect(1880, 1180, 140, 140),
+                rect(1180, 1880, 140, 140), rect(1880, 1880, 140, 140),
+                rect(520, 520, 220, 220), rect(2460, 520, 220, 220),
+                rect(520, 2460, 220, 220), rect(2460, 2460, 220, 220)
+            ],
+            breakableBlocks: [
+                rect(1450, 760, 90, 90), rect(1650, 760, 90, 90),
+                rect(1450, 2350, 90, 90), rect(1650, 2350, 90, 90),
+                rect(760, 1450, 90, 90), rect(760, 1650, 90, 90),
+                rect(2350, 1450, 90, 90), rect(2350, 1650, 90, 90),
+                rect(980, 980, 90, 90), rect(2130, 980, 90, 90),
+                rect(980, 2130, 90, 90), rect(2130, 2130, 90, 90)
+            ],
+            mines: [
+                point(1100, 1100), point(2100, 1100), point(1100, 2100), point(2100, 2100),
+                point(1600, 560), point(1600, 2640), point(560, 1600), point(2640, 1600)
+            ],
+            spikes: [
+                point(1320, 1600), point(1880, 1600), point(1600, 1320), point(1600, 1880),
+                point(900, 900), point(2300, 900), point(900, 2300), point(2300, 2300)
+            ],
+            lavas: [
+                point(820, 1600, { radius: 75 }), point(2380, 1600, { radius: 75 }),
+                point(1600, 820, { radius: 75 }), point(1600, 2380, { radius: 75 })
+            ]
         }
+    ];
+
+    function loadFixedMapLayout(waveIndex) {
+        const layout = fixedWaveMaps[Math.max(0, Math.min(waveIndex, fixedWaveMaps.length - 1))];
+        bushes = cloneRectList(layout.bushes);
+        obstacles = cloneRectList(layout.obstacles);
+        breakableBlocks = cloneBreakableList(layout.breakableBlocks);
+        mines = layout.mines.map(mine => new Mine(mine.x, mine.y));
+        spikes = layout.spikes.map(spike => new Spike(spike.x, spike.y));
+        lavas = layout.lavas.map(lava => new Lava(lava.x, lava.y, lava.radius));
     }
 
-    function generateProceduralSpikes() {
-        spikes = [];
-        const numSpikes = 20 + Math.floor(Math.random() * 15);
-        const margin = 100;
-        const spawnPoints = [{x: arenaWidth / 2, y: arenaHeight / 2}];
-
-        for (let i = 0; i < numSpikes; i++) {
-            let x, y, valid = false, attempts = 0;
-            while (!valid && attempts < 50) {
-                x = margin + Math.random() * (arenaWidth - margin * 2);
-                y = margin + Math.random() * (arenaHeight - margin * 2);
-                let distToCenter = Math.hypot(x - arenaWidth / 2, y - arenaHeight / 2);
-                let distToPlayer = player ? Math.hypot(x - player.x, y - player.y) : Infinity;
-                let tooCloseToSpawn = spawnPoints.some(p => Math.hypot(x - p.x, y - p.y) < 200);
-
-                let overlapsObstacles = obstacles.some(obs => checkRectOverlap(x-20, y-20, 40, 40, obs, 10));
-                let overlapsBreakables = breakableBlocks.some(b => checkRectOverlap(x-20, y-20, 40, 40, b, 10));
-                let overlapsMines = mines.some(m => Math.hypot(x - m.x, y - m.y) < 40);
-
-                if (distToCenter > 300 && distToPlayer > 200 && !tooCloseToSpawn &&
-                    !overlapsObstacles && !overlapsBreakables && !overlapsMines) valid = true;
-                attempts++;
-            }
-            if (valid) spikes.push(new Spike(x, y));
-        }
+    function isCircleTouchingRect(x, y, radius, rectObj, pad = 0) {
+        const closestX = Math.max(rectObj.x - pad, Math.min(x, rectObj.x + rectObj.w + pad));
+        const closestY = Math.max(rectObj.y - pad, Math.min(y, rectObj.y + rectObj.h + pad));
+        return Math.hypot(x - closestX, y - closestY) < radius;
     }
 
-    function generateProceduralLavas() {
-        lavas = [];
-        const numLavas = 10 + Math.floor(Math.random() * 8);
-        const margin = 100;
-        const spawnPoints = [{x: arenaWidth / 2, y: arenaHeight / 2}];
+    function isSpawnPositionBlocked(x, y, radius = 35) {
+        return obstacles.some(obs => isCircleTouchingRect(x, y, radius, obs, 12)) ||
+            breakableBlocks.some(block => isCircleTouchingRect(x, y, radius, block, 12)) ||
+            mines.some(mine => Math.hypot(x - mine.x, y - mine.y) < radius + mine.radius + 20) ||
+            spikes.some(spike => Math.hypot(x - spike.x, y - spike.y) < radius + spike.radius + 18) ||
+            lavas.some(lava => Math.hypot(x - lava.x, y - lava.y) < radius + lava.radius + 12);
+    }
 
-        for (let i = 0; i < numLavas; i++) {
-            let x, y, valid = false, attempts = 0;
-            while (!valid && attempts < 50) {
-                x = margin + Math.random() * (arenaWidth - margin * 2);
-                y = margin + Math.random() * (arenaHeight - margin * 2);
-                let distToCenter = Math.hypot(x - arenaWidth / 2, y - arenaHeight / 2);
-                let distToPlayer = player ? Math.hypot(x - player.x, y - player.y) : Infinity;
-                let tooCloseToSpawn = spawnPoints.some(p => Math.hypot(x - p.x, y - p.y) < 250);
-
-                let overlapsObstacles = obstacles.some(obs => checkRectOverlap(x-30, y-30, 60, 60, obs, 10));
-                let overlapsBreakables = breakableBlocks.some(b => checkRectOverlap(x-30, y-30, 60, 60, b, 10));
-                let overlapsMines = mines.some(m => Math.hypot(x - m.x, y - m.y) < 60);
-                let overlapsSpikes = spikes.some(s => Math.hypot(x - s.x, y - s.y) < 60);
-
-                if (distToCenter > 300 && distToPlayer > 200 && !tooCloseToSpawn &&
-                    !overlapsObstacles && !overlapsBreakables && !overlapsMines && !overlapsSpikes) valid = true;
-                attempts++;
-            }
-            if (valid) lavas.push(new Lava(x, y));
+    function findFreeEnemySpawnPoint(minDistanceFromPlayer, radius = 35) {
+        for (let attempt = 0; attempt < 140; attempt++) {
+            const candidate = {
+                x: Math.random() * (arenaWidth - 200) + 100,
+                y: Math.random() * (waterY - 200) + 100
+            };
+            if (player && Math.hypot(candidate.x - player.x, candidate.y - player.y) < minDistanceFromPlayer) continue;
+            if (isSpawnPositionBlocked(candidate.x, candidate.y, radius)) continue;
+            return candidate;
         }
+
+        const fallbackPoints = [
+            { x: 220, y: 220 },
+            { x: arenaWidth - 220, y: 220 },
+            { x: 220, y: Math.max(220, waterY - 220) },
+            { x: arenaWidth - 220, y: Math.max(220, waterY - 220) },
+            { x: arenaWidth / 2, y: 220 }
+        ];
+
+        return fallbackPoints.find(candidate => {
+            const farEnough = !player || Math.hypot(candidate.x - player.x, candidate.y - player.y) >= minDistanceFromPlayer;
+            return farEnough && !isSpawnPositionBlocked(candidate.x, candidate.y, radius);
+        }) || { x: 220, y: 220 };
     }
 
     function checkHidden(entity) {
@@ -882,12 +969,7 @@
         }
 
         if (gameState === 'MENU') {
-            generateProceduralBushes();
-            generateProceduralObstacles();
-            generateProceduralBreakables();
-            if (typeof Mine !== 'undefined') generateProceduralMines();
-            if (typeof Spike !== 'undefined') generateProceduralSpikes();
-            if (typeof Lava !== 'undefined') generateProceduralLavas();
+            loadFixedMapLayout(0);
         }
     }
 
@@ -2189,11 +2271,9 @@
                     for(let i=0; i<5; i++) shrapnels.push(new Shrapnel(this.x, this.y, player));
                     setTimeout(() => {
                         if ((gameState === 'PLAYING' || gameState === 'TRANSITION') && player.hp > 0) {
-                            let spawnX, spawnY;
-                            do {
-                                spawnX = Math.random() * (arenaWidth - 200) + 100;
-                                spawnY = Math.random() * (waterY - 200) + 100; 
-                            } while (Math.hypot(spawnX - player.x, spawnY - player.y) < 500);
+                            const spawnPoint = findFreeEnemySpawnPoint(500, 35);
+                            const spawnX = spawnPoint.x;
+                            const spawnY = spawnPoint.y;
                             const enemy = new Enemy(spawnX, spawnY, this.text, false, this.type);
                             if(this.type !== 'builder' && this.type !== 'mimic') enemy.speed *= 1.5; 
                             enemies.push(enemy);
@@ -2815,10 +2895,10 @@
     }
 
     class Lava {
-        constructor(x, y) {
+        constructor(x, y, radius) {
             this.x = x;
             this.y = y;
-            this.radius = 40 + Math.random() * 20; 
+            this.radius = radius ?? (40 + Math.random() * 20); 
             this.damageTimer = 0;
         }
         update(dt, player) {
@@ -3174,7 +3254,7 @@
         questionBanner.style.transform = 'translateY(0)';
         adjustCanvasSize(); 
         
-        generateProceduralBushes(); generateProceduralObstacles(); generateProceduralBreakables(); generateProceduralMines(); generateProceduralSpikes(); generateProceduralLavas();
+        loadFixedMapLayout(currentQuestionIndex);
 
         let options = [...q.options];
         options.sort(() => Math.random() - 0.5);
@@ -3192,12 +3272,9 @@
         for(let i=0; i<13; i++) {
             const isCorrect = (options[i] === q.correct);
             const typeToSpawn = enemyTypes[i];
-            
-            let sx, sy;
-            do {
-                sx = Math.random() * (arenaWidth - 200) + 100;
-                sy = Math.random() * (arenaHeight - 200) + 100;
-            } while (Math.hypot(sx - player.x, sy - player.y) < safeDist);
+            const spawnPoint = findFreeEnemySpawnPoint(safeDist, 35);
+            const sx = spawnPoint.x;
+            const sy = spawnPoint.y;
             
             enemies.push(new Enemy(sx, sy, options[i], isCorrect, typeToSpawn));
         }

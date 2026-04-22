@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowtank Arena | Phaser Slice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header id="question-banner" class="question-banner is-hidden">
+            <p id="question-text" class="question-text"></p>
+            <p id="objective-text" class="objective-text"></p>
+        </header>
+
+        <main class="game-shell">
+            <div id="game-root" class="game-root" aria-label="Arena Phaser"></div>
+
+            <div id="ui-layer" class="ui-layer ui-layer-hidden">
+                <div class="hud-top">
+                    <div class="bars-container">
+                        <div class="bar-card">
+                            <div class="bar-label-row">
+                                <span>Blindagem</span>
+                                <span id="health-value">100%</span>
+                            </div>
+                            <div class="bar-track bar-track-health">
+                                <div id="health-bar" class="bar-fill bar-fill-health"></div>
+                            </div>
+                        </div>
+
+                        <div class="bar-card">
+                            <div class="bar-label-row">
+                                <span>Calor</span>
+                                <span id="heat-value">0%</span>
+                            </div>
+                            <div id="heat-bar-container" class="bar-track bar-track-heat">
+                                <div id="heat-bar" class="bar-fill bar-fill-heat"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="wave-counter" class="wave-counter">Nível 1 / 5</div>
+                </div>
+            </div>
+
+            <section id="celebration-overlay" class="celebration-overlay is-hidden" aria-live="polite">
+                <div class="celebration-card">
+                    <p class="eyebrow">Transição de área</p>
+                    <h2 id="celebration-title">ÁREA LIMPA!</h2>
+                    <p id="celebration-desc">Sincronizando a próxima região...</p>
+                </div>
+            </section>
+
+            <section id="menu-overlay" class="menu-overlay" aria-live="polite">
+                <div class="overlay-panel">
+                    <p class="eyebrow">Migração Phaser em andamento</p>
+                    <h1 id="overlay-title">Knowtank Arena</h1>
+                    <p id="overlay-desc" class="overlay-desc">
+                        Base nova em Phaser.js, arquitetura modular e CSS externo. Esta primeira slice já substitui o loop manual por cenas, física Arcade e um fluxo inicial de ondas.
+                    </p>
+
+                    <div id="controls-info" class="info-strip">
+                        <i class="fa-solid fa-keyboard"></i>
+                        <span><strong>WASD</strong> move, <strong>mouse</strong> mira e dispara. Mobile entra nas próximas fases com joysticks dedicados.</span>
+                    </div>
+
+                    <section class="selection-block">
+                        <div class="section-head">
+                            <h2>1. Escolha o tanque</h2>
+                            <span class="status-chip">Shell jogável</span>
+                        </div>
+
+                        <div class="tank-options">
+                            <button class="tank-option is-active" data-tank="normal" type="button">
+                                <span class="option-icon"><i class="fa-solid fa-crosshairs"></i></span>
+                                <span class="option-copy">
+                                    <strong>Tiro Direto</strong>
+                                    <small>Cadência mais alta e leitura mais fiel da arena.</small>
+                                </span>
+                            </button>
+
+                            <button class="tank-option" data-tank="lobber" type="button">
+                                <span class="option-icon"><i class="fa-solid fa-bomb"></i></span>
+                                <span class="option-copy">
+                                    <strong>Lançador</strong>
+                                    <small>Arco parabólico, disparo por soltura e impacto em área por cima de obstáculos.</small>
+                                </span>
+                            </button>
+                        </div>
+                    </section>
+
+                    <section class="selection-block">
+                        <div class="section-head">
+                            <h2>2. Escolha os inimigos</h2>
+                            <span id="support-chip" class="status-chip status-chip-secondary">Slice atual</span>
+                        </div>
+
+                        <fieldset id="bot-grid" class="bot-grid" aria-label="Seleção de inimigos"></fieldset>
+                        <p id="bot-support-note" class="support-note"></p>
+                    </section>
+
+                    <section class="selection-block">
+                        <h2>3. Escolha o modo</h2>
+
+                        <div class="mode-options">
+                            <button class="mode-btn mode-btn-correct" data-mode="MODE_CORRECT" type="button">
+                                <span>Caçador</span>
+                                <small>Destrua apenas a resposta correta.</small>
+                            </button>
+
+                            <button class="mode-btn mode-btn-wrong" data-mode="MODE_WRONG" type="button">
+                                <span>Eliminação</span>
+                                <small>Apague todas as respostas falsas.</small>
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.js"></script>
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
