@@ -289,6 +289,10 @@ input:checked + .slider:before {
     align-items: center;
     cursor: pointer;
     position: relative;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
 }
 
 .selector-label input {
@@ -299,7 +303,7 @@ input:checked + .slider:before {
     width: 0;
 }
 
-.selector-mark {
+.selector-icon {
     height: 24px;
     width: 24px;
     background-color: #eee;
@@ -309,32 +313,22 @@ input:checked + .slider:before {
     justify-content: center;
     align-items: center;
     transition: all 0.2s;
-}
-
-.selector-label input[type="checkbox"] ~ .selector-mark {
-    border-radius: 6px; /* Quadrado para Checkbox */
-}
-
-.selector-label:hover input ~ .selector-mark {
-    background-color: #ccc;
-}
-
-.selector-label input:checked ~ .selector-mark {
-    background-color: var(--success);
-    border-color: var(--success);
-}
-
-.selector-mark:after {
-    content: "\f00c"; /* FontAwesome check */
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    color: white;
-    display: none;
+    color: transparent;
     font-size: 14px;
 }
 
-.selector-label input:checked ~ .selector-mark:after {
-    display: block;
+.selector-label input[type="checkbox"] ~ .selector-icon {
+    border-radius: 6px; /* Quadrado para Checkbox */
+}
+
+.selector-label:hover input ~ .selector-icon {
+    background-color: #ccc;
+}
+
+.selector-label input:checked ~ .selector-icon {
+    background-color: var(--success);
+    border-color: var(--success);
+    color: white;
 }
 
 /* Painel Inferior Fixo */

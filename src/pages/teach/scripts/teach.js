@@ -1,3 +1,10 @@
+import { authFirebase, dbFirebase } from "../../../scripts/config.js";
+import {
+    setDoc,
+    doc,
+    collection, query, where, getDocs, deleteDoc 
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 // Variável global para gerar IDs únicos para as perguntas
 let questionIdCounter = 0;
 let currentQuizId = null;
@@ -14,12 +21,23 @@ new Sortable(questionsContainer, {
 
 // Função para inicializar o app com a lista
 function init() {
-    showListView();
+    onAuthStateChanged(authFirebase, async (user) => {
+            if (!user) return console.error("null user");
+            showListView();
+        });
 }
 
 // --- Novas Funções de Storage e Navegação ---
-function getSavedQuizzes() {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+async function getSavedQuizzes() {
+    const snapshot = await getDocs(
+        query(
+            collection(dbFirebase, "quizzes"),
+            where("ownerId", "==", authFirebase.currentUser.uid)
+        )
+    );
+
+    const quizzes = snapshot.docs.map(doc => doc.data());
+    return quizzes;
 }
 
 function showListView() {
@@ -28,9 +46,9 @@ function showListView() {
     renderQuizList();
 }
 
-function renderQuizList() {
+async function renderQuizList() {
     const container = document.getElementById("quiz-list-container");
-    const quizzes = getSavedQuizzes();
+    const quizzes = await getSavedQuizzes();
 
     if (quizzes.length === 0) {
         container.innerHTML = `
@@ -75,8 +93,8 @@ function createNewQuiz() {
     addQuestion(); // Primeira pergunta vazia
 }
 
-function editQuiz(id) {
-    const quizzes = getSavedQuizzes();
+async function editQuiz(id) {
+    const quizzes = await getSavedQuizzes();
     const quiz = quizzes.find((q) => q.id === id);
     if (!quiz) return;
 
@@ -92,13 +110,10 @@ function editQuiz(id) {
     quiz.questions.forEach((qData) => addQuestion(qData));
 }
 
-function deleteSavedQuiz(id) {
-    if (confirm("Tem certeza que deseja excluir este quiz?")) {
-        let quizzes = getSavedQuizzes();
-        quizzes = quizzes.filter((q) => q.id !== id);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(quizzes));
-        renderQuizList();
-    }
+async function deleteSavedQuiz(id) {
+    if (!confirm("Tem certeza que deseja excluir este quiz?")) return;
+    await deleteDoc(doc(dbFirebase, "quizzes", id));
+    showListView();
 }
 
 // Função para adicionar uma nova pergunta ou carregar existente
@@ -142,7 +157,7 @@ function addQuestion(existingData = null) {
     questionsContainer.insertAdjacentHTML("beforeend", questionHTML);
 
     // Carrega alternativas existentes ou adiciona 2 vazias por padrão
-    if (existingData && existingData.options) {
+    if (existingData?.options) {
         existingData.options.forEach((opt) => addOption(qId, opt));
     } else {
         addOption(qId);
@@ -177,7 +192,7 @@ function addOption(qId, existingOptData = null) {
                 <div class="option-item ${isCorrect ? "is-correct" : ""}">
                     <label class="selector-label">
                         <input type="${inputType}" name="${inputName}" class="opt-correct" onchange="updateOptionStyle(this)" ${isCorrect ? "checked" : ""}>
-                        <span class="selector-mark"></span>
+                        <i class="fa-solid fa-check selector-icon" aria-hidden="true"></i>
                     </label>
                     <input type="text" class="opt-text" placeholder="Texto da alternativa..." value="${optText}" required>
                     <button class="icon-btn" onclick="deleteOption(this)" title="Excluir alternativa">
@@ -241,7 +256,7 @@ function toggleQuestionType(qId) {
 }
 
 // Função Principal: Varre o DOM, monta o JSON e imprime no console
-function saveQuiz() {
+async function saveQuiz() {
     const quizTitle = document.getElementById("quiz-title").value.trim();
 
     if (!quizTitle) {
@@ -251,6 +266,7 @@ function saveQuiz() {
     }
 
     const quizData = {
+        id: currentQuizId ?? crypto.randomUUID(),
         title: quizTitle,
         questions: [],
     };
@@ -308,31 +324,39 @@ function saveQuiz() {
     });
 
     if (isValid) {
-        quizData.id = currentQuizId || Date.now().toString(); // Associa o ID
+        quizData.id = currentQuizId || crypto.randomUUID(); // Associa o ID
 
         // Lógica de salvar/atualizar no localStorage
-        let quizzes = getSavedQuizzes();
-        const existingIndex = quizzes.findIndex((q) => q.id === quizData.id);
-
-        if (existingIndex >= 0) {
-            quizzes[existingIndex] = quizData; // Atualiza
-        } else {
-            quizzes.push(quizData); // Cria novo
-        }
-
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(quizzes));
-
         console.log("=== JSON DO QUIZ SALVO ===");
         console.log(JSON.stringify(quizData, null, 4));
 
         alert("Quiz salvo com sucesso!");
+        await updateQuizDatabase(quizData);
         showListView(); // Volta para a tela inicial
     }
 }
 
+async function updateQuizDatabase(quiz) {
+    try {
+        const ownerId = authFirebase.currentUser.uid;
+        console.log(ownerId);
+        const ref = doc(dbFirebase, "quizzes", quiz.id);
+        await setDoc(ref, { ...quiz, ownerId });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 // Inicia o App
-window.onload = init;
-window.createNewQuiz = createNewQuiz;
-window.showListView = showListView;
-window.addQuestion = addQuestion;
-window.saveQuiz = saveQuiz;
+globalThis.onload = init;
+globalThis.createNewQuiz = createNewQuiz;
+globalThis.showListView = showListView;
+globalThis.addQuestion = addQuestion;
+globalThis.saveQuiz = saveQuiz;
+globalThis.updateOptionStyle = updateOptionStyle;
+globalThis.deleteQuestion = deleteQuestion;
+globalThis.toggleQuestionType = toggleQuestionType;
+globalThis.deleteOption = deleteOption;
+globalThis.editQuiz = editQuiz;
+globalThis.deleteSavedQuiz = deleteSavedQuiz;
+globalThis.addOption = addOption;
