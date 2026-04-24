@@ -2,13 +2,96 @@ import { authFirebase, dbFirebase } from "../../../scripts/config.js";
 import {
     setDoc,
     doc,
-    collection, query, where, getDocs, deleteDoc 
+    collection,
+    query,
+    where,
+    getDocs,
+    deleteDoc,
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 // Variável global para gerar IDs únicos para as perguntas
 let questionIdCounter = 0;
 let currentQuizId = null;
 const STORAGE_KEY = "duo_quizzes_data";
+import QrCodeStyling from 'https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/+esm';
+
+
+
+function generateUrl(id) {
+    return globalThis.location.protocol + '//' + globalThis.location.host + '/backlog/knowtank/knowtank.html?' + new URLSearchParams({ id });
+}
+
+function shareQuiz(id) {
+    const url = generateUrl(id);
+
+    // Clear previous QR and populate URL input
+    const qrContainer = document.getElementById("qr");
+    qrContainer.innerHTML = "";
+    document.getElementById("share-url-input").value = url;
+
+    // Show/hide copy-image button based on browser support
+    const copyQrBtn = document.getElementById("copy-qr-btn");
+    if (typeof ClipboardItem !== "undefined") {
+        copyQrBtn.classList.remove("hidden");
+    } else {
+        copyQrBtn.classList.add("hidden");
+    }
+
+    const qrCode = new QrCodeStyling({ "type": "canvas", "shape": "square", "width": 280, "height": 280, "data": url, "margin": 0, "qrOptions": { "typeNumber": "0", "mode": "Byte", "errorCorrectionLevel": "Q" }, "imageOptions": { "saveAsBlob": true, "hideBackgroundDots": false, "imageSize": 0, "margin": 0 }, "dotsOptions": { "type": "rounded", "color": "#1cb0f6", "roundSize": true, "gradient": null }, "backgroundOptions": { "round": 0, "color": "#ffffff", "gradient": null }, "dotsOptionsHelper": { "colorType": { "single": true, "gradient": false }, "gradient": { "linear": true, "radial": false, "color1": "#6a1a4c", "color2": "#6a1a4c", "rotation": "0" } }, "cornersSquareOptions": { "type": "extra-rounded", "color": "#b7b7b7" }, "cornersSquareOptionsHelper": { "colorType": { "single": true, "gradient": false }, "gradient": { "linear": true, "radial": false, "color1": "#b7b7b7", "color2": "#b7b7b7", "rotation": "0" } }, "cornersDotOptions": { "type": "dot", "color": "#838383" }, "cornersDotOptionsHelper": { "colorType": { "single": true, "gradient": false }, "gradient": { "linear": true, "radial": false, "color1": "#000000", "color2": "#000000", "rotation": "0" } }, "backgroundOptionsHelper": { "colorType": { "single": true, "gradient": false }, "gradient": { "linear": true, "radial": false, "color1": "#ffffff", "color2": "#ffffff", "rotation": "0" } } });
+    qrCode.append(qrContainer);
+
+    openShareModal();
+}
+
+function openShareModal() {
+    document.getElementById("share-modal").classList.remove("hidden");
+}
+
+function closeShareModal() {
+    document.getElementById("share-modal").classList.add("hidden");
+}
+
+function handleModalOverlayClick(event) {
+    if (event.target === document.getElementById("share-modal")) {
+        closeShareModal();
+    }
+}
+
+function copyLink() {
+    const url = document.getElementById("share-url-input").value;
+    navigator.clipboard.writeText(url).then(() => {
+        const btn = document.querySelector(".copy-btn");
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+        setTimeout(() => { btn.innerHTML = original; }, 2000);
+    });
+}
+
+function downloadQr() {
+    const canvas = document.querySelector("#qr canvas");
+    if (!canvas) return;
+    const link = document.createElement("a");
+    link.download = "quiz-qrcode.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+}
+
+function copyQrImage() {
+    const canvas = document.querySelector("#qr canvas");
+    if (!canvas) return;
+    canvas.toBlob((blob) => {
+        navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]).then(() => {
+            const btn = document.getElementById("copy-qr-btn");
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+            setTimeout(() => { btn.innerHTML = original; }, 2000);
+        });
+    }, "image/png");
+}
+
+function playQuiz(id) {
+    globalThis.location.href = generateUrl(id);
+}
 
 // Inicializa o SortableJS no container de perguntas
 const questionsContainer = document.getElementById("questions-container");
@@ -22,9 +105,9 @@ new Sortable(questionsContainer, {
 // Função para inicializar o app com a lista
 function init() {
     onAuthStateChanged(authFirebase, async (user) => {
-            if (!user) return console.error("null user");
-            showListView();
-        });
+        if (!user) return console.error("null user");
+        showListView();
+    });
 }
 
 // --- Novas Funções de Storage e Navegação ---
@@ -32,11 +115,11 @@ async function getSavedQuizzes() {
     const snapshot = await getDocs(
         query(
             collection(dbFirebase, "quizzes"),
-            where("ownerId", "==", authFirebase.currentUser.uid)
-        )
+            where("ownerId", "==", authFirebase.currentUser.uid),
+        ),
     );
 
-    const quizzes = snapshot.docs.map(doc => doc.data());
+    const quizzes = snapshot.docs.map((doc) => doc.data());
     return quizzes;
 }
 
@@ -68,7 +151,13 @@ async function renderQuizList() {
                             <p>${quiz.questions.length} pergunta(s)</p>
                         </div>
                         <div class="quiz-actions">
-                            <button class="icon-btn" style="color: var(--primary);" onclick="editQuiz('${quiz.id}')" title="Editar">
+                            <button class="icon-btn" onclick="playQuiz('${quiz.id}')" title="Jogar">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <button class="icon-btn" onclick="shareQuiz('${quiz.id}')" title="Compartilhar">
+                                <i class="fa-solid fa-share-nodes"></i>
+                            </button>
+                            <button class="icon-btn" onclick="editQuiz('${quiz.id}')" title="Editar">
                                 <i class="fa-solid fa-pen"></i>
                             </button>
                             <button class="icon-btn" onclick="deleteSavedQuiz('${quiz.id}')" title="Excluir">
@@ -360,3 +449,11 @@ globalThis.deleteOption = deleteOption;
 globalThis.editQuiz = editQuiz;
 globalThis.deleteSavedQuiz = deleteSavedQuiz;
 globalThis.addOption = addOption;
+globalThis.shareQuiz = shareQuiz;
+globalThis.playQuiz = playQuiz;
+globalThis.openShareModal = openShareModal;
+globalThis.closeShareModal = closeShareModal;
+globalThis.handleModalOverlayClick = handleModalOverlayClick;
+globalThis.copyLink = copyLink;
+globalThis.downloadQr = downloadQr;
+globalThis.copyQrImage = copyQrImage;

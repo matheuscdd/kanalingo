@@ -10,7 +10,7 @@
             rel="stylesheet"
             href="../../libs/css/fontawesome-free-7.1.0-web/css/all.min.css"
         />
-        
+        <link href="../../styles/root.css" rel="stylesheet" />
         <link rel="stylesheet" href="./styles/teach.css" />
 
         <!-- SortableJS para Drag and Drop -->
@@ -18,6 +18,43 @@
         <script defer src="./scripts/teach.js" type="module"></script>
     </head>
     <body>
+        <!-- Modal de Compartilhamento -->
+        <div id="share-modal" class="modal-overlay hidden" onclick="handleModalOverlayClick(event)">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <span class="modal-title">Compartilhar Quiz</span>
+                    <button class="icon-btn" onclick="closeShareModal()" title="Fechar">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="modal-qr">
+                    <div id="qr"></div>
+                </div>
+
+                <div class="modal-qr-actions">
+                    <button class="btn btn-outline modal-qr-btn" onclick="downloadQr()">
+                        <i class="fa-solid fa-download"></i> Baixar PNG
+                    </button>
+                    <button id="copy-qr-btn" class="btn btn-outline modal-qr-btn hidden" onclick="copyQrImage()">
+                        <i class="fa-solid fa-image"></i> Copiar Imagem
+                    </button>
+                </div>
+
+                <div class="modal-section-label">Link do Quiz</div>
+                <div class="copy-row">
+                    <input type="text" id="share-url-input" class="copy-input" readonly />
+                    <button class="btn btn-primary copy-btn" onclick="copyLink()">
+                        <i class="fa-solid fa-copy"></i> Copiar
+                    </button>
+                </div>
+
+                <button class="btn btn-outline modal-close-btn" onclick="closeShareModal()">
+                    Fechar
+                </button>
+            </div>
+        </div>
+
         <!-- View da Lista de Quizzes -->
         <div id="list-view" class="container">
             <div class="list-header">
@@ -32,6 +69,9 @@
                 </button>
             </div>
             <div id="quiz-list-container" class="quiz-list">
+                <div style="display: flex; justify-content: center; align-items: center; color: #b7b7b7; margin-top: 20px;">
+                    <h2>Carregando...</h2>
+                </div>
                 <!-- Quizzes salvos aparecerão aqui -->
             </div>
         </div>
