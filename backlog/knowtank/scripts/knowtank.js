@@ -5,7 +5,7 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 // Identifica se é dispositivo móvel (Touch)
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.matchMedia('(pointer: coarse)').matches;
 
 let questions = [];
 
@@ -265,6 +265,9 @@ function handleTouch(e) {
     e.preventDefault();
 
     let isFakeLandscape = isMobile && window.innerWidth < window.innerHeight;
+    const bannerEl = document.getElementById('question-banner');
+    const canvasOffsetY = (!isFakeLandscape && bannerEl && !bannerEl.classList.contains('hidden'))
+        ? bannerEl.offsetHeight : 0;
 
     for (let i = 0; i < e.changedTouches.length; i++) {
         let t = e.changedTouches[i];
@@ -272,7 +275,7 @@ function handleTouch(e) {
         let ty = t.clientY;
 
         let gameTx = tx;
-        let gameTy = ty;
+        let gameTy = ty - canvasOffsetY;
 
         if (isFakeLandscape) {
             gameTx = ty;
@@ -642,8 +645,10 @@ function adjustCanvasSize() {
         gameContainer.style.transformOrigin = 'top left';
         gameContainer.style.transform = 'rotate(90deg)';
     } else {
+        const bannerEl = document.getElementById('question-banner');
+        const bannerH = (bannerEl && !bannerEl.classList.contains('hidden')) ? bannerEl.offsetHeight : 0;
         width = window.innerWidth;
-        height = window.innerHeight;
+        height = window.innerHeight - bannerH;
         gameContainer.style.width = '100%';
         gameContainer.style.height = '100%';
         gameContainer.style.position = 'relative';
@@ -657,10 +662,10 @@ function adjustCanvasSize() {
     canvas.height = height;
 
     if (isMobile) {
-        touchLeft.baseX = 120;
-        touchLeft.baseY = height - 120;
-        touchRight.baseX = width - 120;
-        touchRight.baseY = height - 120;
+        touchLeft.baseX = 90;
+        touchLeft.baseY = height - 90;
+        touchRight.baseX = width - 90;
+        touchRight.baseY = height - 90;
     }
 
     if (gameState === 'MENU') {
@@ -779,7 +784,8 @@ class Player {
 
         if (isAimingWithStick) {
             let rightJoy = getJoystickVector(touchRight);
-            if (rightJoy.distance > 0.1) {
+            const aimDeadzone = this.tankType === 'lobber' ? 0.5 : 0.1;
+            if (rightJoy.distance > aimDeadzone) {
                 this.aimAngle = Math.atan2(rightJoy.y, rightJoy.x);
                 this.aimDist = (rightJoy.distance / 50) * maxRange;
                 this.isAiming = true;
@@ -1943,11 +1949,15 @@ class Enemy {
         ctx.fillStyle = 'red'; ctx.fillRect(-20, -this.radius - 15 + wobble, 40, 5);
         ctx.fillStyle = '#00ff88'; ctx.fillRect(-20, -this.radius - 15 + wobble, 40 * hpPct, 5);
 
+        ctx.font = 'bold 16px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        const _labelPad = 16;
+        const _labelW = Math.max(ctx.measureText(this.text).width + _labelPad * 2, 40);
+        const _labelH = 30;
         ctx.fillStyle = 'rgba(0,0,0,0.8)';
-        ctx.beginPath(); ctx.roundRect(-this.radius - 20, -this.radius - 55 + wobble, (this.radius + 20) * 2, 30, 5);
+        ctx.beginPath(); ctx.roundRect(-_labelW / 2, -this.radius - 55 + wobble, _labelW, _labelH, 5);
         ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
 
-        ctx.fillStyle = '#fff'; ctx.font = 'bold 16px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#fff';
         ctx.fillText(this.text, 0, -this.radius - 40 + wobble);
 
         ctx.restore();
@@ -2428,7 +2438,7 @@ class Mine {
         this.y = y;
         this.radius = 15;
         this.state = 'idle';
-        this.timer = 5.0;
+        this.timer = 1.5;
         this.blastRadius = 120;
     }
     update(dt, player) {
@@ -3092,12 +3102,14 @@ function gameOver(reasonMsg = "Você foi derrotado pelas alternativas incorretas
     overlayTitle.innerText = "GAME OVER"; overlayTitle.style.color = "#ff0000";
     overlayDesc.innerHTML = reasonMsg;
     controlsInfo.classList.add('hidden');
+    overlay.scrollTop = 0;
 }
 
 function gameWin() {
     gameState = 'WIN';
     if (document.fullscreenElement) document.exitFullscreen().catch(err => console.log(err));
     overlay.classList.remove('hidden'); questionBanner.classList.add('hidden'); adjustCanvasSize();
+    overlay.scrollTop = 0;
     overlayTitle.innerText = "VITÓRIA!"; overlayTitle.style.color = "#00ff88";
     const correct = results.filter(r => r.correct).length;
     const total = results.length;
@@ -3264,6 +3276,19 @@ function gameLoop(time) {
                 for (let p = 0; p < 5; p++) particles.push(new Particle(mt.x, mt.y, (randomNum()) * 50, (randomNum()) * 50 - 50, '#cccccc', 8));
             }
             miniTurrets.splice(i, 1);
+            continue;
+        }
+        // Colisão física com o player
+        const mtDx = player.x - mt.x;
+        const mtDy = player.y - mt.y;
+        const mtDist = Math.hypot(mtDx, mtDy);
+        const mtMinDist = mt.radius + player.radius;
+        if (mtDist < mtMinDist && mtDist > 0) {
+            const overlap = mtMinDist - mtDist;
+            const nx = mtDx / mtDist;
+            const ny = mtDy / mtDist;
+            player.x += nx * overlap;
+            player.y += ny * overlap;
         }
     }
 

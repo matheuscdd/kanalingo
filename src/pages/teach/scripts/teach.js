@@ -100,6 +100,7 @@ new Sortable(questionsContainer, {
     animation: 150, // Suavidade da animação
     ghostClass: "sortable-ghost",
     dragClass: "sortable-drag",
+    onEnd: () => updateQuestionNumbers(),
 });
 
 // Função para inicializar o app com a lista
@@ -220,7 +221,13 @@ function addQuestion(existingData = null) {
     const questionHTML = `
                 <div class="card question-card" id="question-${qId}" data-id="${qId}">
                     <div class="card-top-bar">
-                        <i class="fa-solid fa-grip-vertical drag-handle" title="Arraste para reordenar"></i>
+                        <div class="drag-col">
+                            <span class="question-number"></span>
+                            <i class="fa-solid fa-grip-vertical drag-handle" title="Arraste para reordenar"></i>
+                        </div>
+                        <button class="icon-btn" onclick="duplicateQuestion(${qId})" title="Duplicar Pergunta">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
                         <button class="icon-btn del-question" onclick="deleteQuestion(${qId})" title="Excluir Pergunta">
                             <i class="fa-solid fa-trash"></i>
                         </button>
@@ -248,6 +255,7 @@ function addQuestion(existingData = null) {
 
     // Adiciona ao DOM
     questionsContainer.insertAdjacentHTML("beforeend", questionHTML);
+    updateQuestionNumbers();
 
     const delOptions = document.querySelectorAll('.del-question')
     if (delOptions.length === 1) {
@@ -265,6 +273,26 @@ function addQuestion(existingData = null) {
     }
 }
 
+// Função para duplicar uma pergunta
+function duplicateQuestion(qId) {
+    const sourceCard = document.getElementById(`question-${qId}`);
+    const text = sourceCard.querySelector(".q-text").value;
+    const isMultiple = sourceCard.querySelector(".q-type-toggle").checked;
+    const options = Array.from(sourceCard.querySelectorAll(".option-item")).map((item) => ({
+        text: item.querySelector(".opt-text").value,
+        isCorrect: item.querySelector(".opt-correct").checked,
+    }));
+    addQuestion({ text, allowMultipleAnswers: isMultiple, options });
+    const newCard = document.getElementById(`question-${questionIdCounter}`);
+    if (newCard) newCard.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function updateQuestionNumbers() {
+    document.querySelectorAll('.question-card').forEach((card, index) => {
+        card.querySelector('.question-number').textContent = index + 1;
+    });
+}
+
 // Função para deletar uma pergunta
 function deleteQuestion(qId) {
     const questionElement = document.getElementById(`question-${qId}`);
@@ -273,6 +301,7 @@ function deleteQuestion(qId) {
     questionElement.style.transform = "scale(0.95)";
     setTimeout(() => {
         questionElement.remove();
+        updateQuestionNumbers();
 
         const delOptions = document.querySelectorAll('.del-question')
     if (delOptions.length === 1) {
@@ -605,6 +634,7 @@ globalThis.addQuestion = addQuestion;
 globalThis.saveQuiz = saveQuiz;
 globalThis.updateOptionStyle = updateOptionStyle;
 globalThis.deleteQuestion = deleteQuestion;
+globalThis.duplicateQuestion = duplicateQuestion;
 globalThis.toggleQuestionType = toggleQuestionType;
 globalThis.deleteOption = deleteOption;
 globalThis.editQuiz = editQuiz;

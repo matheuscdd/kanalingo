@@ -144,7 +144,7 @@ canvas {
 }
 
 #question-text {
-    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    font-size: 13px;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
     margin: 0;
@@ -152,7 +152,7 @@ canvas {
 }
 
 #objective-text {
-    font-size: 0.9rem;
+    font-size: 6px;
     color: #ffc800;
     font-weight: bold;
     margin: 0;
@@ -194,13 +194,13 @@ canvas {
     background: rgba(0, 0, 0, 0.9);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     pointer-events: auto;
     color: white;
     z-index: 10;
     overflow-y: auto;
-    padding: 20px;
+    padding: 40px 20px 20px;
     box-sizing: border-box;
 }
 
