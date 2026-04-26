@@ -109,5 +109,42 @@
             </div>
         </div>
         <!-- Fim do editor-view -->
+
+        <!-- View dos Relatórios -->
+        <div id="reports-view" class="hidden">
+            <div class="container">
+                <div class="list-header">
+                    <div style="display:flex;gap:10px;">
+                        <button class="btn btn-outline" onclick="showListView()">
+                            <i class="fa-solid fa-arrow-left"></i> Voltar
+                        </button>
+                        <button class="btn btn-outline" onclick="refreshReports()" title="Atualizar">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                    </div>
+                    <h1 id="reports-quiz-title">Relatórios</h1>
+                </div>
+
+                <div class="reports-filter-bar">
+                    <label for="report-date-filter" class="reports-filter-label">
+                        <i class="fa-solid fa-calendar"></i> Filtrar por data:
+                    </label>
+                    <input
+                        type="date"
+                        id="report-date-filter"
+                        class="reports-date-input"
+                        onchange="filterReports()"
+                    />
+                    <button class="btn btn-outline reports-clear-btn" onclick="clearReportFilter()">
+                        <i class="fa-solid fa-xmark"></i> Limpar
+                    </button>
+                </div>
+
+                <div id="reports-container">
+                    <!-- Respostas agrupadas por data aparecem aqui -->
+                </div>
+            </div>
+        </div>
+        <!-- Fim do reports-view -->
     </body>
 </html>

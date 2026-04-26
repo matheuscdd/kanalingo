@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Voo do Saber - Bico para Direita</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -16,9 +19,21 @@
             --question-width: min(78vw, 520px);
             --control-size: 82px;
             --control-bottom-offset: calc(var(--safe-bottom) + 18px);
+            --sky-top: #8fd8ff;
+            --sky-bottom: #dff9ff;
+            --surface: #ffffff;
+            --surface-soft: #f4fcff;
+            --surface-outline: #cae8f7;
+            --surface-shadow: #afd9ee;
+            --ink: #25495f;
+            --accent: #58cc02;
+            --accent-dark: #44a000;
+            --accent-soft: #ddf6c0;
+            --danger: #ff6b6b;
+            --gold: #ffcf48;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; user-select: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Nunito', sans-serif; user-select: none; }
 
         html, body {
             width: 100%;
@@ -27,7 +42,7 @@
         }
 
         body {
-            background-color: #1a1a1a;
+            background-color: var(--sky-top);
             min-height: var(--viewport-height);
             overflow: hidden;
             touch-action: none;
@@ -39,17 +54,19 @@
             width: 100vw;
             height: var(--viewport-height);
             min-height: var(--viewport-height);
-            background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+            background:
+                radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.42) 0 7%, transparent 7.4%),
+                radial-gradient(circle at 82% 14%, rgba(255, 255, 255, 0.36) 0 6%, transparent 6.4%),
+                linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
             overflow: hidden;
-            border: 4px solid #fff;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            border: 5px solid rgba(255, 255, 255, 0.9);
         }
 
         /* Feedback Visual */
         .flash-red { animation: flashRed 0.4s ease-in-out; }
         .flash-green { animation: flashGreen 0.4s ease-in-out; }
-        @keyframes flashRed { 0%, 100% { background: inherit; } 50% { background: #ff4d4d; } }
-        @keyframes flashGreen { 0%, 100% { background: inherit; } 50% { background: #4dff88; } }
+        @keyframes flashRed { 0%, 100% { background: inherit; } 50% { background: #ffd8d4; } }
+        @keyframes flashGreen { 0%, 100% { background: inherit; } 50% { background: #e3f9c9; } }
 
         /* Interface (UI) */
         #ui-layer {
@@ -65,12 +82,14 @@
         }
 
         .stats {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px 15px;
-            border-radius: 10px;
-            font-weight: bold;
+            background: var(--surface);
+            color: var(--ink);
+            padding: 10px 16px;
+            border-radius: 18px;
+            border: 3px solid var(--surface-outline);
+            box-shadow: 0 5px 0 var(--surface-shadow);
+            font-weight: 900;
             font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         #question-box {
@@ -78,15 +97,16 @@
             top: calc(var(--safe-top) + 6px);
             left: 50%;
             transform: translateX(-50%);
-            background: white;
-            padding: 12px 28px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            font-weight: bold;
+            background: var(--surface);
+            color: var(--ink);
+            padding: 14px 28px;
+            border-radius: 28px;
+            box-shadow: 0 6px 0 var(--surface-shadow);
+            font-weight: 900;
             font-size: clamp(1rem, 2.5vw, 1.3rem);
             z-index: 55;
             text-align: center;
-            border: 3px solid #2980b9;
+            border: 3px solid var(--surface-outline);
             width: var(--question-width);
             max-width: calc(100vw - (var(--safe-left) + var(--safe-right) + 16px));
             min-width: min(280px, calc(100vw - 32px));
@@ -114,82 +134,178 @@
             pointer-events: auto;
             width: var(--control-size);
             height: var(--control-size);
-            background: rgba(255, 255, 255, 0.3);
-            border: 3px solid rgba(255, 255, 255, 0.6);
+            background: var(--surface);
+            border: 3px solid var(--surface-outline);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #11324a;
+            color: var(--accent-dark);
             font-size: clamp(24px, 3vw, 30px);
             cursor: pointer;
-            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 0 var(--surface-shadow);
             transition: background 0.2s, transform 0.1s;
         }
 
         .control-btn:active {
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(0.9);
+            background: var(--surface-soft);
+            transform: translateY(4px) scale(0.96);
+            box-shadow: 0 1px 0 var(--surface-shadow);
         }
 
-        /* Avião */
+        /* Helicoptero */
         #player {
             position: absolute;
             left: 80px;
             top: 50%;
-            font-size: clamp(36px, 5vw, 45px);
-            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.4));
+            --heli-body: #58cc02;
+            --heli-body-dark: #46a600;
+            --heli-accent: #ffcf48;
+            --heli-tail: #2f7fd0;
+            --heli-window: #a8dbff;
+            --heli-window-gloss: rgba(255, 255, 255, 0.8);
+            --heli-metal: #5f7d8c;
+            filter: drop-shadow(0 6px 0 rgba(95, 175, 217, 0.34));
             z-index: 40;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: clamp(56px, 8vw, 64px);
-            height: clamp(56px, 8vw, 64px);
+            width: clamp(88px, 12vw, 112px);
+            height: clamp(50px, 7vw, 62px);
             transform: translateY(-50%);
-            color: rgb(255, 212, 59);
         }
 
-        #player i {
+        #plane-icon {
             display: inline-block;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            transform: translateX(1px) rotate(var(--craft-tilt, 0deg));
+            transform-origin: 46% 58%;
             transition: transform 0.12s linear;
+        }
+
+        #plane-icon .heli-body {
+            fill: var(--heli-body);
+        }
+
+        #plane-icon .heli-body-dark {
+            fill: var(--heli-body-dark);
+        }
+
+        #plane-icon .heli-accent {
+            fill: var(--heli-accent);
+        }
+
+        #plane-icon .heli-tail {
+            fill: var(--heli-tail);
+        }
+
+        #plane-icon .heli-window {
+            fill: var(--heli-window);
+        }
+
+        #plane-icon .heli-window-gloss {
+            fill: var(--heli-window-gloss);
+        }
+
+        #plane-icon .heli-metal {
+            fill: var(--heli-metal);
+        }
+
+        #plane-icon .main-rotor {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: helicopterRotor 0.12s linear infinite;
+        }
+
+        #plane-icon .tail-rotor {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: tailRotor 0.16s linear infinite;
+        }
+
+        @keyframes helicopterRotor {
+            0%, 100% { transform: scaleX(1); opacity: 0.98; }
+            50% { transform: scaleX(0.14); opacity: 0.62; }
+        }
+
+        @keyframes tailRotor {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.2); opacity: 0.55; }
         }
 
         /* Nuvens */
         .option-cloud {
+            --cloud-padding-y: 12px;
+            --cloud-padding-x: 24px;
+            --cloud-puff-size: 44px;
             position: absolute;
-            background: #fff;
-            padding: 10px 20px;
-            border-radius: 40px;
-            font-weight: bold;
-            color: #333;
-            min-width: clamp(96px, 12vw, 132px);
+            padding: calc(var(--cloud-padding-y) + 10px) calc(var(--cloud-padding-x) + 8px) calc(var(--cloud-padding-y) + 28px);
+            font-weight: 900;
+            color: var(--ink);
+            min-height: 116px;
+            width: max-content;
+            max-width: min(44vw, 360px);
             text-align: center;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
             z-index: 10;
-            display: flex;
+            isolation: isolate;
+            display: inline-flex;
             justify-content: center;
             align-items: center;
-            white-space: nowrap;
+            white-space: normal;
+            line-height: 1.15;
+            overflow: visible;
+            overflow-wrap: anywhere;
             font-size: clamp(0.95rem, 2vw, 1.05rem);
+            background: transparent;
+            border: none;
+            box-shadow: none;
         }
 
-        .option-cloud::before {
-            content: "\f0c2";
-            font-family: "Font Awesome 6 Free", sans-serif;
-            font-weight: 900;
+        .cloud-shape {
             position: absolute;
-            font-size: 100px;
-            color: rgba(255, 255, 255, 0.98);
-            z-index: -1;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: visible;
+            filter: drop-shadow(0 7px 12px rgba(68, 129, 157, 0.15)) drop-shadow(0 2px 0 rgba(175, 217, 238, 0.18));
+        }
+
+        .cloud-core,
+        .cloud-puff {
+            position: absolute;
+            background: var(--surface);
+        }
+
+        .cloud-core {
+            left: var(--core-left);
+            top: var(--core-top);
+            width: var(--core-width);
+            height: var(--core-height);
+            border-radius: 999px;
+        }
+
+        .cloud-label {
+            position: relative;
+            z-index: 1;
+            display: block;
+            max-width: 100%;
+        }
+
+        .cloud-puff {
+            width: var(--puff-size);
+            height: var(--puff-size);
+            border-radius: 50%;
+            left: var(--puff-left);
+            top: var(--puff-top);
+            transform: translateX(-50%);
         }
 
         .overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.85);
+            background: linear-gradient(180deg, rgba(32, 79, 108, 0.78) 0%, rgba(25, 89, 120, 0.9) 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -206,25 +322,31 @@
             padding: 15px 50px;
             font-size: 1.4rem;
             border: none;
-            border-radius: 50px;
-            background: #27ae60;
-            color: #0b2414;
+            border-radius: 18px;
+            background: var(--accent);
+            color: #ffffff;
             cursor: pointer;
             margin-top: 30px;
-            font-weight: bold;
+            font-weight: 900;
             transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 0 var(--accent-dark);
         }
-        button.start-btn:hover { transform: scale(1.1); background: #2ecc71; }
+        button.start-btn:hover { transform: translateY(-2px); background: #69da16; }
+        button.start-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--accent-dark); }
 
         .smoke {
             position: absolute;
             width: 10px;
             height: 10px;
-            background: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.72);
             border-radius: 50%;
             pointer-events: none;
             z-index: 35;
+        }
+
+        .rotor-wash {
+            background: rgba(200, 232, 255, 0.78);
+            filter: blur(2px);
         }
 
         @media (hover: hover) and (pointer: fine) and (min-width: 1025px) {
@@ -319,7 +441,30 @@
     <div id="question-box" class="hidden"></div>
     
     <div id="player" class="hidden">
-        <i class="fa-solid fa-plane" id="plane-icon"></i>
+        <svg id="plane-icon" viewBox="0 0 210 120" aria-hidden="true">
+            <g transform="translate(210 0) scale(-1 1)">
+                <rect class="heli-metal" x="82" y="26" width="10" height="16" rx="4"/>
+                <g class="main-rotor">
+                    <rect class="heli-metal" x="30" y="21" width="62" height="5" rx="2.5"/>
+                    <rect class="heli-metal" x="92" y="21" width="88" height="5" rx="2.5"/>
+                    <rect class="heli-metal" x="80" y="19" width="18" height="9" rx="4.5"/>
+                </g>
+                <path class="heli-tail" d="M136 56h36c16 0 25 5 30 12h-22c-2 10-10 17-21 17h-34l11-29z"/>
+                <path class="heli-body" d="M40 64c0-20 16-36 36-36h34c18 0 32 10 39 28l10 27H72C54 83 40 75 40 64z"/>
+                <path class="heli-body-dark" d="M104 33h6c18 0 32 10 39 28l4 11h-17c-8-16-16-28-32-39z"/>
+                <path class="heli-accent" d="M50 69h99l4 10H59c-8 0-14-3-19-10h10z"/>
+                <path class="heli-window" d="M90 35c16 0 29 12 31 28H70c0-15 8-28 20-28z"/>
+                <path class="heli-window-gloss" d="M86 40c7 0 13 5 15 12H78c1-7 4-12 8-12z"/>
+                <path class="heli-metal" d="M64 85l-9 12h13l8-12h47l8 12h14l-9-12h-72z"/>
+                <path class="heli-metal" d="M49 97h49a4 4 0 0 1 0 8H44a8 8 0 0 1-8-8 8 8 0 0 1 8-8h5z"/>
+                <path class="heli-metal" d="M125 97h33a4 4 0 0 1 0 8h-37a8 8 0 0 1-8-8 8 8 0 0 1 8-8h4z"/>
+                <g class="tail-rotor">
+                    <circle class="heli-metal" cx="186" cy="70" r="7"/>
+                    <rect class="heli-accent" x="184.5" y="58" width="3" height="24" rx="1.5"/>
+                    <rect class="heli-accent" x="174" y="68.5" width="24" height="3" rx="1.5"/>
+                </g>
+            </g>
+        </svg>
     </div>
 
     <div id="elements-container"></div>
@@ -357,7 +502,9 @@
     ];
 
     let score = 0, lives = 3, isRunning = false;
-    let targetY = 250, currentY = 250;
+    let currentY = 250;
+    let verticalVelocity = 0;
+    let hoverPhase = 0;
     let gameSpeed = 2.8; 
     
     let currentQ = null;
@@ -473,8 +620,8 @@
         layoutState.playerOffsetLeft = playerOffsetLeft;
 
         player.style.left = `${playerOffsetLeft}px`;
-        targetY = clamp(targetY, topBoundary, container.offsetHeight - bottomSpacing);
         currentY = clamp(currentY, topBoundary, container.offsetHeight - bottomSpacing);
+        verticalVelocity = clamp(verticalVelocity, -4.6, 4.6);
         player.style.top = `${currentY}px`;
 
         updateControlsVisibility();
@@ -507,31 +654,166 @@
         spawnClouds();
     }
 
+    function getCloudSizing(text, viewportWidth) {
+        const charCount = text.length;
+        const maxWidth = clamp(viewportWidth * (layoutState.showTouchControls ? 0.5 : 0.4), 190, 360);
+        const width = clamp(150 + (charCount * 13), 150, maxWidth);
+        const puffSize = clamp(46 + (charCount * 1.9), 46, 68);
+        const paddingX = clamp(28 + (charCount * 0.9), 28, 52);
+        const paddingY = charCount > 10 ? 18 : 16;
+
+        return { width, puffSize, paddingX, paddingY };
+    }
+
+    function seededNoise(seed) {
+        const value = Math.sin(seed) * 10000;
+        return value - Math.floor(value);
+    }
+
+    function buildProceduralCloud(cloudEl, text, cloudSizing, seedBase) {
+        cloudEl.replaceChildren();
+
+        const shape = document.createElement('span');
+        shape.className = 'cloud-shape';
+        shape.setAttribute('aria-hidden', 'true');
+
+        const core = document.createElement('span');
+        core.className = 'cloud-core';
+
+        const profiles = [
+            {
+                core: { width: 92, height: 48, top: 22, offset: 0 },
+                lobes: [
+                    { left: 11, scale: 0.78, rise: 0.14 },
+                    { left: 29, scale: 0.96, rise: 0.34 },
+                    { left: 50, scale: 1.1, rise: 0.62 },
+                    { left: 71, scale: 0.96, rise: 0.34 },
+                    { left: 89, scale: 0.78, rise: 0.14 }
+                ]
+            },
+            {
+                core: { width: 88, height: 50, top: 20, offset: 0 },
+                lobes: [
+                    { left: 14, scale: 0.8, rise: 0.2 },
+                    { left: 33, scale: 0.98, rise: 0.42 },
+                    { left: 50, scale: 1.14, rise: 0.72 },
+                    { left: 67, scale: 1.02, rise: 0.44 },
+                    { left: 86, scale: 0.8, rise: 0.2 }
+                ]
+            },
+            {
+                core: { width: 94, height: 46, top: 24, offset: -2 },
+                lobes: [
+                    { left: 10, scale: 0.76, rise: 0.1 },
+                    { left: 26, scale: 0.88, rise: 0.3 },
+                    { left: 44, scale: 1.02, rise: 0.54 },
+                    { left: 62, scale: 0.98, rise: 0.42 },
+                    { left: 78, scale: 0.9, rise: 0.26 },
+                    { left: 92, scale: 0.74, rise: 0.1 }
+                ]
+            }
+        ];
+
+        const profile = profiles[Math.floor(seededNoise(seedBase + 7.19) * profiles.length)];
+        const coreWidth = clamp(profile.core.width + ((seededNoise(seedBase + 11.3) - 0.5) * 5), 88, 100);
+        const coreHeight = clamp(profile.core.height + ((seededNoise(seedBase + 13.7) - 0.5) * 4), 42, 56);
+        const coreLeft = clamp(
+            50 - (coreWidth / 2) + profile.core.offset + ((seededNoise(seedBase + 17.1) - 0.5) * 4),
+            2,
+            10
+        );
+        const coreTop = clamp(profile.core.top + ((seededNoise(seedBase + 19.9) - 0.5) * 4), 16, 28);
+
+        core.style.setProperty('--core-left', `${coreLeft}%`);
+        core.style.setProperty('--core-top', `${coreTop}%`);
+        core.style.setProperty('--core-width', `${coreWidth}%`);
+        core.style.setProperty('--core-height', `${coreHeight}%`);
+        shape.appendChild(core);
+
+        const supportLobes = profile.lobes.slice(0, -1).map((lobe, index) => {
+            const nextLobe = profile.lobes[index + 1];
+            return {
+                left: (lobe.left + nextLobe.left) / 2,
+                scale: ((lobe.scale + nextLobe.scale) / 2) * 0.96,
+                rise: Math.max(0.08, ((lobe.rise + nextLobe.rise) / 2) - 0.26)
+            };
+        });
+
+        const centerFillLobes = [
+            { left: 34, scale: 0.82, rise: 0.12 },
+            { left: 50, scale: 0.94, rise: 0.08 },
+            { left: 66, scale: 0.82, rise: 0.12 }
+        ];
+
+        const bottomFillLobes = [
+            { left: 16, scale: 0.85, rise: -0.9 },
+            { left: 33, scale: 0.98, rise: -1.1 },
+            { left: 50, scale: 1.06, rise: -1.2 },
+            { left: 67, scale: 0.98, rise: -1.1 },
+            { left: 84, scale: 0.85, rise: -0.9 }
+        ];
+
+        const allLobes = [...bottomFillLobes, ...centerFillLobes, ...supportLobes, ...profile.lobes];
+
+        allLobes.forEach((lobe, puffIndex) => {
+            const puff = document.createElement('span');
+            puff.className = 'cloud-puff';
+
+            const sizeNoise = seededNoise(seedBase + 31.1 + (puffIndex * 2.17));
+            const leftNoise = seededNoise(seedBase + 47.2 + (puffIndex * 1.41));
+            const topNoise = seededNoise(seedBase + 59.6 + (puffIndex * 1.83));
+
+            const size = Math.round(
+                clamp(cloudSizing.puffSize * lobe.scale * (0.92 + (sizeNoise * 0.14)), 28, 78)
+            );
+            const left = clamp(lobe.left + ((leftNoise - 0.5) * 4), 6, 94);
+            const top = Math.round(-size * lobe.rise + ((topNoise - 0.5) * 4));
+
+            puff.style.setProperty('--puff-size', `${size}px`);
+            puff.style.setProperty('--puff-left', `${left}%`);
+            puff.style.setProperty('--puff-top', `${top}px`);
+            shape.appendChild(puff);
+        });
+
+        const label = document.createElement('span');
+        label.className = 'cloud-label';
+        label.textContent = text;
+
+        cloudEl.appendChild(shape);
+        cloudEl.appendChild(label);
+    }
+
     function spawnClouds() {
         const rect = container.getBoundingClientRect();
         let shuffledOpts = [...currentQ.opts].sort(() => Math.random() - 0.5);
         const cloudTopBoundary = layoutState.cloudTop;
         const cloudBottomBoundary = rect.height - layoutState.cloudBottom;
         const availableHeight = Math.max(180, cloudBottomBoundary - cloudTopBoundary);
-        const laneHeight = Math.max(64, availableHeight / shuffledOpts.length);
+        const laneHeight = Math.max(148, availableHeight / shuffledOpts.length);
 
         shuffledOpts.forEach((text, i) => {
             const div = document.createElement('div');
             div.className = 'option-cloud';
-            div.innerText = text;
-            
-            const randomScale = 0.6 + (Math.random() * 0.4);
+            const cloudSizing = getCloudSizing(text, rect.width);
+            const cloudSeed = Math.random() * 1000 + (i * 37) + (text.length * 19);
             const laneStart = cloudTopBoundary + (laneHeight * i);
-            const yPadding = Math.min(24, laneHeight * 0.2);
+            const yPadding = Math.min(28, laneHeight * 0.2);
             const yMin = laneStart + yPadding;
             const yMax = Math.min(cloudBottomBoundary - yPadding, laneStart + laneHeight - yPadding);
             const y = clamp(yMin + (Math.random() * Math.max(8, yMax - yMin)), cloudTopBoundary + 24, cloudBottomBoundary - 24);
             
-            let startPosX = -200 - (i * Math.max(180, rect.width * 0.2)) - (Math.random() * Math.max(180, rect.width * 0.18)); 
+            let startPosX = -200 - (i * Math.max(320, rect.width * 0.55)) - (Math.random() * Math.max(80, rect.width * 0.1)); 
 
             div.style.top = y + 'px';
-            div.style.transform = `translateY(-50%) scale(${randomScale})`;
+            div.style.width = `${cloudSizing.width}px`;
+            div.style.maxWidth = `${Math.min(cloudSizing.width, rect.width - 40)}px`;
+            div.style.setProperty('--cloud-padding-x', `${cloudSizing.paddingX}px`);
+            div.style.setProperty('--cloud-padding-y', `${cloudSizing.paddingY}px`);
+            div.style.setProperty('--cloud-puff-size', `${cloudSizing.puffSize}px`);
+            div.style.transform = 'translateY(-50%)';
             div.style.right = startPosX + 'px';
+
+            buildProceduralCloud(div, text, cloudSizing, cloudSeed);
             
             elements.appendChild(div);
             
@@ -539,59 +821,121 @@
                 el: div,
                 text: text,
                 x: startPosX,
+                y: y,
+                h: 124,
                 speedMod: 0.8 + (Math.random() * 0.3)
             });
         });
         lastSpawnTime = Date.now();
     }
 
-    function createSmoke() {
-        const smoke = document.createElement('div');
-        smoke.className = 'smoke';
-        smoke.style.left = (player.offsetLeft - 15) + 'px';
-        smoke.style.top = (currentY + (Math.random() * 14 - 7)) + 'px';
-        elements.appendChild(smoke);
+    function separateClouds() {
+        if (activeClouds.length < 2) return;
+        const minGapY = 20;
+        const topBound = layoutState.cloudTop + 20;
+        const bottomBound = container.offsetHeight - layoutState.cloudBottom - 20;
 
-        let opacity = 0.7;
-        let size = 10;
-        let x = player.offsetLeft - 15;
+        for (let iter = 0; iter < 6; iter++) {
+            let moved = false;
+            for (let i = 0; i < activeClouds.length; i++) {
+                for (let j = i + 1; j < activeClouds.length; j++) {
+                    const a = activeClouds[i];
+                    const b = activeClouds[j];
+
+                    // Only check clouds that are horizontally near each other
+                    const aW = (a.el.offsetWidth || 200);
+                    const bW = (b.el.offsetWidth || 200);
+                    if (Math.abs(a.x - b.x) > (aW + bW) / 2 + 60) continue;
+
+                    const minDist = a.h / 2 + b.h / 2 + minGapY;
+                    const dist = Math.abs(a.y - b.y);
+                    if (dist >= minDist) continue;
+
+                    const push = (minDist - dist) / 2;
+                    moved = true;
+                    if (a.y <= b.y) {
+                        a.y = clamp(a.y - push, topBound, bottomBound);
+                        b.y = clamp(b.y + push, topBound, bottomBound);
+                    } else {
+                        a.y = clamp(a.y + push, topBound, bottomBound);
+                        b.y = clamp(b.y - push, topBound, bottomBound);
+                    }
+                }
+            }
+            if (!moved) break;
+        }
+
+        activeClouds.forEach(c => { c.el.style.top = c.y + 'px'; });
+    }
+
+    function createRotorWash() {
+        const wash = document.createElement('div');
+        wash.className = 'smoke rotor-wash';
+
+        // Spawn at the tail (left side) of the helicopter, vertically centered
+        const startX = player.offsetLeft - 6 + (Math.random() * 8 - 4);
+        const startY = player.offsetTop + (player.offsetHeight * 0.52) + (Math.random() * 10 - 5);
+
+        wash.style.left = `${startX}px`;
+        wash.style.top = `${startY}px`;
+        elements.appendChild(wash);
+
+        let opacity = 0.72;
+        let size = 14;
+        let x = startX;
+        let y = startY;
 
         const anim = setInterval(() => {
-            opacity -= 0.03;
-            size += 0.5;
-            x -= 2;
-            smoke.style.opacity = opacity;
-            smoke.style.width = size + 'px';
-            smoke.style.height = size + 'px';
-            smoke.style.left = x + 'px';
-            if(opacity <= 0) {
+            opacity -= 0.028;
+            size += 1.8;
+            x -= 2.4 + (Math.random() * 1.2);  // drift left (away from heli tail)
+            y += (Math.random() * 2 - 1) * 0.6; // slight vertical wobble
+            wash.style.opacity = opacity;
+            wash.style.width = `${size}px`;
+            wash.style.height = `${size}px`;
+            wash.style.left = `${x}px`;
+            wash.style.top = `${y - size / 2}px`;
+            if (opacity <= 0) {
                 clearInterval(anim);
-                smoke.remove();
+                wash.remove();
             }
         }, 30);
     }
 
     function updatePlayerPosition() {
-        const step = 4;
+        const movingUp = keys['ArrowUp'] || isPressingUp;
+        const movingDown = keys['ArrowDown'] || isPressingDown;
+        const topLimit = layoutState.topBoundary;
+        const bottomLimit = container.offsetHeight - layoutState.bottomBoundary;
+        const acceleration = 0.38;
+        const damping = movingUp || movingDown ? 0.94 : 0.78;
+        const maxVelocity = 4.8;
 
-        if ((keys['ArrowUp'] || isPressingUp) && targetY > layoutState.topBoundary) {
-            targetY -= step;
+        if (movingUp && !movingDown) {
+            verticalVelocity -= acceleration;
+        } else if (movingDown && !movingUp) {
+            verticalVelocity += acceleration;
         }
 
-        if ((keys['ArrowDown'] || isPressingDown) && targetY < container.offsetHeight - layoutState.bottomBoundary) {
-            targetY += step;
+        verticalVelocity *= damping;
+        verticalVelocity = clamp(verticalVelocity, -maxVelocity, maxVelocity);
+
+        currentY += verticalVelocity;
+        if (currentY <= topLimit) {
+            currentY = topLimit;
+            verticalVelocity = Math.max(0, verticalVelocity * 0.35);
+        } else if (currentY >= bottomLimit) {
+            currentY = bottomLimit;
+            verticalVelocity = Math.min(0, verticalVelocity * 0.35);
         }
 
-        targetY = clamp(targetY, layoutState.topBoundary, container.offsetHeight - layoutState.bottomBoundary);
+        hoverPhase += movingUp || movingDown ? 0.24 : 0.14;
+        const hoverBob = Math.sin(hoverPhase) * 1.6;
+        player.style.top = `${currentY + hoverBob}px`;
 
-        const diff = targetY - currentY;
-        currentY += diff * 0.12;
-        currentY = clamp(currentY, layoutState.topBoundary, container.offsetHeight - layoutState.bottomBoundary);
-        player.style.top = currentY + 'px';
-
-        const tilt = clamp(diff * 0.4, -25, 25);
-        planeIcon.style.transform = `rotate(${tilt}deg)`;
-        return diff;
+        const tilt = clamp(verticalVelocity * 2.3, -10, 10);
+        planeIcon.style.setProperty('--craft-tilt', `${tilt}deg`);
+        return verticalVelocity;
     }
 
     function handleCloudCollision(cloud, index) {
@@ -636,7 +980,7 @@
             return;
         }
 
-        if (activeClouds.length < 2 || (Date.now() - lastSpawnTime > spawnInterval)) {
+        if (activeClouds.length === 0 || (Date.now() - lastSpawnTime > spawnInterval * 1.8)) {
             spawnClouds();
         }
     }
@@ -651,11 +995,12 @@
 
         updatePlayerPosition();
 
-        if(Math.random() > 0.9) createSmoke();
+        if(Math.random() > 0.72) createRotorWash();
 
         const pRect = player.getBoundingClientRect();
         const correctCaptured = updateClouds(pRect);
 
+        separateClouds();
         maybeSpawnClouds(correctCaptured);
         updateHud();
         requestAnimationFrame(gameLoop);

@@ -1,5 +1,4 @@
-import { dbFirebase } from "../../../src/scripts/config.js";
-import { getSavedQuiz } from "../../../src/scripts/quizzes.js";
+import { getSavedQuiz, insertHistoryPractice } from "../../../src/scripts/quizzes.js";
 import { shuffleArray } from "../../../src/scripts/utils.js";
 
 const canvas = document.getElementById('gameCanvas');
@@ -15,6 +14,7 @@ globalThis.addEventListener('DOMContentLoaded', async () => {
     const data = await getSavedQuiz();
     if (!data) return;
     questions = data.questions;
+    console.log(questions)
 
 
     if (isMobile) {
@@ -44,7 +44,7 @@ const celebOverlay = document.getElementById('celebration-overlay');
 const celebTitle = document.getElementById('celebration-title');
 const celebDesc = document.getElementById('celebration-desc');
 
-const PLAYER_NAME_STORAGE_KEY = 'knowtank_player_name';
+const PLAYER_NAME_STORAGE_KEY = 'player_name';
 let studentName = '';
 
 function randomNum() {
@@ -235,6 +235,9 @@ let floatingTexts = [];
 let currentQuestionIndex = 0;
 let gameState = 'MENU';
 let gameMode = 'MODE_CORRECT';
+let results = [];
+let questionStartTime = 0;
+let questionDecided = false;
 let lastTime = 0;
 let cameraShake = 0;
 
@@ -1152,7 +1155,22 @@ class Player {
         this.flashTimer = 0.2;
 
         for (let i = 0; i < 10; i++) particles.push(new Particle(this.x, this.y, (randomNum()) * 300, (randomNum()) * 300, '#ff0055', 5));
-        if (this.hp <= 0) gameOver("Sua armadura foi destruída!");
+        if (this.hp <= 0) {
+            this.hp = 0;
+            updateHealthBar();
+            if (!questionDecided) {
+                questionDecided = true;
+                const elapsed = (performance.now() - questionStartTime) / 1000;
+                results.push({ 
+                    id: questions[currentQuestionIndex]?.id, 
+                    options: questions[currentQuestionIndex]?.options, 
+                    text: questions[currentQuestionIndex]?.text, 
+                    correct: false, 
+                    duration: Number.parseFloat(elapsed.toFixed(2)) 
+                });
+                setTimeout(() => triggerTransition(false), 0);
+            }
+        }
     }
 }
 
@@ -1951,16 +1969,25 @@ class Enemy {
                 floatingTexts.push(new FloatingText("CORRETO!", this.x, this.y, '#00ff88'));
                 player.hp = Math.min(player.maxHp, player.hp + 20);
                 updateHealthBar();
-                triggerTransition(true);
+                if (!questionDecided) {
+                    questionDecided = true;
+                    const elapsed = (performance.now() - questionStartTime) / 1000;
+                    results.push({ 
+                        id: questions[currentQuestionIndex]?.id, 
+                        options: questions[currentQuestionIndex]?.options, 
+                        text: questions[currentQuestionIndex]?.text, 
+                        correct: true, 
+                        duration: Number.parseFloat(elapsed.toFixed(2)) 
+                    });
+                    triggerTransition(true);
+                }
             } else {
                 floatingTexts.push(new FloatingText("ERRADO!", this.x, this.y, '#ff0000'));
                 for (let i = 0; i < 5; i++) shrapnels.push(new Shrapnel(this.x, this.y, player));
                 setTimeout(() => {
-                    if ((gameState === 'PLAYING' || gameState === 'TRANSITION') && player.hp > 0) {
+                    if ((gameState === 'PLAYING' || gameState === 'TRANSITION') && player.hp > 0 && !questionDecided) {
                         const spawnPoint = findFreeEnemySpawnPoint(500, 35);
-                        const spawnX = spawnPoint.x;
-                        const spawnY = spawnPoint.y;
-                        const enemy = new Enemy(spawnX, spawnY, this.text, false, this.type);
+                        const enemy = new Enemy(spawnPoint.x, spawnPoint.y, this.text, false, this.type);
                         if (this.type !== 'builder' && this.type !== 'mimic') enemy.speed *= 1.5;
                         enemies.push(enemy);
                     }
@@ -1969,7 +1996,18 @@ class Enemy {
         } else if (gameMode === 'MODE_WRONG') {
             if (this.isCorrect) {
                 floatingTexts.push(new FloatingText("ERA A CORRETA!", this.x, this.y, '#ff0000'));
-                gameOver("Você destruiu a resposta correta no Modo Eliminação!");
+                if (!questionDecided) {
+                    questionDecided = true;
+                    const elapsed = (performance.now() - questionStartTime) / 1000;
+                    results.push({ 
+                        id: questions[currentQuestionIndex]?.id, 
+                        options: questions[currentQuestionIndex]?.options, 
+                        text: questions[currentQuestionIndex]?.text, 
+                        correct: false, 
+                        duration: Number.parseFloat(elapsed.toFixed(2)) 
+                    });
+                    triggerTransition(false);
+                }
             } else {
                 floatingTexts.push(new FloatingText("ELIMINADA!", this.x, this.y, '#00ff88'));
                 player.hp = Math.min(player.maxHp, player.hp + 10);
@@ -1979,7 +2017,16 @@ class Enemy {
                 if (index > -1) enemies.splice(index, 1);
 
                 const wrongLeft = enemies.filter(e => !e.isCorrect && e.isSpawned !== false).length;
-                if (wrongLeft === 0) {
+                if (wrongLeft === 0 && !questionDecided) {
+                    questionDecided = true;
+                    const elapsed = (performance.now() - questionStartTime) / 1000;
+                    results.push({ 
+                        id: questions[currentQuestionIndex]?.id, 
+                        options: questions[currentQuestionIndex]?.options, 
+                        text: questions[currentQuestionIndex]?.text, 
+                        correct: true, 
+                        duration: Number.parseFloat(elapsed.toFixed(2)) 
+                    });
                     triggerTransition(true);
                 }
                 return;
@@ -2886,6 +2933,7 @@ function startGame(selectedMode) {
 
     player = new Player();
     currentQuestionIndex = 0;
+    results = [];
 
     waterY = arenaHeight;
     waveTimer = 0;
@@ -2928,6 +2976,16 @@ function updateHeatBar() {
 
 function loadWave() {
     gameState = 'PLAYING';
+    questionStartTime = performance.now();
+    questionDecided = false;
+
+    if (player) {
+        player.hp = player.maxHp;
+        player.heat = 0;
+        player.isOverheated = false;
+        updateHealthBar();
+        updateHeatBar();
+    }
 
     waterY = arenaHeight;
     waveTimer = 0;
@@ -2982,10 +3040,10 @@ function triggerTransition(isWin) {
         celebTitle.style.textShadow = "0 0 30px #00ff88, 3px 3px 0px #000";
         celebDesc.innerText = "Preparando resultado final...";
     } else {
-        celebTitle.innerText = isWin ? "ÁREA LIMPA!" : "AVANÇANDO...";
-        celebTitle.style.color = "#00ff88";
-        celebTitle.style.textShadow = "0 0 30px #00ff88, 3px 3px 0px #000";
-        celebDesc.innerText = "Avançando para a próxima área...";
+        celebTitle.innerText = isWin ? "ÁREA LIMPA!" : "ERRADO!";
+        celebTitle.style.color = isWin ? "#00ff88" : "#ff4b4b";
+        celebTitle.style.textShadow = isWin ? "0 0 30px #00ff88, 3px 3px 0px #000" : "0 0 30px #ff4b4b, 3px 3px 0px #000";
+        celebDesc.innerText = isWin ? "Avançando para a próxima área..." : "Próxima questão...";
     }
 
     celebOverlay.classList.remove('hidden');
@@ -3041,8 +3099,16 @@ function gameWin() {
     if (document.fullscreenElement) document.exitFullscreen().catch(err => console.log(err));
     overlay.classList.remove('hidden'); questionBanner.classList.add('hidden'); adjustCanvasSize();
     overlayTitle.innerText = "VITÓRIA!"; overlayTitle.style.color = "#00ff88";
-    overlayDesc.innerHTML = "Parabéns! Você tem reflexos rápidos e um cérebro afiado. Limpou a Arena do Conhecimento!";
+    const correct = results.filter(r => r.correct).length;
+    const total = results.length;
+    const avgTime = total > 0 ? (results.reduce((s, r) => s + r.duration, 0) / total).toFixed(1) : 0;
+    const resultRows = results.map((r, i) =>
+        `<span style="color:${r.correct ? '#00ff88' : '#ff4b4b'}">${r.correct ? '✔' : '✘'}</span> Q${i + 1}: ${r.duration}s`
+    ).join(' &nbsp;|&nbsp; ');
+    overlayDesc.innerHTML = `Parabéns! <b>${correct}/${total}</b> corretas &middot; Média: <b>${avgTime}s</b><br><small style="opacity:0.75;font-size:12px">${resultRows}</small>`;
+    console.log("=== RESULTADOS ===", results);
     controlsInfo.classList.add('hidden');
+    insertHistoryPractice(results);
 }
 
 function drawWater(ctx) {
@@ -3098,8 +3164,8 @@ function drawBackground(ctx) {
     for (let y = startY; y <= endY; y += gridSize) { ctx.beginPath(); ctx.moveTo(startX, y); ctx.lineTo(endX, y); ctx.stroke(); }
 
     function isVisible(obj) {
-        return (obj.x > camera.x - 300 && obj.x < camera.x + width + 300 &&
-            obj.y > camera.y - 300 && obj.y < camera.y + height + 300);
+        return (obj.x + (obj.w || 0) > camera.x - 300 && obj.x < camera.x + width + 300 &&
+            obj.y + (obj.h || 0) > camera.y - 300 && obj.y < camera.y + height + 300);
     }
 
     ctx.fillStyle = '#1a1a1a'; ctx.strokeStyle = '#00ff88'; ctx.lineWidth = 3;

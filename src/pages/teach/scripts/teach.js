@@ -125,6 +125,7 @@ async function getSavedQuizzes() {
 
 function showListView() {
     document.getElementById("editor-view").classList.add("hidden");
+    document.getElementById("reports-view").classList.add("hidden");
     document.getElementById("list-view").classList.remove("hidden");
     renderQuizList();
 }
@@ -151,6 +152,9 @@ async function renderQuizList() {
                             <p>${quiz.questions.length} pergunta(s)</p>
                         </div>
                         <div class="quiz-actions">
+                            <button class="icon-btn" onclick="showReports('${quiz.id}')" title="Relatórios">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </button>
                             <button class="icon-btn" onclick="playQuiz('${quiz.id}')" title="Jogar">
                                 <i class="fa-solid fa-play"></i>
                             </button>
@@ -217,7 +221,7 @@ function addQuestion(existingData = null) {
                 <div class="card question-card" id="question-${qId}" data-id="${qId}">
                     <div class="card-top-bar">
                         <i class="fa-solid fa-grip-vertical drag-handle" title="Arraste para reordenar"></i>
-                        <button class="icon-btn" onclick="deleteQuestion(${qId})" title="Excluir Pergunta">
+                        <button class="icon-btn del-question" onclick="deleteQuestion(${qId})" title="Excluir Pergunta">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </div>
@@ -245,6 +249,13 @@ function addQuestion(existingData = null) {
     // Adiciona ao DOM
     questionsContainer.insertAdjacentHTML("beforeend", questionHTML);
 
+    const delOptions = document.querySelectorAll('.del-question')
+    if (delOptions.length === 1) {
+        delOptions[0].classList.add('hidden')
+    } else {
+        delOptions.forEach(x => x.classList.remove('hidden'));
+    }
+
     // Carrega alternativas existentes ou adiciona 2 vazias por padrão
     if (existingData?.options) {
         existingData.options.forEach((opt) => addOption(qId, opt));
@@ -262,6 +273,13 @@ function deleteQuestion(qId) {
     questionElement.style.transform = "scale(0.95)";
     setTimeout(() => {
         questionElement.remove();
+
+        const delOptions = document.querySelectorAll('.del-question')
+    if (delOptions.length === 1) {
+        delOptions[0].classList.add('hidden')
+    } else {
+        delOptions.forEach(x => x.classList.remove('hidden'));
+    }
     }, 200);
 }
 
@@ -380,6 +398,7 @@ async function saveQuiz() {
         }
 
         const questionObj = {
+            id: crypto.randomUUID(),
             order: index + 1,
             text: qText,
             allowMultipleAnswers: isMultiple,
@@ -396,6 +415,7 @@ async function saveQuiz() {
             if (isCorrect) hasCorrectAnswer = true;
 
             questionObj.options.push({
+                id: crypto.randomUUID(),
                 text: optText,
                 isCorrect: isCorrect,
             });
@@ -428,12 +448,153 @@ async function saveQuiz() {
 async function updateQuizDatabase(quiz) {
     try {
         const ownerId = authFirebase.currentUser.uid;
-        console.log(ownerId);
-        const ref = doc(dbFirebase, "quizzes", quiz.id);
-        await setDoc(ref, { ...quiz, ownerId });
+        await setDoc(doc(dbFirebase, "quizzes", quiz.id), { ...quiz, ownerId });
     } catch (error) {
         console.error(error);
     }
+}
+
+// ─── Reports ─────────────────────────────────────────────────────────────────
+
+let currentReportQuizId = null;
+let currentResponses = [];
+
+async function getQuizResponses(quizId) {
+    const snapshot = await getDocs(
+        query(
+            collection(dbFirebase, "practices"),
+            where("quizId", "==", quizId),
+        ),
+    );
+
+    const quizzes = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        data.date = data.date?.toDate ? data.date.toDate() : (data.date instanceof Date ? data.date : new Date(data.date))
+        return data;
+    });
+    console.log(quizzes)
+    return quizzes;
+}
+
+function groupByDate(responses) {
+    const groups = {};
+    responses.forEach((r) => {
+        const d = r.date instanceof Date ? r.date : new Date(r.date);
+        const dateKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+        if (!groups[dateKey]) groups[dateKey] = [];
+        groups[dateKey].push(r);
+    });
+    return Object.fromEntries(
+        Object.entries(groups).sort((a, b) => b[0].localeCompare(a[0]))
+    );
+}
+
+function formatDateBR(dateStr) {
+    const [year, month, day] = dateStr.split("-").map(Number);
+    return new Date(year, month - 1, day).toLocaleDateString("pt-BR", {
+        day: "numeric", month: "long", year: "numeric"
+    });
+}
+
+function buildResponseRow(r) {
+    const total = r.questions.length;
+    const correct = r.questions.filter((q) => q.correct).length;
+    const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+    const badgeClass = pct >= 50 ? "score-badge--pass" : "score-badge--fail";
+
+    const detailRows = r.questions.map((q) => {
+        const correctOption = q.options.find((o) => o.isCorrect);
+        return `
+            <div class="answer-row ${q.correct ? "correct" : "wrong"}">
+                <i class="fa-solid ${q.correct ? "fa-check" : "fa-xmark"} answer-icon"></i>
+                <div class="answer-info">
+                    <span class="answer-question">${q.text}</span>
+                    <span class="answer-correct-opt">Resposta certa: ${correctOption ? correctOption.text : "—"}</span>
+                </div>
+                <span class="answer-duration">${q.duration.toFixed(1)}s</span>
+            </div>`;
+    }).join("");
+
+    return `
+        <div class="response-row" onclick="toggleResponseDetail(this)">
+            <div class="response-main">
+                <i class="fa-solid fa-user-circle response-avatar"></i>
+                <span class="response-username">${r.username}</span>
+                <span class="score-badge ${badgeClass}">${correct}/${total}</span>
+                <span class="response-time"><i class="fa-solid fa-clock"></i> ${(() => { const d = r.date instanceof Date ? r.date : new Date(r.date); return `${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`; })()}</span>
+                <span class="response-duration">${r.duration.toFixed(1)}s</span>
+                <i class="fa-solid fa-chevron-down response-chevron"></i>
+            </div>
+            <div class="response-detail hidden">${detailRows}</div>
+        </div>`;
+}
+
+function renderReports(groupedData, filterDate = null) {
+    const container = document.getElementById("reports-container");
+    const entries = filterDate
+        ? Object.entries(groupedData).filter(([date]) => date === filterDate)
+        : Object.entries(groupedData);
+
+    if (entries.length === 0) {
+        container.innerHTML = `
+            <div class="reports-empty">
+                <i class="fa-solid fa-inbox"></i>
+                <p>Nenhuma resposta encontrada.</p>
+            </div>`;
+        return;
+    }
+
+    container.innerHTML = entries.map(([date, responses]) => {
+        const rows = responses.map((r) => buildResponseRow(r)).join("");
+        return `
+            <div class="date-group">
+                <div class="date-group-header">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <span>${formatDateBR(date)}</span>
+                    <span class="date-group-count">${responses.length} resposta(s)</span>
+                </div>
+                <div class="date-group-body">${rows}</div>
+            </div>`;
+    }).join("");
+}
+
+async function showReports(quizId) {
+    currentReportQuizId = quizId;
+
+    const quizzes = await getSavedQuizzes();
+    const quiz = quizzes.find((q) => q.id === quizId);
+    document.getElementById("reports-quiz-title").textContent =
+        quiz ? `Relatórios — ${quiz.title}` : "Relatórios";
+
+    currentResponses = await getQuizResponses(quizId);
+    const grouped = groupByDate(currentResponses);
+
+    document.getElementById("list-view").classList.add("hidden");
+    document.getElementById("report-date-filter").value = "";
+    document.getElementById("reports-view").classList.remove("hidden");
+    renderReports(grouped);
+}
+
+function filterReports() {
+    const filterDate = document.getElementById("report-date-filter").value;
+    const grouped = groupByDate(currentResponses);
+    renderReports(grouped, filterDate || null);
+}
+
+function clearReportFilter() {
+    document.getElementById("report-date-filter").value = "";
+    filterReports();
+}
+
+async function refreshReports() {
+    currentResponses = await getQuizResponses(currentReportQuizId);
+    document.getElementById("report-date-filter").value = "";
+    renderReports(groupByDate(currentResponses));
+}
+
+function toggleResponseDetail(rowEl) {
+    rowEl.querySelector(".response-detail").classList.toggle("hidden");
+    rowEl.querySelector(".response-chevron").classList.toggle("rotated");
 }
 
 // Inicia o App
@@ -457,3 +618,8 @@ globalThis.handleModalOverlayClick = handleModalOverlayClick;
 globalThis.copyLink = copyLink;
 globalThis.downloadQr = downloadQr;
 globalThis.copyQrImage = copyQrImage;
+globalThis.showReports = showReports;
+globalThis.filterReports = filterReports;
+globalThis.clearReportFilter = clearReportFilter;
+globalThis.toggleResponseDetail = toggleResponseDetail;
+globalThis.refreshReports = refreshReports;
