@@ -99,7 +99,7 @@ app.createWeaponSystem = function createWeaponSystem({ scene, camera, accentColo
             direction,
             distance,
             travelled: 0,
-            speed: 34,
+            speed: 120,
             onArrival
         });
 

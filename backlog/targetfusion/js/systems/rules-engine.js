@@ -61,4 +61,43 @@ app.createRulesEngine = function createRulesEngine({ changeIntervalSeconds = 15,
         }
     };
 };
+
+app.createMCQRulesEngine = function createMCQRulesEngine(questions, { onQuestionChange } = {}) {
+    const sorted = [...questions].sort((a, b) => a.order - b.order);
+    let currentIndex = -1;
+
+    function commitQuestion(index) {
+        currentIndex = index;
+        onQuestionChange?.(sorted[currentIndex]);
+        return sorted[currentIndex];
+    }
+
+    return {
+        reset() {
+            return commitQuestion(0);
+        },
+        update() {
+            // MCQ engine advances only on player hits, not by timer
+        },
+        getCurrent() {
+            return currentIndex >= 0 ? sorted[currentIndex] : null;
+        },
+        getOptions() {
+            return currentIndex >= 0 ? sorted[currentIndex].options : [];
+        },
+        isCorrect(optionId) {
+            if (currentIndex < 0) return false;
+            const option = sorted[currentIndex].options.find((o) => o.id === optionId);
+            return option?.isCorrect ?? false;
+        },
+        nextQuestion() {
+            const nextIndex = currentIndex + 1;
+            if (nextIndex >= sorted.length) {
+                return false;
+            }
+            commitQuestion(nextIndex);
+            return true;
+        }
+    };
+};
 })();

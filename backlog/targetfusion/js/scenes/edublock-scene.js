@@ -33,6 +33,7 @@ function createColumn(scene, x, z, color) {
     const column = BABYLON.MeshBuilder.CreateBox(`edublock-column-${x}-${z}`, { width: 1.1, height: 8, depth: 1.1 }, scene);
     column.position = new BABYLON.Vector3(x, 4, z);
     column.material = material;
+    column.isPickable = false;
 }
 
 function buildEnvironment(scene) {
@@ -48,6 +49,7 @@ function buildEnvironment(scene) {
 
     const ground = BABYLON.MeshBuilder.CreateGround("edublock-ground", { width: 90, height: 90, subdivisions: 12 }, scene);
     ground.material = createCheckerGroundMaterial(scene);
+    ground.isPickable = false;
 
     const backWallMaterial = new BABYLON.StandardMaterial("edublock-backwall-material", scene);
     backWallMaterial.diffuseColor = BABYLON.Color3.FromHexString("#263446");
@@ -57,6 +59,7 @@ function buildEnvironment(scene) {
     const backWall = BABYLON.MeshBuilder.CreateBox("edublock-backwall", { width: 18, height: 8.4, depth: 1 }, scene);
     backWall.position = new BABYLON.Vector3(0, 4.2, 28);
     backWall.material = backWallMaterial;
+    backWall.isPickable = false;
 
     createColumn(scene, -12.5, 23, "#ff8f3d");
     createColumn(scene, 12.5, 23, "#67d27a");
@@ -64,7 +67,8 @@ function buildEnvironment(scene) {
     createColumn(scene, 18, 14, "#af52de");
 }
 
-function createBalloonDecoration({ scene, root, body, targetId }) {
+function createBalloonDecoration({ scene, root, body, targetId, sizeScale = 1 }) {
+    const halfHeight = 0.8 * sizeScale;
     const stringMaterial = new BABYLON.StandardMaterial(`edublock-string-material-${targetId}`, scene);
     stringMaterial.diffuseColor = BABYLON.Color3.White();
     stringMaterial.specularColor = BABYLON.Color3.Black();
@@ -75,25 +79,15 @@ function createBalloonDecoration({ scene, root, body, targetId }) {
         scene
     );
     stringMesh.parent = root;
-    stringMesh.position = new BABYLON.Vector3(0, -2.1, 0);
+    stringMesh.position = new BABYLON.Vector3(0, -(halfHeight + 1.7), 0);
     stringMesh.material = stringMaterial;
     stringMesh.isPickable = false;
-
-    const knotMaterial = new BABYLON.StandardMaterial(`edublock-knot-material-${targetId}`, scene);
-    knotMaterial.diffuseColor = BABYLON.Color3.FromHexString("#ffffff");
-    knotMaterial.specularColor = BABYLON.Color3.Black();
-
-    const knot = BABYLON.MeshBuilder.CreateSphere(`edublock-knot-${targetId}`, { diameter: 0.16, segments: 6 }, scene);
-    knot.parent = root;
-    knot.position = new BABYLON.Vector3(0, -0.75, 0.62);
-    knot.material = knotMaterial;
-    knot.isPickable = false;
 
     body.scaling = new BABYLON.Vector3(1, 1, 1);
 
     return {
-        meshes: [stringMesh, knot],
-        materials: [stringMaterial, knotMaterial]
+        meshes: [stringMesh],
+        materials: [stringMaterial]
     };
 }
 
@@ -107,25 +101,21 @@ const edublockConfig = {
     },
     weaponAccent: "#66d17a",
     maxTargets: 5,
-    targetRange: {
-        min: 1,
-        max: 9
-    },
+    targetOptions: [],
     targetBehavior: {
-        motionMode: "rise-only",
-        uniqueActiveValues: true
+        motionMode: "rise-only"
     },
     targetLayout: [
-        { x: -14, hiddenY: -3.2, despawnY: 20.5, z: 10, speed: 4.1, driftX: 0.12 },
-        { x: -9, hiddenY: -3.2, despawnY: 22.4, z: 16, speed: 4.8, driftZ: 0.09 },
-        { x: -3, hiddenY: -3.2, despawnY: 21.7, z: 20, speed: 4.4, driftX: -0.08 },
-        { x: 4, hiddenY: -3.2, despawnY: 23.1, z: 13, speed: 5.1, driftZ: -0.07 },
-        { x: 10, hiddenY: -3.2, despawnY: 21.1, z: 18, speed: 4.5, driftX: 0.06 },
-        { x: 14, hiddenY: -3.2, despawnY: 24.4, z: 23, speed: 5.2, driftX: -0.05 },
-        { x: -12, hiddenY: -3.2, despawnY: 23.8, z: 24, speed: 4.9, driftZ: 0.05 },
-        { x: 0, hiddenY: -3.2, despawnY: 25.2, z: 26, speed: 5.4 },
-        { x: 8, hiddenY: -3.2, despawnY: 20.9, z: 24, speed: 4.3, driftX: 0.09 },
-        { x: -6, hiddenY: -3.2, despawnY: 22.6, z: 12, speed: 4.7, driftZ: -0.08 }
+        { x: -14, hiddenY: -3.2, despawnY: 42.0, z: 10, speed: 4.1, driftX: 0.12 },
+        { x: -9, hiddenY: -3.2, despawnY: 44.0, z: 16, speed: 4.8, driftZ: 0.09 },
+        { x: -3, hiddenY: -3.2, despawnY: 43.0, z: 20, speed: 4.4, driftX: -0.08 },
+        { x: 4, hiddenY: -3.2, despawnY: 45.0, z: 13, speed: 5.1, driftZ: -0.07 },
+        { x: 10, hiddenY: -3.2, despawnY: 42.5, z: 18, speed: 4.5, driftX: 0.06 },
+        { x: 14, hiddenY: -3.2, despawnY: 46.0, z: 23, speed: 5.2, driftX: -0.05 },
+        { x: -12, hiddenY: -3.2, despawnY: 45.5, z: 24, speed: 4.9, driftZ: 0.05 },
+        { x: 0, hiddenY: -3.2, despawnY: 47.0, z: 26, speed: 5.4 },
+        { x: 8, hiddenY: -3.2, despawnY: 42.0, z: 24, speed: 4.3, driftX: 0.09 },
+        { x: -6, hiddenY: -3.2, despawnY: 44.5, z: 12, speed: 4.7, driftZ: -0.08 }
     ],
     targetAppearance: {
         width: 1.6,

@@ -9,6 +9,69 @@ function randomBetween(min, max) {
     return min + Math.random() * (max - min);
 }
 
+const LABEL_PADDING = 48;
+const LABEL_LINE_HEIGHT_RATIO = 1.4;
+
+function measureWrappedLines(context, text, maxWidth) {
+    const words = String(text).split(/\s+/).filter(Boolean);
+    if (words.length === 0) return [String(text)];
+    const lines = [];
+    let current = words[0];
+    for (let i = 1; i < words.length; i += 1) {
+        const test = current + " " + words[i];
+        if (context.measureText(test).width > maxWidth) {
+            lines.push(current);
+            current = words[i];
+        } else {
+            current = test;
+        }
+    }
+    lines.push(current);
+    return lines;
+}
+
+function computeFontAndLines(context, text, baseFont, usableWidth, usableHeight) {
+    const fontMatch = baseFont.match(/(\d+)px/);
+    if (!fontMatch) return { resolvedFont: baseFont, lines: [String(text)], fontSize: 16 };
+    const maxFontSize = parseInt(fontMatch[1], 10);
+    for (let fontSize = maxFontSize; fontSize >= 14; fontSize = Math.floor(fontSize * 0.76)) {
+        const resolvedFont = baseFont.replace(/(\d+)px/, fontSize + "px");
+        context.font = resolvedFont;
+        const lines = measureWrappedLines(context, text, usableWidth);
+        if (lines.length * fontSize * LABEL_LINE_HEIGHT_RATIO <= usableHeight) {
+            return { resolvedFont, lines, fontSize };
+        }
+    }
+    const resolvedFont = baseFont.replace(/(\d+)px/, "14px");
+    context.font = resolvedFont;
+    return { resolvedFont, lines: measureWrappedLines(context, text, usableWidth), fontSize: 14 };
+}
+
+function computeSizeScale(text) {
+    const len = String(text).length;
+    if (len > 40) return 3.2;
+    if (len > 20) return 2.4;
+    if (len >= 10) return 1.9;
+    if (len >= 5)  return 1.4;
+    if (len >= 3)  return 1.2;
+    return 1.0;
+}
+
+function pickNextOption(targets, options) {
+    const correctOption = options.find((o) => o.isCorrect);
+    const activeOptionIds = new Set(targets.map((t) => t.optionId).filter((id) => id != null));
+
+    // Always guarantee the correct option is on screen
+    if (correctOption && !activeOptionIds.has(correctOption.id)) {
+        return correctOption;
+    }
+
+    // Correct option gets double weight so it appears more often
+    const pool = [...options];
+    if (correctOption) pool.push(correctOption);
+    return pool[Math.floor(Math.random() * pool.length)];
+}
+
 function finalizeLabelTexture(texture) {
     texture.update();
     texture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
@@ -32,15 +95,28 @@ function drawLabelFace(context, tileX, tileY, value, appearance, fillColor) {
     context.strokeRect(tileX + 18, tileY + 18, LABEL_TEXTURE_SIZE - 36, LABEL_TEXTURE_SIZE - 36);
 
     if (value !== null && value !== undefined) {
+        const usableWidth = LABEL_TEXTURE_SIZE - LABEL_PADDING * 2;
+        const usableHeight = LABEL_TEXTURE_SIZE - LABEL_PADDING * 2;
+        const { resolvedFont, lines, fontSize } = computeFontAndLines(
+            context, String(value), appearance.labelFont, usableWidth, usableHeight
+        );
+        const lineHeight = fontSize * LABEL_LINE_HEIGHT_RATIO;
+        const totalTextHeight = lines.length * lineHeight;
+        const startY = tileY + (LABEL_TEXTURE_SIZE - totalTextHeight) / 2 + lineHeight * 0.5;
+        const centerX = tileX + LABEL_TEXTURE_SIZE / 2;
+
         context.fillStyle = appearance.textColor ?? "#ffffff";
         context.textAlign = "center";
         context.textBaseline = "middle";
-        context.font = appearance.labelFont;
+        context.font = resolvedFont;
         context.shadowColor = "rgba(0, 0, 0, 0.32)";
         context.shadowBlur = 12;
         context.shadowOffsetX = 8;
         context.shadowOffsetY = 8;
-        context.fillText(String(value), tileX + (LABEL_TEXTURE_SIZE / 2), tileY + 278);
+
+        lines.forEach((line, index) => {
+            context.fillText(line, centerX, startY + index * lineHeight);
+        });
     }
 
     context.restore();
@@ -86,10 +162,13 @@ function createWrappedBodyFaceUV() {
     ];
 }
 
-function createTargetVisual(scene, targetId, value, appearance) {
+function createTargetVisual(scene, targetId, value, appearance, sizeScale = 1) {
     const root = new BABYLON.TransformNode(`target-root-${targetId}`, scene);
     const bodyColor = appearance.palette[Math.floor(Math.random() * appearance.palette.length)];
     const usesWrappedBodyTexture = Boolean(appearance.applyTextureToBody);
+    const w = appearance.width * sizeScale;
+    const h = appearance.height * sizeScale;
+    const d = appearance.depth * sizeScale;
 
     const bodyMaterial = new BABYLON.StandardMaterial(`target-body-material-${targetId}`, scene);
     bodyMaterial.diffuseColor = BABYLON.Color3.FromHexString(bodyColor);
@@ -98,9 +177,9 @@ function createTargetVisual(scene, targetId, value, appearance) {
     const body = BABYLON.MeshBuilder.CreateBox(
         `target-body-${targetId}`,
         {
-            width: appearance.width,
-            height: appearance.height,
-            depth: appearance.depth,
+            width: w,
+            height: h,
+            depth: d,
             ...(usesWrappedBodyTexture
                 ? {
                     faceUV: createWrappedBodyFaceUV(),
@@ -130,14 +209,14 @@ function createTargetVisual(scene, targetId, value, appearance) {
     const label = BABYLON.MeshBuilder.CreatePlane(
         `target-label-${targetId}`,
         {
-            width: appearance.width * 0.88,
-            height: appearance.height * 0.88,
+            width: w * 0.88,
+            height: h * 0.88,
             sideOrientation: BABYLON.Mesh.DOUBLESIDE
         },
         scene
     );
     label.parent = root;
-    label.position = new BABYLON.Vector3(0, 0.03, -(appearance.depth * 0.51));
+    label.position = new BABYLON.Vector3(0, 0.03, -(d * 0.51));
     label.material = labelMaterial;
 
     if (usesWrappedBodyTexture) {
@@ -152,8 +231,10 @@ function createTargetVisual(scene, targetId, value, appearance) {
         label.rotation.x = appearance.labelTilt;
     }
 
+    body.isPickable = true;
     body.metadata = { targetId };
-    label.metadata = { targetId };
+
+    label.isPickable = false;
 
     const decoration = appearance.decorateTarget?.({
         scene,
@@ -164,7 +245,8 @@ function createTargetVisual(scene, targetId, value, appearance) {
         value,
         bodyColor,
         bodyMaterial,
-        labelMaterial
+        labelMaterial,
+        sizeScale
     }) ?? {};
 
     return {
@@ -286,10 +368,12 @@ app.createTargetSystem = function createTargetSystem({
     appearance,
     maxTargets = 4,
     range = { min: 1, max: 30 },
+    options = null,
     behavior = {}
 }) {
     const slots = layout.map((slot, slotIndex) => ({ ...slot, id: slotIndex, inUse: false }));
     const targets = [];
+    let currentOptions = options ? [...options] : null;
     let nextTargetId = 0;
     let spawnCooldown = randomBetween(0.8, 1.8);
     const motionMode = behavior.motionMode ?? "pop";
@@ -325,13 +409,23 @@ app.createTargetSystem = function createTargetSystem({
         }
 
         const slot = availableSlots[Math.floor(Math.random() * availableSlots.length)];
-        const value = pickNextValue(targets, range, uniqueActiveValues);
 
-        if (value === null) {
-            return;
+        let value;
+        let optionId = null;
+
+        if (currentOptions && currentOptions.length > 0) {
+            const picked = pickNextOption(targets, currentOptions);
+            value = picked.text;
+            optionId = picked.id;
+        } else {
+            value = pickNextValue(targets, range, uniqueActiveValues);
+            if (value === null) {
+                return;
+            }
         }
 
-        const visual = createTargetVisual(scene, nextTargetId, value, appearance);
+        const sizeScale = computeSizeScale(String(value));
+        const visual = createTargetVisual(scene, nextTargetId, value, appearance, sizeScale);
 
         visual.root.position = new BABYLON.Vector3(slot.x, slot.hiddenY, slot.z);
         slot.inUse = true;
@@ -339,6 +433,7 @@ app.createTargetSystem = function createTargetSystem({
         targets.push({
             id: nextTargetId,
             value,
+            optionId,
             slot,
             state: "RISING",
             timer: randomBetween(2.3, 4.6),
@@ -411,6 +506,20 @@ app.createTargetSystem = function createTargetSystem({
             target.state = "FALLING";
             setTargetHitTint(target, isCorrect);
             return true;
+        },
+        setOptions(newOptions) {
+            currentOptions = newOptions ? [...newOptions] : null;
+        },
+        dismissAll() {
+            for (let index = targets.length - 1; index >= 0; index -= 1) {
+                const target = targets[index];
+                if (!target.resolved && target.state !== "FALLING") {
+                    target.resolved = true;
+                    target.pendingHit = false;
+                    target.state = "FALLING";
+                    setTargetHitTint(target, false);
+                }
+            }
         },
         dispose() {
             while (targets.length > 0) {

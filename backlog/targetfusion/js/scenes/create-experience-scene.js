@@ -17,7 +17,7 @@ function getFallbackAimDistance(cameraPosition, targetLayout) {
         })
         .sort((left, right) => left - right);
 
-    return BABYLON.Scalar.Clamp(distances[Math.floor(distances.length / 2)] ?? 18, 12, 28);
+    return BABYLON.Scalar.Clamp(distances[Math.floor(distances.length / 2)] ?? 18, 18, 80);
 }
 
 function getMobileUiElements() {
@@ -42,19 +42,31 @@ app.createExperienceScene = function createExperienceScene({ engine, canvas, ui,
     config.buildEnvironment(scene, camera);
 
     const audio = app.createAudioSystem();
-    const rules = app.createRulesEngine({
-        onQuestionChange(question) {
-            ui.setRule(question.text);
-        }
-    });
+    const isMCQ = Array.isArray(config.targetOptions);
+
     const targets = app.createTargetSystem({
         scene,
         layout: config.targetLayout,
         appearance: config.targetAppearance,
         maxTargets: config.maxTargets,
-        range: config.targetRange,
+        range: config.targetRange ?? { min: 1, max: 30 },
+        options: isMCQ ? config.targetOptions : null,
         behavior: config.targetBehavior
     });
+
+    const rules = isMCQ
+        ? app.createMCQRulesEngine(app.mockQuestions, {
+            onQuestionChange(question) {
+                ui.setRule(question.text);
+                targets.setOptions(question.options);
+            }
+          })
+        : app.createRulesEngine({
+            onQuestionChange(question) {
+                ui.setRule(question.text);
+            }
+          });
+
     const weapon = app.createWeaponSystem({ scene, camera, accentColor: config.weaponAccent });
 
     let roundComplete = false;
@@ -104,7 +116,7 @@ app.createExperienceScene = function createExperienceScene({ engine, canvas, ui,
             let targetPoint = forwardRay.origin.add(forwardRay.direction.scale(fallbackAimDistance));
             let pickedTarget = null;
 
-            if (worldPick?.hit && worldPick.pickedPoint) {
+            if (worldPick?.hit && worldPick.pickedPoint && worldPick.distance > 4) {
                 targetPoint = worldPick.pickedPoint.clone();
             }
 
@@ -121,7 +133,10 @@ app.createExperienceScene = function createExperienceScene({ engine, canvas, ui,
                     return;
                 }
 
-                const isCorrect = rules.isCorrect(pickedTarget.value);
+                const isCorrect = isMCQ
+                    ? rules.isCorrect(pickedTarget.optionId)
+                    : rules.isCorrect(pickedTarget.value);
+
                 if (!targets.resolveHit(pickedTarget, isCorrect)) {
                     return;
                 }
@@ -140,6 +155,14 @@ app.createExperienceScene = function createExperienceScene({ engine, canvas, ui,
                 }
 
                 ui.setScore(score);
+
+                if (isMCQ) {
+                    targets.dismissAll();
+                    const hasMore = rules.nextQuestion();
+                    if (!hasMore) {
+                        finishRound();
+                    }
+                }
             });
         },
         onZoomChange(enabled) {
