@@ -44,6 +44,7 @@ import Eolica from "./landmarks/Eolica.js";
 import VilaDeLuxo from "./landmarks/VilaDeLuxo.js";
 import ModernHouseWithPool from "./landmarks/ModernHouseWithPool.js";
 import ModernBeachVilla from "./landmarks/ModernBeachVilla.js";
+import ModernTownhouse from "./landmarks/ModernTownhouse.js";
 import MiniTeaHouse from "./landmarks/MiniTeaHouse.js";
 import RiversideMinka from "./landmarks/RiversideMinka.js";
 import MerchantHouse from "./landmarks/MerchantHouse.js";
@@ -111,6 +112,7 @@ const PREFABS = {
     VilaDeLuxo,
     ModernHouseWithPool,
     ModernBeachVilla,
+    ModernTownhouse,
     TorreDeLondres,
     FushimiInariTaisha,
     CasteloHimeji,

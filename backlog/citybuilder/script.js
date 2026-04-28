@@ -238,6 +238,14 @@ function getRegisteredBlockDef(type) {
     return BLOCKS[type] || ensureDynamicShapeBlockType(type);
 }
 
+const missingBlockTypeWarnings = new Set();
+
+function warnMissingBlockType(type) {
+    if (!type || missingBlockTypeWarnings.has(type)) return;
+    missingBlockTypeWarnings.add(type);
+    console.warn(`[citybuilder] Unknown block type ignored by renderer: ${type}`);
+}
+
 function getShapeDirectionCycleIndex(direction) {
     const index = SHAPE_DIRECTIONS.indexOf(normalizeShapeDirection(direction));
     return index >= 0 ? index : 0;
@@ -2921,6 +2929,15 @@ function getShapeTopStudLayout(shapeGeo, shapeName, sx, sy, sz, direction, rot) 
 }
 
 function getVisualTopStudSurface(def, rot = 0, direction = SHAPE_DIRECTION_DEFAULT, shapeGeo = null) {
+    if (!def) {
+        return {
+            width: 1,
+            topY: 1,
+            depth: 1,
+            useGroupSpace: false,
+        };
+    }
+
     if (def?.customGeo?.startsWith("shape:")) {
         const { dx, dy, dz } = getBlockMetrics(def, rot, direction);
         const shapeName = def.customGeo.slice("shape:".length);
@@ -2964,8 +2981,13 @@ function createBlockGroup(type, colorHex, rot, isGhost = false, direction = SHAP
         return group;
     }
 
-    const def = getRegisteredBlockDef(type);
     const group = new THREE.Group();
+    const def = getRegisteredBlockDef(type);
+    if (!def) {
+        warnMissingBlockType(type);
+        return group;
+    }
+
     const partRoot = def.customGeo?.startsWith("shape:") ? new THREE.Group() : group;
     const baseMat = isGhost ? matGhostValid : matSolid;
     const sx = def.sx,
