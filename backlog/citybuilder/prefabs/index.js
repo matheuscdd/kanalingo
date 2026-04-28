@@ -50,6 +50,7 @@ import ImperialJapaneseCastle from "./landmarks/ImperialJapaneseCastle.js";
 import SamuraiGatehouse from "./landmarks/SamuraiGatehouse.js";
 import MiniTeaHouse from "./landmarks/MiniTeaHouse.js";
 import RiversideMinka from "./landmarks/RiversideMinka.js";
+import SakuraTempleRetreat from "./landmarks/SakuraTempleRetreat.js";
 import MerchantHouse from "./landmarks/MerchantHouse.js";
 import ToriiRowShrineBase from "./landmarks/ToriiRowShrineBase.js";
 import ToriiRowShrineDetails from "./landmarks/ToriiRowShrineDetails.js";
@@ -97,6 +98,7 @@ const PREFABS = {
     TemploHoryuji,
     MiniTeaHouse,
     RiversideMinka,
+    SakuraTempleRetreat,
     MerchantHouse,
     ToriiRowShrineBase,
     ToriiRowShrineDetails,

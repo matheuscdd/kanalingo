@@ -31,6 +31,7 @@ import ModernTownhouse               from '../prefabs/landmarks/ModernTownhouse.
 import OliveSuburbanHouse            from '../prefabs/landmarks/OliveSuburbanHouse.js';
 import ImperialJapaneseCastle        from '../prefabs/landmarks/ImperialJapaneseCastle.js';
 import SamuraiGatehouse              from '../prefabs/landmarks/SamuraiGatehouse.js';
+import SakuraTempleRetreat           from '../prefabs/landmarks/SakuraTempleRetreat.js';
 import Arvore                        from '../prefabs/landmarks/Arvore.js';
 import TorreEiffel                   from '../prefabs/landmarks/TorreEiffel.js';
 import CristoRedentor                from '../prefabs/landmarks/CristoRedentor.js';
@@ -244,6 +245,7 @@ const ALL = {
     OliveSuburbanHouse,
     ImperialJapaneseCastle,
     SamuraiGatehouse,
+    SakuraTempleRetreat,
     Arvore,
     TorreEiffel,
     CristoRedentor,
