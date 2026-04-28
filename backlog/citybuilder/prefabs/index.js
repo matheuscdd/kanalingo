@@ -60,6 +60,7 @@ import TempleHallRoof from "./landmarks/TempleHallRoof.js";
 import ThreeTierPagodaStructure from "./landmarks/ThreeTierPagodaStructure.js";
 import ThreeTierPagodaRoofs from "./landmarks/ThreeTierPagodaRoofs.js";
 import MiniHimejiKeep from "./landmarks/MiniHimejiKeep.js";
+import CasaMedieval1 from "./landmarks/CasaMedieval1.js";
 import {
     attachPrefabMeta,
     buildSerializablePrefabSource,
@@ -109,6 +110,7 @@ const PREFABS = {
     ThreeTierPagodaStructure,
     ThreeTierPagodaRoofs,
     MiniHimejiKeep,
+    CasaMedieval1,
     EstatuaLiberdade,
     CasaBranca,
     BasilicaSaoPedro,
