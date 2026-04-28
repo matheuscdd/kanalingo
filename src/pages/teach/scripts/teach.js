@@ -13,12 +13,16 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/fi
 let questionIdCounter = 0;
 let currentQuizId = null;
 const STORAGE_KEY = "duo_quizzes_data";
-import QrCodeStyling from 'https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/+esm';
-
-
+import QrCodeStyling from "https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/+esm";
 
 function generateUrl(id) {
-    return globalThis.location.protocol + '//' + globalThis.location.host + '/backlog/knowtank/knowtank.html?' + new URLSearchParams({ id });
+    return (
+        globalThis.location.protocol +
+        "//" +
+        globalThis.location.host +
+        "/backlog/knowtank/knowtank.html?" +
+        new URLSearchParams({ id })
+    );
 }
 
 function shareQuiz(id) {
@@ -37,7 +41,70 @@ function shareQuiz(id) {
         copyQrBtn.classList.add("hidden");
     }
 
-    const qrCode = new QrCodeStyling({ "type": "canvas", "shape": "square", "width": 280, "height": 280, "data": url, "margin": 0, "qrOptions": { "typeNumber": "0", "mode": "Byte", "errorCorrectionLevel": "Q" }, "imageOptions": { "saveAsBlob": true, "hideBackgroundDots": false, "imageSize": 0, "margin": 0 }, "dotsOptions": { "type": "rounded", "color": "#1cb0f6", "roundSize": true, "gradient": null }, "backgroundOptions": { "round": 0, "color": "#ffffff", "gradient": null }, "dotsOptionsHelper": { "colorType": { "single": true, "gradient": false }, "gradient": { "linear": true, "radial": false, "color1": "#6a1a4c", "color2": "#6a1a4c", "rotation": "0" } }, "cornersSquareOptions": { "type": "extra-rounded", "color": "#b7b7b7" }, "cornersSquareOptionsHelper": { "colorType": { "single": true, "gradient": false }, "gradient": { "linear": true, "radial": false, "color1": "#b7b7b7", "color2": "#b7b7b7", "rotation": "0" } }, "cornersDotOptions": { "type": "dot", "color": "#838383" }, "cornersDotOptionsHelper": { "colorType": { "single": true, "gradient": false }, "gradient": { "linear": true, "radial": false, "color1": "#000000", "color2": "#000000", "rotation": "0" } }, "backgroundOptionsHelper": { "colorType": { "single": true, "gradient": false }, "gradient": { "linear": true, "radial": false, "color1": "#ffffff", "color2": "#ffffff", "rotation": "0" } } });
+    const qrCode = new QrCodeStyling({
+        type: "canvas",
+        shape: "square",
+        width: 280,
+        height: 280,
+        data: url,
+        margin: 0,
+        qrOptions: { typeNumber: "0", mode: "Byte", errorCorrectionLevel: "Q" },
+        imageOptions: {
+            saveAsBlob: true,
+            hideBackgroundDots: false,
+            imageSize: 0,
+            margin: 0,
+        },
+        dotsOptions: {
+            type: "rounded",
+            color: "#1cb0f6",
+            roundSize: true,
+            gradient: null,
+        },
+        backgroundOptions: { round: 0, color: "#ffffff", gradient: null },
+        dotsOptionsHelper: {
+            colorType: { single: true, gradient: false },
+            gradient: {
+                linear: true,
+                radial: false,
+                color1: "#6a1a4c",
+                color2: "#6a1a4c",
+                rotation: "0",
+            },
+        },
+        cornersSquareOptions: { type: "extra-rounded", color: "#b7b7b7" },
+        cornersSquareOptionsHelper: {
+            colorType: { single: true, gradient: false },
+            gradient: {
+                linear: true,
+                radial: false,
+                color1: "#b7b7b7",
+                color2: "#b7b7b7",
+                rotation: "0",
+            },
+        },
+        cornersDotOptions: { type: "dot", color: "#838383" },
+        cornersDotOptionsHelper: {
+            colorType: { single: true, gradient: false },
+            gradient: {
+                linear: true,
+                radial: false,
+                color1: "#000000",
+                color2: "#000000",
+                rotation: "0",
+            },
+        },
+        backgroundOptionsHelper: {
+            colorType: { single: true, gradient: false },
+            gradient: {
+                linear: true,
+                radial: false,
+                color1: "#ffffff",
+                color2: "#ffffff",
+                rotation: "0",
+            },
+        },
+    });
     qrCode.append(qrContainer);
 
     openShareModal();
@@ -63,7 +130,9 @@ function copyLink() {
         const btn = document.querySelector(".copy-btn");
         const original = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
-        setTimeout(() => { btn.innerHTML = original; }, 2000);
+        setTimeout(() => {
+            btn.innerHTML = original;
+        }, 2000);
     });
 }
 
@@ -80,12 +149,16 @@ function copyQrImage() {
     const canvas = document.querySelector("#qr canvas");
     if (!canvas) return;
     canvas.toBlob((blob) => {
-        navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]).then(() => {
-            const btn = document.getElementById("copy-qr-btn");
-            const original = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
-            setTimeout(() => { btn.innerHTML = original; }, 2000);
-        });
+        navigator.clipboard
+            .write([new ClipboardItem({ "image/png": blob })])
+            .then(() => {
+                const btn = document.getElementById("copy-qr-btn");
+                const original = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                }, 2000);
+            });
     }, "image/png");
 }
 
@@ -257,11 +330,11 @@ function addQuestion(existingData = null) {
     questionsContainer.insertAdjacentHTML("beforeend", questionHTML);
     updateQuestionNumbers();
 
-    const delOptions = document.querySelectorAll('.del-question')
+    const delOptions = document.querySelectorAll(".del-question");
     if (delOptions.length === 1) {
-        delOptions[0].classList.add('hidden')
+        delOptions[0].classList.add("hidden");
     } else {
-        delOptions.forEach(x => x.classList.remove('hidden'));
+        delOptions.forEach((x) => x.classList.remove("hidden"));
     }
 
     // Carrega alternativas existentes ou adiciona 2 vazias por padrão
@@ -278,18 +351,20 @@ function duplicateQuestion(qId) {
     const sourceCard = document.getElementById(`question-${qId}`);
     const text = sourceCard.querySelector(".q-text").value;
     const isMultiple = sourceCard.querySelector(".q-type-toggle").checked;
-    const options = Array.from(sourceCard.querySelectorAll(".option-item")).map((item) => ({
-        text: item.querySelector(".opt-text").value,
-        isCorrect: item.querySelector(".opt-correct").checked,
-    }));
+    const options = Array.from(sourceCard.querySelectorAll(".option-item")).map(
+        (item) => ({
+            text: item.querySelector(".opt-text").value,
+            isCorrect: item.querySelector(".opt-correct").checked,
+        }),
+    );
     addQuestion({ text, allowMultipleAnswers: isMultiple, options });
     const newCard = document.getElementById(`question-${questionIdCounter}`);
     if (newCard) newCard.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function updateQuestionNumbers() {
-    document.querySelectorAll('.question-card').forEach((card, index) => {
-        card.querySelector('.question-number').textContent = index + 1;
+    document.querySelectorAll(".question-card").forEach((card, index) => {
+        card.querySelector(".question-number").textContent = index + 1;
     });
 }
 
@@ -303,12 +378,12 @@ function deleteQuestion(qId) {
         questionElement.remove();
         updateQuestionNumbers();
 
-        const delOptions = document.querySelectorAll('.del-question')
-    if (delOptions.length === 1) {
-        delOptions[0].classList.add('hidden')
-    } else {
-        delOptions.forEach(x => x.classList.remove('hidden'));
-    }
+        const delOptions = document.querySelectorAll(".del-question");
+        if (delOptions.length === 1) {
+            delOptions[0].classList.add("hidden");
+        } else {
+            delOptions.forEach((x) => x.classList.remove("hidden"));
+        }
     }, 200);
 }
 
@@ -498,10 +573,14 @@ async function getQuizResponses(quizId) {
 
     const quizzes = snapshot.docs.map((doc) => {
         const data = doc.data();
-        data.date = data.date?.toDate ? data.date.toDate() : (data.date instanceof Date ? data.date : new Date(data.date))
+        data.date = data.date?.toDate
+            ? data.date.toDate()
+            : data.date instanceof Date
+              ? data.date
+              : new Date(data.date);
         return data;
     });
-    console.log(quizzes)
+    console.log(quizzes);
     return quizzes;
 }
 
@@ -514,14 +593,16 @@ function groupByDate(responses) {
         groups[dateKey].push(r);
     });
     return Object.fromEntries(
-        Object.entries(groups).sort((a, b) => b[0].localeCompare(a[0]))
+        Object.entries(groups).sort((a, b) => b[0].localeCompare(a[0])),
     );
 }
 
 function formatDateBR(dateStr) {
     const [year, month, day] = dateStr.split("-").map(Number);
     return new Date(year, month - 1, day).toLocaleDateString("pt-BR", {
-        day: "numeric", month: "long", year: "numeric"
+        day: "numeric",
+        month: "long",
+        year: "numeric",
     });
 }
 
@@ -531,9 +612,10 @@ function buildResponseRow(r) {
     const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
     const badgeClass = pct >= 50 ? "score-badge--pass" : "score-badge--fail";
 
-    const detailRows = r.questions.map((q) => {
-        const correctOption = q.options.find((o) => o.isCorrect);
-        return `
+    const detailRows = r.questions
+        .map((q) => {
+            const correctOption = q.options.find((o) => o.isCorrect);
+            return `
             <div class="answer-row ${q.correct ? "correct" : "wrong"}">
                 <i class="fa-solid ${q.correct ? "fa-check" : "fa-xmark"} answer-icon"></i>
                 <div class="answer-info">
@@ -542,7 +624,8 @@ function buildResponseRow(r) {
                 </div>
                 <span class="answer-duration">${q.duration.toFixed(1)}s</span>
             </div>`;
-    }).join("");
+        })
+        .join("");
 
     return `
         <div class="response-row" onclick="toggleResponseDetail(this)">
@@ -550,7 +633,11 @@ function buildResponseRow(r) {
                 <i class="fa-solid fa-user-circle response-avatar"></i>
                 <span class="response-username">${r.username}</span>
                 <span class="score-badge ${badgeClass}">${correct}/${total}</span>
-                <span class="response-time"><i class="fa-solid fa-clock"></i> ${(() => { const d = r.date instanceof Date ? r.date : new Date(r.date); return `${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`; })()}</span>
+                <span class="response-time"><i class="fa-solid fa-clock"></i> ${(() => {
+                    const d =
+                        r.date instanceof Date ? r.date : new Date(r.date);
+                    return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+                })()}</span>
                 <span class="response-duration">${r.duration.toFixed(1)}s</span>
                 <i class="fa-solid fa-chevron-down response-chevron"></i>
             </div>
@@ -573,9 +660,10 @@ function renderReports(groupedData, filterDate = null) {
         return;
     }
 
-    container.innerHTML = entries.map(([date, responses]) => {
-        const rows = responses.map((r) => buildResponseRow(r)).join("");
-        return `
+    container.innerHTML = entries
+        .map(([date, responses]) => {
+            const rows = responses.map((r) => buildResponseRow(r)).join("");
+            return `
             <div class="date-group">
                 <div class="date-group-header">
                     <i class="fa-solid fa-calendar-day"></i>
@@ -584,7 +672,8 @@ function renderReports(groupedData, filterDate = null) {
                 </div>
                 <div class="date-group-body">${rows}</div>
             </div>`;
-    }).join("");
+        })
+        .join("");
 }
 
 async function showReports(quizId) {
@@ -592,8 +681,9 @@ async function showReports(quizId) {
 
     const quizzes = await getSavedQuizzes();
     const quiz = quizzes.find((q) => q.id === quizId);
-    document.getElementById("reports-quiz-title").textContent =
-        quiz ? `Relatórios — ${quiz.title}` : "Relatórios";
+    document.getElementById("reports-quiz-title").textContent = quiz
+        ? `Relatórios — ${quiz.title}`
+        : "Relatórios";
 
     currentResponses = await getQuizResponses(quizId);
     const grouped = groupByDate(currentResponses);

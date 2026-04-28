@@ -9,18 +9,18 @@ function showErrorMessage(message) {
     document.body.innerHTML = `<span style="color: #FFF">${message}</span>`;
 }
 
-const context = {}
+const context = {};
 
 export async function getSavedQuiz() {
     const urlParams = new URLSearchParams(globalThis.location.search);
-    const id = urlParams.get('id');
+    const id = urlParams.get("id");
     if (!id) {
-        return showErrorMessage('Id não fornecido');
+        return showErrorMessage("Id não fornecido");
     }
     const snapshot = await getDoc(doc(dbFirebase, "quizzes", id));
 
     if (!snapshot.exists()) {
-        return showErrorMessage('Id não encontrado');
+        return showErrorMessage("Id não encontrado");
     }
 
     context.results = snapshot.data();
@@ -34,12 +34,14 @@ export async function insertHistoryPractice(questions) {
             id: practiceId,
             quizId: context.results.id,
             date: new Date(),
-            username: localStorage.getItem('player_name'),
+            username: localStorage.getItem("player_name"),
             duration: questions.reduce((a, b) => a + b.duration, 0),
-            score: (questions.filter(x => x.correct).length / questions.length) * 100,
-            questions
-        }
-        console.log(quiz)
+            score:
+                (questions.filter((x) => x.correct).length / questions.length) *
+                100,
+            questions,
+        };
+        console.log(quiz);
         await setDoc(doc(dbFirebase, "practices", practiceId), quiz);
     } catch (error) {
         console.error(error);

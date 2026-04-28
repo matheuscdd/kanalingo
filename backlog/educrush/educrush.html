@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Match 3 Educativo - Categorias</title>
+    
+    <!-- Fonte no estilo Duolingo (Arredondada, amigável e legível) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           ESTILOS DA INTERFACE (CSS Puro / Flat Design)
+           ========================================= */
+        :root {
+            --bg-color: #F7F7F9;
+            --text-color: #4B4B4B;
+            --primary: #58CC02;
+            --primary-shadow: #46A302;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100dvh; /* Adaptativo para navegadores mobile (desconta barras nativas) */
+            overflow: hidden;
+        }
+
+        #app-container {
+            width: 100%;
+            height: 100%; /* Força o container a usar a altura calculada da tela */
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 15px;
+        }
+
+        /* Cabeçalho da UI */
+        .ui-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 0 #E5E5E5;
+            flex-shrink: 0; /* Impede que o cabeçalho seja espremido na tela pequena */
+        }
+
+        .stat-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #AFAFAF;
+            letter-spacing: 1px;
+            font-weight: 900;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        /* Container do Jogo (Phaser) */
+        #game-container {
+            background: var(--white);
+            border-radius: 24px;
+            box-shadow: 0 8px 0 #E5E5E5;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            flex: 1; /* Preenche exatamente o espaço que sobra na tela */
+            min-height: 0; /* Regra essencial do Flexbox: permite que o elemento encolha sem transbordar */
+            width: 100%;
+        }
+
+        /* Modal de Instruções (Overlay) */
+        #instructions-modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            border-radius: 24px;
+            z-index: 10;
+            transition: opacity 0.3s;
+        }
+
+        #instructions-modal h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        #instructions-modal p {
+            font-size: 18px;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 20px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            border-radius: 16px;
+            box-shadow: 0 5px 0 var(--primary-shadow);
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 var(--primary-shadow);
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+    
+    <!-- Importando Phaser 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+</head>
+<body>
+
+    <div id="app-container">
+        <!-- UI -->
+        <header class="ui-header">
+            <div class="stat-box">
+                <span class="stat-label">Movimentos</span>
+                <span class="stat-value" id="moves-text">30</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Pontuação</span>
+                <span class="stat-value" id="score-text">0</span>
+            </div>
+        </header>
+
+        <!-- Área do Jogo -->
+        <div id="game-container">
+            <!-- Modal Interno -->
+            <div id="instructions-modal">
+                <h1>Atenção!</h1>
+                <p>Neste jogo, <strong>as cores não importam!</strong><br><br>
+                Combine 3 ou mais cards conectando conceitos da <strong>mesma categoria</strong> (Ex: Animais, Objetos, Comidas, Países).</p>
+                <button class="btn" id="start-btn">Começar</button>
+            </div>
+            <!-- Canvas do Phaser será injetado aqui -->
+        </div>
+    </div>
+
+    <script>
+        /* =========================================
+           DADOS DO JOGO (Categorias e Cores)
+           ========================================= */
+        
+        // Categorias e seus respectivos textos (podem ser até 100 caracteres)
+        const GAME_DATA = {
+            animais: [
+                "Cachorro", "Gato", "Leão", "Tigre", 
+                "Elefante", "Macaco", "Girafa", "Urso"
+            ],
+            objetos: [
+                "Mesa", "Cadeira", "Relógio", "Caderno", 
+                "Lápis", "Garrafa", "Espelho", "Telefone"
+            ],
+            comidas: [
+                "Maçã", "Banana", "Pizza", "Hambúrguer", 
+                "Salada", "Sorvete", "Queijo", "Pão"
+            ],
+            paises: [
+                "Brasil", "Japão", "Canadá", "França", 
+                "Itália", "Alemanha", "Egito", "México"
+            ]
+        };
+
+        // Paleta de cores estilo Flat/Duolingo (50 cores com bom contraste para texto branco)
+        // ATENÇÃO: As cores são aplicadas ALEATORIAMENTE e não representam a categoria
+        const COLORS = [
+            0x1976D2, 0x1565C0, 0x0D47A1, 0x0288D1, 0x0277BD, 0x01579B, 0x0097A7, 0x00838F, 0x006064, 0xD32F2F,
+            0xC62828, 0xB71C1C, 0xE53935, 0xCC0000, 0xC2185B, 0xAD1457, 0x880E4F, 0x7B1FA2, 0x6A1B9A, 0x4A148C,
+            0x512DA8, 0x4527A0, 0x311B92, 0x388E3C, 0x2E7D32, 0x1B5E20, 0x00796B, 0x00695C, 0x004D40, 0x43A047,
+            0xF57C00, 0xEF6C00, 0xE65100, 0xD84315, 0xBF360C, 0xDD2C00, 0x5D4037, 0x4E342E, 0x3E2723, 0xAFB42B,
+            0x9E9D24, 0x827717, 0x616161, 0x424242, 0x212121, 0x455A64, 0x37474F, 0x263238, 0x9C27B0, 0x009688
+        ];
+
+        /* =========================================
+           CONFIGURAÇÕES PRINCIPAIS DO GRID
+           ========================================= */
+        const TILE_SIZE = 90;     // Tamanho de cada card em pixels
+        const MARGIN = 10;        // Espaçamento entre cards
+        const OFFSET = TILE_SIZE + MARGIN;
+        
+        // Adapta o tamanho do grid de acordo com o tamanho da tela
+        let GRID_SIZE = 6; // Padrão PC/Tablets grandes: 6x6
+        
+        // Verifica largura e altura da janela para decidir o grid ideal
+        if (window.innerWidth <= 480 || window.innerHeight <= 700) {
+            GRID_SIZE = 4; // Celulares pequenos: 4x4 (garante cards grandes)
+        } else if (window.innerWidth <= 600 || window.innerHeight <= 850) {
+            GRID_SIZE = 5; // Telas médias: 5x5
+        }
+
+        // Calcula o tamanho exato que o canvas precisa ter para abrigar o grid com folga
+        const CANVAS_SIZE = (GRID_SIZE * OFFSET) + 20;
+        
+        // Estado Global da UI
+        let score = 0;
+        let moves = 30;
+        let comboMultiplier = 1;
+
+        /* =========================================
+           CENA PRINCIPAL DO PHASER
+           ========================================= */
+        class GameScene extends Phaser.Scene {
+            constructor() {
+                super('GameScene');
+                this.grid = [];
+                this.canMove = false;
+                this.selectedTile = null;
+                
+                // Variáveis para detectar o arrasto visual (drag)
+                this.dragStartX = 0;
+                this.dragStartY = 0;
+                this.isDragging = false;
+            }
+
+            preload() {
+                // Criar texturas procedurais das Joias (Flat Design + Brilho)
+                const graphics = this.add.graphics();
+                const w = TILE_SIZE;
+                const h = TILE_SIZE;
+                const c = 16; // Tamanho do corte das quinas para formar as joias
+
+                // Array com os formatos geométricos das joias (Polígonos)
+                const shapes = [
+                    // 0: Octógono Clássico
+                    [c,0, w-c,0, w,c, w,h-c, w-c,h, c,h, 0,h-c, 0,c],
+                    // 1: Hexágono Vertical (Cristal)
+                    [w/2,0, w,c+6, w,h-c-6, w/2,h, 0,h-c-6, 0,c+6],
+                    // 2: Hexágono Horizontal (Esmeralda Larga)
+                    [c+6,0, w-c-6,0, w,h/2, w-c-6,h, c+6,h, 0,h/2],
+                    // 3: Joia Invertida (Diamante Base Plana)
+                    [c,0, w-c,0, w,h*0.4, w-c,h, c,h, 0,h*0.4]
+                ];
+
+                // Função auxiliar para criar as facetas (diminui o polígono em direção ao centro)
+                const getScaledPoints = (pts, scale, offsetY = 0) => {
+                    let cx = w / 2;
+                    let cy = h / 2;
+                    let p = [];
+                    for(let i = 0; i < pts.length; i += 2) {
+                        let px = cx + (pts[i] - cx) * scale;
+                        let py = cy + (pts[i+1] - cy) * scale + offsetY;
+                        p.push(new Phaser.Geom.Point(px, py));
+                    }
+                    return p;
+                };
+
+                shapes.forEach((pointsArr, index) => {
+                    graphics.clear();
+                    
+                    let basePoints = [];
+                    for(let i = 0; i < pointsArr.length; i += 2) {
+                        basePoints.push(new Phaser.Geom.Point(pointsArr[i], pointsArr[i+1]));
+                    }
+                    
+                    // 1. Sombra inferior (efeito 3D de relevo na base)
+                    graphics.fillStyle(0x000000, 0.15);
+                    let shadowPoints = basePoints.map(p => new Phaser.Geom.Point(p.x, p.y + 6));
+                    graphics.fillPoints(shadowPoints, true, true);
+                    
+                    // 2. Base da joia (será colorida pelo Phaser)
+                    graphics.fillStyle(0xFFFFFF, 1);
+                    graphics.fillPoints(basePoints, true, true);
+
+                    // 3. Faceta Externa (escurece as bordas, criando o corte em declive 3D)
+                    graphics.fillStyle(0x000000, 0.15);
+                    graphics.fillPoints(getScaledPoints(pointsArr, 0.8, 2), true, true);
+
+                    // 4. Faceta Central (rosto elevado que reflete bastante luz)
+                    graphics.fillStyle(0xFFFFFF, 0.25);
+                    graphics.fillPoints(getScaledPoints(pointsArr, 0.55, 0), true, true);
+
+                    // 5. Faceta do Topo (ponto mais plano e de maior reflexo direto)
+                    graphics.fillStyle(0xFFFFFF, 0.35);
+                    graphics.fillPoints(getScaledPoints(pointsArr, 0.35, -2), true, true);
+                    
+                    // 6. Brilho de diamante (Estrela / Sparkle no canto superior esquerdo)
+                    let sx = w * 0.25;
+                    let sy = h * 0.25;
+                    let ss = 7;
+                    graphics.fillStyle(0xFFFFFF, 0.9);
+                    graphics.beginPath();
+                    graphics.moveTo(sx, sy - ss); // Topo da estrela
+                    graphics.lineTo(sx + ss/2, sy); // Lado direito
+                    graphics.lineTo(sx, sy + ss); // Base
+                    graphics.lineTo(sx - ss/2, sy); // Lado esquerdo
+                    graphics.closePath();
+                    graphics.fill();
+                    graphics.fillCircle(sx, sy, 1.5); // Miolo cintilante
+
+                    // Salva a textura final com formato de joia
+                    graphics.generateTexture('gem_' + index, w, h + 6);
+                });
+                
+                graphics.destroy();
+            }
+
+            create() {
+                this.grid = [];
+                this.selectedTile = null;
+                
+                // Centralizar o grid no canvas
+                const boardWidth = (GRID_SIZE * OFFSET) - MARGIN;
+                const boardHeight = (GRID_SIZE * OFFSET) - MARGIN;
+                this.startX = (this.sys.game.config.width - boardWidth) / 2 + (TILE_SIZE / 2);
+                this.startY = (this.sys.game.config.height - boardHeight) / 2 + (TILE_SIZE / 2);
+
+                this.initGrid();
+                
+                // ==========================================
+                // EVENTOS GLOBAIS DE ARRASTO (DRAG & DROP)
+                // ==========================================
+                
+                this.input.on('dragstart', (pointer, gameObject) => {
+                    if (!this.canMove || moves <= 0) return;
+                    this.isDragging = true;
+                    this.dragStartX = gameObject.x;
+                    this.dragStartY = gameObject.y;
+                    gameObject.setDepth(10); // Traz o card para frente enquanto arrasta
+                });
+
+                this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+                    if (!this.canMove || !this.isDragging) return;
+                    
+                    let dx = dragX - this.dragStartX;
+                    let dy = dragY - this.dragStartY;
+                    
+                    // Limita o movimento visual a vertical ou horizontal apenas (e não passa do vizinho)
+                    if (Math.abs(dx) > Math.abs(dy)) {
+                        gameObject.x = Phaser.Math.Clamp(dragX, this.dragStartX - OFFSET, this.dragStartX + OFFSET);
+                        gameObject.y = this.dragStartY;
+                    } else {
+                        gameObject.x = this.dragStartX;
+                        gameObject.y = Phaser.Math.Clamp(dragY, this.dragStartY - OFFSET, this.dragStartY + OFFSET);
+                    }
+                });
+
+                this.input.on('dragend', (pointer, gameObject) => {
+                    if (!this.isDragging) return;
+                    this.isDragging = false;
+                    gameObject.setDepth(0); // Volta o depth ao normal
+
+                    let dx = gameObject.x - this.dragStartX;
+                    let dy = gameObject.y - this.dragStartY;
+                    
+                    let targetCol = gameObject.getData('col');
+                    let targetRow = gameObject.getData('row');
+                    let hasMoved = false;
+
+                    const threshold = OFFSET / 3; // O quanto precisa arrastar para considerar a troca
+
+                    if (dx > threshold) { targetCol++; hasMoved = true; }
+                    else if (dx < -threshold) { targetCol--; hasMoved = true; }
+                    else if (dy > threshold) { targetRow++; hasMoved = true; }
+                    else if (dy < -threshold) { targetRow--; hasMoved = true; }
+
+                    if (hasMoved && targetCol >= 0 && targetCol < GRID_SIZE && targetRow >= 0 && targetRow < GRID_SIZE) {
+                        let targetTile = this.grid[targetCol][targetRow];
+                        if (targetTile) {
+                            // Removido o "teleporte" que forçava a peça voltar para a origem. 
+                            // Agora ela flui suavemente do ponto em que o dedo soltou.
+                            
+                            let sourceTile = gameObject;
+                            this.deselectTile(this.selectedTile);
+                            this.trySwap(sourceTile, targetTile);
+                            return;
+                        }
+                    }
+
+                    // Se não arrastou o suficiente ou foi um movimento inválido (parede), a peça volta pro lugar
+                    this.tweens.add({
+                        targets: gameObject,
+                        x: this.dragStartX,
+                        y: this.dragStartY,
+                        duration: 150,
+                        ease: 'Cubic.easeOut'
+                    });
+                });
+                
+                // Aguarda o botão "Começar" ser clicado para liberar movimento
+                this.canMove = false; 
+            }
+
+            // Inicia o grid sem gerar combinações prévias
+            initGrid() {
+                for (let col = 0; col < GRID_SIZE; col++) {
+                    this.grid[col] = [];
+                    for (let row = 0; row < GRID_SIZE; row++) {
+                        
+                        // Garante que não haja matches no momento da criação
+                        let validCategories = this.getValidCategories(col, row);
+                        let category = Phaser.Utils.Array.GetRandom(validCategories);
+                        
+                        this.grid[col][row] = this.createCard(col, row, category);
+                    }
+                }
+            }
+
+            // Retorna categorias que não formarão um match de 3 imediatamente
+            getValidCategories(col, row) {
+                const allCategories = Object.keys(GAME_DATA);
+                let invalid = [];
+
+                if (col >= 2) {
+                    let cat1 = this.grid[col-1][row].getData('category');
+                    let cat2 = this.grid[col-2][row].getData('category');
+                    if (cat1 === cat2) invalid.push(cat1);
+                }
+
+                if (row >= 2) {
+                    let cat1 = this.grid[col][row-1].getData('category');
+                    let cat2 = this.grid[col][row-2].getData('category');
+                    if (cat1 === cat2) invalid.push(cat1);
+                }
+
+                return allCategories.filter(cat => !invalid.includes(cat));
+            }
+
+            // Cria um card visual
+            createCard(col, row, category) {
+                const x = this.startX + col * OFFSET;
+                const y = this.startY + row * OFFSET;
+
+                // Sorteia cor, formato e texto completamente independentes da categoria
+                const color = Phaser.Utils.Array.GetRandom(COLORS);
+                const textStr = Phaser.Utils.Array.GetRandom(GAME_DATA[category]);
+                const gemShape = 'gem_' + Phaser.Math.Between(0, 3); // Sorteia entre os 4 formatos de joia
+
+                // Container que segura o fundo e o texto
+                const container = this.add.container(x, y);
+                container.setSize(TILE_SIZE, TILE_SIZE);
+                container.setInteractive({ draggable: true }); // Ativa o "drag" deste card
+
+                // Fundo colorizado com o formato sorteado
+                const bg = this.add.sprite(0, 0, gemShape);
+                bg.setTint(color);
+                
+                // Texto do card
+                const text = this.add.text(0, -3, textStr, {
+                    fontFamily: 'Nunito',
+                    fontSize: '13px',
+                    color: '#FFFFFF',
+                    align: 'center',
+                    wordWrap: { width: TILE_SIZE - 15 },
+                    fontStyle: 'bold'
+                });
+                text.setOrigin(0.5);
+                text.setShadow(0, 2, 'rgba(0,0,0,0.6)', 3); // Sombra mais forte para contrastar com o brilho da joia
+
+                container.add([bg, text]);
+
+                // Dados atrelados ao objeto
+                container.setData('col', col);
+                container.setData('row', row);
+                container.setData('category', category); // A mecânica roda inteiramente nesta variável
+                container.bgSprite = bg;
+
+                // Eventos de Input
+                container.on('pointerdown', () => this.handlePointerDown(container));
+
+                // Animação de entrada
+                container.setScale(0);
+                this.tweens.add({
+                    targets: container,
+                    scale: 1,
+                    duration: 300,
+                    ease: 'Back.easeOut',
+                    delay: (col + row) * 30
+                });
+
+                return container;
+            }
+
+            handlePointerDown(tile) {
+                if (!this.canMove || moves <= 0) return;
+
+                // Se já havia um card selecionado e clicou em outro (Swap por duplo clique)
+                if (this.selectedTile && this.selectedTile !== tile) {
+                    let tile1 = this.selectedTile;
+                    this.deselectTile(tile1);
+                    this.trySwap(tile1, tile);
+                    return;
+                }
+
+                // Se clicou no mesmo card selecionado, apenas o desmarca
+                if (this.selectedTile === tile) {
+                    this.deselectTile(tile);
+                    return;
+                }
+
+                // Inicia a seleção do card
+                this.selectedTile = tile;
+                this.tweens.add({
+                    targets: tile,
+                    scale: 1.1,
+                    duration: 100,
+                    yoyo: true,
+                    repeat: -1
+                });
+            }
+
+            // Remove a seleção e as animações pulsantes de um card
+            deselectTile(tile) {
+                if (tile) {
+                    this.tweens.killTweensOf(tile);
+                    tile.setScale(1);
+                }
+                this.selectedTile = null;
+            }
+
+            trySwap(tile1, tile2) {
+                if (!tile1 || !tile2) return;
+
+                const colDiff = Math.abs(tile1.getData('col') - tile2.getData('col'));
+                const rowDiff = Math.abs(tile1.getData('row') - tile2.getData('row'));
+
+                // Verifica se os cards estão imediatamente adjacentes
+                if ((colDiff === 1 && rowDiff === 0) || (colDiff === 0 && rowDiff === 1)) {
+                    this.swapTiles(tile1, tile2);
+                } else {
+                    // Movimento inválido ou clicou longe: seleciona o novo card clicado
+                    this.selectedTile = tile2;
+                    this.isSwiping = false;
+                    this.tweens.add({
+                        targets: tile2,
+                        scale: 1.1,
+                        duration: 100,
+                        yoyo: true,
+                        repeat: -1
+                    });
+                }
+            }
+
+            // Realiza a troca visual e lógica
+            swapTiles(tile1, tile2) {
+                this.canMove = false;
+                comboMultiplier = 1; // Reseta combo
+
+                const col1 = tile1.getData('col');
+                const row1 = tile1.getData('row');
+                const col2 = tile2.getData('col');
+                const row2 = tile2.getData('row');
+
+                // Troca na matriz lógica
+                this.grid[col1][row1] = tile2;
+                this.grid[col2][row2] = tile1;
+
+                tile1.setData('col', col2);
+                tile1.setData('row', row2);
+                tile2.setData('col', col1);
+                tile2.setData('row', row1);
+
+                // Calcula o destino perfeito baseado no slot do grid, e não na posição visual atual
+                const targetX1 = this.startX + col2 * OFFSET;
+                const targetY1 = this.startY + row2 * OFFSET;
+                
+                const targetX2 = this.startX + col1 * OFFSET;
+                const targetY2 = this.startY + row1 * OFFSET;
+
+                // Animação de troca
+                this.tweens.add({
+                    targets: tile1,
+                    x: targetX1, y: targetY1,
+                    duration: 250,
+                    ease: 'Cubic.easeOut'
+                });
+
+                this.tweens.add({
+                    targets: tile2,
+                    x: targetX2, y: targetY2,
+                    duration: 250,
+                    ease: 'Cubic.easeOut',
+                    onComplete: () => {
+                        this.checkMatchesAfterSwap(tile1, tile2);
+                    }
+                });
+            }
+
+            // Verifica se a troca resultou em match
+            checkMatchesAfterSwap(tile1, tile2) {
+                const matches = this.getMatches();
+
+                if (matches.length > 0) {
+                    // Match Válido! Consome movimento e processa
+                    this.updateMoves(-1);
+                    this.processMatches(matches);
+                } else {
+                    // Match Inválido: Desfaz a troca com animação de Shake (feedback visual)
+                    this.invalidMoveShake(tile1, tile2);
+                }
+            }
+
+            // Feedback de movimento inválido (Shake) e troca de volta
+            invalidMoveShake(tile1, tile2) {
+                const col1 = tile1.getData('col');
+                const row1 = tile1.getData('row');
+                const col2 = tile2.getData('col');
+                const row2 = tile2.getData('row');
+
+                // Desfaz na matriz lógica
+                this.grid[col1][row1] = tile2;
+                this.grid[col2][row2] = tile1;
+
+                tile1.setData('col', col2);
+                tile1.setData('row', row2);
+                tile2.setData('col', col1);
+                tile2.setData('row', row1);
+
+                // Calcula as posições originais exatas pelo grid
+                const origX1 = this.startX + col2 * OFFSET; 
+                const origY1 = this.startY + row2 * OFFSET;
+                const origX2 = this.startX + col1 * OFFSET; 
+                const origY2 = this.startY + row1 * OFFSET;
+
+                // Shake horizontal
+                this.tweens.add({
+                    targets: [tile1, tile2],
+                    x: '+=7',
+                    yoyo: true,
+                    repeat: 2,
+                    duration: 50,
+                    onComplete: () => {
+                        // Volta para posição original exata do grid
+                        this.tweens.add({
+                            targets: tile1,
+                            x: origX1, y: origY1,
+                            duration: 250, ease: 'Cubic.easeOut'
+                        });
+                        this.tweens.add({
+                            targets: tile2,
+                            x: origX2, y: origY2,
+                            duration: 250, ease: 'Cubic.easeOut',
+                            onComplete: () => { this.canMove = true; }
+                        });
+                    }
+                });
+            }
+
+            // Algoritmo para varrer o grid inteiro buscando matches (Baseado em CATEGORIA)
+            getMatches() {
+                let matches = new Set();
+
+                // Busca horizontal
+                for (let r = 0; r < GRID_SIZE; r++) {
+                    for (let c = 0; c < GRID_SIZE - 2; c++) {
+                        let t1 = this.grid[c][r];
+                        let t2 = this.grid[c+1][r];
+                        let t3 = this.grid[c+2][r];
+
+                        if (t1 && t2 && t3) {
+                            if (t1.getData('category') === t2.getData('category') && 
+                                t2.getData('category') === t3.getData('category')) {
+                                matches.add(t1).add(t2).add(t3);
+                                // Continua checando para matches de 4 ou 5
+                                let extra = 3;
+                                while(c + extra < GRID_SIZE && this.grid[c+extra][r] && 
+                                      this.grid[c+extra][r].getData('category') === t1.getData('category')) {
+                                    matches.add(this.grid[c+extra][r]);
+                                    extra++;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Busca vertical
+                for (let c = 0; c < GRID_SIZE; c++) {
+                    for (let r = 0; r < GRID_SIZE - 2; r++) {
+                        let t1 = this.grid[c][r];
+                        let t2 = this.grid[c][r+1];
+                        let t3 = this.grid[c][r+2];
+
+                        if (t1 && t2 && t3) {
+                            if (t1.getData('category') === t2.getData('category') && 
+                                t2.getData('category') === t3.getData('category')) {
+                                matches.add(t1).add(t2).add(t3);
+                                let extra = 3;
+                                while(r + extra < GRID_SIZE && this.grid[c][r+extra] && 
+                                      this.grid[c][r+extra].getData('category') === t1.getData('category')) {
+                                    matches.add(this.grid[c][r+extra]);
+                                    extra++;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return Array.from(matches);
+            }
+
+            // Destrói os cards em match, computa pontos e chama a gravidade
+            processMatches(matches) {
+                // Pontuação (10 pts por card * multiplicador de combo)
+                const points = matches.length * 10 * comboMultiplier;
+                this.updateScore(points);
+                
+                // Feedback visual na pontuação flutuante
+                const midX = matches[1].x;
+                const midY = matches[1].y;
+                this.showFloatingText(`+${points}`, midX, midY, (comboMultiplier > 1));
+
+                comboMultiplier++;
+
+                let destroyedCount = 0;
+
+                matches.forEach(tile => {
+                    const c = tile.getData('col');
+                    const r = tile.getData('row');
+                    this.grid[c][r] = null; // Libera matriz
+
+                    // Animação de sumiço (scale/fade suave)
+                    this.tweens.add({
+                        targets: tile,
+                        scale: 0,
+                        alpha: 0,
+                        duration: 200,
+                        ease: 'Back.easeIn',
+                        onComplete: () => {
+                            tile.destroy();
+                            destroyedCount++;
+                            if (destroyedCount === matches.length) {
+                                this.applyGravity();
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Faz os blocos de cima caírem (Gravidade)
+            applyGravity() {
+                let movesPending = 0;
+                let tweensComplete = 0;
+
+                for (let c = 0; c < GRID_SIZE; c++) {
+                    let emptySlots = 0;
+                    
+                    // Varre de baixo pra cima
+                    for (let r = GRID_SIZE - 1; r >= 0; r--) {
+                        if (this.grid[c][r] === null) {
+                            emptySlots++;
+                        } else if (emptySlots > 0) {
+                            // Move card existente para baixo
+                            const tile = this.grid[c][r];
+                            const newRow = r + emptySlots;
+                            
+                            this.grid[c][newRow] = tile;
+                            this.grid[c][r] = null;
+                            tile.setData('row', newRow);
+
+                            movesPending++;
+                            this.tweens.add({
+                                targets: tile,
+                                y: this.startY + newRow * OFFSET,
+                                duration: 300,
+                                ease: 'Bounce.easeOut',
+                                onComplete: () => {
+                                    tweensComplete++;
+                                    if(tweensComplete === movesPending) this.refillGrid();
+                                }
+                            });
+                        }
+                    }
+                }
+
+                // Se nada caiu (foi um match horizontal no topo), vai direto para o refill
+                if (movesPending === 0) {
+                    this.refillGrid();
+                }
+            }
+
+            // Preenche os espaços vazios do topo com novos cards
+            refillGrid() {
+                let movesPending = 0;
+                let tweensComplete = 0;
+
+                for (let c = 0; c < GRID_SIZE; c++) {
+                    let emptySlots = 0;
+                    for (let r = 0; r < GRID_SIZE; r++) {
+                        if (this.grid[c][r] === null) emptySlots++;
+                    }
+
+                    for (let i = 0; i < emptySlots; i++) {
+                        // Escolhe categoria aleatória
+                        let cat = Phaser.Utils.Array.GetRandom(Object.keys(GAME_DATA));
+                        let newRow = emptySlots - 1 - i;
+                        
+                        let tile = this.createCard(c, newRow, cat);
+                        
+                        // Posiciona acima da tela para o efeito de queda
+                        tile.y = this.startY - (emptySlots - newRow) * OFFSET;
+                        this.grid[c][newRow] = tile;
+
+                        movesPending++;
+                        this.tweens.add({
+                            targets: tile,
+                            y: this.startY + newRow * OFFSET,
+                            duration: 400,
+                            ease: 'Bounce.easeOut',
+                            delay: i * 50,
+                            onComplete: () => {
+                                tweensComplete++;
+                                if(tweensComplete === movesPending) {
+                                    // Verifica se formou combos em cascata
+                                    this.checkCascadeMatches();
+                                }
+                            }
+                        });
+                    }
+                }
+                
+                if(movesPending === 0) {
+                     this.checkCascadeMatches();
+                }
+            }
+
+            // Checa novos matches após a queda (Cascata)
+            checkCascadeMatches() {
+                const matches = this.getMatches();
+                if (matches.length > 0) {
+                    // Espera uma fração de segundo e processa a cascata
+                    this.time.delayedCall(150, () => {
+                        this.processMatches(matches);
+                    });
+                } else {
+                    // Fluxo normalizado, aguarda próxima jogada
+                    this.canMove = true;
+                    this.checkGameOver();
+                }
+            }
+
+            // Atualiza Pontuação Visual
+            updateScore(points) {
+                score += points;
+                document.getElementById('score-text').innerText = score;
+                
+                // Anima o texto da UI
+                const scoreEl = document.getElementById('score-text');
+                scoreEl.style.transform = 'scale(1.3)';
+                setTimeout(() => scoreEl.style.transform = 'scale(1)', 150);
+            }
+
+            // Atualiza Movimentos Visuais
+            updateMoves(amount) {
+                moves += amount;
+                document.getElementById('moves-text').innerText = moves;
+                if(moves <= 5) {
+                    document.getElementById('moves-text').style.color = '#FF4B4B'; // Fica vermelho no final
+                }
+            }
+
+            // Verifica Fim de Jogo
+            checkGameOver() {
+                if (moves <= 0) {
+                    this.canMove = false;
+                    const modal = document.getElementById('instructions-modal');
+                    modal.innerHTML = `
+                        <h1>Fim de Jogo!</h1>
+                        <p>Sua pontuação final foi:<br><strong style="font-size: 32px; color: var(--primary)">${score}</strong></p>
+                        <button class="btn" onclick="location.reload()">Jogar Novamente</button>
+                    `;
+                    modal.classList.remove('hidden');
+                }
+            }
+
+            // Floating Text (Bônus, Pontos)
+            showFloatingText(textStr, x, y, isCombo = false) {
+                const floatText = this.add.text(x, y, textStr, {
+                    fontFamily: 'Nunito',
+                    fontSize: isCombo ? '24px' : '20px',
+                    fontStyle: '900',
+                    color: isCombo ? '#FFC800' : '#FFFFFF',
+                    stroke: '#000000',
+                    strokeThickness: 4
+                }).setOrigin(0.5);
+
+                this.tweens.add({
+                    targets: floatText,
+                    y: y - 50,
+                    alpha: 0,
+                    scale: isCombo ? 1.5 : 1,
+                    duration: 1000,
+                    ease: 'Cubic.easeOut',
+                    onComplete: () => floatText.destroy()
+                });
+            }
+        }
+
+        /* =========================================
+           INICIALIZAÇÃO DO JOGO
+           ========================================= */
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: CANVAS_SIZE,
+            height: CANVAS_SIZE,
+            backgroundColor: '#FFFFFF',
+            scene: GameScene,
+            scale: {
+                mode: Phaser.Scale.FIT,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            }
+        };
+
+        // Aguarda as fontes carregarem para evitar problemas de renderização no canvas
+        document.fonts.ready.then(() => {
+            const game = new Phaser.Game(config);
+
+            // Gerencia o Modal inicial
+            document.getElementById('start-btn').addEventListener('click', () => {
+                document.getElementById('instructions-modal').classList.add('hidden');
+                
+                // Libera a movimentação na cena do Phaser
+                const scene = game.scene.getScene('GameScene');
+                if(scene) scene.canMove = true;
+            });
+        });
+
+    </script>
+</body>
+</html>

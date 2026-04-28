@@ -19,11 +19,19 @@
     </head>
     <body>
         <!-- Modal de Compartilhamento -->
-        <div id="share-modal" class="modal-overlay hidden" onclick="handleModalOverlayClick(event)">
+        <div
+            id="share-modal"
+            class="modal-overlay hidden"
+            onclick="handleModalOverlayClick(event)"
+        >
             <div class="modal-card">
                 <div class="modal-header">
                     <span class="modal-title">Compartilhar Quiz</span>
-                    <button class="icon-btn" onclick="closeShareModal()" title="Fechar">
+                    <button
+                        class="icon-btn"
+                        onclick="closeShareModal()"
+                        title="Fechar"
+                    >
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
@@ -33,23 +41,41 @@
                 </div>
 
                 <div class="modal-qr-actions">
-                    <button class="btn btn-outline modal-qr-btn" onclick="downloadQr()">
+                    <button
+                        class="btn btn-outline modal-qr-btn"
+                        onclick="downloadQr()"
+                    >
                         <i class="fa-solid fa-download"></i> Baixar PNG
                     </button>
-                    <button id="copy-qr-btn" class="btn btn-outline modal-qr-btn hidden" onclick="copyQrImage()">
+                    <button
+                        id="copy-qr-btn"
+                        class="btn btn-outline modal-qr-btn hidden"
+                        onclick="copyQrImage()"
+                    >
                         <i class="fa-solid fa-image"></i> Copiar Imagem
                     </button>
                 </div>
 
                 <div class="modal-section-label">Link do Quiz</div>
                 <div class="copy-row">
-                    <input type="text" id="share-url-input" class="copy-input" readonly />
-                    <button class="btn btn-primary copy-btn" onclick="copyLink()">
+                    <input
+                        type="text"
+                        id="share-url-input"
+                        class="copy-input"
+                        readonly
+                    />
+                    <button
+                        class="btn btn-primary copy-btn"
+                        onclick="copyLink()"
+                    >
                         <i class="fa-solid fa-copy"></i> Copiar
                     </button>
                 </div>
 
-                <button class="btn btn-outline modal-close-btn" onclick="closeShareModal()">
+                <button
+                    class="btn btn-outline modal-close-btn"
+                    onclick="closeShareModal()"
+                >
                     Fechar
                 </button>
             </div>
@@ -69,7 +95,15 @@
                 </button>
             </div>
             <div id="quiz-list-container" class="quiz-list">
-                <div style="display: flex; justify-content: center; align-items: center; color: #b7b7b7; margin-top: 20px;">
+                <div
+                    style="
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: #b7b7b7;
+                        margin-top: 20px;
+                    "
+                >
                     <h2>Carregando...</h2>
                 </div>
                 <!-- Quizzes salvos aparecerão aqui -->
@@ -114,11 +148,18 @@
         <div id="reports-view" class="hidden">
             <div class="container">
                 <div class="list-header">
-                    <div style="display:flex;gap:10px;">
-                        <button class="btn btn-outline" onclick="showListView()">
+                    <div style="display: flex; gap: 10px">
+                        <button
+                            class="btn btn-outline"
+                            onclick="showListView()"
+                        >
                             <i class="fa-solid fa-arrow-left"></i> Voltar
                         </button>
-                        <button class="btn btn-outline" onclick="refreshReports()" title="Atualizar">
+                        <button
+                            class="btn btn-outline"
+                            onclick="refreshReports()"
+                            title="Atualizar"
+                        >
                             <i class="fa-solid fa-rotate-right"></i>
                         </button>
                     </div>
@@ -126,7 +167,10 @@
                 </div>
 
                 <div class="reports-filter-bar">
-                    <label for="report-date-filter" class="reports-filter-label">
+                    <label
+                        for="report-date-filter"
+                        class="reports-filter-label"
+                    >
                         <i class="fa-solid fa-calendar"></i> Filtrar por data:
                     </label>
                     <input
@@ -135,7 +179,10 @@
                         class="reports-date-input"
                         onchange="filterReports()"
                     />
-                    <button class="btn btn-outline reports-clear-btn" onclick="clearReportFilter()">
+                    <button
+                        class="btn btn-outline reports-clear-btn"
+                        onclick="clearReportFilter()"
+                    >
                         <i class="fa-solid fa-xmark"></i> Limpar
                     </button>
                 </div>

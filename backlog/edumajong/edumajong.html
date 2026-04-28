@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Palavras em Cubo 3D</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        :root {
+            /* Paleta de Cores Estilo Duolingo */
+            --green: #58cc02;
+            --green-shadow: #58a700;
+            --blue: #1cb0f6;
+            --blue-shadow: #1899d6;
+            --yellow: #ffc800;
+            --yellow-shadow: #e5b400;
+            --red: #ff4b4b;
+            --red-shadow: #ea2b2b;
+            --gray: #e5e5e5;
+            --gray-shadow: #afafaf;
+            --dark: #4b4b4b;
+            --text-light: #ffffff;
+            
+            /* Background Amazônia Flat */
+            --bg-top: #2d7a3e;
+            --bg-bottom: #143e1d;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
+            color: var(--text-light);
+            touch-action: none; /* Previne scroll em mobile */
+        }
+
+        /* Elementos de fundo decorativos */
+        .bg-decor {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        /* Interface do Usuário (HUD) */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none; /* Permite clicar no canvas por baixo */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .hud-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            pointer-events: auto;
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 10px 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        #combo-display {
+            color: var(--yellow);
+            text-shadow: 0 2px 0 var(--yellow-shadow);
+            transform: scale(1);
+            transition: transform 0.1s;
+        }
+
+        .combo-active {
+            transform: scale(1.2) !important;
+        }
+
+        /* Botões Laterais */
+        .controls-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            pointer-events: auto;
+        }
+
+        .btn {
+            background: var(--blue);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 var(--blue-shadow);
+            transition: all 0.1s;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            outline: none;
+        }
+
+        .btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0px 0 var(--blue-shadow);
+        }
+
+        .btn-green { background: var(--green); box-shadow: 0 5px 0 var(--green-shadow); }
+        .btn-green:active { box-shadow: 0 0px 0 var(--green-shadow); }
+        .btn-yellow { background: var(--yellow); box-shadow: 0 5px 0 var(--yellow-shadow); }
+        .btn-yellow:active { box-shadow: 0 0px 0 var(--yellow-shadow); }
+
+        /* Setas de Rotação */
+        .bottom-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            pointer-events: none;
+        }
+
+        .btn-arrow {
+            pointer-events: auto;
+            background: #b554f5; /* Roxo estilo imagem */
+            color: white;
+            border: none;
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            font-size: 34px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #8b34c2;
+            transition: all 0.1s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            outline: none;
+        }
+
+        .btn-arrow:active {
+            transform: translateY(8px);
+            box-shadow: 0 0px 0 #8b34c2;
+        }
+
+        /* Dica de Categoria Atual */
+        .category-hint {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: var(--dark);
+            padding: 15px 30px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 5px 0 var(--gray);
+            pointer-events: auto;
+            text-align: center;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Modais */
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(3px);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: auto;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .modal-content {
+            background: white;
+            color: var(--dark);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 0 var(--gray);
+            transform: translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: var(--green);
+        }
+
+        .modal-text {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .btn-large {
+            width: 100%;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Instruções */
+        .instruction-text {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            pointer-events: none;
+            text-align: center;
+        }
+
+        /* Sistema de Partículas HTML (fallback/UI) */
+        .floating-text {
+            position: absolute;
+            font-weight: bold;
+            font-size: 24px;
+            color: var(--yellow);
+            text-shadow: 0 2px 0 var(--yellow-shadow);
+            pointer-events: none;
+            z-index: 50;
+            transition: all 1s ease-out;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Fundo Decorativo -->
+    <div class="bg-decor" style="width: 300px; height: 300px; top: -50px; left: -50px;"></div>
+    <div class="bg-decor" style="width: 500px; height: 500px; bottom: -100px; right: -150px;"></div>
+
+    <div id="canvas-container"></div>
+
+    <div id="ui-layer">
+        <div class="hud-top">
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-label">Pontos</div>
+                    <div class="stat-value" id="score-display">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Combo</div>
+                    <div class="stat-value" id="combo-display">x1</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Pares</div>
+                    <div class="stat-value" id="pairs-display">0/0</div>
+                </div>
+            </div>
+
+            <div class="controls-sidebar">
+                <button class="btn btn-yellow" id="btn-hint" title="Dica"><i class="fa-solid fa-lightbulb"></i></button>
+                <button class="btn" id="btn-shuffle" title="Embaralhar"><i class="fa-solid fa-shuffle"></i></button>
+                <button class="btn btn-red" id="btn-restart" title="Reiniciar"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+
+        <div class="category-hint" id="category-hint">
+            Selecione palavras da categoria: <br><span id="hint-text" style="color: var(--blue);"></span>
+        </div>
+
+        <div class="bottom-controls">
+            <button class="btn-arrow" id="btn-rotate-left"><i class="fa-solid fa-rotate-left"></i></button>
+            <button class="btn-arrow" id="btn-rotate-right"><i class="fa-solid fa-rotate-right"></i></button>
+        </div>
+
+        <div class="instruction-text">Use as setas para girar o cubo. Toque nas peças livres.</div>
+    </div>
+
+    <!-- Modal Inicial / Tutorial -->
+    <div class="modal-overlay active" id="modal-start">
+        <div class="modal-content">
+            <h2 class="modal-title" style="color: var(--blue);">Palavras em Cubo 3D</h2>
+            <div style="font-size: 50px; color: var(--yellow); margin: 10px 0;"><i class="fa-solid fa-cubes"></i></div>
+            <p class="modal-text">Encontre e combine blocos que pertencem à <b>mesma categoria</b> (ex: Gato + Cachorro = Animais).<br><br>Podes selecionar qualquer bloco que tenha pelo menos <b>dois lados livres</b>!</p>
+            <button class="btn btn-green btn-large" id="btn-play">Jogar Agora</button>
+        </div>
+    </div>
+
+    <!-- Modal de Vitória -->
+    <div class="modal-overlay" id="modal-win">
+        <div class="modal-content">
+            <h2 class="modal-title">Incrível!</h2>
+            <div style="font-size: 60px; color: var(--yellow); margin: 10px 0;"><i class="fa-solid fa-star"></i></div>
+            <p class="modal-text">Completaste todas as categorias!</p>
+            <h3 style="color: var(--dark); font-size: 24px; margin-bottom: 20px;">Pontos: <span id="final-score">0</span></h3>
+            <button class="btn btn-blue btn-large" id="btn-next-level">Próximo Nível</button>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * SISTEMA DE ÁUDIO (Web Audio API)
+         * Sintetizador procedural para sons do jogo sem carregar ficheiros.
+         */
+        const AudioSys = (function() {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            let ctx = null;
+
+            function init() {
+                if (!ctx) ctx = new AudioContext();
+                if (ctx.state === 'suspended') ctx.resume();
+            }
+
+            function playTone(freq, type, duration, vol=0.1, slideFreq=null) {
+                if (!ctx) return;
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = type;
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                if (slideFreq) {
+                    osc.frequency.exponentialRampToValueAtTime(slideFreq, ctx.currentTime + duration);
+                }
+
+                gain.gain.setValueAtTime(vol, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+                
+                osc.start();
+                osc.stop(ctx.currentTime + duration);
+            }
+
+            return {
+                init,
+                select: () => playTone(600, 'sine', 0.1, 0.1, 800),
+                deselect: () => playTone(400, 'sine', 0.1, 0.1, 300),
+                match: () => {
+                    playTone(440, 'square', 0.1, 0.05); // A4
+                    setTimeout(() => playTone(554, 'square', 0.1, 0.05), 100); // C#5
+                    setTimeout(() => playTone(659, 'square', 0.2, 0.05), 200); // E5
+                },
+                error: () => playTone(150, 'sawtooth', 0.3, 0.1, 100),
+                win: () => {
+                    playTone(523, 'sine', 0.2, 0.1);
+                    setTimeout(() => playTone(659, 'sine', 0.2, 0.1), 150);
+                    setTimeout(() => playTone(783, 'sine', 0.2, 0.1), 300);
+                    setTimeout(() => playTone(1046, 'sine', 0.4, 0.1), 450);
+                }
+            };
+        })();
+
+        /**
+         * DADOS DO JOGO (Categorias Educacionais)
+         */
+        const CATEGORIES = {
+            'Animais': { color: '#FF7A00', words: ['Gato', 'Cão', 'Leão', 'Urso', 'Sapo', 'Pato', 'Tigre', 'Zebra', 'Cobra', 'Peixe'] },
+            'Frutas': { color: '#E52B50', words: ['Maçã', 'Uva', 'Kiwi', 'Manga', 'Pêra', 'Caju', 'Limão', 'Ameixa', 'Melão', 'Amora'] },
+            'Cores': { color: '#00A86B', words: ['Azul', 'Verde', 'Rosa', 'Preto', 'Branco', 'Cinza', 'Roxo', 'Bege', 'Ciano', 'Marrom'] },
+            'Profissões': { color: '#4169E1', words: ['Médico', 'Juiz', 'Ator', 'Piloto', 'Pintor', 'Chef', 'Guia', 'Policial', 'Poeta', 'Caixa'] },
+            'Escola': { color: '#FFC40C', words: ['Lápis', 'Gis', 'Livro', 'Mesa', 'Papel', 'Régua', 'Mochila', 'Pasta', 'Diário', 'Lousa'] },
+            'Partes do Corpo': { color: '#D2B48C', words: ['Mão', 'Pé', 'Olho', 'Boca', 'Nariz', 'Orelha', 'Braço', 'Perna', 'Dedo', 'Rosto'] },
+            'Transporte': { color: '#708090', words: ['Carro', 'Trem', 'Navio', 'Avião', 'Moto', 'Barco', 'Metrô', 'Balsa', 'Caminhão', 'Van'] }
+        };
+
+        /**
+         * MOTOR 3D & LÓGICA DO JOGO
+         */
+        class MahjongGame {
+            constructor() {
+                // Estado do Jogo
+                this.score = 0;
+                this.combo = 1;
+                this.totalPairs = 0;
+                this.pairsFound = 0;
+                this.selectedBlocks = [];
+                this.blocksData = []; // Array a referenciar os meshes e os seus dados de grade
+                this.grid = {}; // Mapa 3D x,y,z -> block
+                this.isAnimating = false;
+                
+                // Three.js Setup
+                this.scene = new THREE.Scene();
+                this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+                this.camera.position.set(0, -4, 18); // Câmera afastada para acomodar o dobro de blocos e mais centralizada
+                this.camera.lookAt(0, 0, 0);
+                
+                this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                document.getElementById('canvas-container').appendChild(this.renderer.domElement);
+
+                // Iluminação Suave
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+                this.scene.add(ambientLight);
+                
+                const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+                dirLight.position.set(5, 10, 7);
+                this.scene.add(dirLight);
+
+                const fillLight = new THREE.DirectionalLight(0xe0e0ff, 0.3);
+                fillLight.position.set(-5, 0, -5);
+                this.scene.add(fillLight);
+
+                // Grupo que segura os blocos para rotação
+                this.cubeGroup = new THREE.Group();
+                this.scene.add(this.cubeGroup);
+
+                // Materiais
+                this.blockGeometry = new THREE.BoxGeometry(1.4, 1.4, 1.4);
+                // Escalonamento para parecer mais agradável
+                this.blockGeometry.scale(1, 0.8, 1); 
+
+                // Partículas
+                this.particles = [];
+
+                // Controles de Interação
+                this.raycaster = new THREE.Raycaster();
+                this.pointer = new THREE.Vector2();
+                this.isDragging = false;
+                this.previousPointer = { x: 0, y: 0 };
+                this.dragDelta = { x: 0, y: 0 };
+                this.targetRotation = { x: Math.PI / 8, y: -Math.PI / 4 };
+
+                this.setupEvents();
+                this.animate = this.animate.bind(this);
+                requestAnimationFrame(this.animate);
+            }
+
+            setupEvents() {
+                const canvas = this.renderer.domElement;
+                
+                // Redimensionamento
+                window.addEventListener('resize', () => {
+                    this.camera.aspect = window.innerWidth / window.innerHeight;
+                    this.camera.updateProjectionMatrix();
+                    this.renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+
+                // Controles de Rotação e Clique
+                canvas.addEventListener('pointerdown', (e) => {
+                    if (e.target.closest('#ui-layer') && !e.target.closest('#canvas-container')) return;
+                    this.isDragging = true;
+                    this.previousPointer.x = e.clientX;
+                    this.previousPointer.y = e.clientY;
+                    this.dragDelta.x = 0;
+                    this.dragDelta.y = 0;
+                });
+
+                window.addEventListener('pointermove', (e) => {
+                    if (this.isDragging) {
+                        const deltaX = e.clientX - this.previousPointer.x;
+                        const deltaY = e.clientY - this.previousPointer.y;
+                        
+                        this.targetRotation.y += deltaX * 0.01;
+                        this.targetRotation.x += deltaY * 0.01;
+                        
+                        // Limitar rotação X para não virar de cabeça para baixo totalmente
+                        this.targetRotation.x = Math.max(-Math.PI/2.5, Math.min(Math.PI/2.5, this.targetRotation.x));
+
+                        this.dragDelta.x += Math.abs(deltaX);
+                        this.dragDelta.y += Math.abs(deltaY);
+                        
+                        this.previousPointer.x = e.clientX;
+                        this.previousPointer.y = e.clientY;
+                    }
+                });
+
+                window.addEventListener('pointerup', (e) => {
+                    this.isDragging = false;
+                    // Se moveu pouco, considera como clique
+                    if (this.dragDelta.x < 5 && this.dragDelta.y < 5) {
+                        this.handleIntersect(e);
+                    }
+                });
+                
+                // UI Buttons
+                document.getElementById('btn-restart').addEventListener('click', () => this.generateLevel());
+                document.getElementById('btn-shuffle').addEventListener('click', () => this.shuffleRemaining());
+                document.getElementById('btn-hint').addEventListener('click', () => this.showHint());
+                document.getElementById('btn-play').addEventListener('click', () => {
+                    document.getElementById('modal-start').classList.remove('active');
+                    AudioSys.init();
+                    this.generateLevel();
+                });
+                document.getElementById('btn-next-level').addEventListener('click', () => {
+                    document.getElementById('modal-win').classList.remove('active');
+                    this.generateLevel();
+                });
+
+                // Setas de rotação (Gira 90 graus)
+                document.getElementById('btn-rotate-left').addEventListener('click', () => {
+                    this.targetRotation.y += Math.PI / 2;
+                });
+                document.getElementById('btn-rotate-right').addEventListener('click', () => {
+                    this.targetRotation.y -= Math.PI / 2;
+                });
+            }
+
+            /**
+             * Gera texturas de canvas para o bloco: normal, cinza (bloqueada) e selecionada (branca)
+             */
+            createBlockMaterials(word) {
+                const createTexture = (bgColor, isGray, isSelected) => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 256;
+                    canvas.height = 256;
+                    const ctx = canvas.getContext('2d');
+
+                    // Fundo do bloco
+                    ctx.fillStyle = bgColor;
+                    ctx.fillRect(0, 0, 256, 256);
+
+                    // Borda interna
+                    if (isSelected) {
+                        ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)'; // Borda mais escura para o fundo branco
+                    } else if (isGray) {
+                        ctx.strokeStyle = 'rgba(0, 0, 0, 0.15)';
+                    } else {
+                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+                    }
+                    ctx.lineWidth = 10;
+                    ctx.strokeRect(5, 5, 246, 246);
+
+                    // Sombra do texto (sem sombra se for selecionado para ficar bem "chapado" e clean)
+                    ctx.shadowColor = isSelected ? 'transparent' : (isGray ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.3)');
+                    ctx.shadowBlur = 5;
+                    ctx.shadowOffsetY = 3;
+
+                    // Texto principal
+                    ctx.fillStyle = isSelected ? '#000000' : (isGray ? '#dddddd' : '#ffffff'); 
+                    
+                    let fontSize = word.length > 7 ? 40 : 50;
+                    ctx.font = `bold ${fontSize}px "Nunito", sans-serif`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(word, 128, 128);
+
+                    ctx.shadowColor = 'transparent';
+
+                    const texture = new THREE.CanvasTexture(canvas);
+                    texture.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
+
+                    return new THREE.MeshStandardMaterial({ 
+                        map: texture,
+                        roughness: 0.8,
+                        metalness: 0.1,
+                        color: 0xffffff
+                    });
+                };
+
+                // Cor vibrante para o estado normal
+                const hue = Math.floor(Math.random() * 360);
+                const sat = Math.floor(80 + Math.random() * 20); 
+                const lit = Math.floor(50 + Math.random() * 15); 
+                const normalColor = `hsl(${hue}, ${sat}%, ${lit}%)`;
+
+                // Cor cinza neutra para o estado bloqueado
+                const blockedColor = '#808080';
+
+                return {
+                    normal: createTexture(normalColor, false, false),
+                    blocked: createTexture(blockedColor, true, false),
+                    selected: createTexture('#ffffff', false, true)
+                };
+            }
+
+            /**
+             * Define a estrutura do cubo. 
+             * Formato maior (128 blocos, o dobro do original) e "meio aberto" esculpido.
+             */
+            getLayoutMap() {
+                const base = [
+                    [0,1,1,1,1,0],
+                    [1,1,1,1,1,1],
+                    [1,1,1,1,1,1],
+                    [1,1,1,1,1,1],
+                    [1,1,1,1,1,1],
+                    [0,1,1,1,1,0]
+                ]; // 32 blocos
+                
+                const mid = [
+                    [0,0,1,1,0,0],
+                    [0,1,1,1,1,0],
+                    [1,1,0,0,1,1],
+                    [1,1,0,0,1,1],
+                    [0,1,1,1,1,0],
+                    [0,0,1,1,0,0]
+                ]; // 20 blocos com buraco central
+                
+                const top = [
+                    [0,0,0,0,0,0],
+                    [0,0,1,1,0,0],
+                    [0,1,1,1,1,0],
+                    [0,1,1,1,1,0],
+                    [0,0,1,1,0,0],
+                    [0,0,0,0,0,0]
+                ]; // 12 blocos
+
+                // Total: 32+32+20+20+12+12 = 128 blocos (64 pares)
+                return [
+                    base.map(r=>[...r]), // Camada 0
+                    base.map(r=>[...r]), // Camada 1
+                    mid.map(r=>[...r]),  // Camada 2
+                    mid.map(r=>[...r]),  // Camada 3
+                    top.map(r=>[...r]),  // Camada 4
+                    top.map(r=>[...r])   // Camada 5
+                ];
+            }
+
+            generateLevel() {
+                // Limpar cena anterior
+                while(this.cubeGroup.children.length > 0){ 
+                    const child = this.cubeGroup.children[0];
+                    if(child.userData.mats) {
+                        child.userData.mats.normal.map.dispose();
+                        child.userData.mats.normal.dispose();
+                        child.userData.mats.blocked.map.dispose();
+                        child.userData.mats.blocked.dispose();
+                        child.userData.mats.selected.map.dispose();
+                        child.userData.mats.selected.dispose();
+                    }
+                    this.cubeGroup.remove(child); 
+                }
+                this.blocksData = [];
+                this.grid = {};
+                this.selectedBlocks = [];
+                this.score = 0;
+                this.combo = 1;
+                this.updateUI();
+                
+                this.targetRotation = { x: Math.PI / 8, y: -Math.PI / 4 }; // Ângulo de câmera ajustado para refletir a foto (isométrico suave)
+                this.cubeGroup.rotation.set(this.targetRotation.x, this.targetRotation.y, 0);
+
+                const layout = this.getLayoutMap();
+                let slots = [];
+
+                // Centralizar dinamicamente baseado no tamanho do layout (X, Z e Y)
+                const maxX = layout[0][0].length;
+                const maxZ = layout[0].length;
+                const maxY = layout.length;
+
+                const offsetX = -(maxX / 2) + 0.5;
+                const offsetZ = -(maxZ / 2) + 0.5;
+                const offsetY = -(maxY / 2) + 0.5;
+
+                for (let y = 0; y < layout.length; y++) {
+                    for (let z = 0; z < layout[y].length; z++) {
+                        for (let x = 0; x < layout[y][z].length; x++) {
+                            if (layout[y][z][x] === 1) {
+                                slots.push({ x, y, z });
+                            }
+                        }
+                    }
+                }
+
+                this.totalPairs = slots.length / 2;
+                this.pairsFound = 0;
+
+                // Selecionar categorias e criar pares lógicos
+                let logicalPairs = [];
+                const catNames = Object.keys(CATEGORIES);
+                
+                for (let i = 0; i < this.totalPairs; i++) {
+                    // Escolhe categoria aleatória
+                    const catName = catNames[Math.floor(Math.random() * catNames.length)];
+                    const catData = CATEGORIES[catName];
+                    
+                    // Escolhe duas palavras diferentes da categoria
+                    let w1 = catData.words[Math.floor(Math.random() * catData.words.length)];
+                    let w2 = catData.words[Math.floor(Math.random() * catData.words.length)];
+                    while(w1 === w2) { // Tenta garantir palavras diferentes, mas permite iguais se azar
+                        w2 = catData.words[Math.floor(Math.random() * catData.words.length)];
+                    }
+
+                    logicalPairs.push({ cat: catName, word: w1, color: catData.color });
+                    logicalPairs.push({ cat: catName, word: w2, color: catData.color });
+                }
+
+                // Embaralhar as peças
+                logicalPairs = logicalPairs.sort(() => Math.random() - 0.5);
+
+                // Espaçamento dos blocos
+                const gap = 1.45; 
+
+                // Instanciar blocos
+                slots.forEach((slot, index) => {
+                    const data = logicalPairs[index];
+                    
+                    const mats = this.createBlockMaterials(data.word);
+                    const mesh = new THREE.Mesh(this.blockGeometry, mats.normal);
+                    
+                    // Posição no mundo 3D com centralização dinâmica nos 3 eixos
+                    mesh.position.set(
+                        (slot.x + offsetX) * gap,
+                        (slot.y + offsetY) * gap * 0.8, // y é levemente achatado visualmente
+                        (slot.z + offsetZ) * gap
+                    );
+
+                    mesh.userData = {
+                        gridPos: { x: slot.x, y: slot.y, z: slot.z },
+                        category: data.cat,
+                        word: data.word,
+                        isFree: false,
+                        baseY: mesh.position.y,
+                        mats: mats
+                    };
+
+                    this.cubeGroup.add(mesh);
+                    this.blocksData.push(mesh);
+                    
+                    const gridKey = `${slot.x},${slot.y},${slot.z}`;
+                    this.grid[gridKey] = mesh;
+                });
+
+                this.updatePlayability();
+                this.updateUI();
+                
+                // Animação de entrada
+                this.cubeGroup.position.y = -10;
+                this.tweenProp(this.cubeGroup.position, 'y', 0, 1000);
+            }
+
+            /**
+             * Lógica Central: Verifica as 6 faces.
+             * A peça está livre se tiver pelo menos DUAS faces expostas (sem vizinhos).
+             */
+            updatePlayability() {
+                this.blocksData.forEach(mesh => {
+                    const { x, y, z } = mesh.userData.gridPos;
+                    
+                    const above = this.grid[`${x},${y+1},${z}`];
+                    const below = this.grid[`${x},${y-1},${z}`];
+                    const left = this.grid[`${x-1},${y},${z}`];
+                    const right = this.grid[`${x+1},${y},${z}`];
+                    const front = this.grid[`${x},${y},${z+1}`];
+                    const back = this.grid[`${x},${y},${z-1}`];
+
+                    let freeFaces = 0;
+                    if (!above) freeFaces++;
+                    if (!below) freeFaces++;
+                    if (!left) freeFaces++;
+                    if (!right) freeFaces++;
+                    if (!front) freeFaces++;
+                    if (!back) freeFaces++;
+
+                    // Regra de Mahjong 3D: Pelo menos 2 lados livres
+                    mesh.userData.isFree = (freeFaces >= 2);
+
+                    // Transição visual de estado
+                    if(mesh.userData.isFree) {
+                        mesh.material = mesh.userData.mats.normal;
+                    } else {
+                        mesh.material = mesh.userData.mats.blocked;
+                    }
+                });
+            }
+
+            handleIntersect(event) {
+                if (this.isAnimating) return;
+
+                // Converte mouse para coordenadas normais
+                this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+                this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+                this.raycaster.setFromCamera(this.pointer, this.camera);
+                // Intersecta apenas os blocos, não as outlines
+                const intersects = this.raycaster.intersectObjects(this.blocksData);
+
+                if (intersects.length > 0) {
+                    const clickedMesh = intersects[0].object;
+                    
+                    if (!clickedMesh.userData.isFree) {
+                        // Feedback de erro (não selecionável)
+                        this.shakeMesh(clickedMesh);
+                        AudioSys.error();
+                        return;
+                    }
+
+                    this.toggleSelection(clickedMesh);
+                }
+            }
+
+            toggleSelection(mesh) {
+                const index = this.selectedBlocks.indexOf(mesh);
+
+                if (index > -1) {
+                    // Deselecionar: volta para a textura normal
+                    this.selectedBlocks.splice(index, 1);
+                    mesh.material = mesh.userData.mats.normal;
+                    AudioSys.deselect();
+                } else {
+                    // Selecionar: troca para a textura selecionada (branca com texto preto)
+                    if (this.selectedBlocks.length < 2) {
+                        this.selectedBlocks.push(mesh);
+                        mesh.material = mesh.userData.mats.selected;
+                        AudioSys.select();
+
+                        if (this.selectedBlocks.length === 2) {
+                            this.checkMatch();
+                        }
+                    }
+                }
+            }
+
+            checkMatch() {
+                const [m1, m2] = this.selectedBlocks;
+                
+                if (m1.userData.category === m2.userData.category) {
+                    // MATCH!
+                    this.isAnimating = true;
+                    AudioSys.match();
+                    
+                    // Pontuação
+                    this.score += 10 * this.combo;
+                    this.combo++;
+                    this.pairsFound++;
+                    
+                    this.createFloatingText(`+${10*(this.combo-1)}`, event.clientX || window.innerWidth/2, event.clientY || window.innerHeight/2);
+                    this.updateUI();
+
+                    // Animação de remoção
+                    this.animateRemoval(m1, m2);
+                } else {
+                    // ERRO!
+                    this.isAnimating = true;
+                    AudioSys.error();
+                    this.combo = 1;
+                    this.updateUI();
+
+                    this.shakeMesh(m1);
+                    this.shakeMesh(m2);
+
+                    setTimeout(() => {
+                        m1.material = m1.userData.mats.normal;
+                        m2.material = m2.userData.mats.normal;
+                        this.selectedBlocks = [];
+                        this.isAnimating = false;
+                    }, 500);
+                }
+            }
+
+            animateRemoval(m1, m2) {
+                // Partículas simplificadas
+                this.emitParticles(m1.position);
+                this.emitParticles(m2.position);
+
+                // Tween manual scale down and move up
+                const startScale = 1;
+                const startTime = Date.now();
+                const duration = 400;
+
+                const animLoop = () => {
+                    const elapsed = Date.now() - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Easing easeInBack-ish
+                    const scale = 1 - progress;
+                    
+                    m1.scale.set(scale, scale, scale);
+                    m2.scale.set(scale, scale, scale);
+                    m1.position.y = m1.userData.baseY + progress * 2;
+                    m2.position.y = m2.userData.baseY + progress * 2;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(animLoop);
+                    } else {
+                        // Remover do jogo
+                        this.removeBlock(m1);
+                        this.removeBlock(m2);
+                        this.selectedBlocks = [];
+                        this.isAnimating = false;
+                        this.updatePlayability();
+                        
+                        if (this.pairsFound === this.totalPairs) {
+                            setTimeout(() => this.winGame(), 500);
+                        } else {
+                            this.checkPossibleMoves();
+                        }
+                    }
+                };
+                animLoop();
+            }
+
+            removeBlock(mesh) {
+                const { x, y, z } = mesh.userData.gridPos;
+                delete this.grid[`${x},${y},${z}`];
+                
+                const idx = this.blocksData.indexOf(mesh);
+                if (idx > -1) this.blocksData.splice(idx, 1);
+                
+                this.cubeGroup.remove(mesh);
+                
+                // Clean memory
+                if(mesh.userData.mats) {
+                    mesh.userData.mats.normal.map.dispose();
+                    mesh.userData.mats.normal.dispose();
+                    mesh.userData.mats.blocked.map.dispose();
+                    mesh.userData.mats.blocked.dispose();
+                    mesh.userData.mats.selected.map.dispose();
+                    mesh.userData.mats.selected.dispose();
+                }
+            }
+
+            // Utilitário de Animação Simples
+            tweenProp(obj, prop, target, duration) {
+                const start = obj[prop];
+                const startTime = Date.now();
+                const loop = () => {
+                    const progress = Math.min((Date.now() - startTime) / duration, 1);
+                    // easeOutQuart
+                    const ease = 1 - Math.pow(1 - progress, 4);
+                    obj[prop] = start + (target - start) * ease;
+                    if (progress < 1) requestAnimationFrame(loop);
+                };
+                loop();
+            }
+
+            shakeMesh(mesh) {
+                const startX = mesh.position.x;
+                const startTime = Date.now();
+                const duration = 400;
+                const loop = () => {
+                    const elapsed = Date.now() - startTime;
+                    const progress = elapsed / duration;
+                    if (progress < 1) {
+                        mesh.position.x = startX + Math.sin(progress * Math.PI * 8) * 0.1;
+                        requestAnimationFrame(loop);
+                    } else {
+                        mesh.position.x = startX;
+                    }
+                };
+                loop();
+            }
+
+            emitParticles(pos) {
+                const geom = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+                const mat = new THREE.MeshBasicMaterial({ color: 0xffc800 });
+                for(let i=0; i<5; i++) {
+                    const p = new THREE.Mesh(geom, mat);
+                    p.position.copy(pos);
+                    // Converter pos local do grupo para global aproximação visual
+                    p.position.applyMatrix4(this.cubeGroup.matrixWorld); 
+                    
+                    const vel = new THREE.Vector3(
+                        (Math.random() - 0.5) * 0.2,
+                        Math.random() * 0.2 + 0.1,
+                        (Math.random() - 0.5) * 0.2
+                    );
+                    this.particles.push({ mesh: p, vel: vel, life: 1.0 });
+                    this.scene.add(p);
+                }
+            }
+
+            updateParticles() {
+                for (let i = this.particles.length - 1; i >= 0; i--) {
+                    const p = this.particles[i];
+                    p.mesh.position.add(p.vel);
+                    p.vel.y -= 0.01; // gravidade
+                    p.life -= 0.02;
+                    p.mesh.scale.setScalar(p.life);
+                    
+                    if (p.life <= 0) {
+                        this.scene.remove(p.mesh);
+                        this.particles.splice(i, 1);
+                    }
+                }
+            }
+
+            // Embaralha blocos restantes mantendo o grid atual
+            shuffleRemaining() {
+                if (this.isAnimating) return;
+                
+                let categories = [];
+                let words = [];
+                
+                this.blocksData.forEach(m => {
+                    categories.push(m.userData.category);
+                    words.push(m.userData.word);
+                });
+
+                // Embaralha pares (word/category juntos)
+                let pairs = categories.map((c, i) => ({cat: c, word: words[i]}));
+                pairs.sort(() => Math.random() - 0.5);
+
+                this.blocksData.forEach((m, i) => {
+                    const data = pairs[i];
+                    m.userData.category = data.cat;
+                    m.userData.word = data.word;
+                    
+                    // Recria texturas e gerencia memória
+                    if(m.userData.mats) {
+                        m.userData.mats.normal.map.dispose();
+                        m.userData.mats.normal.dispose();
+                        m.userData.mats.blocked.map.dispose();
+                        m.userData.mats.blocked.dispose();
+                        m.userData.mats.selected.map.dispose();
+                        m.userData.mats.selected.dispose();
+                    }
+                    
+                    m.userData.mats = this.createBlockMaterials(data.word);
+                    // O material atual será definido logo abaixo em updatePlayability()
+                });
+                
+                this.selectedBlocks = [];
+                this.updatePlayability();
+                AudioSys.select();
+                
+                // Animação visual de embaralhamento
+                this.cubeGroup.rotation.y += Math.PI * 2;
+            }
+
+            showHint() {
+                if (this.isAnimating || this.selectedBlocks.length > 0) return;
+
+                const freeBlocks = this.blocksData.filter(b => b.userData.isFree);
+                let matchFound = false;
+
+                // Procura par
+                for (let i = 0; i < freeBlocks.length; i++) {
+                    for (let j = i + 1; j < freeBlocks.length; j++) {
+                        if (freeBlocks[i].userData.category === freeBlocks[j].userData.category) {
+                            matchFound = true;
+                            // Dá um pulinho nas peças
+                            this.tweenProp(freeBlocks[i].position, 'y', freeBlocks[i].userData.baseY + 0.5, 300);
+                            setTimeout(() => this.tweenProp(freeBlocks[i].position, 'y', freeBlocks[i].userData.baseY, 300), 300);
+                            
+                            this.tweenProp(freeBlocks[j].position, 'y', freeBlocks[j].userData.baseY + 0.5, 300);
+                            setTimeout(() => this.tweenProp(freeBlocks[j].position, 'y', freeBlocks[j].userData.baseY, 300), 300);
+                            
+                            // Mostra UI hint
+                            const hintUI = document.getElementById('category-hint');
+                            document.getElementById('hint-text').innerText = freeBlocks[i].userData.category.toUpperCase();
+                            hintUI.style.display = 'block';
+                            setTimeout(() => hintUI.style.opacity = 1, 10);
+                            setTimeout(() => {
+                                hintUI.style.opacity = 0;
+                                setTimeout(() => hintUI.style.display = 'none', 300);
+                            }, 3000);
+                            
+                            break;
+                        }
+                    }
+                    if (matchFound) break;
+                }
+
+                if (!matchFound) {
+                    // Sem movimentos possíveis, forçar shuffle visualmente amigável
+                    this.createFloatingText("Sem pares livres! A embaralhar...", window.innerWidth/2, 100);
+                    setTimeout(() => this.shuffleRemaining(), 1000);
+                }
+            }
+
+            checkPossibleMoves() {
+                const freeBlocks = this.blocksData.filter(b => b.userData.isFree);
+                let hasMove = false;
+                for (let i = 0; i < freeBlocks.length; i++) {
+                    for (let j = i + 1; j < freeBlocks.length; j++) {
+                        if (freeBlocks[i].userData.category === freeBlocks[j].userData.category) {
+                            hasMove = true; break;
+                        }
+                    }
+                    if(hasMove) break;
+                }
+                
+                if (!hasMove && this.blocksData.length > 0) {
+                     this.createFloatingText("Auto-embaralhar...", window.innerWidth/2, window.innerHeight/2);
+                     setTimeout(() => this.shuffleRemaining(), 1500);
+                }
+            }
+
+            createFloatingText(text, x, y) {
+                const el = document.createElement('div');
+                el.className = 'floating-text';
+                el.innerText = text;
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+                document.body.appendChild(el);
+
+                setTimeout(() => {
+                    el.style.transform = 'translateY(-50px)';
+                    el.style.opacity = '0';
+                }, 50);
+
+                setTimeout(() => el.remove(), 1050);
+            }
+
+            updateUI() {
+                document.getElementById('score-display').innerText = this.score;
+                const comboEl = document.getElementById('combo-display');
+                comboEl.innerText = `x${this.combo}`;
+                document.getElementById('pairs-display').innerText = `${this.pairsFound}/${this.totalPairs}`;
+
+                if (this.combo > 1) {
+                    comboEl.classList.add('combo-active');
+                    setTimeout(() => comboEl.classList.remove('combo-active'), 150);
+                }
+            }
+
+            winGame() {
+                AudioSys.win();
+                document.getElementById('final-score').innerText = this.score;
+                document.getElementById('modal-win').classList.add('active');
+            }
+
+            animate() {
+                requestAnimationFrame(this.animate);
+
+                // Interpolação suave de rotação (Lerp)
+                this.cubeGroup.rotation.y += (this.targetRotation.y - this.cubeGroup.rotation.y) * 0.1;
+                this.cubeGroup.rotation.x += (this.targetRotation.x - this.cubeGroup.rotation.x) * 0.1;
+
+                this.updateParticles();
+                this.renderer.render(this.scene, this.camera);
+            }
+        }
+
+        // Iniciar jogo após o carregamento da página
+        window.onload = () => {
+            const game = new MahjongGame();
+            
+            // Corrige interações de touch para botões na HUD não dispararem no canvas
+            const uiElements = document.querySelectorAll('.btn, .btn-arrow, .modal-content');
+            uiElements.forEach(el => {
+                el.addEventListener('pointerdown', e => e.stopPropagation());
+            });
+        };
+
+    </script>
+</body>
+</html>
