@@ -46,6 +46,7 @@ import ModernHouseWithPool from "./landmarks/ModernHouseWithPool.js";
 import ModernBeachVilla from "./landmarks/ModernBeachVilla.js";
 import ModernTownhouse from "./landmarks/ModernTownhouse.js";
 import OliveSuburbanHouse from "./landmarks/OliveSuburbanHouse.js";
+import ImperialJapaneseCastle from "./landmarks/ImperialJapaneseCastle.js";
 import SamuraiGatehouse from "./landmarks/SamuraiGatehouse.js";
 import MiniTeaHouse from "./landmarks/MiniTeaHouse.js";
 import RiversideMinka from "./landmarks/RiversideMinka.js";
@@ -116,6 +117,7 @@ const PREFABS = {
     ModernBeachVilla,
     ModernTownhouse,
     OliveSuburbanHouse,
+    ImperialJapaneseCastle,
     SamuraiGatehouse,
     TorreDeLondres,
     FushimiInariTaisha,
