@@ -28,6 +28,8 @@ import VilaDeLuxo                    from '../prefabs/landmarks/VilaDeLuxo.js';
 import ModernHouseWithPool           from '../prefabs/landmarks/ModernHouseWithPool.js';
 import ModernBeachVilla              from '../prefabs/landmarks/ModernBeachVilla.js';
 import ModernTownhouse               from '../prefabs/landmarks/ModernTownhouse.js';
+import OliveSuburbanHouse            from '../prefabs/landmarks/OliveSuburbanHouse.js';
+import SamuraiGatehouse              from '../prefabs/landmarks/SamuraiGatehouse.js';
 import Arvore                        from '../prefabs/landmarks/Arvore.js';
 import TorreEiffel                   from '../prefabs/landmarks/TorreEiffel.js';
 import CristoRedentor                from '../prefabs/landmarks/CristoRedentor.js';
@@ -238,6 +240,8 @@ const ALL = {
     ModernHouseWithPool,
     ModernBeachVilla,
     ModernTownhouse,
+    OliveSuburbanHouse,
+    SamuraiGatehouse,
     Arvore,
     TorreEiffel,
     CristoRedentor,
