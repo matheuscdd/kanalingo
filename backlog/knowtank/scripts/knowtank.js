@@ -13,7 +13,7 @@ let questions = [];
 globalThis.addEventListener('DOMContentLoaded', async () => {
     const data = await getSavedQuiz();
     if (!data) return;
-    questions = data.questions;
+    questions = shuffleArray(data.questions);
     console.log(questions)
 
 
@@ -784,9 +784,17 @@ class Player {
 
         if (isAimingWithStick) {
             let rightJoy = getJoystickVector(touchRight);
-            const aimDeadzone = this.tankType === 'lobber' ? 0.5 : 0.1;
+            const aimDeadzone = this.tankType === 'lobber' ? 2 : 0.1;
             if (rightJoy.distance > aimDeadzone) {
-                this.aimAngle = Math.atan2(rightJoy.y, rightJoy.x);
+                const targetAngle = Math.atan2(rightJoy.y, rightJoy.x);
+                if (this.tankType === 'lobber') {
+                    let diff = targetAngle - this.aimAngle;
+                    while (diff > Math.PI) diff -= Math.PI * 2;
+                    while (diff < -Math.PI) diff += Math.PI * 2;
+                    this.aimAngle += diff * Math.min(1, 2 * dt); // 4 antes
+                } else {
+                    this.aimAngle = targetAngle;
+                }
                 this.aimDist = (rightJoy.distance / 50) * maxRange;
                 this.isAiming = true;
                 this.lastAimSource = 'stick';
