@@ -41,6 +41,7 @@ import TemploHoryuji                 from '../prefabs/landmarks/TemploHoryuji.js
 import EstatuaLiberdade              from '../prefabs/landmarks/EstatuaLiberdade.js';
 import CasaBranca                    from '../prefabs/landmarks/CasaBranca.js';
 import BasilicaSaoPedro              from '../prefabs/landmarks/BasilicaSaoPedro.js';
+import SagradaFamilia                from '../prefabs/landmarks/SagradaFamilia.js';
 import ParthenonGrego                from '../prefabs/landmarks/ParthenonGrego.js';
 import BigBen                        from '../prefabs/landmarks/BigBen.js';
 import PalacioWestminster            from '../prefabs/landmarks/PalacioWestminster.js';
@@ -263,6 +264,7 @@ const ALL = {
     EstatuaLiberdade,
     CasaBranca,
     BasilicaSaoPedro,
+    SagradaFamilia,
     ParthenonGrego,
     BigBen,
     PalacioWestminster,

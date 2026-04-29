@@ -28,6 +28,7 @@ import TemploHoryuji from "./landmarks/TemploHoryuji.js";
 import EstatuaLiberdade from "./landmarks/EstatuaLiberdade.js";
 import CasaBranca from "./landmarks/CasaBranca.js";
 import BasilicaSaoPedro from "./landmarks/BasilicaSaoPedro.js";
+import SagradaFamilia from "./landmarks/SagradaFamilia.js";
 import ParthenonGrego from "./landmarks/ParthenonGrego.js";
 import BigBen from "./landmarks/BigBen.js";
 import PalacioWestminster from "./landmarks/PalacioWestminster.js";
@@ -126,6 +127,7 @@ const PREFABS = {
     EstatuaLiberdade,
     CasaBranca,
     BasilicaSaoPedro,
+    SagradaFamilia,
     ParthenonGrego,
     BigBen,
     PalacioWestminster,
