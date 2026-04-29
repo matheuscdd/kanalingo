@@ -64,6 +64,7 @@ import TorreMedieval                 from '../prefabs/landmarks/TorreMedieval.js
 import ForteMedieval                 from '../prefabs/landmarks/ForteMedieval.js';
 import GuaritaMedieval               from '../prefabs/landmarks/GuaritaMedieval.js';
 import CasaTorreEnxaimel             from '../prefabs/landmarks/CasaTorreEnxaimel.js';
+import Pelourinho                    from '../prefabs/landmarks/Pelourinho.js';
 import CasteloNormando               from '../prefabs/landmarks/CasteloNormando.js';
 
 // ── Validação local: espelho de prefabs/index.js ─────────────────────────
@@ -290,6 +291,7 @@ const ALL = {
     ForteMedieval,
     GuaritaMedieval,
     CasaTorreEnxaimel,
+    Pelourinho,
     CasteloNormando,
 };
 
