@@ -4069,6 +4069,13 @@ function updateCameraTarget() {
     }
 }
 
+function snapOrthoCameraToTarget() {
+    visualTarget.copy(cameraTarget);
+    visualCamOffset.copy(targetCamOffset);
+    orthoCamera.position.copy(visualTarget).add(visualCamOffset);
+    orthoCamera.lookAt(visualTarget);
+}
+
 function setBuilderUiVisible(visible) {
     ["bottom-bar", "left-bar", "json-panel", "builder-tools-panel", "btn-iso", "btn-top", "btn-cam", "btn-rotate", "btn-delete", "btn-delete-group", "btn-expand"].forEach((id) => {
         const element = document.getElementById(id);
@@ -4123,10 +4130,7 @@ function exitFirstPerson({ cameraTargetOverride = null, hint = null } = {}) {
     if (cameraTargetOverride) cameraTarget.copy(cameraTargetOverride);
     else cameraTarget.set(playerPos.x, 0, playerPos.z);
 
-    visualTarget.copy(cameraTarget);
-    visualCamOffset.copy(targetCamOffset);
-    orthoCamera.position.copy(cameraTarget).add(targetCamOffset);
-    orthoCamera.lookAt(cameraTarget);
+    snapOrthoCameraToTarget();
     updateRollOverVisual();
 
     const button = document.getElementById("btn-fp");
@@ -4604,6 +4608,7 @@ document.getElementById("btn-iso").onclick = () => {
     document.getElementById("btn-iso").classList.add("active");
     document.getElementById("btn-top").classList.remove("active");
     updateCameraTarget();
+    snapOrthoCameraToTarget();
 };
 
 document.getElementById("btn-top").onclick = () => {
@@ -4611,6 +4616,7 @@ document.getElementById("btn-top").onclick = () => {
     document.getElementById("btn-top").classList.add("active");
     document.getElementById("btn-iso").classList.remove("active");
     updateCameraTarget();
+    snapOrthoCameraToTarget();
 };
 
 document.getElementById("btn-cam").onclick = () => {
