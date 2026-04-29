@@ -94,6 +94,20 @@ function addBorder1x1(builder, x0, y, z0, width, depth, color) {
     }
 }
 
+function addHollowRect(builder, x0, y, z0, width, depth, color, wallThickness = 2) {
+    if (width <= 0 || depth <= 0) return;
+
+    if (width <= wallThickness * 2 || depth <= wallThickness * 2) {
+        addOptimizedRect(builder, x0, y, z0, width, depth, color);
+        return;
+    }
+
+    addOptimizedRect(builder, x0, y, z0, width, wallThickness, color);
+    addOptimizedRect(builder, x0, y, z0 + depth - wallThickness, width, wallThickness, color);
+    addOptimizedRect(builder, x0, y, z0 + wallThickness, wallThickness, depth - wallThickness * 2, color);
+    addOptimizedRect(builder, x0 + width - wallThickness, y, z0 + wallThickness, wallThickness, depth - wallThickness * 2, color);
+}
+
 function getPyramidSizes(baseSize, repeatUntil = 24) {
     const sizes = [];
 
@@ -112,20 +126,25 @@ function getPyramidColor(index, size) {
     return PALETTE.calciteWarm;
 }
 
-function addPyramidCourses(builder, x0, baseY, z0, sizes) {
+function addPyramidCourses(builder, x0, baseY, z0, sizes, options = {}) {
     const baseSize = sizes[0];
+    const {
+        hollowMinSize = Infinity,
+        wallThickness = 2,
+    } = options;
 
     sizes.forEach((size, index) => {
         const inset = Math.floor((baseSize - size) / 2);
-        addOptimizedRect(
-            builder,
-            x0 + inset,
-            baseY + index,
-            z0 + inset,
-            size,
-            size,
-            getPyramidColor(index, size)
-        );
+        const courseX = x0 + inset;
+        const courseZ = z0 + inset;
+        const color = getPyramidColor(index, size);
+
+        if (size >= hollowMinSize) {
+            addHollowRect(builder, courseX, baseY + index, courseZ, size, size, color, wallThickness);
+            return;
+        }
+
+        addOptimizedRect(builder, courseX, baseY + index, courseZ, size, size, color);
     });
 
     const topY = baseY + sizes.length;
@@ -282,7 +301,10 @@ function addPalmClusters(builder) {
 function addMainPyramid(builder) {
     addOptimizedRect(builder, 6, 4, 34, 46, 44, PALETTE.sandLight);
     addBorder1x1(builder, 6, 5, 34, 46, 44, PALETTE.sandShadow);
-    addPyramidCourses(builder, 8, 5, 36, getPyramidSizes(42, 24));
+    addPyramidCourses(builder, 8, 5, 36, getPyramidSizes(42, 24), {
+        hollowMinSize: 18,
+        wallThickness: 2,
+    });
 
     addRockOrUrnScatter(builder, [
         [8, 5 + 1, PALETTE.sandDark],
