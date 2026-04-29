@@ -55,6 +55,7 @@ import EsfingeEgito                  from '../prefabs/landmarks/EsfingeEgito.js'
 import TokyoSkytree                  from '../prefabs/landmarks/TokyoSkytree.js';
 import Eolica                        from '../prefabs/landmarks/Eolica.js';
 import CasaMedieval1                 from '../prefabs/landmarks/CasaMedieval1.js';
+import TavernaMedieval               from '../prefabs/landmarks/TavernaMedieval.js';
 
 // ── Validação local: espelho de prefabs/index.js ─────────────────────────
 function getBlockFootprint(def, rot) {
@@ -271,6 +272,7 @@ const ALL = {
     TokyoSkytree,
     Eolica,
     CasaMedieval1,
+    TavernaMedieval,
 };
 
 // ── Um describe por prefab, 5 asserções independentes ────────────────────
