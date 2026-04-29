@@ -63,6 +63,7 @@ import FazendaMedieval               from '../prefabs/landmarks/FazendaMedieval.
 import TorreMedieval                 from '../prefabs/landmarks/TorreMedieval.js';
 import ForteMedieval                 from '../prefabs/landmarks/ForteMedieval.js';
 import GuaritaMedieval               from '../prefabs/landmarks/GuaritaMedieval.js';
+import CasaTorreEnxaimel             from '../prefabs/landmarks/CasaTorreEnxaimel.js';
 
 // ── Validação local: espelho de prefabs/index.js ─────────────────────────
 function getBlockFootprint(def, rot) {
@@ -287,6 +288,7 @@ const ALL = {
     TorreMedieval,
     ForteMedieval,
     GuaritaMedieval,
+    CasaTorreEnxaimel,
 };
 
 // ── Um describe por prefab, 5 asserções independentes ────────────────────
