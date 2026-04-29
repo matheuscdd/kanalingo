@@ -994,15 +994,50 @@ async function exportWorldStructureToTextarea(seedBlockId) {
     const exported = buildWorldStructureExportPayload(seedBlockId);
     if (!exported) return false;
 
-    if (jsonTextarea) {
-        jsonTextarea.value = exported.json;
-        jsonTextarea.focus();
-        jsonTextarea.setSelectionRange(0, exported.json.length);
-    }
+    writeJsonToTextarea(exported.json);
 
     const copied = await copyTextToClipboard(exported.json);
     showHint(copied ? `JSON salvo da estrutura: ${exported.name}` : `JSON gerado: ${exported.name}`);
     return true;
+}
+
+function writeJsonToTextarea(text, { focus = true, select = true } = {}) {
+    if (!jsonTextarea) return false;
+
+    const normalizedText = typeof text === "string" ? text : JSON.stringify(text, null, 2);
+    jsonTextarea.value = normalizedText;
+
+    if (focus) jsonTextarea.focus();
+    if (select) jsonTextarea.setSelectionRange(0, normalizedText.length);
+    return true;
+}
+
+function getPrefabJsonPayload(prefabId) {
+    const normalizedPrefabId = typeof prefabId === "string" ? prefabId.trim() : "";
+    if (!normalizedPrefabId || !PREFABS[normalizedPrefabId]) return null;
+
+    return {
+        name: normalizedPrefabId,
+        json: getPrefabJson(normalizedPrefabId),
+        sourceType: "prefab",
+    };
+}
+
+function getCurrentPrefabJsonPayload() {
+    return getPrefabJsonPayload(getPrefabIdFromType(currentType));
+}
+
+async function copyPrefabJsonToClipboard(prefabId) {
+    const payload = getPrefabJsonPayload(prefabId);
+    if (!payload) {
+        showHint("Prefab nao encontrado para copiar o JSON.");
+        return false;
+    }
+
+    writeJsonToTextarea(payload.json, { focus: false, select: false });
+    const copied = await copyTextToClipboard(payload.json);
+    showHint(copied ? `JSON salvo do prefab: ${payload.name}` : `JSON pronto: ${payload.name}`);
+    return copied;
 }
 
 async function createPrefabsZip() {
