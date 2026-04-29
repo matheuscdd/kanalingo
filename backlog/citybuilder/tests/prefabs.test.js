@@ -58,6 +58,7 @@ import CasaMedieval1                 from '../prefabs/landmarks/CasaMedieval1.js
 import TavernaMedieval               from '../prefabs/landmarks/TavernaMedieval.js';
 import ManorMedieval                 from '../prefabs/landmarks/ManorMedieval.js';
 import InnMedieval                   from '../prefabs/landmarks/InnMedieval.js';
+import FazendaMedieval               from '../prefabs/landmarks/FazendaMedieval.js';
 
 // ── Validação local: espelho de prefabs/index.js ─────────────────────────
 function getBlockFootprint(def, rot) {
@@ -277,6 +278,7 @@ const ALL = {
     TavernaMedieval,
     ManorMedieval,
     InnMedieval,
+    FazendaMedieval,
 };
 
 // ── Um describe por prefab, 5 asserções independentes ────────────────────
