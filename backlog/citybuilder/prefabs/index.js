@@ -74,6 +74,7 @@ import Pelourinho from "./landmarks/Pelourinho.js";
 import CasteloNormando from "./landmarks/CasteloNormando.js";
 import PalacioOasisDeserto from "./landmarks/PalacioOasisDeserto.js";
 import NotreDame from "./landmarks/NotreDame.js";
+import TemploRomanoCircular from "./landmarks/TemploRomanoCircular.js";
 import {
     attachPrefabMeta,
     buildSerializablePrefabSource,
@@ -136,6 +137,7 @@ const PREFABS = {
     CasteloNormando,
     PalacioOasisDeserto,
     NotreDame,
+    TemploRomanoCircular,
     EstatuaLiberdade,
     CasaBranca,
     BasilicaSaoPedro,

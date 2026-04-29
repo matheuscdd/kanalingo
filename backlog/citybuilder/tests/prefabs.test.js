@@ -68,6 +68,7 @@ import Pelourinho                    from '../prefabs/landmarks/Pelourinho.js';
 import CasteloNormando               from '../prefabs/landmarks/CasteloNormando.js';
 import PalacioOasisDeserto           from '../prefabs/landmarks/PalacioOasisDeserto.js';
 import NotreDame                     from '../prefabs/landmarks/NotreDame.js';
+import TemploRomanoCircular          from '../prefabs/landmarks/TemploRomanoCircular.js';
 
 // ── Validação local: espelho de prefabs/index.js ─────────────────────────
 function getBlockFootprint(def, rot) {
@@ -297,6 +298,7 @@ const ALL = {
     CasteloNormando,
     PalacioOasisDeserto,
     NotreDame,
+    TemploRomanoCircular,
 };
 
 // ── Um describe por prefab, 5 asserções independentes ────────────────────
