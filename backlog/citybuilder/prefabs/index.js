@@ -72,6 +72,7 @@ import GuaritaMedieval from "./landmarks/GuaritaMedieval.js";
 import CasaTorreEnxaimel from "./landmarks/CasaTorreEnxaimel.js";
 import Pelourinho from "./landmarks/Pelourinho.js";
 import CasteloNormando from "./landmarks/CasteloNormando.js";
+import PalacioOasisDeserto from "./landmarks/PalacioOasisDeserto.js";
 import {
     attachPrefabMeta,
     buildSerializablePrefabSource,
@@ -132,6 +133,7 @@ const PREFABS = {
     CasaTorreEnxaimel,
     Pelourinho,
     CasteloNormando,
+    PalacioOasisDeserto,
     EstatuaLiberdade,
     CasaBranca,
     BasilicaSaoPedro,
