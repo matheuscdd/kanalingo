@@ -66,6 +66,7 @@ import ManorMedieval from "./landmarks/ManorMedieval.js";
 import InnMedieval from "./landmarks/InnMedieval.js";
 import FazendaMedieval from "./landmarks/FazendaMedieval.js";
 import TorreMedieval from "./landmarks/TorreMedieval.js";
+import ForteMedieval from "./landmarks/ForteMedieval.js";
 import {
     attachPrefabMeta,
     buildSerializablePrefabSource,
@@ -121,6 +122,7 @@ const PREFABS = {
     InnMedieval,
     FazendaMedieval,
     TorreMedieval,
+    ForteMedieval,
     EstatuaLiberdade,
     CasaBranca,
     BasilicaSaoPedro,
