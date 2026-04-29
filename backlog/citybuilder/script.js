@@ -4621,8 +4621,9 @@ document.getElementById("btn-top").onclick = () => {
 
 document.getElementById("btn-cam").onclick = () => {
     if (!isTopDownView) {
-        cameraAngleIndex++;
+        cameraAngleIndex = (cameraAngleIndex + 1) % 4;
         updateCameraTarget();
+        snapOrthoCameraToTarget();
     }
 };
 
