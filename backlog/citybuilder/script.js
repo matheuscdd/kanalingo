@@ -4724,6 +4724,11 @@ catalogBottomBar.addEventListener("click", async (event) => {
 
     const blockButton = event.target.closest(".block-btn");
     if (!blockButton || !catalogBottomBar.contains(blockButton)) return;
+    const jsonSrc = blockButton.dataset.jsonSrc;
+    if (jsonSrc) {
+        fetch(jsonSrc).then((r) => r.text()).then((text) => importPrefabFromJsonText(text));
+        return;
+    }
     selectCatalogType(blockButton.dataset.type);
 });
 
