@@ -76,6 +76,7 @@ import PalacioOasisDeserto from "./landmarks/PalacioOasisDeserto.js";
 import NotreDame from "./landmarks/NotreDame.js";
 import TemploRomanoCircular from "./landmarks/TemploRomanoCircular.js";
 import GrandePiramideDeGiza from "./landmarks/GrandePiramideDeGiza.js";
+import PalacioBabilonicoSuspenso from "./landmarks/PalacioBabilonicoSuspenso.js";
 import {
     attachPrefabMeta,
     buildSerializablePrefabSource,
@@ -140,6 +141,7 @@ const PREFABS = {
     NotreDame,
     TemploRomanoCircular,
     GrandePiramideDeGiza,
+    PalacioBabilonicoSuspenso,
     EstatuaLiberdade,
     CasaBranca,
     BasilicaSaoPedro,

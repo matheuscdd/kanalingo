@@ -70,6 +70,7 @@ import PalacioOasisDeserto           from '../prefabs/landmarks/PalacioOasisDese
 import NotreDame                     from '../prefabs/landmarks/NotreDame.js';
 import TemploRomanoCircular          from '../prefabs/landmarks/TemploRomanoCircular.js';
 import GrandePiramideDeGiza          from '../prefabs/landmarks/GrandePiramideDeGiza.js';
+import PalacioBabilonicoSuspenso     from '../prefabs/landmarks/PalacioBabilonicoSuspenso.js';
 
 // ── Validação local: espelho de prefabs/index.js ─────────────────────────
 function getBlockFootprint(def, rot) {
@@ -301,6 +302,7 @@ const ALL = {
     NotreDame,
     TemploRomanoCircular,
     GrandePiramideDeGiza,
+    PalacioBabilonicoSuspenso,
 };
 
 // ── Um describe por prefab, 5 asserções independentes ────────────────────
