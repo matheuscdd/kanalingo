@@ -21,6 +21,7 @@ import CasaDeCampo                   from '../prefabs/landmarks/CasaDeCampo.js';
 import SobradoCompacto               from '../prefabs/landmarks/SobradoCompacto.js';
 import SobradoComGaragem             from '../prefabs/landmarks/SobradoComGaragem.js';
 import CasaComVaranda                from '../prefabs/landmarks/CasaComVaranda.js';
+import CasaBrasileiraTijoloVista     from '../prefabs/landmarks/CasaBrasileiraTijoloVista.js';
 import CasaEmL                       from '../prefabs/landmarks/CasaEmL.js';
 import CasaGeminada                  from '../prefabs/landmarks/CasaGeminada.js';
 import VilaComPatio                  from '../prefabs/landmarks/VilaComPatio.js';
@@ -255,6 +256,7 @@ const ALL = {
     SobradoCompacto,
     SobradoComGaragem,
     CasaComVaranda,
+    CasaBrasileiraTijoloVista,
     CasaEmL,
     CasaGeminada,
     VilaComPatio,

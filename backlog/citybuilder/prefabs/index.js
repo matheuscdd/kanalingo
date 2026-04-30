@@ -20,6 +20,7 @@ import TorreEiffel from "./landmarks/TorreEiffel.js";
 import SobradoComGaragem from "./landmarks/SobradoComGaragem.js";
 import CristoRedentor from "./landmarks/CristoRedentor.js";
 import CasaComVaranda from "./landmarks/CasaComVaranda.js";
+import CasaBrasileiraTijoloVista from "./landmarks/CasaBrasileiraTijoloVista.js";
 import CasaEmL from "./landmarks/CasaEmL.js";
 import CasaGeminada from "./landmarks/CasaGeminada.js";
 import TemploJapones from "./landmarks/TemploJapones.js";
@@ -109,6 +110,7 @@ const PREFABS = {
     SobradoCompacto,
     CasaEmL,
     CasaComVaranda,
+    CasaBrasileiraTijoloVista,
     CasaGeminada,
     VilaComPatio,
     Arvore,
