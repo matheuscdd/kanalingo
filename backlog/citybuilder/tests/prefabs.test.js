@@ -56,6 +56,7 @@ import EsfingeEgito                  from '../prefabs/landmarks/EsfingeEgito.js'
 import TokyoSkytree                  from '../prefabs/landmarks/TokyoSkytree.js';
 import Eolica                        from '../prefabs/landmarks/Eolica.js';
 import CasaMedieval1                 from '../prefabs/landmarks/CasaMedieval1.js';
+import CasaMediterraneaPatio         from '../prefabs/landmarks/CasaMediterraneaPatio.js';
 import TavernaMedieval               from '../prefabs/landmarks/TavernaMedieval.js';
 import ManorMedieval                 from '../prefabs/landmarks/ManorMedieval.js';
 import InnMedieval                   from '../prefabs/landmarks/InnMedieval.js';
@@ -288,6 +289,7 @@ const ALL = {
     TokyoSkytree,
     Eolica,
     CasaMedieval1,
+    CasaMediterraneaPatio,
     TavernaMedieval,
     ManorMedieval,
     InnMedieval,
