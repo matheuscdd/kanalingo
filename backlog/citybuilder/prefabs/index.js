@@ -76,6 +76,7 @@ import Pelourinho from "./landmarks/Pelourinho.js";
 import CasteloNormando from "./landmarks/CasteloNormando.js";
 import PalacioOasisDeserto from "./landmarks/PalacioOasisDeserto.js";
 import PalacioDeserticoPergolado from "./landmarks/PalacioDeserticoPergolado.js";
+import VilaEgipciaPatioOasis from "./landmarks/VilaEgipciaPatioOasis.js";
 import NotreDame from "./landmarks/NotreDame.js";
 import TemploClassicoColunado from "./landmarks/TemploClassicoColunado.js";
 import TemploRomanoCircular from "./landmarks/TemploRomanoCircular.js";
@@ -145,6 +146,7 @@ const PREFABS = {
     CasteloNormando,
     PalacioOasisDeserto,
     PalacioDeserticoPergolado,
+    VilaEgipciaPatioOasis,
     NotreDame,
     TemploClassicoColunado,
     TemploRomanoCircular,
