@@ -69,6 +69,7 @@ import Pelourinho                    from '../prefabs/landmarks/Pelourinho.js';
 import CasteloNormando               from '../prefabs/landmarks/CasteloNormando.js';
 import PalacioOasisDeserto           from '../prefabs/landmarks/PalacioOasisDeserto.js';
 import NotreDame                     from '../prefabs/landmarks/NotreDame.js';
+import TemploClassicoColunado        from '../prefabs/landmarks/TemploClassicoColunado.js';
 import TemploRomanoCircular          from '../prefabs/landmarks/TemploRomanoCircular.js';
 import GrandePiramideDeGiza          from '../prefabs/landmarks/GrandePiramideDeGiza.js';
 import PalacioBabilonicoSuspenso     from '../prefabs/landmarks/PalacioBabilonicoSuspenso.js';
@@ -302,6 +303,7 @@ const ALL = {
     CasteloNormando,
     PalacioOasisDeserto,
     NotreDame,
+    TemploClassicoColunado,
     TemploRomanoCircular,
     GrandePiramideDeGiza,
     PalacioBabilonicoSuspenso,
