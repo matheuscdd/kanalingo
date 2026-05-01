@@ -2752,8 +2752,12 @@ function createDirectShapeGeometry(shapeName, sx, sy, sz) {
         geometry = new THREE.BoxGeometry(1, 1, 1);
     } else if (shapeName === "hexagonal_prism") {
         geometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 6);
+    } else if (shapeName === "truncated_cone") {
+        geometry = new THREE.CylinderGeometry(0.23, 0.5, 1, 6);
     } else if (shapeName === "triangular_prism") {
         geometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 3);
+    } else if (shapeName === "cone") {
+        geometry = new THREE.ConeGeometry(0.5, 1, 6);
     } else if (shapeName === "square_pyramid") {
         geometry = new THREE.ConeGeometry(0.5, 1, 4);
         geometry.rotateY(Math.PI / 4);
@@ -2879,7 +2883,7 @@ function getSlopedShapeStudPlacements(shapeName, transform, transformedTriangles
         );
     }
 
-    if (shapeName === "square_pyramid") {
+    if (shapeName === "square_pyramid" || shapeName === "cone" || shapeName === "truncated_cone") {
         return getUpwardSurfaceStudPlacements(
             transformedTriangles,
             {

@@ -107,6 +107,18 @@ describe("prefabCodec", () => {
         expect(parsed.prefab.dz).toBe(4);
     });
 
+    it("round-trips cone dynamic shape block types", () => {
+        const shapeRecipe = createShapeRecipe("cone", { color: "#111111", width: 6, depth: 6, height: 5 });
+        const exported = buildPrefabExport("TorreConica", shapeRecipe.blocks, shapeRecipe.bounds);
+        const parsed = parsePrefabJson(exported.json);
+
+        expect(parsed.prefab.blocks).toHaveLength(1);
+        expect(parsed.prefab.blocks[0].type).toBe(shapeRecipe.blocks[0].type);
+        expect(parsed.prefab.dx).toBe(6);
+        expect(parsed.prefab.dy).toBe(5);
+        expect(parsed.prefab.dz).toBe(6);
+    });
+
     it("rotates shape directions inside prefab metadata", () => {
         const shapeRecipe = createShapeRecipe("triangular_prism", { color: "#f2cd37", width: 6, depth: 4, height: 3, direction: "pos-x" });
         const exported = buildPrefabExport("PrismaTriangularRot", shapeRecipe.blocks, shapeRecipe.bounds);

@@ -11,6 +11,17 @@ function transformPoint(matrix, x, y, z) {
     };
 }
 
+function createRadialPoints(radius, y, segments) {
+    return Array.from({ length: segments }, (_, index) => {
+        const angle = (index / segments) * Math.PI * 2;
+        return {
+            x: Math.cos(angle) * radius,
+            y,
+            z: Math.sin(angle) * radius,
+        };
+    });
+}
+
 describe("shape studs", () => {
     it("places studs on both sloped triangular prism faces in neg-z", () => {
         const matrix = getShapeOrientationMatrix("neg-z", 0);
@@ -94,5 +105,58 @@ describe("shape studs", () => {
         expect([...normalGroups.values()].every((count) => count === 12)).toBe(true);
         expect(placements.every((placement) => placement.ny > 0.15)).toBe(true);
         expect(Math.min(...placements.map((placement) => placement.y))).toBeGreaterThan(0.3);
+    });
+
+    it("places studs on the sloped faces of a cone", () => {
+        const matrix = getShapeOrientationMatrix("pos-y", 0);
+        const axisHint = transformPoint(matrix, 1, 0, 0);
+        const apex = { x: 0, y: 5, z: 0 };
+        const base = createRadialPoints(4, 0, 6);
+
+        const triangles = base.map((point, index) => {
+            const nextPoint = base[(index + 1) % base.length];
+            return [apex, nextPoint, point].map((vertex) => transformPoint(matrix, vertex.x, vertex.y, vertex.z));
+        });
+        const placements = getUpwardSurfaceStudPlacements(triangles, axisHint, {
+            studRadius: 0.25,
+            minNormalY: 0.15,
+            maxNormalY: 0.94,
+        });
+        const normalGroups = new Set(
+            placements.map((placement) => `${Math.round(placement.nx * 100)}:${Math.round(placement.ny * 100)}:${Math.round(placement.nz * 100)}`),
+        );
+
+        expect(placements.length).toBeGreaterThan(0);
+        expect(normalGroups.size).toBe(6);
+        expect(placements.every((placement) => placement.ny > 0.15)).toBe(true);
+    });
+
+    it("places studs on the sloped faces of a truncated cone", () => {
+        const matrix = getShapeOrientationMatrix("pos-y", 0);
+        const axisHint = transformPoint(matrix, 1, 0, 0);
+        const top = createRadialPoints(2, 4, 6);
+        const base = createRadialPoints(4, 0, 6);
+        const triangles = [];
+
+        for (let index = 0; index < 6; index++) {
+            const nextIndex = (index + 1) % 6;
+            triangles.push(
+                [top[index], top[nextIndex], base[nextIndex]].map((vertex) => transformPoint(matrix, vertex.x, vertex.y, vertex.z)),
+                [top[index], base[nextIndex], base[index]].map((vertex) => transformPoint(matrix, vertex.x, vertex.y, vertex.z)),
+            );
+        }
+
+        const placements = getUpwardSurfaceStudPlacements(triangles, axisHint, {
+            studRadius: 0.25,
+            minNormalY: 0.15,
+            maxNormalY: 0.94,
+        });
+        const normalGroups = new Set(
+            placements.map((placement) => `${Math.round(placement.nx * 100)}:${Math.round(placement.ny * 100)}:${Math.round(placement.nz * 100)}`),
+        );
+
+        expect(placements.length).toBeGreaterThan(0);
+        expect(normalGroups.size).toBe(6);
+        expect(placements.every((placement) => placement.ny > 0.15)).toBe(true);
     });
 });

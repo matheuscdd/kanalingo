@@ -75,7 +75,26 @@ describe("builderTools", () => {
 
     it("marks polygonal shapes as direct geometry", () => {
         expect(DIRECT_GEOMETRY_SHAPES.has("triangular_prism")).toBe(true);
+        expect(DIRECT_GEOMETRY_SHAPES.has("cone")).toBe(true);
+        expect(DIRECT_GEOMETRY_SHAPES.has("truncated_cone")).toBe(true);
         expect(DIRECT_GEOMETRY_SHAPES.has("sphere")).toBe(false);
+    });
+
+    it("builds cone shapes as real geometry", () => {
+        const coneRecipe = createShapeRecipe("cone", { color: "#f2cd37", width: 6, depth: 6, height: 5 });
+        const truncatedConeRecipe = createShapeRecipe("truncated_cone", { color: "#111111", width: 8, depth: 8, height: 4 });
+
+        expect(coneRecipe.blocks).toHaveLength(1);
+        expect(parseDynamicShapeBlockType(coneRecipe.blocks[0].type)).toMatchObject({ shape: "cone", width: 6, height: 5, depth: 6 });
+        expect(coneRecipe.bounds.dx).toBe(6);
+        expect(coneRecipe.bounds.dy).toBe(5);
+        expect(coneRecipe.bounds.dz).toBe(6);
+
+        expect(truncatedConeRecipe.blocks).toHaveLength(1);
+        expect(parseDynamicShapeBlockType(truncatedConeRecipe.blocks[0].type)).toMatchObject({ shape: "truncated_cone", width: 8, height: 4, depth: 8 });
+        expect(truncatedConeRecipe.bounds.dx).toBe(8);
+        expect(truncatedConeRecipe.bounds.dy).toBe(4);
+        expect(truncatedConeRecipe.bounds.dz).toBe(8);
     });
 
     it("builds a triangular prism as real geometry", () => {
