@@ -1,0 +1,188 @@
+:root {
+    /* Paleta Tropical / Educacional Premium */
+    --green-primary: #58cc02;
+    --green-shadow: #58a700;
+    --blue-sky: #1cb0f6;
+    --blue-shadow: #1899d6;
+    --yellow-warm: #ffc800;
+    --yellow-shadow: #e5b400;
+    --red-error: #ff4b4b;
+    --red-shadow: #ea2b2b;
+    --brown-dirt: #c28c62;
+    --bg-color: #e6f4ea;
+    --text-dark: #3c3c3c;
+    --text-light: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    font-family: "Nunito", sans-serif;
+    overflow: hidden;
+    color: var(--text-dark);
+}
+
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Camada de UI em HTML (Menus) */
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    pointer-events: none; /* Deixa os cliques passarem pro canvas quando vazio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    pointer-events: auto;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90%;
+    width: 400px;
+    border: 4px solid #e5e5e5;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+h1 {
+    color: var(--green-primary);
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin: 0 0 20px 0;
+}
+
+p.desc {
+    font-size: 1.1rem;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background-color: var(--green-primary);
+    color: var(--text-light);
+    border: none;
+    border-radius: 16px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    font-family: "Nunito", sans-serif;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 5px 0 var(--green-shadow);
+    transition: all 0.1s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 0px 0 var(--green-shadow);
+}
+
+.btn-blue {
+    background-color: var(--blue-sky);
+    box-shadow: 0 5px 0 var(--blue-shadow);
+}
+.btn-blue:active {
+    box-shadow: 0 0px 0 var(--blue-shadow);
+}
+
+.btn-red {
+    background-color: var(--red-error);
+    box-shadow: 0 5px 0 var(--red-shadow);
+}
+.btn-red:active {
+    box-shadow: 0 0px 0 var(--red-shadow);
+}
+
+.stats-box {
+    background: #f0f0f0;
+    border-radius: 12px;
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.stat-item i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: var(--yellow-warm);
+}
+
+/* Ícone decorativo grandão nas telas */
+.big-icon {
+    font-size: 4rem;
+    color: var(--green-primary);
+    margin-bottom: 20px;
+    background: #e6f4ea;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lose-icon {
+    color: var(--red-error);
+    background: #ffebee;
+}

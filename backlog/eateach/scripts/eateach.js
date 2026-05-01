@@ -1,0 +1,884 @@
+/* =======================================================================
+       DADOS EDUCACIONAIS (CATEGORIAS E ITENS)
+       Fácil de editar para adicionar mais conteúdo.
+    ======================================================================== */
+const gameData = [
+    {
+        category: "Animais da Amazônia",
+        correct: ["Onça", "Tucano", "Macaco", "Boto", "Capivara", "Arara", "Preguiça", "Jacaré"],
+        wrong: ["Cadeira", "Avião", "Geladeira", "Computador", "Prédio", "Celular", "Carro", "Relógio"]
+    },
+    {
+        category: "Frutas",
+        correct: ["Açaí", "Cupuaçu", "Banana", "Guaraná", "Cacau", "Maracujá", "Caju"],
+        wrong: ["Pedra", "Livro", "Sapato", "Cachorro", "Caneta", "Mesa", "Gato"]
+    },
+    {
+        category: "Natureza (Sem objetos)",
+        correct: ["Árvore", "Rio", "Folha", "Flor", "Cachoeira", "Terra", "Raiz"],
+        wrong: ["Plástico", "Vidro", "Motor", "Pneu", "Asfalto", "Bateria", "Garrafa"]
+    }
+];
+
+/* =======================================================================
+   SISTEMA DE SOM (Web Audio API puro, sem arquivos externos)
+======================================================================== */
+const AudioSys = {
+    ctx: null,
+    init() {
+        if (!this.ctx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') this.ctx.resume();
+    },
+    playTone(freq, type, duration, vol = 0.1, slideFreq = null) {
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = type;
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+        if (slideFreq) {
+            osc.frequency.exponentialRampToValueAtTime(slideFreq, this.ctx.currentTime + duration);
+        }
+
+        gain.gain.setValueAtTime(vol, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + duration);
+
+        osc.start();
+        osc.stop(this.ctx.currentTime + duration);
+    },
+    playCorrect() {
+        this.playTone(600, 'sine', 0.1, 0.2, 800);
+        setTimeout(() => this.playTone(800, 'sine', 0.15, 0.2, 1200), 100);
+    },
+    playWrong() {
+        this.playTone(300, 'sawtooth', 0.3, 0.2, 100);
+    },
+    playWin() {
+        [400, 500, 600, 800].forEach((f, i) => {
+            setTimeout(() => this.playTone(f, 'square', 0.2, 0.1), i * 150);
+        });
+    },
+    playPop() {
+        this.playTone(400, 'sine', 0.1, 0.1);
+    }
+};
+
+/* =======================================================================
+   ESTADO GLOBAL DO JOGO
+======================================================================== */
+const GameState = {
+    score: 0,
+    lives: 3,
+    currentLevel: 0,
+    cardsToCollect: 0,
+    joystick: { x: 0, y: 0, active: false }
+};
+
+/* =======================================================================
+   PHASER SCENES
+======================================================================== */
+
+// 1. Scene de Inicialização e Geração de Gráficos (Sem Assets Externos)
+class BootScene extends Phaser.Scene {
+    constructor() { super('BootScene'); }
+
+    create() {
+        this.generateTextures();
+        this.scene.start('GameScene');
+        this.scene.start('UIScene');
+        this.scene.bringToTop('UIScene');
+    }
+
+    generateTextures() {
+        const g = this.make.graphics({ x: 0, y: 0, add: false });
+        const tileSize = 60;
+
+        // Chão (Terra da floresta)
+        g.clear();
+        g.fillStyle(0xE1BE8B, 1);
+        g.fillRect(0, 0, tileSize, tileSize);
+        // Pontinhos de terra
+        g.fillStyle(0xCDA56D, 1);
+        g.fillCircle(15, 15, 3);
+        g.fillCircle(45, 40, 4);
+        g.fillCircle(20, 50, 2);
+        g.generateTexture('tex_floor', tileSize, tileSize);
+
+        // Chão da Caverna (Terra um pouco mais escura para as salas seguras)
+        g.clear();
+        g.fillStyle(0xC29D70, 1);
+        g.fillRect(0, 0, tileSize, tileSize);
+        g.fillStyle(0xAE8D64, 1);
+        g.fillCircle(15, 15, 3);
+        g.fillCircle(45, 40, 4);
+        g.fillCircle(20, 50, 2);
+        g.generateTexture('tex_cave_floor', tileSize, tileSize);
+
+        // Parede (Árvores/Arbustos - Flat Design)
+        g.clear();
+        g.fillStyle(0x58CC02, 1); // Verde primário
+        g.fillRoundedRect(0, 0, tileSize, tileSize, 12);
+        g.fillStyle(0x58A700, 1); // Sombra interna inferior
+        g.fillRoundedRect(0, tileSize - 10, tileSize, 10, { bl: 12, br: 12, tl: 0, tr: 0 });
+        // Folhas decorativas
+        g.fillStyle(0x79D72F, 1);
+        g.fillCircle(15, 20, 8);
+        g.fillCircle(40, 25, 12);
+        g.generateTexture('tex_wall', tileSize, tileSize);
+
+        // Jogador (Mascote explorador)
+        g.clear();
+        // Sombra
+        g.fillStyle(0x000000, 0.2);
+        g.fillEllipse(24, 42, 30, 10);
+        // Corpo/Cabeça
+        g.fillStyle(0x1CB0F6, 1); // Azul amigável
+        g.fillRoundedRect(8, 8, 32, 32, 16);
+        g.fillStyle(0x1899D6, 1);
+        g.fillRoundedRect(8, 30, 32, 10, { bl: 16, br: 16, tl: 0, tr: 0 });
+        // Olhos
+        g.fillStyle(0xFFFFFF, 1);
+        g.fillCircle(18, 20, 6);
+        g.fillCircle(30, 20, 6);
+        g.fillStyle(0x3C3C3C, 1);
+        g.fillCircle(18, 20, 3);
+        g.fillCircle(30, 20, 3);
+        g.generateTexture('tex_player', 48, 48);
+
+        // Inimigo (Sapo/Aranha venenosa simplificada)
+        g.clear();
+        g.fillStyle(0xFF4B4B, 1); // Vermelho
+        g.fillRoundedRect(8, 12, 32, 28, 10);
+        g.fillStyle(0xEA2B2B, 1);
+        g.fillRoundedRect(8, 30, 32, 10, { bl: 10, br: 10, tl: 0, tr: 0 });
+        g.fillStyle(0xFFFFFF, 1);
+        g.fillCircle(16, 22, 4);
+        g.fillCircle(32, 22, 4);
+        g.fillStyle(0x3C3C3C, 1);
+        g.fillRect(14, 21, 4, 2);
+        g.fillRect(30, 21, 4, 2); // Olhos bravos
+        g.generateTexture('tex_enemy', 48, 48);
+
+        // Partículas
+        g.clear();
+        g.fillStyle(0xFFC800, 1);
+        g.fillCircle(4, 4, 4);
+        g.generateTexture('tex_particle_star', 8, 8);
+
+        g.clear();
+        g.fillStyle(0x58CC02, 1);
+        g.fillCircle(4, 4, 4);
+        g.generateTexture('tex_particle_leaf', 8, 8);
+    }
+}
+
+// 2. Cena Principal do Jogo
+class GameScene extends Phaser.Scene {
+    constructor() { super('GameScene'); }
+
+    create() {
+        this.tileSize = 60;
+        this.playerSpeed = 220;
+        this.enemySpeed = 80;
+        this.isGameOver = false;
+
+        // Obter dados da fase atual e sortear itens PRIMEIRO
+        this.levelData = gameData[GameState.currentLevel];
+        let corrects = Phaser.Utils.Array.Shuffle([...this.levelData.correct]).slice(0, 3);
+        let wrongs = Phaser.Utils.Array.Shuffle([...this.levelData.wrong]).slice(0, 3);
+
+        let allItems = [];
+        corrects.forEach(c => allItems.push({ text: c, isCorrect: true }));
+        wrongs.forEach(w => allItems.push({ text: w, isCorrect: false }));
+        Phaser.Utils.Array.Shuffle(allItems);
+        GameState.cardsToCollect = corrects.length;
+
+        // --- SISTEMA DE MAPA DINÂMICO ---
+        // Calcula quantos blocos de largura a caverna precisa ter baseado nos caracteres da palavra
+        let getW = (word) => Math.max(3, Math.ceil((word.length * 16 + 30) / this.tileSize) + 1);
+
+        // Larguras das 3 cavernas da esquerda e das 3 cavernas da direita
+        let cL = [getW(allItems[0].text), getW(allItems[2].text), getW(allItems[4].text)];
+        let cR = [getW(allItems[1].text), getW(allItems[3].text), getW(allItems[5].text)];
+
+        this.maxL = Math.max(...cL); // Largura máxima do lado esquerdo do mapa
+        this.maxR = Math.max(...cR); // Largura máxima do lado direito do mapa
+
+        let rep = (v, n) => Array(n).fill(v);
+        let LC_Wall = (w) => rep(1, w);
+        let LC_Room = (w) => [1, ...rep(3, w - 1)];
+        let RC_Wall = (w) => rep(1, w);
+        let RC_Room = (w) => [...rep(3, w - 1), 1];
+
+        // Estrutura fixa do labirinto central (Novo design limpo sem becos sem saída)
+        const CM = [
+            //0  1  2  3  4  5  6  7  8
+            [1, 1, 1, 1, 1, 1, 1, 1, 1], // 0: Parede superior
+            [1, 0, 0, 0, 0, 0, 0, 0, 1], // 1: Corredor superior
+            [0, 0, 1, 1, 0, 1, 1, 0, 0], // 2: Entradas cavernas 0 e 1
+            [1, 0, 1, 1, 0, 1, 1, 0, 1], // 3: Ilhas
+            [1, 0, 0, 0, 0, 0, 0, 0, 1], // 4: Corredor horizontal
+            [1, 0, 1, 1, 1, 1, 1, 0, 1], // 5: Bloco central
+            [1, 0, 1, 0, 0, 0, 1, 0, 1], // 6: Caminho envolta do centro
+            [0, 0, 0, 0, 1, 0, 0, 0, 0], // 7: Corredor médio. Entradas 2 e 3
+            [1, 0, 1, 0, 0, 0, 1, 0, 1], // 8: Caminho envolta do centro
+            [1, 0, 1, 1, 1, 1, 1, 0, 1], // 9: Bloco central
+            [1, 0, 0, 0, 0, 0, 0, 0, 1], // 10: Corredor horizontal
+            [1, 0, 1, 1, 0, 1, 1, 0, 1], // 11: Ilhas
+            [0, 0, 1, 1, 0, 1, 1, 0, 0], // 12: Entradas cavernas 4 e 5
+            [1, 0, 0, 0, 0, 0, 0, 0, 1], // 13: Corredor inferior
+            [1, 1, 1, 1, 1, 1, 1, 1, 1]  // 14: Parede inferior
+        ];
+
+        this.mapLayout = [];
+        // Construtor procedural de linhas garantindo alinhamento e retângulo perfeito
+        let makeRow = (y, lArr, rArr) => {
+            return [...rep(1, this.maxL - lArr.length), ...lArr, ...CM[y], ...rArr, ...rep(1, this.maxR - rArr.length)];
+        };
+
+        this.mapLayout.push(makeRow(0, LC_Wall(cL[0]), RC_Wall(cR[0])));
+        this.mapLayout.push(makeRow(1, LC_Room(cL[0]), RC_Room(cR[0])));
+        this.mapLayout.push(makeRow(2, LC_Room(cL[0]), RC_Room(cR[0])));
+        this.mapLayout.push(makeRow(3, LC_Room(cL[0]), RC_Room(cR[0])));
+        this.mapLayout.push(makeRow(4, LC_Wall(cL[0]), RC_Wall(cR[0])));
+
+        this.mapLayout.push(makeRow(5, LC_Wall(cL[1]), RC_Wall(cR[1])));
+        this.mapLayout.push(makeRow(6, LC_Room(cL[1]), RC_Room(cR[1])));
+        this.mapLayout.push(makeRow(7, LC_Room(cL[1]), RC_Room(cR[1])));
+        this.mapLayout.push(makeRow(8, LC_Room(cL[1]), RC_Room(cR[1])));
+        this.mapLayout.push(makeRow(9, LC_Wall(cL[1]), RC_Wall(cR[1])));
+
+        this.mapLayout.push(makeRow(10, LC_Wall(cL[2]), RC_Wall(cR[2])));
+        this.mapLayout.push(makeRow(11, LC_Room(cL[2]), RC_Room(cR[2])));
+        this.mapLayout.push(makeRow(12, LC_Room(cL[2]), RC_Room(cR[2])));
+        this.mapLayout.push(makeRow(13, LC_Room(cL[2]), RC_Room(cR[2])));
+        this.mapLayout.push(makeRow(14, LC_Wall(cL[2]), RC_Wall(cR[2])));
+
+        this.mapW = this.mapLayout[0].length * this.tileSize;
+        this.mapH = this.mapLayout.length * this.tileSize;
+
+        // Dados pré-calculados para colocar os textos ABSOLUTAMENTE no centro exato da sua respectiva caverna
+        this.itemData = [
+            { x: (this.maxL - cL[0] / 2 + 0.5) * this.tileSize, y: 2.5 * this.tileSize, item: allItems[0] },
+            { x: (this.maxL + 9 + cR[0] / 2 - 0.5) * this.tileSize, y: 2.5 * this.tileSize, item: allItems[1] },
+            { x: (this.maxL - cL[1] / 2 + 0.5) * this.tileSize, y: 7.5 * this.tileSize, item: allItems[2] },
+            { x: (this.maxL + 9 + cR[1] / 2 - 0.5) * this.tileSize, y: 7.5 * this.tileSize, item: allItems[3] },
+            { x: (this.maxL - cL[2] / 2 + 0.5) * this.tileSize, y: 12.5 * this.tileSize, item: allItems[4] },
+            { x: (this.maxL + 9 + cR[2] / 2 - 0.5) * this.tileSize, y: 12.5 * this.tileSize, item: allItems[5] }
+        ];
+
+        // Ajustar câmera e mundo
+        this.physics.world.setBounds(0, 0, this.mapW, this.mapH);
+        this.cameras.main.setBounds(0, 0, this.mapW, this.mapH);
+        this.cameras.main.setBackgroundColor('#8D6E63'); // Fundo marrom escuro atrás do mapa
+
+        // Grupos Físicos
+        this.walls = this.physics.add.staticGroup();
+        this.enemyBlocks = this.physics.add.staticGroup();
+        this.cardsGroup = this.physics.add.group();
+        this.enemiesGroup = this.physics.add.group();
+
+        // Gerar Mapa
+        this.validPositions = [];
+        this.generateMap();
+
+        // Jogador (Agora nasce de forma dinâmica relativa ao centro do mapa para nunca nascer dentro de uma parede)
+        this.player = this.physics.add.sprite((this.maxL + 1.5) * this.tileSize, 1.5 * this.tileSize, 'tex_player');
+        this.player.setCollideWorldBounds(true);
+
+        // Atendendo ao pedido: Hitbox da exata largura do caminho (60).
+        // Usamos 56 para dar apenas 2 pixels minúsculos de "respiro" contra as paredes.
+        // O assistente magnético no update() fará o resto para deslizar como um trilho!
+        this.player.body.setSize(56, 56);
+        this.player.setDepth(10);
+
+        // Animação de "respiração" do jogador
+        this.tweens.add({
+            targets: this.player,
+            scaleY: 0.95,
+            scaleX: 1.05,
+            duration: 400,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+
+        this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
+        this.cameras.main.setZoom(1.2);
+
+        // Gerar Cartas e Inimigos
+        this.spawnCards();
+        this.spawnEnemies();
+
+        // Colisões
+        this.physics.add.collider(this.player, this.walls);
+        this.physics.add.collider(this.enemiesGroup, this.walls);
+        this.physics.add.collider(this.enemiesGroup, this.enemyBlocks);
+        this.physics.add.overlap(this.player, this.enemiesGroup, this.hitEnemy, null, this);
+
+        // Controles de Teclado
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.wasd = this.input.keyboard.addKeys('W,S,A,D');
+
+        // Partículas
+        this.createEmitters();
+
+        // Atualizar UI inicial
+        this.events.emit('updateHUD');
+    }
+
+    generateMap() {
+        for (let y = 0; y < this.mapLayout.length; y++) {
+            for (let x = 0; x < this.mapLayout[y].length; x++) {
+                const posX = x * this.tileSize + this.tileSize / 2;
+                const posY = y * this.tileSize + this.tileSize / 2;
+                const tileType = this.mapLayout[y][x];
+
+                if (tileType === 1) {
+                    this.walls.create(posX, posY, 'tex_wall');
+                } else {
+                    // Chão (diferenciar visualmente as cavernas dos corredores normais)
+                    if (tileType === 3) {
+                        this.add.image(posX, posY, 'tex_cave_floor').setDepth(0);
+                        this.enemyBlocks.create(posX, posY, 'tex_cave_floor').setVisible(false);
+                    } else {
+                        this.add.image(posX, posY, 'tex_floor').setDepth(0);
+                    }
+
+                    if (tileType === 0) {
+                        // Salvar posição válida para os inimigos nas rotas normais
+                        // Evitar que inimigos nasçam no corredor de início do jogador
+                        let isNearPlayer = (x <= this.maxL + 3 && y <= 3);
+                        if (!isNearPlayer) {
+                            this.validPositions.push({ x: posX, y: posY });
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    spawnCards() {
+        // Agora usa as posições perfeitas pré-calculadas baseadas no tamanho das palavras
+        this.itemData.forEach((data) => {
+            let container = this.add.container(data.x, data.y);
+
+            // Texto Estático e fixo sem animação pulsante
+            let txt = this.add.text(0, 0, data.item.text, {
+                fontFamily: 'Nunito',
+                fontSize: '26px',
+                fontWeight: '900',
+                color: '#FFFFFF',
+                stroke: '#5A3E26',
+                strokeThickness: 8,
+                shadow: { offsetX: 0, offsetY: 4, color: '#000000', blur: 4, stroke: false, fill: true }
+            }).setOrigin(0.5);
+
+            container.add(txt);
+
+            this.physics.world.enable(container);
+            container.body.setImmovable(true);
+            container.isCorrect = data.item.isCorrect;
+            container.collected = false;
+            container.setDepth(5);
+
+            this.cardsGroup.add(container);
+        });
+    }
+
+    spawnEnemies() {
+        // 4 inimigos para adicionar dificuldade no novo mapa
+        for (let i = 0; i < 4; i++) {
+            // Pega posições espalhadas pelo mapa
+            let pos = this.validPositions[this.validPositions.length - 1 - (i * 10)];
+            if (!pos) pos = this.validPositions[0]; // Fallback
+
+            let enemy = this.physics.add.sprite(pos.x, pos.y, 'tex_enemy');
+            enemy.setBounce(0); // Controle manual nas quinas pela IA
+            enemy.setCollideWorldBounds(true);
+            enemy.body.setSize(40, 40); // Hitbox menor que o caminho (60)
+            enemy.setDepth(6);
+
+            // Direção inicial estritamente cardeal (para não enroscar em diagonal)
+            let dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
+            let dir = Phaser.Utils.Array.GetRandom(dirs);
+            enemy.setVelocity(dir.x * this.enemySpeed, dir.y * this.enemySpeed);
+
+            this.enemiesGroup.add(enemy);
+
+            // Animação pulsar inimigo
+            this.tweens.add({
+                targets: enemy,
+                scaleX: 1.1,
+                scaleY: 0.9,
+                duration: 300,
+                yoyo: true,
+                repeat: -1
+            });
+        }
+    }
+
+    createEmitters() {
+        this.emitterWin = this.add.particles(0, 0, 'tex_particle_star', {
+            speed: { min: 50, max: 150 },
+            angle: { min: 0, max: 360 },
+            scale: { start: 1, end: 0 },
+            lifespan: 800,
+            gravityY: 100,
+            emitting: false,
+            quantity: 20
+        });
+        this.emitterWin.setDepth(20);
+
+        this.emitterError = this.add.particles(0, 0, 'tex_particle_leaf', {
+            speed: { min: 50, max: 100 },
+            angle: { min: 0, max: 360 },
+            scale: { start: 1, end: 0 },
+            tint: 0xFF4B4B, // Pinta a folha de vermelho no erro
+            lifespan: 600,
+            emitting: false,
+            quantity: 10
+        });
+        this.emitterError.setDepth(20);
+    }
+
+    update() {
+        if (this.isGameOver) return;
+
+        let vx = 0;
+        let vy = 0;
+
+        // Inputs Teclado
+        if (this.cursors.left.isDown || this.wasd.A.isDown) vx = -this.playerSpeed;
+        else if (this.cursors.right.isDown || this.wasd.D.isDown) vx = this.playerSpeed;
+
+        if (this.cursors.up.isDown || this.wasd.W.isDown) vy = -this.playerSpeed;
+        else if (this.cursors.down.isDown || this.wasd.S.isDown) vy = this.playerSpeed;
+
+        // Input Joystick Virtual (sobrepõe teclado se ativo)
+        if (GameState.joystick.active) {
+            vx = GameState.joystick.x * this.playerSpeed;
+            vy = GameState.joystick.y * this.playerSpeed;
+        }
+
+        // Normalizar diagonal para não andar mais rápido
+        if (vx !== 0 && vy !== 0) {
+            let length = Math.sqrt(vx * vx + vy * vy);
+            vx = (vx / length) * this.playerSpeed;
+            vy = (vy / length) * this.playerSpeed;
+        } else {
+            // ASSISTÊNCIA MAGNÉTICA DE TRILHA (Snapping)
+            // Puxa o personagem para o eixo central exato do corredor. 
+            // Como a hitbox agora preenche o caminho, isso impede que ele fique travando nas quinas ao virar!
+            if (vx !== 0 && vy === 0) {
+                let cy = Math.floor(this.player.y / this.tileSize) * this.tileSize + this.tileSize / 2;
+                // Se ele estiver perto da curva, suga o Y dele para o centro perfeito
+                if (Math.abs(this.player.y - cy) < 25) {
+                    this.player.y = Phaser.Math.Linear(this.player.y, cy, 0.4);
+                }
+            } else if (vy !== 0 && vx === 0) {
+                let cx = Math.floor(this.player.x / this.tileSize) * this.tileSize + this.tileSize / 2;
+                // Se ele estiver perto da curva, suga o X dele para o centro perfeito
+                if (Math.abs(this.player.x - cx) < 25) {
+                    this.player.x = Phaser.Math.Linear(this.player.x, cx, 0.4);
+                }
+            }
+        }
+
+        this.player.setVelocity(vx, vy);
+
+        // Flip visual do jogador
+        if (vx > 0) this.player.setFlipX(false);
+        else if (vx < 0) this.player.setFlipX(true);
+
+        // === IA DOS INIMIGOS (Movimentação e Curvas Automáticas) ===
+        this.enemiesGroup.getChildren().forEach(enemy => {
+            // Se o inimigo bateu numa parede ou parou por algum motivo (bug)
+            if (enemy.body.blocked.up || enemy.body.blocked.down || enemy.body.blocked.left || enemy.body.blocked.right || (enemy.body.velocity.x === 0 && enemy.body.velocity.y === 0)) {
+
+                // Centraliza no eixo para fazer a curva perfeita sem enroscar
+                enemy.x = Math.floor(enemy.x / this.tileSize) * this.tileSize + this.tileSize / 2;
+                enemy.y = Math.floor(enemy.y / this.tileSize) * this.tileSize + this.tileSize / 2;
+
+                let px = Math.floor(enemy.x / this.tileSize);
+                let py = Math.floor(enemy.y / this.tileSize);
+                let possibleDirs = [];
+
+                // Analisa vizinhos para ver onde tem corredor livre (0).
+                // As cavernas (3) continuam liberadas só para o jogador.
+                if (this.mapLayout[py - 1] && this.mapLayout[py - 1][px] === 0) possibleDirs.push({ x: 0, y: -1 });
+                if (this.mapLayout[py + 1] && this.mapLayout[py + 1][px] === 0) possibleDirs.push({ x: 0, y: 1 });
+                if (this.mapLayout[py] && this.mapLayout[py][px - 1] === 0) possibleDirs.push({ x: -1, y: 0 });
+                if (this.mapLayout[py] && this.mapLayout[py][px + 1] === 0) possibleDirs.push({ x: 1, y: 0 });
+
+                // Tenta não voltar por onde veio imediatamente (evita bate-volta infinito num corredor reto)
+                let cameFrom = { x: Math.sign(enemy.body.velocity.x) * -1, y: Math.sign(enemy.body.velocity.y) * -1 };
+                let forwardDirs = possibleDirs.filter(d => d.x !== cameFrom.x || d.y !== cameFrom.y);
+
+                let nextDir;
+                if (forwardDirs.length > 0) {
+                    nextDir = Phaser.Utils.Array.GetRandom(forwardDirs);
+                } else if (possibleDirs.length > 0) {
+                    nextDir = Phaser.Utils.Array.GetRandom(possibleDirs); // Beco sem saída, faz meia volta
+                } else {
+                    nextDir = { x: -cameFrom.x, y: -cameFrom.y }; // Fallback de emergência
+                }
+
+                enemy.setVelocity(nextDir.x * this.enemySpeed, nextDir.y * this.enemySpeed);
+            }
+        });
+
+        // === LÓGICA DE ENTRAR NA CAVERNA E COLETAR ===
+        let px = Math.floor(this.player.x / this.tileSize);
+        let py = Math.floor(this.player.y / this.tileSize);
+
+        if (py >= 0 && py < this.mapLayout.length && px >= 0 && px < this.mapLayout[0].length) {
+            let tileType = this.mapLayout[py][px];
+
+            // Se o centro do jogador pisar em qualquer parte do chão da caverna (3)
+            if (tileType === 3) {
+                let closestCard = null;
+                let minDist = 1000; // Raio gigante para ter certeza que sempre pega a palavra desta caverna
+
+                this.cardsGroup.getChildren().forEach(card => {
+                    if (!card.collected) {
+                        let dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, card.x, card.y);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            closestCard = card;
+                        }
+                    }
+                });
+
+                // Se achou a palavra, coleta ela
+                if (closestCard) {
+                    this.collectCard(this.player, closestCard);
+                }
+            }
+        }
+    }
+
+    collectCard(player, cardContainer) {
+        if (cardContainer.collected) return;
+        cardContainer.collected = true;
+
+        // Desabilitar corpo para não coletar duas vezes
+        if (cardContainer.body) cardContainer.body.enable = false;
+
+        if (cardContainer.isCorrect) {
+            // Acerto
+            AudioSys.playCorrect();
+            this.emitterWin.emitParticleAt(cardContainer.x, cardContainer.y);
+            this.showFloatingText('+10', cardContainer.x, cardContainer.y, '#58CC02');
+
+            GameState.score += 10;
+            GameState.cardsToCollect--;
+
+            // Efeito de crescer e sumir
+            this.tweens.add({
+                targets: cardContainer,
+                scaleX: 1.5, scaleY: 1.5, alpha: 0,
+                duration: 300,
+                onComplete: () => cardContainer.destroy()
+            });
+
+            this.events.emit('updateHUD');
+
+            if (GameState.cardsToCollect <= 0) {
+                this.levelComplete();
+            }
+        } else {
+            // Erro
+            AudioSys.playWrong();
+            this.cameras.main.shake(200, 0.01);
+            this.cameras.main.flash(200, 255, 75, 75);
+            this.emitterError.emitParticleAt(cardContainer.x, cardContainer.y);
+            this.showFloatingText('ERRO!', cardContainer.x, cardContainer.y, '#FF4B4B');
+
+            GameState.lives--;
+            this.events.emit('updateHUD');
+
+            // Sumir carta errada também
+            this.tweens.add({
+                targets: cardContainer,
+                scaleX: 0, scaleY: 0,
+                duration: 200,
+                onComplete: () => cardContainer.destroy()
+            });
+
+            if (GameState.lives <= 0) {
+                this.gameOver();
+            }
+        }
+    }
+
+    hitEnemy(player, enemy) {
+        if (player.alpha < 1) return; // Invulnerável
+
+        AudioSys.playWrong();
+        this.cameras.main.shake(200, 0.02);
+        GameState.lives--;
+        this.events.emit('updateHUD');
+
+        if (GameState.lives <= 0) {
+            this.gameOver();
+        } else {
+            // Efeito de dano e invulnerabilidade temporária
+            player.setAlpha(0.5);
+
+            // Reposicionar um pouco pra trás (knockback simples)
+            player.x -= player.body.velocity.x * 0.1;
+            player.y -= player.body.velocity.y * 0.1;
+
+            this.time.delayedCall(1500, () => {
+                player.setAlpha(1);
+            });
+        }
+    }
+
+    showFloatingText(text, x, y, color) {
+        let ft = this.add.text(x, y, text, {
+            fontFamily: 'Nunito', fontSize: '20px', fontWeight: '900',
+            color: color, stroke: '#FFFFFF', strokeThickness: 4
+        }).setOrigin(0.5).setDepth(30);
+
+        this.tweens.add({
+            targets: ft,
+            y: y - 40,
+            alpha: 0,
+            duration: 1000,
+            ease: 'Cubic.easeOut',
+            onComplete: () => ft.destroy()
+        });
+    }
+
+    levelComplete() {
+        this.isGameOver = true;
+        this.player.setVelocity(0, 0);
+        AudioSys.playWin();
+
+        // Pausa a física e mostra tela HTML
+        this.physics.pause();
+        setTimeout(() => {
+            showScreen('screen-win');
+            document.getElementById('win-score').innerText = GameState.score;
+            document.getElementById('win-lives').innerText = GameState.lives;
+        }, 500);
+    }
+
+    gameOver() {
+        this.isGameOver = true;
+        this.player.setVelocity(0, 0);
+        this.player.setTint(0xFF0000);
+        this.physics.pause();
+        setTimeout(() => {
+            showScreen('screen-lose');
+        }, 500);
+    }
+}
+
+// 3. Cena de Interface de Usuário (HUD e Joystick overlay)
+class UIScene extends Phaser.Scene {
+    constructor() { super({ key: 'UIScene', active: false }); }
+
+    create() {
+        const gameScene = this.scene.get('GameScene');
+
+        // Fundo da HUD superior
+        let topBar = this.add.graphics();
+        topBar.fillStyle(0xFFFFFF, 0.95);
+        topBar.fillRect(0, 0, this.scale.width, 60);
+        topBar.fillStyle(0xE5E5E5, 1);
+        topBar.fillRect(0, 60, this.scale.width, 4); // Sombra inferior
+
+        const textStyle = { fontFamily: 'Nunito', fontSize: '18px', fontWeight: 'bold', color: '#3C3C3C' };
+
+        this.scoreText = this.add.text(20, 20, '', textStyle);
+        this.livesText = this.add.text(this.scale.width - 100, 20, '', { ...textStyle, color: '#FF4B4B' });
+
+        this.categoryTitle = this.add.text(this.scale.width / 2, 10, 'Categoria', { fontFamily: 'Nunito', fontSize: '14px', color: '#777' }).setOrigin(0.5, 0);
+        this.categoryText = this.add.text(this.scale.width / 2, 30, '', { fontFamily: 'Nunito', fontSize: '20px', fontWeight: '900', color: '#1CB0F6' }).setOrigin(0.5, 0);
+
+        // Escutar eventos
+        gameScene.events.on('updateHUD', this.updateHUD, this);
+        this.updateHUD();
+
+        // Configuração do Virtual Joystick
+        this.setupJoystick();
+
+        // Responsividade da HUD
+        this.scale.on('resize', this.resize, this);
+    }
+
+    updateHUD() {
+        this.scoreText.setText('Pontos: ' + GameState.score);
+        this.livesText.setText('Vidas: ' + GameState.lives);
+        this.categoryText.setText(gameData[GameState.currentLevel].category);
+    }
+
+    setupJoystick() {
+        this.joyBase = this.add.graphics();
+        this.joyBase.fillStyle(0xFFFFFF, 0.3);
+        this.joyBase.fillCircle(0, 0, 50);
+        this.joyBase.lineStyle(4, 0xFFFFFF, 0.5);
+        this.joyBase.strokeCircle(0, 0, 50);
+        this.joyBase.setVisible(false);
+
+        this.joyThumb = this.add.graphics();
+        this.joyThumb.fillStyle(0x1CB0F6, 0.8); // Azul
+        this.joyThumb.fillCircle(0, 0, 25);
+        this.joyThumb.setVisible(false);
+
+        this.input.on('pointerdown', (pointer) => {
+            if (pointer.y < 70) return; // Ignora clique na HUD
+            this.joyBase.setPosition(pointer.x, pointer.y).setVisible(true);
+            this.joyThumb.setPosition(pointer.x, pointer.y).setVisible(true);
+            GameState.joystick.active = true;
+            this.updateJoystick(pointer);
+        });
+
+        this.input.on('pointermove', (pointer) => {
+            if (GameState.joystick.active) {
+                this.updateJoystick(pointer);
+            }
+        });
+
+        const stopJoystick = () => {
+            this.joyBase.setVisible(false);
+            this.joyThumb.setVisible(false);
+            GameState.joystick.active = false;
+            GameState.joystick.x = 0;
+            GameState.joystick.y = 0;
+        };
+
+        this.input.on('pointerup', stopJoystick);
+        this.input.on('pointerout', stopJoystick);
+    }
+
+    updateJoystick(pointer) {
+        let angle = Phaser.Math.Angle.Between(this.joyBase.x, this.joyBase.y, pointer.x, pointer.y);
+        let distance = Phaser.Math.Distance.Between(this.joyBase.x, this.joyBase.y, pointer.x, pointer.y);
+
+        const maxDist = 50;
+        if (distance > maxDist) distance = maxDist;
+
+        this.joyThumb.x = this.joyBase.x + Math.cos(angle) * distance;
+        this.joyThumb.y = this.joyBase.y + Math.sin(angle) * distance;
+
+        // Normalizar valores entre -1 e 1
+        GameState.joystick.x = Math.cos(angle) * (distance / maxDist);
+        GameState.joystick.y = Math.sin(angle) * (distance / maxDist);
+    }
+
+    resize(gameSize) {
+        let width = gameSize.width;
+        this.livesText.setX(width - 100);
+        this.categoryTitle.setX(width / 2);
+        this.categoryText.setX(width / 2);
+
+        // Redesenhar barra
+        this.children.list[0].clear();
+        this.children.list[0].fillStyle(0xFFFFFF, 0.95);
+        this.children.list[0].fillRect(0, 0, width, 60);
+        this.children.list[0].fillStyle(0xE5E5E5, 1);
+        this.children.list[0].fillRect(0, 60, width, 4);
+    }
+}
+
+/* =======================================================================
+   CONFIGURAÇÃO E CONTROLE DOM HTML
+======================================================================== */
+let game;
+
+function initPhaser() {
+    const config = {
+        type: Phaser.AUTO,
+        scale: {
+            mode: Phaser.Scale.RESIZE,
+            parent: 'game-container',
+            width: '100%',
+            height: '100%'
+        },
+        backgroundColor: '#E6F4EA',
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 0 },
+                debug: false
+            }
+        },
+        scene: [BootScene, GameScene, UIScene]
+    };
+    game = new Phaser.Game(config);
+}
+
+// Controle de Telas HTML
+function hideAllScreens() {
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(s => s.classList.remove('active'));
+    document.getElementById('ui-layer').style.pointerEvents = 'none';
+}
+
+function showScreen(id) {
+    hideAllScreens();
+    document.getElementById(id).classList.add('active');
+    document.getElementById('ui-layer').style.pointerEvents = 'auto';
+}
+
+// Ações dos Botões
+globalThis.startGame = function () {
+    AudioSys.init();
+    AudioSys.playPop();
+    hideAllScreens();
+    GameState.score = 0;
+    GameState.lives = 3;
+    GameState.currentLevel = 0;
+
+    if (!game) {
+        initPhaser();
+    } else {
+        game.scene.stop('GameScene');
+        game.scene.start('GameScene');
+    }
+};
+
+globalThis.nextLevel = function () {
+    AudioSys.playPop();
+    GameState.currentLevel++;
+
+    if (GameState.currentLevel >= gameData.length) {
+        // Fim de jogo - Vitória total
+        showScreen('screen-end');
+        document.getElementById('end-score').innerText = GameState.score;
+        if (game) {
+            game.scene.stop('GameScene');
+            game.scene.stop('UIScene');
+        }
+    } else {
+        // Próxima fase
+        hideAllScreens();
+        game.scene.stop('GameScene');
+        game.scene.start('GameScene');
+    }
+};
+
+globalThis.restartGame = function () {
+    AudioSys.playPop();
+    hideAllScreens();
+    GameState.score = 0;
+    GameState.lives = 3;
+    GameState.currentLevel = 0;
+    if (game) {
+        game.scene.stop('GameScene');
+        game.scene.start('GameScene');
+    }
+};
+
+// Prevenir comportamentos padrão indesejados no mobile
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
+document.addEventListener('contextmenu', event => event.preventDefault());
