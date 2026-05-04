@@ -84,12 +84,13 @@ function initPanelToggles() {
 // --- CONFIGURAÇÕES MEGA MAPA ---
 const GRID_SIZE_LARGE = 200;
 let CURRENT_GRID_SIZE = GRID_SIZE_LARGE;
-const MAX_HEIGHT = 100;
+const MAX_HEIGHT = 200;
 const MAX_BLOCKS = 60000;
 const STUD_RADIUS = 0.25;
 const STUD_HEIGHT = 0.2;
 const PERF_SAMPLE_LIMIT = 180;
 const PERF_UPDATE_MS = 250;
+const PREFAB_GHOST_INSTANCING_THRESHOLD = 4000;
 const MEMORY_POLL_MS = 2500;
 const TARGET_FRAME_MS = 1000 / 60;
 const BENCHMARK_BATCH_SIZE = 300;
@@ -3004,6 +3005,9 @@ function createBlockGroup(type, colorHex, rot, isGhost = false, direction = SHAP
     if (prefabId) {
         const p = PREFABS[prefabId];
         if (!p) return new THREE.Group();
+        if (isGhost && p.blocks.length > PREFAB_GHOST_INSTANCING_THRESHOLD) {
+            return createInstancedPrefabGhostGroup(p, normalizedRot);
+        }
         const group = new THREE.Group();
         p.blocks.forEach((b) => {
             const g = createBlockGroup(b.type, b.color, b.rot, isGhost, b.direction);
@@ -3140,6 +3144,60 @@ function createBlockGroup(type, colorHex, rot, isGhost = false, direction = SHAP
     group.userData.hitbox = hitbox;
     if (def.customGeo?.startsWith("shape:")) applyShapeOrientationTransform(partRoot, sx, sy, sz, normalizedDirection, normalizedRot);
     else group.rotation.y = -normalizedRot * (Math.PI / 2);
+    return group;
+}
+
+function createInstancedPrefabGhostGroup(prefab, normalizedRot) {
+    const group = new THREE.Group();
+    const instanceBatches = new Map();
+    const placementMatrix = new THREE.Matrix4();
+    const instanceMatrix = new THREE.Matrix4();
+
+    prefab.blocks.forEach((block) => {
+        const parts = getStaticPlacementParts(block.type, block.rot, block.direction).filter((part) => part.geoKey !== "stud_base");
+        parts.forEach((part) => {
+            const batch = instanceBatches.get(part.geoKey);
+            if (batch) batch.count += 1;
+            else instanceBatches.set(part.geoKey, { geometry: part.geo, count: 1, cursor: 0, mesh: null });
+        });
+    });
+
+    instanceBatches.forEach((batch, geoKey) => {
+        const mesh = new THREE.InstancedMesh(batch.geometry, matGhostValid, batch.count);
+        mesh.instanceMatrix.setUsage(THREE.StaticDrawUsage);
+        mesh.count = batch.count;
+        mesh.castShadow = false;
+        mesh.receiveShadow = false;
+        mesh.frustumCulled = false;
+        mesh.userData = { geoKey };
+        group.add(mesh);
+        batch.mesh = mesh;
+    });
+
+    prefab.blocks.forEach((block) => {
+        const parts = getStaticPlacementParts(block.type, block.rot, block.direction).filter((part) => part.geoKey !== "stud_base");
+        const { dx: blockDx, dz: blockDz } = getPlacementMetrics(block.type, block.rot, block.direction);
+        placementMatrix.makeTranslation(block.lx + blockDx / 2 - prefab.dx / 2, block.ly, block.lz + blockDz / 2 - prefab.dz / 2);
+
+        parts.forEach((part) => {
+            const batch = instanceBatches.get(part.geoKey);
+            if (!batch?.mesh) return;
+            instanceMatrix.multiplyMatrices(placementMatrix, part.matrix);
+            batch.mesh.setMatrixAt(batch.cursor, instanceMatrix);
+            batch.cursor += 1;
+        });
+    });
+
+    instanceBatches.forEach((batch) => {
+        if (batch.mesh) batch.mesh.instanceMatrix.needsUpdate = true;
+    });
+
+    const hitboxGeometry = new THREE.BoxGeometry(prefab.dx, prefab.dy, prefab.dz).translate(0, prefab.dy / 2, 0);
+    const hitbox = new THREE.Mesh(hitboxGeometry, new THREE.MeshBasicMaterial({ visible: false }));
+    hitbox.userData.isHitbox = true;
+    group.add(hitbox);
+    group.userData.hitbox = hitbox;
+    group.rotation.y = -normalizedRot * (Math.PI / 2);
     return group;
 }
 
@@ -3534,7 +3592,6 @@ function canPlacePrefab(cx, cy, cz, pid, pRot) {
         const prefab = PREFABS[pid];
         const rotation = prefab?.meta?.rotations[((pRot % 4) + 4) % 4];
         if (!prefab || !rotation) return false;
-        if (cy !== 0) return false;
         if (rotation.componentCount === 0 || rotation.supportOffsets.length === 0) return false;
         const half = CURRENT_GRID_SIZE / 2;
         if (cy < 0 || cy + prefab.dy > MAX_HEIGHT) return false;
@@ -4040,13 +4097,21 @@ window.addEventListener("keydown", (e) => {
 
 window.addEventListener("keyup", (e) => (keys[e.code] = false));
 
+function normalizeWheelDelta(e) {
+    if (e.deltaMode === 1) return e.deltaY * 16;
+    if (e.deltaMode === 2) return e.deltaY * window.innerHeight;
+    return e.deltaY;
+}
+
 window.addEventListener(
     "wheel",
     (e) => {
-        if (isFirstPerson) return;
-        const zoomAmount = orthoCamera.zoom * 0.1;
-        if (e.deltaY > 0) orthoCamera.zoom = Math.max(0.1, orthoCamera.zoom - zoomAmount);
-        else orthoCamera.zoom = Math.min(50, orthoCamera.zoom + zoomAmount);
+        if (isFirstPerson || e.target !== renderer.domElement) return;
+        e.preventDefault();
+
+        const normalizedDelta = THREE.MathUtils.clamp(normalizeWheelDelta(e), -240, 240);
+        const zoomFactor = Math.exp(-normalizedDelta * 0.0015);
+        orthoCamera.zoom = THREE.MathUtils.clamp(orthoCamera.zoom * zoomFactor, 0.1, 50);
         orthoCamera.updateProjectionMatrix();
     },
     { passive: false },

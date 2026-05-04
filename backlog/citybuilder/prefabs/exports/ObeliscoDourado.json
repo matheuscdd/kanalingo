@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "kind": "prefab",
+  "name": "ObeliscoDourado",
+  "dx": 96,
+  "dy": 176,
+  "dz": 96,
+  "recipe": [
+    { "op": "solid", "x0": 0, "y0": 0, "z0": 0, "width": 96, "depth": 96, "height": 2, "color": "#121212" },
+    { "op": "solid", "x0": 2, "y0": 2, "z0": 2, "width": 92, "depth": 92, "height": 2, "color": "#23262c" },
+    { "op": "solid", "x0": 4, "y0": 4, "z0": 4, "width": 88, "depth": 88, "height": 2, "color": "#33363b" },
+
+    { "op": "solid", "x0": 12, "y0": 6, "z0": 12, "width": 72, "depth": 72, "height": 6, "color": "#9f8f63" },
+    { "op": "solid", "x0": 18, "y0": 12, "z0": 18, "width": 60, "depth": 60, "height": 6, "color": "#b3a171" },
+    { "op": "solid", "x0": 24, "y0": 18, "z0": 24, "width": 48, "depth": 48, "height": 12, "color": "#c4b27e" },
+    { "op": "solid", "x0": 28, "y0": 30, "z0": 28, "width": 40, "depth": 40, "height": 8, "color": "#cdbc8c" },
+
+    { "op": "solid", "x0": 32, "y0": 38, "z0": 32, "width": 8, "depth": 32, "height": 84, "color": "#d7c596" },
+    { "op": "solid", "x0": 56, "y0": 38, "z0": 32, "width": 8, "depth": 32, "height": 84, "color": "#d7c596" },
+    { "op": "solid", "x0": 40, "y0": 38, "z0": 40, "width": 16, "depth": 16, "height": 84, "color": "#d0bd8b" },
+
+    { "op": "solid", "x0": 36, "y0": 122, "z0": 36, "width": 24, "depth": 24, "height": 28, "color": "#dcca9e" },
+    { "op": "solid", "x0": 40, "y0": 150, "z0": 40, "width": 16, "depth": 16, "height": 8, "color": "#cbb684" },
+    { "op": "solid", "x0": 42, "y0": 158, "z0": 42, "width": 12, "depth": 12, "height": 6, "color": "#bca36e" },
+    { "op": "solid", "x0": 44, "y0": 164, "z0": 44, "width": 8, "depth": 8, "height": 4, "color": "#c7b07d" },
+    { "op": "solid", "x0": 46, "y0": 168, "z0": 46, "width": 4, "depth": 4, "height": 8, "color": "#ceb987" }
+  ]
+}

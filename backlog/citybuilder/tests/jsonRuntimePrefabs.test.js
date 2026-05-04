@@ -8,7 +8,7 @@ import { parsePrefabJson } from "../prefabs/shared/prefabCodec.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, "..");
 const htmlPath = resolve(rootDir, "citybuilder.html");
-const MAX_HEIGHT = 100;
+const MAX_HEIGHT = 200;
 const MAX_BLOCKS = 60000;
 
 function getJsonCatalogItems() {
