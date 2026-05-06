@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ordene a História</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; 
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #font-loader {
+            position: absolute;
+            left: -9999px;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="font-loader">
+        <span style="font-family: 'Inter';">A</span>
+        <span style="font-family: 'Font Awesome 6 Free'; font-weight: 900;">&#xf01e;</span>
+    </div>
+
+    <div id="game-container"></div>
+
+    <script>
+        // Banco de Dados dos Eventos (Até 300 caracteres de descrição por card)
+        const EVENTS = {
+            1: { year: '1500', desc: 'Descobrimento do Brasil. A esquadra de Pedro Álvares Cabral chega ao litoral sul da Bahia, marcando o início da colonização portuguesa no território sul-americano.' },
+            2: { year: '1822', desc: 'Independência do Brasil. D. Pedro I proclama a separação política de Portugal às margens do rio Ipiranga, transformando o Brasil em um império autônomo.' },
+            3: { year: '1888', desc: 'Assinatura da Lei Áurea. A Princesa Isabel sanciona a lei que extingue oficialmente e definitivamente a escravidão no Brasil, após forte pressão abolicionista.' },
+            4: { year: '1889', desc: 'Proclamação da República. Um golpe militar liderado pelo Marechal Deodoro da Fonseca põe fim à monarquia, banindo a família imperial e instaurando um governo provisório.' },
+            5: { year: '1930', desc: 'Revolução de 1930. Movimento armado que depôs o presidente Washington Luís, impediu a posse de Júlio Prestes e levou Getúlio Vargas ao poder, encerrando a República Velha.' },
+            6: { year: '1960', desc: 'Inauguração de Brasília. O presidente Juscelino Kubitschek transfere a capital federal do Rio de Janeiro para o Centro-Oeste, promovendo a integração do interior do país.' },
+            7: { year: '1988', desc: 'Constituição Cidadã. É promulgada a atual Constituição Federal do Brasil, consolidando a redemocratização do país após o regime militar e ampliando direitos sociais.' },
+            8: { year: '1994', desc: 'Plano Real. Lançado no governo Itamar Franco, o plano econômico estabilizou a economia do país, controlando a hiperinflação histórica através da criação de uma nova moeda.' },
+            0: null // Espaço vazio
+        };
+
+        // Estado resolvido (8 eventos cronológicos + 1 espaço vazio)
+        const SOLVED_STATE = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+
+        // Layout de Grade: 3 Colunas x 3 Linhas
+        const GRID_COLS = 3;
+        const GRID_ROWS = 3;
+        
+        // Definições visuais adaptadas para blocos quadrados
+        const TILE_SIZE = 350;
+        const SPACING = 20;
+        const CANVAS_WIDTH = 1200;
+        const CANVAS_HEIGHT = 1600;
+
+        // Centralização do Grid
+        const GRID_OFFSET_X = (CANVAS_WIDTH - (GRID_COLS * TILE_SIZE + (GRID_COLS - 1) * SPACING)) / 2 + TILE_SIZE / 2;
+        const GRID_OFFSET_Y = 460; // Ajustado para centralizar o tabuleiro verticalmente no canvas
+        // Cores (Paleta Duolingo)
+        const COLOR_BG = 0xffffff;
+        const COLOR_EMPTY = 0xe5e5e5;
+        const COLOR_TILE_FACE = 0x58cc02; 
+        const COLOR_TILE_SHADOW = 0x58a700; 
+        const COLOR_TILE_CORRECT = 0x1cb0f6; 
+        const COLOR_TILE_CORRECT_SHADOW = 0x1899d6;
+        const COLOR_TEXT = '#ffffff';
+        const COLOR_UI_TEXT = '#4b4b4b';
+
+        class MainScene extends Phaser.Scene {
+            constructor() {
+                super({ key: 'MainScene' });
+                this.grid = []; 
+                this.tiles = []; 
+                this.moves = 0;
+                this.isAnimating = false;
+                this.gameWon = false;
+            }
+
+            preload() {
+                // Cria as texturas dos cards quadrados
+                this.createRoundedRectTexture('empty_slot', COLOR_EMPTY, TILE_SIZE, TILE_SIZE, 24);
+                this.createRoundedRectTexture('tile_face', COLOR_TILE_FACE, TILE_SIZE, TILE_SIZE, 24);
+                this.createRoundedRectTexture('tile_shadow', COLOR_TILE_SHADOW, TILE_SIZE, TILE_SIZE, 24);
+                this.createRoundedRectTexture('tile_face_correct', COLOR_TILE_CORRECT, TILE_SIZE, TILE_SIZE, 24);
+                this.createRoundedRectTexture('tile_shadow_correct', COLOR_TILE_CORRECT_SHADOW, TILE_SIZE, TILE_SIZE, 24);
+            }
+
+            create() {
+                this.cameras.main.setBackgroundColor(COLOR_BG);
+
+                // UI: Título
+                this.add.text(CANVAS_WIDTH/2, 80, 'Ordene a História', {
+                    fontFamily: 'Inter',
+                    fontSize: '52px',
+                    color: COLOR_UI_TEXT,
+                    fontStyle: '900'
+                }).setOrigin(0.5);
+
+                // UI: Instrução
+                this.add.text(CANVAS_WIDTH/2, 150, 'Deslize os cards para organizar cronologicamente', {
+                    fontFamily: 'Inter',
+                    fontSize: '24px',
+                    color: '#afafaf'
+                }).setOrigin(0.5);
+
+                // UI: Contador de movimentos (Destacado visualmente e ao lado do título)
+                const movesBg = this.add.graphics().setDepth(10);
+                movesBg.fillStyle(0xffffff, 1);
+                movesBg.lineStyle(4, 0xcccccc, 1); // Borda mais escura para melhor contraste
+                movesBg.fillRoundedRect(50, 50, 260, 60, 30);
+                movesBg.strokeRoundedRect(50, 50, 260, 60, 30);
+
+                this.movesText = this.add.text(180, 80, 'Movimentos: 0', {
+                    fontFamily: 'Inter',
+                    fontSize: '28px',
+                    color: COLOR_UI_TEXT,
+                    fontStyle: 'bold'
+                }).setOrigin(0.5, 0.5).setDepth(10);
+
+                // UI: Botão de Reiniciar (Alinhado à direita, na mesma linha do título)
+                const restartBtn = this.add.text(CANVAS_WIDTH - 50, 80, '\uf01e', {
+                    fontFamily: '"Font Awesome 6 Free"',
+                    fontWeight: 900,
+                    fontSize: '42px',
+                    color: '#ff4b4b' 
+                }).setOrigin(1, 0.5).setInteractive({ useHandCursor: true }).setDepth(10);
+
+                restartBtn.on('pointerover', () => restartBtn.setScale(1.1));
+                restartBtn.on('pointerout', () => restartBtn.setScale(1));
+                restartBtn.on('pointerdown', () => {
+                    restartBtn.setScale(0.9);
+                    if (!this.isAnimating) this.startGame();
+                });
+                restartBtn.on('pointerup', () => restartBtn.setScale(1.1));
+
+                // Mensagem de vitória (Z-Index alto garantido)
+                this.winContainer = this.add.container(CANVAS_WIDTH/2, CANVAS_HEIGHT + 100).setAlpha(0).setDepth(100);
+                const winBg = this.add.graphics();
+                winBg.fillStyle(0xffc800, 1);
+                winBg.fillRoundedRect(-250, -45, 500, 90, 45);
+                
+                const winText = this.add.text(0, 0, '🎉 Você organizou a história! 🎉', {
+                    fontFamily: 'Inter',
+                    fontSize: '28px',
+                    color: '#ffffff',
+                    fontStyle: 'bold'
+                }).setOrigin(0.5);
+                this.winContainer.add([winBg, winText]);
+
+                this.startGame();
+            }
+
+            createRoundedRectTexture(key, color, w, h, radius) {
+                const graphics = this.make.graphics();
+                graphics.fillStyle(color, 1);
+                graphics.fillRoundedRect(0, 0, w, h, radius);
+                graphics.generateTexture(key, w, h);
+                graphics.destroy();
+            }
+
+            startGame() {
+                this.moves = 0;
+                this.gameWon = false;
+                this.movesText.setText('Movimentos: 0');
+                
+                this.tweens.add({
+                    targets: this.winContainer,
+                    alpha: 0,
+                    y: CANVAS_HEIGHT + 100,
+                    duration: 300
+                });
+
+                if (this.tiles.length > 0) {
+                    this.tiles.forEach(t => t?.destroy());
+                    this.tiles = [];
+                }
+
+                // Cria o grid vazio de fundo
+                if (!this.slotsCreated) {
+                    for (let row = 0; row < GRID_ROWS; row++) {
+                        for (let col = 0; col < GRID_COLS; col++) {
+                            const x = GRID_OFFSET_X + col * (TILE_SIZE + SPACING);
+                            const y = GRID_OFFSET_Y + row * (TILE_SIZE + SPACING);
+                            this.add.image(x, y + 5, 'empty_slot').setOrigin(0.5);
+                        }
+                    }
+                    this.slotsCreated = true;
+                }
+
+                // Gera os blocos simulando movimentos para garantir que haja solução
+                this.grid = this.generateSolvableGrid();
+
+                this.tiles = new Array(9).fill(null);
+                for (let i = 0; i < 9; i++) {
+                    const value = this.grid[i];
+                    if (value !== 0) {
+                        this.createVisualTile(value, i);
+                    }
+                }
+            }
+
+            // Novo gerador: Resolve a física do puzzle simulando 200 movimentos de trás para frente.
+            // Isso previne qualquer erro matemático de resolução em layouts retangulares.
+            generateSolvableGrid() {
+                let puzzle;
+                do {
+                    puzzle = [...SOLVED_STATE];
+                    let emptyIndex = puzzle.indexOf(0);
+                    let lastEmpty = -1;
+
+                    // Simula movimentos válidos 200 vezes
+                    for (let i = 0; i < 200; i++) {
+                        const cCol = emptyIndex % GRID_COLS;
+                        const cRow = Math.floor(emptyIndex / GRID_COLS);
+                        const neighbors = [];
+
+                        if (cCol > 0) neighbors.push(emptyIndex - 1);
+                        if (cCol < GRID_COLS - 1) neighbors.push(emptyIndex + 1);
+                        if (cRow > 0) neighbors.push(emptyIndex - GRID_COLS);
+                        if (cRow < GRID_ROWS - 1) neighbors.push(emptyIndex + GRID_COLS);
+
+                        // Impede que a peça simplesmente fique "indo e voltando" no mesmo lugar
+                        const validNeighbors = neighbors.filter(n => n !== lastEmpty);
+                        const pick = validNeighbors.length > 0 ? 
+                            validNeighbors[Math.floor(Math.random() * validNeighbors.length)] : 
+                            neighbors[0];
+
+                        puzzle[emptyIndex] = puzzle[pick];
+                        puzzle[pick] = 0;
+                        lastEmpty = emptyIndex;
+                        emptyIndex = pick;
+                    }
+                // Garante que o jogo não comece magicamente resolvido após embaralhar
+                } while (this.checkIfWon(puzzle)); 
+                
+                return puzzle;
+            }
+
+            getCoordinates(index) {
+                const col = index % GRID_COLS;
+                const row = Math.floor(index / GRID_COLS);
+                return {
+                    x: GRID_OFFSET_X + col * (TILE_SIZE + SPACING),
+                    y: GRID_OFFSET_Y + row * (TILE_SIZE + SPACING)
+                };
+            }
+
+            createVisualTile(value, index) {
+                const coords = this.getCoordinates(index);
+                const eventData = EVENTS[value];
+                
+                const shadow = this.add.image(0, 6, 'tile_shadow');
+                const face = this.add.image(0, 0, 'tile_face');
+
+                // Texto da Descrição centralizado (Word-Wrap ativado e alinhado ao centro)
+                const descText = this.add.text(0, 0, eventData.desc, {
+                    fontFamily: 'Inter',
+                    fontSize: '28px', // Fonte aumentada para preencher todo o conteúdo
+                    color: COLOR_TEXT,
+                    align: 'center',
+                    lineHeight: 1.3,  // Ajustado para harmonizar com a fonte maior
+                    wordWrap: { width: TILE_SIZE - 40, useAdvancedWrap: true }
+                }).setOrigin(0.5);
+
+                const container = this.add.container(coords.x, coords.y, [shadow, face, descText]);
+                
+                // Aplica interatividade na Face do card como combinamos antes
+                face.setInteractive({ useHandCursor: true });
+
+                face.on('pointerdown', () => {
+                    if (this.isAnimating || this.gameWon) return;
+                    this.tweens.add({ targets: container, scaleX: 0.96, scaleY: 0.96, duration: 100, ease: 'Cubic.easeOut' });
+                    face.y = 6;
+                    descText.y = 6;
+                });
+
+                face.on('pointerout', () => {
+                    if(container.scaleX !== 1) {
+                        container.setScale(1);
+                        face.y = 0; descText.y = 0;
+                    }
+                });
+
+                face.on('pointerup', () => {
+                    if (this.isAnimating || this.gameWon) return;
+                    container.setScale(1);
+                    face.y = 0; descText.y = 0;
+                    this.attemptMove(value);
+                });
+
+                this.tiles[index] = container;
+                this.updateTileColor(container, value, index);
+            }
+
+            updateTileColor(container, value, index) {
+                const isCorrect = (value === index + 1);
+                const shadow = container.list[0];
+                const face = container.list[1];
+                
+                if (isCorrect) {
+                    shadow.setTexture('tile_shadow_correct');
+                    face.setTexture('tile_face_correct');
+                } else {
+                    shadow.setTexture('tile_shadow');
+                    face.setTexture('tile_face');
+                }
+            }
+
+            attemptMove(value) {
+                const currentIndex = this.grid.indexOf(value);
+                const emptyIndex = this.grid.indexOf(0);
+
+                const cCol = currentIndex % GRID_COLS;
+                const cRow = Math.floor(currentIndex / GRID_COLS);
+                const eCol = emptyIndex % GRID_COLS;
+                const eRow = Math.floor(emptyIndex / GRID_COLS);
+
+                const dCol = Math.abs(cCol - eCol);
+                const dRow = Math.abs(cRow - eRow);
+
+                const isAdjacent = (dCol === 1 && dRow === 0) || (dCol === 0 && dRow === 1);
+
+                if (isAdjacent) {
+                    this.moveTile(currentIndex, emptyIndex, value);
+                } else {
+                    this.tweens.add({
+                        targets: this.tiles[currentIndex],
+                        x: '+=5', yoyo: true, duration: 10, repeat: 2
+                    });
+                }
+            }
+
+            moveTile(fromIndex, toIndex, value) {
+                this.isAnimating = true; 
+                this.moves++;
+                this.movesText.setText(`Movimentos: ${this.moves}`);
+
+                this.grid[toIndex] = value;
+                this.grid[fromIndex] = 0;
+
+                const tileContainer = this.tiles[fromIndex];
+                this.tiles[toIndex] = tileContainer;
+                this.tiles[fromIndex] = null;
+
+                const targetCoords = this.getCoordinates(toIndex);
+
+                this.tweens.add({
+                    targets: tileContainer,
+                    x: targetCoords.x,
+                    y: targetCoords.y,
+                    duration: 10, // Duração reduzida para uma movimentação muito mais rápida
+                    ease: 'Cubic.easeOut', // Deslizamento suave e orgânico, sem solavancos
+                    onComplete: () => {
+                        this.isAnimating = false;
+                        this.updateTileColor(tileContainer, value, toIndex);
+                        this.checkWinCondition();
+                    }
+                });
+            }
+
+            checkIfWon(currentGrid) {
+                for (let i = 0; i < SOLVED_STATE.length; i++) {
+                    if (currentGrid[i] !== SOLVED_STATE[i]) return false;
+                }
+                return true;
+            }
+
+            checkWinCondition() {
+                if (this.checkIfWon(this.grid)) {
+                    this.gameWon = true;
+                    this.showWinScreen();
+                }
+            }
+
+            showWinScreen() {
+                this.tweens.add({
+                    targets: this.winContainer,
+                    alpha: 1,
+                    y: CANVAS_HEIGHT / 2, // Posiciona no centro da tela
+                    duration: 600,
+                    ease: 'Bounce.easeOut'
+                });
+
+                this.tiles.forEach((tile, index) => {
+                    if (tile) {
+                        this.tweens.add({
+                            targets: tile, scaleX: 1.05, scaleY: 1.05,
+                            yoyo: true, duration: 200, ease: 'Sine.easeInOut',
+                            delay: index * 50
+                        });
+                    }
+                });
+            }
+        }
+
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: CANVAS_WIDTH,
+            height: CANVAS_HEIGHT,
+            scale: {
+                mode: Phaser.Scale.FIT,           
+                autoCenter: Phaser.Scale.CENTER_BOTH 
+            },
+            scene: MainScene,
+            transparent: true,
+            render: { antialias: true, powerPreference: 'high-performance' }
+        };
+
+        let fontsLoaded = false;
+        document.fonts.ready.then(() => {
+            if(!fontsLoaded) {
+                fontsLoaded = true;
+                new Phaser.Game(config);
+            }
+        });
+
+        setTimeout(() => {
+            if(!fontsLoaded) {
+                fontsLoaded = true;
+                new Phaser.Game(config);
+            }
+        }, 2000);
+
+    </script>
+</body>
+</html>
