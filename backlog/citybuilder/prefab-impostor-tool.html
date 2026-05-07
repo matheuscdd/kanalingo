@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Imagens de Prefabs</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #eef3f7;
+            --panel: rgba(255, 255, 255, 0.92);
+            --line: rgba(31, 52, 68, 0.12);
+            --text: #13232f;
+            --muted: #5a7281;
+            --accent: #0d6b78;
+            --accent-strong: #0a4c54;
+            --shadow: 0 18px 40px rgba(14, 31, 45, 0.12);
+            --radius: 18px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(13, 107, 120, 0.14), transparent 22%),
+                radial-gradient(circle at bottom right, rgba(212, 155, 87, 0.18), transparent 26%),
+                var(--bg);
+            color: var(--text);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(360px, 420px) minmax(420px, 1fr);
+            gap: 18px;
+            padding: 18px;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .controls {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            min-height: calc(100vh - 36px);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.55rem;
+            line-height: 1.15;
+        }
+
+        .lede {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+
+        .section {
+            display: grid;
+            gap: 10px;
+        }
+
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+            display: grid;
+            gap: 10px;
+        }
+
+        .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+        label,
+        .label {
+            display: grid;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        input,
+        select,
+        button {
+            font: inherit;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="color"],
+        select {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text);
+        }
+
+        input[type="color"] {
+            min-height: 44px;
+            padding: 4px;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 999px;
+            padding: 10px 16px;
+            background: #dfe8ee;
+            color: var(--text);
+            cursor: pointer;
+            transition: transform 120ms ease, background 120ms ease;
+        }
+
+        button.primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            background: #d3dfe7;
+        }
+
+        button.primary:hover:not(:disabled) {
+            background: var(--accent-strong);
+        }
+
+        button:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .summary {
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(13, 107, 120, 0.08);
+            color: var(--accent-strong);
+            font-size: 0.92rem;
+        }
+
+        .prefab-list {
+            min-height: 220px;
+            max-height: 42vh;
+            overflow: auto;
+            display: grid;
+            gap: 8px;
+            padding: 4px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(248, 251, 253, 0.95);
+        }
+
+        .prefab-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 10px;
+            align-items: center;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: white;
+            border: 1px solid rgba(31, 52, 68, 0.08);
+        }
+
+        .prefab-item small {
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .log {
+            min-height: 140px;
+            max-height: 220px;
+            overflow: auto;
+            margin: 0;
+            padding: 14px;
+            border-radius: 14px;
+            background: #102430;
+            color: #cce4ef;
+            font: 0.84rem/1.4 Consolas, "Courier New", monospace;
+        }
+
+        .preview {
+            padding: 18px;
+            display: grid;
+            grid-template-rows: auto minmax(360px, 1fr) auto;
+            gap: 14px;
+            min-height: calc(100vh - 36px);
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .preview-badge {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(19, 35, 47, 0.08);
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .iframe-shell {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, #dfe8ee, #f7fbfd);
+            min-height: 360px;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: transparent;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .preview-card {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: white;
+        }
+
+        .preview-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            background:
+                linear-gradient(45deg, #edf2f5 25%, transparent 25%),
+                linear-gradient(-45deg, #edf2f5 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #edf2f5 75%),
+                linear-gradient(-45deg, transparent 75%, #edf2f5 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+        }
+
+        .preview-card figcaption {
+            padding: 10px 12px;
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+
+        @media (max-width: 1100px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .controls,
+            .preview {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .layout {
+                padding: 12px;
+                gap: 12px;
+            }
+
+            .controls,
+            .preview {
+                padding: 16px;
+            }
+
+            .grid-4,
+            .grid-3,
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="layout">
+        <section class="panel controls">
+            <div class="section">
+                <h1>Gerador de Imagens de Prefabs</h1>
+                <p class="lede">Gera as 5 imagens por prefab usando o renderer real do projeto: <strong>side-0</strong>, <strong>side-1</strong>, <strong>side-2</strong>, <strong>side-3</strong> e <strong>top</strong>. O download sai em ZIP com manifesto.</p>
+            </div>
+
+            <div class="section grid-4">
+                <label>
+                    Largura
+                    <input id="capture-width" type="number" min="128" step="64" value="1024">
+                </label>
+                <label>
+                    Altura
+                    <input id="capture-height" type="number" min="128" step="64" value="1024">
+                </label>
+                <label>
+                    Modo de render
+                    <select id="capture-render-mode">
+                        <option value="basic">Padrão (Leve)</option>
+                        <option value="standard">Padrão 3D (Sombras)</option>
+                        <option value="physical">Fotorrealista (Física)</option>
+                        <option value="phong">Plástico Brilhante</option>
+                        <option value="toon">Cartoon (Cel Shading)</option>
+                    </select>
+                </label>
+                <label>
+                    Margem de câmera
+                    <input id="capture-margin" type="number" min="1.01" step="0.01" value="1.15">
+                </label>
+            </div>
+
+            <div class="section grid-4">
+                <label>
+                    Formato
+                    <select id="capture-format">
+                        <option value="image/png">PNG</option>
+                        <option value="image/webp">WebP</option>
+                    </select>
+                </label>
+                <label class="checkbox-row" style="align-self:end;">
+                    <input id="capture-transparent" type="checkbox" checked>
+                    Fundo transparente
+                </label>
+                <label>
+                    Cor de fundo
+                    <input id="capture-background" type="color" value="#e8ecf1" disabled>
+                </label>
+                <label>
+                    Buscar prefab
+                    <input id="prefab-filter" type="text" placeholder="Ex.: castle, house, templo...">
+                </label>
+            </div>
+
+            <div class="button-row">
+                <button id="btn-select-visible" type="button">Selecionar visíveis</button>
+                <button id="btn-clear-selection" type="button">Limpar seleção</button>
+                <button id="btn-generate-selected" class="primary" type="button">Gerar selecionados</button>
+                <button id="btn-generate-all" type="button">Gerar todos</button>
+            </div>
+
+            <div id="selection-summary" class="summary">Aguardando seleção.</div>
+            <div id="prefab-list" class="prefab-list"></div>
+            <pre id="tool-log" class="log">Carregando renderer de captura...</pre>
+        </section>
+
+        <section class="panel preview">
+            <div class="preview-header">
+                <strong>Preview do Renderer</strong>
+                <div id="frame-status" class="preview-badge">Inicializando iframe…</div>
+            </div>
+            <div class="iframe-shell">
+                <iframe id="capture-frame" title="Renderer de captura" src="citybuilder.html?tool=prefab-impostor"></iframe>
+            </div>
+            <div id="preview-grid" class="preview-grid"></div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script type="module" src="scripts/prefab_impostor_tool.js"></script>
+</body>
+</html>

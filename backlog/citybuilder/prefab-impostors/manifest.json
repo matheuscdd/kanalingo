@@ -1,0 +1,4305 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-07T18:12:45.864Z",
+  "generator": "prefab-impostor-tool",
+  "imageType": "image/png",
+  "renderMode": "basic",
+  "viewport": {
+    "width": 1024,
+    "height": 1024,
+    "pixelRatio": 1
+  },
+  "background": null,
+  "prefabs": {
+    "Arvore": {
+      "prefabId": "Arvore",
+      "bounds": {
+        "dx": 8,
+        "dy": 13,
+        "dz": 8
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/Arvore/side-0.png",
+          "spriteScale": {
+            "width": 8.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/Arvore/side-1.png",
+          "spriteScale": {
+            "width": 8.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/Arvore/side-2.png",
+          "spriteScale": {
+            "width": 8.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/Arvore/side-3.png",
+          "spriteScale": {
+            "width": 8.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/Arvore/top.png",
+          "spriteScale": {
+            "width": 8.4,
+            "height": 8.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "BasilicaSaoPedro": {
+      "prefabId": "BasilicaSaoPedro",
+      "bounds": {
+        "dx": 34,
+        "dy": 26,
+        "dz": 33
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/BasilicaSaoPedro/side-0.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 27.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/BasilicaSaoPedro/side-1.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 27.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/BasilicaSaoPedro/side-2.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 27.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/BasilicaSaoPedro/side-3.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 27.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/BasilicaSaoPedro/top.png",
+          "spriteScale": {
+            "width": 34.4,
+            "height": 33.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "BigBen": {
+      "prefabId": "BigBen",
+      "bounds": {
+        "dx": 32,
+        "dy": 80,
+        "dz": 32
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/BigBen/side-0.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 81.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/BigBen/side-1.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 81.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/BigBen/side-2.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 81.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/BigBen/side-3.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 81.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/BigBen/top.png",
+          "spriteScale": {
+            "width": 32.4,
+            "height": 32.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "Casa": {
+      "prefabId": "Casa",
+      "bounds": {
+        "dx": 10,
+        "dy": 9,
+        "dz": 10
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/Casa/side-0.png",
+          "spriteScale": {
+            "width": 10.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/Casa/side-1.png",
+          "spriteScale": {
+            "width": 10.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/Casa/side-2.png",
+          "spriteScale": {
+            "width": 10.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/Casa/side-3.png",
+          "spriteScale": {
+            "width": 10.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/Casa/top.png",
+          "spriteScale": {
+            "width": 10.4,
+            "height": 10.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "CasaBranca": {
+      "prefabId": "CasaBranca",
+      "bounds": {
+        "dx": 34,
+        "dy": 9,
+        "dz": 24
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/CasaBranca/side-0.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/CasaBranca/side-1.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/CasaBranca/side-2.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/CasaBranca/side-3.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/CasaBranca/top.png",
+          "spriteScale": {
+            "width": 34.4,
+            "height": 24.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "CasaComVaranda": {
+      "prefabId": "CasaComVaranda",
+      "bounds": {
+        "dx": 14,
+        "dy": 8,
+        "dz": 12
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/CasaComVaranda/side-0.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/CasaComVaranda/side-1.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/CasaComVaranda/side-2.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/CasaComVaranda/side-3.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/CasaComVaranda/top.png",
+          "spriteScale": {
+            "width": 14.4,
+            "height": 12.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "CasaDeCampo": {
+      "prefabId": "CasaDeCampo",
+      "bounds": {
+        "dx": 14,
+        "dy": 10,
+        "dz": 14
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/CasaDeCampo/side-0.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 11.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/CasaDeCampo/side-1.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 11.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/CasaDeCampo/side-2.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 11.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/CasaDeCampo/side-3.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 11.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/CasaDeCampo/top.png",
+          "spriteScale": {
+            "width": 14.4,
+            "height": 14.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "CasaEmL": {
+      "prefabId": "CasaEmL",
+      "bounds": {
+        "dx": 20,
+        "dy": 8,
+        "dz": 16
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/CasaEmL/side-0.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/CasaEmL/side-1.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/CasaEmL/side-2.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/CasaEmL/side-3.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/CasaEmL/top.png",
+          "spriteScale": {
+            "width": 20.4,
+            "height": 16.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "CasaGeminada": {
+      "prefabId": "CasaGeminada",
+      "bounds": {
+        "dx": 22,
+        "dy": 8,
+        "dz": 12
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/CasaGeminada/side-0.png",
+          "spriteScale": {
+            "width": 22.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/CasaGeminada/side-1.png",
+          "spriteScale": {
+            "width": 22.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/CasaGeminada/side-2.png",
+          "spriteScale": {
+            "width": 22.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/CasaGeminada/side-3.png",
+          "spriteScale": {
+            "width": 22.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/CasaGeminada/top.png",
+          "spriteScale": {
+            "width": 22.4,
+            "height": 12.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "CasaMedieval1": {
+      "prefabId": "CasaMedieval1",
+      "bounds": {
+        "dx": 18,
+        "dy": 14,
+        "dz": 18
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/CasaMedieval1/side-0.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/CasaMedieval1/side-1.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/CasaMedieval1/side-2.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/CasaMedieval1/side-3.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/CasaMedieval1/top.png",
+          "spriteScale": {
+            "width": 18.4,
+            "height": 18.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "CasteloHimeji": {
+      "prefabId": "CasteloHimeji",
+      "bounds": {
+        "dx": 30,
+        "dy": 28,
+        "dz": 30
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/CasteloHimeji/side-0.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 29.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/CasteloHimeji/side-1.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 29.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/CasteloHimeji/side-2.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 29.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/CasteloHimeji/side-3.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 29.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/CasteloHimeji/top.png",
+          "spriteScale": {
+            "width": 30.4,
+            "height": 30.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "Chale": {
+      "prefabId": "Chale",
+      "bounds": {
+        "dx": 9,
+        "dy": 8,
+        "dz": 8
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/Chale/side-0.png",
+          "spriteScale": {
+            "width": 9.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/Chale/side-1.png",
+          "spriteScale": {
+            "width": 9.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/Chale/side-2.png",
+          "spriteScale": {
+            "width": 9.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/Chale/side-3.png",
+          "spriteScale": {
+            "width": 9.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/Chale/top.png",
+          "spriteScale": {
+            "width": 9.4,
+            "height": 8.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ColosseuReal": {
+      "prefabId": "ColosseuReal",
+      "bounds": {
+        "dx": 32,
+        "dy": 18,
+        "dz": 28
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ColosseuReal/side-0.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 19.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ColosseuReal/side-1.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 19.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ColosseuReal/side-2.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 19.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ColosseuReal/side-3.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 19.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ColosseuReal/top.png",
+          "spriteScale": {
+            "width": 32.4,
+            "height": 28.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "CristoRedentor": {
+      "prefabId": "CristoRedentor",
+      "bounds": {
+        "dx": 20,
+        "dy": 30,
+        "dz": 16
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/CristoRedentor/side-0.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 31.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/CristoRedentor/side-1.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 31.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/CristoRedentor/side-2.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 31.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/CristoRedentor/side-3.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 31.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/CristoRedentor/top.png",
+          "spriteScale": {
+            "width": 20.4,
+            "height": 16.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "Eolica": {
+      "prefabId": "Eolica",
+      "bounds": {
+        "dx": 4,
+        "dy": 19,
+        "dz": 4
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/Eolica/side-0.png",
+          "spriteScale": {
+            "width": 4.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/Eolica/side-1.png",
+          "spriteScale": {
+            "width": 4.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/Eolica/side-2.png",
+          "spriteScale": {
+            "width": 4.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/Eolica/side-3.png",
+          "spriteScale": {
+            "width": 4.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/Eolica/top.png",
+          "spriteScale": {
+            "width": 4.4,
+            "height": 4.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "EsfingeEgito": {
+      "prefabId": "EsfingeEgito",
+      "bounds": {
+        "dx": 56,
+        "dy": 36,
+        "dz": 40
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/EsfingeEgito/side-0.png",
+          "spriteScale": {
+            "width": 56.8,
+            "height": 37.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/EsfingeEgito/side-1.png",
+          "spriteScale": {
+            "width": 56.8,
+            "height": 37.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/EsfingeEgito/side-2.png",
+          "spriteScale": {
+            "width": 56.8,
+            "height": 37.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/EsfingeEgito/side-3.png",
+          "spriteScale": {
+            "width": 56.8,
+            "height": 37.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/EsfingeEgito/top.png",
+          "spriteScale": {
+            "width": 56.4,
+            "height": 40.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "EstatuaLiberdade": {
+      "prefabId": "EstatuaLiberdade",
+      "bounds": {
+        "dx": 14,
+        "dy": 21,
+        "dz": 10
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/EstatuaLiberdade/side-0.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 22.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/EstatuaLiberdade/side-1.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 22.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/EstatuaLiberdade/side-2.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 22.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/EstatuaLiberdade/side-3.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 22.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/EstatuaLiberdade/top.png",
+          "spriteScale": {
+            "width": 14.4,
+            "height": 10.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ExercitoTerracota": {
+      "prefabId": "ExercitoTerracota",
+      "bounds": {
+        "dx": 28,
+        "dy": 8,
+        "dz": 20
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ExercitoTerracota/side-0.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ExercitoTerracota/side-1.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ExercitoTerracota/side-2.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ExercitoTerracota/side-3.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ExercitoTerracota/top.png",
+          "spriteScale": {
+            "width": 28.4,
+            "height": 20.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "FabricaMega": {
+      "prefabId": "FabricaMega",
+      "bounds": {
+        "dx": 12,
+        "dy": 16,
+        "dz": 8
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/FabricaMega/side-0.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 17.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/FabricaMega/side-1.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 17.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/FabricaMega/side-2.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 17.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/FabricaMega/side-3.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 17.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/FabricaMega/top.png",
+          "spriteScale": {
+            "width": 12.4,
+            "height": 8.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "FushimiInariTaisha": {
+      "prefabId": "FushimiInariTaisha",
+      "bounds": {
+        "dx": 34,
+        "dy": 19,
+        "dz": 34
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/FushimiInariTaisha/side-0.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/FushimiInariTaisha/side-1.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/FushimiInariTaisha/side-2.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/FushimiInariTaisha/side-3.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/FushimiInariTaisha/top.png",
+          "spriteScale": {
+            "width": 34.4,
+            "height": 34.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "HogwartsBaseCliff": {
+      "prefabId": "HogwartsBaseCliff",
+      "bounds": {
+        "dx": 48,
+        "dy": 14,
+        "dz": 34
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/HogwartsBaseCliff/side-0.png",
+          "spriteScale": {
+            "width": 48.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/HogwartsBaseCliff/side-1.png",
+          "spriteScale": {
+            "width": 48.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/HogwartsBaseCliff/side-2.png",
+          "spriteScale": {
+            "width": 48.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/HogwartsBaseCliff/side-3.png",
+          "spriteScale": {
+            "width": 48.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/HogwartsBaseCliff/top.png",
+          "spriteScale": {
+            "width": 48.4,
+            "height": 34.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "HogwartsBridgeGate": {
+      "prefabId": "HogwartsBridgeGate",
+      "bounds": {
+        "dx": 26,
+        "dy": 20,
+        "dz": 20
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/HogwartsBridgeGate/side-0.png",
+          "spriteScale": {
+            "width": 26.8,
+            "height": 21.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/HogwartsBridgeGate/side-1.png",
+          "spriteScale": {
+            "width": 26.8,
+            "height": 21.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/HogwartsBridgeGate/side-2.png",
+          "spriteScale": {
+            "width": 26.8,
+            "height": 21.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/HogwartsBridgeGate/side-3.png",
+          "spriteScale": {
+            "width": 26.8,
+            "height": 21.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/HogwartsBridgeGate/top.png",
+          "spriteScale": {
+            "width": 26.4,
+            "height": 20.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "HogwartsEastWing": {
+      "prefabId": "HogwartsEastWing",
+      "bounds": {
+        "dx": 30,
+        "dy": 25,
+        "dz": 21
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/HogwartsEastWing/side-0.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 26.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/HogwartsEastWing/side-1.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 26.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/HogwartsEastWing/side-2.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 26.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/HogwartsEastWing/side-3.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 26.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/HogwartsEastWing/top.png",
+          "spriteScale": {
+            "width": 30.4,
+            "height": 21.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "HogwartsGreatHall": {
+      "prefabId": "HogwartsGreatHall",
+      "bounds": {
+        "dx": 30,
+        "dy": 21,
+        "dz": 21
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/HogwartsGreatHall/side-0.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 22.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/HogwartsGreatHall/side-1.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 22.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/HogwartsGreatHall/side-2.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 22.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/HogwartsGreatHall/side-3.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 22.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/HogwartsGreatHall/top.png",
+          "spriteScale": {
+            "width": 30.4,
+            "height": 21.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "HogwartsTowerClusterCourtyard": {
+      "prefabId": "HogwartsTowerClusterCourtyard",
+      "bounds": {
+        "dx": 34,
+        "dy": 31,
+        "dz": 26
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/HogwartsTowerClusterCourtyard/side-0.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 32.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/HogwartsTowerClusterCourtyard/side-1.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 32.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/HogwartsTowerClusterCourtyard/side-2.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 32.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/HogwartsTowerClusterCourtyard/side-3.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 32.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/HogwartsTowerClusterCourtyard/top.png",
+          "spriteScale": {
+            "width": 34.4,
+            "height": 26.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "HogwartsWestWing": {
+      "prefabId": "HogwartsWestWing",
+      "bounds": {
+        "dx": 28,
+        "dy": 23,
+        "dz": 20
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/HogwartsWestWing/side-0.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 24.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/HogwartsWestWing/side-1.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 24.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/HogwartsWestWing/side-2.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 24.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/HogwartsWestWing/side-3.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 24.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/HogwartsWestWing/top.png",
+          "spriteScale": {
+            "width": 28.4,
+            "height": 20.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ImperialJapaneseCastle": {
+      "prefabId": "ImperialJapaneseCastle",
+      "bounds": {
+        "dx": 72,
+        "dy": 37,
+        "dz": 52
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ImperialJapaneseCastle/side-0.png",
+          "spriteScale": {
+            "width": 72.8,
+            "height": 38.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ImperialJapaneseCastle/side-1.png",
+          "spriteScale": {
+            "width": 72.8,
+            "height": 38.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ImperialJapaneseCastle/side-2.png",
+          "spriteScale": {
+            "width": 72.8,
+            "height": 38.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ImperialJapaneseCastle/side-3.png",
+          "spriteScale": {
+            "width": 72.8,
+            "height": 38.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ImperialJapaneseCastle/top.png",
+          "spriteScale": {
+            "width": 72.4,
+            "height": 52.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "InnMedieval": {
+      "prefabId": "InnMedieval",
+      "bounds": {
+        "dx": 14,
+        "dy": 22,
+        "dz": 12
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/InnMedieval/side-0.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 23.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/InnMedieval/side-1.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 23.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/InnMedieval/side-2.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 23.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/InnMedieval/side-3.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 23.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/InnMedieval/top.png",
+          "spriteScale": {
+            "width": 14.4,
+            "height": 12.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ManorMedieval": {
+      "prefabId": "ManorMedieval",
+      "bounds": {
+        "dx": 22,
+        "dy": 19,
+        "dz": 20
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ManorMedieval/side-0.png",
+          "spriteScale": {
+            "width": 22.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ManorMedieval/side-1.png",
+          "spriteScale": {
+            "width": 22.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ManorMedieval/side-2.png",
+          "spriteScale": {
+            "width": 22.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ManorMedieval/side-3.png",
+          "spriteScale": {
+            "width": 22.8,
+            "height": 20.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ManorMedieval/top.png",
+          "spriteScale": {
+            "width": 22.4,
+            "height": 20.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "Mansao": {
+      "prefabId": "Mansao",
+      "bounds": {
+        "dx": 24,
+        "dy": 6,
+        "dz": 19
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/Mansao/side-0.png",
+          "spriteScale": {
+            "width": 24.8,
+            "height": 7.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/Mansao/side-1.png",
+          "spriteScale": {
+            "width": 24.8,
+            "height": 7.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/Mansao/side-2.png",
+          "spriteScale": {
+            "width": 24.8,
+            "height": 7.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/Mansao/side-3.png",
+          "spriteScale": {
+            "width": 24.8,
+            "height": 7.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/Mansao/top.png",
+          "spriteScale": {
+            "width": 24.4,
+            "height": 19.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "MansaoClassica": {
+      "prefabId": "MansaoClassica",
+      "bounds": {
+        "dx": 28,
+        "dy": 10,
+        "dz": 20
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/MansaoClassica/side-0.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 11.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/MansaoClassica/side-1.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 11.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/MansaoClassica/side-2.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 11.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/MansaoClassica/side-3.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 11.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/MansaoClassica/top.png",
+          "spriteScale": {
+            "width": 28.4,
+            "height": 20.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "MerchantHouse": {
+      "prefabId": "MerchantHouse",
+      "bounds": {
+        "dx": 14,
+        "dy": 9,
+        "dz": 10
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/MerchantHouse/side-0.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/MerchantHouse/side-1.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/MerchantHouse/side-2.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/MerchantHouse/side-3.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/MerchantHouse/top.png",
+          "spriteScale": {
+            "width": 14.4,
+            "height": 10.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "MiniHimejiKeep": {
+      "prefabId": "MiniHimejiKeep",
+      "bounds": {
+        "dx": 16,
+        "dy": 14,
+        "dz": 16
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/MiniHimejiKeep/side-0.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/MiniHimejiKeep/side-1.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/MiniHimejiKeep/side-2.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/MiniHimejiKeep/side-3.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 15.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/MiniHimejiKeep/top.png",
+          "spriteScale": {
+            "width": 16.4,
+            "height": 16.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "MiniTeaHouse": {
+      "prefabId": "MiniTeaHouse",
+      "bounds": {
+        "dx": 12,
+        "dy": 8,
+        "dz": 12
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/MiniTeaHouse/side-0.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/MiniTeaHouse/side-1.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/MiniTeaHouse/side-2.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/MiniTeaHouse/side-3.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/MiniTeaHouse/top.png",
+          "spriteScale": {
+            "width": 12.4,
+            "height": 12.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ModernBeachVilla": {
+      "prefabId": "ModernBeachVilla",
+      "bounds": {
+        "dx": 40,
+        "dy": 17,
+        "dz": 30
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ModernBeachVilla/side-0.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 18.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ModernBeachVilla/side-1.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 18.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ModernBeachVilla/side-2.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 18.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ModernBeachVilla/side-3.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 18.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ModernBeachVilla/top.png",
+          "spriteScale": {
+            "width": 40.4,
+            "height": 30.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ModernHouseWithPool": {
+      "prefabId": "ModernHouseWithPool",
+      "bounds": {
+        "dx": 36,
+        "dy": 8,
+        "dz": 28
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ModernHouseWithPool/side-0.png",
+          "spriteScale": {
+            "width": 36.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ModernHouseWithPool/side-1.png",
+          "spriteScale": {
+            "width": 36.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ModernHouseWithPool/side-2.png",
+          "spriteScale": {
+            "width": 36.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ModernHouseWithPool/side-3.png",
+          "spriteScale": {
+            "width": 36.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ModernHouseWithPool/top.png",
+          "spriteScale": {
+            "width": 36.4,
+            "height": 28.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ModernTownhouse": {
+      "prefabId": "ModernTownhouse",
+      "bounds": {
+        "dx": 18,
+        "dy": 16,
+        "dz": 14
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ModernTownhouse/side-0.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 17.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ModernTownhouse/side-1.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 17.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ModernTownhouse/side-2.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 17.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ModernTownhouse/side-3.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 17.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ModernTownhouse/top.png",
+          "spriteScale": {
+            "width": 18.4,
+            "height": 14.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "MonteFuji": {
+      "prefabId": "MonteFuji",
+      "bounds": {
+        "dx": 40,
+        "dy": 40,
+        "dz": 40
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/MonteFuji/side-0.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 41.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/MonteFuji/side-1.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 41.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/MonteFuji/side-2.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 41.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/MonteFuji/side-3.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 41.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/MonteFuji/top.png",
+          "spriteScale": {
+            "width": 40.4,
+            "height": 40.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "Muralha": {
+      "prefabId": "Muralha",
+      "bounds": {
+        "dx": 16,
+        "dy": 9,
+        "dz": 4
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/Muralha/side-0.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/Muralha/side-1.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/Muralha/side-2.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/Muralha/side-3.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/Muralha/top.png",
+          "spriteScale": {
+            "width": 16.4,
+            "height": 4.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "OliveSuburbanHouse": {
+      "prefabId": "OliveSuburbanHouse",
+      "bounds": {
+        "dx": 20,
+        "dy": 12,
+        "dz": 16
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/OliveSuburbanHouse/side-0.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/OliveSuburbanHouse/side-1.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/OliveSuburbanHouse/side-2.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/OliveSuburbanHouse/side-3.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/OliveSuburbanHouse/top.png",
+          "spriteScale": {
+            "width": 20.4,
+            "height": 16.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "Palacio": {
+      "prefabId": "Palacio",
+      "bounds": {
+        "dx": 18,
+        "dy": 12,
+        "dz": 10
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/Palacio/side-0.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/Palacio/side-1.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/Palacio/side-2.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/Palacio/side-3.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/Palacio/top.png",
+          "spriteScale": {
+            "width": 18.4,
+            "height": 10.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "PalacioWestminster": {
+      "prefabId": "PalacioWestminster",
+      "bounds": {
+        "dx": 54,
+        "dy": 30,
+        "dz": 22
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/PalacioWestminster/side-0.png",
+          "spriteScale": {
+            "width": 54.8,
+            "height": 31.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/PalacioWestminster/side-1.png",
+          "spriteScale": {
+            "width": 54.8,
+            "height": 31.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/PalacioWestminster/side-2.png",
+          "spriteScale": {
+            "width": 54.8,
+            "height": 31.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/PalacioWestminster/side-3.png",
+          "spriteScale": {
+            "width": 54.8,
+            "height": 31.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/PalacioWestminster/top.png",
+          "spriteScale": {
+            "width": 54.4,
+            "height": 22.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "Panteao": {
+      "prefabId": "Panteao",
+      "bounds": {
+        "dx": 28,
+        "dy": 18,
+        "dz": 28
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/Panteao/side-0.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 19.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/Panteao/side-1.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 19.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/Panteao/side-2.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 19.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/Panteao/side-3.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 19.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/Panteao/top.png",
+          "spriteScale": {
+            "width": 28.4,
+            "height": 28.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ParthenonGrego": {
+      "prefabId": "ParthenonGrego",
+      "bounds": {
+        "dx": 18,
+        "dy": 13,
+        "dz": 30
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ParthenonGrego/side-0.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ParthenonGrego/side-1.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ParthenonGrego/side-2.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ParthenonGrego/side-3.png",
+          "spriteScale": {
+            "width": 30.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ParthenonGrego/top.png",
+          "spriteScale": {
+            "width": 18.4,
+            "height": 30.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "Predio": {
+      "prefabId": "Predio",
+      "bounds": {
+        "dx": 12,
+        "dy": 33,
+        "dz": 12
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/Predio/side-0.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 34.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/Predio/side-1.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 34.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/Predio/side-2.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 34.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/Predio/side-3.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 34.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/Predio/top.png",
+          "spriteScale": {
+            "width": 12.4,
+            "height": 12.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "RiversideMinka": {
+      "prefabId": "RiversideMinka",
+      "bounds": {
+        "dx": 16,
+        "dy": 8,
+        "dz": 12
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/RiversideMinka/side-0.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/RiversideMinka/side-1.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/RiversideMinka/side-2.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/RiversideMinka/side-3.png",
+          "spriteScale": {
+            "width": 16.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/RiversideMinka/top.png",
+          "spriteScale": {
+            "width": 16.4,
+            "height": 12.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "SakuraTemple2": {
+      "prefabId": "SakuraTemple2",
+      "bounds": {
+        "dx": 40,
+        "dy": 12,
+        "dz": 30
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/SakuraTemple2/side-0.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/SakuraTemple2/side-1.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/SakuraTemple2/side-2.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/SakuraTemple2/side-3.png",
+          "spriteScale": {
+            "width": 40.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/SakuraTemple2/top.png",
+          "spriteScale": {
+            "width": 40.4,
+            "height": 30.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "SakuraTempleRetreat": {
+      "prefabId": "SakuraTempleRetreat",
+      "bounds": {
+        "dx": 56,
+        "dy": 15,
+        "dz": 40
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/SakuraTempleRetreat/side-0.png",
+          "spriteScale": {
+            "width": 56.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/SakuraTempleRetreat/side-1.png",
+          "spriteScale": {
+            "width": 56.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/SakuraTempleRetreat/side-2.png",
+          "spriteScale": {
+            "width": 56.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/SakuraTempleRetreat/side-3.png",
+          "spriteScale": {
+            "width": 56.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/SakuraTempleRetreat/top.png",
+          "spriteScale": {
+            "width": 56.4,
+            "height": 40.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "SamuraiGatehouse": {
+      "prefabId": "SamuraiGatehouse",
+      "bounds": {
+        "dx": 48,
+        "dy": 22,
+        "dz": 30
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/SamuraiGatehouse/side-0.png",
+          "spriteScale": {
+            "width": 48.8,
+            "height": 23.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/SamuraiGatehouse/side-1.png",
+          "spriteScale": {
+            "width": 48.8,
+            "height": 23.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/SamuraiGatehouse/side-2.png",
+          "spriteScale": {
+            "width": 48.8,
+            "height": 23.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/SamuraiGatehouse/side-3.png",
+          "spriteScale": {
+            "width": 48.8,
+            "height": 23.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/SamuraiGatehouse/top.png",
+          "spriteScale": {
+            "width": 48.4,
+            "height": 30.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "SobradoComGaragem": {
+      "prefabId": "SobradoComGaragem",
+      "bounds": {
+        "dx": 18,
+        "dy": 8,
+        "dz": 16
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/SobradoComGaragem/side-0.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/SobradoComGaragem/side-1.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/SobradoComGaragem/side-2.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/SobradoComGaragem/side-3.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/SobradoComGaragem/top.png",
+          "spriteScale": {
+            "width": 18.4,
+            "height": 16.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "SobradoCompacto": {
+      "prefabId": "SobradoCompacto",
+      "bounds": {
+        "dx": 12,
+        "dy": 8,
+        "dz": 12
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/SobradoCompacto/side-0.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/SobradoCompacto/side-1.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/SobradoCompacto/side-2.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/SobradoCompacto/side-3.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 9.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/SobradoCompacto/top.png",
+          "spriteScale": {
+            "width": 12.4,
+            "height": 12.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "TavernaMedieval": {
+      "prefabId": "TavernaMedieval",
+      "bounds": {
+        "dx": 14,
+        "dy": 15,
+        "dz": 14
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/TavernaMedieval/side-0.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/TavernaMedieval/side-1.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/TavernaMedieval/side-2.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/TavernaMedieval/side-3.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/TavernaMedieval/top.png",
+          "spriteScale": {
+            "width": 14.4,
+            "height": 14.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "TempleHallRoof": {
+      "prefabId": "TempleHallRoof",
+      "bounds": {
+        "dx": 20,
+        "dy": 13,
+        "dz": 16
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/TempleHallRoof/side-0.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/TempleHallRoof/side-1.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/TempleHallRoof/side-2.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/TempleHallRoof/side-3.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/TempleHallRoof/top.png",
+          "spriteScale": {
+            "width": 20.4,
+            "height": 16.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "TempleHallStructure": {
+      "prefabId": "TempleHallStructure",
+      "bounds": {
+        "dx": 20,
+        "dy": 9,
+        "dz": 16
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/TempleHallStructure/side-0.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/TempleHallStructure/side-1.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/TempleHallStructure/side-2.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/TempleHallStructure/side-3.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/TempleHallStructure/top.png",
+          "spriteScale": {
+            "width": 20.4,
+            "height": 16.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "TemploHoryuji": {
+      "prefabId": "TemploHoryuji",
+      "bounds": {
+        "dx": 16,
+        "dy": 25,
+        "dz": 17
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/TemploHoryuji/side-0.png",
+          "spriteScale": {
+            "width": 17.8,
+            "height": 26.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/TemploHoryuji/side-1.png",
+          "spriteScale": {
+            "width": 17.8,
+            "height": 26.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/TemploHoryuji/side-2.png",
+          "spriteScale": {
+            "width": 17.8,
+            "height": 26.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/TemploHoryuji/side-3.png",
+          "spriteScale": {
+            "width": 17.8,
+            "height": 26.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/TemploHoryuji/top.png",
+          "spriteScale": {
+            "width": 16.4,
+            "height": 17.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "TemploJapones": {
+      "prefabId": "TemploJapones",
+      "bounds": {
+        "dx": 12,
+        "dy": 17,
+        "dz": 12
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/TemploJapones/side-0.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 18.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/TemploJapones/side-1.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 18.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/TemploJapones/side-2.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 18.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/TemploJapones/side-3.png",
+          "spriteScale": {
+            "width": 12.8,
+            "height": 18.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/TemploJapones/top.png",
+          "spriteScale": {
+            "width": 12.4,
+            "height": 12.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ThreeTierPagodaRoofs": {
+      "prefabId": "ThreeTierPagodaRoofs",
+      "bounds": {
+        "dx": 18,
+        "dy": 15,
+        "dz": 18
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ThreeTierPagodaRoofs/side-0.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ThreeTierPagodaRoofs/side-1.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ThreeTierPagodaRoofs/side-2.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ThreeTierPagodaRoofs/side-3.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ThreeTierPagodaRoofs/top.png",
+          "spriteScale": {
+            "width": 18.4,
+            "height": 18.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ThreeTierPagodaStructure": {
+      "prefabId": "ThreeTierPagodaStructure",
+      "bounds": {
+        "dx": 18,
+        "dy": 15,
+        "dz": 18
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ThreeTierPagodaStructure/side-0.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ThreeTierPagodaStructure/side-1.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ThreeTierPagodaStructure/side-2.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ThreeTierPagodaStructure/side-3.png",
+          "spriteScale": {
+            "width": 18.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ThreeTierPagodaStructure/top.png",
+          "spriteScale": {
+            "width": 18.4,
+            "height": 18.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "TokyoSkytree": {
+      "prefabId": "TokyoSkytree",
+      "bounds": {
+        "dx": 14,
+        "dy": 60,
+        "dz": 14
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/TokyoSkytree/side-0.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 61.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/TokyoSkytree/side-1.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 61.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/TokyoSkytree/side-2.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 61.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/TokyoSkytree/side-3.png",
+          "spriteScale": {
+            "width": 14.8,
+            "height": 61.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/TokyoSkytree/top.png",
+          "spriteScale": {
+            "width": 14.4,
+            "height": 14.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ToriiRowShrineBase": {
+      "prefabId": "ToriiRowShrineBase",
+      "bounds": {
+        "dx": 20,
+        "dy": 7,
+        "dz": 10
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ToriiRowShrineBase/side-0.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 8.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ToriiRowShrineBase/side-1.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 8.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ToriiRowShrineBase/side-2.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 8.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ToriiRowShrineBase/side-3.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 8.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ToriiRowShrineBase/top.png",
+          "spriteScale": {
+            "width": 20.4,
+            "height": 10.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "ToriiRowShrineDetails": {
+      "prefabId": "ToriiRowShrineDetails",
+      "bounds": {
+        "dx": 20,
+        "dy": 9,
+        "dz": 10
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/ToriiRowShrineDetails/side-0.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/ToriiRowShrineDetails/side-1.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/ToriiRowShrineDetails/side-2.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/ToriiRowShrineDetails/side-3.png",
+          "spriteScale": {
+            "width": 20.8,
+            "height": 10.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/ToriiRowShrineDetails/top.png",
+          "spriteScale": {
+            "width": 20.4,
+            "height": 10.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "TorreDeLondres": {
+      "prefabId": "TorreDeLondres",
+      "bounds": {
+        "dx": 28,
+        "dy": 15,
+        "dz": 24
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/TorreDeLondres/side-0.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/TorreDeLondres/side-1.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/TorreDeLondres/side-2.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/TorreDeLondres/side-3.png",
+          "spriteScale": {
+            "width": 28.8,
+            "height": 16.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/TorreDeLondres/top.png",
+          "spriteScale": {
+            "width": 28.4,
+            "height": 24.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "TorreEiffel": {
+      "prefabId": "TorreEiffel",
+      "bounds": {
+        "dx": 64,
+        "dy": 84,
+        "dz": 64
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/TorreEiffel/side-0.png",
+          "spriteScale": {
+            "width": 64.8,
+            "height": 85.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/TorreEiffel/side-1.png",
+          "spriteScale": {
+            "width": 64.8,
+            "height": 85.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/TorreEiffel/side-2.png",
+          "spriteScale": {
+            "width": 64.8,
+            "height": 85.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/TorreEiffel/side-3.png",
+          "spriteScale": {
+            "width": 64.8,
+            "height": 85.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/TorreEiffel/top.png",
+          "spriteScale": {
+            "width": 64.4,
+            "height": 64.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "VilaComPatio": {
+      "prefabId": "VilaComPatio",
+      "bounds": {
+        "dx": 24,
+        "dy": 5,
+        "dz": 20
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/VilaComPatio/side-0.png",
+          "spriteScale": {
+            "width": 24.8,
+            "height": 6.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/VilaComPatio/side-1.png",
+          "spriteScale": {
+            "width": 24.8,
+            "height": 6.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/VilaComPatio/side-2.png",
+          "spriteScale": {
+            "width": 24.8,
+            "height": 6.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/VilaComPatio/side-3.png",
+          "spriteScale": {
+            "width": 24.8,
+            "height": 6.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/VilaComPatio/top.png",
+          "spriteScale": {
+            "width": 24.4,
+            "height": 20.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "VilaDeLuxo": {
+      "prefabId": "VilaDeLuxo",
+      "bounds": {
+        "dx": 32,
+        "dy": 13,
+        "dz": 26
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/VilaDeLuxo/side-0.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/VilaDeLuxo/side-1.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/VilaDeLuxo/side-2.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/VilaDeLuxo/side-3.png",
+          "spriteScale": {
+            "width": 32.8,
+            "height": 14.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/VilaDeLuxo/top.png",
+          "spriteScale": {
+            "width": 32.4,
+            "height": 26.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    },
+    "VilasHistoricasShirakawago": {
+      "prefabId": "VilasHistoricasShirakawago",
+      "bounds": {
+        "dx": 34,
+        "dy": 12,
+        "dz": 28
+      },
+      "views": {
+        "side-0": {
+          "file": "prefab-impostors/VilasHistoricasShirakawago/side-0.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-1": {
+          "file": "prefab-impostors/VilasHistoricasShirakawago/side-1.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-2": {
+          "file": "prefab-impostors/VilasHistoricasShirakawago/side-2.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "side-3": {
+          "file": "prefab-impostors/VilasHistoricasShirakawago/side-3.png",
+          "spriteScale": {
+            "width": 34.8,
+            "height": 13.2
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0
+          }
+        },
+        "top": {
+          "file": "prefab-impostors/VilasHistoricasShirakawago/top.png",
+          "spriteScale": {
+            "width": 34.4,
+            "height": 28.4
+          },
+          "spriteCenter": {
+            "x": 0.5,
+            "y": 0.5
+          }
+        }
+      }
+    }
+  }
+}

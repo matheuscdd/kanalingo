@@ -21,7 +21,6 @@ import CasaDeCampo                   from '../prefabs/landmarks/CasaDeCampo.js';
 import SobradoCompacto               from '../prefabs/landmarks/SobradoCompacto.js';
 import SobradoComGaragem             from '../prefabs/landmarks/SobradoComGaragem.js';
 import CasaComVaranda                from '../prefabs/landmarks/CasaComVaranda.js';
-import CasaBrasileiraTijoloVista     from '../prefabs/landmarks/CasaBrasileiraTijoloVista.js';
 import CasaEmL                       from '../prefabs/landmarks/CasaEmL.js';
 import CasaGeminada                  from '../prefabs/landmarks/CasaGeminada.js';
 import VilaComPatio                  from '../prefabs/landmarks/VilaComPatio.js';
@@ -42,7 +41,6 @@ import TemploHoryuji                 from '../prefabs/landmarks/TemploHoryuji.js
 import EstatuaLiberdade              from '../prefabs/landmarks/EstatuaLiberdade.js';
 import CasaBranca                    from '../prefabs/landmarks/CasaBranca.js';
 import BasilicaSaoPedro              from '../prefabs/landmarks/BasilicaSaoPedro.js';
-import SagradaFamilia                from '../prefabs/landmarks/SagradaFamilia.js';
 import ParthenonGrego                from '../prefabs/landmarks/ParthenonGrego.js';
 import BigBen                        from '../prefabs/landmarks/BigBen.js';
 import PalacioWestminster            from '../prefabs/landmarks/PalacioWestminster.js';
@@ -57,25 +55,9 @@ import EsfingeEgito                  from '../prefabs/landmarks/EsfingeEgito.js'
 import TokyoSkytree                  from '../prefabs/landmarks/TokyoSkytree.js';
 import Eolica                        from '../prefabs/landmarks/Eolica.js';
 import CasaMedieval1                 from '../prefabs/landmarks/CasaMedieval1.js';
-import CasaMediterraneaPatio         from '../prefabs/landmarks/CasaMediterraneaPatio.js';
 import TavernaMedieval               from '../prefabs/landmarks/TavernaMedieval.js';
 import ManorMedieval                 from '../prefabs/landmarks/ManorMedieval.js';
 import InnMedieval                   from '../prefabs/landmarks/InnMedieval.js';
-import FazendaMedieval               from '../prefabs/landmarks/FazendaMedieval.js';
-import TorreMedieval                 from '../prefabs/landmarks/TorreMedieval.js';
-import ForteMedieval                 from '../prefabs/landmarks/ForteMedieval.js';
-import GuaritaMedieval               from '../prefabs/landmarks/GuaritaMedieval.js';
-import CasaTorreEnxaimel             from '../prefabs/landmarks/CasaTorreEnxaimel.js';
-import Pelourinho                    from '../prefabs/landmarks/Pelourinho.js';
-import CasteloNormando               from '../prefabs/landmarks/CasteloNormando.js';
-import PalacioOasisDeserto           from '../prefabs/landmarks/PalacioOasisDeserto.js';
-import PalacioDeserticoPergolado     from '../prefabs/landmarks/PalacioDeserticoPergolado.js';
-import VilaEgipciaPatioOasis         from '../prefabs/landmarks/VilaEgipciaPatioOasis.js';
-import NotreDame                     from '../prefabs/landmarks/NotreDame.js';
-import TemploClassicoColunado        from '../prefabs/landmarks/TemploClassicoColunado.js';
-import TemploRomanoCircular          from '../prefabs/landmarks/TemploRomanoCircular.js';
-import GrandePiramideDeGiza          from '../prefabs/landmarks/GrandePiramideDeGiza.js';
-import PalacioBabilonicoSuspenso     from '../prefabs/landmarks/PalacioBabilonicoSuspenso.js';
 
 // ── Validação local: espelho de prefabs/index.js ─────────────────────────
 function getBlockFootprint(def, rot) {
@@ -258,7 +240,6 @@ const ALL = {
     SobradoCompacto,
     SobradoComGaragem,
     CasaComVaranda,
-    CasaBrasileiraTijoloVista,
     CasaEmL,
     CasaGeminada,
     VilaComPatio,
@@ -279,7 +260,6 @@ const ALL = {
     EstatuaLiberdade,
     CasaBranca,
     BasilicaSaoPedro,
-    SagradaFamilia,
     ParthenonGrego,
     BigBen,
     PalacioWestminster,
@@ -294,25 +274,9 @@ const ALL = {
     TokyoSkytree,
     Eolica,
     CasaMedieval1,
-    CasaMediterraneaPatio,
     TavernaMedieval,
     ManorMedieval,
     InnMedieval,
-    FazendaMedieval,
-    TorreMedieval,
-    ForteMedieval,
-    GuaritaMedieval,
-    CasaTorreEnxaimel,
-    Pelourinho,
-    CasteloNormando,
-    PalacioOasisDeserto,
-    PalacioDeserticoPergolado,
-    VilaEgipciaPatioOasis,
-    NotreDame,
-    TemploClassicoColunado,
-    TemploRomanoCircular,
-    GrandePiramideDeGiza,
-    PalacioBabilonicoSuspenso,
 };
 
 // ── Um describe por prefab, 5 asserções independentes ────────────────────

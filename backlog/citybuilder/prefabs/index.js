@@ -20,7 +20,6 @@ import TorreEiffel from "./landmarks/TorreEiffel.js";
 import SobradoComGaragem from "./landmarks/SobradoComGaragem.js";
 import CristoRedentor from "./landmarks/CristoRedentor.js";
 import CasaComVaranda from "./landmarks/CasaComVaranda.js";
-import CasaBrasileiraTijoloVista from "./landmarks/CasaBrasileiraTijoloVista.js";
 import CasaEmL from "./landmarks/CasaEmL.js";
 import CasaGeminada from "./landmarks/CasaGeminada.js";
 import TemploJapones from "./landmarks/TemploJapones.js";
@@ -29,7 +28,6 @@ import TemploHoryuji from "./landmarks/TemploHoryuji.js";
 import EstatuaLiberdade from "./landmarks/EstatuaLiberdade.js";
 import CasaBranca from "./landmarks/CasaBranca.js";
 import BasilicaSaoPedro from "./landmarks/BasilicaSaoPedro.js";
-import SagradaFamilia from "./landmarks/SagradaFamilia.js";
 import ParthenonGrego from "./landmarks/ParthenonGrego.js";
 import BigBen from "./landmarks/BigBen.js";
 import PalacioWestminster from "./landmarks/PalacioWestminster.js";
@@ -63,25 +61,9 @@ import ThreeTierPagodaStructure from "./landmarks/ThreeTierPagodaStructure.js";
 import ThreeTierPagodaRoofs from "./landmarks/ThreeTierPagodaRoofs.js";
 import MiniHimejiKeep from "./landmarks/MiniHimejiKeep.js";
 import CasaMedieval1 from "./landmarks/CasaMedieval1.js";
-import CasaMediterraneaPatio from "./landmarks/CasaMediterraneaPatio.js";
 import TavernaMedieval from "./landmarks/TavernaMedieval.js";
 import ManorMedieval from "./landmarks/ManorMedieval.js";
 import InnMedieval from "./landmarks/InnMedieval.js";
-import FazendaMedieval from "./landmarks/FazendaMedieval.js";
-import TorreMedieval from "./landmarks/TorreMedieval.js";
-import ForteMedieval from "./landmarks/ForteMedieval.js";
-import GuaritaMedieval from "./landmarks/GuaritaMedieval.js";
-import CasaTorreEnxaimel from "./landmarks/CasaTorreEnxaimel.js";
-import Pelourinho from "./landmarks/Pelourinho.js";
-import CasteloNormando from "./landmarks/CasteloNormando.js";
-import PalacioOasisDeserto from "./landmarks/PalacioOasisDeserto.js";
-import PalacioDeserticoPergolado from "./landmarks/PalacioDeserticoPergolado.js";
-import VilaEgipciaPatioOasis from "./landmarks/VilaEgipciaPatioOasis.js";
-import NotreDame from "./landmarks/NotreDame.js";
-import TemploClassicoColunado from "./landmarks/TemploClassicoColunado.js";
-import TemploRomanoCircular from "./landmarks/TemploRomanoCircular.js";
-import GrandePiramideDeGiza from "./landmarks/GrandePiramideDeGiza.js";
-import PalacioBabilonicoSuspenso from "./landmarks/PalacioBabilonicoSuspenso.js";
 import {
     attachPrefabMeta,
     buildSerializablePrefabSource,
@@ -112,7 +94,6 @@ const PREFABS = {
     SobradoCompacto,
     CasaEmL,
     CasaComVaranda,
-    CasaBrasileiraTijoloVista,
     CasaGeminada,
     VilaComPatio,
     Arvore,
@@ -133,29 +114,12 @@ const PREFABS = {
     ThreeTierPagodaRoofs,
     MiniHimejiKeep,
     CasaMedieval1,
-    CasaMediterraneaPatio,
     TavernaMedieval,
     ManorMedieval,
     InnMedieval,
-    FazendaMedieval,
-    TorreMedieval,
-    ForteMedieval,
-    GuaritaMedieval,
-    CasaTorreEnxaimel,
-    Pelourinho,
-    CasteloNormando,
-    PalacioOasisDeserto,
-    PalacioDeserticoPergolado,
-    VilaEgipciaPatioOasis,
-    NotreDame,
-    TemploClassicoColunado,
-    TemploRomanoCircular,
-    GrandePiramideDeGiza,
-    PalacioBabilonicoSuspenso,
     EstatuaLiberdade,
     CasaBranca,
     BasilicaSaoPedro,
-    SagradaFamilia,
     ParthenonGrego,
     BigBen,
     PalacioWestminster,

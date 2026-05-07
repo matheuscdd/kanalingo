@@ -26,11 +26,28 @@ import {
 } from "./prefabs/shared/shapeOrientation.js";
 import { getFakeShadeForNormal } from "./prefabs/shared/fakeShading.js";
 import { getUpwardSurfaceStudPlacements } from "./prefabs/shared/shapeStuds.js";
+import { createPrefabImageVisualMode } from "./prefabs/shared/prefabImageVisualMode.js";
+import {
+    PREFAB_IMPOSTOR_TOP_VIEW,
+    PREFAB_IMPOSTOR_VIEW_KEYS,
+    createPrefabImpostorManifestEntry,
+    getPrefabImpostorSideViewIndex,
+} from "./prefabs/shared/prefabImpostorViews.js";
 
 const THREE = globalThis.THREE;
 if (!THREE) {
     throw new Error("Three.js failed to load before script.js.");
 }
+
+const urlParams = new URLSearchParams(globalThis.location.search);
+const isPrefabImpostorToolSession = urlParams.get("tool") === "prefab-impostor";
+const DEFAULT_SCENE_BACKGROUND = 0xe8ecf1;
+const prefabImpostorCaptureState = {
+    width: 1024,
+    height: 1024,
+    pixelRatio: 1,
+    background: null,
+};
 
 // --- FUNÇÃO DE DICA (UI) ---
 function showHint(msg) {
@@ -134,6 +151,12 @@ const TOOL_SHAPE = "shape";
 const TOOL_PASTE = "paste";
 const TOOL_DELETE_BLOCK = "delete-block";
 const TOOL_DELETE_GROUP = "delete-group";
+const VISUAL_MODE_3D = "3d";
+const VISUAL_MODE_IMAGES = "images";
+const VISUAL_MODE_IMAGES_HINT = "Modo Imagens ativado. Nesta primeira fase, ele bloqueia edicao e 1a pessoa enquanto o renderer 2D isolado e conectado.";
+const VISUAL_MODE_3D_HINT = "Modo 3D reativado.";
+const VISUAL_MODE_BLOCKED_EDIT_HINT = "Modo Imagens: a edicao do mapa fica indisponivel enquanto o renderer 2D isolado estiver ativo.";
+const VISUAL_MODE_BLOCKED_FP_HINT = "Modo Imagens: a 1a pessoa fica desativada enquanto o renderer 2D isolado estiver ativo.";
 
 // --- ESTADO GERAL ---
 let currentType = "1x1";
@@ -143,6 +166,7 @@ let currentShapeDirection = SHAPE_DIRECTION_DEFAULT;
 let currentShapeRot = 0;
 let isDeleteMode = false;
 let isDeleteGroupMode = false;
+let currentVisualMode = VISUAL_MODE_3D;
 
 let hoveredGroupId = null;
 let hoveredBlockId = null;
@@ -191,6 +215,7 @@ const btnJsonOpenFile = document.getElementById("btn-json-open-file");
 const btnJsonDownload = document.getElementById("btn-json-download");
 const btnJsonClear = document.getElementById("btn-json-clear");
 const jsonFileInput = document.getElementById("json-file-input");
+const btnVisualMode = document.getElementById("btn-visual-mode");
 const catalogButtonByType = new Map();
 const catalogItemByType = new Map();
 const builderToolsPanel = document.getElementById("builder-tools-panel");
@@ -310,6 +335,8 @@ function rotateShapeToolOrientation(step = 1) {
 }
 
 function rotateActivePlacement(step = 1) {
+    if (showVisualModeBlockedHint()) return;
+
     if (activeBuildTool === TOOL_SHAPE) {
         rotateShapeToolAroundWorldY(step);
         updateBuildPreview();
@@ -351,8 +378,133 @@ function updateBuilderToolButtons() {
 }
 
 function updateHistoryButtons() {
-    if (builderToolUndoButton) builderToolUndoButton.disabled = undoStack.length === 0;
-    if (builderToolRedoButton) builderToolRedoButton.disabled = redoStack.length === 0;
+    if (builderToolUndoButton) builderToolUndoButton.disabled = isImageVisualMode() || undoStack.length === 0;
+    if (builderToolRedoButton) builderToolRedoButton.disabled = isImageVisualMode() || redoStack.length === 0;
+}
+
+function isImageVisualMode() {
+    return currentVisualMode === VISUAL_MODE_IMAGES;
+}
+
+function collectBuiltInPrefabPlacementsForVisualMode() {
+    const placements = [];
+
+    groupToPrefabPlacement.forEach((placement, groupId) => {
+        const prefabId = typeof placement?.type === "string" ? placement.type.trim() : "";
+        if (!prefabId || !PREFABS[prefabId] || isRuntimePrefab?.(prefabId)) return;
+
+        const groupSize = groupToBlockIds.get(groupId)?.size ?? 0;
+        if (groupSize === 0) return;
+
+        const normalizedRot = ((Number(placement.rot) || 0) % 4 + 4) % 4;
+        const rotation = PREFABS[prefabId]?.meta?.rotations?.[normalizedRot];
+
+        placements.push({
+            groupId,
+            prefabId,
+            placement: {
+                x: Number(placement.x) || 0,
+                y: Number(placement.y) || 0,
+                z: Number(placement.z) || 0,
+                rot: normalizedRot,
+            },
+            bounds: rotation
+                ? { dx: rotation.dx, dy: PREFABS[prefabId].dy, dz: rotation.dz }
+                : { dx: PREFABS[prefabId].dx, dy: PREFABS[prefabId].dy, dz: PREFABS[prefabId].dz },
+        });
+    });
+
+    return placements;
+}
+
+function updateVisualModeUi() {
+    const imagesMode = isImageVisualMode();
+    document.body.dataset.visualMode = currentVisualMode;
+
+    if (btnVisualMode) {
+        btnVisualMode.textContent = imagesMode ? "Visual: Imagens" : "Visual: 3D";
+        btnVisualMode.title = imagesMode
+            ? "Voltar para o render 3D editavel"
+            : "Ativar o modo de imagens (visualizacao somente, em implementacao)";
+        btnVisualMode.classList.toggle("active", imagesMode);
+        btnVisualMode.setAttribute("aria-pressed", imagesMode ? "true" : "false");
+    }
+
+    const editControlsLocked = imagesMode;
+    [catalogBottomBar, document.getElementById("left-bar"), builderToolsPanel].forEach((element) => {
+        if (element) element.classList.toggle("visual-mode-disabled", editControlsLocked);
+    });
+
+    const toggledControls = [
+        document.getElementById("btn-fp"),
+        document.getElementById("btn-rotate"),
+        document.getElementById("btn-delete"),
+        document.getElementById("btn-delete-group"),
+        document.getElementById("btn-clear"),
+        document.getElementById("btn-benchmark-auto"),
+        btnJsonImport,
+        btnJsonCreateStructure,
+        btnJsonOpenFile,
+        builderToolUndoButton,
+        builderToolRedoButton,
+        builderToolCopyButton,
+        builderToolPasteButton,
+        builderToolClearSelectionButton,
+        builderToolShapeDirectionButton,
+        builderToolWidthInput,
+        builderToolDepthInput,
+        builderToolHeightInput,
+        builderToolShapeSelect,
+        ...builderToolButtons,
+        ...document.querySelectorAll(".block-btn"),
+        ...document.querySelectorAll(".color-btn"),
+    ];
+
+    toggledControls.forEach((control) => {
+        if (control) control.disabled = editControlsLocked;
+    });
+}
+
+function showVisualModeBlockedHint(message = VISUAL_MODE_BLOCKED_EDIT_HINT) {
+    if (!isImageVisualMode()) return false;
+    showHint(message);
+    return true;
+}
+
+function syncPrefabImageVisualModeCameraView() {
+    prefabImageVisualMode.setCameraView({ isTopDownView, cameraAngleIndex });
+}
+
+function syncPrefabImageVisualModeFromWorld() {
+    prefabImageVisualMode.rebuildFromPlacements(collectBuiltInPrefabPlacementsForVisualMode());
+}
+
+function setPrefabImageVisualModeEnabled(enabled) {
+    if (enabled) {
+        syncPrefabImageVisualModeFromWorld();
+        syncPrefabImageVisualModeCameraView();
+        prefabImageVisualMode.enable();
+        return;
+    }
+
+    prefabImageVisualMode.disable();
+}
+
+function applyActiveBuildTool(tool, hint = "") {
+    activeBuildTool = tool;
+    isDeleteMode = tool === TOOL_DELETE_BLOCK;
+    isDeleteGroupMode = tool === TOOL_DELETE_GROUP;
+    clearHighlights();
+    selectionAnchor = null;
+    updateBuilderToolButtons();
+    const deleteButton = document.getElementById("btn-delete");
+    const deleteGroupButton = document.getElementById("btn-delete-group");
+    if (deleteButton) deleteButton.classList.toggle("active", isDeleteMode);
+    if (deleteGroupButton) deleteGroupButton.classList.toggle("active", isDeleteGroupMode);
+    if (tool !== TOOL_SELECT) clearToolPreview();
+    if (tool === TOOL_PLACE) updateRollOver();
+    else if (rollOver) rollOver.visible = false;
+    updateBuilderToolsStatus(hint);
 }
 
 function updateBuilderToolsStatus(extraMessage = "") {
@@ -378,8 +530,10 @@ function updateBuilderToolsStatus(extraMessage = "") {
     const shapeRotationLabel = activeBuildTool === TOOL_SHAPE
         ? ` | Giro: ${getShapeRotationLabel(getActiveShapeRot())}`
         : "";
+    const visualModeLabel = isImageVisualMode() ? " | Visual: imagens" : "";
     const historyLabel = ` | Histórico: ${undoStack.length}/${redoStack.length}`;
-    builderToolsStatus.textContent = `Ferramenta: ${toolNames[activeBuildTool] || activeBuildTool}${directionLabel}${shapeRotationLabel}${selectionLabel}${clipboardLabel}${historyLabel}${extraMessage ? ` | ${extraMessage}` : ""}`;
+    const extraLabel = extraMessage ? ` | ${extraMessage}` : "";
+    builderToolsStatus.textContent = `Ferramenta: ${toolNames[activeBuildTool] || activeBuildTool}${directionLabel}${shapeRotationLabel}${selectionLabel}${clipboardLabel}${visualModeLabel}${historyLabel}${extraLabel}`;
     updateHistoryButtons();
 }
 
@@ -473,20 +627,13 @@ function setToolPreviewBundle(bundle, isValid, key) {
 }
 
 function setActiveBuildTool(tool, hint = "") {
-    activeBuildTool = tool;
-    isDeleteMode = tool === TOOL_DELETE_BLOCK;
-    isDeleteGroupMode = tool === TOOL_DELETE_GROUP;
-    clearHighlights();
-    selectionAnchor = null;
-    updateBuilderToolButtons();
-    const deleteButton = document.getElementById("btn-delete");
-    const deleteGroupButton = document.getElementById("btn-delete-group");
-    if (deleteButton) deleteButton.classList.toggle("active", isDeleteMode);
-    if (deleteGroupButton) deleteGroupButton.classList.toggle("active", isDeleteGroupMode);
-    if (tool !== TOOL_SELECT) clearToolPreview();
-    if (tool === TOOL_PLACE) updateRollOver();
-    else if (rollOver) rollOver.visible = false;
-    updateBuilderToolsStatus(hint);
+    if (isImageVisualMode()) {
+        showVisualModeBlockedHint();
+        updateBuilderToolsStatus("Modo imagens: visualizacao somente");
+        return;
+    }
+
+    applyActiveBuildTool(tool, hint);
 }
 
 function getToolDimensions() {
@@ -538,6 +685,46 @@ function clearSelection() {
     selectionBounds = null;
     selectionAnchor = null;
     updateBuilderToolsStatus();
+}
+
+function clearTransientBuilderVisuals() {
+    clearHighlights();
+    clearSelection();
+    selectionAnchor = null;
+    clearToolPreview();
+    if (rollOver) rollOver.visible = false;
+}
+
+function syncVisualModeTransientState() {
+    clearTransientBuilderVisuals();
+
+    if (isImageVisualMode()) {
+        if (activeBuildTool === TOOL_PLACE) updateBuilderToolsStatus("Modo imagens: visualizacao somente");
+        else applyActiveBuildTool(TOOL_PLACE, "Modo imagens: visualizacao somente");
+        return;
+    }
+
+    if (activeBuildTool === TOOL_PLACE) updateRollOverVisual();
+    else updateBuildPreview();
+    updateBuilderToolsStatus();
+}
+
+function setVisualMode(mode, { showModeHint = true } = {}) {
+    if (mode !== VISUAL_MODE_3D && mode !== VISUAL_MODE_IMAGES) return false;
+    if (currentVisualMode === mode) return false;
+
+    if (mode === VISUAL_MODE_IMAGES && perfState.autobenchmark.running) {
+        cancelBenchmark("Auto FP interrompido ao ativar o modo Imagens.");
+    }
+
+    if (mode === VISUAL_MODE_IMAGES && isFirstPerson) exitFirstPerson({ hint: null });
+
+    currentVisualMode = mode;
+    setPrefabImageVisualModeEnabled(isImageVisualMode());
+    updateVisualModeUi();
+    syncVisualModeTransientState();
+    if (showModeHint) showHint(mode === VISUAL_MODE_IMAGES ? VISUAL_MODE_IMAGES_HINT : VISUAL_MODE_3D_HINT);
+    return true;
 }
 
 function applySelectionBounds(bounds) {
@@ -926,8 +1113,9 @@ function getActivePlacementFootprint() {
 }
 
 function updateBuildPreview() {
-    if (isFirstPerson) {
+    if (isFirstPerson || isImageVisualMode() || isPrefabImpostorToolSession) {
         clearToolPreview();
+        if (rollOver) rollOver.visible = false;
         return;
     }
 
@@ -1213,10 +1401,31 @@ function getQualityLabel() {
 
 // --- SETUP THREE.JS ---
 const container = document.getElementById("canvas-container");
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xe8ecf1);
 
-const aspect = globalThis.innerWidth / globalThis.innerHeight;
+function getRendererViewportSize() {
+    if (isPrefabImpostorToolSession) {
+        return {
+            width: Math.max(1, Number(prefabImpostorCaptureState.width) || 1),
+            height: Math.max(1, Number(prefabImpostorCaptureState.height) || 1),
+        };
+    }
+
+    return {
+        width: Math.max(1, globalThis.innerWidth || container.clientWidth || 1),
+        height: Math.max(1, globalThis.innerHeight || container.clientHeight || 1),
+    };
+}
+
+function getRendererAspect() {
+    const viewport = getRendererViewportSize();
+    return viewport.width / viewport.height;
+}
+
+const scene = new THREE.Scene();
+scene.background = isPrefabImpostorToolSession ? null : new THREE.Color(DEFAULT_SCENE_BACKGROUND);
+const prefabImageVisualMode = createPrefabImageVisualMode({ THREE, scene });
+
+const aspect = getRendererAspect();
 const viewSize = 120;
 
 const orthoCamera = new THREE.OrthographicCamera(-viewSize * aspect, viewSize * aspect, viewSize, -viewSize, 1, 2500);
@@ -1230,16 +1439,27 @@ fpCamera.rotation.order = "YXZ";
 
 let activeCamera = orthoCamera;
 
-const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    powerPreference: "high-performance",
+    alpha: isPrefabImpostorToolSession,
+    preserveDrawingBuffer: isPrefabImpostorToolSession,
+});
 renderer.domElement.style.display = "block";
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.shadowMap.autoUpdate = false; // Desligado por default para manter performance
+if (isPrefabImpostorToolSession) renderer.setClearColor(0x000000, 0);
 
 function applyRendererResolution(force = false) {
-    const viewportWidth = Math.max(1, globalThis.innerWidth || container.clientWidth || 1);
-    const viewportHeight = Math.max(1, globalThis.innerHeight || container.clientHeight || 1);
-    const effectivePixelRatio = Number((mobileQualityProfile.basePixelRatio * mobileQualityProfile.dynamicScale).toFixed(2));
+    const viewport = getRendererViewportSize();
+    const viewportWidth = viewport.width;
+    const viewportHeight = viewport.height;
+    const effectivePixelRatio = Number((
+        isPrefabImpostorToolSession
+            ? prefabImpostorCaptureState.pixelRatio
+            : mobileQualityProfile.basePixelRatio * mobileQualityProfile.dynamicScale
+    ).toFixed(2));
     const needsUpdate =
         force ||
         viewportWidth !== mobileQualityProfile.viewportWidth ||
@@ -1253,8 +1473,8 @@ function applyRendererResolution(force = false) {
     mobileQualityProfile.effectivePixelRatio = effectivePixelRatio;
     renderer.setPixelRatio(effectivePixelRatio);
     renderer.setSize(viewportWidth, viewportHeight, false);
-    renderer.domElement.style.width = `${viewportWidth}px`;
-    renderer.domElement.style.height = `${viewportHeight}px`;
+    renderer.domElement.style.width = isPrefabImpostorToolSession ? "100%" : `${viewportWidth}px`;
+    renderer.domElement.style.height = isPrefabImpostorToolSession ? "100%" : `${viewportHeight}px`;
     return true;
 }
 
@@ -1649,6 +1869,36 @@ function updatePerfOverlay(force = false) {
 
 function nextFrame() {
     return new Promise((resolve) => requestAnimationFrame(resolve));
+}
+
+function canvasToBlob(canvas, quality, type = "image/png") {
+    return new Promise((resolve, reject) => {
+        if (!canvas) {
+            reject(new Error("Canvas de captura indisponível."));
+            return;
+        }
+
+        canvas.toBlob((blob) => {
+            if (blob) {
+                resolve(blob);
+                return;
+            }
+
+            try {
+                const dataUrl = canvas.toDataURL(type, quality);
+                const [header, payload] = dataUrl.split(",");
+                const mimeType = /data:(.*?);base64/.exec(header)?.[1] || type;
+                const binary = globalThis.atob(payload || "");
+                const bytes = new Uint8Array(binary.length);
+                for (let index = 0; index < binary.length; index += 1) {
+                    bytes[index] = binary.codePointAt(index) || 0;
+                }
+                resolve(new Blob([bytes], { type: mimeType }));
+            } catch (error) {
+                reject(error instanceof Error ? error : new Error(String(error)));
+            }
+        }, type, quality);
+    });
 }
 
 function setPickResult(kind, block, distance, point, normal, voxelX = 0, voxelY = 0, voxelZ = 0) {
@@ -2452,6 +2702,18 @@ const ground = new THREE.Mesh(
 ground.receiveShadow = true;
 scene.add(ground);
 hitboxes.push(ground);
+
+const prefabImpostorSceneDecorObjects = [mainGrid, subGrid, buildPlate, buildPlateGrid, buildPlateBorder, ground];
+
+function setPrefabImpostorSceneDecorVisible(visible) {
+    prefabImpostorSceneDecorObjects.forEach((object3d) => {
+        if (object3d) object3d.visible = visible;
+    });
+}
+
+if (isPrefabImpostorToolSession) {
+    setPrefabImpostorSceneDecorVisible(false);
+}
 
 const matGhostValid = new THREE.MeshBasicMaterial({
     color: 0x2ecc71,
@@ -3841,7 +4103,12 @@ const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 function processPointerMove(clientX, clientY) {
-    if (isFirstPerson) return;
+    if (isFirstPerson || isPrefabImpostorToolSession) {
+        clearHighlights();
+        clearToolPreview();
+        if (rollOver) rollOver.visible = false;
+        return;
+    }
     const hoverStart = performance.now();
 
     mouse.x = (clientX / window.innerWidth) * 2 - 1;
@@ -3914,7 +4181,10 @@ function flushPendingPointerMove() {
 }
 
 function updateRollOver() {
-    if (isFirstPerson) return;
+    if (isFirstPerson || isImageVisualMode() || isPrefabImpostorToolSession) {
+        if (rollOver) rollOver.visible = false;
+        return;
+    }
     if (rollOver) scene.remove(rollOver);
     rollOver = createBlockGroup(currentType, currentColor, currentRot, true);
     rollOver.userData.isValid = null;
@@ -3924,7 +4194,11 @@ function updateRollOver() {
 updateRollOver();
 
 function updateRollOverVisual() {
-    if (!rollOver || isFirstPerson) return;
+    if (!rollOver) return;
+    if (isFirstPerson || isImageVisualMode() || isPrefabImpostorToolSession) {
+        rollOver.visible = false;
+        return;
+    }
     if (activeBuildTool !== TOOL_PLACE) {
         rollOver.visible = false;
         updateBuildPreview();
@@ -3952,6 +4226,7 @@ function handleMove(e) {
 }
 
 function executePlacement() {
+    if (showVisualModeBlockedHint()) return;
     if (isFirstPerson) return;
     if (isDeleteMode || isDeleteGroupMode) {
         const targetGroupId = hoveredGroupId;
@@ -4020,6 +4295,18 @@ function handleTap(e) {
 window.addEventListener("keydown", (e) => {
     const isFormTarget = ["INPUT", "TEXTAREA", "SELECT"].includes(e.target?.tagName);
     if (isFormTarget && !(e.ctrlKey || e.metaKey)) return;
+
+    const isBlockedVisualModeShortcut =
+        isImageVisualMode() &&
+        (((e.ctrlKey || e.metaKey) && ["KeyZ", "KeyY", "KeyC", "KeyV"].includes(e.code)) ||
+            e.code === "Enter" ||
+            (!e.ctrlKey && !e.metaKey && !e.altKey && e.code === "KeyR"));
+
+    if (isBlockedVisualModeShortcut) {
+        e.preventDefault();
+        showVisualModeBlockedHint();
+        return;
+    }
 
     if ((e.ctrlKey || e.metaKey) && e.code === "KeyZ") {
         e.preventDefault();
@@ -4198,6 +4485,8 @@ function getDefaultFirstPersonSpawn() {
 }
 
 function enterFirstPerson({ spawnPosition = null, lookAt = null, yaw = fpYaw, pitch = fpPitch, requestPointerLock = true, hint = null } = {}) {
+    if (showVisualModeBlockedHint(VISUAL_MODE_BLOCKED_FP_HINT)) return false;
+
     clearHighlights();
     isFirstPerson = true;
     activeCamera = fpCamera;
@@ -4222,6 +4511,7 @@ function enterFirstPerson({ spawnPosition = null, lookAt = null, yaw = fpYaw, pi
     if (requestPointerLock) document.body.requestPointerLock();
     if (hint) showHint(hint);
     onResize();
+    return true;
 }
 
 function exitFirstPerson({ cameraTargetOverride = null, hint = null } = {}) {
@@ -4462,6 +4752,8 @@ async function downloadJsonFromTextarea() {
 }
 
 async function importPrefabFromJsonText(rawJson) {
+    if (showVisualModeBlockedHint()) return;
+
     if (!rawJson.trim()) {
         showHint("Cole um JSON de estrutura na textarea.");
         return;
@@ -4525,6 +4817,8 @@ async function exportCityToTextarea() {
 }
 
 async function importCityFromJsonText(rawJson) {
+    if (showVisualModeBlockedHint()) return;
+
     if (!rawJson.trim()) {
         showHint("Cole um JSON de cidade na textarea.");
         return;
@@ -4552,6 +4846,8 @@ async function importCityFromJsonText(rawJson) {
 }
 
 async function importJsonFromText(rawJson) {
+    if (showVisualModeBlockedHint()) return;
+
     if (!rawJson.trim()) {
         showHint("Cole um JSON de estrutura ou cidade na textarea.");
         return;
@@ -4572,6 +4868,8 @@ async function importJsonFromText(rawJson) {
 }
 
 async function createStructureFromBuildArea() {
+    if (showVisualModeBlockedHint()) return;
+
     const capture = buildAreaStructureExport(`Estrutura Area ${exportedStructureSerial}`, [...blockById.values()], BUILD_PLATE_SIZE);
 
     if (capture.status === "empty") {
@@ -4637,6 +4935,8 @@ initPanelToggles();
 syncShapeSelectOptions();
 updateShapeDirectionButton();
 updateBuilderToolButtons();
+syncPrefabImageVisualModeCameraView();
+updateVisualModeUi();
 updateBuilderToolsStatus();
 
 builderToolButtons.forEach((button) => {
@@ -4696,9 +4996,16 @@ if (builderToolShapeSelect)
         updateBuilderToolsStatus();
     });
 
+if (btnVisualMode) {
+    btnVisualMode.onclick = () => {
+        setVisualMode(isImageVisualMode() ? VISUAL_MODE_3D : VISUAL_MODE_IMAGES);
+    };
+}
+
 document.getElementById("btn-fp").onclick = (e) => {
     const btn = e.currentTarget;
     btn.blur();
+    if (showVisualModeBlockedHint(VISUAL_MODE_BLOCKED_FP_HINT)) return;
     if (perfState.autobenchmark.running) {
         cancelBenchmark("Auto FP interrompido ao sair do modo 1ª pessoa.");
         return;
@@ -4713,6 +5020,7 @@ document.getElementById("btn-iso").onclick = () => {
     document.getElementById("btn-top").classList.remove("active");
     updateCameraTarget();
     snapOrthoCameraToTarget();
+    syncPrefabImageVisualModeCameraView();
 };
 
 document.getElementById("btn-top").onclick = () => {
@@ -4721,6 +5029,7 @@ document.getElementById("btn-top").onclick = () => {
     document.getElementById("btn-iso").classList.remove("active");
     updateCameraTarget();
     snapOrthoCameraToTarget();
+    syncPrefabImageVisualModeCameraView();
 };
 
 document.getElementById("btn-cam").onclick = () => {
@@ -4728,6 +5037,7 @@ document.getElementById("btn-cam").onclick = () => {
         cameraAngleIndex = (cameraAngleIndex + 1) % 4;
         updateCameraTarget();
         snapOrthoCameraToTarget();
+        syncPrefabImageVisualModeCameraView();
     }
 };
 
@@ -4829,7 +5139,7 @@ if (jsonTextarea) {
 globalThis.addEventListener("resize", onResize);
 function onResize() {
     const qualityTierChanged = refreshMobileQualityProfile();
-    const aspect = globalThis.innerWidth / globalThis.innerHeight;
+    const aspect = getRendererAspect();
     orthoCamera.left = -viewSize * aspect;
     orthoCamera.right = viewSize * aspect;
     orthoCamera.top = viewSize;
@@ -4840,10 +5150,258 @@ function onResize() {
     fpCamera.updateProjectionMatrix();
 
     applyRendererResolution(true);
+    syncPrefabImageVisualModeCameraView();
     scheduleMemoryPolling();
     if (qualityTierChanged) applyRenderMode(currentRenderMode);
     updatePerfOverlay(true);
 }
+
+function renderCurrentFrame() {
+    flushInstancedMeshUpdates();
+    prefabImageVisualMode.renderFrame();
+    renderer.render(scene, activeCamera);
+}
+
+function getBuiltinPrefabNamesForCapture() {
+    return Object.keys(PREFABS).filter((prefabId) => !isRuntimePrefab(prefabId));
+}
+
+function getPrefabCaptureRotationBounds(prefabId, rot = 0) {
+    const prefab = PREFABS[prefabId];
+    if (!prefab) return null;
+
+    const normalizedRot = ((Number(rot) || 0) % 4 + 4) % 4;
+    const rotation = prefab.meta?.rotations?.[normalizedRot];
+    if (!rotation) return null;
+
+    return {
+        dx: rotation.dx,
+        dy: prefab.dy,
+        dz: rotation.dz,
+    };
+}
+
+function getPrefabCaptureGroupBounds(groupId) {
+    const blockIds = groupToBlockIds.get(groupId);
+    if (!blockIds || blockIds.size === 0) return null;
+
+    let minX = Infinity;
+    let minY = Infinity;
+    let minZ = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+    let maxZ = -Infinity;
+
+    blockIds.forEach((blockId) => {
+        const block = blockById.get(blockId);
+        if (!block) return;
+        minX = Math.min(minX, block.cx);
+        minY = Math.min(minY, block.cy);
+        minZ = Math.min(minZ, block.cz);
+        maxX = Math.max(maxX, block.cx + block.dx);
+        maxY = Math.max(maxY, block.cy + block.dy);
+        maxZ = Math.max(maxZ, block.cz + block.dz);
+    });
+
+    if (!Number.isFinite(minX) || !Number.isFinite(maxX)) return null;
+
+    return {
+        minX,
+        minY,
+        minZ,
+        maxX,
+        maxY,
+        maxZ,
+        dx: maxX - minX,
+        dy: maxY - minY,
+        dz: maxZ - minZ,
+        centerX: (minX + maxX) / 2,
+        centerY: (minY + maxY) / 2,
+        centerZ: (minZ + maxZ) / 2,
+    };
+}
+
+function getPrefabCaptureBoundsCorners(bounds) {
+    return [
+        new THREE.Vector3(bounds.minX, bounds.minY, bounds.minZ),
+        new THREE.Vector3(bounds.minX, bounds.minY, bounds.maxZ),
+        new THREE.Vector3(bounds.minX, bounds.maxY, bounds.minZ),
+        new THREE.Vector3(bounds.minX, bounds.maxY, bounds.maxZ),
+        new THREE.Vector3(bounds.maxX, bounds.minY, bounds.minZ),
+        new THREE.Vector3(bounds.maxX, bounds.minY, bounds.maxZ),
+        new THREE.Vector3(bounds.maxX, bounds.maxY, bounds.minZ),
+        new THREE.Vector3(bounds.maxX, bounds.maxY, bounds.maxZ),
+    ];
+}
+
+function getPrefabCaptureProjectedSpan(bounds) {
+    const corners = getPrefabCaptureBoundsCorners(bounds);
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+
+    corners.forEach((corner) => {
+        const projected = corner.clone().project(orthoCamera);
+        minX = Math.min(minX, projected.x);
+        minY = Math.min(minY, projected.y);
+        maxX = Math.max(maxX, projected.x);
+        maxY = Math.max(maxY, projected.y);
+    });
+
+    return {
+        spanX: Math.max(0.0001, maxX - minX),
+        spanY: Math.max(0.0001, maxY - minY),
+    };
+}
+
+function fitOrthoCameraToPrefabBounds(bounds, margin = 1.15) {
+    const normalizedMargin = Math.max(1.01, Number(margin) || 1.15);
+    orthoCamera.zoom = 1;
+    orthoCamera.updateProjectionMatrix();
+    orthoCamera.updateMatrixWorld(true);
+    const span = getPrefabCaptureProjectedSpan(bounds);
+    const targetSpan = 2 / normalizedMargin;
+    const fitZoom = Math.min(targetSpan / span.spanX, targetSpan / span.spanY);
+    orthoCamera.zoom = THREE.MathUtils.clamp(fitZoom, 0.1, 50);
+    orthoCamera.updateProjectionMatrix();
+    orthoCamera.updateMatrixWorld(true);
+}
+
+function setPrefabCaptureBackground(background = null) {
+    prefabImpostorCaptureState.background = background || null;
+
+    if (!background) {
+        scene.background = null;
+        renderer.setClearColor(0x000000, isPrefabImpostorToolSession ? 0 : 1);
+        return;
+    }
+
+    scene.background = new THREE.Color(background);
+    renderer.setClearColor(background, 1);
+}
+
+function setPrefabCaptureViewport(width, height, pixelRatio = 1) {
+    prefabImpostorCaptureState.width = Math.max(64, Number(width) || 64);
+    prefabImpostorCaptureState.height = Math.max(64, Number(height) || 64);
+    prefabImpostorCaptureState.pixelRatio = THREE.MathUtils.clamp(Number(pixelRatio) || 1, 0.5, 4);
+    onResize();
+}
+
+function setPrefabCaptureView(viewKey, target) {
+    const sideViewIndex = getPrefabImpostorSideViewIndex(viewKey);
+    isTopDownView = viewKey === PREFAB_IMPOSTOR_TOP_VIEW;
+    if (!isTopDownView && sideViewIndex == null) {
+        throw new Error(`Vista de captura inválida: ${viewKey}`);
+    }
+
+    if (!isTopDownView) cameraAngleIndex = sideViewIndex;
+    cameraTarget.set(target.x, target.y, target.z);
+    updateCameraTarget();
+    activeCamera = orthoCamera;
+    snapOrthoCameraToTarget();
+    orthoCamera.updateMatrixWorld(true);
+}
+
+function resetPrefabImpostorCaptureTransients() {
+    clearTransientBuilderVisuals();
+    if (rollOver) rollOver.visible = false;
+}
+
+function preparePrefabImpostorCaptureScene({ renderMode = "basic", background = null } = {}) {
+    if (isFirstPerson) exitFirstPerson({ hint: null });
+    setVisualMode(VISUAL_MODE_3D, { showModeHint: false });
+    setPrefabImpostorSceneDecorVisible(false);
+    setPrefabCaptureBackground(background);
+    resetPrefabImpostorCaptureTransients();
+    clearAll();
+    resetPrefabImpostorCaptureTransients();
+
+    if (renderMode !== currentRenderMode) {
+        if (renderModeSelect) renderModeSelect.value = renderMode;
+        applyRenderMode(renderMode);
+    }
+}
+
+async function capturePrefabImpostorView({
+    prefabId,
+    viewKey,
+    renderMode = "basic",
+    margin = 1.15,
+    background = null,
+    imageType = "image/png",
+    imageQuality,
+} = {}) {
+    if (!prefabId || !PREFABS[prefabId] || isRuntimePrefab(prefabId)) {
+        throw new Error(`Prefab inválido para captura: ${prefabId}`);
+    }
+
+    if (!PREFAB_IMPOSTOR_VIEW_KEYS.includes(viewKey)) {
+        throw new Error(`View key inválida para captura: ${viewKey}`);
+    }
+
+    preparePrefabImpostorCaptureScene({ renderMode, background });
+
+    const groupId = placePrefab(0, 0, 0, prefabId, 0, true);
+    if (!groupId) throw new Error(`Não foi possível posicionar o prefab ${prefabId} para captura.`);
+
+    const bounds = getPrefabCaptureGroupBounds(groupId);
+    if (!bounds) throw new Error(`Não foi possível calcular bounds do prefab ${prefabId}.`);
+
+    setPrefabCaptureView(viewKey, {
+        x: bounds.centerX,
+        y: bounds.centerY,
+        z: bounds.centerZ,
+    });
+    fitOrthoCameraToPrefabBounds(bounds, margin);
+
+    resetPrefabImpostorCaptureTransients();
+    await nextFrame();
+    renderCurrentFrame();
+    const blob = await canvasToBlob(renderer.domElement, imageType, imageQuality);
+
+    return {
+        prefabId,
+        viewKey,
+        blob,
+        bounds: { dx: bounds.dx, dy: bounds.dy, dz: bounds.dz },
+        zoom: orthoCamera.zoom,
+        width: renderer.domElement.width,
+        height: renderer.domElement.height,
+        manifestEntry: createPrefabImpostorManifestEntry({
+            prefabId,
+            bounds: { dx: bounds.dx, dy: bounds.dy, dz: bounds.dz },
+            extension: imageType === "image/webp" ? "webp" : "png",
+            basePath: "prefab-impostors",
+        }),
+    };
+}
+
+async function capturePrefabImpostorSet({ prefabId, viewKeys = PREFAB_IMPOSTOR_VIEW_KEYS, ...options } = {}) {
+    const captures = [];
+    for (const viewKey of viewKeys) {
+        captures.push(await capturePrefabImpostorView({ prefabId, viewKey, ...options }));
+    }
+    clearAll();
+    resetPrefabImpostorCaptureTransients();
+    return {
+        prefabId,
+        captures,
+        manifestEntry: captures[0]?.manifestEntry || null,
+    };
+}
+
+globalThis.__citybuilderPrefabImpostorApi = {
+    ready: true,
+    isCaptureSession: isPrefabImpostorToolSession,
+    listBuiltinPrefabs: getBuiltinPrefabNamesForCapture,
+    getPrefabBounds: getPrefabCaptureRotationBounds,
+    setViewport: setPrefabCaptureViewport,
+    setBackground: setPrefabCaptureBackground,
+    captureView: capturePrefabImpostorView,
+    capturePrefab: capturePrefabImpostorSet,
+    renderFrame: renderCurrentFrame,
+};
 
 // --- MOTOR DE ANIMAÇÃO E FÍSICAS ---
 function animate() {
@@ -4935,8 +5493,7 @@ function animate() {
         });
     }
     animatedBlocks.forEach((a) => (a.pivot.rotation.z -= 0.1));
-    flushInstancedMeshUpdates();
-    renderer.render(scene, activeCamera);
+    renderCurrentFrame();
     const frameDuration = performance.now() - frameStart;
     recordPerfSample("frame", frameDuration);
     recordAutoBenchmarkFrame(frameDuration);
