@@ -1,837 +1,1010 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NotebookLM Style Audio Player</title>
+    <title>Seletor de Podcasts - Estilo Duolingo</title>
+    <!-- FontAwesome para os ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Variáveis de Cores - Paleta inspirada no Duolingo */
         :root {
-            --primary-color: #3f51b5; /* Cor do botão play */
-            --wave-green: #68d391;
-            --wave-purple: #9f7aea;
-            --wave-blue: #7f9cf5;
             --bg-color: #ffffff;
-            --text-color: #333333;
-            --gray-light: #e2e8f0;
-            --gray-dark: #718096;
+            --app-bg: #f7f7f7;
+            --text-main: #4b4b4b;
+            --text-light: #777777;
+            --border-color: #e5e5e5;
+            
+            --primary: #58cc02; /* Verde */
+            --primary-shadow: #58a700;
+            
+            --secondary: #1cb0f6; /* Azul */
+            --secondary-shadow: #1899d6;
+            
+            --accent: #ff9600; /* Laranja */
+            --danger: #ff4b4b; /* Vermelho */
+            
+            --card-radius: 16px;
+            --input-radius: 20px;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #f7fafc;
+            background-color: var(--app-bg);
+            color: var(--text-main);
             display: flex;
             justify-content: center;
-            align-items: center;
             min-height: 100vh;
         }
 
-        .player-card {
+        /* Contentor Principal da Aplicação */
+        #app-container {
+            width: 100%;
+            max-width: 800px;
             background-color: var(--bg-color);
-            width: 100%;
-            max-width: 450px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            min-height: 100vh;
             position: relative;
-            overflow: hidden;
-        }
-
-        /* Área de Upload */
-        .upload-section {
-            margin-bottom: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-        }
-
-        .upload-group {
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            flex: 1;
         }
 
-        .upload-btn {
-            background-color: var(--gray-light);
-            color: var(--text-color);
-            padding: 10px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            transition: background 0.3s;
+        /* --- Seletor de Idioma --- */
+        .global-top-bar {
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px 20px 0 20px;
+            z-index: 10;
+        }
+
+        .lang-selector {
+            position: relative;
+        }
+
+        .lang-btn {
+            background-color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-bottom: 4px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px 12px;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            width: 100%;
-            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--text-main);
+            transition: all 0.1s;
+            font-size: 0.9rem;
         }
 
-        .upload-btn:hover {
-            background-color: #cbd5e0;
+        .lang-btn:active {
+            border-bottom-width: 2px;
+            transform: translateY(2px);
         }
 
-        input[type="file"] {
-            display: none;
+        .lang-flag {
+            width: 24px;
+            height: 18px;
+            border-radius: 4px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
         }
 
-        .file-name {
-            font-size: 12px;
-            color: var(--gray-dark);
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
             margin-top: 8px;
-            text-align: center;
-            white-space: nowrap;
+            background-color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
             overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
+            display: none;
+            flex-direction: column;
+            min-width: 100px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 20;
         }
 
-        /* Canvas das Ondas */
-        .canvas-container {
-            width: 100%;
-            height: 150px;
-            position: relative;
-            margin-bottom: 20px;
+        .lang-dropdown.show {
+            display: flex;
         }
 
-        canvas {
-            width: 100%;
-            height: 100%;
+        .lang-option {
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--text-main);
+            transition: background-color 0.1s;
+        }
+
+        .lang-option:hover {
+            background-color: var(--app-bg);
+        }
+
+        /* Gestão de Vistas */
+        .view {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .view.active {
             display: block;
         }
 
-        /* Controles Secundários (1X, Like, Dislike) */
-        .secondary-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            margin-bottom: 30px;
-            width: 100%;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .sec-btn {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 18px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: color 0.2s;
+        /* Cabeçalhos */
+        header {
             display: flex;
             align-items: center;
-            justify-content: center;
-        }
-
-        .sec-btn:hover {
-            color: var(--primary-color);
-        }
-
-        .sec-btn i {
-            font-size: 22px;
-        }
-
-        .sec-btn.active {
-            color: var(--primary-color);
-        }
-
-        /* Container das Legendas */
-        .subtitle-wrapper {
-            width: 100%;
-            min-height: 48px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin-bottom: 15px;
-            padding: 0 10px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .subtitle-wrapper.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .subtitle-text {
-            font-size: 15px;
-            color: var(--gray-dark); /* Mudado para cinza para destacar a palavra ativa */
-            font-weight: 500;
-            background-color: rgba(63, 81, 181, 0.1);
-            padding: 8px 16px;
-            border-radius: 12px;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            opacity: 0;
-            transform: translateY(15px); /* Inicia 15px abaixo (descida) */
-        }
-        
-        .subtitle-text.show-text {
-            opacity: 1;
-            transform: translateY(0); /* Sobe para a posição original */
-        }
-
-        .sub-word {
-            transition: color 0.15s ease, text-shadow 0.15s ease;
-        }
-
-        .sub-word.highlight {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-
-        /* Barra de Progresso */
-        .progress-wrapper {
-            width: 100%;
-            display: flex;
-            align-items: center;
+            margin-bottom: 20px;
             gap: 15px;
-            margin-bottom: 30px;
-            padding: 0 10px;
         }
 
-        .time {
-            font-size: 12px;
-            color: var(--text-color);
-            font-weight: 500;
-            min-width: 35px;
-            text-align: center;
-        }
-
-        .progress-container {
+        header h1 {
+            font-size: 1.5rem;
+            color: var(--text-main);
             flex-grow: 1;
-            position: relative;
+        }
+
+        .header-thumb {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+        }
+
+        /* Botões de Navegação (Voltar) */
+        .btn-icon {
+            background-color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-bottom: 4px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
-        }
-
-        input[type="range"] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 6px;
-            background: var(--gray-light);
-            border-radius: 5px;
-            outline: none;
+            justify-content: center;
             cursor: pointer;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            transition: all 0.1s;
         }
 
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 0px; /* Esconde a bolinha para ficar igual ao vídeo */
-            height: 0px;
+        .btn-icon:active {
+            border-bottom-width: 2px;
+            transform: translateY(2px);
         }
 
-        .progress-fill {
+        /* Barra de Pesquisa */
+        .search-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .search-container i {
             position: absolute;
-            left: 0;
+            left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            height: 6px;
-            background-color: var(--gray-dark);
-            border-radius: 5px;
-            pointer-events: none;
-            width: 0%;
+            color: var(--text-light);
         }
 
-        /* Controles Principais */
-        .main-controls {
+        .search-input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--input-radius);
+            font-size: 1rem;
+            color: var(--text-main);
+            background-color: var(--app-bg);
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--secondary);
+            background-color: var(--bg-color);
+        }
+
+        /* Controlos (Pesquisa e Vistas) */
+        .controls-container {
             display: flex;
-            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
             align-items: center;
-            gap: 40px;
-            margin-bottom: 10px;
         }
 
-        .skip-btn {
-            background: none;
-            border: none;
-            color: var(--primary-color);
-            font-size: 32px;
+        .controls-container .search-container {
+            flex-grow: 1;
+            margin-bottom: 0;
+        }
+
+        .view-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .view-btn {
+            background-color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-bottom: 4px solid var(--border-color);
+            border-radius: 12px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            position: relative;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: all 0.1s;
+        }
+
+        .view-btn.active {
+            color: var(--secondary);
+            border-color: var(--secondary);
+            border-bottom-color: var(--secondary-shadow);
+        }
+
+        .view-btn:active {
+            border-bottom-width: 2px;
+            transform: translateY(2px);
+        }
+
+        /* Grelhas (Grids) para Cards */
+        .grid-container {
+            display: grid;
+            gap: 15px;
+        }
+
+        .grid-podcasts {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+
+        .grid-sections {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+
+        /* Cartões Estilo Duolingo (Cards) */
+        .card {
+            background-color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-bottom: 6px solid var(--border-color);
+            border-radius: var(--card-radius);
+            cursor: pointer;
+            transition: all 0.1s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card:hover {
+            background-color: #fcfcfc;
+        }
+
+        .card:active {
+            border-bottom-width: 2px;
+            transform: translateY(4px);
+            margin-bottom: 4px;
+        }
+
+        .card-image-placeholder {
+            height: 160px;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s;
-        }
-
-        .skip-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .skip-text {
-            position: absolute;
-            font-size: 10px;
-            font-weight: bold;
-            color: var(--primary-color);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .play-btn {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
+            font-size: 3.5rem;
             color: white;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-shadow));
+        }
+
+        .card-section .card-image-placeholder {
+            height: 110px;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--accent), #e58700);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px 10px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* --- Modificadores para Modo de Lista --- */
+        .grid-container.list-mode {
+            grid-template-columns: 1fr !important;
+        }
+
+        .list-mode .card {
+            flex-direction: row;
             align-items: center;
-            box-shadow: 0 8px 15px rgba(63, 81, 181, 0.3);
-            transition: transform 0.2s, background-color 0.2s;
+            text-align: left;
         }
 
-        .play-btn:hover {
-            transform: scale(1.05);
-            background-color: #303f9f;
+        /* Por padrão, oculta a imagem no modo lista (Mantém design limpo para itens sem imagem) */
+        .list-mode .card-image-placeholder {
+            display: none !important; 
         }
 
-        .play-btn i {
-            margin-left: 4px; /* Centraliza visualmente o ícone de play */
-        }
-        
-        .play-btn.playing i {
-            margin-left: 0;
+        /* MAS, se o item tiver uma imagem (classe .has-image), mostra uma miniatura elegante */
+        .list-mode .card.has-image .card-image-placeholder {
+            display: flex !important;
+            width: 70px !important;
+            height: 70px !important;
+            min-width: 70px;
+            margin: 12px 0 12px 12px; /* Margem apenas à volta da imagem */
+            border-radius: 10px;
+            background: transparent !important; /* Remove fundo para imagens transparentes */
+            overflow: hidden;
         }
 
-        /* Mensagem de estado inicial */
-        #init-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.9);
+        .list-mode .card.has-image .card-img {
+            border-radius: 10px;
+        }
+
+        .list-mode .card-content {
+            padding: 15px 20px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            z-index: 10;
-            border-radius: 24px;
         }
 
-        .hidden {
-            display: none !important;
+        /* Reduz o padding esquerdo do texto se houver imagem ao lado */
+        .list-mode .card.has-image .card-content {
+            padding-left: 15px; 
         }
+        /* --- Fim Modificadores Modo Lista --- */
+
+        /* Grelha Dinâmica de Episódios */
+        .grid-episodes {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        }
+
+        .episode-item {
+            display: flex;
+            flex-direction: column; /* Modo Grid por defeito */
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-bottom: 4px solid var(--border-color);
+            border-radius: var(--card-radius);
+            background-color: var(--bg-color);
+            cursor: pointer;
+            transition: all 0.1s;
+            gap: 12px;
+        }
+
+        .episode-item:active {
+            border-bottom-width: 2px;
+            transform: translateY(2px);
+            margin-bottom: 2px;
+        }
+
+        .episode-play-btn {
+            color: var(--primary);
+            font-size: 3rem; /* Ícone maior no modo Card */
+            order: 0;
+        }
+
+        /* Nova classe para a miniatura do episódio */
+        .episode-thumb {
+            width: 100%;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background-color: var(--app-bg);
+            border: 1px solid var(--border-color);
+            order: -1; /* Força a imagem a ir para o topo no modo Card */
+        }
+
+        .episode-info {
+            flex-grow: 1;
+            width: 100%;
+            order: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .episode-title {
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .episode-duration {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* --- Modificadores para Modo Lista (Episódios) --- */
+        .list-mode .episode-item {
+            flex-direction: row; /* Volta a alinhar na horizontal */
+            text-align: left;
+            gap: 15px;
+        }
+
+        .list-mode .episode-thumb {
+            width: 45px;
+            height: 45px;
+            order: 0; /* Volta à posição natural (meio) */
+        }
+
+        .list-mode .episode-play-btn {
+            font-size: 1.8rem; /* Reduz o botão Play */
+        }
+
+        .list-mode .episode-info {
+            width: auto;
+        }
+        /* --- Fim Modificadores Lista Episódios --- */
+
+        /* Mensagem de Estado Vazio */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--border-color);
+        }
+
+        /* --- Media Queries para Responsividade --- */
+        @media (max-width: 600px) {
+            .grid-podcasts {
+                grid-template-columns: 1fr; 
+            }
+            .grid-sections, .grid-episodes {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+            .card-image-placeholder {
+                height: 180px; 
+            }
+            .card-section .card-image-placeholder {
+                height: 100px; 
+            }
+            .episode-thumb {
+                height: 90px;
+            }
+            header h1 {
+                font-size: 1.2rem;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="player-card">
+    <div id="app-container">
         
-        <!-- Upload de Música e JSON -->
-        <div class="upload-section">
-            <div class="upload-group">
-                <label for="audio-upload" class="upload-btn">
-                    <i class="fa-solid fa-music"></i> Áudio
-                </label>
-                <input type="file" id="audio-upload" accept="audio/*">
-                <div id="file-name-display" class="file-name">Nenhum áudio</div>
+        <!-- Barra Global com Seletor de Idioma -->
+        <div class="global-top-bar">
+            <div class="lang-selector">
+                <button id="lang-btn" class="lang-btn" onclick="toggleLangDropdown()">
+                    <img src="https://flagcdn.com/w40/pt.png" alt="PT" class="lang-flag" id="current-lang-flag">
+                    <span id="current-lang-text">PT</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <div class="lang-option" onclick="setLanguage('pt')">
+                        <img src="https://flagcdn.com/w40/pt.png" alt="PT" class="lang-flag"> PT
+                    </div>
+                    <div class="lang-option" onclick="setLanguage('en')">
+                        <img src="https://flagcdn.com/w40/gb.png" alt="EN" class="lang-flag"> EN
+                    </div>
+                    <div class="lang-option" onclick="setLanguage('es')">
+                        <img src="https://flagcdn.com/w40/es.png" alt="ES" class="lang-flag"> ES
+                    </div>
+                </div>
             </div>
-            
-            <div class="upload-group">
-                <label for="json-upload" class="upload-btn">
-                    <i class="fa-solid fa-file-code"></i> JSON
-                </label>
-                <input type="file" id="json-upload" accept=".json">
-                <div id="json-name-display" class="file-name">Nenhum JSON</div>
+        </div>
+
+        <!-- VISTA 1: Lista de Podcasts -->
+        <div id="view-podcasts" class="view active">
+            <header>
+                <h1 id="title-podcasts">O que queres ouvir?</h1>
+            </header>
+            <div class="controls-container">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-podcasts" class="search-input" placeholder="Pesquisar podcasts...">
+                </div>
+                <div class="view-controls">
+                    <button class="view-btn active" data-view="grid" onclick="setViewMode('podcasts', 'grid')"><i class="fas fa-th-large"></i></button>
+                    <button class="view-btn" data-view="list" onclick="setViewMode('podcasts', 'list')"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            <div id="podcasts-grid" class="grid-container grid-podcasts">
+                <!-- Cards injetados via JS -->
             </div>
         </div>
 
-        <!-- Animação do Áudio -->
-        <div class="canvas-container">
-            <canvas id="waveform"></canvas>
-        </div>
-
-        <!-- Controles Secundários -->
-        <div class="secondary-controls">
-            <button class="sec-btn" id="speed-btn" title="Velocidade">1X</button>
-            <button class="sec-btn" id="subtitle-btn" title="Legendas"><i class="fa-regular fa-closed-captioning"></i></button>
-            <button class="sec-btn" title="Gostei"><i class="fa-regular fa-thumbs-up"></i></button>
-            <button class="sec-btn" title="Não Gostei"><i class="fa-regular fa-thumbs-down"></i></button>
-        </div>
-
-        <!-- Área de Legendas -->
-        <div class="subtitle-wrapper" id="subtitle-wrapper">
-            <div class="subtitle-text" id="subtitle-text"></div>
-        </div>
-
-        <!-- Progresso -->
-        <div class="progress-wrapper">
-            <span class="time" id="current-time">0:00</span>
-            <div class="progress-container">
-                <input type="range" id="progress-bar" value="0" min="0" max="100" step="0.1">
-                <div class="progress-fill" id="progress-fill"></div>
+        <!-- VISTA 2: Lista de Secções dentro de um Podcast -->
+        <div id="view-sections" class="view">
+            <header>
+                <button class="btn-icon" onclick="navigate('podcasts')"><i class="fas fa-arrow-left"></i></button>
+                <img id="header-podcast-img" class="header-thumb" src="" alt="Capa" style="display: none;">
+                <h1 id="header-podcast-title">Título do Podcast</h1>
+            </header>
+            <div class="controls-container">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-sections" class="search-input" placeholder="Pesquisar secções (ex: Temporadas)...">
+                </div>
+                <div class="view-controls">
+                    <button class="view-btn active" data-view="grid" onclick="setViewMode('sections', 'grid')"><i class="fas fa-th-large"></i></button>
+                    <button class="view-btn" data-view="list" onclick="setViewMode('sections', 'list')"><i class="fas fa-list"></i></button>
+                </div>
             </div>
-            <span class="time" id="duration">0:00</span>
+            <div id="sections-grid" class="grid-container grid-sections">
+                <!-- Cards injetados via JS -->
+            </div>
         </div>
 
-        <!-- Controles Principais -->
-        <div class="main-controls">
-            <button class="skip-btn" id="skip-back">
-                <i class="fa-solid fa-rotate-left"></i>
-                <span class="skip-text">10</span>
-            </button>
-            
-            <button class="play-btn" id="play-pause-btn" disabled>
-                <i class="fa-solid fa-play"></i>
-            </button>
-            
-            <button class="skip-btn" id="skip-forward">
-                <i class="fa-solid fa-rotate-right"></i>
-                <span class="skip-text">10</span>
-            </button>
+        <!-- VISTA 3: Lista de Episódios dentro de uma Secção -->
+        <div id="view-episodes" class="view">
+            <header>
+                <button class="btn-icon" onclick="navigate('sections')"><i class="fas fa-arrow-left"></i></button>
+                <img id="header-section-img" class="header-thumb" src="" alt="Capa" style="display: none;">
+                <h1 id="header-section-title">Título da Secção</h1>
+            </header>
+            <div class="controls-container">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-episodes" class="search-input" placeholder="Pesquisar episódios...">
+                </div>
+                <div class="view-controls">
+                    <button class="view-btn" data-view="grid" onclick="setViewMode('episodes', 'grid')"><i class="fas fa-th-large"></i></button>
+                    <button class="view-btn active" data-view="list" onclick="setViewMode('episodes', 'list')"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            <div id="episodes-grid" class="grid-container grid-episodes list-mode">
+                <!-- Itens da lista injetados via JS -->
+            </div>
         </div>
 
     </div>
 
     <script>
-        // --- Elementos do DOM ---
-        const audioInput = document.getElementById('audio-upload');
-        const jsonInput = document.getElementById('json-upload');
-        const fileNameDisplay = document.getElementById('file-name-display');
-        const jsonNameDisplay = document.getElementById('json-name-display');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const progressBar = document.getElementById('progress-bar');
-        const progressFill = document.getElementById('progress-fill');
-        const currentTimeEl = document.getElementById('current-time');
-        const durationEl = document.getElementById('duration');
-        const skipBackBtn = document.getElementById('skip-back');
-        const skipForwardBtn = document.getElementById('skip-forward');
-        const speedBtn = document.getElementById('speed-btn');
-        const subtitleBtn = document.getElementById('subtitle-btn');
-        const subtitleWrapper = document.getElementById('subtitle-wrapper');
-        const subtitleTextEl = document.getElementById('subtitle-text');
-        const canvas = document.getElementById('waveform');
-        const ctx = canvas.getContext('2d');
-
-        // --- Variáveis Globais ---
-        let audio = new Audio();
-        let audioContext = null;
-        let analyser = null;
-        let source = null;
-        let dataArray = null;
-        let animationId = null;
-        let isPlaying = false;
-        let fadeInterval = null; // Variável para controlar o fade de volume
-        
-        // Configurações das Ondas
-        let phase1 = 0, phase2 = 0, phase3 = 0;
-        let targetAmplitude = 0; // Amplitude base (quando pausado)
-        let currentAmplitude = 0; // Suavização (Lerp)
-        let currentSpeed = 0; // Controle de velocidade suave
-
-        // --- Legendas (Mock JSON com Palavras) ---
-        const mockJSON = [
-          {
-            "start": 0.0,
-            "end": 3.54,
-            "text": " Imagine a really famous, uh, aging king.",
-            "words": [
-              { "word": "Imagine", "start": 0.0, "end": 0.28 },
-              { "word": "a", "start": 0.28, "end": 0.48 },
-              { "word": "really", "start": 0.48, "end": 0.74 },
-              { "word": "famous", "start": 0.74, "end": 1.26 },
-              { "word": "uh", "start": 1.44, "end": 2.04 },
-              { "word": "aging", "start": 2.28, "end": 3.12 },
-              { "word": "king", "start": 3.12, "end": 3.54 }
-            ]
-          },
-          {
-            "start": 3.72,
-            "end": 5.9,
-            "text": " Right. A man at the very end of his life.",
-            "words": [
-              { "word": "Right", "start": 3.72, "end": 3.92 },
-              { "word": "A", "start": 4.32, "end": 4.76 },
-              { "word": " man", "start": 4.76, "end": 4.96 },
-              { "word": "at", "start": 4.96, "end": 5.12 },
-              { "word": "the", "start": 5.12, "end": 5.16 },
-              { "word": " very", "start": 5.16, "end": 5.32 },
-              { "word": "end", "start": 5.32, "end": 5.5 },
-              { "word": " of", "start": 5.5, "end": 5.6 },
-              { "word": " his", "start": 5.6, "end": 5.68 },
-              { "word": "life", "start": 5.68, "end": 5.9 }
-            ]
-          }
+        // --- 1. Dados Simulados (Mock Data) ---
+        const mockData = [
+            {
+                id: 'p1',
+                title: 'Tech PT',
+                author: 'Comunidade DEV',
+                icon: 'fa-laptop-code',
+                color: '#1cb0f6',
+                imageUrl: 'https://picsum.photos/seed/tech/400/400',
+                sections: [
+                    {
+                        id: 's1-1', title: 'Temporada 1: Iniciação', icon: 'fa-seedling', color: '#58cc02',
+                        imageUrl: 'https://picsum.photos/seed/temp1/400/400',
+                        episodes: [
+                            { id: 'e1', title: 'O que é o Vanilla JS?', duration: '45:12', imageUrl: 'https://picsum.photos/seed/ep1/100/100' },
+                            { id: 'e2', title: 'HTML Semântico hoje', duration: '32:05' },
+                            { id: 'e3', title: 'CSS Grid vs Flexbox', duration: '50:40', imageUrl: 'https://picsum.photos/seed/ep3/100/100' }
+                        ]
+                    },
+                    {
+                        id: 's1-2', title: 'Temporada 2: Avançado', icon: 'fa-rocket', color: '#ff9600',
+                        imageUrl: 'https://picsum.photos/seed/temp2/400/400',
+                        episodes: [
+                            { id: 'e4', title: 'Arquitetura de SPA', duration: '55:00' },
+                            { id: 'e5', title: 'Web Components', duration: '40:20' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'p2',
+                title: 'Design Diário',
+                author: 'Maria Designer',
+                icon: 'fa-pen-nib',
+                color: '#ce82ff',
+                imageUrl: 'https://picsum.photos/seed/design/400/400',
+                sections: [
+                    {
+                        id: 's2-1', title: 'UI/UX Fundamentals', icon: 'fa-layer-group', color: '#ff4b4b',
+                        imageUrl: 'https://picsum.photos/seed/uiux/400/400',
+                        episodes: [
+                            { id: 'e6', title: 'Flat Design em 2024', duration: '30:00', imageUrl: 'https://picsum.photos/seed/ep6/100/100' },
+                            { id: 'e7', title: 'Acessibilidade (a11y)', duration: '42:15' }
+                        ]
+                    },
+                    {
+                        id: 's2-2', title: 'Ferramentas', icon: 'fa-wrench', color: '#2b70c9',
+                        imageUrl: '', // Exemplo deixado vazio propositadamente
+                        episodes: [
+                            { id: 'e8', title: 'Figma Truques e Dicas', duration: '28:50' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'p3',
+                title: 'Startup Vida',
+                author: 'João Empreendedor',
+                icon: 'fa-chart-line',
+                color: '#58cc02',
+                imageUrl: '', // Exemplo sem imagem para veres o comportamento de "fallback" (texto apenas) em lista
+                sections: [
+                    {
+                        id: 's3-1', title: 'Entrevistas', icon: 'fa-microphone-lines', color: '#1cb0f6',
+                        imageUrl: 'https://picsum.photos/seed/startup/400/400',
+                        episodes: [
+                            { id: 'e9', title: 'Como validar uma ideia', duration: '60:00' },
+                            { id: 'e10', title: 'Angariar investimento', duration: '45:30' }
+                        ]
+                    }
+                ]
+            }
         ];
 
-        let parsedSubtitles = mockJSON;
-        let subtitlesVisible = false;
+        // --- 2. Estado da Aplicação e Traduções ---
+        const translations = {
+            pt: {
+                titlePodcasts: "O que queres ouvir?",
+                searchPodcasts: "Pesquisar podcasts...",
+                searchSections: "Pesquisar secções (ex: Temporadas)...",
+                searchEpisodes: "Pesquisar episódios...",
+                emptyPodcasts: "Nenhum podcast encontrado.",
+                emptySections: "Nenhuma secção encontrada.",
+                emptyEpisodes: "Nenhum episódio encontrado.",
+                episodesCount: "episódios",
+                playing: "A reproduzir:",
+                flagUrl: "https://flagcdn.com/w40/pt.png"
+            },
+            en: {
+                titlePodcasts: "What do you want to hear?",
+                searchPodcasts: "Search podcasts...",
+                searchSections: "Search sections (e.g., Seasons)...",
+                searchEpisodes: "Search episodes...",
+                emptyPodcasts: "No podcasts found.",
+                emptySections: "No sections found.",
+                emptyEpisodes: "No episodes found.",
+                episodesCount: "episodes",
+                playing: "Playing:",
+                flagUrl: "https://flagcdn.com/w40/gb.png"
+            },
+            es: {
+                titlePodcasts: "¿Qué quieres escuchar?",
+                searchPodcasts: "Buscar podcasts...",
+                searchSections: "Buscar secciones (ej: Temporadas)...",
+                searchEpisodes: "Buscar episodios...",
+                emptyPodcasts: "No se encontraron podcasts.",
+                emptySections: "No se encontraron secciones.",
+                emptyEpisodes: "No se encontraron episodios.",
+                episodesCount: "episodios",
+                playing: "Reproduciendo:",
+                flagUrl: "https://flagcdn.com/w40/es.png"
+            }
+        };
 
-        let currentSubtitleText = "";
-        let currentWordIndex = -1;
+        let state = {
+            currentPodcastId: null,
+            currentSectionId: null,
+            lang: localStorage.getItem('duolingo_lang') || 'pt',
+            viewModes: {
+                podcasts: localStorage.getItem('duolingo_podcasts_view') || 'grid',
+                sections: localStorage.getItem('duolingo_sections_view') || 'grid',
+                episodes: localStorage.getItem('duolingo_episodes_view') || 'list' // Por defeito, episódios começam em lista
+            }
+        };
 
-        // Gera o HTML mantendo o texto original (com pontuação) e isolando as palavras em spans
-        function generateSentenceHTML(block) {
-            let result = "";
-            let currentPos = 0;
-            const text = block.text;
+        // --- 3. Elementos do DOM ---
+        const views = {
+            podcasts: document.getElementById('view-podcasts'),
+            sections: document.getElementById('view-sections'),
+            episodes: document.getElementById('view-episodes')
+        };
 
-            block.words.forEach((w, index) => {
-                // Limpa espaços extras da palavra do array (como " man") para fazer o match correto no texto original
-                const cleanWord = w.word.trim();
-                const wordIndex = text.indexOf(cleanWord, currentPos);
-                
-                if (wordIndex !== -1) {
-                    result += text.substring(currentPos, wordIndex);
-                    result += `<span class="sub-word" data-index="${index}">${cleanWord}</span>`;
-                    currentPos = wordIndex + cleanWord.length;
+        const containers = {
+            podcasts: document.getElementById('podcasts-grid'),
+            sections: document.getElementById('sections-grid'),
+            episodes: document.getElementById('episodes-grid')
+        };
+
+        const inputs = {
+            podcasts: document.getElementById('search-podcasts'),
+            sections: document.getElementById('search-sections'),
+            episodes: document.getElementById('search-episodes')
+        };
+
+        // --- 4. Funções de Idioma ---
+        function toggleLangDropdown() {
+            document.getElementById('lang-dropdown').classList.toggle('show');
+        }
+
+        function setLanguage(langCode) {
+            state.lang = langCode;
+            localStorage.setItem('duolingo_lang', langCode);
+            
+            // Atualizar UI do botão
+            document.getElementById('current-lang-text').textContent = langCode.toUpperCase();
+            document.getElementById('current-lang-flag').src = translations[langCode].flagUrl;
+            
+            // Fechar dropdown
+            document.getElementById('lang-dropdown').classList.remove('show');
+            
+            // Atualizar textos estáticos
+            applyTranslations();
+            
+            // Re-renderizar a vista atual
+            if (views.podcasts.classList.contains('active')) renderPodcasts(mockData);
+            if (views.sections.classList.contains('active')) navigate('sections', state.currentPodcastId);
+            if (views.episodes.classList.contains('active')) navigate('episodes', state.currentSectionId);
+        }
+
+        function applyTranslations() {
+            const t = translations[state.lang];
+            document.getElementById('title-podcasts').textContent = t.titlePodcasts;
+            inputs.podcasts.placeholder = t.searchPodcasts;
+            inputs.sections.placeholder = t.searchSections;
+            inputs.episodes.placeholder = t.searchEpisodes;
+        }
+
+        // Fechar dropdown ao clicar fora
+        document.addEventListener('click', (e) => {
+            const selector = document.querySelector('.lang-selector');
+            if (selector && !selector.contains(e.target)) {
+                document.getElementById('lang-dropdown').classList.remove('show');
+            }
+        });
+
+        // --- 5. Funções de Navegação e Visualização ---
+        function setViewMode(viewName, mode) {
+            state.viewModes[viewName] = mode;
+            localStorage.setItem(`duolingo_${viewName}_view`, mode);
+            updateViewModeUI(viewName);
+        }
+
+        function updateViewModeUI(viewName) {
+            const mode = state.viewModes[viewName];
+            const container = containers[viewName];
+            
+            if (!container) return;
+
+            if (mode === 'list') {
+                container.classList.add('list-mode');
+            } else {
+                container.classList.remove('list-mode');
+            }
+
+            const buttons = document.querySelectorAll(`#view-${viewName} .view-btn`);
+            buttons.forEach(btn => {
+                if (btn.dataset.view === mode) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
                 }
             });
-            result += text.substring(currentPos);
-            return result;
         }
 
-        // Destaca a palavra atual
-        function highlightWord(block, currentTime) {
-            let activeWordIndex = -1;
-            
-            // Procura a palavra cujo tempo exato bate com o momento atual
-            for (let i = 0; i < block.words.length; i++) {
-                if (currentTime >= block.words[i].start && currentTime <= block.words[i].end) {
-                    activeWordIndex = i;
-                }
-            }
-            
-            if (activeWordIndex !== currentWordIndex) {
-                currentWordIndex = activeWordIndex;
-                const spans = subtitleTextEl.querySelectorAll('.sub-word');
-                spans.forEach((span, index) => {
-                    if (index === activeWordIndex) {
-                        span.classList.add('highlight');
-                    } else {
-                        span.classList.remove('highlight');
-                    }
-                });
-            }
-        }
+        function navigate(viewName, id = null) {
+            Object.values(views).forEach(view => view.classList.remove('active'));
+            Object.values(inputs).forEach(input => input.value = '');
+            views[viewName].classList.add('active');
 
-        // Toggle do botão de legendas
-        subtitleBtn.addEventListener('click', () => {
-            subtitlesVisible = !subtitlesVisible;
-            if (subtitlesVisible) {
-                subtitleBtn.classList.add('active');
-                subtitleWrapper.classList.add('show');
-            } else {
-                subtitleBtn.classList.remove('active');
-                subtitleWrapper.classList.remove('show');
-                subtitleTextEl.classList.remove('show-text');
-                currentSubtitleText = ""; // Reseta o estado
-            }
-        });
-
-        // Função que verifica o tempo atual e atualiza a interface
-        function updateSubtitles(currentTime) {
-            if (!subtitlesVisible) return;
-            
-            // Busca se existe alguma legenda cujo tempo bate com o áudio atual
-            const activeSub = parsedSubtitles.find(sub => currentTime >= sub.start && currentTime <= sub.end);
-            
-            if (activeSub) {
-                // Atualiza o bloco de texto inteiro (frase)
-                if (currentSubtitleText !== activeSub.text) {
-                    currentSubtitleText = activeSub.text;
-                    currentWordIndex = -1; // Reseta o índice da palavra
-                    
-                    // Atualiza a frase na tela imediatamente sem atrasos/transições
-                    subtitleTextEl.innerHTML = generateSentenceHTML(activeSub);
-                    subtitleTextEl.classList.add('show-text');
-                    highlightWord(activeSub, currentTime);
-                } else if (subtitleTextEl.classList.contains('show-text')) {
-                    // Se o bloco de texto já está visível, apenas atualiza a cor da palavra
-                    highlightWord(activeSub, currentTime);
-                }
-            } else {
-                // Esconde a legenda caso não haja texto no tempo atual
-                if (currentSubtitleText !== "") {
-                    currentSubtitleText = "";
-                    currentWordIndex = -1;
-                    subtitleTextEl.classList.remove('show-text');
-                }
-            }
-        }
-
-        // Redimensionar Canvas
-        function resizeCanvas() {
-            canvas.width = canvas.parentElement.clientWidth;
-            canvas.height = canvas.parentElement.clientHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        // --- Lógica de Upload do JSON ---
-        jsonInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                jsonNameDisplay.textContent = file.name;
+            if (viewName === 'podcasts') {
+                state.currentPodcastId = null;
+                state.currentSectionId = null;
+                renderPodcasts(mockData);
+            } 
+            else if (viewName === 'sections') {
+                if (id) state.currentPodcastId = id;
+                const podcast = mockData.find(p => p.id === state.currentPodcastId);
+                document.getElementById('header-podcast-title').textContent = podcast.title;
                 
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    try {
-                        // Lê e faz o parse do conteúdo do ficheiro
-                        const uploadedJSON = JSON.parse(event.target.result);
-                        parsedSubtitles = uploadedJSON;
-                        
-                        // Limpa as legendas no ecrã para evitar conflitos ao trocar o ficheiro
-                        currentSubtitleText = "";
-                        currentWordIndex = -1;
-                        subtitleTextEl.classList.remove('show-text');
-                        
-                        // Se estiver a reproduzir com legendas visíveis, tenta atualizar com os novos dados
-                        if (subtitlesVisible) {
-                            updateSubtitles(audio.currentTime);
-                        }
-                    } catch (error) {
-                        alert("Erro ao ler o ficheiro JSON. Verifique se o formato está correto.");
-                        console.error(error);
-                        jsonNameDisplay.textContent = "Erro no ficheiro";
-                    }
-                };
-                // Lê o ficheiro como texto para podermos convertê-lo depois
-                reader.readAsText(file);
-            }
-        });
-
-        // --- Lógica de Upload de Áudio ---
-        audioInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const objectURL = URL.createObjectURL(file);
-                audio.src = objectURL;
-                fileNameDisplay.textContent = file.name;
-                playPauseBtn.disabled = false;
-                
-                // Reseta UI
-                progressBar.value = 0;
-                progressFill.style.width = '0%';
-                currentTimeEl.textContent = '0:00';
-                audio.volume = 1; // Garante que o volume volte a 100% ao trocar de música
-                
-                // Para carregar os metadados (duração)
-                audio.load();
-                
-                // Se o contexto já existe, precisamos garantir que está rodando
-                if(audioContext && audioContext.state === 'suspended') {
-                    audioContext.resume();
-                }
-            }
-        });
-
-        // --- Lógica do Áudio ---
-        audio.addEventListener('loadedmetadata', () => {
-            durationEl.textContent = formatTime(audio.duration);
-            progressBar.max = audio.duration;
-        });
-
-        audio.addEventListener('timeupdate', () => {
-            progressBar.value = audio.currentTime;
-            currentTimeEl.textContent = formatTime(audio.currentTime);
-            const percentage = (audio.currentTime / audio.duration) * 100;
-            progressFill.style.width = percentage + '%';
-            
-            // Checa a minutagem da legenda atual
-            updateSubtitles(audio.currentTime);
-        });
-
-        audio.addEventListener('ended', () => {
-            isPlaying = false;
-            updatePlayButton();
-        });
-
-        // Barra de progresso manual
-        progressBar.addEventListener('input', () => {
-            audio.currentTime = progressBar.value;
-            const percentage = (progressBar.value / audio.duration) * 100;
-            progressFill.style.width = percentage + '%';
-        });
-
-        // --- Controles Principais ---
-        playPauseBtn.addEventListener('click', () => {
-            if (!audio.src) return;
-
-            // Inicializa o Web Audio API apenas na primeira interação do usuário (Regra dos Navegadores)
-            if (!audioContext) {
-                initWebAudio();
-            }
-
-            if (audioContext.state === 'suspended') {
-                audioContext.resume();
-            }
-
-            if (isPlaying) {
-                // Inicia o processo de pausa suave (Fade Out)
-                isPlaying = false;
-                updatePlayButton(); // Muda o ícone para play imediatamente
-                
-                clearInterval(fadeInterval);
-                let vol = audio.volume;
-                
-                // Reduz o volume a cada 30ms para dar um efeito de descida rápida (dura aprox. 300ms)
-                fadeInterval = setInterval(() => {
-                    vol -= 0.1; 
-                    if (vol <= 0) {
-                        audio.volume = 0;
-                        audio.pause();
-                        clearInterval(fadeInterval);
-                    } else {
-                        audio.volume = vol;
-                    }
-                }, 30);
-                
-            } else {
-                // Toca a música e restaura o volume
-                isPlaying = true;
-                updatePlayButton();
-                
-                clearInterval(fadeInterval);
-                audio.volume = 1; // Restaura para o volume máximo
-                audio.play();
-            }
-        });
-
-        function updatePlayButton() {
-            if (isPlaying) {
-                playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                playPauseBtn.classList.add('playing');
-            } else {
-                playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-                playPauseBtn.classList.remove('playing');
-            }
-        }
-
-        skipBackBtn.addEventListener('click', () => {
-            audio.currentTime = Math.max(0, audio.currentTime - 10);
-        });
-
-        skipForwardBtn.addEventListener('click', () => {
-            audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
-        });
-
-        // Controle de Velocidade
-        const speeds = [1, 1.2, 1.5, 2];
-        let currentSpeedIndex = 0;
-        speedBtn.addEventListener('click', () => {
-            currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length;
-            const newSpeed = speeds[currentSpeedIndex];
-            audio.playbackRate = newSpeed;
-            speedBtn.textContent = newSpeed + 'X';
-        });
-
-        // --- Utilitários ---
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return "0:00";
-            const min = Math.floor(seconds / 60);
-            const sec = Math.floor(seconds % 60);
-            return `${min}:${sec < 10 ? '0' : ''}${sec}`;
-        }
-
-        // --- Web Audio API e Canvas (A Mágica das Ondas) ---
-        function initWebAudio() {
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            analyser = audioContext.createAnalyser();
-            analyser.fftSize = 128; // Define a resolução da frequência
-            
-            source = audioContext.createMediaElementSource(audio);
-            source.connect(analyser);
-            analyser.connect(audioContext.destination);
-            
-            const bufferLength = analyser.frequencyBinCount;
-            dataArray = new Uint8Array(bufferLength);
-        }
-
-        let lastSubCheckTime = -1;
-
-        function drawWaveform() {
-            animationId = requestAnimationFrame(drawWaveform);
-            
-            // Atualiza as legendas a 60 FPS no loop de animação.
-            // O evento padrão do áudio dispara devagar e "pula" palavras rápidas.
-            // Executar isso aqui garante que cada micro-palavra acenda no momento exato.
-            if (audio.currentTime !== lastSubCheckTime) {
-                updateSubtitles(audio.currentTime);
-                lastSubCheckTime = audio.currentTime;
-            }
-
-            const width = canvas.width;
-            const height = canvas.height;
-            const centerY = height / 2;
-
-            ctx.clearRect(0, 0, width, height);
-
-            let targetSpeed = 0;
-
-            if (analyser && isPlaying) {
-                analyser.getByteFrequencyData(dataArray);
-                // Calcula a média das frequências para obter a "energia" da música
-                let sum = 0;
-                for (let i = 0; i < dataArray.length; i++) {
-                    sum += dataArray[i];
-                }
-                const average = sum / dataArray.length;
-                
-                // Aumenta a amplitude baseada na batida da música
-                targetAmplitude = 2 + (average * 0.4); 
-                targetSpeed = 1;
-            } else {
-                // Se pausado, volta para uma linha reta e para de mover
-                targetAmplitude = 0;
-                targetSpeed = 0;
-            }
-
-            // Suavização (Lerp) para a animação não ficar travada/pulando
-            currentAmplitude += (targetAmplitude - currentAmplitude) * 0.1;
-            currentSpeed += (targetSpeed - currentSpeed) * 0.1;
-
-            // Velocidade das ondas multiplicada pela velocidade atual
-            phase1 += 0.05 * currentSpeed;
-            phase2 -= 0.03 * currentSpeed;
-            phase3 += 0.04 * currentSpeed;
-
-            // Desenha as 3 linhas (Verde, Azul claro, Roxo)
-            drawSineWave(ctx, width, centerY, currentAmplitude * 1.2, phase1, '#68d391', 0.015);
-            drawSineWave(ctx, width, centerY, currentAmplitude * 0.9, phase2, '#7f9cf5', 0.02);
-            drawSineWave(ctx, width, centerY, currentAmplitude * 0.6, phase3, '#9f7aea', 0.01);
-        }
-
-        function drawSineWave(ctx, width, centerY, amplitude, phase, color, frequency) {
-            ctx.beginPath();
-            ctx.strokeStyle = color;
-            ctx.lineWidth = 2.5;
-            
-            for (let x = 0; x < width; x++) {
-                // A função seno cria as ondas. A multiplicação diminui as bordas para centralizar o efeito.
-                // Isso faz as pontas da linha ficarem grudadas no centro vertical (como no vídeo).
-                const edgeDamping = Math.sin((x / width) * Math.PI); 
-                
-                const y = centerY + Math.sin(x * frequency + phase) * amplitude * edgeDamping;
-                
-                if (x === 0) {
-                    ctx.moveTo(x, y);
+                // Tratar a imagem no cabeçalho
+                const headerImg = document.getElementById('header-podcast-img');
+                if (podcast.imageUrl) {
+                    headerImg.src = podcast.imageUrl;
+                    headerImg.style.display = 'block';
                 } else {
-                    ctx.lineTo(x, y);
+                    headerImg.style.display = 'none';
                 }
+
+                renderSections(podcast.sections);
+            } 
+            else if (viewName === 'episodes') {
+                if (id) state.currentSectionId = id;
+                const podcast = mockData.find(p => p.id === state.currentPodcastId);
+                const section = podcast.sections.find(s => s.id === state.currentSectionId);
+                document.getElementById('header-section-title').textContent = section.title;
+
+                // Tratar a imagem no cabeçalho
+                const headerImg = document.getElementById('header-section-img');
+                if (section.imageUrl) {
+                    headerImg.src = section.imageUrl;
+                    headerImg.style.display = 'block';
+                } else {
+                    headerImg.style.display = 'none';
+                }
+
+                renderEpisodes(section.episodes);
             }
-            ctx.stroke();
         }
 
-        // Desenha ondas paradas no início
-        drawWaveform();
+        // --- 5. Funções de Renderização ---
+        function renderEmptyState(container, message) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-ghost"></i>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        function renderPodcasts(data) {
+            containers.podcasts.innerHTML = '';
+            if (data.length === 0) return renderEmptyState(containers.podcasts, translations[state.lang].emptyPodcasts);
+
+            data.forEach(podcast => {
+                const card = document.createElement('div');
+                // Adiciona a classe 'has-image' para ativar a miniatura na vista de lista, se existir imagem
+                const hasImageClass = podcast.imageUrl ? 'has-image' : 'no-image';
+                card.className = `card ${hasImageClass}`;
+                card.onclick = () => navigate('sections', podcast.id);
+                
+                const backgroundStyle = podcast.imageUrl 
+                    ? `background: var(--border-color);` 
+                    : `background: linear-gradient(135deg, ${podcast.color}, ${podcast.color}cc);`;
+                    
+                const imageContent = podcast.imageUrl 
+                    ? `<img src="${podcast.imageUrl}" alt="${podcast.title}" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                       <i class="fas ${podcast.icon}" style="display: none;"></i>` 
+                    : `<i class="fas ${podcast.icon}"></i>`;
+
+                card.innerHTML = `
+                    <div class="card-image-placeholder" style="${backgroundStyle}">
+                        ${imageContent}
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">${podcast.title}</div>
+                        <div class="card-subtitle">${podcast.author}</div>
+                    </div>
+                `;
+                containers.podcasts.appendChild(card);
+            });
+        }
+
+        function renderSections(data) {
+            containers.sections.innerHTML = '';
+            if (data.length === 0) return renderEmptyState(containers.sections, translations[state.lang].emptySections);
+
+            data.forEach(section => {
+                const card = document.createElement('div');
+                const hasImageClass = section.imageUrl ? 'has-image' : 'no-image';
+                card.className = `card card-section ${hasImageClass}`;
+                card.onclick = () => navigate('episodes', section.id);
+                
+                const backgroundStyle = section.imageUrl 
+                    ? `background: var(--border-color);` 
+                    : `background: linear-gradient(135deg, ${section.color}, ${section.color}cc);`;
+                    
+                const imageContent = section.imageUrl 
+                    ? `<img src="${section.imageUrl}" alt="${section.title}" class="card-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                       <i class="fas ${section.icon}" style="display: none;"></i>` 
+                    : `<i class="fas ${section.icon}"></i>`;
+
+                card.innerHTML = `
+                    <div class="card-image-placeholder" style="${backgroundStyle}">
+                        ${imageContent}
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">${section.title}</div>
+                        <div class="card-subtitle">${section.episodes.length} ${translations[state.lang].episodesCount}</div>
+                    </div>
+                `;
+                containers.sections.appendChild(card);
+            });
+        }
+
+        function renderEpisodes(data) {
+            containers.episodes.innerHTML = '';
+            if (data.length === 0) return renderEmptyState(containers.episodes, translations[state.lang].emptyEpisodes);
+
+            data.forEach(episode => {
+                const item = document.createElement('div'); // Mudou de <li> para <div> para fazer parte do Grid
+                item.className = 'episode-item';
+                item.onclick = () => alert(`${translations[state.lang].playing} ${episode.title}`);
+                
+                const thumbHtml = episode.imageUrl 
+                    ? `<img src="${episode.imageUrl}" class="episode-thumb" alt="Capa" onerror="this.style.display='none';">` 
+                    : '';
+
+                item.innerHTML = `
+                    <div class="episode-play-btn"><i class="fas fa-circle-play"></i></div>
+                    ${thumbHtml}
+                    <div class="episode-info">
+                        <div class="episode-title">${episode.title}</div>
+                        <div class="episode-duration"><i class="far fa-clock"></i> ${episode.duration}</div>
+                    </div>
+                `;
+                containers.episodes.appendChild(item);
+            });
+        }
+
+        // --- 6. Event Listeners para Pesquisa (Filtros) ---
+        inputs.podcasts.addEventListener('input', (e) => {
+            const termo = e.target.value.toLowerCase();
+            const filtrados = mockData.filter(p => 
+                p.title.toLowerCase().includes(termo) || 
+                p.author.toLowerCase().includes(termo)
+            );
+            renderPodcasts(filtrados);
+        });
+
+        inputs.sections.addEventListener('input', (e) => {
+            const termo = e.target.value.toLowerCase();
+            const podcast = mockData.find(p => p.id === state.currentPodcastId);
+            const filtrados = podcast.sections.filter(s => 
+                s.title.toLowerCase().includes(termo)
+            );
+            renderSections(filtrados);
+        });
+
+        inputs.episodes.addEventListener('input', (e) => {
+            const termo = e.target.value.toLowerCase();
+            const podcast = mockData.find(p => p.id === state.currentPodcastId);
+            const section = podcast.sections.find(s => s.id === state.currentSectionId);
+            const filtrados = section.episodes.filter(ep => 
+                ep.title.toLowerCase().includes(termo)
+            );
+            renderEpisodes(filtrados);
+        });
+
+        // --- 7. Inicialização ---
+        applyTranslations(); // Aplica idioma guardado logo no início
+        
+        // Atualiza a UI do botão de idioma na inicialização
+        document.getElementById('current-lang-text').textContent = state.lang.toUpperCase();
+        document.getElementById('current-lang-flag').src = translations[state.lang].flagUrl;
+
+        updateViewModeUI('podcasts');
+        updateViewModeUI('sections');
+        updateViewModeUI('episodes'); // Inicializa também a vista dos episódios
+        renderPodcasts(mockData);
 
     </script>
 </body>
