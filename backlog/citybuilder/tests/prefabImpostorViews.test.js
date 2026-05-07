@@ -24,7 +24,7 @@ describe('prefab impostor views', () => {
     });
 
     it('uses expected sprite sizing and anchor for top vs side views', () => {
-        expect(getPrefabImpostorSpriteScale({ dx: 10, dy: 7, dz: 4 }, 'top')).toEqual({ width: 10.4, height: 4.4 });
+        expect(getPrefabImpostorSpriteScale({ dx: 10, dy: 7, dz: 4 }, 'top')).toEqual({ width: 10, height: 4 });
         expect(getPrefabImpostorSpriteScale({ dx: 10, dy: 7, dz: 4 }, 'side-2')).toEqual({ width: 10.8, height: 8.2 });
         expect(getPrefabImpostorSpriteCenter('top')).toEqual({ x: 0.5, y: 0.5 });
         expect(getPrefabImpostorSpriteCenter('side-2')).toEqual({ x: 0.5, y: 0 });
@@ -67,7 +67,7 @@ describe('prefab impostor views', () => {
                 },
                 top: {
                     file: 'prefab-impostors/BigBen/top.png',
-                    spriteScale: { width: 12.4, height: 12.4 },
+                    spriteScale: { width: 12, height: 12 },
                     spriteCenter: { x: 0.5, y: 0.5 },
                 },
             },
@@ -100,7 +100,7 @@ describe('prefab impostor views', () => {
         expect(resolvePrefabImpostorViewConfig(manifest, 'Eolica', 'top')).toEqual({
             file: null,
             bounds: { dx: 4, dy: 19, dz: 4 },
-            spriteScale: { width: 4.4, height: 4.4 },
+            spriteScale: { width: 4, height: 4 },
             spriteCenter: { x: 0.5, y: 0.5 },
         });
 

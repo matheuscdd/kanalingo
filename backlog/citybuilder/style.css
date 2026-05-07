@@ -451,6 +451,11 @@
 
         .visual-mode-disabled {
             opacity: 0.58;
+            pointer-events: none;
+        }
+
+        .visual-mode-disabled * {
+            pointer-events: none;
         }
 
         .hint {

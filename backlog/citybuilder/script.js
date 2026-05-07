@@ -26,13 +26,13 @@ import {
 } from "./prefabs/shared/shapeOrientation.js";
 import { getFakeShadeForNormal } from "./prefabs/shared/fakeShading.js";
 import { getUpwardSurfaceStudPlacements } from "./prefabs/shared/shapeStuds.js";
-import { createPrefabImageVisualMode } from "./prefabs/shared/prefabImageVisualMode.js";
+import { createPrefabImageVisualMode } from "./prefabs/shared/prefabImageVisualMode.js?v=20260507e";
 import {
     PREFAB_IMPOSTOR_TOP_VIEW,
     PREFAB_IMPOSTOR_VIEW_KEYS,
     createPrefabImpostorManifestEntry,
     getPrefabImpostorSideViewIndex,
-} from "./prefabs/shared/prefabImpostorViews.js";
+} from "./prefabs/shared/prefabImpostorViews.js?v=20260507e";
 
 const THREE = globalThis.THREE;
 if (!THREE) {
@@ -153,9 +153,11 @@ const TOOL_DELETE_BLOCK = "delete-block";
 const TOOL_DELETE_GROUP = "delete-group";
 const VISUAL_MODE_3D = "3d";
 const VISUAL_MODE_IMAGES = "images";
-const VISUAL_MODE_IMAGES_HINT = "Modo Imagens ativado. Nesta primeira fase, ele bloqueia edicao e 1a pessoa enquanto o renderer 2D isolado e conectado.";
+const VISUAL_MODE_IMAGES_HINT = "Modo Imagens ativado. Mude para Top para selecionar prefabs no catálogo ou mover prefabs já colocados; fora do Top, edicao e 1a pessoa continuam bloqueadas.";
+const VISUAL_MODE_IMAGES_TOP_HINT = "Modo Imagens + Top ativo. Selecione um prefab no catálogo para colocar ou clique em um prefab pronto no mapa para mover.";
 const VISUAL_MODE_3D_HINT = "Modo 3D reativado.";
-const VISUAL_MODE_BLOCKED_EDIT_HINT = "Modo Imagens: a edicao do mapa fica indisponivel enquanto o renderer 2D isolado estiver ativo.";
+const VISUAL_MODE_BLOCKED_EDIT_HINT = "Modo Imagens: mude para Top para selecionar um prefab no catálogo ou mover um prefab pronto no mapa; ferramentas de bloco continuam indisponiveis.";
+const VISUAL_MODE_BLOCKED_EDIT_TOP_HINT = "Modo Imagens + Top: selecione um prefab no catálogo ou clique num prefab pronto no mapa; ferramentas de bloco continuam indisponiveis.";
 const VISUAL_MODE_BLOCKED_FP_HINT = "Modo Imagens: a 1a pessoa fica desativada enquanto o renderer 2D isolado estiver ativo.";
 
 // --- ESTADO GERAL ---
@@ -167,6 +169,17 @@ let currentShapeRot = 0;
 let isDeleteMode = false;
 let isDeleteGroupMode = false;
 let currentVisualMode = VISUAL_MODE_3D;
+const imageTopDragState = {
+    groupId: null,
+    prefabId: "",
+    startPlacement: null,
+    candidatePlacement: null,
+    candidateValid: false,
+    pointerWorldX: 0,
+    pointerWorldZ: 0,
+    cellOffsetX: 0,
+    cellOffsetZ: 0,
+};
 
 let hoveredGroupId = null;
 let hoveredBlockId = null;
@@ -187,6 +200,7 @@ const blockById = new Map();
 const groupToBlockIds = new Map();
 const groupToSourcePrefabId = new Map();
 const groupToPrefabPlacement = new Map();
+const imageOnlyPrefabGroupIds = new Set();
 const blockToInstanceGroupKeys = new Map();
 let exportedStructureSerial = 1;
 
@@ -203,6 +217,8 @@ let currentCX = 0,
     currentCY = 0,
     currentCZ = 0;
 let rollOver;
+const imageTopPointerPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+const imageTopPointerWorld = new THREE.Vector3();
 
 const LEGACY_PREFAB_TYPE_PREFIX = "Prefab_";
 const PREFAB_TYPE_PREFIX = "Prefab:";
@@ -335,7 +351,24 @@ function rotateShapeToolOrientation(step = 1) {
 }
 
 function rotateActivePlacement(step = 1) {
-    if (showVisualModeBlockedHint()) return;
+    if (isImageVisualMode()) {
+        if (!isInteractiveImageTopView()) {
+            showVisualModeBlockedHint();
+            return;
+        }
+        if (isImageTopCatalogPrefabPlacementEnabled()) {
+            currentRot = (currentRot + step + 4) % 4;
+            updateBuildPreview();
+            updateBuilderToolsStatus(`Rotação do prefab selecionado atualizada (${step > 0 ? "+90" : "-90"}deg)`);
+            return;
+        }
+        if (!rotateImageTopDraggedPrefab(step)) {
+            showHint("Selecione um prefab no catálogo ou clique em um prefab pronto para mover.");
+            return;
+        }
+        updateBuilderToolsStatus(`Rotação do prefab atualizada (${step > 0 ? "+90" : "-90"}deg)`);
+        return;
+    }
 
     if (activeBuildTool === TOOL_SHAPE) {
         rotateShapeToolAroundWorldY(step);
@@ -378,12 +411,60 @@ function updateBuilderToolButtons() {
 }
 
 function updateHistoryButtons() {
-    if (builderToolUndoButton) builderToolUndoButton.disabled = isImageVisualMode() || undoStack.length === 0;
-    if (builderToolRedoButton) builderToolRedoButton.disabled = isImageVisualMode() || redoStack.length === 0;
+    const historyLocked = isImageVisualMode() && !isInteractiveImageTopView();
+    if (builderToolUndoButton) builderToolUndoButton.disabled = historyLocked || undoStack.length === 0;
+    if (builderToolRedoButton) builderToolRedoButton.disabled = historyLocked || redoStack.length === 0;
 }
 
 function isImageVisualMode() {
     return currentVisualMode === VISUAL_MODE_IMAGES;
+}
+
+function isInteractiveImageTopView() {
+    return isImageVisualMode() && isTopDownView && !isFirstPerson && !isPrefabImpostorToolSession;
+}
+
+function getImageVisualModeHint() {
+    return isInteractiveImageTopView() ? VISUAL_MODE_IMAGES_TOP_HINT : VISUAL_MODE_IMAGES_HINT;
+}
+
+function getImageVisualModeBlockedEditHint() {
+    return isInteractiveImageTopView() ? VISUAL_MODE_BLOCKED_EDIT_TOP_HINT : VISUAL_MODE_BLOCKED_EDIT_HINT;
+}
+
+function isImageTopCatalogPrefabType(type) {
+    const prefabId = getPrefabIdFromType(type);
+    return !!prefabId && !(isRuntimePrefab?.(prefabId));
+}
+
+function isImageTopCatalogPrefabPlacementEnabled() {
+    return isInteractiveImageTopView() && activeBuildTool === TOOL_PLACE && isImageTopCatalogPrefabType(currentType);
+}
+
+function isImageTopPrefabDragActive() {
+    return imageTopDragState.groupId != null;
+}
+
+function getPrefabPlacementBounds(prefabId, rot = 0) {
+    const normalizedRot = ((Number(rot) || 0) % 4 + 4) % 4;
+    const prefab = PREFABS[prefabId];
+    const rotation = prefab?.meta?.rotations?.[normalizedRot];
+    if (!prefab) return { dx: 1, dy: 1, dz: 1 };
+
+    return rotation
+        ? { dx: rotation.dx, dy: prefab.dy, dz: rotation.dz }
+        : { dx: prefab.dx, dy: prefab.dy, dz: prefab.dz };
+}
+
+function clonePrefabPlacement(placement) {
+    if (!placement) return null;
+    return {
+        type: typeof placement.type === "string" ? placement.type : "",
+        x: Number(placement.x) || 0,
+        y: Number(placement.y) || 0,
+        z: Number(placement.z) || 0,
+        rot: ((Number(placement.rot) || 0) % 4 + 4) % 4,
+    };
 }
 
 function collectBuiltInPrefabPlacementsForVisualMode() {
@@ -394,23 +475,21 @@ function collectBuiltInPrefabPlacementsForVisualMode() {
         if (!prefabId || !PREFABS[prefabId] || isRuntimePrefab?.(prefabId)) return;
 
         const groupSize = groupToBlockIds.get(groupId)?.size ?? 0;
-        if (groupSize === 0) return;
+        if (groupSize === 0 && !imageOnlyPrefabGroupIds.has(groupId)) return;
 
-        const normalizedRot = ((Number(placement.rot) || 0) % 4 + 4) % 4;
-        const rotation = PREFABS[prefabId]?.meta?.rotations?.[normalizedRot];
+        const normalizedPlacement = clonePrefabPlacement(placement);
+        const bounds = getPrefabPlacementBounds(prefabId, normalizedPlacement.rot);
 
         placements.push({
             groupId,
             prefabId,
             placement: {
-                x: Number(placement.x) || 0,
-                y: Number(placement.y) || 0,
-                z: Number(placement.z) || 0,
-                rot: normalizedRot,
+                x: normalizedPlacement.x,
+                y: normalizedPlacement.y,
+                z: normalizedPlacement.z,
+                rot: normalizedPlacement.rot,
             },
-            bounds: rotation
-                ? { dx: rotation.dx, dy: PREFABS[prefabId].dy, dz: rotation.dz }
-                : { dx: PREFABS[prefabId].dx, dy: PREFABS[prefabId].dy, dz: PREFABS[prefabId].dz },
+            bounds,
         });
     });
 
@@ -425,13 +504,17 @@ function updateVisualModeUi() {
         btnVisualMode.textContent = imagesMode ? "Visual: Imagens" : "Visual: 3D";
         btnVisualMode.title = imagesMode
             ? "Voltar para o render 3D editavel"
-            : "Ativar o modo de imagens (visualizacao somente, em implementacao)";
+            : "Ativar o modo de imagens; em Top, prefabs prontos podem ser arrastados diretamente";
         btnVisualMode.classList.toggle("active", imagesMode);
         btnVisualMode.setAttribute("aria-pressed", imagesMode ? "true" : "false");
     }
 
     const editControlsLocked = imagesMode;
-    [catalogBottomBar, document.getElementById("left-bar"), builderToolsPanel].forEach((element) => {
+    const interactiveImageTop = isInteractiveImageTopView();
+    if (catalogBottomBar) {
+        catalogBottomBar.classList.toggle("visual-mode-disabled", imagesMode && !interactiveImageTop);
+    }
+    [document.getElementById("left-bar"), builderToolsPanel].forEach((element) => {
         if (element) element.classList.toggle("visual-mode-disabled", editControlsLocked);
     });
 
@@ -456,18 +539,38 @@ function updateVisualModeUi() {
         builderToolHeightInput,
         builderToolShapeSelect,
         ...builderToolButtons,
-        ...document.querySelectorAll(".block-btn"),
+        ...document.querySelectorAll(".copy-json-btn"),
         ...document.querySelectorAll(".color-btn"),
     ];
 
     toggledControls.forEach((control) => {
         if (control) control.disabled = editControlsLocked;
     });
+
+    document.querySelectorAll(".block-btn").forEach((control) => {
+        if (!imagesMode) {
+            control.disabled = false;
+            return;
+        }
+
+        if (!interactiveImageTop) {
+            control.disabled = true;
+            return;
+        }
+
+        control.disabled = !isImageTopCatalogPrefabType(control.dataset.type || "");
+    });
+
+    if (interactiveImageTop) {
+        [document.getElementById("btn-rotate"), builderToolUndoButton, builderToolRedoButton].forEach((control) => {
+            if (control) control.disabled = false;
+        });
+    }
 }
 
-function showVisualModeBlockedHint(message = VISUAL_MODE_BLOCKED_EDIT_HINT) {
+function showVisualModeBlockedHint(message = "") {
     if (!isImageVisualMode()) return false;
-    showHint(message);
+    showHint(message || getImageVisualModeBlockedEditHint());
     return true;
 }
 
@@ -479,6 +582,39 @@ function syncPrefabImageVisualModeFromWorld() {
     prefabImageVisualMode.rebuildFromPlacements(collectBuiltInPrefabPlacementsForVisualMode());
 }
 
+function syncPrefabImageVisualModeHoverState() {
+    prefabImageVisualMode.setHoveredPlacement(hoveredGroupId);
+}
+
+function clearImageTopPrefabInteraction({ clearHover = true } = {}) {
+    imageTopDragState.groupId = null;
+    imageTopDragState.prefabId = "";
+    imageTopDragState.startPlacement = null;
+    imageTopDragState.candidatePlacement = null;
+    imageTopDragState.candidateValid = false;
+    imageTopDragState.pointerWorldX = 0;
+    imageTopDragState.pointerWorldZ = 0;
+    imageTopDragState.cellOffsetX = 0;
+    imageTopDragState.cellOffsetZ = 0;
+
+    prefabImageVisualMode.setDraggedPlacement(null);
+    prefabImageVisualMode.clearDragPreview();
+    if (clearHover) {
+        hoveredGroupId = null;
+        prefabImageVisualMode.setHoveredPlacement(null);
+    } else {
+        syncPrefabImageVisualModeHoverState();
+    }
+}
+
+function cancelImageTopPrefabDrag(hint = "") {
+    if (!isImageTopPrefabDragActive()) return false;
+    clearImageTopPrefabInteraction({ clearHover: false });
+    updateBuilderToolsStatus(hint || "Movimentação cancelada");
+    if (hint) showHint(hint);
+    return true;
+}
+
 function setPrefabImageVisualModeEnabled(enabled) {
     if (enabled) {
         syncPrefabImageVisualModeFromWorld();
@@ -488,6 +624,340 @@ function setPrefabImageVisualModeEnabled(enabled) {
     }
 
     prefabImageVisualMode.disable();
+}
+
+function buildPrefabPlacementRecordForVisualMode(groupId, placement) {
+    const normalizedPlacement = clonePrefabPlacement(placement);
+    const prefabId = typeof normalizedPlacement?.type === "string" ? normalizedPlacement.type.trim() : "";
+    if (!prefabId || !PREFABS[prefabId]) return null;
+
+    return {
+        groupId,
+        prefabId,
+        placement: {
+            x: normalizedPlacement.x,
+            y: normalizedPlacement.y,
+            z: normalizedPlacement.z,
+            rot: normalizedPlacement.rot,
+        },
+        bounds: getPrefabPlacementBounds(prefabId, normalizedPlacement.rot),
+    };
+}
+
+function updatePointerRayFromClient(clientX, clientY) {
+    const rect = renderer.domElement.getBoundingClientRect();
+    if (!rect.width || !rect.height) return false;
+
+    mouse.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, orthoCamera);
+    return true;
+}
+
+function getImageTopPointerWorldPoint(clientX, clientY, target = imageTopPointerWorld) {
+    if (!updatePointerRayFromClient(clientX, clientY)) return null;
+    return raycaster.ray.intersectPlane(imageTopPointerPlane, target) ? target : null;
+}
+
+function getImageTopCenteredPlacementOrigin(worldPoint, dx, dz) {
+    if (!worldPoint) return null;
+
+    return clampPlacementToWorld(
+        Math.floor(worldPoint.x) - Math.floor(dx / 2),
+        Math.floor(worldPoint.z) - Math.floor(dz / 2),
+        dx,
+        dz,
+    );
+}
+
+function getImageTopCenteredCellOffset(dx, dz) {
+    return {
+        x: Math.max(0, Math.floor(dx / 2)),
+        z: Math.max(0, Math.floor(dz / 2)),
+    };
+}
+
+function canMoveImageTopPrefabToPlacement(groupId, placement) {
+    const prefabId = typeof placement?.type === "string" ? placement.type.trim() : "";
+    if (!groupId || !prefabId) return false;
+    if (imageOnlyPrefabGroupIds.has(groupId)) {
+        return canPlaceImageOnlyPrefabPlacement(placement, groupId);
+    }
+
+    return canPlacePrefabIgnoringGroup(placement.x, placement.y, placement.z, prefabId, placement.rot, groupId)
+        && !collidesWithImageOnlyPrefabPlacement(placement, groupId);
+}
+
+function collidesWithImageOnlyPrefabPlacement(placement, ignoredGroupId = null) {
+    const normalizedPlacement = clonePrefabPlacement(placement);
+    const prefabId = normalizedPlacement?.type;
+    if (!prefabId || !PREFABS[prefabId]) return false;
+
+    const sourceBounds = getPrefabPlacementBounds(prefabId, normalizedPlacement.rot);
+    const sourceMaxX = normalizedPlacement.x + sourceBounds.dx;
+    const sourceMaxY = normalizedPlacement.y + sourceBounds.dy;
+    const sourceMaxZ = normalizedPlacement.z + sourceBounds.dz;
+
+    for (const groupId of imageOnlyPrefabGroupIds) {
+        if (groupId === ignoredGroupId) continue;
+        const currentPlacement = clonePrefabPlacement(groupToPrefabPlacement.get(groupId));
+        const currentPrefabId = currentPlacement?.type;
+        if (!currentPrefabId || !PREFABS[currentPrefabId]) continue;
+
+        const currentBounds = getPrefabPlacementBounds(currentPrefabId, currentPlacement.rot);
+        const currentMaxX = currentPlacement.x + currentBounds.dx;
+        const currentMaxY = currentPlacement.y + currentBounds.dy;
+        const currentMaxZ = currentPlacement.z + currentBounds.dz;
+
+        const overlaps =
+            normalizedPlacement.x < currentMaxX &&
+            sourceMaxX > currentPlacement.x &&
+            normalizedPlacement.y < currentMaxY &&
+            sourceMaxY > currentPlacement.y &&
+            normalizedPlacement.z < currentMaxZ &&
+            sourceMaxZ > currentPlacement.z;
+        if (overlaps) return true;
+    }
+
+    return false;
+}
+
+function canPlaceImageOnlyPrefabPlacement(placement, ignoredGroupId = null) {
+    const normalizedPlacement = clonePrefabPlacement(placement);
+    const prefabId = normalizedPlacement?.type;
+    if (!prefabId) return false;
+
+    const prefab = PREFABS[prefabId];
+    const rotation = prefab?.meta?.rotations?.[normalizedPlacement.rot];
+    if (!prefab || !rotation) return false;
+
+    const half = CURRENT_GRID_SIZE / 2;
+    if (normalizedPlacement.y < 0 || normalizedPlacement.y + prefab.dy > MAX_HEIGHT) return false;
+    if (
+        normalizedPlacement.x < -half ||
+        normalizedPlacement.z < -half ||
+        normalizedPlacement.x + rotation.dx > half ||
+        normalizedPlacement.z + rotation.dz > half
+    ) {
+        return false;
+    }
+
+    const collidesWithWorld = ignoredGroupId
+        ? collidesWithPrefabWorldIgnoringGroup(
+              normalizedPlacement.x,
+              normalizedPlacement.y,
+              normalizedPlacement.z,
+              rotation,
+              ignoredGroupId,
+          )
+        : collidesWithPrefabWorld(normalizedPlacement.x, normalizedPlacement.y, normalizedPlacement.z, rotation);
+
+    if (collidesWithWorld) return false;
+    return !collidesWithImageOnlyPrefabPlacement(normalizedPlacement, ignoredGroupId);
+}
+
+function buildImageTopCatalogPlacement(worldPoint) {
+    if (!worldPoint || !isImageTopCatalogPrefabPlacementEnabled()) return null;
+
+    const prefabId = getPrefabIdFromType(currentType);
+    if (!prefabId || !PREFABS[prefabId]) return null;
+
+    const bounds = getPrefabPlacementBounds(prefabId, currentRot);
+    const clampedOrigin = getImageTopCenteredPlacementOrigin(worldPoint, bounds.dx, bounds.dz);
+    const placement = {
+        type: prefabId,
+        x: clampedOrigin.cx,
+        y: 0,
+        z: clampedOrigin.cz,
+        rot: currentRot,
+    };
+
+    return {
+        placement,
+        previewRecord: buildPrefabPlacementRecordForVisualMode(-1, placement),
+        isValid: canPlaceImageOnlyPrefabPlacement(placement),
+    };
+}
+
+function syncImageTopCatalogPlacementPreview(worldPoint, hoveredPlacement = null) {
+    if (isImageTopPrefabDragActive()) return false;
+    if (!isImageTopCatalogPrefabPlacementEnabled() || !worldPoint || hoveredPlacement) {
+        prefabImageVisualMode.clearDragPreview();
+        return false;
+    }
+
+    const candidate = buildImageTopCatalogPlacement(worldPoint);
+    if (!candidate?.previewRecord) {
+        prefabImageVisualMode.clearDragPreview();
+        return false;
+    }
+
+    prefabImageVisualMode.setDragPreview(candidate.previewRecord, candidate.isValid);
+    return candidate.isValid;
+}
+
+function commitImageTopCatalogPlacement(worldPoint) {
+    const candidate = buildImageTopCatalogPlacement(worldPoint);
+    if (!candidate?.placement) {
+        showHint("Selecione um prefab pronto no catálogo para posicionar.");
+        return false;
+    }
+
+    if (!candidate.isValid) {
+        showHint("Posição inválida para o prefab selecionado.");
+        return false;
+    }
+
+    executeBuilderCommand(
+        createImageOnlyPrefabPlacementCommand(
+            candidate.placement,
+            `Colar prefab ${candidate.placement.type}`,
+        ),
+    );
+    showHint(`Prefab ${candidate.placement.type} posicionado.`);
+    return true;
+}
+
+function syncImageTopPrefabDragPreview() {
+    if (!isImageTopPrefabDragActive()) {
+        prefabImageVisualMode.setDraggedPlacement(null);
+        syncImageTopCatalogPlacementPreview(
+            Number.isFinite(imageTopDragState.pointerWorldX) && Number.isFinite(imageTopDragState.pointerWorldZ)
+                ? { x: imageTopDragState.pointerWorldX, z: imageTopDragState.pointerWorldZ }
+                : null,
+            hoveredGroupId ? { groupId: hoveredGroupId } : null,
+        );
+        updateBuilderToolsStatus();
+        return;
+    }
+
+    const previewRecord = buildPrefabPlacementRecordForVisualMode(imageTopDragState.groupId, imageTopDragState.candidatePlacement);
+    prefabImageVisualMode.setDraggedPlacement(imageTopDragState.groupId);
+    if (previewRecord) {
+        prefabImageVisualMode.setDragPreview(previewRecord, imageTopDragState.candidateValid);
+    } else {
+        prefabImageVisualMode.clearDragPreview();
+    }
+    updateBuilderToolsStatus();
+}
+
+function updateImageTopHoveredPlacement(worldPoint) {
+    if (!isInteractiveImageTopView()) return false;
+
+    const hoveredPlacement = worldPoint ? prefabImageVisualMode.pickTopPlacementAt(worldPoint.x, worldPoint.z) : null;
+    const nextGroupId = hoveredPlacement?.groupId ?? null;
+    if (hoveredGroupId === nextGroupId) {
+        syncImageTopCatalogPlacementPreview(worldPoint, hoveredPlacement);
+        return !!hoveredPlacement;
+    }
+
+    hoveredGroupId = nextGroupId;
+    syncPrefabImageVisualModeHoverState();
+    syncImageTopCatalogPlacementPreview(worldPoint, hoveredPlacement);
+    updateBuilderToolsStatus();
+    return !!hoveredPlacement;
+}
+
+function updateImageTopDragCandidate(worldPoint) {
+    if (!isImageTopPrefabDragActive() || !worldPoint) return false;
+
+    imageTopDragState.pointerWorldX = worldPoint.x;
+    imageTopDragState.pointerWorldZ = worldPoint.z;
+
+    const currentPlacement = imageTopDragState.candidatePlacement || imageTopDragState.startPlacement;
+    const bounds = getPrefabPlacementBounds(imageTopDragState.prefabId, currentPlacement?.rot ?? imageTopDragState.startPlacement?.rot);
+    const originX = Math.floor(worldPoint.x) - imageTopDragState.cellOffsetX;
+    const originZ = Math.floor(worldPoint.z) - imageTopDragState.cellOffsetZ;
+    const clampedOrigin = clampPlacementToWorld(originX, originZ, bounds.dx, bounds.dz);
+    imageTopDragState.candidatePlacement = {
+        type: imageTopDragState.prefabId,
+        x: clampedOrigin.cx,
+        y: imageTopDragState.startPlacement.y,
+        z: clampedOrigin.cz,
+        rot: currentPlacement?.rot ?? imageTopDragState.startPlacement.rot,
+    };
+    imageTopDragState.candidateValid = canMoveImageTopPrefabToPlacement(imageTopDragState.groupId, imageTopDragState.candidatePlacement);
+    syncImageTopPrefabDragPreview();
+    return imageTopDragState.candidateValid;
+}
+
+function beginImageTopPrefabDrag(pickedRecord, worldPoint) {
+    if (!pickedRecord?.groupId || !pickedRecord.prefabId || !pickedRecord.placement) return false;
+
+    const startPlacement = clonePrefabPlacement({ ...pickedRecord.placement, type: pickedRecord.prefabId });
+    const bounds = getPrefabPlacementBounds(startPlacement.type, startPlacement.rot);
+    const centeredOffset = getImageTopCenteredCellOffset(bounds.dx, bounds.dz);
+
+    imageTopDragState.groupId = pickedRecord.groupId;
+    imageTopDragState.prefabId = pickedRecord.prefabId;
+    imageTopDragState.startPlacement = startPlacement;
+    imageTopDragState.candidatePlacement = { ...startPlacement };
+    imageTopDragState.candidateValid = true;
+    imageTopDragState.pointerWorldX = worldPoint?.x ?? startPlacement.x;
+    imageTopDragState.pointerWorldZ = worldPoint?.z ?? startPlacement.z;
+    imageTopDragState.cellOffsetX = centeredOffset.x;
+    imageTopDragState.cellOffsetZ = centeredOffset.z;
+
+    prefabImageVisualMode.setDraggedPlacement(pickedRecord.groupId);
+    updateImageTopDragCandidate(worldPoint || { x: startPlacement.x, z: startPlacement.z });
+    updateBuilderToolsStatus(`Movendo ${pickedRecord.prefabId}`);
+    showHint(`Movendo ${pickedRecord.prefabId}: clique novamente para soltar.`);
+    return true;
+}
+
+function rotateImageTopDraggedPrefab(step = 1) {
+    if (!isImageTopPrefabDragActive()) return false;
+
+    const currentPlacement = imageTopDragState.candidatePlacement || imageTopDragState.startPlacement;
+    const nextRot = ((Number(currentPlacement?.rot) || 0) + step + 4) % 4;
+    const nextBounds = getPrefabPlacementBounds(imageTopDragState.prefabId, nextRot);
+    const centeredOffset = getImageTopCenteredCellOffset(nextBounds.dx, nextBounds.dz);
+    imageTopDragState.cellOffsetX = centeredOffset.x;
+    imageTopDragState.cellOffsetZ = centeredOffset.z;
+    imageTopDragState.candidatePlacement = {
+        ...currentPlacement,
+        type: imageTopDragState.prefabId,
+        rot: nextRot,
+    };
+    updateImageTopDragCandidate({ x: imageTopDragState.pointerWorldX, z: imageTopDragState.pointerWorldZ });
+    return true;
+}
+
+function commitImageTopPrefabDrag() {
+    if (!isImageTopPrefabDragActive()) return false;
+    if (!imageTopDragState.candidatePlacement || !imageTopDragState.candidateValid) {
+        showHint("Destino inválido para o prefab selecionado.");
+        return false;
+    }
+
+    const command = createMovePrefabCommand(imageTopDragState.groupId, imageTopDragState.candidatePlacement);
+    clearImageTopPrefabInteraction();
+    executeBuilderCommand(command);
+    showHint("Prefab movido.");
+    return true;
+}
+
+function handleImageTopPrefabPlacementInteraction() {
+    if (!isInteractiveImageTopView()) {
+        showVisualModeBlockedHint();
+        return false;
+    }
+
+    if (isImageTopPrefabDragActive()) {
+        return commitImageTopPrefabDrag();
+    }
+
+    const pickedRecord = hoveredGroupId ? prefabImageVisualMode.pickTopPlacementAt(imageTopDragState.pointerWorldX, imageTopDragState.pointerWorldZ) : null;
+    if (pickedRecord?.groupId === hoveredGroupId) {
+        return beginImageTopPrefabDrag(pickedRecord, { x: imageTopDragState.pointerWorldX, z: imageTopDragState.pointerWorldZ });
+    }
+
+    if (isImageTopCatalogPrefabPlacementEnabled()) {
+        return commitImageTopCatalogPlacement({ x: imageTopDragState.pointerWorldX, z: imageTopDragState.pointerWorldZ });
+    }
+
+    showHint("Selecione um prefab no catálogo ou clique em um prefab pronto para mover.");
+    return false;
 }
 
 function applyActiveBuildTool(tool, hint = "") {
@@ -530,10 +1000,22 @@ function updateBuilderToolsStatus(extraMessage = "") {
     const shapeRotationLabel = activeBuildTool === TOOL_SHAPE
         ? ` | Giro: ${getShapeRotationLabel(getActiveShapeRot())}`
         : "";
-    const visualModeLabel = isImageVisualMode() ? " | Visual: imagens" : "";
+    let visualModeLabel = "";
+    if (isImageVisualMode()) {
+        visualModeLabel = isInteractiveImageTopView() ? " | Visual: imagens | Top" : " | Visual: imagens";
+    }
     const historyLabel = ` | Histórico: ${undoStack.length}/${redoStack.length}`;
+    let imageTopDragLabel = "";
+    if (isImageTopPrefabDragActive()) {
+        const destinationLabel = imageTopDragState.candidateValid ? "destino válido" : "destino inválido";
+        imageTopDragLabel = ` | Movendo: ${imageTopDragState.prefabId} | ${destinationLabel}`;
+    } else if (isImageTopCatalogPrefabPlacementEnabled()) {
+        imageTopDragLabel = ` | Posicionando: ${getPrefabIdFromType(currentType)} | Clique no mapa para colocar`;
+    } else if (isInteractiveImageTopView()) {
+        imageTopDragLabel = " | Selecione um prefab no catálogo ou clique em um prefab para mover";
+    }
     const extraLabel = extraMessage ? ` | ${extraMessage}` : "";
-    builderToolsStatus.textContent = `Ferramenta: ${toolNames[activeBuildTool] || activeBuildTool}${directionLabel}${shapeRotationLabel}${selectionLabel}${clipboardLabel}${visualModeLabel}${historyLabel}${extraLabel}`;
+    builderToolsStatus.textContent = `Ferramenta: ${toolNames[activeBuildTool] || activeBuildTool}${directionLabel}${shapeRotationLabel}${selectionLabel}${clipboardLabel}${visualModeLabel}${imageTopDragLabel}${historyLabel}${extraLabel}`;
     updateHistoryButtons();
 }
 
@@ -628,8 +1110,8 @@ function setToolPreviewBundle(bundle, isValid, key) {
 
 function setActiveBuildTool(tool, hint = "") {
     if (isImageVisualMode()) {
-        showVisualModeBlockedHint();
-        updateBuilderToolsStatus("Modo imagens: visualizacao somente");
+        showVisualModeBlockedHint(getImageVisualModeBlockedEditHint());
+        updateBuilderToolsStatus();
         return;
     }
 
@@ -689,6 +1171,7 @@ function clearSelection() {
 
 function clearTransientBuilderVisuals() {
     clearHighlights();
+    clearImageTopPrefabInteraction();
     clearSelection();
     selectionAnchor = null;
     clearToolPreview();
@@ -699,8 +1182,8 @@ function syncVisualModeTransientState() {
     clearTransientBuilderVisuals();
 
     if (isImageVisualMode()) {
-        if (activeBuildTool === TOOL_PLACE) updateBuilderToolsStatus("Modo imagens: visualizacao somente");
-        else applyActiveBuildTool(TOOL_PLACE, "Modo imagens: visualizacao somente");
+        if (activeBuildTool === TOOL_PLACE) updateBuilderToolsStatus();
+        else applyActiveBuildTool(TOOL_PLACE);
         return;
     }
 
@@ -723,7 +1206,7 @@ function setVisualMode(mode, { showModeHint = true } = {}) {
     setPrefabImageVisualModeEnabled(isImageVisualMode());
     updateVisualModeUi();
     syncVisualModeTransientState();
-    if (showModeHint) showHint(mode === VISUAL_MODE_IMAGES ? VISUAL_MODE_IMAGES_HINT : VISUAL_MODE_3D_HINT);
+    if (showModeHint) showHint(mode === VISUAL_MODE_IMAGES ? getImageVisualModeHint() : VISUAL_MODE_3D_HINT);
     return true;
 }
 
@@ -926,8 +1409,55 @@ function createDeleteCommand(blocks, label) {
     };
 }
 
+function createImageOnlyPrefabPlacementCommand(placement, label) {
+    const targetPlacement = clonePrefabPlacement(placement);
+    let activeGroupId = null;
+
+    return {
+        label,
+        execute() {
+            if (!targetPlacement?.type) return;
+            activeGroupId = placeImageOnlyPrefab(targetPlacement.x, targetPlacement.y, targetPlacement.z, targetPlacement.type, targetPlacement.rot, true);
+            updateStats();
+        },
+        undo() {
+            if (activeGroupId == null) return;
+            removeGroupById(activeGroupId);
+            activeGroupId = null;
+        },
+    };
+}
+
+function createMovePrefabCommand(groupId, nextPlacement) {
+    const initialPlacement = clonePrefabPlacement(groupToPrefabPlacement.get(groupId));
+    const targetPlacement = clonePrefabPlacement(nextPlacement);
+    const prefabId = targetPlacement?.type || initialPlacement?.type || groupToSourcePrefabId.get(groupId) || "prefab";
+    let activeGroupId = groupId;
+    const imageOnlyGroup = imageOnlyPrefabGroupIds.has(groupId);
+
+    function applyPlacement(placement) {
+        if (!placement?.type) return;
+        removeGroupById(activeGroupId);
+        activeGroupId = imageOnlyGroup
+            ? placeImageOnlyPrefab(placement.x, placement.y, placement.z, placement.type, placement.rot, true)
+            : placePrefab(placement.x, placement.y, placement.z, placement.type, placement.rot, true);
+        updateStats();
+    }
+
+    return {
+        label: `Mover ${prefabId}`,
+        execute() {
+            applyPlacement(targetPlacement);
+        },
+        undo() {
+            applyPlacement(initialPlacement);
+        },
+    };
+}
+
 function executeBuilderCommand(command) {
     command.execute();
+    if (isImageVisualMode()) syncPrefabImageVisualModeFromWorld();
     undoStack.push(command);
     redoStack.length = 0;
     getSelectedBlocks();
@@ -939,6 +1469,7 @@ function undoBuilderCommand() {
     const command = undoStack.pop();
     if (!command) return false;
     command.undo();
+    if (isImageVisualMode()) syncPrefabImageVisualModeFromWorld();
     redoStack.push(command);
     getSelectedBlocks();
     updateBuilderToolsStatus(`Desfeito: ${command.label}`);
@@ -950,6 +1481,7 @@ function redoBuilderCommand() {
     const command = redoStack.pop();
     if (!command) return false;
     command.execute();
+    if (isImageVisualMode()) syncPrefabImageVisualModeFromWorld();
     undoStack.push(command);
     getSelectedBlocks();
     updateBuilderToolsStatus(`Refeito: ${command.label}`);
@@ -1113,6 +1645,25 @@ function getActivePlacementFootprint() {
 }
 
 function updateBuildPreview() {
+    if (isImageTopPrefabDragActive()) {
+        clearToolPreview();
+        if (rollOver) rollOver.visible = false;
+        syncImageTopPrefabDragPreview();
+        return;
+    }
+
+    if (isInteractiveImageTopView()) {
+        clearToolPreview();
+        if (rollOver) rollOver.visible = false;
+        syncImageTopCatalogPlacementPreview(
+            Number.isFinite(imageTopDragState.pointerWorldX) && Number.isFinite(imageTopDragState.pointerWorldZ)
+                ? { x: imageTopDragState.pointerWorldX, z: imageTopDragState.pointerWorldZ }
+                : null,
+            hoveredGroupId ? { groupId: hoveredGroupId } : null,
+        );
+        return;
+    }
+
     if (isFirstPerson || isImageVisualMode() || isPrefabImpostorToolSession) {
         clearToolPreview();
         if (rollOver) rollOver.visible = false;
@@ -2843,7 +3394,11 @@ function setGroupHighlight(gId, isHighlight) {
 
 function clearHighlights() {
     if (hoveredGroupId) {
-        setGroupHighlight(hoveredGroupId, false);
+        if (isInteractiveImageTopView()) {
+            prefabImageVisualMode.setHoveredPlacement(null);
+        } else {
+            setGroupHighlight(hoveredGroupId, false);
+        }
         hoveredGroupId = null;
     }
     if (hoveredBlockId) {
@@ -3812,6 +4367,41 @@ function hasPrefabWorldSupport(cx, cy, cz, rotation) {
     return false;
 }
 
+function collidesWithPrefabWorldIgnoringGroup(cx, cy, cz, rotation, ignoredGroupId) {
+    if (!ignoredGroupId) return collidesWithPrefabWorld(cx, cy, cz, rotation);
+
+    const occupancyQuery = createVoxelQueryContext();
+
+    for (const cell of rotation.occupiedSorted || rotation.occupied) {
+        const block = getVoxelWithContext(cx + cell.x, cy + cell.y, cz + cell.z, occupancyQuery);
+        if (block && block.groupId !== ignoredGroupId) return true;
+    }
+
+    return false;
+}
+
+function hasPrefabWorldSupportIgnoringGroup(cx, cy, cz, rotation, ignoredGroupId) {
+    if (!ignoredGroupId) return hasPrefabWorldSupport(cx, cy, cz, rotation);
+
+    const supportQuery = createVoxelQueryContext();
+    const supportedComponents = new Set();
+
+    for (const cell of rotation.supportOffsetsSorted || rotation.supportOffsets) {
+        const wy = cy + cell.y;
+        if (wy === 0) {
+            supportedComponents.add(cell.component);
+        } else {
+            const below = getVoxelWithContext(cx + cell.x, wy - 1, cz + cell.z, supportQuery);
+            if (below && below.groupId === ignoredGroupId) continue;
+            if (hasStudSupport(below)) supportedComponents.add(cell.component);
+        }
+
+        if (supportedComponents.size === rotation.componentCount) return true;
+    }
+
+    return false;
+}
+
 function canPlace(cx, cy, cz, type, rot, direction = SHAPE_DIRECTION_DEFAULT) {
     const prefabId = getPrefabIdFromType(type);
     if (prefabId) return canPlacePrefab(cx, cy, cz, prefabId, rot);
@@ -3880,6 +4470,45 @@ function canPlacePrefab(cx, cy, cz, pid, pRot) {
         if (fastResult.resolved) return fastResult.result;
         if (collidesWithPrefabWorld(cx, cy, cz, rotation)) return false;
         return hasPrefabWorldSupport(cx, cy, cz, rotation);
+    } finally {
+        recordPerfSample("canPlacePrefab", performance.now() - start);
+    }
+}
+
+function canPlacePrefabIgnoringGroup(cx, cy, cz, pid, pRot, ignoredGroupId) {
+    if (!ignoredGroupId) return canPlacePrefab(cx, cy, cz, pid, pRot);
+
+    const start = performance.now();
+    try {
+        const prefab = PREFABS[pid];
+        const rotation = prefab?.meta?.rotations[((pRot % 4) + 4) % 4];
+        if (!prefab || !rotation) return false;
+        if (rotation.componentCount === 0 || rotation.supportOffsets.length === 0) return false;
+        const half = CURRENT_GRID_SIZE / 2;
+        if (cy < 0 || cy + prefab.dy > MAX_HEIGHT) return false;
+        if (cx < -half || cz < -half || cx + rotation.dx > half || cz + rotation.dz > half) return false;
+
+        const collisionRange = inspectChunkRange(cx, cz, rotation.dx, rotation.dz, cy, cy + prefab.dy - 1);
+        if (!collisionRange.hasAnyChunk) {
+            return cy === 0 && rotation.groundComponentCount === rotation.componentCount;
+        }
+
+        const supportRange =
+            rotation.supportBelowMaxY >= rotation.supportBelowMinY
+                ? inspectChunkRange(
+                      cx,
+                      cz,
+                      rotation.dx,
+                      rotation.dz,
+                      cy + rotation.supportBelowMinY,
+                      cy + rotation.supportBelowMaxY,
+                  )
+                : { hasAnyChunk: false, hasOverlappingChunk: false };
+
+        const fastResult = getPrefabFastPlacementResult(cy, rotation, collisionRange, supportRange);
+        if (fastResult.resolved) return fastResult.result;
+        if (collidesWithPrefabWorldIgnoringGroup(cx, cy, cz, rotation, ignoredGroupId)) return false;
+        return hasPrefabWorldSupportIgnoringGroup(cx, cy, cz, rotation, ignoredGroupId);
     } finally {
         recordPerfSample("canPlacePrefab", performance.now() - start);
     }
@@ -4006,15 +4635,38 @@ function placePrefab(cx, cy, cz, pid, pRot, skipStats = false) {
     return groupId;
 }
 
+function placeImageOnlyPrefab(cx, cy, cz, pid, pRot, skipStats = false) {
+    const prefab = PREFABS[pid];
+    const rotation = prefab?.meta?.rotations[((pRot % 4) + 4) % 4];
+    if (!prefab || !rotation) return null;
+
+    const groupId = getNextUniqueId();
+    groupToBlockIds.set(groupId, new Set());
+    groupToSourcePrefabId.set(groupId, pid);
+    groupToPrefabPlacement.set(groupId, { type: pid, x: cx, y: cy, z: cz, rot: ((pRot % 4) + 4) % 4 });
+    imageOnlyPrefabGroupIds.add(groupId);
+
+    if (!skipStats) updateStats();
+    return groupId;
+}
+
 function removeGroupById(groupId) {
     const blockIds = groupToBlockIds.get(groupId);
-    if (!blockIds || blockIds.size === 0) return;
+    if (!blockIds || blockIds.size === 0) {
+        groupToBlockIds.delete(groupId);
+        groupToSourcePrefabId.delete(groupId);
+        groupToPrefabPlacement.delete(groupId);
+        imageOnlyPrefabGroupIds.delete(groupId);
+        updateStats();
+        return;
+    }
     [...blockIds]
         .map((blockId) => blockById.get(blockId))
         .filter(Boolean)
         .forEach((block) => removeBlock(block, true));
     groupToSourcePrefabId.delete(groupId);
     groupToPrefabPlacement.delete(groupId);
+    imageOnlyPrefabGroupIds.delete(groupId);
     updateStats();
 }
 
@@ -4045,6 +4697,7 @@ function removeBlock(data, skipStats = false) {
             groupToBlockIds.delete(data.groupId);
             groupToSourcePrefabId.delete(data.groupId);
             groupToPrefabPlacement.delete(data.groupId);
+            imageOnlyPrefabGroupIds.delete(data.groupId);
         }
     }
     blocksCount--;
@@ -4055,6 +4708,7 @@ function clearAll() {
     clearHighlights();
     const blocks = [...blockById.values()];
     blocks.forEach((block) => removeBlock(block, true));
+    imageOnlyPrefabGroupIds.clear();
     groupToSourcePrefabId.clear();
     groupToPrefabPlacement.clear();
     updateStats();
@@ -4111,9 +4765,36 @@ function processPointerMove(clientX, clientY) {
     }
     const hoverStart = performance.now();
 
-    mouse.x = (clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(mouse, orthoCamera);
+    if (isInteractiveImageTopView()) {
+        const worldPoint = getImageTopPointerWorldPoint(clientX, clientY);
+        pointedWorldBlockId = null;
+        clearToolPreview();
+        if (rollOver) rollOver.visible = false;
+
+        if (!worldPoint) {
+            if (!isImageTopPrefabDragActive()) {
+                hoveredGroupId = null;
+                syncPrefabImageVisualModeHoverState();
+                syncImageTopCatalogPlacementPreview(null, null);
+            }
+            recordPerfSample("hover", performance.now() - hoverStart);
+            return;
+        }
+
+        imageTopDragState.pointerWorldX = worldPoint.x;
+        imageTopDragState.pointerWorldZ = worldPoint.z;
+
+        if (isImageTopPrefabDragActive()) updateImageTopDragCandidate(worldPoint);
+        else updateImageTopHoveredPlacement(worldPoint);
+
+        recordPerfSample("hover", performance.now() - hoverStart);
+        return;
+    }
+
+    if (!updatePointerRayFromClient(clientX, clientY)) {
+        recordPerfSample("hover", performance.now() - hoverStart);
+        return;
+    }
     const hit = pickFromSceneRay();
     pointedWorldBlockId = hit && hit.kind === "voxel" && hit.block ? hit.block.id : null;
 
@@ -4226,7 +4907,10 @@ function handleMove(e) {
 }
 
 function executePlacement() {
-    if (showVisualModeBlockedHint()) return;
+    if (isImageVisualMode()) {
+        handleImageTopPrefabPlacementInteraction();
+        return;
+    }
     if (isFirstPerson) return;
     if (isDeleteMode || isDeleteGroupMode) {
         const targetGroupId = hoveredGroupId;
@@ -4296,8 +4980,14 @@ window.addEventListener("keydown", (e) => {
     const isFormTarget = ["INPUT", "TEXTAREA", "SELECT"].includes(e.target?.tagName);
     if (isFormTarget && !(e.ctrlKey || e.metaKey)) return;
 
+    const canUseImageTopShortcut =
+        isInteractiveImageTopView() &&
+        (((e.ctrlKey || e.metaKey) && ["KeyZ", "KeyY"].includes(e.code)) ||
+            (!e.ctrlKey && !e.metaKey && !e.altKey && e.code === "KeyR"));
+
     const isBlockedVisualModeShortcut =
         isImageVisualMode() &&
+        !canUseImageTopShortcut &&
         (((e.ctrlKey || e.metaKey) && ["KeyZ", "KeyY", "KeyC", "KeyV"].includes(e.code)) ||
             e.code === "Enter" ||
             (!e.ctrlKey && !e.metaKey && !e.altKey && e.code === "KeyR"));
@@ -4343,6 +5033,7 @@ window.addEventListener("keydown", (e) => {
 
     if (e.code === "Escape") {
         e.preventDefault();
+        if (cancelImageTopPrefabDrag("Movimentação cancelada.")) return;
         selectionAnchor = null;
         clearToolPreview();
         setActiveBuildTool(TOOL_PLACE, "Modo de bloco");
@@ -4588,8 +5279,9 @@ function selectCatalogType(type) {
     if (targetButton) targetButton.classList.add("active");
 
     currentType = type;
-    updateRollOver();
     if (isPrefabType(type)) document.getElementById("btn-top").click();
+    updateBuildPreview();
+    updateBuilderToolsStatus(isPrefabType(type) ? `Prefab ${getPrefabIdFromType(type)} selecionado` : "Tipo selecionado");
 }
 
 function upsertRuntimePrefabCatalogItem(prefabId, label) {
@@ -5015,12 +5707,15 @@ document.getElementById("btn-fp").onclick = (e) => {
 };
 
 document.getElementById("btn-iso").onclick = () => {
+    cancelImageTopPrefabDrag("Movimentação cancelada ao sair do Top.");
     isTopDownView = false;
     document.getElementById("btn-iso").classList.add("active");
     document.getElementById("btn-top").classList.remove("active");
     updateCameraTarget();
     snapOrthoCameraToTarget();
     syncPrefabImageVisualModeCameraView();
+    updateVisualModeUi();
+    updateBuilderToolsStatus();
 };
 
 document.getElementById("btn-top").onclick = () => {
@@ -5030,9 +5725,12 @@ document.getElementById("btn-top").onclick = () => {
     updateCameraTarget();
     snapOrthoCameraToTarget();
     syncPrefabImageVisualModeCameraView();
+    updateVisualModeUi();
+    updateBuilderToolsStatus();
 };
 
 document.getElementById("btn-cam").onclick = () => {
+    if (isImageTopPrefabDragActive()) return;
     if (!isTopDownView) {
         cameraAngleIndex = (cameraAngleIndex + 1) % 4;
         updateCameraTarget();
@@ -5268,6 +5966,98 @@ function fitOrthoCameraToPrefabBounds(bounds, margin = 1.15) {
     orthoCamera.updateMatrixWorld(true);
 }
 
+function getPrefabCaptureMarginForView(viewKey, margin = 1.15) {
+    if (viewKey === PREFAB_IMPOSTOR_TOP_VIEW) return 1.01;
+    return Math.max(1.01, Number(margin) || 1.15);
+}
+
+async function loadImageBitmapOrElement(blob) {
+    if (!blob) return null;
+
+    if (typeof globalThis.createImageBitmap === "function") {
+        try {
+            return await globalThis.createImageBitmap(blob);
+        } catch (_error) {
+            // Fall back to HTMLImageElement below.
+        }
+    }
+
+    if (!globalThis.document) return null;
+
+    return await new Promise((resolve, reject) => {
+        const objectUrl = URL.createObjectURL(blob);
+        const image = new Image();
+        image.onload = () => {
+            URL.revokeObjectURL(objectUrl);
+            resolve(image);
+        };
+        image.onerror = () => {
+            URL.revokeObjectURL(objectUrl);
+            reject(new Error("Falha ao carregar bitmap para crop do impostor."));
+        };
+        image.src = objectUrl;
+    });
+}
+
+function getTransparentImageBounds(imageData, width, height, alphaThreshold = 1) {
+    let minX = width;
+    let minY = height;
+    let maxX = -1;
+    let maxY = -1;
+    const pixels = imageData.data;
+
+    for (let y = 0; y < height; y += 1) {
+        for (let x = 0; x < width; x += 1) {
+            const alpha = pixels[(y * width + x) * 4 + 3];
+            if (alpha < alphaThreshold) continue;
+            if (x < minX) minX = x;
+            if (y < minY) minY = y;
+            if (x > maxX) maxX = x;
+            if (y > maxY) maxY = y;
+        }
+    }
+
+    if (maxX < minX || maxY < minY) return null;
+    return { minX, minY, maxX, maxY };
+}
+
+async function cropTransparentPrefabCaptureBlob(blob, imageType = "image/png", imageQuality, paddingPx = 1) {
+    const bitmapOrImage = await loadImageBitmapOrElement(blob);
+    const width = bitmapOrImage?.width || 0;
+    const height = bitmapOrImage?.height || 0;
+    if (!width || !height || !globalThis.document) return blob;
+
+    const sourceCanvas = globalThis.document.createElement("canvas");
+    sourceCanvas.width = width;
+    sourceCanvas.height = height;
+    const sourceContext = sourceCanvas.getContext("2d", { willReadFrequently: true });
+    if (!sourceContext) return blob;
+    sourceContext.drawImage(bitmapOrImage, 0, 0);
+
+    const imageData = sourceContext.getImageData(0, 0, width, height);
+    const bounds = getTransparentImageBounds(imageData, width, height);
+    if (typeof bitmapOrImage.close === "function") bitmapOrImage.close();
+    if (!bounds) return blob;
+
+    const clampedPadding = Math.max(0, Math.floor(Number(paddingPx) || 0));
+    const cropMinX = Math.max(0, bounds.minX - clampedPadding);
+    const cropMinY = Math.max(0, bounds.minY - clampedPadding);
+    const cropMaxX = Math.min(width - 1, bounds.maxX + clampedPadding);
+    const cropMaxY = Math.min(height - 1, bounds.maxY + clampedPadding);
+    const cropWidth = cropMaxX - cropMinX + 1;
+    const cropHeight = cropMaxY - cropMinY + 1;
+
+    if (cropWidth === width && cropHeight === height) return blob;
+
+    const croppedCanvas = globalThis.document.createElement("canvas");
+    croppedCanvas.width = cropWidth;
+    croppedCanvas.height = cropHeight;
+    const croppedContext = croppedCanvas.getContext("2d");
+    if (!croppedContext) return blob;
+    croppedContext.drawImage(sourceCanvas, cropMinX, cropMinY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+    return canvasToBlob(croppedCanvas, imageQuality, imageType);
+}
+
 function setPrefabCaptureBackground(background = null) {
     prefabImpostorCaptureState.background = background || null;
 
@@ -5353,12 +6143,15 @@ async function capturePrefabImpostorView({
         y: bounds.centerY,
         z: bounds.centerZ,
     });
-    fitOrthoCameraToPrefabBounds(bounds, margin);
+    fitOrthoCameraToPrefabBounds(bounds, getPrefabCaptureMarginForView(viewKey, margin));
 
     resetPrefabImpostorCaptureTransients();
     await nextFrame();
     renderCurrentFrame();
-    const blob = await canvasToBlob(renderer.domElement, imageType, imageQuality);
+    let blob = await canvasToBlob(renderer.domElement, imageType, imageQuality);
+    if (viewKey === PREFAB_IMPOSTOR_TOP_VIEW && background == null) {
+        blob = await cropTransparentPrefabCaptureBlob(blob, imageType, imageQuality, 1);
+    }
 
     return {
         prefabId,

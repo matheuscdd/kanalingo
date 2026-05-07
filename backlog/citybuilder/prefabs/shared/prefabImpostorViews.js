@@ -50,8 +50,8 @@ export function getPrefabImpostorSpriteScale(bounds, viewKey) {
     const normalizedBounds = normalizeBounds(bounds);
     if (isPrefabImpostorTopView(viewKey)) {
         return {
-            width: normalizedBounds.dx + 0.4,
-            height: normalizedBounds.dz + 0.4,
+            width: normalizedBounds.dx,
+            height: normalizedBounds.dz,
         };
     }
 

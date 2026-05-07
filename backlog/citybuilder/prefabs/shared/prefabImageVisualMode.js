@@ -49,6 +49,18 @@ function setPrefabImageTextureMetadata(texture, metadata = {}) {
         : { ...metadata };
 }
 
+function clonePrefabImagePlacementRecord(record) {
+    const normalizedRecord = normalizePrefabImagePlacementRecord(record);
+    if (!normalizedRecord) return null;
+
+    return {
+        groupId: normalizedRecord.groupId,
+        prefabId: normalizedRecord.prefabId,
+        placement: { ...normalizedRecord.placement },
+        bounds: normalizedRecord.bounds ? { ...normalizedRecord.bounds } : null,
+    };
+}
+
 export function createPrefabImageVisualMode({ THREE, scene }) {
     const root = new THREE.Group();
     root.name = "prefab-image-visual-mode-root";
@@ -69,13 +81,35 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         promise: null,
         error: null,
     };
+    const interactionState = {
+        hoveredGroupId: null,
+        draggedGroupId: null,
+        dragPreviewRecord: null,
+        dragPreviewValid: true,
+    };
     const textureLoader = globalThis.document ? new THREE.TextureLoader() : null;
 
     let attached = false;
     let enabled = false;
+    let dragPreviewNode = null;
 
     root.userData.prefabImageAssetManifestPath = PREFAB_IMPOSTOR_MANIFEST_PATH;
     root.userData.prefabImageAssetManifestStatus = assetManifestState.status;
+
+    function getRecordBounds(record) {
+        return {
+            dx: Math.max(1, Number(record?.bounds?.dx) || 1),
+            dy: Math.max(1, Number(record?.bounds?.dy) || 1),
+            dz: Math.max(1, Number(record?.bounds?.dz) || 1),
+        };
+    }
+
+    function getInteractionScale(viewConfig, extraPadding = 0.3) {
+        return {
+            width: Math.max(0.01, Number(viewConfig?.spriteScale?.width) || 1) + extraPadding,
+            height: Math.max(0.01, Number(viewConfig?.spriteScale?.height) || 1) + extraPadding,
+        };
+    }
 
     function ensureAttached() {
         if (attached) return;
@@ -277,7 +311,18 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
             : record.placement.y;
 
         node.position.set(centerX, centerY, centerZ);
-        node.visible = true;
+        node.userData.prefabImagePlacement = clonePrefabImagePlacementRecord(record);
+        node.userData.prefabImageBounds = { ...getRecordBounds(record) };
+
+        const hoverSprite = node.userData.prefabImageHoverSprite;
+        if (hoverSprite) {
+            hoverSprite.center.set(spriteCenter.x, spriteCenter.y);
+            const highlightScale = getInteractionScale(viewConfig, 0.35);
+            hoverSprite.scale.set(highlightScale.width, highlightScale.height, 1);
+            hoverSprite.visible = !!cameraView.isTopDownView && interactionState.hoveredGroupId === record.groupId && interactionState.draggedGroupId !== record.groupId;
+        }
+
+        node.visible = interactionState.draggedGroupId !== record.groupId;
     }
 
     function refreshAllPlacementNodes() {
@@ -302,6 +347,22 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         if (record.bounds) {
             anchor.userData.prefabImageBounds = { ...record.bounds };
         }
+
+        const hoverSprite = new THREE.Sprite(
+            new THREE.SpriteMaterial({
+                color: 0x3b82f6,
+                transparent: true,
+                opacity: 0.2,
+                depthWrite: false,
+                depthTest: false,
+            }),
+        );
+        hoverSprite.name = `prefab-image-hover:${record.prefabId}:${record.groupId}`;
+        hoverSprite.visible = false;
+        hoverSprite.renderOrder = 5;
+        anchor.userData.prefabImageHoverSprite = hoverSprite;
+        anchor.add(hoverSprite);
+
         const sprite = new THREE.Sprite(getViewMaterial(record, record.prefabId, getViewKey(record)));
         sprite.name = `prefab-image-sprite:${record.prefabId}:${record.groupId}`;
         sprite.renderOrder = 6;
@@ -309,6 +370,90 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         anchor.add(sprite);
         updatePlacementNodeVisual(anchor, record);
         return anchor;
+    }
+
+    function ensureDragPreviewNode() {
+        if (dragPreviewNode) return dragPreviewNode;
+
+        const anchor = new THREE.Group();
+        anchor.name = "prefab-image-drag-preview";
+
+        const overlay = new THREE.Sprite(
+            new THREE.SpriteMaterial({
+                color: 0x31a86f,
+                transparent: true,
+                opacity: 0.22,
+                depthWrite: false,
+                depthTest: false,
+            }),
+        );
+        overlay.name = "prefab-image-drag-preview-overlay";
+        overlay.renderOrder = 7;
+        anchor.userData.prefabImageDragPreviewOverlay = overlay;
+        anchor.add(overlay);
+
+        const sprite = new THREE.Sprite(
+            new THREE.SpriteMaterial({
+                transparent: true,
+                opacity: 0.88,
+                depthWrite: false,
+                depthTest: false,
+            }),
+        );
+        sprite.name = "prefab-image-drag-preview-sprite";
+        sprite.renderOrder = 8;
+        anchor.userData.prefabImageDragPreviewSprite = sprite;
+        anchor.add(sprite);
+
+        anchor.visible = false;
+        dragPreviewNode = anchor;
+        root.add(anchor);
+        return dragPreviewNode;
+    }
+
+    function refreshPlacementNode(groupId) {
+        const node = placementNodes.get(groupId);
+        const record = placementRecords.get(groupId);
+        if (!node || !record) return;
+        updatePlacementNodeVisual(node, record);
+    }
+
+    function refreshInteractionState() {
+        placementNodes.forEach((_, groupId) => {
+            refreshPlacementNode(groupId);
+        });
+
+        if (!dragPreviewNode) return;
+        if (!interactionState.dragPreviewRecord) {
+            dragPreviewNode.visible = false;
+            return;
+        }
+
+        const record = interactionState.dragPreviewRecord;
+        const viewKey = getViewKey(record);
+        const viewConfig = getResolvedViewConfig(record, viewKey);
+        const sprite = dragPreviewNode.userData.prefabImageDragPreviewSprite;
+        const overlay = dragPreviewNode.userData.prefabImageDragPreviewOverlay;
+
+        sprite.material.map = getViewTexture(record, record.prefabId, viewKey);
+        sprite.material.needsUpdate = true;
+        sprite.center.set(viewConfig.spriteCenter.x, viewConfig.spriteCenter.y);
+        sprite.scale.set(viewConfig.spriteScale.width, viewConfig.spriteScale.height, 1);
+
+        overlay.center.set(viewConfig.spriteCenter.x, viewConfig.spriteCenter.y);
+        const overlayScale = getInteractionScale(viewConfig, 0.35);
+        overlay.scale.set(overlayScale.width, overlayScale.height, 1);
+        overlay.material.color.setHex(interactionState.dragPreviewValid ? 0x31a86f : 0xe74c3c);
+
+        const bounds = getRecordBounds(record);
+        const centerX = record.placement.x + bounds.dx / 2;
+        const centerZ = record.placement.z + bounds.dz / 2;
+        const centerY = viewKey === "top"
+            ? record.placement.y + Math.max(0.75, bounds.dy + 0.35)
+            : record.placement.y;
+
+        dragPreviewNode.position.set(centerX, centerY, centerZ);
+        dragPreviewNode.visible = true;
     }
 
     function upsertPlacement(record) {
@@ -346,6 +491,66 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         rebuildFromPlacements([]);
     }
 
+    function pickTopPlacementAt(worldX, worldZ) {
+        if (!cameraView.isTopDownView) return null;
+
+        let pickedRecord = null;
+        let pickedRank = -Infinity;
+
+        placementRecords.forEach((record) => {
+            const bounds = getRecordBounds(record);
+            const padding = 0.2;
+            const minX = record.placement.x - padding;
+            const maxX = record.placement.x + bounds.dx + padding;
+            const minZ = record.placement.z - padding;
+            const maxZ = record.placement.z + bounds.dz + padding;
+            if (worldX < minX || worldX > maxX || worldZ < minZ || worldZ > maxZ) return;
+
+            const rank = record.placement.y * 100000 + record.groupId;
+            if (rank <= pickedRank) return;
+
+            pickedRank = rank;
+            pickedRecord = clonePrefabImagePlacementRecord(record);
+        });
+
+        return pickedRecord;
+    }
+
+    function setHoveredPlacement(groupId = null) {
+        const nextGroupId = groupId == null ? null : groupId;
+        if (interactionState.hoveredGroupId === nextGroupId) return;
+        interactionState.hoveredGroupId = nextGroupId;
+        refreshInteractionState();
+    }
+
+    function setDraggedPlacement(groupId = null) {
+        const nextGroupId = groupId == null ? null : groupId;
+        if (interactionState.draggedGroupId === nextGroupId) return;
+        interactionState.draggedGroupId = nextGroupId;
+        refreshInteractionState();
+    }
+
+    function setDragPreview(record, isValid = true) {
+        interactionState.dragPreviewRecord = clonePrefabImagePlacementRecord(record);
+        interactionState.dragPreviewValid = !!isValid;
+        ensureDragPreviewNode();
+        refreshInteractionState();
+    }
+
+    function clearDragPreview() {
+        interactionState.dragPreviewRecord = null;
+        interactionState.dragPreviewValid = true;
+        refreshInteractionState();
+    }
+
+    function clearInteractionState() {
+        interactionState.hoveredGroupId = null;
+        interactionState.draggedGroupId = null;
+        interactionState.dragPreviewRecord = null;
+        interactionState.dragPreviewValid = true;
+        refreshInteractionState();
+    }
+
     function enable() {
         ensureAttached();
         enabled = true;
@@ -357,6 +562,7 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
     function disable() {
         enabled = false;
         root.visible = false;
+        clearInteractionState();
     }
 
     function setCameraView({ isTopDownView = false, cameraAngleIndex = 0 } = {}) {
@@ -364,6 +570,7 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         cameraView.cameraAngleIndex = normalizePrefabImageVisualModeRotation(cameraAngleIndex);
         root.userData.prefabImageCameraView = { ...cameraView };
         refreshAllPlacementNodes();
+        refreshInteractionState();
     }
 
     function renderFrame() {
@@ -378,16 +585,25 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
             cameraView: { ...cameraView },
             assetManifestStatus: assetManifestState.status,
             assetManifestError: assetManifestState.error,
+            interactionState: {
+                hoveredGroupId: interactionState.hoveredGroupId,
+                draggedGroupId: interactionState.draggedGroupId,
+                hasDragPreview: !!interactionState.dragPreviewRecord,
+                dragPreviewValid: interactionState.dragPreviewValid,
+            },
         };
     }
 
     function dispose() {
         clear();
+        clearInteractionState();
         disable();
         materialCache.forEach((material) => material?.dispose?.());
         materialCache.clear();
         textureCache.forEach((texture) => texture?.dispose?.());
         textureCache.clear();
+        dragPreviewNode?.userData?.prefabImageDragPreviewSprite?.material?.dispose?.();
+        dragPreviewNode?.userData?.prefabImageDragPreviewOverlay?.material?.dispose?.();
         if (root.parent) root.parent.remove(root);
         attached = false;
     }
@@ -401,6 +617,12 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         rebuildFromPlacements,
         upsertPlacement,
         removePlacement,
+        pickTopPlacementAt,
+        setHoveredPlacement,
+        setDraggedPlacement,
+        setDragPreview,
+        clearDragPreview,
+        clearInteractionState,
         setCameraView,
         renderFrame,
         getSnapshot,
