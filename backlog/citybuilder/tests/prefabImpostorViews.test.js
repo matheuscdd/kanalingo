@@ -72,6 +72,23 @@ describe('prefab impostor views', () => {
                 },
             },
         });
+
+        expect(createPrefabImpostorManifestEntry({
+            prefabId: 'BigBen',
+            bounds: { dx: 12, dy: 30, dz: 12 },
+            extension: 'png',
+            basePath: 'prefab-impostors',
+            viewOverrides: {
+                'side-0': {
+                    spriteCenter: { x: 0.62, y: 0.14 },
+                    spriteScale: { width: 13.4, height: 32.1 },
+                },
+            },
+        }).views['side-0']).toEqual({
+            file: 'prefab-impostors/BigBen/side-0.png',
+            spriteScale: { width: 13.4, height: 32.1 },
+            spriteCenter: { x: 0.62, y: 0.14 },
+        });
     });
 
     it('resolves manifest view config with fallback bounds and overrides', () => {

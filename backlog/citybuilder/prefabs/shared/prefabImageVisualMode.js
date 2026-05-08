@@ -129,8 +129,6 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         if (!texture) return;
         texture.needsUpdate = true;
         texture.anisotropy = 1;
-        if ("SRGBColorSpace" in THREE) texture.colorSpace = THREE.SRGBColorSpace;
-        else if ("sRGBEncoding" in THREE) texture.encoding = THREE.sRGBEncoding;
     }
 
     function setAssetManifestStatus(status, error = null) {
@@ -272,19 +270,27 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
     function getViewMaterial(record, prefabId, viewKey) {
         const materialKey = `${prefabId}:${viewKey}`;
         const viewTexture = getViewTexture(record, prefabId, viewKey);
+        const shouldDepthTest = viewKey === "top";
         if (!materialCache.has(materialKey)) {
             const material = new THREE.SpriteMaterial({
                 map: viewTexture,
                 transparent: true,
                 depthWrite: false,
+                depthTest: shouldDepthTest,
             });
             materialCache.set(materialKey, material);
         }
 
         const material = materialCache.get(materialKey) || null;
-        if (material && viewTexture && material.map !== viewTexture) {
-            material.map = viewTexture;
-            material.needsUpdate = true;
+        if (material) {
+            if (viewTexture && material.map !== viewTexture) {
+                material.map = viewTexture;
+                material.needsUpdate = true;
+            }
+            if (material.depthTest !== shouldDepthTest) {
+                material.depthTest = shouldDepthTest;
+                material.needsUpdate = true;
+            }
         }
         return material;
     }

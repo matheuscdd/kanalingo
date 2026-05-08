@@ -88,7 +88,13 @@ export function resolvePrefabImpostorViewConfig(manifest, prefabId, viewKey, fal
     };
 }
 
-export function createPrefabImpostorManifestEntry({ prefabId, bounds, extension = "png", basePath = PREFAB_IMPOSTOR_BASE_PATH }) {
+export function createPrefabImpostorManifestEntry({
+    prefabId,
+    bounds,
+    extension = "png",
+    basePath = PREFAB_IMPOSTOR_BASE_PATH,
+    viewOverrides = null,
+}) {
     const normalizedBasePath = basePath ? `${String(basePath).replace(/[\\/]+$/, "")}/` : "";
     const normalizedBounds = normalizeBounds(bounds);
 
@@ -96,14 +102,21 @@ export function createPrefabImpostorManifestEntry({ prefabId, bounds, extension 
         prefabId,
         bounds: normalizedBounds,
         views: Object.fromEntries(
-            PREFAB_IMPOSTOR_VIEW_KEYS.map((viewKey) => [
-                viewKey,
-                {
-                    file: `${normalizedBasePath}${getPrefabImpostorArchivePath(prefabId, viewKey, extension)}`,
-                    spriteScale: getPrefabImpostorSpriteScale(normalizedBounds, viewKey),
-                    spriteCenter: getPrefabImpostorSpriteCenter(viewKey),
-                },
-            ]),
+            PREFAB_IMPOSTOR_VIEW_KEYS.map((viewKey) => {
+                const rawOverride = viewOverrides?.[viewKey] || null;
+                const defaultFile = `${normalizedBasePath}${getPrefabImpostorArchivePath(prefabId, viewKey, extension)}`;
+                const fallbackScale = getPrefabImpostorSpriteScale(normalizedBounds, viewKey);
+                const fallbackCenter = getPrefabImpostorSpriteCenter(viewKey);
+
+                return [
+                    viewKey,
+                    {
+                        file: typeof rawOverride?.file === "string" && rawOverride.file.trim() ? rawOverride.file.trim() : defaultFile,
+                        spriteScale: normalizeSpriteScale(rawOverride?.spriteScale, fallbackScale),
+                        spriteCenter: normalizeSpriteCenter(rawOverride?.spriteCenter, fallbackCenter),
+                    },
+                ];
+            }),
         ),
     };
 }
