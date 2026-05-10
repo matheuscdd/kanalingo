@@ -84,6 +84,7 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
     const interactionState = {
         hoveredGroupId: null,
         draggedGroupId: null,
+        hoverStyle: "default",
         dragPreviewRecord: null,
         dragPreviewValid: true,
     };
@@ -323,9 +324,30 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         const hoverSprite = node.userData.prefabImageHoverSprite;
         if (hoverSprite) {
             hoverSprite.center.set(spriteCenter.x, spriteCenter.y);
-            const highlightScale = getInteractionScale(viewConfig, 0.35);
+            const interactionPadding = cameraView.isTopDownView ? 0.35 : 2.5;
+            const highlightScale = getInteractionScale(viewConfig, interactionPadding);
             hoverSprite.scale.set(highlightScale.width, highlightScale.height, 1);
-            hoverSprite.visible = !!cameraView.isTopDownView && interactionState.hoveredGroupId === record.groupId && interactionState.draggedGroupId !== record.groupId;
+            const isHoveredPlacement = interactionState.hoveredGroupId === record.groupId && interactionState.draggedGroupId !== record.groupId;
+            const isDeleteHover = interactionState.hoverStyle === "delete";
+            let hoverOpacity = 0;
+            if (isHoveredPlacement && !isDeleteHover) hoverOpacity = 0.2;
+            hoverSprite.visible = !cameraView.isTopDownView || isHoveredPlacement;
+            hoverSprite.material.color.setHex(isDeleteHover ? 0xff0000 : 0x3b82f6);
+            hoverSprite.material.opacity = hoverOpacity;
+        }
+
+        const hoverTintSprite = node.userData.prefabImageHoverTintSprite;
+        if (hoverTintSprite) {
+            const isDeleteHoveredPlacement =
+                interactionState.hoveredGroupId === record.groupId &&
+                interactionState.draggedGroupId !== record.groupId &&
+                interactionState.hoverStyle === "delete";
+            hoverTintSprite.material.map = getViewTexture(record, record.prefabId, viewKey);
+            hoverTintSprite.material.needsUpdate = true;
+            hoverTintSprite.center.set(spriteCenter.x, spriteCenter.y);
+            hoverTintSprite.scale.set(scale.width, scale.height, 1);
+            hoverTintSprite.visible = isDeleteHoveredPlacement;
+            hoverTintSprite.material.opacity = isDeleteHoveredPlacement ? 0.78 : 0;
         }
 
         node.visible = interactionState.draggedGroupId !== record.groupId;
@@ -358,7 +380,7 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
             new THREE.SpriteMaterial({
                 color: 0x3b82f6,
                 transparent: true,
-                opacity: 0.2,
+                opacity: 0,
                 depthWrite: false,
                 depthTest: false,
             }),
@@ -366,12 +388,29 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         hoverSprite.name = `prefab-image-hover:${record.prefabId}:${record.groupId}`;
         hoverSprite.visible = false;
         hoverSprite.renderOrder = 5;
+        hoverSprite.userData.prefabImageGroupId = record.groupId;
         anchor.userData.prefabImageHoverSprite = hoverSprite;
         anchor.add(hoverSprite);
+
+        const hoverTintSprite = new THREE.Sprite(
+            new THREE.SpriteMaterial({
+                transparent: true,
+                opacity: 0,
+                color: 0xff0000,
+                depthWrite: false,
+                depthTest: false,
+            }),
+        );
+        hoverTintSprite.name = `prefab-image-hover-tint:${record.prefabId}:${record.groupId}`;
+        hoverTintSprite.visible = false;
+        hoverTintSprite.renderOrder = 7;
+        anchor.userData.prefabImageHoverTintSprite = hoverTintSprite;
+        anchor.add(hoverTintSprite);
 
         const sprite = new THREE.Sprite(getViewMaterial(record, record.prefabId, getViewKey(record)));
         sprite.name = `prefab-image-sprite:${record.prefabId}:${record.groupId}`;
         sprite.renderOrder = 6;
+        sprite.userData.prefabImageGroupId = record.groupId;
         anchor.userData.prefabImageSprite = sprite;
         anchor.add(sprite);
         updatePlacementNodeVisual(anchor, record);
@@ -497,6 +536,30 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         rebuildFromPlacements([]);
     }
 
+    function pickPlacementFromRay(raycaster) {
+        if (!raycaster || cameraView.isTopDownView) return null;
+
+        const spriteNodes = [];
+        placementNodes.forEach((node) => {
+            const hitSprite = node?.userData?.prefabImageHoverSprite || node?.userData?.prefabImageSprite;
+            if (!hitSprite || !node.visible || hitSprite.visible === false) return;
+            spriteNodes.push(hitSprite);
+        });
+
+        if (spriteNodes.length === 0) return null;
+
+        const intersections = raycaster.intersectObjects(spriteNodes, false);
+        for (const intersection of intersections) {
+            const groupId = intersection?.object?.userData?.prefabImageGroupId;
+            if (groupId == null) continue;
+
+            const record = placementRecords.get(groupId);
+            if (record) return clonePrefabImagePlacementRecord(record);
+        }
+
+        return null;
+    }
+
     function pickTopPlacementAt(worldX, worldZ) {
         if (!cameraView.isTopDownView) return null;
 
@@ -529,6 +592,13 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         refreshInteractionState();
     }
 
+    function setHoverStyle(style = "default") {
+        const nextHoverStyle = style === "delete" ? "delete" : "default";
+        if (interactionState.hoverStyle === nextHoverStyle) return;
+        interactionState.hoverStyle = nextHoverStyle;
+        refreshInteractionState();
+    }
+
     function setDraggedPlacement(groupId = null) {
         const nextGroupId = groupId == null ? null : groupId;
         if (interactionState.draggedGroupId === nextGroupId) return;
@@ -552,6 +622,7 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
     function clearInteractionState() {
         interactionState.hoveredGroupId = null;
         interactionState.draggedGroupId = null;
+        interactionState.hoverStyle = "default";
         interactionState.dragPreviewRecord = null;
         interactionState.dragPreviewValid = true;
         refreshInteractionState();
@@ -594,6 +665,7 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
             interactionState: {
                 hoveredGroupId: interactionState.hoveredGroupId,
                 draggedGroupId: interactionState.draggedGroupId,
+                hoverStyle: interactionState.hoverStyle,
                 hasDragPreview: !!interactionState.dragPreviewRecord,
                 dragPreviewValid: interactionState.dragPreviewValid,
             },
@@ -623,8 +695,10 @@ export function createPrefabImageVisualMode({ THREE, scene }) {
         rebuildFromPlacements,
         upsertPlacement,
         removePlacement,
+        pickPlacementFromRay,
         pickTopPlacementAt,
         setHoveredPlacement,
+        setHoverStyle,
         setDraggedPlacement,
         setDragPreview,
         clearDragPreview,

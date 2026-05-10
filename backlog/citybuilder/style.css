@@ -32,9 +32,18 @@
             padding: 8px;
             box-shadow: 0 2px 10px var(--shadow);
             border: 1px solid rgba(0,0,0,0.05);
-            pointer-events: auto;
+            pointer-events: none;
             display: flex;
             z-index: 10;
+        }
+
+        .ui-panel button,
+        .ui-panel input,
+        .ui-panel select,
+        .ui-panel textarea,
+        .ui-panel label,
+        .ui-panel a {
+            pointer-events: auto;
         }
 
         #top-bar {
@@ -455,7 +464,7 @@
         }
 
         .visual-mode-disabled * {
-            pointer-events: none;
+            pointer-events: none !important;
         }
 
         .hint {

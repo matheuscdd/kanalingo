@@ -26,12 +26,15 @@ import {
 } from "./prefabs/shared/shapeOrientation.js";
 import { getFakeShadeForNormal } from "./prefabs/shared/fakeShading.js";
 import { getUpwardSurfaceStudPlacements } from "./prefabs/shared/shapeStuds.js";
-import { createPrefabImageVisualMode } from "./prefabs/shared/prefabImageVisualMode.js?v=20260508g";
+import { createPrefabImageVisualMode } from "./prefabs/shared/prefabImageVisualMode.js?v=20260510m";
 import {
     PREFAB_IMPOSTOR_TOP_VIEW,
     PREFAB_IMPOSTOR_VIEW_KEYS,
     createPrefabImpostorManifestEntry,
+    getPrefabImpostorSpriteCenter,
+    getPrefabImpostorSpriteScale,
     getPrefabImpostorSideViewIndex,
+    getPrefabImpostorViewKey,
 } from "./prefabs/shared/prefabImpostorViews.js?v=20260507e";
 
 const THREE = globalThis.THREE;
@@ -540,6 +543,9 @@ function updateVisualModeUi() {
     [document.getElementById("left-bar"), builderToolsPanel].forEach((element) => {
         if (element) element.classList.toggle("visual-mode-disabled", editControlsLocked);
     });
+    [document.getElementById("perf-panel"), document.getElementById("json-panel")].forEach((element) => {
+        if (element) element.classList.toggle("visual-mode-disabled", imagesMode);
+    });
 
     const toggledControls = [
         document.getElementById("btn-fp"),
@@ -590,6 +596,9 @@ function updateVisualModeUi() {
         });
     }
 
+    const deleteGroupButton = document.getElementById("btn-delete-group");
+    if (deleteGroupButton && imagesMode) deleteGroupButton.disabled = false;
+
     updateCameraAngleButtonUi();
 }
 
@@ -609,6 +618,130 @@ function syncPrefabImageVisualModeFromWorld() {
 
 function syncPrefabImageVisualModeHoverState() {
     prefabImageVisualMode.setHoveredPlacement(hoveredGroupId);
+}
+
+function syncPrefabImageVisualModeHoverStyle() {
+    prefabImageVisualMode.setHoverStyle(isDeleteGroupMode ? "delete" : "default");
+}
+
+function isImageModeDeletablePrefabGroup(groupId) {
+    if (groupId == null || !groupToPrefabPlacement.has(groupId)) return false;
+    if (imageOnlyPrefabGroupIds.has(groupId)) return true;
+    return (groupToBlockIds.get(groupId)?.size ?? 0) > 0;
+}
+
+function updateImageModeDeleteHoveredGroup(nextGroupId = null) {
+    const normalizedGroupId = nextGroupId == null ? null : nextGroupId;
+    if (hoveredGroupId === normalizedGroupId) return normalizedGroupId != null;
+
+    hoveredGroupId = normalizedGroupId;
+    syncPrefabImageVisualModeHoverState();
+    updateBuilderToolsStatus();
+    return normalizedGroupId != null;
+}
+
+function updateImageModeDeleteHoveredPlacementTop(worldPoint) {
+    if (!isInteractiveImageTopView() || !isDeleteGroupMode) return false;
+
+    const hoveredPlacement = worldPoint ? prefabImageVisualMode.pickTopPlacementAt(worldPoint.x, worldPoint.z) : null;
+    const nextGroupId = hoveredPlacement?.groupId && isImageModeDeletablePrefabGroup(hoveredPlacement.groupId)
+        ? hoveredPlacement.groupId
+        : null;
+    return updateImageModeDeleteHoveredGroup(nextGroupId);
+}
+
+function pickImageModeDeleteGroupFromScreenPoint(clientX, clientY) {
+    if (!isImageVisualMode() || isTopDownView || !renderer?.domElement) return null;
+
+    const canvasRect = renderer.domElement.getBoundingClientRect();
+    const pointerX = clientX - canvasRect.left;
+    const pointerY = clientY - canvasRect.top;
+    const cameraRight = new THREE.Vector3();
+    const cameraUp = new THREE.Vector3();
+    const cameraForward = new THREE.Vector3();
+    orthoCamera.matrixWorld.extractBasis(cameraRight, cameraUp, cameraForward);
+
+    let pickedGroupId = null;
+    let pickedDistanceSq = Infinity;
+
+    collectBuiltInPrefabPlacementsForVisualMode().forEach((record) => {
+        if (!isImageModeDeletablePrefabGroup(record.groupId)) return;
+
+        const bounds = record.bounds || getPrefabPlacementBounds(record.prefabId, record.placement.rot);
+        const centerX = record.placement.x + bounds.dx / 2;
+        const centerZ = record.placement.z + bounds.dz / 2;
+        const viewKey = getPrefabImpostorViewKey({ isTopDownView, cameraAngleIndex, placementRot: record.placement.rot });
+        const spriteScale = getPrefabImpostorSpriteScale(bounds, viewKey);
+        const spriteCenter = getPrefabImpostorSpriteCenter(viewKey);
+        const anchor = new THREE.Vector3(
+            centerX,
+            viewKey === PREFAB_IMPOSTOR_TOP_VIEW ? record.placement.y + Math.max(0.75, bounds.dy + 0.35) : record.placement.y,
+            centerZ,
+        );
+
+        const bottomLeft = anchor.clone()
+            .addScaledVector(cameraRight, -spriteScale.width * spriteCenter.x)
+            .addScaledVector(cameraUp, -spriteScale.height * spriteCenter.y);
+        const topRight = anchor.clone()
+            .addScaledVector(cameraRight, spriteScale.width * (1 - spriteCenter.x))
+            .addScaledVector(cameraUp, spriteScale.height * (1 - spriteCenter.y));
+
+        const projectedBottomLeft = bottomLeft.project(orthoCamera);
+        const projectedTopRight = topRight.project(orthoCamera);
+        if (
+            projectedBottomLeft.z < -1 || projectedBottomLeft.z > 1 ||
+            projectedTopRight.z < -1 || projectedTopRight.z > 1
+        ) {
+            return;
+        }
+
+        const minX = Math.min(projectedBottomLeft.x, projectedTopRight.x);
+        const maxX = Math.max(projectedBottomLeft.x, projectedTopRight.x);
+        const minY = Math.min(projectedBottomLeft.y, projectedTopRight.y);
+        const maxY = Math.max(projectedBottomLeft.y, projectedTopRight.y);
+        const screenMinX = ((minX + 1) * 0.5) * canvasRect.width - 18;
+        const screenMaxX = ((maxX + 1) * 0.5) * canvasRect.width + 18;
+        const screenMinY = ((1 - maxY) * 0.5) * canvasRect.height - 20;
+        const screenMaxY = ((1 - minY) * 0.5) * canvasRect.height + 20;
+        if (pointerX < screenMinX || pointerX > screenMaxX || pointerY < screenMinY || pointerY > screenMaxY) return;
+
+        const deltaX = pointerX - (screenMinX + screenMaxX) / 2;
+        const deltaY = pointerY - (screenMinY + screenMaxY) / 2;
+        const distanceSq = deltaX * deltaX + deltaY * deltaY;
+
+        if (distanceSq >= pickedDistanceSq) return;
+
+        pickedDistanceSq = distanceSq;
+        pickedGroupId = record.groupId;
+    });
+
+    return pickedGroupId;
+}
+
+function updateImageModeDeleteHoveredPlacementFromRay(clientX, clientY) {
+    if (!isImageVisualMode() || isTopDownView || !isDeleteGroupMode) return false;
+
+    const hoveredPlacement = prefabImageVisualMode.pickPlacementFromRay(raycaster);
+    const fallbackGroupId = hoveredPlacement?.groupId ? null : pickImageModeDeleteGroupFromScreenPoint(clientX, clientY);
+    const nextGroupId = hoveredPlacement?.groupId && isImageModeDeletablePrefabGroup(hoveredPlacement.groupId)
+        ? hoveredPlacement.groupId
+        : fallbackGroupId;
+    return updateImageModeDeleteHoveredGroup(nextGroupId);
+}
+
+function handleImageModeDeleteGroupInteraction() {
+    if (!isImageVisualMode() || !isDeleteGroupMode) return false;
+
+    const targetGroupId = hoveredGroupId;
+    if (!targetGroupId || !isImageModeDeletablePrefabGroup(targetGroupId)) {
+        showHint("Clique em um prefab para destruir a estrutura.");
+        return false;
+    }
+
+    clearHighlights();
+    executeBuilderCommand(createPrefabGroupDeleteCommand(targetGroupId, "Apagar estrutura"));
+    showHint("Estrutura removida.");
+    return true;
 }
 
 function clearImageTopPrefabInteraction({ clearHover = true } = {}) {
@@ -644,10 +777,12 @@ function setPrefabImageVisualModeEnabled(enabled) {
     if (enabled) {
         syncPrefabImageVisualModeFromWorld();
         syncPrefabImageVisualModeCameraView();
+        syncPrefabImageVisualModeHoverStyle();
         prefabImageVisualMode.enable();
         return;
     }
 
+    prefabImageVisualMode.setHoverStyle("default");
     prefabImageVisualMode.disable();
 }
 
@@ -989,6 +1124,7 @@ function applyActiveBuildTool(tool, hint = "") {
     activeBuildTool = tool;
     isDeleteMode = tool === TOOL_DELETE_BLOCK;
     isDeleteGroupMode = tool === TOOL_DELETE_GROUP;
+    syncPrefabImageVisualModeHoverStyle();
     clearHighlights();
     selectionAnchor = null;
     updateBuilderToolButtons();
@@ -1035,6 +1171,8 @@ function updateBuilderToolsStatus(extraMessage = "") {
     if (isImageTopPrefabDragActive()) {
         const destinationLabel = imageTopDragState.candidateValid ? "destino válido" : "destino inválido";
         imageTopDragLabel = ` | Movendo: ${imageTopDragState.prefabId} | ${destinationLabel}`;
+    } else if (isImageVisualMode() && activeBuildTool === TOOL_DELETE_GROUP) {
+        imageTopDragLabel = " | Clique em um prefab para destruir";
     } else if (isImageTopCatalogPrefabPlacementEnabled()) {
         imageTopDragLabel = ` | Posicionando: ${getPrefabIdFromType(currentType)} | Clique no mapa para colocar`;
     } else if (isInteractiveImageTopView()) {
@@ -1136,6 +1274,13 @@ function setToolPreviewBundle(bundle, isValid, key) {
 
 function setActiveBuildTool(tool, hint = "") {
     if (isImageVisualMode()) {
+        const canUseImageModeTool =
+            tool === TOOL_DELETE_GROUP || (tool === TOOL_PLACE && activeBuildTool === TOOL_DELETE_GROUP);
+        if (canUseImageModeTool) {
+            applyActiveBuildTool(tool, hint);
+            return;
+        }
+
         showVisualModeBlockedHint(getImageVisualModeBlockedEditHint());
         updateBuilderToolsStatus();
         return;
@@ -1452,6 +1597,38 @@ function createImageOnlyPrefabPlacementCommand(placement, label) {
             activeGroupId = null;
         },
     };
+}
+
+function createImageOnlyPrefabDeleteCommand(groupId, label) {
+    const initialPlacement = clonePrefabPlacement(groupToPrefabPlacement.get(groupId));
+    let activeGroupId = groupId;
+
+    return {
+        label,
+        execute() {
+            if (activeGroupId == null) return;
+            removeGroupById(activeGroupId);
+            activeGroupId = null;
+        },
+        undo() {
+            if (!initialPlacement?.type) return;
+            activeGroupId = placeImageOnlyPrefab(
+                initialPlacement.x,
+                initialPlacement.y,
+                initialPlacement.z,
+                initialPlacement.type,
+                initialPlacement.rot,
+                true,
+            );
+            updateStats();
+        },
+    };
+}
+
+function createPrefabGroupDeleteCommand(groupId, label) {
+    const targetBlocks = [...(groupToBlockIds.get(groupId) || [])].map((blockId) => blockById.get(blockId)).filter(Boolean);
+    if (targetBlocks.length > 0) return createDeleteCommand(targetBlocks, label);
+    return createImageOnlyPrefabDeleteCommand(groupId, label);
 }
 
 function createMovePrefabCommand(groupId, nextPlacement) {
@@ -3420,7 +3597,7 @@ function setGroupHighlight(gId, isHighlight) {
 
 function clearHighlights() {
     if (hoveredGroupId) {
-        if (isInteractiveImageTopView()) {
+        if (isImageVisualMode() || imageOnlyPrefabGroupIds.has(hoveredGroupId)) {
             prefabImageVisualMode.setHoveredPlacement(null);
         } else {
             setGroupHighlight(hoveredGroupId, false);
@@ -4810,9 +4987,25 @@ function processPointerMove(clientX, clientY) {
         imageTopDragState.pointerWorldX = worldPoint.x;
         imageTopDragState.pointerWorldZ = worldPoint.z;
 
-        if (isImageTopPrefabDragActive()) updateImageTopDragCandidate(worldPoint);
+        if (isDeleteGroupMode) updateImageModeDeleteHoveredPlacementTop(worldPoint);
+        else if (isImageTopPrefabDragActive()) updateImageTopDragCandidate(worldPoint);
         else updateImageTopHoveredPlacement(worldPoint);
 
+        recordPerfSample("hover", performance.now() - hoverStart);
+        return;
+    }
+
+    if (isImageVisualMode() && isDeleteGroupMode) {
+        pointedWorldBlockId = null;
+        clearToolPreview();
+        if (rollOver) rollOver.visible = false;
+
+        if (!updatePointerRayFromClient(clientX, clientY)) {
+            recordPerfSample("hover", performance.now() - hoverStart);
+            return;
+        }
+
+        updateImageModeDeleteHoveredPlacementFromRay(clientX, clientY);
         recordPerfSample("hover", performance.now() - hoverStart);
         return;
     }
@@ -4934,6 +5127,7 @@ function handleMove(e) {
 
 function executePlacement() {
     if (isImageVisualMode()) {
+        if (isDeleteGroupMode) return handleImageModeDeleteGroupInteraction();
         handleImageTopPrefabPlacementInteraction();
         return;
     }
