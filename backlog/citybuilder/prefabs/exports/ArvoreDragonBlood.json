@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "kind": "prefab",
+  "name": "ArvoreDragonBlood",
+  "dx": 16,
+  "dy": 8,
+  "dz": 16,
+  "recipe": [
+    { "op": "filledRect", "x0": 0, "y": 0, "z0": 0, "width": 16, "depth": 16, "color": "#8a5a38" },
+    { "op": "filledRect", "x0": 0, "y": 1, "z0": 0, "width": 4, "depth": 3, "color": "#6e4428" },
+    { "op": "filledRect", "x0": 12, "y": 1, "z0": 1, "width": 4, "depth": 3, "color": "#a07050" },
+    { "op": "filledRect", "x0": 1, "y": 1, "z0": 12, "width": 3, "depth": 4, "color": "#7a5030" },
+    { "op": "filledRect", "x0": 12, "y": 1, "z0": 12, "width": 4, "depth": 4, "color": "#6e4428" },
+
+    { "op": "solid", "x0": 7, "y0": 1, "z0": 7, "width": 2, "depth": 2, "height": 2, "color": "#c4a882" },
+    { "op": "solid", "x0": 7, "y0": 3, "z0": 7, "width": 2, "depth": 2, "height": 2, "color": "#a08060" },
+    { "op": "solid", "x0": 7, "y0": 5, "z0": 7, "width": 2, "depth": 2, "height": 1, "color": "#7a6040" },
+
+    { "op": "solid", "x0": 5, "y0": 5, "z0": 7, "width": 2, "depth": 2, "height": 1, "color": "#8f7152" },
+    { "op": "solid", "x0": 9, "y0": 5, "z0": 7, "width": 2, "depth": 2, "height": 1, "color": "#8f7152" },
+    { "op": "solid", "x0": 7, "y0": 5, "z0": 5, "width": 2, "depth": 2, "height": 1, "color": "#8f7152" },
+    { "op": "solid", "x0": 7, "y0": 5, "z0": 9, "width": 2, "depth": 2, "height": 1, "color": "#8f7152" },
+
+    { "op": "solid", "x0": 3, "y0": 6, "z0": 3, "width": 10, "depth": 10, "height": 1, "color": "#3d7030" },
+
+    { "op": "solid", "x0": 4, "y0": 7, "z0": 4, "width": 8, "depth": 8, "height": 1, "color": "#5a9248" }
+  ]
+}
