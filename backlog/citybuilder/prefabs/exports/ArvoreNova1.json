@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "kind": "prefab",
+  "name": "ArvoreNova1",
+  "dx": 14,
+  "dy": 18,
+  "dz": 14,
+  "recipe": [
+    { "op": "solid", "x0": 0, "y0": 0, "z0": 0, "width": 14, "depth": 6, "height": 1, "color": "#6dbb63" },
+    { "op": "solid", "x0": 0, "y0": 0, "z0": 6, "width": 6, "depth": 2, "height": 1, "color": "#6dbb63" },
+    { "op": "solid", "x0": 8, "y0": 0, "z0": 6, "width": 6, "depth": 2, "height": 1, "color": "#6dbb63" },
+    { "op": "solid", "x0": 0, "y0": 0, "z0": 8, "width": 14, "depth": 6, "height": 1, "color": "#6dbb63" },
+    { "op": "solid", "x0": 6, "y0": 0, "z0": 6, "width": 2, "depth": 2, "height": 8, "color": "#6b4b34" },
+    { "op": "solid", "x0": 3, "y0": 8, "z0": 3, "width": 8, "depth": 8, "height": 2, "color": "#457f49" },
+    { "op": "solid", "x0": 2, "y0": 10, "z0": 2, "width": 10, "depth": 10, "height": 2, "color": "#4f8f52" },
+    { "op": "solid", "x0": 3, "y0": 12, "z0": 3, "width": 8, "depth": 8, "height": 2, "color": "#5c9f5d" },
+    { "op": "solid", "x0": 4, "y0": 14, "z0": 4, "width": 6, "depth": 6, "height": 2, "color": "#6eb06d" },
+    { "op": "solid", "x0": 5, "y0": 16, "z0": 5, "width": 4, "depth": 4, "height": 2, "color": "#81bf7c" },
+    {
+      "op": "blocks",
+      "blocks": [
+        { "type": "2x2", "color": "#4f8f52", "lx": 0, "ly": 10, "lz": 6 },
+        { "type": "2x2", "color": "#4f8f52", "lx": 12, "ly": 10, "lz": 6 },
+        { "type": "2x2", "color": "#4f8f52", "lx": 6, "ly": 10, "lz": 0 },
+        { "type": "2x2", "color": "#4f8f52", "lx": 6, "ly": 10, "lz": 12 },
+        { "type": "2x2", "color": "#6eb06d", "lx": 3, "ly": 16, "lz": 6 },
+        { "type": "2x2", "color": "#6eb06d", "lx": 9, "ly": 16, "lz": 6 },
+        { "type": "2x2", "color": "#6eb06d", "lx": 6, "ly": 16, "lz": 3 },
+        { "type": "2x2", "color": "#6eb06d", "lx": 6, "ly": 16, "lz": 9 }
+      ]
+    }
+  ]
+}

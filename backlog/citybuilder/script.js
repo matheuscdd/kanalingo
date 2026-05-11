@@ -26,15 +26,12 @@ import {
 } from "./prefabs/shared/shapeOrientation.js";
 import { getFakeShadeForNormal } from "./prefabs/shared/fakeShading.js";
 import { getUpwardSurfaceStudPlacements } from "./prefabs/shared/shapeStuds.js";
-import { createPrefabImageVisualMode } from "./prefabs/shared/prefabImageVisualMode.js?v=20260510m";
+import { createPrefabImageVisualMode } from "./prefabs/shared/prefabImageVisualMode.js?v=20260507e";
 import {
     PREFAB_IMPOSTOR_TOP_VIEW,
     PREFAB_IMPOSTOR_VIEW_KEYS,
     createPrefabImpostorManifestEntry,
-    getPrefabImpostorSpriteCenter,
-    getPrefabImpostorSpriteScale,
     getPrefabImpostorSideViewIndex,
-    getPrefabImpostorViewKey,
 } from "./prefabs/shared/prefabImpostorViews.js?v=20260507e";
 
 const THREE = globalThis.THREE;
@@ -209,7 +206,7 @@ let exportedStructureSerial = 1;
 
 // --- ESTADO: MODO CONSTRUÇÃO ---
 let isTopDownView = false;
-let cameraAngleIndex = 0;
+let cameraAngleIndex = 1;
 const CAM_RADIUS = 110;
 const CAM_HEIGHT = 110;
 let targetCamOffset = new THREE.Vector3();
@@ -235,7 +232,6 @@ const btnJsonDownload = document.getElementById("btn-json-download");
 const btnJsonClear = document.getElementById("btn-json-clear");
 const jsonFileInput = document.getElementById("json-file-input");
 const btnVisualMode = document.getElementById("btn-visual-mode");
-const btnCameraAngle = document.getElementById("btn-cam");
 const catalogButtonByType = new Map();
 const catalogItemByType = new Map();
 const builderToolsPanel = document.getElementById("builder-tools-panel");
@@ -500,28 +496,6 @@ function collectBuiltInPrefabPlacementsForVisualMode() {
     return placements;
 }
 
-function getActiveCameraSideLabel(sideViewIndex = cameraAngleIndex) {
-    const normalizedSideIndex = ((Number(sideViewIndex) || 0) % 4 + 4) % 4;
-    return `side-${normalizedSideIndex}`;
-}
-
-function updateCameraAngleButtonUi() {
-    if (!btnCameraAngle) return;
-
-    if (isTopDownView) {
-        btnCameraAngle.title = "Girar Câmera";
-        btnCameraAngle.setAttribute("aria-label", "Girar câmera");
-        delete btnCameraAngle.dataset.sideView;
-        return;
-    }
-
-    const currentSideLabel = getActiveCameraSideLabel();
-    const nextSideLabel = getActiveCameraSideLabel(cameraAngleIndex + 1);
-    btnCameraAngle.title = `Girar Câmera | Vista atual: ${currentSideLabel} | Próxima: ${nextSideLabel}`;
-    btnCameraAngle.setAttribute("aria-label", `Girar câmera. Vista atual ${currentSideLabel}`);
-    btnCameraAngle.dataset.sideView = currentSideLabel;
-}
-
 function updateVisualModeUi() {
     const imagesMode = isImageVisualMode();
     document.body.dataset.visualMode = currentVisualMode;
@@ -542,9 +516,6 @@ function updateVisualModeUi() {
     }
     [document.getElementById("left-bar"), builderToolsPanel].forEach((element) => {
         if (element) element.classList.toggle("visual-mode-disabled", editControlsLocked);
-    });
-    [document.getElementById("perf-panel"), document.getElementById("json-panel")].forEach((element) => {
-        if (element) element.classList.toggle("visual-mode-disabled", imagesMode);
     });
 
     const toggledControls = [
@@ -595,11 +566,6 @@ function updateVisualModeUi() {
             if (control) control.disabled = false;
         });
     }
-
-    const deleteGroupButton = document.getElementById("btn-delete-group");
-    if (deleteGroupButton && imagesMode) deleteGroupButton.disabled = false;
-
-    updateCameraAngleButtonUi();
 }
 
 function showVisualModeBlockedHint(message = "") {
@@ -618,130 +584,6 @@ function syncPrefabImageVisualModeFromWorld() {
 
 function syncPrefabImageVisualModeHoverState() {
     prefabImageVisualMode.setHoveredPlacement(hoveredGroupId);
-}
-
-function syncPrefabImageVisualModeHoverStyle() {
-    prefabImageVisualMode.setHoverStyle(isDeleteGroupMode ? "delete" : "default");
-}
-
-function isImageModeDeletablePrefabGroup(groupId) {
-    if (groupId == null || !groupToPrefabPlacement.has(groupId)) return false;
-    if (imageOnlyPrefabGroupIds.has(groupId)) return true;
-    return (groupToBlockIds.get(groupId)?.size ?? 0) > 0;
-}
-
-function updateImageModeDeleteHoveredGroup(nextGroupId = null) {
-    const normalizedGroupId = nextGroupId == null ? null : nextGroupId;
-    if (hoveredGroupId === normalizedGroupId) return normalizedGroupId != null;
-
-    hoveredGroupId = normalizedGroupId;
-    syncPrefabImageVisualModeHoverState();
-    updateBuilderToolsStatus();
-    return normalizedGroupId != null;
-}
-
-function updateImageModeDeleteHoveredPlacementTop(worldPoint) {
-    if (!isInteractiveImageTopView() || !isDeleteGroupMode) return false;
-
-    const hoveredPlacement = worldPoint ? prefabImageVisualMode.pickTopPlacementAt(worldPoint.x, worldPoint.z) : null;
-    const nextGroupId = hoveredPlacement?.groupId && isImageModeDeletablePrefabGroup(hoveredPlacement.groupId)
-        ? hoveredPlacement.groupId
-        : null;
-    return updateImageModeDeleteHoveredGroup(nextGroupId);
-}
-
-function pickImageModeDeleteGroupFromScreenPoint(clientX, clientY) {
-    if (!isImageVisualMode() || isTopDownView || !renderer?.domElement) return null;
-
-    const canvasRect = renderer.domElement.getBoundingClientRect();
-    const pointerX = clientX - canvasRect.left;
-    const pointerY = clientY - canvasRect.top;
-    const cameraRight = new THREE.Vector3();
-    const cameraUp = new THREE.Vector3();
-    const cameraForward = new THREE.Vector3();
-    orthoCamera.matrixWorld.extractBasis(cameraRight, cameraUp, cameraForward);
-
-    let pickedGroupId = null;
-    let pickedDistanceSq = Infinity;
-
-    collectBuiltInPrefabPlacementsForVisualMode().forEach((record) => {
-        if (!isImageModeDeletablePrefabGroup(record.groupId)) return;
-
-        const bounds = record.bounds || getPrefabPlacementBounds(record.prefabId, record.placement.rot);
-        const centerX = record.placement.x + bounds.dx / 2;
-        const centerZ = record.placement.z + bounds.dz / 2;
-        const viewKey = getPrefabImpostorViewKey({ isTopDownView, cameraAngleIndex, placementRot: record.placement.rot });
-        const spriteScale = getPrefabImpostorSpriteScale(bounds, viewKey);
-        const spriteCenter = getPrefabImpostorSpriteCenter(viewKey);
-        const anchor = new THREE.Vector3(
-            centerX,
-            viewKey === PREFAB_IMPOSTOR_TOP_VIEW ? record.placement.y + Math.max(0.75, bounds.dy + 0.35) : record.placement.y,
-            centerZ,
-        );
-
-        const bottomLeft = anchor.clone()
-            .addScaledVector(cameraRight, -spriteScale.width * spriteCenter.x)
-            .addScaledVector(cameraUp, -spriteScale.height * spriteCenter.y);
-        const topRight = anchor.clone()
-            .addScaledVector(cameraRight, spriteScale.width * (1 - spriteCenter.x))
-            .addScaledVector(cameraUp, spriteScale.height * (1 - spriteCenter.y));
-
-        const projectedBottomLeft = bottomLeft.project(orthoCamera);
-        const projectedTopRight = topRight.project(orthoCamera);
-        if (
-            projectedBottomLeft.z < -1 || projectedBottomLeft.z > 1 ||
-            projectedTopRight.z < -1 || projectedTopRight.z > 1
-        ) {
-            return;
-        }
-
-        const minX = Math.min(projectedBottomLeft.x, projectedTopRight.x);
-        const maxX = Math.max(projectedBottomLeft.x, projectedTopRight.x);
-        const minY = Math.min(projectedBottomLeft.y, projectedTopRight.y);
-        const maxY = Math.max(projectedBottomLeft.y, projectedTopRight.y);
-        const screenMinX = ((minX + 1) * 0.5) * canvasRect.width - 18;
-        const screenMaxX = ((maxX + 1) * 0.5) * canvasRect.width + 18;
-        const screenMinY = ((1 - maxY) * 0.5) * canvasRect.height - 20;
-        const screenMaxY = ((1 - minY) * 0.5) * canvasRect.height + 20;
-        if (pointerX < screenMinX || pointerX > screenMaxX || pointerY < screenMinY || pointerY > screenMaxY) return;
-
-        const deltaX = pointerX - (screenMinX + screenMaxX) / 2;
-        const deltaY = pointerY - (screenMinY + screenMaxY) / 2;
-        const distanceSq = deltaX * deltaX + deltaY * deltaY;
-
-        if (distanceSq >= pickedDistanceSq) return;
-
-        pickedDistanceSq = distanceSq;
-        pickedGroupId = record.groupId;
-    });
-
-    return pickedGroupId;
-}
-
-function updateImageModeDeleteHoveredPlacementFromRay(clientX, clientY) {
-    if (!isImageVisualMode() || isTopDownView || !isDeleteGroupMode) return false;
-
-    const hoveredPlacement = prefabImageVisualMode.pickPlacementFromRay(raycaster);
-    const fallbackGroupId = hoveredPlacement?.groupId ? null : pickImageModeDeleteGroupFromScreenPoint(clientX, clientY);
-    const nextGroupId = hoveredPlacement?.groupId && isImageModeDeletablePrefabGroup(hoveredPlacement.groupId)
-        ? hoveredPlacement.groupId
-        : fallbackGroupId;
-    return updateImageModeDeleteHoveredGroup(nextGroupId);
-}
-
-function handleImageModeDeleteGroupInteraction() {
-    if (!isImageVisualMode() || !isDeleteGroupMode) return false;
-
-    const targetGroupId = hoveredGroupId;
-    if (!targetGroupId || !isImageModeDeletablePrefabGroup(targetGroupId)) {
-        showHint("Clique em um prefab para destruir a estrutura.");
-        return false;
-    }
-
-    clearHighlights();
-    executeBuilderCommand(createPrefabGroupDeleteCommand(targetGroupId, "Apagar estrutura"));
-    showHint("Estrutura removida.");
-    return true;
 }
 
 function clearImageTopPrefabInteraction({ clearHover = true } = {}) {
@@ -777,12 +619,10 @@ function setPrefabImageVisualModeEnabled(enabled) {
     if (enabled) {
         syncPrefabImageVisualModeFromWorld();
         syncPrefabImageVisualModeCameraView();
-        syncPrefabImageVisualModeHoverStyle();
         prefabImageVisualMode.enable();
         return;
     }
 
-    prefabImageVisualMode.setHoverStyle("default");
     prefabImageVisualMode.disable();
 }
 
@@ -1124,7 +964,6 @@ function applyActiveBuildTool(tool, hint = "") {
     activeBuildTool = tool;
     isDeleteMode = tool === TOOL_DELETE_BLOCK;
     isDeleteGroupMode = tool === TOOL_DELETE_GROUP;
-    syncPrefabImageVisualModeHoverStyle();
     clearHighlights();
     selectionAnchor = null;
     updateBuilderToolButtons();
@@ -1161,7 +1000,6 @@ function updateBuilderToolsStatus(extraMessage = "") {
     const shapeRotationLabel = activeBuildTool === TOOL_SHAPE
         ? ` | Giro: ${getShapeRotationLabel(getActiveShapeRot())}`
         : "";
-    const cameraViewLabel = !isTopDownView ? ` | Câmera: ${getActiveCameraSideLabel()}` : "";
     let visualModeLabel = "";
     if (isImageVisualMode()) {
         visualModeLabel = isInteractiveImageTopView() ? " | Visual: imagens | Top" : " | Visual: imagens";
@@ -1171,15 +1009,13 @@ function updateBuilderToolsStatus(extraMessage = "") {
     if (isImageTopPrefabDragActive()) {
         const destinationLabel = imageTopDragState.candidateValid ? "destino válido" : "destino inválido";
         imageTopDragLabel = ` | Movendo: ${imageTopDragState.prefabId} | ${destinationLabel}`;
-    } else if (isImageVisualMode() && activeBuildTool === TOOL_DELETE_GROUP) {
-        imageTopDragLabel = " | Clique em um prefab para destruir";
     } else if (isImageTopCatalogPrefabPlacementEnabled()) {
         imageTopDragLabel = ` | Posicionando: ${getPrefabIdFromType(currentType)} | Clique no mapa para colocar`;
     } else if (isInteractiveImageTopView()) {
         imageTopDragLabel = " | Selecione um prefab no catálogo ou clique em um prefab para mover";
     }
     const extraLabel = extraMessage ? ` | ${extraMessage}` : "";
-    builderToolsStatus.textContent = `Ferramenta: ${toolNames[activeBuildTool] || activeBuildTool}${directionLabel}${shapeRotationLabel}${selectionLabel}${clipboardLabel}${visualModeLabel}${cameraViewLabel}${imageTopDragLabel}${historyLabel}${extraLabel}`;
+    builderToolsStatus.textContent = `Ferramenta: ${toolNames[activeBuildTool] || activeBuildTool}${directionLabel}${shapeRotationLabel}${selectionLabel}${clipboardLabel}${visualModeLabel}${imageTopDragLabel}${historyLabel}${extraLabel}`;
     updateHistoryButtons();
 }
 
@@ -1274,13 +1110,6 @@ function setToolPreviewBundle(bundle, isValid, key) {
 
 function setActiveBuildTool(tool, hint = "") {
     if (isImageVisualMode()) {
-        const canUseImageModeTool =
-            tool === TOOL_DELETE_GROUP || (tool === TOOL_PLACE && activeBuildTool === TOOL_DELETE_GROUP);
-        if (canUseImageModeTool) {
-            applyActiveBuildTool(tool, hint);
-            return;
-        }
-
         showVisualModeBlockedHint(getImageVisualModeBlockedEditHint());
         updateBuilderToolsStatus();
         return;
@@ -1597,38 +1426,6 @@ function createImageOnlyPrefabPlacementCommand(placement, label) {
             activeGroupId = null;
         },
     };
-}
-
-function createImageOnlyPrefabDeleteCommand(groupId, label) {
-    const initialPlacement = clonePrefabPlacement(groupToPrefabPlacement.get(groupId));
-    let activeGroupId = groupId;
-
-    return {
-        label,
-        execute() {
-            if (activeGroupId == null) return;
-            removeGroupById(activeGroupId);
-            activeGroupId = null;
-        },
-        undo() {
-            if (!initialPlacement?.type) return;
-            activeGroupId = placeImageOnlyPrefab(
-                initialPlacement.x,
-                initialPlacement.y,
-                initialPlacement.z,
-                initialPlacement.type,
-                initialPlacement.rot,
-                true,
-            );
-            updateStats();
-        },
-    };
-}
-
-function createPrefabGroupDeleteCommand(groupId, label) {
-    const targetBlocks = [...(groupToBlockIds.get(groupId) || [])].map((blockId) => blockById.get(blockId)).filter(Boolean);
-    if (targetBlocks.length > 0) return createDeleteCommand(targetBlocks, label);
-    return createImageOnlyPrefabDeleteCommand(groupId, label);
 }
 
 function createMovePrefabCommand(groupId, nextPlacement) {
@@ -3597,7 +3394,7 @@ function setGroupHighlight(gId, isHighlight) {
 
 function clearHighlights() {
     if (hoveredGroupId) {
-        if (isImageVisualMode() || imageOnlyPrefabGroupIds.has(hoveredGroupId)) {
+        if (isInteractiveImageTopView()) {
             prefabImageVisualMode.setHoveredPlacement(null);
         } else {
             setGroupHighlight(hoveredGroupId, false);
@@ -4987,25 +4784,9 @@ function processPointerMove(clientX, clientY) {
         imageTopDragState.pointerWorldX = worldPoint.x;
         imageTopDragState.pointerWorldZ = worldPoint.z;
 
-        if (isDeleteGroupMode) updateImageModeDeleteHoveredPlacementTop(worldPoint);
-        else if (isImageTopPrefabDragActive()) updateImageTopDragCandidate(worldPoint);
+        if (isImageTopPrefabDragActive()) updateImageTopDragCandidate(worldPoint);
         else updateImageTopHoveredPlacement(worldPoint);
 
-        recordPerfSample("hover", performance.now() - hoverStart);
-        return;
-    }
-
-    if (isImageVisualMode() && isDeleteGroupMode) {
-        pointedWorldBlockId = null;
-        clearToolPreview();
-        if (rollOver) rollOver.visible = false;
-
-        if (!updatePointerRayFromClient(clientX, clientY)) {
-            recordPerfSample("hover", performance.now() - hoverStart);
-            return;
-        }
-
-        updateImageModeDeleteHoveredPlacementFromRay(clientX, clientY);
         recordPerfSample("hover", performance.now() - hoverStart);
         return;
     }
@@ -5127,7 +4908,6 @@ function handleMove(e) {
 
 function executePlacement() {
     if (isImageVisualMode()) {
-        if (isDeleteGroupMode) return handleImageModeDeleteGroupInteraction();
         handleImageTopPrefabPlacementInteraction();
         return;
     }
@@ -5956,8 +5736,6 @@ document.getElementById("btn-cam").onclick = () => {
         updateCameraTarget();
         snapOrthoCameraToTarget();
         syncPrefabImageVisualModeCameraView();
-        updateCameraAngleButtonUi();
-        updateBuilderToolsStatus();
     }
 };
 
@@ -6175,31 +5953,6 @@ function getPrefabCaptureProjectedSpan(bounds) {
     };
 }
 
-function getPrefabCaptureViewPlaneBounds(bounds) {
-    const corners = getPrefabCaptureBoundsCorners(bounds);
-    let minX = Infinity;
-    let minY = Infinity;
-    let maxX = -Infinity;
-    let maxY = -Infinity;
-
-    corners.forEach((corner) => {
-        const viewPoint = corner.clone().applyMatrix4(orthoCamera.matrixWorldInverse);
-        minX = Math.min(minX, viewPoint.x);
-        minY = Math.min(minY, viewPoint.y);
-        maxX = Math.max(maxX, viewPoint.x);
-        maxY = Math.max(maxY, viewPoint.y);
-    });
-
-    return {
-        minX,
-        minY,
-        maxX,
-        maxY,
-        spanX: Math.max(0.0001, maxX - minX),
-        spanY: Math.max(0.0001, maxY - minY),
-    };
-}
-
 function fitOrthoCameraToPrefabBounds(bounds, margin = 1.15) {
     const normalizedMargin = Math.max(1.01, Number(margin) || 1.15);
     orthoCamera.zoom = 1;
@@ -6218,57 +5971,21 @@ function getPrefabCaptureMarginForView(viewKey, margin = 1.15) {
     return Math.max(1.01, Number(margin) || 1.15);
 }
 
-function getPrefabCaptureCanvasWorldSize() {
-    return {
-        width: Math.max(0.0001, (orthoCamera.right - orthoCamera.left) / Math.max(0.0001, orthoCamera.zoom)),
-        height: Math.max(0.0001, (orthoCamera.top - orthoCamera.bottom) / Math.max(0.0001, orthoCamera.zoom)),
-    };
-}
-
-function getPrefabCaptureProjectedPixelPoint(worldPoint, width, height) {
+function getPrefabCaptureProjectedSpriteCenter(worldPoint) {
     const projected = worldPoint.clone().project(orthoCamera);
     return {
-        x: ((projected.x + 1) * 0.5) * width,
-        y: ((1 - projected.y) * 0.5) * height,
+        x: THREE.MathUtils.clamp((projected.x + 1) * 0.5, 0, 1),
+        y: THREE.MathUtils.clamp((projected.y + 1) * 0.5, 0, 1),
     };
 }
 
-function getPrefabCaptureViewOverrides(bounds, viewKey, cropMetadata = null) {
-    if (getPrefabImpostorSideViewIndex(viewKey) == null) return null;
+function getPrefabCaptureViewOverrides(bounds, viewKey) {
+    if (getPrefabImpostorSideViewIndex(viewKey) !== 0) return null;
 
     const anchorPoint = new THREE.Vector3(bounds.centerX, bounds.minY, bounds.centerZ);
-
-    if (cropMetadata?.sourceWidth && cropMetadata?.sourceHeight && cropMetadata?.cropWidth && cropMetadata?.cropHeight && cropMetadata.cropBounds) {
-        const anchorPixelPoint = getPrefabCaptureProjectedPixelPoint(anchorPoint, cropMetadata.sourceWidth, cropMetadata.sourceHeight);
-        const canvasWorldSize = getPrefabCaptureCanvasWorldSize();
-
-        return {
-            [viewKey]: {
-                spriteScale: {
-                    width: canvasWorldSize.width * (cropMetadata.cropWidth / cropMetadata.sourceWidth),
-                    height: canvasWorldSize.height * (cropMetadata.cropHeight / cropMetadata.sourceHeight),
-                },
-                spriteCenter: {
-                    x: THREE.MathUtils.clamp((anchorPixelPoint.x - cropMetadata.cropBounds.minX) / cropMetadata.cropWidth, 0, 1),
-                    y: THREE.MathUtils.clamp(1 - (anchorPixelPoint.y - cropMetadata.cropBounds.minY) / cropMetadata.cropHeight, 0, 1),
-                },
-            },
-        };
-    }
-
-    const viewBounds = getPrefabCaptureViewPlaneBounds(bounds);
-    const anchorViewPoint = anchorPoint.applyMatrix4(orthoCamera.matrixWorldInverse);
-
     return {
         [viewKey]: {
-            spriteScale: {
-                width: viewBounds.spanX,
-                height: viewBounds.spanY,
-            },
-            spriteCenter: {
-                x: THREE.MathUtils.clamp((anchorViewPoint.x - viewBounds.minX) / viewBounds.spanX, 0, 1),
-                y: THREE.MathUtils.clamp((anchorViewPoint.y - viewBounds.minY) / viewBounds.spanY, 0, 1),
-            },
+            spriteCenter: getPrefabCaptureProjectedSpriteCenter(anchorPoint),
         },
     };
 }
@@ -6327,46 +6044,19 @@ async function cropTransparentPrefabCaptureBlob(blob, imageType = "image/png", i
     const bitmapOrImage = await loadImageBitmapOrElement(blob);
     const width = bitmapOrImage?.width || 0;
     const height = bitmapOrImage?.height || 0;
-    if (!width || !height || !globalThis.document) {
-        return {
-            blob,
-            sourceWidth: width,
-            sourceHeight: height,
-            cropBounds: null,
-            cropWidth: width,
-            cropHeight: height,
-        };
-    }
+    if (!width || !height || !globalThis.document) return blob;
 
     const sourceCanvas = globalThis.document.createElement("canvas");
     sourceCanvas.width = width;
     sourceCanvas.height = height;
     const sourceContext = sourceCanvas.getContext("2d", { willReadFrequently: true });
-    if (!sourceContext) {
-        return {
-            blob,
-            sourceWidth: width,
-            sourceHeight: height,
-            cropBounds: null,
-            cropWidth: width,
-            cropHeight: height,
-        };
-    }
+    if (!sourceContext) return blob;
     sourceContext.drawImage(bitmapOrImage, 0, 0);
 
     const imageData = sourceContext.getImageData(0, 0, width, height);
     const bounds = getTransparentImageBounds(imageData, width, height);
     if (typeof bitmapOrImage.close === "function") bitmapOrImage.close();
-    if (!bounds) {
-        return {
-            blob,
-            sourceWidth: width,
-            sourceHeight: height,
-            cropBounds: null,
-            cropWidth: width,
-            cropHeight: height,
-        };
-    }
+    if (!bounds) return blob;
 
     const clampedPadding = Math.max(0, Math.floor(Number(paddingPx) || 0));
     const cropMinX = Math.max(0, bounds.minX - clampedPadding);
@@ -6375,36 +6065,16 @@ async function cropTransparentPrefabCaptureBlob(blob, imageType = "image/png", i
     const cropMaxY = Math.min(height - 1, bounds.maxY + clampedPadding);
     const cropWidth = cropMaxX - cropMinX + 1;
     const cropHeight = cropMaxY - cropMinY + 1;
-    const cropMetadata = {
-        sourceWidth: width,
-        sourceHeight: height,
-        cropBounds: { minX: cropMinX, minY: cropMinY, maxX: cropMaxX, maxY: cropMaxY },
-        cropWidth,
-        cropHeight,
-    };
 
-    if (cropWidth === width && cropHeight === height) {
-        return {
-            blob,
-            ...cropMetadata,
-        };
-    }
+    if (cropWidth === width && cropHeight === height) return blob;
 
     const croppedCanvas = globalThis.document.createElement("canvas");
     croppedCanvas.width = cropWidth;
     croppedCanvas.height = cropHeight;
     const croppedContext = croppedCanvas.getContext("2d");
-    if (!croppedContext) {
-        return {
-            blob,
-            ...cropMetadata,
-        };
-    }
+    if (!croppedContext) return blob;
     croppedContext.drawImage(sourceCanvas, cropMinX, cropMinY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
-    return {
-        blob: await canvasToBlob(croppedCanvas, imageQuality, imageType),
-        ...cropMetadata,
-    };
+    return canvasToBlob(croppedCanvas, imageQuality, imageType);
 }
 
 function setPrefabCaptureBackground(background = null) {
@@ -6497,14 +6167,11 @@ async function capturePrefabImpostorView({
     resetPrefabImpostorCaptureTransients();
     await nextFrame();
     renderCurrentFrame();
-    let blob = await canvasToBlob(renderer.domElement, imageQuality, imageType);
-    let cropMetadata = null;
-    if (background == null) {
-        const croppedCapture = await cropTransparentPrefabCaptureBlob(blob, imageType, imageQuality, 1);
-        blob = croppedCapture.blob;
-        cropMetadata = croppedCapture;
+    let blob = await canvasToBlob(renderer.domElement, imageType, imageQuality);
+    if (viewKey === PREFAB_IMPOSTOR_TOP_VIEW && background == null) {
+        blob = await cropTransparentPrefabCaptureBlob(blob, imageType, imageQuality, 1);
     }
-    const viewOverrides = getPrefabCaptureViewOverrides(bounds, viewKey, cropMetadata);
+    const viewOverrides = getPrefabCaptureViewOverrides(bounds, viewKey);
 
     return {
         prefabId,
