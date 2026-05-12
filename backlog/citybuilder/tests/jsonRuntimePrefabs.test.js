@@ -4,6 +4,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BLOCKS } from "../prefabs/shared/blocks.js";
 import { parsePrefabJson } from "../prefabs/shared/prefabCodec.js";
+import { getShapePlacementMetrics } from "../prefabs/shared/shapeOrientation.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, "..");
@@ -25,6 +26,16 @@ function getJsonCatalogItems() {
 function getBlockFootprint(block) {
     const def = BLOCKS[block.type];
     const rot = block.rot || 0;
+
+    if (def?.customGeo?.startsWith("shape:")) {
+        const metrics = getShapePlacementMetrics(def.sx, def.sy, def.sz, block.direction, rot);
+        return {
+            dx: metrics.dx,
+            dy: metrics.dy,
+            dz: metrics.dz,
+        };
+    }
+
     const rotated = rot % 2 !== 0;
 
     return {
