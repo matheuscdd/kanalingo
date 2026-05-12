@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
     <title>Mobile LEGO-Style Builder - Exploração em 1ª Pessoa</title>
-    <link rel="stylesheet" href="style.css?v=20260507e">
+    <link rel="stylesheet" href="style.css">
     <link href="https://i.postimg.cc/nhDqHDhn/piece-(1).png" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
@@ -21,7 +21,6 @@
             <option value="phong">Plástico Brilhante</option>
             <option value="toon">Cartoon (Cel Shading)</option>
         </select>
-        <button id="btn-visual-mode" type="button" title="Alternar entre o modo 3D editável e o modo de imagens em implementação">Visual: 3D</button>
         <button id="btn-save">Salvar JSON</button>
         <button id="btn-save-city">Salvar Cidade JSON</button>
         <button id="btn-export-prefabs-zip">Exportar Prefabs (ZIP)</button>
@@ -184,6 +183,7 @@
         <button class="block-btn" data-json-src="prefabs/exports/PortaDeIshtar.json">🏯 Porta de Ishtar</button>
         <button class="block-btn" data-json-src="prefabs/exports/ElCastillo.json">🔺 El Castillo (Chichen Itzá)</button>
         <button class="block-btn" data-json-src="prefabs/exports/ColossoDeRodes.json">🗿 Colosso de Rodes</button>
+        <button class="block-btn" data-json-src="prefabs/exports/MaePatriaChama.json">🗽 A Mãe Pátria Chama</button>
         <button class="block-btn" data-json-src="prefabs/exports/CasteloDeNeuschwanstein.json">🏰 Castelo de Neuschwanstein</button>
         <button class="block-btn" data-json-src="prefabs/exports/TemploMayaSantuariosDuplos.json">🛕 Templo Maia Santuários Duplos</button>
         <button class="block-btn" data-json-src="prefabs/exports/HagiaSophia.json">🕌 Hagia Sophia</button>
@@ -191,7 +191,6 @@
         <button class="block-btn" data-json-src="prefabs/exports/AngkorWatDetalhado.json">🛕 Angkor Wat Detalhado</button>
         <button class="block-btn" data-json-src="prefabs/exports/TajMahalDetalhado.json">🕌 Taj Mahal Detalhado</button>
         <button class="block-btn" data-json-src="prefabs/exports/TemploEgipcioEscadariaColunata.json">🏺 Templo Egípcio Escadaria Colunata</button>
-        <button class="block-btn" data-json-src="prefabs/exports/ObeliscoDourado.json">🗼 Obelisco Dourado</button>
         <button class="block-btn" data-json-src="prefabs/exports/LobaCapitolinaDetalhada.json">🐺 Loba Capitolina</button>
         <button class="block-btn" data-json-src="prefabs/exports/CasteloNevadoFantasia.json">🏰 Castelo Nevado Fantasia</button>
         <button class="block-btn" data-json-src="prefabs/exports/CasteloDeContoDeFadasDourado.json">🏰 Castelo de Conto de Fadas Dourado</button>
@@ -202,8 +201,6 @@
         <button class="block-btn" data-json-src="prefabs/exports/FortalezaInvernalDoPenhasco.json">🏰 Fortaleza Invernal do Penhasco</button>
         <button class="block-btn" data-json-src="prefabs/exports/FortalezaDaBastilha.json">🏰 Fortaleza da Bastilha</button>
         <button class="block-btn" data-json-src="prefabs/exports/FortalezaDasTresTorresAzuis.json">🏰 Fortaleza das Três Torres Azuis</button>
-        <button class="block-btn" data-json-src="prefabs/exports/VilaVikingNeve100x100.json">🪓 Vila Viking na Neve 100x100</button>
-        <button class="block-btn" data-json-src="prefabs/exports/VilaVikingGramado100x100.json">🪓 Vila Viking na Grama 100x100</button>
         <button class="block-btn" data-type="Prefab_CasteloNormando">🏰 Castelo Normando</button>
         <button class="block-btn" data-type="Prefab_TemploClassicoColunado">🏛️ Templo Clássico Colunado</button>
         <button class="block-btn" data-type="Prefab_ForteMedieval">🏰 Forte Medieval</button>
@@ -218,37 +215,6 @@
         <button class="block-btn" data-type="Prefab_CasaGeminada">🏘️ Casa Geminada</button>
         <button class="block-btn" data-type="Prefab_VilaComPatio">🏡 Vila c/ Pátio (shell)</button>
         <button class="block-btn" data-type="Prefab_Arvore">🌳 Árvore</button>
-        <button class="block-btn" data-json-src="prefabs/exports/ArvoreNova1.json">🌳 Árvore Nova (1)</button>
-        <button class="block-btn" data-json-src="prefabs/exports/ArvoreNova5.json">🌳 Árvore Nova (5)</button>
-        <button class="block-btn" data-json-src="prefabs/exports/ArvoreNova10.json">🌳 Árvore Nova (10)</button>
-        <button class="block-btn" data-json-src="prefabs/exports/BosqueDasSequoias.json">🌲 Bosque das Sequóias</button>
-        <button class="block-btn" data-json-src="prefabs/exports/EwokVillageForest.json">🌲 Ewok Village Forest</button>
-        <button class="block-btn" data-json-src="prefabs/exports/BonsaiZenGramado.json">🌳 Bonsai Zen</button>
-        <button class="block-btn" data-json-src="prefabs/exports/PinheiroEscalonadoGramado.json">🌲 Pinheiro Escalonado</button>
-        <button class="block-btn" data-json-src="prefabs/exports/PalmeiraTropicalGramado.json">🌴 Palmeira Tropical</button>
-        <button class="block-btn" data-json-src="prefabs/exports/ArvoreMundoAncestralDiorama.json">🌳 Árvore Mundo</button>
-        <button class="block-btn" data-json-src="prefabs/exports/ArvoreRaizesVermelhasGramado.json">🌳 Árvore Vermelha</button>
-        <button class="block-btn" data-json-src="prefabs/exports/ArvoreDragonBlood.json">🌲 Árvore Dragão</button>
-        <button class="block-btn" data-json-src="prefabs/exports/BaobaGiganteDeserto.json">🌳 Baobá Gigante</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaTropicalDensa.json">🌴 Floresta Tropical</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaTropical30x30.json">🌴 Floresta Tropical 30x30</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaAraucarias30x30.json">🌲 Floresta de Araucárias 30x30</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaPinheiros30x30.json">🌲 Floresta de Pinheiros 30x30</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaPinheirosNeve30x30.json">❄️ Floresta de Pinheiros de Neve 30x30</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaBoreal30x30.json">🌲 Floresta Boreal 30x30</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaCaducifolia30x30.json">🍂 Floresta Caducifólia 30x30</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaCerejeirasJaponesa30x30.json">🌸 Floresta Japonesa de Cerejeiras 30x30</button>
-        <button class="block-btn" data-json-src="prefabs/exports/ReservaFlorestalMediterranea30x30.json">🌿 Reserva Florestal Mediterrânea 30x30</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaAraucarias60x60.json">🌲 Floresta de Araucárias 60x60</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaPinheiros60x60.json">🌲 Floresta de Pinheiros 60x60</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaPinheirosNeve60x60.json">❄️ Floresta de Pinheiros de Neve 60x60</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaTropical60x60.json">🌴 Floresta Tropical 60x60</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaCaducifolia60x60.json">🍂 Floresta Caducifólia 60x60</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaCerejeirasJaponesa60x60.json">🌸 Floresta Japonesa de Cerejeiras 60x60</button>
-        <button class="block-btn" data-json-src="prefabs/exports/FlorestaPerene60x60.json">🌲 Floresta Perene 60x60</button>
-        <button class="block-btn" data-json-src="prefabs/exports/BosqueFechadoComClareira60x60.json">🌳 Bosque Fechado com Clareira 60x60</button>
-        <button class="block-btn" data-json-src="prefabs/exports/ReservaFlorestalMediterranea60x60.json">🌿 Reserva Florestal Mediterrânea 60x60</button>
-        <button class="block-btn" data-json-src="prefabs/exports/ReservaFlorestalTemperada100x100.json">🌲 Reserva Florestal Temperada 100x100</button>
         <button class="block-btn" data-type="Prefab_TorreEiffel">🗼 Torre Eiffel</button>
         <button class="block-btn" data-type="Prefab_TokyoSkytree">📡 Tokyo Skytree (Tóquio)</button>
         <button class="block-btn" data-type="Prefab_CristoRedentor">⛪ Cristo Redentor</button>
@@ -353,6 +319,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script type="module" src="script.js?v=20260507f"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

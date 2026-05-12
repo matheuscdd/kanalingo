@@ -26,28 +26,11 @@ import {
 } from "./prefabs/shared/shapeOrientation.js";
 import { getFakeShadeForNormal } from "./prefabs/shared/fakeShading.js";
 import { getUpwardSurfaceStudPlacements } from "./prefabs/shared/shapeStuds.js";
-import { createPrefabImageVisualMode } from "./prefabs/shared/prefabImageVisualMode.js?v=20260507e";
-import {
-    PREFAB_IMPOSTOR_TOP_VIEW,
-    PREFAB_IMPOSTOR_VIEW_KEYS,
-    createPrefabImpostorManifestEntry,
-    getPrefabImpostorSideViewIndex,
-} from "./prefabs/shared/prefabImpostorViews.js?v=20260507e";
 
 const THREE = globalThis.THREE;
 if (!THREE) {
     throw new Error("Three.js failed to load before script.js.");
 }
-
-const urlParams = new URLSearchParams(globalThis.location.search);
-const isPrefabImpostorToolSession = urlParams.get("tool") === "prefab-impostor";
-const DEFAULT_SCENE_BACKGROUND = 0xe8ecf1;
-const prefabImpostorCaptureState = {
-    width: 1024,
-    height: 1024,
-    pixelRatio: 1,
-    background: null,
-};
 
 // --- FUNÇÃO DE DICA (UI) ---
 function showHint(msg) {
@@ -107,7 +90,6 @@ const STUD_RADIUS = 0.25;
 const STUD_HEIGHT = 0.2;
 const PERF_SAMPLE_LIMIT = 180;
 const PERF_UPDATE_MS = 250;
-const PREFAB_GHOST_INSTANCING_THRESHOLD = 4000;
 const MEMORY_POLL_MS = 2500;
 const TARGET_FRAME_MS = 1000 / 60;
 const BENCHMARK_BATCH_SIZE = 300;
@@ -151,14 +133,6 @@ const TOOL_SHAPE = "shape";
 const TOOL_PASTE = "paste";
 const TOOL_DELETE_BLOCK = "delete-block";
 const TOOL_DELETE_GROUP = "delete-group";
-const VISUAL_MODE_3D = "3d";
-const VISUAL_MODE_IMAGES = "images";
-const VISUAL_MODE_IMAGES_HINT = "Modo Imagens ativado. Mude para Top para selecionar prefabs no catálogo ou mover prefabs já colocados; fora do Top, edicao e 1a pessoa continuam bloqueadas.";
-const VISUAL_MODE_IMAGES_TOP_HINT = "Modo Imagens + Top ativo. Selecione um prefab no catálogo para colocar ou clique em um prefab pronto no mapa para mover.";
-const VISUAL_MODE_3D_HINT = "Modo 3D reativado.";
-const VISUAL_MODE_BLOCKED_EDIT_HINT = "Modo Imagens: mude para Top para selecionar um prefab no catálogo ou mover um prefab pronto no mapa; ferramentas de bloco continuam indisponiveis.";
-const VISUAL_MODE_BLOCKED_EDIT_TOP_HINT = "Modo Imagens + Top: selecione um prefab no catálogo ou clique num prefab pronto no mapa; ferramentas de bloco continuam indisponiveis.";
-const VISUAL_MODE_BLOCKED_FP_HINT = "Modo Imagens: a 1a pessoa fica desativada enquanto o renderer 2D isolado estiver ativo.";
 
 // --- ESTADO GERAL ---
 let currentType = "1x1";
@@ -168,18 +142,6 @@ let currentShapeDirection = SHAPE_DIRECTION_DEFAULT;
 let currentShapeRot = 0;
 let isDeleteMode = false;
 let isDeleteGroupMode = false;
-let currentVisualMode = VISUAL_MODE_3D;
-const imageTopDragState = {
-    groupId: null,
-    prefabId: "",
-    startPlacement: null,
-    candidatePlacement: null,
-    candidateValid: false,
-    pointerWorldX: 0,
-    pointerWorldZ: 0,
-    cellOffsetX: 0,
-    cellOffsetZ: 0,
-};
 
 let hoveredGroupId = null;
 let hoveredBlockId = null;
@@ -200,7 +162,6 @@ const blockById = new Map();
 const groupToBlockIds = new Map();
 const groupToSourcePrefabId = new Map();
 const groupToPrefabPlacement = new Map();
-const imageOnlyPrefabGroupIds = new Set();
 const blockToInstanceGroupKeys = new Map();
 let exportedStructureSerial = 1;
 
@@ -217,8 +178,6 @@ let currentCX = 0,
     currentCY = 0,
     currentCZ = 0;
 let rollOver;
-const imageTopPointerPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
-const imageTopPointerWorld = new THREE.Vector3();
 
 const LEGACY_PREFAB_TYPE_PREFIX = "Prefab_";
 const PREFAB_TYPE_PREFIX = "Prefab:";
@@ -231,7 +190,6 @@ const btnJsonOpenFile = document.getElementById("btn-json-open-file");
 const btnJsonDownload = document.getElementById("btn-json-download");
 const btnJsonClear = document.getElementById("btn-json-clear");
 const jsonFileInput = document.getElementById("json-file-input");
-const btnVisualMode = document.getElementById("btn-visual-mode");
 const catalogButtonByType = new Map();
 const catalogItemByType = new Map();
 const builderToolsPanel = document.getElementById("builder-tools-panel");
@@ -351,25 +309,6 @@ function rotateShapeToolOrientation(step = 1) {
 }
 
 function rotateActivePlacement(step = 1) {
-    if (isImageVisualMode()) {
-        if (!isInteractiveImageTopView()) {
-            showVisualModeBlockedHint();
-            return;
-        }
-        if (isImageTopCatalogPrefabPlacementEnabled()) {
-            currentRot = (currentRot + step + 4) % 4;
-            updateBuildPreview();
-            updateBuilderToolsStatus(`Rotação do prefab selecionado atualizada (${step > 0 ? "+90" : "-90"}deg)`);
-            return;
-        }
-        if (!rotateImageTopDraggedPrefab(step)) {
-            showHint("Selecione um prefab no catálogo ou clique em um prefab pronto para mover.");
-            return;
-        }
-        updateBuilderToolsStatus(`Rotação do prefab atualizada (${step > 0 ? "+90" : "-90"}deg)`);
-        return;
-    }
-
     if (activeBuildTool === TOOL_SHAPE) {
         rotateShapeToolAroundWorldY(step);
         updateBuildPreview();
@@ -411,570 +350,8 @@ function updateBuilderToolButtons() {
 }
 
 function updateHistoryButtons() {
-    const historyLocked = isImageVisualMode() && !isInteractiveImageTopView();
-    if (builderToolUndoButton) builderToolUndoButton.disabled = historyLocked || undoStack.length === 0;
-    if (builderToolRedoButton) builderToolRedoButton.disabled = historyLocked || redoStack.length === 0;
-}
-
-function isImageVisualMode() {
-    return currentVisualMode === VISUAL_MODE_IMAGES;
-}
-
-function isInteractiveImageTopView() {
-    return isImageVisualMode() && isTopDownView && !isFirstPerson && !isPrefabImpostorToolSession;
-}
-
-function getImageVisualModeHint() {
-    return isInteractiveImageTopView() ? VISUAL_MODE_IMAGES_TOP_HINT : VISUAL_MODE_IMAGES_HINT;
-}
-
-function getImageVisualModeBlockedEditHint() {
-    return isInteractiveImageTopView() ? VISUAL_MODE_BLOCKED_EDIT_TOP_HINT : VISUAL_MODE_BLOCKED_EDIT_HINT;
-}
-
-function isImageTopCatalogPrefabType(type) {
-    const prefabId = getPrefabIdFromType(type);
-    return !!prefabId && !(isRuntimePrefab?.(prefabId));
-}
-
-function isImageTopCatalogPrefabPlacementEnabled() {
-    return isInteractiveImageTopView() && activeBuildTool === TOOL_PLACE && isImageTopCatalogPrefabType(currentType);
-}
-
-function isImageTopPrefabDragActive() {
-    return imageTopDragState.groupId != null;
-}
-
-function getPrefabPlacementBounds(prefabId, rot = 0) {
-    const normalizedRot = ((Number(rot) || 0) % 4 + 4) % 4;
-    const prefab = PREFABS[prefabId];
-    const rotation = prefab?.meta?.rotations?.[normalizedRot];
-    if (!prefab) return { dx: 1, dy: 1, dz: 1 };
-
-    return rotation
-        ? { dx: rotation.dx, dy: prefab.dy, dz: rotation.dz }
-        : { dx: prefab.dx, dy: prefab.dy, dz: prefab.dz };
-}
-
-function clonePrefabPlacement(placement) {
-    if (!placement) return null;
-    return {
-        type: typeof placement.type === "string" ? placement.type : "",
-        x: Number(placement.x) || 0,
-        y: Number(placement.y) || 0,
-        z: Number(placement.z) || 0,
-        rot: ((Number(placement.rot) || 0) % 4 + 4) % 4,
-    };
-}
-
-function collectBuiltInPrefabPlacementsForVisualMode() {
-    const placements = [];
-
-    groupToPrefabPlacement.forEach((placement, groupId) => {
-        const prefabId = typeof placement?.type === "string" ? placement.type.trim() : "";
-        if (!prefabId || !PREFABS[prefabId] || isRuntimePrefab?.(prefabId)) return;
-
-        const groupSize = groupToBlockIds.get(groupId)?.size ?? 0;
-        if (groupSize === 0 && !imageOnlyPrefabGroupIds.has(groupId)) return;
-
-        const normalizedPlacement = clonePrefabPlacement(placement);
-        const bounds = getPrefabPlacementBounds(prefabId, normalizedPlacement.rot);
-
-        placements.push({
-            groupId,
-            prefabId,
-            placement: {
-                x: normalizedPlacement.x,
-                y: normalizedPlacement.y,
-                z: normalizedPlacement.z,
-                rot: normalizedPlacement.rot,
-            },
-            bounds,
-        });
-    });
-
-    return placements;
-}
-
-function updateVisualModeUi() {
-    const imagesMode = isImageVisualMode();
-    document.body.dataset.visualMode = currentVisualMode;
-
-    if (btnVisualMode) {
-        btnVisualMode.textContent = imagesMode ? "Visual: Imagens" : "Visual: 3D";
-        btnVisualMode.title = imagesMode
-            ? "Voltar para o render 3D editavel"
-            : "Ativar o modo de imagens; em Top, prefabs prontos podem ser arrastados diretamente";
-        btnVisualMode.classList.toggle("active", imagesMode);
-        btnVisualMode.setAttribute("aria-pressed", imagesMode ? "true" : "false");
-    }
-
-    const editControlsLocked = imagesMode;
-    const interactiveImageTop = isInteractiveImageTopView();
-    if (catalogBottomBar) {
-        catalogBottomBar.classList.toggle("visual-mode-disabled", imagesMode && !interactiveImageTop);
-    }
-    [document.getElementById("left-bar"), builderToolsPanel].forEach((element) => {
-        if (element) element.classList.toggle("visual-mode-disabled", editControlsLocked);
-    });
-
-    const toggledControls = [
-        document.getElementById("btn-fp"),
-        document.getElementById("btn-rotate"),
-        document.getElementById("btn-delete"),
-        document.getElementById("btn-delete-group"),
-        document.getElementById("btn-clear"),
-        document.getElementById("btn-benchmark-auto"),
-        btnJsonImport,
-        btnJsonCreateStructure,
-        btnJsonOpenFile,
-        builderToolUndoButton,
-        builderToolRedoButton,
-        builderToolCopyButton,
-        builderToolPasteButton,
-        builderToolClearSelectionButton,
-        builderToolShapeDirectionButton,
-        builderToolWidthInput,
-        builderToolDepthInput,
-        builderToolHeightInput,
-        builderToolShapeSelect,
-        ...builderToolButtons,
-        ...document.querySelectorAll(".copy-json-btn"),
-        ...document.querySelectorAll(".color-btn"),
-    ];
-
-    toggledControls.forEach((control) => {
-        if (control) control.disabled = editControlsLocked;
-    });
-
-    document.querySelectorAll(".block-btn").forEach((control) => {
-        if (!imagesMode) {
-            control.disabled = false;
-            return;
-        }
-
-        if (!interactiveImageTop) {
-            control.disabled = true;
-            return;
-        }
-
-        control.disabled = !isImageTopCatalogPrefabType(control.dataset.type || "");
-    });
-
-    if (interactiveImageTop) {
-        [document.getElementById("btn-rotate"), builderToolUndoButton, builderToolRedoButton].forEach((control) => {
-            if (control) control.disabled = false;
-        });
-    }
-}
-
-function showVisualModeBlockedHint(message = "") {
-    if (!isImageVisualMode()) return false;
-    showHint(message || getImageVisualModeBlockedEditHint());
-    return true;
-}
-
-function syncPrefabImageVisualModeCameraView() {
-    prefabImageVisualMode.setCameraView({ isTopDownView, cameraAngleIndex });
-}
-
-function syncPrefabImageVisualModeFromWorld() {
-    prefabImageVisualMode.rebuildFromPlacements(collectBuiltInPrefabPlacementsForVisualMode());
-}
-
-function syncPrefabImageVisualModeHoverState() {
-    prefabImageVisualMode.setHoveredPlacement(hoveredGroupId);
-}
-
-function clearImageTopPrefabInteraction({ clearHover = true } = {}) {
-    imageTopDragState.groupId = null;
-    imageTopDragState.prefabId = "";
-    imageTopDragState.startPlacement = null;
-    imageTopDragState.candidatePlacement = null;
-    imageTopDragState.candidateValid = false;
-    imageTopDragState.pointerWorldX = 0;
-    imageTopDragState.pointerWorldZ = 0;
-    imageTopDragState.cellOffsetX = 0;
-    imageTopDragState.cellOffsetZ = 0;
-
-    prefabImageVisualMode.setDraggedPlacement(null);
-    prefabImageVisualMode.clearDragPreview();
-    if (clearHover) {
-        hoveredGroupId = null;
-        prefabImageVisualMode.setHoveredPlacement(null);
-    } else {
-        syncPrefabImageVisualModeHoverState();
-    }
-}
-
-function cancelImageTopPrefabDrag(hint = "") {
-    if (!isImageTopPrefabDragActive()) return false;
-    clearImageTopPrefabInteraction({ clearHover: false });
-    updateBuilderToolsStatus(hint || "Movimentação cancelada");
-    if (hint) showHint(hint);
-    return true;
-}
-
-function setPrefabImageVisualModeEnabled(enabled) {
-    if (enabled) {
-        syncPrefabImageVisualModeFromWorld();
-        syncPrefabImageVisualModeCameraView();
-        prefabImageVisualMode.enable();
-        return;
-    }
-
-    prefabImageVisualMode.disable();
-}
-
-function buildPrefabPlacementRecordForVisualMode(groupId, placement) {
-    const normalizedPlacement = clonePrefabPlacement(placement);
-    const prefabId = typeof normalizedPlacement?.type === "string" ? normalizedPlacement.type.trim() : "";
-    if (!prefabId || !PREFABS[prefabId]) return null;
-
-    return {
-        groupId,
-        prefabId,
-        placement: {
-            x: normalizedPlacement.x,
-            y: normalizedPlacement.y,
-            z: normalizedPlacement.z,
-            rot: normalizedPlacement.rot,
-        },
-        bounds: getPrefabPlacementBounds(prefabId, normalizedPlacement.rot),
-    };
-}
-
-function updatePointerRayFromClient(clientX, clientY) {
-    const rect = renderer.domElement.getBoundingClientRect();
-    if (!rect.width || !rect.height) return false;
-
-    mouse.x = ((clientX - rect.left) / rect.width) * 2 - 1;
-    mouse.y = -((clientY - rect.top) / rect.height) * 2 + 1;
-    raycaster.setFromCamera(mouse, orthoCamera);
-    return true;
-}
-
-function getImageTopPointerWorldPoint(clientX, clientY, target = imageTopPointerWorld) {
-    if (!updatePointerRayFromClient(clientX, clientY)) return null;
-    return raycaster.ray.intersectPlane(imageTopPointerPlane, target) ? target : null;
-}
-
-function getImageTopCenteredPlacementOrigin(worldPoint, dx, dz) {
-    if (!worldPoint) return null;
-
-    return clampPlacementToWorld(
-        Math.floor(worldPoint.x) - Math.floor(dx / 2),
-        Math.floor(worldPoint.z) - Math.floor(dz / 2),
-        dx,
-        dz,
-    );
-}
-
-function getImageTopCenteredCellOffset(dx, dz) {
-    return {
-        x: Math.max(0, Math.floor(dx / 2)),
-        z: Math.max(0, Math.floor(dz / 2)),
-    };
-}
-
-function canMoveImageTopPrefabToPlacement(groupId, placement) {
-    const prefabId = typeof placement?.type === "string" ? placement.type.trim() : "";
-    if (!groupId || !prefabId) return false;
-    if (imageOnlyPrefabGroupIds.has(groupId)) {
-        return canPlaceImageOnlyPrefabPlacement(placement, groupId);
-    }
-
-    return canPlacePrefabIgnoringGroup(placement.x, placement.y, placement.z, prefabId, placement.rot, groupId)
-        && !collidesWithImageOnlyPrefabPlacement(placement, groupId);
-}
-
-function collidesWithImageOnlyPrefabPlacement(placement, ignoredGroupId = null) {
-    const normalizedPlacement = clonePrefabPlacement(placement);
-    const prefabId = normalizedPlacement?.type;
-    if (!prefabId || !PREFABS[prefabId]) return false;
-
-    const sourceBounds = getPrefabPlacementBounds(prefabId, normalizedPlacement.rot);
-    const sourceMaxX = normalizedPlacement.x + sourceBounds.dx;
-    const sourceMaxY = normalizedPlacement.y + sourceBounds.dy;
-    const sourceMaxZ = normalizedPlacement.z + sourceBounds.dz;
-
-    for (const groupId of imageOnlyPrefabGroupIds) {
-        if (groupId === ignoredGroupId) continue;
-        const currentPlacement = clonePrefabPlacement(groupToPrefabPlacement.get(groupId));
-        const currentPrefabId = currentPlacement?.type;
-        if (!currentPrefabId || !PREFABS[currentPrefabId]) continue;
-
-        const currentBounds = getPrefabPlacementBounds(currentPrefabId, currentPlacement.rot);
-        const currentMaxX = currentPlacement.x + currentBounds.dx;
-        const currentMaxY = currentPlacement.y + currentBounds.dy;
-        const currentMaxZ = currentPlacement.z + currentBounds.dz;
-
-        const overlaps =
-            normalizedPlacement.x < currentMaxX &&
-            sourceMaxX > currentPlacement.x &&
-            normalizedPlacement.y < currentMaxY &&
-            sourceMaxY > currentPlacement.y &&
-            normalizedPlacement.z < currentMaxZ &&
-            sourceMaxZ > currentPlacement.z;
-        if (overlaps) return true;
-    }
-
-    return false;
-}
-
-function canPlaceImageOnlyPrefabPlacement(placement, ignoredGroupId = null) {
-    const normalizedPlacement = clonePrefabPlacement(placement);
-    const prefabId = normalizedPlacement?.type;
-    if (!prefabId) return false;
-
-    const prefab = PREFABS[prefabId];
-    const rotation = prefab?.meta?.rotations?.[normalizedPlacement.rot];
-    if (!prefab || !rotation) return false;
-
-    const half = CURRENT_GRID_SIZE / 2;
-    if (normalizedPlacement.y < 0 || normalizedPlacement.y + prefab.dy > MAX_HEIGHT) return false;
-    if (
-        normalizedPlacement.x < -half ||
-        normalizedPlacement.z < -half ||
-        normalizedPlacement.x + rotation.dx > half ||
-        normalizedPlacement.z + rotation.dz > half
-    ) {
-        return false;
-    }
-
-    const collidesWithWorld = ignoredGroupId
-        ? collidesWithPrefabWorldIgnoringGroup(
-              normalizedPlacement.x,
-              normalizedPlacement.y,
-              normalizedPlacement.z,
-              rotation,
-              ignoredGroupId,
-          )
-        : collidesWithPrefabWorld(normalizedPlacement.x, normalizedPlacement.y, normalizedPlacement.z, rotation);
-
-    if (collidesWithWorld) return false;
-    return !collidesWithImageOnlyPrefabPlacement(normalizedPlacement, ignoredGroupId);
-}
-
-function buildImageTopCatalogPlacement(worldPoint) {
-    if (!worldPoint || !isImageTopCatalogPrefabPlacementEnabled()) return null;
-
-    const prefabId = getPrefabIdFromType(currentType);
-    if (!prefabId || !PREFABS[prefabId]) return null;
-
-    const bounds = getPrefabPlacementBounds(prefabId, currentRot);
-    const clampedOrigin = getImageTopCenteredPlacementOrigin(worldPoint, bounds.dx, bounds.dz);
-    const placement = {
-        type: prefabId,
-        x: clampedOrigin.cx,
-        y: 0,
-        z: clampedOrigin.cz,
-        rot: currentRot,
-    };
-
-    return {
-        placement,
-        previewRecord: buildPrefabPlacementRecordForVisualMode(-1, placement),
-        isValid: canPlaceImageOnlyPrefabPlacement(placement),
-    };
-}
-
-function syncImageTopCatalogPlacementPreview(worldPoint, hoveredPlacement = null) {
-    if (isImageTopPrefabDragActive()) return false;
-    if (!isImageTopCatalogPrefabPlacementEnabled() || !worldPoint || hoveredPlacement) {
-        prefabImageVisualMode.clearDragPreview();
-        return false;
-    }
-
-    const candidate = buildImageTopCatalogPlacement(worldPoint);
-    if (!candidate?.previewRecord) {
-        prefabImageVisualMode.clearDragPreview();
-        return false;
-    }
-
-    prefabImageVisualMode.setDragPreview(candidate.previewRecord, candidate.isValid);
-    return candidate.isValid;
-}
-
-function commitImageTopCatalogPlacement(worldPoint) {
-    const candidate = buildImageTopCatalogPlacement(worldPoint);
-    if (!candidate?.placement) {
-        showHint("Selecione um prefab pronto no catálogo para posicionar.");
-        return false;
-    }
-
-    if (!candidate.isValid) {
-        showHint("Posição inválida para o prefab selecionado.");
-        return false;
-    }
-
-    executeBuilderCommand(
-        createImageOnlyPrefabPlacementCommand(
-            candidate.placement,
-            `Colar prefab ${candidate.placement.type}`,
-        ),
-    );
-    showHint(`Prefab ${candidate.placement.type} posicionado.`);
-    return true;
-}
-
-function syncImageTopPrefabDragPreview() {
-    if (!isImageTopPrefabDragActive()) {
-        prefabImageVisualMode.setDraggedPlacement(null);
-        syncImageTopCatalogPlacementPreview(
-            Number.isFinite(imageTopDragState.pointerWorldX) && Number.isFinite(imageTopDragState.pointerWorldZ)
-                ? { x: imageTopDragState.pointerWorldX, z: imageTopDragState.pointerWorldZ }
-                : null,
-            hoveredGroupId ? { groupId: hoveredGroupId } : null,
-        );
-        updateBuilderToolsStatus();
-        return;
-    }
-
-    const previewRecord = buildPrefabPlacementRecordForVisualMode(imageTopDragState.groupId, imageTopDragState.candidatePlacement);
-    prefabImageVisualMode.setDraggedPlacement(imageTopDragState.groupId);
-    if (previewRecord) {
-        prefabImageVisualMode.setDragPreview(previewRecord, imageTopDragState.candidateValid);
-    } else {
-        prefabImageVisualMode.clearDragPreview();
-    }
-    updateBuilderToolsStatus();
-}
-
-function updateImageTopHoveredPlacement(worldPoint) {
-    if (!isInteractiveImageTopView()) return false;
-
-    const hoveredPlacement = worldPoint ? prefabImageVisualMode.pickTopPlacementAt(worldPoint.x, worldPoint.z) : null;
-    const nextGroupId = hoveredPlacement?.groupId ?? null;
-    if (hoveredGroupId === nextGroupId) {
-        syncImageTopCatalogPlacementPreview(worldPoint, hoveredPlacement);
-        return !!hoveredPlacement;
-    }
-
-    hoveredGroupId = nextGroupId;
-    syncPrefabImageVisualModeHoverState();
-    syncImageTopCatalogPlacementPreview(worldPoint, hoveredPlacement);
-    updateBuilderToolsStatus();
-    return !!hoveredPlacement;
-}
-
-function updateImageTopDragCandidate(worldPoint) {
-    if (!isImageTopPrefabDragActive() || !worldPoint) return false;
-
-    imageTopDragState.pointerWorldX = worldPoint.x;
-    imageTopDragState.pointerWorldZ = worldPoint.z;
-
-    const currentPlacement = imageTopDragState.candidatePlacement || imageTopDragState.startPlacement;
-    const bounds = getPrefabPlacementBounds(imageTopDragState.prefabId, currentPlacement?.rot ?? imageTopDragState.startPlacement?.rot);
-    const originX = Math.floor(worldPoint.x) - imageTopDragState.cellOffsetX;
-    const originZ = Math.floor(worldPoint.z) - imageTopDragState.cellOffsetZ;
-    const clampedOrigin = clampPlacementToWorld(originX, originZ, bounds.dx, bounds.dz);
-    imageTopDragState.candidatePlacement = {
-        type: imageTopDragState.prefabId,
-        x: clampedOrigin.cx,
-        y: imageTopDragState.startPlacement.y,
-        z: clampedOrigin.cz,
-        rot: currentPlacement?.rot ?? imageTopDragState.startPlacement.rot,
-    };
-    imageTopDragState.candidateValid = canMoveImageTopPrefabToPlacement(imageTopDragState.groupId, imageTopDragState.candidatePlacement);
-    syncImageTopPrefabDragPreview();
-    return imageTopDragState.candidateValid;
-}
-
-function beginImageTopPrefabDrag(pickedRecord, worldPoint) {
-    if (!pickedRecord?.groupId || !pickedRecord.prefabId || !pickedRecord.placement) return false;
-
-    const startPlacement = clonePrefabPlacement({ ...pickedRecord.placement, type: pickedRecord.prefabId });
-    const bounds = getPrefabPlacementBounds(startPlacement.type, startPlacement.rot);
-    const centeredOffset = getImageTopCenteredCellOffset(bounds.dx, bounds.dz);
-
-    imageTopDragState.groupId = pickedRecord.groupId;
-    imageTopDragState.prefabId = pickedRecord.prefabId;
-    imageTopDragState.startPlacement = startPlacement;
-    imageTopDragState.candidatePlacement = { ...startPlacement };
-    imageTopDragState.candidateValid = true;
-    imageTopDragState.pointerWorldX = worldPoint?.x ?? startPlacement.x;
-    imageTopDragState.pointerWorldZ = worldPoint?.z ?? startPlacement.z;
-    imageTopDragState.cellOffsetX = centeredOffset.x;
-    imageTopDragState.cellOffsetZ = centeredOffset.z;
-
-    prefabImageVisualMode.setDraggedPlacement(pickedRecord.groupId);
-    updateImageTopDragCandidate(worldPoint || { x: startPlacement.x, z: startPlacement.z });
-    updateBuilderToolsStatus(`Movendo ${pickedRecord.prefabId}`);
-    showHint(`Movendo ${pickedRecord.prefabId}: clique novamente para soltar.`);
-    return true;
-}
-
-function rotateImageTopDraggedPrefab(step = 1) {
-    if (!isImageTopPrefabDragActive()) return false;
-
-    const currentPlacement = imageTopDragState.candidatePlacement || imageTopDragState.startPlacement;
-    const nextRot = ((Number(currentPlacement?.rot) || 0) + step + 4) % 4;
-    const nextBounds = getPrefabPlacementBounds(imageTopDragState.prefabId, nextRot);
-    const centeredOffset = getImageTopCenteredCellOffset(nextBounds.dx, nextBounds.dz);
-    imageTopDragState.cellOffsetX = centeredOffset.x;
-    imageTopDragState.cellOffsetZ = centeredOffset.z;
-    imageTopDragState.candidatePlacement = {
-        ...currentPlacement,
-        type: imageTopDragState.prefabId,
-        rot: nextRot,
-    };
-    updateImageTopDragCandidate({ x: imageTopDragState.pointerWorldX, z: imageTopDragState.pointerWorldZ });
-    return true;
-}
-
-function commitImageTopPrefabDrag() {
-    if (!isImageTopPrefabDragActive()) return false;
-    if (!imageTopDragState.candidatePlacement || !imageTopDragState.candidateValid) {
-        showHint("Destino inválido para o prefab selecionado.");
-        return false;
-    }
-
-    const command = createMovePrefabCommand(imageTopDragState.groupId, imageTopDragState.candidatePlacement);
-    clearImageTopPrefabInteraction();
-    executeBuilderCommand(command);
-    showHint("Prefab movido.");
-    return true;
-}
-
-function handleImageTopPrefabPlacementInteraction() {
-    if (!isInteractiveImageTopView()) {
-        showVisualModeBlockedHint();
-        return false;
-    }
-
-    if (isImageTopPrefabDragActive()) {
-        return commitImageTopPrefabDrag();
-    }
-
-    const pickedRecord = hoveredGroupId ? prefabImageVisualMode.pickTopPlacementAt(imageTopDragState.pointerWorldX, imageTopDragState.pointerWorldZ) : null;
-    if (pickedRecord?.groupId === hoveredGroupId) {
-        return beginImageTopPrefabDrag(pickedRecord, { x: imageTopDragState.pointerWorldX, z: imageTopDragState.pointerWorldZ });
-    }
-
-    if (isImageTopCatalogPrefabPlacementEnabled()) {
-        return commitImageTopCatalogPlacement({ x: imageTopDragState.pointerWorldX, z: imageTopDragState.pointerWorldZ });
-    }
-
-    showHint("Selecione um prefab no catálogo ou clique em um prefab pronto para mover.");
-    return false;
-}
-
-function applyActiveBuildTool(tool, hint = "") {
-    activeBuildTool = tool;
-    isDeleteMode = tool === TOOL_DELETE_BLOCK;
-    isDeleteGroupMode = tool === TOOL_DELETE_GROUP;
-    clearHighlights();
-    selectionAnchor = null;
-    updateBuilderToolButtons();
-    const deleteButton = document.getElementById("btn-delete");
-    const deleteGroupButton = document.getElementById("btn-delete-group");
-    if (deleteButton) deleteButton.classList.toggle("active", isDeleteMode);
-    if (deleteGroupButton) deleteGroupButton.classList.toggle("active", isDeleteGroupMode);
-    if (tool !== TOOL_SELECT) clearToolPreview();
-    if (tool === TOOL_PLACE) updateRollOver();
-    else if (rollOver) rollOver.visible = false;
-    updateBuilderToolsStatus(hint);
+    if (builderToolUndoButton) builderToolUndoButton.disabled = undoStack.length === 0;
+    if (builderToolRedoButton) builderToolRedoButton.disabled = redoStack.length === 0;
 }
 
 function updateBuilderToolsStatus(extraMessage = "") {
@@ -1000,22 +377,8 @@ function updateBuilderToolsStatus(extraMessage = "") {
     const shapeRotationLabel = activeBuildTool === TOOL_SHAPE
         ? ` | Giro: ${getShapeRotationLabel(getActiveShapeRot())}`
         : "";
-    let visualModeLabel = "";
-    if (isImageVisualMode()) {
-        visualModeLabel = isInteractiveImageTopView() ? " | Visual: imagens | Top" : " | Visual: imagens";
-    }
     const historyLabel = ` | Histórico: ${undoStack.length}/${redoStack.length}`;
-    let imageTopDragLabel = "";
-    if (isImageTopPrefabDragActive()) {
-        const destinationLabel = imageTopDragState.candidateValid ? "destino válido" : "destino inválido";
-        imageTopDragLabel = ` | Movendo: ${imageTopDragState.prefabId} | ${destinationLabel}`;
-    } else if (isImageTopCatalogPrefabPlacementEnabled()) {
-        imageTopDragLabel = ` | Posicionando: ${getPrefabIdFromType(currentType)} | Clique no mapa para colocar`;
-    } else if (isInteractiveImageTopView()) {
-        imageTopDragLabel = " | Selecione um prefab no catálogo ou clique em um prefab para mover";
-    }
-    const extraLabel = extraMessage ? ` | ${extraMessage}` : "";
-    builderToolsStatus.textContent = `Ferramenta: ${toolNames[activeBuildTool] || activeBuildTool}${directionLabel}${shapeRotationLabel}${selectionLabel}${clipboardLabel}${visualModeLabel}${imageTopDragLabel}${historyLabel}${extraLabel}`;
+    builderToolsStatus.textContent = `Ferramenta: ${toolNames[activeBuildTool] || activeBuildTool}${directionLabel}${shapeRotationLabel}${selectionLabel}${clipboardLabel}${historyLabel}${extraMessage ? ` | ${extraMessage}` : ""}`;
     updateHistoryButtons();
 }
 
@@ -1109,13 +472,20 @@ function setToolPreviewBundle(bundle, isValid, key) {
 }
 
 function setActiveBuildTool(tool, hint = "") {
-    if (isImageVisualMode()) {
-        showVisualModeBlockedHint(getImageVisualModeBlockedEditHint());
-        updateBuilderToolsStatus();
-        return;
-    }
-
-    applyActiveBuildTool(tool, hint);
+    activeBuildTool = tool;
+    isDeleteMode = tool === TOOL_DELETE_BLOCK;
+    isDeleteGroupMode = tool === TOOL_DELETE_GROUP;
+    clearHighlights();
+    selectionAnchor = null;
+    updateBuilderToolButtons();
+    const deleteButton = document.getElementById("btn-delete");
+    const deleteGroupButton = document.getElementById("btn-delete-group");
+    if (deleteButton) deleteButton.classList.toggle("active", isDeleteMode);
+    if (deleteGroupButton) deleteGroupButton.classList.toggle("active", isDeleteGroupMode);
+    if (tool !== TOOL_SELECT) clearToolPreview();
+    if (tool === TOOL_PLACE) updateRollOver();
+    else if (rollOver) rollOver.visible = false;
+    updateBuilderToolsStatus(hint);
 }
 
 function getToolDimensions() {
@@ -1167,47 +537,6 @@ function clearSelection() {
     selectionBounds = null;
     selectionAnchor = null;
     updateBuilderToolsStatus();
-}
-
-function clearTransientBuilderVisuals() {
-    clearHighlights();
-    clearImageTopPrefabInteraction();
-    clearSelection();
-    selectionAnchor = null;
-    clearToolPreview();
-    if (rollOver) rollOver.visible = false;
-}
-
-function syncVisualModeTransientState() {
-    clearTransientBuilderVisuals();
-
-    if (isImageVisualMode()) {
-        if (activeBuildTool === TOOL_PLACE) updateBuilderToolsStatus();
-        else applyActiveBuildTool(TOOL_PLACE);
-        return;
-    }
-
-    if (activeBuildTool === TOOL_PLACE) updateRollOverVisual();
-    else updateBuildPreview();
-    updateBuilderToolsStatus();
-}
-
-function setVisualMode(mode, { showModeHint = true } = {}) {
-    if (mode !== VISUAL_MODE_3D && mode !== VISUAL_MODE_IMAGES) return false;
-    if (currentVisualMode === mode) return false;
-
-    if (mode === VISUAL_MODE_IMAGES && perfState.autobenchmark.running) {
-        cancelBenchmark("Auto FP interrompido ao ativar o modo Imagens.");
-    }
-
-    if (mode === VISUAL_MODE_IMAGES && isFirstPerson) exitFirstPerson({ hint: null });
-
-    currentVisualMode = mode;
-    setPrefabImageVisualModeEnabled(isImageVisualMode());
-    updateVisualModeUi();
-    syncVisualModeTransientState();
-    if (showModeHint) showHint(mode === VISUAL_MODE_IMAGES ? getImageVisualModeHint() : VISUAL_MODE_3D_HINT);
-    return true;
 }
 
 function applySelectionBounds(bounds) {
@@ -1409,55 +738,8 @@ function createDeleteCommand(blocks, label) {
     };
 }
 
-function createImageOnlyPrefabPlacementCommand(placement, label) {
-    const targetPlacement = clonePrefabPlacement(placement);
-    let activeGroupId = null;
-
-    return {
-        label,
-        execute() {
-            if (!targetPlacement?.type) return;
-            activeGroupId = placeImageOnlyPrefab(targetPlacement.x, targetPlacement.y, targetPlacement.z, targetPlacement.type, targetPlacement.rot, true);
-            updateStats();
-        },
-        undo() {
-            if (activeGroupId == null) return;
-            removeGroupById(activeGroupId);
-            activeGroupId = null;
-        },
-    };
-}
-
-function createMovePrefabCommand(groupId, nextPlacement) {
-    const initialPlacement = clonePrefabPlacement(groupToPrefabPlacement.get(groupId));
-    const targetPlacement = clonePrefabPlacement(nextPlacement);
-    const prefabId = targetPlacement?.type || initialPlacement?.type || groupToSourcePrefabId.get(groupId) || "prefab";
-    let activeGroupId = groupId;
-    const imageOnlyGroup = imageOnlyPrefabGroupIds.has(groupId);
-
-    function applyPlacement(placement) {
-        if (!placement?.type) return;
-        removeGroupById(activeGroupId);
-        activeGroupId = imageOnlyGroup
-            ? placeImageOnlyPrefab(placement.x, placement.y, placement.z, placement.type, placement.rot, true)
-            : placePrefab(placement.x, placement.y, placement.z, placement.type, placement.rot, true);
-        updateStats();
-    }
-
-    return {
-        label: `Mover ${prefabId}`,
-        execute() {
-            applyPlacement(targetPlacement);
-        },
-        undo() {
-            applyPlacement(initialPlacement);
-        },
-    };
-}
-
 function executeBuilderCommand(command) {
     command.execute();
-    if (isImageVisualMode()) syncPrefabImageVisualModeFromWorld();
     undoStack.push(command);
     redoStack.length = 0;
     getSelectedBlocks();
@@ -1469,7 +751,6 @@ function undoBuilderCommand() {
     const command = undoStack.pop();
     if (!command) return false;
     command.undo();
-    if (isImageVisualMode()) syncPrefabImageVisualModeFromWorld();
     redoStack.push(command);
     getSelectedBlocks();
     updateBuilderToolsStatus(`Desfeito: ${command.label}`);
@@ -1481,7 +762,6 @@ function redoBuilderCommand() {
     const command = redoStack.pop();
     if (!command) return false;
     command.execute();
-    if (isImageVisualMode()) syncPrefabImageVisualModeFromWorld();
     undoStack.push(command);
     getSelectedBlocks();
     updateBuilderToolsStatus(`Refeito: ${command.label}`);
@@ -1645,28 +925,8 @@ function getActivePlacementFootprint() {
 }
 
 function updateBuildPreview() {
-    if (isImageTopPrefabDragActive()) {
+    if (isFirstPerson) {
         clearToolPreview();
-        if (rollOver) rollOver.visible = false;
-        syncImageTopPrefabDragPreview();
-        return;
-    }
-
-    if (isInteractiveImageTopView()) {
-        clearToolPreview();
-        if (rollOver) rollOver.visible = false;
-        syncImageTopCatalogPlacementPreview(
-            Number.isFinite(imageTopDragState.pointerWorldX) && Number.isFinite(imageTopDragState.pointerWorldZ)
-                ? { x: imageTopDragState.pointerWorldX, z: imageTopDragState.pointerWorldZ }
-                : null,
-            hoveredGroupId ? { groupId: hoveredGroupId } : null,
-        );
-        return;
-    }
-
-    if (isFirstPerson || isImageVisualMode() || isPrefabImpostorToolSession) {
-        clearToolPreview();
-        if (rollOver) rollOver.visible = false;
         return;
     }
 
@@ -1952,31 +1212,10 @@ function getQualityLabel() {
 
 // --- SETUP THREE.JS ---
 const container = document.getElementById("canvas-container");
-
-function getRendererViewportSize() {
-    if (isPrefabImpostorToolSession) {
-        return {
-            width: Math.max(1, Number(prefabImpostorCaptureState.width) || 1),
-            height: Math.max(1, Number(prefabImpostorCaptureState.height) || 1),
-        };
-    }
-
-    return {
-        width: Math.max(1, globalThis.innerWidth || container.clientWidth || 1),
-        height: Math.max(1, globalThis.innerHeight || container.clientHeight || 1),
-    };
-}
-
-function getRendererAspect() {
-    const viewport = getRendererViewportSize();
-    return viewport.width / viewport.height;
-}
-
 const scene = new THREE.Scene();
-scene.background = isPrefabImpostorToolSession ? null : new THREE.Color(DEFAULT_SCENE_BACKGROUND);
-const prefabImageVisualMode = createPrefabImageVisualMode({ THREE, scene });
+scene.background = new THREE.Color(0xe8ecf1);
 
-const aspect = getRendererAspect();
+const aspect = globalThis.innerWidth / globalThis.innerHeight;
 const viewSize = 120;
 
 const orthoCamera = new THREE.OrthographicCamera(-viewSize * aspect, viewSize * aspect, viewSize, -viewSize, 1, 2500);
@@ -1990,27 +1229,16 @@ fpCamera.rotation.order = "YXZ";
 
 let activeCamera = orthoCamera;
 
-const renderer = new THREE.WebGLRenderer({
-    antialias: true,
-    powerPreference: "high-performance",
-    alpha: isPrefabImpostorToolSession,
-    preserveDrawingBuffer: isPrefabImpostorToolSession,
-});
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
 renderer.domElement.style.display = "block";
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.shadowMap.autoUpdate = false; // Desligado por default para manter performance
-if (isPrefabImpostorToolSession) renderer.setClearColor(0x000000, 0);
 
 function applyRendererResolution(force = false) {
-    const viewport = getRendererViewportSize();
-    const viewportWidth = viewport.width;
-    const viewportHeight = viewport.height;
-    const effectivePixelRatio = Number((
-        isPrefabImpostorToolSession
-            ? prefabImpostorCaptureState.pixelRatio
-            : mobileQualityProfile.basePixelRatio * mobileQualityProfile.dynamicScale
-    ).toFixed(2));
+    const viewportWidth = Math.max(1, globalThis.innerWidth || container.clientWidth || 1);
+    const viewportHeight = Math.max(1, globalThis.innerHeight || container.clientHeight || 1);
+    const effectivePixelRatio = Number((mobileQualityProfile.basePixelRatio * mobileQualityProfile.dynamicScale).toFixed(2));
     const needsUpdate =
         force ||
         viewportWidth !== mobileQualityProfile.viewportWidth ||
@@ -2024,8 +1252,8 @@ function applyRendererResolution(force = false) {
     mobileQualityProfile.effectivePixelRatio = effectivePixelRatio;
     renderer.setPixelRatio(effectivePixelRatio);
     renderer.setSize(viewportWidth, viewportHeight, false);
-    renderer.domElement.style.width = isPrefabImpostorToolSession ? "100%" : `${viewportWidth}px`;
-    renderer.domElement.style.height = isPrefabImpostorToolSession ? "100%" : `${viewportHeight}px`;
+    renderer.domElement.style.width = `${viewportWidth}px`;
+    renderer.domElement.style.height = `${viewportHeight}px`;
     return true;
 }
 
@@ -2420,36 +1648,6 @@ function updatePerfOverlay(force = false) {
 
 function nextFrame() {
     return new Promise((resolve) => requestAnimationFrame(resolve));
-}
-
-function canvasToBlob(canvas, quality, type = "image/png") {
-    return new Promise((resolve, reject) => {
-        if (!canvas) {
-            reject(new Error("Canvas de captura indisponível."));
-            return;
-        }
-
-        canvas.toBlob((blob) => {
-            if (blob) {
-                resolve(blob);
-                return;
-            }
-
-            try {
-                const dataUrl = canvas.toDataURL(type, quality);
-                const [header, payload] = dataUrl.split(",");
-                const mimeType = /data:(.*?);base64/.exec(header)?.[1] || type;
-                const binary = globalThis.atob(payload || "");
-                const bytes = new Uint8Array(binary.length);
-                for (let index = 0; index < binary.length; index += 1) {
-                    bytes[index] = binary.codePointAt(index) || 0;
-                }
-                resolve(new Blob([bytes], { type: mimeType }));
-            } catch (error) {
-                reject(error instanceof Error ? error : new Error(String(error)));
-            }
-        }, type, quality);
-    });
 }
 
 function setPickResult(kind, block, distance, point, normal, voxelX = 0, voxelY = 0, voxelZ = 0) {
@@ -3254,18 +2452,6 @@ ground.receiveShadow = true;
 scene.add(ground);
 hitboxes.push(ground);
 
-const prefabImpostorSceneDecorObjects = [mainGrid, subGrid, buildPlate, buildPlateGrid, buildPlateBorder, ground];
-
-function setPrefabImpostorSceneDecorVisible(visible) {
-    prefabImpostorSceneDecorObjects.forEach((object3d) => {
-        if (object3d) object3d.visible = visible;
-    });
-}
-
-if (isPrefabImpostorToolSession) {
-    setPrefabImpostorSceneDecorVisible(false);
-}
-
 const matGhostValid = new THREE.MeshBasicMaterial({
     color: 0x2ecc71,
     opacity: 0.6,
@@ -3394,11 +2580,7 @@ function setGroupHighlight(gId, isHighlight) {
 
 function clearHighlights() {
     if (hoveredGroupId) {
-        if (isInteractiveImageTopView()) {
-            prefabImageVisualMode.setHoveredPlacement(null);
-        } else {
-            setGroupHighlight(hoveredGroupId, false);
-        }
+        setGroupHighlight(hoveredGroupId, false);
         hoveredGroupId = null;
     }
     if (hoveredBlockId) {
@@ -3822,9 +3004,6 @@ function createBlockGroup(type, colorHex, rot, isGhost = false, direction = SHAP
     if (prefabId) {
         const p = PREFABS[prefabId];
         if (!p) return new THREE.Group();
-        if (isGhost && p.blocks.length > PREFAB_GHOST_INSTANCING_THRESHOLD) {
-            return createInstancedPrefabGhostGroup(p, normalizedRot);
-        }
         const group = new THREE.Group();
         p.blocks.forEach((b) => {
             const g = createBlockGroup(b.type, b.color, b.rot, isGhost, b.direction);
@@ -3961,60 +3140,6 @@ function createBlockGroup(type, colorHex, rot, isGhost = false, direction = SHAP
     group.userData.hitbox = hitbox;
     if (def.customGeo?.startsWith("shape:")) applyShapeOrientationTransform(partRoot, sx, sy, sz, normalizedDirection, normalizedRot);
     else group.rotation.y = -normalizedRot * (Math.PI / 2);
-    return group;
-}
-
-function createInstancedPrefabGhostGroup(prefab, normalizedRot) {
-    const group = new THREE.Group();
-    const instanceBatches = new Map();
-    const placementMatrix = new THREE.Matrix4();
-    const instanceMatrix = new THREE.Matrix4();
-
-    prefab.blocks.forEach((block) => {
-        const parts = getStaticPlacementParts(block.type, block.rot, block.direction).filter((part) => part.geoKey !== "stud_base");
-        parts.forEach((part) => {
-            const batch = instanceBatches.get(part.geoKey);
-            if (batch) batch.count += 1;
-            else instanceBatches.set(part.geoKey, { geometry: part.geo, count: 1, cursor: 0, mesh: null });
-        });
-    });
-
-    instanceBatches.forEach((batch, geoKey) => {
-        const mesh = new THREE.InstancedMesh(batch.geometry, matGhostValid, batch.count);
-        mesh.instanceMatrix.setUsage(THREE.StaticDrawUsage);
-        mesh.count = batch.count;
-        mesh.castShadow = false;
-        mesh.receiveShadow = false;
-        mesh.frustumCulled = false;
-        mesh.userData = { geoKey };
-        group.add(mesh);
-        batch.mesh = mesh;
-    });
-
-    prefab.blocks.forEach((block) => {
-        const parts = getStaticPlacementParts(block.type, block.rot, block.direction).filter((part) => part.geoKey !== "stud_base");
-        const { dx: blockDx, dz: blockDz } = getPlacementMetrics(block.type, block.rot, block.direction);
-        placementMatrix.makeTranslation(block.lx + blockDx / 2 - prefab.dx / 2, block.ly, block.lz + blockDz / 2 - prefab.dz / 2);
-
-        parts.forEach((part) => {
-            const batch = instanceBatches.get(part.geoKey);
-            if (!batch?.mesh) return;
-            instanceMatrix.multiplyMatrices(placementMatrix, part.matrix);
-            batch.mesh.setMatrixAt(batch.cursor, instanceMatrix);
-            batch.cursor += 1;
-        });
-    });
-
-    instanceBatches.forEach((batch) => {
-        if (batch.mesh) batch.mesh.instanceMatrix.needsUpdate = true;
-    });
-
-    const hitboxGeometry = new THREE.BoxGeometry(prefab.dx, prefab.dy, prefab.dz).translate(0, prefab.dy / 2, 0);
-    const hitbox = new THREE.Mesh(hitboxGeometry, new THREE.MeshBasicMaterial({ visible: false }));
-    hitbox.userData.isHitbox = true;
-    group.add(hitbox);
-    group.userData.hitbox = hitbox;
-    group.rotation.y = -normalizedRot * (Math.PI / 2);
     return group;
 }
 
@@ -4367,41 +3492,6 @@ function hasPrefabWorldSupport(cx, cy, cz, rotation) {
     return false;
 }
 
-function collidesWithPrefabWorldIgnoringGroup(cx, cy, cz, rotation, ignoredGroupId) {
-    if (!ignoredGroupId) return collidesWithPrefabWorld(cx, cy, cz, rotation);
-
-    const occupancyQuery = createVoxelQueryContext();
-
-    for (const cell of rotation.occupiedSorted || rotation.occupied) {
-        const block = getVoxelWithContext(cx + cell.x, cy + cell.y, cz + cell.z, occupancyQuery);
-        if (block && block.groupId !== ignoredGroupId) return true;
-    }
-
-    return false;
-}
-
-function hasPrefabWorldSupportIgnoringGroup(cx, cy, cz, rotation, ignoredGroupId) {
-    if (!ignoredGroupId) return hasPrefabWorldSupport(cx, cy, cz, rotation);
-
-    const supportQuery = createVoxelQueryContext();
-    const supportedComponents = new Set();
-
-    for (const cell of rotation.supportOffsetsSorted || rotation.supportOffsets) {
-        const wy = cy + cell.y;
-        if (wy === 0) {
-            supportedComponents.add(cell.component);
-        } else {
-            const below = getVoxelWithContext(cx + cell.x, wy - 1, cz + cell.z, supportQuery);
-            if (below && below.groupId === ignoredGroupId) continue;
-            if (hasStudSupport(below)) supportedComponents.add(cell.component);
-        }
-
-        if (supportedComponents.size === rotation.componentCount) return true;
-    }
-
-    return false;
-}
-
 function canPlace(cx, cy, cz, type, rot, direction = SHAPE_DIRECTION_DEFAULT) {
     const prefabId = getPrefabIdFromType(type);
     if (prefabId) return canPlacePrefab(cx, cy, cz, prefabId, rot);
@@ -4444,6 +3534,7 @@ function canPlacePrefab(cx, cy, cz, pid, pRot) {
         const prefab = PREFABS[pid];
         const rotation = prefab?.meta?.rotations[((pRot % 4) + 4) % 4];
         if (!prefab || !rotation) return false;
+        if (cy !== 0) return false;
         if (rotation.componentCount === 0 || rotation.supportOffsets.length === 0) return false;
         const half = CURRENT_GRID_SIZE / 2;
         if (cy < 0 || cy + prefab.dy > MAX_HEIGHT) return false;
@@ -4470,45 +3561,6 @@ function canPlacePrefab(cx, cy, cz, pid, pRot) {
         if (fastResult.resolved) return fastResult.result;
         if (collidesWithPrefabWorld(cx, cy, cz, rotation)) return false;
         return hasPrefabWorldSupport(cx, cy, cz, rotation);
-    } finally {
-        recordPerfSample("canPlacePrefab", performance.now() - start);
-    }
-}
-
-function canPlacePrefabIgnoringGroup(cx, cy, cz, pid, pRot, ignoredGroupId) {
-    if (!ignoredGroupId) return canPlacePrefab(cx, cy, cz, pid, pRot);
-
-    const start = performance.now();
-    try {
-        const prefab = PREFABS[pid];
-        const rotation = prefab?.meta?.rotations[((pRot % 4) + 4) % 4];
-        if (!prefab || !rotation) return false;
-        if (rotation.componentCount === 0 || rotation.supportOffsets.length === 0) return false;
-        const half = CURRENT_GRID_SIZE / 2;
-        if (cy < 0 || cy + prefab.dy > MAX_HEIGHT) return false;
-        if (cx < -half || cz < -half || cx + rotation.dx > half || cz + rotation.dz > half) return false;
-
-        const collisionRange = inspectChunkRange(cx, cz, rotation.dx, rotation.dz, cy, cy + prefab.dy - 1);
-        if (!collisionRange.hasAnyChunk) {
-            return cy === 0 && rotation.groundComponentCount === rotation.componentCount;
-        }
-
-        const supportRange =
-            rotation.supportBelowMaxY >= rotation.supportBelowMinY
-                ? inspectChunkRange(
-                      cx,
-                      cz,
-                      rotation.dx,
-                      rotation.dz,
-                      cy + rotation.supportBelowMinY,
-                      cy + rotation.supportBelowMaxY,
-                  )
-                : { hasAnyChunk: false, hasOverlappingChunk: false };
-
-        const fastResult = getPrefabFastPlacementResult(cy, rotation, collisionRange, supportRange);
-        if (fastResult.resolved) return fastResult.result;
-        if (collidesWithPrefabWorldIgnoringGroup(cx, cy, cz, rotation, ignoredGroupId)) return false;
-        return hasPrefabWorldSupportIgnoringGroup(cx, cy, cz, rotation, ignoredGroupId);
     } finally {
         recordPerfSample("canPlacePrefab", performance.now() - start);
     }
@@ -4635,38 +3687,15 @@ function placePrefab(cx, cy, cz, pid, pRot, skipStats = false) {
     return groupId;
 }
 
-function placeImageOnlyPrefab(cx, cy, cz, pid, pRot, skipStats = false) {
-    const prefab = PREFABS[pid];
-    const rotation = prefab?.meta?.rotations[((pRot % 4) + 4) % 4];
-    if (!prefab || !rotation) return null;
-
-    const groupId = getNextUniqueId();
-    groupToBlockIds.set(groupId, new Set());
-    groupToSourcePrefabId.set(groupId, pid);
-    groupToPrefabPlacement.set(groupId, { type: pid, x: cx, y: cy, z: cz, rot: ((pRot % 4) + 4) % 4 });
-    imageOnlyPrefabGroupIds.add(groupId);
-
-    if (!skipStats) updateStats();
-    return groupId;
-}
-
 function removeGroupById(groupId) {
     const blockIds = groupToBlockIds.get(groupId);
-    if (!blockIds || blockIds.size === 0) {
-        groupToBlockIds.delete(groupId);
-        groupToSourcePrefabId.delete(groupId);
-        groupToPrefabPlacement.delete(groupId);
-        imageOnlyPrefabGroupIds.delete(groupId);
-        updateStats();
-        return;
-    }
+    if (!blockIds || blockIds.size === 0) return;
     [...blockIds]
         .map((blockId) => blockById.get(blockId))
         .filter(Boolean)
         .forEach((block) => removeBlock(block, true));
     groupToSourcePrefabId.delete(groupId);
     groupToPrefabPlacement.delete(groupId);
-    imageOnlyPrefabGroupIds.delete(groupId);
     updateStats();
 }
 
@@ -4697,7 +3726,6 @@ function removeBlock(data, skipStats = false) {
             groupToBlockIds.delete(data.groupId);
             groupToSourcePrefabId.delete(data.groupId);
             groupToPrefabPlacement.delete(data.groupId);
-            imageOnlyPrefabGroupIds.delete(data.groupId);
         }
     }
     blocksCount--;
@@ -4708,7 +3736,6 @@ function clearAll() {
     clearHighlights();
     const blocks = [...blockById.values()];
     blocks.forEach((block) => removeBlock(block, true));
-    imageOnlyPrefabGroupIds.clear();
     groupToSourcePrefabId.clear();
     groupToPrefabPlacement.clear();
     updateStats();
@@ -4757,44 +3784,12 @@ const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 function processPointerMove(clientX, clientY) {
-    if (isFirstPerson || isPrefabImpostorToolSession) {
-        clearHighlights();
-        clearToolPreview();
-        if (rollOver) rollOver.visible = false;
-        return;
-    }
+    if (isFirstPerson) return;
     const hoverStart = performance.now();
 
-    if (isInteractiveImageTopView()) {
-        const worldPoint = getImageTopPointerWorldPoint(clientX, clientY);
-        pointedWorldBlockId = null;
-        clearToolPreview();
-        if (rollOver) rollOver.visible = false;
-
-        if (!worldPoint) {
-            if (!isImageTopPrefabDragActive()) {
-                hoveredGroupId = null;
-                syncPrefabImageVisualModeHoverState();
-                syncImageTopCatalogPlacementPreview(null, null);
-            }
-            recordPerfSample("hover", performance.now() - hoverStart);
-            return;
-        }
-
-        imageTopDragState.pointerWorldX = worldPoint.x;
-        imageTopDragState.pointerWorldZ = worldPoint.z;
-
-        if (isImageTopPrefabDragActive()) updateImageTopDragCandidate(worldPoint);
-        else updateImageTopHoveredPlacement(worldPoint);
-
-        recordPerfSample("hover", performance.now() - hoverStart);
-        return;
-    }
-
-    if (!updatePointerRayFromClient(clientX, clientY)) {
-        recordPerfSample("hover", performance.now() - hoverStart);
-        return;
-    }
+    mouse.x = (clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, orthoCamera);
     const hit = pickFromSceneRay();
     pointedWorldBlockId = hit && hit.kind === "voxel" && hit.block ? hit.block.id : null;
 
@@ -4862,10 +3857,7 @@ function flushPendingPointerMove() {
 }
 
 function updateRollOver() {
-    if (isFirstPerson || isImageVisualMode() || isPrefabImpostorToolSession) {
-        if (rollOver) rollOver.visible = false;
-        return;
-    }
+    if (isFirstPerson) return;
     if (rollOver) scene.remove(rollOver);
     rollOver = createBlockGroup(currentType, currentColor, currentRot, true);
     rollOver.userData.isValid = null;
@@ -4875,11 +3867,7 @@ function updateRollOver() {
 updateRollOver();
 
 function updateRollOverVisual() {
-    if (!rollOver) return;
-    if (isFirstPerson || isImageVisualMode() || isPrefabImpostorToolSession) {
-        rollOver.visible = false;
-        return;
-    }
+    if (!rollOver || isFirstPerson) return;
     if (activeBuildTool !== TOOL_PLACE) {
         rollOver.visible = false;
         updateBuildPreview();
@@ -4907,10 +3895,6 @@ function handleMove(e) {
 }
 
 function executePlacement() {
-    if (isImageVisualMode()) {
-        handleImageTopPrefabPlacementInteraction();
-        return;
-    }
     if (isFirstPerson) return;
     if (isDeleteMode || isDeleteGroupMode) {
         const targetGroupId = hoveredGroupId;
@@ -4980,24 +3964,6 @@ window.addEventListener("keydown", (e) => {
     const isFormTarget = ["INPUT", "TEXTAREA", "SELECT"].includes(e.target?.tagName);
     if (isFormTarget && !(e.ctrlKey || e.metaKey)) return;
 
-    const canUseImageTopShortcut =
-        isInteractiveImageTopView() &&
-        (((e.ctrlKey || e.metaKey) && ["KeyZ", "KeyY"].includes(e.code)) ||
-            (!e.ctrlKey && !e.metaKey && !e.altKey && e.code === "KeyR"));
-
-    const isBlockedVisualModeShortcut =
-        isImageVisualMode() &&
-        !canUseImageTopShortcut &&
-        (((e.ctrlKey || e.metaKey) && ["KeyZ", "KeyY", "KeyC", "KeyV"].includes(e.code)) ||
-            e.code === "Enter" ||
-            (!e.ctrlKey && !e.metaKey && !e.altKey && e.code === "KeyR"));
-
-    if (isBlockedVisualModeShortcut) {
-        e.preventDefault();
-        showVisualModeBlockedHint();
-        return;
-    }
-
     if ((e.ctrlKey || e.metaKey) && e.code === "KeyZ") {
         e.preventDefault();
         if (e.shiftKey) redoBuilderCommand();
@@ -5033,7 +3999,6 @@ window.addEventListener("keydown", (e) => {
 
     if (e.code === "Escape") {
         e.preventDefault();
-        if (cancelImageTopPrefabDrag("Movimentação cancelada.")) return;
         selectionAnchor = null;
         clearToolPreview();
         setActiveBuildTool(TOOL_PLACE, "Modo de bloco");
@@ -5075,21 +4040,13 @@ window.addEventListener("keydown", (e) => {
 
 window.addEventListener("keyup", (e) => (keys[e.code] = false));
 
-function normalizeWheelDelta(e) {
-    if (e.deltaMode === 1) return e.deltaY * 16;
-    if (e.deltaMode === 2) return e.deltaY * window.innerHeight;
-    return e.deltaY;
-}
-
 window.addEventListener(
     "wheel",
     (e) => {
-        if (isFirstPerson || e.target !== renderer.domElement) return;
-        e.preventDefault();
-
-        const normalizedDelta = THREE.MathUtils.clamp(normalizeWheelDelta(e), -240, 240);
-        const zoomFactor = Math.exp(-normalizedDelta * 0.0015);
-        orthoCamera.zoom = THREE.MathUtils.clamp(orthoCamera.zoom * zoomFactor, 0.1, 50);
+        if (isFirstPerson) return;
+        const zoomAmount = orthoCamera.zoom * 0.1;
+        if (e.deltaY > 0) orthoCamera.zoom = Math.max(0.1, orthoCamera.zoom - zoomAmount);
+        else orthoCamera.zoom = Math.min(50, orthoCamera.zoom + zoomAmount);
         orthoCamera.updateProjectionMatrix();
     },
     { passive: false },
@@ -5176,8 +4133,6 @@ function getDefaultFirstPersonSpawn() {
 }
 
 function enterFirstPerson({ spawnPosition = null, lookAt = null, yaw = fpYaw, pitch = fpPitch, requestPointerLock = true, hint = null } = {}) {
-    if (showVisualModeBlockedHint(VISUAL_MODE_BLOCKED_FP_HINT)) return false;
-
     clearHighlights();
     isFirstPerson = true;
     activeCamera = fpCamera;
@@ -5202,7 +4157,6 @@ function enterFirstPerson({ spawnPosition = null, lookAt = null, yaw = fpYaw, pi
     if (requestPointerLock) document.body.requestPointerLock();
     if (hint) showHint(hint);
     onResize();
-    return true;
 }
 
 function exitFirstPerson({ cameraTargetOverride = null, hint = null } = {}) {
@@ -5279,9 +4233,8 @@ function selectCatalogType(type) {
     if (targetButton) targetButton.classList.add("active");
 
     currentType = type;
+    updateRollOver();
     if (isPrefabType(type)) document.getElementById("btn-top").click();
-    updateBuildPreview();
-    updateBuilderToolsStatus(isPrefabType(type) ? `Prefab ${getPrefabIdFromType(type)} selecionado` : "Tipo selecionado");
 }
 
 function upsertRuntimePrefabCatalogItem(prefabId, label) {
@@ -5444,8 +4397,6 @@ async function downloadJsonFromTextarea() {
 }
 
 async function importPrefabFromJsonText(rawJson) {
-    if (showVisualModeBlockedHint()) return;
-
     if (!rawJson.trim()) {
         showHint("Cole um JSON de estrutura na textarea.");
         return;
@@ -5509,8 +4460,6 @@ async function exportCityToTextarea() {
 }
 
 async function importCityFromJsonText(rawJson) {
-    if (showVisualModeBlockedHint()) return;
-
     if (!rawJson.trim()) {
         showHint("Cole um JSON de cidade na textarea.");
         return;
@@ -5538,8 +4487,6 @@ async function importCityFromJsonText(rawJson) {
 }
 
 async function importJsonFromText(rawJson) {
-    if (showVisualModeBlockedHint()) return;
-
     if (!rawJson.trim()) {
         showHint("Cole um JSON de estrutura ou cidade na textarea.");
         return;
@@ -5560,8 +4507,6 @@ async function importJsonFromText(rawJson) {
 }
 
 async function createStructureFromBuildArea() {
-    if (showVisualModeBlockedHint()) return;
-
     const capture = buildAreaStructureExport(`Estrutura Area ${exportedStructureSerial}`, [...blockById.values()], BUILD_PLATE_SIZE);
 
     if (capture.status === "empty") {
@@ -5627,8 +4572,6 @@ initPanelToggles();
 syncShapeSelectOptions();
 updateShapeDirectionButton();
 updateBuilderToolButtons();
-syncPrefabImageVisualModeCameraView();
-updateVisualModeUi();
 updateBuilderToolsStatus();
 
 builderToolButtons.forEach((button) => {
@@ -5688,16 +4631,9 @@ if (builderToolShapeSelect)
         updateBuilderToolsStatus();
     });
 
-if (btnVisualMode) {
-    btnVisualMode.onclick = () => {
-        setVisualMode(isImageVisualMode() ? VISUAL_MODE_3D : VISUAL_MODE_IMAGES);
-    };
-}
-
 document.getElementById("btn-fp").onclick = (e) => {
     const btn = e.currentTarget;
     btn.blur();
-    if (showVisualModeBlockedHint(VISUAL_MODE_BLOCKED_FP_HINT)) return;
     if (perfState.autobenchmark.running) {
         cancelBenchmark("Auto FP interrompido ao sair do modo 1ª pessoa.");
         return;
@@ -5707,15 +4643,11 @@ document.getElementById("btn-fp").onclick = (e) => {
 };
 
 document.getElementById("btn-iso").onclick = () => {
-    cancelImageTopPrefabDrag("Movimentação cancelada ao sair do Top.");
     isTopDownView = false;
     document.getElementById("btn-iso").classList.add("active");
     document.getElementById("btn-top").classList.remove("active");
     updateCameraTarget();
     snapOrthoCameraToTarget();
-    syncPrefabImageVisualModeCameraView();
-    updateVisualModeUi();
-    updateBuilderToolsStatus();
 };
 
 document.getElementById("btn-top").onclick = () => {
@@ -5724,18 +4656,13 @@ document.getElementById("btn-top").onclick = () => {
     document.getElementById("btn-iso").classList.remove("active");
     updateCameraTarget();
     snapOrthoCameraToTarget();
-    syncPrefabImageVisualModeCameraView();
-    updateVisualModeUi();
-    updateBuilderToolsStatus();
 };
 
 document.getElementById("btn-cam").onclick = () => {
-    if (isImageTopPrefabDragActive()) return;
     if (!isTopDownView) {
         cameraAngleIndex = (cameraAngleIndex + 1) % 4;
         updateCameraTarget();
         snapOrthoCameraToTarget();
-        syncPrefabImageVisualModeCameraView();
     }
 };
 
@@ -5837,7 +4764,7 @@ if (jsonTextarea) {
 globalThis.addEventListener("resize", onResize);
 function onResize() {
     const qualityTierChanged = refreshMobileQualityProfile();
-    const aspect = getRendererAspect();
+    const aspect = globalThis.innerWidth / globalThis.innerHeight;
     orthoCamera.left = -viewSize * aspect;
     orthoCamera.right = viewSize * aspect;
     orthoCamera.top = viewSize;
@@ -5848,387 +4775,10 @@ function onResize() {
     fpCamera.updateProjectionMatrix();
 
     applyRendererResolution(true);
-    syncPrefabImageVisualModeCameraView();
     scheduleMemoryPolling();
     if (qualityTierChanged) applyRenderMode(currentRenderMode);
     updatePerfOverlay(true);
 }
-
-function renderCurrentFrame() {
-    flushInstancedMeshUpdates();
-    prefabImageVisualMode.renderFrame();
-    renderer.render(scene, activeCamera);
-}
-
-function getBuiltinPrefabNamesForCapture() {
-    return Object.keys(PREFABS).filter((prefabId) => !isRuntimePrefab(prefabId));
-}
-
-function getPrefabCaptureRotationBounds(prefabId, rot = 0) {
-    const prefab = PREFABS[prefabId];
-    if (!prefab) return null;
-
-    const normalizedRot = ((Number(rot) || 0) % 4 + 4) % 4;
-    const rotation = prefab.meta?.rotations?.[normalizedRot];
-    if (!rotation) return null;
-
-    return {
-        dx: rotation.dx,
-        dy: prefab.dy,
-        dz: rotation.dz,
-    };
-}
-
-function getPrefabCaptureGroupBounds(groupId) {
-    const blockIds = groupToBlockIds.get(groupId);
-    if (!blockIds || blockIds.size === 0) return null;
-
-    let minX = Infinity;
-    let minY = Infinity;
-    let minZ = Infinity;
-    let maxX = -Infinity;
-    let maxY = -Infinity;
-    let maxZ = -Infinity;
-
-    blockIds.forEach((blockId) => {
-        const block = blockById.get(blockId);
-        if (!block) return;
-        minX = Math.min(minX, block.cx);
-        minY = Math.min(minY, block.cy);
-        minZ = Math.min(minZ, block.cz);
-        maxX = Math.max(maxX, block.cx + block.dx);
-        maxY = Math.max(maxY, block.cy + block.dy);
-        maxZ = Math.max(maxZ, block.cz + block.dz);
-    });
-
-    if (!Number.isFinite(minX) || !Number.isFinite(maxX)) return null;
-
-    return {
-        minX,
-        minY,
-        minZ,
-        maxX,
-        maxY,
-        maxZ,
-        dx: maxX - minX,
-        dy: maxY - minY,
-        dz: maxZ - minZ,
-        centerX: (minX + maxX) / 2,
-        centerY: (minY + maxY) / 2,
-        centerZ: (minZ + maxZ) / 2,
-    };
-}
-
-function getPrefabCaptureBoundsCorners(bounds) {
-    return [
-        new THREE.Vector3(bounds.minX, bounds.minY, bounds.minZ),
-        new THREE.Vector3(bounds.minX, bounds.minY, bounds.maxZ),
-        new THREE.Vector3(bounds.minX, bounds.maxY, bounds.minZ),
-        new THREE.Vector3(bounds.minX, bounds.maxY, bounds.maxZ),
-        new THREE.Vector3(bounds.maxX, bounds.minY, bounds.minZ),
-        new THREE.Vector3(bounds.maxX, bounds.minY, bounds.maxZ),
-        new THREE.Vector3(bounds.maxX, bounds.maxY, bounds.minZ),
-        new THREE.Vector3(bounds.maxX, bounds.maxY, bounds.maxZ),
-    ];
-}
-
-function getPrefabCaptureProjectedSpan(bounds) {
-    const corners = getPrefabCaptureBoundsCorners(bounds);
-    let minX = Infinity;
-    let minY = Infinity;
-    let maxX = -Infinity;
-    let maxY = -Infinity;
-
-    corners.forEach((corner) => {
-        const projected = corner.clone().project(orthoCamera);
-        minX = Math.min(minX, projected.x);
-        minY = Math.min(minY, projected.y);
-        maxX = Math.max(maxX, projected.x);
-        maxY = Math.max(maxY, projected.y);
-    });
-
-    return {
-        spanX: Math.max(0.0001, maxX - minX),
-        spanY: Math.max(0.0001, maxY - minY),
-    };
-}
-
-function fitOrthoCameraToPrefabBounds(bounds, margin = 1.15) {
-    const normalizedMargin = Math.max(1.01, Number(margin) || 1.15);
-    orthoCamera.zoom = 1;
-    orthoCamera.updateProjectionMatrix();
-    orthoCamera.updateMatrixWorld(true);
-    const span = getPrefabCaptureProjectedSpan(bounds);
-    const targetSpan = 2 / normalizedMargin;
-    const fitZoom = Math.min(targetSpan / span.spanX, targetSpan / span.spanY);
-    orthoCamera.zoom = THREE.MathUtils.clamp(fitZoom, 0.1, 50);
-    orthoCamera.updateProjectionMatrix();
-    orthoCamera.updateMatrixWorld(true);
-}
-
-function getPrefabCaptureMarginForView(viewKey, margin = 1.15) {
-    if (viewKey === PREFAB_IMPOSTOR_TOP_VIEW) return 1.01;
-    return Math.max(1.01, Number(margin) || 1.15);
-}
-
-function getPrefabCaptureProjectedSpriteCenter(worldPoint) {
-    const projected = worldPoint.clone().project(orthoCamera);
-    return {
-        x: THREE.MathUtils.clamp((projected.x + 1) * 0.5, 0, 1),
-        y: THREE.MathUtils.clamp((projected.y + 1) * 0.5, 0, 1),
-    };
-}
-
-function getPrefabCaptureViewOverrides(bounds, viewKey) {
-    if (getPrefabImpostorSideViewIndex(viewKey) !== 0) return null;
-
-    const anchorPoint = new THREE.Vector3(bounds.centerX, bounds.minY, bounds.centerZ);
-    return {
-        [viewKey]: {
-            spriteCenter: getPrefabCaptureProjectedSpriteCenter(anchorPoint),
-        },
-    };
-}
-
-async function loadImageBitmapOrElement(blob) {
-    if (!blob) return null;
-
-    if (typeof globalThis.createImageBitmap === "function") {
-        try {
-            return await globalThis.createImageBitmap(blob);
-        } catch (_error) {
-            // Fall back to HTMLImageElement below.
-        }
-    }
-
-    if (!globalThis.document) return null;
-
-    return await new Promise((resolve, reject) => {
-        const objectUrl = URL.createObjectURL(blob);
-        const image = new Image();
-        image.onload = () => {
-            URL.revokeObjectURL(objectUrl);
-            resolve(image);
-        };
-        image.onerror = () => {
-            URL.revokeObjectURL(objectUrl);
-            reject(new Error("Falha ao carregar bitmap para crop do impostor."));
-        };
-        image.src = objectUrl;
-    });
-}
-
-function getTransparentImageBounds(imageData, width, height, alphaThreshold = 1) {
-    let minX = width;
-    let minY = height;
-    let maxX = -1;
-    let maxY = -1;
-    const pixels = imageData.data;
-
-    for (let y = 0; y < height; y += 1) {
-        for (let x = 0; x < width; x += 1) {
-            const alpha = pixels[(y * width + x) * 4 + 3];
-            if (alpha < alphaThreshold) continue;
-            if (x < minX) minX = x;
-            if (y < minY) minY = y;
-            if (x > maxX) maxX = x;
-            if (y > maxY) maxY = y;
-        }
-    }
-
-    if (maxX < minX || maxY < minY) return null;
-    return { minX, minY, maxX, maxY };
-}
-
-async function cropTransparentPrefabCaptureBlob(blob, imageType = "image/png", imageQuality, paddingPx = 1) {
-    const bitmapOrImage = await loadImageBitmapOrElement(blob);
-    const width = bitmapOrImage?.width || 0;
-    const height = bitmapOrImage?.height || 0;
-    if (!width || !height || !globalThis.document) return blob;
-
-    const sourceCanvas = globalThis.document.createElement("canvas");
-    sourceCanvas.width = width;
-    sourceCanvas.height = height;
-    const sourceContext = sourceCanvas.getContext("2d", { willReadFrequently: true });
-    if (!sourceContext) return blob;
-    sourceContext.drawImage(bitmapOrImage, 0, 0);
-
-    const imageData = sourceContext.getImageData(0, 0, width, height);
-    const bounds = getTransparentImageBounds(imageData, width, height);
-    if (typeof bitmapOrImage.close === "function") bitmapOrImage.close();
-    if (!bounds) return blob;
-
-    const clampedPadding = Math.max(0, Math.floor(Number(paddingPx) || 0));
-    const cropMinX = Math.max(0, bounds.minX - clampedPadding);
-    const cropMinY = Math.max(0, bounds.minY - clampedPadding);
-    const cropMaxX = Math.min(width - 1, bounds.maxX + clampedPadding);
-    const cropMaxY = Math.min(height - 1, bounds.maxY + clampedPadding);
-    const cropWidth = cropMaxX - cropMinX + 1;
-    const cropHeight = cropMaxY - cropMinY + 1;
-
-    if (cropWidth === width && cropHeight === height) return blob;
-
-    const croppedCanvas = globalThis.document.createElement("canvas");
-    croppedCanvas.width = cropWidth;
-    croppedCanvas.height = cropHeight;
-    const croppedContext = croppedCanvas.getContext("2d");
-    if (!croppedContext) return blob;
-    croppedContext.drawImage(sourceCanvas, cropMinX, cropMinY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
-    return canvasToBlob(croppedCanvas, imageQuality, imageType);
-}
-
-function setPrefabCaptureBackground(background = null) {
-    prefabImpostorCaptureState.background = background || null;
-
-    if (!background) {
-        scene.background = null;
-        renderer.setClearColor(0x000000, isPrefabImpostorToolSession ? 0 : 1);
-        return;
-    }
-
-    scene.background = new THREE.Color(background);
-    renderer.setClearColor(background, 1);
-}
-
-function setPrefabCaptureViewport(width, height, pixelRatio = 1) {
-    prefabImpostorCaptureState.width = Math.max(64, Number(width) || 64);
-    prefabImpostorCaptureState.height = Math.max(64, Number(height) || 64);
-    prefabImpostorCaptureState.pixelRatio = THREE.MathUtils.clamp(Number(pixelRatio) || 1, 0.5, 4);
-    onResize();
-}
-
-function setPrefabCaptureView(viewKey, target) {
-    const sideViewIndex = getPrefabImpostorSideViewIndex(viewKey);
-    isTopDownView = viewKey === PREFAB_IMPOSTOR_TOP_VIEW;
-    if (!isTopDownView && sideViewIndex == null) {
-        throw new Error(`Vista de captura inválida: ${viewKey}`);
-    }
-
-    if (!isTopDownView) cameraAngleIndex = sideViewIndex;
-    cameraTarget.set(target.x, target.y, target.z);
-    updateCameraTarget();
-    activeCamera = orthoCamera;
-    snapOrthoCameraToTarget();
-    orthoCamera.updateMatrixWorld(true);
-}
-
-function resetPrefabImpostorCaptureTransients() {
-    clearTransientBuilderVisuals();
-    if (rollOver) rollOver.visible = false;
-}
-
-function preparePrefabImpostorCaptureScene({ renderMode = "basic", background = null } = {}) {
-    if (isFirstPerson) exitFirstPerson({ hint: null });
-    setVisualMode(VISUAL_MODE_3D, { showModeHint: false });
-    setPrefabImpostorSceneDecorVisible(false);
-    setPrefabCaptureBackground(background);
-    resetPrefabImpostorCaptureTransients();
-    clearAll();
-    resetPrefabImpostorCaptureTransients();
-
-    if (renderMode !== currentRenderMode) {
-        if (renderModeSelect) renderModeSelect.value = renderMode;
-        applyRenderMode(renderMode);
-    }
-}
-
-async function capturePrefabImpostorView({
-    prefabId,
-    viewKey,
-    renderMode = "basic",
-    margin = 1.15,
-    background = null,
-    imageType = "image/png",
-    imageQuality,
-} = {}) {
-    if (!prefabId || !PREFABS[prefabId] || isRuntimePrefab(prefabId)) {
-        throw new Error(`Prefab inválido para captura: ${prefabId}`);
-    }
-
-    if (!PREFAB_IMPOSTOR_VIEW_KEYS.includes(viewKey)) {
-        throw new Error(`View key inválida para captura: ${viewKey}`);
-    }
-
-    preparePrefabImpostorCaptureScene({ renderMode, background });
-
-    const groupId = placePrefab(0, 0, 0, prefabId, 0, true);
-    if (!groupId) throw new Error(`Não foi possível posicionar o prefab ${prefabId} para captura.`);
-
-    const bounds = getPrefabCaptureGroupBounds(groupId);
-    if (!bounds) throw new Error(`Não foi possível calcular bounds do prefab ${prefabId}.`);
-
-    setPrefabCaptureView(viewKey, {
-        x: bounds.centerX,
-        y: bounds.centerY,
-        z: bounds.centerZ,
-    });
-    fitOrthoCameraToPrefabBounds(bounds, getPrefabCaptureMarginForView(viewKey, margin));
-
-    resetPrefabImpostorCaptureTransients();
-    await nextFrame();
-    renderCurrentFrame();
-    let blob = await canvasToBlob(renderer.domElement, imageType, imageQuality);
-    if (viewKey === PREFAB_IMPOSTOR_TOP_VIEW && background == null) {
-        blob = await cropTransparentPrefabCaptureBlob(blob, imageType, imageQuality, 1);
-    }
-    const viewOverrides = getPrefabCaptureViewOverrides(bounds, viewKey);
-
-    return {
-        prefabId,
-        viewKey,
-        blob,
-        bounds: { dx: bounds.dx, dy: bounds.dy, dz: bounds.dz },
-        zoom: orthoCamera.zoom,
-        width: renderer.domElement.width,
-        height: renderer.domElement.height,
-        viewOverrides,
-        manifestEntry: createPrefabImpostorManifestEntry({
-            prefabId,
-            bounds: { dx: bounds.dx, dy: bounds.dy, dz: bounds.dz },
-            extension: imageType === "image/webp" ? "webp" : "png",
-            basePath: "prefab-impostors",
-            viewOverrides,
-        }),
-    };
-}
-
-async function capturePrefabImpostorSet({ prefabId, viewKeys = PREFAB_IMPOSTOR_VIEW_KEYS, ...options } = {}) {
-    const captures = [];
-    const manifestViewOverrides = {};
-    for (const viewKey of viewKeys) {
-        const capture = await capturePrefabImpostorView({ prefabId, viewKey, ...options });
-        captures.push(capture);
-        if (capture.viewOverrides) Object.assign(manifestViewOverrides, capture.viewOverrides);
-    }
-    clearAll();
-    resetPrefabImpostorCaptureTransients();
-    const bounds = captures[0]?.bounds || null;
-    return {
-        prefabId,
-        captures,
-        manifestEntry: bounds
-            ? createPrefabImpostorManifestEntry({
-                  prefabId,
-                  bounds,
-                  extension: options.imageType === "image/webp" ? "webp" : "png",
-                  basePath: "prefab-impostors",
-                  viewOverrides: manifestViewOverrides,
-              })
-            : null,
-    };
-}
-
-globalThis.__citybuilderPrefabImpostorApi = {
-    ready: true,
-    isCaptureSession: isPrefabImpostorToolSession,
-    listBuiltinPrefabs: getBuiltinPrefabNamesForCapture,
-    getPrefabBounds: getPrefabCaptureRotationBounds,
-    setViewport: setPrefabCaptureViewport,
-    setBackground: setPrefabCaptureBackground,
-    captureView: capturePrefabImpostorView,
-    capturePrefab: capturePrefabImpostorSet,
-    renderFrame: renderCurrentFrame,
-};
 
 // --- MOTOR DE ANIMAÇÃO E FÍSICAS ---
 function animate() {
@@ -6320,7 +4870,8 @@ function animate() {
         });
     }
     animatedBlocks.forEach((a) => (a.pivot.rotation.z -= 0.1));
-    renderCurrentFrame();
+    flushInstancedMeshUpdates();
+    renderer.render(scene, activeCamera);
     const frameDuration = performance.now() - frameStart;
     recordPerfSample("frame", frameDuration);
     recordAutoBenchmarkFrame(frameDuration);
