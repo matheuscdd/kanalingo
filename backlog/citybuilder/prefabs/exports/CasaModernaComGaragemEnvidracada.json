@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "kind": "prefab",
+  "name": "CasaModernaComGaragemEnvidracada",
+  "dx": 46,
+  "dy": 26,
+  "dz": 36,
+  "recipe": [
+    { "op": "filledRect", "x0": 0, "y": 0, "z0": 0, "width": 46, "depth": 36, "color": "#8f9498" },
+    { "op": "filledRect", "x0": 2, "y": 1, "z0": 2, "width": 42, "depth": 32, "color": "#d9dddf" },
+    { "op": "filledRect", "x0": 4, "y": 2, "z0": 2, "width": 6, "depth": 32, "color": "#c7cbcd" },
+    { "op": "filledRect", "x0": 14, "y": 2, "z0": 28, "width": 30, "depth": 4, "color": "#c7cbcd" },
+    { "op": "filledRect", "x0": 20, "y": 2, "z0": 8, "width": 24, "depth": 20, "color": "#b7bcc1" },
+    { "op": "filledRect", "x0": 10, "y": 2, "z0": 8, "width": 10, "depth": 20, "color": "#e4e7e8" },
+
+    { "op": "solid", "x0": 10, "y0": 3, "z0": 8, "width": 32, "depth": 20, "height": 1, "color": "#eef1f2" },
+
+    { "op": "solid", "x0": 10, "y0": 4, "z0": 8, "width": 12, "depth": 18, "height": 8, "color": "#f6f7f2" },
+    { "op": "solid", "x0": 22, "y0": 4, "z0": 20, "width": 10, "depth": 6, "height": 8, "color": "#f6f7f2" },
+    { "op": "solid", "x0": 22, "y0": 4, "z0": 12, "width": 2, "depth": 8, "height": 8, "color": "#f6f7f2" },
+    { "op": "solid", "x0": 32, "y0": 4, "z0": 12, "width": 2, "depth": 14, "height": 8, "color": "#f6f7f2" },
+    { "op": "solid", "x0": 34, "y0": 4, "z0": 12, "width": 8, "depth": 2, "height": 8, "color": "#b98555" },
+    { "op": "solid", "x0": 40, "y0": 4, "z0": 14, "width": 2, "depth": 8, "height": 8, "color": "#f6f7f2" },
+
+    { "op": "solid", "x0": 12, "y0": 12, "z0": 8, "width": 30, "depth": 16, "height": 1, "color": "#f0f2f3" },
+
+    { "op": "solid", "x0": 12, "y0": 13, "z0": 8, "width": 2, "depth": 2, "height": 7, "color": "#f6f7f2" },
+    { "op": "solid", "x0": 12, "y0": 13, "z0": 10, "width": 2, "depth": 12, "height": 7, "color": "#89bfd1" },
+    { "op": "solid", "x0": 14, "y0": 13, "z0": 8, "width": 16, "depth": 2, "height": 7, "color": "#89bfd1" },
+    { "op": "solid", "x0": 12, "y0": 13, "z0": 22, "width": 20, "depth": 2, "height": 7, "color": "#f6f7f2" },
+    { "op": "solid", "x0": 30, "y0": 13, "z0": 8, "width": 2, "depth": 2, "height": 7, "color": "#f6f7f2" },
+    { "op": "solid", "x0": 30, "y0": 13, "z0": 10, "width": 2, "depth": 8, "height": 7, "color": "#89bfd1" },
+    { "op": "solid", "x0": 30, "y0": 13, "z0": 18, "width": 2, "depth": 4, "height": 7, "color": "#f6f7f2" },
+
+    { "op": "solid", "x0": 32, "y0": 13, "z0": 8, "width": 10, "depth": 2, "height": 3, "color": "#9fd6f2" },
+    { "op": "solid", "x0": 40, "y0": 13, "z0": 10, "width": 2, "depth": 8, "height": 3, "color": "#9fd6f2" },
+    { "op": "solid", "x0": 32, "y0": 16, "z0": 8, "width": 10, "depth": 2, "height": 1, "color": "#c49466" },
+    { "op": "solid", "x0": 40, "y0": 16, "z0": 10, "width": 2, "depth": 8, "height": 1, "color": "#c49466" },
+
+    { "op": "solid", "x0": 12, "y0": 20, "z0": 8, "width": 20, "depth": 16, "height": 1, "color": "#d5d8da" },
+    { "op": "solid", "x0": 10, "y0": 21, "z0": 6, "width": 24, "depth": 4, "height": 1, "color": "#4b5c70" },
+    { "op": "solid", "x0": 10, "y0": 21, "z0": 24, "width": 24, "depth": 4, "height": 1, "color": "#4b5c70" },
+    { "op": "solid", "x0": 10, "y0": 21, "z0": 10, "width": 4, "depth": 14, "height": 1, "color": "#4b5c70" },
+    { "op": "solid", "x0": 30, "y0": 21, "z0": 10, "width": 4, "depth": 14, "height": 1, "color": "#4b5c70" },
+
+    { "op": "solid", "x0": 16, "y0": 21, "z0": 10, "width": 4, "depth": 2, "height": 1, "color": "#aeb6bb" },
+    { "op": "solid", "x0": 24, "y0": 21, "z0": 10, "width": 4, "depth": 2, "height": 1, "color": "#aeb6bb" },
+    { "op": "solid", "x0": 20, "y0": 21, "z0": 14, "width": 4, "depth": 2, "height": 1, "color": "#aeb6bb" },
+    { "op": "solid", "x0": 30, "y0": 22, "z0": 10, "width": 4, "depth": 2, "height": 1, "color": "#aeb6bb" }
+  ]
+}
