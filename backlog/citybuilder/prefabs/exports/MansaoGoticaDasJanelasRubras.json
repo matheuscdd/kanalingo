@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "kind": "prefab",
+  "name": "MansaoGoticaDasJanelasRubras",
+  "dx": 92,
+  "dy": 144,
+  "dz": 78,
+  "recipe": [
+    { "op": "filledRect", "x0": 0, "y": 0, "z0": 0, "width": 92, "depth": 78, "color": "#151515" },
+    { "op": "filledRect", "x0": 4, "y": 1, "z0": 4, "width": 84, "depth": 70, "color": "#4d545d" },
+    { "op": "filledRect", "x0": 8, "y": 2, "z0": 8, "width": 76, "depth": 62, "color": "#666d77" },
+    { "op": "filledRect", "x0": 12, "y": 3, "z0": 12, "width": 68, "depth": 54, "color": "#878f98" },
+
+    { "op": "solid", "x0": 18, "y0": 4, "z0": 14, "width": 56, "depth": 46, "height": 30, "color": "#d6d2c4" },
+    { "op": "solid", "x0": 20, "y0": 34, "z0": 16, "width": 52, "depth": 42, "height": 34, "color": "#e6e1d2" },
+
+    { "op": "solid", "x0": 14, "y0": 4, "z0": 12, "width": 4, "depth": 50, "height": 64, "color": "#9ca2ab" },
+    { "op": "solid", "x0": 74, "y0": 4, "z0": 12, "width": 4, "depth": 50, "height": 64, "color": "#9ca2ab" },
+    { "op": "solid", "x0": 20, "y0": 4, "z0": 10, "width": 52, "depth": 4, "height": 64, "color": "#a5acb5" },
+    { "op": "solid", "x0": 20, "y0": 4, "z0": 60, "width": 52, "depth": 4, "height": 64, "color": "#9aa1aa" },
+
+    { "op": "solid", "x0": 34, "y0": 28, "z0": 6, "width": 24, "depth": 4, "height": 50, "color": "#d9d4c6" },
+    { "op": "solid", "x0": 38, "y0": 68, "z0": 22, "width": 16, "depth": 16, "height": 46, "color": "#ece8db" },
+
+    { "op": "solid", "x0": 4, "y0": 34, "z0": 8, "width": 10, "depth": 10, "height": 44, "color": "#ddd9cc" },
+    { "op": "solid", "x0": 78, "y0": 34, "z0": 8, "width": 10, "depth": 10, "height": 44, "color": "#ddd9cc" },
+    { "op": "solid", "x0": 4, "y0": 34, "z0": 52, "width": 10, "depth": 10, "height": 40, "color": "#d7d2c4" },
+    { "op": "solid", "x0": 78, "y0": 34, "z0": 52, "width": 10, "depth": 10, "height": 40, "color": "#d7d2c4" },
+
+    { "op": "solid", "x0": 24, "y0": 68, "z0": 12, "width": 44, "depth": 2, "height": 4, "color": "#2a2d34" },
+    { "op": "solid", "x0": 24, "y0": 68, "z0": 56, "width": 44, "depth": 2, "height": 4, "color": "#2a2d34" },
+    { "op": "solid", "x0": 24, "y0": 68, "z0": 14, "width": 2, "depth": 42, "height": 4, "color": "#2a2d34" },
+    { "op": "solid", "x0": 66, "y0": 68, "z0": 14, "width": 2, "depth": 42, "height": 4, "color": "#2a2d34" },
+
+    { "op": "solid", "x0": 30, "y0": 68, "z0": 20, "width": 32, "depth": 2, "height": 1, "color": "#26282f" },
+    { "op": "solid", "x0": 30, "y0": 68, "z0": 46, "width": 32, "depth": 2, "height": 1, "color": "#26282f" },
+    { "op": "solid", "x0": 30, "y0": 68, "z0": 22, "width": 2, "depth": 24, "height": 1, "color": "#26282f" },
+    { "op": "solid", "x0": 60, "y0": 68, "z0": 22, "width": 2, "depth": 24, "height": 1, "color": "#26282f" },
+
+
+    { "op": "filledRect", "x0": 34, "y": 78, "z0": 6, "width": 24, "depth": 12, "color": "#2b2d34" },
+    { "op": "filledRect", "x0": 36, "y": 79, "z0": 8, "width": 20, "depth": 8, "color": "#24262d" },
+    { "op": "filledRect", "x0": 38, "y": 80, "z0": 10, "width": 16, "depth": 4, "color": "#1e2027" },
+
+    { "op": "solid", "x0": 40, "y0": 114, "z0": 24, "width": 12, "depth": 12, "height": 1, "color": "#2b2d34" },
+    { "op": "block", "type": "ShapeMesh:square_pyramid:12:16:12", "color": "#202329", "rot": 0, "lx": 40, "ly": 115, "lz": 24 },
+
+    { "op": "solid", "x0": 6, "y0": 78, "z0": 14, "width": 6, "depth": 6, "height": 1, "color": "#2b2d34" },
+    { "op": "solid", "x0": 80, "y0": 78, "z0": 14, "width": 6, "depth": 6, "height": 1, "color": "#2b2d34" },
+    { "op": "solid", "x0": 6, "y0": 74, "z0": 50, "width": 6, "depth": 6, "height": 1, "color": "#2b2d34" },
+    { "op": "solid", "x0": 80, "y0": 74, "z0": 50, "width": 6, "depth": 6, "height": 1, "color": "#2b2d34" },
+
+    { "op": "block", "type": "ShapeMesh:square_pyramid:6:10:6", "color": "#23262d", "rot": 0, "lx": 6, "ly": 79, "lz": 14 },
+    { "op": "block", "type": "ShapeMesh:square_pyramid:6:10:6", "color": "#23262d", "rot": 0, "lx": 80, "ly": 79, "lz": 14 },
+    { "op": "block", "type": "ShapeMesh:square_pyramid:6:10:6", "color": "#23262d", "rot": 0, "lx": 6, "ly": 75, "lz": 50 },
+    { "op": "block", "type": "ShapeMesh:square_pyramid:6:10:6", "color": "#23262d", "rot": 0, "lx": 80, "ly": 75, "lz": 50 },
+
+    { "op": "solid", "x0": 34, "y0": 8, "z0": 6, "width": 24, "depth": 2, "height": 16, "color": "#3b1f1f" },
+    { "op": "solid", "x0": 40, "y0": 8, "z0": 8, "width": 12, "depth": 2, "height": 18, "color": "#2a1b1b" },
+    { "op": "solid", "x0": 38, "y0": 26, "z0": 6, "width": 16, "depth": 2, "height": 2, "color": "#1a1a1a" },
+
+    { "op": "solid", "x0": 24, "y0": 14, "z0": 8, "width": 4, "depth": 2, "height": 8, "color": "#541d22" },
+    { "op": "solid", "x0": 32, "y0": 16, "z0": 8, "width": 4, "depth": 2, "height": 8, "color": "#5b1f24" },
+    { "op": "solid", "x0": 56, "y0": 16, "z0": 8, "width": 4, "depth": 2, "height": 8, "color": "#5b1f24" },
+    { "op": "solid", "x0": 64, "y0": 14, "z0": 8, "width": 4, "depth": 2, "height": 8, "color": "#541d22" },
+
+    { "op": "solid", "x0": 26, "y0": 40, "z0": 8, "width": 4, "depth": 2, "height": 9, "color": "#5b1f24" },
+    { "op": "solid", "x0": 30, "y0": 42, "z0": 8, "width": 4, "depth": 2, "height": 9, "color": "#642329" },
+    { "op": "solid", "x0": 58, "y0": 42, "z0": 8, "width": 4, "depth": 2, "height": 9, "color": "#642329" },
+    { "op": "solid", "x0": 62, "y0": 40, "z0": 8, "width": 4, "depth": 2, "height": 9, "color": "#5b1f24" },
+
+    { "op": "solid", "x0": 12, "y0": 18, "z0": 20, "width": 2, "depth": 4, "height": 8, "color": "#582025" },
+    { "op": "solid", "x0": 12, "y0": 36, "z0": 20, "width": 2, "depth": 4, "height": 8, "color": "#5f2328" },
+    { "op": "solid", "x0": 12, "y0": 18, "z0": 40, "width": 2, "depth": 4, "height": 8, "color": "#582025" },
+    { "op": "solid", "x0": 12, "y0": 36, "z0": 40, "width": 2, "depth": 4, "height": 8, "color": "#5f2328" },
+
+    { "op": "solid", "x0": 78, "y0": 18, "z0": 20, "width": 2, "depth": 4, "height": 8, "color": "#582025" },
+    { "op": "solid", "x0": 78, "y0": 36, "z0": 20, "width": 2, "depth": 4, "height": 8, "color": "#5f2328" },
+    { "op": "solid", "x0": 78, "y0": 18, "z0": 40, "width": 2, "depth": 4, "height": 8, "color": "#582025" },
+    { "op": "solid", "x0": 78, "y0": 36, "z0": 40, "width": 2, "depth": 4, "height": 8, "color": "#5f2328" },
+
+    { "op": "solid", "x0": 26, "y0": 18, "z0": 64, "width": 4, "depth": 2, "height": 8, "color": "#541d22" },
+    { "op": "solid", "x0": 36, "y0": 20, "z0": 64, "width": 4, "depth": 2, "height": 8, "color": "#5b1f24" },
+    { "op": "solid", "x0": 52, "y0": 20, "z0": 64, "width": 4, "depth": 2, "height": 8, "color": "#5b1f24" },
+    { "op": "solid", "x0": 62, "y0": 18, "z0": 64, "width": 4, "depth": 2, "height": 8, "color": "#541d22" },
+
+    { "op": "solid", "x0": 30, "y0": 52, "z0": 4, "width": 32, "depth": 2, "height": 3, "color": "#202228" },
+    { "op": "solid", "x0": 32, "y0": 55, "z0": 4, "width": 28, "depth": 2, "height": 2, "color": "#1a1d23" },
+
+    { "op": "solid", "x0": 0, "y0": 1, "z0": 8, "width": 4, "depth": 4, "height": 2, "color": "#2f6f45" },
+    { "op": "solid", "x0": 1, "y0": 3, "z0": 9, "width": 2, "depth": 2, "height": 6, "color": "#5f3f29" },
+    { "op": "solid", "x0": 0, "y0": 9, "z0": 6, "width": 6, "depth": 6, "height": 1, "color": "#2f7e4e" },
+
+    { "op": "solid", "x0": 88, "y0": 1, "z0": 10, "width": 4, "depth": 4, "height": 2, "color": "#2f6f45" },
+    { "op": "solid", "x0": 89, "y0": 3, "z0": 11, "width": 2, "depth": 2, "height": 5, "color": "#5f3f29" },
+    { "op": "solid", "x0": 86, "y0": 8, "z0": 8, "width": 6, "depth": 6, "height": 1, "color": "#2f7e4e" },
+
+    { "op": "solid", "x0": 0, "y0": 1, "z0": 66, "width": 4, "depth": 4, "height": 2, "color": "#2f6f45" },
+    { "op": "solid", "x0": 1, "y0": 3, "z0": 67, "width": 2, "depth": 2, "height": 5, "color": "#5f3f29" },
+    { "op": "solid", "x0": 0, "y0": 8, "z0": 64, "width": 6, "depth": 6, "height": 1, "color": "#2f7e4e" },
+
+    { "op": "solid", "x0": 88, "y0": 1, "z0": 66, "width": 4, "depth": 4, "height": 2, "color": "#2f6f45" },
+    { "op": "solid", "x0": 89, "y0": 3, "z0": 67, "width": 2, "depth": 2, "height": 5, "color": "#5f3f29" },
+    { "op": "solid", "x0": 86, "y0": 8, "z0": 64, "width": 6, "depth": 6, "height": 1, "color": "#2f7e4e" }
+  ]
+}
