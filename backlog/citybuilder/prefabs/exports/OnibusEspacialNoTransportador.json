@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "kind": "prefab",
+  "name": "OnibusEspacialNoTransportador",
+  "dx": 56,
+  "dy": 64,
+  "dz": 28,
+  "recipe": [
+    { "op": "filledRect", "x0": 6, "y": 0, "z0": 6, "width": 44, "depth": 12, "color": "#151515" },
+    { "op": "filledRect", "x0": 8, "y": 1, "z0": 7, "width": 40, "depth": 10, "color": "#272b31" },
+    { "op": "filledRect", "x0": 10, "y": 2, "z0": 8, "width": 38, "depth": 8, "color": "#0054b8" },
+    { "op": "solid", "x0": 10, "y0": 3, "z0": 8, "width": 40, "depth": 12, "height": 1, "color": "#0b67d1" },
+    { "op": "solid", "x0": 14, "y0": 4, "z0": 10, "width": 30, "depth": 8, "height": 1, "color": "#1a1a1a" },
+
+    { "op": "solid", "x0": 2, "y0": 1, "z0": 8, "width": 6, "depth": 8, "height": 2, "color": "#0068d9" },
+    { "op": "solid", "x0": 2, "y0": 3, "z0": 9, "width": 6, "depth": 6, "height": 2, "color": "#0a63c9" },
+    { "op": "solid", "x0": 3, "y0": 5, "z0": 10, "width": 4, "depth": 4, "height": 2, "color": "#54a9e7" },
+    { "op": "solid", "x0": 4, "y0": 7, "z0": 11, "width": 2, "depth": 2, "height": 2, "color": "#79c5ef" },
+    { "op": "solid", "x0": 0, "y0": 0, "z0": 10, "width": 2, "depth": 4, "height": 2, "color": "#111111" },
+
+    { "op": "solid", "x0": 10, "y0": 0, "z0": 2, "width": 4, "depth": 4, "height": 2, "color": "#111111" },
+    { "op": "solid", "x0": 24, "y0": 0, "z0": 2, "width": 4, "depth": 4, "height": 2, "color": "#111111" },
+    { "op": "solid", "x0": 38, "y0": 0, "z0": 2, "width": 4, "depth": 4, "height": 2, "color": "#111111" },
+    { "op": "solid", "x0": 10, "y0": 0, "z0": 18, "width": 4, "depth": 4, "height": 2, "color": "#111111" },
+    { "op": "solid", "x0": 24, "y0": 0, "z0": 18, "width": 4, "depth": 4, "height": 2, "color": "#111111" },
+    { "op": "solid", "x0": 38, "y0": 0, "z0": 18, "width": 4, "depth": 4, "height": 2, "color": "#111111" },
+
+    { "op": "solid", "x0": 30, "y0": 5, "z0": 17, "width": 8, "depth": 8, "height": 5, "color": "#6f4626" },
+    { "op": "solid", "x0": 40, "y0": 5, "z0": 17, "width": 6, "depth": 6, "height": 4, "color": "#171717" },
+    { "op": "solid", "x0": 18, "y0": 6, "z0": 11, "width": 4, "depth": 4, "height": 10, "color": "#f2f4f7" },
+    { "op": "solid", "x0": 28, "y0": 6, "z0": 11, "width": 4, "depth": 4, "height": 10, "color": "#f2f4f7" },
+    { "op": "solid", "x0": 22, "y0": 5, "z0": 12, "width": 6, "depth": 4, "height": 5, "color": "#171717" },
+    { "op": "solid", "x0": 22, "y0": 10, "z0": 10, "width": 6, "depth": 6, "height": 6, "color": "#f2f4f7" },
+    { "op": "solid", "x0": 20, "y0": 16, "z0": 8, "width": 10, "depth": 10, "height": 20, "color": "#f2f4f7" },
+    { "op": "solid", "x0": 21, "y0": 36, "z0": 8, "width": 8, "depth": 8, "height": 6, "color": "#f2f4f7" },
+    { "op": "solid", "x0": 22, "y0": 42, "z0": 8, "width": 6, "depth": 8, "height": 4, "color": "#151515" },
+    { "op": "solid", "x0": 22, "y0": 46, "z0": 8, "width": 6, "depth": 8, "height": 4, "color": "#f2f4f7" },
+    { "op": "solid", "x0": 23, "y0": 50, "z0": 9, "width": 4, "depth": 6, "height": 4, "color": "#f2f4f7" },
+    { "op": "block", "type": "ShapeMesh:cone:4:6:4", "color": "#f2f4f7", "rot": 0, "lx": 23, "ly": 54, "lz": 10 },
+
+    { "op": "solid", "x0": 30, "y0": 10, "z0": 17, "width": 6, "depth": 6, "height": 30, "color": "#ba6b26" },
+    { "op": "solid", "x0": 29, "y0": 40, "z0": 16, "width": 8, "depth": 8, "height": 4, "color": "#c77a2d" },
+    { "op": "block", "type": "ShapeMesh:truncated_cone:8:8:8", "color": "#c77a2d", "rot": 0, "lx": 29, "ly": 44, "lz": 16 },
+    { "op": "solid", "x0": 32, "y0": 52, "z0": 19, "width": 2, "depth": 2, "height": 2, "color": "#5d6066" },
+
+    { "op": "solid", "x0": 40, "y0": 9, "z0": 17, "width": 6, "depth": 6, "height": 9, "color": "#f1f3f6" },
+    { "op": "solid", "x0": 40, "y0": 18, "z0": 17, "width": 6, "depth": 6, "height": 2, "color": "#171717" },
+    { "op": "solid", "x0": 40, "y0": 20, "z0": 17, "width": 6, "depth": 6, "height": 10, "color": "#f1f3f6" },
+    { "op": "solid", "x0": 40, "y0": 30, "z0": 17, "width": 6, "depth": 6, "height": 2, "color": "#171717" },
+    { "op": "solid", "x0": 40, "y0": 32, "z0": 17, "width": 6, "depth": 6, "height": 3, "color": "#f1f3f6" },
+    { "op": "solid", "x0": 41, "y0": 35, "z0": 18, "width": 4, "depth": 4, "height": 8, "color": "#f1f3f6" },
+    { "op": "block", "type": "ShapeMesh:truncated_cone:6:6:6", "color": "#f1f3f6", "rot": 0, "lx": 40, "ly": 43, "lz": 17 },
+    { "op": "solid", "x0": 42, "y0": 49, "z0": 19, "width": 2, "depth": 2, "height": 2, "color": "#e8ebef" },
+
+    { "op": "solid", "x0": 36, "y0": 18, "z0": 18, "width": 4, "depth": 4, "height": 2, "color": "#2d3036" },
+    { "op": "solid", "x0": 36, "y0": 30, "z0": 18, "width": 4, "depth": 4, "height": 2, "color": "#2d3036" },
+
+    { "op": "block", "type": "ShapeMesh:triangular_prism:16:12:8", "color": "#f2f4f7", "rot": 0, "direction": "neg-x", "lx": 8, "ly": 16, "lz": 9 },
+    { "op": "block", "type": "ShapeMesh:triangular_prism:18:12:8", "color": "#f2f4f7", "rot": 0, "direction": "pos-x", "lx": 30, "ly": 16, "lz": 9 },
+
+    { "op": "solid", "x0": 24, "y0": 28, "z0": 18, "width": 2, "depth": 2, "height": 18, "color": "#f2f4f7" },
+
+    {
+      "op": "blocks",
+      "blocks": [
+        { "type": "1x1", "color": "#111111", "rot": 0, "lx": 23, "ly": 44, "lz": 7 },
+        { "type": "1x1", "color": "#111111", "rot": 0, "lx": 24, "ly": 45, "lz": 7 },
+        { "type": "1x1", "color": "#111111", "rot": 0, "lx": 25, "ly": 44, "lz": 7 },
+        { "type": "1x1", "color": "#111111", "rot": 0, "lx": 24, "ly": 52, "lz": 8 },
+        { "type": "1x1", "color": "#111111", "rot": 0, "lx": 25, "ly": 52, "lz": 8 }
+      ]
+    }
+  ]
+}
