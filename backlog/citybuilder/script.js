@@ -185,10 +185,18 @@ let isTopDownView = false;
 let cameraAngleIndex = 1;
 const CAM_RADIUS = 110;
 const CAM_HEIGHT = 110;
+const CAM_ORBIT_DISTANCE = Math.hypot(CAM_RADIUS, CAM_HEIGHT);
+const CAM_ORBIT_DEFAULT_ELEVATION = Math.atan2(CAM_HEIGHT, CAM_RADIUS);
+const CAM_ORBIT_MIN_ELEVATION = Math.PI / 9;
+const CAM_ORBIT_MAX_ELEVATION = Math.PI / 2 - 0.18;
+const CAM_ORBIT_YAW_SENSITIVITY = 0.01;
+const CAM_ORBIT_PITCH_SENSITIVITY = 0.008;
 let targetCamOffset = new THREE.Vector3();
 let visualCamOffset = new THREE.Vector3();
 let cameraTarget = new THREE.Vector3(0, 0, 0);
 let visualTarget = new THREE.Vector3(0, 0, 0);
+let cameraOrbitYaw = (cameraAngleIndex * Math.PI) / 2 + Math.PI / 4;
+let cameraOrbitElevation = CAM_ORBIT_DEFAULT_ELEVATION;
 let currentCX = 0,
     currentCY = 0,
     currentCZ = 0;
@@ -237,6 +245,12 @@ let shapeResizeHandleMeshes = [];
 let shapeResizeHoverAxis = null;
 let shapeResizeModifierActive = false;
 let shapeResizeSession = null;
+const cameraOrbitSession = {
+    active: false,
+    pointerId: null,
+    clientX: 0,
+    clientY: 0,
+};
 let editablePlacementTarget = null;
 let selectionAnchor = null;
 let selectionBounds = null;
@@ -1934,7 +1948,7 @@ const tempLookTarget = new THREE.Vector3();
 const tempWaypoint = new THREE.Vector3();
 const tempStudNormal = new THREE.Vector3();
 const tempStudQuaternion = new THREE.Quaternion();
-const pendingPointerMove = { active: false, clientX: 0, clientY: 0 };
+const pendingPointerMove = { active: false, clientX: 0, clientY: 0, buttons: 0 };
 const rayInterval = { enter: 0, exit: 0, normal: new THREE.Vector3() };
 const groundNormal = new THREE.Vector3(0, 1, 0);
 const pickResult = {
@@ -4600,9 +4614,78 @@ function checkFPCollision(pos) {
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-function processPointerMove(clientX, clientY) {
+function wrapCameraOrbitYaw(angle) {
+    const fullTurn = Math.PI * 2;
+    return ((angle % fullTurn) + fullTurn) % fullTurn;
+}
+
+function clampCameraOrbitElevation(angle) {
+    return Math.max(CAM_ORBIT_MIN_ELEVATION, Math.min(CAM_ORBIT_MAX_ELEVATION, angle));
+}
+
+function syncCameraAngleIndexFromOrbit() {
+    const normalizedYaw = wrapCameraOrbitYaw(cameraOrbitYaw - Math.PI / 4);
+    cameraAngleIndex = Math.round(normalizedYaw / (Math.PI / 2)) % 4;
+}
+
+function applyCameraOrbitToView() {
+    visualCamOffset.copy(targetCamOffset);
+    orthoCamera.position.copy(visualTarget).add(visualCamOffset);
+    orthoCamera.lookAt(visualTarget);
+}
+
+function canStartCameraOrbit(e) {
+    if (isFirstPerson || isTopDownView || shapeResizeSession || pendingBuildPointer.active) return false;
+    if (e.target !== renderer.domElement || e.button !== 2) return false;
+
+    const pointerType = e.pointerType || "mouse";
+    return pointerType === "mouse";
+}
+
+function startCameraOrbit(e) {
+    cameraOrbitSession.active = true;
+    cameraOrbitSession.pointerId = "pointerId" in e ? e.pointerId : null;
+    cameraOrbitSession.clientX = e.clientX;
+    cameraOrbitSession.clientY = e.clientY;
+    pendingPointerMove.active = false;
+}
+
+function finishCameraOrbit() {
+    if (!cameraOrbitSession.active) return;
+
+    cameraOrbitSession.active = false;
+    cameraOrbitSession.pointerId = null;
+    cameraOrbitSession.clientX = 0;
+    cameraOrbitSession.clientY = 0;
+    syncCameraAngleIndexFromOrbit();
+}
+
+function updateCameraOrbit(clientX, clientY) {
+    if (!cameraOrbitSession.active) return;
+
+    const deltaX = clientX - cameraOrbitSession.clientX;
+    const deltaY = clientY - cameraOrbitSession.clientY;
+    cameraOrbitSession.clientX = clientX;
+    cameraOrbitSession.clientY = clientY;
+
+    cameraOrbitYaw = wrapCameraOrbitYaw(cameraOrbitYaw + deltaX * CAM_ORBIT_YAW_SENSITIVITY);
+    cameraOrbitElevation = clampCameraOrbitElevation(cameraOrbitElevation + deltaY * CAM_ORBIT_PITCH_SENSITIVITY);
+    updateCameraTarget();
+    applyCameraOrbitToView();
+}
+
+function processPointerMove(clientX, clientY, buttons = 0) {
     if (isFirstPerson) return;
     const hoverStart = performance.now();
+
+    if (cameraOrbitSession.active) {
+        if (buttons && (buttons & 2) === 0) finishCameraOrbit();
+        else {
+            updateCameraOrbit(clientX, clientY);
+            recordPerfSample("hover", performance.now() - hoverStart);
+            return;
+        }
+    }
 
     if (shapeResizeSession) {
         updateShapeResizeDrag(clientX, clientY);
@@ -4673,17 +4756,18 @@ function processPointerMove(clientX, clientY) {
 }
 
 function queuePointerMove(e) {
-    if (isFirstPerson || e.target !== renderer.domElement) return;
+    if (isFirstPerson || (!cameraOrbitSession.active && e.target !== renderer.domElement)) return;
     const pos = e.changedTouches ? e.changedTouches[0] : e;
     pendingPointerMove.clientX = pos.clientX;
     pendingPointerMove.clientY = pos.clientY;
+    pendingPointerMove.buttons = typeof e.buttons === "number" ? e.buttons : 0;
     pendingPointerMove.active = true;
 }
 
 function flushPendingPointerMove() {
     if (!pendingPointerMove.active) return;
     pendingPointerMove.active = false;
-    processPointerMove(pendingPointerMove.clientX, pendingPointerMove.clientY);
+    processPointerMove(pendingPointerMove.clientX, pendingPointerMove.clientY, pendingPointerMove.buttons);
 }
 
 function updateRollOver() {
@@ -4722,6 +4806,10 @@ function updateRollOverVisual() {
 
 function handleMove(e) {
     queuePointerMove(e);
+    if (cameraOrbitSession.active) {
+        e.preventDefault?.();
+        return;
+    }
     if (!pendingBuildPointer.active) return;
     const pos = e.changedTouches ? e.changedTouches[0] : e;
     if (pendingBuildPointer.pointerId !== null && "pointerId" in e && e.pointerId !== pendingBuildPointer.pointerId) return;
@@ -4810,6 +4898,13 @@ function executePlacement() {
 
 function handlePointerDown(e) {
     if (isFirstPerson) return;
+
+    if (canStartCameraOrbit(e)) {
+        e.preventDefault();
+        startCameraOrbit(e);
+        return;
+    }
+
     beginBuildPointer(e);
 
     if (activeBuildTool === TOOL_EDIT) {
@@ -4844,6 +4939,13 @@ function handlePointerUp(e) {
         return;
     }
 
+    if (cameraOrbitSession.active) {
+        if (cameraOrbitSession.pointerId === null || !("pointerId" in e) || e.pointerId === cameraOrbitSession.pointerId) {
+            finishCameraOrbit();
+        }
+        return;
+    }
+
     if (shapeResizeSession) {
         finishShapeResizeDrag();
         clearBuildPointer();
@@ -4871,6 +4973,7 @@ function handlePointerUp(e) {
 }
 
 function handlePointerCancel() {
+    finishCameraOrbit();
     if (shapeResizeSession) cancelShapeResizeDrag();
     clearBuildPointer();
 }
@@ -4973,6 +5076,7 @@ window.addEventListener("keyup", (e) => {
     if (!e.ctrlKey && !e.metaKey) setShapeResizeModifierActive(false);
 });
 window.addEventListener("blur", () => {
+    finishCameraOrbit();
     setShapeResizeModifierActive(false);
     if (shapeResizeSession) cancelShapeResizeDrag();
     clearBuildPointer();
@@ -4994,6 +5098,7 @@ window.addEventListener("pointermove", handleMove);
 window.addEventListener("pointerdown", handlePointerDown);
 window.addEventListener("pointerup", handlePointerUp);
 window.addEventListener("pointercancel", handlePointerCancel);
+renderer.domElement.addEventListener("contextmenu", (e) => e.preventDefault());
 
 // --- POINTER LOCK (Olhar em 1ª Pessoa) ---
 container.addEventListener("click", () => {
@@ -5043,8 +5148,12 @@ function updateCameraTarget() {
     if (isTopDownView) {
         targetCamOffset.set(0, CAM_HEIGHT * 1.5, 0.1);
     } else {
-        const angle = (cameraAngleIndex * Math.PI) / 2 + Math.PI / 4;
-        targetCamOffset.set(Math.cos(angle) * CAM_RADIUS, CAM_HEIGHT, Math.sin(angle) * CAM_RADIUS);
+        const planarRadius = Math.cos(cameraOrbitElevation) * CAM_ORBIT_DISTANCE;
+        targetCamOffset.set(
+            Math.cos(cameraOrbitYaw) * planarRadius,
+            Math.sin(cameraOrbitElevation) * CAM_ORBIT_DISTANCE,
+            Math.sin(cameraOrbitYaw) * planarRadius,
+        );
     }
 }
 
@@ -5588,6 +5697,7 @@ document.getElementById("btn-fp").onclick = (e) => {
 };
 
 document.getElementById("btn-iso").onclick = () => {
+    finishCameraOrbit();
     isTopDownView = false;
     document.getElementById("btn-iso").classList.add("active");
     document.getElementById("btn-top").classList.remove("active");
@@ -5596,6 +5706,7 @@ document.getElementById("btn-iso").onclick = () => {
 };
 
 document.getElementById("btn-top").onclick = () => {
+    finishCameraOrbit();
     isTopDownView = true;
     document.getElementById("btn-top").classList.add("active");
     document.getElementById("btn-iso").classList.remove("active");
@@ -5605,7 +5716,9 @@ document.getElementById("btn-top").onclick = () => {
 
 document.getElementById("btn-cam").onclick = () => {
     if (!isTopDownView) {
+        finishCameraOrbit();
         cameraAngleIndex = (cameraAngleIndex + 1) % 4;
+        cameraOrbitYaw = (cameraAngleIndex * Math.PI) / 2 + Math.PI / 4;
         updateCameraTarget();
         snapOrthoCameraToTarget();
     }
