@@ -387,6 +387,24 @@
             min-width: 0;
         }
 
+        .builder-tools-resize-hint {
+            min-height: 30px;
+            padding: 7px 10px;
+            border-radius: var(--border-rad);
+            background: #f4f7fa;
+            color: #536779;
+            font-size: 11px;
+            line-height: 1.4;
+            border: 1px dashed #d8e0e8;
+            transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+        }
+
+        .builder-tools-resize-hint.active {
+            background: #eef8f2;
+            color: #18543c;
+            border-color: #8ed0aa;
+        }
+
         .builder-tools-status {
             min-height: 38px;
             padding: 8px 10px;

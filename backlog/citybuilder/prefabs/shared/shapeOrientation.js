@@ -115,6 +115,21 @@ function getShapePlacementMetrics(width, height, depth, direction = SHAPE_DIRECT
     );
 }
 
+function getWorldAxisFromMatrixColumn(x, y, z) {
+    if (Math.abs(x) > 0.5) return "x";
+    if (Math.abs(y) > 0.5) return "y";
+    return "z";
+}
+
+function getShapeDimensionWorldAxes(direction = SHAPE_DIRECTION_DEFAULT, rot = 0) {
+    const matrix = getShapeOrientationMatrix(direction, rot);
+    return {
+        width: getWorldAxisFromMatrixColumn(matrix[0], matrix[3], matrix[6]),
+        height: getWorldAxisFromMatrixColumn(matrix[1], matrix[4], matrix[7]),
+        depth: getWorldAxisFromMatrixColumn(matrix[2], matrix[5], matrix[8]),
+    };
+}
+
 function getOrientationLookupKey(matrix) {
     return matrix.join(",");
 }
@@ -143,6 +158,7 @@ export {
     SHAPE_DIRECTION_LABELS,
     SHAPE_DIRECTIONS,
     getBoundsAfterShapeOrientation,
+    getShapeDimensionWorldAxes,
     getShapeDirectionLabel,
     getShapeOrientationMatrix,
     getShapePlacementMetrics,

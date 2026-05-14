@@ -14,11 +14,13 @@ import {
     ensureDynamicShapeBlockType,
     getEffectiveShapeDirection,
     isShapeDirectionLocked,
+    parseDynamicShapeBlockType,
 } from "./prefabs/shared/builderTools.js";
 import {
     SHAPE_DIRECTION_DEFAULT,
     SHAPE_DIRECTIONS,
     getBoundsAfterShapeOrientation,
+    getShapeDimensionWorldAxes,
     getShapeDirectionLabel,
     getShapeOrientationMatrix,
     normalizeShapeDirection,
@@ -124,11 +126,23 @@ const MOBILE_SHADOW_MAP_SIZE = 1024;
 const TOOL_PREVIEW_VALID = 0x31a86f;
 const TOOL_PREVIEW_INVALID = 0xe74c3c;
 const SELECTION_HIGHLIGHT_COLOR = 0x00b7ff;
+const SHAPE_RESIZE_AXIS_ORDER = ["width", "depth", "height"];
+const SHAPE_RESIZE_AXIS_STYLES = {
+    width: { label: "L", color: 0x222244 },
+    depth: { label: "P", color: 0xa04b43 },
+    height: { label: "H", color: 0x7a287c },
+};
+const SHAPE_RESIZE_FACE_OFFSET = 0.18;
+const SHAPE_RESIZE_HANDLE_LENGTH = 1.35;
+const SHAPE_RESIZE_HANDLE_RADIUS = 0.09;
+const SHAPE_RESIZE_HANDLE_TIP_SIZE = 0.38;
+const BUILD_POINTER_DRAG_THRESHOLD_PX = 6;
 const TOOL_PLACE = "place";
 const TOOL_AREA = "area";
 const TOOL_FLOOR = "floor";
 const TOOL_WALL = "wall";
 const TOOL_SELECT = "select";
+const TOOL_EDIT = "edit";
 const TOOL_SHAPE = "shape";
 const TOOL_PASTE = "paste";
 const TOOL_DELETE_BLOCK = "delete-block";
@@ -162,6 +176,7 @@ const blockById = new Map();
 const groupToBlockIds = new Map();
 const groupToSourcePrefabId = new Map();
 const groupToPrefabPlacement = new Map();
+const groupToEditablePlacement = new Map();
 const blockToInstanceGroupKeys = new Map();
 let exportedStructureSerial = 1;
 
@@ -204,16 +219,42 @@ const builderToolRedoButton = document.getElementById("btn-tool-redo");
 const builderToolCopyButton = document.getElementById("btn-tool-copy");
 const builderToolPasteButton = document.getElementById("btn-tool-paste");
 const builderToolClearSelectionButton = document.getElementById("btn-tool-clear-selection");
+const builderToolsResizeHint = document.getElementById("builder-tools-resize-hint");
 const builderToolButtons = [...document.querySelectorAll("[data-build-tool]")];
 let activeBuildTool = TOOL_PLACE;
 let toolPreview = null;
 let lastToolPreviewKey = "";
+const pendingBuildPointer = {
+    active: false,
+    pointerId: null,
+    clientX: 0,
+    clientY: 0,
+    startedOnRenderer: false,
+    dragged: false,
+};
+let shapeResizeOverlay = null;
+let shapeResizeHandleMeshes = [];
+let shapeResizeHoverAxis = null;
+let shapeResizeModifierActive = false;
+let shapeResizeSession = null;
+let editablePlacementTarget = null;
 let selectionAnchor = null;
 let selectionBounds = null;
 let clipboardRecipe = null;
 const selectedBlockIds = new Set();
 const undoStack = [];
 const redoStack = [];
+const shapeResizeTempBoundary = new THREE.Vector3();
+const shapeResizeTempCenter = new THREE.Vector3();
+const shapeResizeTempCameraDir = new THREE.Vector3();
+const shapeResizeTempCameraUp = new THREE.Vector3();
+const shapeResizeTempCameraRight = new THREE.Vector3();
+const shapeResizeTempPerpendicular = new THREE.Vector3();
+const shapeResizeTempNormal = new THREE.Vector3();
+const shapeResizeTempIntersection = new THREE.Vector3();
+const shapeResizeTempDelta = new THREE.Vector3();
+const shapeResizeTempCylinderUp = new THREE.Vector3(0, 1, 0);
+const shapeResizeFallbackVector = new THREE.Vector3(0, 0, 1);
 
 function isPrefabType(type) {
     return typeof type === "string" && (type.startsWith(PREFAB_TYPE_PREFIX) || type.startsWith(LEGACY_PREFAB_TYPE_PREFIX));
@@ -358,6 +399,7 @@ function updateBuilderToolsStatus(extraMessage = "") {
     if (!builderToolsStatus) return;
 
     updateShapeDirectionButton();
+    updateBuilderToolsResizeHint();
 
     const toolNames = {
         [TOOL_PLACE]: "bloco",
@@ -365,6 +407,7 @@ function updateBuilderToolsStatus(extraMessage = "") {
         [TOOL_FLOOR]: "chão",
         [TOOL_WALL]: "parede",
         [TOOL_SELECT]: "seleção",
+        [TOOL_EDIT]: "editar",
         [TOOL_SHAPE]: `forma 3D (${builderToolShapeSelect?.value || "cuboid"})`,
         [TOOL_PASTE]: "colar",
         [TOOL_DELETE_BLOCK]: "apagar bloco",
@@ -377,8 +420,12 @@ function updateBuilderToolsStatus(extraMessage = "") {
     const shapeRotationLabel = activeBuildTool === TOOL_SHAPE
         ? ` | Giro: ${getShapeRotationLabel(getActiveShapeRot())}`
         : "";
+    const editTargetLabel = activeBuildTool === TOOL_EDIT && editablePlacementTarget
+        ? ` | Alvo: ${getEditablePlacementLabel(editablePlacementTarget.meta)}`
+        : "";
+    const resizeLabel = activeBuildTool === TOOL_EDIT ? ` | Resize: ${getShapeResizeStatusLabel()}` : "";
     const historyLabel = ` | Histórico: ${undoStack.length}/${redoStack.length}`;
-    builderToolsStatus.textContent = `Ferramenta: ${toolNames[activeBuildTool] || activeBuildTool}${directionLabel}${shapeRotationLabel}${selectionLabel}${clipboardLabel}${historyLabel}${extraMessage ? ` | ${extraMessage}` : ""}`;
+    builderToolsStatus.textContent = `Ferramenta: ${toolNames[activeBuildTool] || activeBuildTool}${directionLabel}${shapeRotationLabel}${editTargetLabel}${resizeLabel}${selectionLabel}${clipboardLabel}${historyLabel}${extraMessage ? ` | ${extraMessage}` : ""}`;
     updateHistoryButtons();
 }
 
@@ -387,6 +434,384 @@ function syncShapeSelectOptions() {
     const currentValue = builderToolShapeSelect.value;
     builderToolShapeSelect.innerHTML = FORMAS_3D.map((shape) => `<option value="${shape}">${shape}</option>`).join("");
     builderToolShapeSelect.value = FORMAS_3D.includes(currentValue) ? currentValue : "cuboid";
+}
+
+function getShapeResizeAxisStyle(axisKey) {
+    return SHAPE_RESIZE_AXIS_STYLES[axisKey] || SHAPE_RESIZE_AXIS_STYLES.width;
+}
+
+function getShapeResizeStatusLabel() {
+    if (shapeResizeSession) return `arrastando ${getShapeResizeAxisStyle(shapeResizeSession.axisKey).label}`;
+    if (activeBuildTool !== TOOL_EDIT) return "";
+    if (!editablePlacementTarget) return "clique em uma estrutura";
+    if (shapeResizeHoverAxis) return `seta ${getShapeResizeAxisStyle(shapeResizeHoverAxis).label}`;
+    return `${getEditablePlacementLabel(editablePlacementTarget.meta)} selecionado`;
+}
+
+function updateBuilderToolsResizeHint() {
+    if (!builderToolsResizeHint) return;
+
+    let label = "Editar: clique em uma estrutura";
+    if (activeBuildTool !== TOOL_EDIT) label = "Resize: use a ferramenta Editar";
+    else if (shapeResizeSession) label = `Resize ${getShapeResizeAxisStyle(shapeResizeSession.axisKey).label}: solte para aplicar`;
+    else if (editablePlacementTarget) label = shapeResizeHoverAxis
+        ? `Arraste ${getShapeResizeAxisStyle(shapeResizeHoverAxis).label}`
+        : `Setas prontas para ${getEditablePlacementLabel(editablePlacementTarget.meta)}`;
+
+    builderToolsResizeHint.textContent = label;
+    builderToolsResizeHint.classList.toggle("active", activeBuildTool === TOOL_EDIT && (!!editablePlacementTarget || !!shapeResizeSession));
+}
+
+function updateRaycasterFromClient(clientX, clientY) {
+    mouse.x = (clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, orthoCamera);
+}
+
+function getShapeResizeAxisInput(axisKey) {
+    if (axisKey === "width") return builderToolWidthInput;
+    if (axisKey === "depth") return builderToolDepthInput;
+    return builderToolHeightInput;
+}
+
+function setShapeToolDimensions(dims) {
+    if (builderToolWidthInput) builderToolWidthInput.value = String(clampPositiveInt(dims.width, 6));
+    if (builderToolDepthInput) builderToolDepthInput.value = String(clampPositiveInt(dims.depth, 6));
+    if (builderToolHeightInput) builderToolHeightInput.value = String(clampPositiveInt(dims.height, 4));
+}
+
+function setShapeResizeAxisValue(axisKey, nextValue) {
+    return setEditablePlacementAxisValue(editablePlacementTarget, axisKey, nextValue);
+}
+
+function shouldShowShapeResizeHandles() {
+    return activeBuildTool === TOOL_EDIT && !isFirstPerson && !!editablePlacementTarget;
+}
+
+function getWorldAxisUnitVector(worldAxis) {
+    if (worldAxis === "x") return new THREE.Vector3(1, 0, 0);
+    if (worldAxis === "y") return new THREE.Vector3(0, 1, 0);
+    return new THREE.Vector3(0, 0, 1);
+}
+
+function getActiveShapePreviewBounds() {
+    if (shapeResizeSession?.previewBounds) return { ...shapeResizeSession.previewBounds };
+    if (!editablePlacementTarget?.bounds) return null;
+    return { ...editablePlacementTarget.bounds };
+}
+
+function getShapeResizeAxisDescriptors(bounds) {
+    const meta = editablePlacementTarget?.meta;
+    if (!meta || !bounds) return [];
+
+    const worldAxes = getEditablePlacementWorldAxes(meta);
+    const axisKeys = getEditablePlacementAxisKeys(meta);
+    const midX = bounds.minX + bounds.dx / 2;
+    const midY = bounds.minY + bounds.dy / 2;
+    const midZ = bounds.minZ + bounds.dz / 2;
+
+    return axisKeys.map((axisKey) => {
+        const worldAxis = worldAxes[axisKey] || "x";
+        const axisVector = getWorldAxisUnitVector(worldAxis);
+        shapeResizeTempBoundary.set(midX, midY, midZ);
+        if (worldAxis === "x") shapeResizeTempBoundary.x = bounds.maxX;
+        else if (worldAxis === "y") shapeResizeTempBoundary.y = bounds.maxY;
+        else shapeResizeTempBoundary.z = bounds.maxZ;
+
+        const boundaryCenter = shapeResizeTempBoundary.clone();
+        const startPosition = boundaryCenter.clone().addScaledVector(axisVector, SHAPE_RESIZE_FACE_OFFSET);
+        const endPosition = boundaryCenter.clone().addScaledVector(axisVector, SHAPE_RESIZE_FACE_OFFSET + SHAPE_RESIZE_HANDLE_LENGTH);
+        return {
+            axisKey,
+            worldAxis,
+            vector: axisVector,
+            boundaryCenter,
+            startPosition,
+            endPosition,
+            style: getShapeResizeAxisStyle(axisKey),
+        };
+    });
+}
+
+function clearShapeResizeOverlay() {
+    if (!shapeResizeOverlay) return;
+    if (shapeResizeOverlay.parent) shapeResizeOverlay.parent.remove(shapeResizeOverlay);
+    shapeResizeOverlay.traverse?.((node) => {
+        if (node.userData?.disposeGeometry && node.geometry?.dispose) node.geometry.dispose();
+        if (node.userData?.disposeMaterial && node.material?.dispose) node.material.dispose();
+    });
+    shapeResizeOverlay = null;
+    shapeResizeHandleMeshes = [];
+}
+
+function getShapeResizeHandleHit() {
+    if (!shapeResizeHandleMeshes.length) return null;
+    const match = raycaster.intersectObjects(shapeResizeHandleMeshes, false).find((entry) => entry.object?.userData?.shapeResizeAxis);
+    return match ? { axisKey: match.object.userData.shapeResizeAxis } : null;
+}
+
+function updateShapeResizeOverlay() {
+    if (!shouldShowShapeResizeHandles()) {
+        clearShapeResizeOverlay();
+        return;
+    }
+
+    const bounds = getActiveShapePreviewBounds();
+    if (!bounds) {
+        clearShapeResizeOverlay();
+        return;
+    }
+
+    clearShapeResizeOverlay();
+    const previewIsValid = toolPreview?.userData?.isValid !== false;
+    const overlay = new THREE.Group();
+
+    getShapeResizeAxisDescriptors(bounds).forEach((descriptor) => {
+        const isActiveAxis = descriptor.axisKey === shapeResizeHoverAxis || descriptor.axisKey === shapeResizeSession?.axisKey;
+        const color = new THREE.Color(descriptor.style.color);
+        if (isActiveAxis) color.lerp(new THREE.Color(0xffffff), 0.35);
+
+        const shaftMaterial = new THREE.MeshBasicMaterial({
+            color,
+            transparent: true,
+            opacity: previewIsValid ? 0.9 : 0.55,
+            depthWrite: false,
+            depthTest: false,
+        });
+        const tipMaterial = new THREE.MeshBasicMaterial({
+            color,
+            transparent: true,
+            opacity: previewIsValid ? 1 : 0.7,
+            depthWrite: false,
+            depthTest: false,
+        });
+
+        const shaft = new THREE.Mesh(
+            new THREE.CylinderGeometry(SHAPE_RESIZE_HANDLE_RADIUS, SHAPE_RESIZE_HANDLE_RADIUS, SHAPE_RESIZE_HANDLE_LENGTH, 12),
+            shaftMaterial,
+        );
+        shapeResizeTempCenter.copy(descriptor.startPosition).lerp(descriptor.endPosition, 0.5);
+        shaft.position.copy(shapeResizeTempCenter);
+        shaft.quaternion.setFromUnitVectors(shapeResizeTempCylinderUp, descriptor.vector);
+        shaft.renderOrder = 1000;
+        shaft.userData.disposeGeometry = true;
+        shaft.userData.disposeMaterial = true;
+        shaft.userData.shapeResizeAxis = descriptor.axisKey;
+
+        const tipScale = isActiveAxis ? SHAPE_RESIZE_HANDLE_TIP_SIZE * 1.18 : SHAPE_RESIZE_HANDLE_TIP_SIZE;
+        const tip = new THREE.Mesh(new THREE.BoxGeometry(tipScale, tipScale, tipScale), tipMaterial);
+        tip.position.copy(descriptor.endPosition);
+        tip.renderOrder = 1001;
+        tip.userData.disposeGeometry = true;
+        tip.userData.disposeMaterial = true;
+        tip.userData.shapeResizeAxis = descriptor.axisKey;
+
+        overlay.add(shaft);
+        overlay.add(tip);
+        shapeResizeHandleMeshes.push(shaft, tip);
+    });
+
+    shapeResizeOverlay = overlay;
+    scene.add(overlay);
+}
+
+function getShapeResizeDragPlaneNormal(axisVector) {
+    orthoCamera.getWorldDirection(shapeResizeTempCameraDir);
+    shapeResizeTempPerpendicular.crossVectors(shapeResizeTempCameraDir, axisVector);
+
+    if (shapeResizeTempPerpendicular.lengthSq() < 1e-6) {
+        shapeResizeTempCameraUp.set(0, 1, 0).applyQuaternion(orthoCamera.quaternion);
+        shapeResizeTempPerpendicular.crossVectors(shapeResizeTempCameraUp, axisVector);
+    }
+
+    if (shapeResizeTempPerpendicular.lengthSq() < 1e-6) {
+        shapeResizeTempCameraRight.set(1, 0, 0).applyQuaternion(orthoCamera.quaternion);
+        shapeResizeTempPerpendicular.crossVectors(shapeResizeTempCameraRight, axisVector);
+    }
+
+    if (shapeResizeTempPerpendicular.lengthSq() < 1e-6) {
+        shapeResizeTempPerpendicular.crossVectors(shapeResizeFallbackVector, axisVector);
+    }
+
+    shapeResizeTempNormal.crossVectors(axisVector, shapeResizeTempPerpendicular).normalize();
+    return shapeResizeTempNormal.clone();
+}
+
+function setShapeResizeModifierActive(isActive) {
+    if (shapeResizeModifierActive === isActive) return;
+    shapeResizeModifierActive = isActive;
+    if (!shapeResizeModifierActive && !shapeResizeSession) shapeResizeHoverAxis = null;
+
+    if (activeBuildTool === TOOL_EDIT && !isFirstPerson) updateBuildPreview();
+    else {
+        updateShapeResizeOverlay();
+        updateBuilderToolsStatus();
+    }
+}
+
+function startShapeResizeDrag(e) {
+    const pos = e.changedTouches ? e.changedTouches[0] : e;
+    if (!shouldShowShapeResizeHandles() || !editablePlacementTarget || e.target !== renderer.domElement) return false;
+
+    updateRaycasterFromClient(pos.clientX, pos.clientY);
+    const hit = getShapeResizeHandleHit();
+    if (!hit) return false;
+
+    const bounds = getActiveShapePreviewBounds();
+    if (!bounds) return false;
+    const descriptor = getShapeResizeAxisDescriptors(bounds).find((item) => item.axisKey === hit.axisKey);
+    if (!descriptor) return false;
+
+    const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(
+        getShapeResizeDragPlaneNormal(descriptor.vector),
+        descriptor.boundaryCenter,
+    );
+    const intersection = raycaster.ray.intersectPlane(plane, shapeResizeTempIntersection);
+    if (!intersection) return false;
+
+    shapeResizeSession = {
+        targetGroupId: editablePlacementTarget.groupId,
+        axisKey: descriptor.axisKey,
+        axisVector: descriptor.vector.clone(),
+        boundaryCenter: descriptor.boundaryCenter.clone(),
+        plane,
+        pointerId: "pointerId" in e ? e.pointerId : null,
+        initialProjection: descriptor.vector.dot(shapeResizeTempDelta.copy(intersection).sub(descriptor.boundaryCenter)),
+        initialMeta: cloneEditablePlacement(editablePlacementTarget.meta),
+        previewBundle: null,
+        previewBounds: editablePlacementTarget.bounds ? { ...editablePlacementTarget.bounds } : null,
+        previewIsValid: true,
+        changed: false,
+    };
+    shapeResizeHoverAxis = descriptor.axisKey;
+    pendingBuildPointer.dragged = true;
+    updateShapeResizeOverlay();
+    updateBuilderToolsStatus(`Resize ${descriptor.style.label} iniciado`);
+    showHint(`Arraste ${descriptor.style.label} para redimensionar.`);
+    return true;
+}
+
+function updateShapeResizeDrag(clientX, clientY) {
+    if (!shapeResizeSession || !editablePlacementTarget) return false;
+    const intersection = (() => {
+        updateRaycasterFromClient(clientX, clientY);
+        return raycaster.ray.intersectPlane(shapeResizeSession.plane, shapeResizeTempIntersection);
+    })();
+    if (!intersection) return true;
+
+    const projectedDistance = shapeResizeSession.axisVector.dot(
+        shapeResizeTempDelta.copy(intersection).sub(shapeResizeSession.boundaryCenter),
+    );
+    const delta = Math.round(projectedDistance - shapeResizeSession.initialProjection);
+    const nextValue = clampPositiveInt(shapeResizeSession.initialMeta[shapeResizeSession.axisKey] + delta, shapeResizeSession.initialMeta[shapeResizeSession.axisKey]);
+    const changed = setShapeResizeAxisValue(shapeResizeSession.axisKey, nextValue);
+    if (!changed && !shapeResizeSession.changed) return true;
+
+    const currentMeta = editablePlacementTarget.meta;
+    shapeResizeSession.changed = currentMeta.width !== shapeResizeSession.initialMeta.width
+        || currentMeta.depth !== shapeResizeSession.initialMeta.depth
+        || currentMeta.height !== shapeResizeSession.initialMeta.height;
+
+    if (!shapeResizeSession.changed) {
+        shapeResizeSession.previewBundle = null;
+        shapeResizeSession.previewBounds = editablePlacementTarget.bounds ? { ...editablePlacementTarget.bounds } : null;
+        shapeResizeSession.previewIsValid = true;
+        clearToolPreview();
+        updateShapeResizeOverlay();
+        updateBuilderToolsStatus("Resize sem alterações");
+        return true;
+    }
+
+    const { bundle } = buildEditablePlacementBundle(editablePlacementTarget);
+    const previewBounds = getBundleBounds(bundle);
+    const isValid = canPlaceBundle(bundle, { ignoredGroupId: editablePlacementTarget.groupId });
+    shapeResizeSession.previewBundle = bundle;
+    shapeResizeSession.previewBounds = previewBounds ? { ...previewBounds } : null;
+    shapeResizeSession.previewIsValid = isValid;
+    pendingBuildPointer.dragged = true;
+    if (bundle.blocks.length > 0) {
+        const previewKey = `edit:${editablePlacementTarget.groupId}:${shapeResizeSession.axisKey}:${currentMeta.width}:${currentMeta.depth}:${currentMeta.height}`;
+        setToolPreviewBundle(bundle, isValid, previewKey);
+    }
+    updateShapeResizeOverlay();
+    updateBuilderToolsStatus(`${getShapeResizeAxisStyle(shapeResizeSession.axisKey).label}: ${editablePlacementTarget.meta[shapeResizeSession.axisKey]}`);
+    return true;
+}
+
+function cancelShapeResizeDrag() {
+    if (!shapeResizeSession) return;
+    editablePlacementTarget = buildEditablePlacementTarget(shapeResizeSession.targetGroupId, shapeResizeSession.initialMeta);
+    shapeResizeSession = null;
+    shapeResizeHoverAxis = null;
+    if (editablePlacementTarget) {
+        setEditablePlacementHighlight(editablePlacementTarget.groupId, true);
+        syncEditablePlacementInputs(editablePlacementTarget.meta);
+    }
+
+    if (activeBuildTool === TOOL_EDIT && !isFirstPerson) updateBuildPreview();
+    else {
+        clearToolPreview();
+        clearShapeResizeOverlay();
+        updateBuilderToolsStatus();
+    }
+
+    showHint("Resize cancelado.");
+    updateBuilderToolsStatus("Resize cancelado");
+}
+
+function finishShapeResizeDrag() {
+    if (!shapeResizeSession || !editablePlacementTarget) return;
+    const completedResize = shapeResizeSession;
+    shapeResizeSession = null;
+    shapeResizeHoverAxis = null;
+
+    if (activeBuildTool !== TOOL_EDIT || isFirstPerson) {
+        clearShapeResizeOverlay();
+        return;
+    }
+
+    if (!completedResize.changed) {
+        clearToolPreview();
+        updateBuildPreview();
+        updateBuilderToolsStatus("Resize disponível");
+        return;
+    }
+
+    if (!completedResize.previewBundle || completedResize.previewIsValid === false) {
+        editablePlacementTarget = buildEditablePlacementTarget(completedResize.targetGroupId, completedResize.initialMeta);
+        clearToolPreview();
+        updateBuildPreview();
+        showHint("Tamanho inválido para aplicar nesta posição.");
+        updateBuilderToolsStatus("Resize final inválido");
+        return;
+    }
+
+    const command = createEditablePlacementReplaceCommand(
+        buildEditablePlacementTarget(completedResize.targetGroupId, completedResize.initialMeta),
+        completedResize.previewBundle,
+        `Editar ${getEditablePlacementLabel(completedResize.initialMeta)}`,
+    );
+    clearToolPreview();
+    executeBuilderCommand(command);
+    showHint("Estrutura editada.");
+}
+
+function updateShapeResizeHover() {
+    if (!shouldShowShapeResizeHandles() || shapeResizeSession) {
+        if (shapeResizeHoverAxis !== null) {
+            shapeResizeHoverAxis = null;
+            updateShapeResizeOverlay();
+            updateBuilderToolsStatus();
+        }
+        return;
+    }
+
+    const nextAxis = getShapeResizeHandleHit()?.axisKey || null;
+    if (nextAxis === shapeResizeHoverAxis) return;
+
+    shapeResizeHoverAxis = nextAxis;
+    updateShapeResizeOverlay();
+    updateBuilderToolsStatus();
 }
 
 function clearToolPreview() {
@@ -472,17 +897,25 @@ function setToolPreviewBundle(bundle, isValid, key) {
 }
 
 function setActiveBuildTool(tool, hint = "") {
+    if (tool !== TOOL_EDIT && shapeResizeSession) cancelShapeResizeDrag();
     activeBuildTool = tool;
     isDeleteMode = tool === TOOL_DELETE_BLOCK;
     isDeleteGroupMode = tool === TOOL_DELETE_GROUP;
     clearHighlights();
     selectionAnchor = null;
+    if (tool !== TOOL_EDIT) {
+        shapeResizeHoverAxis = null;
+        clearEditablePlacementTarget({ skipStatus: true });
+    } else {
+        clearSelection();
+    }
     updateBuilderToolButtons();
     const deleteButton = document.getElementById("btn-delete");
     const deleteGroupButton = document.getElementById("btn-delete-group");
     if (deleteButton) deleteButton.classList.toggle("active", isDeleteMode);
     if (deleteGroupButton) deleteGroupButton.classList.toggle("active", isDeleteGroupMode);
     if (tool !== TOOL_SELECT) clearToolPreview();
+    if (tool !== TOOL_EDIT) clearShapeResizeOverlay();
     if (tool === TOOL_PLACE) updateRollOver();
     else if (rollOver) rollOver.visible = false;
     updateBuilderToolsStatus(hint);
@@ -494,6 +927,248 @@ function getToolDimensions() {
         depth: clampPositiveInt(builderToolDepthInput?.value, 6),
         height: clampPositiveInt(builderToolHeightInput?.value, 4),
     };
+}
+
+function cloneEditablePlacement(meta) {
+    if (!meta) return null;
+    return {
+        ...meta,
+        bounds: meta.bounds ? { ...meta.bounds } : null,
+    };
+}
+
+function getSupportedEditablePlacementForCurrentTool() {
+    const dims = getToolDimensions();
+
+    if (activeBuildTool === TOOL_PLACE) {
+        const prefabId = getPrefabIdFromType(currentType);
+        if (prefabId) return null;
+        const def = getRegisteredBlockDef(currentType);
+        if (!def || def.animated) return null;
+        const metrics = getPlacementMetrics(currentType, currentRot);
+        return {
+            toolType: TOOL_PLACE,
+            blockType: currentType,
+            color: currentColor,
+            rot: currentRot,
+            width: metrics.dx,
+            depth: metrics.dz,
+            height: metrics.dy,
+        };
+    }
+
+    if (activeBuildTool === TOOL_FLOOR) {
+        return {
+            toolType: TOOL_FLOOR,
+            blockType: getBrushBlockType(),
+            color: currentColor,
+            rot: currentRot,
+            width: dims.width,
+            depth: dims.depth,
+            height: 1,
+        };
+    }
+
+    if (activeBuildTool === TOOL_WALL) {
+        return {
+            toolType: TOOL_WALL,
+            blockType: getBrushBlockType(),
+            color: currentColor,
+            rot: currentRot,
+            width: dims.width,
+            depth: 1,
+            height: dims.height,
+        };
+    }
+
+    if (activeBuildTool === TOOL_SHAPE) {
+        return {
+            toolType: TOOL_SHAPE,
+            shapeType: getSelectedBuilderShape(),
+            color: currentColor,
+            rot: getActiveShapeRot(),
+            direction: getActiveShapeDirection(),
+            width: dims.width,
+            depth: dims.depth,
+            height: dims.height,
+        };
+    }
+
+    return null;
+}
+
+function getEditablePlacementAxisKeys(meta) {
+    if (!meta) return [];
+    if (meta.toolType === TOOL_FLOOR) return ["width", "depth"];
+    if (meta.toolType === TOOL_WALL) return ["width", "height"];
+    if (meta.toolType === TOOL_SHAPE || meta.toolType === TOOL_PLACE) return ["width", "depth", "height"];
+    return [];
+}
+
+function getEditablePlacementWorldAxes(meta) {
+    if (!meta) return {};
+    if (meta.toolType === TOOL_SHAPE) {
+        return getShapeDimensionWorldAxes(meta.direction, meta.rot);
+    }
+    if (meta.toolType === TOOL_WALL) {
+        return { width: meta.rot % 2 === 0 ? "x" : "z", height: "y" };
+    }
+    return { width: "x", depth: "z", height: "y" };
+}
+
+function getEditablePlacementLabel(meta) {
+    if (!meta) return "estrutura";
+    if (meta.toolType === TOOL_SHAPE) return `forma ${meta.shapeType}`;
+    if (meta.toolType === TOOL_FLOOR) return `chão ${meta.blockType}`;
+    if (meta.toolType === TOOL_WALL) return `parede ${meta.blockType}`;
+    if (meta.toolType === TOOL_PLACE) return `bloco ${meta.blockType}`;
+    return meta.toolType;
+}
+
+function getGroupBlocks(groupId) {
+    return [...(groupToBlockIds.get(groupId) || [])].map((blockId) => blockById.get(blockId)).filter(Boolean);
+}
+
+function getEditablePlacementFallback(blocks) {
+    if (!Array.isArray(blocks) || blocks.length !== 1) return null;
+    const [block] = blocks;
+    const parsedShape = parseDynamicShapeBlockType(block.type);
+    if (parsedShape) {
+        return {
+            toolType: TOOL_SHAPE,
+            shapeType: parsedShape.shape,
+            color: block.color,
+            rot: block.rot || 0,
+            direction: block.direction || SHAPE_DIRECTION_DEFAULT,
+            width: parsedShape.width,
+            depth: parsedShape.depth,
+            height: parsedShape.height,
+        };
+    }
+
+    if (isPrefabType(block.type)) return null;
+    const def = getRegisteredBlockDef(block.type);
+    if (!def || def.animated) return null;
+
+    return {
+        toolType: TOOL_PLACE,
+        blockType: block.type,
+        color: block.color,
+        rot: block.rot || 0,
+        width: block.dx,
+        depth: block.dz,
+        height: block.dy,
+    };
+}
+
+function buildEditablePlacementTarget(groupId, explicitMeta = null) {
+    if (!groupId) return null;
+
+    const blocks = getGroupBlocks(groupId);
+    if (blocks.length === 0) return null;
+
+    const resolvedMeta = cloneEditablePlacement(
+        explicitMeta
+        || groupToEditablePlacement.get(groupId)
+        || (!groupToSourcePrefabId.get(groupId) ? getEditablePlacementFallback(blocks) : null),
+    );
+    if (!resolvedMeta) return null;
+
+    const bounds = getBundleBounds({ blocks });
+    if (!bounds) return null;
+
+    resolvedMeta.bounds = { ...bounds };
+    return {
+        groupId,
+        blockIds: blocks.map((block) => block.id),
+        blocks,
+        meta: resolvedMeta,
+        bounds,
+        origin: { cx: bounds.minX, cy: bounds.minY, cz: bounds.minZ },
+    };
+}
+
+function buildRecipeFromEditablePlacement(meta) {
+    if (!meta) return null;
+    if (meta.toolType === TOOL_SHAPE) {
+        return createShapeRecipe(meta.shapeType, {
+            color: meta.color,
+            width: meta.width,
+            depth: meta.depth,
+            height: meta.height,
+            direction: meta.direction,
+            rot: meta.rot,
+        });
+    }
+    if (meta.toolType === TOOL_FLOOR) {
+        return createFloorRecipe({
+            type: meta.blockType,
+            color: meta.color,
+            rot: meta.rot,
+            width: meta.width,
+            depth: meta.depth,
+        });
+    }
+    if (meta.toolType === TOOL_WALL) {
+        return createWallRecipe({
+            type: meta.blockType,
+            color: meta.color,
+            rot: meta.rot,
+            width: meta.width,
+            height: meta.height,
+        });
+    }
+    if (meta.toolType === TOOL_PLACE) {
+        return createAreaRecipe({
+            type: meta.blockType,
+            color: meta.color,
+            rot: meta.rot,
+            width: meta.width,
+            depth: meta.depth,
+            height: meta.height,
+        });
+    }
+    return null;
+}
+
+function buildEditablePlacementBundle(target) {
+    const recipe = buildRecipeFromEditablePlacement(target?.meta);
+    if (!recipe?.blocks?.length || !target?.origin) return { recipe: null, bundle: { blocks: [], groups: [] } };
+
+    return {
+        recipe,
+        bundle: createBundleFromRecipe(recipe, target.origin, {
+            groupKey: `editable-${target.groupId}`,
+            groupMeta: { editablePlacement: target.meta },
+        }),
+    };
+}
+
+function syncEditablePlacementInputs(meta) {
+    if (!meta) return;
+    setShapeToolDimensions({ width: meta.width, depth: meta.depth, height: meta.height });
+}
+
+function setEditablePlacementAxisValue(target, axisKey, nextValue) {
+    if (!target?.meta || !getEditablePlacementAxisKeys(target.meta).includes(axisKey)) return false;
+
+    const previous = {
+        width: target.meta.width,
+        depth: target.meta.depth,
+        height: target.meta.height,
+    };
+    const normalized = clampPositiveInt(nextValue, previous[axisKey] || 1);
+
+    if (target.meta.toolType === TOOL_SHAPE && target.meta.shapeType === "cube") {
+        target.meta.width = normalized;
+        target.meta.depth = normalized;
+        target.meta.height = normalized;
+    } else {
+        target.meta[axisKey] = normalized;
+    }
+
+    syncEditablePlacementInputs(target.meta);
+    return previous.width !== target.meta.width || previous.depth !== target.meta.depth || previous.height !== target.meta.height;
 }
 
 function getBrushBlockType({ forceVoxel = false } = {}) {
@@ -537,6 +1212,97 @@ function clearSelection() {
     selectionBounds = null;
     selectionAnchor = null;
     updateBuilderToolsStatus();
+}
+
+function setEditablePlacementHighlight(groupId, isHighlight) {
+    if (!groupId) return;
+    const blockIds = groupToBlockIds.get(groupId);
+    if (!blockIds || blockIds.size === 0) return;
+
+    blockIds.forEach((blockId) => {
+        const block = blockById.get(blockId);
+        if (!block) return;
+        applyBlockColor(blockId, isHighlight ? SELECTION_HIGHLIGHT_COLOR : block.colorHex);
+    });
+}
+
+function clearEditablePlacementTarget({ skipStatus = false, clearPreview = true } = {}) {
+    if (editablePlacementTarget?.groupId) setEditablePlacementHighlight(editablePlacementTarget.groupId, false);
+    editablePlacementTarget = null;
+    shapeResizeHoverAxis = null;
+
+    if (clearPreview) clearToolPreview();
+    clearShapeResizeOverlay();
+    if (!skipStatus) updateBuilderToolsStatus();
+}
+
+function setEditablePlacementTarget(target, hint = "") {
+    const nextTarget = target?.groupId ? buildEditablePlacementTarget(target.groupId, target.meta) : null;
+
+    if (editablePlacementTarget?.groupId && editablePlacementTarget.groupId !== nextTarget?.groupId) {
+        setEditablePlacementHighlight(editablePlacementTarget.groupId, false);
+    }
+
+    editablePlacementTarget = nextTarget;
+    shapeResizeHoverAxis = null;
+
+    if (editablePlacementTarget?.groupId) {
+        editablePlacementTarget.meta.bounds = { ...editablePlacementTarget.bounds };
+        setEditablePlacementHighlight(editablePlacementTarget.groupId, true);
+        syncEditablePlacementInputs(editablePlacementTarget.meta);
+    } else {
+        clearShapeResizeOverlay();
+        clearToolPreview();
+    }
+
+    if (activeBuildTool === TOOL_EDIT && !isFirstPerson) updateBuildPreview();
+    updateBuilderToolsStatus(hint);
+    return !!editablePlacementTarget;
+}
+
+function resolveEditablePlacementTargetFromBlock(block) {
+    if (!block) return null;
+    return buildEditablePlacementTarget(block.groupId);
+}
+
+function resolveEditablePlacementTargetFromHit(hit) {
+    if (!hit || hit.kind !== "voxel" || !hit.block) return null;
+    return resolveEditablePlacementTargetFromBlock(hit.block);
+}
+
+function getPlacedGroupIdFromBlockIds(blockIds) {
+    const firstBlock = blockIds.map((blockId) => blockById.get(blockId)).find(Boolean);
+    return firstBlock?.groupId || null;
+}
+
+function createEditablePlacementReplaceCommand(target, nextBundle, label) {
+    const beforeBundle = snapshotBlocks(target.blocks, { singleGroupKey: `editable-before-${target.groupId}` });
+    let beforeBlockIds = [...target.blockIds];
+    let afterBlockIds = [];
+
+    return {
+        label,
+        execute() {
+            removeBlocksByIds(beforeBlockIds, true);
+            afterBlockIds = placeBundle(nextBundle, true);
+            updateStats();
+
+            if (activeBuildTool === TOOL_EDIT) {
+                const nextGroupId = getPlacedGroupIdFromBlockIds(afterBlockIds);
+                setEditablePlacementTarget(nextGroupId ? buildEditablePlacementTarget(nextGroupId) : null, nextGroupId ? "Estrutura editada" : "Estrutura removida");
+            }
+        },
+        undo() {
+            removeBlocksByIds(afterBlockIds, true);
+            beforeBlockIds = placeBundle(beforeBundle, true);
+            updateStats();
+
+            if (activeBuildTool === TOOL_EDIT) {
+                const restoredGroupId = getPlacedGroupIdFromBlockIds(beforeBlockIds);
+                setEditablePlacementTarget(restoredGroupId ? buildEditablePlacementTarget(restoredGroupId) : null, restoredGroupId ? "Estrutura restaurada" : "Sem alvo selecionado");
+            }
+        },
+    };
 }
 
 function applySelectionBounds(bounds) {
@@ -631,10 +1397,19 @@ function snapshotBlocks(blocks, { singleGroupKey = null } = {}) {
             groupKey,
             sourcePrefabId: groupToSourcePrefabId.get(block.groupId) || null,
             prefabPlacement: groupToPrefabPlacement.get(block.groupId) ? { ...groupToPrefabPlacement.get(block.groupId) } : null,
+            editablePlacement: cloneEditablePlacement(groupToEditablePlacement.get(block.groupId)),
         });
     });
 
-    if (singleGroupKey) groups.push({ groupKey: singleGroupKey, sourcePrefabId: null, prefabPlacement: null });
+    if (singleGroupKey) {
+        const seedBlock = blocks[0] || null;
+        groups.push({
+            groupKey: singleGroupKey,
+            sourcePrefabId: null,
+            prefabPlacement: null,
+            editablePlacement: seedBlock ? cloneEditablePlacement(groupToEditablePlacement.get(seedBlock.groupId)) : null,
+        });
+    }
     return { blocks: snapshots, groups };
 }
 
@@ -652,7 +1427,12 @@ function createBundleFromRecipe(recipe, origin, { groupKey = "batch", groupMeta 
             ...(block.direction != null ? { direction: block.direction } : {}),
             groupKey,
         })),
-        groups: [{ groupKey, sourcePrefabId: groupMeta?.sourcePrefabId || null, prefabPlacement: groupMeta?.prefabPlacement || null }],
+        groups: [{
+            groupKey,
+            sourcePrefabId: groupMeta?.sourcePrefabId || null,
+            prefabPlacement: groupMeta?.prefabPlacement || null,
+            editablePlacement: cloneEditablePlacement(groupMeta?.editablePlacement),
+        }],
     };
 }
 
@@ -690,6 +1470,7 @@ function placeBundle(bundle, skipStats = false) {
         groupIds.set(group.groupKey, groupId);
         if (group.sourcePrefabId) groupToSourcePrefabId.set(groupId, group.sourcePrefabId);
         if (group.prefabPlacement) groupToPrefabPlacement.set(groupId, { ...group.prefabPlacement });
+        if (group.editablePlacement) groupToEditablePlacement.set(groupId, cloneEditablePlacement(group.editablePlacement));
     });
 
     bundle.blocks.forEach((block) => {
@@ -769,7 +1550,7 @@ function redoBuilderCommand() {
     return true;
 }
 
-function hasBundleWorldSupport(occupiedCells, cellByKey, supportQuery) {
+function hasBundleWorldSupport(occupiedCells, cellByKey, supportQuery, ignoredGroupId = null) {
     if (!occupiedCells.length) return false;
 
     let componentCount = 0;
@@ -810,7 +1591,8 @@ function hasBundleWorldSupport(occupiedCells, cellByKey, supportQuery) {
         if (cell.y === 0) {
             supportedComponents.add(cell.component);
         } else {
-            const below = getVoxelWithContext(cell.x, cell.y - 1, cell.z, supportQuery);
+            const worldBelow = getVoxelWithContext(cell.x, cell.y - 1, cell.z, supportQuery);
+            const below = ignoredGroupId && worldBelow?.groupId === ignoredGroupId ? undefined : worldBelow;
             if (hasStudSupport(below)) supportedComponents.add(cell.component);
         }
 
@@ -820,7 +1602,7 @@ function hasBundleWorldSupport(occupiedCells, cellByKey, supportQuery) {
     return supportedComponents.size === componentCount;
 }
 
-function canPlaceBundle(bundle) {
+function canPlaceBundle(bundle, { ignoredGroupId = null } = {}) {
     if (!bundle?.blocks?.length) return false;
     if (blocksCount + bundle.blocks.length > MAX_BLOCKS) return false;
 
@@ -843,7 +1625,8 @@ function canPlaceBundle(bundle) {
                     if (wy < 0 || wy >= MAX_HEIGHT) return false;
                     if (wx < -half || wx >= half || wz < -half || wz >= half) return false;
                     if (plannedCells.has(key)) return false;
-                    if (hasVoxelWithContext(wx, wy, wz, occupancyQuery)) return false;
+                    const worldBlock = getVoxelWithContext(wx, wy, wz, occupancyQuery);
+                    if (worldBlock && (!ignoredGroupId || worldBlock.groupId !== ignoredGroupId)) return false;
                     plannedCells.add(key);
                     const cell = { x: wx, y: wy, z: wz, key, component: -1 };
                     occupiedCells.push(cell);
@@ -853,7 +1636,7 @@ function canPlaceBundle(bundle) {
         }
     }
 
-    return hasBundleWorldSupport(occupiedCells, cellByKey, supportQuery);
+    return hasBundleWorldSupport(occupiedCells, cellByKey, supportQuery, ignoredGroupId);
 }
 
 function buildActiveToolRecipe() {
@@ -892,12 +1675,18 @@ function buildPlacementBundleAt(origin) {
     if (activeBuildTool === TOOL_PLACE) {
         const prefabId = getPrefabIdFromType(currentType);
         if (prefabId) return createPrefabBundle(origin.cx, origin.cy, origin.cz, prefabId, currentRot);
-        return createBundleFromRecipe(buildSingleBlockRecipe(), origin, { groupKey: "manual-block" });
+        return createBundleFromRecipe(buildSingleBlockRecipe(), origin, {
+            groupKey: "manual-block",
+            groupMeta: { editablePlacement: getSupportedEditablePlacementForCurrentTool() },
+        });
     }
 
     const recipe = buildActiveToolRecipe();
     if (!recipe?.blocks?.length) return { blocks: [], groups: [] };
-    return createBundleFromRecipe(recipe, origin, { groupKey: `${activeBuildTool}-batch` });
+    return createBundleFromRecipe(recipe, origin, {
+        groupKey: `${activeBuildTool}-batch`,
+        groupMeta: { editablePlacement: getSupportedEditablePlacementForCurrentTool() },
+    });
 }
 
 function getPlacementCommandLabel() {
@@ -927,11 +1716,13 @@ function getActivePlacementFootprint() {
 function updateBuildPreview() {
     if (isFirstPerson) {
         clearToolPreview();
+        clearShapeResizeOverlay();
         return;
     }
 
     if (activeBuildTool === TOOL_PLACE) {
         clearToolPreview();
+        clearShapeResizeOverlay();
         updateRollOverVisual();
         return;
     }
@@ -940,17 +1731,39 @@ function updateBuildPreview() {
         if (rollOver) rollOver.visible = false;
         if (!selectionAnchor) {
             clearToolPreview();
+            clearShapeResizeOverlay();
             return;
         }
 
         const bounds = getSelectionBoundsFromPoints(selectionAnchor, { cx: currentCX, cy: currentCY, cz: currentCZ });
         setToolPreviewBounds(bounds, true, `select:${bounds.minX}:${bounds.minY}:${bounds.minZ}:${bounds.maxX}:${bounds.maxY}:${bounds.maxZ}`);
+        clearShapeResizeOverlay();
+        return;
+    }
+
+    if (activeBuildTool === TOOL_EDIT) {
+        if (rollOver) rollOver.visible = false;
+        if (!editablePlacementTarget) {
+            clearToolPreview();
+            clearShapeResizeOverlay();
+            return;
+        }
+
+        if (shapeResizeSession?.previewBundle?.blocks?.length && shapeResizeSession.changed) {
+            const previewKey = `edit-preview:${editablePlacementTarget.groupId}:${editablePlacementTarget.meta.width}:${editablePlacementTarget.meta.depth}:${editablePlacementTarget.meta.height}`;
+            setToolPreviewBundle(shapeResizeSession.previewBundle, shapeResizeSession.previewIsValid, previewKey);
+        } else {
+            clearToolPreview();
+        }
+
+        updateShapeResizeOverlay();
         return;
     }
 
     const recipe = buildActiveToolRecipe();
     if (!recipe?.blocks?.length) {
         clearToolPreview();
+        clearShapeResizeOverlay();
         return;
     }
 
@@ -961,6 +1774,7 @@ function updateBuildPreview() {
     if (activeBuildTool === TOOL_SHAPE) setToolPreviewBundle(bundle, isValid, previewKey);
     else setToolPreviewBounds(bounds, isValid, previewKey);
     if (rollOver) rollOver.visible = false;
+    updateShapeResizeOverlay();
 }
 
 function inferWorldExportName(seedBlock, connectedBlocks) {
@@ -3696,6 +4510,7 @@ function removeGroupById(groupId) {
         .forEach((block) => removeBlock(block, true));
     groupToSourcePrefabId.delete(groupId);
     groupToPrefabPlacement.delete(groupId);
+    groupToEditablePlacement.delete(groupId);
     updateStats();
 }
 
@@ -3726,6 +4541,7 @@ function removeBlock(data, skipStats = false) {
             groupToBlockIds.delete(data.groupId);
             groupToSourcePrefabId.delete(data.groupId);
             groupToPrefabPlacement.delete(data.groupId);
+            groupToEditablePlacement.delete(data.groupId);
         }
     }
     blocksCount--;
@@ -3738,6 +4554,7 @@ function clearAll() {
     blocks.forEach((block) => removeBlock(block, true));
     groupToSourcePrefabId.clear();
     groupToPrefabPlacement.clear();
+    groupToEditablePlacement.clear();
     updateStats();
 }
 
@@ -3787,11 +4604,21 @@ function processPointerMove(clientX, clientY) {
     if (isFirstPerson) return;
     const hoverStart = performance.now();
 
-    mouse.x = (clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(mouse, orthoCamera);
+    if (shapeResizeSession) {
+        updateShapeResizeDrag(clientX, clientY);
+        recordPerfSample("hover", performance.now() - hoverStart);
+        return;
+    }
+
+    updateRaycasterFromClient(clientX, clientY);
     const hit = pickFromSceneRay();
     pointedWorldBlockId = hit && hit.kind === "voxel" && hit.block ? hit.block.id : null;
+
+    if (activeBuildTool === TOOL_EDIT) {
+        updateShapeResizeHover();
+        recordPerfSample("hover", performance.now() - hoverStart);
+        return;
+    }
 
     if (isDeleteMode || isDeleteGroupMode) {
         if (hit && hit.kind === "voxel" && hit.block) {
@@ -3834,9 +4661,12 @@ function processPointerMove(clientX, clientY) {
         currentCY = origin.cy;
         currentCZ = clampedOrigin.cz;
         updateBuildPreview();
+        updateShapeResizeHover();
     } else {
         if (rollOver) rollOver.visible = false;
         clearToolPreview();
+        shapeResizeHoverAxis = null;
+        clearShapeResizeOverlay();
     }
 
     recordPerfSample("hover", performance.now() - hoverStart);
@@ -3892,10 +4722,36 @@ function updateRollOverVisual() {
 
 function handleMove(e) {
     queuePointerMove(e);
+    if (!pendingBuildPointer.active) return;
+    const pos = e.changedTouches ? e.changedTouches[0] : e;
+    if (pendingBuildPointer.pointerId !== null && "pointerId" in e && e.pointerId !== pendingBuildPointer.pointerId) return;
+    const deltaX = pos.clientX - pendingBuildPointer.clientX;
+    const deltaY = pos.clientY - pendingBuildPointer.clientY;
+    if (Math.hypot(deltaX, deltaY) >= BUILD_POINTER_DRAG_THRESHOLD_PX) pendingBuildPointer.dragged = true;
+}
+
+function beginBuildPointer(e) {
+    const pos = e.changedTouches ? e.changedTouches[0] : e;
+    pendingBuildPointer.active = true;
+    pendingBuildPointer.pointerId = "pointerId" in e ? e.pointerId : null;
+    pendingBuildPointer.clientX = pos.clientX;
+    pendingBuildPointer.clientY = pos.clientY;
+    pendingBuildPointer.startedOnRenderer = e.target === renderer.domElement;
+    pendingBuildPointer.dragged = false;
+}
+
+function clearBuildPointer() {
+    pendingBuildPointer.active = false;
+    pendingBuildPointer.pointerId = null;
+    pendingBuildPointer.clientX = 0;
+    pendingBuildPointer.clientY = 0;
+    pendingBuildPointer.startedOnRenderer = false;
+    pendingBuildPointer.dragged = false;
 }
 
 function executePlacement() {
     if (isFirstPerson) return;
+    if (activeBuildTool === TOOL_EDIT) return;
     if (isDeleteMode || isDeleteGroupMode) {
         const targetGroupId = hoveredGroupId;
         const targetBlockId = hoveredBlockId;
@@ -3952,17 +4808,81 @@ function executePlacement() {
     if (activeBuildTool === TOOL_PASTE) showHint("Seleção colada.");
 }
 
-function handleTap(e) {
-    if (isFirstPerson || e.target !== renderer.domElement) return;
-    queuePointerMove(e);
-    flushPendingPointerMove();
-    executePlacement();
+function handlePointerDown(e) {
+    if (isFirstPerson) return;
+    beginBuildPointer(e);
+
+    if (activeBuildTool === TOOL_EDIT) {
+        if (editablePlacementTarget && startShapeResizeDrag(e)) {
+            pendingBuildPointer.dragged = true;
+            return;
+        }
+
+        const pos = e.changedTouches ? e.changedTouches[0] : e;
+        updateRaycasterFromClient(pos.clientX, pos.clientY);
+        const hit = pickFromSceneRay();
+        const target = resolveEditablePlacementTargetFromHit(hit);
+        pendingBuildPointer.dragged = true;
+
+        if (target) {
+            setEditablePlacementTarget(target, `${getEditablePlacementLabel(target.meta)} selecionado`);
+            showHint(`Setas prontas para editar ${getEditablePlacementLabel(target.meta)}.`);
+        } else if (hit?.block) {
+            clearEditablePlacementTarget({ skipStatus: true });
+            updateBuilderToolsStatus("Estrutura não editável");
+            showHint("Este placement não é editável por esta ferramenta.");
+        } else {
+            clearEditablePlacementTarget({ skipStatus: true });
+            updateBuilderToolsStatus("Nenhum alvo selecionado");
+        }
+    }
+}
+
+function handlePointerUp(e) {
+    if (isFirstPerson) {
+        clearBuildPointer();
+        return;
+    }
+
+    if (shapeResizeSession) {
+        finishShapeResizeDrag();
+        clearBuildPointer();
+        return;
+    }
+
+    if (activeBuildTool === TOOL_EDIT) {
+        clearBuildPointer();
+        return;
+    }
+
+    const shouldPlace = pendingBuildPointer.active
+        && pendingBuildPointer.startedOnRenderer
+        && (!("pointerId" in e) || pendingBuildPointer.pointerId === null || e.pointerId === pendingBuildPointer.pointerId)
+        && !pendingBuildPointer.dragged
+        && e.target === renderer.domElement;
+
+    if (shouldPlace) {
+        queuePointerMove(e);
+        flushPendingPointerMove();
+        executePlacement();
+    }
+
+    clearBuildPointer();
+}
+
+function handlePointerCancel() {
+    if (shapeResizeSession) cancelShapeResizeDrag();
+    clearBuildPointer();
 }
 
 // --- CONTROLOS (TECLADO E RATO) ---
 window.addEventListener("keydown", (e) => {
     const isFormTarget = ["INPUT", "TEXTAREA", "SELECT"].includes(e.target?.tagName);
     if (isFormTarget && !(e.ctrlKey || e.metaKey)) return;
+
+    if (e.key === "Control" || e.key === "Meta" || e.ctrlKey || e.metaKey) {
+        setShapeResizeModifierActive(true);
+    }
 
     if ((e.ctrlKey || e.metaKey) && e.code === "KeyZ") {
         e.preventDefault();
@@ -3999,6 +4919,16 @@ window.addEventListener("keydown", (e) => {
 
     if (e.code === "Escape") {
         e.preventDefault();
+        if (shapeResizeSession) {
+            cancelShapeResizeDrag();
+            clearBuildPointer();
+            return;
+        }
+        if (activeBuildTool === TOOL_EDIT) {
+            clearEditablePlacementTarget({ skipStatus: true });
+            updateBuilderToolsStatus("Nenhum alvo selecionado");
+            return;
+        }
         selectionAnchor = null;
         clearToolPreview();
         setActiveBuildTool(TOOL_PLACE, "Modo de bloco");
@@ -4038,7 +4968,15 @@ window.addEventListener("keydown", (e) => {
     }
 });
 
-window.addEventListener("keyup", (e) => (keys[e.code] = false));
+window.addEventListener("keyup", (e) => {
+    keys[e.code] = false;
+    if (!e.ctrlKey && !e.metaKey) setShapeResizeModifierActive(false);
+});
+window.addEventListener("blur", () => {
+    setShapeResizeModifierActive(false);
+    if (shapeResizeSession) cancelShapeResizeDrag();
+    clearBuildPointer();
+});
 
 window.addEventListener(
     "wheel",
@@ -4053,7 +4991,9 @@ window.addEventListener(
 );
 
 window.addEventListener("pointermove", handleMove);
-window.addEventListener("pointerdown", handleTap);
+window.addEventListener("pointerdown", handlePointerDown);
+window.addEventListener("pointerup", handlePointerUp);
+window.addEventListener("pointercancel", handlePointerCancel);
 
 // --- POINTER LOCK (Olhar em 1ª Pessoa) ---
 container.addEventListener("click", () => {
@@ -4620,6 +5560,11 @@ if (builderToolShapeDirectionButton)
     if (!input) return;
     input.addEventListener("input", () => {
         input.value = String(clampPositiveInt(input.value, Number(input.defaultValue || 1)));
+        if (activeBuildTool === TOOL_EDIT && editablePlacementTarget) {
+            syncEditablePlacementInputs(editablePlacementTarget.meta);
+            updateBuilderToolsStatus("Use as setas para redimensionar");
+            return;
+        }
         updateBuildPreview();
         updateBuilderToolsStatus();
     });

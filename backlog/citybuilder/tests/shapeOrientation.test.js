@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { rotateShapeOrientationAroundY } from "../prefabs/shared/shapeOrientation.js";
+import { getShapeDimensionWorldAxes, rotateShapeOrientationAroundY } from "../prefabs/shared/shapeOrientation.js";
 
 describe("shape orientation", () => {
     it("rotates a vertical shape around world Y by changing only local rot", () => {
@@ -11,5 +11,12 @@ describe("shape orientation", () => {
     it("rotates a neg-z triangular prism around world Y like prefab base rotation", () => {
         expect(rotateShapeOrientationAroundY("neg-z", 0, 1)).toEqual({ direction: "pos-x", rot: 1 });
         expect(rotateShapeOrientationAroundY("neg-z", 0, -1)).toEqual({ direction: "neg-x", rot: 3 });
+    });
+
+    it("maps local dimensions to the oriented world axes", () => {
+        expect(getShapeDimensionWorldAxes("pos-y", 0)).toEqual({ width: "x", height: "y", depth: "z" });
+        expect(getShapeDimensionWorldAxes("pos-x", 0)).toEqual({ width: "y", height: "x", depth: "z" });
+        expect(getShapeDimensionWorldAxes("neg-z", 0)).toEqual({ width: "x", height: "z", depth: "y" });
+        expect(getShapeDimensionWorldAxes("pos-y", 1)).toEqual({ width: "z", height: "y", depth: "x" });
     });
 });
