@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Digitação - Estilo Duolingo</title>
+    
+    <!-- Fonte no estilo Duolingo -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Paleta de Cores Estilo Duolingo */
+            --green: #58cc02;
+            --green-shadow: #58a700;
+            --blue: #1cb0f6;
+            --blue-shadow: #1899d6;
+            --red: #ff4b4b;
+            --red-shadow: #ea2b2b;
+            --yellow: #ffc800;
+            --yellow-shadow: #e5b400;
+            --bg-color: #ffffff;
+            --text-main: #4b4b4b;
+            --text-light: #afafaf;
+            --gray-border: #e5e5e5;
+            --gray-bg: #f7f7f7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container Principal */
+        #app {
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            max-height: 800px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Cabeçalho de Status */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .stat-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border-radius: 16px;
+            border: 2px solid var(--gray-border);
+            color: var(--text-main);
+        }
+
+        .stat-badge i.fa-star { color: var(--yellow); }
+        .stat-badge i.fa-layer-group { color: var(--red); }
+
+        /* Área do Jogo */
+        #game-area {
+            flex-grow: 1;
+            background-color: var(--gray-bg);
+            border: 2px solid var(--gray-border);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 4px 0 rgba(0,0,0,0.02);
+            margin-bottom: 20px;
+        }
+
+        /* Blocos (Palavras) */
+        .block {
+            position: absolute;
+            width: 80%;
+            left: 10%;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        /* Bloco que está caindo */
+        .block.active {
+            background-color: var(--blue);
+            color: white;
+            border-bottom: 4px solid var(--blue-shadow);
+        }
+
+        /* Bloco que já empilhou */
+        .block.stacked {
+            background-color: var(--red);
+            color: white;
+            border-bottom: 4px solid var(--red-shadow);
+            transition: bottom 0.2s ease-out;
+        }
+
+        /* Destaque das letras digitadas no bloco */
+        .block .typed {
+            color: var(--yellow);
+            text-shadow: 0 2px 0 var(--yellow-shadow);
+        }
+
+        /* Display de Digitação (Rodapé) */
+        #typing-display {
+            background-color: white;
+            border: 2px solid var(--gray-border);
+            border-radius: 20px;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            min-height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 0 var(--gray-border);
+        }
+
+        #typing-display .typed { color: var(--green); }
+        #typing-display .untyped { color: var(--text-light); }
+
+        /* Animação de erro (Tremer) */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            50% { transform: translateX(8px); }
+            75% { transform: translateX(-8px); }
+        }
+        .shake {
+            animation: shake 0.3s ease-in-out;
+            border-color: var(--red) !important;
+        }
+
+        /* Telas de Overlay (Menu/Game Over) */
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            border-radius: 24px;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .overlay.hidden { display: none; }
+
+        .overlay h1 {
+            color: var(--text-main);
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .overlay p {
+            color: var(--text-light);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        /* Botão Estilo Duolingo */
+        .btn {
+            background-color: var(--green);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 20px;
+            font-weight: 800;
+            border-radius: 16px;
+            border-bottom: 4px solid var(--green-shadow);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.1s;
+            width: 100%;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            border-bottom-width: 0px;
+            margin-bottom: 4px; /* Compensate for lost border */
+        }
+
+        .score-highlight {
+            color: var(--yellow);
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- Cabeçalho -->
+        <div class="header">
+            <div class="stat-badge">
+                <i class="fa-solid fa-star"></i>
+                <span id="score">0</span>
+            </div>
+            <div class="stat-badge">
+                <i class="fa-solid fa-layer-group"></i>
+                <span id="stack-count">0</span> / 8
+            </div>
+        </div>
+
+        <!-- Área onde os blocos caem -->
+        <div id="game-area">
+            
+            <!-- Tela de Início -->
+            <div id="start-screen" class="overlay">
+                <h1>Typing Duo</h1>
+                <p>Impeça os blocos de se empilharem digitando as palavras rapidamente!</p>
+                <button class="btn" id="start-btn">Começar</button>
+            </div>
+
+            <!-- Tela de Game Over -->
+            <div id="game-over-screen" class="overlay hidden">
+                <h1 style="color: var(--red);">Pilha Cheia!</h1>
+                <p>Você deixou os blocos chegarem ao topo.</p>
+                <span class="score-highlight"><i class="fa-solid fa-star"></i> <span id="final-score">0</span></span>
+                <button class="btn" id="restart-btn">Tentar Novamente</button>
+            </div>
+
+        </div>
+
+        <!-- Display principal de digitação (Embaixo) -->
+        <div id="typing-display">
+            <span class="typed" id="display-typed"></span><span class="untyped" id="display-untyped"></span>
+        </div>
+    </div>
+
+    <script>
+        // Banco de palavras Hiragana -> Romaji
+        const wordList = [
+            { h: "あお", r: "AO" }, { h: "あか", r: "AKA" }, { h: "ねこ", r: "NEKO" },
+            { h: "いぬ", r: "INU" }, { h: "さくら", r: "SAKURA" }, { h: "くるま", r: "KURUMA" },
+            { h: "やま", r: "YAMA" }, { h: "かわ", r: "KAWA" }, { h: "つき", r: "TSUKI" },
+            { h: "ひかり", r: "HIKARI" }, { h: "みず", r: "MIZU" }, { h: "そら", r: "SORA" },
+            { h: "ほし", r: "HOSHI" }, { h: "うみ", r: "UMI" }, { h: "はな", r: "HANA" },
+            { h: "とり", r: "TORI" }, { h: "むし", r: "MUSHI" }, { h: "もり", r: "MORI" },
+            { h: "あめ", r: "AME" }, { h: "ゆき", r: "YUKI" }, { h: "かぜ", r: "KAZE" },
+            { h: "ほん", r: "HON" }, { h: "いえ", r: "IE" }, { h: "まち", r: "MACHI" },
+            { h: "ひと", r: "HITO" }, { h: "みち", r: "MICHI" }, { h: "きょう", r: "KYOU" }
+        ];
+
+        // Elementos da DOM
+        const gameArea = document.getElementById('game-area');
+        const scoreEl = document.getElementById('score');
+        const stackCountEl = document.getElementById('stack-count');
+        const typingDisplay = document.getElementById('typing-display');
+        const displayTyped = document.getElementById('display-typed');
+        const displayUntyped = document.getElementById('display-untyped');
+        
+        const startScreen = document.getElementById('start-screen');
+        const gameOverScreen = document.getElementById('game-over-screen');
+        const startBtn = document.getElementById('start-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const finalScoreEl = document.getElementById('final-score');
+
+        // Configurações do Jogo
+        const BLOCK_HEIGHT = 48;
+        const BLOCK_GAP = 8; // Espaço entre os blocos empilhados
+        const TOTAL_BLOCK_SIZE = BLOCK_HEIGHT + BLOCK_GAP;
+        const MAX_STACK = 8;
+
+        // Estado do Jogo
+        let isPlaying = false;
+        let score = 0;
+        let baseSpeed = 40; // Pixels por segundo
+        let currentSpeed = baseSpeed;
+        
+        let currentHiragana = "";
+        let currentRomaji = "";
+        let typedText = "";
+        let stack = []; // Array guardando os blocos empilhados
+        
+        let activeBlockEl = null;
+        let activeBlockY = 0;
+        
+        let lastTime = 0;
+        let animationFrameId = null;
+
+        // Inicia o Jogo
+        function startGame() {
+            isPlaying = true;
+            score = 0;
+            currentSpeed = baseSpeed;
+            stack = [];
+            typedText = "";
+            
+            updateScoreUI();
+            updateStackUI();
+            
+            // Limpa blocos antigos
+            document.querySelectorAll('.block').forEach(b => b.remove());
+            
+            startScreen.classList.add('hidden');
+            gameOverScreen.classList.add('hidden');
+            
+            spawnBlock();
+            lastTime = performance.now();
+            animationFrameId = requestAnimationFrame(gameLoop);
+        }
+
+        // Finaliza o Jogo
+        function gameOver() {
+            isPlaying = false;
+            cancelAnimationFrame(animationFrameId);
+            
+            finalScoreEl.innerText = score;
+            gameOverScreen.classList.remove('hidden');
+            
+            displayTyped.innerText = "";
+            displayUntyped.innerText = "GAME OVER";
+        }
+
+        // Cria um novo bloco caindo
+        function spawnBlock() {
+            typedText = "";
+            const randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+            currentHiragana = randomWord.h;
+            currentRomaji = randomWord.r;
+            activeBlockY = -BLOCK_HEIGHT; // Começa um pouco acima da tela
+            
+            activeBlockEl = document.createElement('div');
+            activeBlockEl.className = 'block active';
+            activeBlockEl.style.top = activeBlockY + 'px';
+            
+            updateBlockText();
+            updateBottomDisplay();
+            
+            gameArea.appendChild(activeBlockEl);
+        }
+
+        // Empilha o bloco ativo se o tempo acabar (chegou no fundo)
+        function stackCurrentBlock() {
+            // Cria elemento visual para o bloco empilhado
+            const stackedBlock = document.createElement('div');
+            stackedBlock.className = 'block stacked';
+            stackedBlock.innerText = currentHiragana;
+            
+            // Calcula a posição inferior
+            const bottomPos = (stack.length * TOTAL_BLOCK_SIZE) + BLOCK_GAP;
+            stackedBlock.style.bottom = bottomPos + 'px';
+            
+            gameArea.appendChild(stackedBlock);
+            stack.push(stackedBlock);
+            
+            activeBlockEl.remove();
+            updateStackUI();
+
+            // Verifica Game Over
+            if (stack.length >= MAX_STACK) {
+                gameOver();
+                return;
+            }
+
+            // Acelera ligeiramente como punição/progressão
+            currentSpeed += 2;
+            spawnBlock();
+        }
+
+        // Loop principal do jogo para animação fluida
+        function gameLoop(timestamp) {
+            if (!isPlaying) return;
+
+            const dt = (timestamp - lastTime) / 1000; // Delta time em segundos
+            lastTime = timestamp;
+
+            // Move o bloco para baixo
+            activeBlockY += currentSpeed * dt;
+            activeBlockEl.style.top = activeBlockY + 'px';
+
+            // Calcula onde é o 'chão' atual baseado na pilha
+            const gameAreaHeight = gameArea.clientHeight;
+            const currentFloor = gameAreaHeight - (stack.length * TOTAL_BLOCK_SIZE) - TOTAL_BLOCK_SIZE;
+
+            // Verifica colisão com o chão ou com a pilha
+            if (activeBlockY >= currentFloor) {
+                stackCurrentBlock();
+            }
+
+            if (isPlaying) {
+                animationFrameId = requestAnimationFrame(gameLoop);
+            }
+        }
+
+        // Evento de Digitação
+        document.addEventListener('keydown', (e) => {
+            if (!isPlaying) return;
+            
+            // Ignora teclas de controle (Shift, Ctrl, etc)
+            if (e.key.length > 1) return;
+
+            const char = e.key.toUpperCase();
+            
+            // Verifica se a tecla digitada é a próxima letra correta no Romaji
+            if (char === currentRomaji[typedText.length]) {
+                typedText += char;
+                updateBlockText();
+                updateBottomDisplay();
+
+                // Checa se a palavra foi concluída
+                if (typedText === currentRomaji) {
+                    handleWordComplete();
+                }
+            } else {
+                // Errou a tecla
+                triggerErrorShake();
+            }
+        });
+
+        function handleWordComplete() {
+            // Pontuação
+            score += 10;
+            currentSpeed += 1.5; // Aumenta a velocidade progressivamente
+            updateScoreUI();
+            
+            // Remove o bloco e reseta
+            activeBlockEl.remove();
+            spawnBlock();
+        }
+
+        // Atualiza a interface da palavra no próprio bloco
+        function updateBlockText() {
+            if (!activeBlockEl) return;
+            // Mantém apenas o Hiragana visível no bloco (sem colorir partes)
+            activeBlockEl.innerText = currentHiragana;
+        }
+
+        // Atualiza o display principal de digitação (rodapé)
+        function updateBottomDisplay() {
+            displayTyped.innerText = typedText;
+            displayUntyped.innerText = ""; // Mantém vazio para não dar auxílio visual de quantas letras faltam
+        }
+
+        // Atualiza as contagens (UI)
+        function updateScoreUI() {
+            scoreEl.innerText = score;
+        }
+
+        function updateStackUI() {
+            stackCountEl.innerText = stack.length;
+            if(stack.length >= MAX_STACK - 2) {
+                stackCountEl.style.color = 'var(--red)';
+            } else {
+                stackCountEl.style.color = 'inherit';
+            }
+        }
+
+        // Feedback visual de erro
+        function triggerErrorShake() {
+            typingDisplay.classList.remove('shake');
+            // Força um reflow para reiniciar a animação
+            void typingDisplay.offsetWidth; 
+            typingDisplay.classList.add('shake');
+        }
+
+        // Listeners dos Botões
+        startBtn.addEventListener('click', startGame);
+        restartBtn.addEventListener('click', startGame);
+
+    </script>
+</body>
+</html>

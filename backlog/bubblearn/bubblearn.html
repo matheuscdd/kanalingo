@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprenda Kana - Bubble Shooter</title>
+    
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonte Quicksand (Arredondada, estilo Duolingo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Phaser 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser-arcade-physics.min.js"></script>
+
+    <style>
+        /* CSS Puro - Variáveis e Estilo Flat/Duolingo */
+        :root {
+            --primary-bg: #FFFFFF;
+            --app-bg: #F7F7F7;
+            --text-main: #3C3C3C;
+            --text-light: #AFAFAF;
+            
+            /* Cores Duolingo-like */
+            --color-blue: #1CB0F6;
+            --color-blue-shadow: #1899D6;
+            --color-green: #58CC02;
+            --color-green-shadow: #58A700;
+            --color-red: #FF4B4B;
+            --color-red-shadow: #EA2B2B;
+            --color-orange: #FF9600;
+            --color-orange-shadow: #CC7800;
+            --color-purple: #CE82FF;
+            --color-purple-shadow: #A568CC;
+            --color-yellow: #FFC800;
+            
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #E5E5E5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #app-container {
+            width: 100%;
+            max-width: 500px;
+            height: 100%;
+            max-height: 850px;
+            background-color: var(--primary-bg);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        @media (min-height: 850px) {
+            #app-container {
+                border-radius: var(--border-radius);
+                height: 90vh;
+            }
+        }
+
+        /* Top Header UI */
+        header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            gap: 15px;
+            background-color: var(--primary-bg);
+            z-index: 10;
+        }
+
+        .close-btn {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: var(--text-main);
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            height: 16px;
+            background-color: #E5E5E5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 35%; /* Fake progress */
+            background-color: var(--color-green);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 10px;
+            right: 10px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        .lives {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--color-red);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Game Area */
+        #game-container {
+            flex-grow: 1;
+            position: relative;
+            background-color: #FFFDF0; /* Fundo levemente amarelado como na imagem */
+            border-top: 2px solid #F0F0F0;
+            border-bottom: 2px solid #F0F0F0;
+            overflow: hidden;
+        }
+
+        /* Bottom UI Area (Shooter base) */
+        footer {
+            height: 120px;
+            background-color: #FEE79A; /* Cor da barra inferior da imagem */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            position: relative;
+        }
+
+        .next-bubble-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .next-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #A39049;
+        }
+
+        .bubble-ui-preview {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background-color: white;
+            border: 3px solid #999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #777777;
+            text-align: center;
+            padding: 4px;
+            word-wrap: break-word;
+            line-height: 1.1;
+        }
+
+        /* Score Display no Header */
+        .score-display {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-orange);
+            white-space: nowrap;
+        }
+
+        /* Game Over / Vitoria Screen */
+        #overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            display: none;
+        }
+
+        .message-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--color-green);
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-green);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: inherit;
+            border-radius: 16px;
+            cursor: pointer;
+            border-bottom: 4px solid var(--color-green-shadow);
+            transition: transform 0.1s, border-bottom-width 0.1s;
+        }
+
+        .btn-primary:active {
+            transform: translateY(4px);
+            border-bottom-width: 0px;
+            margin-bottom: 4px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="app-container">
+        <header>
+            <i class="fa-solid fa-times close-btn"></i>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress"></div>
+            </div>
+            <div class="score-display" id="score-text">0 pts</div>
+            <div class="lives">
+                <i class="fa-solid fa-heart"></i> 5
+            </div>
+        </header>
+
+        <div id="game-container">
+            <div id="overlay">
+                <div class="message-title" id="overlay-msg">Impressionante!</div>
+                <button class="btn-primary" onclick="restartGame()">Jogar Novamente</button>
+            </div>
+        </div>
+
+        <footer>
+            <div class="next-bubble-container">
+                <span class="next-label">Próximo</span>
+                <div class="bubble-ui-preview" id="next-bubble-ui">ke</div>
+            </div>
+            <!-- O atirador é desenhado pelo Phaser no centro, logo acima do footer -->
+            <div style="width: 50px;"></div> <!-- Spacer -->
+        </footer>
+    </div>
+
+    <script>
+        // --- DADOS DO JOGO E ESTILO ---
+        const CATEGORIES_DATA = [
+            { id: 0, name: 'Animais', color: 0x1CB0F6, css: 'var(--color-blue)', words: ['gato', 'cachorro', 'leão', 'urso', 'tigre', 'pássaro'] },
+            { id: 1, name: 'Frutas', color: 0x58CC02, css: 'var(--color-green)', words: ['maçã', 'banana', 'uva', 'pera', 'manga', 'abacaxi'] },
+            { id: 2, name: 'Objetos', color: 0xFF4B4B, css: 'var(--color-red)', words: ['mesa', 'cadeira', 'livro', 'lápis', 'carro', 'relógio'] },
+            { id: 3, name: 'Cores', color: 0xFF9600, css: 'var(--color-orange)', words: ['azul', 'verde', 'vermelho', 'amarelo', 'roxo', 'preto'] },
+            { id: 4, name: 'Corpo', color: 0xCE82FF, css: 'var(--color-purple)', words: ['mão', 'pé', 'olho', 'boca', 'nariz', 'orelha'] }
+        ];
+
+        // Configurações do Grid
+        const BUBBLE_RADIUS = 35; // Aumentado para caber palavras
+        const BUBBLE_DIAMETER = BUBBLE_RADIUS * 2;
+        const ROW_HEIGHT = BUBBLE_DIAMETER * 0.866; // R * sqrt(3)
+        const MAX_COLS = 7; // Ajustado para o novo tamanho
+        const MAX_ROWS = 12;
+        
+        let score = 0;
+
+        // --- CENA DO JOGO PHASER ---
+        class GameScene extends Phaser.Scene {
+            constructor() {
+                super('GameScene');
+                this.grid = [];
+                this.bubblesGroup = null;
+                this.shooterBubble = null;
+                this.nextBubbleData = null;
+                this.isShooting = false;
+                
+                this.startX = 0;
+                this.startY = BUBBLE_RADIUS + 10;
+                
+                this.shooterX = 0;
+                this.shooterY = 0;
+                
+                this.aimLine = null;
+            }
+
+            preload() {
+                // Gerar texturas programaticamente para evitar problemas de CORS e manter tudo no arquivo
+                this.generateTextures();
+            }
+
+            generateTextures() {
+                const graphics = this.make.graphics({x: 0, y: 0, add: false});
+                
+                // Textura de base da bolha (branca com borda fina preta/cinza, será pintada depois)
+                graphics.fillStyle(0xffffff, 1);
+                graphics.fillCircle(BUBBLE_RADIUS, BUBBLE_RADIUS, BUBBLE_RADIUS - 2);
+                graphics.lineStyle(2, 0xd0d0d0, 1);
+                graphics.strokeCircle(BUBBLE_RADIUS, BUBBLE_RADIUS, BUBBLE_RADIUS - 2);
+                graphics.generateTexture('bubble_base', BUBBLE_DIAMETER, BUBBLE_DIAMETER);
+                graphics.clear();
+
+                // Textura de atirador (sólida)
+                graphics.fillStyle(0xffffff, 1);
+                graphics.fillCircle(BUBBLE_RADIUS, BUBBLE_RADIUS, BUBBLE_RADIUS - 1);
+                graphics.generateTexture('bubble_solid', BUBBLE_DIAMETER, BUBBLE_DIAMETER);
+                graphics.clear();
+
+                // Partícula para explosão
+                graphics.fillStyle(0xffffff, 1);
+                graphics.fillCircle(5, 5, 5);
+                graphics.generateTexture('particle', 10, 10);
+            }
+
+            create() {
+                const width = this.sys.game.config.width;
+                const height = this.sys.game.config.height;
+
+                this.startX = (width - (MAX_COLS * BUBBLE_DIAMETER)) / 2 + BUBBLE_RADIUS;
+                this.shooterX = width / 2;
+                this.shooterY = height - BUBBLE_RADIUS - 10;
+
+                this.bubblesGroup = this.add.group();
+                this.aimLine = this.add.graphics();
+                
+                this.initGrid();
+                this.generateBoard(5); // 5 linhas iniciais
+
+                this.nextBubbleData = this.getRandomWordData();
+                this.loadShooter();
+
+                // Input
+                this.input.on('pointermove', this.updateAim, this);
+                this.input.on('pointerup', this.shoot, this);
+
+                // Efeitos de partícula
+                this.particles = this.add.particles(0, 0, 'particle', {
+                    speed: { min: 100, max: 300 },
+                    angle: { min: 0, max: 360 },
+                    scale: { start: 1, end: 0 },
+                    lifespan: 400,
+                    gravityY: 500,
+                    quantity: 12,
+                    emitting: false
+                });
+            }
+
+            initGrid() {
+                this.grid = [];
+                for (let r = 0; r < MAX_ROWS; r++) {
+                    this.grid[r] = [];
+                    let cols = (r % 2 === 0) ? MAX_COLS : MAX_COLS - 1;
+                    for (let c = 0; c < cols; c++) {
+                        this.grid[r][c] = null;
+                    }
+                }
+            }
+
+            getHexPos(row, col) {
+                let x = this.startX + col * BUBBLE_DIAMETER;
+                if (row % 2 !== 0) x += BUBBLE_RADIUS; // Offset linhas ímpares
+                let y = this.startY + row * ROW_HEIGHT;
+                return { x, y };
+            }
+
+            getRandomWordData() {
+                const category = CATEGORIES_DATA[Phaser.Math.Between(0, CATEGORIES_DATA.length - 1)];
+                const word = category.words[Phaser.Math.Between(0, category.words.length - 1)];
+                return {
+                    categoryId: category.id,
+                    word: word,
+                    color: category.color,
+                    css: category.css
+                };
+            }
+
+            createGridBubble(row, col, data) {
+                const pos = this.getHexPos(row, col);
+                
+                // Bolha no grid exibe a palavra
+                let container = this.add.container(pos.x, pos.y);
+                
+                let circle = this.add.circle(0, 0, BUBBLE_RADIUS - 2, 0xffffff);
+                circle.setStrokeStyle(4, data.color);
+                
+                // Ajuste dinâmico de fonte para palavras maiores
+                let fontSize = data.word.length > 7 ? '11px' : '14px';
+                
+                let text = this.add.text(0, 0, data.word, {
+                    fontFamily: 'Quicksand',
+                    fontSize: fontSize,
+                    fontWeight: 'bold',
+                    color: '#' + data.color.toString(16).padStart(6, '0'),
+                    align: 'center',
+                    wordWrap: { width: BUBBLE_DIAMETER - 12 }
+                }).setOrigin(0.5);
+
+                container.add([circle, text]);
+                
+                // Guardar dados
+                container.row = row;
+                container.col = col;
+                container.bubbleData = data; // Trocado de kanaData
+                
+                this.grid[row][col] = container;
+                this.bubblesGroup.add(container);
+                
+                // Animação de entrada
+                container.setScale(0);
+                this.tweens.add({
+                    targets: container,
+                    scale: 1,
+                    duration: 300,
+                    ease: 'Back.easeOut',
+                    delay: (row * 10) + (col * 10)
+                });
+
+                return container;
+            }
+
+            generateBoard(rows) {
+                for (let r = 0; r < rows; r++) {
+                    let cols = (r % 2 === 0) ? MAX_COLS : MAX_COLS - 1;
+                    for (let c = 0; c < cols; c++) {
+                        this.createGridBubble(r, c, this.getRandomWordData());
+                    }
+                }
+            }
+
+            loadShooter() {
+                const currentData = this.nextBubbleData;
+                this.nextBubbleData = this.getRandomWordData();
+                this.updateUI();
+
+                // Atirador exibe a palavra em cinza
+                this.shooterBubble = this.add.container(this.shooterX, this.shooterY);
+                
+                let circle = this.add.circle(0, 0, BUBBLE_RADIUS - 2, 0x999999);
+                
+                let fontSize = currentData.word.length > 7 ? '11px' : '14px';
+
+                let text = this.add.text(0, 0, currentData.word, {
+                    fontFamily: 'Quicksand',
+                    fontSize: fontSize,
+                    fontWeight: 'bold',
+                    color: '#ffffff',
+                    align: 'center',
+                    wordWrap: { width: BUBBLE_DIAMETER - 12 }
+                }).setOrigin(0.5);
+
+                this.shooterBubble.add([circle, text]);
+                this.shooterBubble.bubbleData = currentData;
+                this.shooterBubble.setScale(0);
+                
+                this.tweens.add({
+                    targets: this.shooterBubble,
+                    scale: 1,
+                    duration: 200,
+                    ease: 'Back.easeOut'
+                });
+
+                this.isShooting = false;
+            }
+
+            updateUI() {
+                const uiBubble = document.getElementById('next-bubble-ui');
+                uiBubble.innerText = this.nextBubbleData.word;
+                uiBubble.style.borderColor = '#999999';
+                uiBubble.style.color = '#777777';
+            }
+
+            updateAim(pointer) {
+                if (this.isShooting || !this.shooterBubble) {
+                    this.aimLine.clear();
+                    return;
+                }
+
+                let angle = Phaser.Math.Angle.Between(this.shooterX, this.shooterY, pointer.x, pointer.y);
+                
+                // Limitar ângulo para não atirar para baixo
+                if (angle > -0.1) angle = -0.1;
+                if (angle < -Math.PI + 0.1) angle = -Math.PI + 0.1;
+
+                this.aimLine.clear();
+                this.aimLine.lineStyle(4, 0x000000, 0.2);
+                
+                // Linha tracejada simples
+                let len = 0;
+                let curX = this.shooterX;
+                let curY = this.shooterY;
+                let dx = Math.cos(angle) * 15;
+                let dy = Math.sin(angle) * 15;
+
+                this.aimLine.beginPath();
+                for(let i=0; i<15; i++) {
+                    this.aimLine.moveTo(curX, curY);
+                    curX += dx;
+                    curY += dy;
+                    this.aimLine.lineTo(curX, curY);
+                    curX += dx;
+                    curY += dy; // Pula um espaço para tracejado
+                }
+                this.aimLine.strokePath();
+            }
+
+            shoot(pointer) {
+                if (this.isShooting || !this.shooterBubble) return;
+
+                let angle = Phaser.Math.Angle.Between(this.shooterX, this.shooterY, pointer.x, pointer.y);
+                if (angle > -0.1) angle = -0.1;
+                if (angle < -Math.PI + 0.1) angle = -Math.PI + 0.1;
+
+                this.isShooting = true;
+                this.aimLine.clear();
+
+                const speed = 1200;
+                this.shooterBubble.vx = Math.cos(angle) * speed;
+                this.shooterBubble.vy = Math.sin(angle) * speed;
+            }
+
+            update(time, delta) {
+                if (!this.isShooting || !this.shooterBubble) return;
+
+                let dt = delta / 1000;
+                let steps = 3; // Sub-steps para colisão precisa
+                let ddt = dt / steps;
+
+                for (let i = 0; i < steps; i++) {
+                    this.shooterBubble.x += this.shooterBubble.vx * ddt;
+                    this.shooterBubble.y += this.shooterBubble.vy * ddt;
+
+                    // Colisão com paredes laterais
+                    if (this.shooterBubble.x <= BUBBLE_RADIUS) {
+                        this.shooterBubble.x = BUBBLE_RADIUS;
+                        this.shooterBubble.vx *= -1;
+                    } else if (this.shooterBubble.x >= this.sys.game.config.width - BUBBLE_RADIUS) {
+                        this.shooterBubble.x = this.sys.game.config.width - BUBBLE_RADIUS;
+                        this.shooterBubble.vx *= -1;
+                    }
+
+                    // Colisão com teto ou bolhas
+                    if (this.shooterBubble.y <= this.startY || this.checkCollision()) {
+                        this.snapShooter();
+                        break;
+                    }
+                }
+            }
+
+            checkCollision() {
+                const bubbles = this.bubblesGroup.getChildren();
+                for (let b of bubbles) {
+                    let dist = Phaser.Math.Distance.Between(this.shooterBubble.x, this.shooterBubble.y, b.x, b.y);
+                    if (dist < BUBBLE_DIAMETER * 0.85) { // Tolerância fina
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            snapShooter() {
+                this.isShooting = false;
+                
+                // Encontrar o slot vazio mais próximo
+                let bestR = -1;
+                let bestC = -1;
+                let minDist = Infinity;
+
+                for (let r = 0; r < MAX_ROWS; r++) {
+                    let cols = (r % 2 === 0) ? MAX_COLS : MAX_COLS - 1;
+                    for (let c = 0; c < cols; c++) {
+                        if (this.grid[r][c] === null) {
+                            let pos = this.getHexPos(r, c);
+                            let dist = Phaser.Math.Distance.Between(this.shooterBubble.x, this.shooterBubble.y, pos.x, pos.y);
+                            if (dist < minDist) {
+                                minDist = dist;
+                                bestR = r;
+                                bestC = c;
+                            }
+                        }
+                    }
+                }
+
+                if (bestR === -1 || bestR >= MAX_ROWS - 1) {
+                    this.gameOver();
+                    return;
+                }
+
+                // Destruir bolha de atirador
+                let data = this.shooterBubble.bubbleData;
+                this.shooterBubble.destroy();
+                this.shooterBubble = null;
+
+                // Criar bolha de grid (Transforma de palavra cinza para colorida)
+                let newBubble = this.createGridBubble(bestR, bestC, data);
+                
+                // Tocar som/efeito leve de snap
+                this.tweens.add({
+                    targets: newBubble,
+                    scale: { from: 0.8, to: 1 },
+                    duration: 150,
+                    ease: 'Bounce.easeOut'
+                });
+
+                // Verificar Match-3
+                this.time.delayedCall(100, () => {
+                    this.processMatches(newBubble);
+                });
+            }
+
+            getNeighbors(row, col) {
+                const neighbors = [];
+                const directions = (row % 2 === 0) 
+                    ? [[-1, -1], [-1, 0], [0, -1], [0, 1], [1, -1], [1, 0]] // Even row
+                    : [[-1, 0], [-1, 1], [0, -1], [0, 1], [1, 0], [1, 1]];  // Odd row
+
+                for (let dir of directions) {
+                    let r = row + dir[0];
+                    let c = col + dir[1];
+                    let colsInRow = (r % 2 === 0) ? MAX_COLS : MAX_COLS - 1;
+                    if (r >= 0 && r < MAX_ROWS && c >= 0 && c < colsInRow) {
+                        if (this.grid[r][c] !== null) {
+                            neighbors.push(this.grid[r][c]);
+                        }
+                    }
+                }
+                return neighbors;
+            }
+
+            processMatches(startBubble) {
+                let toCheck = [startBubble];
+                let matched = new Set([startBubble]);
+                
+                // Agora agrupa verificando o ID da CATEGORIA, não a palavra idêntica
+                let targetId = startBubble.bubbleData.categoryId; 
+
+                while (toCheck.length > 0) {
+                    let current = toCheck.pop();
+                    let neighbors = this.getNeighbors(current.row, current.col);
+
+                    for (let n of neighbors) {
+                        if (!matched.has(n) && n.bubbleData.categoryId === targetId) {
+                            matched.add(n);
+                            toCheck.push(n);
+                        }
+                    }
+                }
+
+                if (matched.size >= 3) {
+                    // Match successful!
+                    let delay = 0;
+                    matched.forEach(b => {
+                        this.time.delayedCall(delay, () => this.popBubble(b));
+                        delay += 30;
+                    });
+
+                    score += matched.size * 10;
+                    updateScoreDisplay();
+
+                    // Check for orphans after popping
+                    this.time.delayedCall(delay + 100, () => this.dropOrphans());
+                } else {
+                    // No match, prepare next shot
+                    this.loadShooter();
+                }
+            }
+
+            popBubble(bubble) {
+                this.grid[bubble.row][bubble.col] = null;
+                
+                // Partículas usando a cor exata da bolha (cor da categoria)
+                this.particles.setParticleTint(bubble.bubbleData.color);
+                this.particles.emitParticleAt(bubble.x, bubble.y, 10);
+                
+                bubble.destroy();
+            }
+
+            dropOrphans() {
+                let visited = new Set();
+                let queue = [];
+
+                // Começar da linha do topo
+                for (let c = 0; c < MAX_COLS; c++) {
+                    if (this.grid[0][c] !== null) {
+                        queue.push(this.grid[0][c]);
+                        visited.add(this.grid[0][c]);
+                    }
+                }
+
+                // BFS para encontrar todos conectados ao topo
+                while (queue.length > 0) {
+                    let current = queue.pop();
+                    let neighbors = this.getNeighbors(current.row, current.col);
+                    for (let n of neighbors) {
+                        if (!visited.has(n)) {
+                            visited.add(n);
+                            queue.push(n);
+                        }
+                    }
+                }
+
+                // Tudo que não foi visitado é órfão
+                let orphans = [];
+                for (let r = 0; r < MAX_ROWS; r++) {
+                    let cols = (r % 2 === 0) ? MAX_COLS : MAX_COLS - 1;
+                    for (let c = 0; c < cols; c++) {
+                        let b = this.grid[r][c];
+                        if (b !== null && !visited.has(b)) {
+                            orphans.push(b);
+                            this.grid[r][c] = null;
+                        }
+                    }
+                }
+
+                if (orphans.length > 0) {
+                    let delay = 0;
+                    orphans.forEach(b => {
+                        this.time.delayedCall(delay, () => {
+                            score += 20; // Bônus por derrubar
+                            updateScoreDisplay();
+                            this.tweens.add({
+                                targets: b,
+                                y: this.sys.game.config.height + 50,
+                                duration: 500,
+                                ease: 'Quad.easeIn',
+                                onComplete: () => b.destroy()
+                            });
+                        });
+                        delay += 20;
+                    });
+                }
+
+                this.time.delayedCall(orphans.length * 20 + 100, () => this.loadShooter());
+                
+                // Checar vitória
+                if (this.bubblesGroup.getChildren().length === 0) {
+                    this.showVictory();
+                }
+            }
+
+            gameOver() {
+                document.getElementById('overlay').style.display = 'flex';
+                document.getElementById('overlay-msg').innerText = 'Fim de Jogo!';
+                document.getElementById('overlay-msg').style.color = 'var(--color-red)';
+            }
+
+            showVictory() {
+                document.getElementById('overlay').style.display = 'flex';
+                document.getElementById('overlay-msg').innerText = 'Perfeito!';
+                document.getElementById('overlay-msg').style.color = 'var(--color-green)';
+            }
+        }
+
+        // --- INICIALIZAÇÃO PHASER E UI ---
+        const config = {
+            type: Phaser.AUTO,
+            parent: 'game-container',
+            width: document.getElementById('game-container').clientWidth,
+            height: document.getElementById('game-container').clientHeight,
+            transparent: true,
+            scene: GameScene,
+            scale: {
+                mode: Phaser.Scale.RESIZE,
+                autoCenter: Phaser.Scale.CENTER_BOTH
+            }
+        };
+
+        let game = new Phaser.Game(config);
+
+        function updateScoreDisplay() {
+            document.getElementById('score-text').innerText = `${score} pts`;
+            // Atualizar barra falsa de progresso
+            let pct = Math.min(100, (score / 1500) * 100);
+            document.getElementById('progress').style.width = pct + '%';
+        }
+
+        function restartGame() {
+            document.getElementById('overlay').style.display = 'none';
+            score = 0;
+            updateScoreDisplay();
+            game.scene.scenes[0].scene.restart();
+        }
+
+        // Ajuste de redimensionamento
+        window.addEventListener('resize', () => {
+            if(game && game.isBooted) {
+                game.scale.resize(document.getElementById('game-container').clientWidth, document.getElementById('game-container').clientHeight);
+            }
+        });
+    </script>
+</body>
+</html>

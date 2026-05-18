@@ -1,0 +1,337 @@
+:root {
+    --primary-color: #3f51b5; /* Cor do botão play */
+    --wave-green: #68d391;
+    --wave-purple: #9f7aea;
+    --wave-blue: #7f9cf5;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --gray-light: #e2e8f0;
+    --gray-dark: #718096;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+        sans-serif;
+}
+
+body {
+    background-color: #f7fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.player-card {
+    background-color: var(--bg-color);
+    width: 100%;
+    max-width: 450px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Área de Upload */
+.upload-section {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.upload-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.upload-btn {
+    background-color: var(--gray-light);
+    color: var(--text-color);
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+.upload-btn:hover {
+    background-color: #cbd5e0;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.file-name {
+    font-size: 12px;
+    color: var(--gray-dark);
+    margin-top: 8px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* Canvas das Ondas */
+.canvas-container {
+    width: 100%;
+    height: 150px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Controles Secundários (1X, Like, Dislike) */
+.secondary-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.sec-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sec-btn:hover {
+    color: var(--primary-color);
+}
+
+.sec-btn i {
+    font-size: 22px;
+}
+
+.sec-btn.active {
+    color: var(--primary-color);
+}
+
+/* Container das Legendas */
+.subtitle-wrapper {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.subtitle-wrapper.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.subtitle-text {
+    font-size: 15px;
+    color: var(
+        --gray-dark
+    ); /* Mudado para cinza para destacar a palavra ativa */
+    font-weight: 500;
+    background-color: rgba(63, 81, 181, 0.1);
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(15px); /* Inicia 15px abaixo (descida) */
+}
+
+.subtitle-text.show-text {
+    opacity: 1;
+    transform: translateY(0); /* Sobe para a posição original */
+}
+
+.sub-word {
+    transition:
+        color 0.15s ease,
+        text-shadow 0.15s ease;
+}
+
+.sub-word.highlight {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Barra de Progresso */
+.progress-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.time {
+    font-size: 12px;
+    color: var(--text-color);
+    font-weight: 500;
+    min-width: 35px;
+    text-align: center;
+}
+
+.progress-container {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--gray-light);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0px; /* Esconde a bolinha para ficar igual ao vídeo */
+    height: 0px;
+}
+
+.progress-fill {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+    background-color: var(--gray-dark);
+    border-radius: 5px;
+    pointer-events: none;
+    width: 0%;
+}
+
+/* Controles Principais */
+.main-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 10px;
+}
+
+.skip-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 32px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.skip-btn:hover {
+    transform: scale(1.1);
+}
+
+.skip-text {
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    color: var(--primary-color);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.play-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 15px rgba(63, 81, 181, 0.3);
+    transition:
+        transform 0.2s,
+        background-color 0.2s;
+}
+
+.play-btn:hover {
+    transform: scale(1.05);
+    background-color: #303f9f;
+}
+
+.play-btn i {
+    margin-left: 4px; /* Centraliza visualmente o ícone de play */
+}
+
+.play-btn.playing i {
+    margin-left: 0;
+}
+
+/* Mensagem de estado inicial */
+#init-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    border-radius: 24px;
+}
+
+.hidden {
+    display: none !important;
+}

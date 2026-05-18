@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seletor de Podcasts</title>
+    <!-- FontAwesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./styles/library.css" />
+    <script defer src="./scripts/library.js" type="module"></script>
+</head>
+<body>
+
+    <div id="app-container">
+        
+        <!-- Barra Global com Seletor de Idioma -->
+        <div class="global-top-bar">
+            <div class="lang-selector">
+                <button id="lang-btn" class="lang-btn" onclick="toggleLangDropdown()">
+                    <img src="https://flagcdn.com/w40/pt.png" alt="PT" class="lang-flag" id="current-lang-flag">
+                    <span id="current-lang-text">PT</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <div class="lang-option" onclick="setLanguage('pt')">
+                        <img src="https://flagcdn.com/w40/pt.png" alt="PT" class="lang-flag"> PT
+                    </div>
+                    <div class="lang-option" onclick="setLanguage('en')">
+                        <img src="https://flagcdn.com/w40/gb.png" alt="EN" class="lang-flag"> EN
+                    </div>
+                    <!-- <div class="lang-option" onclick="setLanguage('es')">
+                        <img src="https://flagcdn.com/w40/es.png" alt="ES" class="lang-flag"> ES
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA 1: Lista de Podcasts -->
+        <div id="view-podcasts" class="view active">
+            <header>
+                <h1 id="title-podcasts">O que queres ouvir?</h1>
+            </header>
+            <div class="controls-container">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-podcasts" class="search-input" placeholder="Pesquisar podcasts...">
+                </div>
+                <div class="view-controls">
+                    <button class="view-btn active" data-view="grid" onclick="setViewMode('podcasts', 'grid')"><i class="fas fa-th-large"></i></button>
+                    <button class="view-btn" data-view="list" onclick="setViewMode('podcasts', 'list')"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            <div id="podcasts-grid" class="grid-container grid-podcasts">
+                <!-- Cards injetados via JS -->
+            </div>
+        </div>
+
+        <!-- VISTA 2: Lista de Secções dentro de um Podcast -->
+        <div id="view-sections" class="view">
+            <header>
+                <button class="btn-icon" onclick="navigate('podcasts')"><i class="fas fa-arrow-left"></i></button>
+                <div class="header-thumb-container">
+                    <img id="header-podcast-img" class="header-thumb" src="" alt="Capa" style="display: none;">
+                </div>
+                <h1 id="header-podcast-title">Título do Podcast</h1>
+            </header>
+            <div class="controls-container">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-sections" class="search-input" placeholder="Pesquisar secções (ex: Temporadas)...">
+                </div>
+                <div class="view-controls">
+                    <button class="view-btn active" data-view="grid" onclick="setViewMode('sections', 'grid')"><i class="fas fa-th-large"></i></button>
+                    <button class="view-btn" data-view="list" onclick="setViewMode('sections', 'list')"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            <div id="sections-grid" class="grid-container grid-sections">
+                <!-- Cards injetados via JS -->
+            </div>
+        </div>
+
+        <!-- VISTA 3: Lista de Episódios dentro de uma Secção -->
+        <div id="view-episodes" class="view">
+            <header>
+                <button class="btn-icon" onclick="navigate('sections')"><i class="fas fa-arrow-left"></i></button>
+                <div class="header-thumb-container">
+                    <img id="header-section-img" class="header-thumb" src="" alt="Capa" style="display: none;">
+                </div>
+                <h1 id="header-section-title">Título da Secção</h1>
+            </header>
+            <div class="controls-container">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-episodes" class="search-input" placeholder="Pesquisar episódios...">
+                </div>
+                <div class="view-controls">
+                    <button class="view-btn" data-view="grid" onclick="setViewMode('episodes', 'grid')"><i class="fas fa-th-large"></i></button>
+                    <button class="view-btn active" data-view="list" onclick="setViewMode('episodes', 'list')"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            <div id="episodes-grid" class="grid-container grid-episodes list-mode">
+                <!-- Itens da lista injetados via JS -->
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>

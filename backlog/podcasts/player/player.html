@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotebookLM Style Audio Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./styles/player.css" />
+    <script defer src="./scripts/player.js" type="module"></script>
+</head>
+<body>
+
+    <div class="player-card">
+        
+        <!-- Upload de Música e JSON -->
+        <div class="upload-section">
+            <div class="upload-group">
+                <label for="audio-upload" class="upload-btn">
+                    <i class="fa-solid fa-music"></i> Áudio
+                </label>
+                <input type="file" id="audio-upload" accept="audio/*">
+                <div id="file-name-display" class="file-name">Nenhum áudio</div>
+            </div>
+            
+            <div class="upload-group">
+                <label for="json-upload" class="upload-btn">
+                    <i class="fa-solid fa-file-code"></i> JSON
+                </label>
+                <input type="file" id="json-upload" accept=".json">
+                <div id="json-name-display" class="file-name">Nenhum JSON</div>
+            </div>
+        </div>
+
+        <!-- Animação do Áudio -->
+        <div class="canvas-container">
+            <canvas id="waveform"></canvas>
+        </div>
+
+        <!-- Controles Secundários -->
+        <div class="secondary-controls">
+            <button class="sec-btn" id="speed-btn" title="Velocidade">1X</button>
+            <button class="sec-btn" id="subtitle-btn" title="Legendas"><i class="fa-regular fa-closed-captioning"></i></button>
+            <button class="sec-btn" title="Gostei"><i class="fa-regular fa-thumbs-up"></i></button>
+            <button class="sec-btn" title="Não Gostei"><i class="fa-regular fa-thumbs-down"></i></button>
+        </div>
+
+        <!-- Área de Legendas -->
+        <div class="subtitle-wrapper" id="subtitle-wrapper">
+            <div class="subtitle-text" id="subtitle-text"></div>
+        </div>
+
+        <!-- Progresso -->
+        <div class="progress-wrapper">
+            <span class="time" id="current-time">0:00</span>
+            <div class="progress-container">
+                <input type="range" id="progress-bar" value="0" min="0" max="100" step="0.1">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="time" id="duration">0:00</span>
+        </div>
+
+        <!-- Controles Principais -->
+        <div class="main-controls">
+            <button class="skip-btn" id="skip-back">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span class="skip-text">10</span>
+            </button>
+            
+            <button class="play-btn" id="play-pause-btn" disabled>
+                <i class="fa-solid fa-play"></i>
+            </button>
+            
+            <button class="skip-btn" id="skip-forward">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span class="skip-text">10</span>
+            </button>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
