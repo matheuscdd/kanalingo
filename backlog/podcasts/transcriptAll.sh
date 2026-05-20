@@ -1,7 +1,12 @@
 #!/bin/bash
 
+set -euo pipefail
+source .venv-whysper/bin/activate
+
 TEMP_LIMIT=75
 SLEEP_TIME=30
+
+mkdir -p "files/done"
 
 get_temp() {
   nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits
@@ -19,11 +24,13 @@ wait_for_cooldown() {
   echo "✅ Temperatura ok: ${TEMP}°C"
 }
 
-for file in *.wav; do
+for file in files/*.wav; do
     wait_for_cooldown
     # Pega o nome do arquivo sem extensão
     filename=$(basename "$file" .wav)
     
     # Converte para WAV mantendo o nome
-    python whysper.py "$filename"
+    echo "[x] Transcribing $filename"
+    python whysper.py "files/$filename"
+    mv "$file" "files/done"
 done

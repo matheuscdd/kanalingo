@@ -5,15 +5,25 @@ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/
 sudo dpkg -i cuda-keyring_1.1-1_all.deb
 
 sudo apt update
-sudo apt install -y ffmpeg cuda-toolkit libcublas12 libcudnn9-cuda-12
+sudo apt install -y ffmpeg cuda-toolkit libcublas12 libcudnn9-cuda-12 python3.12-dev python3.12-venv build-essential
 
 echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
 source ~/.bashrc
-python -c "import ctranslate2; print(ctranslate2.get_cuda_device_count())"
+python3.12 -c "import ctranslate2; print(ctranslate2.get_cuda_device_count())"
 
-if grep -qi microsoft /proc/version 2>/dev/null; then
-    read -p "Essa é uma técnica para reduzir a tempera da GPU, depois será preciso voltar manualmente para o ponto desejado. Recomendamos que faça essa alteração no cmd como administrador. Está ciente? (y/N): " resp
-    exit 1
-fi
+curl https://sh.rustup.rs -sSf | sh
 
-sudo nvidia-smi -pl 260
+sudo fallocate -l 8G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+python -m venv .venv-denoise
+source .venv-denoise/bin/activate
+pip install -r requirements-denoise.txt
+deactivate
+
+python -m venv .venv-whysper
+source .venv-whysper/bin/activate
+pip install -r requirements-whysper.txt
+deactivate

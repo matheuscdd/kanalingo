@@ -6,14 +6,15 @@ import platform
 from tqdm import tqdm
 from faster_whisper import WhisperModel
 import whisperx
+import soundfile
 
 if len(sys.argv) < 2:
-    raise Exception("Use: python script.py <file>")
+    raise Exception("Use: python whysper.py <file>")
 
 if platform.system() != "Linux":
     raise EnvironmentError("❌ Este script só pode ser executado no Linux.")
 
-print("Iniciando...")
+print("Starting whysper...")
 
 device = "cuda"
 filename = sys.argv[1]
@@ -35,7 +36,7 @@ segments, info = model.transcribe(
     audio_path,
     beam_size=15,
     temperature=[0.0, 0.2, 0.4],
-    best_of=5,
+    best_of=15,
     patience=2,
     length_penalty=1.0,
     repetition_penalty=1.02,
@@ -52,7 +53,7 @@ start_time = time.time()
 low_confidence_segments = []
 fw_segments = []
 
-pbar = tqdm(total=total_duration, unit="s", desc="Transcrevendo")
+pbar = tqdm(total=total_duration, unit="s", desc="Transcribing")
 processed_audio = 0
 
 # -----------------------------
@@ -159,3 +160,4 @@ if low_confidence_segments:
     print(f"\n⚠ {len(low_confidence_segments)} segmentos com baixa confiança salvos.")
 else:
     print("\n✅ Nenhum segmento com baixa confiança detectado.")
+
