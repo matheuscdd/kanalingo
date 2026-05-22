@@ -12,12 +12,15 @@ load_dotenv()
 SPEECH_KEY = os.environ.get("SPEECH_KEY")
 SPEECH_REGION = "eastus"
 
-VOICE = "en-US-JennyNeural"
+VOICE = "ja-JP-NanamiNeural"
 
 OUTPUT_DIR = "audio"
 words = []
-with open("merged.json", encoding="utf-8") as f:
-    words = json.load(f).values()
+with open("jmdict-eng-3.6.2.handle.json", encoding="utf-8") as f:
+    res = json.load(f)
+    for x in res["words"]:
+        for k in x["kana"]:
+            words.append(k)
 
 colors = {
     'clean': '\033[m',
@@ -70,13 +73,13 @@ async def generate_word(noun: dict):
         audio_config=audio_config
     )
 
-    print(f"{colors['yellow']}[MAKING] {noun['id']} - {noun['word']}{colors['clean']}")
+    print(f"{colors['yellow']}[MAKING] {noun['id']} - {noun['text']}{colors['clean']}")
 
     ssml = f"""
     <speak version='1.0' xml:lang='en-US'>
         <voice name='{VOICE}'>
             <prosody rate="-25%">
-                {noun['word']}
+                {noun['text']}
             </prosody>
         </voice>
     </speak>
@@ -85,9 +88,9 @@ async def generate_word(noun: dict):
     result = synthesizer.speak_ssml_async(ssml).get()
 
     if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-        print(f"{colors['green']}[OK] {noun['id']} - {noun['word']}{colors['clean']}")
+        print(f"{colors['green']}[OK] {noun['id']} - {noun['text']}{colors['clean']}")
     else:
-        print(f"{colors['red']}[ERRO] {noun['id']} - {noun['word']}{colors['clean']}")
+        print(f"{colors['red']}[ERRO] {noun['id']} - {noun['text']}{colors['clean']}")
         print(result.reason)
 
 async def main():
