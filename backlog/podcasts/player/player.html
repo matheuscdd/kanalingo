@@ -7,28 +7,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./styles/player.css" />
     <script defer src="./scripts/player.js" type="module"></script>
+    <link
+            href="/src/assets/images/icon-filled.png"
+            rel="shortcut icon"
+            type="image/x-icon"
+        />
 </head>
 <body>
 
     <div class="player-card">
-        
-        <!-- Upload de Música e JSON -->
-        <div class="upload-section">
-            <div class="upload-group">
-                <label for="audio-upload" class="upload-btn">
-                    <i class="fa-solid fa-music"></i> Áudio
-                </label>
-                <input type="file" id="audio-upload" accept="audio/*">
-                <div id="file-name-display" class="file-name">Nenhum áudio</div>
+        <!-- Cabeçalho do Episódio -->
+        <div class="episode-meta" id="episode-meta">
+            <div class="episode-meta-topline">
+                <span class="episode-podcast" id="podcast-title">Podcast</span>
+                <span class="player-status" id="player-status">A carregar episódio...</span>
             </div>
-            
-            <div class="upload-group">
-                <label for="json-upload" class="upload-btn">
-                    <i class="fa-solid fa-file-code"></i> JSON
-                </label>
-                <input type="file" id="json-upload" accept=".json">
-                <div id="json-name-display" class="file-name">Nenhum JSON</div>
-            </div>
+            <p class="episode-section" id="section-title">Secção</p>
+            <h1 class="episode-title" id="episode-title">Selecione um episódio na biblioteca</h1>
         </div>
 
         <!-- Animação do Áudio -->

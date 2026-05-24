@@ -1,8 +1,8 @@
 // --- Elementos do DOM ---
-const audioInput = document.getElementById('audio-upload');
-const jsonInput = document.getElementById('json-upload');
-const fileNameDisplay = document.getElementById('file-name-display');
-const jsonNameDisplay = document.getElementById('json-name-display');
+const podcastTitleEl = document.getElementById('podcast-title');
+const sectionTitleEl = document.getElementById('section-title');
+const episodeTitleEl = document.getElementById('episode-title');
+const playerStatusEl = document.getElementById('player-status');
 const playPauseBtn = document.getElementById('play-pause-btn');
 const progressBar = document.getElementById('progress-bar');
 const progressFill = document.getElementById('progress-fill');
@@ -17,72 +17,420 @@ const subtitleTextEl = document.getElementById('subtitle-text');
 const canvas = document.getElementById('waveform');
 const ctx = canvas.getContext('2d');
 
+// --- Constantes ---
+const PODCASTS_BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/';
+const EPISODES_URL = `${PODCASTS_BASE_URL}episodes.json`;
+const speeds = [1, 1.2, 1.5, 2];
+const PLAYBACK_PROGRESS_KEY_PREFIX = 'podcast-progress:';
+const PLAYBACK_PROGRESS_SAVE_INTERVAL_MS = 10_000;
+
 // --- Variáveis Globais ---
-let audio = new Audio();
+const audio = new Audio();
+audio.crossOrigin = 'anonymous';
+audio.preload = 'metadata';
+
 let audioContext = null;
 let analyser = null;
 let source = null;
 let dataArray = null;
 let animationId = null;
 let isPlaying = false;
-let fadeInterval = null; // Variável para controlar o fade de volume
+let fadeInterval = null;
+let parsedSubtitles = [];
+let subtitlesVisible = false;
+let currentSubtitleText = '';
+let currentWordIndex = -1;
+let currentSpeedIndex = 0;
+let lastSubCheckTime = -1;
+let episodesPromise = null;
+let currentEpisodeId = '';
+let playbackProgressIntervalId = null;
+
+const loadState = {
+    episodeLoaded: false,
+    audioReady: false,
+    transcriptState: 'pending',
+    failed: false,
+};
 
 // Configurações das Ondas
-let phase1 = 0, phase2 = 0, phase3 = 0;
-let targetAmplitude = 0; // Amplitude base (quando pausado)
-let currentAmplitude = 0; // Suavização (Lerp)
-let currentSpeed = 0; // Controle de velocidade suave
+let phase1 = 0;
+let phase2 = 0;
+let phase3 = 0;
+let targetAmplitude = 0;
+let currentAmplitude = 0;
+let currentSpeed = 0;
 
-// --- Legendas (Mock JSON com Palavras) ---
-const mockJSON = [
-    {
-        "start": 0.0,
-        "end": 3.54,
-        "text": " Imagine a really famous, uh, aging king.",
-        "words": [
-            { "word": "Imagine", "start": 0.0, "end": 0.28 },
-            { "word": "a", "start": 0.28, "end": 0.48 },
-            { "word": "really", "start": 0.48, "end": 0.74 },
-            { "word": "famous", "start": 0.74, "end": 1.26 },
-            { "word": "uh", "start": 1.44, "end": 2.04 },
-            { "word": "aging", "start": 2.28, "end": 3.12 },
-            { "word": "king", "start": 3.12, "end": 3.54 }
-        ]
-    },
-    {
-        "start": 3.72,
-        "end": 5.9,
-        "text": " Right. A man at the very end of his life.",
-        "words": [
-            { "word": "Right", "start": 3.72, "end": 3.92 },
-            { "word": "A", "start": 4.32, "end": 4.76 },
-            { "word": " man", "start": 4.76, "end": 4.96 },
-            { "word": "at", "start": 4.96, "end": 5.12 },
-            { "word": "the", "start": 5.12, "end": 5.16 },
-            { "word": " very", "start": 5.16, "end": 5.32 },
-            { "word": "end", "start": 5.32, "end": 5.5 },
-            { "word": " of", "start": 5.5, "end": 5.6 },
-            { "word": " his", "start": 5.6, "end": 5.68 },
-            { "word": "life", "start": 5.68, "end": 5.9 }
-        ]
+function setPlayerStatus(message, tone = 'default') {
+    playerStatusEl.textContent = message;
+    playerStatusEl.classList.remove('is-ready', 'is-warning', 'is-error');
+
+    if (tone === 'ready') {
+        playerStatusEl.classList.add('is-ready');
+    } else if (tone === 'warning') {
+        playerStatusEl.classList.add('is-warning');
+    } else if (tone === 'error') {
+        playerStatusEl.classList.add('is-error');
     }
-];
+}
 
-let parsedSubtitles = mockJSON;
-let subtitlesVisible = false;
+function setPlaybackControlsEnabled(enabled) {
+    playPauseBtn.disabled = !enabled;
+    skipBackBtn.disabled = !enabled;
+    skipForwardBtn.disabled = !enabled;
+    speedBtn.disabled = !enabled;
+    progressBar.disabled = !enabled;
+}
 
-let currentSubtitleText = "";
-let currentWordIndex = -1;
+function resetSubtitleUI() {
+    subtitlesVisible = false;
+    currentSubtitleText = '';
+    currentWordIndex = -1;
+    lastSubCheckTime = -1;
+    subtitleBtn.classList.remove('active');
+    subtitleWrapper.classList.remove('show');
+    subtitleTextEl.classList.remove('show-text');
+    subtitleTextEl.innerHTML = '';
+}
 
-// Gera o HTML mantendo o texto original (com pontuação) e isolando as palavras em spans
+function setSubtitleAvailability(hasSubtitles) {
+    subtitleBtn.disabled = !hasSubtitles;
+
+    if (!hasSubtitles) {
+        resetSubtitleUI();
+    }
+}
+
+function updateStatusFromState() {
+    if (loadState.failed) {
+        return;
+    }
+
+    if (!loadState.episodeLoaded) {
+        setPlayerStatus('A carregar episódio...');
+        return;
+    }
+
+    if (!loadState.audioReady) {
+        setPlayerStatus('A preparar episódio...');
+        return;
+    }
+
+    if (loadState.transcriptState === 'pending') {
+        setPlayerStatus('Áudio pronto · a carregar transcrição...', 'ready');
+        return;
+    }
+
+    if (loadState.transcriptState === 'available') {
+        setPlayerStatus('Pronto a reproduzir', 'ready');
+        return;
+    }
+
+    if (loadState.transcriptState === 'missing') {
+        setPlayerStatus('Áudio pronto · sem transcrição', 'warning');
+        return;
+    }
+
+    setPlayerStatus('Áudio pronto · falha ao carregar transcrição', 'warning');
+}
+
+function resetPlayerTimeline() {
+    clearInterval(fadeInterval);
+    clearPlaybackProgressTracking();
+    isPlaying = false;
+    audio.pause();
+    audio.volume = 1;
+    audio.playbackRate = speeds[0];
+    currentSpeedIndex = 0;
+    speedBtn.textContent = `${speeds[0]}X`;
+    updatePlayButton();
+    progressBar.value = 0;
+    progressBar.max = 0;
+    progressFill.style.width = '0%';
+    currentTimeEl.textContent = '0:00';
+    durationEl.textContent = '0:00';
+}
+
+function prepareEpisodeUiForLoading() {
+    parsedSubtitles = [];
+    resetSubtitleUI();
+    resetPlayerTimeline();
+    setSubtitleAvailability(false);
+}
+
+function updateEpisodeMetadata(episode) {
+    podcastTitleEl.textContent = episode.podcastName || 'Podcast';
+    sectionTitleEl.textContent = episode.sectionName || 'Secção';
+    episodeTitleEl.textContent = episode.name || 'Episódio';
+
+    if (episode.name) {
+        document.title = `${episode.name} | Player`;
+    }
+}
+
+function handleFatalPlayerError(message) {
+    loadState.failed = true;
+    loadState.audioReady = false;
+    setPlaybackControlsEnabled(false);
+    setSubtitleAvailability(false);
+    resetPlayerTimeline();
+    setPlayerStatus(message, 'error');
+}
+
+function resolveAssetUrl(assetPath) {
+    if (!assetPath) {
+        return '';
+    }
+
+    if (/^https?:\/\//i.test(assetPath)) {
+        return assetPath;
+    }
+
+    return `${PODCASTS_BASE_URL}${assetPath}`;
+}
+
+async function fetchJson(url) {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        const error = new Error(`Request failed with status ${response.status}`);
+        error.status = response.status;
+        error.url = url;
+        throw error;
+    }
+
+    return response.json();
+}
+
+async function getEpisodes() {
+    if (!episodesPromise) {
+        episodesPromise = fetchJson(EPISODES_URL);
+    }
+
+    const episodes = await episodesPromise;
+    return Array.isArray(episodes) ? episodes : [];
+}
+
+function normalizeSubtitles(data) {
+    if (!Array.isArray(data)) {
+        return [];
+    }
+
+    return data
+        .map((block) => {
+            if (!block || typeof block !== 'object') {
+                return null;
+            }
+
+            const start = Number(block.start);
+            const end = Number(block.end);
+            const text = typeof block.text === 'string' ? block.text : '';
+
+            if (!Number.isFinite(start) || !Number.isFinite(end) || !text) {
+                return null;
+            }
+
+            const words = Array.isArray(block.words)
+                ? block.words
+                    .map((word) => {
+                        const wordStart = Number(word?.start);
+                        const wordEnd = Number(word?.end);
+                        const wordText = typeof word?.word === 'string' ? word.word : '';
+
+                        if (!Number.isFinite(wordStart) || !Number.isFinite(wordEnd) || !wordText) {
+                            return null;
+                        }
+
+                        return {
+                            word: wordText,
+                            start: wordStart,
+                            end: wordEnd,
+                        };
+                    })
+                    .filter(Boolean)
+                : [];
+
+            return {
+                start,
+                end,
+                text,
+                words,
+            };
+        })
+        .filter(Boolean);
+}
+
+async function loadTranscript(episode) {
+    const transcriptUrl = resolveAssetUrl(episode.transcription);
+
+    if (!transcriptUrl) {
+        parsedSubtitles = [];
+        loadState.transcriptState = 'missing';
+        setSubtitleAvailability(false);
+        updateStatusFromState();
+        return;
+    }
+
+    try {
+        const transcript = await fetchJson(transcriptUrl);
+        parsedSubtitles = normalizeSubtitles(transcript);
+        loadState.transcriptState = parsedSubtitles.length > 0 ? 'available' : 'missing';
+        setSubtitleAvailability(parsedSubtitles.length > 0);
+    } catch (error) {
+        if (error.status === 404) {
+            parsedSubtitles = [];
+            loadState.transcriptState = 'missing';
+            setSubtitleAvailability(false);
+            updateStatusFromState();
+            return;
+        }
+
+        console.error(error);
+        parsedSubtitles = [];
+        loadState.transcriptState = 'error';
+        setSubtitleAvailability(false);
+    }
+
+    updateStatusFromState();
+}
+
+function getEpisodeIdFromLocation() {
+    const params = new URLSearchParams(globalThis.location.search);
+    return params.get('id')?.trim() || '';
+}
+
+function getPlaybackProgressStorageKey(episodeId) {
+    return `${PLAYBACK_PROGRESS_KEY_PREFIX}${episodeId}`;
+}
+
+function clearPlaybackProgressTracking() {
+    if (playbackProgressIntervalId === null) {
+        return;
+    }
+
+    clearInterval(playbackProgressIntervalId);
+    playbackProgressIntervalId = null;
+}
+
+function clearPlaybackProgress(episodeId = currentEpisodeId) {
+    if (!episodeId) {
+        return;
+    }
+
+    try {
+        localStorage.removeItem(getPlaybackProgressStorageKey(episodeId));
+    } catch {
+        // Ignora falhas de acesso ao storage para nao travar o player.
+    }
+}
+
+function readPlaybackProgress(episodeId) {
+    if (!episodeId) {
+        return null;
+    }
+
+    try {
+        const rawValue = localStorage.getItem(getPlaybackProgressStorageKey(episodeId));
+
+        if (!rawValue) {
+            return null;
+        }
+
+        const parsedValue = JSON.parse(rawValue);
+        const savedTime = Number(parsedValue?.time);
+
+        if (parsedValue?.id !== episodeId || !Number.isFinite(savedTime) || savedTime <= 0) {
+            clearPlaybackProgress(episodeId);
+            return null;
+        }
+
+        return savedTime;
+    } catch {
+        clearPlaybackProgress(episodeId);
+        return null;
+    }
+}
+
+function persistPlaybackProgress() {
+    if (!currentEpisodeId || !loadState.audioReady) {
+        return;
+    }
+
+    const currentTime = Number(audio.currentTime);
+
+    if (!Number.isFinite(currentTime) || currentTime <= 0) {
+        clearPlaybackProgress();
+        return;
+    }
+
+    if (Number.isFinite(audio.duration) && currentTime >= Math.max(audio.duration - 1, 0)) {
+        clearPlaybackProgress();
+        return;
+    }
+
+    try {
+        localStorage.setItem(
+            getPlaybackProgressStorageKey(currentEpisodeId),
+            JSON.stringify({
+                id: currentEpisodeId,
+                time: currentTime,
+            }),
+        );
+    } catch {
+        // Ignora falhas de acesso ao storage para nao travar o player.
+    }
+}
+
+function startPlaybackProgressTracking() {
+    clearPlaybackProgressTracking();
+
+    playbackProgressIntervalId = globalThis.setInterval(() => {
+        persistPlaybackProgress();
+    }, PLAYBACK_PROGRESS_SAVE_INTERVAL_MS);
+}
+
+function updateTimelineUi(currentTime) {
+    progressBar.value = currentTime;
+    currentTimeEl.textContent = formatTime(currentTime);
+
+    const percentage = audio.duration > 0
+        ? (currentTime / audio.duration) * 100
+        : 0;
+
+    progressFill.style.width = `${percentage}%`;
+}
+
+function restorePlaybackProgress() {
+    const savedTime = readPlaybackProgress(currentEpisodeId);
+
+    if (!savedTime || !Number.isFinite(audio.duration)) {
+        return;
+    }
+
+    const resumeTime = Math.min(savedTime, Math.max(audio.duration - 1, 0));
+
+    if (resumeTime <= 0) {
+        clearPlaybackProgress();
+        return;
+    }
+
+    audio.currentTime = resumeTime;
+    updateTimelineUi(audio.currentTime);
+    updateSubtitles(audio.currentTime);
+}
+
+// Gera o HTML mantendo o texto original e isolando as palavras em spans
 function generateSentenceHTML(block) {
-    let result = "";
+    if (!Array.isArray(block.words) || block.words.length === 0) {
+        return block.text;
+    }
+
+    let result = '';
     let currentPos = 0;
     const text = block.text;
 
-    block.words.forEach((w, index) => {
-        // Limpa espaços extras da palavra do array (como " man") para fazer o match correto no texto original
-        const cleanWord = w.word.trim();
+    block.words.forEach((word, index) => {
+        const cleanWord = word.word.trim();
         const wordIndex = text.indexOf(cleanWord, currentPos);
 
         if (wordIndex !== -1) {
@@ -91,18 +439,18 @@ function generateSentenceHTML(block) {
             currentPos = wordIndex + cleanWord.length;
         }
     });
+
     result += text.substring(currentPos);
     return result;
 }
 
-// Destaca a palavra atual
 function highlightWord(block, currentTime) {
+    const words = Array.isArray(block.words) ? block.words : [];
     let activeWordIndex = -1;
 
-    // Procura a palavra cujo tempo exato bate com o momento atual
-    for (let i = 0; i < block.words.length; i++) {
-        if (currentTime >= block.words[i].start && currentTime <= block.words[i].end) {
-            activeWordIndex = i;
+    for (let index = 0; index < words.length; index += 1) {
+        if (currentTime >= words[index].start && currentTime <= words[index].end) {
+            activeWordIndex = index;
         }
     }
 
@@ -110,195 +458,174 @@ function highlightWord(block, currentTime) {
         currentWordIndex = activeWordIndex;
         const spans = subtitleTextEl.querySelectorAll('.sub-word');
         spans.forEach((span, index) => {
-            if (index === activeWordIndex) {
-                span.classList.add('highlight');
-            } else {
-                span.classList.remove('highlight');
-            }
+            span.classList.toggle('highlight', index === activeWordIndex);
         });
     }
 }
 
-// Toggle do botão de legendas
 subtitleBtn.addEventListener('click', () => {
+    if (subtitleBtn.disabled) {
+        return;
+    }
+
     subtitlesVisible = !subtitlesVisible;
+
     if (subtitlesVisible) {
         subtitleBtn.classList.add('active');
         subtitleWrapper.classList.add('show');
-    } else {
-        subtitleBtn.classList.remove('active');
-        subtitleWrapper.classList.remove('show');
-        subtitleTextEl.classList.remove('show-text');
-        currentSubtitleText = ""; // Reseta o estado
+        updateSubtitles(audio.currentTime);
+        return;
     }
+
+    subtitleBtn.classList.remove('active');
+    subtitleWrapper.classList.remove('show');
+    subtitleTextEl.classList.remove('show-text');
+    currentSubtitleText = '';
+    currentWordIndex = -1;
 });
 
-// Função que verifica o tempo atual e atualiza a interface
 function updateSubtitles(currentTime) {
-    if (!subtitlesVisible) return;
+    if (!subtitlesVisible || parsedSubtitles.length === 0) {
+        return;
+    }
 
-    // Busca se existe alguma legenda cujo tempo bate com o áudio atual
-    const activeSub = parsedSubtitles.find(sub => currentTime >= sub.start && currentTime <= sub.end);
+    const activeSubtitle = parsedSubtitles.find(
+        (subtitle) => currentTime >= subtitle.start && currentTime <= subtitle.end,
+    );
 
-    if (activeSub) {
-        // Atualiza o bloco de texto inteiro (frase)
-        if (currentSubtitleText !== activeSub.text) {
-            currentSubtitleText = activeSub.text;
-            currentWordIndex = -1; // Reseta o índice da palavra
-
-            // Atualiza a frase na tela imediatamente sem atrasos/transições
-            subtitleTextEl.innerHTML = generateSentenceHTML(activeSub);
-            subtitleTextEl.classList.add('show-text');
-            highlightWord(activeSub, currentTime);
-        } else if (subtitleTextEl.classList.contains('show-text')) {
-            // Se o bloco de texto já está visível, apenas atualiza a cor da palavra
-            highlightWord(activeSub, currentTime);
-        }
-    } else {
-        // Esconde a legenda caso não haja texto no tempo atual
-        if (currentSubtitleText !== "") {
-            currentSubtitleText = "";
+    if (activeSubtitle) {
+        if (currentSubtitleText !== activeSubtitle.text) {
+            currentSubtitleText = activeSubtitle.text;
             currentWordIndex = -1;
-            subtitleTextEl.classList.remove('show-text');
+            subtitleTextEl.innerHTML = generateSentenceHTML(activeSubtitle);
+            subtitleTextEl.classList.add('show-text');
         }
+
+        highlightWord(activeSubtitle, currentTime);
+        return;
+    }
+
+    if (currentSubtitleText !== '') {
+        currentSubtitleText = '';
+        currentWordIndex = -1;
+        subtitleTextEl.classList.remove('show-text');
     }
 }
 
-// Redimensionar Canvas
 function resizeCanvas() {
     canvas.width = canvas.parentElement.clientWidth;
     canvas.height = canvas.parentElement.clientHeight;
 }
+
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-// --- Lógica de Upload do JSON ---
-jsonInput.addEventListener('change', function (e) {
-    const file = e.target.files[0];
-    if (file) {
-        jsonNameDisplay.textContent = file.name;
-
-        const reader = new FileReader();
-        reader.onload = function (event) {
-            try {
-                // Lê e faz o parse do conteúdo do ficheiro
-                const uploadedJSON = JSON.parse(event.target.result);
-                parsedSubtitles = uploadedJSON;
-
-                // Limpa as legendas no ecrã para evitar conflitos ao trocar o ficheiro
-                currentSubtitleText = "";
-                currentWordIndex = -1;
-                subtitleTextEl.classList.remove('show-text');
-
-                // Se estiver a reproduzir com legendas visíveis, tenta atualizar com os novos dados
-                if (subtitlesVisible) {
-                    updateSubtitles(audio.currentTime);
-                }
-            } catch (error) {
-                alert("Erro ao ler o ficheiro JSON. Verifique se o formato está correto.");
-                console.error(error);
-                jsonNameDisplay.textContent = "Erro no ficheiro";
-            }
-        };
-        // Lê o ficheiro como texto para podermos convertê-lo depois
-        reader.readAsText(file);
-    }
-});
-
-// --- Lógica de Upload de Áudio ---
-audioInput.addEventListener('change', function (e) {
-    const file = e.target.files[0];
-    if (file) {
-        const objectURL = URL.createObjectURL(file);
-        audio.src = objectURL;
-        fileNameDisplay.textContent = file.name;
-        playPauseBtn.disabled = false;
-
-        // Reseta UI
-        progressBar.value = 0;
-        progressFill.style.width = '0%';
-        currentTimeEl.textContent = '0:00';
-        audio.volume = 1; // Garante que o volume volte a 100% ao trocar de música
-
-        // Para carregar os metadados (duração)
-        audio.load();
-
-        // Se o contexto já existe, precisamos garantir que está rodando
-        if (audioContext && audioContext.state === 'suspended') {
-            audioContext.resume();
-        }
-    }
-});
-
-// --- Lógica do Áudio ---
 audio.addEventListener('loadedmetadata', () => {
+    loadState.audioReady = true;
     durationEl.textContent = formatTime(audio.duration);
     progressBar.max = audio.duration;
+    restorePlaybackProgress();
+    setPlaybackControlsEnabled(true);
+    updateStatusFromState();
 });
 
 audio.addEventListener('timeupdate', () => {
-    progressBar.value = audio.currentTime;
-    currentTimeEl.textContent = formatTime(audio.currentTime);
-    const percentage = (audio.currentTime / audio.duration) * 100;
-    progressFill.style.width = percentage + '%';
-
-    // Checa a minutagem da legenda atual
+    updateTimelineUi(audio.currentTime);
     updateSubtitles(audio.currentTime);
+});
+
+audio.addEventListener('play', () => {
+    startPlaybackProgressTracking();
+});
+
+audio.addEventListener('pause', () => {
+    clearPlaybackProgressTracking();
+
+    if (!audio.ended) {
+        persistPlaybackProgress();
+    }
 });
 
 audio.addEventListener('ended', () => {
     isPlaying = false;
+    clearPlaybackProgressTracking();
+    clearPlaybackProgress();
     updatePlayButton();
 });
 
-// Barra de progresso manual
-progressBar.addEventListener('input', () => {
-    audio.currentTime = progressBar.value;
-    const percentage = (progressBar.value / audio.duration) * 100;
-    progressFill.style.width = percentage + '%';
-});
-
-// --- Controles Principais ---
-playPauseBtn.addEventListener('click', () => {
-    if (!audio.src) return;
-
-    // Inicializa o Web Audio API apenas na primeira interação do usuário (Regra dos Navegadores)
-    if (!audioContext) {
-        initWebAudio();
+audio.addEventListener('error', () => {
+    if (!audio.src || loadState.failed) {
+        return;
     }
 
-    if (audioContext.state === 'suspended') {
-        audioContext.resume();
+    handleFatalPlayerError('Não foi possível carregar o áudio deste episódio.');
+});
+
+progressBar.addEventListener('input', () => {
+    if (!loadState.audioReady) {
+        return;
+    }
+
+    audio.currentTime = Number(progressBar.value);
+    updateTimelineUi(audio.currentTime);
+    updateSubtitles(audio.currentTime);
+    persistPlaybackProgress();
+});
+
+playPauseBtn.addEventListener('click', async () => {
+    if (!loadState.audioReady) {
+        return;
+    }
+
+    try {
+        if (!audioContext) {
+            initWebAudio();
+        }
+
+        if (audioContext?.state === 'suspended') {
+            await audioContext.resume();
+        }
+    } catch (error) {
+        console.error(error);
+        audioContext = null;
+        analyser = null;
+        source = null;
+        dataArray = null;
     }
 
     if (isPlaying) {
-        // Inicia o processo de pausa suave (Fade Out)
         isPlaying = false;
-        updatePlayButton(); // Muda o ícone para play imediatamente
+        updatePlayButton();
 
         clearInterval(fadeInterval);
-        let vol = audio.volume;
+        let volume = audio.volume;
 
-        // Reduz o volume a cada 30ms para dar um efeito de descida rápida (dura aprox. 300ms)
         fadeInterval = setInterval(() => {
-            vol -= 0.1;
-            if (vol <= 0) {
+            volume -= 0.1;
+            if (volume <= 0) {
                 audio.volume = 0;
                 audio.pause();
                 clearInterval(fadeInterval);
             } else {
-                audio.volume = vol;
+                audio.volume = volume;
             }
         }, 30);
 
-    } else {
-        // Toca a música e restaura o volume
-        isPlaying = true;
-        updatePlayButton();
+        return;
+    }
 
-        clearInterval(fadeInterval);
-        audio.volume = 1; // Restaura para o volume máximo
-        audio.play();
+    isPlaying = true;
+    updatePlayButton();
+    clearInterval(fadeInterval);
+    audio.volume = 1;
+
+    try {
+        await audio.play();
+    } catch (error) {
+        console.error(error);
+        isPlaying = false;
+        updatePlayButton();
+        setPlayerStatus('Não foi possível iniciar a reprodução.', 'error');
     }
 });
 
@@ -306,43 +633,54 @@ function updatePlayButton() {
     if (isPlaying) {
         playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         playPauseBtn.classList.add('playing');
-    } else {
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-        playPauseBtn.classList.remove('playing');
+        return;
     }
+
+    playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+    playPauseBtn.classList.remove('playing');
 }
 
 skipBackBtn.addEventListener('click', () => {
+    if (!loadState.audioReady) {
+        return;
+    }
+
     audio.currentTime = Math.max(0, audio.currentTime - 10);
 });
 
 skipForwardBtn.addEventListener('click', () => {
+    if (!loadState.audioReady) {
+        return;
+    }
+
     audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
 });
 
-// Controle de Velocidade
-const speeds = [1, 1.2, 1.5, 2];
-let currentSpeedIndex = 0;
 speedBtn.addEventListener('click', () => {
+    if (!loadState.audioReady) {
+        return;
+    }
+
     currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length;
-    const newSpeed = speeds[currentSpeedIndex];
-    audio.playbackRate = newSpeed;
-    speedBtn.textContent = newSpeed + 'X';
+    const speed = speeds[currentSpeedIndex];
+    audio.playbackRate = speed;
+    speedBtn.textContent = `${speed}X`;
 });
 
-// --- Utilitários ---
 function formatTime(seconds) {
-    if (isNaN(seconds)) return "0:00";
-    const min = Math.floor(seconds / 60);
-    const sec = Math.floor(seconds % 60);
-    return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    if (Number.isNaN(seconds)) {
+        return '0:00';
+    }
+
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
 }
 
-// --- Web Audio API e Canvas (A Mágica das Ondas) ---
 function initWebAudio() {
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    audioContext = new (globalThis.AudioContext || globalThis.webkitAudioContext)();
     analyser = audioContext.createAnalyser();
-    analyser.fftSize = 128; // Define a resolução da frequência
+    analyser.fftSize = 128;
 
     source = audioContext.createMediaElementSource(audio);
     source.connect(analyser);
@@ -352,14 +690,9 @@ function initWebAudio() {
     dataArray = new Uint8Array(bufferLength);
 }
 
-let lastSubCheckTime = -1;
-
 function drawWaveform() {
     animationId = requestAnimationFrame(drawWaveform);
 
-    // Atualiza as legendas a 60 FPS no loop de animação.
-    // O evento padrão do áudio dispara devagar e "pula" palavras rápidas.
-    // Executar isso aqui garante que cada micro-palavra acenda no momento exato.
     if (audio.currentTime !== lastSubCheckTime) {
         updateSubtitles(audio.currentTime);
         lastSubCheckTime = audio.currentTime;
@@ -375,32 +708,26 @@ function drawWaveform() {
 
     if (analyser && isPlaying) {
         analyser.getByteFrequencyData(dataArray);
-        // Calcula a média das frequências para obter a "energia" da música
-        let sum = 0;
-        for (let i = 0; i < dataArray.length; i++) {
-            sum += dataArray[i];
-        }
-        const average = sum / dataArray.length;
 
-        // Aumenta a amplitude baseada na batida da música
+        let sum = 0;
+        for (const value of dataArray) {
+            sum += value;
+        }
+
+        const average = sum / dataArray.length;
         targetAmplitude = 2 + (average * 0.4);
         targetSpeed = 1;
     } else {
-        // Se pausado, volta para uma linha reta e para de mover
         targetAmplitude = 0;
-        targetSpeed = 0;
     }
 
-    // Suavização (Lerp) para a animação não ficar travada/pulando
     currentAmplitude += (targetAmplitude - currentAmplitude) * 0.1;
     currentSpeed += (targetSpeed - currentSpeed) * 0.1;
 
-    // Velocidade das ondas multiplicada pela velocidade atual
     phase1 += 0.05 * currentSpeed;
     phase2 -= 0.03 * currentSpeed;
     phase3 += 0.04 * currentSpeed;
 
-    // Desenha as 3 linhas (Verde, Azul claro, Roxo)
     drawSineWave(ctx, width, centerY, currentAmplitude * 1.2, phase1, '#68d391', 0.015);
     drawSineWave(ctx, width, centerY, currentAmplitude * 0.9, phase2, '#7f9cf5', 0.02);
     drawSineWave(ctx, width, centerY, currentAmplitude * 0.6, phase3, '#9f7aea', 0.01);
@@ -411,11 +738,8 @@ function drawSineWave(ctx, width, centerY, amplitude, phase, color, frequency) {
     ctx.strokeStyle = color;
     ctx.lineWidth = 2.5;
 
-    for (let x = 0; x < width; x++) {
-        // A função seno cria as ondas. A multiplicação diminui as bordas para centralizar o efeito.
-        // Isso faz as pontas da linha ficarem grudadas no centro vertical (como no vídeo).
+    for (let x = 0; x < width; x += 1) {
         const edgeDamping = Math.sin((x / width) * Math.PI);
-
         const y = centerY + Math.sin(x * frequency + phase) * amplitude * edgeDamping;
 
         if (x === 0) {
@@ -424,8 +748,61 @@ function drawSineWave(ctx, width, centerY, amplitude, phase, color, frequency) {
             ctx.lineTo(x, y);
         }
     }
+
     ctx.stroke();
 }
 
-// Desenha ondas paradas no início
+globalThis.addEventListener('beforeunload', () => {
+    persistPlaybackProgress();
+});
+
+async function bootstrapPlayer() {
+    const episodeId = getEpisodeIdFromLocation();
+
+    setPlaybackControlsEnabled(false);
+    setSubtitleAvailability(false);
+    updatePlayButton();
+    updateStatusFromState();
+
+    if (!episodeId) {
+        handleFatalPlayerError('Episódio não informado. Volte à biblioteca.');
+        return;
+    }
+
+    try {
+        const episodes = await getEpisodes();
+        const episode = episodes.find((entry) => entry.id === episodeId);
+
+        if (!episode) {
+            episodeTitleEl.textContent = 'Episódio indisponível';
+            handleFatalPlayerError('Não foi possível encontrar este episódio.');
+            return;
+        }
+
+        loadState.failed = false;
+        loadState.episodeLoaded = true;
+        loadState.audioReady = false;
+        loadState.transcriptState = 'pending';
+
+        updateEpisodeMetadata(episode);
+        prepareEpisodeUiForLoading();
+        currentEpisodeId = episodeId;
+        updateStatusFromState();
+
+        const audioUrl = resolveAssetUrl(episode.audio);
+        if (!audioUrl) {
+            handleFatalPlayerError('Este episódio não tem áudio disponível.');
+            return;
+        }
+
+        audio.src = audioUrl;
+        audio.load();
+        void loadTranscript(episode);
+    } catch (error) {
+        console.error(error);
+        handleFatalPlayerError('Falha ao carregar o episódio.');
+    }
+}
+
 drawWaveform();
+await bootstrapPlayer();
