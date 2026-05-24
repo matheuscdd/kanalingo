@@ -326,7 +326,7 @@ function getDefaultsHanziWriter() {
         showCharacter: false,
         strokeFadeDuration: 0,
         charDataLoader: (char, onLoad, onError) => {
-            fetch(`/src/libs/js/hanzi-writer/data/${char}.json`)
+            fetch(`https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/dicts/draw/ja/${char}.json`)
                 .then((res) => res.json())
                 .then(onLoad)
                 .catch(onError);

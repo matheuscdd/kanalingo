@@ -94,7 +94,6 @@ function toggleLangDropdown() {
 }
 
 function setLanguage(langCode) {
-    console.log(1)
     state.lang = langCode;
     localStorage.setItem('kanalingo_lang', langCode);
 
@@ -108,7 +107,7 @@ function setLanguage(langCode) {
     // Atualizar textos estáticos
     applyTranslations();
 
-    renderPodcasts(ctx.podcasts);
+    navigate('podcasts');
 }
 
 function applyTranslations() {
@@ -194,7 +193,6 @@ function navigate(viewName, id = null) {
         const headerImg = document.getElementById('header-section-img');
         headerImg.parentElement.style = 'background-color: ' + section.color;
         if (section.imageUrl) {
-            console.log(section.imageUrl)
             headerImg.src = section.imageUrl;
             headerImg.style.display = 'block';
         } else {

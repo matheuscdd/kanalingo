@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lince Digital - Encontre o Ícone</title>
+    <!-- Google Fonts para o estilo Duolingo -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Cores estilo Duolingo */
+            --green: #58CC02;
+            --green-shadow: #58A700;
+            --blue: #1CB0F6;
+            --blue-shadow: #1899D6;
+            --red: #FF4B4B;
+            --red-shadow: #EA2B2B;
+            --white: #FFFFFF;
+            --bg-color: #F7F7F7;
+            --text-main: #4B4B4B;
+            --text-light: #AFAFAF;
+            --border-light: #E5E5E5;
+            
+            /* Variáveis de Zoom do Tabuleiro */
+            --zoom-factor: 1;
+            /* Células menores para caber o espalhamento orgânico */
+            --cell-size: calc(55px * var(--zoom-factor));
+            --icon-size: calc(32px * var(--zoom-factor));
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Cabeçalho e Placar */
+        header {
+            width: 100%;
+            max-width: 800px;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .score-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--green);
+        }
+
+        .score-container i {
+            font-size: 1.5rem;
+        }
+
+        /* Área do Alvo */
+        .target-panel {
+            background-color: var(--white);
+            border: 2px solid var(--border-light);
+            border-bottom: 4px solid var(--border-light);
+            border-radius: 16px;
+            padding: 15px 40px;
+            margin: 5px 0 15px 0;
+            text-align: center;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: transform 0.2s ease;
+        }
+
+        .target-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .target-icon {
+            font-size: 2.8rem;
+            color: var(--text-main);
+        }
+
+        .target-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        /* Controles de Zoom */
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            background-color: var(--white);
+            color: var(--text-main);
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border: 2px solid var(--border-light);
+            border-bottom: 4px solid var(--border-light);
+            border-radius: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+            margin-bottom: 2px;
+        }
+
+        .btn-primary {
+            background-color: var(--blue);
+            color: var(--white);
+            border-color: var(--blue-shadow);
+            border-bottom-color: var(--blue-shadow);
+        }
+
+        .zoom-level-text {
+            font-weight: 800;
+            font-size: 1.2rem;
+            width: 60px;
+            text-align: center;
+        }
+
+        /* Área de Rolagem do Tabuleiro */
+        .board-container {
+            width: 98%;
+            flex-grow: 1;
+            margin-bottom: 20px;
+            overflow: auto;
+            border-radius: 20px;
+            /* Estilo Duolingo na caixa exterior */
+            background-color: #EFEFEF; 
+            border: 2px solid var(--border-light);
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
+            /* Cursor e Seleção para a ferramenta de arrastar */
+            cursor: grab;
+            user-select: none; 
+        }
+
+        .board-container.grabbing {
+            cursor: grabbing;
+        }
+
+        /* Área que centraliza o hexágono, permitindo rolagem quando há zoom */
+        .board-scroll-area {
+            min-width: 100%;
+            min-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Borda Externa Hexagonal Azul */
+        .board-wrapper {
+            position: relative;
+            width: calc(850px * var(--zoom-factor));
+            height: calc(850px * var(--zoom-factor));
+            background-color: var(--blue-shadow);
+            /* Máscara em formato de Hexágono com topos planos */
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Fundo Branco Hexagonal (onde os itens ficam) */
+        .board {
+            /* Deixa o fundo branco um pouco menor para criar a borda azul */
+            width: calc(100% - (24px * var(--zoom-factor)));
+            height: calc(100% - (24px * var(--zoom-factor)));
+            background-color: var(--white);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            position: relative;
+            
+            /* Novo Sistema NATIVO de Grid Hexagonal */
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            grid-template-rows: repeat(11, 1fr);
+        }
+
+        /* Células baseadas em Grid (sem position absolute) */
+        .cell {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .cell:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* O Ícone dentro da Célula que leva a rotação real */
+        .cell i {
+            font-size: var(--icon-size);
+            pointer-events: none;
+            transition: transform 0.1s;
+        }
+        
+        .cell:active i {
+            transform: scale(0.85); /* Efeito de clique */
+        }
+
+        /* Animações de Feedback (sem o translate de centralização antigo) */
+        @keyframes correctPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes wrongShake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            50% { transform: translateX(8px); }
+            75% { transform: translateX(-8px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Notar o !important para sobrepor a cor transparente */
+        .correct {
+            background-color: var(--green) !important;
+            color: var(--white);
+            animation: correctPop 0.4s ease-out;
+            z-index: 10;
+        }
+
+        .wrong {
+            background-color: var(--red) !important;
+            color: var(--white);
+            animation: wrongShake 0.4s ease-out;
+            z-index: 10;
+        }
+        
+        /* Animação do Painel */
+        @keyframes targetPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .pulse-target {
+            animation: targetPulse 0.4s ease-out;
+        }
+
+        /* Responsividade Menor */
+        @media (max-width: 600px) {
+            .target-panel {
+                padding: 10px 20px;
+                min-width: 200px;
+            }
+            .target-name {
+                font-size: 1.4rem;
+            }
+            .btn {
+                padding: 6px 14px;
+            }
+            :root {
+                --cell-size: calc(45px * var(--zoom-factor));
+                --icon-size: calc(26px * var(--zoom-factor));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="btn" id="btn-restart" title="Reiniciar Jogo">
+            <i class="fa-solid fa-rotate-right"></i>
+        </button>
+        <div class="score-container">
+            <i class="fa-solid fa-star"></i>
+            <span id="score">0</span>
+        </div>
+    </header>
+
+    <div class="target-panel" id="target-panel">
+        <div class="target-title">Encontre:</div>
+        <i class="fa-solid fa-circle-question target-icon" id="target-icon"></i>
+        <div class="target-name" id="target-name">Preparando...</div>
+    </div>
+
+    <div class="controls">
+        <button class="btn btn-primary" id="btn-zoom-out" title="Diminuir Zoom">
+            <i class="fa-solid fa-magnifying-glass-minus"></i>
+        </button>
+        <div class="zoom-level-text" id="zoom-text">100%</div>
+        <button class="btn btn-primary" id="btn-zoom-in" title="Aumentar Zoom">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+        </button>
+    </div>
+
+    <div class="board-container" id="board-container">
+        <div class="board-scroll-area">
+            <div class="board-wrapper">
+                <div class="board" id="board">
+                    <!-- As células serão geradas aqui pelo JavaScript (posicionamento absoluto) -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Banco de Dados de Ícones (50 opções)
+        const itemsDB = [
+            { id: 'dog', icon: 'fa-dog', name: 'Cachorro' },
+            { id: 'cat', icon: 'fa-cat', name: 'Gato' },
+            { id: 'spider', icon: 'fa-spider', name: 'Aranha' },
+            { id: 'bug', icon: 'fa-bug', name: 'Inseto' },
+            { id: 'fish', icon: 'fa-fish', name: 'Peixe' },
+            { id: 'frog', icon: 'fa-frog', name: 'Sapo' },
+            { id: 'horse', icon: 'fa-horse', name: 'Cavalo' },
+            { id: 'hippo', icon: 'fa-hippo', name: 'Hipopótamo' },
+            { id: 'dragon', icon: 'fa-dragon', name: 'Dragão' },
+            { id: 'dove', icon: 'fa-dove', name: 'Pomba' },
+            { id: 'apple', icon: 'fa-apple-whole', name: 'Maçã' },
+            { id: 'carrot', icon: 'fa-carrot', name: 'Cenoura' },
+            { id: 'lemon', icon: 'fa-lemon', name: 'Limão' },
+            { id: 'pizza', icon: 'fa-pizza-slice', name: 'Pizza' },
+            { id: 'burger', icon: 'fa-burger', name: 'Hambúrguer' },
+            { id: 'hotdog', icon: 'fa-hotdog', name: 'Cachorro-quente' },
+            { id: 'icecream', icon: 'fa-ice-cream', name: 'Sorvete' },
+            { id: 'car', icon: 'fa-car', name: 'Carro' },
+            { id: 'plane', icon: 'fa-plane', name: 'Avião' },
+            { id: 'bicycle', icon: 'fa-bicycle', name: 'Bicicleta' },
+            { id: 'ship', icon: 'fa-ship', name: 'Navio' },
+            { id: 'train', icon: 'fa-train', name: 'Trem' },
+            { id: 'rocket', icon: 'fa-rocket', name: 'Foguete' },
+            { id: 'tree', icon: 'fa-tree', name: 'Árvore' },
+            { id: 'leaf', icon: 'fa-leaf', name: 'Folha' },
+            { id: 'fire', icon: 'fa-fire', name: 'Fogo' },
+            { id: 'water', icon: 'fa-water-ladder', name: 'Piscina' },
+            { id: 'sun', icon: 'fa-sun', name: 'Sol' },
+            { id: 'moon', icon: 'fa-moon', name: 'Lua' },
+            { id: 'star', icon: 'fa-star', name: 'Estrela' },
+            { id: 'cloud', icon: 'fa-cloud', name: 'Nuvem' },
+            { id: 'bolt', icon: 'fa-bolt', name: 'Raio' },
+            { id: 'snowflake', icon: 'fa-snowflake', name: 'Neve' },
+            { id: 'heart', icon: 'fa-heart', name: 'Coração' },
+            { id: 'bell', icon: 'fa-bell', name: 'Sino' },
+            { id: 'music', icon: 'fa-music', name: 'Música' },
+            { id: 'camera', icon: 'fa-camera', name: 'Câmera' },
+            { id: 'gamepad', icon: 'fa-gamepad', name: 'Controle' },
+            { id: 'trophy', icon: 'fa-trophy', name: 'Troféu' },
+            { id: 'key', icon: 'fa-key', name: 'Chave' },
+            { id: 'lock', icon: 'fa-lock', name: 'Cadeado' },
+            { id: 'gift', icon: 'fa-gift', name: 'Presente' },
+            { id: 'hat', icon: 'fa-hat-wizard', name: 'Chapéu' },
+            { id: 'umbrella', icon: 'fa-umbrella', name: 'Guarda-chuva' },
+            { id: 'glasses', icon: 'fa-glasses', name: 'Óculos' },
+            { id: 'clock', icon: 'fa-clock', name: 'Relógio' },
+            { id: 'lightbulb', icon: 'fa-lightbulb', name: 'Lâmpada' },
+            { id: 'magnet', icon: 'fa-magnet', name: 'Ímã' },
+            { id: 'anchor', icon: 'fa-anchor', name: 'Âncora' },
+            { id: 'bomb', icon: 'fa-bomb', name: 'Bomba' }
+        ];
+
+        // Paleta de cores divertidas
+        const colors = ['#FF4B4B', '#FF9600', '#FFC800', '#58CC02', '#1CB0F6', '#CE82FF', '#FF96CB', '#4B4B4B'];
+
+        // Estado do Jogo
+        let currentBoardItems = [];
+        let currentTarget = null;
+        let score = 0;
+        
+        // Estado do Zoom
+        const zoomLevels = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0];
+        let currentZoomIndex = 2; // Começa em 1.0 (100%)
+
+        // Elementos DOM
+        const boardEl = document.getElementById('board');
+        const targetIconEl = document.getElementById('target-icon');
+        const targetNameEl = document.getElementById('target-name');
+        const targetPanelEl = document.getElementById('target-panel');
+        const scoreEl = document.getElementById('score');
+        const zoomTextEl = document.getElementById('zoom-text');
+        const boardContainerEl = document.getElementById('board-container');
+        
+        // Funções Utilitárias
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Inicializar o Tabuleiro usando o CSS Grid Nativamente
+        function initBoard() {
+            boardEl.innerHTML = '';
+            currentBoardItems = [];
+            
+            // O grid hexagonal que desenhamos (7 a 12 a 7) precisa de 102 itens exatos
+            let pool = [...itemsDB, ...itemsDB]; 
+            // Adiciona 2 itens aleatórios do banco para fechar a conta de 102
+            pool.push(itemsDB[getRandomInt(0, itemsDB.length - 1)]);
+            pool.push(itemsDB[getRandomInt(0, itemsDB.length - 1)]);
+            pool = shuffle(pool);
+
+            // Quantidade de caixas por linha para formar o desenho do hexágono
+            const rowsConfig = [7, 8, 9, 10, 11, 12, 11, 10, 9, 8, 7];
+            let itemIndex = 0;
+
+            rowsConfig.forEach((numCols, rowIndex) => {
+                // O Grid tem 24 colunas. Cada item vai ocupar 2 colunas.
+                // Calculamos a coluna inicial dinamicamente para cada linha ficar centralizada.
+                const startCol = (24 - (numCols * 2)) / 2 + 1;
+
+                for (let colIndex = 0; colIndex < numCols; colIndex++) {
+                    if (itemIndex >= pool.length) return; // Segurança
+                    const item = pool[itemIndex];
+                    itemIndex++;
+
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.dataset.id = item.id;
+                    
+                    // Coloca o item nativamente em seu devido lugar no CSS Grid
+                    cell.style.gridRow = rowIndex + 1;
+                    cell.style.gridColumn = `${startCol + (colIndex * 2)} / span 2`;
+                    
+                    // Rotação, Cor e leve tremor (jitter) interno
+                    const rotation = getRandomInt(0, 359);
+                    const color = colors[getRandomInt(0, colors.length - 1)];
+                    
+                    // O tremor agora afeta apenas o ícone internamente,
+                    // a caixa (.cell) do Grid permanece rígida e organizada no HTML.
+                    const jitterX = (Math.random() - 0.5) * 12; // px
+                    const jitterY = (Math.random() - 0.5) * 12; // px
+
+                    const icon = document.createElement('i');
+                    icon.className = `fa-solid ${item.icon}`;
+                    
+                    icon.style.color = color;
+                    icon.style.transform = `translate(${jitterX}px, ${jitterY}px) rotate(${rotation}deg)`;
+
+                    cell.appendChild(icon);
+                    
+                    // Lógica de Clique
+                    cell.addEventListener('click', () => handleCellClick(cell, item));
+                    
+                    boardEl.appendChild(cell);
+                    currentBoardItems.push(item);
+                }
+            });
+
+            pickNewTarget();
+        }
+
+        // Escolher um novo alvo que exista no tabuleiro
+        function pickNewTarget() {
+            targetPanelEl.classList.remove('pulse-target');
+            void targetPanelEl.offsetWidth; 
+            targetPanelEl.classList.add('pulse-target');
+
+            const randomIndex = getRandomInt(0, currentBoardItems.length - 1);
+            currentTarget = currentBoardItems[randomIndex];
+            
+            targetIconEl.className = `fa-solid ${currentTarget.icon} target-icon`;
+            targetIconEl.style.color = colors[getRandomInt(0, colors.length - 1)];
+            targetNameEl.textContent = currentTarget.name;
+        }
+
+        // Lidar com o clique nas células
+        function handleCellClick(cell, itemClicked) {
+            if (cell.classList.contains('correct') || cell.classList.contains('wrong')) return;
+
+            if (itemClicked.id === currentTarget.id) {
+                // Acerto
+                cell.classList.add('correct');
+                // Mantém o translate padrão e sobrepõe no CSS a cor
+                
+                score += 10;
+                scoreEl.textContent = score;
+                
+                setTimeout(() => {
+                    cell.classList.remove('correct');
+                    pickNewTarget();
+                }, 400); 
+            } else {
+                // Erro
+                cell.classList.add('wrong');
+                score = Math.max(0, score - 2);
+                scoreEl.textContent = score;
+                
+                setTimeout(() => {
+                    cell.classList.remove('wrong');
+                }, 400);
+            }
+        }
+
+        // Controles de Zoom
+        function updateZoom() {
+            const factor = zoomLevels[currentZoomIndex];
+            document.documentElement.style.setProperty('--zoom-factor', factor);
+            zoomTextEl.textContent = `${Math.round(factor * 100)}%`;
+        }
+
+        document.getElementById('btn-zoom-in').addEventListener('click', () => {
+            if (currentZoomIndex < zoomLevels.length - 1) {
+                currentZoomIndex++;
+                updateZoom();
+            }
+        });
+
+        document.getElementById('btn-zoom-out').addEventListener('click', () => {
+            if (currentZoomIndex > 0) {
+                currentZoomIndex--;
+                updateZoom();
+            }
+        });
+
+        // Controle de Reinício
+        document.getElementById('btn-restart').addEventListener('click', () => {
+            score = 0;
+            scoreEl.textContent = score;
+            initBoard();
+        });
+
+        // --- LÓGICA DE ARRASTAR (PAN/DRAG) PARA ROLAGEM ---
+        let isDragging = false;
+        let startX, startY, initialScrollLeft, initialScrollTop;
+
+        const startDrag = (e) => {
+            isDragging = true;
+            boardContainerEl.classList.add('grabbing');
+            // Pega a posição (suporta Mouse e Touch)
+            const pageX = e.pageX || (e.touches && e.touches[0].pageX);
+            const pageY = e.pageY || (e.touches && e.touches[0].pageY);
+            
+            startX = pageX - boardContainerEl.offsetLeft;
+            startY = pageY - boardContainerEl.offsetTop;
+            initialScrollLeft = boardContainerEl.scrollLeft;
+            initialScrollTop = boardContainerEl.scrollTop;
+        };
+
+        const stopDrag = () => {
+            isDragging = false;
+            boardContainerEl.classList.remove('grabbing');
+        };
+
+        const moveDrag = (e) => {
+            if (!isDragging) return;
+            e.preventDefault(); // Evita rolagem nativa/seleção da página acidental
+            
+            const pageX = e.pageX || (e.touches && e.touches[0].pageX);
+            const pageY = e.pageY || (e.touches && e.touches[0].pageY);
+            
+            const x = pageX - boardContainerEl.offsetLeft;
+            const y = pageY - boardContainerEl.offsetTop;
+            
+            // O multiplicador (1.5) deixa o arrasto mais dinâmico
+            const walkX = (x - startX) * 1.5; 
+            const walkY = (y - startY) * 1.5;
+            
+            boardContainerEl.scrollLeft = initialScrollLeft - walkX;
+            boardContainerEl.scrollTop = initialScrollTop - walkY;
+        };
+
+        // Eventos de Mouse
+        boardContainerEl.addEventListener('mousedown', startDrag);
+        boardContainerEl.addEventListener('mouseleave', stopDrag);
+        boardContainerEl.addEventListener('mouseup', stopDrag);
+        boardContainerEl.addEventListener('mousemove', moveDrag);
+
+        // Eventos de Toque (Mobile)
+        boardContainerEl.addEventListener('touchstart', startDrag, { passive: false });
+        boardContainerEl.addEventListener('touchend', stopDrag);
+        boardContainerEl.addEventListener('touchmove', moveDrag, { passive: false });
+
+        // Iniciar o jogo
+        initBoard();
+    </script>
+</body>
+</html>

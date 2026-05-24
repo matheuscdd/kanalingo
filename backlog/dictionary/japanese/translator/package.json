@@ -1,0 +1,21 @@
+{
+  "name": "translation-reviewer",
+  "version": "1.0.0",
+  "description": "Aplicacao fullstack em JavaScript para avaliacao humana de traducoes de dicionário.",
+  "main": "backend/server.js",
+  "scripts": {
+    "merge": "node backend/merge.js",
+    "start": "node backend/server.js"
+  },
+  "keywords": [
+    "express",
+    "dictionary",
+    "review",
+    "translation"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "express": "^4.21.2"
+  }
+}
