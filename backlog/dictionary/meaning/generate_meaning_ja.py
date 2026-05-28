@@ -50,7 +50,7 @@ def call_gpt(prompt):
         temperature=0.2
     )
 
-    time.sleep(3)
+    time.sleep(0.5)
 
     return res.choices[0].message.content.strip()
 
@@ -69,26 +69,31 @@ def extract_senses(entry):
 
 def process_entry(noun):
     word = noun["kanji"][0]["text"] if noun["kanji"] else noun["kana"][0]["text"]
-
+    errors = 0
     for sense in noun["raw_senses"]:
 
         path = f"output/{sense['id']}.json"
         if os.path.exists(path):
             print(f"[SKIP] {sense['id']}")
-            return
+            continue
 
         print(f"{colors['yellow']}[MAKING] {sense['id']} - {sense['text']}{colors['clean']}")
-        definition = call_gpt(build_prompt(word, sense["text"]))
-        obj = {
-            "wordId": noun["id"],
-            "wordText": word,
-            "senseText": sense["text"],
-            "senseId": sense["id"],
-            "definition": definition
-        }
-        print(f"{colors['green']}[OK] {sense['id']} - {sense['text']}{colors['clean']}")  
-        save_json(path, obj)
-    
+        try:
+            definition = call_gpt(build_prompt(word, sense["text"]))
+            obj = {
+                "wordId": noun["id"],
+                "wordText": word,
+                "senseText": sense["text"],
+                "senseId": sense["id"],
+                "definition": definition
+            }
+            print(f"{colors['green']}[OK] {sense['id']} - {sense['text']}{colors['clean']}")  
+            save_json(path, obj)
+        except Exception:
+            errors += 1
+            print(f"{colors['red']}[ERROR] {sense['id']} - {sense['text']}{colors['clean']}")
+        
+    return errors
     
 
 def load_sample():
@@ -100,8 +105,8 @@ def load_sample():
             tot += len(x["raw_senses"])
 
         for x in data:
-            process_entry(x)
-            tot -= len(x['raw_senses'])
+            errors = process_entry(x)
+            tot -= len(x['raw_senses']) - errors
             print(f"{colors['pink']}[REMANING] {tot}{colors['clean']}")
 
 def save_json(path, content):

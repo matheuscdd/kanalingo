@@ -9,6 +9,11 @@
     --gray-dark: #718096;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
 * {
     margin: 0;
     padding: 0;

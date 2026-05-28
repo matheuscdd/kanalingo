@@ -237,6 +237,11 @@
     user-select: none;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
 body > .general-loading-screen {
     overflow: hidden;
     touch-action: none;
