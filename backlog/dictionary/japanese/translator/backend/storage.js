@@ -42,6 +42,11 @@ async function writeJsonFileAtomic(filePath, data) {
   await fsp.rename(tempFilePath, filePath);
 }
 
+async function onlyWriteJsonFileAtomic(filePath, data) {
+  const payload = `${JSON.stringify(data, null, 2)}\n`;
+  await fsp.writeFile(filePath, payload, 'utf8');
+}
+
 async function ensureCoreDataFiles() {
   await ensureDirectory(PATHS.dataDir);
 
@@ -82,6 +87,7 @@ function buildFinalDictionary({ autoSavedItems, decisions }) {
 }
 
 async function appendDecision(decision, autoSavedItems) {
+  await onlyWriteJsonFileAtomic(path.join(PATHS.decisionsPath, `${decision.senseId}.json`), decision);
   const decisions = await readJsonFile(PATHS.decisionsFile, []);
   const existing = decisions.find((entry) => entry.senseId === decision.senseId);
 

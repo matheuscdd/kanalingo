@@ -14,6 +14,7 @@ const PATHS = {
   mergedFile: path.join(dataDir, 'merged.json'),
   autoSavedFile: path.join(dataDir, 'auto_saved.json'),
   decisionsFile: path.join(dataDir, 'decisions.json'),
+  decisionsPath: path.join(dataDir, 'decisions'),
   finalDictionaryFile: path.join(dataDir, 'final_dictionary.json'),
   skippedFile: path.join(dataDir, 'skipped.json')
 };
