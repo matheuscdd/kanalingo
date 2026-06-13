@@ -345,12 +345,14 @@ async function loadContent() {
             .toSorted((a, b) => a.order - b.order)
     }));
     
-    ctx.podcasts = ctx.podcasts.map(x => ({...x, 
-        imageUrl: `https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/covers/${x.ref}/index.png`,
-        sections: ctx.sections
-            .filter(y => y.podcastId === x.id)
-            .toSorted((a, b) => a.order - b.order)
-    }));
+    ctx.podcasts = ctx.podcasts
+        .filter(x => x.completed)
+        .map(x => ({...x, 
+            imageUrl: `https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/covers/${x.ref}/index.png`,
+            sections: ctx.sections
+                .filter(y => y.podcastId === x.id)
+                .toSorted((a, b) => a.order - b.order)
+        }));
 
     updateViewModeUI('podcasts');
     updateViewModeUI('sections');

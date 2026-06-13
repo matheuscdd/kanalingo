@@ -34,9 +34,9 @@ model = WhisperModel(
 # -----------------------------
 segments, info = model.transcribe(
     audio_path,
-    beam_size=15,
+    beam_size=10,
     temperature=[0.0, 0.2, 0.4],
-    best_of=15,
+    best_of=10,
     patience=2,
     length_penalty=1.0,
     repetition_penalty=1.02,
@@ -119,12 +119,12 @@ result_aligned = whisperx.align(
     device
 )
 
-# -----------------------------
-# 5️⃣ Gera JSON final usando alinhamento
-# -----------------------------
+# # -----------------------------
+# # 5️⃣ Gera JSON final usando alinhamento
+# # -----------------------------
 final_result_json = []
 
-for segment in result_aligned["segments"]:
+for segment in segments:
     item = {
         "start": segment["start"],
         "end": segment["end"],
@@ -149,7 +149,7 @@ for segment in result_aligned["segments"]:
 # -----------------------------
 # 6️⃣ Salva arquivos
 # -----------------------------
-with open(f"{filename}.json", "w", encoding="utf-8") as f:
+with open(f"{filename}.transcription.json", "w", encoding="utf-8") as f:
     json.dump(final_result_json, f, ensure_ascii=False, indent=2)
 
 with open(f"{filename}.txt", "w", encoding="utf-8") as f:

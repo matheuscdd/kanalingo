@@ -43,11 +43,8 @@ segments, info = model.transcribe(
     vad_filter=True,
     condition_on_previous_text=False,
     word_timestamps=True,
-    language="pt",
-    initial_prompt="""Transcrição em português brasileiro.
-Conteúdo sobre teologia cristã, Bíblia, Antigo Testamento,
-Novo Testamento, Jesus Cristo, Ellen White,
-igreja adventista e estudos bíblicos."""
+    language="en",
+    initial_prompt="This is a theological podcast discussion about the biblical history."
 )
 
 total_duration = info.duration

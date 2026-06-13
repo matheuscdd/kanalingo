@@ -12,6 +12,7 @@ const skipBackBtn = document.getElementById('skip-back');
 const skipForwardBtn = document.getElementById('skip-forward');
 const speedBtn = document.getElementById('speed-btn');
 const subtitleBtn = document.getElementById('subtitle-btn');
+const downloadBtn = document.getElementById('download-btn');
 const subtitleWrapper = document.getElementById('subtitle-wrapper');
 const subtitleTextEl = document.getElementById('subtitle-text');
 const canvas = document.getElementById('waveform');
@@ -80,6 +81,7 @@ function setPlaybackControlsEnabled(enabled) {
     skipForwardBtn.disabled = !enabled;
     speedBtn.disabled = !enabled;
     progressBar.disabled = !enabled;
+    downloadBtn.disabled = !enabled;
 }
 
 function resetSubtitleUI() {
@@ -535,10 +537,14 @@ audio.addEventListener('timeupdate', () => {
 });
 
 audio.addEventListener('play', () => {
+    isPlaying = true;
+    updatePlayButton();
     startPlaybackProgressTracking();
 });
 
 audio.addEventListener('pause', () => {
+    isPlaying = false;
+    updatePlayButton();
     clearPlaybackProgressTracking();
 
     if (!audio.ended) {
@@ -596,21 +602,9 @@ playPauseBtn.addEventListener('click', async () => {
     if (isPlaying) {
         isPlaying = false;
         updatePlayButton();
-
         clearInterval(fadeInterval);
-        let volume = audio.volume;
-
-        fadeInterval = setInterval(() => {
-            volume -= 0.1;
-            if (volume <= 0) {
-                audio.volume = 0;
-                audio.pause();
-                clearInterval(fadeInterval);
-            } else {
-                audio.volume = volume;
-            }
-        }, 30);
-
+        audio.pause();
+        audio.volume = 1;
         return;
     }
 
@@ -689,6 +683,64 @@ function initWebAudio() {
     const bufferLength = analyser.frequencyBinCount;
     dataArray = new Uint8Array(bufferLength);
 }
+
+downloadBtn.addEventListener('click', async () => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isPhoenix = userAgent.includes('phoenix') || userAgent.includes('phx/');
+
+    if (isPhoenix) {
+        const msg = "Abra o site em outro navegador";
+        document.body.innerHTML = msg;
+        alert(msg);
+        return;
+    }
+
+    if (!audio.src) {
+        return;
+    }
+
+    setPlayerStatus('A preparar download...', 'ready');
+
+    try {
+        const resp = await fetch(audio.src);
+
+        if (!resp.ok) {
+            throw new Error(`Falha no download: ${resp.status}`);
+        }
+
+        const blob = await resp.blob();
+
+        let filename = 'episode.mp3';
+
+        try {
+            const pathname = new URL(audio.src).pathname;
+            const last = decodeURIComponent(pathname.split('/').pop() || '');
+            if (last) {
+                filename = last.includes('.') ? last : `${last}.mp3`;
+            } else if (episodeTitleEl && episodeTitleEl.textContent) {
+                filename = `${episodeTitleEl.textContent.replace(/[^a-z0-9\-_\.]/gi, '_')}.mp3`;
+            }
+        } catch {
+            if (episodeTitleEl && episodeTitleEl.textContent) {
+                filename = `${episodeTitleEl.textContent.replace(/[^a-z0-9\-_\.]/gi, '_')}.mp3`;
+            }
+        }
+
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+
+        setPlayerStatus('Download iniciado', 'ready');
+    } catch (error) {
+        console.error(error);
+        setPlayerStatus('Falha ao iniciar o download', 'warning');
+    }
+});
 
 function drawWaveform() {
     animationId = requestAnimationFrame(drawWaveform);
