@@ -5,6 +5,8 @@ const allSections = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/
 
 // const categoriesList = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/en/deep-dive-bible/index.json';
 const categoriesList = 'test.json'
+const BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main';
+const VERSION_URL = `${BASE_URL}/version.json`;
 
 async function getData(url) {
     const response = await fetch(url);
@@ -281,11 +283,13 @@ async function renderEpisodes(data) {
         let thumbHtml = '';
         if (episode.imageUrl) {
             const imgPath = await getCachedIcon(episode.imageUrl);
-            thumbHtml = `<img src="${imgPath}" class="episode-thumb" alt="Capa" onerror="this.style.display='none';">`;
+            thumbHtml = `
+                <img src="${imgPath}" class="episode-thumb" alt="Capa" onerror="this.style.display='none';" style="background-color: ${episode.color}">
+            `;
         }
         item.innerHTML = `
                     <div class="episode-play-btn"><i class="fas fa-circle-play"></i></div>
-                    ${thumbHtml}
+                        ${thumbHtml}
                     <div class="episode-info">
                         <div class="episode-title">${episode.name}</div>
                         <div class="episode-duration"><i class="far fa-clock"></i> ${formatDuration(episode.duration)}</div>
@@ -344,6 +348,12 @@ async function loadContent() {
             .filter(y => y.podcastId === x.podcastId && y.sectionId === x.id)
             .toSorted((a, b) => a.order - b.order)
     }));
+
+    ctx.sections.forEach(section => {
+        section.episodes.forEach(episode => {
+            episode.imageUrl = `https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/covers/${podcastsRef[section.podcastId]}/${section.order}/${episode.order}.png`;
+        });
+    });
     
     ctx.podcasts = ctx.podcasts
         .filter(x => x.completed)
@@ -353,6 +363,8 @@ async function loadContent() {
                 .filter(y => y.podcastId === x.id)
                 .toSorted((a, b) => a.order - b.order)
         }));
+
+
 
     updateViewModeUI('podcasts');
     updateViewModeUI('sections');
@@ -372,7 +384,13 @@ function formatDuration(seconds) {
   return `${m}:${s.toString().padStart(2, '0')}`
 }
 
-function init() {
+async function init() {
+    const version = (await getData(VERSION_URL)).version;
+    if (localStorage.getItem('version') !== version) {
+        localStorage.setItem('version', version);
+        await deleteIndexedDb('database').catch(e => console.error('Erro ao apagar DB', e));
+    }
+
     loadContent();
     globalThis.setLanguage = setLanguage;
     globalThis.setViewMode = setViewMode;

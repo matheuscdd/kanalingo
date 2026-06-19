@@ -19,7 +19,9 @@ const canvas = document.getElementById('waveform');
 const ctx = canvas.getContext('2d');
 
 // --- Constantes ---
-const PODCASTS_BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/';
+const BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main';
+const PODCASTS_BASE_URL = `${BASE_URL}/podcasts`;
+const VERSION_URL = `${BASE_URL}/version.json`;
 const EPISODES_URL = `${PODCASTS_BASE_URL}episodes.json`;
 const speeds = [1, 1.2, 1.5, 2];
 const PLAYBACK_PROGRESS_KEY_PREFIX = 'podcast-progress:';
@@ -810,7 +812,6 @@ globalThis.addEventListener('beforeunload', () => {
 
 async function bootstrapPlayer() {
     const episodeId = getEpisodeIdFromLocation();
-
     setPlaybackControlsEnabled(false);
     setSubtitleAvailability(false);
     updatePlayButton();
