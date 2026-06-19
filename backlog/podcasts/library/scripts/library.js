@@ -385,11 +385,11 @@ function formatDuration(seconds) {
 }
 
 async function init() {
-    const version = (await getData(VERSION_URL)).version;
-    if (localStorage.getItem('version') !== version) {
-        localStorage.setItem('version', version);
-        await deleteIndexedDb('database').catch(e => console.error('Erro ao apagar DB', e));
-    }
+    // const version = (await getData(VERSION_URL)).version;
+    // if (localStorage.getItem('version') !== version) {
+    //     localStorage.setItem('version', version);
+    //     await deleteIndexedDb('database').catch(e => console.error('Erro ao apagar DB', e));
+    // }
 
     loadContent();
     globalThis.setLanguage = setLanguage;

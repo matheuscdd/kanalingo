@@ -22,7 +22,7 @@ const ctx = canvas.getContext('2d');
 const BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main';
 const PODCASTS_BASE_URL = `${BASE_URL}/podcasts`;
 const VERSION_URL = `${BASE_URL}/version.json`;
-const EPISODES_URL = `${PODCASTS_BASE_URL}episodes.json`;
+const EPISODES_URL = `${PODCASTS_BASE_URL}/episodes.json`;
 const speeds = [1, 1.2, 1.5, 2];
 const PLAYBACK_PROGRESS_KEY_PREFIX = 'podcast-progress:';
 const PLAYBACK_PROGRESS_SAVE_INTERVAL_MS = 10_000;
@@ -190,7 +190,7 @@ function resolveAssetUrl(assetPath) {
         return assetPath;
     }
 
-    return `${PODCASTS_BASE_URL}${assetPath}`;
+    return `${PODCASTS_BASE_URL}/${assetPath}`;
 }
 
 async function fetchJson(url) {
