@@ -118,27 +118,13 @@ body {
     text-wrap: balance;
 }
 
-/* Canvas das Ondas */
-.canvas-container {
-    width: 100%;
-    height: 150px;
-    position: relative;
-    margin-bottom: 20px;
-}
-
-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
 /* Controles Secundários (1X, Like, Dislike) */
 .secondary-controls {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     width: 100%;
 }
 

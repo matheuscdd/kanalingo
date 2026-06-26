@@ -15,8 +15,6 @@ const subtitleBtn = document.getElementById('subtitle-btn');
 const downloadBtn = document.getElementById('download-btn');
 const subtitleWrapper = document.getElementById('subtitle-wrapper');
 const subtitleTextEl = document.getElementById('subtitle-text');
-const canvas = document.getElementById('waveform');
-const ctx = canvas.getContext('2d');
 
 // --- Constantes ---
 const BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main';
@@ -32,11 +30,6 @@ const audio = new Audio();
 audio.crossOrigin = 'anonymous';
 audio.preload = 'metadata';
 
-let audioContext = null;
-let analyser = null;
-let source = null;
-let dataArray = null;
-let animationId = null;
 let isPlaying = false;
 let fadeInterval = null;
 let parsedSubtitles = [];
@@ -44,7 +37,6 @@ let subtitlesVisible = false;
 let currentSubtitleText = '';
 let currentWordIndex = -1;
 let currentSpeedIndex = 0;
-let lastSubCheckTime = -1;
 let episodesPromise = null;
 let currentEpisodeId = '';
 let playbackProgressIntervalId = null;
@@ -55,14 +47,6 @@ const loadState = {
     transcriptState: 'pending',
     failed: false,
 };
-
-// Configurações das Ondas
-let phase1 = 0;
-let phase2 = 0;
-let phase3 = 0;
-let targetAmplitude = 0;
-let currentAmplitude = 0;
-let currentSpeed = 0;
 
 function setPlayerStatus(message, tone = 'default') {
     playerStatusEl.textContent = message;
@@ -90,7 +74,6 @@ function resetSubtitleUI() {
     subtitlesVisible = false;
     currentSubtitleText = '';
     currentWordIndex = -1;
-    lastSubCheckTime = -1;
     subtitleBtn.classList.remove('active');
     subtitleWrapper.classList.remove('show');
     subtitleTextEl.classList.remove('show-text');
@@ -516,14 +499,6 @@ function updateSubtitles(currentTime) {
     }
 }
 
-function resizeCanvas() {
-    canvas.width = canvas.parentElement.clientWidth;
-    canvas.height = canvas.parentElement.clientHeight;
-}
-
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
 audio.addEventListener('loadedmetadata', () => {
     loadState.audioReady = true;
     durationEl.textContent = formatTime(audio.duration);
@@ -583,22 +558,6 @@ progressBar.addEventListener('input', () => {
 playPauseBtn.addEventListener('click', async () => {
     if (!loadState.audioReady) {
         return;
-    }
-
-    try {
-        if (!audioContext) {
-            initWebAudio();
-        }
-
-        if (audioContext?.state === 'suspended') {
-            await audioContext.resume();
-        }
-    } catch (error) {
-        console.error(error);
-        audioContext = null;
-        analyser = null;
-        source = null;
-        dataArray = null;
     }
 
     if (isPlaying) {
@@ -673,19 +632,6 @@ function formatTime(seconds) {
     return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
 }
 
-function initWebAudio() {
-    audioContext = new (globalThis.AudioContext || globalThis.webkitAudioContext)();
-    analyser = audioContext.createAnalyser();
-    analyser.fftSize = 128;
-
-    source = audioContext.createMediaElementSource(audio);
-    source.connect(analyser);
-    analyser.connect(audioContext.destination);
-
-    const bufferLength = analyser.frequencyBinCount;
-    dataArray = new Uint8Array(bufferLength);
-}
-
 downloadBtn.addEventListener('click', async () => {
     const userAgent = navigator.userAgent.toLowerCase();
     const isPhoenix = userAgent.includes('phoenix') || userAgent.includes('phx/');
@@ -744,68 +690,6 @@ downloadBtn.addEventListener('click', async () => {
     }
 });
 
-function drawWaveform() {
-    animationId = requestAnimationFrame(drawWaveform);
-
-    if (audio.currentTime !== lastSubCheckTime) {
-        updateSubtitles(audio.currentTime);
-        lastSubCheckTime = audio.currentTime;
-    }
-
-    const width = canvas.width;
-    const height = canvas.height;
-    const centerY = height / 2;
-
-    ctx.clearRect(0, 0, width, height);
-
-    let targetSpeed = 0;
-
-    if (analyser && isPlaying) {
-        analyser.getByteFrequencyData(dataArray);
-
-        let sum = 0;
-        for (const value of dataArray) {
-            sum += value;
-        }
-
-        const average = sum / dataArray.length;
-        targetAmplitude = 2 + (average * 0.4);
-        targetSpeed = 1;
-    } else {
-        targetAmplitude = 0;
-    }
-
-    currentAmplitude += (targetAmplitude - currentAmplitude) * 0.1;
-    currentSpeed += (targetSpeed - currentSpeed) * 0.1;
-
-    phase1 += 0.05 * currentSpeed;
-    phase2 -= 0.03 * currentSpeed;
-    phase3 += 0.04 * currentSpeed;
-
-    drawSineWave(ctx, width, centerY, currentAmplitude * 1.2, phase1, '#68d391', 0.015);
-    drawSineWave(ctx, width, centerY, currentAmplitude * 0.9, phase2, '#7f9cf5', 0.02);
-    drawSineWave(ctx, width, centerY, currentAmplitude * 0.6, phase3, '#9f7aea', 0.01);
-}
-
-function drawSineWave(ctx, width, centerY, amplitude, phase, color, frequency) {
-    ctx.beginPath();
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 2.5;
-
-    for (let x = 0; x < width; x += 1) {
-        const edgeDamping = Math.sin((x / width) * Math.PI);
-        const y = centerY + Math.sin(x * frequency + phase) * amplitude * edgeDamping;
-
-        if (x === 0) {
-            ctx.moveTo(x, y);
-        } else {
-            ctx.lineTo(x, y);
-        }
-    }
-
-    ctx.stroke();
-}
-
 globalThis.addEventListener('beforeunload', () => {
     persistPlaybackProgress();
 });
@@ -857,5 +741,4 @@ async function bootstrapPlayer() {
     }
 }
 
-drawWaveform();
 await bootstrapPlayer();

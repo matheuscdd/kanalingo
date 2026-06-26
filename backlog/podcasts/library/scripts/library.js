@@ -1,5 +1,4 @@
 const allEpisodes = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/episodes.json';
-const cover = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/covers/deep-dive-bible/1.png';
 const allPodcasts = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/podcasts.json';
 const allSections = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/sections.json';
 
@@ -284,7 +283,7 @@ async function renderEpisodes(data) {
         if (episode.imageUrl) {
             const imgPath = await getCachedIcon(episode.imageUrl);
             thumbHtml = `
-                <img src="${imgPath}" class="episode-thumb" alt="Capa" onerror="this.style.display='none';" style="background-color: ${episode.color}">
+                <img src="${imgPath}" class="episode-thumb" alt="Capa" onerror="this.style.display='none';" style="background-color: ${episode.color ?? '#000'}">
             `;
         }
         item.innerHTML = `
@@ -384,12 +383,31 @@ function formatDuration(seconds) {
   return `${m}:${s.toString().padStart(2, '0')}`
 }
 
+function deleteIndexedDb(name) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.deleteDatabase(name);
+
+    request.onsuccess = () => {
+      console.log(`Banco "${name}" apagado com sucesso.`);
+      resolve();
+    };
+
+    request.onerror = () => {
+      reject(request.error);
+    };
+
+    request.onblocked = () => {
+      reject(new Error("Não foi possível apagar o banco porque ele está em uso."));
+    };
+  });
+}
+
 async function init() {
-    // const version = (await getData(VERSION_URL)).version;
-    // if (localStorage.getItem('version') !== version) {
-    //     localStorage.setItem('version', version);
-    //     await deleteIndexedDb('database').catch(e => console.error('Erro ao apagar DB', e));
-    // }
+    const version = (await getData(VERSION_URL)).version;
+    if (localStorage.getItem('version') !== version) {
+        localStorage.setItem('version', version);
+        await deleteIndexedDb('database').catch(e => console.error('Erro ao apagar DB', e));
+    }
 
     loadContent();
     globalThis.setLanguage = setLanguage;
