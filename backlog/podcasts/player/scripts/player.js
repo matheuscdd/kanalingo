@@ -650,6 +650,7 @@ downloadBtn.addEventListener('click', async () => {
     setPlayerStatus('A preparar download...', 'ready');
 
     try {
+        downloadBtn.disabled = true;
         const resp = await fetch(audio.src);
 
         if (!resp.ok) {
@@ -682,11 +683,12 @@ downloadBtn.addEventListener('click', async () => {
         a.click();
         a.remove();
         URL.revokeObjectURL(url);
-
         setPlayerStatus('Download iniciado', 'ready');
     } catch (error) {
         console.error(error);
         setPlayerStatus('Falha ao iniciar o download', 'warning');
+    } finally {
+        downloadBtn.disabled = false;
     }
 });
 

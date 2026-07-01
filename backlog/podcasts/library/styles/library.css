@@ -166,7 +166,7 @@ header h1 {
 }
 
 .header-thumb-container {
-    width: 60px;
+    min-width: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,7 +181,7 @@ header h1 {
     border: 2px solid var(--border-color);
     border-bottom: 4px solid var(--border-color);
     border-radius: 50%;
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     display: flex;
     align-items: center;

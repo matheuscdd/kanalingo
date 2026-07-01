@@ -1,10 +1,14 @@
-const allEpisodes = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/episodes.json';
-const allPodcasts = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/podcasts.json';
-const allSections = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/sections.json';
-
-// const categoriesList = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/en/deep-dive-bible/index.json';
-const categoriesList = 'test.json'
 const BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main';
+let allPodcasts = 'http://127.0.0.1:3000/podcasts.json';
+let allSections = 'http://127.0.0.1:3000/sections.json';
+let allEpisodes = 'http://127.0.0.1:3000/episodes.json';
+
+if (globalThis.location.hostname.includes('vercel')) {
+    allPodcasts = `${BASE_URL}/podcasts/podcasts.json`;
+    allSections = `${BASE_URL}/podcasts/sections.json`;
+    allEpisodes = `${BASE_URL}/podcasts/episodes.json`;
+}
+
 const VERSION_URL = `${BASE_URL}/version.json`;
 
 async function getData(url) {
@@ -60,6 +64,8 @@ const ctx = {
 }
 
 let state = {
+    currentIndex: 0,
+    currentId: null,
     currentPodcastId: null,
     currentSectionId: null,
     lang: localStorage.getItem('kanalingo_lang') || 'pt',
@@ -71,6 +77,7 @@ let state = {
 };
 
 // --- 3. Elementos do DOM ---
+const viewsOrder = ["podcasts", "sections", "episodes"];
 const views = {
     podcasts: document.getElementById('view-podcasts'),
     sections: document.getElementById('view-sections'),
@@ -156,7 +163,21 @@ function updateViewModeUI(viewName) {
     });
 }
 
-function navigate(viewName, id = null) {
+globalThis.addEventListener('popstate', (e) => {
+  const nextIndex = state.currentIndex === 0 ?  0 : state.currentIndex - 1;
+  navigate(viewsOrder[nextIndex], null, { push: false });
+});
+
+function navigate(viewName, id = null, { push = true } = {}) {
+    if (push) {
+    history.pushState({ view: viewName, id }, '', "#" + crypto.randomUUID());
+  } else {
+    history.replaceState({ view: viewName, id }, '', location.href);
+  }
+
+    state.currentIndex = viewsOrder.indexOf(viewName);
+    state.currentId = id;
+
     globalThis.scrollTo({ top: 0, behavior: "smooth" });
     Object.values(views).forEach(view => view.classList.remove('active'));
     Object.values(inputs).forEach(input => input.value = '');
@@ -280,7 +301,7 @@ async function renderEpisodes(data) {
         item.onclick = () => globalThis.location.href = `/backlog/podcasts/player/player.html?id=${episode.id}`;
         
         let thumbHtml = '';
-        if (episode.imageUrl) {
+        if (episode.color) {
             const imgPath = await getCachedIcon(episode.imageUrl);
             thumbHtml = `
                 <img src="${imgPath}" class="episode-thumb" alt="Capa" onerror="this.style.display='none';" style="background-color: ${episode.color ?? '#000'}">
@@ -342,7 +363,7 @@ async function loadContent() {
     ctx.podcasts.forEach(x => (podcastsRef[x.id] = x.ref));
 
     ctx.sections = ctx.sections.map(x => ({...x, 
-        imageUrl: `https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/covers/${podcastsRef[x.podcastId]}/${x.order}.png`,
+        imageUrl: `${BASE_URL}/podcasts/covers/${podcastsRef[x.podcastId]}/${x.order}.png`,
         episodes: ctx.episodes
             .filter(y => y.podcastId === x.podcastId && y.sectionId === x.id)
             .toSorted((a, b) => a.order - b.order)
@@ -350,14 +371,14 @@ async function loadContent() {
 
     ctx.sections.forEach(section => {
         section.episodes.forEach(episode => {
-            episode.imageUrl = `https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/covers/${podcastsRef[section.podcastId]}/${section.order}/${episode.order}.png`;
+            episode.imageUrl = `${BASE_URL}/podcasts/covers/${podcastsRef[section.podcastId]}/${section.order}/${episode.order}.png`;
         });
     });
     
     ctx.podcasts = ctx.podcasts
         .filter(x => x.completed)
         .map(x => ({...x, 
-            imageUrl: `https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main/podcasts/covers/${x.ref}/index.png`,
+            imageUrl: `${BASE_URL}/podcasts/covers/${x.ref}/index.png`,
             sections: ctx.sections
                 .filter(y => y.podcastId === x.id)
                 .toSorted((a, b) => a.order - b.order)
