@@ -43,15 +43,17 @@
         <div class="progress-wrapper">
             <span class="time" id="current-time">0:00</span>
             <div class="progress-container">
-                <input type="range" id="progress-bar" value="0" min="0" max="100" step="0.1">
+                <input type="range" id="progress-bar" value="0" min="0" max="100" step="0.1" aria-label="Progresso do episódio">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
             <span class="time" id="duration">0:00</span>
         </div>
-
         <!-- Controles Principais -->
         <div class="main-controls">
-            <button class="skip-btn" id="skip-back">
+            <button class="action-btn" id="episode-back" type="button" disabled>
+                <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <button class="action-btn" id="skip-back">
                 <i class="fa-solid fa-rotate-left"></i>
                 <span class="skip-text">10</span>
             </button>
@@ -60,9 +62,12 @@
                 <i class="fa-solid fa-play"></i>
             </button>
             
-            <button class="skip-btn" id="skip-forward">
+            <button class="action-btn" id="skip-forward">
                 <i class="fa-solid fa-rotate-right"></i>
                 <span class="skip-text">10</span>
+            </button>
+            <button class="action-btn" id="episode-next" type="button" disabled>
+                <i class="fa-solid fa-forward-step"></i>
             </button>
         </div>
 

@@ -8,6 +8,8 @@ const progressBar = document.getElementById('progress-bar');
 const progressFill = document.getElementById('progress-fill');
 const currentTimeEl = document.getElementById('current-time');
 const durationEl = document.getElementById('duration');
+const episodeBackBtn = document.getElementById('episode-back');
+const episodeNextBtn = document.getElementById('episode-next');
 const skipBackBtn = document.getElementById('skip-back');
 const skipForwardBtn = document.getElementById('skip-forward');
 const speedBtn = document.getElementById('speed-btn');
@@ -22,6 +24,7 @@ const BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/main';
 const PODCASTS_BASE_URL = `${BASE_URL}/podcasts`;
 const VERSION_URL = `${BASE_URL}/version.json`;
 const EPISODES_URL = `${PODCASTS_BASE_URL}/episodes.json`;
+const SECTIONS_URL = `${PODCASTS_BASE_URL}/sections.json`;
 const speeds = [1, 1.2, 1.5, 2];
 const PLAYBACK_PROGRESS_KEY_PREFIX = 'podcast-progress:';
 const PLAYBACK_PROGRESS_SAVE_INTERVAL_MS = 10_000;
@@ -42,6 +45,8 @@ let currentSubtitleText = '';
 let currentWordIndex = -1;
 let currentSpeedIndex = 0;
 let episodesPromise = null;
+let sectionsPromise = null;
+let orderedEpisodesPromise = null;
 let currentEpisodeId = '';
 let playbackProgressIntervalId = null;
 let ffmpegInstance = null;
@@ -50,6 +55,8 @@ let mp3ConversionInProgress = false;
 let playerStatusResetTimeoutId = null;
 let originalAudioSourceUrl = '';
 let playbackFallbackSourceUrl = '';
+let previousEpisodeId = '';
+let nextEpisodeId = '';
 
 const loadState = {
     episodeLoaded: false,
@@ -79,6 +86,14 @@ function setPlaybackControlsEnabled(enabled) {
     progressBar.disabled = !enabled;
     downloadBtn.disabled = !enabled;
     downloadMp3.disabled = !enabled;
+}
+
+function setEpisodeNavigationTargets(previousId = '', nextId = '') {
+    previousEpisodeId = previousId;
+    nextEpisodeId = nextId;
+
+    episodeBackBtn.disabled = !previousEpisodeId;
+    episodeNextBtn.disabled = !nextEpisodeId;
 }
 
 function resetSubtitleUI() {
@@ -174,6 +189,7 @@ function resetAudioSourceTracking() {
 function handleFatalPlayerError(message) {
     loadState.failed = true;
     loadState.audioReady = false;
+    setEpisodeNavigationTargets();
     setPlaybackControlsEnabled(false);
     setSubtitleAvailability(false);
     resetPlayerTimeline();
@@ -214,7 +230,16 @@ function schedulePlayerStatusReset(delay = 2_500) {
 }
 
 function sanitizeFileNameSegment(value) {
-    const normalizedValue = value.replace(/[^a-z0-9._-]+/gi, '_').replace(/^_+|_+$/g, '');
+    let normalizedValue = value.replace(/[^a-z0-9._-]+/gi, '_');
+
+    while (normalizedValue.startsWith('_')) {
+        normalizedValue = normalizedValue.slice(1);
+    }
+
+    while (normalizedValue.endsWith('_')) {
+        normalizedValue = normalizedValue.slice(0, -1);
+    }
+
     return normalizedValue || 'episode';
 }
 
@@ -440,6 +465,104 @@ async function getEpisodes() {
     return Array.isArray(episodes) ? episodes : [];
 }
 
+async function getSections() {
+    if (!sectionsPromise) {
+        sectionsPromise = fetchJson(SECTIONS_URL);
+    }
+
+    const sections = await sectionsPromise;
+    return Array.isArray(sections) ? sections : [];
+}
+
+function getNumericOrder(value) {
+    const order = Number(value);
+    return Number.isFinite(order) ? order : Number.POSITIVE_INFINITY;
+}
+
+function buildOrderedEpisodes(episodes, sections) {
+    if (!Array.isArray(episodes) || !Array.isArray(sections) || sections.length === 0) {
+        return [];
+    }
+
+    const episodesBySectionId = new Map();
+
+    episodes.forEach((episode, originalIndex) => {
+        if (!episode?.sectionId) {
+            return;
+        }
+
+        const sectionEpisodes = episodesBySectionId.get(episode.sectionId) || [];
+        sectionEpisodes.push({
+            episode,
+            originalIndex,
+        });
+        episodesBySectionId.set(episode.sectionId, sectionEpisodes);
+    });
+
+    const orderedSections = [...sections].sort((left, right) => {
+        const byOrder = getNumericOrder(left?.order) - getNumericOrder(right?.order);
+
+        if (byOrder !== 0) {
+            return byOrder;
+        }
+
+        return String(left?.id || '').localeCompare(String(right?.id || ''));
+    });
+
+    return orderedSections.flatMap((section) => {
+        const sectionEpisodes = episodesBySectionId.get(section.id) || [];
+
+        return sectionEpisodes
+            .sort((left, right) => {
+                const byOrder = getNumericOrder(left.episode?.order) - getNumericOrder(right.episode?.order);
+
+                if (byOrder !== 0) {
+                    return byOrder;
+                }
+
+                return left.originalIndex - right.originalIndex;
+            })
+            .map(({ episode }) => episode);
+    });
+}
+
+async function getOrderedEpisodes() {
+    if (!orderedEpisodesPromise) {
+        orderedEpisodesPromise = Promise.all([
+            getEpisodes(),
+            getSections().catch((error) => {
+                console.error(error);
+                return [];
+            }),
+        ]).then(([episodes, sections]) => buildOrderedEpisodes(episodes, sections));
+    }
+
+    return orderedEpisodesPromise;
+}
+
+function updateEpisodeNavigationState(orderedEpisodes, currentEpisode) {
+    const podcastEpisodes = orderedEpisodes.filter(
+        (episode) => episode?.podcastId && episode.podcastId === currentEpisode?.podcastId,
+    );
+    const currentIndex = podcastEpisodes.findIndex((episode) => episode.id === currentEpisode?.id);
+
+    if (currentIndex === -1) {
+        setEpisodeNavigationTargets();
+        return;
+    }
+
+    const previousEpisode = podcastEpisodes[currentIndex - 1];
+    const followingEpisode = podcastEpisodes[currentIndex + 1];
+
+    setEpisodeNavigationTargets(previousEpisode?.id || '', followingEpisode?.id || '');
+}
+
+function syncEpisodeIdToLocation(episodeId) {
+    const url = new URL(globalThis.location.href);
+    url.searchParams.set('id', episodeId);
+    globalThis.history.replaceState({ episodeId }, '', url);
+}
+
 function normalizeSubtitles(data) {
     if (!Array.isArray(data)) {
         return [];
@@ -646,6 +769,56 @@ function restorePlaybackProgress() {
     audio.currentTime = resumeTime;
     updateTimelineUi(audio.currentTime);
     updateSubtitles(audio.currentTime);
+}
+
+async function loadEpisodeById(episodeId, options = {}) {
+    const { updateLocation = false } = options;
+    const [episodes, orderedEpisodes] = await Promise.all([
+        getEpisodes(),
+        getOrderedEpisodes(),
+    ]);
+    const episode = episodes.find((entry) => entry.id === episodeId);
+
+    if (!episode) {
+        episodeTitleEl.textContent = 'Episódio indisponível';
+        setEpisodeNavigationTargets();
+        handleFatalPlayerError('Não foi possível encontrar este episódio.');
+        return;
+    }
+
+    loadState.failed = false;
+    loadState.episodeLoaded = true;
+    loadState.audioReady = false;
+    loadState.transcriptState = 'pending';
+    resetAudioSourceTracking();
+    setPlaybackControlsEnabled(false);
+
+    if (updateLocation) {
+        syncEpisodeIdToLocation(episodeId);
+    }
+
+    updateEpisodeMetadata(episode);
+    prepareEpisodeUiForLoading();
+    currentEpisodeId = episodeId;
+    updateEpisodeNavigationState(orderedEpisodes, episode);
+    updateStatusFromState();
+
+    const audioUrl = resolveAssetUrl(episode.audio);
+    if (!audioUrl) {
+        handleFatalPlayerError('Este episódio não tem áudio disponível.');
+        return;
+    }
+
+    originalAudioSourceUrl = audioUrl;
+    playbackFallbackSourceUrl = getPreferredPlaybackAudioUrl(audioUrl);
+
+    if (playbackFallbackSourceUrl === originalAudioSourceUrl) {
+        playbackFallbackSourceUrl = '';
+    }
+
+    audio.src = audioUrl;
+    audio.load();
+    void loadTranscript(episode);
 }
 
 // Gera o HTML mantendo o texto original e isolando as palavras em spans
@@ -877,6 +1050,32 @@ speedBtn.addEventListener('click', () => {
     speedBtn.textContent = `${speed}X`;
 });
 
+episodeBackBtn.addEventListener('click', async () => {
+    if (!previousEpisodeId) {
+        return;
+    }
+
+    try {
+        await loadEpisodeById(previousEpisodeId, { updateLocation: true });
+    } catch (error) {
+        console.error(error);
+        handleFatalPlayerError('Falha ao abrir o episódio anterior.');
+    }
+});
+
+episodeNextBtn.addEventListener('click', async () => {
+    if (!nextEpisodeId) {
+        return;
+    }
+
+    try {
+        await loadEpisodeById(nextEpisodeId, { updateLocation: true });
+    } catch (error) {
+        console.error(error);
+        handleFatalPlayerError('Falha ao abrir o próximo episódio.');
+    }
+});
+
 function formatTime(seconds) {
     if (Number.isNaN(seconds)) {
         return '0:00';
@@ -922,12 +1121,12 @@ downloadBtn.addEventListener('click', async () => {
             const last = decodeURIComponent(pathname.split('/').pop() || '');
             if (last) {
                 filename = last.includes('.') ? last : `${last}.mp3`;
-            } else if (episodeTitleEl && episodeTitleEl.textContent) {
-                filename = `${episodeTitleEl.textContent.replace(/[^a-z0-9\-_\.]/gi, '_')}.mp3`;
+            } else if (episodeTitleEl?.textContent) {
+                filename = `${episodeTitleEl.textContent.replace(/[^a-z0-9_.-]/gi, '_')}.mp3`;
             }
         } catch {
-            if (episodeTitleEl && episodeTitleEl.textContent) {
-                filename = `${episodeTitleEl.textContent.replace(/[^a-z0-9\-_\.]/gi, '_')}.mp3`;
+            if (episodeTitleEl?.textContent) {
+                filename = `${episodeTitleEl.textContent.replace(/[^a-z0-9_.-]/gi, '_')}.mp3`;
             }
         }
 
@@ -1023,6 +1222,7 @@ globalThis.addEventListener('beforeunload', () => {
 async function bootstrapPlayer() {
     const episodeId = getEpisodeIdFromLocation();
     setPlaybackControlsEnabled(false);
+    setEpisodeNavigationTargets();
     setSubtitleAvailability(false);
     updatePlayButton();
     updateStatusFromState();
@@ -1033,42 +1233,7 @@ async function bootstrapPlayer() {
     }
 
     try {
-        const episodes = await getEpisodes();
-        const episode = episodes.find((entry) => entry.id === episodeId);
-
-        if (!episode) {
-            episodeTitleEl.textContent = 'Episódio indisponível';
-            handleFatalPlayerError('Não foi possível encontrar este episódio.');
-            return;
-        }
-
-        loadState.failed = false;
-        loadState.episodeLoaded = true;
-        loadState.audioReady = false;
-        loadState.transcriptState = 'pending';
-        resetAudioSourceTracking();
-
-        updateEpisodeMetadata(episode);
-        prepareEpisodeUiForLoading();
-        currentEpisodeId = episodeId;
-        updateStatusFromState();
-
-        const audioUrl = resolveAssetUrl(episode.audio);
-        if (!audioUrl) {
-            handleFatalPlayerError('Este episódio não tem áudio disponível.');
-            return;
-        }
-
-        originalAudioSourceUrl = audioUrl;
-        playbackFallbackSourceUrl = getPreferredPlaybackAudioUrl(audioUrl);
-
-        if (playbackFallbackSourceUrl === originalAudioSourceUrl) {
-            playbackFallbackSourceUrl = '';
-        }
-
-        audio.src = audioUrl;
-        audio.load();
-        void loadTranscript(episode);
+        await loadEpisodeById(episodeId);
     } catch (error) {
         console.error(error);
         handleFatalPlayerError('Falha ao carregar o episódio.');

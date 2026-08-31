@@ -226,6 +226,76 @@ function navigate(viewName, id = null, { push = true } = {}) {
 }
 
 // --- 5. Funções de Renderização ---
+
+// --- Progresso ---
+const progressTimeCache = new Map();
+
+function getEpisodeProgressTime(episodeId) {
+    if (!episodeId) return 0;
+    if (progressTimeCache.has(episodeId)) {
+        return progressTimeCache.get(episodeId);
+    }
+
+    try {
+        const raw = localStorage.getItem(`podcast-progress:${episodeId}`);
+        if (!raw) {
+            progressTimeCache.set(episodeId, 0);
+            return 0;
+        }
+
+        const parsed = JSON.parse(raw);
+        let entry = parsed;
+        if (Array.isArray(parsed)) {
+            entry = parsed.find(item => item?.id === episodeId) ?? parsed[0];
+        }
+
+        const parsedTime = Number(entry?.time ?? 0);
+        const time = Number.isFinite(parsedTime) && parsedTime > 0 ? parsedTime : 0;
+        progressTimeCache.set(episodeId, time);
+        return time;
+    } catch {
+        progressTimeCache.set(episodeId, 0);
+        return 0;
+    }
+}
+
+function getEpisodeProgressPercent(episode) {
+    const time = getEpisodeProgressTime(episode.id);
+    if (!episode.duration || episode.duration <= 0) return { percent: 0, completed: false };
+    const percent = Math.min((time / episode.duration) * 100, 100);
+    return { percent, completed: percent >= 95 };
+}
+
+function getSectionProgressPercent(section) {
+    const totalDuration = section.episodes.reduce((sum, ep) => sum + (ep.duration || 0), 0);
+    if (totalDuration <= 0) return { percent: 0, completed: false };
+    const watched = section.episodes.reduce((sum, ep) => {
+        const time = getEpisodeProgressTime(ep.id);
+        return sum + Math.min(time, ep.duration || 0);
+    }, 0);
+    const percent = Math.min((watched / totalDuration) * 100, 100);
+    return { percent, completed: percent >= 95 };
+}
+
+function getPodcastProgressPercent(podcast) {
+    const allEpisodes = podcast.sections.flatMap(s => s.episodes);
+    const totalDuration = allEpisodes.reduce((sum, ep) => sum + (ep.duration || 0), 0);
+    if (totalDuration <= 0) return { percent: 0, completed: false };
+    const watched = allEpisodes.reduce((sum, ep) => {
+        const time = getEpisodeProgressTime(ep.id);
+        return sum + Math.min(time, ep.duration || 0);
+    }, 0);
+    const percent = Math.min((watched / totalDuration) * 100, 100);
+    return { percent, completed: percent >= 95 };
+}
+
+function buildProgressBar(percent, completed) {
+    if (percent <= 0) return '';
+    const modifier = completed ? ' progress-bar--completed' : '';
+    return `<div class="progress-bar-container"><div class="progress-bar${modifier}" style="width:${percent.toFixed(1)}%"></div></div>`;
+}
+// --- Fim Progresso ---
+
 function renderEmptyState(container, message) {
     container.innerHTML = `
                 <div class="empty-state">
@@ -236,6 +306,7 @@ function renderEmptyState(container, message) {
 }
 
 async function renderPodcasts(data) {
+    progressTimeCache.clear();
     containers.podcasts.innerHTML = '';
     if (data.length === 0) return renderEmptyState(containers.podcasts, translations[state.lang].emptyPodcasts);
 
@@ -258,12 +329,14 @@ async function renderPodcasts(data) {
                     <div class="card-content">
                         <div class="card-title">${podcast.name}</div>
                     </div>
+                    ${buildProgressBar(...Object.values(getPodcastProgressPercent(podcast)))}
                 `;
         containers.podcasts.appendChild(card);
     };
 }
 
 async function renderSections(data) {
+    progressTimeCache.clear();
     containers.sections.innerHTML = '';
     if (data.length === 0) return renderEmptyState(containers.sections, translations[state.lang].emptySections);
 
@@ -286,12 +359,14 @@ async function renderSections(data) {
                         <div class="card-title">${section.name}</div>
                         <div class="card-subtitle">${section.episodes.length} ${translations[state.lang].episodesCount}</div>
                     </div>
+                    ${buildProgressBar(...Object.values(getSectionProgressPercent(section)))}
                 `;
         containers.sections.appendChild(card);
     };
 }
 
 async function renderEpisodes(data) {
+    progressTimeCache.clear();
     containers.episodes.innerHTML = '';
     if (data.length === 0) return renderEmptyState(containers.episodes, translations[state.lang].emptyEpisodes);
 
@@ -314,6 +389,7 @@ async function renderEpisodes(data) {
                         <div class="episode-title">${episode.name}</div>
                         <div class="episode-duration"><i class="far fa-clock"></i> ${formatDuration(episode.duration)}</div>
                     </div>
+                    ${buildProgressBar(...Object.values(getEpisodeProgressPercent(episode)))}
                 `;
         containers.episodes.appendChild(item);
     };

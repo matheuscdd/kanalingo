@@ -271,6 +271,13 @@ input[type="range"]::-webkit-slider-thumb {
     width: 0%;
 }
 
+.action-btn:disabled {
+    color: #7e7e7e;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
 /* Controles Principais */
 .main-controls {
     display: flex;
@@ -280,7 +287,7 @@ input[type="range"]::-webkit-slider-thumb {
     margin-bottom: 10px;
 }
 
-.skip-btn {
+.action-btn {
     background: none;
     border: none;
     color: var(--primary-color);
@@ -293,7 +300,7 @@ input[type="range"]::-webkit-slider-thumb {
     transition: transform 0.2s;
 }
 
-.skip-btn:hover {
+.action-btn:hover {
     transform: scale(1.1);
 }
 
@@ -395,5 +402,13 @@ input[type="range"]::-webkit-slider-thumb {
     .secondary-controls,
     .main-controls {
         gap: 28px;
+    }
+
+    .episode-navigation {
+        flex-direction: column;
+    }
+
+    .episode-nav-btn {
+        width: 100%;
     }
 }
