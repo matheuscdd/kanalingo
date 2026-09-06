@@ -18,6 +18,7 @@ const downloadBtn = document.getElementById('download-btn');
 const downloadMp3 = document.getElementById('download-mp3');
 const subtitleWrapper = document.getElementById('subtitle-wrapper');
 const subtitleTextEl = document.getElementById('subtitle-text');
+const backLibraryBtn = document.getElementById('back-library-btn');
 
 // --- Constantes ---
 const BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/main';
@@ -57,6 +58,7 @@ let originalAudioSourceUrl = '';
 let playbackFallbackSourceUrl = '';
 let previousEpisodeId = '';
 let nextEpisodeId = '';
+let currentPodcastId = '';
 
 const loadState = {
     episodeLoaded: false,
@@ -94,6 +96,23 @@ function setEpisodeNavigationTargets(previousId = '', nextId = '') {
 
     episodeBackBtn.disabled = !previousEpisodeId;
     episodeNextBtn.disabled = !nextEpisodeId;
+}
+
+function updateBackToLibraryTarget(podcastId = '') {
+    currentPodcastId = String(podcastId).trim();
+
+    if (backLibraryBtn) {
+        backLibraryBtn.disabled = !currentPodcastId;
+    }
+}
+
+function goBackToLibrary() {
+    const podcastId = currentPodcastId;
+    const targetPath = podcastId
+        ? `/backlog/podcasts/library/library.html?podcastId=${encodeURIComponent(podcastId)}`
+        : '/backlog/podcasts/library/library.html';
+
+    globalThis.location.href = targetPath;
 }
 
 function resetSubtitleUI() {
@@ -175,6 +194,7 @@ function updateEpisodeMetadata(episode) {
     podcastTitleEl.textContent = episode.podcastName || 'Podcast';
     sectionTitleEl.textContent = episode.sectionName || 'Secção';
     episodeTitleEl.textContent = episode.name || 'Episódio';
+    updateBackToLibraryTarget(episode.podcastId || '');
 
     if (episode.name) {
         document.title = `${episode.name} | Player`;
@@ -886,6 +906,14 @@ subtitleBtn.addEventListener('click', () => {
     currentWordIndex = -1;
 });
 
+if (backLibraryBtn) {
+    backLibraryBtn.addEventListener('click', goBackToLibrary);
+}
+
+globalThis.addEventListener('hashchange', () => {
+    updateBackToLibraryTarget();
+});
+
 function updateSubtitles(currentTime) {
     if (!subtitlesVisible || parsedSubtitles.length === 0) {
         return;
@@ -1224,6 +1252,7 @@ async function bootstrapPlayer() {
     setPlaybackControlsEnabled(false);
     setEpisodeNavigationTargets();
     setSubtitleAvailability(false);
+    updateBackToLibraryTarget();
     updatePlayButton();
     updateStatusFromState();
 

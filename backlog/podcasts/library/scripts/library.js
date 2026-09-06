@@ -164,17 +164,67 @@ function updateViewModeUI(viewName) {
 }
 
 globalThis.addEventListener('popstate', (e) => {
-  const nextIndex = state.currentIndex === 0 ?  0 : state.currentIndex - 1;
-  navigate(viewsOrder[nextIndex], null, { push: false });
+    const route = getRouteFromUrl();
+    if (route.view === 'episodes') {
+        state.currentPodcastId = route.podcastId;
+        navigate('episodes', route.sectionId, { push: false });
+        return;
+    }
+
+    if (route.view === 'sections') {
+        state.currentPodcastId = route.podcastId;
+        navigate('sections', route.podcastId, { push: false });
+        return;
+    }
+
+    navigate('podcasts', null, { push: false });
 });
 
-function navigate(viewName, id = null, { push = true } = {}) {
-    if (push) {
-    history.pushState({ view: viewName, id }, '', "#" + crypto.randomUUID());
-  } else {
-    history.replaceState({ view: viewName, id }, '', location.href);
-  }
+function getRouteFromUrl() {
+    const params = new URLSearchParams(globalThis.location.search);
+    const podcastId = params.get('podcastId');
+    const sectionId = params.get('sectionId');
 
+    if (podcastId && sectionId) {
+        return { view: 'episodes', podcastId, sectionId };
+    }
+
+    if (podcastId) {
+        return { view: 'sections', podcastId, sectionId: null };
+    }
+
+    return { view: 'podcasts', podcastId: null, sectionId: null };
+}
+
+function updateRouteInUrl(viewName, { push = true } = {}) {
+    const params = new URLSearchParams();
+    if (viewName === 'sections' && state.currentPodcastId) {
+        params.set('podcastId', state.currentPodcastId);
+    }
+
+    if (viewName === 'episodes') {
+        if (state.currentPodcastId) params.set('podcastId', state.currentPodcastId);
+        if (state.currentSectionId) params.set('sectionId', state.currentSectionId);
+    }
+
+    const nextUrl = params.toString()
+        ? `${globalThis.location.pathname}?${params.toString()}`
+        : globalThis.location.pathname;
+
+    const historyState = {
+        view: viewName,
+        podcastId: state.currentPodcastId,
+        sectionId: state.currentSectionId
+    };
+
+    if (push) {
+        history.pushState(historyState, '', nextUrl);
+    } else {
+        history.replaceState(historyState, '', nextUrl);
+    }
+}
+
+function activateView(viewName, id) {
     state.currentIndex = viewsOrder.indexOf(viewName);
     state.currentId = id;
 
@@ -182,46 +232,165 @@ function navigate(viewName, id = null, { push = true } = {}) {
     Object.values(views).forEach(view => view.classList.remove('active'));
     Object.values(inputs).forEach(input => input.value = '');
     views[viewName].classList.add('active');
+}
+
+function showPodcastsView(push) {
+    state.currentPodcastId = null;
+    state.currentSectionId = null;
+    renderPodcasts(ctx.podcasts);
+    updateRouteInUrl('podcasts', { push });
+}
+
+function showSectionsView(id, push) {
+    const podcastId = id ?? state.currentPodcastId;
+    if (!podcastId) {
+        navigate('podcasts', null, { push: false });
+        return;
+    }
+
+    state.currentPodcastId = podcastId;
+    state.currentSectionId = null;
+
+    const podcast = ctx.podcasts.find(p => p.id === state.currentPodcastId);
+    if (!podcast) {
+        navigate('podcasts', null, { push: false });
+        return;
+    }
+
     const headerImg = document.getElementById('header-podcast-img');
+    document.getElementById('header-podcast-title').textContent = podcast.name;
+
+    headerImg.parentElement.style = 'background-color: ' + podcast.color;
+    if (podcast.imageUrl) {
+        headerImg.src = podcast.imageUrl;
+        headerImg.style.display = 'block';
+    } else {
+        headerImg.style.display = 'none';
+    }
+
+    renderSections(podcast.sections);
+    updateRouteInUrl('sections', { push });
+}
+
+function showEpisodesView(id, push) {
+    const sectionId = id ?? state.currentSectionId;
+    if (!sectionId || !state.currentPodcastId) {
+        navigate('podcasts', null, { push: false });
+        return;
+    }
+
+    state.currentSectionId = sectionId;
+
+    const podcast = ctx.podcasts.find(p => p.id === state.currentPodcastId);
+    if (!podcast) {
+        navigate('podcasts', null, { push: false });
+        return;
+    }
+
+    const section = podcast.sections.find(s => s.id === state.currentSectionId);
+    if (!section) {
+        navigate('sections', state.currentPodcastId, { push: false });
+        return;
+    }
+
+    const headerImg = document.getElementById('header-section-img');
+    document.getElementById('header-section-title').textContent = section.name;
+
+    headerImg.parentElement.style = 'background-color: ' + section.color;
+    if (section.imageUrl) {
+        headerImg.src = section.imageUrl;
+        headerImg.style.display = 'block';
+    } else {
+        headerImg.style.display = 'none';
+    }
+
+    renderEpisodes(section.episodes);
+    updateRouteInUrl('episodes', { push });
+}
+
+function navigate(viewName, id = null, { push = true } = {}) {
+    activateView(viewName, id);
 
     if (viewName === 'podcasts') {
-        state.currentPodcastId = null;
-        state.currentSectionId = null;
-        renderPodcasts(ctx.podcasts);
+        showPodcastsView(push);
+        return;
     }
-    else if (viewName === 'sections') {
-        if (id) state.currentPodcastId = id;
-        const podcast = ctx.podcasts.find(p => p.id === state.currentPodcastId);
-        document.getElementById('header-podcast-title').textContent = podcast.name;
 
-        // Tratar a imagem no cabeçalho
-        
-        headerImg.parentElement.style = 'background-color: ' + podcast.color;
-        if (podcast.imageUrl) {
-            headerImg.src = podcast.imageUrl;
-            headerImg.style.display = 'block';
-        } else {
-            headerImg.style.display = 'none';
-        }
-
-        renderSections(podcast.sections);
+    if (viewName === 'sections') {
+        showSectionsView(id, push);
+        return;
     }
-    else if (viewName === 'episodes') {
-        if (id) state.currentSectionId = id;
+
+    if (viewName === 'episodes') {
+        showEpisodesView(id, push);
+        return;
+    }
+
+    showPodcastsView(push);
+}
+
+function buildShareUrl() {
+    return `${globalThis.location.origin}${globalThis.location.pathname}${globalThis.location.search}`;
+}
+
+function buildShareText() {
+    if (state.currentIndex === 1) {
         const podcast = ctx.podcasts.find(p => p.id === state.currentPodcastId);
-        const section = podcast.sections.find(s => s.id === state.currentSectionId);
-        document.getElementById('header-section-title').textContent = section.name;
+        return podcast ? `Ouve este podcast: ${podcast.name}` : 'Ouve este podcast';
+    }
 
-        const headerImg = document.getElementById('header-section-img');
-        headerImg.parentElement.style = 'background-color: ' + section.color;
-        if (section.imageUrl) {
-            headerImg.src = section.imageUrl;
-            headerImg.style.display = 'block';
-        } else {
-            headerImg.style.display = 'none';
+    if (state.currentIndex === 2) {
+        const podcast = ctx.podcasts.find(p => p.id === state.currentPodcastId);
+        const section = podcast?.sections.find(s => s.id === state.currentSectionId);
+        if (podcast && section) {
+            return `Ouve esta secção: ${podcast.name} - ${section.name}`;
         }
+        return 'Ouve esta secção';
+    }
 
-        renderEpisodes(section.episodes);
+    return 'Ouve este conteúdo';
+}
+
+function setShareButtonFeedback(buttonEl, stateName, title) {
+    if (!buttonEl) return;
+
+    buttonEl.classList.remove('share-success', 'share-error');
+    if (stateName) {
+        buttonEl.classList.add(stateName);
+    }
+    buttonEl.title = title;
+
+    globalThis.setTimeout(() => {
+        buttonEl.classList.remove('share-success', 'share-error');
+        buttonEl.title = 'Partilhar';
+    }, 1500);
+}
+
+async function shareCurrent(buttonEl) {
+    if (state.currentIndex === 0) return;
+
+    const shareUrl = buildShareUrl();
+    const shareData = {
+        title: 'Kanalingo Podcasts',
+        text: buildShareText(),
+        url: shareUrl
+    };
+
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+            setShareButtonFeedback(buttonEl, 'share-success', 'Partilhado');
+            return;
+        } catch (error) {
+            if (error?.name === 'AbortError') return;
+        }
+    }
+
+    try {
+        await navigator.clipboard.writeText(shareUrl);
+        setShareButtonFeedback(buttonEl, 'share-success', 'Copiado');
+    } catch {
+        setShareButtonFeedback(buttonEl, 'share-error', 'Falha ao partilhar');
     }
 }
 
@@ -465,7 +634,6 @@ async function loadContent() {
     updateViewModeUI('podcasts');
     updateViewModeUI('sections');
     updateViewModeUI('episodes');
-    renderPodcasts(ctx.podcasts);
 } 
 
 function formatDuration(seconds) {
@@ -506,14 +674,27 @@ async function init() {
         await deleteIndexedDb('database').catch(e => console.error('Erro ao apagar DB', e));
     }
 
-    loadContent();
+    await loadContent();
+
+    const route = getRouteFromUrl();
+    if (route.view === 'episodes') {
+        state.currentPodcastId = route.podcastId;
+        navigate('episodes', route.sectionId, { push: false });
+    } else if (route.view === 'sections') {
+        state.currentPodcastId = route.podcastId;
+        navigate('sections', route.podcastId, { push: false });
+    } else {
+        navigate('podcasts', null, { push: false });
+    }
+
     globalThis.setLanguage = setLanguage;
     globalThis.setViewMode = setViewMode;
     globalThis.navigate = navigate;
     globalThis.toggleLangDropdown = toggleLangDropdown;
+    globalThis.shareCurrent = shareCurrent;
 }
 
-init();
+await init();
 
 function initDB() {
     return new Promise(resolve => {

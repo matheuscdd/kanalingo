@@ -198,6 +198,22 @@ header h1 {
     transform: translateY(2px);
 }
 
+.btn-share {
+    margin-left: auto;
+}
+
+.btn-share.share-success {
+    color: var(--primary);
+    border-color: var(--primary);
+    border-bottom-color: var(--primary-shadow);
+}
+
+.btn-share.share-error {
+    color: var(--danger);
+    border-color: var(--danger);
+    border-bottom-color: #d93636;
+}
+
 /* Barra de Pesquisa */
 .search-container {
     position: relative;
