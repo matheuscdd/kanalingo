@@ -32,6 +32,8 @@ const PLAYBACK_PROGRESS_SAVE_INTERVAL_MS = 10_000;
 const FFMPEG_WRAPPER_MODULE_PATH = './vendor/ffmpeg/ffmpeg/index.js';
 const FFMPEG_CORE_URL = new URL('./vendor/ffmpeg/core/ffmpeg-core.js', import.meta.url).href;
 const FFMPEG_WASM_URL = new URL('./vendor/ffmpeg/core/ffmpeg-core.wasm', import.meta.url).href;
+const SERVICE_WORKER_URL = new URL('../service-worker.js', import.meta.url).href;
+const CACHEABLE_MANIFEST_URLS = [EPISODES_URL, SECTIONS_URL];
 
 // --- Variáveis Globais ---
 const audio = new Audio();
@@ -59,11 +61,14 @@ let playbackFallbackSourceUrl = '';
 let previousEpisodeId = '';
 let nextEpisodeId = '';
 let currentPodcastId = '';
+let serviceWorkerRegistrationPromise = null;
+let offlineCacheReadyEpisodeId = '';
 
 const loadState = {
     episodeLoaded: false,
     audioReady: false,
     transcriptState: 'pending',
+    offlineState: 'unsupported',
     failed: false,
 };
 
@@ -148,6 +153,16 @@ function updateStatusFromState() {
         return;
     }
 
+    if (loadState.offlineState === 'warming') {
+        setPlayerStatus('Áudio pronto · a guardar offline...', 'ready');
+        return;
+    }
+
+    if (loadState.offlineState === 'ready') {
+        setPlayerStatus('Pronto a reproduzir · offline disponível', 'ready');
+        return;
+    }
+
     if (loadState.transcriptState === 'pending') {
         setPlayerStatus('Áudio pronto · a carregar transcrição...', 'ready');
         return;
@@ -204,6 +219,101 @@ function updateEpisodeMetadata(episode) {
 function resetAudioSourceTracking() {
     originalAudioSourceUrl = '';
     playbackFallbackSourceUrl = '';
+}
+
+function getServiceWorkerEndpoint(registration = null) {
+    return registration?.active
+        || registration?.waiting
+        || registration?.installing
+        || navigator.serviceWorker?.controller
+        || null;
+}
+
+async function registerOfflineServiceWorker() {
+    if (!('serviceWorker' in navigator)) {
+        loadState.offlineState = 'unsupported';
+        return null;
+    }
+
+    if (!serviceWorkerRegistrationPromise) {
+        serviceWorkerRegistrationPromise = navigator.serviceWorker.register(SERVICE_WORKER_URL)
+            .then(async (registration) => {
+                await navigator.serviceWorker.ready;
+                return registration;
+            })
+            .catch((error) => {
+                console.error(error);
+                loadState.offlineState = 'unsupported';
+                return null;
+            });
+    }
+
+    const registration = await serviceWorkerRegistrationPromise;
+
+    if (registration && loadState.offlineState === 'unsupported') {
+        loadState.offlineState = 'idle';
+    }
+
+    return registration;
+}
+
+function buildOfflineWarmupUrls(preferredAudioUrl, transcriptUrl = '') {
+    return [...new Set([
+        originalAudioSourceUrl,
+        preferredAudioUrl,
+        transcriptUrl,
+        ...CACHEABLE_MANIFEST_URLS,
+    ].filter(Boolean))];
+}
+
+async function warmEpisodeOfflineResources(episodeId, preferredAudioUrl, transcriptUrl = '') {
+    const registration = await registerOfflineServiceWorker();
+
+    if (!registration) {
+        return;
+    }
+
+    const serviceWorker = getServiceWorkerEndpoint(registration);
+
+    if (!serviceWorker) {
+        loadState.offlineState = 'idle';
+        updateStatusFromState();
+        return;
+    }
+
+    loadState.offlineState = 'warming';
+    updateStatusFromState();
+
+    serviceWorker.postMessage({
+        type: 'warm-episode-cache',
+        episodeId,
+        urls: buildOfflineWarmupUrls(preferredAudioUrl, transcriptUrl),
+    });
+
+    serviceWorker.postMessage({
+        type: 'prune-episode-cache',
+        episodeIdToKeep: episodeId,
+    });
+}
+
+function handleOfflineCacheResult(event) {
+    const data = event.data;
+
+    if (data?.type !== 'offline-cache-result' || data?.episodeId !== currentEpisodeId) {
+        return;
+    }
+
+    if (data.success) {
+        offlineCacheReadyEpisodeId = data.episodeId;
+        loadState.offlineState = 'ready';
+        updateStatusFromState();
+        return;
+    }
+
+    console.error('Offline cache warmup failed', data.failures);
+    loadState.offlineState = 'idle';
+    setPlayerStatus('Áudio pronto · offline parcial indisponível', 'warning');
+    schedulePlayerStatusReset();
 }
 
 function handleFatalPlayerError(message) {
@@ -666,6 +776,10 @@ async function loadTranscript(episode) {
     updateStatusFromState();
 }
 
+function getEpisodeTranscriptUrl(episode) {
+    return resolveAssetUrl(episode.transcription);
+}
+
 function getEpisodeIdFromLocation() {
     const params = new URLSearchParams(globalThis.location.search);
     return params.get('id')?.trim() || '';
@@ -810,6 +924,7 @@ async function loadEpisodeById(episodeId, options = {}) {
     loadState.episodeLoaded = true;
     loadState.audioReady = false;
     loadState.transcriptState = 'pending';
+    loadState.offlineState = offlineCacheReadyEpisodeId === episodeId ? 'ready' : 'idle';
     resetAudioSourceTracking();
     setPlaybackControlsEnabled(false);
 
@@ -831,6 +946,7 @@ async function loadEpisodeById(episodeId, options = {}) {
 
     originalAudioSourceUrl = audioUrl;
     playbackFallbackSourceUrl = getPreferredPlaybackAudioUrl(audioUrl);
+    const transcriptUrl = getEpisodeTranscriptUrl(episode);
 
     if (playbackFallbackSourceUrl === originalAudioSourceUrl) {
         playbackFallbackSourceUrl = '';
@@ -838,6 +954,7 @@ async function loadEpisodeById(episodeId, options = {}) {
 
     audio.src = audioUrl;
     audio.load();
+    void warmEpisodeOfflineResources(episodeId, playbackFallbackSourceUrl || audioUrl, transcriptUrl);
     void loadTranscript(episode);
 }
 
@@ -1247,7 +1364,12 @@ globalThis.addEventListener('beforeunload', () => {
     persistPlaybackProgress();
 });
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.addEventListener('message', handleOfflineCacheResult);
+}
+
 async function bootstrapPlayer() {
+    void registerOfflineServiceWorker();
     const episodeId = getEpisodeIdFromLocation();
     setPlaybackControlsEnabled(false);
     setEpisodeNavigationTargets();
