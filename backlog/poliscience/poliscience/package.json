@@ -1,0 +1,18 @@
+{
+  "name": "reta-final",
+  "version": "1.0.0",
+  "description": "Jogo de corrida 3D em reta com Babylon.js e Havok",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node tools/serve.mjs 3000",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "smoke": "node tools/smoke.mjs",
+    "drive": "node tools/drive.mjs",
+    "collide": "node tools/collide.mjs",
+    "race": "node tools/race.mjs",
+    "model": "node tools/model.mjs",
+    "police": "node tools/police.mjs",
+    "verify": "npm test && npm run smoke && npm run drive && npm run collide && npm run race && npm run police"
+  }
+}

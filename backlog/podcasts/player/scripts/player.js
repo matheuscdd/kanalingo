@@ -33,7 +33,7 @@ const FFMPEG_WRAPPER_MODULE_PATH = './vendor/ffmpeg/ffmpeg/index.js';
 const FFMPEG_CORE_URL = new URL('./vendor/ffmpeg/core/ffmpeg-core.js', import.meta.url).href;
 const FFMPEG_WASM_URL = new URL('./vendor/ffmpeg/core/ffmpeg-core.wasm', import.meta.url).href;
 const SERVICE_WORKER_URL = new URL('../service-worker.js', import.meta.url).href;
-const CACHEABLE_MANIFEST_URLS = [EPISODES_URL, SECTIONS_URL];
+const CACHEABLE_MANIFEST_URLS = [];
 
 // --- Variáveis Globais ---
 const audio = new Audio();

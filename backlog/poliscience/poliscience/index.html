@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reta Final - Corrida 3D</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Babylon.js via CDN (expõe o global BABYLON) -->
+  <script src="https://cdn.babylonjs.com/babylon.js"></script>
+  <!-- Loaders (necessário para carregar .glb) -->
+  <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+  <!-- Havok Physics (WASM) via CDN (expõe o global HavokPhysics) -->
+  <script src="https://cdn.babylonjs.com/havok/HavokPhysics_umd.js"></script>
+</head>
+<body>
+  <canvas id="renderCanvas" aria-label="Jogo de corrida 3D"></canvas>
+
+  <div id="hud">
+    <!-- Moldura do retrovisor (a imagem é desenhada pelo Babylon por baixo) -->
+    <div id="mirrorFrame" class="hidden" aria-hidden="true"></div>
+
+    <div id="timer" aria-label="Tempo de corrida">00:00.00</div>
+
+    <div id="police" class="hidden">
+      <div class="police-row">
+        <span class="police-label">Polícia</span>
+        <span id="policeDistance">-- m</span>
+      </div>
+      <div id="bustMeter" role="progressbar" aria-label="Risco de ser pego"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="bustFill"></div>
+      </div>
+    </div>
+
+    <div id="speedometer" aria-label="Velocímetro">
+      <span id="speedValue">0</span>
+      <span class="unit">km/h</span>
+    </div>
+
+    <div id="message" class="hidden" role="status" aria-live="polite"></div>
+  </div>
+
+  <div id="loading">Carregando...</div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

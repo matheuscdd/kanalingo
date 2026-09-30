@@ -1,0 +1,217 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0b0f1a;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #f5f5f5;
+}
+
+#renderCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  outline: none;
+}
+
+/* HUD sobre o canvas */
+#hud {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+#speedometer {
+  position: absolute;
+  right: 32px;
+  bottom: 28px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  text-shadow: 0 0 12px rgba(0, 200, 255, 0.6);
+}
+
+#speedValue {
+  font-size: 64px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  min-width: 3ch;
+  text-align: right;
+}
+
+#speedometer .unit {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+#timer {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  font-size: 28px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  padding: 8px 18px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
+#message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 32px;
+  font-size: 28px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  white-space: pre-line;
+}
+
+#message.hidden {
+  display: none;
+}
+
+#loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: #0b0f1a;
+  z-index: 10;
+}
+
+#loading.hidden {
+  display: none;
+}
+
+/* Flash vermelho ao bater */
+#hud.hit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 40, 40, 0.35);
+  animation: hitFlash 0.35s ease-out forwards;
+}
+
+@keyframes hitFlash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Retrovisor: moldura por fora da área que o Babylon desenha.
+   Posição e tamanho vêm de MIRROR.viewport (hud.showMirrorFrame). */
+#mirrorFrame {
+  position: absolute;
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 4px rgba(12, 12, 14, 0.95),
+    0 0 0 5px rgba(255, 255, 255, 0.25),
+    0 8px 18px rgba(0, 0, 0, 0.55);
+}
+
+#mirrorFrame.hidden,
+#police.hidden {
+  display: none;
+}
+
+/* Painel da polícia: distância e medidor de "pego" */
+#police {
+  position: absolute;
+  left: 24px;
+  bottom: 28px;
+  min-width: 210px;
+  padding: 10px 16px 12px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+}
+
+#police .police-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+#police .police-label {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+#policeDistance {
+  font-size: 26px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+#bustMeter {
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+#bustFill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #ffb300, #ff2d2d);
+  transition: width 0.1s linear;
+}
+
+#police.warning .police-label {
+  color: #ffcc33;
+  opacity: 1;
+}
+
+#police.danger {
+  animation: sirenPulse 0.44s infinite alternate;
+}
+
+#police.danger .police-label {
+  color: #ff5a5a;
+  opacity: 1;
+}
+
+@keyframes sirenPulse {
+  from {
+    box-shadow: 0 0 14px 2px rgba(40, 90, 255, 0.8);
+  }
+  to {
+    box-shadow: 0 0 14px 2px rgba(255, 40, 40, 0.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #police.danger,
+  #hud.hit::after {
+    animation: none;
+  }
+}
