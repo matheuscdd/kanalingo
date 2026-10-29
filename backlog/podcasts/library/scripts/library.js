@@ -629,8 +629,6 @@ async function loadContent() {
                 .toSorted((a, b) => a.order - b.order)
         }));
 
-
-
     updateViewModeUI('podcasts');
     updateViewModeUI('sections');
     updateViewModeUI('episodes');
