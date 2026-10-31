@@ -18,11 +18,6 @@ sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 
-python -m venv .venv-denoise
-source .venv-denoise/bin/activate
-pip install -r requirements-denoise.txt
-deactivate
-
 python -m venv .venv-whysper
 source .venv-whysper/bin/activate
 pip install -r requirements-whysper.txt

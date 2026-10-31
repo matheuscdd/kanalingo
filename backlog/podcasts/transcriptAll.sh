@@ -1,42 +1,89 @@
 #!/bin/bash
 
-set -euo pipefail
-source .venv-whysper/bin/activate
+set -uo pipefail
 
-TEMP_LIMIT=75
-SLEEP_TIME=30
+ROOT_DIR="${1:-}"
+LANGUAGE="${2:-}"
+BRIEFING="${3:-}"
 
-mkdir -p "files/done"
+if [[ ! -d "${ROOT_DIR}" ]]; then
+  echo "Diretório não encontrado: ${ROOT_DIR}" >&2
+  exit 1
+fi
 
-get_temp() {
-  nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits
-}
+if [[ -z "${LANGUAGE}" ]]; then
+  echo "Língua não selecionada, ex: pt, en" >&2
+  exit 1
+fi
 
-wait_for_cooldown() {
-  TEMP=$(get_temp)
+if [[ -z "${BRIEFING}" ]]; then
+  echo "Briefing não informado" >&2
+  exit 1
+fi
 
-  while [[ "$TEMP" =~ ^[0-9]+$ ]] && [ "$TEMP" -ge "$TEMP_LIMIT" ]; do
-    echo "🔥 GPU quente: ${TEMP}°C — esperando esfriar..."
-    sleep $SLEEP_TIME
-    TEMP=$(get_temp)
-  done
+if [[ -f ".venv-whysper/bin/activate" ]]; then
+  source .venv-whysper/bin/activate
+else
+  echo "Ambiente virtual .venv-whysper não encontrado. Rode ./deps.sh primeiro." >&2
+  exit 1
+fi
 
-  echo "✅ Temperature ok: ${TEMP}°C"
-}
+echo "Verificando arquivos .webm em ${ROOT_DIR}..."
+mapfile -d '' webm_files < <(find "${ROOT_DIR}" -type f -name "*.webm" -size +10k -print0 | sort -z)
 
-total=$(find files -maxdepth 1 -name "*.wav" | wc -l)
-current=0
+if [[ ${#webm_files[@]} -eq 0 ]]; then
+  echo "Nenhum .webm encontrado em ${ROOT_DIR}"
+  exit 0
+fi
 
-for file in files/*.wav; do
-    wait_for_cooldown
+total=0
+for webm_file in "${webm_files[@]}"; do
+  base_name="${webm_file%.webm}"
+  transcript_file="${base_name}.transcription.json"
 
-    ((++current))
-    percent=$((current * 100 / total))
-    # Pega o nome do arquivo sem extensão
-    filename=$(basename "$file" .wav)
-    
-    # Converte para WAV mantendo o nome
-    echo "[$current/$total - ${percent}%] Transcribing $filename"
-    python whysper.py "files/$filename"
-    mv "$file" "files/done"
+  if [[ -f "${transcript_file}" ]] && [[ $(stat -c%s "${transcript_file}") -gt 10240 ]]; then
+    continue
+  fi
+
+  ((total++))
 done
+
+if [[ "${total}" -eq 0 ]]; then
+  echo "✅ Nenhum áudio pendente para transcrição."
+  exit 0
+fi
+
+echo "Pendentes para transcrição: $total"
+current=0
+for webm_file in "${webm_files[@]}"; do
+  base_name="${webm_file%.webm}"
+  transcript_file="${base_name}.transcription.json"
+
+  if [[ -f "${transcript_file}" ]] && [[ $(stat -c%s "${transcript_file}") -gt 10240 ]]; then
+    continue
+  fi
+
+  ((current++))
+  percent=0
+  if [[ "${total}" -gt 0 ]]; then
+    percent=$((current * 100 / total))
+  fi
+
+  wav_file="${base_name}.wav"
+  echo "[${current}/${total} - ${percent}%] Processando $(basename "${webm_file}")"
+
+  if ! ffmpeg -y -i "$webm_file" -ar 16000 -ac 1 "$wav_file" >/dev/null 2>&1; then
+    echo "Falha no ffmpeg em: $webm_file" >&2
+    continue
+  fi
+
+  if ! python "$(dirname "$0")/whysper.py" "${LANGUAGE}" "${BRIEFING}" "${base_name}"; then
+    echo "Falha na transcrição em: ${base_name}" >&2
+  fi
+
+  if [[ -f "${wav_file}" ]]; then
+    rm -f "${wav_file}"
+  fi
+done
+
+echo "✅ Processamento concluído."

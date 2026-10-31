@@ -1,3 +1,4 @@
+import os
 import sys
 import json
 import time
@@ -6,10 +7,9 @@ import platform
 from tqdm import tqdm
 from faster_whisper import WhisperModel
 import whisperx
-import soundfile
 
-if len(sys.argv) < 2:
-    raise Exception("Use: python whysper.py <file>")
+if len(sys.argv) < 4:
+    raise Exception("Use: python whysper.py <language> <briefing> <file>")
 
 if platform.system() != "Linux":
     raise EnvironmentError("❌ Este script só pode ser executado no Linux.")
@@ -17,8 +17,22 @@ if platform.system() != "Linux":
 print("Starting whysper...")
 
 device = "cuda"
-filename = sys.argv[1]
-audio_path = f"{filename}.wav"
+language = sys.argv[1].strip()
+briefing = sys.argv[2].strip()
+source = sys.argv[3].strip()
+
+if source.lower().endswith(".wav"):
+    base_name = source[:-4]
+elif source.lower().endswith(".webm"):
+    base_name = source[:-5]
+else:
+    base_name = source
+
+webm_path = f"{base_name}.webm"
+wav_path = f"{base_name}.wav"
+
+if not os.path.exists(wav_path):
+    raise FileNotFoundError(f"Arquivo WAV não encontrado: {wav_path}")
 
 # -----------------------------
 # 1️⃣ Carrega modelo Whisper
@@ -33,7 +47,7 @@ model = WhisperModel(
 # 2️⃣ Transcrição inicial
 # -----------------------------
 segments, info = model.transcribe(
-    audio_path,
+    wav_path,
     beam_size=15,
     temperature=[0.0, 0.2, 0.4],
     best_of=15,
@@ -43,11 +57,8 @@ segments, info = model.transcribe(
     vad_filter=True,
     condition_on_previous_text=False,
     word_timestamps=True,
-    language="pt",
-    initial_prompt="""Transcrição em português brasileiro.
-Conteúdo sobre teologia cristã, Bíblia, Antigo Testamento,
-Novo Testamento, Jesus Cristo, Ellen White,
-igreja adventista e estudos bíblicos."""
+    language=language,
+    initial_prompt=briefing
 )
 
 total_duration = info.duration
@@ -63,8 +74,6 @@ processed_audio = 0
 # 3️⃣ Processa saída original
 # -----------------------------
 for segment in segments:
-
-    # 🔥 Detecta baixa confiança
     if segment.avg_logprob < -1.0:
         low_confidence_segments.append(
             f"[{segment.start:.2f}s - {segment.end:.2f}s] "
@@ -78,7 +87,6 @@ for segment in segments:
         "text": segment.text
     })
 
-    # Progress bar
     segment_duration = segment.end - segment.start
     processed_audio += segment_duration
     pbar.update(segment_duration)
@@ -99,7 +107,7 @@ pbar.close()
 # -----------------------------
 print("Alinhando com WhisperX...")
 
-audio = whisperx.load_audio(audio_path)
+audio = whisperx.load_audio(wav_path)
 
 result = {
     "segments": fw_segments,
@@ -149,18 +157,23 @@ for segment in result_aligned["segments"]:
 # -----------------------------
 # 6️⃣ Salva arquivos
 # -----------------------------
-with open(f"{filename}.json", "w", encoding="utf-8") as f:
+with open(f"{base_name}.transcription.json", "w", encoding="utf-8") as f:
     json.dump(final_result_json, f, ensure_ascii=False, indent=2)
 
-with open(f"{filename}.txt", "w", encoding="utf-8") as f:
+with open(f"{base_name}.txt", "w", encoding="utf-8") as f:
     for item in final_result_json:
         f.write(item["text"] + "\n")
 
 if low_confidence_segments:
-    with open(f"{filename}_low_confidence.txt", "w", encoding="utf-8") as f:
+    with open(f"{base_name}_low_confidence.txt", "w", encoding="utf-8") as f:
         f.write("\n".join(low_confidence_segments))
 
-    print(f"\n⚠ {len(low_confidence_segments)} segmentos com baixa confiança salvos.")
+    print(f"⚠ {len(low_confidence_segments)} segmentos com baixa confiança salvos.")
 else:
-    print("\n✅ Nenhum segmento com baixa confiança detectado.")
+    print("✅ Nenhum segmento com baixa confiança detectado.")
 
+if os.path.exists(wav_path):
+    os.remove(wav_path)
+    print(f"Arquivo temporário removido: {wav_path}")
+
+print()
