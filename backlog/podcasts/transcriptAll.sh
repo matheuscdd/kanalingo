@@ -71,7 +71,7 @@ for webm_file in "${webm_files[@]}"; do
 
   wav_file="${base_name}.wav"
   echo "[${current}/${total} - ${percent}%] Processando $(basename "${webm_file}")"
-
+  echo "Criando arquivo temporário ${wav_file}"
   if ! ffmpeg -y -i "$webm_file" -ar 16000 -ac 1 "$wav_file" >/dev/null 2>&1; then
     echo "Falha no ffmpeg em: $webm_file" >&2
     continue

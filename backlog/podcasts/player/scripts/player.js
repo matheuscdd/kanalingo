@@ -21,13 +21,20 @@ const subtitleTextEl = document.getElementById('subtitle-text');
 const backLibraryBtn = document.getElementById('back-library-btn');
 
 // --- Constantes ---
+import {
+    clearPlaybackProgress,
+    getPlaybackProgressTime,
+    hasEpisodeBeenHeard,
+    readPlaybackProgress,
+    savePlaybackProgress,
+} from '../../shared/playback-state.js';
+
 const BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/main';
 const PODCASTS_BASE_URL = `${BASE_URL}/podcasts`;
 const VERSION_URL = `${BASE_URL}/version.json`;
 const EPISODES_URL = `${PODCASTS_BASE_URL}/episodes.json`;
 const SECTIONS_URL = `${PODCASTS_BASE_URL}/sections.json`;
 const speeds = [1, 1.2, 1.5, 2];
-const PLAYBACK_PROGRESS_KEY_PREFIX = 'podcast-progress:';
 const PLAYBACK_PROGRESS_SAVE_INTERVAL_MS = 10_000;
 const FFMPEG_WRAPPER_MODULE_PATH = './vendor/ffmpeg/ffmpeg/index.js';
 const FFMPEG_CORE_URL = new URL('./vendor/ffmpeg/core/ffmpeg-core.js', import.meta.url).href;
@@ -785,10 +792,6 @@ function getEpisodeIdFromLocation() {
     return params.get('id')?.trim() || '';
 }
 
-function getPlaybackProgressStorageKey(episodeId) {
-    return `${PLAYBACK_PROGRESS_KEY_PREFIX}${episodeId}`;
-}
-
 function clearPlaybackProgressTracking() {
     if (playbackProgressIntervalId === null) {
         return;
@@ -796,45 +799,6 @@ function clearPlaybackProgressTracking() {
 
     clearInterval(playbackProgressIntervalId);
     playbackProgressIntervalId = null;
-}
-
-function clearPlaybackProgress(episodeId = currentEpisodeId) {
-    if (!episodeId) {
-        return;
-    }
-
-    try {
-        localStorage.removeItem(getPlaybackProgressStorageKey(episodeId));
-    } catch {
-        // Ignora falhas de acesso ao storage para nao travar o player.
-    }
-}
-
-function readPlaybackProgress(episodeId) {
-    if (!episodeId) {
-        return null;
-    }
-
-    try {
-        const rawValue = localStorage.getItem(getPlaybackProgressStorageKey(episodeId));
-
-        if (!rawValue) {
-            return null;
-        }
-
-        const parsedValue = JSON.parse(rawValue);
-        const savedTime = Number(parsedValue?.time);
-
-        if (parsedValue?.id !== episodeId || !Number.isFinite(savedTime) || savedTime <= 0) {
-            clearPlaybackProgress(episodeId);
-            return null;
-        }
-
-        return savedTime;
-    } catch {
-        clearPlaybackProgress(episodeId);
-        return null;
-    }
 }
 
 function persistPlaybackProgress() {
@@ -845,26 +809,11 @@ function persistPlaybackProgress() {
     const currentTime = Number(audio.currentTime);
 
     if (!Number.isFinite(currentTime) || currentTime <= 0) {
-        clearPlaybackProgress();
+        clearPlaybackProgress(currentEpisodeId);
         return;
     }
 
-    if (Number.isFinite(audio.duration) && currentTime >= Math.max(audio.duration - 1, 0)) {
-        clearPlaybackProgress();
-        return;
-    }
-
-    try {
-        localStorage.setItem(
-            getPlaybackProgressStorageKey(currentEpisodeId),
-            JSON.stringify({
-                id: currentEpisodeId,
-                time: currentTime,
-            }),
-        );
-    } catch {
-        // Ignora falhas de acesso ao storage para nao travar o player.
-    }
+    savePlaybackProgress(currentEpisodeId, currentTime);
 }
 
 function startPlaybackProgressTracking() {
@@ -887,16 +836,17 @@ function updateTimelineUi(currentTime) {
 }
 
 function restorePlaybackProgress() {
-    const savedTime = readPlaybackProgress(currentEpisodeId);
+    const savedProgress = readPlaybackProgress(currentEpisodeId);
+    const savedTime = savedProgress ? savedProgress.time : 0;
 
-    if (!savedTime || !Number.isFinite(audio.duration)) {
+    if (!Number.isFinite(audio.duration) || !savedTime || savedTime <= 0) {
         return;
     }
 
     const resumeTime = Math.min(savedTime, Math.max(audio.duration - 1, 0));
 
     if (resumeTime <= 0) {
-        clearPlaybackProgress();
+        clearPlaybackProgress(currentEpisodeId);
         return;
     }
 
@@ -1092,7 +1042,10 @@ audio.addEventListener('pause', () => {
 audio.addEventListener('ended', () => {
     isPlaying = false;
     clearPlaybackProgressTracking();
-    clearPlaybackProgress();
+    savePlaybackProgress(currentEpisodeId, audio.currentTime, {
+        incrementPlayCount: true,
+        resetPosition: true,
+    });
     updatePlayButton();
 });
 

@@ -1,3 +1,8 @@
+import {
+    getPlaybackProgressTime,
+    hasEpisodeBeenHeard,
+} from '../../shared/playback-state.js';
+
 const BASE_URL = 'https://raw.githubusercontent.com/matheuscdd/kanabase/refs/heads/main';
 let allPodcasts = 'http://127.0.0.1:3000/podcasts.json';
 let allSections = 'http://127.0.0.1:3000/sections.json';
@@ -405,34 +410,20 @@ function getEpisodeProgressTime(episodeId) {
         return progressTimeCache.get(episodeId);
     }
 
-    try {
-        const raw = localStorage.getItem(`podcast-progress:${episodeId}`);
-        if (!raw) {
-            progressTimeCache.set(episodeId, 0);
-            return 0;
-        }
-
-        const parsed = JSON.parse(raw);
-        let entry = parsed;
-        if (Array.isArray(parsed)) {
-            entry = parsed.find(item => item?.id === episodeId) ?? parsed[0];
-        }
-
-        const parsedTime = Number(entry?.time ?? 0);
-        const time = Number.isFinite(parsedTime) && parsedTime > 0 ? parsedTime : 0;
-        progressTimeCache.set(episodeId, time);
-        return time;
-    } catch {
-        progressTimeCache.set(episodeId, 0);
-        return 0;
-    }
+    const time = getPlaybackProgressTime(episodeId);
+    progressTimeCache.set(episodeId, time);
+    return time;
 }
 
 function getEpisodeProgressPercent(episode) {
     const time = getEpisodeProgressTime(episode.id);
-    if (!episode.duration || episode.duration <= 0) return { percent: 0, completed: false };
+    if (!episode.duration || episode.duration <= 0) {
+        return { percent: 0, completed: false };
+    }
+
     const percent = Math.min((time / episode.duration) * 100, 100);
-    return { percent, completed: percent >= 95 };
+    const completed = hasEpisodeBeenHeard(episode.id, episode.duration);
+    return { percent, completed };
 }
 
 function getSectionProgressPercent(section) {
@@ -459,9 +450,11 @@ function getPodcastProgressPercent(podcast) {
 }
 
 function buildProgressBar(percent, completed) {
-    if (percent <= 0) return '';
+    if (!completed && percent <= 0) return '';
+
+    const width = completed ? 100 : Math.max(0, percent);
     const modifier = completed ? ' progress-bar--completed' : '';
-    return `<div class="progress-bar-container"><div class="progress-bar${modifier}" style="width:${percent.toFixed(1)}%"></div></div>`;
+    return `<div class="progress-bar-container"><div class="progress-bar${modifier}" style="width:${width.toFixed(1)}%"></div></div>`;
 }
 // --- Fim Progresso ---
 
